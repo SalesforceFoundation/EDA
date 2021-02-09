@@ -49,7 +49,7 @@
         <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
-        <label>Vrouw</label>
+        <label>Female</label>
         <name>Female</name>
     </customLabels>
     <customLabels>
@@ -57,7 +57,7 @@
         <name>InvalidFilter</name>
     </customLabels>
     <customLabels>
-        <label>Man</label>
+        <label>Male</label>
         <name>Male</name>
     </customLabels>
     <customLabels>
@@ -225,7 +225,7 @@
         <name>exceptionRequiredField</name>
     </customLabels>
     <customLabels>
-        <label>Een validatieregel voorkomt dat deze record wordt verwerkt. De validatieregel kan zich op deze record bevinden of op een gerelateerde record die wordt bijgewerkt. VALIDATIEBERICHT:</label>
+        <label>Een validatieregel voorkomt dat deze record kan worden verwerkt. De validatieregel kan zich in deze record bevinden of in een gerelateerde record die momenteel wordt bijgewerkt. VALIDATIEBERICHT:</label>
         <name>exceptionValidationRule</name>
     </customLabels>
     <customLabels>
@@ -549,7 +549,7 @@
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Setup title --></label>
+        <label>EDA-set-up</label>
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
@@ -573,391 +573,391 @@
         <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
     <customLabels>
-        <label>Vloeiend</label>
+        <label>Fluent</label>
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
+        <label>Controleer het recordtype Administratief account dat is opgegeven in de EDA-instellingen, op het tabblad Accounts en contactpersonen. Als {0} ({1}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u het recordtype Administratief account in een geldig, actief recordtype.</label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Administrative Account Record Type --></label>
+        <label>Ga naar de EDA-instellingen, naar het tabblad Accounts en contactpersonen en wijzig het recordtype Administratief account in een geldig, actief recordtype.</label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
+        <label>Controleer het recordtype Standaard accountmodel dat is opgegeven in de EDA-instellingen, op het tabblad Systeem. Als {0} ({1}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u het recordtype Standaard accountmodel in een geldig, actief recordtype.</label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Account Model record type --></label>
+        <label>Ga naar de EDA-instellingen, naar het tabblad Systeem, en wijzig het recordtype Standaard accountmodel in een geldig, actief recordtype.</label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
+        <label>Controleer het recordtype Account voor huishouden dat is opgegeven in de EDA-instellingen, op het tabblad Accounts en contactpersonen. Als {0} ({1}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u het recordtype Account voor huishouden in een geldig, actief recordtype.</label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find the Household Account Record Type --></label>
+        <label>Ga naar de EDA-instellingen, naar het tabblad Accounts en contactpersonen en wijzig het recordtype Account voor huishouden in een geldig, actief recordtype.</label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique container Account record type settings --></label>
+        <label>Unieke instellingen voor de recordtypes Administratief account en Account voor huishouden.</label>
         <name>stgHCAccountRecordTypeSettingsUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Administrative and Household Account Record Types aren&apos;t unique --></label>
+        <label>In de instellingen voor de recordtypes Administratief account en Account voor huishouden wordt hetzelfde recordtype opgegeven.</label>
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Administrative and Household Account Record Types are same --></label>
+        <label>In de EDA-instellingen, op het tabblad Accounts en contactpersonen, kunt u het recordtype Administratief account of het recordtype Account voor huishouden wijzigen zodat elk recordtype uniek is.</label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Administrative and Household Account Record Types are unique --></label>
+        <label>In de instellingen voor de recordtypen Administratief account en Account voor huishouden wordt een ander recordtype opgegeven.</label>
         <name>stgHCAccountRecordTypesUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for an Affiliation mapping in EDA Settings Health Check results --></label>
+        <label>De affiliatietoewijzing {0} is geldig.</label>
         <name>stgHCAffiliationMappingSettingDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Row heading for an Affiliation mapping in EDA Settings Health Check results --></label>
+        <label>Affiliatietoewijzing {0}</label>
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type is inactive --></label>
+        <label>Controleer de affiliatietoewijzing voor {0} ({1}) die is opgegeven in de EDA-instellingen, op het tabblad Affiliaties. Als {0} ({1}) correct is, gaat u naar het accountobject in Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u het recordtype van de affiliatietoewijzing in een geldig, actief recordtype.</label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en wijzig de affiliatietoewijzing voor het accountobject in een geldig, actief recordtype.</label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Account record types in Affiliation mappings are not unique --></label>
+        <label>Het recordtype {0} ({1}) is toegewezen aan meerdere primaire affiliatievelden voor contactpersonen.</label>
         <name>stgHCAfflMapAccRecordTypeNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Account record type in Affiliation mapping settings --></label>
+        <label>Accountrecordtype</label>
         <name>stgHCAfflMapAccRecordTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Account record types in Affiliation mappings are unique --></label>
+        <label>Het recordtype {0} ({1}) is toegewezen aan één primair affiliatieveld voor contactpersonen.</label>
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Account record types in Affiliation mappings aren&apos;t unique --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en zoek in de kolom voor het accountrecordtype naar meerdere toewijzingen waarin {0} ({1}) wordt opgegeven. Bewerk deze affiliatietoewijzingen zodat dit recordtype is toegewezen aan slechts één primair affiliatieveld voor contactpersonen.</label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Account record types in Affiliation mappings --></label>
+        <label>Uniek recordtype Affiliatietoewijzingen</label>
         <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
+        <label>De keuzelijstwaarde {0} ({1}) is niet actief.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties en controleer de {0} ({1}) die is opgegeven voor de automatische inschrijvingsrol van een affiliatietoewijzing. Als {0} ({1}) correct is, gaat u naar het rolveld van het programma-inschrijvingsobject in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de automatische inschrijvingsrol in een geldige, actieve keuzelijstwaarde.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
+        <label>We kunnen de keuzelijstwaarde {0} niet vinden.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en wijzig de automatische inschrijvingsrol in een geldige, actieve keuzelijstwaarde voor het rolveld van het programma-inschrijvingsobject.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Auto-Enrollment Role in Affiliation mappings --></label>
+        <label>Waarde voor Automatische inschrijvingsrol</label>
         <name>stgHCAfflMapAutoEnrollRoleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Role is valid --></label>
+        <label>De keuzelijstwaarde {0} ({1}) is geldig.</label>
         <name>stgHCAfflMapAutoEnrollRoleValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
+        <label>De keuzelijstwaarde {0} ({1}) is niet actief.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties en controleer de {0} ({1}) die is opgegeven voor de automatische inschrijvingsstatus van een affiliatietoewijzing. Als {0} ({1}) correct is, gaat u naar het statusveld van het programma-inschrijvingsobject in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de automatische-inschrijvingsstatus in een geldige, actieve keuzelijstwaarde.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can't find a mapping's Auto-Enrollment Status --></label>
+        <label>We kunnen de keuzelijstwaarde {0} niet vinden.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en wijzig de automatische inschrijvingsstatus in een geldige, actieve keuzelijstwaarde voor het statusveld van het programma-inschrijvingsobject.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Auto-Enrollment Status in Affiliation mappings --></label>
+        <label>Waarde voor Automatische inschrijvingsstatus</label>
         <name>stgHCAfflMapAutoEnrollStatusTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Status is valid --></label>
+        <label>De keuzelijstwaarde {0} ({1}) is geldig.</label>
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties en controleer de {0} die is opgegeven. Dit moet een geldig opzoekveld zijn in het contactpersoonobject.</label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Contact Primary Affiliation fields in Affiliation mappings --></label>
+        <label>Uniek veld voor primaire contactpersoonaffiliaties.</label>
         <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid --></label>
+        <label>{0} is geen geldig veld voor contactpersonen.</label>
         <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique --></label>
+        <label>Het veld {0} ({1}) is toegewezen aan meerdere accountrecordtypen.</label>
         <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Contact Primary Affiliation field in Affiliation mapping settings --></label>
+        <label>Primair affiliatieveld contactpersoon</label>
         <name>stgHCAfflMapContactPrimaryFieldTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when mappings&apos; Contact Primary Affiliation fields are unique --></label>
+        <label>Het veld {0} ({1}) is toegewezen aan één accountrecordtype.</label>
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en zoek in de kolom voor Primair affiliatieveld contactpersoon naar meerdere toewijzingen waarin {0} ({1}) wordt opgegeven. Bewerk deze toewijzingen zodat dit veld in slechts één affiliatietoewijzing is toegewezen.</label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Contact Primary Affiliation field is valid --></label>
+        <label>Het veld {0} ({1}) is geldig.</label>
         <name>stgHCAfflMapContactPrimaryFieldValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds Course Connections not enabled --></label>
+        <label>Cursusverbindingen is niet ingeschakeld.</label>
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Course Connections isn&apos;t enabled --></label>
+        <label>Schakel Cursusverbindingen in; hierbij hoort ook het configureren van de recordtypes Cursusverbindingen.</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
+        <label>Controleer Standaard recordtype voor staflid dat is opgegeven in EDA-instellingen, op het subtabblad Instellingen van het tabblad Cursusverbindingen. Als {1} ({0}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u Standaard recordtype voor staflid in een geldig, actief recordtype.</label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Faculty Record Type --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Instellingen van het tabblad Cursusverbindingen en wijzig Standaard recordtype voor staflid in een geldig, actief recordtype.</label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when student and faculty Course Connection record types not unique --></label>
+        <label>In de instellingen voor Standaard recordtype voor staflid en Standaard recordtype voor actieve student wordt hetzelfde recordtype opgegeven.</label>
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when student and faculty Course Connection record types are same --></label>
+        <label>In de EDA-instellingen, op het subtabblad Instellingen van het tabblad Cursusverbindingen, kunt u Standaard recordtype voor staflid of Standaard recordtype voor actieve student wijzigen zodat elk recordtype uniek is.</label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Course Connection record type settings --></label>
+        <label>Unieke instellingen voor Standaard recordtype voor staflid en Standaard recordtype voor actieve student</label>
         <name>stgHCCourseConRecordTypesUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when student and faculty Course Connection record types are unique --></label>
+        <label>In de instellingen voor Standaard recordtype voor staflid en Standaard recordtype voor actieve student wordt een ander recordtype opgegeven.</label>
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Active Student Record Type is inactive --></label>
+        <label>Controleer Standaard recordtype voor actieve student dat is opgegeven in EDA-instellingen, op het subtabblad Instellingen van het tabblad Cursusverbindingen. Als {1} ({0}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u Standaard recordtype voor actieve student in een geldig, actief recordtype.</label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Active Student Record Type --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Instellingen van het tabblad Cursusverbindingen en wijzig Standaard recordtype voor actieve student in een geldig, actief recordtype.</label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Course Connections group title in EDA Settings Health Check results --></label>
+        <label>Cursusverbindingen</label>
         <name>stgHCCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds an inactive picklist value --></label>
+        <label>De keuzelijstwaarde {0} ({1}) is niet actief.</label>
         <name>stgHCPicklistValueInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can&apos;t find the picklist value --></label>
+        <label>We kunnen de keuzelijstwaarde {0} niet vinden.</label>
         <name>stgHCPicklistValueNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component title --></label>
+        <label>De keuzelijstwaarde {0} ({1}) is geldig.</label>
         <name>stgHCPicklistValueValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for a reciprocal setting in EDA Settings Health Check results --></label>
+        <label>Er zijn {0} wederzijdse relaties geldig.</label>
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value is inactive --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en controleer de opgegeven wederzijdse instelling voor {0} ({1}). Als {0} ({1}) correct is voor Vrouw, gaat u naar het typeveld van het relatie-object in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de waarde Vrouw van de wederzijdse instelling in een geldige, actieve keuzelijstwaarde.</label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en wijzig de bijbehorende waarde Vrouw van de wederzijdse instelling in een geldige keuzelijstwaarde</label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Female value in a reciprocal setting --></label>
+        <label>De waarde Vrouw van Wederzijdse instellingen</label>
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value is inactive --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en controleer de opgegeven wederzijdse instelling voor {0} ({1}). Als {0} ({1}) correct is voor Man, gaat u naar het typeveld van het relatie-object in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de waarde Vrouw van de wederzijdse instelling in een geldige, actieve keuzelijstwaarde.</label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en wijzig de bijbehorende waarde Man van de wederzijdse instelling in een geldige keuzelijstwaarde</label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Male value in a reciprocal setting --></label>
+        <label>De waarde Man van Wederzijdse instellingen</label>
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value is inactive --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en controleer de opgegeven wederzijdse instelling voor {0} ({1}). Als {0} ({1}) correct is, gaat u naar het typeveld van het relatie-object in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de waarde Naam van de wederzijdse instelling in een geldige, actieve keuzelijstwaarde.</label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en wijzig de bijbehorende waarde Naam van de wederzijdse instelling in een geldige keuzelijstwaarde.</label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Name isn&apos;t unique in reciprocal settings --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en controleer de opgegeven wederzijdse instelling voor {0} ({1}). Als {0} ({1}) correct is, gaat u naar het typeveld van het relatie-object in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de waarde Naam van de wederzijdse instelling in een geldige, actieve keuzelijstwaarde.</label>
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended Fix when Name isn&apos;t unique in reciprocal settings --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en zoek in de kolom Naam naar meerdere rijen waarop {0} ({1}) wordt opgegeven. Bewerk die wederzijdse instellingen zodat deze waarde nog maar in één rij staat van wederzijdse instellingen.</label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Name value in a reciprocal setting --></label>
+        <label>De waarde Naam van Wederzijdse instellingen</label>
         <name>stgHCReciprocalRelNameTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Name is unique in reciprocal settings --></label>
+        <label>De keuzelijstwaarde {0} ({1}) wordt slechts in één wederzijdse instelling gebruikt.</label>
         <name>stgHCReciprocalRelNameUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Name values in reciprocal settings --></label>
+        <label>Unieke naam van Wederzijdse instellingen</label>
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value is inactive --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en controleer de opgegeven wederzijdse instelling voor {0} ({1}). Als {0} ({1}) correct is, gaat u naar het typeveld van het relatie-object in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de waarde Neutraal van de wederzijdse instelling in een geldige, actieve keuzelijstwaarde.</label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist --></label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en wijzig de bijbehorende waarde Neutraal van de wederzijdse instelling in een geldige keuzelijstwaarde.</label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Neutral value in a reciprocal setting --></label>
+        <label>De waarde Neutraal van Wederzijdse instellingen</label>
         <name>stgHCReciprocalRelNeutralTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Row heading for a reciprocal setting in EDA Settings Health Check results --></label>
+        <label>{0} wederzijdse relaties</label>
         <name>stgHCReciprocalRelSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds an inactive record type --></label>
+        <label>Het recordtype {0} ({1}) is niet actief.</label>
         <name>stgHCRecordTypeInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can&apos;t find the record type --></label>
+        <label>We kunnen het recordtype {0} niet vinden.</label>
         <name>stgHCRecordTypeNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds a record type valid --></label>
+        <label>Het recordtype {0} ({1}) is geldig.</label>
         <name>stgHCRecordTypeValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <label>Accountmodel</label>
         <name>stgHealthCheckAccountModel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
+        <label>Affiliatietoewijzingen</label>
         <name>stgHealthCheckAffiliationMappings</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component description --></label>
+        <label>Controle van de instellingentoestand controleert uw EDA-instellingen op ongeldige configuraties. Als de controle is voltooid, kunt u aan de hand van de resultaten eventuele ongeldige instellingen identificeren en corrigeren.</label>
         <name>stgHealthCheckDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when EDA Settings Health Check can&apos;t show the last run date --></label>
+        <label>We kunnen de datum van de laatste uitvoer niet weergeven vanwege een fout</label>
         <name>stgHealthCheckErrorLastRunDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text when a check passes and no fix is recommended --></label>
+        <label>Niet van toepassing</label>
         <name>stgHealthCheckFixNotApplicable</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check last run date --></label>
+        <label>Laatste uitvoering: {0}</label>
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text indicating that an EDA Settings Health Check component is loading --></label>
+        <label>Wordt geladen...</label>
         <name>stgHealthCheckLoadingIndicator</name>
     </customLabels>
     <customLabels>
-        <label><!-- Reciprocal Relationships group title in EDA Settings Health Check results --></label>
+        <label>Wederzijdse relaties</label>
         <name>stgHealthCheckReciprocalRelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended Fix column header in EDA Settings Health Check results --></label>
+        <label>Aanbevolen correctie</label>
         <name>stgHealthCheckRecoFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for the icon to collapse EDA Settings Health Check results --></label>
+        <label>Deze resultaten samenvouwen</label>
         <name>stgHealthCheckResultsCollapse</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description column header in EDA Settings Health Check results --></label>
+        <label>Beschrijving</label>
         <name>stgHealthCheckResultsDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for the icon to expand EDA Settings Health Check results --></label>
+        <label>Deze resultaten uitvouwen</label>
         <name>stgHealthCheckResultsExpand</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Run Health Check button label --></label>
+        <label>Controle van de toestand uitvoeren</label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when EDA Settings Health Check can&apos;t be run --></label>
+        <label>We kunnen de controle van de instellingentoestand niet uitvoeren vanwege een fout. Probeer het opnieuw.</label>
         <name>stgHealthCheckRunError</name>
     </customLabels>
     <customLabels>
-        <label><!-- Setting column header in EDA Settings Health Check results --></label>
+        <label>Instelling</label>
         <name>stgHealthCheckSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status column header in EDA Settings Health Check results --></label>
+        <label>Status</label>
         <name>stgHealthCheckStatus</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check failed --></label>
+        <label>Mislukt</label>
         <name>stgHealthCheckStatusFailed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check passed --></label>
+        <label>Geslaagd</label>
         <name>stgHealthCheckStatusPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <label>Waarschuwing</label>
         <name>stgHealthCheckStatusWarning</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component title --></label>
+        <label>Controle van de instellingentoestand</label>
         <name>stgHealthCheckTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text in EDA Settings Health Check results when all checks within a group passed --></label>
+        <label>Alle controles geslaagd</label>
         <name>stgHealthChecksAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text in EDA Settings Health Check results shows group&apos;s passed and total checks --></label>
+        <label>{0} van {1} controles geslaagd</label>
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
@@ -1185,11 +1185,11 @@
         <name>stgPreferredPhoneSelection</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for Reciprocal Method in EDA Settings --></label>
+        <label>Lijstinstelling</label>
         <name>stgReciprocalMethodListSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for Reciprocal Method in EDA Settings --></label>
+        <label>Waarde-omkering</label>
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>

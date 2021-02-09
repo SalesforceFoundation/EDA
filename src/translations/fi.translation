@@ -49,7 +49,7 @@
         <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
-        <label>Nainen</label>
+        <label>Female</label>
         <name>Female</name>
     </customLabels>
     <customLabels>
@@ -57,7 +57,7 @@
         <name>InvalidFilter</name>
     </customLabels>
     <customLabels>
-        <label>Mies</label>
+        <label>Male</label>
         <name>Male</name>
     </customLabels>
     <customLabels>
@@ -549,7 +549,7 @@
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Setup title --></label>
+        <label>EDA-määritys</label>
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
@@ -573,391 +573,391 @@
         <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
     <customLabels>
-        <label>Sujuva</label>
+        <label>Fluent</label>
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
+        <label>Vahvist EDA-asetuksissa määritetty Hallintatilin tietuetyyppi Tilit ja yhteyshenkilöt -välilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aseta tietuetyyppi aktiiviseksi. Jos se ei ole oikein, muuta Hallintatilin tietuetyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Administrative Account Record Type --></label>
+        <label>Muuta EDA-asetuksissa Tilit ja yhteyshenkilöt -välilehden Hallintatilin tietuetyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
+        <label>Vahvista EDA-asetuksissa määritetty Oletustilimalli-tietuetyyppi Järjestelmä-välilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aseta tietuetyyppi aktiiviseksi. Jos se ei ole oikein, muuta Oletustilimalli kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Account Model record type --></label>
+        <label>Muuta EDA-asetuksissa Järjestelmä-välilehden Oletustilimalli kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
+        <label>Vahvista EDA-asetuksissa määritetty Kotitaloustilitietueen tyyppi Tilit ja yhteyshenkilöt -välilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aseta tietuetyyppi aktiiviseksi. Jos se ei ole oikein, muuta Kotitaloustilitietueen tyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find the Household Account Record Type --></label>
+        <label>Muuta EDA-asetuksissa Tilit ja yhteyshenkilöt -välilehden Kotitaloustilitietueen tyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique container Account record type settings --></label>
+        <label>Yksilölliset Hallinta- ja kotitaloustilitietueen tyyppien asetukset.</label>
         <name>stgHCAccountRecordTypeSettingsUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Administrative and Household Account Record Types aren&apos;t unique --></label>
+        <label>Hallintatilin ja Kotitaloustilitietueen tyypin asetukset määrittävät saman tietuetyypin.</label>
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Administrative and Household Account Record Types are same --></label>
+        <label>Muuta EDA-asetuksista Tilit ja yhteyshenkilöt -välilehdeltä joko Hallintatilin tietuetyyppi tai Kotitaloustilitietueen tyyppi, jotta kumpikin määrittää yksilöllistä tietuetyyppiä.</label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Administrative and Household Account Record Types are unique --></label>
+        <label>Hallintatilin ja Kotitaloustilitietueen tyypin asetukset määrittävät eri tietuetyyppejä.</label>
         <name>stgHCAccountRecordTypesUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for an Affiliation mapping in EDA Settings Health Check results --></label>
+        <label>{0} jäsenyyskartoitus on virheellinen.</label>
         <name>stgHCAffiliationMappingSettingDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Row heading for an Affiliation mapping in EDA Settings Health Check results --></label>
+        <label>{0} jäsenyyskartoitus</label>
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type is inactive --></label>
+        <label>Vahvista EDA-asetuksissa määritetty jäsenyyskartoitus kohteille {0} ja ({1})  Jäsenyydet-välilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikon Tiliobjektiin ja aseta tietuetyyppi aktiiviseksi. Jos se ei ole oikein, muuta Jäsenyyskartoitustietueen tyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist --></label>
+        <label>Muuta EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden jäsenyyskartoitus tiliobjektille kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Account record types in Affiliation mappings are not unique --></label>
+        <label>Tietuetyyppi {0} ({1}) on kartoitettu useisiin yhteyshenkilön ensisijaisiin jäsenyyskenttiin.</label>
         <name>stgHCAfflMapAccRecordTypeNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Account record type in Affiliation mapping settings --></label>
+        <label>Tilitietueen tyyppi</label>
         <name>stgHCAfflMapAccRecordTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Account record types in Affiliation mappings are unique --></label>
+        <label>Tietuetyyppi {0} ({1}) on kartoitettu yhteen yhteyshenkilön ensisijaiseen jäsenyyskenttään.</label>
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Account record types in Affiliation mappings aren&apos;t unique --></label>
+        <label>Tarkastele EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden Tilitietueen tyyppi -sarakkeesta useita kartoituksia, jotka määrittävät {0} ({1}). Muokkaa kyseisiä jäsenyyskartoituksia, jotta tämä tietuetyyppi kartoitetaan vain yhteen yhteyshenkilön ensisijaiseen jäsenyyskenttään.</label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Account record types in Affiliation mappings --></label>
+        <label>Yksilöllinen jäsenyyskartoituksen tietuetyyppi</label>
         <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
+        <label>{0} ({1}) -valintaluettelon arvo ei ole aktiivinen.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
+        <label>Vahvista EDA-asetuksissa määritetyt {0} ja ({1}) jäsenyyskartoituksen automaattisen ilmoittautumisen roolille Jäsenyydet-välilehden Jäsenyyskartoitukset -alavälilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikon ohjelmaan ilmoittautumisobjektin rooli-kenttään ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta automaattisen ilmoittautumisen rooli kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
+        <label>Emme löydä {0}-valintaluettelon arvoa.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
+        <label>Muuta EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden automaattisen ilmoittautumisen rooli kelvolliseksi, aktiiviseksi valintaluettelon arvoksi ohjelmaan ilmoittautumisobjektin rooli-kentälle.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Auto-Enrollment Role in Affiliation mappings --></label>
+        <label>Automaattisen ilmoittautumisen roolin arvo</label>
         <name>stgHCAfflMapAutoEnrollRoleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Role is valid --></label>
+        <label>{0} ({1}) -valintaluettelon arvo on kelvollinen.</label>
         <name>stgHCAfflMapAutoEnrollRoleValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
+        <label>{0} ({1}) -valintaluettelon arvo ei ole aktiivinen.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
+        <label>Vahvista EDA-asetuksissa määritetyt {0} ja ({1}) jäsenyyskartoituksen automaattisen ilmoittautumisen tila Jäsenyydet-välilehden Jäsenyyskartoitukset -alavälilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikon ohjelmaan ilmoittautumisobjektin tilakenttään ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta automaattisen ilmoittautumisen tila kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can't find a mapping's Auto-Enrollment Status --></label>
+        <label>Emme löydä {0}-valintaluettelon arvoa.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status --></label>
+        <label>Muuta EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden automaattisen ilmoittautumisen tila kelvolliseksi, aktiiviseksi valintaluettelon arvoksi ohjelmaan ilmoittautumisobjektin tilakentälle.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Auto-Enrollment Status in Affiliation mappings --></label>
+        <label>Automaattisen ilmoittautumisen tilan arvo</label>
         <name>stgHCAfflMapAutoEnrollStatusTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Status is valid --></label>
+        <label>{0} ({1}) -valintaluettelon arvo on kelvollinen.</label>
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid --></label>
+        <label>Vahvista EDA-asetuksista määritetty {0} Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehdestä. Sen täytyy olla kelvollinen hakukenttä Yhteyshenkilö-objektissa.</label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Contact Primary Affiliation fields in Affiliation mappings --></label>
+        <label>Yksilöllinen yhteyshenkilön ensisijainen jäsenyyskenttä</label>
         <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid --></label>
+        <label>{0} ei ole kelvollinen yhteyshenkilökenttä.</label>
         <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique --></label>
+        <label>{0} ({1}) -kenttä on kartoitettu useisiin tilitietueen tyyppeihin.</label>
         <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Contact Primary Affiliation field in Affiliation mapping settings --></label>
+        <label>Yhteyshenkilön ensisijainen jäsenyyskenttä</label>
         <name>stgHCAfflMapContactPrimaryFieldTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when mappings&apos; Contact Primary Affiliation fields are unique --></label>
+        <label>{0} ({1}) -kenttä on kartoitettu yhteen tilitietueen tyyppiin.</label>
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique --></label>
+        <label>Tarkastele EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden Yhteyshenkilön ensisijainen jäsenyyskenttä -sarakkeesta useita kartoituksia, jotka määrittävät {0} ({1}). Muokkaa kyseisiä kartoituksia, jotta tämä kenttä kartoitetaan vain yhteen jäsenyyskenttään.</label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Contact Primary Affiliation field is valid --></label>
+        <label>{0} ({1}) -kenttä on kelvollinen.</label>
         <name>stgHCAfflMapContactPrimaryFieldValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds Course Connections not enabled --></label>
+        <label>Kurssiyhteydet eivät ole käytössä.</label>
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Course Connections isn&apos;t enabled --></label>
+        <label>Ota käyttöön kurssiyhteydet, joihin sisältyy kurssiyhteyden tietuetyyppien määritys.</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
+        <label>Vahvista EDA-asetuksissa määritetty Oletusarvoinen opetushenkilöstön tietuetyyppi Kurssiyhteydet-välilehden Asetukset-alavälilehdestä. Jos {1} ({0}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aseta tietuetyyppi aktiiviseksi. Jos se ei ole oikein, muuta Oletusarvoinen opetushenkilöstön tietuetyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Faculty Record Type --></label>
+        <label>Muuta EDA-asetuksissa Kurssiyhteydet-välilehden Asetukset-alavälilehdestä Oletusarvoinen opetushenkilöstön tietuetyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when student and faculty Course Connection record types not unique --></label>
+        <label>Oletusarvoinen opetushenkilöstön tietuetyypin ja Oletusarvoinen aktiivisen opiskelijatietueen tyypin asetukset määrittävät saman tietuetyypin.</label>
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when student and faculty Course Connection record types are same --></label>
+        <label>Muuta EDA-asetuksista Kurssiyhtedet-välilehden Asetukset-alavälilehdeltä joko Opetushenkilöstön tietuetyyppi tai Oletusarvoinen aktiivisen opiskelijatietueen tyyppi, jotta kumpikin määrittää yksilöllistä tietuetyyppiä.</label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Course Connection record type settings --></label>
+        <label>Yksilöllinen oletusarvoinen opetushenkilöstön tietuetyyppi ja oletusarvoinen aktiivisen opiskelijatietueen tyyppi</label>
         <name>stgHCCourseConRecordTypesUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when student and faculty Course Connection record types are unique --></label>
+        <label>Oletusarvoinen opetushenkilöstön tietuetyypin ja Oletusarvoinen aktiivisen opiskelijatietueen tyypin asetukset määrittävät eri tietuetyyppejä.</label>
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Active Student Record Type is inactive --></label>
+        <label>Vahvista EDA-asetuksissa määritetty Oletusarvoinen aktiivisen opiskelijatietueen tyyppi Kurssiyhteydet-välilehden Asetukset-alavälilehdestä. Jos {1} ({0}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aseta tietuetyyppi aktiiviseksi. Jos se ei ole oikein, muuta Oletusarvoinen aktiivisen opiskelijatietueen tyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Active Student Record Type --></label>
+        <label>Muuta EDA-asetuksissa Kurssiyhteydet-välilehden Asetukset-alavälilehdestä Oletusarvoinen aktiivisen opiskelijatietueen tyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Course Connections group title in EDA Settings Health Check results --></label>
+        <label>Kurssiyhteydet</label>
         <name>stgHCCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds an inactive picklist value --></label>
+        <label>{0} ({1}) -valintaluettelon arvo ei ole aktiivinen.</label>
         <name>stgHCPicklistValueInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can&apos;t find the picklist value --></label>
+        <label>Emme löydä {0}-valintaluettelon arvoa.</label>
         <name>stgHCPicklistValueNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component title --></label>
+        <label>{0} ({1}) -valintaluettelon arvo on kelvollinen.</label>
         <name>stgHCPicklistValueValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for a reciprocal setting in EDA Settings Health Check results --></label>
+        <label>{0} Vastavuoroiset suhteet ovat kelvolliset.</label>
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value is inactive --></label>
+        <label>Vahvista vastavuoroiset asetukset kohteelle {0} ({1}), jotka on määritetty EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdellä. Jos {0} ({1}) on oikein Nainen-arvolle, siirry suhdeobjektin tyypin kenttään Salesforcen Määritykset-valikossa ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Nainen-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist --></label>
+        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisen asetuksen Nainen-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Female value in a reciprocal setting --></label>
+        <label>Vastavuoroisen asetuksen Nainen-arvo</label>
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value is inactive --></label>
+        <label>Vahvista vastavuoroiset asetukset kohteelle {0} ({1}), jotka on määritetty EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdellä. Jos {0} ({1}) on oikein Mies-arvolle, siirry suhdeobjektin tyypin kenttään Salesforcen Määritykset-valikossa ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Nainen-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist --></label>
+        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisuuden asetuksen Mies-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Male value in a reciprocal setting --></label>
+        <label>Vastavuoroisen asetuksen Mies-arvo</label>
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value is inactive --></label>
+        <label>Vahvista vastavuoroiset asetukset kohteelle {0} ({1}), jotka on määritetty EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdellä. Jos {0} ({1}) on oikein, siirry suhdeobjektin tyypin kenttään Salesforcen Määritykset-valikossa ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Nimi-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist --></label>
+        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisuuden asetuksen Nimi-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Name isn&apos;t unique in reciprocal settings --></label>
+        <label>Vahvista vastavuoroiset asetukset kohteelle {0} ({1}), jotka on määritetty EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdellä. Jos {0} ({1}) on oikein, siirry suhdeobjektin tyypin kenttään Salesforcen Määritykset-valikossa ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Nimi-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended Fix when Name isn&apos;t unique in reciprocal settings --></label>
+        <label>Hae EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä useita rivejä, jotka määrittävät {0} ({1}) Nimi-sarakkeessa. Muokkaa kyseisiä vastavuoroisia asetuksia siten, että kyseinen Nimi-arvo näkyy ainoastaan yhdellä vastavuoroisen asetuksen rivillä.</label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Name value in a reciprocal setting --></label>
+        <label>Vastavuoroisen asetuksen Nimi-arvo</label>
         <name>stgHCReciprocalRelNameTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Name is unique in reciprocal settings --></label>
+        <label>{0} ({1}) -valintaluettelon arvoa käytetään ainoastaan yhdessä vastavuoroisessa asetuksessa.</label>
         <name>stgHCReciprocalRelNameUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Name values in reciprocal settings --></label>
+        <label>Yksilöllinen vastavuoroisen asetuksen nimi</label>
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value is inactive --></label>
+        <label>Vahvista vastavuoroiset asetukset kohteelle {0} ({1}), jotka on määritetty EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdellä. Jos {0} ({1}) on oikein, siirry suhdeobjektin tyypin kenttään Salesforcen Määritykset-valikossa ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Neutraali-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist --></label>
+        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisuuden asetuksen Neutraali-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi</label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Neutral value in a reciprocal setting --></label>
+        <label>Vastavuoroisen asetuksen Neutraali-arvo</label>
         <name>stgHCReciprocalRelNeutralTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Row heading for a reciprocal setting in EDA Settings Health Check results --></label>
+        <label>{0} Vastavuoroiset suhteet</label>
         <name>stgHCReciprocalRelSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds an inactive record type --></label>
+        <label>{0} ({1}) -tietuetyyppi ei ole aktiivinen.</label>
         <name>stgHCRecordTypeInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can&apos;t find the record type --></label>
+        <label>Emme löydä {0}-tietuetyyppiä.</label>
         <name>stgHCRecordTypeNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds a record type valid --></label>
+        <label>{0} ({1}) -tietuetyyppi on kelvollinen.</label>
         <name>stgHCRecordTypeValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <label>Tilimalli</label>
         <name>stgHealthCheckAccountModel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
+        <label>Jäsenyyskartoitukset</label>
         <name>stgHealthCheckAffiliationMappings</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component description --></label>
+        <label>Asetusten Terveystarkastus tarkistaa EDA-asetuksesi virheellisten määritysten varalta. Kun tarkistus on valmis, käytä tuloksia tunnistamaan ja korjaamaan virheelliset asetukset.</label>
         <name>stgHealthCheckDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when EDA Settings Health Check can&apos;t show the last run date --></label>
+        <label>Emme voi näyttää viimeistä suorituspäivää virheen seurauksena</label>
         <name>stgHealthCheckErrorLastRunDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text when a check passes and no fix is recommended --></label>
+        <label>Ei käytettävissä</label>
         <name>stgHealthCheckFixNotApplicable</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check last run date --></label>
+        <label>Viimeksi suoritettu: {0}</label>
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text indicating that an EDA Settings Health Check component is loading --></label>
+        <label>Ladataan...</label>
         <name>stgHealthCheckLoadingIndicator</name>
     </customLabels>
     <customLabels>
-        <label><!-- Reciprocal Relationships group title in EDA Settings Health Check results --></label>
+        <label>Vastavuoroiset suhteet</label>
         <name>stgHealthCheckReciprocalRelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended Fix column header in EDA Settings Health Check results --></label>
+        <label>Suositeltu korjaus</label>
         <name>stgHealthCheckRecoFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for the icon to collapse EDA Settings Health Check results --></label>
+        <label>Tiivistä nämä tulokset</label>
         <name>stgHealthCheckResultsCollapse</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description column header in EDA Settings Health Check results --></label>
+        <label>Kuvaus</label>
         <name>stgHealthCheckResultsDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for the icon to expand EDA Settings Health Check results --></label>
+        <label>Laajenna nämä tulokset</label>
         <name>stgHealthCheckResultsExpand</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Run Health Check button label --></label>
+        <label>Suorita terveystarkastus</label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when EDA Settings Health Check can&apos;t be run --></label>
+        <label>Emme voi suorittaa asetusten terveystarkastusta virheen takia. Yritä suorittaa se uudelleen.</label>
         <name>stgHealthCheckRunError</name>
     </customLabels>
     <customLabels>
-        <label><!-- Setting column header in EDA Settings Health Check results --></label>
+        <label>Asetus</label>
         <name>stgHealthCheckSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status column header in EDA Settings Health Check results --></label>
+        <label>Tila</label>
         <name>stgHealthCheckStatus</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check failed --></label>
+        <label>Epäonnistui</label>
         <name>stgHealthCheckStatusFailed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check passed --></label>
+        <label>Hyväksytty</label>
         <name>stgHealthCheckStatusPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <label>Varoitus</label>
         <name>stgHealthCheckStatusWarning</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component title --></label>
+        <label>Asetusten terveystarkastus</label>
         <name>stgHealthCheckTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text in EDA Settings Health Check results when all checks within a group passed --></label>
+        <label>Kaikki tarkistukset hyväksytty</label>
         <name>stgHealthChecksAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text in EDA Settings Health Check results shows group&apos;s passed and total checks --></label>
+        <label>{0}/{1} tarkistusta hyväksytty</label>
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
@@ -1077,7 +1077,7 @@
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>Kurssiyhteyksien tietueet yhdistävät yhteyshenkilön kurssitarjontaan. Tämän ominaisuuden ottaminen käyttöön antaa käyttäjien valita yhteyshenkilötyypin (opetushenkilöstö tai opiskelija), jolle kurssiyhteys luodaan. Kun otat tämän ominaisuuden käyttöön, sinun on myös asetettava alla oletusarvoinen aktiivinen opiskelijatietueen tyyppi ja opetushenkilöstön oletustietuetyyppi. Jos otat tämän ominaisuuden käyttöön ensimmäistä kertaa, suosittelemme, että suoritat kurssiyhteyksien täyttö -ominaisuuden.</label>
+        <label>Kurssiyhteyksien tietueet yhdistävät yhteyshenkilön kurssitarjontaan. Tämän ominaisuuden ottaminen käyttöön antaa käyttäjien valita yhteyshenkilötyypin (opetushenkilöstö tai opiskelija), jolle kurssiyhteys luodaan. Kun otat tämän ominaisuuden käyttöön, sinun on myös asetettava alla oletusarvoinen aktiivinen opiskelijatietueen tyyppi ja oopetushenkilöstön oletustietuetyyppi. Jos otat tämän ominaisuuden käyttöön ensimmäistä kertaa, suosittelemme, että suoritat kurssiyhteyksien täyttö -ominaisuuden.</label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
@@ -1185,11 +1185,11 @@
         <name>stgPreferredPhoneSelection</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for Reciprocal Method in EDA Settings --></label>
+        <label>Luetteloasetus</label>
         <name>stgReciprocalMethodListSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for Reciprocal Method in EDA Settings --></label>
+        <label>Arvon kääntäminen</label>
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>

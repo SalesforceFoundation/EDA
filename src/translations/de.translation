@@ -49,7 +49,7 @@
         <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
-        <label>Weiblich</label>
+        <label>Female</label>
         <name>Female</name>
     </customLabels>
     <customLabels>
@@ -57,7 +57,7 @@
         <name>InvalidFilter</name>
     </customLabels>
     <customLabels>
-        <label>Männlich</label>
+        <label>Male</label>
         <name>Male</name>
     </customLabels>
     <customLabels>
@@ -117,7 +117,7 @@
         <name>Relationship_Explanation_Connector</name>
     </customLabels>
     <customLabels>
-        <label>–</label>
+        <label>-</label>
         <name>Relationship_Split</name>
     </customLabels>
     <customLabels>
@@ -225,7 +225,7 @@
         <name>exceptionRequiredField</name>
     </customLabels>
     <customLabels>
-        <label>Eine Validierungsregel verhindert die Verarbeitung dieses Datensatzes. Die Validierungsregel kann für diesen oder einen verwandten Datensatz gelten, der gerade aktualisiert wird. VALIDIERUNGSMELDUNG: </label>
+        <label>Eine Validierungsregel verhindert die Verarbeitung dieses Datensatzes. Die Validierungsregel kann sich auf diesen Datensatz oder einen Bezugsdatensatz beziehen, der gerade aktualisiert wird. VALIDIERUNGSNACHRICHT:</label>
         <name>exceptionValidationRule</name>
     </customLabels>
     <customLabels>
@@ -549,7 +549,7 @@
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Setup title --></label>
+        <label>EDA-Einrichtung</label>
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
@@ -573,391 +573,391 @@
         <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
     <customLabels>
-        <label>Fließend</label>
+        <label>Fluent</label>
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
+        <label>Überprüfen Sie den Datensatztyp &quot;Verwaltungs-Account&quot;, der in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatztyp des Verwaltungs-Accounts in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Administrative Account Record Type --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; den Datensatztyp des Verwaltungs-Accounts in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
+        <label>Überprüfen Sie den Datensatztyp des Standard-Accountmodells, der in den EDA-Einstellungen auf der Registerkarte &quot;System&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie das Standard-Accountmodell in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Account Model record type --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Registerkarte &quot;System&quot; das Standard-Accountmodell in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
+        <label>Überprüfen Sie den Datensatztyp &quot;Haushalt-Account&quot;, der in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatztyp des Haushalt-Accounts in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find the Household Account Record Type --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; den Datensatztyp des Haushalt-Accounts in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique container Account record type settings --></label>
+        <label>Eindeutige Einstellungen für die Datensatztypen &quot;Verwaltung&quot; und &quot;Haushalt&quot;.</label>
         <name>stgHCAccountRecordTypeSettingsUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Administrative and Household Account Record Types aren&apos;t unique --></label>
+        <label>In den Einstellungen für den Datensatztyp ist für den Verwaltungs- und den Haushalt-Account der gleiche Datensatztyp angegeben.</label>
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Administrative and Household Account Record Types are same --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; entweder den Datensatztyp des Verwaltungs-Accounts oder den des Haushalt-Accounts, so dass für jeden ein eindeutiger Datensatztyp angegeben ist.</label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Administrative and Household Account Record Types are unique --></label>
+        <label>In den Datensatztyp-Einstellungen für den Verwaltungs-Account und den Haushalt-Account sind verschiedene Datensatztypen angegeben.</label>
         <name>stgHCAccountRecordTypesUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for an Affiliation mapping in EDA Settings Health Check results --></label>
+        <label>Die Zugehörigkeitszuordnung &quot;{0}&quot; ist gültig.</label>
         <name>stgHCAffiliationMappingSettingDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Row heading for an Affiliation mapping in EDA Settings Health Check results --></label>
+        <label>{0} Zugehörigkeitszuordnung</label>
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type is inactive --></label>
+        <label>Überprüfen Sie die Zugehörigkeitszuordnung für {0} ({1}), die in den EDA-Einstellungen auf der Registerkarte &quot;Zugehörigkeiten&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie zum Account-Objekt im Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatztyp der Zugehörigkeitszuordnung in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Zugehörigkeitszuordnung für das Account-Objekt in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Account record types in Affiliation mappings are not unique --></label>
+        <label>Der Datensatztyp &quot;{0} ({1})&quot; ist mehreren Feldern &quot;Primäre Kontaktzugehörigkeit&quot; zugeordnet.</label>
         <name>stgHCAfflMapAccRecordTypeNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Account record type in Affiliation mapping settings --></label>
+        <label>Account-Datensatztyp</label>
         <name>stgHCAfflMapAccRecordTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Account record types in Affiliation mappings are unique --></label>
+        <label>Der Datensatztyp &quot;{0} ({1})&quot; ist einem einzelnen Feld &quot;Primäre Kontaktzugehörigkeit&quot; zugeordnet.</label>
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Account record types in Affiliation mappings aren&apos;t unique --></label>
+        <label>Suchen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; in der Spalte &quot;Account-Datensatztyp&quot; nach mehreren Zuordnungen mit der Angabe &quot;{0} ({1})&quot;. Bearbeiten Sie diese Zugehörigkeitszuordnungen so, dass dieser Datensatztyp nur einem Feld &quot;Primäre Kontaktzugehörigkeit&quot; zugeordnet ist.</label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Account record types in Affiliation mappings --></label>
+        <label>Eindeutiger Datensatztyp für Zugehörigkeitszuordnung</label>
         <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
+        <label>Der Wert &quot;{0} ({1})&quot; der Auswahlliste ist nicht aktiv.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
+        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0} ({1})&quot; für die Autoregistrierungsrolle. Wenn &quot;{0} ({1})&quot; zutreffend ist, wechseln Sie zum Feld &quot;Rolle&quot; des Programmregistrierungsobjekts im Salesforce-Setup, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie die Autoregistrierungsrolle in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
+        <label>Wir können den Auswahllistenwert &quot;{0}&quot; nicht finden.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zuordnungen&quot; die Autoregistrierungsrolle in einen für das Feld &quot;Rolle&quot; des Objekts &quot;Programmregistrierung&quot; gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Auto-Enrollment Role in Affiliation mappings --></label>
+        <label>Wert der Autoregistrierungsrolle</label>
         <name>stgHCAfflMapAutoEnrollRoleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Role is valid --></label>
+        <label>Der Auswahllistenwert &quot;{0} ({1})&quot; ist gültig.</label>
         <name>stgHCAfflMapAutoEnrollRoleValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
+        <label>Der Wert &quot;{0} ({1})&quot; der Auswahlliste ist nicht aktiv.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
+        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0} ({1})&quot; für den Status der Autoregistrierung. Wenn &quot;{0} ({1})&quot; zutreffend ist, wechseln Sie zum Feld &quot;Status&quot; des Programmregistrierungsobjekts im Salesforce-Setup, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Status der Autoregistrierung in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can't find a mapping's Auto-Enrollment Status --></label>
+        <label>Wir können den Auswahllistenwert &quot;{0}&quot; nicht finden.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zuordnungen&quot; den Status der Autoregistrierung in einen für das Feld &quot;Status&quot; des Objekts &quot;Programmregistrierung&quot; gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Auto-Enrollment Status in Affiliation mappings --></label>
+        <label>Wert des Autoregistrierungsstatus</label>
         <name>stgHCAfflMapAutoEnrollStatusTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Status is valid --></label>
+        <label>Der Auswahllistenwert &quot;{0} ({1})&quot; ist gültig.</label>
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid --></label>
+        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnungen&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0}&quot;. Es muss sich um ein gültiges Nachschlagefeld für das Objekt &quot;Kontakt&quot; handeln.</label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Contact Primary Affiliation fields in Affiliation mappings --></label>
+        <label>Eindeutiges Feld &quot;Primäre Kontaktzugehörigkeit&quot;</label>
         <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid --></label>
+        <label>{0} ist kein gültiges Kontaktfeld.</label>
         <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique --></label>
+        <label>Das Feld &quot;{0} ({1})&quot; ist mehreren Account-Datensatztypen zugeordnet.</label>
         <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Contact Primary Affiliation field in Affiliation mapping settings --></label>
+        <label>Feld &quot;Primäre Kontaktzugehörigkeit&quot;</label>
         <name>stgHCAfflMapContactPrimaryFieldTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when mappings&apos; Contact Primary Affiliation fields are unique --></label>
+        <label>Das Feld &quot;{0} ({1})&quot; ist einem einzelnen Account-Datensatztyp zugeordnet.</label>
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique --></label>
+        <label>Suchen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; in der Spalte des Felds &quot;Primäre Kontaktzugehörigkeit&quot; nach mehreren Zuordnungen mit der Angabe &quot;{0} ({1})&quot;. Bearbeiten Sie diese Zuordnungen so, dass dieses Feld nur einer Zugehörigkeitszuordnung zugeordnet ist.</label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Contact Primary Affiliation field is valid --></label>
+        <label>Das Feld &quot;{0} ({1})&quot; ist gültig.</label>
         <name>stgHCAfflMapContactPrimaryFieldValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds Course Connections not enabled --></label>
+        <label>Kursverbindungen sind nicht aktiviert.</label>
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Course Connections isn&apos;t enabled --></label>
+        <label>Aktivieren von Kursverbindungen, was auch das Konfigurieren der Kursverbindungs-Datensatztypen beinhaltet.</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
+        <label>Überprüfen Sie den Datensatz für die Standardfakultät, der in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; angegeben ist. Wenn &quot;{1} ({0})&quot; zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatz für die Standardfakultät in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Faculty Record Type --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; den Datensatztyp &quot;Standardfakultät&quot; in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when student and faculty Course Connection record types not unique --></label>
+        <label>In den Einstellungen für den Datensatztyp &quot;Standardfakultät&quot; und den Datensatztyp &quot;Aktiver Standardstudierender&quot; ist der gleiche Datensatztyp angegeben.</label>
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when student and faculty Course Connection record types are same --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; entweder den Datensatztyp für die Standardfakultät oder den Datensatztyp für den aktiven Standardstudierenden so, dass für jeden ein eindeutiger Datensatztyp angegeben wird.</label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Course Connection record type settings --></label>
+        <label>Eindeutige Einstellungen für die Datentypen &quot;Standardfakultät&quot; und &quot;Aktiver Standardstudierender&quot;</label>
         <name>stgHCCourseConRecordTypesUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when student and faculty Course Connection record types are unique --></label>
+        <label>In den Einstellungen für den Datensatztyp &quot;Standardfakultät&quot; und den Datensatztyp &quot;Aktiver Standardstudierender&quot; sind verschiedene Datensatztypen angegeben.</label>
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Active Student Record Type is inactive --></label>
+        <label>Überprüfen Sie den Datensatz für den aktiven Standardstudierenden, der in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; angegeben ist. Wenn &quot;{1} ({0})&quot; zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatz für den Standardstudierenden in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Active Student Record Type --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; den Datensatztyp &quot;Aktiver Standardstudierender&quot; in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Course Connections group title in EDA Settings Health Check results --></label>
+        <label>Kursverbindungen</label>
         <name>stgHCCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds an inactive picklist value --></label>
+        <label>Der Wert &quot;{0} ({1})&quot; der Auswahlliste ist nicht aktiv.</label>
         <name>stgHCPicklistValueInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can&apos;t find the picklist value --></label>
+        <label>Wir können den Auswahllistenwert &quot;{0}&quot; nicht finden.</label>
         <name>stgHCPicklistValueNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component title --></label>
+        <label>Der Auswahllistenwert &quot;{0} ({1})&quot; ist gültig.</label>
         <name>stgHCPicklistValueValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for a reciprocal setting in EDA Settings Health Check results --></label>
+        <label>{0} wechselseitige Beziehungen sind gültig.</label>
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value is inactive --></label>
+        <label>Überprüfen Sie die wechselseitige Einstellung für {0} ({1}), die in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; angegeben ist. Wenn {0} ({1}) für &quot;Weiblich&quot; zutreffend ist, wechseln Sie im Salesforce-Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Wert für &quot;Weiblich&quot; in den Einstellungen für wechselseitige Beziehungen in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Weiblich&quot; in einen gültigen, aktiven Auswahllistenwert</label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Female value in a reciprocal setting --></label>
+        <label>Wert für &quot;Weiblich&quot; in den Einstellungen für wechselseitige Beziehungen</label>
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value is inactive --></label>
+        <label>Überprüfen Sie die wechselseitige Einstellung für {0} ({1}), die in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; angegeben ist. Wenn {0} ({1}) für &quot;Männlich&quot; zutreffend ist, wechseln Sie im Salesforce-Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Wert für &quot;Männlich&quot; in den Einstellungen für wechselseitige Beziehungen in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Männlich&quot; in einen gültigen, aktiven Auswahllistenwert</label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Male value in a reciprocal setting --></label>
+        <label>Wert für &quot;Männlich&quot; in den Einstellungen für wechselseitige Beziehungen</label>
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value is inactive --></label>
+        <label>Überprüfen Sie die wechselseitige Einstellung für {0} ({1}), die in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie im Salesforce-Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Wert für &quot;Name&quot; in den Einstellungen für wechselseitige Beziehungen in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Name&quot; in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Name isn&apos;t unique in reciprocal settings --></label>
+        <label>Überprüfen Sie die wechselseitige Einstellung für {0} ({1}), die in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie im Salesforce-Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Wert für &quot;Name&quot; in den Einstellungen für wechselseitige Beziehungen in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended Fix when Name isn&apos;t unique in reciprocal settings --></label>
+        <label>Suchen Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; nach mehreren Zeilen mit der Angabe {0} ({1}) in der Spalte &quot;Name&quot;. Bearbeiten Sie diese wechselseitigen Einstellungen so, dass dieser Wert für Name nur in einer Zeile der Einstellungen für wechselseitige Beziehungen vorkommt.</label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Name value in a reciprocal setting --></label>
+        <label>Wert für &quot;Name&quot; in den Einstellungen für wechselseitige Beziehungen</label>
         <name>stgHCReciprocalRelNameTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Name is unique in reciprocal settings --></label>
+        <label>Der Auswahllistenwert &quot;{0} ({1})&quot; wird nur in einer Einstellung für wechselseitige Beziehungen verwendet.</label>
         <name>stgHCReciprocalRelNameUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Name values in reciprocal settings --></label>
+        <label>Eindeutiger Wert für &quot;Name&quot; in den Einstellungen für wechselseitige Beziehungen</label>
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value is inactive --></label>
+        <label>Überprüfen Sie die wechselseitige Einstellung für {0} ({1}), die in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie im Salesforce-Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Wert für &quot;Neutral&quot; in den Einstellungen für wechselseitige Beziehungen in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist --></label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Neutral&quot; in einen gültigen, aktiven Auswahllistenwert</label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Neutral value in a reciprocal setting --></label>
+        <label>Wert für &quot;Neutral&quot; in den Einstellungen für wechselseitige Beziehungen</label>
         <name>stgHCReciprocalRelNeutralTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Row heading for a reciprocal setting in EDA Settings Health Check results --></label>
+        <label>{0} wechselseitige Beziehungen</label>
         <name>stgHCReciprocalRelSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds an inactive record type --></label>
+        <label>Der Datensatztyp &quot;{0} ({1})&quot; ist nicht aktiv.</label>
         <name>stgHCRecordTypeInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can&apos;t find the record type --></label>
+        <label>Wir können den Datensatztyp &quot;{0}&quot; nicht finden.</label>
         <name>stgHCRecordTypeNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds a record type valid --></label>
+        <label>Der Datensatztyp &quot;{0} ({1})&quot; ist gültig.</label>
         <name>stgHCRecordTypeValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <label>Accountmodell</label>
         <name>stgHealthCheckAccountModel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
+        <label>Zugehörigkeitszuordnungen</label>
         <name>stgHealthCheckAffiliationMappings</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component description --></label>
+        <label>Bei der Statusüberprüfung der Einstellungen werden Ihre EDA-Einstellungen auf ungültige Konfigurationen überprüft. Verwenden Sie die Ergebnisse der Überprüfung nach dem Abschluss, um ungültige Einstellungen zu erkennen und zu korrigieren.</label>
         <name>stgHealthCheckDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when EDA Settings Health Check can&apos;t show the last run date --></label>
+        <label>Wir können die Daten der letzten Ausführung aufgrund eines Fehlers nicht anzeigen</label>
         <name>stgHealthCheckErrorLastRunDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text when a check passes and no fix is recommended --></label>
+        <label>Nicht zutreffend</label>
         <name>stgHealthCheckFixNotApplicable</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check last run date --></label>
+        <label>Letzte Ausführung: {0}</label>
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text indicating that an EDA Settings Health Check component is loading --></label>
+        <label>Lädt...</label>
         <name>stgHealthCheckLoadingIndicator</name>
     </customLabels>
     <customLabels>
-        <label><!-- Reciprocal Relationships group title in EDA Settings Health Check results --></label>
+        <label>Wechselseitige Beziehungen</label>
         <name>stgHealthCheckReciprocalRelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended Fix column header in EDA Settings Health Check results --></label>
+        <label>Empfohlene Korrektur</label>
         <name>stgHealthCheckRecoFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for the icon to collapse EDA Settings Health Check results --></label>
+        <label>Diese Ergebnisse reduzieren</label>
         <name>stgHealthCheckResultsCollapse</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description column header in EDA Settings Health Check results --></label>
+        <label>Beschreibung</label>
         <name>stgHealthCheckResultsDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for the icon to expand EDA Settings Health Check results --></label>
+        <label>Diese Ergebnisse erweitern</label>
         <name>stgHealthCheckResultsExpand</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Run Health Check button label --></label>
+        <label>Statusüberprüfung ausführen</label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when EDA Settings Health Check can&apos;t be run --></label>
+        <label>Wir können die Statusüberprüfung der Einstellungen aufgrund eines Fehlers nicht ausführen. Versuchen Sie die Ausführung noch einmal.</label>
         <name>stgHealthCheckRunError</name>
     </customLabels>
     <customLabels>
-        <label><!-- Setting column header in EDA Settings Health Check results --></label>
+        <label>Einstellung</label>
         <name>stgHealthCheckSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status column header in EDA Settings Health Check results --></label>
+        <label>Status</label>
         <name>stgHealthCheckStatus</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check failed --></label>
+        <label>Fehlgeschlagen</label>
         <name>stgHealthCheckStatusFailed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check passed --></label>
+        <label>Bestanden</label>
         <name>stgHealthCheckStatusPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <label>Warnung</label>
         <name>stgHealthCheckStatusWarning</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component title --></label>
+        <label>Statusüberprüfung der Einstellungen</label>
         <name>stgHealthCheckTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text in EDA Settings Health Check results when all checks within a group passed --></label>
+        <label>Alle Prüfungen bestanden</label>
         <name>stgHealthChecksAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text in EDA Settings Health Check results shows group&apos;s passed and total checks --></label>
+        <label>{0} von {1} Überprüfungen bestanden</label>
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
@@ -1185,11 +1185,11 @@
         <name>stgPreferredPhoneSelection</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for Reciprocal Method in EDA Settings --></label>
+        <label>Listeneinstellung</label>
         <name>stgReciprocalMethodListSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for Reciprocal Method in EDA Settings --></label>
+        <label>Wertumkehrung</label>
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>

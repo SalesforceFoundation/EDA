@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Education History</value>
     </caseValues>
+    <layouts>
+        <layout>EDA Education History Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
     <fields>
         <label><!-- Educational Institution Account --></label>
         <name>Account__c</name>
@@ -241,12 +249,4 @@
         <label><!-- Start Date --></label>
         <name>Start_Date__c</name>
     </fields>
-    <layouts>
-        <layout>EDA Education History Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

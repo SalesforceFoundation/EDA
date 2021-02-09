@@ -1,268 +1,268 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <relationshipLabel>Education History</relationshipLabel>
-    <label>Educational Institution Account</label>
-  </fields>
-  <fields>
-    <name>Class_Percentile__c</name>
-    <help>The student's percentile ranking for their class. For example, a student that ranks in the top 10% has a 90% value.</help>
-    <label>Class Percentile</label>
-  </fields>
-  <fields>
-    <name>Class_Rank_Scale__c</name>
-    <help>Tracks how the Class Percentile was determined. For example, using exact decile, quintile, or quartile.</help>
-    <label>Class Rank Scale</label>
-    <picklistValues>
-      <masterLabel>Exact</masterLabel>
-      <translation>Exact</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Decile</masterLabel>
-      <translation>Decile</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Quintile</masterLabel>
-      <translation>Quintile</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Quartile</masterLabel>
-      <translation>Quartile</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>None</masterLabel>
-      <translation>None</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Class_Rank_Type__c</name>
-    <help>Tracks how the Class Rank was determined. For example, using a weighted or unweighted scale.</help>
-    <label>Class Rank Type</label>
-    <picklistValues>
-      <masterLabel>Unweighted</masterLabel>
-      <translation>Unweighted</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Weighted</masterLabel>
-      <translation>Weighted</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Class_Rank__c</name>
-    <help>The student's academic rank in relation to their graduating class. For example, a student that ranks 5th in the class of 200, has a value of 5.</help>
-    <label>Class Rank</label>
-  </fields>
-  <fields>
-    <name>Class_Size__c</name>
-    <help>The number of students that were in the Contact's class.</help>
-    <label>Class Size</label>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>The Contact related to this historical data.</help>
-    <relationshipLabel>Education History</relationshipLabel>
-    <label>Contact</label>
-  </fields>
-  <fields>
-    <name>Degree_Earned__c</name>
-    <help>If applicable, the level of the degree the Contact earned at this Educational Institution.</help>
-    <label>Degree Earned</label>
-    <picklistValues>
-      <masterLabel>GED</masterLabel>
-      <translation>GED</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>High School Diploma</masterLabel>
-      <translation>High School Diploma</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>AA</masterLabel>
-      <translation>AA</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>AS</masterLabel>
-      <translation>AS</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>BA</masterLabel>
-      <translation>BA</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>BS</masterLabel>
-      <translation>BS</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>MA</masterLabel>
-      <translation>MA</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>MBA</masterLabel>
-      <translation>MBA</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>MS</masterLabel>
-      <translation>MS</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>JD</masterLabel>
-      <translation>JD</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>MD</masterLabel>
-      <translation>MD</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>PhD</masterLabel>
-      <translation>PhD</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Other</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Details__c</name>
-    <help>Additional details about this student's educational history.</help>
-    <label>Details</label>
-  </fields>
-  <fields>
-    <name>Education_History_JSON__c</name>
-    <label>Education History JSON</label>
-  </fields>
-  <fields>
-    <name>Educational_Institution_Name__c</name>
-    <label>Educational Institution Name</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>The date the Contact left this Educational Institution.</help>
-    <label>End Date</label>
-  </fields>
-  <fields>
-    <name>GPA_Scale_Reporting__c</name>
-    <help>The highest possible grade point average at this Educational Institution.</help>
-    <label>GPA Scale Reporting</label>
-    <picklistValues>
-      <masterLabel>4</masterLabel>
-      <translation>4</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>5</masterLabel>
-      <translation>5</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>6</masterLabel>
-      <translation>6</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>7</masterLabel>
-      <translation>7</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>8</masterLabel>
-      <translation>8</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>9</masterLabel>
-      <translation>9</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>10</masterLabel>
-      <translation>10</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>11</masterLabel>
-      <translation>11</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>12</masterLabel>
-      <translation>12</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>13</masterLabel>
-      <translation>13</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>14</masterLabel>
-      <translation>14</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>15</masterLabel>
-      <translation>15</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>16</masterLabel>
-      <translation>16</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>17</masterLabel>
-      <translation>17</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>18</masterLabel>
-      <translation>18</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>19</masterLabel>
-      <translation>19</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>20</masterLabel>
-      <translation>20</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>100</masterLabel>
-      <translation>100</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>GPA_Scale_Type__c</name>
-    <help>Tracks how the GPA was determined. For example, using a weighted or unweighted scale.</help>
-    <label>GPA Scale Type</label>
-    <picklistValues>
-      <masterLabel>Unweighted</masterLabel>
-      <translation>Unweighted</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Weighted</masterLabel>
-      <translation>Weighted</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>GPA__c</name>
-    <help>The Contact's final grade point average.</help>
-    <label>GPA</label>
-  </fields>
-  <fields>
-    <name>Graduation_Date__c</name>
-    <help>If applicable, the date the Contact graduated from this Educational Institution.</help>
-    <label>Graduation Date</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>The date the Contact started at this Educational Institution.</help>
-    <label>Start Date</label>
-  </fields>
-  <layouts>
-    <layout>EDA Education History Layout</layout>
-    <sections>
-      <label>Custom Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Education History Name</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Education History Name</label>
-  </standardFields>
-  <startsWith>Vowel</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Education History</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Education History</value>
-  </caseValues>
+    <layouts>
+        <layout>EDA Education History Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Education History Name</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Education History Name</label>
+    </standardFields>
+    <startsWith>Vowel</startsWith>
+    <caseValues>
+        <plural>false</plural>
+        <value>Education History</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Education History</value>
+    </caseValues>
+    <fields>
+        <name>Account__c</name>
+        <relationshipLabel>Education History</relationshipLabel>
+        <label>Educational Institution Account</label>
+    </fields>
+    <fields>
+        <name>Class_Percentile__c</name>
+        <help>The student&apos;s percentile ranking for their class. For example, a student that ranks in the top 10% has a 90% value.</help>
+        <label>Class Percentile</label>
+    </fields>
+    <fields>
+        <name>Class_Rank_Scale__c</name>
+        <help>Tracks how the Class Percentile was determined. For example, using exact decile, quintile, or quartile.</help>
+        <label>Class Rank Scale</label>
+        <picklistValues>
+            <masterLabel>Exact</masterLabel>
+            <translation>Exact</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Decile</masterLabel>
+            <translation>Decile</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quintile</masterLabel>
+            <translation>Quintile</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quartile</masterLabel>
+            <translation>Quartile</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation>None</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Class_Rank_Type__c</name>
+        <help>Tracks how the Class Rank was determined. For example, using a weighted or unweighted scale.</help>
+        <label>Class Rank Type</label>
+        <picklistValues>
+            <masterLabel>Unweighted</masterLabel>
+            <translation>Unweighted</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weighted</masterLabel>
+            <translation>Weighted</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Class_Rank__c</name>
+        <help>The student&apos;s academic rank in relation to their graduating class. For example, a student that ranks 5th in the class of 200, has a value of 5.</help>
+        <label>Class Rank</label>
+    </fields>
+    <fields>
+        <name>Class_Size__c</name>
+        <help>The number of students that were in the Contact&apos;s class.</help>
+        <label>Class Size</label>
+    </fields>
+    <fields>
+        <name>Contact__c</name>
+        <help>The Contact related to this historical data.</help>
+        <relationshipLabel>Education History</relationshipLabel>
+        <label>Contact</label>
+    </fields>
+    <fields>
+        <name>Degree_Earned__c</name>
+        <help>If applicable, the level of the degree the Contact earned at this Educational Institution.</help>
+        <label>Degree Earned</label>
+        <picklistValues>
+            <masterLabel>GED</masterLabel>
+            <translation>GED</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High School Diploma</masterLabel>
+            <translation>High School Diploma</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AA</masterLabel>
+            <translation>AA</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AS</masterLabel>
+            <translation>AS</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BA</masterLabel>
+            <translation>BA</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BS</masterLabel>
+            <translation>BS</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MA</masterLabel>
+            <translation>MA</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MBA</masterLabel>
+            <translation>MBA</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS</masterLabel>
+            <translation>MS</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JD</masterLabel>
+            <translation>JD</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MD</masterLabel>
+            <translation>MD</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PhD</masterLabel>
+            <translation>PhD</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Other</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Details__c</name>
+        <help>Additional details about this student&apos;s educational history.</help>
+        <label>Details</label>
+    </fields>
+    <fields>
+        <name>Education_History_JSON__c</name>
+        <label>Education History JSON</label>
+    </fields>
+    <fields>
+        <name>Educational_Institution_Name__c</name>
+        <label>Educational Institution Name</label>
+    </fields>
+    <fields>
+        <name>End_Date__c</name>
+        <help>The date the Contact left this Educational Institution.</help>
+        <label>End Date</label>
+    </fields>
+    <fields>
+        <name>GPA_Scale_Reporting__c</name>
+        <help>The highest possible grade point average at this Educational Institution.</help>
+        <label>GPA Scale Reporting</label>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation>4</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation>5</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation>6</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation>7</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation>8</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation>9</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation>10</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation>11</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation>12</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>13</masterLabel>
+            <translation>13</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>14</masterLabel>
+            <translation>14</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15</masterLabel>
+            <translation>15</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>16</masterLabel>
+            <translation>16</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>17</masterLabel>
+            <translation>17</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>18</masterLabel>
+            <translation>18</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>19</masterLabel>
+            <translation>19</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20</masterLabel>
+            <translation>20</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100</masterLabel>
+            <translation>100</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>GPA_Scale_Type__c</name>
+        <help>Tracks how the GPA was determined. For example, using a weighted or unweighted scale.</help>
+        <label>GPA Scale Type</label>
+        <picklistValues>
+            <masterLabel>Unweighted</masterLabel>
+            <translation>Unweighted</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weighted</masterLabel>
+            <translation>Weighted</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>GPA__c</name>
+        <help>The Contact&apos;s final grade point average.</help>
+        <label>GPA</label>
+    </fields>
+    <fields>
+        <name>Graduation_Date__c</name>
+        <help>If applicable, the date the Contact graduated from this Educational Institution.</help>
+        <label>Graduation Date</label>
+    </fields>
+    <fields>
+        <name>Start_Date__c</name>
+        <help>The date the Contact started at this Educational Institution.</help>
+        <label>Start Date</label>
+    </fields>
 </CustomObjectTranslation>
