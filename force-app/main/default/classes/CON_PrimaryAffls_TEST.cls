@@ -832,17 +832,15 @@ private with sharing class CON_PrimaryAffls_TEST {
             con.Primary_Organization__c = businessAccount1.Id;
         }
 
-        try {
-            Test.startTest();
-            insert testContactsList;
-            Test.stopTest();
-            System.assert(false, 'DML action should result in an error.');
-        } catch (System.DmlException err){
+        Test.startTest();
+        Database.SaveResult[] saveResultsList = Database.insert(testContactsList, false); 
+        Test.stopTest();
+
+        for (Database.SaveResult saveResult : saveResultsList) {
             System.assertEquals(
-                true, 
-                err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0])), 
-                'Invalid Record Type mapping should throw an error when validation is enabled.'
-            );
+                CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), 
+                saveResult.getErrors()[0].getMessage(),
+                'Invalid Record Type mapping should throw an error when validation is enabled.');
         }
     }
 
@@ -876,14 +874,18 @@ private with sharing class CON_PrimaryAffls_TEST {
         );
         insert mappings;
 
+        String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]);
+
         Test.startTest();
-        try {
-            insert testContactsList;
-        } catch (System.DmlException err){
-            System.assertEquals(true, err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0])), 'Invalid Record Type mapping should throw an error when validation is enabled.');
-        }
-        
+        Database.SaveResult[] saveResultsList = Database.insert(testContactsList, false); 
         Test.stopTest();
+
+        for (Database.SaveResult saveResult : saveResultsList) {
+            System.assertEquals(
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'Invalid Record Type mapping should throw an error when validation is enabled.');
+        }
     }
 
     /*************************************************************************************************************
@@ -914,18 +916,31 @@ private with sharing class CON_PrimaryAffls_TEST {
         );
         insert mappings;
 
-        Test.startTest();
-        try {
-            insert testContactsList;
-        } catch (System.DmlException err){
-            System.assertEquals(
-                true, 
-                err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0])), 
-                'Invalid Record Type mapping should throw an error when validation is enabled.'
-            );
-        }
+        // Test.startTest();
+        // try {
+        //     insert testContactsList;
+        // } catch (System.DmlException err){
+        //     System.assertEquals(
+        //         true, 
+        //         err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0])), 
+        //         'Invalid Record Type mapping should throw an error when validation is enabled.'
+        //     );
+        // }
         
+        // Test.stopTest();
+
+        String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]);
+
+        Test.startTest();
+        Database.SaveResult[] saveResultsList = Database.insert(testContactsList, false); 
         Test.stopTest();
+
+        for (Database.SaveResult saveResult : saveResultsList) {
+            System.assertEquals(
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'Invalid Record Type mapping should throw an error when validation is enabled.');
+        }
     }
 
     /*************************************************************************************************************
@@ -956,18 +971,31 @@ private with sharing class CON_PrimaryAffls_TEST {
         );
         insert mappings;
 
-        Test.startTest();
-        try {
-            insert testContactsList;
-        } catch (System.DmlException err){
-            System.assertEquals(
-                true, 
-                err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0])), 
-                'Invalid Record Type mapping should throw an error when validation is enabled.'
-            );
-        }
+        // Test.startTest();
+        // try {
+        //     insert testContactsList;
+        // } catch (System.DmlException err){
+        //     System.assertEquals(
+        //         true, 
+        //         err.getMessage().contains(CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0])), 
+        //         'Invalid Record Type mapping should throw an error when validation is enabled.'
+        //     );
+        // }
         
+        // Test.stopTest();
+
+        String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]);
+
+        Test.startTest();
+        Database.SaveResult[] saveResultsList = Database.insert(testContactsList, false); 
         Test.stopTest();
+
+        for (Database.SaveResult saveResult : saveResultsList) {
+            System.assertEquals(
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'Invalid Record Type mapping should throw an error when validation is enabled.');
+        }
     }
 
     /*************************************************************************************************************
@@ -1100,18 +1128,31 @@ private with sharing class CON_PrimaryAffls_TEST {
             con.Primary_Organization__c = businessAccount1.Id;
         }
 
-        Test.startTest();
-        try {
-            update testContactsList;
-        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-            System.assertEquals(
-                CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), 
-                err.getMessage(), 
-                'Invalid Record Type mapping should throw an error when validation is enabled.'
-            );
-        }
+        // Test.startTest();
+        // try {
+        //     update testContactsList;
+        // } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
+        //     System.assertEquals(
+        //         CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), 
+        //         err.getMessage(), 
+        //         'Invalid Record Type mapping should throw an error when validation is enabled.'
+        //     );
+        // }
         
+        // Test.stopTest();
+
+        String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]);
+
+        Test.startTest();
+        Database.SaveResult[] saveResultsList = Database.insert(testContactsList, false); 
         Test.stopTest();
+
+        for (Database.SaveResult saveResult : saveResultsList) {
+            System.assertEquals(
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'Invalid Record Type mapping should throw an error when validation is enabled.');
+        }
     }
 
     /*************************************************************************************************************
@@ -1151,18 +1192,32 @@ private with sharing class CON_PrimaryAffls_TEST {
             con.Gender__c = 'Decline to State';
         }
 
-        Test.startTest();
-        try {
-            update testContactsList;
-        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-            System.assertEquals(
-                CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]), 
-                err.getMessage(), 
-                'Invalid Record Type mapping should throw an error when validation is enabled.'
-            );
-        }
+        // Test.startTest();
+        // try {
+        //     update testContactsList;
+        // } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
+        //     System.assertEquals(
+        //         CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]), 
+        //         err.getMessage(), 
+        //         'Invalid Record Type mapping should throw an error when validation is enabled.'
+        //     );
+        // }
         
+        // Test.stopTest();
+
+        String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]);
+
+        Test.startTest();
+        Database.SaveResult[] saveResultsList = Database.update(testContactsList, false); 
         Test.stopTest();
+
+        for (Database.SaveResult saveResult : saveResultsList) {
+            System.debug('error count: ' + saveResult.getErrors().size());
+            System.assertEquals(
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'Invalid Record Type mapping should throw an error when validation is enabled.');
+        }
     }
 
     /*************************************************************************************************************
@@ -1198,18 +1253,31 @@ private with sharing class CON_PrimaryAffls_TEST {
             con.Gender__c = 'Decline to State';
         }
 
-        Test.startTest();
-        try {
-            update testContactsList;
-        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-            System.assertEquals(
-                CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), 
-                err.getMessage(), 
-                'Invalid Record Type mapping should throw an error when validation is enabled.'
-            );
-        }
+        // Test.startTest();
+        // try {
+        //     update testContactsList;
+        // } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
+        //     System.assertEquals(
+        //         CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]), 
+        //         err.getMessage(), 
+        //         'Invalid Record Type mapping should throw an error when validation is enabled.'
+        //     );
+        // }
         
+        // Test.stopTest();
+
+        String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidRTMappingErrorMessage(mappings[0]);
+
+        Test.startTest();
+        Database.SaveResult[] saveResultsList = Database.update(testContactsList, false); 
         Test.stopTest();
+
+        for (Database.SaveResult saveResult : saveResultsList) {
+            System.assertEquals(
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'Invalid Record Type mapping should throw an error when validation is enabled.');
+        }
     }
 
     /*************************************************************************************************************
@@ -1348,17 +1416,30 @@ private with sharing class CON_PrimaryAffls_TEST {
             con.Gender__c = 'Decline to State';
         }
 
+        // Test.startTest();
+        // try {
+        //     update testContactsList;
+        // } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
+        //     System.assertEquals(
+        //         CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]), 
+        //         err.getMessage(), 
+        //         'Invalid Record Type mapping should throw an error when validation is enabled.'
+        //     );
+        // }
+        // Test.stopTest();
+
+        String errorMessageText = CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]);
+
         Test.startTest();
-        try {
-            update testContactsList;
-        } catch (ERR_ExceptionHandler.AffAccountRecordTypeMappingsException err){
-            System.assertEquals(
-                CON_PrimaryAffls_TEST.getExpectedInvalidFieldMappingErrorMessage(mappings[0]), 
-                err.getMessage(), 
-                'Invalid Record Type mapping should throw an error when validation is enabled.'
-            );
-        }
+        Database.SaveResult[] saveResultsList = Database.update(testContactsList, false); 
         Test.stopTest();
+
+        for (Database.SaveResult saveResult : saveResultsList) {
+            System.assertEquals(
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'Invalid Record Type mapping should throw an error when validation is enabled.');
+        }
     }
 
     /*************************************************************************************************************
@@ -1633,14 +1714,15 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         String errorMessageText = CON_PrimaryAffls_TEST.getinvalidContactFieldInAffiliationMappingMessage('ReportsToId');
 
-        try{
-            Test.startTest();
-            insert contactsToBeInserted;
-            Test.stopTest();
+        Test.startTest();
+        Database.SaveResult[] saveResultsList = Database.insert(contactsToBeInserted, false); 
+        Test.stopTest();
 
-            System.assert(false, 'DML action should result in an error.');
-        } catch (System.DmlException ex){
-            System.assertEquals(true, ex.getMessage().contains(errorMessageText), 'An invalidContactFieldInAffiliationMapping error should be thrown.');
+        for (Database.SaveResult saveResult : saveResultsList) {
+            System.assertEquals(
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'An invalidContactFieldInAffiliationMapping error should be thrown.');
         }
     }
 
@@ -1682,17 +1764,17 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
 
         String errorMessageText = CON_PrimaryAffls_TEST.getInvalidRecordTypeInAffiliationMappingMessage('Business_Organization_Invalid');
+        
+        Test.startTest();
+        Database.SaveResult[] saveResultsList = Database.insert(contactsToBeInserted, false); 
+        Test.stopTest();
 
-        try{
-            Test.startTest();
-            insert contactsToBeInserted;
-            Test.stopTest();
-
-            System.assert(false, 'DML action should result in an error.');
-
-        } catch (System.DmlException ex){
-            System.assertEquals(true, ex.getMessage().contains(errorMessageText), 'An invalidRecordTypeInAffiliationMapping error should be thrown.');
-        }        
+        for (Database.SaveResult saveResult : saveResultsList) {
+            System.assertEquals(
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'An invalidRecordTypeInAffiliationMapping error should be thrown.');
+        }
     }
 
     /****************************************************************************************************************
@@ -1734,16 +1816,16 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         String errorMessageText = CON_PrimaryAffls_TEST.getinvalidContactFieldInAffiliationMappingMessage('ReportsToId');
 
-        try{
-            Test.startTest();
-            insert contactsToBeInserted;
-            Test.stopTest();
+        Test.startTest();
+        Database.SaveResult[] saveResultsList = Database.insert(contactsToBeInserted, false); 
+        Test.stopTest();
 
-            System.assert(false, 'DML action should result in an error.');
-
-        } catch (System.DmlException ex){
-            System.assertEquals(true, ex.getMessage().contains(errorMessageText), 'An invalidContactFieldInAffiliationMapping error should be thrown.');
-        }        
+        for (Database.SaveResult saveResult : saveResultsList) {
+            System.assertEquals(
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'An invalidContactFieldInAffiliationMapping error should be thrown.');
+        }    
     }
 
     /****************************************************************************************************************
@@ -1840,20 +1922,16 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         String errorMessageText = CON_PrimaryAffls_TEST.getinvalidContactFieldInAffiliationMappingMessage('ReportsToId');
 
-        try{
-            Test.startTest();
-            update contactsToBeInserted;
-            Test.stopTest();
+        Test.startTest();
+        Database.SaveResult[] saveResultsList = Database.update(contactsToBeInserted, false); 
+        Test.stopTest();
 
-            System.assert(false, 'DML action should result in an error.');
-
-        } catch (System.DmlException ex){
+        for (Database.SaveResult saveResult : saveResultsList) {
             System.assertEquals(
-                true, 
-                ex.getMessage().contains(errorMessageText), 
-                'An invalidContactFieldInAffiliationMapping error should be thrown.'
-            );
-        }
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'An invalidContactFieldInAffiliationMapping error should be thrown.');
+        }   
     }
 
     /****************************************************************************************************************
@@ -1900,20 +1978,16 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         String errorMessageText = CON_PrimaryAffls_TEST.getInvalidRecordTypeInAffiliationMappingMessage('Business_Organization_Invalid');
 
-        try{
-            Test.startTest();
-            update contactsToBeInserted;
-            Test.stopTest();
+        Test.startTest();
+        Database.SaveResult[] saveResultsList = Database.update(contactsToBeInserted, false); 
+        Test.stopTest();
 
-            System.assert(false, 'DML action should result in an error.');
-
-        } catch (System.DmlException ex){
+        for (Database.SaveResult saveResult : saveResultsList) {
             System.assertEquals(
-                true, 
-                ex.getMessage().contains(errorMessageText), 
-                'An invalidRecordTypeInAffiliationMapping error should be thrown.'
-            );
-        }        
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'An invalidRecordTypeInAffiliationMapping error should be thrown.');
+        }      
     }
 
     /****************************************************************************************************************
@@ -1960,20 +2034,16 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         String errorMessageText = CON_PrimaryAffls_TEST.getinvalidContactFieldInAffiliationMappingMessage('ReportsToId');
 
-        try{
-            Test.startTest();
-            update contactsToBeInserted;
-            Test.stopTest();
+        Test.startTest();
+        Database.SaveResult[] saveResultsList = Database.update(contactsToBeInserted, false); 
+        Test.stopTest();
 
-            System.assert(false, 'DML action should result in an error.');
-
-        } catch (System.DmlException ex){
+        for (Database.SaveResult saveResult : saveResultsList) {
             System.assertEquals(
-                true, 
-                ex.getMessage().contains(errorMessageText), 
-                'An invalidContactFieldInAffiliationMapping error should be thrown.'
-            );
-        }        
+                errorMessageText, 
+                saveResult.getErrors()[0].getMessage(),
+                'An invalidContactFieldInAffiliationMapping error should be thrown.');
+        }  
     }
 
     /****************************************************************************************************************
