@@ -117,8 +117,8 @@
         <categories>Affiliations</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Error when an Affiliation Mapping doesn’t have a valid Account record type</shortDescription>
-        <value>In this Affiliation Mapping, {0} isn’t a valid Account record type. Change the Affiliation Mapping that currently has {1} set to {0} to use an API name for the Account record type instead.</value>
+        <shortDescription>Error when an Affiliation Mapping's Account record type isn't valid</shortDescription>
+        <value>We can't save this record because of an error with the Contact field {1}. It references an invalid Account record type. Ask your admin to check Affiliation Mappings in EDA Settings, and make sure that the value for {0} currently set to {1} is set to the API name of a valid Account record type.</value>
     </labels>
     <labels>
         <fullName>Male</fullName>
