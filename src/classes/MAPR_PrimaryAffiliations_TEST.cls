@@ -59,7 +59,7 @@ private class MAPR_PrimaryAffiliations_TEST {
             affiliationMapping.Account_Record_Type__c
         };
 
-        return String.format(label.invalidRecordTypeInAffiliationMapping, params);
+        return StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(label.invalidRecordTypeInAffiliationMapping, params);
     }
 
     /**************************************************************************************************************************************
@@ -548,11 +548,31 @@ private class MAPR_PrimaryAffiliations_TEST {
 
         String prefix = UTIL_Namespace.StrTokenNSPrefix('');
         
-        System.assertEquals(false, primaryAfflModel.getIsValid(), 'Affiliation mapping model should be invalid for invalid Account Record Type.');
-        System.assertEquals (MAPR_PrimaryAffiliations_TEST.getExpectedInvalidRTMappingErrorMessage(primaryAfflMappings[0]), primaryAfflModel.getInvalidErrorMessage(), 'Invalid error message should be populated.');
-        System.assertEquals(prefix + 'Primary_Organization__c', primaryAfflModel.getContactFieldApiName(), 'Contact field API name for Affiliation mapping model should be Primary_Organization__c.');
-        System.assertEquals('Primary Business Organization', primaryAfflModel.getSettingsContactFieldValue(), 'Contact field API name for Affiliation mapping model should be Primary Business Organization.');
-        System.assertEquals('Business Org test', primaryAfflModel.getSettingsRecordTypeFieldValue(), 'Record type for Affiliation mapping model should be set as Business org test.');
+        System.assertEquals(
+            false, 
+            primaryAfflModel.getIsValid(), 
+            'Affiliation mapping model should be invalid for invalid Account Record Type.'
+        );
+        System.assertEquals(
+            MAPR_PrimaryAffiliations_TEST.getExpectedInvalidRTMappingErrorMessage(primaryAfflMappings[0]), 
+            primaryAfflModel.getInvalidErrorMessage(), 
+            'Invalid error message should be populated.'
+        );
+        System.assertEquals(
+            prefix + 'Primary_Organization__c', 
+            primaryAfflModel.getContactFieldApiName(), 
+            'Contact field API name for Affiliation mapping model should be Primary_Organization__c.'
+        );
+        System.assertEquals(
+            'Primary Business Organization', 
+            primaryAfflModel.getSettingsContactFieldValue(), 
+            'Contact field API name for Affiliation mapping model should be Primary Business Organization.'
+        );
+        System.assertEquals(
+            'Business Org test', 
+            primaryAfflModel.getSettingsRecordTypeFieldValue(), 
+            'Record type for Affiliation mapping model should be set as Business org test.'
+        );
     }
 
     /**************************************************************************************************************************************
