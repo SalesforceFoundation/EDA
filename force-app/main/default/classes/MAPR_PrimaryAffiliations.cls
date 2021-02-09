@@ -145,7 +145,7 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
                 afflMapping.Primary_Affl_Field__c
             };
 
-            invalidErrorMessage = String.format(label.invalidContactFieldInAffiliationMapping, params);
+            invalidErrorMessage = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(label.invalidContactFieldInAffiliationMapping, params);
         }
             
         // Get the record type info by developer name

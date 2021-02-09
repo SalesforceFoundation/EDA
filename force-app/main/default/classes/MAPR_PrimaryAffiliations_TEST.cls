@@ -45,7 +45,7 @@ private class MAPR_PrimaryAffiliations_TEST {
             affiliationMapping.Primary_Affl_Field__c
         };
 
-        return String.format(label.invalidContactFieldInAffiliationMapping, params);
+        return StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(label.invalidContactFieldInAffiliationMapping, params);
     }
 
     /**************************************************************************************************************************************
