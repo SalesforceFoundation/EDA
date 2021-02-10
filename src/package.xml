@@ -1574,6 +1574,10 @@
         <name>RecordType</name>
     </types>
     <types>
+        <members>Security</members>
+        <name>Settings</name>
+    </types>
+    <types>
         <members>ca</members>
         <members>de</members>
         <members>en_GB</members>
