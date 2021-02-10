@@ -9,7 +9,7 @@ CREATE TABLE "Account" (
 	"ParentId" VARCHAR(255), 
 	"Current_Address__c" VARCHAR(255), 
 	"Primary_Contact__c" VARCHAR(255), 
-	PRIMARY KEY (id)
+	PRIMARY KEY (id) 
 );
 INSERT INTO "Account" VALUES(1,'','Student Administrative Account','0120R000002hBqHQAU','','','','','21');
 INSERT INTO "Account" VALUES(2,'','test educational','0120R000002hBqJQAU','','','','','');
