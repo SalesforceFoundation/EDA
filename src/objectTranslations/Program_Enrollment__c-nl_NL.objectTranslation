@@ -1,122 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>Het programma waarvoor de student is ingeschreven.</help>
-    <relationshipLabel>Programma-inschrijvingen</relationshipLabel>
-    <label>Programma</label>
-  </fields>
-  <fields>
-    <name>Admission_Date__c</name>
-    <help>De datum waarop de student tot het programma is toegelaten.</help>
-    <label>Toelatingsdatum</label>
-  </fields>
-  <fields>
-    <name>Affiliation__c</name>
-    <help>Dit veld wordt automatisch ingevuld met de affiliatierecord die de inschrijving van de student in dit programma vertegenwoordigt.</help>
-    <relationshipLabel>Programma-inschrijvingen</relationshipLabel>
-    <label>Affiliatie</label>
-  </fields>
-  <fields>
-    <name>Application_Submitted_Date__c</name>
-    <help>De datum waarop de student de aanvraag voor toelating tot het programma indiende.</help>
-    <label>Datum aanvraag ingediend</label>
-  </fields>
-  <fields>
-    <name>Class_Standing__c</name>
-    <help>Het niveau van een student in een programma, bijvoorbeeld eerstejaars, tweedejaars, derdejaars of vierdejaars.</help>
-    <label>Jaarstatus</label>
-    <picklistValues>
-      <masterLabel>Freshman</masterLabel>
-      <translation>Eerstejaars</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Sophomore</masterLabel>
-      <translation>Tweedejaars</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Junior</masterLabel>
-      <translation>Derdejaars</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Senior</masterLabel>
-      <translation>Vierdejaars</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>De student die voor dit programma is ingeschreven.</help>
-    <relationshipLabel>Programma-inschrijvingen</relationshipLabel>
-    <label>Contactpersoon</label>
-  </fields>
-  <fields>
-    <name>Credits_Attempted__c</name>
-    <help>Het aantal credits dat de student tot nu toe heeft geprobeerd te behalen. Dit omvat credits die nog in uitvoering zijn en cursussen waarvoor de student is gezakt en geen credits heeft gekregen.</help>
-    <label>Theoretische credits</label>
-  </fields>
-  <fields>
-    <name>Credits_Earned__c</name>
-    <help>Het aantal credits dat de student tot nu toe heeft behaald.</help>
-    <label>Behaalde credits</label>
-  </fields>
-  <fields>
-    <name>Eligible_to_Enroll__c</name>
-    <help>Als dit is geselecteerd, betekent dit dat de student aan de programmavereisten voldoet en zich kan inschrijven.</help>
-    <label>Komt in aanmerking voor inschrijving</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>De datum waarop de student het programma zou moeten voltooien.</help>
-    <label>Einddatum</label>
-  </fields>
-  <fields>
-    <name>Enrollment_Status__c</name>
-    <help>De inschrijvingsstatus van de student, bijvoorbeeld voltijds of deeltijds.</help>
-    <label>Inschrijvingsstatus</label>
-    <picklistValues>
-      <masterLabel>Full-time</masterLabel>
-      <translation>Voltijds</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Half-time</masterLabel>
-      <translation>Deeltijds</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Less than half-time</masterLabel>
-      <translation>Minder dan deeltijds</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>GPA__c</name>
-    <help>De huidige gemiddelde eindscore van de student.</help>
-    <label>Gemiddelde eindscore</label>
-  </fields>
-  <fields>
-    <name>Graduation_Year__c</name>
-    <help>Het jaar dat de student dit programma naar verwachting voltooit.</help>
-    <label>Afstudeerjaar</label>
-  </fields>
-  <fields>
-    <name>Program_Plan__c</name>
-    <help>Het programmaplan dat alle van kracht zijnde programmavereisten voor deze student omvat.</help>
-    <relationshipLabel>Programma-inschrijvingen</relationshipLabel>
-    <label>Programmaplan</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>De datum waarop de student dit programma is begonnen of naar verwachting zal beginnen.</help>
-    <label>Begindatum</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Program Enrollment Layout</layout>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Programma-inschrijvings-ID</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Programma-inschrijvings-ID</label>
-  </standardFields>
+    <layouts>
+        <layout>HEDA Program Enrollment Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Programma-inschrijvings-ID</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Programma-inschrijvings-ID</label>
+    </standardFields>
+    <fields>
+        <name>Account__c</name>
+        <help>Het programma waarvoor de student is ingeschreven.</help>
+        <relationshipLabel>Programma-inschrijvingen</relationshipLabel>
+        <label>Programma</label>
+    </fields>
+    <fields>
+        <name>Admission_Date__c</name>
+        <help>De datum waarop de student tot het programma is toegelaten.</help>
+        <label>Toelatingsdatum</label>
+    </fields>
+    <fields>
+        <name>Affiliation__c</name>
+        <help>Dit veld wordt automatisch ingevuld met de affiliatierecord die de inschrijving van de student in dit programma vertegenwoordigt.</help>
+        <relationshipLabel>Programma-inschrijvingen</relationshipLabel>
+        <label>Affiliatie</label>
+    </fields>
+    <fields>
+        <name>Application_Submitted_Date__c</name>
+        <help>De datum waarop de student de aanvraag voor toelating tot het programma indiende.</help>
+        <label>Datum aanvraag ingediend</label>
+    </fields>
+    <fields>
+        <name>Class_Standing__c</name>
+        <help>Het niveau van een student in een programma, bijvoorbeeld eerstejaars, tweedejaars, derdejaars of vierdejaars.</help>
+        <label>Jaarstatus</label>
+        <picklistValues>
+            <masterLabel>Freshman</masterLabel>
+            <translation>Eerstejaars</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sophomore</masterLabel>
+            <translation>Tweedejaars</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Junior</masterLabel>
+            <translation>Derdejaars</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Senior</masterLabel>
+            <translation>Vierdejaars</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Contact__c</name>
+        <help>De student die voor dit programma is ingeschreven.</help>
+        <relationshipLabel>Programma-inschrijvingen</relationshipLabel>
+        <label>Contactpersoon</label>
+    </fields>
+    <fields>
+        <name>Credits_Attempted__c</name>
+        <help>Het aantal credits dat de student tot nu toe heeft geprobeerd te behalen. Dit omvat credits die nog in uitvoering zijn en cursussen waarvoor de student is gezakt en geen credits heeft gekregen.</help>
+        <label>Theoretische credits</label>
+    </fields>
+    <fields>
+        <name>Credits_Earned__c</name>
+        <help>Het aantal credits dat de student tot nu toe heeft behaald.</help>
+        <label>Behaalde credits</label>
+    </fields>
+    <fields>
+        <name>Eligible_to_Enroll__c</name>
+        <help>Als dit is geselecteerd, betekent dit dat de student aan de programmavereisten voldoet en zich kan inschrijven.</help>
+        <label>Komt in aanmerking voor inschrijving</label>
+    </fields>
+    <fields>
+        <name>End_Date__c</name>
+        <help>De datum waarop de student het programma zou moeten voltooien.</help>
+        <label>Einddatum</label>
+    </fields>
+    <fields>
+        <name>Enrollment_Status__c</name>
+        <help>De inschrijvingsstatus van de student, bijvoorbeeld voltijds of deeltijds.</help>
+        <label>Inschrijvingsstatus</label>
+        <picklistValues>
+            <masterLabel>Full-time</masterLabel>
+            <translation>Voltijds</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Half-time</masterLabel>
+            <translation>Deeltijds</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Less than half-time</masterLabel>
+            <translation>Minder dan deeltijds</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>GPA__c</name>
+        <help>De huidige gemiddelde eindscore van de student.</help>
+        <label>Gemiddelde eindscore</label>
+    </fields>
+    <fields>
+        <name>Graduation_Year__c</name>
+        <help>Het jaar dat de student dit programma naar verwachting voltooit.</help>
+        <label>Afstudeerjaar</label>
+    </fields>
+    <fields>
+        <name>Program_Plan__c</name>
+        <help>Het programmaplan dat alle van kracht zijnde programmavereisten voor deze student omvat.</help>
+        <relationshipLabel>Programma-inschrijvingen</relationshipLabel>
+        <label>Programmaplan</label>
+    </fields>
+    <fields>
+        <name>Start_Date__c</name>
+        <help>De datum waarop de student dit programma is begonnen of naar verwachting zal beginnen.</help>
+        <label>Begindatum</label>
+    </fields>
 </CustomObjectTranslation>

@@ -8,6 +8,7 @@
         <plural>true</plural>
         <value>Relationship Auto-Create</value>
     </caseValues>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- Eligible Campaign types for this Campaign Member auto-create. (Will be blank for Contact auto-create) --></help>
         <label><!-- Campaign Types --></label>
@@ -28,5 +29,4 @@
         <label><!-- Relationship Type --></label>
         <name>Relationship_Type__c</name>
     </fields>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

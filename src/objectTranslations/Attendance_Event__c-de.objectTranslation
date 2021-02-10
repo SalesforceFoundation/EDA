@@ -1,145 +1,145 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Arrival_Time__c</name>
-    <help>Die Uhrzeit, zu der ein zu spät kommender Schüler/Student eintraf.</help>
-    <label>Ankunftszeit</label>
-  </fields>
-  <fields>
-    <name>Attendance_Type__c</name>
-    <help>Geben Sie an, ob diese Verspätung oder das Fehlen für einen Unterrichtszeitraum oder den ganzen Tag galt.</help>
-    <label>Art der Anwesenheit</label>
-    <picklistValues>
-      <masterLabel>Class Absence</masterLabel>
-      <translation>Fehlen beim Unterricht</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Class Tardy</masterLabel>
-      <translation>Verspätet zum Unterricht</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Day Absence</masterLabel>
-      <translation>Fehltage</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Day Tardy</masterLabel>
-      <translation>Verspätung (Tage)</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>Der sich verspätende oder fehlende Schüler/Student.</help>
-    <relationshipLabel>Präsenzveranstaltungen</relationshipLabel>
-    <label>Kontakt</label>
-  </fields>
-  <fields>
-    <name>Course_Connection__c</name>
-    <help>Der Unterricht und Zeitraum, in dem der Teilnehmer sich verspätet oder gefehlt hat.</help>
-    <relationshipLabel>Präsenzveranstaltungen</relationshipLabel>
-    <label>Kursverbindung</label>
-  </fields>
-  <fields>
-    <name>Course_Name__c</name>
-    <help>Der Name des Kurses, bei dem der Teilnehmer sich verspätet oder gefehlt hat (schreibgeschützt).</help>
-    <label>Kursname</label>
-  </fields>
-  <fields>
-    <name>Date__c</name>
-    <help>Das Datum der Verspätung oder des Fehlens.</help>
-    <label>Datum</label>
-  </fields>
-  <fields>
-    <name>End_Time__c</name>
-    <help>Bei entschuldigtem Fehlen für einen Teil des Tages die Uhrzeit der Rückkehr des Schülers/Studenten.</help>
-    <label>Endzeit</label>
-  </fields>
-  <fields>
-    <name>Reason_Description__c</name>
-    <help>Weitere Einzelheiten zum Fehlen oder zur Verspätung des Schülers/Studenten.</help>
-    <label>Beschreibung des Grunds</label>
-  </fields>
-  <fields>
-    <name>Reason__c</name>
-    <help>Wählen Sie eine Option, die dem Grund des Fehlens oder der Verspätung des Schülers/Studenten am ehesten entspricht. Im Feld "Beschreibung des Grunds" können Sie weitere Details eingeben.</help>
-    <label>Grund</label>
-    <picklistValues>
-      <masterLabel>Family</masterLabel>
-      <translation>Familie</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Medical</masterLabel>
-      <translation>Gesundheit</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Sonstiges</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Religious</masterLabel>
-      <translation>Religion</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Start_Time__c</name>
-    <help>Bei entschuldigtem Fehlen für einen Teil des Tages die Uhrzeit, zu der der Schülers/Studenten die Bildungseinrichtung verlassen hat.</help>
-    <label>Startzeit</label>
-  </fields>
-  <fields>
-    <name>Unexcused__c</name>
-    <help>Kennzeichnet eine unentschuldigte Verspätung oder ein unentschuldigtes Fehlen.</help>
-    <label>Unentschuldigt</label>
-  </fields>
-  <layouts>
-    <layout>EDA Attendance Event Layout</layout>
-    <sections>
-      <label>Benutzerdefinierte Links</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Name der Präsenzveranstaltung</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Name der Präsenzveranstaltung</label>
-  </standardFields>
-  <gender>Feminine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <value>Präsenzveranstaltung</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Accusative</caseType>
-    <value>Präsenzveranstaltung</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Dative</caseType>
-    <value>Präsenzveranstaltung</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <value>Präsenzveranstaltung</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <value>Präsenzveranstaltungen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Accusative</caseType>
-    <value>Präsenzveranstaltungen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Dative</caseType>
-    <value>Präsenzveranstaltungen</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <value>Präsenzveranstaltungen</value>
-  </caseValues>
+    <layouts>
+        <layout>EDA Attendance Event Layout</layout>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Name der Präsenzveranstaltung</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Name der Präsenzveranstaltung</label>
+    </standardFields>
+    <gender>Feminine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <value>Präsenzveranstaltung</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Accusative</caseType>
+        <value>Präsenzveranstaltung</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Dative</caseType>
+        <value>Präsenzveranstaltung</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <value>Präsenzveranstaltung</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <value>Präsenzveranstaltungen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Accusative</caseType>
+        <value>Präsenzveranstaltungen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Dative</caseType>
+        <value>Präsenzveranstaltungen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <value>Präsenzveranstaltungen</value>
+    </caseValues>
+    <fields>
+        <name>Arrival_Time__c</name>
+        <help>Die Uhrzeit, zu der ein zu spät kommender Schüler/Student eintraf.</help>
+        <label>Ankunftszeit</label>
+    </fields>
+    <fields>
+        <name>Attendance_Type__c</name>
+        <help>Geben Sie an, ob diese Verspätung oder das Fehlen für einen Unterrichtszeitraum oder den ganzen Tag galt.</help>
+        <label>Art der Anwesenheit</label>
+        <picklistValues>
+            <masterLabel>Class Absence</masterLabel>
+            <translation>Fehlen beim Unterricht</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Class Tardy</masterLabel>
+            <translation>Verspätet zum Unterricht</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Day Absence</masterLabel>
+            <translation>Fehltage</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Day Tardy</masterLabel>
+            <translation>Verspätung (Tage)</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Contact__c</name>
+        <help>Der sich verspätende oder fehlende Schüler/Student.</help>
+        <relationshipLabel>Präsenzveranstaltungen</relationshipLabel>
+        <label>Kontakt</label>
+    </fields>
+    <fields>
+        <name>Course_Connection__c</name>
+        <help>Der Unterricht und Zeitraum, in dem der Teilnehmer sich verspätet oder gefehlt hat.</help>
+        <relationshipLabel>Präsenzveranstaltungen</relationshipLabel>
+        <label>Kursverbindung</label>
+    </fields>
+    <fields>
+        <name>Course_Name__c</name>
+        <help>Der Name des Kurses, bei dem der Teilnehmer sich verspätet oder gefehlt hat (schreibgeschützt).</help>
+        <label>Kursname</label>
+    </fields>
+    <fields>
+        <name>Date__c</name>
+        <help>Das Datum der Verspätung oder des Fehlens.</help>
+        <label>Datum</label>
+    </fields>
+    <fields>
+        <name>End_Time__c</name>
+        <help>Bei entschuldigtem Fehlen für einen Teil des Tages die Uhrzeit der Rückkehr des Schülers/Studenten.</help>
+        <label>Endzeit</label>
+    </fields>
+    <fields>
+        <name>Reason_Description__c</name>
+        <help>Weitere Einzelheiten zum Fehlen oder zur Verspätung des Schülers/Studenten.</help>
+        <label>Beschreibung des Grunds</label>
+    </fields>
+    <fields>
+        <name>Reason__c</name>
+        <help>Wählen Sie eine Option, die dem Grund des Fehlens oder der Verspätung des Schülers/Studenten am ehesten entspricht. Im Feld &quot;Beschreibung des Grunds&quot; können Sie weitere Details eingeben.</help>
+        <label>Grund</label>
+        <picklistValues>
+            <masterLabel>Family</masterLabel>
+            <translation>Familie</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medical</masterLabel>
+            <translation>Gesundheit</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Sonstiges</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Religious</masterLabel>
+            <translation>Religion</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Start_Time__c</name>
+        <help>Bei entschuldigtem Fehlen für einen Teil des Tages die Uhrzeit, zu der der Schülers/Studenten die Bildungseinrichtung verlassen hat.</help>
+        <label>Startzeit</label>
+    </fields>
+    <fields>
+        <name>Unexcused__c</name>
+        <help>Kennzeichnet eine unentschuldigte Verspätung oder ein unentschuldigtes Fehlen.</help>
+        <label>Unentschuldigt</label>
+    </fields>
 </CustomObjectTranslation>

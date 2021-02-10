@@ -1,77 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Behavior_Involvement__c</name>
-    <help>De gedragsbetrokkenheidsrecord waarop deze gedragsreactie betrekking heeft.</help>
-    <relationshipLabel>Gedragsreacties</relationshipLabel>
-    <label>Gedragsbetrokkenheid</label>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>De ontvanger van deze gedragsreactie (alleen-lezen).</help>
-    <label>Contactpersoon</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <label>Beschrijving</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>De datum waarop de reactie niet langer van kracht is.</help>
-    <label>Einddatum</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>De datum waarop de reactie van kracht wordt.</help>
-    <label>Begindatum</label>
-  </fields>
-  <fields>
-    <name>Status__c</name>
-    <label>Status</label>
-    <picklistValues>
-      <masterLabel>Completed</masterLabel>
-      <translation>Voltooid</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>In Progress</masterLabel>
-      <translation>In uitvoering</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Postponed</masterLabel>
-      <translation>Uitgesteld</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Overig</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Type__c</name>
-    <help>De reactie op het gedragsevent, bijvoorbeeld academische proeftijd, verwijdering of overig.</help>
-    <label>Type</label>
-    <picklistValues>
-      <masterLabel>Academic Probation</masterLabel>
-      <translation>Academische proeftijd</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Expulsion</masterLabel>
-      <translation>Verwijdering</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Other</masterLabel>
-      <translation>Overig</translation>
-    </picklistValues>
-  </fields>
-  <layouts>
-    <layout>EDA Behavior Response Layout</layout>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Naam van gedragsreactie</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Naam van gedragsreactie</label>
-  </standardFields>
+    <layouts>
+        <layout>EDA Behavior Response Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Naam van gedragsreactie</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Naam van gedragsreactie</label>
+    </standardFields>
+    <fields>
+        <name>Behavior_Involvement__c</name>
+        <help>De gedragsbetrokkenheidsrecord waarop deze gedragsreactie betrekking heeft.</help>
+        <relationshipLabel>Gedragsreacties</relationshipLabel>
+        <label>Gedragsbetrokkenheid</label>
+    </fields>
+    <fields>
+        <name>Contact__c</name>
+        <help>De ontvanger van deze gedragsreactie (alleen-lezen).</help>
+        <label>Contactpersoon</label>
+    </fields>
+    <fields>
+        <name>Description__c</name>
+        <label>Beschrijving</label>
+    </fields>
+    <fields>
+        <name>End_Date__c</name>
+        <help>De datum waarop de reactie niet langer van kracht is.</help>
+        <label>Einddatum</label>
+    </fields>
+    <fields>
+        <name>Start_Date__c</name>
+        <help>De datum waarop de reactie van kracht wordt.</help>
+        <label>Begindatum</label>
+    </fields>
+    <fields>
+        <name>Status__c</name>
+        <label>Status</label>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation>Voltooid</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation>In uitvoering</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Postponed</masterLabel>
+            <translation>Uitgesteld</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Overig</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Type__c</name>
+        <help>De reactie op het gedragsevent, bijvoorbeeld academische proeftijd, verwijdering of overig.</help>
+        <label>Type</label>
+        <picklistValues>
+            <masterLabel>Academic Probation</masterLabel>
+            <translation>Academische proeftijd</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Expulsion</masterLabel>
+            <translation>Verwijdering</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation>Overig</translation>
+        </picklistValues>
+    </fields>
 </CustomObjectTranslation>
