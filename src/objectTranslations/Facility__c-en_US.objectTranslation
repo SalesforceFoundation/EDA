@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Facilities</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Facility Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- The organization that is responsible for the Facility. --></help>
         <label><!-- Account --></label>
@@ -71,12 +79,4 @@
         <name>Parent_Facility__c</name>
         <relationshipLabel><!-- Facilities --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>HEDA Facility Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

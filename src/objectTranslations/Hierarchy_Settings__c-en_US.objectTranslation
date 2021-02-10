@@ -8,6 +8,7 @@
         <plural>true</plural>
         <value>Hierarchy Settings</value>
     </caseValues>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- ID of the default record type for Account. For example, if specifying Administrative (the recommended Account model), enter the ID of the Administrative record type for the Account object. --></help>
         <label><!-- Account Processor --></label>
@@ -240,5 +241,4 @@
         <label><!-- Validate Program Plan for Nested PR --></label>
         <name>Validate_Program_Plan_for_Nested_PR__c</name>
     </fields>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

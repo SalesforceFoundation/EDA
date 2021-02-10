@@ -1,66 +1,66 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Capacity__c</name>
-    <help>この開講科目での学生の最大数。</help>
-    <label>定員</label>
-  </fields>
-  <fields>
-    <name>Course__c</name>
-    <relationshipLabel>開講科目</relationshipLabel>
-    <label>科目</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>この開講科目の最後の授業の日付。</help>
-    <label>終了日</label>
-  </fields>
-  <fields>
-    <name>Facility__c</name>
-    <help>この開講科目が行われる施設。</help>
-    <relationshipLabel>開講科目</relationshipLabel>
-    <label>施設</label>
-  </fields>
-  <fields>
-    <name>Faculty__c</name>
-    <help>この開講科目の主任講師への参照。</help>
-    <relationshipLabel>開講科目</relationshipLabel>
-    <label>主教職員</label>
-  </fields>
-  <fields>
-    <name>Section_ID__c</name>
-    <help>この開講科目のセクション ID。通常、セクション ID は、科目で 1 学期中に複数のセクションが提供される場合に使用されます。</help>
-    <label>セクション ID</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>この開講科目の最初の授業の日付。</help>
-    <label>開始日</label>
-  </fields>
-  <fields>
-    <name>Term__c</name>
-    <relationshipLabel>開講科目</relationshipLabel>
-    <label>学期</label>
-  </fields>
-  <fields>
-    <name>Time_Block__c</name>
-    <relationshipLabel>開講科目</relationshipLabel>
-    <label>時間ブロック</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Course Offering Layout</layout>
-    <sections>
-      <label>カスタムリンク</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>開講科目 ID</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>開講科目 ID</label>
-  </standardFields>
-  <caseValues>
-    <plural>false</plural>
-    <value>提供コース</value>
-  </caseValues>
+    <layouts>
+        <layout>HEDA Course Offering Layout</layout>
+        <sections>
+            <label>カスタムリンク</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>開講科目 ID</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>開講科目 ID</label>
+    </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value>提供コース</value>
+    </caseValues>
+    <fields>
+        <name>Capacity__c</name>
+        <help>この開講科目での学生の最大数。</help>
+        <label>定員</label>
+    </fields>
+    <fields>
+        <name>Course__c</name>
+        <relationshipLabel>開講科目</relationshipLabel>
+        <label>科目</label>
+    </fields>
+    <fields>
+        <name>End_Date__c</name>
+        <help>この開講科目の最後の授業の日付。</help>
+        <label>終了日</label>
+    </fields>
+    <fields>
+        <name>Facility__c</name>
+        <help>この開講科目が行われる施設。</help>
+        <relationshipLabel>開講科目</relationshipLabel>
+        <label>施設</label>
+    </fields>
+    <fields>
+        <name>Faculty__c</name>
+        <help>この開講科目の主任講師への参照。</help>
+        <relationshipLabel>開講科目</relationshipLabel>
+        <label>主教職員</label>
+    </fields>
+    <fields>
+        <name>Section_ID__c</name>
+        <help>この開講科目のセクション ID。通常、セクション ID は、科目で 1 学期中に複数のセクションが提供される場合に使用されます。</help>
+        <label>セクション ID</label>
+    </fields>
+    <fields>
+        <name>Start_Date__c</name>
+        <help>この開講科目の最初の授業の日付。</help>
+        <label>開始日</label>
+    </fields>
+    <fields>
+        <name>Term__c</name>
+        <relationshipLabel>開講科目</relationshipLabel>
+        <label>学期</label>
+    </fields>
+    <fields>
+        <name>Time_Block__c</name>
+        <relationshipLabel>開講科目</relationshipLabel>
+        <label>時間ブロック</label>
+    </fields>
 </CustomObjectTranslation>

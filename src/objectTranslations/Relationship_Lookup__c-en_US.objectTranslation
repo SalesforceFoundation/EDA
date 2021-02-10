@@ -8,6 +8,7 @@
         <plural>true</plural>
         <value>Relationship Lookup</value>
     </caseValues>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- Indicates if this reciprocal lookup is active. --></help>
         <label><!-- Active --></label>
@@ -28,5 +29,4 @@
         <label><!-- Neutral --></label>
         <name>Neutral__c</name>
     </fields>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

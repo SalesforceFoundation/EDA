@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Attendance Events</value>
     </caseValues>
+    <layouts>
+        <layout>EDA Attendance Event Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- For tardy events, the time when the student arrived. --></help>
         <label><!-- Arrival Time --></label>
@@ -97,12 +105,4 @@
         <label><!-- Unexcused --></label>
         <name>Unexcused__c</name>
     </fields>
-    <layouts>
-        <layout>EDA Attendance Event Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
