@@ -657,7 +657,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el {0} ({1}) especificado para una Función de Inscripción automática de la asignación de Afiliación, en Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones. Si {0} ({1}) es correcto, vaya al campo Función del objeto Inscripción de programa en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie Función de Inscripción automática a un valor de lista de selección activo y válido.</label>
+        <label>Verifique el {0} ({1}) especificado para una Función de Inscripción automática de la asignación de Afiliación, en Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones. Si {0} ({1}) es correcto, vaya al campo Función del objeto Afiliación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie Función de Inscripción automática a un valor de lista de selección activo y válido.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -665,7 +665,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, cambie la Función de Inscripción automática a un valor de lista de selección activo y válido para el campo Función del objeto Inscripción de programa.</label>
+        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, cambie la Función de Inscripción automática a un valor de lista de selección activo y válido para el campo Función del objeto Afiliación.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -681,7 +681,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el {0} ({1}) especificado para un Estado de Inscripción automática de la asignación de Afiliación, en Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones. Si {0} ({1}) es correcto, vaya al campo Estado del objeto Inscripción de programa en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie Estado de Inscripción automática a un valor de lista de selección activo y válido.</label>
+        <label>Verifique el {0} ({1}) especificado para un Estado de Inscripción automática de la asignación de Afiliación, en Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones. Si {0} ({1}) es correcto, vaya al campo Estado del objeto Afiliación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie Estado de Inscripción automática a un valor de lista de selección activo y válido.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -689,7 +689,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, cambie la Estado de Inscripción automática a un valor de lista de selección activo y válido para el campo Estado del objeto Inscripción de programa.</label>
+        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, cambie el Estado de Inscripción automática a un valor de lista de selección activo y válido para el campo Estado del objeto Afiliación.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -737,7 +737,7 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Active Enlaces de cursos, que incluye la configuración de los tipos de registro Enlace de curso.</label>
+        <label>Active Enlaces de cursos, que incluye la configuración de los tipos de registro Enlace de curso. Para obtener detalles, consulte Configurar enlace de cursos en la documentación de EDA.</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
@@ -797,7 +797,7 @@
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Femenino de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
+        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Female de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -809,7 +809,7 @@
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Masculino de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
+        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Male de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -849,7 +849,7 @@
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Neutro de la configuración recíproca correspondiente a un valor de lista de selección activo y válido</label>
+        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Neutro de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>

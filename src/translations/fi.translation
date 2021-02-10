@@ -657,7 +657,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista EDA-asetuksissa määritetyt {0} ja ({1}) jäsenyyskartoituksen automaattisen ilmoittautumisen roolille Jäsenyydet-välilehden Jäsenyyskartoitukset -alavälilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikon ohjelmaan ilmoittautumisobjektin rooli-kenttään ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta automaattisen ilmoittautumisen rooli kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label>Vahvista EDA-asetuksissa määritetyt {0} ja ({1}) jäsenyyskartoituksen automaattisen ilmoittautumisen rooli Jäsenyydet-välilehden Jäsenyyskartoitukset -alavälilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikon ohjelmaan jäsenyysobjektin roolikenttään ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta automaattisen ilmoittautumisen rooli kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -665,7 +665,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden automaattisen ilmoittautumisen rooli kelvolliseksi, aktiiviseksi valintaluettelon arvoksi ohjelmaan ilmoittautumisobjektin rooli-kentälle.</label>
+        <label>Muuta EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden automaattisen ilmoittautumisen rooli kelvolliseksi, aktiiviseksi valintaluettelon arvoksi jäsenyysobjektin roolikentälle.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -681,7 +681,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista EDA-asetuksissa määritetyt {0} ja ({1}) jäsenyyskartoituksen automaattisen ilmoittautumisen tila Jäsenyydet-välilehden Jäsenyyskartoitukset -alavälilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikon ohjelmaan ilmoittautumisobjektin tilakenttään ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta automaattisen ilmoittautumisen tila kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label>Vahvista EDA-asetuksissa määritetyt {0} ja ({1}) jäsenyyskartoituksen automaattisen ilmoittautumisen tila Jäsenyydet-välilehden Jäsenyyskartoitukset -alavälilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikon ohjelmaan jäsenyysobjektin tilakenttään ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta automaattisen ilmoittautumisen tila kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -689,7 +689,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden automaattisen ilmoittautumisen tila kelvolliseksi, aktiiviseksi valintaluettelon arvoksi ohjelmaan ilmoittautumisobjektin tilakentälle.</label>
+        <label>Muuta EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden automaattisen ilmoittautumisen tila kelvolliseksi, aktiiviseksi valintaluettelon arvoksi jäsenyysobjektin tilakentälle.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -737,7 +737,7 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Ota käyttöön kurssiyhteydet, joihin sisältyy kurssiyhteyden tietuetyyppien määritys.</label>
+        <label>Ota käyttöön kurssiyhteydet, joihin sisältyy kurssiyhteyden tietuetyyppien määritys. Katso lisätietoja EDA-dokumentaation kurssiyhteyden määrittäminen -osiosta.</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
@@ -797,7 +797,7 @@
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisen asetuksen Nainen-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisen asetuksen Female-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -809,7 +809,7 @@
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisuuden asetuksen Mies-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisuuden asetuksen Male-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -849,7 +849,7 @@
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisuuden asetuksen Neutraali-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi</label>
+        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisuuden asetuksen Neutraali-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>

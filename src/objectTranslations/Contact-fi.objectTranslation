@@ -3504,11 +3504,11 @@
         <label>Sukupuoli</label>
         <picklistValues>
             <masterLabel>Female</masterLabel>
-            <translation>Female</translation>
+            <translation>Nainen</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Male</masterLabel>
-            <translation>Male</translation>
+            <translation>Mies</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Decline to State</masterLabel>

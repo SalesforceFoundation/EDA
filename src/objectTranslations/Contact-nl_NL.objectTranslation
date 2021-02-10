@@ -3504,11 +3504,11 @@
         <label>Geslacht/gender</label>
         <picklistValues>
             <masterLabel>Female</masterLabel>
-            <translation>Female</translation>
+            <translation>Vrouw</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Male</masterLabel>
-            <translation>Male</translation>
+            <translation>Man</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Decline to State</masterLabel>

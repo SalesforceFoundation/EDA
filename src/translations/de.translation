@@ -657,7 +657,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0} ({1})&quot; für die Autoregistrierungsrolle. Wenn &quot;{0} ({1})&quot; zutreffend ist, wechseln Sie zum Feld &quot;Rolle&quot; des Programmregistrierungsobjekts im Salesforce-Setup, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie die Autoregistrierungsrolle in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0} ({1})&quot; für die Autoregistrierungsrolle. Wenn &quot;{0} ({1})&quot; zutreffend ist, wechseln Sie zum Feld &quot;Rolle&quot; des Zugehörigkeitsobjekts im Salesforce-Setup, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie die Autoregistrierungsrolle in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -665,7 +665,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zuordnungen&quot; die Autoregistrierungsrolle in einen für das Feld &quot;Rolle&quot; des Objekts &quot;Programmregistrierung&quot; gültigen, aktiven Auswahllistenwert.</label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zuordnungen&quot; die Autoregistrierungsrolle in einen für das Feld &quot;Rolle&quot; des Zugehörigkeitsobjekts gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -681,7 +681,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0} ({1})&quot; für den Status der Autoregistrierung. Wenn &quot;{0} ({1})&quot; zutreffend ist, wechseln Sie zum Feld &quot;Status&quot; des Programmregistrierungsobjekts im Salesforce-Setup, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Status der Autoregistrierung in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0} ({1})&quot; für den Autoregistrierungsstatus. Wenn &quot;{0} ({1})&quot; zutreffend ist, wechseln Sie zum Feld &quot;Status&quot; des Zugehörigkeitsobjekts im Salesforce-Setup, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Autoregistrierungsstatus in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -689,7 +689,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zuordnungen&quot; den Status der Autoregistrierung in einen für das Feld &quot;Status&quot; des Objekts &quot;Programmregistrierung&quot; gültigen, aktiven Auswahllistenwert.</label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zuordnungen&quot; den Status der Autoregistrierung in einen für das Feld &quot;Status&quot; des Zugehörigkeitsobjekts gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -737,7 +737,7 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Aktivieren von Kursverbindungen, was auch das Konfigurieren der Kursverbindungs-Datensatztypen beinhaltet.</label>
+        <label>Aktivieren Sie Kursverbindungen, was das Konfigurieren von Kursverbindungs-Datensatztypen beinhaltet. Details finden Sie unter &quot;Konfigurieren der Kursverbindung&quot; in der EDA-Dokumentation.</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
@@ -797,7 +797,7 @@
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Weiblich&quot; in einen gültigen, aktiven Auswahllistenwert</label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Weiblich&quot; in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -809,7 +809,7 @@
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Männlich&quot; in einen gültigen, aktiven Auswahllistenwert</label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Männlich&quot; in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -849,7 +849,7 @@
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Neutral&quot; in einen gültigen, aktiven Auswahllistenwert</label>
+        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Neutral&quot; in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
