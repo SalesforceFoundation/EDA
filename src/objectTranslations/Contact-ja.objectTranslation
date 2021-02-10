@@ -3485,7 +3485,7 @@
     <label>性別</label>
     <picklistValues>
       <masterLabel>Female</masterLabel>
-      <translation>Female</translation>
+      <translation>女性</translation>
     </picklistValues>
     <picklistValues>
       <masterLabel>Male</masterLabel>
