@@ -57,7 +57,7 @@
         <name>InvalidFilter</name>
     </customLabels>
     <customLabels>
-        <label>Home</label>
+        <label>Male</label>
         <name>Male</name>
     </customLabels>
     <customLabels>
@@ -217,7 +217,7 @@
         <name>duplicateFieldInFilter</name>
     </customLabels>
     <customLabels>
-        <label>Per exemple, si el camp duplicat és Deceased__c, incloeu Deceased__c{0} com a valor de camp de filtre.</label>
+        <label>El valor del camp de filtre designa un duplicat d’un camp de producte. Especifiqueu un camp no duplicat. En cas contrari, filtrarem mitjançant el valor del camp del producte. Si trieu aquesta última opció, accepteu aquesta lògica de filtratge afegint {0} després del nom del camp. Per exemple, si el camp duplicat és Deceased__c, incloeu Deceased__c{0} com a valor de camp de filtre.</label>
         <name>duplicateWithHEDAField</name>
     </customLabels>
     <customLabels>
@@ -577,7 +577,7 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu el Tipus de registre del compte administratiu per un tipus de registre actiu vàlid.</label>
+        <label>Verifiqueu el Tipus de registre del compte administratiu especificat a Configuració EDA, a la pestanya Comptes i contactes. Si {0} ({1}) és correcte, aneu a Configuració de Salesforce i establiu el tipus de registre a Actiu. Si no és correcte, canvieu el Tipus de registre del compte administratiu per un tipus de registre actiu vàlid.</label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -585,7 +585,7 @@
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu el Model de compte predeterminat per un tipus de registre actiu vàlid.</label>
+        <label>Verifiqueu el tipus de registre de Model de compte predeterminat especificat a Configuració EDA, a la pestanya Sistema. Si {0} ({1}) és correcte, aneu a Configuració de Salesforce i establiu el tipus de registre a Actiu. Si no és correcte, canvieu el Model de compte predeterminat per un tipus de registre actiu vàlid.</label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -593,7 +593,7 @@
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu el Tipus de registre del compte domèstic per un tipus de registre actiu vàlid.</label>
+        <label>Verifiqueu el Tipus de registre del compte domèstic especificat a Configuració EDA, a la pestanya Comptes i contactes. Si {0} ({1}) és correcte, aneu a Configuració de Salesforce i establiu el tipus de registre a Actiu. Si no és correcte, canvieu el Tipus de registre del compte domèstic per un tipus de registre actiu vàlid.</label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -625,7 +625,7 @@
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu el tipus de registre d&apos;assignació d&apos;afiliació per un tipus de registre actiu i vàlid.</label>
+        <label>Verifiqueu l&apos;assignació d&apos;afiliació per a {0} ({1}) especificada a Configuració EDA, a la pestanya Afiliacions. Si {0} ({1}) és correcte, aneu a l&apos;objecte Compte de la Configuració de Salesforce i establiu el tipus de registre a Actiu. Si no és correcte, canvieu el tipus de registre d&apos;assignació d&apos;afiliació per un tipus de registre actiu i vàlid.</label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -645,7 +645,7 @@
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label>Editeu les assignacions d’afiliació de manera que aquest tipus de registre s’assigni només a un camp d’afiliació principal de contacte.</label>
+        <label>A Configuració EDA, a la subpestanya Assignacions d’afiliació de la pestanya Afiliacions, busqueu a la columna Tipus de registre de compte diverses assignacions que especifiquin {0} ({1}). Editeu les assignacions d’afiliació de manera que aquest tipus de registre s’assigni només a un camp d’afiliació principal de contacte.</label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -657,7 +657,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu la Funció d&apos;inscripció automàtica per un valor de llista de selecció actiu vàlid.</label>
+        <label>Verifiqueu el {0} ({1}) especificat per a la Funció d&apos;inscripció automàtica d&apos;una Assignació d&apos;afiliació, a Configuració EDA, a la subpestanya Assignacions d&apos;afiliació de la pestanya Afiliacions. Si {0} ({1}) és correcte, aneu al camp Funció de l&apos;objecte Afiliació a Configuració de Salesforce i establiu el valor de la llista de selecció a Actiu. Si no és correcte, canvieu la Funció d&apos;inscripció automàtica per un valor de llista de selecció actiu vàlid.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -665,7 +665,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la subpestanya Assignacions d’afiliació de la pestanya Afiliacions, canvieu la Funció d&apos;inscripció automàtica per un valor de llista de selecció actiu vàlid per al camp Funció de l’objecte Inscripció al programa.</label>
+        <label>A Configuració EDA, a la subpestanya Assignacions d’afiliació de la pestanya Afiliacions, canvieu la Funció d&apos;inscripció automàtica per un valor de llista de selecció actiu vàlid per al camp Funció de l’objecte Afiliació.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -681,7 +681,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu l&apos;Estat d&apos;inscripció automàtica per un valor de llista de selecció actiu vàlid.</label>
+        <label>Verifiqueu el {0} ({1}) especificat per a l&apos;Estat d&apos;inscripció automàtica d&apos;una Assignació d&apos;afiliació, a Configuració EDA, a la subpestanya Assignacions d&apos;afiliació de la pestanya Afiliacions. Si {0} ({1}) és correcte, aneu al camp Estat de l&apos;objecte Afiliació a Configuració de Salesforce i establiu el valor de la llista de selecció a Actiu. Si no és correcte, canvieu l&apos;Estat d&apos;inscripció automàtica per un valor de llista de selecció actiu vàlid.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -689,7 +689,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la subpestanya Assignacions d’afiliació de la pestanya Afiliacions, canvieu l&apos;Estat d&apos;inscripció automàtica per un valor de llista de selecció actiu vàlid per al camp Estat de l’objecte Inscripció al programa.</label>
+        <label>A Configuració EDA, a la subpestanya Assignacions d’afiliació de la pestanya Afiliacions, canvieu l&apos;Estat d&apos;inscripció automàtica per un valor de llista de selecció actiu vàlid per al camp Estat de l’objecte Afiliació.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -701,7 +701,7 @@
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label>Ha de ser un camp de cerca vàlid de l&apos;objecte Contacte.</label>
+        <label>Verifiqueu el {0} especificat a Configuració EDA, a la subpestanya Assignacions d&apos;afiliació de la pestanya Afiliacions. Ha de ser un camp de cerca vàlid de l&apos;objecte Contacte.</label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
@@ -725,7 +725,7 @@
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label>Editeu aquestes assignacions de manera que aquest camp només estigui assignat en una assignació d&apos;afiliació.</label>
+        <label>A Configuració EDA, a la subpestanya Assignacions d’afiliació de la pestanya Afiliacions, busqueu a la columna Camp d&apos;afiliació primària de contacte diverses assignacions que especifiquin {0} ({1}). Editeu aquestes assignacions de manera que aquest camp només estigui assignat en una assignació d&apos;afiliació.</label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -737,11 +737,11 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Activeu les connexions del curs i configureu també els Tipus de registres de connexions del curs.</label>
+        <label>Activeu les connexions del curs i configureu també els Tipus de registres de connexions del curs. Per obtenir més informació, consulteu Configura les connexions del curs a la documentació d&apos;EDA.</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu el Tipus predeterminat de registre de la facultat per un tipus de registre actiu vàlid.</label>
+        <label>Verifiqueu el Tipus predeterminat de registre de la facultat especificat a Configuració EDA, a la subpestanya Configuració de la pestanya Connexions del curs. Si {1} ({0}) és correcte, aneu a Configuració de Salesforce i establiu el tipus de registre a Actiu. Si no és correcte, canvieu el Tipus predeterminat de registre de la facultat per un tipus de registre actiu vàlid.</label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -765,7 +765,7 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu el Tipus predeterminat de registre d&apos;estudiant actiu per un tipus de registre actiu vàlid.</label>
+        <label>Verifiqueu el Tipus predeterminat de registre d&apos;estudiant actiu especificat a Configuració EDA, a la subpestanya Configuració de la pestanya Connexions del curs. Si {1} ({0}) és correcte, aneu a Configuració de Salesforce i establiu el tipus de registre a Actiu. Si no és correcte, canvieu el Tipus predeterminat de registre d&apos;estudiant actiu per un tipus de registre actiu vàlid.</label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -793,7 +793,7 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu el valor Dona de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
+        <label>Verifiqueu la configuració recíproca per al {0} ({1}) especificat a Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions. Si {0} ({1}) és correcte per a Dona, aneu al camp Tipus de l&apos;objecte Relació a Configuració de Salesforce i establiu el valor de la llista de selecció a Actiu. Si no és correcte, canvieu el valor Dona de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -805,7 +805,7 @@
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu el valor Dona de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
+        <label>Verifiqueu la configuració recíproca per al {0} ({1}) especificat a Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions. Si {0} ({1}) és correcte per a Home, aneu al camp Tipus de l&apos;objecte Relació a Configuració de Salesforce i establiu el valor de la llista de selecció a Actiu. Si no és correcte, canvieu el valor Dona de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -817,7 +817,7 @@
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu el valor Nom de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
+        <label>Verifiqueu la configuració recíproca per al {0} ({1}) especificat a Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions. Si {0} ({1}) és correcte, aneu al camp Tipus de l&apos;objecte Relació a Configuració de Salesforce i establiu el valor de la llista de selecció a Actiu. Si no és correcte, canvieu el valor Nom de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -825,11 +825,11 @@
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu el valor Nom de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
+        <label>Verifiqueu la configuració recíproca per al {0} ({1}) especificat a Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions. Si {0} ({1}) és correcte, aneu al camp Tipus de l&apos;objecte Relació a Configuració de Salesforce i establiu el valor de la llista de selecció a Actiu. Si no és correcte, canvieu el valor Nom de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Editeu aquesta configuració recíproca perquè aquest valor Nom només es mostri en una fila de configuració recíproca.</label>
+        <label>A Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions, cerqueu diverses files que especifiquin {0} ({1}) a la columna Nom. Editeu aquesta configuració recíproca perquè aquest valor Nom només es mostri en una fila de configuració recíproca.</label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -845,7 +845,7 @@
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label>Si no és correcte, canvieu el valor Neutre de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
+        <label>Verifiqueu la configuració recíproca per al {0} ({1}) especificat a Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions. Si {0} ({1}) és correcte, aneu al camp Tipus de l&apos;objecte Relació a Configuració de Salesforce i establiu el valor de la llista de selecció a Actiu. Si no és correcte, canvieu el valor Neutre de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -881,7 +881,7 @@
         <name>stgHealthCheckAffiliationMappings</name>
     </customLabels>
     <customLabels>
-        <label>Quan acabi, utilitzeu els resultats per identificar i corregir qualsevol configuració no vàlida.</label>
+        <label>La comprovació de salut de la configuració comprova que la configuració EDA no tingui configuracions vàlides. Quan acabi, utilitzeu els resultats per identificar i corregir qualsevol configuració no vàlida.</label>
         <name>stgHealthCheckDescription</name>
     </customLabels>
     <customLabels>
@@ -1241,11 +1241,13 @@
         <name>stgSuccess</name>
     </customLabels>
     <customLabels>
-        <label>S&apos;enviarà un correu electrònic en finalitzar el lot.</label>
+        <label>L&apos;actualització de noms de comptes administratius s&apos;ha posat a la cua correctament.
+        S&apos;enviarà un correu electrònic en finalitzar el lot.</label>
         <name>stgSuccessAdminAccountNameRefresh</name>
     </customLabels>
     <customLabels>
-        <label>S&apos;enviarà un correu electrònic en finalitzar el lot.</label>
+        <label>L&apos;actualització de noms de comptes domèstics s&apos;ha posat a la cua correctament.
+        S&apos;enviarà un correu electrònic en finalitzar el lot.</label>
         <name>stgSuccessHHAccountNameRefresh</name>
     </customLabels>
     <customLabels>

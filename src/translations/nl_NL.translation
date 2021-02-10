@@ -657,7 +657,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties en controleer de {0} ({1}) die is opgegeven voor de automatische inschrijvingsrol van een affiliatietoewijzing. Als {0} ({1}) correct is, gaat u naar het rolveld van het programma-inschrijvingsobject in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de automatische inschrijvingsrol in een geldige, actieve keuzelijstwaarde.</label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties en controleer de {0} ({1}) die is opgegeven voor de automatische inschrijvingsrol van een affiliatietoewijzing. Als {0} ({1}) correct is, gaat u naar het rolveld van het affiliatieobject in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de automatische inschrijvingsrol in een geldige, actieve keuzelijstwaarde.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -665,7 +665,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en wijzig de automatische inschrijvingsrol in een geldige, actieve keuzelijstwaarde voor het rolveld van het programma-inschrijvingsobject.</label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en wijzig de automatische inschrijvingsrol in een geldige, actieve keuzelijstwaarde voor het rolveld van het affiliatieobject.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -681,7 +681,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties en controleer de {0} ({1}) die is opgegeven voor de automatische inschrijvingsstatus van een affiliatietoewijzing. Als {0} ({1}) correct is, gaat u naar het statusveld van het programma-inschrijvingsobject in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de automatische-inschrijvingsstatus in een geldige, actieve keuzelijstwaarde.</label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties en controleer de {0} ({1}) die is opgegeven voor de automatische inschrijvingsstatus van een affiliatietoewijzing. Als {0} ({1}) correct is, gaat u naar het statusveld van het affiliatieobject in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de automatische-inschrijvingsstatus in een geldige, actieve keuzelijstwaarde.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -689,7 +689,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en wijzig de automatische inschrijvingsstatus in een geldige, actieve keuzelijstwaarde voor het statusveld van het programma-inschrijvingsobject.</label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en wijzig de automatische inschrijvingsstatus in een geldige, actieve keuzelijstwaarde voor het statusveld van het affiliatieobject.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -737,7 +737,7 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Schakel Cursusverbindingen in; hierbij hoort ook het configureren van de recordtypes Cursusverbindingen.</label>
+        <label>Schakel Cursusverbindingen in; hierbij hoort ook het configureren van de recordtypes Cursusverbindingen. Voor meer informatie ziet u &apos;Cursusverbinding configureren&apos; in de EDA-documentatie.</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
@@ -797,7 +797,7 @@
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en wijzig de bijbehorende waarde Vrouw van de wederzijdse instelling in een geldige keuzelijstwaarde</label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en wijzig de bijbehorende waarde Vrouw van de wederzijdse instelling in een geldige keuzelijstwaarde.</label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -809,7 +809,7 @@
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en wijzig de bijbehorende waarde Man van de wederzijdse instelling in een geldige keuzelijstwaarde</label>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en wijzig de bijbehorende waarde Man van de wederzijdse instelling in een geldige keuzelijstwaarde.</label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>

@@ -657,7 +657,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrolment Role, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Program Enrolment object&apos;s Role field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrolment Role to a valid, active picklist value.</label>
+        <label>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Role, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Affiliation object&apos;s Role field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Role to a valid, active picklist value.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -665,7 +665,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrolment Role to a valid, active picklist value for the Role field on the Program Enrolment object.</label>
+        <label>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Role to a valid, active picklist value for the Role field on the Affiliation object.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -681,7 +681,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrolment Status, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Program Enrolment object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrolment Status to a valid, active picklist value.</label>
+        <label>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Status, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Affiliation object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Status to a valid, active picklist value.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -689,7 +689,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrolment Status to a valid, active picklist value for the Status field on the Program Enrolment object.</label>
+        <label>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Status to a valid, active picklist value for the Status field on the Affiliation object.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -737,7 +737,7 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Enable Course Connections, which includes configuring Course Connection record types.</label>
+        <label>Enable Course Connections, which includes configuring Course Connection record types. For details, see Configure Course Connection in the EDA documentation.</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
@@ -753,7 +753,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>In EDA Settings, in the Settings subtab of the Course Connections tab, change either the Default Faculty Record Type or the Default Active Student Record Type so that each specifies a unique record type.</label>
+        <label>In EDA Settings, on the Settings subtab of the Course Connections tab, change either the Default Faculty Record Type or the Default Active Student Record Type so that each specifies a unique record type.</label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -797,7 +797,7 @@
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Female value to a valid, active picklist value</label>
+        <label>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Female value to a valid, active picklist value.</label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -809,7 +809,7 @@
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Male value to a valid, active picklist value</label>
+        <label>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Male value to a valid, active picklist value.</label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -849,7 +849,7 @@
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Neutral value to a valid, active picklist value</label>
+        <label>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Neutral value to a valid, active picklist value.</label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>

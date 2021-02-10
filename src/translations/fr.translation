@@ -13,7 +13,7 @@
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
-        <label>Spécifiez une connexion au cours qui a le même contact que celui que vous avez spécifié pour cet événement de présence.</label>
+        <label>Spécifiez une inscription au module qui a le même contact que celui que vous avez spécifié pour cet événement de présence.</label>
         <name>AttendanceCourseConnectionContactMismatch</name>
     </customLabels>
     <customLabels>
@@ -29,7 +29,7 @@
         <name>BothFieldAndValue</name>
     </customLabels>
     <customLabels>
-        <label>Impossible de changer le Contact ou l&apos;Offre de cours dans une Connexion au cours associée à Notes de la période ou Événements de présence. Si vous souhaitez une Connexion au cours avec un Contact différent ou une Offre de cours différente, créez une autre Connexion au cours.</label>
+        <label>Impossible de changer le contact ou le choix de modules dans une inscription au module associée à Notes de la période ou Événements de présence. Si vous souhaitez une inscription au module avec un contact différent ou un choix de modules différent, créez une autre inscription au module.</label>
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
@@ -61,23 +61,23 @@
         <name>Male</name>
     </customLabels>
     <customLabels>
-        <label>Plusieurs connexions de cours sont associées à ce contact et à cette offre de cours. Spécifiez la connexion de cours qui représente l’inscription de l’étudiant à cette offre de cours pour ces notes de la période.</label>
+        <label>Plusieurs inscriptions au module sont associées à ce contact et à ce choix de modules. Spécifiez l’inscription au module qui représente l’inscription de l’étudiant à ce choix de modules pour ces notes de la période.</label>
         <name>MultipleCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label>Le contact et l’offre de cours ne sont pas spécifiés ou ne correspondent pas à la connexion de cours. Spécifiez uniquement une connexion de cours ou à la fois un contact et une offre de cours, pour que nous puissions enregistrer cet enregistrement avec les données correctes.</label>
+        <label>Le contact et le choix de modules ne sont pas spécifiés ou ne correspondent pas à l’inscription au module. Spécifiez uniquement une inscription au module ou à la fois un contact et un choix de modules, pour que nous puissions enregistrer cet enregistrement avec les données correctes.</label>
         <name>NoContactCOFound</name>
     </customLabels>
     <customLabels>
-        <label>Aucune connexion de cours n’est associée à ce contact et à cette offre de cours. Si l’étudiant est inscrit à cette offre de cours, créez une connexion de cours.</label>
+        <label>Aucune inscription au module n’est associée à ce contact et à ce choix de modules. Si l’étudiant est inscrit à ce choix de modules, créez une inscription au module.</label>
         <name>NoCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label>Le contact et l’offre de cours ne correspondent pas à la connexion de cours. Spécifiez uniquement une connexion de cours ou à la fois un contact et une offre de cours, pour que nous puissions enregistrer cet enregistrement avec les données correctes.</label>
+        <label>Le contact et le choix de modules ne correspondent pas à l’inscription au module. Spécifiez uniquement une inscription au module ou à la fois un contact et un choix de modules, pour que nous puissions enregistrer cet enregistrement avec les données correctes.</label>
         <name>NoDataMatch</name>
     </customLabels>
     <customLabels>
-        <label>Spécifiez uniquement une connexion de cours ou à la fois un contact et une offre de cours.</label>
+        <label>Spécifiez uniquement une inscription au module ou à la fois un contact et un choix de modules.</label>
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
@@ -85,7 +85,7 @@
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
-        <label>Aucun contact ou offre de cours n’est associé à cette connexion de cours. Choisissez une connexion de cours valide.</label>
+        <label>Aucun contact ou choix de modules n’est associé à cette inscription au module. Choisissez une inscription au module valide.</label>
         <name>OnlyCourseConnectionPopulated</name>
     </customLabels>
     <customLabels>
@@ -125,7 +125,7 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>Ces paramètres permettent de configurer des relations réciproques ou la relation « correspondante » entre deux Contacts. Par exemple, si un père est associé à son fils, un enregistrement supplémentaire doit montrer le fils associé à son père. Vous pouvez spécifier la valeur Type pour Nom, et la valeur réciproque doit être basée sur le sexe du Contact à connecter. Vous pouvez définir une valeur Masculin, Female (femme) ou Neutre pour chaque paramètre réciproque.</label>
+        <label>Ces paramètres permettent de configurer des relations réciproques ou la relation « correspondante » entre deux Contacts. Par exemple, si un père est associé à son fils, un enregistrement supplémentaire doit montrer le fils associé à son père. Vous pouvez spécifier la valeur Type pour Nom, et la valeur réciproque doit être basée sur le sexe du Contact à connecter. Vous pouvez définir une valeur Masculin, Féminin ou Neutre pour chaque paramètre réciproque.</label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
@@ -553,7 +553,7 @@
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
-        <label>Activer les connexions aux cours</label>
+        <label>Activer les inscriptions au module</label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
@@ -657,15 +657,15 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le {0} ({1}) indiqu »pour le Rôle d&apos;inscription automatique dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations. Si {0} ({1}) est correct, accédez au Rôle de l’objet Inscription au programme dans la configuration de Salesforce et définissez la valeur de la liste de sélection sur Actif. Sinon, modifiez le Rôle d&apos;inscription automatique en une valeur de liste de sélection valide et active.</label>
+        <label>Vérifiez le {0} ({1}) indiqué pour le Rôle d&apos;inscription automatique dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations. Si {0} ({1}) est correct, accédez au Rôle de l’objet Affiliation dans la configuration de Salesforce et définissez la valeur de la liste de sélection sur Actif. Sinon, modifiez le Rôle d&apos;inscription automatique en une valeur de liste de sélection valide et active.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Impossible de trouver la valeurs de liste de sélection {0}.</label>
+        <label>Impossible de trouver la valeur de liste de sélection {0}.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations, modifiez le Rôle d&apos;inscription automatique en une valeur de liste de sélection valide et active pour l’objet Inscription au programme.</label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations, modifiez le Rôle d&apos;inscription automatique en une valeur de liste de sélection valide et active pour l’objet Affiliation.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -681,15 +681,15 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le {0} ({1}) indiqué pour le Statut d&apos;inscription automatique d’un mappage d&apos;affiliation dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations. Si {0} ({1}) est correct, accédez au champ Statut de l’objet Inscription au programme dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez le Statut d&apos;inscription automatique en une valeur de liste de sélection valide et active.</label>
+        <label>Vérifiez le {0} ({1}) indiqué pour le Statut d&apos;inscription automatique d’un mappage d&apos;affiliation dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations. Si {0} ({1}) est correct, accédez au champ Statut de l’objet Affiliation dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez le Statut d&apos;inscription automatique en une valeur de liste de sélection valide et active.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Impossible de trouver la valeurs de liste de sélection {0}.</label>
+        <label>Impossible de trouver la valeur de liste de sélection {0}.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations, modifiez le Statut d&apos;inscription automatique en une valeur de liste de sélection valide et active pour le champ Statut de l’objet Inscription au programme.</label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations, modifiez le Statut d&apos;inscription automatique en une valeur de liste de sélection valide et active pour le champ Statut de l’objet Affiliation.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -733,19 +733,19 @@
         <name>stgHCAfflMapContactPrimaryFieldValid</name>
     </customLabels>
     <customLabels>
-        <label>Les Connexions aux cours ne sont pas activées.</label>
+        <label>Les inscriptions au module ne sont pas activées.</label>
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Activez les Connexions aux cours, qui incluent la configuration des types d&apos;enregistrement Connexion aux cours.</label>
+        <label>Activez les inscriptions au module, qui incluent la configuration des types d&apos;enregistrement inscription au module. Pour plus d’informations, consultez la documentation Configuration de l’inscription au module.</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le type d’enregistrement Professeur par défaut indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Connexions aux cours. Si {1} ({0}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement Professeur par défaut en un type d’enregistrement valide et actif.</label>
+        <label>Vérifiez le type d’enregistrement Professeur par défaut indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module. Si {1} ({0}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement Professeur par défaut en un type d’enregistrement valide et actif.</label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Connexions aux cours, modifiez le type d’enregistrement Professeur par défaut en un type d’enregistrement valide et actif.</label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module, modifiez le type d’enregistrement Professeur par défaut en un type d’enregistrement valide et actif.</label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -753,7 +753,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Connexions aux cours, modifiez le type d’enregistrement Professeur par défaut ou le type d&apos;enregistrement Étudiant actif par défaut pour que chacun indique un type d’enregistrement unique.</label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module, modifiez le type d’enregistrement Professeur par défaut ou le type d&apos;enregistrement Étudiant actif par défaut pour que chacun indique un type d’enregistrement unique.</label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -765,15 +765,15 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le type d’enregistrement Étudiant actif par défaut indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Connexions aux cours. Si {1} ({0}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement Étudiant actif par défaut en un type d’enregistrement valide et actif.</label>
+        <label>Vérifiez le type d’enregistrement Étudiant actif par défaut indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module. Si {1} ({0}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement Étudiant actif par défaut en un type d’enregistrement valide et actif.</label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Connexions aux cours, modifiez le type d’enregistrement Étudiant actif par défaut en un type d’enregistrement valide et actif.</label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module, modifiez le type d’enregistrement Étudiant actif par défaut en un type d’enregistrement valide et actif.</label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Connexions aux cours</label>
+        <label>Inscriptions au module</label>
         <name>stgHCCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
@@ -781,7 +781,7 @@
         <name>stgHCPicklistValueInactive</name>
     </customLabels>
     <customLabels>
-        <label>Impossible de trouver la valeurs de liste de sélection {0}.</label>
+        <label>Impossible de trouver la valeur de liste de sélection {0}.</label>
         <name>stgHCPicklistValueNotFound</name>
     </customLabels>
     <customLabels>
@@ -1037,7 +1037,7 @@
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label>Le Remplissage des connexions aux cours doit être utilisé uniquement lors de l&apos;activation initiale des Connexions au cours, et seulement dans les organisations dans lesquelles des Offres de cours et des Connexions aux cours (inscriptions) existaient avant l&apos;activation de la fonctionnalité Connexions au cours. Le Remplissage convertit tous les Contacts répertoriés en tant que professeurs dans une Connexion au cours (inscription) ou une Offre de cours en Type d&apos;enregistrement de professeur par défaut. Le Remplissage convertit ensuite les Contacts des Connexions aux cours (inscriptions) restantes en Type d&apos;enregistrement d&apos;étudiant actif par défaut.</label>
+        <label>Le Remplissage des inscriptions au module doit être utilisé uniquement lors de l&apos;activation initiale des inscriptions au module, et seulement dans les organisations dans lesquelles des choix de modules et des inscriptions au module (inscriptions) existaient avant l&apos;activation de la fonctionnalité Inscription au module. Le Remplissage convertit tous les contacts répertoriés en tant que professeurs dans une inscription au module (inscription) ou un choix de modules en type d&apos;enregistrement de professeur par défaut. Le Remplissage convertit ensuite les contacts des inscriptions au module (inscriptions) restantes en type d&apos;enregistrement d&apos;étudiant actif par défaut.</label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
@@ -1061,23 +1061,23 @@
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label>Le type d&apos;enregistrement par défaut lors de la création de Connexions aux cours pour un membre professeur.</label>
+        <label>Le type d&apos;enregistrement par défaut lors de la création d’inscriptions au module pour un membre professeur.</label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label>Le type d&apos;enregistrement par défaut lors de la création de Connexions aux cours pour des étudiants actifs.</label>
+        <label>Le type d&apos;enregistrement par défaut lors de la création d’inscriptions au module pour des étudiants actifs.</label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
-        <label>Vous devez activer les Connexions aux cours avant d&apos;exécuter le Remplissage des connexions aux cours.</label>
+        <label>Vous devez activer les inscriptions au module avant d&apos;exécuter le Remplissage des inscriptions au module.</label>
         <name>stgHelpEnableCourseConnBeforeBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Vous devez activer les Connexions aux cours avant de modifier les types d&apos;enregistrement.</label>
+        <label>Vous devez activer les inscriptions au module avant de modifier les types d&apos;enregistrement.</label>
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>Les enregistrements Connexion au cours connectent un Contact à une Offre de cours. L&apos;activation de cette fonctionnalité permet aux utilisateurs de choisir le type de Contact (Professeur ou Étudiant) à créer pour la Connexion au cours. Lorsque vous activez cette fonctionnalité, vous devez également définir ci-dessous le Type d&apos;enregistrement d&apos;étudiant actif par défaut et Type d&apos;enregistrement de professeur par défaut. Si vous activez cette fonctionnalité pour la première fois, nous recommandons vivement d&apos;exécuter le Remplissage des connexions au cours.</label>
+        <label>Les enregistrements Inscription au module connectent un contact à un choix de modules. L&apos;activation de cette fonctionnalité permet aux utilisateurs de choisir le type de contact (Professeur ou Étudiant) à créer pour l’inscription au module. Lorsque vous activez cette fonctionnalité, vous devez également définir ci-dessous le type d&apos;enregistrement d&apos;étudiant actif par défaut et type d&apos;enregistrement de professeur par défaut. Si vous activez cette fonctionnalité pour la première fois, nous recommandons vivement d&apos;exécuter le Remplissage des inscriptions au module.</label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
@@ -1273,7 +1273,7 @@
         <name>stgTabCourse</name>
     </customLabels>
     <customLabels>
-        <label>Connexions aux cours</label>
+        <label>Inscriptions au module</label>
         <name>stgTabCourseConn</name>
     </customLabels>
     <customLabels>
@@ -1313,7 +1313,7 @@
         <name>stgTitleAppwideSettings</name>
     </customLabels>
     <customLabels>
-        <label>Remplissage de la connexion au cours</label>
+        <label>Remplissage de l’inscription au module</label>
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
@@ -1345,11 +1345,11 @@
         <name>stgToastError</name>
     </customLabels>
     <customLabels>
-        <label>Nous ne pouvons pas enregistrer le Calendrier de l&apos;offre de cours car son heure de fin ne correspond pas à l’heure de fin du bloc de temps associé. Modifiez l’heure de fin, spécifiez un autre bloc de temps ou ne spécifiez pas de bloc de temps.</label>
+        <label>Nous ne pouvons pas enregistrer le Calendrier du choix de modules car son heure de fin ne correspond pas à l’heure de fin du bloc de temps associé. Modifiez l’heure de fin, spécifiez un autre bloc de temps ou ne spécifiez pas de bloc de temps.</label>
         <name>timeBlockEndTimeMismatch</name>
     </customLabels>
     <customLabels>
-        <label>Nous ne pouvons pas enregistrer le Calendrier de l&apos;offre de cours car son heure de début ne correspond pas à l’heure de début du bloc de temps associé. Modifiez l’heure de fin, spécifiez un autre bloc de temps ou ne spécifiez pas de bloc de temps.</label>
+        <label>Nous ne pouvons pas enregistrer le Calendrier du choix de modules car son heure de début ne correspond pas à l’heure de début du bloc de temps associé. Modifiez l’heure de fin, spécifiez un autre bloc de temps ou ne spécifiez pas de bloc de temps.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
     <customTabs>

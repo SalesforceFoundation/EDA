@@ -3504,11 +3504,11 @@
         <label>Sexe</label>
         <picklistValues>
             <masterLabel>Female</masterLabel>
-            <translation>Female</translation>
+            <translation>Féminin</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Male</masterLabel>
-            <translation>Male</translation>
+            <translation>Masculin</translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Decline to State</masterLabel>
