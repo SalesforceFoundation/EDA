@@ -117,7 +117,7 @@
         <name>Relationship_Explanation_Connector</name>
     </customLabels>
     <customLabels>
-        <label>–</label>
+        <label>-</label>
         <name>Relationship_Split</name>
     </customLabels>
     <customLabels>

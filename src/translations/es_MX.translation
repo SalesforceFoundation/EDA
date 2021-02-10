@@ -477,7 +477,7 @@
         <name>stgColField</name>
     </customLabels>
     <customLabels>
-        <label>Masculino</label>
+        <label>Male</label>
         <name>stgColMale</name>
     </customLabels>
     <customLabels>
@@ -573,7 +573,7 @@
         <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
     <customLabels>
-        <label>Fluido</label>
+        <label>Fluent</label>
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
