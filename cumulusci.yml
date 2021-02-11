@@ -306,6 +306,14 @@ tasks:
                 - record_type: "{managed}Course_Enrollment__c.Student"
                   default: true
 
+    deploy_lqa_config:
+        description: Deploys configuration for LQA
+        group: "Salesforce Metadata"
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/config/lqa
+
 flows:
     setup_encryption:
         description: Sets up Shield Platform Encryption in the target Org. It is recommended that this flow be run in developer scratch orgs only.
@@ -467,8 +475,10 @@ flows:
             4:
                 task: deploy_qa_config
             5:
-                task: snapshot_changes
+                task: deploy_lqa_config
             6:
+                task: snapshot_changes
+            7:
                 task: load_dataset
                 options:
                     mapping: datasets/lqa/lqa_mapping.yml
