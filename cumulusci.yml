@@ -292,7 +292,7 @@ tasks:
                   default: true
 
     deploy_lqa_config:
-        description: Deploys configuration for LQA
+        description: Deploys unpackaged configuration for LQA
         group: "Salesforce Metadata"
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
