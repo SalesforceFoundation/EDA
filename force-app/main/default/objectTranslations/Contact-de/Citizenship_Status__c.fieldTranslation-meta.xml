@@ -20,6 +20,10 @@
         <translation>Geflüchteter oder Asylant in den USA</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Temporary Resident</masterLabel>
+        <translation>Vorübergehend wohnhaft</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Other (Non-U.S.)</masterLabel>
         <translation>Sonstiges (nicht auf die USA bezogen)</translation>
     </picklistValues>

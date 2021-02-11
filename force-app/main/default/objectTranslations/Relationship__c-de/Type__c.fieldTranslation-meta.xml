@@ -89,19 +89,19 @@
     </picklistValues>
     <picklistValues>
         <masterLabel>Parent&apos;s Sibling</masterLabel>
-        <translation><!-- Parent&apos;s Sibling --></translation>
+        <translation>Geschwister des Elternteils</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Niece</masterLabel>
-        <translation><!-- Niece --></translation>
+        <translation>Nichte</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Nephew</masterLabel>
-        <translation><!-- Nephew --></translation>
+        <translation>Neffe</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Sibling&apos;s Child</masterLabel>
-        <translation><!-- Sibling&apos;s Child --></translation>
+        <translation>Kind des Geschwisters</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Cousin</masterLabel>

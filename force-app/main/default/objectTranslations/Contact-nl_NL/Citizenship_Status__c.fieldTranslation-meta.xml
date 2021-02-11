@@ -20,6 +20,10 @@
         <translation>Amerikaanse vluchtelingen- of asielzoekersstatus</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Temporary Resident</masterLabel>
+        <translation>Tijdelijke inwoner</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Other (Non-U.S.)</masterLabel>
         <translation>Overig (niet-Amerikaan)</translation>
     </picklistValues>

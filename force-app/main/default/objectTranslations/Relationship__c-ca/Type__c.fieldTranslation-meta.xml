@@ -89,19 +89,19 @@
     </picklistValues>
     <picklistValues>
         <masterLabel>Parent&apos;s Sibling</masterLabel>
-        <translation><!-- Parent&apos;s Sibling --></translation>
+        <translation>Germà/germana de progenitor</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Niece</masterLabel>
-        <translation><!-- Niece --></translation>
+        <translation>Neboda</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Nephew</masterLabel>
-        <translation><!-- Nephew --></translation>
+        <translation>Nebot</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Sibling&apos;s Child</masterLabel>
-        <translation><!-- Sibling&apos;s Child --></translation>
+        <translation>Fill/a de germà/germana</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Cousin</masterLabel>

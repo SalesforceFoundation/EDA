@@ -20,6 +20,10 @@
         <translation>U.S. Refugee or Asylee</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Temporary Resident</masterLabel>
+        <translation>Temporary Resident</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Other (Non-U.S.)</masterLabel>
         <translation>Other (Non-U.S.)</translation>
     </picklistValues>

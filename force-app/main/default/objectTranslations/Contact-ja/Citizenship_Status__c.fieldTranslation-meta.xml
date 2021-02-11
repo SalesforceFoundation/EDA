@@ -20,6 +20,10 @@
         <translation>米国難民または亡命希望者</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Temporary Resident</masterLabel>
+        <translation>一時滞在者</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Other (Non-U.S.)</masterLabel>
         <translation>その他 (米国以外)</translation>
     </picklistValues>

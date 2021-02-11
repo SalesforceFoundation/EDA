@@ -9,10 +9,10 @@
     </picklistValues>
     <picklistValues>
         <masterLabel>Work Email</masterLabel>
-        <translation>勤務先メール</translation>
+        <translation>勤務先のメール</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Alternate Email</masterLabel>
-        <translation>その他メール</translation>
+        <translation>その他のメール</translation>
     </picklistValues>
 </CustomFieldTranslation>

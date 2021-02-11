@@ -5,11 +5,11 @@
     <label>Género</label>
     <picklistValues>
         <masterLabel>Female</masterLabel>
-        <translation>Femenino</translation>
+        <translation>Female</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Male</masterLabel>
-        <translation>Masculino</translation>
+        <translation>Male</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Decline to State</masterLabel>

@@ -20,6 +20,10 @@
         <translation>Refugiat o asilat dels EUA</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Temporary Resident</masterLabel>
+        <translation>Resident temporal</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Other (Non-U.S.)</masterLabel>
         <translation>Altres (no dels EUA)</translation>
     </picklistValues>
