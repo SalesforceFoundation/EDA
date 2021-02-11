@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Course Connections</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Course Enrollment Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- The Academic Program that the Contact is associated with. --></help>
         <label><!-- Contact&apos;s Academic Program --></label>
@@ -68,12 +76,4 @@
             <translation><!-- Former --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>HEDA Course Enrollment Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

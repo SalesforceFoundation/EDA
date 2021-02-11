@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>De afdeling (accountrecord) die deze cursus aanbiedt.</help>
-    <relationshipLabel>Cursussen</relationshipLabel>
-    <label>Afdeling</label>
-  </fields>
-  <fields>
-    <name>Course_ID__c</name>
-    <help>De alfanumerieke ID van de cursus, bijvoorbeeld Engels 101.</help>
-    <label>Cursus-ID</label>
-  </fields>
-  <fields>
-    <name>Credit_Hours__c</name>
-    <label>Urencredits</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>Dit veld is vervangen door het veld Uitgebreide beschrijving, waar een langere beschrijving in past. Uw beheerder kan tekst uit het veld Beschrijving naar het veld Uitgebreide beschrijving migreren in EDA-instellingen | Cursussen.</help>
-    <label>Beschrijving</label>
-  </fields>
-  <fields>
-    <name>Extended_Description__c</name>
-    <help>Gebruik dit veld om de cursus te beschrijven in maximaal 131.000 tekens. Dit veld vervangt het veld Beschrijving.</help>
-    <label>Uitgebreide beschrijving</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Course Layout</layout>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Cursusnaam</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Cursusnaam</label>
-  </standardFields>
+    <layouts>
+        <layout>HEDA Course Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Cursusnaam</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Cursusnaam</label>
+    </standardFields>
+    <fields>
+        <name>Account__c</name>
+        <help>De afdeling (accountrecord) die deze cursus aanbiedt.</help>
+        <relationshipLabel>Cursussen</relationshipLabel>
+        <label>Afdeling</label>
+    </fields>
+    <fields>
+        <name>Course_ID__c</name>
+        <help>De alfanumerieke ID van de cursus, bijvoorbeeld Engels 101.</help>
+        <label>Cursus-ID</label>
+    </fields>
+    <fields>
+        <name>Credit_Hours__c</name>
+        <label>Urencredits</label>
+    </fields>
+    <fields>
+        <name>Description__c</name>
+        <help>Dit veld is vervangen door het veld Uitgebreide beschrijving, waar een langere beschrijving in past. Uw beheerder kan tekst uit het veld Beschrijving naar het veld Uitgebreide beschrijving migreren in EDA-instellingen | Cursussen.</help>
+        <label>Beschrijving</label>
+    </fields>
+    <fields>
+        <name>Extended_Description__c</name>
+        <help>Gebruik dit veld om de cursus te beschrijven in maximaal 131.000 tekens. Dit veld vervangt het veld Beschrijving.</help>
+        <label>Uitgebreide beschrijving</label>
+    </fields>
 </CustomObjectTranslation>

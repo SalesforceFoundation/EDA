@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Active__c</name>
-    <help>この相互参照が有効かどうかを示します。</help>
-    <label>有効</label>
-  </fields>
-  <fields>
-    <name>Female__c</name>
-    <help>取引先責任者の [性別] または [敬称] 項目で女性の性別が示されている場合に相互関係設定で使用される値。</help>
-    <label>女性</label>
-  </fields>
-  <fields>
-    <name>Male__c</name>
-    <help>取引先責任者の [性別] または [敬称] 項目で男性の性別が示されている場合に相互関係設定で使用される値。</help>
-    <label>男性</label>
-  </fields>
-  <fields>
-    <name>Neutral__c</name>
-    <help>取引先責任者の [性別] および [敬称] 項目で性別が示されていない場合に使用される値。</help>
-    <label>どちらでもない</label>
-  </fields>
+    <caseValues>
+        <plural>false</plural>
+        <value>リレーションルックアップ</value>
+    </caseValues>
+    <fields>
+        <name>Active__c</name>
+        <help>この相互参照が有効かどうかを示します。</help>
+        <label>有効</label>
+    </fields>
+    <fields>
+        <name>Female__c</name>
+        <help>取引先責任者の [性別] または [敬称] 項目で女性の性別が示されている場合に相互関係設定で使用される値。</help>
+        <label>女性</label>
+    </fields>
+    <fields>
+        <name>Male__c</name>
+        <help>取引先責任者の [性別] または [敬称] 項目で男性の性別が示されている場合に相互関係設定で使用される値。</help>
+        <label>男性</label>
+    </fields>
+    <fields>
+        <name>Neutral__c</name>
+        <help>取引先責任者の [性別] および [敬称] 項目で性別が示されていない場合に使用される値。</help>
+        <label>どちらでもない</label>
+    </fields>
 </CustomObjectTranslation>

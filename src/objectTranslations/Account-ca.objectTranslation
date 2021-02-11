@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Billing_County__c</name>
-    <label>Comtat de facturació</label>
-  </fields>
-  <fields>
-    <name>Current_Address__c</name>
-    <help>Cerqueu el registre d’adreces actual d’aquest compte. El camp Adreça de facturació del compte s'omple amb els camps d'adreça del registre d'adreces actual.</help>
-    <relationshipLabel>Comptes (adreça actual)</relationshipLabel>
-    <label>Adreça actual</label>
-  </fields>
-  <fields>
-    <name>Primary_Contact__c</name>
-    <help>El contacte principal d’un compte domèstic o administratiu.</help>
-    <relationshipLabel>Compte</relationshipLabel>
-    <label>Contacte principal</label>
-  </fields>
-  <fields>
-    <name>School_Code__c</name>
-    <help>Un codi que identifica de manera única una institució educativa mitjançant normes reconegudes a la vostra regió.</help>
-    <label>Codi escolar</label>
-  </fields>
-  <fields>
-    <name>Shipping_County__c</name>
-    <label>Comtat d'enviament</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Organization Layout</layout>
-    <sections>
-      <label>Camps</label>
-      <section>Fields</section>
-    </sections>
-    <sections>
-      <label>Adreça</label>
-      <section>Address</section>
-    </sections>
-    <sections>
-      <label>Descripció</label>
-      <section>Description</section>
-    </sections>
-    <sections>
-      <label>Enllaços personalitzats</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <layouts>
-    <layout>HEDA Household Layout</layout>
-    <sections>
-      <label>Camps</label>
-      <section>Fields</section>
-    </sections>
-    <sections>
-      <label>Adreça</label>
-      <section>Address</section>
-    </sections>
-    <sections>
-      <label>Descripció</label>
-      <section>Description</section>
-    </sections>
-    <sections>
-      <label>Enllaços personalitzats</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
+    <layouts>
+        <layout>HEDA Organization Layout</layout>
+        <sections>
+            <label>Camps</label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label>Adreça</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label>Descripció</label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>HEDA Household Layout</layout>
+        <sections>
+            <label>Camps</label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label>Adreça</label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label>Descripció</label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <fields>
+        <name>Billing_County__c</name>
+        <label>Comtat de facturació</label>
+    </fields>
+    <fields>
+        <name>Current_Address__c</name>
+        <help>Cerqueu el registre d’adreces actual d’aquest compte. El camp Adreça de facturació del compte s&apos;omple amb els camps d&apos;adreça del registre d&apos;adreces actual.</help>
+        <relationshipLabel>Comptes (adreça actual)</relationshipLabel>
+        <label>Adreça actual</label>
+    </fields>
+    <fields>
+        <name>Primary_Contact__c</name>
+        <help>El contacte principal d’un compte domèstic o administratiu.</help>
+        <relationshipLabel>Compte</relationshipLabel>
+        <label>Contacte principal</label>
+    </fields>
+    <fields>
+        <name>School_Code__c</name>
+        <help>Un codi que identifica de manera única una institució educativa mitjançant normes reconegudes a la vostra regió.</help>
+        <label>Codi escolar</label>
+    </fields>
+    <fields>
+        <name>Shipping_County__c</name>
+        <label>Comtat d&apos;enviament</label>
+    </fields>
 </CustomObjectTranslation>

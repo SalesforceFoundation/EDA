@@ -13,7 +13,7 @@
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
-        <label>Spécifiez une connexion au cours qui a le même contact que celui que vous avez spécifié pour cet événement de présence.</label>
+        <label>Spécifiez une inscription au module qui a le même contact que celui que vous avez spécifié pour cet événement de présence.</label>
         <name>AttendanceCourseConnectionContactMismatch</name>
     </customLabels>
     <customLabels>
@@ -29,7 +29,7 @@
         <name>BothFieldAndValue</name>
     </customLabels>
     <customLabels>
-        <label>Impossible de changer le Contact ou l&apos;Offre de cours dans une Connexion au cours associée à Notes de la période ou Événements de présence. Si vous souhaitez une Connexion au cours avec un Contact différent ou une Offre de cours différente, créez une autre Connexion au cours.</label>
+        <label>Impossible de changer le contact ou le choix de modules dans une inscription au module associée à Notes de la période ou Événements de présence. Si vous souhaitez une inscription au module avec un contact différent ou un choix de modules différent, créez une autre inscription au module.</label>
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
@@ -49,7 +49,7 @@
         <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
-        <label>Féminin</label>
+        <label>Female</label>
         <name>Female</name>
     </customLabels>
     <customLabels>
@@ -57,27 +57,27 @@
         <name>InvalidFilter</name>
     </customLabels>
     <customLabels>
-        <label>Masculin</label>
+        <label>Male</label>
         <name>Male</name>
     </customLabels>
     <customLabels>
-        <label>Plusieurs connexions de cours sont associées à ce contact et à cette offre de cours. Spécifiez la connexion de cours qui représente l’inscription de l’étudiant à cette offre de cours pour ces notes de la période.</label>
+        <label>Plusieurs inscriptions au module sont associées à ce contact et à ce choix de modules. Spécifiez l’inscription au module qui représente l’inscription de l’étudiant à ce choix de modules pour ces notes de la période.</label>
         <name>MultipleCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label>Le contact et l’offre de cours ne sont pas spécifiés ou ne correspondent pas à la connexion de cours. Spécifiez uniquement une connexion de cours ou à la fois un contact et une offre de cours, pour que nous puissions enregistrer cet enregistrement avec les données correctes.</label>
+        <label>Le contact et le choix de modules ne sont pas spécifiés ou ne correspondent pas à l’inscription au module. Spécifiez uniquement une inscription au module ou à la fois un contact et un choix de modules, pour que nous puissions enregistrer cet enregistrement avec les données correctes.</label>
         <name>NoContactCOFound</name>
     </customLabels>
     <customLabels>
-        <label>Aucune connexion de cours n’est associée à ce contact et à cette offre de cours. Si l’étudiant est inscrit à cette offre de cours, créez une connexion de cours.</label>
+        <label>Aucune inscription au module n’est associée à ce contact et à ce choix de modules. Si l’étudiant est inscrit à ce choix de modules, créez une inscription au module.</label>
         <name>NoCourseConnection</name>
     </customLabels>
     <customLabels>
-        <label>Le contact et l’offre de cours ne correspondent pas à la connexion de cours. Spécifiez uniquement une connexion de cours ou à la fois un contact et une offre de cours, pour que nous puissions enregistrer cet enregistrement avec les données correctes.</label>
+        <label>Le contact et le choix de modules ne correspondent pas à l’inscription au module. Spécifiez uniquement une inscription au module ou à la fois un contact et un choix de modules, pour que nous puissions enregistrer cet enregistrement avec les données correctes.</label>
         <name>NoDataMatch</name>
     </customLabels>
     <customLabels>
-        <label>Spécifiez uniquement une connexion de cours ou à la fois un contact et une offre de cours.</label>
+        <label>Spécifiez uniquement une inscription au module ou à la fois un contact et un choix de modules.</label>
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
@@ -85,7 +85,7 @@
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
-        <label>Aucun contact ou offre de cours n’est associé à cette connexion de cours. Choisissez une connexion de cours valide.</label>
+        <label>Aucun contact ou choix de modules n’est associé à cette inscription au module. Choisissez une inscription au module valide.</label>
         <name>OnlyCourseConnectionPopulated</name>
     </customLabels>
     <customLabels>
@@ -125,7 +125,7 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>Ces paramètres permettent de configurer des relations réciproques ou la relation « correspondante » entre deux Contacts. Par exemple, si un père est associé à son fils, un enregistrement supplémentaire doit montrer le fils associé à son père. Vous pouvez spécifier la valeur Type pour Nom, et la valeur réciproque doit être basée sur le sexe du Contact à connecter. Vous pouvez définir une valeur homme, femme ou neutre pour chaque paramètre réciproque.</label>
+        <label>Ces paramètres permettent de configurer des relations réciproques ou la relation « correspondante » entre deux Contacts. Par exemple, si un père est associé à son fils, un enregistrement supplémentaire doit montrer le fils associé à son père. Vous pouvez spécifier la valeur Type pour Nom, et la valeur réciproque doit être basée sur le sexe du Contact à connecter. Vous pouvez définir une valeur Masculin, Féminin ou Neutre pour chaque paramètre réciproque.</label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
@@ -225,7 +225,7 @@
         <name>exceptionRequiredField</name>
     </customLabels>
     <customLabels>
-        <label>Une règle de validation empêche le traitement cet enregistrement. La règle de validation peut se situer dans cet enregistrement, ou dans un enregistrement associé en cours de mise à jour. MESSAGE DE VALIDATION :</label>
+        <label>Une règle de validation empêche le traitement de cet enregistrement. La règle de validation peut se situer sur cet enregistrement, ou sur un enregistrement associé en cours de mise à jour. MESSAGE DE VALIDATION :</label>
         <name>exceptionValidationRule</name>
     </customLabels>
     <customLabels>
@@ -549,11 +549,11 @@
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Setup title --></label>
+        <label>Configuration EDA</label>
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
-        <label>Activer les connexions aux cours</label>
+        <label>Activer les inscriptions au module</label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
@@ -573,391 +573,391 @@
         <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
     <customLabels>
-        <label>Maîtrise linguistique</label>
+        <label>Fluent</label>
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
+        <label>Vérifiez le type d’enregistrement Compte administratif indiqué dans les paramètres EDA, sous l’onglet Comptes et contacts. Si {0} ({1}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement Compte administratif en un type d’enregistrement valide et actif.</label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Administrative Account Record Type --></label>
+        <label>Dans les paramètres EDA, sous l’onglet Comptes et contacts, modifiez le type d’enregistrement Compte administratif en un type d’enregistrement valide et actif.</label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
+        <label>Vérifiez le type d’enregistrement Modèle de compte par défaut indiqué dans les paramètres EDA, sous l’onglet Système. Si {0} ({1}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le Modèle de compte par défaut en un type d’enregistrement valide et actif.</label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Account Model record type --></label>
+        <label>Dans les paramètres EDA, sous l’onglet Système, modifiez le Modèle de compte par défaut en un type d’enregistrement valide et actif.</label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
+        <label>Vérifiez le type d’enregistrement Compte de foyer indiqué dans les paramètres EDA, sous l’onglet Comptes et contacts. Si {0} ({1}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement Compte de foyer en un type d’enregistrement valide et actif.</label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find the Household Account Record Type --></label>
+        <label>Dans les paramètres EDA, sous l’onglet Comptes et contacts, modifiez le type d’enregistrement Compte de foyer en un type d’enregistrement valide et actif.</label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique container Account record type settings --></label>
+        <label>Paramètres uniques de type d&apos;enregistrement Compte administratif et Compte de foyer.</label>
         <name>stgHCAccountRecordTypeSettingsUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Administrative and Household Account Record Types aren&apos;t unique --></label>
+        <label>Les paramètres de type d&apos;enregistrement Compte administratif et Compte de foyer indiquent le même type d’enregistrement.</label>
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Administrative and Household Account Record Types are same --></label>
+        <label>Dans les paramètres EDA, sous l&apos;onglet Comptes et contacts, modifiez le type d’enregistrement Compte administratif ou le type d&apos;enregistrement Compte de foyer pour que chacun indique un type d’enregistrement unique.</label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Administrative and Household Account Record Types are unique --></label>
+        <label>Les paramètres de type d&apos;enregistrement Compte administratif et Compte de foyer indiquent différents types d’enregistrement.</label>
         <name>stgHCAccountRecordTypesUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for an Affiliation mapping in EDA Settings Health Check results --></label>
+        <label>Le mappage d’affiliation {0} est valide.</label>
         <name>stgHCAffiliationMappingSettingDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Row heading for an Affiliation mapping in EDA Settings Health Check results --></label>
+        <label>Mappage d&apos;affiliation {0}</label>
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type is inactive --></label>
+        <label>Vérifiez le mappage d’affiliation de {0} ({1}) indiqué dans les paramètres EDA, sous l’onglet Affiliations. Si {0} ({1}) est correct, accédez à l’objet Compte dans la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement du mappage d’affiliation en un type d’enregistrement valide et actif.</label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations, modifiez le mappage d’affiliation en un type d’enregistrement valide et actif pour l’objet Compte.</label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Account record types in Affiliation mappings are not unique --></label>
+        <label>Le type d’enregistrement {0} ({1}) est mappé à plusieurs champs d’affiliation principale du contact.</label>
         <name>stgHCAfflMapAccRecordTypeNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Account record type in Affiliation mapping settings --></label>
+        <label>Type d&apos;enregistrement de compte</label>
         <name>stgHCAfflMapAccRecordTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Account record types in Affiliation mappings are unique --></label>
+        <label>Le type d’enregistrement {0} ({1}) est mappé à un seul champ d’affiliation principale du contact.</label>
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Account record types in Affiliation mappings aren&apos;t unique --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations, recherchez dans la colonne Type d&apos;enregistrement de compte plusieurs mappages indiquant {0} ({1}). Modifiez ces mappages d&apos;affiliation pour que ce type d&apos;enregistrement soit mappé à un seul champ d’affiliation principale du contact.</label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Account record types in Affiliation mappings --></label>
+        <label>Type d&apos;enregistrement de mappage d’affiliation unique</label>
         <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
+        <label>La valeur de la liste de sélection {0} ({1}) n&apos;est pas active.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
+        <label>Vérifiez le {0} ({1}) indiqué pour le Rôle d&apos;inscription automatique dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations. Si {0} ({1}) est correct, accédez au Rôle de l’objet Affiliation dans la configuration de Salesforce et définissez la valeur de la liste de sélection sur Actif. Sinon, modifiez le Rôle d&apos;inscription automatique en une valeur de liste de sélection valide et active.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
+        <label>Impossible de trouver la valeur de liste de sélection {0}.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations, modifiez le Rôle d&apos;inscription automatique en une valeur de liste de sélection valide et active pour l’objet Affiliation.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Auto-Enrollment Role in Affiliation mappings --></label>
+        <label>Valeur du rôle d&apos;inscription automatique</label>
         <name>stgHCAfflMapAutoEnrollRoleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Role is valid --></label>
+        <label>La valeur de la liste de sélection {0} ({1}) est valide.</label>
         <name>stgHCAfflMapAutoEnrollRoleValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
+        <label>La valeur de la liste de sélection {0} ({1}) n&apos;est pas active.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
+        <label>Vérifiez le {0} ({1}) indiqué pour le Statut d&apos;inscription automatique d’un mappage d&apos;affiliation dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations. Si {0} ({1}) est correct, accédez au champ Statut de l’objet Affiliation dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez le Statut d&apos;inscription automatique en une valeur de liste de sélection valide et active.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can't find a mapping's Auto-Enrollment Status --></label>
+        <label>Impossible de trouver la valeur de liste de sélection {0}.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations, modifiez le Statut d&apos;inscription automatique en une valeur de liste de sélection valide et active pour le champ Statut de l’objet Affiliation.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Auto-Enrollment Status in Affiliation mappings --></label>
+        <label>Valeur du statut d&apos;inscription automatique</label>
         <name>stgHCAfflMapAutoEnrollStatusTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Auto-Enrollment Status is valid --></label>
+        <label>La valeur de la liste de sélection {0} ({1}) est valide.</label>
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid --></label>
+        <label>Vérifiez le {0} indiqué dans les Paramètres EDA dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations. Le champ de recherche doit être valide sur l’objet Contact.</label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Contact Primary Affiliation fields in Affiliation mappings --></label>
+        <label>Champ d’affiliation principale du contact unique</label>
         <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid --></label>
+        <label>{0} n&apos;est pas un champ de contact valide.</label>
         <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique --></label>
+        <label>Le champ {0} ({1}) est mappé à plusieurs types d&apos;enregistrement de compte.</label>
         <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for Contact Primary Affiliation field in Affiliation mapping settings --></label>
+        <label>Champ d’affiliation principale du contact</label>
         <name>stgHCAfflMapContactPrimaryFieldTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when mappings&apos; Contact Primary Affiliation fields are unique --></label>
+        <label>Le champ {0} ({1}) est mappé à un seul type d&apos;enregistrement de compte.</label>
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations, recherchez dans la colonne Champ d&apos;affiliation contact principal plusieurs mappages indiquant {0} ({1}). Modifiez ces mappages d&apos;affiliation pour que ce champ soit mappé à un seul Mappage d’affiliation.</label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when a mapping&apos;s Contact Primary Affiliation field is valid --></label>
+        <label>Le champ {0} ({1}) est valide.</label>
         <name>stgHCAfflMapContactPrimaryFieldValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds Course Connections not enabled --></label>
+        <label>Les inscriptions au module ne sont pas activées.</label>
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Course Connections isn&apos;t enabled --></label>
+        <label>Activez les inscriptions au module, qui incluent la configuration des types d&apos;enregistrement inscription au module. Pour plus d’informations, consultez la documentation Configuration de l’inscription au module.</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
+        <label>Vérifiez le type d’enregistrement Professeur par défaut indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module. Si {1} ({0}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement Professeur par défaut en un type d’enregistrement valide et actif.</label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Faculty Record Type --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module, modifiez le type d’enregistrement Professeur par défaut en un type d’enregistrement valide et actif.</label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when student and faculty Course Connection record types not unique --></label>
+        <label>Les paramètres du type d&apos;enregistrement Professeur par défaut et du type d&apos;enregistrement Étudiant actif par défaut indiquent le même type d’enregistrement.</label>
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when student and faculty Course Connection record types are same --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module, modifiez le type d’enregistrement Professeur par défaut ou le type d&apos;enregistrement Étudiant actif par défaut pour que chacun indique un type d’enregistrement unique.</label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Course Connection record type settings --></label>
+        <label>Paramètres uniques pour le type d&apos;enregistrement Professeur par défaut et le type d&apos;enregistrement d&apos;Étudiant actif par défaut</label>
         <name>stgHCCourseConRecordTypesUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when student and faculty Course Connection record types are unique --></label>
+        <label>Les paramètres du type d&apos;enregistrement Professeur par défaut et du type d&apos;enregistrement Étudiant actif par défaut indiquent différents types d’enregistrement.</label>
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Active Student Record Type is inactive --></label>
+        <label>Vérifiez le type d’enregistrement Étudiant actif par défaut indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module. Si {1} ({0}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement Étudiant actif par défaut en un type d’enregistrement valide et actif.</label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Active Student Record Type --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module, modifiez le type d’enregistrement Étudiant actif par défaut en un type d’enregistrement valide et actif.</label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Course Connections group title in EDA Settings Health Check results --></label>
+        <label>Inscriptions au module</label>
         <name>stgHCCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds an inactive picklist value --></label>
+        <label>La valeur de la liste de sélection {0} ({1}) n&apos;est pas active.</label>
         <name>stgHCPicklistValueInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can&apos;t find the picklist value --></label>
+        <label>Impossible de trouver la valeur de liste de sélection {0}.</label>
         <name>stgHCPicklistValueNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component title --></label>
+        <label>La valeur de la liste de sélection {0} ({1}) est valide.</label>
         <name>stgHCPicklistValueValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for a reciprocal setting in EDA Settings Health Check results --></label>
+        <label>Les Relations réciproques {0} sont valides.</label>
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value is inactive --></label>
+        <label>Vérifiez le paramètre de réciprocité de la liste de sélection {0} ({1}) indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations. Si {0} ({1}) est correct pour Féminin, accédez au champ Type de l’objet Relation dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez la valeur Féminin du paramètre de réciprocité en une valeur de liste de sélection valide et active.</label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relation, modifiez la valeur Féminin du paramètre de réciprocité correspondant en une valeur de liste de sélection valide et active.</label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Female value in a reciprocal setting --></label>
+        <label>Valeur Féminin du paramètre de réciprocité</label>
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value is inactive --></label>
+        <label>Vérifiez le paramètre de réciprocité de la liste de sélection {0} ({1}) indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations. Si {0} ({1}) est correct pour Masculin, accédez au champ Type de l’objet Relation dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez la valeur Masculin du paramètre de réciprocité en une valeur de liste de sélection valide et active.</label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relation, modifiez la valeur Masculin du paramètre de réciprocité correspondant en une valeur de liste de sélection valide et active.</label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Male value in a reciprocal setting --></label>
+        <label>Valeur Masculin du paramètre de réciprocité</label>
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value is inactive --></label>
+        <label>Vérifiez le paramètre de réciprocité de la liste de sélection {0} ({1}) indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations. Si {0} ({1}) est correct, accédez au champ Type de l’objet Relation dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez la valeur Nom du paramètre de réciprocité en une valeur de liste de sélection valide et active.</label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations, modifiez la valeur Nom du paramètre de réciprocité correspondant en une valeur de liste de sélection valide et active.</label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Name isn&apos;t unique in reciprocal settings --></label>
+        <label>Vérifiez le paramètre de réciprocité de la liste de sélection {0} ({1}) indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations. Si {0} ({1}) est correct, accédez au champ Type de l’objet Relation dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez la valeur Nom du paramètre de réciprocité en une valeur de liste de sélection valide et active.</label>
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended Fix when Name isn&apos;t unique in reciprocal settings --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations, recherchez plusieurs lignes en indiquant {0} ({1}) dans la colonne Nom. Modifiez ces paramètres de réciprocité pour que la valeur Nom s’affiche dans une seule ligne de paramètres de réciprocité.</label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Name value in a reciprocal setting --></label>
+        <label>Valeur du nom du paramètre de réciprocité</label>
         <name>stgHCReciprocalRelNameTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Name is unique in reciprocal settings --></label>
+        <label>La valeur de liste de sélection {0} ({1}) est utilisée dans un seul paramètre de réciprocité.</label>
         <name>stgHCReciprocalRelNameUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for unique Name values in reciprocal settings --></label>
+        <label>Nom unique du paramètre de réciprocité</label>
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value is inactive --></label>
+        <label>Vérifiez le paramètre de réciprocité de la liste de sélection {0} ({1}) indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations. Si {0} ({1}) est correct, accédez au champ Type de l’objet Relation dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez la valeur Neutre du paramètre de réciprocité en une valeur de liste de sélection valide et active.</label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist --></label>
+        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relation, modifiez la valeur Neutre du paramètre de réciprocité correspondant en une valeur de liste de sélection valide et active.</label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- A check for the Neutral value in a reciprocal setting --></label>
+        <label>Valeur Neutre du paramètre de réciprocité</label>
         <name>stgHCReciprocalRelNeutralTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Row heading for a reciprocal setting in EDA Settings Health Check results --></label>
+        <label>{0} Relations réciproques</label>
         <name>stgHCReciprocalRelSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds an inactive record type --></label>
+        <label>Le type d’enregistrement {0} ({1}) n&apos;est pas actif.</label>
         <name>stgHCRecordTypeInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check can&apos;t find the record type --></label>
+        <label>Impossible de trouver le type d’enregistrement {0}.</label>
         <name>stgHCRecordTypeNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description when Health Check finds a record type valid --></label>
+        <label>Le type d’enregistrement {0} ({1}) est valide.</label>
         <name>stgHCRecordTypeValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Account Model group title in EDA Settings Health Check results --></label>
+        <label>Modèle de compte</label>
         <name>stgHealthCheckAccountModel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Affiliation Mappings group title in EDA Settings Health Check results --></label>
+        <label>Mappages d&apos;affiliation</label>
         <name>stgHealthCheckAffiliationMappings</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component description --></label>
+        <label>Le contrôle d’intégrité des paramètres vérifie vos paramètres EDA pour les configurations non valides. Une fois terminé, utilisez les résultats pour identifier et corriger les paramètres non valides.</label>
         <name>stgHealthCheckDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when EDA Settings Health Check can&apos;t show the last run date --></label>
+        <label>Nous ne pouvons pas afficher la date de la dernière exécution en raison d&apos;une erreur.</label>
         <name>stgHealthCheckErrorLastRunDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text when a check passes and no fix is recommended --></label>
+        <label>Non applicable</label>
         <name>stgHealthCheckFixNotApplicable</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check last run date --></label>
+        <label>Dernière exécution : {0}</label>
         <name>stgHealthCheckLastRun</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text indicating that an EDA Settings Health Check component is loading --></label>
+        <label>Chargement...</label>
         <name>stgHealthCheckLoadingIndicator</name>
     </customLabels>
     <customLabels>
-        <label><!-- Reciprocal Relationships group title in EDA Settings Health Check results --></label>
+        <label>Relations réciproques</label>
         <name>stgHealthCheckReciprocalRelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended Fix column header in EDA Settings Health Check results --></label>
+        <label>Solution recommandée</label>
         <name>stgHealthCheckRecoFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for the icon to collapse EDA Settings Health Check results --></label>
+        <label>Réduire ces résultats</label>
         <name>stgHealthCheckResultsCollapse</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description column header in EDA Settings Health Check results --></label>
+        <label>Description</label>
         <name>stgHealthCheckResultsDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for the icon to expand EDA Settings Health Check results --></label>
+        <label>Agrandir ces résultats</label>
         <name>stgHealthCheckResultsExpand</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Run Health Check button label --></label>
+        <label>Exécuter un contrôle d’intégrité</label>
         <name>stgHealthCheckRunButton</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when EDA Settings Health Check can&apos;t be run --></label>
+        <label>Impossible d’exécuter un contrôle d’intégrité des paramètres en raison d’une erreur. Essayez de l’exécuter à nouveau.</label>
         <name>stgHealthCheckRunError</name>
     </customLabels>
     <customLabels>
-        <label><!-- Setting column header in EDA Settings Health Check results --></label>
+        <label>Paramètre</label>
         <name>stgHealthCheckSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status column header in EDA Settings Health Check results --></label>
+        <label>Statut</label>
         <name>stgHealthCheckStatus</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check failed --></label>
+        <label>Échec</label>
         <name>stgHealthCheckStatusFailed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check passed --></label>
+        <label>Réussi</label>
         <name>stgHealthCheckStatusPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Status text in EDA Settings Health Check results when a check prompts a warning --></label>
+        <label>Avertissement</label>
         <name>stgHealthCheckStatusWarning</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings Health Check component title --></label>
+        <label>Contrôle d’intégrité des paramètres</label>
         <name>stgHealthCheckTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text in EDA Settings Health Check results when all checks within a group passed --></label>
+        <label>Tous les contrôles ont réussi</label>
         <name>stgHealthChecksAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Text in EDA Settings Health Check results shows group&apos;s passed and total checks --></label>
+        <label>{0} contrôle(s) réussi(s) sur {1}</label>
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
@@ -1037,7 +1037,7 @@
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label>Le Remplissage des connexions aux cours doit être utilisé uniquement lors de l&apos;activation initiale des Connexions au cours, et seulement dans les organisations dans lesquelles des Offres de cours et des Connexions aux cours (inscriptions) existaient avant l&apos;activation de la fonctionnalité Connexions au cours. Le Remplissage convertit tous les Contacts répertoriés en tant que professeurs dans une Connexion au cours (inscription) ou une Offre de cours en Type d&apos;enregistrement de professeur par défaut. Le Remplissage convertit ensuite les Contacts des Connexions aux cours (inscriptions) restantes en Type d&apos;enregistrement d&apos;étudiant actif par défaut.</label>
+        <label>Le Remplissage des inscriptions au module doit être utilisé uniquement lors de l&apos;activation initiale des inscriptions au module, et seulement dans les organisations dans lesquelles des choix de modules et des inscriptions au module (inscriptions) existaient avant l&apos;activation de la fonctionnalité Inscription au module. Le Remplissage convertit tous les contacts répertoriés en tant que professeurs dans une inscription au module (inscription) ou un choix de modules en type d&apos;enregistrement de professeur par défaut. Le Remplissage convertit ensuite les contacts des inscriptions au module (inscriptions) restantes en type d&apos;enregistrement d&apos;étudiant actif par défaut.</label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
@@ -1061,23 +1061,23 @@
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label>Le type d&apos;enregistrement par défaut lors de la création de Connexions aux cours pour un membre professeur.</label>
+        <label>Le type d&apos;enregistrement par défaut lors de la création d’inscriptions au module pour un membre professeur.</label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label>Le type d&apos;enregistrement par défaut lors de la création de Connexions aux cours pour des étudiants actifs.</label>
+        <label>Le type d&apos;enregistrement par défaut lors de la création d’inscriptions au module pour des étudiants actifs.</label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
-        <label>Vous devez activer les Connexions aux cours avant d&apos;exécuter le Remplissage des connexions aux cours.</label>
+        <label>Vous devez activer les inscriptions au module avant d&apos;exécuter le Remplissage des inscriptions au module.</label>
         <name>stgHelpEnableCourseConnBeforeBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Vous devez activer les Connexions aux cours avant de modifier les types d&apos;enregistrement.</label>
+        <label>Vous devez activer les inscriptions au module avant de modifier les types d&apos;enregistrement.</label>
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>Les enregistrements Connexion au cours connectent un Contact à une Offre de cours. L&apos;activation de cette fonctionnalité permet aux utilisateurs de choisir le type de Contact (Professeur ou Étudiant) à créer pour la Connexion au cours. Lorsque vous activez cette fonctionnalité, vous devez également définir ci-dessous le Type d&apos;enregistrement d&apos;étudiant actif par défaut et Type d&apos;enregistrement de professeur par défaut. Si vous activez cette fonctionnalité pour la première fois, nous recommandons vivement d&apos;exécuter le Remplissage des connexions au cours.</label>
+        <label>Les enregistrements Inscription au module connectent un contact à un choix de modules. L&apos;activation de cette fonctionnalité permet aux utilisateurs de choisir le type de contact (Professeur ou Étudiant) à créer pour l’inscription au module. Lorsque vous activez cette fonctionnalité, vous devez également définir ci-dessous le type d&apos;enregistrement d&apos;étudiant actif par défaut et type d&apos;enregistrement de professeur par défaut. Si vous activez cette fonctionnalité pour la première fois, nous recommandons vivement d&apos;exécuter le Remplissage des inscriptions au module.</label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
@@ -1125,7 +1125,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>La méthode utilisée pour remplir le champ type lors de la création d&apos;une Relation réciproque. « Paramètre de la liste » utilise les paramètres personnalisés définis sous l&apos;onglet Relations réciproques pour les valeurs homme, femme et neutre. « Inversion de valeur » inverse le type dans l&apos;enregistrement Relation d&apos;origine, le cas échéant. Par exemple, si la relation d&apos;origine est Parent-Enfant, la relation réciproque est Enfant-Parent.</label>
+        <label>La méthode utilisée pour remplir le champ type lors de la création d&apos;une Relation réciproque. « Paramètre de la liste » utilise les paramètres personnalisés définis sous l&apos;onglet Relations réciproques pour les valeurs Masculin, Féminin et Neutre. « Inversion de valeur » inverse le type dans l&apos;enregistrement Relation d&apos;origine, le cas échéant. Par exemple, si la relation d&apos;origine est Parent-Enfant, la relation réciproque est Enfant-Parent.</label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
@@ -1185,11 +1185,11 @@
         <name>stgPreferredPhoneSelection</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for Reciprocal Method in EDA Settings --></label>
+        <label>Paramètre de la liste</label>
         <name>stgReciprocalMethodListSetting</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for Reciprocal Method in EDA Settings --></label>
+        <label>Inversion de valeur</label>
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>
@@ -1215,7 +1215,7 @@
     <customLabels>
         <label>Exécutez ce processus de nettoyage de données après l&apos;activation initiale de l&apos;exigence Adresse e-mail préférée ou Téléphone préféré après une période de non application de l&apos;exigence.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
-    </customLabels>   
+    </customLabels>
     <customLabels>
         <label>Paramètres enregistrés avec succès.</label>
         <name>stgSaveSettings</name>
@@ -1273,7 +1273,7 @@
         <name>stgTabCourse</name>
     </customLabels>
     <customLabels>
-        <label>Connexions aux cours</label>
+        <label>Inscriptions au module</label>
         <name>stgTabCourseConn</name>
     </customLabels>
     <customLabels>
@@ -1313,7 +1313,7 @@
         <name>stgTitleAppwideSettings</name>
     </customLabels>
     <customLabels>
-        <label>Remplissage de la connexion au cours</label>
+        <label>Remplissage de l’inscription au module</label>
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
@@ -1345,11 +1345,11 @@
         <name>stgToastError</name>
     </customLabels>
     <customLabels>
-        <label>Nous ne pouvons pas enregistrer le Calendrier de l&apos;offre de cours car son heure de fin ne correspond pas à l’heure de fin du bloc de temps associé. Modifiez l’heure de fin, spécifiez un autre bloc de temps ou ne spécifiez pas de bloc de temps.</label>
+        <label>Nous ne pouvons pas enregistrer le Calendrier du choix de modules car son heure de fin ne correspond pas à l’heure de fin du bloc de temps associé. Modifiez l’heure de fin, spécifiez un autre bloc de temps ou ne spécifiez pas de bloc de temps.</label>
         <name>timeBlockEndTimeMismatch</name>
     </customLabels>
     <customLabels>
-        <label>Nous ne pouvons pas enregistrer le Calendrier de l&apos;offre de cours car son heure de début ne correspond pas à l’heure de début du bloc de temps associé. Modifiez l’heure de fin, spécifiez un autre bloc de temps ou ne spécifiez pas de bloc de temps.</label>
+        <label>Nous ne pouvons pas enregistrer le Calendrier du choix de modules car son heure de début ne correspond pas à l’heure de début du bloc de temps associé. Modifiez l’heure de fin, spécifiez un autre bloc de temps ou ne spécifiez pas de bloc de temps.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
     <customTabs>

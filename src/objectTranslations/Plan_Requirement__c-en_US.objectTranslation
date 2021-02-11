@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Plan Requirements</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Plan Requirement Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- Specify a category for the the Plan Requirement. --></help>
         <label><!-- Category --></label>
@@ -54,12 +62,4 @@
         <label><!-- Sequence --></label>
         <name>Sequence__c</name>
     </fields>
-    <layouts>
-        <layout>HEDA Plan Requirement Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

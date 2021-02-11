@@ -1,266 +1,275 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account_Processor__c</name>
-    <help>Id. del tipo de registro predeterminado para Cuenta. Por ejemplo, si se especifica Administrativa (el modelo de cuenta recomendado), ingrese el Id. del tipo de dirección Administrativa para le objeto Cuenta.</help>
-    <label>Procesador de cuentas</label>
-  </fields>
-  <fields>
-    <name>Accounts_Addresses_Enabled__c</name>
-    <help>Los tipos de registros de cuentas que deberían tener múltiples direcciones activadas.</help>
-    <label>Cuentas con múltiples direcciones</label>
-  </fields>
-  <fields>
-    <name>Accounts_to_Delete__c</name>
-    <help>Los tipos de registros de cuentas que se eliminarán automáticamente si se eliminaron todos sus contactos asociados.</help>
-    <label>Cuentas para eliminar</label>
-  </fields>
-  <fields>
-    <name>Admin_Account_Naming_Format__c</name>
-    <help>Almacena el formato predeterminado para nombres de cuenta de administrador</help>
-    <label>Formato nomenclatura cuenta administrdor</label>
-  </fields>
-  <fields>
-    <name>Admin_Other_Name_Setting__c</name>
-    <help>Almacena otra información sobre el formato de nomenclatura de cuenta de administrador.</help>
-    <label>Configuración otro nombre administrador</label>
-  </fields>
-  <fields>
-    <name>Administrative_Account_Record_Type__c</name>
-    <help>El tipo de registro de Cuenta utilizado para Cuentas administrativas. Esta configuración afecta a la gestión de registros de dirección y el formato de nomenclatura de Cuentas administrativas.</help>
-    <label>Tipo de registro cuenta administrativa</label>
-  </fields>
-  <fields>
-    <name>Advancement_Namespace__c</name>
-    <help>El espacio de nombres del paquete gestionado Gerente de entrada de regalo.</help>
-    <label>Espacio de nombres de GEM</label>
-  </fields>
-  <fields>
-    <name>Affiliation_Record_Type_Enforced__c</name>
-    <help>Si se activa, se produce un error cuando los usuarios rellenan un campo principal en Contacto con una cuenta que tiene una discrepancia de tipo de registro en el tipo de registro definido en Configuración de EDA. El registro Afiliación no se crea y los campos principales en Contacto no se corrigen</help>
-    <label>Tipo de registro de afiliación aplicado</label>
-  </fields>
-  <fields>
-    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
-    <help>Indica si establecer la fecha de finalización de la afiliación creada con una Inscripción. Establezca la fecha de finalización como la fecha de finalización de la inscripción de programa. Si no, no especifique la fecha de finalización de la afiliación.</help>
-    <label>Copia fecha final afiliación Ins de prog</label>
-  </fields>
-  <fields>
-    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
-    <help>Indica si establecr la fecha de inicio de la afiliación creada con una Inscripción de programa. Si se activa, establezca la fecha de inicio como la fecha de inicio de la inscripción. Si se desactiva, no especifique la fecha de inicio de la afiliación.</help>
-    <label>Copia fecha inicio afiliación Inscr prog</label>
-  </fields>
-  <fields>
-    <name>Affl_ProgEnroll_Del_Status__c</name>
-    <help>Si se desactiva la configuración relacionada, Elim afilia al eliminar inscrip programa, esta configuración especifica el valor a establecer para el estado de afiliación, cuando se elimina su Inscripción de programa relacionada.</help>
-    <label>Estado afilia eliminar inscrip programa</label>
-  </fields>
-  <fields>
-    <name>Affl_ProgEnroll_Del__c</name>
-    <help>Indica si eliminar una afiliación cuando elimina su inscripción relacionada. Si se activa, elimine la afiliación. Si no, establezca el estado de la afiliación como el especificado en la configuración relacionada, Estado afilia eliminar inscrip programa.</help>
-    <label>Elim afilia al eliminar inscrip programa</label>
-  </fields>
-  <fields>
-    <name>Affl_ProgEnroll_Role_Map__c</name>
-    <help>Si se desactiva la configuración relacionada, Función conj afilia crear inscr programa, esta configuración especifica el valor a establecer para la función en la afiliación creada con una Inscripción de programa.</help>
-    <label>Función afilia al crear inscrip programa</label>
-  </fields>
-  <fields>
-    <name>Affl_ProgEnroll_Set_Role__c</name>
-    <help>Indica si especificar una función para afiliación creada con una inscripción. Si se activa, establezca la función de la afiliación como el valor en la configuración relacionada, Función afilia al crear inscrip programa. Si no, no especifique una función.</help>
-    <label>Función conj afilia crear inscr programa</label>
-  </fields>
-  <fields>
-    <name>Affl_ProgEnroll_Status_Map__c</name>
-    <help>El valor establecido para el estado de un registro de afiliación creado automáticamente con una Inscripción de programa.</help>
-    <label>Estado afilia al crear inscrip programa</label>
-  </fields>
-  <fields>
-    <name>Allow_AutoCreated_Duplicates__c</name>
-    <help>Se anulan automáticamente los duplicados de las relaciones creadas automáticamente de registros de relaciones entre contactos. Seleccione Permitir relaciones de duplicados creadas automáticamente para desactivar este comportamiento y permitir la creación de múltiples relaciones del mismo tipo entre dos contactos.</help>
-    <label>Permitir creación auto. de r. duplicadas</label>
-  </fields>
-  <fields>
-    <name>Async_Error_Check_Last_Run__c</name>
-    <help>La fecha de ejecución más reciente del registrador de errores de trabajos asíncronos.</help>
-    <label>Últ ejecución comprobación Error asínc</label>
-  </fields>
-  <fields>
-    <name>Automatic_Household_Naming__c</name>
-    <help>Si se activa, el nombre de hogar se establece automáticamente en la configuración de Formato de nombre de hogar.</help>
-    <label>Nombrar automáticamente a la familia</label>
-  </fields>
-  <fields>
-    <name>Contacts_Addresses_Enabled__c</name>
-    <help>Activa la función de direcciones múltiples para contactos.</help>
-    <label>Compatibilidad de gestión de direcciones para Contactos.</label>
-  </fields>
-  <fields>
-    <name>Default_Contact_Language_Fluency__c</name>
-    <help>El valor de Fluidez se establece automáticamente en registros de Idioma de contacto recién creados cuando los usuarios establecen el campo de búsqueda Idioma principal en un contacto.</help>
-    <label>Fluidez idioma contacto predeterminado</label>
-  </fields>
-  <fields>
-    <name>Disable_Error_Handling__c</name>
-    <help>Si se selecciona, se deshabilita el marco de trabajo de control de errores personalizado.</help>
-    <label>Deshabilitar control de errores</label>
-  </fields>
-  <fields>
-    <name>Disable_Preferred_Email_Enforcement__c</name>
-    <help>Seleccione para desactivar la aplicación del campo Email preferido para Contactos.</help>
-    <label>Desactivar aplicación email preferencia</label>
-  </fields>
-  <fields>
-    <name>Disable_Preferred_Phone_Enforcement__c</name>
-    <help>Seleccione para desactivar la aplicación del campo Teléfono preferido para Contactos.</help>
-    <label>Desactivar aplicación teléfono preferido</label>
-  </fields>
-  <fields>
-    <name>Enable_Course_Connections__c</name>
-    <help>Cuando se activa, permite a los usuarios elegir el tipo de contacto (Facultad o Estudiante) cuando se crea un registro Enlace de curso. Esta función requiere que los tipos de registro Contacto estén establecidos para estudiantes y facultades.</help>
-    <label>Activar enlaces de cursos</label>
-  </fields>
-  <fields>
-    <name>Enable_Debug__c</name>
-    <help>Seleccione para habilitar instrucciones de depuración en el código del paquetes gestionado.</help>
-    <label>Habilitar depuración</label>
-  </fields>
-  <fields>
-    <name>Enable_New_Preferred_Phone_Sync__c</name>
-    <help>Sincroniza el campo Teléfono de preferencia con el campo Teléfono estándar del contacto y valida que el valor en Teléfono de preferencia existe y tiene un valor.</help>
-    <label>Activar sincr nuevo teléfono preferencia</label>
-  </fields>
-  <fields>
-    <name>Error_Notifications_On__c</name>
-    <help>Si se selecciona, las notificaciones se publican para errores generados por paquetes.</help>
-    <label>Notificaciones de error</label>
-  </fields>
-  <fields>
-    <name>Error_Notifications_To__c</name>
-    <help>Almacena el tipo de usuario al que enviar notificaciones.</help>
-    <label>Destinatario de notificación de errores</label>
-  </fields>
-  <fields>
-    <name>Faculty_RecType__c</name>
-    <help>El tipo de registro Contacto predeterminado para Facultad cuando se crea un registro Enlace de curso.</help>
-    <label>Tipo de registro de facultad</label>
-  </fields>
-  <fields>
-    <name>Household_Account_Naming_Format__c</name>
-    <help>Almacena el formato de nomenclatura de cuenta doméstica.</help>
-    <label>Formato nomenclatura de cuenta de hogar</label>
-  </fields>
-  <fields>
-    <name>Household_Addresses_RecType__c</name>
-    <help>El tipo de registro de Cuenta utilizado para Cuentas domésticas. Esta configuración afecta a la gestión de registros Dirección y el formato de nomenclatura de Cuentas domésticas.</help>
-    <label>Tipo registro cuenta direcciones hogar</label>
-  </fields>
-  <fields>
-    <name>Household_Other_Name_Setting__c</name>
-    <help>Almacena información sobre el formato de nomenclatura de cuenta doméstica.</help>
-    <label>Configuración de otro nombre doméstico</label>
-  </fields>
-  <fields>
-    <name>Preferred_Phone_Selection__c</name>
-    <help>Seleccione un teléfono preferido cuando se ejecute el trabajo por lotes Limpieza de datos.</help>
-    <label>Selección de teléfono preferido</label>
-  </fields>
-  <fields>
-    <name>Prevent_Account_Deletion__c</name>
-    <label>Evitar eliminación de cuenta</label>
-  </fields>
-  <fields>
-    <name>Prevent_Address_Deletion__c</name>
-    <label>Evitar eliminación de dirección</label>
-  </fields>
-  <fields>
-    <name>Prevent_Affiliation_Deletion__c</name>
-    <label>Evitar eliminación de afiliación</label>
-  </fields>
-  <fields>
-    <name>Prevent_Behavior_Involvement_Deletion__c</name>
-    <label>Evitar eliminación de implicación de comportamiento</label>
-  </fields>
-  <fields>
-    <name>Prevent_Case_Deletion__c</name>
-    <label>Evitar eliminación de caso</label>
-  </fields>
-  <fields>
-    <name>Prevent_Contact_Deletion__c</name>
-    <label>Evitar eliminación de contacto</label>
-  </fields>
-  <fields>
-    <name>Prevent_Course_Deletion__c</name>
-    <label>Evitar eliminación de curso</label>
-  </fields>
-  <fields>
-    <name>Prevent_Course_Connection_Deletion__c</name>
-    <label>Evitar eliminación de enlace de curso</label>
-  </fields>
-  <fields>
-    <name>Prevent_Facility_Deletion__c</name>
-    <label>Evitar eliminación de facultad</label>
-  </fields>
-  <fields>
-    <name>Prevent_Course_Offering_Deletion__c</name>
-    <label>Evitar eliminación de oferta de curso</label>
-  </fields>
-  <fields>
-    <name>Prevent_Plan_Requirement_Deletion__c</name>
-    <label>Evitar eliminación de requisitos del plan</label>
-  </fields>
-  <fields>
-    <name>Prevent_Program_Enrollment_Deletion__c</name>
-    <label>Evitar eliminación de inscripción de programa</label>
-  </fields>
-  <fields>
-    <name>Prevent_Program_Plan_Deletion__c</name>
-    <label>Evitar eliminación de plan de programa</label>
-  </fields>
-  <fields>
-    <name>Prevent_Term_Deletion__c</name>
-    <label>Evitar eliminación de plazo</label>
-  </fields>
-  <fields>
-    <name>Prevent_Test_Deletion__c</name>
-    <label>Evitar eliminación de prueba</label>
-  </fields>
-  <fields>
-    <name>Prevent_Time_Block_Deletion__c</name>
-    <label>Evitar eliminación de bloque de tiempo</label>
-  </fields>
-  <fields>
-    <name>Reciprocal_Method__c</name>
-    <help>Determina el método utilizado para generar la relación de reciprocidad. Utilice Configuración de lista para emplear parámetros personalizados por género. Utilice Inversión de valor para invertir el tipo si procede ("Padre-Hijo" a "Hijo-Padre").</help>
-    <label>Método de reciprocidad</label>
-  </fields>
-  <fields>
-    <name>Relationship_Name_Field_Id__c</name>
-    <help>Este campo no se utiliza en estos momentos.</help>
-    <label>Id del campo de nombre de la relación</label>
-  </fields>
-  <fields>
-    <name>Relationship_Name_Id_Field_Id__c</name>
-    <help>Este campo no se utiliza en estos momentos.</help>
-    <label>Id del campo de Id de la relación</label>
-  </fields>
-  <fields>
-    <name>Simple_Address_Change_Treated_as_Update__c</name>
-    <help>Cuando se activa, los cambios en campos de dirección únicos en Contactos o Cuentas se tratan como actualizaciones en la dirección existente (por ejemplo, no se crea ningún objeto Dirección nuevo). Los cambios de caso y los espacios en blanco se tratan como actualizaciones.</help>
-    <label>Cambios en dirección son actualizaciones</label>
-  </fields>
-  <fields>
-    <name>Store_Errors_On__c</name>
-    <help>Active esta función para almacenar errores.</help>
-    <label>Guardar errores</label>
-  </fields>
-  <fields>
-    <name>Student_RecType__c</name>
-    <label>Tipo de registro de estudiante</label>
-  </fields>
-  <fields>
-    <name>Validate_Program_Plan_for_Nested_PR__c</name>
-    <help>Cuando se selecciona, Requisitos de plan puede especificar un Plan de programa o un Requisito de plan principal, pero no ambos. Si especifica un Plan de programa y un Requisito de plan principal un error evita que guarde hasta que se seleccione solo uno.</help>
-    <label>Validar plan programa para RP anidados</label>
-  </fields>
+    <gender>Feminine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <value>Configuración de jerarquía</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Configuraciones de jerarquías</value>
+    </caseValues>
+    <fields>
+        <name>Account_Processor__c</name>
+        <help>Id. del tipo de registro predeterminado para Cuenta. Por ejemplo, si se especifica Administrativa (el modelo de cuenta recomendado), ingrese el Id. del tipo de dirección Administrativa para le objeto Cuenta.</help>
+        <label>Procesador de cuentas</label>
+    </fields>
+    <fields>
+        <name>Accounts_Addresses_Enabled__c</name>
+        <help>Los tipos de registros de cuentas que deberían tener múltiples direcciones activadas.</help>
+        <label>Cuentas con múltiples direcciones</label>
+    </fields>
+    <fields>
+        <name>Accounts_to_Delete__c</name>
+        <help>Los tipos de registros de cuentas que se eliminarán automáticamente si se eliminaron todos sus contactos asociados.</help>
+        <label>Cuentas para eliminar</label>
+    </fields>
+    <fields>
+        <name>Admin_Account_Naming_Format__c</name>
+        <help>Almacena el formato predeterminado para nombres de cuenta de administrador</help>
+        <label>Formato nomenclatura cuenta administrdor</label>
+    </fields>
+    <fields>
+        <name>Admin_Other_Name_Setting__c</name>
+        <help>Almacena otra información sobre el formato de nomenclatura de cuenta de administrador.</help>
+        <label>Configuración otro nombre administrador</label>
+    </fields>
+    <fields>
+        <name>Administrative_Account_Record_Type__c</name>
+        <help>El tipo de registro de Cuenta utilizado para Cuentas administrativas. Esta configuración afecta a la gestión de registros de dirección y el formato de nomenclatura de Cuentas administrativas.</help>
+        <label>Tipo de registro cuenta administrativa</label>
+    </fields>
+    <fields>
+        <name>Advancement_Namespace__c</name>
+        <help>El espacio de nombres del paquete gestionado Gerente de entrada de regalo.</help>
+        <label>Espacio de nombres de GEM</label>
+    </fields>
+    <fields>
+        <name>Affiliation_Record_Type_Enforced__c</name>
+        <help>Si se activa, se produce un error cuando los usuarios rellenan un campo principal en Contacto con una cuenta que tiene una discrepancia de tipo de registro en el tipo de registro definido en Configuración de EDA. El registro Afiliación no se crea y los campos principales en Contacto no se corrigen</help>
+        <label>Tipo de registro de afiliación aplicado</label>
+    </fields>
+    <fields>
+        <name>Affl_ProgEnroll_Copy_End_Date__c</name>
+        <help>Indica si establecer la fecha de finalización de la afiliación creada con una Inscripción. Establezca la fecha de finalización como la fecha de finalización de la inscripción de programa. Si no, no especifique la fecha de finalización de la afiliación.</help>
+        <label>Copia fecha final afiliación Ins de prog</label>
+    </fields>
+    <fields>
+        <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
+        <help>Indica si establecr la fecha de inicio de la afiliación creada con una Inscripción de programa. Si se activa, establezca la fecha de inicio como la fecha de inicio de la inscripción. Si se desactiva, no especifique la fecha de inicio de la afiliación.</help>
+        <label>Copia fecha inicio afiliación Inscr prog</label>
+    </fields>
+    <fields>
+        <name>Affl_ProgEnroll_Del_Status__c</name>
+        <help>Si se desactiva la configuración relacionada, Elim afilia al eliminar inscrip programa, esta configuración especifica el valor a establecer para el estado de afiliación, cuando se elimina su Inscripción de programa relacionada.</help>
+        <label>Estado afilia eliminar inscrip programa</label>
+    </fields>
+    <fields>
+        <name>Affl_ProgEnroll_Del__c</name>
+        <help>Indica si eliminar una afiliación cuando elimina su inscripción relacionada. Si se activa, elimine la afiliación. Si no, establezca el estado de la afiliación como el especificado en la configuración relacionada, Estado afilia eliminar inscrip programa.</help>
+        <label>Elim afilia al eliminar inscrip programa</label>
+    </fields>
+    <fields>
+        <name>Affl_ProgEnroll_Role_Map__c</name>
+        <help>Si se desactiva la configuración relacionada, Función conj afilia crear inscr programa, esta configuración especifica el valor a establecer para la función en la afiliación creada con una Inscripción de programa.</help>
+        <label>Función afilia al crear inscrip programa</label>
+    </fields>
+    <fields>
+        <name>Affl_ProgEnroll_Set_Role__c</name>
+        <help>Indica si especificar una función para afiliación creada con una inscripción. Si se activa, establezca la función de la afiliación como el valor en la configuración relacionada, Función afilia al crear inscrip programa. Si no, no especifique una función.</help>
+        <label>Función conj afilia crear inscr programa</label>
+    </fields>
+    <fields>
+        <name>Affl_ProgEnroll_Status_Map__c</name>
+        <help>El valor establecido para el estado de un registro de afiliación creado automáticamente con una Inscripción de programa.</help>
+        <label>Estado afilia al crear inscrip programa</label>
+    </fields>
+    <fields>
+        <name>Allow_AutoCreated_Duplicates__c</name>
+        <help>Se anulan automáticamente los duplicados de las relaciones creadas automáticamente de registros de relaciones entre contactos. Seleccione Permitir relaciones de duplicados creadas automáticamente para desactivar este comportamiento y permitir la creación de múltiples relaciones del mismo tipo entre dos contactos.</help>
+        <label>Permitir creación auto. de r. duplicadas</label>
+    </fields>
+    <fields>
+        <name>Async_Error_Check_Last_Run__c</name>
+        <help>La fecha de ejecución más reciente del registrador de errores de trabajos asíncronos.</help>
+        <label>Últ ejecución comprobación Error asínc</label>
+    </fields>
+    <fields>
+        <name>Automatic_Household_Naming__c</name>
+        <help>Si se activa, el nombre de hogar se establece automáticamente en la configuración de Formato de nombre de hogar.</help>
+        <label>Nombrar automáticamente a la familia</label>
+    </fields>
+    <fields>
+        <name>Contacts_Addresses_Enabled__c</name>
+        <help>Activa la función de direcciones múltiples para contactos.</help>
+        <label>Compatibilidad de gestión de direcciones para Contactos.</label>
+    </fields>
+    <fields>
+        <name>Default_Contact_Language_Fluency__c</name>
+        <help>El valor de Fluidez se establece automáticamente en registros de Idioma de contacto recién creados cuando los usuarios establecen el campo de búsqueda Idioma principal en un contacto.</help>
+        <label>Fluidez idioma contacto predeterminado</label>
+    </fields>
+    <fields>
+        <name>Disable_Error_Handling__c</name>
+        <help>Si se selecciona, se deshabilita el marco de trabajo de control de errores personalizado.</help>
+        <label>Deshabilitar control de errores</label>
+    </fields>
+    <fields>
+        <name>Disable_Preferred_Email_Enforcement__c</name>
+        <help>Seleccione para desactivar la aplicación del campo Email preferido para Contactos.</help>
+        <label>Desactivar aplicación email preferencia</label>
+    </fields>
+    <fields>
+        <name>Disable_Preferred_Phone_Enforcement__c</name>
+        <help>Seleccione para desactivar la aplicación del campo Teléfono preferido para Contactos.</help>
+        <label>Desactivar aplicación teléfono preferido</label>
+    </fields>
+    <fields>
+        <name>Enable_Course_Connections__c</name>
+        <help>Cuando se activa, permite a los usuarios elegir el tipo de contacto (Facultad o Estudiante) cuando se crea un registro Enlace de curso. Esta función requiere que los tipos de registro Contacto estén establecidos para estudiantes y facultades.</help>
+        <label>Activar enlaces de cursos</label>
+    </fields>
+    <fields>
+        <name>Enable_Debug__c</name>
+        <help>Seleccione para habilitar instrucciones de depuración en el código del paquetes gestionado.</help>
+        <label>Habilitar depuración</label>
+    </fields>
+    <fields>
+        <name>Enable_New_Preferred_Phone_Sync__c</name>
+        <help>Sincroniza el campo Teléfono de preferencia con el campo Teléfono estándar del contacto y valida que el valor en Teléfono de preferencia existe y tiene un valor.</help>
+        <label>Activar sincr nuevo teléfono preferencia</label>
+    </fields>
+    <fields>
+        <name>Error_Notifications_On__c</name>
+        <help>Si se selecciona, las notificaciones se publican para errores generados por paquetes.</help>
+        <label>Notificaciones de error</label>
+    </fields>
+    <fields>
+        <name>Error_Notifications_To__c</name>
+        <help>Almacena el tipo de usuario al que enviar notificaciones.</help>
+        <label>Destinatario de notificación de errores</label>
+    </fields>
+    <fields>
+        <name>Faculty_RecType__c</name>
+        <help>El tipo de registro Contacto predeterminado para Facultad cuando se crea un registro Enlace de curso.</help>
+        <label>Tipo de registro de facultad</label>
+    </fields>
+    <fields>
+        <name>Household_Account_Naming_Format__c</name>
+        <help>Almacena el formato de nomenclatura de cuenta doméstica.</help>
+        <label>Formato nomenclatura de cuenta de hogar</label>
+    </fields>
+    <fields>
+        <name>Household_Addresses_RecType__c</name>
+        <help>El tipo de registro de Cuenta utilizado para Cuentas domésticas. Esta configuración afecta a la gestión de registros Dirección y el formato de nomenclatura de Cuentas domésticas.</help>
+        <label>Tipo registro cuenta direcciones hogar</label>
+    </fields>
+    <fields>
+        <name>Household_Other_Name_Setting__c</name>
+        <help>Almacena información sobre el formato de nomenclatura de cuenta doméstica.</help>
+        <label>Configuración de otro nombre doméstico</label>
+    </fields>
+    <fields>
+        <name>Preferred_Phone_Selection__c</name>
+        <help>Seleccione un teléfono preferido cuando se ejecute el trabajo por lotes Limpieza de datos.</help>
+        <label>Selección de teléfono preferido</label>
+    </fields>
+    <fields>
+        <name>Prevent_Account_Deletion__c</name>
+        <label>Evitar eliminación de cuenta</label>
+    </fields>
+    <fields>
+        <name>Prevent_Address_Deletion__c</name>
+        <label>Evitar eliminación de dirección</label>
+    </fields>
+    <fields>
+        <name>Prevent_Affiliation_Deletion__c</name>
+        <label>Evitar eliminación de afiliación</label>
+    </fields>
+    <fields>
+        <name>Prevent_Behavior_Involvement_Deletion__c</name>
+        <label>Evitar eliminación de implicación de comportamiento</label>
+    </fields>
+    <fields>
+        <name>Prevent_Case_Deletion__c</name>
+        <label>Evitar eliminación de caso</label>
+    </fields>
+    <fields>
+        <name>Prevent_Contact_Deletion__c</name>
+        <label>Evitar eliminación de contacto</label>
+    </fields>
+    <fields>
+        <name>Prevent_Course_Connection_Deletion__c</name>
+        <label>Evitar eliminación de enlace de curso</label>
+    </fields>
+    <fields>
+        <name>Prevent_Course_Deletion__c</name>
+        <label>Evitar eliminación de curso</label>
+    </fields>
+    <fields>
+        <name>Prevent_Course_Offering_Deletion__c</name>
+        <label>Evitar eliminación de oferta de curso</label>
+    </fields>
+    <fields>
+        <name>Prevent_Facility_Deletion__c</name>
+        <label>Evitar eliminación de facultad</label>
+    </fields>
+    <fields>
+        <name>Prevent_Plan_Requirement_Deletion__c</name>
+        <label>Evitar eliminación de requisitos del plan</label>
+    </fields>
+    <fields>
+        <name>Prevent_Program_Enrollment_Deletion__c</name>
+        <label>Evitar eliminación de inscripción de programa</label>
+    </fields>
+    <fields>
+        <name>Prevent_Program_Plan_Deletion__c</name>
+        <label>Evitar eliminación de plan de programa</label>
+    </fields>
+    <fields>
+        <name>Prevent_Term_Deletion__c</name>
+        <label>Evitar eliminación de plazo</label>
+    </fields>
+    <fields>
+        <name>Prevent_Test_Deletion__c</name>
+        <label>Evitar eliminación de prueba</label>
+    </fields>
+    <fields>
+        <name>Prevent_Time_Block_Deletion__c</name>
+        <label>Evitar eliminación de bloque de tiempo</label>
+    </fields>
+    <fields>
+        <name>Reciprocal_Method__c</name>
+        <help>Determina el método utilizado para generar la relación de reciprocidad. Utilice Configuración de lista para emplear parámetros personalizados por género. Utilice Inversión de valor para invertir el tipo si procede (&quot;Padre-Hijo&quot; a &quot;Hijo-Padre&quot;).</help>
+        <label>Método de reciprocidad</label>
+    </fields>
+    <fields>
+        <name>Relationship_Name_Field_Id__c</name>
+        <help>Este campo no se utiliza en estos momentos.</help>
+        <label>Id del campo de nombre de la relación</label>
+    </fields>
+    <fields>
+        <name>Relationship_Name_Id_Field_Id__c</name>
+        <help>Este campo no se utiliza en estos momentos.</help>
+        <label>Id del campo de Id de la relación</label>
+    </fields>
+    <fields>
+        <name>Simple_Address_Change_Treated_as_Update__c</name>
+        <help>Cuando se activa, los cambios en campos de dirección únicos en Contactos o Cuentas se tratan como actualizaciones en la dirección existente (por ejemplo, no se crea ningún objeto Dirección nuevo). Los cambios de caso y los espacios en blanco se tratan como actualizaciones.</help>
+        <label>Cambios en dirección son actualizaciones</label>
+    </fields>
+    <fields>
+        <name>Store_Errors_On__c</name>
+        <help>Active esta función para almacenar errores.</help>
+        <label>Guardar errores</label>
+    </fields>
+    <fields>
+        <name>Student_RecType__c</name>
+        <label>Tipo de registro de estudiante</label>
+    </fields>
+    <fields>
+        <name>Validate_Program_Plan_for_Nested_PR__c</name>
+        <help>Cuando se selecciona, Requisitos de plan puede especificar un Plan de programa o un Requisito de plan principal, pero no ambos. Si especifica un Plan de programa y un Requisito de plan principal un error evita que guarde hasta que se seleccione solo uno.</help>
+        <label>Validar plan programa para RP anidados</label>
+    </fields>
 </CustomObjectTranslation>

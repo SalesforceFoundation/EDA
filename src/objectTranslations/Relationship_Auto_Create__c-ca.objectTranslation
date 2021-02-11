@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Campaign_Types__c</name>
-    <help>Per a les relacions creades automàticament basades en membres de la campanya, la llista de tipus de campanyes a què s’aplica l’automatització. Aquest camp estarà buit per a la creació automàtica de relacions basades en contactes.</help>
-    <label>Tipus de campanya</label>
-  </fields>
-  <fields>
-    <name>Field__c</name>
-    <help>L'etiqueta del camp de cerca que activa la creació d'aquesta relació quan s'actualitza el valor del camp.</help>
-    <label>Camp</label>
-  </fields>
-  <fields>
-    <name>Object__c</name>
-    <help>El nom de l'API de l'objecte (ja sigui Contacte o Membre de la campanya) en què es troba el camp de cerca personalitzada.</help>
-    <label>Objecte</label>
-  </fields>
-  <fields>
-    <name>Relationship_Type__c</name>
-    <help>El tipus de relació (referència, família, etc.) que es crearà entre l'objecte base definit al camp Objecte i l'objecte de cerca.</help>
-    <label>Tipus de relació</label>
-  </fields>
+    <fields>
+        <name>Campaign_Types__c</name>
+        <help>Per a les relacions creades automàticament basades en membres de la campanya, la llista de tipus de campanyes a què s’aplica l’automatització. Aquest camp estarà buit per a la creació automàtica de relacions basades en contactes.</help>
+        <label>Tipus de campanya</label>
+    </fields>
+    <fields>
+        <name>Field__c</name>
+        <help>L&apos;etiqueta del camp de cerca que activa la creació d&apos;aquesta relació quan s&apos;actualitza el valor del camp.</help>
+        <label>Camp</label>
+    </fields>
+    <fields>
+        <name>Object__c</name>
+        <help>El nom de l&apos;API de l&apos;objecte (ja sigui Contacte o Membre de la campanya) en què es troba el camp de cerca personalitzada.</help>
+        <label>Objecte</label>
+    </fields>
+    <fields>
+        <name>Relationship_Type__c</name>
+        <help>El tipus de relació (referència, família, etc.) que es crearà entre l&apos;objecte base definit al camp Objecte i l&apos;objecte de cerca.</help>
+        <label>Tipus de relació</label>
+    </fields>
 </CustomObjectTranslation>
