@@ -443,6 +443,38 @@ flows:
             5:
                 flow: preferred_email_testing
 
+    lqa_org:
+        description: Set up an org as a testing environment for LQA
+        group: "Org Setup"
+        steps:
+            1:
+                flow: dependencies
+            2:
+                flow: deploy_unmanaged
+            3:
+                flow: config_lqa
+
+    config_lqa:
+        description: Configure an org for LQA with sample data
+        group: "Post-Install Configuration"
+        steps:
+            1:
+                task: deploy_post
+            2:
+                task: update_admin_profile
+            3:
+                task: deploy_dev_config
+            4:
+                task: deploy_qa_config
+            5:
+                task: snapshot_changes
+            6:
+                task: load_dataset
+                options:
+                    mapping: datasets/lqa/lqa_mapping.yml
+                    sql_path: datasets/lqa/lqa_data.sql
+                    drop_missing_schema: true
+
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
         steps:
