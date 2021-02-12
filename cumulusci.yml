@@ -138,15 +138,6 @@ tasks:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/test_unpackaged
             unmanaged: True
-            
-    deploy_unpackaged_test_metadata:
-        description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
-        class_path: cumulusci.tasks.salesforce.DeployBundles
-        group: 'EDA: Unpackaged Tests'
-        options:
-            namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test_unpackaged
-            unmanaged: True
 
     deploy_trial_config:
         description: Deploys metadata and configuration for TSOs.
@@ -364,17 +355,8 @@ flows:
             4:
                 task: deploy_dev_config
             5:
-                task: deploy_primary_affiliations_config
+                flow: run_unmanaged_unit_tests
             6:
-                task: execute_primary_affiliation_mapping_apex
-            7:
-                task: deploy_unpackaged_test_metadata
-            8: 
-                # execute tests in unmanaged package
-                task: run_tests 
-                options: 
-                    test_name_match: '%\_Unmanaged_TEST,%\_UTST'
-            9:
                 flow: eda_settings_unmanaged
 
     config_dev_namespaced:
@@ -448,7 +430,7 @@ flows:
             4:
                 flow: eda_settings
             5:
-                flow: preferred_email_testing
+                flow: run_unmanaged_unit_tests
 
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
@@ -525,6 +507,30 @@ flows:
             2:
                 flow: config_2gp
 
+    run_unmanaged_unit_tests:
+        # description: Configure an org for use as a dev org after package metadata is deployed.
+        steps:
+            1:
+                task: deploy_unpackaged_test_metadata
+                when: "'hed' not in org_config.installed_packages"
+            2:
+                task: deploy_primary_affiliations_config
+                when: "'hed' in org_config.installed_packages"
+            3:
+                task: execute_primary_affiliation_mapping_apex
+                when: "'hed' in org_config.installed_packages"
+            4: 
+                task: deploy_unpackaged_relationship_autocreate_config
+                when: "'hed' in org_config.installed_packages"
+            5:
+                task: deploy_preferred_email_config
+                when: "'hed' in org_config.installed_packages"
+            6: 
+                # execute tests in unmanaged package
+                task: run_tests 
+                options: 
+                    test_name_match: '%\_Unmanaged_TEST,%\_ATST,%\_MTST,%\_PTST,%\_UTST'
+
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.
         steps:
@@ -561,21 +567,6 @@ flows:
             5:
                 flow: eda_picklists
 
-    run_packaged_tests:
-        description: Deploys and configures metadata required to execute unmanaged tests, then executes unit tests.
-        steps:
-            1: 
-                task: deploy_unpackaged_primary_affiliations_config
-            2:    
-                task: execute_primary_affiliation_mapping_apex
-            3:
-                task: deploy_unpackaged_relationship_autocreate_config
-            4: 
-                # execute tests in unmanaged package
-                task: run_tests 
-                options: 
-                    test_name_match: '%MTST'
-
     translations:
         description: Enables Translation workbench, platform language settings and sets languages as active.
         steps:
@@ -610,18 +601,6 @@ flows:
                 flow: eda_settings
             7:
                 flow: eda_picklists
-
-    preferred_email_testing:
-        description: Deploys Preferred Email configuration and runs apex tests.
-        steps:
-            1:
-                task: deploy_preferred_email_config
-
-            2:
-                task: run_tests
-                options:
-                    test_name_match: "%_MTST"
-                    managed: False
 
     regression_org:
         description:
