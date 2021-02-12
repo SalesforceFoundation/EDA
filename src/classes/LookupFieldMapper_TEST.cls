@@ -88,9 +88,9 @@ public with sharing class LookupFieldMapper_TEST {
     private static void getModelByNameMapForSObjectTypeEmpty(){
         Test.startTest();
         Map<String, LookupFieldModel> lookupFieldModelByNameResult = 
-            LookupFieldMapper.getInstance().getModelByNameMapForSObjectType(Account.SObjectType, AssetDowntimePeriod.SObjectType);
+            LookupFieldMapper.getInstance().getModelByNameMapForSObjectType(Trigger_Handler__c.SObjectType, Error__c.SObjectType);
         Test.stopTest();
 
-        System.assertEquals(true, lookupFieldModelByNameResult.isEmpty(), 'Account object should have no fields that lookup to AssetDowntimePeriod.');
+        System.assertEquals(true, lookupFieldModelByNameResult.isEmpty(), 'Trigger Handler object should have no fields that lookup to Error.');
     }    
 }

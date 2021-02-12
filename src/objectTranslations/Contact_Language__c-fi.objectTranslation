@@ -1,449 +1,449 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Contact__c</name>
-    <help>Henkilö, joka puhuu tätä kieltä.</help>
-    <relationshipLabel>Yhteyshenkilön kielet</relationshipLabel>
-    <label>Yhteyshenkilö</label>
-  </fields>
-  <fields>
-    <name>Fluency__c</name>
-    <help>Kuinka sujuvasti tämä henkilö puhuu tätä kieltä.</help>
-    <label>Sujuvuus</label>
-    <picklistValues>
-      <masterLabel>Fluent</masterLabel>
-      <translation>Sujuva</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Intermediate</masterLabel>
-      <translation>Keskitaso</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Beginner</masterLabel>
-      <translation>Aloittava</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Language_Details__c</name>
-    <label>Kielitiedot</label>
-  </fields>
-  <fields>
-    <name>Language__c</name>
-    <help>Kieli, jota tämä henkilö puhuu.</help>
-    <relationshipLabel>Yhteyshenkilön kielet</relationshipLabel>
-    <label>Kieli</label>
-  </fields>
-  <fields>
-    <name>Primary_Language__c</name>
-    <help>Osoittaa, että tämä on henkilön valitsema kieli.</help>
-    <label>Ensisijainen kieli</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Contact Language Layout</layout>
-    <sections>
-      <label>Mukautetut linkit</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Yhteyshenkilön kielen nimi</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Yhteyshenkilön kielen nimi</label>
-  </standardFields>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kieli</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kieleni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Nominative</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielet</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kieleni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Nominative</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielen</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kieleni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Genitive</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielien</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielieni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Genitive</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kieliesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Inessive</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielessä</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Inessive</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielessäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Inessive</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielessäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Inessive</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielissä</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Inessive</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielissäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Inessive</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielissäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Elative</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielestä</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Elative</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielestäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Elative</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielestäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Elative</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielistä</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Elative</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielistäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Elative</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielistäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Illative</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kieleen</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Illative</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kieleeni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Illative</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kieleesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Illative</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kieliin</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Illative</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kieliini</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Illative</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kieliisi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Adessive</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielellä</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Adessive</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielelläni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Adessive</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielelläsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Adessive</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielillä</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Adessive</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielilläni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Adessive</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielilläsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Ablative</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kieleltä</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Ablative</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kieleltäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Ablative</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kieleltäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Ablative</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kieliltä</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Ablative</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kieliltäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Ablative</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kieliltäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Allative</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielelle</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Allative</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielelleni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Allative</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielellesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Allative</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielille</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Allative</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielilleni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Allative</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielillesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Essive</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielenä</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Essive</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielenäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Essive</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielenäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Essive</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kielinä</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Essive</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielinäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Essive</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kielinäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Translative</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kieleksi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Translative</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielekseni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Translative</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kieleksesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Translative</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kieliksi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Translative</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kielikseni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Translative</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kieliksesi</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Partitive</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kieltä</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Partitive</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kieltäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>false</plural>
-    <caseType>Partitive</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kieltäsi</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Partitive</caseType>
-    <possessive>None</possessive>
-    <value>Yhteyshenkilön kieliä</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Partitive</caseType>
-    <possessive>First</possessive>
-    <value>Yhteyshenkilön kieliäni</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <caseType>Partitive</caseType>
-    <possessive>Second</possessive>
-    <value>Yhteyshenkilön kieliäsi</value>
-  </caseValues>
+    <layouts>
+        <layout>HEDA Contact Language Layout</layout>
+        <sections>
+            <label>Mukautetut linkit</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Yhteyshenkilön kielen nimi</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Yhteyshenkilön kielen nimi</label>
+    </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kieli</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kieleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielet</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kieleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielen</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kieleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielien</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielieni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kieliesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielessä</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielessäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielessäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielissä</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielissäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielissäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielestä</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielestäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielestäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielistä</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielistäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielistäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kieleen</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kieleeni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kieleesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kieliin</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kieliini</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kieliisi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielellä</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielelläni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielelläsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielillä</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielilläni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielilläsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kieleltä</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kieleltäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kieleltäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kieliltä</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kieliltäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kieliltäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielelle</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielelleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielellesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielille</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielilleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielillesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielenä</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielenäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielenäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kielinä</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielinäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kielinäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kieleksi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielekseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kieleksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kieliksi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kielikseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kieliksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kieltä</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kieltäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kieltäsi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>None</possessive>
+        <value>Yhteyshenkilön kieliä</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>First</possessive>
+        <value>Yhteyshenkilön kieliäni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>Second</possessive>
+        <value>Yhteyshenkilön kieliäsi</value>
+    </caseValues>
+    <fields>
+        <name>Contact__c</name>
+        <help>Henkilö, joka puhuu tätä kieltä.</help>
+        <relationshipLabel>Yhteyshenkilön kielet</relationshipLabel>
+        <label>Yhteyshenkilö</label>
+    </fields>
+    <fields>
+        <name>Fluency__c</name>
+        <help>Kuinka sujuvasti tämä henkilö puhuu tätä kieltä.</help>
+        <label>Sujuvuus</label>
+        <picklistValues>
+            <masterLabel>Fluent</masterLabel>
+            <translation>Sujuva</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Intermediate</masterLabel>
+            <translation>Keskitaso</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Beginner</masterLabel>
+            <translation>Aloittava</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Language_Details__c</name>
+        <label>Kielitiedot</label>
+    </fields>
+    <fields>
+        <name>Language__c</name>
+        <help>Kieli, jota tämä henkilö puhuu.</help>
+        <relationshipLabel>Yhteyshenkilön kielet</relationshipLabel>
+        <label>Kieli</label>
+    </fields>
+    <fields>
+        <name>Primary_Language__c</name>
+        <help>Osoittaa, että tämä on henkilön valitsema kieli.</help>
+        <label>Ensisijainen kieli</label>
+    </fields>
 </CustomObjectTranslation>
