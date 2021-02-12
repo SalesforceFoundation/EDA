@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>User_Managed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don&apos;t want us to overwrite.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When selected, we no longer push updates to this Trigger Handler. Select this option if you&apos;ve made changes that you don&apos;t want us to overwrite.</inlineHelpText>
+    <label>User Managed</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Contact__c</name>
+    <help>Le contact associé à ces données historiques.</help>
+    <relationshipLabel>Parcours de formation</relationshipLabel>
+    <label>Contact</label>
+</CustomFieldTranslation>

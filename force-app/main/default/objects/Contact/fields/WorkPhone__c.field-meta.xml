@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WorkPhone__c</fullName>
+    <description>The work phone number for this person.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The work phone number for this person.</inlineHelpText>
+    <label>Work Phone</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Phone</type>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If checked, changes to a single Contact or Account address field update the existing Address, rather than creating a new Address. --></help>
+    <label><!-- Simple Address Change Treated as Update --></label>
+    <name>Simple_Address_Change_Treated_as_Update__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Fluency__c</name>
+    <help>De beheersing van deze taal door deze persoon.</help>
+    <label>Beheersing</label>
+    <picklistValues>
+        <masterLabel>Fluent</masterLabel>
+        <translation>Vloeiend</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Intermediate</masterLabel>
+        <translation>Gevorderd</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Beginner</masterLabel>
+        <translation>Beginner</translation>
+    </picklistValues>
+</CustomFieldTranslation>

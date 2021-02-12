@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Fluency__c</name>
+    <help>Kuinka sujuvasti tämä henkilö puhuu tätä kieltä.</help>
+    <label>Sujuvuus</label>
+    <picklistValues>
+        <masterLabel>Fluent</masterLabel>
+        <translation>Sujuva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Intermediate</masterLabel>
+        <translation>Keskitaso</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Beginner</masterLabel>
+        <translation>Aloittava</translation>
+    </picklistValues>
+</CustomFieldTranslation>

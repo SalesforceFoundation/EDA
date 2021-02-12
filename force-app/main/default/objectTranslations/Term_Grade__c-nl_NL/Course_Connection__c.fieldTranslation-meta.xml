@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Connection__c</name>
+    <help>Het vak waarvoor de student deze score heeft ontvangen. De contactpersoon en het cursusaanbod bij de termijnscore moeten overeenkomen met de contactpersoon en het cursusaanbod in de cursusverbindingsrecord.</help>
+    <relationshipLabel>Termijnscores</relationshipLabel>
+    <label>Cursusverbinding</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Latest_End_Date__c</name>
+    <help>La date de fin la plus récente à laquelle cette adresse a été utilisée.Généralement utilisée avec la Dernière date de début afin de suivre une plage de date pour une adresse qui n’est plus utilisée.</help>
+    <label>Dernière date de fin</label>
+</CustomFieldTranslation>

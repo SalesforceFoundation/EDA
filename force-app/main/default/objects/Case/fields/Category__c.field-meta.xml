@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <description>The type of Case being tracked.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The type of Case being tracked.</inlineHelpText>
+    <label>Category</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>School Code of Conduct</fullName>
+                <default>false</default>
+                <label>School Code of Conduct</label>
+            </value>
+            <value>
+                <fullName>School Violation</fullName>
+                <default>false</default>
+                <label>School Violation</label>
+            </value>
+            <value>
+                <fullName>State Offense</fullName>
+                <default>false</default>
+                <label>State Offense</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

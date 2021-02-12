@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Parent_Account__c</name>
+    <help>Opzoeking van het account gekoppeld aan dit adres.</help>
+    <relationshipLabel>Adressen</relationshipLabel>
+    <label>Bovenliggend account</label>
+</CustomFieldTranslation>

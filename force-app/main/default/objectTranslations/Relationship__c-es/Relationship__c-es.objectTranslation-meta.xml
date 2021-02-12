@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <validationRules>
+        <errorMessage>En vez de cambiar los contactos en esta relación, elimine este registro o si es apropiado, agregue una fecha de finalización y actualice el estado a Antiguo. Luego cree un nuevo registro Relación entre nuevos contactos.</errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>En vez de cambiar los contactos en esta relación, elimine este registro o si es apropiado, agregue una fecha de finalización y actualice el estado a Antiguo. Luego cree un nuevo registro Relación entre nuevos contactos.</errorMessage>
+        <name>Related_Contact_Do_Not_Change</name>
+    </validationRules>
+    <layouts>
+        <layout>HEDA Relationship Layout</layout>
+        <sections>
+            <label>Información de la relación</label>
+            <section>Relationship Information</section>
+        </sections>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clave de relación</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Clave de relación</label>
+    </standardFields>
+    <gender>Feminine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <value>Relación</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Relaciones</value>
+    </caseValues>
+</CustomObjectTranslation>

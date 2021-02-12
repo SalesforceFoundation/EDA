@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>StartDate__c</name>
+    <help>La data en què aquesta persona es va afiliar a aquesta organització.</help>
+    <label>Data d&apos;inici</label>
+</CustomFieldTranslation>

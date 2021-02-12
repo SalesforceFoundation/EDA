@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Type__c</name>
+    <help>Jakson tyyppi, esimerkiksi lukukausi, vuosineljännes tai lukuvuosi.</help>
+    <label>Tyyppi</label>
+    <picklistValues>
+        <masterLabel>Quarter</masterLabel>
+        <translation>Vuosineljännes</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Semester</masterLabel>
+        <translation>Lukukausi</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>School Year</masterLabel>
+        <translation>Lukuvuosi</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Part of Term</masterLabel>
+        <translation>Jakson osa</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Reason__c</name>
+    <help>Seleccioneu una opció que s’adapti més a la raó per la qual l’alumne ha estat absent o ha arribat tard. Utilitzeu el camp Descripció del motiu per introduir més detalls.</help>
+    <label>Motiu</label>
+    <picklistValues>
+        <masterLabel>Family</masterLabel>
+        <translation>Família</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Medical</masterLabel>
+        <translation>Mèdic</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Altres</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Religious</masterLabel>
+        <translation>Religiós</translation>
+    </picklistValues>
+</CustomFieldTranslation>

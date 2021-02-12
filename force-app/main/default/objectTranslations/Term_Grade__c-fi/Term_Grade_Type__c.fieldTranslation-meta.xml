@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Term_Grade_Type__c</name>
+    <help>Tämän arvosanan arvostelujakson tyyppi, esimerkiksi jakson väliarvosana, lopullinen arvosana, tenttiarvosana tai arvostelujakso.</help>
+    <label>Jakson arvosanan tyyppi</label>
+    <picklistValues>
+        <masterLabel>Exam Grade</masterLabel>
+        <translation>Tenttiarvosana</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Final Grade</masterLabel>
+        <translation>Lopullinen arvosana</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grading Period</masterLabel>
+        <translation>Arvostelujakso</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mid-Term Grade</masterLabel>
+        <translation>Jakson väliarvosana</translation>
+    </picklistValues>
+</CustomFieldTranslation>

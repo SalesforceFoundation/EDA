@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Click to select a Program Plan that a student should follow for this Program Enrollment. --></help>
+    <label><!-- Program Plan --></label>
+    <name>Program_Plan__c</name>
+    <relationshipLabel><!-- Program Enrollments --></relationshipLabel>
+</CustomFieldTranslation>

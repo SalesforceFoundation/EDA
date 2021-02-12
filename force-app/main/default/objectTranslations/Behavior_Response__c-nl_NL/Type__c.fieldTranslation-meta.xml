@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Type__c</name>
+    <help>De reactie op het gedragsevent, bijvoorbeeld academische proeftijd, verwijdering of overig.</help>
+    <label>Type</label>
+    <picklistValues>
+        <masterLabel>Academic Probation</masterLabel>
+        <translation>Academische proeftijd</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Expulsion</masterLabel>
+        <translation>Verwijdering</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Overig</translation>
+    </picklistValues>
+</CustomFieldTranslation>

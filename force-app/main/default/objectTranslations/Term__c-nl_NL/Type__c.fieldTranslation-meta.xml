@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Type__c</name>
+    <help>Het type termijn, bijvoorbeeld semester, kwartaal of schooljaar.</help>
+    <label>Type</label>
+    <picklistValues>
+        <masterLabel>Quarter</masterLabel>
+        <translation>Kwartaal</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Semester</masterLabel>
+        <translation>Semester</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>School Year</masterLabel>
+        <translation>Schooljaar</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Part of Term</masterLabel>
+        <translation>Deel van termijn</translation>
+    </picklistValues>
+</CustomFieldTranslation>

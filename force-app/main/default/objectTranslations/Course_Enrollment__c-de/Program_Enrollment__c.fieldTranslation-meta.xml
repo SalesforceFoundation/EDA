@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Program_Enrollment__c</name>
+    <help>Für Schüler/Studenten ihre primäre Programmregistrierung. Im Hochschulbereich entspricht dies normalerweise dem akademischen Hauptfach eines Studenten.</help>
+    <relationshipLabel>Kursverbindungen</relationshipLabel>
+    <label>Programmregistrierungs-ID</label>
+</CustomFieldTranslation>

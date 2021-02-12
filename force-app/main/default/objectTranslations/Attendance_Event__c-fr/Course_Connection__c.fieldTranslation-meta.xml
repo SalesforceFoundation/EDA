@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Connection__c</name>
+    <help>Le cours et la période pendant lesquels l’étudiant était en retard ou absent.</help>
+    <relationshipLabel>Événements de présence</relationshipLabel>
+    <label>Connexion au cours</label>
+</CustomFieldTranslation>

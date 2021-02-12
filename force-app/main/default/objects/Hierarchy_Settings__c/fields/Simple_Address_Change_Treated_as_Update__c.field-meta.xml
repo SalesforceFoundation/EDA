@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Simple_Address_Change_Treated_as_Update__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When enabled, changes to single address fields on Contact or Account are treated as updates to the existing address (for example, no new Address object is created). White space and case changes are treated as updates.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When enabled, changes to single address fields on Contact or Account are treated as updates to the existing address (for example, no new Address object is created). White space and case changes are treated as updates.</inlineHelpText>
+    <label>Simple Address Change Treated as Update</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

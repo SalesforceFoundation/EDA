@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>HIPAA__c</name>
+    <help>Indique si l&apos;enregistrement de cette personne est soumis aux normes de la loi HIPAA (Health Insurance Portability and Accountability Act).</help>
+    <label>Loi HIPAA aux États-Unis</label>
+</CustomFieldTranslation>

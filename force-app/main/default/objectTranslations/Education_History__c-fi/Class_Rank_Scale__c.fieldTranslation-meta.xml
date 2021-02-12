@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank_Scale__c</name>
+    <help>Seuraa kuinka luokan prosenttiosuus määritettiin. Esimerkiksi tarkka, desiili, kvintiili tai kvartiili.</help>
+    <label>Luokan sijoitusasteikko</label>
+    <picklistValues>
+        <masterLabel>Exact</masterLabel>
+        <translation>Tarkka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Decile</masterLabel>
+        <translation>Desiili</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quintile</masterLabel>
+        <translation>Kvintiili</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quartile</masterLabel>
+        <translation>Kvartiili</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>None</masterLabel>
+        <translation>Ei mitään</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Relationship_Explanation__c</name>
+    <help>Ein Satz, der die Beteiligten an der Beziehung klarstellt. Beispiel: &quot;&apos;s &quot; Josef Schmitz ist Sabine Müllers Arbeitgeber.&quot;&apos;s &quot; Dieses Feld ist schreibgeschützt.</help>
+    <label>Erklärung der Beziehung</label>
+</CustomFieldTranslation>

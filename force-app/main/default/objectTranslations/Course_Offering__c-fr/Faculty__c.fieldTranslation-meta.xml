@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Faculty__c</name>
+    <help>Référence à l&apos;instructeur principal de cette offre de cours.</help>
+    <relationshipLabel>Offres de cours</relationshipLabel>
+    <label>Professeur principal</label>
+</CustomFieldTranslation>

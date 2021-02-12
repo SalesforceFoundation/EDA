@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Section_ID__c</name>
+    <help>Identificador de la secció d&apos;aquesta oferta de curs. L’identificador de secció s’utilitza normalment quan un curs ofereix diverses seccions durant un mateix període.</help>
+    <label>ID de secció</label>
+</CustomFieldTranslation>

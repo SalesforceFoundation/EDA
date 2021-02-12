@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Formula_MailingStreetAddress__c</name>
+    <help>L&apos;adreça postal completa, inclosos els valors de carrer de correu postal 2 i país, si no està en blanc (només de lectura).</help>
+    <label>Adreça de correu postal</label>
+</CustomFieldTranslation>

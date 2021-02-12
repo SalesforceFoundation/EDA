@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>User_Managed__c</name>
+    <help>Wanneer dit is aangevinkt, pushen wij geen updates meer naar deze triggerhandler. Selecteer deze optie als u wijzigingen hebt aangebracht waarvan u niet wilt dat wij ze wijzigen.</help>
+    <label>Door gebruiker beheerd</label>
+</CustomFieldTranslation>

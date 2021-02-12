@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>EDA Application Layout</layout>
+        <sections>
+            <label>カスタムリンク</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>出願名</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>出願名</label>
+    </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value>申請</value>
+    </caseValues>
+</CustomObjectTranslation>

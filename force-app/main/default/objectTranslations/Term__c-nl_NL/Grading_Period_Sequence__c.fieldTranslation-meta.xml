@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Grading_Period_Sequence__c</name>
+    <help>Geeft aan welke termijn dit is. Voer bijvoorbeeld &apos;1&apos; in voor het eerste kwartaal of semester, &apos;2&apos; voor het tweede kwartaal of semester, enz.</help>
+    <label>Volgorde van beoordelingsperioden</label>
+</CustomFieldTranslation>

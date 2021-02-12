@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Class Rank Type --></label>
+    <name>Class_Rank_Type__c</name>
+    <picklistValues>
+        <masterLabel>Unweighted</masterLabel>
+        <translation><!-- Unweighted --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Weighted</masterLabel>
+        <translation><!-- Weighted --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

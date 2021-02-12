@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Do_Not_Contact__c</name>
+    <help>この個人が団体からの電話またはメールを望まないことを示します。この項目を使用して、メールリストおよび電話リスト内の取引先責任者を除外します。</help>
+    <label>連絡不可</label>
+</CustomFieldTranslation>

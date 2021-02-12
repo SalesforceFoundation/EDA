@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Object__c</name>
+    <help>El nom de l&apos;API de l&apos;objecte (ja sigui Contacte o Membre de la campanya) en què es troba el camp de cerca personalitzada.</help>
+    <label>Objecte</label>
+</CustomFieldTranslation>

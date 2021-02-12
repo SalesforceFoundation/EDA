@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Error Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Número de error</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Número de error</label>
+    </standardFields>
+    <gender>Masculine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <value>Error</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Errores</value>
+    </caseValues>
+</CustomObjectTranslation>

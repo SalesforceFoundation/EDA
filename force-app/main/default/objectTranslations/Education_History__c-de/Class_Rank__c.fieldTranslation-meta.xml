@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank__c</name>
+    <help>Der akademische Rang des Schülers/Studenten im Verhältnis zu seiner Abschlussklasse. Zum Beispiel hat ein Schüler/Student, der in einer Klasse mit 200 Absolventen auf Platz 5 rangiert, den Wert 5.</help>
+    <label>Klassenrang</label>
+</CustomFieldTranslation>

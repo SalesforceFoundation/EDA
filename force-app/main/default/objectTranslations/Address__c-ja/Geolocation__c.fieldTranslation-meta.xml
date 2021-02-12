@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Geolocation__c</name>
+    <help>緯度と経度で示された住所。</help>
+    <label>地理位置情報</label>
+</CustomFieldTranslation>

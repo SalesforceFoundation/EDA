@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AlternateEmail__c</fullName>
+    <description>An optional email address not captured in other email fields.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>An optional email address not captured in other email fields.</inlineHelpText>
+    <label>Alternate Email</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Email</type>
+    <unique>false</unique>
+</CustomField>

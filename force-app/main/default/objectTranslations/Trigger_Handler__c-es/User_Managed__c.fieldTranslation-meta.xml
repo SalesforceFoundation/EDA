@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>User_Managed__c</name>
+    <help>Cuando se selecciona, dejaremos de distribuir actualizaciones a este controlador de desencadenador. Seleccione esta opción si ha realizado cambios que no desea que sobreescribamos.</help>
+    <label>Gestionado por usuario</label>
+</CustomFieldTranslation>

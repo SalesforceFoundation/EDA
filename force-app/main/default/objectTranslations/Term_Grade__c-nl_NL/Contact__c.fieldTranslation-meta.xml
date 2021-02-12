@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Contact__c</name>
+    <help>De student waarvoor de score wordt geregistreerd. Als dit wordt leeggelaten, wordt de contactpersoon bij het opslaan automatisch ingevuld vanuit de geldige cursusverbinding.</help>
+    <relationshipLabel>Termijnscores</relationshipLabel>
+    <label>Contactpersoon</label>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary_Contact__c</name>
+    <help>El contacte principal d’un compte domèstic o administratiu.</help>
+    <relationshipLabel>Compte</relationshipLabel>
+    <label>Contacte principal</label>
+</CustomFieldTranslation>

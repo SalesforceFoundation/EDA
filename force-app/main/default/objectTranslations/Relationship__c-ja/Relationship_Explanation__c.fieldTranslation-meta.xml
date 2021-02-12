@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Relationship_Explanation__c</name>
+    <help>リレーション内の誰が誰であるかを明確にする文章 (例: 「Joe Ada は Sara Cordova の雇用主」)。この項目は参照のみです。</help>
+    <label>リレーションの説明</label>
+</CustomFieldTranslation>

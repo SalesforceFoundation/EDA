@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Program_Plan__c</name>
+    <help>Ohjelmasuunnitelma, joka sisältää kaikki tämän opiskelijan voimassa olevat ohjelmavaatimukset.</help>
+    <relationshipLabel>Ohjelmaan ilmoittautumiset</relationshipLabel>
+    <label>Ohjelmasuunnitelma</label>
+</CustomFieldTranslation>

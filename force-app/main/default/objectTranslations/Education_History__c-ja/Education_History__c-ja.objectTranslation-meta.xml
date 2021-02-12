@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>EDA Education History Layout</layout>
+        <sections>
+            <label>カスタムリンク</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>教育履歴名</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>教育履歴名</label>
+    </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value>教育履歴</value>
+    </caseValues>
+</CustomObjectTranslation>

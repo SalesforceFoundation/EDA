@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Degree_Earned__c</name>
+    <help>Si escau, el nivell del títol obtingut pel contacte en aquesta institució educativa.</help>
+    <label>Titulació obtinguda</label>
+    <picklistValues>
+        <masterLabel>GED</masterLabel>
+        <translation>GED</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High School Diploma</masterLabel>
+        <translation>Diploma d&apos;escola secundària</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AA</masterLabel>
+        <translation>Grau d&apos;associat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AS</masterLabel>
+        <translation>AS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BA</masterLabel>
+        <translation>BA</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BS</masterLabel>
+        <translation>BS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MA</masterLabel>
+        <translation>MA</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MBA</masterLabel>
+        <translation>MBA</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MS</masterLabel>
+        <translation>Màster en ciències</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>JD</masterLabel>
+        <translation>Doctorat en Dret</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MD</masterLabel>
+        <translation>Doctorat en Medicina</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PhD</masterLabel>
+        <translation>Doctorat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Altres</translation>
+    </picklistValues>
+</CustomFieldTranslation>

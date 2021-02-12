@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Parent_Facility__c</name>
+    <help>Optionally indicates the Facility that this one is a part of. For example, if this Facility is a classroom, the Parent Facility would be the building this classroom is in.</help>
+    <relationshipLabel>Facilities</relationshipLabel>
+    <label>Parent Facility</label>
+</CustomFieldTranslation>

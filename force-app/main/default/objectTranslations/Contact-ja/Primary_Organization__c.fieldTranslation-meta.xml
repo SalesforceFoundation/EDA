@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary_Organization__c</name>
+    <help>この取引先責任者が関連付けられている主要な団体 (取引先レコード) への参照。</help>
+    <relationshipLabel>取引先責任者 (主団体)</relationshipLabel>
+    <label>主ビジネス団体</label>
+</CustomFieldTranslation>

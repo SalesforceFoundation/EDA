@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Affiliation_Type__c</name>
+    <help>Record type of the affiliated Account, for example, Academic Department or Sports Organization (read-only).</help>
+    <label>Affiliation Type</label>
+</CustomFieldTranslation>

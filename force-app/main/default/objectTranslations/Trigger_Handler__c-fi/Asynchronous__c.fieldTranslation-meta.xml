@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Asynchronous__c</name>
+    <help>Osoittaa, pitäisikö tämän luokan toimia asynkronisesti tässä tapahtumassa johonkin sen jälkitapahtumaan.</help>
+    <label>Asynkroninen</label>
+</CustomFieldTranslation>

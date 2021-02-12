@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Citizenship_Status__c</name>
+    <help>L&apos;estat de ciutadania del contacte.</help>
+    <label>Estat de ciutadania</label>
+    <picklistValues>
+        <masterLabel>U.S. Citizen or U.S. National</masterLabel>
+        <translation>Ciutadà dels EUA o nacional dels EUA</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U.S. Dual Citizen</masterLabel>
+        <translation>Ciutadà dels EUA amb doble ciutadania</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U.S. Permanent Resident</masterLabel>
+        <translation>Resident permanent dels EUA</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U.S. Refugee or Asylee</masterLabel>
+        <translation>Refugiat o asilat dels EUA</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Temporary Resident</masterLabel>
+        <translation>Resident temporal</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other (Non-U.S.)</masterLabel>
+        <translation>Altres (no dels EUA)</translation>
+    </picklistValues>
+</CustomFieldTranslation>

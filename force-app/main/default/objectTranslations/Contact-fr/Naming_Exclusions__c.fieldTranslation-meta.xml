@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Naming_Exclusions__c</name>
+    <help>La sélection de l&apos;option Nom du foyer exclut ce contact du nom du foyer. REMARQUE : Actuellement, les options Salutation formelle du foyer et Salutation informelle du foyer ne sont pas liées à une fonctionnalité produit existante.</help>
+    <label>Exclusions de dénomination</label>
+    <picklistValues>
+        <masterLabel>Household__c.Name</masterLabel>
+        <translation>Household__c.Name</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Household__c.Formal_Greeting__c</masterLabel>
+        <translation>Household__c.Formal_Greeting__c</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Household__c.Informal_Greeting__c</masterLabel>
+        <translation>Household__c.Informal_Greeting__c</translation>
+    </picklistValues>
+</CustomFieldTranslation>

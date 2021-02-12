@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank__c</name>
+    <help>De academische positie van de student ten opzichte van de andere studenten uit hetzelfde leerjaar. Een student die 5e staat in een leerjaar met 200 medestudenten heeft bijvoorbeeld de waarde 5.</help>
+    <label>Klaspositie</label>
+</CustomFieldTranslation>

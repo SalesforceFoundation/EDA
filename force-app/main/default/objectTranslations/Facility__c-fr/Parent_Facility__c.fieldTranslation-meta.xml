@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Parent_Facility__c</name>
+    <help>Indique si la structure fait partie d&apos;un ensemble plus important, le cas échéant. Par exemple, si cette structure est une salle de classe, la structure parente est le bâtiment où se situe cette salle de classe.</help>
+    <relationshipLabel>Structures</relationshipLabel>
+    <label>Structure parente</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Extended_Description__c</name>
+    <help>Gebruik dit veld om de cursus te beschrijven in maximaal 131.000 tekens. Dit veld vervangt het veld Beschrijving.</help>
+    <label>Uitgebreide beschrijving</label>
+</CustomFieldTranslation>

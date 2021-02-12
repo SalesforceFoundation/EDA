@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Program_Enrollment__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student&apos;s academic major.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>For students, their primary Program Enrollment. In Higher Ed, this typically represents a student&apos;s academic major.</inlineHelpText>
+    <label>Program Enrollment ID</label>
+    <referenceTo>Program_Enrollment__c</referenceTo>
+    <relationshipLabel>Course Connections</relationshipLabel>
+    <relationshipName>Course_Enrollments</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

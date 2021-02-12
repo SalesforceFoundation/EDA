@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Term_Grade_Type__c</name>
+    <help>The type of grading period that this grade is for, for example, Mid-Term Grade, Final Grade, Exam Grade, Grading Period.</help>
+    <label>Term Grade Type</label>
+    <picklistValues>
+        <masterLabel>Exam Grade</masterLabel>
+        <translation>Exam Grade</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Final Grade</masterLabel>
+        <translation>Final Grade</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grading Period</masterLabel>
+        <translation>Grading Period</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mid-Term Grade</masterLabel>
+        <translation>Mid-Term Grade</translation>
+    </picklistValues>
+</CustomFieldTranslation>

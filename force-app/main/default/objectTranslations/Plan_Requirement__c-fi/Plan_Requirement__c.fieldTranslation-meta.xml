@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Plan_Requirement__c</name>
+    <help>Jos suunnitelmavaatimus on yksi monista vaatimuksista tai monitasoisista vaatimuksista, määritä pääsuunnitelman vaatimus. Tämän kentän avulla voit ryhmitellä luettelon valinnaisista kursseista, jotka täyttävät yleiset vaatimukset.</help>
+    <relationshipLabel>Suunnitelmavaatimukset</relationshipLabel>
+    <label>Pääsuunnitelmavaatimus</label>
+</CustomFieldTranslation>

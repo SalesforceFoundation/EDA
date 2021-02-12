@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Is_Primary__c</name>
+    <help>これが、選択されたアカデミックプログラムで現在有効なプログラムプランであることを示します。</help>
+    <label>主</label>
+</CustomFieldTranslation>

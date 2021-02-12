@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary_Contact__c</name>
+    <help>世帯取引先または管理取引先の主要な取引先責任者。</help>
+    <relationshipLabel>取引先</relationshipLabel>
+    <label>主取引先責任者</label>
+</CustomFieldTranslation>

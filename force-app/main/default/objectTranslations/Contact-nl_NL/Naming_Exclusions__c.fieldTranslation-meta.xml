@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Naming_Exclusions__c</name>
+    <help>Als u de optie Naam van huishouden selecteert, wordt deze contactpersoon uitgesloten van de naam van het huishouden. OPMERKING: De opties voor formele en informele begroeting van het huishouden zijn momenteel niet aan een productfunctionaliteit gekoppeld.</help>
+    <label>Uitsluitingen van naamgeving</label>
+    <picklistValues>
+        <masterLabel>Household__c.Name</masterLabel>
+        <translation>Household__c.Name</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Household__c.Formal_Greeting__c</masterLabel>
+        <translation>Household__c.Formal_Greeting__c</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Household__c.Informal_Greeting__c</masterLabel>
+        <translation>Household__c.Informal_Greeting__c</translation>
+    </picklistValues>
+</CustomFieldTranslation>

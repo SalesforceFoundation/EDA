@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Deceased__c</name>
+    <help>Indique si la personne est décédée. Active également Ne pas contacter, Ne ne pas appeler, Désabonnement des e-mails, Désabonnement des télécopies. Si le contact n&apos;est pas le seul membre du foyer, son nom est retiré du nom du foyer.</help>
+    <label>Décédé</label>
+</CustomFieldTranslation>

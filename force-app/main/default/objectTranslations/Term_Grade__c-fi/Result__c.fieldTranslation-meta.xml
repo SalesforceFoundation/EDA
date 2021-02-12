@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Result__c</name>
+    <help>Tulos opiskelijan tämän arvostelujakson suorituksesta.</help>
+    <label>Tulos</label>
+    <picklistValues>
+        <masterLabel>Audit</masterLabel>
+        <translation>Tarkastettu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dropped</masterLabel>
+        <translation>Hylätty</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fail</masterLabel>
+        <translation>Epäonnistui</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pass</masterLabel>
+        <translation>Läpäisi</translation>
+    </picklistValues>
+</CustomFieldTranslation>

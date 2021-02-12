@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Posted_in_Chatter__c</name>
+    <help>Chatter でエラーが投稿されたかどうかを示します。</help>
+    <label>Chatter で投稿済み</label>
+</CustomFieldTranslation>

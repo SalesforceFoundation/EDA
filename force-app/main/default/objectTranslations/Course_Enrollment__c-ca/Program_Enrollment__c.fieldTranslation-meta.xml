@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Program_Enrollment__c</name>
+    <help>Per als estudiants, la seva inscripció principal al programa. En l&apos;educació superior, normalment representa la formació acadèmica d&apos;un alumne.</help>
+    <relationshipLabel>Connexions del curs</relationshipLabel>
+    <label>ID d&apos;inscripció del programa</label>
+</CustomFieldTranslation>

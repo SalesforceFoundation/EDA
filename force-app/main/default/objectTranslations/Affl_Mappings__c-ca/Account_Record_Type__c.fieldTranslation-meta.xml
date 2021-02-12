@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Account_Record_Type__c</name>
+    <help>L&apos;etiqueta del tipus de registre del compte que s&apos;està assignant.</help>
+    <label>Tipus de registre del compte</label>
+</CustomFieldTranslation>

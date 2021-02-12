@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Stack_Trace__c</name>
+    <help>Pinon jäljitys ilmenneestä virheestä, jos se on käytettävissä suoritusaikana.</help>
+    <label>Pinon jäljitys</label>
+</CustomFieldTranslation>

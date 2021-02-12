@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Letter_Grade__c</fullName>
+    <description>If your school uses letter grades, enter the letter grade the student earned, for example, A, B, C, etc.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If your school uses letter grades, enter the letter grade the student earned, for example, A, B, C, etc.</inlineHelpText>
+    <label>Letter Grade</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

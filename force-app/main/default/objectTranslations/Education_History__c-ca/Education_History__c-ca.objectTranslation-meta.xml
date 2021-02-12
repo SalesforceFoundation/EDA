@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>EDA Education History Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom d&apos;Historial educatiu</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Nom d&apos;Historial educatiu</label>
+    </standardFields>
+</CustomObjectTranslation>

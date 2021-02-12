@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary__c</name>
+    <help>For faculty members, indicates they are the primary faculty (for example, lead instructor) for the Course Offering.</help>
+    <label>Primary</label>
+</CustomFieldTranslation>

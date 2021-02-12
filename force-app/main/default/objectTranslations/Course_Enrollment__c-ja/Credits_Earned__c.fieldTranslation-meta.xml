@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Credits_Earned__c</name>
+    <help>この開講科目を完了して学生が取得した単位数。</help>
+    <label>取得単位数</label>
+</CustomFieldTranslation>

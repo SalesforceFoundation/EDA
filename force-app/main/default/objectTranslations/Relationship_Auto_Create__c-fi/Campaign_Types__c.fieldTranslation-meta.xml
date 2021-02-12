@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Campaign_Types__c</name>
+    <help>Luettelo kampanjatyypeistä, joihin automaatio vaikuttaa kampanjan jäseniin perustuvissa automaattisesti luotavissa suhteissa. Tämä kenttä on tyhjä yhteyshenkilön perusteella automaattisen luotaville suhteille.</help>
+    <label>Kampanjatyypit</label>
+</CustomFieldTranslation>

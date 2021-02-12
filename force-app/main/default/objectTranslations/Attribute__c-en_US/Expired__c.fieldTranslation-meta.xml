@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates whether the Attribute has expired. Checked automatically when the Attribute end date is before the current date. --></help>
+    <label><!-- Expired --></label>
+    <name>Expired__c</name>
+</CustomFieldTranslation>

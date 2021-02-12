@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Enrollment_Status__c</name>
+    <help>L&apos;estat de matrícula de l&apos;alumne, per exemple, a temps complet o mitja jornada.</help>
+    <label>Estat d&apos;inscripció</label>
+    <picklistValues>
+        <masterLabel>Full-time</masterLabel>
+        <translation>A temps complet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Half-time</masterLabel>
+        <translation>A mitja jornada</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Less than half-time</masterLabel>
+        <translation>Menys de mitja jornada</translation>
+    </picklistValues>
+</CustomFieldTranslation>

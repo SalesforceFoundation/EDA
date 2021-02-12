@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Account__c</name>
+    <help>Het academische programma, de afdeling of de hele onderwijsinstelling waarop de termijn van toepassing is. Selecteer het account dat uw onderwijsinstelling vertegenwoordigt als de termijnen hetzelfde zijn voor alle programma&apos;s en afdelingen van uw school.</help>
+    <relationshipLabel>Termijnen</relationshipLabel>
+    <label>Account</label>
+</CustomFieldTranslation>

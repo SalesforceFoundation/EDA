@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Result__c</name>
+    <help>El resultat del rendiment de l’alumne durant aquest període de qualificació.</help>
+    <label>Resultat</label>
+    <picklistValues>
+        <masterLabel>Audit</masterLabel>
+        <translation>Auditoria</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dropped</masterLabel>
+        <translation>Abandonat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fail</masterLabel>
+        <translation>Suspès</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pass</masterLabel>
+        <translation>Aprovat</translation>
+    </picklistValues>
+</CustomFieldTranslation>

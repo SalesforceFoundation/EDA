@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary_Household__c</name>
+    <help>Référence le foyer principal (enregistrement Compte) auquel ce contact est associé.</help>
+    <relationshipLabel>Contacts (foyer principal)</relationshipLabel>
+    <label>Foyer principal</label>
+</CustomFieldTranslation>

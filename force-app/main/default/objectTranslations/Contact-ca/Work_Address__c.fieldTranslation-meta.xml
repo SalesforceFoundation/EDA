@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Work_Address__c</name>
+    <help>Si heu establert &quot;Feina&quot; com a tipus d&apos;adreça primària, l&apos;adreça de la feina s&apos;omple amb els valors de l&apos;adreça postal. Si &quot;Feina&quot; és el tipus d&apos;adreça secundària, l&apos;adreça de la feina s&apos;omple amb els valors &quot;Altres adreces&quot;. Aquest camp és de només lectura.</help>
+    <label>Direcció de la feina</label>
+</CustomFieldTranslation>

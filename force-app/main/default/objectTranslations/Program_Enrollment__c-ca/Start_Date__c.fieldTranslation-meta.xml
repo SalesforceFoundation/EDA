@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Start_Date__c</name>
+    <help>La data en què l&apos;alumne va iniciar o s&apos;espera que iniciï el programa.</help>
+    <label>Data d&apos;inici</label>
+</CustomFieldTranslation>

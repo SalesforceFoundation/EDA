@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Grading_Period_Sequence__c</name>
+    <help>Indica para qué término es. Por ejemplo, introduzca &quot;1&quot; para el primer trimestre o semestre, &quot;2&quot; para el segundo trimestre o semestre, etc.</help>
+    <label>Secuencia de periodo de evaluación</label>
+</CustomFieldTranslation>

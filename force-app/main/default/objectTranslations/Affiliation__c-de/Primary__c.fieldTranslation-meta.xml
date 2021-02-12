@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary__c</name>
+    <help>Gibt an, ob dies die primäre Zugehörigkeit dieser Person darstellt. Falls ausgewählt, wird der Organisationsname im Kontaktdatensatz im entsprechenden Feld &quot;Primäre Zugehörigkeit&quot; gespeichert.</help>
+    <label>Primär</label>
+</CustomFieldTranslation>

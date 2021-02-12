@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank__c</name>
+    <help>Le niveau académique de l&apos;étudiant par rapport à sa promotion. Par exemple, un étudiant classé 5e dans une classe de 200 étudiants a une valeur de 5.</help>
+    <label>Niveau dans la classe</label>
+</CustomFieldTranslation>

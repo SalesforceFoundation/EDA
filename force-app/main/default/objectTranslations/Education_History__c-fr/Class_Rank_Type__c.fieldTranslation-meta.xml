@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank_Type__c</name>
+    <help>Indique comment le niveau dans la classe a été déterminé, par exemple en utilisant une échelle pondérée ou non pondérée.</help>
+    <label>Type de niveau dans la classe</label>
+    <picklistValues>
+        <masterLabel>Unweighted</masterLabel>
+        <translation>Non pondéré</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Weighted</masterLabel>
+        <translation>Pondéré</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Account__c</name>
+    <help>Het academische programma waaraan de student of het staflid is gekoppeld.</help>
+    <relationshipLabel>Cursusverbindingen</relationshipLabel>
+    <label>Academisch programma van contactpersoon</label>
+</CustomFieldTranslation>

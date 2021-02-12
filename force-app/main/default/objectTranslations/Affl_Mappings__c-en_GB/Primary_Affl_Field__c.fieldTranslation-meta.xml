@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary_Affl_Field__c</name>
+    <help>The label of the Contact field that holds the value of the primary Account for this record type.</help>
+    <label>Primary Affl Field</label>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Program_Enrollment__c</name>
+    <help>De primaire programma-inschrijving van een student. In het hoger onderwijs is dit meestal de academische major van de student.</help>
+    <relationshipLabel>Cursusverbindingen</relationshipLabel>
+    <label>Programma-inschrijvings-ID</label>
+</CustomFieldTranslation>

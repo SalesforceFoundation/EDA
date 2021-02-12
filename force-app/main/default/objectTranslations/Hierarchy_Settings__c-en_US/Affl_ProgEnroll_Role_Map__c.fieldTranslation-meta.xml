@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If the related setting, Affil Set Role When Create Prog Enroll, is enabled, this setting specifies the value to set for the Role on the Affiliation created with a Program Enrollment. --></help>
+    <label><!-- Affil Role When Create Prog Enroll --></label>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
+</CustomFieldTranslation>
