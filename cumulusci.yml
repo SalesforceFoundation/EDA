@@ -625,6 +625,8 @@ orgs:
         prerelease_namespaced:
             config_file: orgs/prerelease.json
             namespaced: True
+        regression:
+            config_file: orgs/regression.json
         trial:
             config_file: orgs/trial.json
 
