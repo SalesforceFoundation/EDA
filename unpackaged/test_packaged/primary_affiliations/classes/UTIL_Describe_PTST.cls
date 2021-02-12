@@ -35,7 +35,7 @@
 * Record Types are included in record type mapping.
 */
 @isTest
-private class UTIL_Describe_MTST {
+private class UTIL_Describe_PTST {
 	/*********************************************************************************************************
     * @description Test Method to verify that UTIL_Describe.populateRecordTypeInfoForSObject() includes the
     * inactive Account Record type in its mapping when Record Type validation is enabled.

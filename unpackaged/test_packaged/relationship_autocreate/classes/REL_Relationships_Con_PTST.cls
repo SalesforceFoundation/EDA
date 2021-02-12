@@ -31,11 +31,11 @@
 * @author Salesforce.org
 * @date 2020
 * @group Relationships
-* @description Unmanaged tests for UTIL_Describe used to verify inactive
-* Record Types are included in record type mapping.
+* @description Unmanaged tests for REL_Relationships_Con_TDTM to verify 
+* auto creation functionality works as expected with multiple mappings.
 */
 @isTest
-private class REL_Relationships_Con_AfterInsert_MTST {
+private class REL_Relationships_Con_PTST {
 
     private static Integer loopCount = 250;
 
