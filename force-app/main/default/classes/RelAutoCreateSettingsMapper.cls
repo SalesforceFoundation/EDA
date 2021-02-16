@@ -35,12 +35,12 @@
 * @description Mapper class for REL_Relationships_Con_TDTM; used to generate ContactRelAutoCreateMappingModel
 * models representing Relationship Auto Create mappings set for the Contact object. 
 */
-public virtual with sharing class MAPR_RELAutoCreateSettings {
+public virtual with sharing class RelAutoCreateSettingsMapper {
     /***************************************************************************************************************************
     * @description Instance for Singleton Pattern.
     ***************************************************************************************************************************/
     @TestVisible
-    private static MAPR_RELAutoCreateSettings instance;
+    private static RelAutoCreateSettingsMapper instance;
 
     /***************************************************************************************************************************
     * @description Cache for the relationship autocreate mappings
@@ -51,18 +51,18 @@ public virtual with sharing class MAPR_RELAutoCreateSettings {
     /***************************************************************************************************************************
     * @description Empty constructor is not public for Singleton Pattern.
     ***************************************************************************************************************************/
-    protected MAPR_RELAutoCreateSettings() {}
+    protected RelAutoCreateSettingsMapper() {}
 
     /***************************************************************************************************************************
     * @description Static method to get the current instance for Singleton pattern.
-    * @return The instance of MAPR_RELAutoCreateSettings.
+    * @return The instance of RelAutoCreateSettingsMapper.
     ***************************************************************************************************************************/
-    public static MAPR_RELAutoCreateSettings getInstance() {
-        if (MAPR_RELAutoCreateSettings.instance == null) {
-            MAPR_RELAutoCreateSettings.instance = new MAPR_RELAutoCreateSettings();
+    public static RelAutoCreateSettingsMapper getInstance() {
+        if (RelAutoCreateSettingsMapper.instance == null) {
+            RelAutoCreateSettingsMapper.instance = new RelAutoCreateSettingsMapper();
         }
 
-        return MAPR_RELAutoCreateSettings.instance;
+        return RelAutoCreateSettingsMapper.instance;
     }
 
     /***************************************************************************************************************************
@@ -70,24 +70,18 @@ public virtual with sharing class MAPR_RELAutoCreateSettings {
     * mappings set for the Contact object.
     * @return A list of ContactRelationshipAutoCreateMapping models.
     **************************************************************************************************************************/
-<<<<<<< HEAD:force-app/main/default/classes/RelAutoCreateSettingsMapper.cls
-    public virtual List<MODL_ConRelationshipAutoCreateMapping> getContactMappingModelsFromSettings(){
-        if(MAPR_RELAutoCreateSettings.relationshipAutocreateMappingsCache != null) {
-            return MAPR_RELAutoCreateSettings.relationshipAutocreateMappingsCache;
-=======
     public virtual List<ContactRelAutoCreateMappingModel> getContactMappingModelsFromSettings(){
         if(RelAutoCreateSettingsMapper.relationshipAutocreateMappingsCache != null) {
             return RelAutoCreateSettingsMapper.relationshipAutocreateMappingsCache;
->>>>>>> renamed MODL_ConRelationshipAutoCreateMapping to ContactRelAutoCreateMappingModel:src/classes/RelAutoCreateSettingsMapper.cls
         }
 
         List<Relationship_Auto_Create__c> relAutoCreateForContactsList = 
             UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
             
-        MAPR_RELAutoCreateSettings.relationshipAutocreateMappingsCache =
+        RelAutoCreateSettingsMapper.relationshipAutocreateMappingsCache =
             this.getContactMappingModelsFromMappings(relAutoCreateForContactsList);
 
-        return MAPR_RELAutoCreateSettings.relationshipAutocreateMappingsCache;
+        return RelAutoCreateSettingsMapper.relationshipAutocreateMappingsCache;
     }
 
     /***************************************************************************************************************************

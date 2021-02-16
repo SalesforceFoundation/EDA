@@ -122,7 +122,7 @@ tasks:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/test_packaged/relationship_autocreate
             unmanaged: True
-            
+
     deploy_unpackaged_test_metadata:
         description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
         class_path: cumulusci.tasks.salesforce.DeployBundles
