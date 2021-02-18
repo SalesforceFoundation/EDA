@@ -529,8 +529,7 @@ flows:
                     name: "Health Check"
                 checks:
                     - when: "not tasks.check_translation_workbench_enabled()"
-                      action: skip
-                      message: Skipped because Translation Workbench is disabled.
+                      action: hide
 
     qa_org_2gp:
         steps:
