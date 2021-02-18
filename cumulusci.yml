@@ -525,6 +525,8 @@ flows:
         steps:
             1:
                 task: deploy_unpackaged_healthcheck_tab_translation
+                ui_options:
+                    name: "Health Check"
                 checks:
                     - when: "not tasks.check_translation_workbench_enabled()"
                       action: skip
