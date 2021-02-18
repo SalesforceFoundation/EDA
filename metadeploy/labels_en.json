@@ -71,10 +71,6 @@
         "Einstein Analytics permission sets are not available.": {
             "message": "Einstein Analytics permission sets are not available.",
             "description": "shown if validation fails"
-        },
-        "Skipped because Translation Workbench is disabled.": {
-            "message": "Skipped because Translation Workbench is disabled.",
-            "description": "shown if validation fails"
         }
     }
 }
