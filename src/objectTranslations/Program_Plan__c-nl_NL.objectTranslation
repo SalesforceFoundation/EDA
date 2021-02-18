@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>Het academische programma waarvoor dit programmaplan is, bijvoorbeeld BA in filosofie.</help>
-    <relationshipLabel>Programmaplannen</relationshipLabel>
-    <label>Account</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <label>Beschrijving</label>
-  </fields>
-  <fields>
-    <name>End_Date__c</name>
-    <help>De einddatum voor het programmaplan.</help>
-    <label>Einddatum</label>
-  </fields>
-  <fields>
-    <name>Is_Primary__c</name>
-    <help>Geeft aan dat dit het programmaplan is dat momenteel van kracht is voor het geselecteerde academische programma.</help>
-    <label>Is primair</label>
-  </fields>
-  <fields>
-    <name>Start_Date__c</name>
-    <help>De datum dat dit programmaplan van kracht werd.</help>
-    <label>Begindatum</label>
-  </fields>
-  <fields>
-    <name>Status__c</name>
-    <help>Selecteer Huidig als er voor dit programmaplan studenten zijn ingeschreven of als studenten zich ervoor kunnen inschrijven. Selecteer anders Gearchiveerd.</help>
-    <label>Status</label>
-    <picklistValues>
-      <masterLabel>Current</masterLabel>
-      <translation>Huidig</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Archived</masterLabel>
-      <translation>Gearchiveerd</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Total_Required_Credits__c</name>
-    <help>Het totale aantal credits dat een student moet behalen voor dit programmaplan.</help>
-    <label>Totaal vereiste credits</label>
-  </fields>
-  <fields>
-    <name>Version__c</name>
-    <help>De versie van het programmaplan, bijvoorbeeld Lente 2020.</help>
-    <label>Versie</label>
-  </fields>
-  <layouts>
-    <layout>HEDA Program Plan Layout</layout>
-    <sections>
-      <label>Aangepaste koppelingen</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Naam van programmaplan</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Naam van programmaplan</label>
-  </standardFields>
+    <layouts>
+        <layout>HEDA Program Plan Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Naam van programmaplan</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Naam van programmaplan</label>
+    </standardFields>
+    <fields>
+        <name>Account__c</name>
+        <help>Het academische programma waarvoor dit programmaplan is, bijvoorbeeld BA in filosofie.</help>
+        <relationshipLabel>Programmaplannen</relationshipLabel>
+        <label>Account</label>
+    </fields>
+    <fields>
+        <name>Description__c</name>
+        <label>Beschrijving</label>
+    </fields>
+    <fields>
+        <name>End_Date__c</name>
+        <help>De einddatum voor het programmaplan.</help>
+        <label>Einddatum</label>
+    </fields>
+    <fields>
+        <name>Is_Primary__c</name>
+        <help>Geeft aan dat dit het programmaplan is dat momenteel van kracht is voor het geselecteerde academische programma.</help>
+        <label>Is primair</label>
+    </fields>
+    <fields>
+        <name>Start_Date__c</name>
+        <help>De datum dat dit programmaplan van kracht werd.</help>
+        <label>Begindatum</label>
+    </fields>
+    <fields>
+        <name>Status__c</name>
+        <help>Selecteer Huidig als er voor dit programmaplan studenten zijn ingeschreven of als studenten zich ervoor kunnen inschrijven. Selecteer anders Gearchiveerd.</help>
+        <label>Status</label>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation>Huidig</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Archived</masterLabel>
+            <translation>Gearchiveerd</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Total_Required_Credits__c</name>
+        <help>Het totale aantal credits dat een student moet behalen voor dit programmaplan.</help>
+        <label>Totaal vereiste credits</label>
+    </fields>
+    <fields>
+        <name>Version__c</name>
+        <help>De versie van het programmaplan, bijvoorbeeld Lente 2020.</help>
+        <label>Versie</label>
+    </fields>
 </CustomObjectTranslation>

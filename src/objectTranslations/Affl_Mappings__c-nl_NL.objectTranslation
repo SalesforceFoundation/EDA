@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account_Record_Type__c</name>
-    <help>Het label van het accountrecordtype dat wordt toegewezen.</help>
-    <label>Accountrecordtype</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment_Role__c</name>
-    <help>De rol die moet worden ingesteld op de programma-inschrijvingsrecord die automatisch wordt gemaakt als automatische programma-inschrijving is geselecteerd.</help>
-    <label>Automatische inschrijvingsrol</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment_Status__c</name>
-    <help>De status die moet worden ingesteld op de programma-inschrijvingsrecord die automatisch wordt gemaakt als automatische programma-inschrijving is geselecteerd.</help>
-    <label>Automatische inschrijvingsstatus</label>
-  </fields>
-  <fields>
-    <name>Auto_Program_Enrollment__c</name>
-    <help>Indien geselecteerd, wordt er automatisch een programma-inschrijvingsrecord gemaakt wanneer een gebruiker een affiliatierecord maakt met een account van dit recordtype.</help>
-    <label>Automatische inschrijving</label>
-  </fields>
-  <fields>
-    <name>Primary_Affl_Field__c</name>
-    <help>Het label van het contactpersoonveld dat de waarde bevat van de primaire account voor dit recordtype.</help>
-    <label>Primair affiliatieveld</label>
-  </fields>
+    <fields>
+        <name>Account_Record_Type__c</name>
+        <help>Het label van het accountrecordtype dat wordt toegewezen.</help>
+        <label>Accountrecordtype</label>
+    </fields>
+    <fields>
+        <name>Auto_Program_Enrollment_Role__c</name>
+        <help>De rol die moet worden ingesteld op de programma-inschrijvingsrecord die automatisch wordt gemaakt als automatische programma-inschrijving is geselecteerd.</help>
+        <label>Automatische inschrijvingsrol</label>
+    </fields>
+    <fields>
+        <name>Auto_Program_Enrollment_Status__c</name>
+        <help>De status die moet worden ingesteld op de programma-inschrijvingsrecord die automatisch wordt gemaakt als automatische programma-inschrijving is geselecteerd.</help>
+        <label>Automatische inschrijvingsstatus</label>
+    </fields>
+    <fields>
+        <name>Auto_Program_Enrollment__c</name>
+        <help>Indien geselecteerd, wordt er automatisch een programma-inschrijvingsrecord gemaakt wanneer een gebruiker een affiliatierecord maakt met een account van dit recordtype.</help>
+        <label>Automatische inschrijving</label>
+    </fields>
+    <fields>
+        <name>Primary_Affl_Field__c</name>
+        <help>Het label van het contactpersoonveld dat de waarde bevat van de primaire account voor dit recordtype.</help>
+        <label>Primair affiliatieveld</label>
+    </fields>
 </CustomObjectTranslation>

@@ -8,6 +8,31 @@
         <plural>true</plural>
         <value>Attributes</value>
     </caseValues>
+    <layouts>
+        <layout>EDA Credential Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EDA Student Characteristic Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- Allows educational institutions to track licenses, certifications, or endorsements earned by staff or students. --></description>
+        <label><!-- Credential --></label>
+        <name>Credential</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Allows educational institutions to track important student characteristics that might affect students&apos; education. --></description>
+        <label><!-- Student Characteristic --></label>
+        <name>Student_Characteristic</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- The agency that provided or certified the credential. --></help>
         <label><!-- Agency --></label>
@@ -190,29 +215,4 @@
             <translation><!-- Sociology --></translation>
         </picklistValues>
     </fields>
-    <layouts>
-        <layout>EDA Credential Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>EDA Student Characteristic Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <recordTypes>
-        <description><!-- Allows educational institutions to track licenses, certifications, or endorsements earned by staff or students. --></description>
-        <label><!-- Credential --></label>
-        <name>Credential</name>
-    </recordTypes>
-    <recordTypes>
-        <description><!-- Allows educational institutions to track important student characteristics that might affect students&apos; education. --></description>
-        <label><!-- Student Characteristic --></label>
-        <name>Student_Characteristic</name>
-    </recordTypes>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

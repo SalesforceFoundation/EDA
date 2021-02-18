@@ -1,139 +1,139 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Applicant_Decision_Date__c</name>
-    <help>La date à laquelle l'étudiant décide de s'inscrire ou non.</help>
-    <label>Date de décision du demandeur</label>
-  </fields>
-  <fields>
-    <name>Applicant__c</name>
-    <help>Le contact qui effectue une demande auprès de l'établissement ou pour le programme.</help>
-    <relationshipLabel>Demandes (demandeur)</relationshipLabel>
-    <label>Demandeur</label>
-  </fields>
-  <fields>
-    <name>Application_Date__c</name>
-    <help>La date et l’heure de soumission de la demande.</help>
-    <label>Date de la demande</label>
-  </fields>
-  <fields>
-    <name>Application_Decision_Date__c</name>
-    <help>La date à laquelle l'établissement décide d'accepter ou non le demandeur.</help>
-    <label>Date de décision de la demande</label>
-  </fields>
-  <fields>
-    <name>Application_JSON__c</name>
-    <label>JSON de la demande</label>
-  </fields>
-  <fields>
-    <name>Application_Status__c</name>
-    <help>Le statut du processus de demande.</help>
-    <label>Statut de la demande</label>
-    <picklistValues>
-      <masterLabel>Submitted</masterLabel>
-      <translation>Soumise</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Incomplete</masterLabel>
-      <translation>Incomplète</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Received</masterLabel>
-      <translation>Reçue</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>In Review</masterLabel>
-      <translation>Étude en cours</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Waitlist</masterLabel>
-      <translation>En liste d'attente</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Admit</masterLabel>
-      <translation>Admise</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Admit with Conditions</masterLabel>
-      <translation>Admise avec des conditions</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Deny</masterLabel>
-      <translation>Refus</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Deferred Offer</masterLabel>
-      <translation>Offre différée</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Accepted Offer</masterLabel>
-      <translation>Offre acceptée</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Declined Offer</masterLabel>
-      <translation>Offre refusée</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Application_Type__c</name>
-    <help>Le type de programme ou parcours auquel le demandeur postule.</help>
-    <label>Type de demande</label>
-    <picklistValues>
-      <masterLabel>Graduate</masterLabel>
-      <translation>Études supérieures</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Transfer</masterLabel>
-      <translation>Transfert</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Undergraduate</masterLabel>
-      <translation>Premier cycle</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Applying_To__c</name>
-    <help>Le type de programme académique ou mémoire auquel le demandeur postule.</help>
-    <relationshipLabel>Demandes</relationshipLabel>
-    <label>Demande de</label>
-  </fields>
-  <fields>
-    <name>Initial_Creation_Date__c</name>
-    <help>La date à laquelle la demande a été initialement créée par le demandeur.</help>
-    <label>Date de création initiale</label>
-  </fields>
-  <fields>
-    <name>Preparer__c</name>
-    <help>Le contact qui prépare la demande, par exemple un tuteur ou un assistant qui aide une personne ayant des besoins particuliers.</help>
-    <relationshipLabel>Demandes (préparateur)</relationshipLabel>
-    <label>Préparateur</label>
-  </fields>
-  <fields>
-    <name>Term__c</name>
-    <help>La période scolaire à laquelle le demandeur souhaite s'inscrire.</help>
-    <relationshipLabel>Demandes</relationshipLabel>
-    <label>Période scolaire</label>
-  </fields>
-  <layouts>
-    <layout>EDA Application Layout</layout>
-    <sections>
-      <label>Liens personnalisés</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Nom de la demande</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Nom de la demande</label>
-  </standardFields>
-  <gender>Feminine</gender>
-  <startsWith>Consonant</startsWith>
-  <caseValues>
-    <plural>false</plural>
-    <value>Demande</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Demandes</value>
-  </caseValues>
+    <layouts>
+        <layout>EDA Application Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de la demande</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Nom de la demande</label>
+    </standardFields>
+    <gender>Feminine</gender>
+    <startsWith>Consonant</startsWith>
+    <caseValues>
+        <plural>false</plural>
+        <value>Demande</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Demandes</value>
+    </caseValues>
+    <fields>
+        <name>Applicant_Decision_Date__c</name>
+        <help>La date à laquelle l&apos;étudiant décide de s&apos;inscrire ou non.</help>
+        <label>Date de décision du demandeur</label>
+    </fields>
+    <fields>
+        <name>Applicant__c</name>
+        <help>Le contact qui effectue une demande auprès de l&apos;établissement ou pour le programme.</help>
+        <relationshipLabel>Demandes (demandeur)</relationshipLabel>
+        <label>Demandeur</label>
+    </fields>
+    <fields>
+        <name>Application_Date__c</name>
+        <help>La date et l’heure de soumission de la demande.</help>
+        <label>Date de la demande</label>
+    </fields>
+    <fields>
+        <name>Application_Decision_Date__c</name>
+        <help>La date à laquelle l&apos;établissement décide d&apos;accepter ou non le demandeur.</help>
+        <label>Date de décision de la demande</label>
+    </fields>
+    <fields>
+        <name>Application_JSON__c</name>
+        <label>JSON de la demande</label>
+    </fields>
+    <fields>
+        <name>Application_Status__c</name>
+        <help>Le statut du processus de demande.</help>
+        <label>Statut de la demande</label>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation>Soumise</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incomplete</masterLabel>
+            <translation>Incomplète</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Received</masterLabel>
+            <translation>Reçue</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Review</masterLabel>
+            <translation>Étude en cours</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waitlist</masterLabel>
+            <translation>En liste d&apos;attente</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Admit</masterLabel>
+            <translation>Admise</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Admit with Conditions</masterLabel>
+            <translation>Admise avec des conditions</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deny</masterLabel>
+            <translation>Refus</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deferred Offer</masterLabel>
+            <translation>Offre différée</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Accepted Offer</masterLabel>
+            <translation>Offre acceptée</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Declined Offer</masterLabel>
+            <translation>Offre refusée</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Application_Type__c</name>
+        <help>Le type de programme ou parcours auquel le demandeur postule.</help>
+        <label>Type de demande</label>
+        <picklistValues>
+            <masterLabel>Graduate</masterLabel>
+            <translation>Études supérieures</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transfer</masterLabel>
+            <translation>Transfert</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Undergraduate</masterLabel>
+            <translation>Premier cycle</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Applying_To__c</name>
+        <help>Le type de programme académique ou mémoire auquel le demandeur postule.</help>
+        <relationshipLabel>Demandes</relationshipLabel>
+        <label>Demande de</label>
+    </fields>
+    <fields>
+        <name>Initial_Creation_Date__c</name>
+        <help>La date à laquelle la demande a été initialement créée par le demandeur.</help>
+        <label>Date de création initiale</label>
+    </fields>
+    <fields>
+        <name>Preparer__c</name>
+        <help>Le contact qui prépare la demande, par exemple un tuteur ou un assistant qui aide une personne ayant des besoins particuliers.</help>
+        <relationshipLabel>Demandes (préparateur)</relationshipLabel>
+        <label>Préparateur</label>
+    </fields>
+    <fields>
+        <name>Term__c</name>
+        <help>La période scolaire à laquelle le demandeur souhaite s&apos;inscrire.</help>
+        <relationshipLabel>Demandes</relationshipLabel>
+        <label>Période scolaire</label>
+    </fields>
 </CustomObjectTranslation>

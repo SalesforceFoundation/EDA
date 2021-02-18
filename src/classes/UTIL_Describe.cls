@@ -290,10 +290,8 @@ public class UTIL_Describe {
     * PICKLIST, MULTIPICKLIST, CURRENCY, DOUBLE, INTEGER, PERCENT, PHONE, EMAIL
     * @return DescribeFieldResult Map of DescribeFieldResult
     */
-    
     public static Map<String, Schema.DescribeFieldResult> getFieldsOfType(String objectName, String type) {
 
-        
         Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
         Map<String, Schema.DescribeFieldResult> fields = new Map<String, Schema.DescribeFieldResult>();
 
@@ -1067,5 +1065,32 @@ public class UTIL_Describe {
         }
 
         return sObjectTypeToChildRelationshipNames.get(sObjectTypeName);
+    }
+
+    /*******************************************************************************************************
+    * @description Get a map of Schema.RecordTypeInfo by Record Type name 
+    * @return A map of Schema.RecordTypeInfo by Record Type name
+    */
+    public static Map<String, Schema.RecordTypeInfo> getRecordTypeInfoDevNameMap(String objectName) {
+        if (recordTypeInfoByDeveloperName.get(objectName) == null) {
+            populateRecordTypeInfoForSObject(objectName);
+        }
+        return recordTypeInfoByDeveloperName.get(objectName);
+    }
+
+    /*******************************************************************************************************
+    * @description Determine if a specified field is a lookup to the specified SObjectType
+    * @param  fieldDescribe The Schema.DescribeFieldResult of a specified field
+    * @param  sObjectType   The SObjectType for the lookup object
+    * @return True if the specified field is a lookup to the specified SObjectType, false otherwise
+    *******************************************************************************************************/ 
+    public static Boolean isLookupFieldTo(Schema.DescribeFieldResult fieldDescribe, SObjectType sObjectType) {
+        Set<Schema.SObjectType> mappedLookupTypesSet = new Set<Schema.SObjectType>(fieldDescribe.getReferenceTo());
+
+        if (mappedLookupTypesSet.isEmpty() == true || mappedLookupTypesSet.contains(sObjectType) == false) {
+            return false;
+        }
+
+        return true;
     }
 }

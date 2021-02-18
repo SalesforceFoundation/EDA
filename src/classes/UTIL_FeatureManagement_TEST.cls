@@ -60,6 +60,20 @@ public class UTIL_FeatureManagement_TEST {
         );
     }
 
+    /*******************************************************************************************************
+    * @description Tests setPackageDateValue() method in UTIL_FeatureManagement.
+    ********************************************************************************************************/
+    @isTest
+    private static void callsSetPackageDateValue() {
+
+        UTIL_FeatureManagement featureManager = new UTIL_FeatureManagement();
+        Test.startTest();
+            featureManager.setPackageDateValue('SettingsHealthCheckLastRunDate', Date.valueOf('2018-1-1'));
+        Test.stopTest();
+
+        System.assertEquals(Date.valueOf('2018-1-1'), featureManager.checkPackageDateValue('SettingsHealthCheckLastRunDate'), 'Date retrieved should be the one that was set');
+    }
+
     /*******************************************************************************************************************
     * @description Mock for UTIL_FeatureManagement instance
     */

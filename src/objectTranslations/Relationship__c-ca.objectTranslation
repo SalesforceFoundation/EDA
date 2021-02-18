@@ -1,239 +1,239 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Contact__c</name>
-    <help>Seleccioneu la persona per a la qual vulgueu crear el registre de relació.</help>
-    <relationshipLabel>Relacions</relationshipLabel>
-    <label>Contacte</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>Informació addicional sobre com es relacionen aquestes dues persones.</help>
-    <label>Descripció</label>
-  </fields>
-  <fields>
-    <name>Emergency_Contact__c</name>
-    <help>Indica que el contacte relacionat és un contacte d’emergència.</help>
-    <label>Contacte d'emergència</label>
-  </fields>
-  <fields>
-    <name>ReciprocalRelationship__c</name>
-    <help>Cerqueu el registre de relació recíproca relacionat. Aquest camp s'omple automàticament. L’actualització manual d’aquest camp pot provocar errors.</help>
-    <relationshipLabel>Relacions</relationshipLabel>
-    <label>Relació recíproca</label>
-  </fields>
-  <fields>
-    <name>RelatedContact__c</name>
-    <help>Seleccioneu la persona relacionada amb el contacte.</help>
-    <relationshipLabel>Llista de relacions ocultades</relationshipLabel>
-    <label>Contacte relacionat</label>
-  </fields>
-  <fields>
-    <name>Relationship_Explanation__c</name>
-    <help>Una frase que clarifica qui és qui a la relació. Per exemple, Joe Ada és l'empresari de Sara Cordova. Aquest camp és només de lectura.</help>
-    <label>Explicació de la relació</label>
-  </fields>
-  <fields>
-    <name>SYSTEM_SystemCreated__c</name>
-    <help>Camp del sistema que indica si aquesta relació es va crear automàticament com a recíproca a altres relacions.</help>
-    <label>_SYSTEM: SystemCreated</label>
-  </fields>
-  <fields>
-    <name>Status__c</name>
-    <help>Estat de la relació, per exemple, actual o anterior.</help>
-    <label>Estat</label>
-    <picklistValues>
-      <masterLabel>Current</masterLabel>
-      <translation>Actual</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Former</masterLabel>
-      <translation>Antic</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>Type__c</name>
-    <help>Descriu com està connectat el contacte relacionat amb el contacte, per exemple, amic, company de feina, tia, etc.</help>
-    <label>Tipus</label>
-    <picklistValues>
-      <masterLabel>Father</masterLabel>
-      <translation>Pare</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepfather</masterLabel>
-      <translation>Padrastre</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Mother</masterLabel>
-      <translation>Mare</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepmother</masterLabel>
-      <translation>Madrastra</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Parent</masterLabel>
-      <translation>Pare</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepparent</masterLabel>
-      <translation>Padrastre</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Parent</masterLabel>
-      <translation>Pare adoptiu</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Daughter</masterLabel>
-      <translation>Filla</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepdaughter</masterLabel>
-      <translation>Fillastra</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Daughter</masterLabel>
-      <translation>Filla adoptiva</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Son</masterLabel>
-      <translation>Fill</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepson</masterLabel>
-      <translation>Fillastre</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Son</masterLabel>
-      <translation>Fill adoptiu</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Child</masterLabel>
-      <translation>Nen</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Stepchild</masterLabel>
-      <translation>Fillastre</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Foster Child</masterLabel>
-      <translation>Nen adoptat</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Husband</masterLabel>
-      <translation>Marit</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Wife</masterLabel>
-      <translation>Dona</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Partner</masterLabel>
-      <translation>Company</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Aunt</masterLabel>
-      <translation>Tia</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Uncle</masterLabel>
-      <translation>Oncle</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Parent&apos;s Sibling</masterLabel>
-      <translation><!-- Parent&apos;s Sibling --></translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Niece</masterLabel>
-      <translation><!-- Niece --></translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Nephew</masterLabel>
-      <translation><!-- Nephew --></translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Sibling&apos;s Child</masterLabel>
-      <translation><!-- Sibling&apos;s Child --></translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Cousin</masterLabel>
-      <translation>Cosí/na</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandmother</masterLabel>
-      <translation>Àvia</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandfather</masterLabel>
-      <translation>Avi</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandparent</masterLabel>
-      <translation>Avi</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandson</masterLabel>
-      <translation>Net</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Granddaughter</masterLabel>
-      <translation>Neta</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Grandchild</masterLabel>
-      <translation>Net/a</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Guardian</masterLabel>
-      <translation>Tutor legal</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Dependent</masterLabel>
-      <translation>Dependent</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Employer</masterLabel>
-      <translation>Empresari</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Employee</masterLabel>
-      <translation>Empleat</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Friend</masterLabel>
-      <translation>Amic</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Family</masterLabel>
-      <translation>Família</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Coworker</masterLabel>
-      <translation>Company de feina</translation>
-    </picklistValues>
-  </fields>
-  <validationRules>
-    <errorMessage>En lloc de canviar els contactes d'aquesta relació, suprimiu aquest registre o, si escau, afegiu una data de finalització i actualitzeu l'estat a anterior. A continuació, creeu un nou registre de relació entre els nous contactes.</errorMessage>
-    <name>Contact_Do_Not_Change</name>
-  </validationRules>
-  <validationRules>
-    <errorMessage>En lloc de canviar els contactes d'aquesta relació, suprimiu aquest registre o, si escau, afegiu una data de finalització i actualitzeu l'estat a anterior. A continuació, creeu un nou registre de relació entre els nous contactes.</errorMessage>
-    <name>Related_Contact_Do_Not_Change</name>
-  </validationRules>
-  <layouts>
-    <layout>HEDA Relationship Layout</layout>
-    <sections>
-      <label>Informació de la relació</label>
-      <section>Relationship Information</section>
-    </sections>
-    <sections>
-      <label>Enllaços personalitzats</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Clau de relació</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Clau de relació</label>
-  </standardFields>
+    <validationRules>
+        <errorMessage>En lloc de canviar els contactes d&apos;aquesta relació, suprimiu aquest registre o, si escau, afegiu una data de finalització i actualitzeu l&apos;estat a anterior. A continuació, creeu un nou registre de relació entre els nous contactes.</errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>En lloc de canviar els contactes d&apos;aquesta relació, suprimiu aquest registre o, si escau, afegiu una data de finalització i actualitzeu l&apos;estat a anterior. A continuació, creeu un nou registre de relació entre els nous contactes.</errorMessage>
+        <name>Related_Contact_Do_Not_Change</name>
+    </validationRules>
+    <layouts>
+        <layout>HEDA Relationship Layout</layout>
+        <sections>
+            <label>Informació de la relació</label>
+            <section>Relationship Information</section>
+        </sections>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clau de relació</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Clau de relació</label>
+    </standardFields>
+    <fields>
+        <name>Contact__c</name>
+        <help>Seleccioneu la persona per a la qual vulgueu crear el registre de relació.</help>
+        <relationshipLabel>Relacions</relationshipLabel>
+        <label>Contacte</label>
+    </fields>
+    <fields>
+        <name>Description__c</name>
+        <help>Informació addicional sobre com es relacionen aquestes dues persones.</help>
+        <label>Descripció</label>
+    </fields>
+    <fields>
+        <name>Emergency_Contact__c</name>
+        <help>Indica que el contacte relacionat és un contacte d’emergència.</help>
+        <label>Contacte d&apos;emergència</label>
+    </fields>
+    <fields>
+        <name>ReciprocalRelationship__c</name>
+        <help>Cerqueu el registre de relació recíproca relacionat. Aquest camp s&apos;omple automàticament. L’actualització manual d’aquest camp pot provocar errors.</help>
+        <relationshipLabel>Relacions</relationshipLabel>
+        <label>Relació recíproca</label>
+    </fields>
+    <fields>
+        <name>RelatedContact__c</name>
+        <help>Seleccioneu la persona relacionada amb el contacte.</help>
+        <relationshipLabel>Llista de relacions ocultades</relationshipLabel>
+        <label>Contacte relacionat</label>
+    </fields>
+    <fields>
+        <name>Relationship_Explanation__c</name>
+        <help>Una frase que clarifica qui és qui a la relació. Per exemple, Joe Ada és l&apos;empresari de Sara Cordova. Aquest camp és només de lectura.</help>
+        <label>Explicació de la relació</label>
+    </fields>
+    <fields>
+        <name>SYSTEM_SystemCreated__c</name>
+        <help>Camp del sistema que indica si aquesta relació es va crear automàticament com a recíproca a altres relacions.</help>
+        <label>_SYSTEM: SystemCreated</label>
+    </fields>
+    <fields>
+        <name>Status__c</name>
+        <help>Estat de la relació, per exemple, actual o anterior.</help>
+        <label>Estat</label>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation>Actual</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Former</masterLabel>
+            <translation>Antic</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>Type__c</name>
+        <help>Descriu com està connectat el contacte relacionat amb el contacte, per exemple, amic, company de feina, tia, etc.</help>
+        <label>Tipus</label>
+        <picklistValues>
+            <masterLabel>Father</masterLabel>
+            <translation>Pare</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepfather</masterLabel>
+            <translation>Padrastre</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mother</masterLabel>
+            <translation>Mare</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepmother</masterLabel>
+            <translation>Madrastra</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parent</masterLabel>
+            <translation>Pare</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepparent</masterLabel>
+            <translation>Padrastre</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Parent</masterLabel>
+            <translation>Pare adoptiu</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Daughter</masterLabel>
+            <translation>Filla</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepdaughter</masterLabel>
+            <translation>Fillastra</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Daughter</masterLabel>
+            <translation>Filla adoptiva</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Son</masterLabel>
+            <translation>Fill</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepson</masterLabel>
+            <translation>Fillastre</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Son</masterLabel>
+            <translation>Fill adoptiu</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Child</masterLabel>
+            <translation>Nen</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stepchild</masterLabel>
+            <translation>Fillastre</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Foster Child</masterLabel>
+            <translation>Nen adoptat</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Husband</masterLabel>
+            <translation>Marit</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wife</masterLabel>
+            <translation>Dona</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation>Company</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Aunt</masterLabel>
+            <translation>Tia</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uncle</masterLabel>
+            <translation>Oncle</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parent&apos;s Sibling</masterLabel>
+            <translation>Germà/germana de progenitor</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Niece</masterLabel>
+            <translation>Neboda</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nephew</masterLabel>
+            <translation>Nebot</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sibling&apos;s Child</masterLabel>
+            <translation>Fill/a de germà/germana</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cousin</masterLabel>
+            <translation>Cosí/na</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandmother</masterLabel>
+            <translation>Àvia</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandfather</masterLabel>
+            <translation>Avi</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandparent</masterLabel>
+            <translation>Avi</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandson</masterLabel>
+            <translation>Net</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Granddaughter</masterLabel>
+            <translation>Neta</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Grandchild</masterLabel>
+            <translation>Net/a</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Guardian</masterLabel>
+            <translation>Tutor legal</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dependent</masterLabel>
+            <translation>Dependent</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employer</masterLabel>
+            <translation>Empresari</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee</masterLabel>
+            <translation>Empleat</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Friend</masterLabel>
+            <translation>Amic</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Family</masterLabel>
+            <translation>Família</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coworker</masterLabel>
+            <translation>Company de feina</translation>
+        </picklistValues>
+    </fields>
 </CustomObjectTranslation>
