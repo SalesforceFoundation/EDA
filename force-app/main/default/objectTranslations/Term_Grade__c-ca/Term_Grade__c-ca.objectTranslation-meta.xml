@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom de qualificació del període</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Nom de qualificació del període</label>
+    </standardFields>
+</CustomObjectTranslation>

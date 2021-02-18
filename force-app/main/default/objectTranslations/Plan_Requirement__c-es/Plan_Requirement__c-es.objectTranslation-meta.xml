@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Plan Requirement Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de requisito de plan</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Nombre de requisito de plan</label>
+    </standardFields>
+    <gender>Masculine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <value>Requisito del plan</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Requisitos del plan</value>
+    </caseValues>
+</CustomObjectTranslation>

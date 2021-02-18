@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Check it if you intent to manage the record yourself. Be aware that updates to the package won&apos;t update the record. --></help>
+    <label><!-- User Managed --></label>
+    <name>User_Managed__c</name>
+</CustomFieldTranslation>

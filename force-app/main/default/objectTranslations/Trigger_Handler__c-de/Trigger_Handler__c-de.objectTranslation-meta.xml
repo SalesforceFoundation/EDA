@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Trigger Handler Layout</layout>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Name der Auslöserverarbeitung</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Name der Auslöserverarbeitung</label>
+    </standardFields>
+    <gender>Feminine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <value>Auslöserverarbeitung</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Accusative</caseType>
+        <value>Auslöserverarbeitung</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Dative</caseType>
+        <value>Auslöserverarbeitung</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <value>Auslöserverarbeitung</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <value>Auslöserverarbeitungen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Accusative</caseType>
+        <value>Auslöserverarbeitungen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Dative</caseType>
+        <value>Auslöserverarbeitungen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <value>Auslöserverarbeitungen</value>
+    </caseValues>
+</CustomObjectTranslation>

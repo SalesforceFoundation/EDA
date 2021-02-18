@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Female__c</name>
+    <help>Der Wert, der für die Einstellung &quot;Wechselseitig&quot; verwendet wird, wenn als Geschlecht oder Anrede des Kontakts weiblich angegeben ist.</help>
+    <label>Weiblich</label>
+</CustomFieldTranslation>

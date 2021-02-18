@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Affiliation Layout</layout>
+        <sections>
+            <label>Affiliatiegegevens</label>
+            <section>Affiliation Information</section>
+        </sections>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Affiliatiesleutel</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Affiliatiesleutel</label>
+    </standardFields>
+</CustomObjectTranslation>

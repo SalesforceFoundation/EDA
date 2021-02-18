@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Degree_Earned__c</fullName>
+    <description>If applicable, the level of the degree the Contact earned at this Educational Institution.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If applicable, the level of the degree the Contact earned at this Educational Institution.</inlineHelpText>
+    <label>Degree Earned</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>GED</fullName>
+                <default>false</default>
+                <label>GED</label>
+            </value>
+            <value>
+                <fullName>High School Diploma</fullName>
+                <default>false</default>
+                <label>High School Diploma</label>
+            </value>
+            <value>
+                <fullName>AA</fullName>
+                <default>false</default>
+                <label>AA</label>
+            </value>
+            <value>
+                <fullName>AS</fullName>
+                <default>false</default>
+                <label>AS</label>
+            </value>
+            <value>
+                <fullName>BA</fullName>
+                <default>false</default>
+                <label>BA</label>
+            </value>
+            <value>
+                <fullName>BS</fullName>
+                <default>false</default>
+                <label>BS</label>
+            </value>
+            <value>
+                <fullName>MA</fullName>
+                <default>false</default>
+                <label>MA</label>
+            </value>
+            <value>
+                <fullName>MBA</fullName>
+                <default>false</default>
+                <label>MBA</label>
+            </value>
+            <value>
+                <fullName>MS</fullName>
+                <default>false</default>
+                <label>MS</label>
+            </value>
+            <value>
+                <fullName>JD</fullName>
+                <default>false</default>
+                <label>JD</label>
+            </value>
+            <value>
+                <fullName>MD</fullName>
+                <default>false</default>
+                <label>MD</label>
+            </value>
+            <value>
+                <fullName>PhD</fullName>
+                <default>false</default>
+                <label>PhD</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

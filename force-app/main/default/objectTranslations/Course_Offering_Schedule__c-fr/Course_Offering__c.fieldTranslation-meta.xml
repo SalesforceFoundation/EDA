@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Offering__c</name>
+    <help>L&apos;offre de cours à laquelle ce calendrier correspond.</help>
+    <relationshipLabel>Calendriers de l&apos;offre de cours</relationshipLabel>
+    <label>Offre de cours</label>
+</CustomFieldTranslation>

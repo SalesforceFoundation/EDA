@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Is_Primary__c</name>
+    <help>Indica si este Plan del programa está vigente en estos momentos para el Programa académico seleccionado.</help>
+    <label>Es Principal</label>
+</CustomFieldTranslation>

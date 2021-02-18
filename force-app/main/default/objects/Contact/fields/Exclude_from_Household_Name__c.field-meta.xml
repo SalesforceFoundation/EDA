@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exclude_from_Household_Name__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When selected, this Contact is excluded from the Household Name.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When selected, this Contact is excluded from the Household Name.</inlineHelpText>
+    <label>Exclude from Household Name</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Contact__c</name>
+    <help>L’alumne per al qual es registra la qualificació. Quan es deixa en blanc, el Contacte es copia automàticament de la connexió de curs vàlida en desar-lo.</help>
+    <relationshipLabel>Qualificacions del període</relationshipLabel>
+    <label>Contacte</label>
+</CustomFieldTranslation>

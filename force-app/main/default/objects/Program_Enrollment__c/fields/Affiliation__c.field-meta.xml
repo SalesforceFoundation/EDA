@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Affiliation__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is auto-populated with the Affiliation record that represents the student&apos;s enrollment in this Program.</inlineHelpText>
+    <label>Affiliation</label>
+    <referenceTo>Affiliation__c</referenceTo>
+    <relationshipLabel>Program Enrollments</relationshipLabel>
+    <relationshipName>Program_Enrollment</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

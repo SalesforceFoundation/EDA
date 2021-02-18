@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Represents the Status of the Course Connection. --></help>
+    <label><!-- Status --></label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Current</masterLabel>
+        <translation><!-- Current --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Former</masterLabel>
+        <translation><!-- Former --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

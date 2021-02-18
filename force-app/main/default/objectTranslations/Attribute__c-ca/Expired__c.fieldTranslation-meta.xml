@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Expired__c</name>
+    <help>Indica si l&apos;atribut ha caducat. Se selecciona automàticament si la data de finalització de l&apos;atribut és anterior.</help>
+    <label>Caducat</label>
+</CustomFieldTranslation>

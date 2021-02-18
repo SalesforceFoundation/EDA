@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Affiliation__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>If this Contact is affiliated with an Academic Program through an existing Program Enrollment record, and that Program Enrollment is related to this Course Connection, this Affiliation field is auto-populated with the Program Enrollment&apos;s Affiliation. If both conditions aren&apos;t true, then this Affiliation field is left blank.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Academic Program associated with this Course Connection. Represents a Contact-Account Affiliation.</inlineHelpText>
+    <label>Affiliation</label>
+    <referenceTo>Affiliation__c</referenceTo>
+    <relationshipLabel>Course Connection</relationshipLabel>
+    <relationshipName>Course_Enrollment</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

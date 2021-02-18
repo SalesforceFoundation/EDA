@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Attendance_Type__c</name>
+    <help>Indica si esta impuntualidad o ausencia fue para una clase o durante el día.</help>
+    <label>Tipo de asistencia</label>
+    <picklistValues>
+        <masterLabel>Class Absence</masterLabel>
+        <translation>Ausencia de clase</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Class Tardy</masterLabel>
+        <translation>Retraso de clase</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Day Absence</masterLabel>
+        <translation>Ausencia de día</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Day Tardy</masterLabel>
+        <translation>Retraso de día</translation>
+    </picklistValues>
+</CustomFieldTranslation>

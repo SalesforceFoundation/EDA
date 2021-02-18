@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Application_Submitted_Date__c</name>
+    <help>La data en què l’alumne va sol·licitar l’admissió al programa.</help>
+    <label>Data de presentació de la sol·licitud</label>
+</CustomFieldTranslation>

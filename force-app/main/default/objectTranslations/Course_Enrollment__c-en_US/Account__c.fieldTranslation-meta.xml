@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The Academic Program that the Contact is associated with. --></help>
+    <label><!-- Contact&apos;s Academic Program --></label>
+    <name>Account__c</name>
+    <relationshipLabel><!-- Course Connections --></relationshipLabel>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Campaign_Types__c</name>
+    <help>Per a les relacions creades automàticament basades en membres de la campanya, la llista de tipus de campanyes a què s’aplica l’automatització. Aquest camp estarà buit per a la creació automàtica de relacions basades en contactes.</help>
+    <label>Tipus de campanya</label>
+</CustomFieldTranslation>

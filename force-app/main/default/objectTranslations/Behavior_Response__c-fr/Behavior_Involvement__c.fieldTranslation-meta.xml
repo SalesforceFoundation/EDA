@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Behavior_Involvement__c</name>
+    <help>L&apos;enregistrement Implication du comportement auquel cette Réaction comportementale correspond.</help>
+    <relationshipLabel>Réactions comportementales</relationshipLabel>
+    <label>Implication du comportement</label>
+</CustomFieldTranslation>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Naming_Exclusions__c</name>
+    <help>Si seleccioneu l&apos;opció Denominació domèstica, s&apos;exclou aquest contacte de la denominació domèstica. NOTA: Les opcions de salutació formal de la llar i salutació informal de la llar no estan actualment vinculades a la funcionalitat del producte existent.</help>
+    <label>Exclusions de nomenaments</label>
+    <picklistValues>
+        <masterLabel>Household__c.Name</masterLabel>
+        <translation>Household__c.Name</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Household__c.Formal_Greeting__c</masterLabel>
+        <translation>Household__c.Formal_Greeting__c</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Household__c.Informal_Greeting__c</masterLabel>
+        <translation>Household__c.Informal_Greeting__c</translation>
+    </picklistValues>
+</CustomFieldTranslation>

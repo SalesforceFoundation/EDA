@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Parent_Facility__c</name>
+    <help>Geeft optioneel de faciliteit aan waar deze faciliteit deel van uitmaakt. Als deze faciliteit bijvoorbeeld een klaslokaal is, is de bovenliggende faciliteit het gebouw waarin het klaslokaal zich bevindt.</help>
+    <relationshipLabel>Faciliteiten</relationshipLabel>
+    <label>Bovenliggende faciliteit</label>
+</CustomFieldTranslation>

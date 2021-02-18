@@ -1,0 +1,1361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customApplications>
+        <label>EDA</label>
+        <name>HEDA</name>
+    </customApplications>
+    <customLabels>
+        <label>対応付けられた主所属は取引先責任者レコードの特別な [主所属] セクションに表示されます。取引先レコードタイプで [主] として設定された値は、以下で定義されているとおりに取引先責任者レコードの対応する項目に表示されます。詳細は、次を参照してください。</label>
+        <name>AfflMappingsDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>選択した場合、プログラム登録が削除されると、その関連所属が削除されます。選択しない場合、所属は維持され、その状況は、[削除されていない所属の状況] で定義された値に設定されます。</label>
+        <name>AfflProgEnrollDeleted</name>
+    </customLabels>
+    <customLabels>
+        <label>この [出席イベント] で指定した取引先責任者と同じ取引先責任者を持つ履修科目を指定してください。</label>
+        <name>AttendanceCourseConnectionContactMismatch</name>
+    </customLabels>
+    <customLabels>
+        <label>無効な自動作成リレーション設定が [EDA 設定] | [リレーション] | [自動作成] で定義されています。無効な設定を削除または編集して、もう一度お試しください。</label>
+        <name>AutoCreateFieldError</name>
+    </customLabels>
+    <customLabels>
+        <label>バッチの開始中に問題が発生しました。</label>
+        <name>BatchJobRunningProblem</name>
+    </customLabels>
+    <customLabels>
+        <label>検索条件項目を設定するか、検索条件項目と検索条件値の両方を設定してください。</label>
+        <name>BothFieldAndValue</name>
+    </customLabels>
+    <customLabels>
+        <label>[学期評価] または [出席イベント] に関連付けられた履修科目の取引先責任者または開講科目を変更することはできません。別の取引先責任者または開講科目を使用する履修科目が必要な場合は、新しい履修科目を作成してください。</label>
+        <name>CannotChangeContactAndCourseOffering</name>
+    </customLabels>
+    <customLabels>
+        <label>1 つ以上の関連レコードが関連付けられているため、このレコードを削除できません。まず、関連付けられたレコードを削除してから、このレコードを削除してください。どのレコードを最初に削除する必要があるかを確認するには、[関連] タブをクリックしてください。関連レコードが表示されない場合、または関連レコードを削除できない場合は、システム管理者にお問い合わせください。</label>
+        <name>CannotDelete</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先</label>
+        <name>DefaultAccountName</name>
+    </customLabels>
+    <customLabels>
+        <label>管理取引先</label>
+        <name>DefaultAdminName</name>
+    </customLabels>
+    <customLabels>
+        <label>世帯</label>
+        <name>DefaultHouseholdName</name>
+    </customLabels>
+    <customLabels>
+        <label>Female</label>
+        <name>Female</name>
+    </customLabels>
+    <customLabels>
+        <label>[検索条件項目] として入力された項目が無効です。[検索条件項目] には、このトリガの対象であるオブジェクトの標準またはカスタム項目のほか、関連レコードの項目を使用できます。項目の API 参照名を使用していることを確認し、EDA 名前空間プレフィックス (「hed__」) を除外してください。</label>
+        <name>InvalidFilter</name>
+    </customLabels>
+    <customLabels>
+        <label>Male</label>
+        <name>Male</name>
+    </customLabels>
+    <customLabels>
+        <label>複数の履修科目がこの取引先責任者およびこの開講科目に関連付けられています。この学期評価に対するこの開講科目での学生の登録を表す履修科目を指定してください。</label>
+        <name>MultipleCourseConnection</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先責任者と開講科目が指定されていないか、履修科目に一致しません。履修科目のみを指定するか、取引先責任者と開講科目の両方を指定して、このレコードを正しいデータで保存できるようにしてください。</label>
+        <name>NoContactCOFound</name>
+    </customLabels>
+    <customLabels>
+        <label>この取引先責任者および開講科目に関連付けられた履修科目がありません。この学生がこの開講科目に登録されている場合は、履修科目を作成してください。</label>
+        <name>NoCourseConnection</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先責任者と開講科目が履修科目に一致しません。履修科目のみを指定するか、取引先責任者と開講科目の両方を指定して、このレコードを正しいデータで保存できるようにしてください。</label>
+        <name>NoDataMatch</name>
+    </customLabels>
+    <customLabels>
+        <label>履修科目のみを指定するか、取引先責任者と開講科目の両方を指定してください。</label>
+        <name>NoFieldsPopulated</name>
+    </customLabels>
+    <customLabels>
+        <label>なし</label>
+        <name>NoneOption</name>
+    </customLabels>
+    <customLabels>
+        <label>この履修科目に関連付けられた取引先責任者または開講科目がありません。有効な履修科目を選択してください。</label>
+        <name>OnlyCourseConnectionPopulated</name>
+    </customLabels>
+    <customLabels>
+        <label>[メール連絡先] で指定されたメールが見つかりません。既存のカスタムメール項目の項目表示ラベルを入力していることを確認してください。</label>
+        <name>PreferredEmailMatchMustExist</name>
+    </customLabels>
+    <customLabels>
+        <label>[メール連絡先] で選択されたメール項目が空白です。別のメール連絡先を選択するか、このメール項目の値を追加してください。</label>
+        <name>PreferredEmailMatchNotNull</name>
+    </customLabels>
+    <customLabels>
+        <label>[メール連絡先] の値を選択してください。</label>
+        <name>PreferredEmailRequiredError</name>
+    </customLabels>
+    <customLabels>
+        <label>[電話連絡先] で指定された電話が見つかりません。既存のカスタム電話項目の項目表示ラベルを入力していることを確認してください。</label>
+        <name>PreferredPhoneMatchMustExist</name>
+    </customLabels>
+    <customLabels>
+        <label>[電話連絡先] で選択した電話を空白にすることはできません。</label>
+        <name>PreferredPhoneMatchNotNull</name>
+    </customLabels>
+    <customLabels>
+        <label>[電話連絡先] の値を選択してください。</label>
+        <name>PreferredPhoneRequiredError</name>
+    </customLabels>
+    <customLabels>
+        <label>次の値と等しい</label>
+        <name>Relationship_Explanation_Connector</name>
+    </customLabels>
+    <customLabels>
+        <label>-</label>
+        <name>Relationship_Split</name>
+    </customLabels>
+    <customLabels>
+        <label>自動作成設定では、取引先責任者とキャンペーンメンバー間のリレーションレコードをその 2 つのいずれかのオブジェクトのカスタム参照項目に基づいて自動的に作成するタイミングを定義できます。たとえば、キャンペーンメンバーから取引先責任者への「参照」ルックアップでは、2 人の取引先責任者間の「参照元」と「参照先」のリレーションを作成することができます (この機能は、リードオブジェクトや、リードを参照するキャンペーンメンバーオブジェクトでは使用できません)。</label>
+        <name>RelationshipsAutoDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>これらの設定により、相互関係 (2 人の取引先責任者間の「一致する」関係) を設定できます。たとえば、父親はその息子に関連するため、その息子が父親に関連することを示す追加のレコードも存在します。[名前] の [種別] の値と、リンクする取引先責任者の性別に基づく相互関係の値を指定できます。相互関係設定ごとに、[男性]、[女性]、または [どちらでもない] の値を定義できます。</label>
+        <name>RelationshipsLookupDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>その他</label>
+        <name>acctNamingOther</name>
+    </customLabels>
+    <customLabels>
+        <label>無効な呼び出しです。この機能は Salesforce が使用します。</label>
+        <name>adapterException</name>
+    </customLabels>
+    <customLabels>
+        <label>住所レコードは取引先または取引先責任者のみに関連付けることができます。</label>
+        <name>addrHhAdmAccountOnly</name>
+    </customLabels>
+    <customLabels>
+        <label>この取引先レコードタイプでは、複数の住所を追加する機能が無効になっています。これを有効にするには、[EDA 設定] に移動し、[取引先および取引先責任者] をクリックして、[複数住所が有効な取引先種別] の横にある適切なチェックボックスをオンにしてください。</label>
+        <name>addrNotEnabledAccount</name>
+    </customLabels>
+    <customLabels>
+        <label>この取引先責任者では、複数の住所を追加する機能が無効になっています。これを有効にするには、[EDA 設定] に移動し、[取引先および取引先責任者] をクリックして、[取引先責任者の複数住所が有効] チェックボックスをオンにしてください。</label>
+        <name>addrNotEnabledContact</name>
+    </customLabels>
+    <customLabels>
+        <label>このレコードの季節性日付と重複する季節性開始日と季節性終了日が指定されている、この取引先または取引先責任者の既存の住所レコードがあります。他の住所レコードと重複しないように季節性日付を調整してください。</label>
+        <name>addrSeasonalOverlap</name>
+    </customLabels>
+    <customLabels>
+        <label>住所に部分的な季節性開始日と季節性終了日を含めることはできません。すべての季節性開始日項目と季節性終了日項目の値を入力するか、すべてを空白のままにしてください。</label>
+        <name>addrSeasonalPartial</name>
+    </customLabels>
+    <customLabels>
+        <label>住所に部分的な季節性開始日と季節性終了日を含めることはできません。すべての季節性開始日項目と季節性終了日項目の値を入力するか、すべてを空白のままにしてください。</label>
+        <name>addrSeasonalPartialYear</name>
+    </customLabels>
+    <customLabels>
+        <label>住所レコードは取引先または取引先責任者のみに関連付けることができます。</label>
+        <name>addrValidParentObjects</name>
+    </customLabels>
+    <customLabels>
+        <label>管理取引先名形式</label>
+        <name>adminAccNameFormat</name>
+    </customLabels>
+    <customLabels>
+        <label>自動作成する管理取引先で使用する名前形式。</label>
+        <name>adminAccNameFormatHelpText</name>
+    </customLabels>
+    <customLabels>
+        <label>この取引先責任者には、指定された取引先への主所属がすでに存在します。他の所属の [主] 設定を選択解除してこの所属を [主] として指定できるようにするか、[主] 値を指定せずにこの所属を作成してください。</label>
+        <name>affiliationWithSameAccExists</name>
+    </customLabels>
+    <customLabels>
+        <label>指定された取引先にレコードタイプがないため、この所属を作成できません。</label>
+        <name>afflAccountNoRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label>所属対応付けに取引先レコードタイプのエラーがあるため、このレコードを保存できません。システム管理者に連絡して、この取引先レコードタイプが取引先責任者の主所属に正しく対応付けられていることを確認するように依頼してください。</label>
+        <name>afflAccoutMappingError</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} 取引先レコードタイプが存在しません。システム管理者に連絡して、所属対応付けのレコードタイプを確認するように依頼してください。</label>
+        <name>afflNullPointerError</name>
+    </customLabels>
+    <customLabels>
+        <label>レコードタイプの検証を有効化</label>
+        <name>afflTypeEnforced</name>
+    </customLabels>
+    <customLabels>
+        <label>選択した場合、ユーザが取引先を取引先責任者の主所属として指定すると、取引先にレコードタイプが必要になり、すべての取引先レコードタイプ値を、所属対応付け内の対応する取引先責任者の [主所属] 項目に正しく対応付ける必要があります。検証に失敗した場合、エラーにより所属を保存できません。</label>
+        <name>afflTypeEnforcedDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>世帯取引先の名前を自動的に変更</label>
+        <name>automaticHHNaming</name>
+    </customLabels>
+    <customLabels>
+        <label>選択した場合、取引先責任者が取引先に追加されたり、既存の取引先責任者が変更されたりするたびに、既存の世帯取引先の名前が自動的に変更されます。</label>
+        <name>automaticHHNamingHelpText</name>
+    </customLabels>
+    <customLabels>
+        <label>組織内で管理取引先レコードタイプが見つかりません。指示に従ってオブジェクトマネージャを使用して、「管理」という名前で取引先オブジェクトの新しいレコードタイプを作成してください。</label>
+        <name>defaultAccountRecordTypeMissingError</name>
+    </customLabels>
+    <customLabels>
+        <label>および</label>
+        <name>defaultNamingConnector</name>
+    </customLabels>
+    <customLabels>
+        <label>(DuplicateAcknowledged)</label>
+        <name>duplicateFieldInFilter</name>
+    </customLabels>
+    <customLabels>
+        <label>検索条件項目の値が製品項目の重複を示しています。重複しない項目を指定してください。指定しない場合、製品項目の値を使用して絞り込まれます。後者のオプションを選択する場合は、項目名の末尾に {0} を追加して、この絞り込みロジックを受け入れることを確認してください。たとえば、重複項目が Deceased__c の場合、検索条件項目の値として「Deceased__c{0}」を入力します。</label>
+        <name>duplicateWithHEDAField</name>
+    </customLabels>
+    <customLabels>
+        <label>必須項目が空白のため、このレコードを保存できません。この必須項目はこのレコード上に存在するか、参照値により関連付けられたレコード上に存在する可能性があります。</label>
+        <name>exceptionRequiredField</name>
+    </customLabels>
+    <customLabels>
+        <label>検証ルールのため、このレコードを処理できません。この検証ルールはこのレコード上に存在するか、更新されている関連レコード上に存在する可能性があります。VALIDATION MESSAGE:</label>
+        <name>exceptionValidationRule</name>
+    </customLabels>
+    <customLabels>
+        <label>検索条件項目に hed__ などの名前空間プレフィックスを含めることはできません。名前空間プレフィックスを削除して、もう一度お試しください。</label>
+        <name>fieldWithHEDANamespace</name>
+    </customLabels>
+    <customLabels>
+        <label>{!{!FirstName}} {!LastName} 管理取引先</label>
+        <name>firstNameLastNameAdminACC</name>
+    </customLabels>
+    <customLabels>
+        <label>{!{!FirstName}} {!LastName} 家族</label>
+        <name>firstNameLastNameFamily</name>
+    </customLabels>
+    <customLabels>
+        <label>{!{!FirstName}} {!LastName} 世帯</label>
+        <name>firstNameLastNameHH</name>
+    </customLabels>
+    <customLabels>
+        <label>必須の設定情報なしで支援処理にアクセスしようとしています。詳細は、システム管理者にお問い合わせください。</label>
+        <name>giftProcessingConfigException</name>
+    </customLabels>
+    <customLabels>
+        <label>世帯取引先名形式</label>
+        <name>hhAccNameFormat</name>
+    </customLabels>
+    <customLabels>
+        <label>世帯取引先の命名で使用する形式。</label>
+        <name>hhAccNameFormatHelpText</name>
+    </customLabels>
+    <customLabels>
+        <label>家族</label>
+        <name>hhFamily</name>
+    </customLabels>
+    <customLabels>
+        <label>{!LastName} 管理取引先</label>
+        <name>lastNameAdminAcc</name>
+    </customLabels>
+    <customLabels>
+        <label>{!LastName} 家族</label>
+        <name>lastNameFamily</name>
+    </customLabels>
+    <customLabels>
+        <label>{!LastName} ({!{!FirstName}}) 管理取引先</label>
+        <name>lastNameFirstNameAdminAcc</name>
+    </customLabels>
+    <customLabels>
+        <label>{!LastName} ({!{!FirstName}}) 家族</label>
+        <name>lastNameFirstNameFamily</name>
+    </customLabels>
+    <customLabels>
+        <label>{!LastName} ({!{!FirstName}}) 世帯</label>
+        <name>lastNameFirstNameHH</name>
+    </customLabels>
+    <customLabels>
+        <label>{!LastName} 世帯</label>
+        <name>lastNameHH</name>
+    </customLabels>
+    <customLabels>
+        <label>プラン要件では、プログラムプランまたは親プラン要件のいずれかを指定できますが、両方を指定することはできません。このプラン要件が別のプラン要件の子の場合、親プラン要件のみを指定してください。このプラン要件がプログラムプランの子の場合、プログラムプランのみを指定してください。</label>
+        <name>nestedPlanRequirementPPExp</name>
+    </customLabels>
+    <customLabels>
+        <label>定義された取引先レコードタイプが存在しません:</label>
+        <name>noAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label>作成された所属対応付けがありません。以下のフォームを使用して、新しい所属対応付けを作成してください。</label>
+        <name>noAfflMappings</name>
+    </customLabels>
+    <customLabels>
+        <label>定義された自動作成設定がありません。以下のフォームを使用して、新しい自動作成設定を作成してください。</label>
+        <name>noAutoCreateSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>定義された相互関係設定がありません。以下のフォームを使用して、新しい相互関係設定を作成してください。</label>
+        <name>noRecSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>メール (標準)</label>
+        <name>preferredBatchDefaultEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>電話 (標準)</label>
+        <name>preferredBatchDefaultPhone</name>
+    </customLabels>
+    <customLabels>
+        <label>デフォルト取引先モデル</label>
+        <name>stgAccModelTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>世帯取引先レコードタイプ</label>
+        <name>stgAccountRecordTypeSupportsHHAddress</name>
+    </customLabels>
+    <customLabels>
+        <label>複数住所が有効な取引先種別</label>
+        <name>stgAccountTypesMultiAddressesEnabled</name>
+    </customLabels>
+    <customLabels>
+        <label>削除する取引先責任者がない取引先種別</label>
+        <name>stgAccoutTypesWithoutContactsDelete</name>
+    </customLabels>
+    <customLabels>
+        <label>必要に応じて、「ヒスパニックまたはラテン系」を選択リスト値として [民族] 項目に追加します。</label>
+        <name>stgAddHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label>必要に応じて、「ヒスパニックまたはラテン系ではない」を選択リスト値として [民族] 項目に追加します。</label>
+        <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label>管理取引先レコードタイプ</label>
+        <name>stgAdminAccountRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label>所属の終了日をプログラム登録からコピー</label>
+        <name>stgAfflCopyProgramEnrollmentEndDate</name>
+    </customLabels>
+    <customLabels>
+        <label>所属の開始日をプログラム登録からコピー</label>
+        <name>stgAfflCopyProgramEnrollmentStartDate</name>
+    </customLabels>
+    <customLabels>
+        <label>削除されていない所属の状況</label>
+        <name>stgAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label>この所属は、別の所属対応付けによりすでに参照されているレコードタイプを参照しているため、対応付けることができません。所属が翻訳されるようにこの対応付けを追加する必要がある場合は、[編集] をクリックして既存の対応付けを変更します。次に、[取引先責任者の主所属項目] の下で項目の API 参照名を指定します。[取引先レコードタイプ] で指定された名前を変更しないでください。</label>
+        <name>stgAfflNotInserted</name>
+    </customLabels>
+    <customLabels>
+        <label>プログラム登録の削除時に関連所属を削除</label>
+        <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
+        <label>作成された所属の役割を指定</label>
+        <name>stgAfflProgEnrollSetRole</name>
+    </customLabels>
+    <customLabels>
+        <label>作成された所属の役割</label>
+        <name>stgAfflProgEnrollSetRoleValue</name>
+    </customLabels>
+    <customLabels>
+        <label>作成された所属の状況</label>
+        <name>stgAfflProgEnrollSetStatusValue</name>
+    </customLabels>
+    <customLabels>
+        <label>バックフィルの実行後</label>
+        <name>stgAfterRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>検索する Chatter グループ名の入力を開始してください。</label>
+        <name>stgAutoCompleteEnterChatterGroupName</name>
+    </customLabels>
+    <customLabels>
+        <label>検索するユーザ名の入力を開始してください。</label>
+        <name>stgAutoCompleteEnterUserName</name>
+    </customLabels>
+    <customLabels>
+        <label>Chatter グループを選択</label>
+        <name>stgAutoCompleteSelectChatterGroup</name>
+    </customLabels>
+    <customLabels>
+        <label>ユーザを選択</label>
+        <name>stgAutoCompleteSelectUser</name>
+    </customLabels>
+    <customLabels>
+        <label>自動登録</label>
+        <name>stgAutoEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label>自動登録の役割</label>
+        <name>stgAutoEnrollmentRole</name>
+    </customLabels>
+    <customLabels>
+        <label>自動登録の状況</label>
+        <name>stgAutoEnrollmentStatus</name>
+    </customLabels>
+    <customLabels>
+        <label>バックフィルがキューに正常に登録されました。バッチの完了時にメールが送信されます。</label>
+        <name>stgBackfillQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
+        <label>バックフィルの実行前</label>
+        <name>stgBeforeRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>対応付けを追加</label>
+        <name>stgBtnAddMapping</name>
+    </customLabels>
+    <customLabels>
+        <label>設定を追加</label>
+        <name>stgBtnAddSetting</name>
+    </customLabels>
+    <customLabels>
+        <label>キャンセル</label>
+        <name>stgBtnCancel</name>
+    </customLabels>
+    <customLabels>
+        <label>編集</label>
+        <name>stgBtnEdit</name>
+    </customLabels>
+    <customLabels>
+        <label>すべての管理名を更新</label>
+        <name>stgBtnRefreshAdminNames</name>
+    </customLabels>
+    <customLabels>
+        <label>すべての世帯名を更新</label>
+        <name>stgBtnRefreshHouseholdNames</name>
+    </customLabels>
+    <customLabels>
+        <label>バックフィルを実行</label>
+        <name>stgBtnRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>コピーを実行</label>
+        <name>stgBtnRunCopy</name>
+    </customLabels>
+    <customLabels>
+        <label>保存</label>
+        <name>stgBtnSave</name>
+    </customLabels>
+    <customLabels>
+        <label>クリーンアップがキューに正常に登録されました。バッチの完了時にメールが送信されます。</label>
+        <name>stgCleanupQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先レコードタイプ</label>
+        <name>stgColAccountRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label>有効</label>
+        <name>stgColActive</name>
+    </customLabels>
+    <customLabels>
+        <label>キャンペーン種別</label>
+        <name>stgColCampTypes</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先責任者の主所属項目</label>
+        <name>stgColContactPrimaryAfflField</name>
+    </customLabels>
+    <customLabels>
+        <label>女性</label>
+        <name>stgColFemale</name>
+    </customLabels>
+    <customLabels>
+        <label>項目表示ラベル</label>
+        <name>stgColField</name>
+    </customLabels>
+    <customLabels>
+        <label>男性</label>
+        <name>stgColMale</name>
+    </customLabels>
+    <customLabels>
+        <label>どちらでもない</label>
+        <name>stgColNeutral</name>
+    </customLabels>
+    <customLabels>
+        <label>オブジェクト API 参照名</label>
+        <name>stgColObject</name>
+    </customLabels>
+    <customLabels>
+        <label>リレーション種別</label>
+        <name>stgColRelType</name>
+    </customLabels>
+    <customLabels>
+        <label>役割</label>
+        <name>stgColRole</name>
+    </customLabels>
+    <customLabels>
+        <label>状況</label>
+        <name>stgColStatus</name>
+    </customLabels>
+    <customLabels>
+        <label>私はバックフィルを理解し、バックフィルの実行準備が整いました。</label>
+        <name>stgConfirmReadyRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先責任者の複数住所が有効</label>
+        <name>stgContactMultiAddressesEnabled</name>
+    </customLabels>
+    <customLabels>
+        <label>バックフィルの開始時にエラーが発生しました。</label>
+        <name>stgCourseConnBackFillError</name>
+    </customLabels>
+    <customLabels>
+        <label>バックフィルがキューに正常に登録されました。</label>
+        <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>バッチ Apex ジョブで {0} 件のバッチが処理され、{1} 件が失敗しました。</label>
+        <name>stgCourseDescriptionCopyEmailBody</name>
+    </customLabels>
+    <customLabels>
+        <label>科目説明のコピージョブが次の状況で完了しました:</label>
+        <name>stgCourseDescriptionCopyEmailSubject</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先責任者の言語のデフォルトの流暢さ</label>
+        <name>stgDefaultContactLanguageFluency</name>
+    </customLabels>
+    <customLabels>
+        <label>デフォルトの教職員レコードタイプ</label>
+        <name>stgDefaultFacultyTypeTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>デフォルトの有効な学生レコードタイプ</label>
+        <name>stgDefaultStudentTypeTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>エラー処理の無効化</label>
+        <name>stgDisableErrorHandlingTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>メール連絡先の適用を無効化</label>
+        <name>stgDisablePreferredEmailEnforcement</name>
+    </customLabels>
+    <customLabels>
+        <label>電話連絡先の適用を無効化</label>
+        <name>stgDisablePreferredPhoneEnforcement</name>
+    </customLabels>
+    <customLabels>
+        <label>EDA 設定</label>
+        <name>stgEDASetupTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>履修科目を有効化</label>
+        <name>stgEnableCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>拡張電話連絡先機能を有効化</label>
+        <name>stgEnablePreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
+        <label>エラーの通知先:</label>
+        <name>stgErrorNotiTo</name>
+    </customLabels>
+    <customLabels>
+        <label>エラー通知受信者</label>
+        <name>stgErrorNotifRecipientsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先責任者の民族および人種のバックフィル</label>
+        <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label>Fluent</label>
+        <name>stgFluent</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [取引先および取引先責任者] タブで指定された [管理取引先レコードタイプ] を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[管理取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <name>stgHCAccountModelAdminInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [取引先および取引先責任者] タブで [管理取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <name>stgHCAccountModelAdminNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [システム] タブで指定された [デフォルト取引先モデル] レコードタイプを確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルト取引先モデル] を有効なレコードタイプに変更します。</label>
+        <name>stgHCAccountModelDefaultInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [システム] タブで [デフォルト取引先モデル] を有効なレコードタイプに変更します。</label>
+        <name>stgHCAccountModelDefaultNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [取引先および取引先責任者] タブで指定された [世帯取引先レコードタイプ] を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[世帯取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <name>stgHCAccountModelHHInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [取引先および取引先責任者] タブで [世帯取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <name>stgHCAccountModelHHNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>一意の管理取引先レコードタイプと世帯取引先レコードタイプの設定。</label>
+        <name>stgHCAccountRecordTypeSettingsUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>[管理取引先レコードタイプ] と [世帯取引先レコードタイプ] の設定で同じレコードタイプが指定されています。</label>
+        <name>stgHCAccountRecordTypesNotUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [取引先および取引先責任者] タブで [管理取引先レコードタイプ] または [世帯取引先レコードタイプ] のいずれかを変更し、それぞれの設定で一意のレコードタイプが指定されるようにします。</label>
+        <name>stgHCAccountRecordTypesNotUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[管理取引先レコードタイプ] と [世帯取引先レコードタイプ] の設定で異なるレコードタイプが指定されています。</label>
+        <name>stgHCAccountRecordTypesUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} 所属対応付けが有効です。</label>
+        <name>stgHCAffiliationMappingSettingDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} 所属対応付け</label>
+        <name>stgHCAffiliationMappingSettingHeading</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [所属] タブで指定された {0} ({1}) の所属対応付けを確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] で取引先オブジェクトに移動してレコードタイプを [有効] に設定し、正しくない場合は、所属対応付けのレコードタイプを有効なレコードタイプに変更します。</label>
+        <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで所属対応付けを取引先オブジェクトの有効なレコードタイプに変更します。</label>
+        <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) レコードタイプが取引先責任者の複数の主所属項目に対応付けられています。</label>
+        <name>stgHCAfflMapAccRecordTypeNotUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先レコードタイプ</label>
+        <name>stgHCAfflMapAccRecordTypeTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) レコードタイプが取引先責任者の 1 つの主所属項目に対応付けられています。</label>
+        <name>stgHCAfflMapAccRecordTypeUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで [取引先レコードタイプ] 列を調べて、{0} ({1}) が指定されている複数の対応付けを探します。その所属対応付けを編集し、このレコードタイプが取引先責任者の 1 つの主所属項目にのみ対応付けられるようにします。</label>
+        <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label>一意の所属対応付けレコードタイプ</label>
+        <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) 選択リスト値が有効ではありません。</label>
+        <name>stgHCAfflMapAutoEnrollRoleInactive</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで所属対応付けの [自動登録の役割] で指定された {0} ({1}) を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] で所属オブジェクトの [役割] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、[自動登録の役割] を有効な選択リスト値に変更します。</label>
+        <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} 選択リスト値が見つかりません。</label>
+        <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで [自動登録の役割] を所属オブジェクトの [役割] 項目の有効な選択リスト値に変更します。</label>
+        <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>自動登録の役割の値</label>
+        <name>stgHCAfflMapAutoEnrollRoleTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) 選択リスト値が有効です。</label>
+        <name>stgHCAfflMapAutoEnrollRoleValid</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) 選択リスト値が有効ではありません。</label>
+        <name>stgHCAfflMapAutoEnrollStatusInactive</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで所属対応付けの [自動登録の状況] で指定された {0} ({1}) を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] で所属オブジェクトの [状況] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、[自動登録の状況] を有効な選択リスト値に変更します。</label>
+        <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} 選択リスト値が見つかりません。</label>
+        <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで [自動登録の状況] を所属オブジェクトの [状況] 項目の有効な選択リスト値に変更します。</label>
+        <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>自動登録の状況の値</label>
+        <name>stgHCAfflMapAutoEnrollStatusTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) 選択リスト値が有効です。</label>
+        <name>stgHCAfflMapAutoEnrollStatusValid</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで指定された {0} を確認します。これは取引先責任者オブジェクトの有効な参照項目である必要があります。</label>
+        <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先責任者の一意の主所属項目</label>
+        <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} が有効な取引先責任者項目ではありません。</label>
+        <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) 項目が複数の取引先レコードタイプに対応付けられています。</label>
+        <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先責任者の主所属項目</label>
+        <name>stgHCAfflMapContactPrimaryFieldTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) 項目が 1 つの取引先レコードタイプに対応付けられています。</label>
+        <name>stgHCAfflMapContactPrimaryFieldUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで [取引先責任者の主所属項目] 列を調べて、{0} ({1}) が指定されている複数の対応付けを探します。その対応付けを編集し、この項目が 1 つの所属対応付けでのみ対応付けられるようにします。</label>
+        <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) 項目が有効です。</label>
+        <name>stgHCAfflMapContactPrimaryFieldValid</name>
+    </customLabels>
+    <customLabels>
+        <label>履修科目が有効になっていません。</label>
+        <name>stgHCCourseConEnable</name>
+    </customLabels>
+    <customLabels>
+        <label>履修科目レコードタイプの設定を含め、履修科目を有効化します。詳細は、EDA ドキュメントの「履修科目を有効化」を参照してください。</label>
+        <name>stgHCCourseConEnableFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで指定された [デフォルトの教職員レコードタイプ] を確認します。{1} ({0}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルトの教職員レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <name>stgHCCourseConFacultyInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで [デフォルトの教職員レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <name>stgHCCourseConFacultyNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[デフォルトの教職員レコードタイプ] と [デフォルトの有効な学生レコードタイプ] の設定で同じレコードタイプが指定されています。</label>
+        <name>stgHCCourseConRecordTypesNotUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで [デフォルトの教職員レコードタイプ] または [デフォルトの有効な学生レコードタイプ] のいずれかを変更し、それぞれの設定で一意のレコードタイプが指定されるようにします。</label>
+        <name>stgHCCourseConRecordTypesNotUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label>一意のデフォルトの教職員レコードタイプとデフォルトの有効な学生レコードタイプの設定</label>
+        <name>stgHCCourseConRecordTypesUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>[デフォルトの教職員レコードタイプ] と [デフォルトの有効な学生レコードタイプ] の設定で異なるレコードタイプが指定されています。</label>
+        <name>stgHCCourseConRecordTypesUniqueDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで指定された [デフォルトの有効な学生レコードタイプ] を確認します。{1} ({0}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルトの有効な学生レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <name>stgHCCourseConStudentInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで [デフォルトの有効な学生レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <name>stgHCCourseConStudentNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>履修科目</label>
+        <name>stgHCCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) 選択リスト値が有効ではありません。</label>
+        <name>stgHCPicklistValueInactive</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} 選択リスト値が見つかりません。</label>
+        <name>stgHCPicklistValueNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) 選択リスト値が有効です。</label>
+        <name>stgHCPicklistValueValid</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} 相互関係が有効です。</label>
+        <name>stgHCReciprocalRelDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が女性の正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <name>stgHCReciprocalRelFemaleInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <name>stgHCReciprocalRelFemaleNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>相互関係設定の [女性] の値</label>
+        <name>stgHCReciprocalRelFemaleTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が男性の正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <name>stgHCReciprocalRelMaleInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [男性] の値を有効な選択リスト値に変更します。</label>
+        <name>stgHCReciprocalRelMaleNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>相互関係設定の [男性] の値</label>
+        <name>stgHCReciprocalRelMaleTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [名前] の値を有効な選択リスト値に変更します。</label>
+        <name>stgHCReciprocalRelNameInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [名前] の値を有効な選択リスト値に変更します。</label>
+        <name>stgHCReciprocalRelNameNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [名前] の値を有効な選択リスト値に変更します。</label>
+        <name>stgHCReciprocalRelNameNotUniqueDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、[名前] 列に {0} ({1}) が指定されている複数の行を探します。その相互関係設定を編集し、この [名前] の値が 1 つの相互関係設定行にのみ表示されるようにします。</label>
+        <name>stgHCReciprocalRelNameNotUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label>相互関係設定の [名前] の値</label>
+        <name>stgHCReciprocalRelNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) 選択リスト値が 1 つの相互関係設定でのみ使用されています。</label>
+        <name>stgHCReciprocalRelNameUniqueDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>一意の相互関係設定名</label>
+        <name>stgHCReciprocalRelNameUniqueTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [どちらでもない] の値を有効な選択リスト値に変更します。</label>
+        <name>stgHCReciprocalRelNeutralInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [どちらでもない] の値を有効な選択リスト値に変更します。</label>
+        <name>stgHCReciprocalRelNeutralNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>相互関係設定の [どちらでもない] の値</label>
+        <name>stgHCReciprocalRelNeutralTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} 相互関係</label>
+        <name>stgHCReciprocalRelSetting</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) レコードタイプが有効ではありません。</label>
+        <name>stgHCRecordTypeInactive</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} レコードタイプが見つかりません。</label>
+        <name>stgHCRecordTypeNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} ({1}) レコードタイプが有効です。</label>
+        <name>stgHCRecordTypeValid</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先モデル</label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
+        <label>所属対応付け</label>
+        <name>stgHealthCheckAffiliationMappings</name>
+    </customLabels>
+    <customLabels>
+        <label>[設定の状態チェック] では、[EDA 設定] に無効な設定があるかどうかがチェックされます。完了したら、結果を使用して無効な設定を特定し、修正します。</label>
+        <name>stgHealthCheckDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>エラーのため、最終実行日を表示できません</label>
+        <name>stgHealthCheckErrorLastRunDate</name>
+    </customLabels>
+    <customLabels>
+        <label>該当なし</label>
+        <name>stgHealthCheckFixNotApplicable</name>
+    </customLabels>
+    <customLabels>
+        <label>最終実行日: {0}</label>
+        <name>stgHealthCheckLastRun</name>
+    </customLabels>
+    <customLabels>
+        <label>読み込み中...</label>
+        <name>stgHealthCheckLoadingIndicator</name>
+    </customLabels>
+    <customLabels>
+        <label>相互関係</label>
+        <name>stgHealthCheckReciprocalRelTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>推奨解決策</label>
+        <name>stgHealthCheckRecoFix</name>
+    </customLabels>
+    <customLabels>
+        <label>これらの結果を折りたたむ</label>
+        <name>stgHealthCheckResultsCollapse</name>
+    </customLabels>
+    <customLabels>
+        <label>説明</label>
+        <name>stgHealthCheckResultsDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>これらの結果を展開する</label>
+        <name>stgHealthCheckResultsExpand</name>
+    </customLabels>
+    <customLabels>
+        <label>状態チェックを実行</label>
+        <name>stgHealthCheckRunButton</name>
+    </customLabels>
+    <customLabels>
+        <label>エラーのため、設定の状態チェックを実行できません。もう一度実行してください。</label>
+        <name>stgHealthCheckRunError</name>
+    </customLabels>
+    <customLabels>
+        <label>設定</label>
+        <name>stgHealthCheckSetting</name>
+    </customLabels>
+    <customLabels>
+        <label>状況</label>
+        <name>stgHealthCheckStatus</name>
+    </customLabels>
+    <customLabels>
+        <label>失敗</label>
+        <name>stgHealthCheckStatusFailed</name>
+    </customLabels>
+    <customLabels>
+        <label>合格</label>
+        <name>stgHealthCheckStatusPassed</name>
+    </customLabels>
+    <customLabels>
+        <label>警告</label>
+        <name>stgHealthCheckStatusWarning</name>
+    </customLabels>
+    <customLabels>
+        <label>設定の状態チェック</label>
+        <name>stgHealthCheckTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>すべてのチェックに合格しました</label>
+        <name>stgHealthChecksAllPassed</name>
+    </customLabels>
+    <customLabels>
+        <label>{0}/{1} のチェックに合格しました</label>
+        <name>stgHealthChecksNotAllPassed</name>
+    </customLabels>
+    <customLabels>
+        <label>高等教育機関では、「管理」取引先モデルをお勧めします。K-12 の学校 (幼稚園から高等学校) では、「世帯」取引先モデルをお勧めします。</label>
+        <name>stgHelpAccountModel</name>
+    </customLabels>
+    <customLabels>
+        <label>関連付けられたすべての取引先責任者が削除された場合に自動的に削除される取引先のレコードタイプ。</label>
+        <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
+    </customLabels>
+    <customLabels>
+        <label>複数の住所の管理をサポートする取引先レコードタイプ。</label>
+        <name>stgHelpAddressAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label>管理取引先で使用する取引先レコードタイプ。この設定は、住所レコードの管理と管理取引先の命名形式に影響します。</label>
+        <name>stgHelpAdminRecType</name>
+    </customLabels>
+    <customLabels>
+        <label>選択した場合、プログラム登録の終了日が新しい所属レコードの終了日にコピーされます。選択しない場合、所属の終了日は空白のままになります。</label>
+        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
+    </customLabels>
+    <customLabels>
+        <label>選択した場合、プログラム登録の開始日が新しい所属レコードの開始日にコピーされます。選択しない場合、所属の開始日は空白のままになります。</label>
+        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
+    </customLabels>
+    <customLabels>
+        <label>プログラム登録で所属を作成</label>
+        <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
+    </customLabels>
+    <customLabels>
+        <label>既存の所属なしでプログラム登録レコードが作成された場合、以下で指定された値で所属レコードが作成されます。</label>
+        <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
+    </customLabels>
+    <customLabels>
+        <label>削除されたプログラム登録に関連する所属に対して設定される状況。</label>
+        <name>stgHelpAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label>プログラム登録の削除</label>
+        <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
+    </customLabels>
+    <customLabels>
+        <label>削除されたプログラム登録の所属レコードの処理方法を以下で指定します。関連する所属レコードを削除するか、その状況を更新することができます。</label>
+        <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
+    </customLabels>
+    <customLabels>
+        <label>選択した場合、新しい所属の役割は、[作成された所属の役割] で定義された値に設定されます。選択しない場合、所属の役割は空白のままです。</label>
+        <name>stgHelpAfflProgEnrollSetRole</name>
+    </customLabels>
+    <customLabels>
+        <label>プログラム登録で作成された所属に対して設定される役割。</label>
+        <name>stgHelpAfflProgEnrollSetRoleValue</name>
+    </customLabels>
+    <customLabels>
+        <label>プログラム登録で作成された所属に対して設定される状況。</label>
+        <name>stgHelpAfflProgEnrollSetStatusValue</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先の複数の住所の管理を有効にするには、このオプションを選択します。</label>
+        <name>stgHelpContactAddrs</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先責任者のメール連絡先を必要としません。</label>
+        <name>stgHelpContactPreferredEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先責任者の電話連絡先を必要としません。</label>
+        <name>stgHelpContactPreferredPhone</name>
+    </customLabels>
+    <customLabels>
+        <label>[電話連絡先] 項目を取引先責任者の標準の [電話] 項目と同期し、電話連絡先の値が存在することを検証します。</label>
+        <name>stgHelpContactPreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
+        <label>プロセスがキューに正常に登録されました。ジョブの完了時にメールが送信されます。</label>
+        <name>stgHelpCopyQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
+        <label>履修科目のバックフィルは、履修科目を初めて有効化する場合にのみ、かつ、履修科目機能の有効化前に開講科目と履修科目 (登録) が存在していた組織でのみ、使用する必要があります。バックフィルでは、履修科目 (登録) または開講科目で教職員としてリストされていたすべての取引先責任者が [デフォルトの教職員レコードタイプ] に変換された後、残りの履修科目 (登録) に存在する取引先責任者が [デフォルトの有効な学生レコードタイプ] に変換されます。</label>
+        <name>stgHelpCourseConnBackfillDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>EDA 1.30 では、より長い科目説明に対応するように [拡張説明] 項目が追加されました。</label>
+        <name>stgHelpCoursesDataMigration</name>
+    </customLabels>
+    <customLabels>
+        <label>このユーティリティでは、[科目説明] 項目から [拡張説明] 項目に値がコピーされます。処理に時間がかかる場合がありますが、このページを安全に閉じることができます。処理は引き続きバックグラウンドで実行されます。</label>
+        <name>stgHelpCoursesDataMigrationCopiesValues</name>
+    </customLabels>
+    <customLabels>
+        <label>科目に [拡張説明] の値がすでに含まれる場合、その値は上書きされません。</label>
+        <name>stgHelpCoursesDataMigrationDontOverwrite</name>
+    </customLabels>
+    <customLabels>
+        <label>処理が完了したら、[説明] 項目を参照するアプリケーションのページレイアウトと他の領域を更新してください。</label>
+        <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
+    </customLabels>
+    <customLabels>
+        <label>ユーザが取引先責任者の [第一言語] 参照項目を設定した場合に、新しく作成される取引先責任者の言語レコードで自動的に設定される [流暢さ] の値。</label>
+        <name>stgHelpDefaultContactLanguageFluency</name>
+    </customLabels>
+    <customLabels>
+        <label>教職員の履修科目を作成するときのデフォルトのレコードタイプ。</label>
+        <name>stgHelpDefaultFacultyType</name>
+    </customLabels>
+    <customLabels>
+        <label>有効な学生の履修科目を作成するときのデフォルトのレコードタイプ。</label>
+        <name>stgHelpDefaultStudentType</name>
+    </customLabels>
+    <customLabels>
+        <label>履修科目のバックフィルを実行する前に履修科目を有効化する必要があります。</label>
+        <name>stgHelpEnableCourseConnBeforeBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>レコードタイプを編集する前に履修科目を有効化する必要があります。</label>
+        <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
+    </customLabels>
+    <customLabels>
+        <label>履修科目レコードでは取引先責任者を開講科目に接続します。この機能を有効化すると、ユーザは取引先責任者の種別 (教職員または学生) を選択して、その履修科目を作成できます。この機能を有効化する場合、以下の [デフォルトの有効な学生レコードタイプ] と [デフォルトの教職員レコードタイプ] も設定する必要があります。この機能を初めて有効化する場合、履修科目のバックフィルを実行することを強くお勧めします。</label>
+        <name>stgHelpEnableCourseConnections</name>
+    </customLabels>
+    <customLabels>
+        <label>メール連絡先または電話連絡先が指定されていない既存の取引先責任者の場合、クリーンアップにより、取引先責任者の標準またはカスタムのメールアドレスまたは電話番号のいずれかが連絡先値として設定されます。</label>
+        <name>stgHelpEnsureExistContactPreferEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>製品のエラー処理フレームワークを無効にする場合に選択します。</label>
+        <name>stgHelpErrorDisable</name>
+    </customLabels>
+    <customLabels>
+        <label>選択した場合、製品により生成されたエラーの通知が投稿されます。</label>
+        <name>stgHelpErrorNotifyOn</name>
+    </customLabels>
+    <customLabels>
+        <label>メールエラー通知の受信者を指定します。有効な値は [すべてのシステム管理者]、組織のユーザの ID、または Chatter グループの ID です。入力できる値は 1 つのみです。</label>
+        <name>stgHelpErrorNotifyTo</name>
+    </customLabels>
+    <customLabels>
+        <label>[人種] 項目が追加される前に組織で [民族] 項目が使用され、EDA バージョン 1.28 の時点で [民族] 項目から値が削除された場合のみ、民族および人種のバックフィルを使用します。取引先責任者の [民族] 項目の値が [ヒスパニックまたはラテン系ではない] または [ヒスパニックまたはラテン系] に一致しない場合、バックフィルにより値が [人種] 項目にコピーされます。標準選択リスト値と、追加された可能性があるカスタム値の両方がコピーの対象になります。</label>
+        <name>stgHelpEthnicityRaceBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>選択すると、管理取引先と世帯取引先の住所管理が有効になります。</label>
+        <name>stgHelpHouseAdmAccountAddressMgmt</name>
+    </customLabels>
+    <customLabels>
+        <label>世帯取引先で使用する取引先レコードタイプ。この設定は、住所レコードの管理と世帯取引先の命名形式に影響します。</label>
+        <name>stgHelpHouseholdRecType</name>
+    </customLabels>
+    <customLabels>
+        <label>[人種] 項目で使用できるようにする [民族] 項目に組織がカスタム選択リスト値を以前追加している場合、そのカスタム選択リスト値を [人種] 項目にコピーします。</label>
+        <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
+    </customLabels>
+    <customLabels>
+        <label>選択すると、プラン要件でプログラムプランまたは親プラン要件を指定できます。ただし、この両方を指定することはできません。プログラムプランと親プラン要件の両方を指定した場合、どちらか 1 つのみを選択するまで、エラーメッセージが出力され、保存できません。</label>
+        <name>stgHelpNestedPlanRequirementPP</name>
+    </customLabels>
+    <customLabels>
+        <label>選択すると、団体取引先の住所管理が有効になります。</label>
+        <name>stgHelpOrgAccountAddressMgmt</name>
+    </customLabels>
+    <customLabels>
+        <label>自動作成されたリレーションでは、デフォルトで重複が排除されるため、2 つの取引先責任者間で重複リレーションレコードが作成されなくなります。[自動作成された重複リレーションを許可] を選択すると、この動作が無効になり、2 つの取引先責任者間で同じ種別の複数のリレーションが許可されます。</label>
+        <name>stgHelpRelAutoCreatedDup</name>
+    </customLabels>
+    <customLabels>
+        <label>相互関係の作成時に種別項目を入力するために使用する方法。「リスト設定」では、[相互関係] タブで [男性]、[女性]、または [どちらでもない] の値で定義されたカスタム設定が使用されます。「値反転」では、元のリレーションレコードの種別が必要に応じて反転します。たとえば、元のリレーションが親-子の場合、相互関係は子-親になります。</label>
+        <name>stgHelpRelReciprocalMethod</name>
+    </customLabels>
+    <customLabels>
+        <label>[ヒスパニックまたはラテン系] と [ヒスパニックまたはラテン系ではない] を除き、[民族] 項目からすべての選択リスト値を削除してください。値を既存のレコードから完全に削除するのではなく、削除する各値を残りの有効な値のいずれかに置き換えることをお勧めします。EDA バージョン 1.28 の時点では、有効な [民族] の値は [ヒスパニックまたはラテン系ではない] と [ヒスパニックまたはラテン系] のみです。</label>
+        <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
+    </customLabels>
+    <customLabels>
+        <label>1 つの取引先責任者または取引先の住所項目の変更が既存の住所の更新として扱われます (新しい住所オブジェクトが作成されない)。また、空白や大文字/小文字の変更も更新として扱われます。</label>
+        <name>stgHelpSimpleAddrChangeIsUpdate</name>
+    </customLabels>
+    <customLabels>
+        <label>選択すると、エラーがカスタムエラーオブジェクトに保存されます。エラーオブジェクトのタブを作成すると、保存されたすべてのエラーのリストを表示できます。</label>
+        <name>stgHelpStoreErrorsOn</name>
+    </customLabels>
+    <customLabels>
+        <label>[民族] 項目の以前の値を参照していたレポートまたは数式項目がある場合は、それらを更新してください。</label>
+        <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
+    </customLabels>
+    <customLabels>
+        <label>ネストされたプラン要件のプログラムプランを検証</label>
+        <name>stgNestedPlanRequirementPP</name>
+    </customLabels>
+    <customLabels>
+        <label>新規所属対応付け</label>
+        <name>stgNewAfflMapping</name>
+    </customLabels>
+    <customLabels>
+        <label>すべてのシステム管理者</label>
+        <name>stgOptAllSysAdmins</name>
+    </customLabels>
+    <customLabels>
+        <label>Chatter グループ</label>
+        <name>stgOptChatterGroup</name>
+    </customLabels>
+    <customLabels>
+        <label>選択...</label>
+        <name>stgOptSelect</name>
+    </customLabels>
+    <customLabels>
+        <label>ユーザ</label>
+        <name>stgOptUser</name>
+    </customLabels>
+    <customLabels>
+        <label>バッチ Apex ジョブで {0} 件のレコードが処理され、{1} 件が失敗しました。</label>
+        <name>stgPreferredEmailBatchEmailBody</name>
+    </customLabels>
+    <customLabels>
+        <label>メール/電話連絡先ジョブが次の状況で完了しました:</label>
+        <name>stgPreferredEmailBatchEmailSubject</name>
+    </customLabels>
+    <customLabels>
+        <label>メール/電話連絡先のデータクリーンアップ:</label>
+        <name>stgPreferredEmailDataCleanup</name>
+    </customLabels>
+    <customLabels>
+        <label>標準の [電話] 項目に値がない場合や、複数の [電話] 項目が定義された場合に値をどの電話連絡先の項目からコピーするかを選択します。</label>
+        <name>stgPreferredPhoneSelection</name>
+    </customLabels>
+    <customLabels>
+        <label>リスト設定</label>
+        <name>stgReciprocalMethodListSetting</name>
+    </customLabels>
+    <customLabels>
+        <label>値反転</label>
+        <name>stgReciprocalMethodValueInversion</name>
+    </customLabels>
+    <customLabels>
+        <label>警告: このボタンをクリックすると、すべての既存の管理取引先レコードの名前が、[管理取引先名形式] で指定された形式に変更されます。製品ドキュメントを読んで、元に戻すことができないこの変更の影響を確実に理解してください。続行する前に、管理取引先を参照するすべての自動化またはプロセス (ワークフロールールなど) を無効にしてください。更新が完了したら、それらを再度有効にすることができます。</label>
+        <name>stgRefreshAdminAcctNameDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>すべての管理取引先名を更新</label>
+        <name>stgRefreshAdminAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>警告: このボタンをクリックすると、すべての既存の世帯取引先レコードの名前が、[世帯取引先名形式] で指定された形式に変更されます。[世帯取引先の名前を自動的に変更] 設定は以前に選択されていなくても、このアクションにより有効になります。製品ドキュメントを読んで、元に戻すことができないこの変更の影響を確実に理解してください。続行する前に、世帯取引先を参照するすべての自動化またはプロセス (ワークフロールールなど) を無効にしてください。更新が完了したら、それらを再度有効にすることができます。</label>
+        <name>stgRefreshHHAcctNameDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>すべての世帯取引先名を更新</label>
+        <name>stgRefreshHHAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>クリーンアップを実行</label>
+        <name>stgRunCleanUp</name>
+    </customLabels>
+    <customLabels>
+        <label>このデータクリーンアッププロセスは、メール連絡先または電話連絡先の要件が初めて有効化された後、または要件を適用しない期間が経過した後に実行されます。</label>
+        <name>stgRunCleanUpEnableFirstTime</name>
+    </customLabels>
+    <customLabels>
+        <label>設定が正常に保存されました。</label>
+        <name>stgSaveSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>受信者種別を選択:</label>
+        <name>stgSelectReciType</name>
+    </customLabels>
+    <customLabels>
+        <label>エラー通知を送信</label>
+        <name>stgSendErrorsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>1 つの住所の変更を更新として処理</label>
+        <name>stgSimpleAddressChangeUpdate</name>
+    </customLabels>
+    <customLabels>
+        <label>エラーの保存</label>
+        <name>stgStoreErrorsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>成功</label>
+        <name>stgSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>管理取引先の命名の更新がキューに正常に登録されました。
+        バッチの完了時にメールが送信されます。</label>
+        <name>stgSuccessAdminAccountNameRefresh</name>
+    </customLabels>
+    <customLabels>
+        <label>世帯取引先の命名の更新がキューに正常に登録されました。
+        バッチの完了時にメールが送信されます。</label>
+        <name>stgSuccessHHAccountNameRefresh</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先および取引先責任者</label>
+        <name>stgTabAccCont</name>
+    </customLabels>
+    <customLabels>
+        <label>所属</label>
+        <name>stgTabAffl</name>
+    </customLabels>
+    <customLabels>
+        <label>所属対応付け</label>
+        <name>stgTabAfflMappings</name>
+    </customLabels>
+    <customLabels>
+        <label>自動作成</label>
+        <name>stgTabAutocreation</name>
+    </customLabels>
+    <customLabels>
+        <label>バックフィル</label>
+        <name>stgTabBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>科目</label>
+        <name>stgTabCourse</name>
+    </customLabels>
+    <customLabels>
+        <label>履修科目</label>
+        <name>stgTabCourseConn</name>
+    </customLabels>
+    <customLabels>
+        <label>名前</label>
+        <name>stgTabName</name>
+    </customLabels>
+    <customLabels>
+        <label>取引先責任者の主所属項目</label>
+        <name>stgTabPrimaryAfflField</name>
+    </customLabels>
+    <customLabels>
+        <label>プログラムプラン</label>
+        <name>stgTabProgramPlan</name>
+    </customLabels>
+    <customLabels>
+        <label>相互関係設定</label>
+        <name>stgTabReciprocalSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>リレーション</label>
+        <name>stgTabRel</name>
+    </customLabels>
+    <customLabels>
+        <label>設定</label>
+        <name>stgTabSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>システム</label>
+        <name>stgTabSystem</name>
+    </customLabels>
+    <customLabels>
+        <label>自動作成された重複リレーションを許可</label>
+        <name>stgTitleAllowAutocreatedDuplicateRel</name>
+    </customLabels>
+    <customLabels>
+        <label>アプリケーション規模の設定</label>
+        <name>stgTitleAppwideSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>履修科目のバックフィル</label>
+        <name>stgTitleCourseConnectionBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>科目: 説明データの移行</label>
+        <name>stgTitleCoursesDescriptionDataMigration</name>
+    </customLabels>
+    <customLabels>
+        <label>設定</label>
+        <name>stgTitleHEDAConfig</name>
+    </customLabels>
+    <customLabels>
+        <label>EDA 設定</label>
+        <name>stgTitleHEDASettings</name>
+    </customLabels>
+    <customLabels>
+        <label>新しい自動作成設定</label>
+        <name>stgTitleNewAutocreateSetting</name>
+    </customLabels>
+    <customLabels>
+        <label>新しい相互関係設定</label>
+        <name>stgTitleNewReciSetting</name>
+    </customLabels>
+    <customLabels>
+        <label>相互方法</label>
+        <name>stgTitleReciMethod</name>
+    </customLabels>
+    <customLabels>
+        <label>エラー</label>
+        <name>stgToastError</name>
+    </customLabels>
+    <customLabels>
+        <label>開講科目スケジュールの終了時刻が、関連付けらた時間ブロックの終了時刻に一致しないため、開講科目スケジュールを保存できません。終了時刻を編集するか、異なる時間ブロックを指定するか、時間ブロックを指定しないでください。</label>
+        <name>timeBlockEndTimeMismatch</name>
+    </customLabels>
+    <customLabels>
+        <label>開講科目スケジュールの開始時刻が、関連付けらた時間ブロックの開始時刻に一致しないため、開講科目スケジュールを保存できません。開始時刻を編集するか、異なる時間ブロックを指定するか、時間ブロックを指定しないでください。</label>
+        <name>timeBlockStartTimeMismatch</name>
+    </customLabels>
+    <customTabs>
+        <label>EDA 設定</label>
+        <name>HEDA_Settings</name>
+    </customTabs>
+</Translations>

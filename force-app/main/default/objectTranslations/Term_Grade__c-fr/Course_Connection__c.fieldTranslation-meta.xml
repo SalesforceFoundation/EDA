@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Connection__c</name>
+    <help>Le cours dans lequel l’étudiant a reçu cette note. Les champs Contact et Offre de cours sur les notes à la classe doivent correspondre aux champs Contact et Offre de cours sur l’enregistrement de la connexion de cours.</help>
+    <relationshipLabel>Notes de la période</relationshipLabel>
+    <label>Connexion au cours</label>
+</CustomFieldTranslation>

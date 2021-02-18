@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Household__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Lookup to the main Household (Account record) this Contact is associated with.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Lookup to the main Household (Account record) this Contact is associated with.</inlineHelpText>
+    <label>Primary Household</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Contacts (Primary Household)</relationshipLabel>
+    <relationshipName>Household_Members</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Lookup</type>
+</CustomField>

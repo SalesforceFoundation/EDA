@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The Relationship type to be created between the base object and the lookup object.  The lookup object will receive the reciprocal Relationship, if one is available. --></help>
+    <label><!-- Relationship Type --></label>
+    <name>Relationship_Type__c</name>
+</CustomFieldTranslation>

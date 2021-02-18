@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- System field that links to the two sides of the Relationship together.  This field should not be modified directly.  The Reciprocal Relationship will have the opposite type, if available, of this Relationship. --></help>
+    <label><!-- Reciprocal Relationship --></label>
+    <name>ReciprocalRelationship__c</name>
+    <relationshipLabel><!-- Relationships --></relationshipLabel>
+</CustomFieldTranslation>

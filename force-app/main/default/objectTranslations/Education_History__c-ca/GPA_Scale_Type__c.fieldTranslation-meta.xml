@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>GPA_Scale_Type__c</name>
+    <help>Fa un seguiment de com s&apos;ha determinat la qualificació escolar (GPA). Per exemple, fent servir el decil exacte, el quintil o el quartil.</help>
+    <label>Tipus d’escala de qualificació escolar</label>
+    <picklistValues>
+        <masterLabel>Unweighted</masterLabel>
+        <translation>Sense ponderar</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Weighted</masterLabel>
+        <translation>Ponderat</translation>
+    </picklistValues>
+</CustomFieldTranslation>

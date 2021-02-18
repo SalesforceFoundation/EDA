@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course__c</name>
+    <help>Le cours associé à cette exigence de plan. Laissez vide pour une exigence de plan parente avec des exigences de plan imbriquées.</help>
+    <relationshipLabel>Exigences du plan</relationshipLabel>
+    <label>Cours</label>
+</CustomFieldTranslation>

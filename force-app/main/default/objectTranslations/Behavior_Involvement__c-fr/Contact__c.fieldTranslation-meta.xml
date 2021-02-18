@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Contact__c</name>
+    <help>Le contact de la faculté ou l’étudiant directement impliqué dans l’événement.</help>
+    <relationshipLabel>Implications du comportement</relationshipLabel>
+    <label>Contact</label>
+</CustomFieldTranslation>

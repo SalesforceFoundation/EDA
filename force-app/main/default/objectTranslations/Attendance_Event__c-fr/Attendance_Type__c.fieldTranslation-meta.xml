@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Attendance_Type__c</name>
+    <help>Indique si ce retard ou absence se rapporte à un cours ou à la journée complète.</help>
+    <label>Type de présence</label>
+    <picklistValues>
+        <masterLabel>Class Absence</masterLabel>
+        <translation>Absence au cours</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Class Tardy</masterLabel>
+        <translation>Retard au cours</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Day Absence</masterLabel>
+        <translation>Absence ce jour</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Day Tardy</masterLabel>
+        <translation>Retard ce jour</translation>
+    </picklistValues>
+</CustomFieldTranslation>

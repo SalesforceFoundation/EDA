@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Chosen_Full_Name__c</fullName>
+    <description>The full name that this Contact prefers to use in place of their legal name.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The full name that this Contact prefers to use in place of their legal name.</inlineHelpText>
+    <label>Chosen Full Name</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

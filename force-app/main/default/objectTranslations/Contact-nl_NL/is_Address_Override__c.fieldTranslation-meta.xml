@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>is_Address_Override__c</name>
+    <help>Indien geselecteerd, wordt het adres van deze contactpersoon niet gesynchroniseerd met het standaard- of seizoensadres van het huishouden. Gebruik dit om een apart postadres te behouden voor deze persoon. (Alleen voor contactpersonen uit huishoudens.)</help>
+    <label>Niet automatisch bijwerken</label>
+</CustomFieldTranslation>

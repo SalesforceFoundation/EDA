@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Type__c</name>
+    <help>Describe cómo está conectado el Contacto relacionado con el Contacto; por ejemplo, amigo, compañero de trabajo, tía, etc.</help>
+    <label>Tipo</label>
+    <picklistValues>
+        <masterLabel>Father</masterLabel>
+        <translation>Padre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stepfather</masterLabel>
+        <translation>Padrastro</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mother</masterLabel>
+        <translation>Madre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stepmother</masterLabel>
+        <translation>Madrastra</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Parent</masterLabel>
+        <translation>Progenitor</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stepparent</masterLabel>
+        <translation>Padrastro</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foster Parent</masterLabel>
+        <translation>Padre adoptivo</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Daughter</masterLabel>
+        <translation>Hija</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stepdaughter</masterLabel>
+        <translation>Hijastra</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foster Daughter</masterLabel>
+        <translation>Hija adoptiva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Son</masterLabel>
+        <translation>Hijo</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stepson</masterLabel>
+        <translation>Hijastro</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foster Son</masterLabel>
+        <translation>Hijo adoptivo</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Child</masterLabel>
+        <translation>Menor</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stepchild</masterLabel>
+        <translation>Hijastro</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foster Child</masterLabel>
+        <translation>Hijo adoptivo</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Husband</masterLabel>
+        <translation>Marido</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wife</masterLabel>
+        <translation>Esposa</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partner</masterLabel>
+        <translation>Pareja</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Aunt</masterLabel>
+        <translation>Tía</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Uncle</masterLabel>
+        <translation>Tío</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Parent&apos;s Sibling</masterLabel>
+        <translation>Hermano de progenitor</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Niece</masterLabel>
+        <translation>Sobrina</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Nephew</masterLabel>
+        <translation>Sobrino</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sibling&apos;s Child</masterLabel>
+        <translation>Hijo de hermano</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cousin</masterLabel>
+        <translation>Primo/a</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grandmother</masterLabel>
+        <translation>Abuela</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grandfather</masterLabel>
+        <translation>Abuelo</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grandparent</masterLabel>
+        <translation>Abuelo/a</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grandson</masterLabel>
+        <translation>Nieto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Granddaughter</masterLabel>
+        <translation>Nieta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grandchild</masterLabel>
+        <translation>Nieto/a</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Guardian</masterLabel>
+        <translation>Tutor</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dependent</masterLabel>
+        <translation>Dependiente</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Employer</masterLabel>
+        <translation>Empleado</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Employee</masterLabel>
+        <translation>Empleado</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Friend</masterLabel>
+        <translation>Amigo/a</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Family</masterLabel>
+        <translation>Familia</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coworker</masterLabel>
+        <translation>Compañero de trabajo</translation>
+    </picklistValues>
+</CustomFieldTranslation>

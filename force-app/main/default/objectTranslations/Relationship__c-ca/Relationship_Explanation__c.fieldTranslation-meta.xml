@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Relationship_Explanation__c</name>
+    <help>Una frase que clarifica qui és qui a la relació. Per exemple, Joe Ada és l&apos;empresari de Sara Cordova. Aquest camp és només de lectura.</help>
+    <label>Explicació de la relació</label>
+</CustomFieldTranslation>

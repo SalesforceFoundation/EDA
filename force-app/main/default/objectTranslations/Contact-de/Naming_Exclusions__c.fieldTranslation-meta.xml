@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Naming_Exclusions__c</name>
+    <help>Bei Wahl von &quot;Haushalt-Name&quot; wird dieser Kontakt aus dem Haushalt-Namen ausgeschlossen. HINWEIS: Die Optionen &quot;Formelle Anrede des Haushalts&quot; und &quot;Informelle Anrede des Haushalts&quot; sind derzeit nicht an bestehende Produktfunktionalität gebunden.</help>
+    <label>Benennungsausschlüsse</label>
+    <picklistValues>
+        <masterLabel>Household__c.Name</masterLabel>
+        <translation>Household__c.Name</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Household__c.Formal_Greeting__c</masterLabel>
+        <translation>Household__c.Formal_Greeting__c</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Household__c.Informal_Greeting__c</masterLabel>
+        <translation>Household__c.Informal_Greeting__c</translation>
+    </picklistValues>
+</CustomFieldTranslation>

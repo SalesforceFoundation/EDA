@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Attendance_Type__c</name>
+    <help>Indiqueu si aquesta tardança o absència va ser per a un període de classe o per a tot el dia.</help>
+    <label>Tipus d&apos;assistència</label>
+    <picklistValues>
+        <masterLabel>Class Absence</masterLabel>
+        <translation>Absència d&apos;una classe</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Class Tardy</masterLabel>
+        <translation>Retard a una classe</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Day Absence</masterLabel>
+        <translation>Absència d&apos;un dia</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Day Tardy</masterLabel>
+        <translation>Retard d&apos;un dia</translation>
+    </picklistValues>
+</CustomFieldTranslation>

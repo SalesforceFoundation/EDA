@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customTabs>
+        <name>Settings_Health_Check</name>
+        <label>設定の状態チェック</label>
+    </customTabs>
+</Translations>

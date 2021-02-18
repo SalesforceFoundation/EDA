@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Citizenship_Status__c</name>
+    <help>De status van het staatsburgerschap van de contactpersoon.</help>
+    <label>Staatsburgerschap</label>
+    <picklistValues>
+        <masterLabel>U.S. Citizen or U.S. National</masterLabel>
+        <translation>Amerikaans staatsburger of Amerikaanse onderdaan</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U.S. Dual Citizen</masterLabel>
+        <translation>Amerikaan met dubbele nationaliteit</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U.S. Permanent Resident</masterLabel>
+        <translation>Permanent ingezetene van de VS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U.S. Refugee or Asylee</masterLabel>
+        <translation>Amerikaanse vluchtelingen- of asielzoekersstatus</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Temporary Resident</masterLabel>
+        <translation>Tijdelijke inwoner</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other (Non-U.S.)</masterLabel>
+        <translation>Overig (niet-Amerikaan)</translation>
+    </picklistValues>
+</CustomFieldTranslation>

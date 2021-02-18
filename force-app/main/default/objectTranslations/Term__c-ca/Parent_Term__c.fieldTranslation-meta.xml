@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Parent_Term__c</name>
+    <help>Si ho voleu, seleccioneu el període del qual forma part aquest període. Per exemple, si aquest període és el trimestre de tardor del 2020, el període principal pot ser el curs escolar 2020/2021.</help>
+    <relationshipLabel>Períodes</relationshipLabel>
+    <label>Període principal</label>
+</CustomFieldTranslation>

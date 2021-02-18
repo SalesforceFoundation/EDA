@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Offering__c</name>
+    <help>Oferta de curs associada al registre de la qualificació. Quan es deixa en blanc, l&apos;oferta de curs es copia automàticament de la connexió de curs vàlida.</help>
+    <relationshipLabel>Qualificacions del període</relationshipLabel>
+    <label>Oferta de curs</label>
+</CustomFieldTranslation>

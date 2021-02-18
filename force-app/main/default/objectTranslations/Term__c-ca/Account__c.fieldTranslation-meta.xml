@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Account__c</name>
+    <help>El programa acadèmic, el departament o tota la institució educativa a què s’aplica aquest període. Seleccioneu el compte que representa la vostra institució educativa si els períodes són coherents a tots els programes i departaments de la vostra escola.</help>
+    <relationshipLabel>Períodes</relationshipLabel>
+    <label>Compte</label>
+</CustomFieldTranslation>

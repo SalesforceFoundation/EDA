@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Religion__c</name>
+    <help>Uskonto, jota tämä henkilö harjoittaa.</help>
+    <label>Uskonto</label>
+    <picklistValues>
+        <masterLabel>Atheist</masterLabel>
+        <translation>Ateisti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Buddhist</masterLabel>
+        <translation>Buddisti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Christian</masterLabel>
+        <translation>Kristitty</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hindu</masterLabel>
+        <translation>Hindu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jewish</masterLabel>
+        <translation>Juutalainen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Muslim</masterLabel>
+        <translation>Muslimi</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Muu</translation>
+    </picklistValues>
+</CustomFieldTranslation>

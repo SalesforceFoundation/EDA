@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Formula_MailingAddress__c</name>
+    <help>Koko postitusosoite, mukaan lukien postitusosoite 2 ja postitusmaa, jos se ei ole tyhjä (vain luku).</help>
+    <label>Postitusosoite</label>
+</CustomFieldTranslation>

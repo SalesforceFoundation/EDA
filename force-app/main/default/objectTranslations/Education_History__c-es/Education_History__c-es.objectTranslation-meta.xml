@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>EDA Education History Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de historial educativo</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Nombre de historial educativo</label>
+    </standardFields>
+    <gender>Masculine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <value>Historial educativo</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Historiales educativos</value>
+    </caseValues>
+</CustomObjectTranslation>

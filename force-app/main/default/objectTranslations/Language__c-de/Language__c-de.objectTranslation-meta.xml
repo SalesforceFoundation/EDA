@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Language Layout</layout>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Name der Sprache</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Name der Sprache</label>
+    </standardFields>
+    <gender>Feminine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <value>Sprache</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Accusative</caseType>
+        <value>Sprache</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Dative</caseType>
+        <value>Sprache</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <value>Sprache</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <value>Sprachen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Accusative</caseType>
+        <value>Sprachen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Dative</caseType>
+        <value>Sprachen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <value>Sprachen</value>
+    </caseValues>
+</CustomObjectTranslation>

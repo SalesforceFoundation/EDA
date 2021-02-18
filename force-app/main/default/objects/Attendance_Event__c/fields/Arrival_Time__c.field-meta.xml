@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Arrival_Time__c</fullName>
+    <description>The time a tardy student arrived.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The time a tardy student arrived.</inlineHelpText>
+    <label>Arrival Time</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Time</type>
+</CustomField>

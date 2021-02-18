@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Standing__c</name>
+    <help>プログラム内の学生のレベル (1 年生、2 年生、3 年生、4 年生など)。</help>
+    <label>年次</label>
+    <picklistValues>
+        <masterLabel>Freshman</masterLabel>
+        <translation>1 年生</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sophomore</masterLabel>
+        <translation>2 年生</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Junior</masterLabel>
+        <translation>3 年生</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Senior</masterLabel>
+        <translation>4 年生</translation>
+    </picklistValues>
+</CustomFieldTranslation>

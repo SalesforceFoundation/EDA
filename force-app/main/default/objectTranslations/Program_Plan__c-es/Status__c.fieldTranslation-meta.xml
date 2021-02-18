@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Status__c</name>
+    <help>Seleccione &quot;Vigente&quot; si este Plan del programa tiene estudiantes inscritos o si es apto para que se inscriban los estudiantes. En caso contrario, seleccione &quot;Archivado&quot;.</help>
+    <label>Estado</label>
+    <picklistValues>
+        <masterLabel>Current</masterLabel>
+        <translation>Vigente</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Archived</masterLabel>
+        <translation>Archivado</translation>
+    </picklistValues>
+</CustomFieldTranslation>

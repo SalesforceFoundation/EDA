@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>EDA Attendance Event Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de evento de asistencia</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Nombre de evento de asistencia</label>
+    </standardFields>
+    <gender>Masculine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <value>Evento de asistencia</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Eventos de asistencia</value>
+    </caseValues>
+</CustomObjectTranslation>

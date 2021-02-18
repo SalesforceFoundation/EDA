@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Deceased__c</name>
+    <help>Geeft aan dat deze persoon is overleden. Bij selectie worden Geen contact opnemen, Niet bellen, E-mail afmelden en Fax afmelden ingeschakeld. Als de contactpersoon niet het enige lid van het huishouden is, wordt diens naam uit het huishouden verwijderd.</help>
+    <label>Overleden</label>
+</CustomFieldTranslation>

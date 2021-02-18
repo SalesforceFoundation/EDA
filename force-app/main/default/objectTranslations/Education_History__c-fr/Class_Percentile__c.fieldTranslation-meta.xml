@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Percentile__c</name>
+    <help>Le rang centile de l&apos;étudiant dans sa classe. Par exemple, un étudiant classé dans les 10 % supérieurs a une valeur de 90 %.</help>
+    <label>Centile dans la classe</label>
+</CustomFieldTranslation>

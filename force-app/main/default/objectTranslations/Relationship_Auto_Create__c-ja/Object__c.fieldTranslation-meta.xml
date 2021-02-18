@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Object__c</name>
+    <help>カスタム参照項目が配置されているオブジェクト (Contact または CampaignMember) の API 参照名。</help>
+    <label>オブジェクト</label>
+</CustomFieldTranslation>

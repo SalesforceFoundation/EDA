@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Term_Grade_Type__c</name>
+    <help>El tipus de període de qualificació corresponent a aquesta qualificació, per exemple, Qualificació de de mig període, Qualificació final, Qualificació d’examen, Període de qualificació.</help>
+    <label>Tipus de qualificació del període</label>
+    <picklistValues>
+        <masterLabel>Exam Grade</masterLabel>
+        <translation>Qualificació d&apos;examen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Final Grade</masterLabel>
+        <translation>Qualificació final</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grading Period</masterLabel>
+        <translation>Període de qualificació</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mid-Term Grade</masterLabel>
+        <translation>Qualificació de mig període</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Filter_Field__c</name>
+    <help>絞り込みで使用する項目の名前。</help>
+    <label>検索条件項目</label>
+</CustomFieldTranslation>

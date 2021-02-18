@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Connection__c</name>
+    <help>Der Kurs, in dem der Student diese Note erhalten hat. &quot;Kontakt&quot; und &quot;Kursangebot&quot; für &quot;Zeitabschnittsbezogene Note&quot; müssen mit dem Kontakt und Kursangebot im Kursverbindungs-Datensatz übereinstimmen.</help>
+    <relationshipLabel>Zeitabschnittsbezogene Noten</relationshipLabel>
+    <label>Kursverbindung</label>
+</CustomFieldTranslation>

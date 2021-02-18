@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Start_Time__c</name>
+    <help>La hora del día en que comienza la oferta de curso. Si introdujo un Bloque de tiempo para esta Oferta de curso, puede dejar este campo en blanco.</help>
+    <label>Hora de inicio</label>
+</CustomFieldTranslation>

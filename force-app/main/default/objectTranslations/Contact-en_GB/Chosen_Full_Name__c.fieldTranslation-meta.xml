@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Chosen_Full_Name__c</name>
+    <help>The full name that this Contact prefers to use in place of their legal name.</help>
+    <label>Chosen Full Name</label>
+</CustomFieldTranslation>

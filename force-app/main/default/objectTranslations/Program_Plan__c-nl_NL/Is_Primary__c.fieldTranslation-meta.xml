@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Is_Primary__c</name>
+    <help>Geeft aan dat dit het programmaplan is dat momenteel van kracht is voor het geselecteerde academische programma.</help>
+    <label>Is primair</label>
+</CustomFieldTranslation>

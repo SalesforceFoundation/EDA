@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Percent_Grade__c</name>
+    <help>Si votre école utilise des pourcentages pour désigner les notes, saisissez le pourcentage que l&apos;étudiant a obtenu.</help>
+    <label>Note en pourcentage</label>
+</CustomFieldTranslation>

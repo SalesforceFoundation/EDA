@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Standing__c</name>
+    <help>El nivell de l&apos;alumne en un programa, per exemple, estudiant de primer any, de segon any, de penúltim any o d&apos;últim any.</help>
+    <label>Classe de peu</label>
+    <picklistValues>
+        <masterLabel>Freshman</masterLabel>
+        <translation>Estudiant de primer any</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sophomore</masterLabel>
+        <translation>Estudiant de segon any</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Junior</masterLabel>
+        <translation>Estudiant de penúltim any</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Senior</masterLabel>
+        <translation>Estudiant d&apos;últim any</translation>
+    </picklistValues>
+</CustomFieldTranslation>

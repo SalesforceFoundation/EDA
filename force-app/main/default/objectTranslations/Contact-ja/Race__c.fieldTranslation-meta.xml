@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Race__c</name>
+    <help>この個人が自身を説明するために使用する人種を選択します。</help>
+    <label>人種</label>
+    <picklistValues>
+        <masterLabel>American Indian or Alaska Native</masterLabel>
+        <translation>アメリカ先住民またはアラスカ先住民</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Asian</masterLabel>
+        <translation>アジア人</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Black or African American</masterLabel>
+        <translation>黒人またはアフリカ系アメリカ人</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hispanic or Latino</masterLabel>
+        <translation>ヒスパニックまたはラテン系</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Native Hawaiian or Other Pacific Islander</masterLabel>
+        <translation>ハワイ先住民またはその他の太平洋諸島人</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>White</masterLabel>
+        <translation>白人</translation>
+    </picklistValues>
+</CustomFieldTranslation>

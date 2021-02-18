@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Trigger Handler Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom du gestionnaire de déclencheur</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Nom du gestionnaire de déclencheur</label>
+    </standardFields>
+    <gender>Masculine</gender>
+    <startsWith>Consonant</startsWith>
+    <caseValues>
+        <plural>false</plural>
+        <value>Gestionnaire de déclencheur</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Gestionnaires de déclencheur</value>
+    </caseValues>
+</CustomObjectTranslation>

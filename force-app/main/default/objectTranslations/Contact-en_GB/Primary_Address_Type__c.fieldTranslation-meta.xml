@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary_Address_Type__c</name>
+    <help>Indicate what kind of address the Mailing Address is, for example, Work, Home, or Other.</help>
+    <label>Primary Address Type</label>
+    <picklistValues>
+        <masterLabel>Home</masterLabel>
+        <translation>Home</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Vacation Residence</masterLabel>
+        <translation>Vacation Residence</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Work</masterLabel>
+        <translation>Work</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Other</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enable_Course_Connections__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When enabled, allows users to choose the Contact type (Faculty or Student) when creating a Course Connection record. This feature requires default Contact record types to be set for active students and faculty.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When enabled, allows users to choose the Contact type (Faculty or Student) when creating a Course Connection record. This feature requires default Contact record types to be set for active students and faculty.</inlineHelpText>
+    <label>Enable Course Connections</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

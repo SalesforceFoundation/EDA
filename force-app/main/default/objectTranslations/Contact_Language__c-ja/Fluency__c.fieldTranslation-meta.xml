@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Fluency__c</name>
+    <help>この個人が話すこの言語の流暢さ。</help>
+    <label>流暢さ</label>
+    <picklistValues>
+        <masterLabel>Fluent</masterLabel>
+        <translation>流暢</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Intermediate</masterLabel>
+        <translation>中級</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Beginner</masterLabel>
+        <translation>初級</translation>
+    </picklistValues>
+</CustomFieldTranslation>

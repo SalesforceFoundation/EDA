@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary__c</name>
+    <help>これがこの個人の主要な所属かどうかを示します。選択した場合、団体名が取引先責任者レコードの関連する [主所属] 項目に保存されます。</help>
+    <label>主</label>
+</CustomFieldTranslation>

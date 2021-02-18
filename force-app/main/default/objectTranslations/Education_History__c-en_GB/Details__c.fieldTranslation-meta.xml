@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Details__c</name>
+    <help>Additional details about this student&apos;s educational history.</help>
+    <label>Details</label>
+</CustomFieldTranslation>

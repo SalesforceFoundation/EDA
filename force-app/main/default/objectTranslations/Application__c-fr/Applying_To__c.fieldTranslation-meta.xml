@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Applying_To__c</name>
+    <help>Le type de programme académique ou mémoire auquel le demandeur postule.</help>
+    <relationshipLabel>Demandes</relationshipLabel>
+    <label>Demande de</label>
+</CustomFieldTranslation>

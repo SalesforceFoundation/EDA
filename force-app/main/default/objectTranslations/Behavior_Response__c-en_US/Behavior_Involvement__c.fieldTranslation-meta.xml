@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The system-generated number associated with this event. Format: BI-{0000}. --></help>
+    <label><!-- Behavior Involvement --></label>
+    <name>Behavior_Involvement__c</name>
+    <relationshipLabel><!-- Behavior Responses --></relationshipLabel>
+</CustomFieldTranslation>

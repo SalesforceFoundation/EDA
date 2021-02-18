@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Parent_Term__c</name>
+    <help>Selecteer optioneel de termijn waar deze termijn deel van uitmaakt. Als deze termijn bijvoorbeeld Herfstkwartaal 2020 is, zou de bovenliggende termijn Schooljaar 2020/2021 kunnen zijn.</help>
+    <relationshipLabel>Termijnen</relationshipLabel>
+    <label>Bovenliggende termijn</label>
+</CustomFieldTranslation>

@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>EDA Course Offering Schedule Layout</layout>
+        <sections>
+            <label>Viikonpäivät</label>
+            <section>Days of Week</section>
+        </sections>
+        <sections>
+            <label>Mukautetut linkit</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Kurssitarjonnan aikataulun nimi</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Kurssitarjonnan aikataulun nimi</label>
+    </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikataulu</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikataulusi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikataulut</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikataulusi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikataulun</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikataulusi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikataulujen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikataulujeni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikataulujesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikataulussa</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikataulussani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Inessive</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikataulussasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikatauluissa</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluissani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Inessive</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikatauluissasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikataulusta</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikataulustani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Elative</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikataulustasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikatauluista</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluistani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Elative</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikatauluistasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikatauluun</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluuni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Illative</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikatauluusi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikatauluihin</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluihini</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Illative</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikatauluihisi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikataululla</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikataulullani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Adessive</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikataulullasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikatauluilla</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluillani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Adessive</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikatauluillasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikataululta</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikataulultani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Ablative</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikataulultasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikatauluilta</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluiltani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Ablative</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikatauluiltasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikataululle</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikataululleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Allative</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikataulullesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikatauluille</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluilleni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Allative</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikatauluillesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikatauluna</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikataulunani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Essive</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikataulunasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikatauluina</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluinani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Essive</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikatauluinasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikatauluksi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikataulukseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Translative</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikatauluksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikatauluiksi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluikseni</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Translative</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikatauluiksesi</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikataulua</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikatauluani</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Partitive</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikatauluasi</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>None</possessive>
+        <value>Kurssitarjonnan aikatauluja</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>First</possessive>
+        <value>Kurssitarjonnan aikataulujani</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Partitive</caseType>
+        <possessive>Second</possessive>
+        <value>Kurssitarjonnan aikataulujasi</value>
+    </caseValues>
+</CustomObjectTranslation>

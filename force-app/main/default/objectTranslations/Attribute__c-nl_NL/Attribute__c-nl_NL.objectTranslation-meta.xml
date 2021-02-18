@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <recordTypes>
+        <name>Credential</name>
+        <label>Identificatiegegeven</label>
+        <description>Maakt het onderwijsinstellingen mogelijk om vergunningen, certificeringen of onderschrijvingen van stafleden of studenten te traceren.</description>
+    </recordTypes>
+    <recordTypes>
+        <name>Student_Characteristic</name>
+        <label>Studentenkenmerk</label>
+        <description>Maakt het onderwijsinstellingen mogelijk om belangrijke studentenkenmerken bij te houden die mogelijk van invloed zijn op het onderwijs van studenten.</description>
+    </recordTypes>
+    <layouts>
+        <layout>EDA Student Characteristic Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EDA Credential Layout</layout>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Kenmerknaam</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Kenmerknaam</label>
+    </standardFields>
+</CustomObjectTranslation>

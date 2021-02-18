@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>UniversityEmail__c</name>
+    <help>L&apos;adresse e-mail de l&apos;école de cette personne.</help>
+    <label>Adresse e-mail de l&apos;université</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>is_Address_Override__c</name>
+    <help>選択すると、この取引先責任者の住所は世帯のデフォルト住所または住所 (季節性) と同期しません。これは、この特定の取引先責任者の個別の [住所(郵送先)] を維持するために使用します (世帯取引先にのみ適用されます)。</help>
+    <label>自動的に更新しない</label>
+</CustomFieldTranslation>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>EDA Course Offering Schedule Layout</layout>
+        <sections>
+            <label>Wochentage</label>
+            <section>Days of Week</section>
+        </sections>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Name des Zeitplans des Kursangebots</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Name des Zeitplans des Kursangebots</label>
+    </standardFields>
+    <gender>Masculine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <value>Zeitplan des Kursangebots</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Accusative</caseType>
+        <value>Zeitplan des Kursangebots</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Dative</caseType>
+        <value>Zeitplans des Kursangebots</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <value>Zeitplans des Kursangebots</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <value>Zeitpläne des Kursangebots</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Accusative</caseType>
+        <value>Zeitplänen des Kursangebots</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Dative</caseType>
+        <value>Zeitplänen des Kursangebots</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <value>Zeitpläne des Kursangebots</value>
+    </caseValues>
+</CustomObjectTranslation>

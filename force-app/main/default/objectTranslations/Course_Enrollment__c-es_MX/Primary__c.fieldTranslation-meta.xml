@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary__c</name>
+    <help>Para miembros de institución, indica si es la facultad principal (por ejemplo, instructor jefe) para la Oferta de curso.</help>
+    <label>Principal</label>
+</CustomFieldTranslation>

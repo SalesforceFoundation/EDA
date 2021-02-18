@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Admin_Other_Name_Setting__c</fullName>
+    <description>Stores other info about Admin Account naming format.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Stores other info about Admin Account naming format.</inlineHelpText>
+    <label>Admin Other Name Setting</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

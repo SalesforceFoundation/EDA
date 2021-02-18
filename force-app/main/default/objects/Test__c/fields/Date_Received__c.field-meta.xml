@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_Received__c</fullName>
+    <description>The date the test score is added to the system, either by manual upload or directly from an official source.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The date the test score is added to the system, either by manual upload or directly from an official source.</inlineHelpText>
+    <label>Date Received</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

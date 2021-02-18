@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course_Offering__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Course Offering associated with the grade being recorded. When left blank, Course Offering autopopulates from the valid Course Connection on save.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Course Offering associated with the grade being recorded. When left blank, Course Offering autopopulates from the valid Course Connection on save.</inlineHelpText>
+    <label>Course Offering</label>
+    <referenceTo>Course_Offering__c</referenceTo>
+    <relationshipLabel>Term Grades</relationshipLabel>
+    <relationshipName>Term_Grades</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

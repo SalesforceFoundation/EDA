@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <validationRules>
+        <errorMessage>In plaats van de contactpersonen in deze relatie te wijzigen, dient u deze record te verwijderen of, indien van toepassing, een einddatum toe te voegen en de status bij te werken naar Voormalig. Maak dan een nieuwe relatierecord tussen de nieuwe contactpersonen.</errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>In plaats van de contactpersonen in deze relatie te wijzigen, dient u deze record te verwijderen of, indien van toepassing, een einddatum toe te voegen en de status bij te werken naar Voormalig. Maak dan een nieuwe relatierecord tussen de nieuwe contactpersonen.</errorMessage>
+        <name>Related_Contact_Do_Not_Change</name>
+    </validationRules>
+    <layouts>
+        <layout>HEDA Relationship Layout</layout>
+        <sections>
+            <label>Relatiegegevens</label>
+            <section>Relationship Information</section>
+        </sections>
+        <sections>
+            <label>Aangepaste koppelingen</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Relatiesleutel</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Relatiesleutel</label>
+    </standardFields>
+</CustomObjectTranslation>
