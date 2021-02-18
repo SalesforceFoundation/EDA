@@ -1,6 +1,6 @@
 {
-  "devDependencies": {
-    "prettier": "^2.2.1",
-    "prettier-plugin-apex": "^1.8.0"
-  }
+    "devDependencies": {
+        "prettier": "^2.2.1",
+        "prettier-plugin-apex": "^1.8.0"
+    }
 }
