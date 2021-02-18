@@ -904,7 +904,6 @@ private with sharing class CON_PrimaryAffls_TEST {
             new Affl_Mappings__c(
                 Name = 'Business Organization', 
                 Account_Record_Type__c = 'Not a Valid RecordType', 
-                //Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('FirstName')
                 Primary_Affl_Field__c = 'FirstName'
             )
         );
@@ -947,7 +946,6 @@ private with sharing class CON_PrimaryAffls_TEST {
             new Affl_Mappings__c(
                 Name = 'Business Organization', 
                 Account_Record_Type__c = 'Not a Valid RecordType', 
-                // Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('FirstName')
                 Primary_Affl_Field__c = 'FirstName'
             )
         );
@@ -1617,7 +1615,6 @@ private with sharing class CON_PrimaryAffls_TEST {
             new Affl_Mappings__c(
                 Name = 'Business Organization', 
                 Account_Record_Type__c = 'Business_Organization',
-                //Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
                 Primary_Affl_Field__c = 'ReportsToId'
             )
         );
@@ -1668,15 +1665,14 @@ private with sharing class CON_PrimaryAffls_TEST {
         mappings.add(
             new Affl_Mappings__c(
                 Name = 'Business Organization',
-                Account_Record_Type__c = 'Business_Organization_Invalid',
-                //Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
+                Account_Record_Type__c = UTIL_Namespace.StrTokenNSPrefix('Business_Organization_Invalid'),
                 Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
             )
         );
         mappings.add(
             new Affl_Mappings__c(
                 Name = 'Household Account',
-                Account_Record_Type__c = 'HH_Account',
+                Account_Record_Type__c = UTIL_Namespace.StrTokenNSPrefix('HH_Account'),
                 Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
             )
         );
@@ -1721,7 +1717,6 @@ private with sharing class CON_PrimaryAffls_TEST {
             new Affl_Mappings__c(
                 Name = 'Business Organization', 
                 Account_Record_Type__c = 'Business_Organization_Invalid', 
-                // Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
                 Primary_Affl_Field__c = 'ReportsToId'
             )
         );
@@ -1823,7 +1818,6 @@ private with sharing class CON_PrimaryAffls_TEST {
             new Affl_Mappings__c(
                 Name = 'Business Organization', 
                 Account_Record_Type__c = 'Business_Organization', 
-                //Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
                 Primary_Affl_Field__c = 'ReportsToId'
             )
         );
@@ -1880,7 +1874,6 @@ private with sharing class CON_PrimaryAffls_TEST {
             new Affl_Mappings__c(
                 Name = 'Business Organization', 
                 Account_Record_Type__c = 'Business_Organization_Invalid', 
-                //Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
                 Primary_Affl_Field__c = 'ReportsToId'
             )
         );
@@ -1937,7 +1930,6 @@ private with sharing class CON_PrimaryAffls_TEST {
             new Affl_Mappings__c(
                 Name = 'Business Organization', 
                 Account_Record_Type__c = 'Business_Organization_Invalid', 
-                //Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
                 Primary_Affl_Field__c = 'ReportsToId'
             )
         );
