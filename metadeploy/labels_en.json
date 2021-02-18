@@ -55,6 +55,10 @@
         "Deploy Einstein Analytics Templates": {
             "message": "Deploy Einstein Analytics Templates",
             "description": "title of installation step"
+        },
+        "Health Check": {
+            "message": "Health Check",
+            "description": "title of installation step"
         }
     },
     "plan:ra_einstein_template": {
@@ -66,6 +70,10 @@
     "checks": {
         "Einstein Analytics permission sets are not available.": {
             "message": "Einstein Analytics permission sets are not available.",
+            "description": "shown if validation fails"
+        },
+        "Skipped because Translation Workbench is disabled.": {
+            "message": "Skipped because Translation Workbench is disabled.",
             "description": "shown if validation fails"
         }
     }
