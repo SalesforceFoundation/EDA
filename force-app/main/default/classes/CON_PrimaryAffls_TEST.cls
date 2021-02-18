@@ -1665,14 +1665,14 @@ private with sharing class CON_PrimaryAffls_TEST {
         mappings.add(
             new Affl_Mappings__c(
                 Name = 'Business Organization',
-                Account_Record_Type__c = UTIL_Namespace.StrTokenNSPrefix('Business_Organization_Invalid'),
-                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('ReportsToId')
+                Account_Record_Type__c = 'Business_Organization_Invalid',
+                Primary_Affl_Field__c = 'ReportsToId'
             )
         );
         mappings.add(
             new Affl_Mappings__c(
                 Name = 'Household Account',
-                Account_Record_Type__c = UTIL_Namespace.StrTokenNSPrefix('HH_Account'),
+                Account_Record_Type__c = 'HH_Account',
                 Primary_Affl_Field__c =  UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
             )
         );
