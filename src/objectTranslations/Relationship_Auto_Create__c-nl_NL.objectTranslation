@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Campaign_Types__c</name>
-    <help>De lijst van campagnetypen waarop de automatisering van toepassing is bij het automatisch maken van relaties op basis van campagneleden. Dit veld is leeg voor het automatisch maken van relaties op basis van contactpersonen.</help>
-    <label>Campagnetypen</label>
-  </fields>
-  <fields>
-    <name>Field__c</name>
-    <help>Het label van het opzoekveld dat het maken van deze relatie triggert wanneer de veldwaarde wordt bijgewerkt.</help>
-    <label>Veld</label>
-  </fields>
-  <fields>
-    <name>Object__c</name>
-    <help>De API-naam van het object (Contact of CampaignMember) waarop het aangepaste opzoekveld staat ingesteld.</help>
-    <label>Object</label>
-  </fields>
-  <fields>
-    <name>Relationship_Type__c</name>
-    <help>Het relatietype (doorverwijzer, familie, enz.) dat moet worden gemaakt tussen het basisobject dat in het veld Object is gedefinieerd en het opzoekobject.</help>
-    <label>Relatietype</label>
-  </fields>
+    <fields>
+        <name>Campaign_Types__c</name>
+        <help>De lijst van campagnetypen waarop de automatisering van toepassing is bij het automatisch maken van relaties op basis van campagneleden. Dit veld is leeg voor het automatisch maken van relaties op basis van contactpersonen.</help>
+        <label>Campagnetypen</label>
+    </fields>
+    <fields>
+        <name>Field__c</name>
+        <help>Het label van het opzoekveld dat het maken van deze relatie triggert wanneer de veldwaarde wordt bijgewerkt.</help>
+        <label>Veld</label>
+    </fields>
+    <fields>
+        <name>Object__c</name>
+        <help>De API-naam van het object (Contact of CampaignMember) waarop het aangepaste opzoekveld staat ingesteld.</help>
+        <label>Object</label>
+    </fields>
+    <fields>
+        <name>Relationship_Type__c</name>
+        <help>Het relatietype (doorverwijzer, familie, enz.) dat moet worden gemaakt tussen het basisobject dat in het veld Object is gedefinieerd en het opzoekobject.</help>
+        <label>Relatietype</label>
+    </fields>
 </CustomObjectTranslation>

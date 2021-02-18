@@ -37,9 +37,25 @@
         <members>AFFL_MultiRecordType_TEST</members>
         <members>ATTD_CourseConnectionContact_TDTM</members>
         <members>ATTD_CourseConnectionContact_TEST</members>
+        <members>AccountModelHealthCheckVMapper</members>
+        <members>AccountModelHealthCheckVMapper_TEST</members>
+        <members>AccountModelSettingsMapper</members>
+        <members>AccountModelSettingsMapper_TEST</members>
+        <members>AccountModelSettingsModel</members>
+        <members>AccountModelSettingsModel_TEST</members>
+        <members>AccountModelSettingsService</members>
+        <members>AccountModelSettingsService_TEST</members>
         <members>Advancement_Adapter</members>
         <members>Advancement_Adapter_TEST</members>
         <members>Advancement_Info</members>
+        <members>AffiliationMappingsHCVMapper_TEST</members>
+        <members>AffiliationMappingsHealthCheckVMapper</members>
+        <members>AffiliationMappingsMapper</members>
+        <members>AffiliationMappingsMapper_TEST</members>
+        <members>AffiliationMappingsModel</members>
+        <members>AffiliationMappingsModel_TEST</members>
+        <members>AffiliationMappingsService</members>
+        <members>AffiliationMappingsService_TEST</members>
         <members>BEH_CannotDelete_TDTM</members>
         <members>BEH_CannotDelete_TEST</members>
         <members>CASE_CannotDelete_TDTM</members>
@@ -85,6 +101,16 @@
         <members>COUR_CannotDelete_TEST</members>
         <members>COUR_DescriptionCopy_BATCH</members>
         <members>COUR_DescriptionCopy_TEST</members>
+        <members>CourseConSettingHealthCheckVMapper</members>
+        <members>CourseConSettingHealthCheckVMapper_TEST</members>
+        <members>CourseConnectionSettingsMapper</members>
+        <members>CourseConnectionSettingsMapper_TEST</members>
+        <members>CourseConnectionSettingsModel</members>
+        <members>CourseConnectionSettingsModel_TEST</members>
+        <members>CourseConnectionSettingsService</members>
+        <members>CourseConnectionSettingsService_TEST</members>
+        <members>EDAHealthCheckGroupAPIService</members>
+        <members>EDAHealthCheckGroupAPIService_TEST</members>
         <members>ERR_AsyncErrors</members>
         <members>ERR_AsyncErrors_SCHED</members>
         <members>ERR_AsyncErrors_TEST</members>
@@ -98,6 +124,42 @@
         <members>ERR_Notifier</members>
         <members>FACI_CannotDelete_TDTM</members>
         <members>FACI_CannotDelete_TEST</members>
+        <members>FeatureParameterDateModel</members>
+        <members>FeatureParameterDateModel_TEST</members>
+        <members>FeatureParameterMapper</members>
+        <members>FeatureParameterMapper_TEST</members>
+        <members>FeatureParameterModel</members>
+        <members>FeatureParameterService</members>
+        <members>FeatureParameterService_TEST</members>
+        <members>HealthCheckController</members>
+        <members>HealthCheckController_TEST</members>
+        <members>HealthCheckDefinitionMapper</members>
+        <members>HealthCheckDefinitionMapper_TEST</members>
+        <members>HealthCheckDefinitionModel</members>
+        <members>HealthCheckDefinitionModel_TEST</members>
+        <members>HealthCheckDefinitionService</members>
+        <members>HealthCheckDefinitionService_TEST</members>
+        <members>HealthCheckDefinitionVModel</members>
+        <members>HealthCheckDefinitionVModel_TEST</members>
+        <members>HealthCheckGroupAPIServiceInterface</members>
+        <members>HealthCheckGroupController</members>
+        <members>HealthCheckGroupController_TEST</members>
+        <members>HealthCheckGroupService</members>
+        <members>HealthCheckGroupService_TEST</members>
+        <members>HealthCheckGroupVModel</members>
+        <members>HealthCheckGroupVModel_TEST</members>
+        <members>HealthCheckItemVModel</members>
+        <members>HealthCheckItemVModel_TEST</members>
+        <members>HealthCheckVMapper</members>
+        <members>HealthCheckVMapper_TEST</members>
+        <members>HealthCheckVModel</members>
+        <members>HealthCheckVModel_TEST</members>
+        <members>LookupFieldMapper</members>
+        <members>LookupFieldMapper_TEST</members>
+        <members>LookupFieldModel</members>
+        <members>LookupFieldModel_TEST</members>
+        <members>LookupFieldService</members>
+        <members>LookupFieldService_TEST</members>
         <members>MAPR_CON_PreferredEmailFields</members>
         <members>MAPR_CON_PreferredEmailFields_TEST</members>
         <members>MAPR_PrimaryAffiliations</members>
@@ -122,11 +184,31 @@
         <members>PREQ_PreventPPlanParent_TEST</members>
         <members>PReq_CannotDelete_TDTM</members>
         <members>PReq_CannotDelete_TEST</members>
+        <members>PicklistEntryMapper</members>
+        <members>PicklistEntryMapper_TEST</members>
+        <members>PicklistEntryModel</members>
+        <members>PicklistEntryModel_TEST</members>
+        <members>PicklistEntryService</members>
+        <members>PicklistEntryService_TEST</members>
         <members>REL_Relationships_Cm_TDTM</members>
         <members>REL_Relationships_Con_TDTM</members>
         <members>REL_Relationships_TDTM</members>
         <members>REL_Relationships_TEST</members>
         <members>REL_Utils</members>
+        <members>ReciprocalRelHealthCheckVMapper</members>
+        <members>ReciprocalRelHealthCheckVMapper_TEST</members>
+        <members>RecordTypeMapper</members>
+        <members>RecordTypeMapper_TEST</members>
+        <members>RecordTypeModel</members>
+        <members>RecordTypeModel_TEST</members>
+        <members>RecordTypeService</members>
+        <members>RecordTypeService_TEST</members>
+        <members>RelationshipLookupMapper</members>
+        <members>RelationshipLookupMapper_TEST</members>
+        <members>RelationshipLookupModel</members>
+        <members>RelationshipLookupModel_TEST</members>
+        <members>RelationshipLookupSettingsService</members>
+        <members>RelationshipLookupSettingsService_TEST</members>
         <members>SRVC_ContactPrimaryLanguage</members>
         <members>SRVC_ContactPrimaryLanguage_TEST</members>
         <members>SRVC_Contact_PreferredEmail</members>
@@ -145,6 +227,8 @@
         <members>STG_Courses_TEST</members>
         <members>STG_InstallScript</members>
         <members>STG_InstallScript_TEST</members>
+        <members>StringHandlingService</members>
+        <members>StringHandlingService_TEST</members>
         <members>TB_CannotDelete_TDTM</members>
         <members>TB_CannotDelete_TEST</members>
         <members>TB_StartEndTime_TDTM</members>
@@ -778,12 +862,109 @@
         <members>stgDisableErrorHandlingTitle</members>
         <members>stgDisablePreferredEmailEnforcement</members>
         <members>stgDisablePreferredPhoneEnforcement</members>
+        <members>stgEDASetupTitle</members>
         <members>stgEnableCourseConnectionsTitle</members>
         <members>stgEnablePreferredPhoneSync</members>
         <members>stgErrorNotiTo</members>
         <members>stgErrorNotifRecipientsTitle</members>
         <members>stgEthnicityRaceBackfillContacts</members>
         <members>stgFluent</members>
+        <members>stgHCAccountModelAdminInactiveFix</members>
+        <members>stgHCAccountModelAdminNotFoundFix</members>
+        <members>stgHCAccountModelDefaultInactiveFix</members>
+        <members>stgHCAccountModelDefaultNotFoundFix</members>
+        <members>stgHCAccountModelHHInactiveFix</members>
+        <members>stgHCAccountModelHHNotFoundFix</members>
+        <members>stgHCAccountRecordTypeSettingsUnique</members>
+        <members>stgHCAccountRecordTypesNotUnique</members>
+        <members>stgHCAccountRecordTypesNotUniqueFix</members>
+        <members>stgHCAccountRecordTypesUnique</members>
+        <members>stgHCAffiliationMappingSettingDesc</members>
+        <members>stgHCAffiliationMappingSettingHeading</members>
+        <members>stgHCAfflMapAccRecordTypeInactiveFix</members>
+        <members>stgHCAfflMapAccRecordTypeNotFoundFix</members>
+        <members>stgHCAfflMapAccRecordTypeNotUnique</members>
+        <members>stgHCAfflMapAccRecordTypeTitle</members>
+        <members>stgHCAfflMapAccRecordTypeUnique</members>
+        <members>stgHCAfflMapAccRecordTypeUniqueFix</members>
+        <members>stgHCAfflMapAccRecordTypeUniqueTitle</members>
+        <members>stgHCAfflMapAutoEnrollRoleInactive</members>
+        <members>stgHCAfflMapAutoEnrollRoleInactiveFix</members>
+        <members>stgHCAfflMapAutoEnrollRoleNotFound</members>
+        <members>stgHCAfflMapAutoEnrollRoleNotFoundFix</members>
+        <members>stgHCAfflMapAutoEnrollRoleTitle</members>
+        <members>stgHCAfflMapAutoEnrollRoleValid</members>
+        <members>stgHCAfflMapAutoEnrollStatusInactive</members>
+        <members>stgHCAfflMapAutoEnrollStatusInactiveFix</members>
+        <members>stgHCAfflMapAutoEnrollStatusNotFound</members>
+        <members>stgHCAfflMapAutoEnrollStatusNotFoundFix</members>
+        <members>stgHCAfflMapAutoEnrollStatusTitle</members>
+        <members>stgHCAfflMapAutoEnrollStatusValid</members>
+        <members>stgHCAfflMapContPrimaryFieldInvalidFix</members>
+        <members>stgHCAfflMapContPrimaryFieldUniqueTitle</members>
+        <members>stgHCAfflMapContactPrimaryFieldInvalid</members>
+        <members>stgHCAfflMapContactPrimaryFieldNotUnique</members>
+        <members>stgHCAfflMapContactPrimaryFieldTitle</members>
+        <members>stgHCAfflMapContactPrimaryFieldUnique</members>
+        <members>stgHCAfflMapContactPrimaryFieldUniqueFix</members>
+        <members>stgHCAfflMapContactPrimaryFieldValid</members>
+        <members>stgHCCourseConEnable</members>
+        <members>stgHCCourseConEnableFix</members>
+        <members>stgHCCourseConFacultyInactiveFix</members>
+        <members>stgHCCourseConFacultyNotFoundFix</members>
+        <members>stgHCCourseConRecordTypesNotUnique</members>
+        <members>stgHCCourseConRecordTypesNotUniqueFix</members>
+        <members>stgHCCourseConRecordTypesUnique</members>
+        <members>stgHCCourseConRecordTypesUniqueDesc</members>
+        <members>stgHCCourseConStudentInactiveFix</members>
+        <members>stgHCCourseConStudentNotFoundFix</members>
+        <members>stgHCCourseConnectionsTitle</members>
+        <members>stgHCPicklistValueInactive</members>
+        <members>stgHCPicklistValueNotFound</members>
+        <members>stgHCPicklistValueValid</members>
+        <members>stgHCReciprocalRelDescription</members>
+        <members>stgHCReciprocalRelFemaleInactiveFix</members>
+        <members>stgHCReciprocalRelFemaleNotFoundFix</members>
+        <members>stgHCReciprocalRelFemaleTitle</members>
+        <members>stgHCReciprocalRelMaleInactiveFix</members>
+        <members>stgHCReciprocalRelMaleNotFoundFix</members>
+        <members>stgHCReciprocalRelMaleTitle</members>
+        <members>stgHCReciprocalRelNameInactiveFix</members>
+        <members>stgHCReciprocalRelNameNotFoundFix</members>
+        <members>stgHCReciprocalRelNameNotUniqueDesc</members>
+        <members>stgHCReciprocalRelNameNotUniqueFix</members>
+        <members>stgHCReciprocalRelNameTitle</members>
+        <members>stgHCReciprocalRelNameUniqueDesc</members>
+        <members>stgHCReciprocalRelNameUniqueTitle</members>
+        <members>stgHCReciprocalRelNeutralInactiveFix</members>
+        <members>stgHCReciprocalRelNeutralNotFoundFix</members>
+        <members>stgHCReciprocalRelNeutralTitle</members>
+        <members>stgHCReciprocalRelSetting</members>
+        <members>stgHCRecordTypeInactive</members>
+        <members>stgHCRecordTypeNotFound</members>
+        <members>stgHCRecordTypeValid</members>
+        <members>stgHealthCheckAccountModel</members>
+        <members>stgHealthCheckAffiliationMappings</members>
+        <members>stgHealthCheckDescription</members>
+        <members>stgHealthCheckErrorLastRunDate</members>
+        <members>stgHealthCheckFixNotApplicable</members>
+        <members>stgHealthCheckLastRun</members>
+        <members>stgHealthCheckLoadingIndicator</members>
+        <members>stgHealthCheckReciprocalRelTitle</members>
+        <members>stgHealthCheckRecoFix</members>
+        <members>stgHealthCheckResultsCollapse</members>
+        <members>stgHealthCheckResultsDescription</members>
+        <members>stgHealthCheckResultsExpand</members>
+        <members>stgHealthCheckRunButton</members>
+        <members>stgHealthCheckRunError</members>
+        <members>stgHealthCheckSetting</members>
+        <members>stgHealthCheckStatus</members>
+        <members>stgHealthCheckStatusFailed</members>
+        <members>stgHealthCheckStatusPassed</members>
+        <members>stgHealthCheckStatusWarning</members>
+        <members>stgHealthCheckTitle</members>
+        <members>stgHealthChecksAllPassed</members>
+        <members>stgHealthChecksNotAllPassed</members>
         <members>stgHelpAccountModel</members>
         <members>stgHelpAccoutsDeletedIfChildContactsDeleted</members>
         <members>stgHelpAddressAccRecType</members>
@@ -1297,6 +1478,10 @@
         <name>FeatureParameterBoolean</name>
     </types>
     <types>
+        <members>SettingsHealthCheckLastRunDate</members>
+        <name>FeatureParameterDate</name>
+    </types>
+    <types>
         <members>Data_CountAdministrativeAccounts</members>
         <members>Data_CountCampaignMemberRelationshipRules</members>
         <members>Data_CountContactRelationshipRules</members>
@@ -1344,6 +1529,14 @@
         <members>Time_Block__c-EDA Time Block Layout</members>
         <members>Trigger_Handler__c-HEDA Trigger Handler Layout</members>
         <name>Layout</name>
+    </types>
+    <types>
+        <members>healthCheck</members>
+        <members>healthCheckDisplay</members>
+        <members>healthCheckGroup</members>
+        <members>healthCheckHighlightsPanel</members>
+        <members>healthCheckRun</members>
+        <name>LightningComponentBundle</name>
     </types>
     <types>
         <members>Address__c.All</members>

@@ -8,6 +8,14 @@
         <plural>true</plural>
         <value>Test Scores</value>
     </caseValues>
+    <layouts>
+        <layout>EDA Test Score Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
     <fields>
         <help><!-- The percentile ranking for this score. --></help>
         <label><!-- Percentile --></label>
@@ -58,12 +66,4 @@
         <name>Test__c</name>
         <relationshipLabel><!-- Test Scores --></relationshipLabel>
     </fields>
-    <layouts>
-        <layout>EDA Test Score Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

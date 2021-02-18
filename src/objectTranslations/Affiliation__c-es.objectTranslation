@@ -1,103 +1,103 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-  <fields>
-    <name>Account__c</name>
-    <help>La organización con la que está afiliada esta persona.</help>
-    <relationshipLabel>Contactos afiliados</relationshipLabel>
-    <label>Organización</label>
-  </fields>
-  <fields>
-    <name>Affiliation_Type__c</name>
-    <help>Tipo de registro de la cuenta afiliada, como por ejemplo, Departamento académico u Organización deportiva (solo lectura).</help>
-    <label>Tipo de afiliación</label>
-  </fields>
-  <fields>
-    <name>Contact__c</name>
-    <help>La persona afiliada con esta organización.</help>
-    <relationshipLabel>Cuentas afiliadas</relationshipLabel>
-    <label>Contacto</label>
-  </fields>
-  <fields>
-    <name>Description__c</name>
-    <help>Detalles de cómo la persona y la organización están afiliadas.</help>
-    <label>Descripción</label>
-  </fields>
-  <fields>
-    <name>EndDate__c</name>
-    <help>La fecha en la que esta afiliación finalizó o finalizará.</help>
-    <label>Fecha de Finalización</label>
-  </fields>
-  <fields>
-    <name>Primary__c</name>
-    <help>Indica si esta es la afiliación principal para esta persona. Si se selecciona, el nombre de organización se almacenan en el campo Afiliación principal en el registro Contacto.</help>
-    <label>Principal</label>
-  </fields>
-  <fields>
-    <name>Role__c</name>
-    <help>La función que tiene esta persona con la organización.</help>
-    <label>Función</label>
-    <picklistValues>
-      <masterLabel>Student</masterLabel>
-      <translation>Estudiante</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Prospect</masterLabel>
-      <translation>Posibilidad</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Applicant</masterLabel>
-      <translation>Solicitante</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Faculty</masterLabel>
-      <translation>Facultad</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Employee</masterLabel>
-      <translation>Empleador</translation>
-    </picklistValues>
-  </fields>
-  <fields>
-    <name>StartDate__c</name>
-    <help>La fecha en la que esta persona se afilió a esta organización.</help>
-    <label>Fecha de Inicio</label>
-  </fields>
-  <fields>
-    <name>Status__c</name>
-    <help>Indica si esta es una afiliación vigente o pasada.</help>
-    <label>Estado</label>
-    <picklistValues>
-      <masterLabel>Current</masterLabel>
-      <translation>Current</translation>
-    </picklistValues>
-    <picklistValues>
-      <masterLabel>Former</masterLabel>
-      <translation>Antiguo</translation>
-    </picklistValues>
-  </fields>
-  <layouts>
-    <layout>HEDA Affiliation Layout</layout>
-    <sections>
-      <label>Información de la afiliación</label>
-      <section>Affiliation Information</section>
-    </sections>
-    <sections>
-      <label>Vínculos personalizados</label>
-      <section>Custom Links</section>
-    </sections>
-  </layouts>
-  <nameFieldLabel>Clave de afiliación</nameFieldLabel>
-  <standardFields>
-    <name>Name</name>
-    <label>Clave de afiliación</label>
-  </standardFields>
-  <gender>Feminine</gender>
-  <caseValues>
-    <plural>false</plural>
-    <value>Afiliación</value>
-  </caseValues>
-  <caseValues>
-    <plural>true</plural>
-    <value>Afiliaciones</value>
-  </caseValues>
+    <layouts>
+        <layout>HEDA Affiliation Layout</layout>
+        <sections>
+            <label>Información de la afiliación</label>
+            <section>Affiliation Information</section>
+        </sections>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clave de afiliación</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Clave de afiliación</label>
+    </standardFields>
+    <gender>Feminine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <value>Afiliación</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Afiliaciones</value>
+    </caseValues>
+    <fields>
+        <name>Account__c</name>
+        <help>La organización con la que está afiliada esta persona.</help>
+        <relationshipLabel>Contactos afiliados</relationshipLabel>
+        <label>Organización</label>
+    </fields>
+    <fields>
+        <name>Affiliation_Type__c</name>
+        <help>Tipo de registro de la cuenta afiliada, como por ejemplo, Departamento académico u Organización deportiva (solo lectura).</help>
+        <label>Tipo de afiliación</label>
+    </fields>
+    <fields>
+        <name>Contact__c</name>
+        <help>La persona afiliada con esta organización.</help>
+        <relationshipLabel>Cuentas afiliadas</relationshipLabel>
+        <label>Contacto</label>
+    </fields>
+    <fields>
+        <name>Description__c</name>
+        <help>Detalles de cómo la persona y la organización están afiliadas.</help>
+        <label>Descripción</label>
+    </fields>
+    <fields>
+        <name>EndDate__c</name>
+        <help>La fecha en la que esta afiliación finalizó o finalizará.</help>
+        <label>Fecha de Finalización</label>
+    </fields>
+    <fields>
+        <name>Primary__c</name>
+        <help>Indica si esta es la afiliación principal para esta persona. Si se selecciona, el nombre de organización se almacenan en el campo Afiliación principal en el registro Contacto.</help>
+        <label>Principal</label>
+    </fields>
+    <fields>
+        <name>Role__c</name>
+        <help>La función que tiene esta persona con la organización.</help>
+        <label>Función</label>
+        <picklistValues>
+            <masterLabel>Student</masterLabel>
+            <translation>Estudiante</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Prospect</masterLabel>
+            <translation>Posibilidad</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Applicant</masterLabel>
+            <translation>Solicitante</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Faculty</masterLabel>
+            <translation>Facultad</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee</masterLabel>
+            <translation>Empleador</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <name>StartDate__c</name>
+        <help>La fecha en la que esta persona se afilió a esta organización.</help>
+        <label>Fecha de Inicio</label>
+    </fields>
+    <fields>
+        <name>Status__c</name>
+        <help>Indica si esta es una afiliación vigente o pasada.</help>
+        <label>Estado</label>
+        <picklistValues>
+            <masterLabel>Current</masterLabel>
+            <translation>Current</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Former</masterLabel>
+            <translation>Antiguo</translation>
+        </picklistValues>
+    </fields>
 </CustomObjectTranslation>
