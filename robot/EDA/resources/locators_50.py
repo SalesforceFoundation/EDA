@@ -220,6 +220,7 @@ eda_lex_locators = {
         "run_health_check_button": "//button[@title='{}']",
         "health_check_header": "//h2[contains(@class, 'header')]/span[text()='{}']",
         "last_run_date": "//button[@title='Run Health Check']/preceding::div[1]",
+        "expand_button": "//button[@title='Expand these results' and contains(@aria-controls, '{}')]",
     },
     "term": {
         "new_term_button": "//span[@class='itemLabel slds-truncate slds-show--inline-block slds-m-left--xx-small' and contains(text(), 'New Term')]//..",

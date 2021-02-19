@@ -29,3 +29,15 @@ Verify last run date is updated upon clicking run health check Button
     Select App Launcher Tab      Settings Health Check
     Verify last run date
 
+Verify account model health check settings checks pass
+    [Documentation]         Validates the account model health card is displayed with settings for
+    ...                     Administrative, Household, Default Account Model and Unique account
+    ...                     record type checks.Also verifies the status of each setting.
+    [tags]                  unstable        rbt:high        W-8880346
+    Click health check button       Run Health Check
+    Sleep       2
+    Click expand button             AccountModel
+
+
+
+

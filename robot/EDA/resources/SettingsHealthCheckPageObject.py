@@ -27,6 +27,15 @@ class SettingsHealthCheckPage(BaseEDAPage, HomePage):
             locator, timeout=60, error=f"Run Health Check button with locator '{locator}' is not available")
         self.selenium.click_element(locator)
 
+    def click_expand_button(self, settingName):
+        """ This method will click the expand button on tree grids on settings health check page
+            Pass the name of health check category from your test ex - AccountModel, Affiliation
+            Mappings, ReciprocalRelationships and CourseConnections
+        """
+        locator = eda_lex_locators["settings_health_check"]["expand_button"].format(settingName)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f"Expand button is not displayed to the user")
+        self.selenium.click_element(locator)
+
     def verify_last_run_date(self):
         """ This method will verify 'Last Run' field on Settings Health Check page has a date in it
             and the date is equal to todays date(system date).
