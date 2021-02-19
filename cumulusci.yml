@@ -126,12 +126,12 @@ tasks:
     deploy_unpackaged_test_metadata:
         description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
         class_path: cumulusci.tasks.salesforce.DeployBundles
-        group: 'EDA: Unpackaged Tests'
+        group: "EDA: Unpackaged Tests"
         options:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/test_unpackaged
             unmanaged: True
-            
+
     deploy_unpackaged_healthcheck_tab_translation:
         description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -156,7 +156,7 @@ tasks:
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
             command: "force:user:permset:assign -n Encryption"
-    
+
     check_translation_workbench_enabled:
         group: "EDA Metadata"
         description: Detects whether or not translation workbench is enabled
@@ -370,10 +370,10 @@ flows:
                 task: execute_primary_affiliation_mapping_apex
             7:
                 task: deploy_unpackaged_test_metadata
-            8: 
+            8:
                 # execute tests in unmanaged package
-                task: run_tests 
-                options: 
+                task: run_tests
+                options:
                     test_name_match: '%\_Unmanaged_TEST,%\_UTST'
             10:
                 flow: eda_settings_unmanaged
@@ -522,14 +522,15 @@ flows:
                     namespaced: False
 
     deploy_health_check_localization:
-        description: Deploys health check 
+        description: Deploys health check
         steps:
             1:
                 task: deploy_unpackaged_healthcheck_tab_translation
+                ui_options:
+                    name: "Health Check"
                 checks:
                     - when: "not tasks.check_translation_workbench_enabled()"
-                      action: skip
-                      message: Skipped because Translation Workbench is disabled.
+                      action: hide
 
     qa_org_2gp:
         steps:
@@ -673,6 +674,8 @@ plans:
                         name: EDA - Facility Display Name Formula Field
                     case_behavior_record_types:
                         name: EDA - Case Behavior Record Types
+                    health_check_tab:
+                        name: Health Check
                 options:
                     unmanaged: False
             4:
