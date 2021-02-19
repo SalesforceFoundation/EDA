@@ -115,21 +115,25 @@ tasks:
             path: unpackaged/test_packaged/primary_affiliations
             unmanaged: True
 
-    deploy_unpackaged_relationship_autocreate_config:
-        description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing. 
-        class_path: cumulusci.tasks.salesforce.Deploy
+    deploy_unpackaged_test_metadata:
+        description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
+        class_path: cumulusci.tasks.salesforce.DeployBundles
+        group: "EDA: Unpackaged Tests"
         options:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/test_packaged/relationship_autocreate
             unmanaged: True
 
+<<<<<<< HEAD
     deploy_unpackaged_test_metadata:
+=======
+    deploy_unpackaged_healthcheck_tab_translation:
+>>>>>>> main
         description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
-        class_path: cumulusci.tasks.salesforce.DeployBundles
-        group: 'EDA: Unpackaged Tests'
+        class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test_unpackaged
+            path: unpackaged/localization/health_check_tab
             unmanaged: True
 
     deploy_trial_config:
@@ -148,6 +152,15 @@ tasks:
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
             command: "force:user:permset:assign -n Encryption"
+
+    check_translation_workbench_enabled:
+        group: "EDA Metadata"
+        description: Detects whether or not translation workbench is enabled
+        class_path: cumulusci.tasks.preflight.settings.CheckSettingsValue
+        options:
+            settings_type: languageSettings
+            settings_field: IsTranslationWorkbenchEnabled
+            value: true
 
     create_tenant_secret:
         group: "Shield Platform Encryption"
@@ -350,6 +363,15 @@ flows:
             5:
                 flow: run_unmanaged_unit_tests
             6:
+                task: execute_primary_affiliation_mapping_apex
+            7:
+                task: deploy_unpackaged_test_metadata
+            8:
+                # execute tests in unmanaged package
+                task: run_tests
+                options:
+                    test_name_match: '%\_Unmanaged_TEST,%\_UTST'
+            10:
                 flow: eda_settings_unmanaged
 
     config_dev_namespaced:
@@ -494,6 +516,17 @@ flows:
                 task: execute_enable_course_connections
                 options:
                     namespaced: False
+
+    deploy_health_check_localization:
+        description: Deploys health check
+        steps:
+            1:
+                task: deploy_unpackaged_healthcheck_tab_translation
+                ui_options:
+                    name: "Health Check"
+                checks:
+                    - when: "not tasks.check_translation_workbench_enabled()"
+                      action: hide
 
     qa_org_2gp:
         steps:
@@ -645,8 +678,12 @@ plans:
                         name: EDA - Facility Display Name Formula Field
                     case_behavior_record_types:
                         name: EDA - Case Behavior Record Types
+                    health_check_tab:
+                        name: Health Check
                 options:
                     unmanaged: False
+            4:
+                flow: deploy_health_check_localization
 
     ra_einstein_template:
         slug: ra_template
