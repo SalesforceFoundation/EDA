@@ -116,7 +116,7 @@
     <fields>
         <name>Seasonal_End_Day__c</name>
         <help>El día del mes en el que esta dirección deja de reemplazar a la dirección predeterminada.</help>
-        <label>Día de finalización de estación</label>
+        <label>Día de finalización de temporada</label>
         <picklistValues>
             <masterLabel>1</masterLabel>
             <translation>1</translation>
@@ -245,7 +245,7 @@
     <fields>
         <name>Seasonal_End_Month__c</name>
         <help>El mes del año en el que esta dirección deja de reemplazar a la dirección predeterminada.</help>
-        <label>Mes de finalización de estación</label>
+        <label>Mes de finalización de temporada</label>
         <picklistValues>
             <masterLabel>1</masterLabel>
             <translation>1</translation>
@@ -303,7 +303,7 @@
     <fields>
         <name>Seasonal_Start_Day__c</name>
         <help>El día del mes en el que esta dirección reemplaza a la dirección predeterminada.</help>
-        <label>Día de inicio de estación</label>
+        <label>Día de inicio de temporada</label>
         <picklistValues>
             <masterLabel>1</masterLabel>
             <translation>1</translation>
@@ -432,7 +432,7 @@
     <fields>
         <name>Seasonal_Start_Month__c</name>
         <help>El mes del año en el que esta dirección reemplaza a la dirección predeterminada.</help>
-        <label>Mes de inicio de estación</label>
+        <label>Mes de inicio de temporada</label>
         <picklistValues>
             <masterLabel>1</masterLabel>
             <translation>1</translation>
