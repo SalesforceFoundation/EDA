@@ -19,11 +19,11 @@ Verify last run date is updated upon clicking run health check Button
     ...                     run health check button.
     [tags]                  unstable        rbt:high        W-8874163
     Reload Page
-    Select App Launcher Tab      Settings Health Check
-    Current page should be      Home        Settings Health Check
+    Select App Launcher Tab         Settings Health Check
+    Current page should be          Home        Settings Health Check
     Click health check button       Run Health Check
     Verify last run date
     Go to custom settings setup
-    Select App Launcher Tab      Settings Health Check
+    Select App Launcher Tab         Settings Health Check
     Verify last run date
 
