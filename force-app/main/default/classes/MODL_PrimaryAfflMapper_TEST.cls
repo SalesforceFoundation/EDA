@@ -51,15 +51,14 @@ private class MODL_PrimaryAfflMapper_TEST {
         insert mappings;
 
         Test.startTest();
-            MODL_PrimaryAfflMapper conPrimaryAfflModl = new MODL_PrimaryAfflMapper(busiOrgInfo, contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, true, '');
+            MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(busiOrgInfo, contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, true);
         Test.stopTest();
 
-        System.assertEquals(true, conPrimaryAfflModl.getIsValid());
-        System.assertEquals(true, String.isEmpty(conPrimaryAfflModl.getInvalidErrorMessage()));
-        System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), conPrimaryAfflModl.getAccountRecordTypeId());
-        System.assertEquals(prefix + 'Primary_Organization__c', conPrimaryAfflModl.getContactFieldApiName());
-        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimaryAfflModl.getSettingsContactFieldValue());
-        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimaryAfflModl.getSettingsRecordTypeFieldValue());
+        System.assertEquals(true, conPrimayAfflModl.getIsValid());
+        System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), conPrimayAfflModl.getAccountRecordTypeId());
+        System.assertEquals(prefix + 'Primary_Organization__c', conPrimayAfflModl.getContactFieldApiName());
+        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimayAfflModl.getSettingsContactFieldValue());
+        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimayAfflModl.getSettingsRecordTypeFieldValue());
     }
 
     /**********************************************************************************************************
@@ -70,7 +69,6 @@ private class MODL_PrimaryAfflMapper_TEST {
 
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-        String errorString = 'Invalid affiliation mapping found';
 
         Schema.RecordTypeInfo busiOrgInfo = UTIL_Describe.getRecordTypeInfoByDeveloperName('Account', 'Business_Organization');
         Schema.DescribeFieldResult contactFieldDescribeResult = UTIL_Describe.getFieldDescribe('Contact', prefix + 'Primary_Organization__c');
@@ -80,15 +78,14 @@ private class MODL_PrimaryAfflMapper_TEST {
         insert mappings;
 
         Test.startTest();
-            MODL_PrimaryAfflMapper conPrimaryAfflModl = new MODL_PrimaryAfflMapper(busiOrgInfo, contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, false, errorString);
+            MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(busiOrgInfo, contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, false);
         Test.stopTest();
 
-        System.assertEquals(false, conPrimaryAfflModl.getIsValid());
-        System.assertEquals(errorString, conPrimaryAfflModl.getInvalidErrorMessage());
-        System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), conPrimaryAfflModl.getAccountRecordTypeId());
-        System.assertEquals(prefix + 'Primary_Organization__c', conPrimaryAfflModl.getContactFieldApiName());
-        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimaryAfflModl.getSettingsContactFieldValue());
-        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimaryAfflModl.getSettingsRecordTypeFieldValue());
+        System.assertEquals(false, conPrimayAfflModl.getIsValid());
+        System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), conPrimayAfflModl.getAccountRecordTypeId());
+        System.assertEquals(prefix + 'Primary_Organization__c', conPrimayAfflModl.getContactFieldApiName());
+        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimayAfflModl.getSettingsContactFieldValue());
+        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimayAfflModl.getSettingsRecordTypeFieldValue());
     }
 
     /**********************************************************************************************************
@@ -108,15 +105,14 @@ private class MODL_PrimaryAfflMapper_TEST {
         insert mappings;
 
         Test.startTest();
-            MODL_PrimaryAfflMapper conPrimaryAfflModl = new MODL_PrimaryAfflMapper(contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, true, '');
+            MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, true);
         Test.stopTest();
 
-        System.assertEquals(true, conPrimaryAfflModl.getIsValid());
-        System.assertEquals(true, String.isBlank(conPrimaryAfflModl.getInvalidErrorMessage()));
-        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimaryAfflModl.getAccountRecordTypeId());
-        System.assertEquals(prefix + 'Primary_Organization__c', conPrimaryAfflModl.getContactFieldApiName());
-        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimaryAfflModl.getSettingsContactFieldValue());
-        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimaryAfflModl.getSettingsRecordTypeFieldValue());
+        System.assertEquals(true, conPrimayAfflModl.getIsValid());
+        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimayAfflModl.getAccountRecordTypeId());
+        System.assertEquals(prefix + 'Primary_Organization__c', conPrimayAfflModl.getContactFieldApiName());
+        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimayAfflModl.getSettingsContactFieldValue());
+        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimayAfflModl.getSettingsRecordTypeFieldValue());
     }
 
     /**********************************************************************************************************
@@ -128,7 +124,6 @@ private class MODL_PrimaryAfflMapper_TEST {
 
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-        String errorString = 'Invalid affiliation mapping found';
 
         Schema.DescribeFieldResult contactFieldDescribeResult = UTIL_Describe.getFieldDescribe('Contact', prefix + 'Primary_Organization__c');
 
@@ -137,15 +132,14 @@ private class MODL_PrimaryAfflMapper_TEST {
         insert mappings;
 
         Test.startTest();
-            MODL_PrimaryAfflMapper conPrimaryAfflModl = new MODL_PrimaryAfflMapper(contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, false, errorString);
+            MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(contactFieldDescribeResult, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, false);
         Test.stopTest();
 
-        System.assertEquals(false, conPrimaryAfflModl.getIsValid());
-        System.assertEquals(errorString, conPrimaryAfflModl.getInvalidErrorMessage());
-        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimaryAfflModl.getAccountRecordTypeId());
-        System.assertEquals(prefix + 'Primary_Organization__c', conPrimaryAfflModl.getContactFieldApiName());
-        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimaryAfflModl.getSettingsContactFieldValue());
-        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimaryAfflModl.getSettingsRecordTypeFieldValue());
+        System.assertEquals(false, conPrimayAfflModl.getIsValid());
+        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimayAfflModl.getAccountRecordTypeId());
+        System.assertEquals(prefix + 'Primary_Organization__c', conPrimayAfflModl.getContactFieldApiName());
+        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimayAfflModl.getSettingsContactFieldValue());
+        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimayAfflModl.getSettingsRecordTypeFieldValue());
     }
 
     /**********************************************************************************************************
@@ -165,15 +159,14 @@ private class MODL_PrimaryAfflMapper_TEST {
         insert mappings;
 
         Test.startTest();
-            MODL_PrimaryAfflMapper conPrimaryAfflModl = new MODL_PrimaryAfflMapper(busiOrgInfo, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, true, '');
+            MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(busiOrgInfo, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, true);
         Test.stopTest();
 
-        System.assertEquals(true, conPrimaryAfflModl.getIsValid());
-        System.assertEquals(true, String.isEmpty(conPrimaryAfflModl.getInvalidErrorMessage()));
-        System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), conPrimaryAfflModl.getAccountRecordTypeId());
-        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimaryAfflModl.getContactFieldApiName());
-        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimaryAfflModl.getSettingsContactFieldValue());
-        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimaryAfflModl.getSettingsRecordTypeFieldValue());
+        System.assertEquals(true, conPrimayAfflModl.getIsValid());
+        System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), conPrimayAfflModl.getAccountRecordTypeId());
+        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimayAfflModl.getContactFieldApiName());
+        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimayAfflModl.getSettingsContactFieldValue());
+        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimayAfflModl.getSettingsRecordTypeFieldValue());
     }
 
     /**********************************************************************************************************
@@ -185,7 +178,6 @@ private class MODL_PrimaryAfflMapper_TEST {
 
         String namespace = UTIL_Namespace.getNamespace();
         String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-        String errorString = 'Invalid affiliation mapping found';
 
         Schema.RecordTypeInfo busiOrgInfo = UTIL_Describe.getRecordTypeInfoByDeveloperName('Account', 'Business_Organization');
 
@@ -194,14 +186,13 @@ private class MODL_PrimaryAfflMapper_TEST {
         insert mappings;
 
         Test.startTest();
-            MODL_PrimaryAfflMapper conPrimaryAfflModl = new MODL_PrimaryAfflMapper(busiOrgInfo, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, false, errorString);
+            MODL_PrimaryAfflMapper conPrimayAfflModl = new MODL_PrimaryAfflMapper(busiOrgInfo, mappings[0].Primary_Affl_Field__c, mappings[0].Account_Record_Type__c, false);
         Test.stopTest();
 
-        System.assertEquals(false, conPrimaryAfflModl.getIsValid());
-        System.assertEquals(errorString, conPrimaryAfflModl.getInvalidErrorMessage());
-        System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), conPrimaryAfflModl.getAccountRecordTypeId());
-        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimaryAfflModl.getContactFieldApiName());
-        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimaryAfflModl.getSettingsContactFieldValue());
-        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimaryAfflModl.getSettingsRecordTypeFieldValue());
+        System.assertEquals(false, conPrimayAfflModl.getIsValid());
+        System.assertEquals(UTIL_Describe_API.getBizAccRecTypeID(), conPrimayAfflModl.getAccountRecordTypeId());
+        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimayAfflModl.getContactFieldApiName());
+        System.assertEquals(mappings[0].Primary_Affl_Field__c, conPrimayAfflModl.getSettingsContactFieldValue());
+        System.assertEquals(mappings[0].Account_Record_Type__c, conPrimayAfflModl.getSettingsRecordTypeFieldValue());
     }
 }
