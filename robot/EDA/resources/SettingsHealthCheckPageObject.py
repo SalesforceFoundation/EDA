@@ -34,6 +34,8 @@ class SettingsHealthCheckPage(BaseEDAPage, HomePage):
         """
         locator = eda_lex_locators["settings_health_check"]["expand_button"].format(settingName)
         self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f"Expand button is not displayed to the user")
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
         self.selenium.click_element(locator)
 
     def verify_last_run_date(self):
@@ -42,11 +44,29 @@ class SettingsHealthCheckPage(BaseEDAPage, HomePage):
         """
         locator = eda_lex_locators["settings_health_check"]["last_run_date"]
         self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
         actual_value = self.selenium.get_webelement(locator).text
         last_run_date = actual_value.split(" ")
         todays_date = date.today().strftime('%-m/%-d/%Y')
         self.builtin.log(todays_date)
         if not todays_date in last_run_date:
             raise Exception(f"Value of {todays_date} is not present in {last_run_date} and so the dates are not matching as expected")
+
+    def verify_status_of_account_model_settings(self,healthCheckCard,**kwargs):
+        """ This method validates the status of setting for the setting passed in kwargs
+            Pass the setting name and the expected status to be verified from the tests using
+            keyword arguments
+        """
+        for field,expected_value in kwargs.items():
+            locator = eda_lex_locators["settings_health_check"]["status_value"].format(healthCheckCard,field)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
+            actual_value = self.selenium.get_webelement(locator).text
+            self.builtin.log(f"Actual value of {locator} is {actual_value}")
+            if not str(expected_value).lower() == str(actual_value).lower() :
+                raise Exception (f"Status of {field} is {actual_value} but it should be {expected_value}")
+
 
 

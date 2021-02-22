@@ -23,7 +23,7 @@ Verify last run date is updated upon clicking run health check Button
     Current page should be      Home        Settings Health Check
     Click health check button       Run Health Check
     # This sleep is necessary to give some time to the page to update date
-    Sleep       2
+    #Sleep       2
     Verify last run date
     Go to custom settings setup
     Select App Launcher Tab      Settings Health Check
@@ -35,8 +35,13 @@ Verify account model health check settings checks pass
     ...                     record type checks.Also verifies the status of each setting.
     [tags]                  unstable        rbt:high        W-8880346
     Click health check button       Run Health Check
-    Sleep       2
+    #Sleep       2
     Click expand button             AccountModel
+    Verify status of account model settings     AccountModelResults
+    ...         Administrative Account Record Type=Passed
+    ...         Default Account Model=Passed
+    ...         Household Account Record Type=Passed
+    ...         Unique Administrative and Household Account Record Type Settings.=Passed
 
 
 
