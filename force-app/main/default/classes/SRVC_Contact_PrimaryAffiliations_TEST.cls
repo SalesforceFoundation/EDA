@@ -189,7 +189,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify getAffiliationsToCreate() returns empty list of affiliations to create
-    * when the mapping is invalid for the record type
+    * when the mapped primary affiliation fields on Contact are empty and the mapping is invalid for the record type
     ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreateEmptyTestWithMappingException() {
@@ -225,10 +225,10 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     
     /**************************************************************************************************************************
     * @description Test method to verify getAffiliationsToCreate() throws an error and returns an empty list of affiliations to
-    * create when the mapping is invalid for the record type and the primary affiliation field is populated
+    * create when the mapping is invalid for the record type and the mapped primary affiliation field is populated.
     ***************************************************************************************************************************/
     @isTest
-    private static void getAffiliationsToCreateNegativeTestWithMappingException() {
+    private static void getAffiliationsToCreateNegativeTestWithRecordTypeMappingException() {
         Account businesssAccount = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
 
         Contact contact1 = UTIL_UnitTestData_TEST.getContact();
@@ -261,8 +261,52 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         for(Contact eachContact : contactList) {
             System.assertEquals(true, eachContact.hasErrors());
             System.assertEquals(1, eachContact.getErrors().size(),'Contacts should have two errors, one for the id');
-            System.assertEquals(Label.afflAccoutMappingError,
-                eachContact.getErrors().get(0).getMessage()
+            System.assertEquals(SRVC_Contact_PrimaryAffiliations_TEST.getInvalidBusinessOrgRecordTypeMappingError(), eachContact.getErrors().get(0).getMessage()
+            );
+        }
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreate() throws an error and returns an empty list of affiliations to
+    * create when the mapping is valid for the record type and the mapped primary affiliation field does not lookup to Account.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateNegativeTestWithLookupFieldMappingException() {
+        Account businesssAccount = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+
+        Contact contact1 = UTIL_UnitTestData_TEST.getContact();
+        contact1.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+        contact1.Primary_Organization__c = businesssAccount.id;
+        contact1.Gender__c = 'Female';
+        contact1.Birthdate = System.today();
+
+        Contact contact2 = UTIL_UnitTestData_TEST.getContact();
+        contact2.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+        contact2.Primary_Organization__c = businesssAccount.id;
+        contact2.Gender__c = 'Male';
+        contact2.Birthdate = System.today();
+
+        List<Contact> contactList = new List<Contact> {contact1, contact2};
+
+        List<MODL_PrimaryAfflMapper> mappingModels = new List<MODL_PrimaryAfflMapper>{
+            SRVC_Contact_PrimaryAffiliations_TEST.getValidBusinessRTMappingWithNonLookupField(),
+            SRVC_Contact_PrimaryAffiliations_TEST.getValidHouseholdMapping()
+        };
+
+        Test.startTest();
+            List<Affiliation__c> affiliationsToCreate =
+                SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreate(
+                    contactList,
+                    mappingModels
+                );
+        Test.stopTest();
+
+        System.assertEquals(0, affiliationsToCreate.size());
+
+        for(Contact eachContact : contactList) {
+            System.assertEquals(true, eachContact.hasErrors());
+            System.assertEquals(1, eachContact.getErrors().size(),'Contacts should have two errors, one for the id');
+            System.assertEquals(SRVC_Contact_PrimaryAffiliations_TEST.getInvalidFieldMappingError(), eachContact.getErrors().get(0).getMessage()
             );
         }
     }
@@ -381,7 +425,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
 
         System.assertEquals(0, affiliationsToCreate.size());
 
-    }
+    }   
     
     /**************************************************************************************************************************
     * @description Test method to verify getAffiliationsToCreateOrUpdate() returns affiliations to insert when 
@@ -510,7 +554,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     * when a Primary Affiliation field is updated on Contact with an invalid Record Type mapping in EDA settings.
     ******************************************************************************************************************************/
     @isTest
-    private static void getAffiliationsToCreateOrUpdateForContactTestWithForInsertWhenPrimaryFiledIsChangedNegative() {
+    private static void getAffiliationsToCreateOrUpdateForContactTestWithForInsertWhenPrimaryFieldIsChangedForInvalidRTNegative() {
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
 
@@ -537,8 +581,44 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
 
         System.assertEquals(true, newContact.hasErrors());
         System.assertEquals(1, newContact.getErrors().size(),'Contacts should have two errors, one for the id');
-        System.assertEquals(Label.afflAccoutMappingError, newContact.getErrors().get(0).getMessage()
-        );
+        System.assertEquals(SRVC_Contact_PrimaryAffiliations_TEST.getInvalidBusinessOrgRecordTypeMappingError(), newContact.getErrors().get(0).getMessage());
+    }
+
+    /*****************************************************************************************************************************
+    * @description Test method to verify getAffiliationsToCreateOrUpdate() throws an error and returns no affiliations to update
+    * when a Primary Affiliation field is updated on Contact with an invalid field mapping in EDA settings.
+    ******************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsToCreateOrUpdateForContactTestWithForInsertWhenPrimaryFieldIsChangedForValidRTNegative() {
+
+        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+
+        Account businesssAccount1 = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account businesssAccount2 = new Account(Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType), RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+
+        Contact oldContact = UTIL_UnitTestData_TEST.getContact();
+        oldContact.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
+        oldContact.Gender__c = 'Female';
+        oldContact.Primary_Organization__c = businesssAccount1.Id;
+
+        Contact newContact = oldContact.clone(true);
+        newContact.Primary_Organization__c = businesssAccount2.Id;
+        newContact.Gender__c = 'Decline to State';
+
+        List<MODL_PrimaryAfflMapper> mappingModels = new List<MODL_PrimaryAfflMapper>{
+            SRVC_Contact_PrimaryAffiliations_TEST.getValidBusinessRTMappingWithNonLookupField(),
+            SRVC_Contact_PrimaryAffiliations_TEST.getValidHouseholdMapping()
+        };
+
+        Test.startTest();
+            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, oldContact, mappingModels);
+        Test.stopTest();
+
+        System.assertEquals(0, afflsToProcess.getAffiliationListToInsertClone().size()); 
+
+        System.assertEquals(true, newContact.hasErrors());
+        System.assertEquals(1, newContact.getErrors().size(),'Contacts should have two errors, one for the id');
+        System.assertEquals(SRVC_Contact_PrimaryAffiliations_TEST.getInvalidFieldMappingError(), newContact.getErrors().get(0).getMessage());
     }
 
     /*****************************************************************************************************************************
@@ -555,11 +635,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         Contact oldContact = UTIL_UnitTestData_TEST.getContact();
         oldContact.Id = UTIL_UnitTestData_TEST.getFakeId(Contact.sObjectType);
         oldContact.Primary_Organization__c = businesssAccount1.Id;
-        oldContact.FirstName = 'William';
+        oldContact.Gender__c = 'Male';
 
         Contact newContact = oldContact.clone(true);
         newContact.Primary_Organization__c = businesssAccount1.Id;
-        newContact.FirstName = 'Bill';
+        newContact.Gender__c = 'Decline to State';
 
         List<MODL_PrimaryAfflMapper> mappingModels = new List<MODL_PrimaryAfflMapper>{
             SRVC_Contact_PrimaryAffiliations_TEST.getInvalidBusinessOrgMappingOnRecordType(),
@@ -567,7 +647,8 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
         };
 
         Test.startTest();
-            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, oldContact, mappingModels);
+            SRVC_Contact_PrimaryAffiliations.AffiliationsToProcess afflsToProcess = 
+                SRVC_Contact_PrimaryAffiliations.getInstance().getAffiliationsToCreateOrUpdateForContact(newContact, oldContact, mappingModels);
         Test.stopTest();
 
         System.assertEquals(0, afflsToProcess.getAffiliationListToInsertClone().size()); 
@@ -1021,6 +1102,14 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     }
 
     /**************************************************************************************************************************
+    * @description Helper method to retrieve namespaced field describe for the Gender__c field on Contact.
+    * @return Field describe for the Gender__c field on Contact
+    **************************************************************************************************************************/
+    private static Schema.DescribeFieldResult getGenderMappedField() {
+        return UTIL_Describe.getFieldDescribe('Contact', UTIL_Namespace.StrTokenNSPrefix('Gender__c'));
+    }
+
+    /**************************************************************************************************************************
     * @description Helper method to generate a valid Business Account Primary Affiliation mapping model.
     * @return A valid Business Account Primary Affiliation mapping model
     **************************************************************************************************************************/
@@ -1030,7 +1119,8 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
             SRVC_Contact_PrimaryAffiliations_TEST.getBusinessOrganizationMappedField(),
             UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c'),
             'Business_Organization',
-            true
+            true,
+            ''
         );
     }
 
@@ -1044,7 +1134,8 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
             SRVC_Contact_PrimaryAffiliations_TEST.getHouseholdMappedField(),
             UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c'),
             'HH_Account',
-            true
+            true,
+            ''
         );
     }
 
@@ -1053,11 +1144,15 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     * @return An invalid Business Account Primary Affiliation mapping model
     **************************************************************************************************************************/ 
     private static MODL_PrimaryAfflMapper getInvalidBusinessOrgMappingOnRecordType() {
+        // set custom error message text for invalid record type mapping
+        String invalidRecordTypeErrorMessage = SRVC_Contact_PrimaryAffiliations_TEST.getInvalidBusinessOrgRecordTypeMappingError();
+
         return new MODL_PrimaryAfflMapper(
             SRVC_Contact_PrimaryAffiliations_TEST.getBusinessOrganizationMappedField(),
             UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c'),
             'Business_Organizatio',
-            false
+            false,
+            invalidRecordTypeErrorMessage
         );
     }
 
@@ -1066,11 +1161,71 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
     * @return An invalid Household Primary Affiliation mapping model
     **************************************************************************************************************************/ 
     private static MODL_PrimaryAfflMapper getInvalidHouseholdMappingOnRecordType() {
+        // set custom error message text for invalid record type mapping
+        String invalidRecordTypeErrorMessage = SRVC_Contact_PrimaryAffiliations_TEST.getInvalidHHRecordTypeMappingError();
+
         return new MODL_PrimaryAfflMapper(
             SRVC_Contact_PrimaryAffiliations_TEST.getHouseholdMappedField(),
             UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c'),
             'HH_Accoun',
-            false
+            false,
+            invalidRecordTypeErrorMessage
         );
+    }
+
+    /**************************************************************************************************************************
+    * @description Helper method to generate a valid Business Account Primary Affiliation mapping model with an invalid field mapping.
+    * @return A valid Business Primary Affiliation mapping model with an error message indicating an invalid field mapping.
+    **************************************************************************************************************************/ 
+    private static MODL_PrimaryAfflMapper getValidBusinessRTMappingWithNonLookupField(){
+        String invalidFieldErrorMessage = SRVC_Contact_PrimaryAffiliations_TEST.getInvalidFieldMappingError();
+
+        return new MODL_PrimaryAfflMapper(
+            SRVC_Contact_PrimaryAffiliations_TEST.getGenderMappedField(),
+            UTIL_Namespace.StrTokenNSPrefix('Gender__c'),
+            'Business Organization',
+            true,
+            invalidFieldErrorMessage
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Helper method to generate a custom error message for an invalid mapping to a Business Organization Account record type.
+    * @return A string representing the custom error.
+    **************************************************************************************************************************/
+    private static String getInvalidBusinessOrgRecordTypeMappingError(){
+        List<String> params = new List<String>{
+            Label.stgColAccountRecordType,
+            'Business_Organizatio'
+        };
+
+        String invalidRecordTypeMappingError = String.format(label.invalidRecordTypeInAffiliationMapping, params);
+        return invalidRecordTypeMappingError;
+    }
+
+    /**************************************************************************************************************************
+    * @description Helper method to generate a custom error message for an invalid mapping to a Household Account record type.
+    * @return A string representing the custom error.
+    **************************************************************************************************************************/
+    private static String getInvalidHHRecordTypeMappingError(){
+        List<String> params = new List<String>{
+            Label.stgColAccountRecordType,
+            'HH_Accoun'
+        };
+
+        return String.format(label.invalidRecordTypeInAffiliationMapping, params);
+    }
+
+    /**************************************************************************************************************************
+    * @description Helper method to generate a custom error message for an invalid mapping to a field that is not a lookup to Account.
+    * @return A string representing the custom error.
+    **************************************************************************************************************************/
+    private static String getInvalidFieldMappingError(){
+        List<String> params = new List<String>{
+            Label.stgColContactPrimaryAfflField,
+            'Gender__c'
+        };
+
+        return StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(label.invalidContactFieldInAffiliationMapping, params);
     }
 }

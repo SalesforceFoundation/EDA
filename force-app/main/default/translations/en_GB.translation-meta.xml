@@ -53,8 +53,16 @@
         <name>Female</name>
     </customLabels>
     <customLabels>
+        <name>invalidContactFieldInAffiliationMapping</name>
+        <label><!-- Error when an Affl Mapping doesn’t have a valid Contact Primary Affl Field --></label>
+    </customLabels>
+    <customLabels>
         <label>The field entered as the Filter Field isn&apos;t valid. Filter Fields can be any standard or custom field on the object this trigger is for, as well as fields on related records. Make sure you use the field&apos;s API name, and omit any EDA namespace prefix (&quot;hed__&quot;).</label>
         <name>InvalidFilter</name>
+    </customLabels>
+    <customLabels>
+        <name>invalidRecordTypeInAffiliationMapping</name>
+        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Account record type --></label>
     </customLabels>
     <customLabels>
         <label>Male</label>
