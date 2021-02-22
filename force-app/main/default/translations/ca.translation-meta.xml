@@ -53,8 +53,16 @@
         <name>Female</name>
     </customLabels>
     <customLabels>
+        <name>invalidContactFieldInAffiliationMapping</name>
+        <label><!-- Error when an Affl Mapping doesn’t have a valid Contact Primary Affl Field --></label>
+    </customLabels>
+    <customLabels>
         <label>El camp introduït com a camp de filtre no és vàlid. Els camps de filtre poden ser qualsevol camp estàndard o personalitzat de l&apos;objecte per al qual s&apos;activen, així com camps dels registres relacionats. Assegureu-vos d&apos;utilitzar el nom de l&apos;API del camp i ometeu qualsevol prefix d&apos;espai de noms EDA (&quot;hed__&quot;).</label>
         <name>InvalidFilter</name>
+    </customLabels>
+    <customLabels>
+        <name>invalidRecordTypeInAffiliationMapping</name>
+        <label><!-- Error when an Affiliation Mapping doesn’t have a valid Account record type --></label>
     </customLabels>
     <customLabels>
         <label>Male</label>
