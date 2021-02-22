@@ -355,11 +355,54 @@ public with sharing class UTIL_Describe_TEST {
     // Test for getPicklistEntriesApiToLabelMap
     @isTest
     private static void getPicklistEntriesApiToLabelMap() {
-
         Test.startTest();
             Map<String, String> picklistEntriesApiToLabel = Util_Describe.getPicklistEntriesApiToLabelMap('Account','Type');
         Test.stopTest();
 
         System.assertNotEquals(0, picklistEntriesApiToLabel.size()); 
+    }
+
+    /**
+    * @description Test to ensure isLookupFieldTo() returns true when a specified field is of type lookup to the 
+    * specified SObject type.
+    */ 
+    @isTest 
+    private static void isLookupToAccountTrue(){
+        Schema.DescribeFieldResult acctFieldDesc = UTIL_Describe_API.getFieldDescribe('Contact', 'AccountId');  
+        
+        Test.startTest();
+        Boolean isLookupResult = UTIL_Describe.isLookupFieldTo(acctFieldDesc, Account.SObjectType);
+        Test.stopTest();
+
+        System.assertEquals(true, isLookupResult, 'Should return true since Account field on Contact is lookup to Account.');
+    }
+
+    /**
+    * @description Test to ensure isLookupFieldTo() returns false when a specified field is of type lookup, but does not
+    * lookup to the specified SObject type.
+    */ 
+    @isTest 
+    private static void isLookupToAccountFalse(){
+        Schema.DescribeFieldResult reportsToFieldDesc = UTIL_Describe_API.getFieldDescribe('Contact', 'ReportsToId');  
+
+        Test.startTest();
+        Boolean isLookupResult = UTIL_Describe.isLookupFieldTo(reportsToFieldDesc, Account.SObjectType);
+        Test.stopTest();
+
+        System.assertEquals(false, isLookupResult, 'Should return false since reportsToFieldDesc field on contact is lookup to Contact, not Account.');
+    }
+
+    /**
+    * @description Test to ensure isLookupFieldTo() returns false when a specified field is not of type lookup.
+    */ 
+    @isTest 
+    private static void isLookupToWithNonLookupField(){
+        Schema.DescribeFieldResult firstNameFieldDesc = UTIL_Describe_API.getFieldDescribe('Contact', 'FirstName');  
+
+        Test.startTest();
+        Boolean isLookupResult = UTIL_Describe.isLookupFieldTo(firstNameFieldDesc, Account.SObjectType);
+        Test.stopTest();
+
+        System.assertEquals(false, isLookupResult, 'Should return false since FirstName field on Contact is not a lookup field.');
     }
 }
