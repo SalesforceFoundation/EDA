@@ -18,7 +18,7 @@
     </standardFields>
     <caseValues>
         <plural>false</plural>
-        <value>提供コーススケジュール</value>
+        <value>提供科目スケジュール</value>
     </caseValues>
     <fields>
         <name>Course_Offering__c</name>
