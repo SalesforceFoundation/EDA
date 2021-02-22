@@ -14,7 +14,7 @@
     </standardFields>
     <caseValues>
         <plural>false</plural>
-        <value>コース</value>
+        <value>科目</value>
     </caseValues>
     <fields>
         <name>Account__c</name>
