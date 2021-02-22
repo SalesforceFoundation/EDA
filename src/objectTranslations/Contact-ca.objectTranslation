@@ -3601,7 +3601,7 @@
     <fields>
         <name>Primary_Address_Type__c</name>
         <help>Indiqueu quin tipus d’adreça és l’adreça postal, per exemple, de la feina, de casa o una altra.</help>
-        <label>Tipus d&apos;adreça primari</label>
+        <label>Tipus d&apos;adreça primària</label>
         <picklistValues>
             <masterLabel>Home</masterLabel>
             <translation>Llar</translation>
