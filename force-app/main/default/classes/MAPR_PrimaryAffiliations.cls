@@ -81,7 +81,6 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
     *********************************************************************************************************************/
     @testVisible
     private List<MODL_PrimaryAfflMapper> getModelsFromMappings(List<Affl_Mappings__c> afflMappingsList) {
-
        List<MODL_PrimaryAfflMapper> affiliationModelsList = new List<MODL_PrimaryAfflMapper>();
 
        // Sets to ensure duplicate mappings won't have models added to the list to return
@@ -89,11 +88,9 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
        Set<String> accountRecordTypeIdsSet = new Set<String>();
 
         for (Affl_Mappings__c mapping: afflMappingsList) {
-
             MODL_PrimaryAfflMapper modelFromMapping = this.getModelFromMapping(mapping);
 
             if (modelFromMapping == null) {
-                // Contact field affiliation mapping invalid
                 continue;
             }
 
@@ -117,8 +114,8 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
     *****************************************************************************************************/
     @testVisible
     private MODL_PrimaryAfflMapper getModelFromMapping(Affl_Mappings__c afflMapping) {
-
         Boolean isValid = true;
+        String invalidErrorMessage = '';
 
         List<MODL_PrimaryAfflMapper> primaryAfflModelsList = new List<MODL_PrimaryAfflMapper>();
         Set<Affl_Mappings__c> afflMappingSet = new Set<Affl_Mappings__c>();
@@ -138,12 +135,21 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
 
         if (primaryAfflFieldDescribe == null) {
             // Affiliation mapping to Contact field that doesn't exist - skip mapping
-            return null;
+            return null; 
         }
-        
+
+        if (UTIL_Describe.isLookupFieldTo(primaryAfflFieldDescribe, Account.SObjectType) == false){
+            // Affiliation mapping to contact field that is not type Lookup(Account)
+            List<String> params = new List<String>{
+                Label.stgColContactPrimaryAfflField,
+                afflMapping.Primary_Affl_Field__c
+            };
+
+            invalidErrorMessage = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(label.invalidContactFieldInAffiliationMapping, params);
+        }
+            
         // Get the record type info by developer name
         Schema.RecordTypeInfo accountRecTypeInfo = UTIL_Describe.getRecordTypeInfoByDeveloperName('Account', afflMapping.Account_Record_Type__c);
-
         // If we don’t have a record type info, get the record type info by name
         if (accountRecTypeInfo == null) {
             accountRecTypeInfo = UTIL_Describe.getRecordTypeInfoByName('Account', afflMapping.Account_Record_Type__c);
@@ -153,14 +159,35 @@ public virtual with sharing class MAPR_PrimaryAffiliations {
             if (this.isPrimaryAffiliationValidationOn() == true) {
                 // Affiliation mapping to invalid record type
                 isValid = false;
+
+                // set custom error message text
+                List<String> params = new List<String>{
+                    Label.stgColAccountRecordType,
+                    afflMapping.Account_Record_Type__c
+                };
+    
+                invalidErrorMessage = StringHandlingService.getInstance().formatStringWithApostrophesAndParameters(label.invalidRecordTypeInAffiliationMapping, params);
             }
 
-            MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(primaryAfflFieldDescribe, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c, isValid);       
+            MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(
+                primaryAfflFieldDescribe, 
+                afflMapping.Primary_Affl_Field__c, 
+                afflMapping.Account_Record_Type__c, 
+                isValid, 
+                invalidErrorMessage);       
+
             return primaryAfflModel;
         }
 
-        MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(accountRecTypeInfo, primaryAfflFieldDescribe, afflMapping.Primary_Affl_Field__c, afflMapping.Account_Record_Type__c, isValid);
+        // primaryAfflFieldDescribe is null if contact field label mapping is invalid
+        MODL_PrimaryAfflMapper primaryAfflModel = new MODL_PrimaryAfflMapper(
+            accountRecTypeInfo, 
+            primaryAfflFieldDescribe, 
+            afflMapping.Primary_Affl_Field__c, 
+            afflMapping.Account_Record_Type__c, 
+            isValid,
+            invalidErrorMessage);
+
         return primaryAfflModel;
     }
-
 }
