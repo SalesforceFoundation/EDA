@@ -461,32 +461,32 @@
     </fields>
     <fields>
         <name>MailingCity__c</name>
-        <label>Postituskaupunki</label>
+        <label>Postiosoite: Kaupunki</label>
     </fields>
     <fields>
         <name>MailingCountry__c</name>
-        <label>Postitusmaa</label>
+        <label>Postiosoite: Maa</label>
     </fields>
     <fields>
         <name>MailingCounty__c</name>
-        <label>Postituspiirikunta</label>
+        <label>Postiosoite: Piirikunta</label>
     </fields>
     <fields>
         <name>MailingPostalCode__c</name>
-        <label>Postituspostinumero</label>
+        <label>Postiosoite: Postinumero</label>
     </fields>
     <fields>
         <name>MailingState__c</name>
-        <label>Postitusvaltio/maakunta</label>
+        <label>Postiosoite: Osavaltio/provinssi</label>
     </fields>
     <fields>
         <name>MailingStreet2__c</name>
         <help>Tämän osoitteen katuosoitteen lisätiedot, kuten rappu ja asunto.</help>
-        <label>Postituskatuosoite2</label>
+        <label>Postiosoite: Katuosoite 2</label>
     </fields>
     <fields>
         <name>MailingStreet__c</name>
-        <label>Postituskatu</label>
+        <label>Postiosoite: Katuosoite</label>
     </fields>
     <fields>
         <name>Parent_Account__c</name>
