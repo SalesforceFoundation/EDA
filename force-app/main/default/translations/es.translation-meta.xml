@@ -865,7 +865,7 @@
         <name>stgHCReciprocalRelNeutralTitle</name>
     </customLabels>
     <customLabels>
-        <label>{0} relaciones reciprocas</label>
+        <label>{0} relaciones recíprocas</label>
         <name>stgHCReciprocalRelSetting</name>
     </customLabels>
     <customLabels>
@@ -909,7 +909,7 @@
         <name>stgHealthCheckLoadingIndicator</name>
     </customLabels>
     <customLabels>
-        <label>Relaciones reciprocas</label>
+        <label>Relaciones recíprocas</label>
         <name>stgHealthCheckReciprocalRelTitle</name>
     </customLabels>
     <customLabels>
