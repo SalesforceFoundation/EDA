@@ -22,8 +22,6 @@ Verify last run date is updated upon clicking run health check Button
     Select App Launcher Tab      Settings Health Check
     Current page should be      Home        Settings Health Check
     Click health check button       Run Health Check
-    # This sleep is necessary to give some time to the page to update date
-    Sleep       2
     Verify last run date
     Go to custom settings setup
     Select App Launcher Tab      Settings Health Check
