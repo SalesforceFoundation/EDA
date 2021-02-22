@@ -2,7 +2,7 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <name>Seasonal_End_Month__c</name>
     <help>El mes del año en el que esta dirección deja de reemplazar a la dirección predeterminada.</help>
-    <label>Mes de finalización de estación</label>
+    <label>Mes de finalización de temporada</label>
     <picklistValues>
         <masterLabel>1</masterLabel>
         <translation>1</translation>
