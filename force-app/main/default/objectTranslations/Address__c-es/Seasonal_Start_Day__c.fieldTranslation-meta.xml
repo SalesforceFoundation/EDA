@@ -2,7 +2,7 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <name>Seasonal_Start_Day__c</name>
     <help>El día del mes en el que esta dirección reemplaza a la dirección predeterminada.</help>
-    <label>Día de inicio de estación</label>
+    <label>Día de inicio de temporada</label>
     <picklistValues>
         <masterLabel>1</masterLabel>
         <translation>1</translation>
