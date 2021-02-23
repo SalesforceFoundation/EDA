@@ -1,38 +1,33 @@
 ![Salesforce Education Data Architecture](https://github.com/SalesforceFoundation/EDA/blob/master/EDA%20GitHub.png "Salesforce Education Data Architecture")
 
-The Salesforce Education Data Architecture (EDA) provides an education-specific platform for growth for organizations utilizing Salesforce.  EDA utilizes a Salesforce managed package and some light unmanaged customization to give Educational Institution users a familiar nomenclature and data model for many education applications.  In addition, Education developers and administrators can utilize EDA's advanced trigger management capabilities, robust error handling and pluggable framework to better manage and coordinate the data in their Salesforce instance.
+Education Data Architecture (EDA) standardizes the starting point for educational institutions building out a CRM.  It provides a core and common data model that supports the entire K-20 student journey. It's an open-source architecture—anyone can view the source code in GitHub. It's been developed in close collaboration with our customers, partners, and the K-20 community to foster common acceptance. Solutions built on EDA share the same open and flexible, extendable framework that accommodates a range of use cases and end-user customization. With EDA, you get an architecture along with preconfigured objects, logic and functionality, and automation, tailored for education right out of the box.
 
-EDA is built from industry-wide best practices used across education institutions and the Salesforce ecosystem and we welcome feedback and contributions for the project. See below for more information on how to get involved.
+The EDA framework, supported by the Salesforce Platform, can serve as the foundation for managing data and data relationships across your entire institution.
 
-## Try it out
+As an open-source project, we welcome your feedback on and contributions to EDA. 
 
-You can install EDA utilizing our custom application installer into any Developer Edition, Sandbox or Enterprise Edition Salesforce org.
+## Get EDA
+
+Install EDA in any Salesforce Developer Edition, Enterprise Edition, or Sandbox org.
 
 * <a href="https://install.salesforce.org/products/eda" target="_blank">EDA Installer</a>
 
-## For contributors
+## Contribute Code Using Prettier
 
-### How to use Prettier
-
-Run `yarn install` to install development dependencies
-
-To reinstall, simply remove node_modules folder and run `yarn install` again.
-
-The following packages will be installed:
+Use Prettier to format code contributed to EDA. To get started with Prettier, in a command line interface, run `yarn install`. The following packages will be installed:
 
 * prettier
 * prettier-plugin-apex
 
-We store Prettier options in `.prettierrc.yml` and Prettier ignores in `.prettierignore`.
+If you encounter errors, remove the node_modules folder and run `yarn install` again.
 
-For more information about Prettier uses, please go to <a href="https://prettier.io/docs/en/index.html" target="_blank">Prettier Doc</a>.
+You can customize Prettier files in .prettierrc.yml and specify code that Prettier will ignore in .prettierignore.    
 
-For more information about Prettier Apex plugin, please go to <a href="https://github.com/dangmai/prettier-plugin-apex" target="_blank">prettier-plugin-apex repo</a>.
+## Learn More
 
-## Resources
-
-* <a href="http://developer.salesforce.org/EDA/ApexDocumentation/" target="_blank">EDA ApexDoc code documentation</a>
-* <a href="https://salesforce.quip.com/cAJzAnydf6gp" target="_blank">EDA Data Dictionary</a>
+* To learn about EDA objects and fields, see <a href="https://powerofus.force.com/s/article/EDA-Data-Dictionary" target="_blank">EDA Data Dictionary</a>
+* To learn about Prettier, see <a href="https://prettier.io/docs/en/index.html" target="_blank">What is Prettier</a>?
+* To learn about the Prettier Apex plugin, see the <a href="https://github.com/dangmai/prettier-plugin-apex" target="_blank">prettier-plugin-apex repository</a> in GitHub.
 
 ## Meta
 
