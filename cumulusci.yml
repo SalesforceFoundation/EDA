@@ -124,11 +124,7 @@ tasks:
             path: unpackaged/test_packaged/relationship_autocreate
             unmanaged: True
 
-<<<<<<< HEAD
-    deploy_unpackaged_test_metadata:
-=======
     deploy_unpackaged_healthcheck_tab_translation:
->>>>>>> main
         description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
