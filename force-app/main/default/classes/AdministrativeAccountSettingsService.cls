@@ -44,7 +44,7 @@ public virtual with sharing class AdministrativeAccountSettingsService {
     protected AdministrativeAccountSettingsService() {}
 
     /**********************************************************************************
-    * @description Static method to get the current instance for Singleton pattern\
+    * @description Static method to get the current instance for Singleton pattern
     * @return The instance of AdministrativeAccountSettingsService.
     **********************************************************************************/
     public static AdministrativeAccountSettingsService getInstance() {
@@ -55,10 +55,19 @@ public virtual with sharing class AdministrativeAccountSettingsService {
         return instance;
     }
 
+    /**********************************************************************************
+    * @description Retrieve a model representing the administrative account naming formats.
+    * @return An AdministrativeAccountSettingsModel.
+    **********************************************************************************/
     public AdministrativeAccountSettingsModel getAdministrativeAccountSettingsModel() {
         return this.locateAdministrativeAccountSettingsMapper().getAdministrativeAccountSettingsModel();
     }
 
+    /**********************************************************************************
+    * @description Retrieve an instance of AdministrativeAccountSettingsMapper.
+    * @return A instance of the AdministrativeAccountSettingsMapper class.
+    **********************************************************************************/
+    @TestVisible
     private AdministrativeAccountSettingsMapper locateAdministrativeAccountSettingsMapper() {
         return AdministrativeAccountSettingsMapper.getInstance();
     }

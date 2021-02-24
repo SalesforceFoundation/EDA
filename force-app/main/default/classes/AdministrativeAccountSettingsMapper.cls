@@ -31,7 +31,7 @@
 * @group-content ../../ApexDocContent/EdaSettings.htm
 * @description Class to act as mapper for Administrative Account Settings.
 */
-public inherited sharing class AdministrativeAccountSettingsMapper {
+public virtual with sharing class AdministrativeAccountSettingsMapper {
     /**********************************************************************************
     * @description Instance for Singleton Pattern
     **********************************************************************************/
@@ -44,7 +44,7 @@ public inherited sharing class AdministrativeAccountSettingsMapper {
     protected AdministrativeAccountSettingsMapper() {}
 
     /**********************************************************************************
-    * @description Static method to get the current instance for Singleton pattern\
+    * @description Static method to get the current instance for Singleton pattern
     * @return The instance of AdministrativeAccountSettingsMapper.
     **********************************************************************************/
     public static AdministrativeAccountSettingsMapper getInstance() {
@@ -55,7 +55,12 @@ public inherited sharing class AdministrativeAccountSettingsMapper {
         return instance;
     }
 
-    private AdministrativeAccountSettingsModel getAdministrativeAccountSettingsModel() {
+    /**********************************************************************************
+    * @description Retrieve a model representing the administrative account naming
+    * formats specified in Hierarchy Settings.
+    * @return An AdministrativeAccountSettingsModel
+    **********************************************************************************/
+    public virtual AdministrativeAccountSettingsModel getAdministrativeAccountSettingsModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
         return new AdministrativeAccountSettingsModel(

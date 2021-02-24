@@ -174,6 +174,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Accounts_Addresses_Enabled__c = mySettings.Accounts_Addresses_Enabled__c;
         settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
         settings.Admin_Account_Naming_Format__c = mySettings.Admin_Account_Naming_Format__c;
+        settings.Admin_Other_Name_Setting__c = mySettings.Admin_Other_Name_Setting__c;
         settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
         settings.Affiliation_Record_Type_Enforced__c = mySettings.Affiliation_Record_Type_Enforced__c;
         settings.Affl_ProgEnroll_Copy_End_Date__c = mySettings.Affl_ProgEnroll_Copy_End_Date__c;
