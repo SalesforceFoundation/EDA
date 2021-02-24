@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+        <members>Account.An_Active_Record_Type</members>
         <members>Account.An_Inactive_Record_Type</members>
         <name>RecordType</name>
     </types>

@@ -115,13 +115,29 @@ tasks:
             path: unpackaged/test_packaged/primary_affiliations
             unmanaged: True
 
-    deploy_unpackaged_test_metadata:
-        description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
-        class_path: cumulusci.tasks.salesforce.DeployBundles
-        group: "EDA: Unpackaged Tests"
+    deploy_unpackaged_relationship_autocreate_config:
+        description: Deploys relationship autocreate configuration for Development. 
+        class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/test_packaged/relationship_autocreate
+            unmanaged: True
+
+    deploy_preferred_email_config:
+        description: Deploys preferred email configuration for Development. 
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_managed_only/preferred_email
+            unmanaged: True
+
+    deploy_unpackaged_test_metadata:
+        description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
+        class_path: cumulusci.tasks.salesforce.DeployBundles
+        group: 'EDA: Unpackaged Tests'
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_unpackaged
             unmanaged: True
 
     deploy_unpackaged_healthcheck_tab_translation:
@@ -359,15 +375,6 @@ flows:
             5:
                 flow: run_unmanaged_unit_tests
             6:
-                task: execute_primary_affiliation_mapping_apex
-            7:
-                task: deploy_unpackaged_test_metadata
-            8:
-                # execute tests in unmanaged package
-                task: run_tests
-                options:
-                    test_name_match: '%\_Unmanaged_TEST,%\_UTST'
-            10:
                 flow: eda_settings_unmanaged
 
     config_dev_namespaced:
@@ -536,7 +543,7 @@ flows:
                 task: deploy_unpackaged_test_metadata
                 when: "'hed' not in org_config.installed_packages"
             2:
-                task: deploy_primary_affiliations_config
+                task: deploy_unpackaged_primary_affiliations_config
                 when: "'hed' in org_config.installed_packages"
             3:
                 task: execute_primary_affiliation_mapping_apex
