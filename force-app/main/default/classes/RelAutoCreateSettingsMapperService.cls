@@ -32,54 +32,54 @@
 * @date 2020
 * @group 
 * @group-content ../../ApexDocContent/
-* @description Service class for REL_Relationships_Con_TDTM; used to generate MODL_ConRelationshipAutoCreateMapping
+* @description Service class for REL_Relationships_Con_TDTM; used to generate ContactRelAutoCreateMappingModel
 * models representing Relationship Auto Create mappings set for the Contact object. 
 */
-public virtual with sharing class SRVC_RelAutoCreateSettingsMapper {
+public virtual with sharing class RelAutoCreateSettingsMapperService {
     /***************************************************************************************************************************
     * @description Instance for Singleton Pattern.
     ***************************************************************************************************************************/
     @TestVisible
-    private static SRVC_RelAutoCreateSettingsMapper instance;
+    private static RelAutoCreateSettingsMapperService instance;
 
     /***************************************************************************************************************************
     * @description Empty constructor is not public for Singleton Pattern.
     ***************************************************************************************************************************/
-    protected SRVC_RelAutoCreateSettingsMapper() {}
+    protected RelAutoCreateSettingsMapperService() {}
 
     /***************************************************************************************************************************
     * @description Static method to get the current instance for Singleton pattern.
-    * @return The instance of SRVC_RelAutoCreateSettingsMapper.
+    * @return The instance of RelAutoCreateSettingsMapperService.
     ***************************************************************************************************************************/
-    public static SRVC_RelAutoCreateSettingsMapper getInstance() {
-        if (SRVC_RelAutoCreateSettingsMapper.instance == null) {
-            SRVC_RelAutoCreateSettingsMapper.instance = new SRVC_RelAutoCreateSettingsMapper();
+    public static RelAutoCreateSettingsMapperService getInstance() {
+        if (RelAutoCreateSettingsMapperService.instance == null) {
+            RelAutoCreateSettingsMapperService.instance = new RelAutoCreateSettingsMapperService();
         }
 
-        return SRVC_RelAutoCreateSettingsMapper.instance;
+        return RelAutoCreateSettingsMapperService.instance;
     }
 
     /***************************************************************************************************************************
-    * @description Retrieves a list of MODL_ConRelationshipAutoCreateMapping representing the Relationship Auto Create
+    * @description Retrieves a list of ContactRelAutoCreateMappingModel representing the Relationship Auto Create
     * mappings set for the Contact object.
     * @return A list of ContactRelationshipAutoCreateMapping models.
     **************************************************************************************************************************/
-    public virtual List<MODL_ConRelationshipAutoCreateMapping> getContactMappingModelsFromSettings(){
+    public virtual List<ContactRelAutoCreateMappingModel> getContactMappingModelsFromSettings(){
         Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relAutoCreateListBySObjectType = UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
         return this.getContactMappingModelsFromMappings(relAutoCreateListBySObjectType.get(Contact.SObjectType));
     }
 
     /***************************************************************************************************************************
-    * @description Generates a list of MODL_ConRelationshipAutoCreateMapping representing a specified list of Relationship
+    * @description Generates a list of ContactRelAutoCreateMappingModel representing a specified list of Relationship
     * Auto Create mappings.
     * @param relAutoCreateList List of Relationship Auto Create settings to be used to generate mapping models.
-    * @return A list of MODL_ConRelationshipAutoCreateMapping representing the Relationship Auto Create mappings provided.
+    * @return A list of ContactRelAutoCreateMappingModel representing the Relationship Auto Create mappings provided.
     ***************************************************************************************************************************/ 
-    public virtual List<MODL_ConRelationshipAutoCreateMapping> getContactMappingModelsFromMappings(List<Relationship_Auto_Create__c> relAutoCreateList){
-        List<MODL_ConRelationshipAutoCreateMapping> conRelAutoCreateMapModelsList = new List<MODL_ConRelationshipAutoCreateMapping>();
+    public virtual List<ContactRelAutoCreateMappingModel> getContactMappingModelsFromMappings(List<Relationship_Auto_Create__c> relAutoCreateList){
+        List<ContactRelAutoCreateMappingModel> conRelAutoCreateMapModelsList = new List<ContactRelAutoCreateMappingModel>();
 
         for (Relationship_Auto_Create__c relAutoCreate : relAutoCreateList){
-            MODL_ConRelationshipAutoCreateMapping relatedModel = this.getModelFromMapping(relAutoCreate);
+            ContactRelAutoCreateMappingModel relatedModel = this.getModelFromMapping(relAutoCreate);
 
             if (relatedModel != null){
                 conRelAutoCreateMapModelsList.add(relatedModel);
@@ -90,18 +90,18 @@ public virtual with sharing class SRVC_RelAutoCreateSettingsMapper {
     }
 
     /***************************************************************************************************************************
-    * @description Generates a single of MODL_ConRelationshipAutoCreateMapping representing a specified Relationship
+    * @description Generates a single of ContactRelAutoCreateMappingModel representing a specified Relationship
     * Auto Create mapping.
     * @param relAutoCreate A Relationship Auto Create mapping from which to generate a model.
-    * @return A MODL_ConRelationshipAutoCreateMapping representing the specified Relationship Auto Create mapping.
+    * @return A ContactRelAutoCreateMappingModel representing the specified Relationship Auto Create mapping.
     ***************************************************************************************************************************/
-    public virtual MODL_ConRelationshipAutoCreateMapping getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
+    public virtual ContactRelAutoCreateMappingModel getModelFromMapping(Relationship_Auto_Create__c relAutoCreate){
         Schema.DescribeFieldResult fieldDescribe = UTIL_Describe.getFieldDescribe(relAutoCreate.Object__c, relAutoCreate.Field__c);
   
         if (fieldDescribe == null){
             return null;
         }
         
-        return new MODL_ConRelationshipAutoCreateMapping(fieldDescribe, relAutoCreate.Relationship_Type__c, relAutoCreate.Field__c);
+        return new ContactRelAutoCreateMappingModel(fieldDescribe, relAutoCreate.Relationship_Type__c, relAutoCreate.Field__c);
     }
 }
