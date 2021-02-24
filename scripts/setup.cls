@@ -1,21 +1,3 @@
-public class ArbitraryInstallContext implements InstallContext {
-    public ID organizationId(){
-        return UserInfo.getOrganizationId();
-    }
-    public ID installerId(){
-        return UserInfo.getUserId();
-    }
-    public Boolean isUpgrade(){
-        return false;
-    }
-    public Boolean isPush(){
-        return true;
-    }
-    public Version previousVersion(){
-        return null;
-    }
-}
-
 //Runs install apex scripts for any context
 public static void executeInstallApex() {
     ArbitraryInstallContext installContext = new ArbitraryInstallContext();
