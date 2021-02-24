@@ -65,8 +65,8 @@ public virtual with sharing class RelAutoCreateSettingsMapperService {
     * @return A list of ContactRelationshipAutoCreateMapping models.
     **************************************************************************************************************************/
     public virtual List<ContactRelAutoCreateMappingModel> getContactMappingModelsFromSettings(){
-        Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relAutoCreateListBySObjectType = UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
-        return this.getContactMappingModelsFromMappings(relAutoCreateListBySObjectType.get(Contact.SObjectType));
+        List<Relationship_Auto_Create__c> relAutoCreateForContactList = UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
+        return this.getContactMappingModelsFromMappings(relAutoCreateForContactList);
     }
 
     /***************************************************************************************************************************
