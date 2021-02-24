@@ -63,4 +63,13 @@ public virtual with sharing class AdministrativeAccountSettingsVMapper {
     private AdministrativeAccountSettingsService locateAdministrativeAccountSettingsService() {
         return AdministrativeAccountSettingsService.getInstance();
     }
+
+    /**********************************************************************************
+    * @description Retrieve an instance of AccountNamingSettingsService.
+    * @return An instance of AccountNamingSettingsService class.
+    **********************************************************************************/
+    @TestVisible
+    private AccountNamingSettingsService locateAccountNamingSettingsService() {
+        return AccountNamingSettingsService.getInstance();
+    }
 }

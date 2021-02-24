@@ -85,4 +85,25 @@ public inherited sharing class AdministrativeAccountSettingsVMapr_TEST {
             'Should return instance of AdministrativeAccountSettingsService class.'
         );
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the locateAccountNamingSettingsService() returns an instance of the 
+    * AdministrativeAccountSettingsVMapper class.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void locateAccountNamingSettingsServiceValid() {
+        AdministrativeAccountSettingsVMapper administrativeAccountSettingsVMapperInstance = 
+            AdministrativeAccountSettingsVMapper.getInstance();
+
+        Test.startTest();
+        AccountNamingSettingsService adminAccountSettingsService = 
+            administrativeAccountSettingsVMapperInstance.locateAccountNamingSettingsService();
+        Test.stopTest();
+
+        System.assertEquals(
+            AccountNamingSettingsService.getInstance(), 
+            adminAccountSettingsService, 
+            'Should return instance of AccountNamingSettingsService class.'
+        );
+    }
 }
