@@ -185,7 +185,7 @@ tasks:
         description: Runs most of the install script methods from STG_InstallScript class
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
-            path: scripts/setup.cls
+            path: scripts/install_emulator.cls
             apex: executeInstallApex();
 
     execute_automatic_household_naming:
