@@ -281,7 +281,7 @@ tasks:
             path: unpackaged/config/trial
             namespace_tokenize: $project_config.project__package__namespace
 
-    deploySummer21QA:
+    deploy_Summer_21QA:
         group: "EDA Metadata"
         description: Deploys QA and Dev Only Config for Summer ‘21
         class_path: cumulusci.tasks.salesforce.DeployBundles
@@ -387,7 +387,7 @@ flows:
             10:
                 flow: eda_settings_unmanaged
             11:
-                task: deploySummer21QA
+                task: deploy_Summer_21QA
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -448,7 +448,7 @@ flows:
             7:
                 flow: eda_settings_unmanaged
             8:
-                task: deploySummer21QA
+                task: deploy_Summer_21QA
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.
