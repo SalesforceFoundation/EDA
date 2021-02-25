@@ -30,13 +30,28 @@
 * @group EDA Settings
 * @group-content ../../ApexDocContent/EdaSettings.htm
 * @description Model to abstract data from Hierarchy Settings for 
-* Administrative Account Naming functionality.
+* Account Naming functionality.
 */
 public inherited sharing class AccountNamingSettingsModel {
 
-    public Map<String, String> validAccountNamingFormatsByName { get; private set; }
+    public String administrativeAccountNameFormat { get; private set; }
+    public String householdAccountNamingFormat { get; private set; }
+    public String customAdministrativeAccountNameFormat { get; private set; }
+    public String customHouseholdAccountNamingFormat { get; private set; }
+    public Boolean autoHouseholdAccountNamingEnabled { get; private set; }
 
-    public AccountNamingSettingsModel(Map<String, String> validAccountNamingFormatsByName) {
-        this.validAccountNamingFormatsByName = validAccountNamingFormatsByName;
+    public AccountNamingSettingsModel(
+        String administrativeAccountNameFormat,
+        String householdAccountNamingFormat,
+        String customAdministrativeAccountNameFormat,
+        String customHouseholdAccountNamingFormat,
+        Boolean autoHouseholdAccountNamingEnabled
+    ) {
+
+        this.administrativeAccountNameFormat = administrativeAccountNameFormat;
+        this.householdAccountNamingFormat = householdAccountNamingFormat;
+        this.customAdministrativeAccountNameFormat = customAdministrativeAccountNameFormat;
+        this.customHouseholdAccountNamingFormat = customHouseholdAccountNamingFormat;
+        this.autoHouseholdAccountNamingEnabled = autoHouseholdAccountNamingEnabled;
     }
 }

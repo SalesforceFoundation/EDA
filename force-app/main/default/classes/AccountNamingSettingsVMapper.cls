@@ -29,43 +29,38 @@
 * @date 2021
 * @group EDA Settings
 * @group-content ../../ApexDocContent/EdaSettings.htm
-* @description Class to act as mapper for Administrative Account Settings.
+* @description Class to generate a view model for Administrative Account Naming Settings.
 */
-public virtual with sharing class AdministrativeAccountSettingsMapper {
+public virtual with sharing class AccountNamingSettingsVMapper {
     /**********************************************************************************
     * @description Instance for Singleton Pattern
     **********************************************************************************/
     @TestVisible
-    private static AdministrativeAccountSettingsMapper instance;
+    private static AccountNamingSettingsVMapper instance;
 
     /**********************************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************************/
-    protected AdministrativeAccountSettingsMapper() {}
+    protected AccountNamingSettingsVMapper() {}
 
     /**********************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of AdministrativeAccountSettingsMapper.
+    * @return The instance of AccountNamingSettingsVMapper.
     **********************************************************************************/
-    public static AdministrativeAccountSettingsMapper getInstance() {
+    public static AccountNamingSettingsVMapper getInstance() {
         if (instance == null) {
-            instance = new AdministrativeAccountSettingsMapper();
+            instance = new AccountNamingSettingsVMapper();
         }
 
         return instance;
     }
 
     /**********************************************************************************
-    * @description Retrieve a model representing the administrative account naming
-    * formats specified in Hierarchy Settings.
-    * @return An AdministrativeAccountSettingsModel
+    * @description Retrieve an instance of AccountNamingSettingsService.
+    * @return An instance of AccountNamingSettingsService class.
     **********************************************************************************/
-    public virtual AdministrativeAccountSettingsModel getAdministrativeAccountSettingsModel() {
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
-
-        return new AdministrativeAccountSettingsModel(
-            hierarchySettings.Admin_Account_Naming_Format__c,
-            hierarchySettings.Admin_Other_Name_Setting__c
-        );
+    @TestVisible
+    private AccountNamingSettingsService locateAccountNamingSettingsService() {
+        return AccountNamingSettingsService.getInstance();
     }
 }

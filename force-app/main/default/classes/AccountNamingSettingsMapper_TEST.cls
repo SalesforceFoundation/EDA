@@ -66,16 +66,69 @@ public inherited sharing class AccountNamingSettingsMapper_TEST {
     }
 
     /***********************************************************************************************************************************
-    * @description Test method to verify that the getAccountNamingSettingsmodel method returns an AccountNamingSettingsModel with account
-    * naming formats correctly represented.
+    * @description Test method to verify that the getAccountNamingSettingsModel method returns an AccountNamingSettingsModel 
+    * with account naming values that match those represented in hierarchy settings.
     ***********************************************************************************************************************************/
-    @isTest
-    private static void getAccountNamingSettingsmodelValid() {
-
+    @isTest 
+    private static void getAccountNamingSettingsModelValid() {
         AccountNamingSettingsMapper accountNamingSettingsMapperInstance = AccountNamingSettingsMapper.getInstance();
+        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Admin_Account_Naming_Format__c = 'admin account naming format', 
+                Household_Account_Naming_Format__c = 'hh account naming formate', 
+                Admin_Other_Name_Setting__c = 'admin other naming format',
+                Household_Other_Name_Setting__c = 'hh other naming format',
+                Automatic_Household_Naming__c = true 
+            )
+        );
 
         Test.startTest();
         AccountNamingSettingsModel accountNamingSettingsModel = accountNamingSettingsMapperInstance.getAccountNamingSettingsModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            'admin account naming format', 
+            accountNamingSettingsModel.administrativeAccountNameFormat, 
+            'Administrative account naming format should match value in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            'hh account naming formate', 
+            accountNamingSettingsModel.householdAccountNamingFormat, 
+            'Household account naming format should match value in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            'admin other naming format', 
+            accountNamingSettingsModel.customAdministrativeAccountNameFormat, 
+            'Administrative account other naming format should match value in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            'hh other naming format', 
+            accountNamingSettingsModel.customHouseholdAccountNamingFormat, 
+            'Household account other naming format should match value in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            true, 
+            accountNamingSettingsModel.autoHouseholdAccountNamingEnabled, 
+            'Auto Household Account Naming should match value in hierarchy settings.'
+        );
+    }
+
+    /***********************************************************************************************************************************
+    * @description Test method to verify that the getAdministrativeAccountNamingFormatModel method returns an AccountNamingFormatModel 
+    * with Admin account naming formats correctly represented.
+    ***********************************************************************************************************************************/
+    @isTest
+    private static void getAdministrativeAccountNamingFormatModelValid() {
+        AccountNamingSettingsMapper accountNamingSettingsMapperInstance = AccountNamingSettingsMapper.getInstance();
+
+        Test.startTest();
+        AccountNamingFormatModel accountNamingSettingsModel = 
+            accountNamingSettingsMapperInstance.getAdministrativeAccountNamingFormatModel();
         Test.stopTest();
 
         System.assertEquals(
@@ -94,6 +147,62 @@ public inherited sharing class AccountNamingSettingsMapper_TEST {
             Label.lastNameFirstNameAdminAcc, 
             accountNamingSettingsModel.validAccountNamingFormatsByName.get('lastNameFirstNameAdminAcc'), 
             'Label name \'lastNameFirstNameAdminAcc\' should map to text associated with custom label with same name.'
+        );
+
+        System.assertEquals(
+            Label.acctNamingOther, 
+            accountNamingSettingsModel.validAccountNamingFormatsByName.get('acctNamingOther'), 
+            'Label name \'acctNamingOther\' should map to text associated with custom label with same name.'
+        );
+    }
+
+    /***********************************************************************************************************************************
+    * @description Test method to verify that the getHouseholdAccountNamingFormatModel method returns an AccountNamingFormatModel 
+    * with HH account naming formats correctly represented.
+    ***********************************************************************************************************************************/
+    @isTest
+    private static void getHouseholdAccountNamingFormatModelValid() {
+        AccountNamingSettingsMapper accountNamingSettingsMapperInstance = AccountNamingSettingsMapper.getInstance();
+
+        Test.startTest();
+        AccountNamingFormatModel accountNamingSettingsModel = 
+            accountNamingSettingsMapperInstance.getHouseholdAccountNamingFormatModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            Label.lastNameHH, 
+            accountNamingSettingsModel.validAccountNamingFormatsByName.get('lastNameHH'), 
+            'Label name \'lastNameHH\' should map to text associated with custom label with same name.'
+        );
+
+        System.assertEquals(
+            Label.lastNameFirstNameHH, 
+            accountNamingSettingsModel.validAccountNamingFormatsByName.get('lastNameFirstNameHH'), 
+            'Label name \'lastNameFirstNameHH\' should map to text associated with custom label with same name.'
+        );
+
+        System.assertEquals(
+            Label.firstNameLastNameHH, 
+            accountNamingSettingsModel.validAccountNamingFormatsByName.get('firstNameLastNameHH'), 
+            'Label name \'firstNameLastNameHH\' should map to text associated with custom label with same name.'
+        );
+
+        System.assertEquals(
+            Label.lastNameFamily, 
+            accountNamingSettingsModel.validAccountNamingFormatsByName.get('lastNameFamily'), 
+            'Label name \'lastNameFamily\' should map to text associated with custom label with same name.'
+        );
+        
+        System.assertEquals(
+            Label.lastNameFirstNameFamily, 
+            accountNamingSettingsModel.validAccountNamingFormatsByName.get('lastNameFirstNameFamily'), 
+            'Label name \'lastNameFirstNameFamily\' should map to text associated with custom label with same name.'
+        );
+        
+        System.assertEquals(
+            Label.firstNameLastNameFamily, 
+            accountNamingSettingsModel.validAccountNamingFormatsByName.get('firstNameLastNameFamily'), 
+            'Label name \'firstNameLastNameFamily\' should map to text associated with custom label with same name.'
         );
 
         System.assertEquals(

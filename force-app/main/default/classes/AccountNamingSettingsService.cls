@@ -57,11 +57,29 @@ public virtual with sharing class AccountNamingSettingsService {
 
     /**********************************************************************************
     * @description Retrieves an Account Naming Settings model with the available 
-    * account naming formats specified. 
+    * account naming formats specified from hierarchy settings. 
     * @return An AccountNamingSettingsModel
     **********************************************************************************/
     public virtual AccountNamingSettingsModel getAccountNamingSettingsModel() {
-        return this.locateAccountNamingSettingsMapper().getAccountNamingSettingsmodel();
+        return this.locateAccountNamingSettingsMapper().getAccountNamingSettingsModel();
+    }
+
+    /**********************************************************************************
+    * @description Retrieves an AccountNamingFormatModel with the available 
+    * account administrative account naming formats.
+    * @return An AccountNamingFormatModel
+    **********************************************************************************/
+    public virtual AccountNamingFormatModel getAdministrativeAccountNamingFormatModel() {
+        return this.locateAccountNamingSettingsMapper().getAdministrativeAccountNamingFormatModel();
+    }
+
+    /**********************************************************************************
+    * @description Retrieves an AccountNamingFormatModel with the available 
+    * account household account naming formats.
+    * @return An AccountNamingFormatModel
+    **********************************************************************************/
+    public virtual AccountNamingFormatModel getHouseholdAccountNamingFormatModel() {
+        return this.locateAccountNamingSettingsMapper().getHouseholdAccountNamingFormatModel();
     }
 
     /**********************************************************************************

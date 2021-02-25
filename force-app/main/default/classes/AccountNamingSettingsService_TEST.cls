@@ -88,7 +88,7 @@ public inherited sharing class AccountNamingSettingsService_TEST {
     **************************************************************************************************************************/
     @isTest 
     private static void getAccountNamingSettingsModelValid() {
-        AccountNamingSettingsService.instance = new STUB_AccountNamingSettingsService();
+        AccountNamingSettingsMapper.instance = new STUB_AccountNamingSettingsMapper();
         AccountNamingSettingsService accountNamingSettingsServiceInstance = AccountNamingSettingsService.getInstance();
         
         Test.startTest();
@@ -96,33 +96,120 @@ public inherited sharing class AccountNamingSettingsService_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            1, 
-            accountNamingSettingsModel.validAccountNamingFormatsByName.values().size(),
-            'Should return model with 1 valid account naming formats.'
+            'administrativeAccountNameFormat', 
+            accountNamingSettingsModel.administrativeAccountNameFormat,
+            'Administrative Account name format should be set to stubbed value.'
         );
 
         System.assertEquals(
-            'format {LastName}', 
-            accountNamingSettingsModel.validAccountNamingFormatsByName.get('test1'),
-            '\'format {LastName}\' should be mapped to \'test1\' key in resulting model.'
+            'householdAccountNamingFormat', 
+            accountNamingSettingsModel.householdAccountNamingFormat,
+            'Household Account name format should be set to stubbed value.'
+        );
+
+        System.assertEquals(
+            'customAdministrativeAccountNameFormat', 
+            accountNamingSettingsModel.customAdministrativeAccountNameFormat,
+            'Administrative Account other name format should be set to stubbed value.'
+        );
+
+        System.assertEquals(
+            'customHouseholdAccountNamingFormat', 
+            accountNamingSettingsModel.customHouseholdAccountNamingFormat,
+            'Household Account other name format should be set to stubbed value.'
+        );
+
+        System.assertEquals(
+            false, 
+            accountNamingSettingsModel.autoHouseholdAccountNamingEnabled,
+            'Auto household account naming should be set to stubbed value.'
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getAdministrativeAccountNamingFormatModel() returns a valid AccountNamingFormatModel.
+    **************************************************************************************************************************/
+    @isTest 
+    private static void getAdministrativeAccountNamingFormatModelValid() {
+        AccountNamingSettingsMapper.instance = new STUB_AccountNamingSettingsMapper();
+        AccountNamingSettingsService accountNamingSettingsServiceInstance = AccountNamingSettingsService.getInstance();
+        
+        Test.startTest();
+        AccountNamingFormatModel accountNamingFormatModel = accountNamingSettingsServiceInstance.getAdministrativeAccountNamingFormatModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            'admin format 1', 
+            accountNamingFormatModel.validAccountNamingFormatsByName.get('adminFormat1'),
+            'Value for \'adminFormat1\' admin account format should match mapped value.'
+        );
+
+        System.assertEquals(
+            'admin format 2', 
+            accountNamingFormatModel.validAccountNamingFormatsByName.get('adminFormat2'),
+            'Value for \'adminFormat2\' admin account format should match mapped value.'
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Test to verify getHouseholdAccountNamingFormatModel() returns a valid AccountNamingFormatModel.
+    **************************************************************************************************************************/
+    @isTest 
+    private static void getHouseholdAccountNamingFormatModelValid() {
+        AccountNamingSettingsMapper.instance = new STUB_AccountNamingSettingsMapper();
+        AccountNamingSettingsService accountNamingSettingsServiceInstance = AccountNamingSettingsService.getInstance();
+        
+        Test.startTest();
+        AccountNamingFormatModel accountNamingFormatModel = accountNamingSettingsServiceInstance.getHouseholdAccountNamingFormatModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            'hh format 1', 
+            accountNamingFormatModel.validAccountNamingFormatsByName.get('hhFormat1'),
+            'Value for \'hhFormat1\' hh account format should match mapped value.'
+        );
+
+        System.assertEquals(
+            'hh format 2', 
+            accountNamingFormatModel.validAccountNamingFormatsByName.get('hhFormat2'),
+            'Value for \'hhFormat2\' hh account format should match mapped value.'
         );
     }
 
     /**************************************************************************************************************************
     ****************************************************** STUBS **************************************************************
     **************************************************************************************************************************/
-    
+
     /**************************************************************************************************************************************
-    * @description Stub class to simulate the response from AccountNamingSettingsService to return a valid AccountNamingSettings model.
+    * @description Stub class to simulate the response from AccountNamingSettingsMapper to return a valid AdministrativeAccountSettingsModel.
     **************************************************************************************************************************************/ 
-    private class STUB_AccountNamingSettingsService extends AccountNamingSettingsService {
-        @TestVisible 
-        public override AccountNamingSettingsModel getAccountNamingSettingsModel() { 
-            Map<String, String> validAccountNamingFormatsByName = new Map<String, String>{
-                'test1' => 'format {LastName}'
-            };
-            
-            return new AccountNamingSettingsModel(validAccountNamingFormatsByName);
+    private class STUB_AccountNamingSettingsMapper extends AccountNamingSettingsMapper { 
+        public override AccountNamingSettingsModel getAccountNamingSettingsModel() {
+            return new AccountNamingSettingsModel(
+                'administrativeAccountNameFormat',
+                'householdAccountNamingFormat',
+                'customAdministrativeAccountNameFormat',
+                'customHouseholdAccountNamingFormat',
+                false
+            );
+        }
+
+        public override AccountNamingFormatModel getAdministrativeAccountNamingFormatModel() {
+            return new AccountNamingFormatModel(
+                new Map<String, String>{
+                    'adminFormat1' => 'admin format 1',
+                    'adminFormat2' => 'admin format 2'
+                }
+            );
+        }
+
+        public override AccountNamingFormatModel getHouseholdAccountNamingFormatModel() {
+            return new AccountNamingFormatModel(
+                new Map<String, String>{
+                    'hhFormat1' => 'hh format 1',
+                    'hhFormat2' => 'hh format 2'
+                }
+            );
         }
     }
 }

@@ -56,18 +56,57 @@ public virtual with sharing class AccountNamingSettingsMapper {
     }
 
     /**********************************************************************************
-    * @description Retrieves an Account Naming Settings model with the available 
-    * account naming formats specified. 
+    * @description Retrieves an Account Naming Settings model with naming the values for
+    * administrative and household account naming from hierarchy settings. 
     * @return An AccountNamingSettingsModel
     **********************************************************************************/
-    public AccountNamingSettingsModel getAccountNamingSettingsModel() {
-        Map<String, String> accountNamingFormatByName = new Map<String, String>();
+    public virtual AccountNamingSettingsModel getAccountNamingSettingsModel() {
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
-        accountNamingFormatByName.put('lastNameAdminAcc', Label.lastNameAdminAcc);
-        accountNamingFormatByName.put('firstNameLastNameAdminACC', Label.firstNameLastNameAdminACC);
-        accountNamingFormatByName.put('lastNameFirstNameAdminAcc', Label.lastNameFirstNameAdminAcc);
-        accountNamingFormatByName.put('acctNamingOther', Label.acctNamingOther);
+        AccountNamingSettingsModel accountNamingSetttingsModel = 
+            new AccountNamingSettingsModel(
+                hierarchySettings.Admin_Account_Naming_Format__c, 
+                hierarchySettings.Household_Account_Naming_Format__c, 
+                hierarchySettings.Admin_Other_Name_Setting__c,
+                hierarchySettings.Household_Other_Name_Setting__c,
+                hierarchySettings.Automatic_Household_Naming__c
+            );
 
-        return new AccountNamingSettingsModel(accountNamingFormatByName);
+       return accountNamingSetttingsModel;
+    }
+
+    /**********************************************************************************
+    * @description Retrieves an Account Naming Settings model with valid naming formats 
+    * for administrative accounts. 
+    * @return An AccountNamingFormatModel
+    **********************************************************************************/
+    public virtual AccountNamingFormatModel getAdministrativeAccountNamingFormatModel() {
+        Map<String, String> validAdminAccountNamingFormatsByName = new Map<String, String>();
+
+        validAdminAccountNamingFormatsByName.put('lastNameAdminAcc', Label.lastNameAdminAcc);
+        validAdminAccountNamingFormatsByName.put('firstNameLastNameAdminACC', Label.firstNameLastNameAdminACC);
+        validAdminAccountNamingFormatsByName.put('lastNameFirstNameAdminAcc', Label.lastNameFirstNameAdminAcc);
+        validAdminAccountNamingFormatsByName.put('acctNamingOther', Label.acctNamingOther);
+
+        return new AccountNamingFormatModel(validAdminAccountNamingFormatsByName);
+    }
+
+    /**********************************************************************************
+    * @description Retrieves an Account Naming Settings model with valid naming formats 
+    * for household accounts. 
+    * @return An AccountNamingFormatModel
+    **********************************************************************************/
+    public virtual AccountNamingFormatModel getHouseholdAccountNamingFormatModel() {
+        Map<String, String> validHHAccountNamingFormatsByName = new Map<String, String>();
+
+        validHHAccountNamingFormatsByName.put('lastNameHH', Label.lastNameHH);
+        validHHAccountNamingFormatsByName.put('lastNameFirstNameHH', Label.lastNameFirstNameHH);
+        validHHAccountNamingFormatsByName.put('firstNameLastNameHH', Label.firstNameLastNameHH);
+        validHHAccountNamingFormatsByName.put('lastNameFamily', Label.lastNameFamily);
+        validHHAccountNamingFormatsByName.put('lastNameFirstNameFamily', Label.lastNameFirstNameFamily);
+        validHHAccountNamingFormatsByName.put('firstNameLastNameFamily', Label.firstNameLastNameFamily);
+        validHHAccountNamingFormatsByName.put('acctNamingOther', Label.acctNamingOther);
+
+        return new AccountNamingFormatModel(validHHAccountNamingFormatsByName);
     }
 }

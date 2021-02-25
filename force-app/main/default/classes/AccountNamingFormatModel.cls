@@ -29,15 +29,14 @@
 * @date 2021
 * @group EDA Settings
 * @group-content ../../ApexDocContent/EdaSettings.htm
-* @description Class to abstract Administrative Account Settings.
+* @description Model to abstract data from Hierarchy Settings for 
+* Account Naming format.
 */
-public inherited sharing class AdministrativeAccountSettingsModel {
+public inherited sharing class AccountNamingFormatModel {
 
-    public String administrativeAccountNameFormat { get; private set; }
-    public String administrativeAccountOtherNameFormat { get; private set; }
+    public Map<String, String> validAccountNamingFormatsByName { get; private set; }
 
-    public AdministrativeAccountSettingsModel(String adminAccNameFormat, String adminAccOtherNameFormat) {
-        administrativeAccountNameFormat = adminAccNameFormat;
-        administrativeAccountOtherNameFormat = adminAccOtherNameFormat;
+    public AccountNamingFormatModel(Map<String, String> validAccountNamingFormatsByName) {
+        this.validAccountNamingFormatsByName = validAccountNamingFormatsByName;
     }
 }

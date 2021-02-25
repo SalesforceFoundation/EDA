@@ -28,41 +28,52 @@
 * @author Salesforce.org
 * @date 2021
 * @group EDA Settings
-* @group-content ../../ApexDocContent/Test.htm
+* @group-content ../../ApexDocContent/EdaSettings.htm
 * @description Test class for AccountNamingSettingsModel.
 */
 @isTest
 public inherited sharing class AccountNamingSettingsModel_TEST {
-
-    @isTest
-    private static void AccountNamingSettingsModelSingleParamConstructor() {
-        Map<String, String> formatsByName = new Map<String, String>{
-            'format1' => '{firstName} Format',
-            'format2' => '{lastName} Format'
-        };
-
-
+    @isTest 
+    private  static void fiveParameterConstructor() {
         Test.startTest();
         AccountNamingSettingsModel accountNamingSettingsModel = 
-            new AccountNamingSettingsModel(formatsByName);
+            new AccountNamingSettingsModel(
+                'admin format',
+                'hh format',
+                'custom admin format',
+                'custom hh format',
+                true
+            );
         Test.stopTest();
 
         System.assertEquals(
-            2, 
-            accountNamingSettingsModel.validAccountNamingFormatsByName.values().size(), 
-            'Model should have 2 account naming formats specified.'
+            'admin format', 
+            accountNamingSettingsModel.administrativeAccountNameFormat, 
+            'Administrative Account name format should be set to specified value.'
         );
 
         System.assertEquals(
-            '{firstName} Format', 
-            accountNamingSettingsModel.validAccountNamingFormatsByName.get('format1'), 
-            'Format mapped to \'format1\' should equal \'{firstName} Format\''
+            'hh format', 
+            accountNamingSettingsModel.householdAccountNamingFormat, 
+            'Household Account name format should be set to specified value.'
         );
 
         System.assertEquals(
-            '{lastName} Format', 
-            accountNamingSettingsModel.validAccountNamingFormatsByName.get('format2'), 
-            'Format mapped to \'format2\' should equal \'{lastName} Format\''
+            'custom admin format', 
+            accountNamingSettingsModel.customAdministrativeAccountNameFormat, 
+            'Custom Administrative Account name format should be set to specified value.'
+        );
+
+        System.assertEquals(
+            'custom hh format', 
+            accountNamingSettingsModel.customHouseholdAccountNamingFormat, 
+            'Custom Household Account name format should be set to specified value.'
+        );
+
+        System.assertEquals(
+            true, 
+            accountNamingSettingsModel.autoHouseholdAccountNamingEnabled, 
+            'Auto household account naming should be enabled.'
         );
     }
 }

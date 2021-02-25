@@ -29,75 +29,54 @@
 * @date 2021
 * @group EDA Settings
 * @group-content ../../ApexDocContent/EdaSettings.htm
-* @description Test class for AdministrativeAccountSettingsVMapper.
+* @description Test class for AccountNamingSettingsVMapper.
 */
 @isTest
-public inherited sharing class AdministrativeAccountSettingsVMapr_TEST {
+public inherited sharing class AccountNamingSettingsVMapper_TEST {
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns a new instance of the 
-    * AdministrativeAccountSettingsVMapper class when one does not already exist.
+    * AccountNamingSettingsVMapper class when one does not already exist.
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
 
         Test.startTest();
-            AdministrativeAccountSettingsVMapper administrativeAccountSettingsVMapperInstance = AdministrativeAccountSettingsVMapper.getInstance();
+            AccountNamingSettingsVMapper AccountNamingSettingsVMapperInstance = AccountNamingSettingsVMapper.getInstance();
         Test.stopTest();
 
-        System.assertEquals(AdministrativeAccountSettingsVMapper.instance, administrativeAccountSettingsVMapperInstance, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(true, administrativeAccountSettingsVMapperInstance != null, 'Instance of service class should not be null.');
+        System.assertEquals(AccountNamingSettingsVMapper.instance, AccountNamingSettingsVMapperInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(true, AccountNamingSettingsVMapperInstance != null, 'Instance of service class should not be null.');
     }
 
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * AdministrativeAccountSettingsVMapper class when one already exists.
+    * AccountNamingSettingsVMapper class when one already exists.
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
 
         Test.startTest();
-            AdministrativeAccountSettingsVMapper administrativeAccountSettingsVMapperInstance1 = AdministrativeAccountSettingsVMapper.getInstance();
-            AdministrativeAccountSettingsVMapper administrativeAccountSettingsVMapperInstance2 = AdministrativeAccountSettingsVMapper.getInstance();
+            AccountNamingSettingsVMapper AccountNamingSettingsVMapperInstance1 = AccountNamingSettingsVMapper.getInstance();
+            AccountNamingSettingsVMapper AccountNamingSettingsVMapperInstance2 = AccountNamingSettingsVMapper.getInstance();
         Test.stopTest();
 
-        System.assertEquals(AdministrativeAccountSettingsVMapper.instance, administrativeAccountSettingsVMapperInstance1, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(administrativeAccountSettingsVMapperInstance1, administrativeAccountSettingsVMapperInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
-        System.assertEquals(true, administrativeAccountSettingsVMapperInstance1 != null, 'Instance of service class should not be null.');
-    }
-
-    /**************************************************************************************************************************
-    * @description Test method to verify that the locateAdministrativeAccountSettingsService() returns an instance of the 
-    * AdministrativeAccountSettingsVMapper class.
-    ***************************************************************************************************************************/
-    @isTest 
-    private static void locateAdministrativeAccountSettingsServiceValid() {
-        AdministrativeAccountSettingsVMapper administrativeAccountSettingsVMapperInstance = 
-            AdministrativeAccountSettingsVMapper.getInstance();
-
-        Test.startTest();
-        AdministrativeAccountSettingsService adminAccountSettingsService = 
-            administrativeAccountSettingsVMapperInstance.locateAdministrativeAccountSettingsService();
-        Test.stopTest();
-
-        System.assertEquals(
-            AdministrativeAccountSettingsService.getInstance(), 
-            adminAccountSettingsService, 
-            'Should return instance of AdministrativeAccountSettingsService class.'
-        );
+        System.assertEquals(AccountNamingSettingsVMapper.instance, AccountNamingSettingsVMapperInstance1, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(AccountNamingSettingsVMapperInstance1, AccountNamingSettingsVMapperInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
+        System.assertEquals(true, AccountNamingSettingsVMapperInstance1 != null, 'Instance of service class should not be null.');
     }
 
     /**************************************************************************************************************************
     * @description Test method to verify that the locateAccountNamingSettingsService() returns an instance of the 
-    * AdministrativeAccountSettingsVMapper class.
+    * AccountNamingSettingsVMapper class.
     ***************************************************************************************************************************/
     @isTest 
     private static void locateAccountNamingSettingsServiceValid() {
-        AdministrativeAccountSettingsVMapper administrativeAccountSettingsVMapperInstance = 
-            AdministrativeAccountSettingsVMapper.getInstance();
+        AccountNamingSettingsVMapper AccountNamingSettingsVMapperInstance = 
+            AccountNamingSettingsVMapper.getInstance();
 
         Test.startTest();
         AccountNamingSettingsService adminAccountSettingsService = 
-            administrativeAccountSettingsVMapperInstance.locateAccountNamingSettingsService();
+            AccountNamingSettingsVMapperInstance.locateAccountNamingSettingsService();
         Test.stopTest();
 
         System.assertEquals(

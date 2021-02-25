@@ -28,30 +28,41 @@
 * @author Salesforce.org
 * @date 2021
 * @group EDA Settings
-* @group-content ../../ApexDocContent/EdaSettings.htm
-* @description Test class for Administrative Account Settings Model.
+* @group-content ../../ApexDocContent/Test.htm
+* @description Test class for AccountNamingFormatModel.
 */
 @isTest
-public inherited sharing class AdministrativeAccountSettingsModel_TEST {
-    private static void twoParameterConstructorTest() {
-        String adminAccNameFormat = 'Account Name Format';
-        String adminAccOtherNameFormat = 'Other Account Name Format';
+public inherited sharing class AccountNamingFormatModel_TEST {
+
+    @isTest
+    private static void AccountNamingFormatModelSingleParamConstructor() {
+        Map<String, String> formatsByName = new Map<String, String>{
+            'format1' => '{firstName} Format',
+            'format2' => '{lastName} Format'
+        };
+
 
         Test.startTest();
-        AdministrativeAccountSettingsModel adminAccountSettingsModel = 
-            new AdministrativeAccountSettingsModel(adminAccNameFormat, adminAccOtherNameFormat);
-        Test.startTest();
+        AccountNamingFormatModel AccountNamingFormatModel = 
+            new AccountNamingFormatModel(formatsByName);
+        Test.stopTest();
 
         System.assertEquals(
-            'Account Name Format', 
-            adminAccountSettingsModel.administrativeAccountNameFormat, 
-            'Should return expected format for admin account.'
+            2, 
+            AccountNamingFormatModel.validAccountNamingFormatsByName.values().size(), 
+            'Model should have 2 account naming formats specified.'
         );
 
         System.assertEquals(
-            'Other Account Name Format', 
-            adminAccountSettingsModel.administrativeAccountOtherNameFormat, 
-            'Should return other expected format for admin account.'
+            '{firstName} Format', 
+            AccountNamingFormatModel.validAccountNamingFormatsByName.get('format1'), 
+            'Format mapped to \'format1\' should equal \'{firstName} Format\''
+        );
+
+        System.assertEquals(
+            '{lastName} Format', 
+            AccountNamingFormatModel.validAccountNamingFormatsByName.get('format2'), 
+            'Format mapped to \'format2\' should equal \'{lastName} Format\''
         );
     }
 }
