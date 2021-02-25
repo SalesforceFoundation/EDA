@@ -107,21 +107,21 @@ public with sharing class AccountModelSettingsVMapper_TEST {
     }
 
     /***********************************************************************************************************************************
-    * @description Test method to verify that the locateAccountRecordTypeAutomaticDeletionService method returns instance of 
-    * AccountRecordTypeAutomaticDeletionService
+    * @description Test method to verify that the locateAccountRecordTypeAutoDeletionService method returns instance of 
+    * AccountRecordTypeAutoDeletionService
     ***********************************************************************************************************************************/
     @isTest
-    private static void locateAccountRecordTypeAutomaticDeletionServiceValid() {
+    private static void locateAccountRecordTypeAutoDeletionServiceValid() {
         AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
 
         Test.startTest();
-        AccountRecordTypeAutomaticDeletionService accountRecordTypeAutomaticDeletionServiceInstance = 
-            accountModelSettingsVMapperInstance.locateAccountRecordTypeAutomaticDeletionService();
+        AccountRecordTypeAutoDeletionService accountRecordTypeAutoDeletionServiceInstance = 
+            accountModelSettingsVMapperInstance.locateAccountRecordTypeAutoDeletionService();
         Test.stopTest();
 
         System.assertEquals(
-            AccountRecordTypeAutomaticDeletionService.getInstance(), 
-            accountRecordTypeAutomaticDeletionServiceInstance, 
+            AccountRecordTypeAutoDeletionService.getInstance(), 
+            accountRecordTypeAutoDeletionServiceInstance, 
             'Should return the instance of AccountModelSettingsService'
         );
     }

@@ -62,7 +62,7 @@ public virtual with sharing class AccountRecordTypeAutoDeletionMapper {
     * selected for deletion when not associated with any Contact records.
     * @return An AccountRecordTypeAutoDeletionModel
     *****************************************************************************/
-    public AccountRecordTypeAutoDeletionModel getAccountRecordTypeAutoDeletionModel() {
+    public virtual AccountRecordTypeAutoDeletionModel getAccountRecordTypeAutoDeletionModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
         // split on semi-colon and optional space

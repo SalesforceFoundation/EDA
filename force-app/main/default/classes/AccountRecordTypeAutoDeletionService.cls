@@ -55,4 +55,23 @@ public virtual with sharing class AccountRecordTypeAutoDeletionService {
 
         return instance;
     }
+
+    /*****************************************************************************
+    * @description Retrieve an AccountRecordTypeAutoDeletionModel populated with a
+    * list of Account Record Type Ids from Hierarchy Settings that have been 
+    * selected for deletion when not associated with any Contact records.
+    * @return An AccountRecordTypeAutoDeletionModel
+    *****************************************************************************/
+    public AccountRecordTypeAutoDeletionModel getAccountRecordTypeAutoDeletionModel() {
+        return this.locateAccountRecordTypeAutoDeletionMapper().getAccountRecordTypeAutoDeletionModel();
+    }
+
+    /*****************************************************************************
+    * @description Retrieve an instance of AccountRecordTypeAutoDeletionMapper.
+    * @return An instance of the AccountRecordTypeAutoDeletionMapper class
+    *****************************************************************************/
+    @TestVisible 
+    private AccountRecordTypeAutoDeletionMapper locateAccountRecordTypeAutoDeletionMapper() {
+        return AccountRecordTypeAutoDeletionMapper.getInstance();
+    }
 }
