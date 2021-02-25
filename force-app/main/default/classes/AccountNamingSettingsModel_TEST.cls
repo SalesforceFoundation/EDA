@@ -32,7 +32,7 @@
 * @description Test class for AccountNamingSettingsModel.
 */
 @isTest
-public inherited sharing class AccountNamingSettingsModel_TEST {
+private class AccountNamingSettingsModel_TEST {
     @isTest 
     private  static void fiveParameterConstructor() {
         Test.startTest();
