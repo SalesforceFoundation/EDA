@@ -32,7 +32,7 @@
 * @description Test class for AccountNamingSettingsVMapper.
 */
 @isTest
-public inherited sharing class AccountNamingSettingsVMapper_TEST {
+private class AccountNamingSettingsVMapper_TEST {
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns a new instance of the 
     * AccountNamingSettingsVMapper class when one does not already exist.
