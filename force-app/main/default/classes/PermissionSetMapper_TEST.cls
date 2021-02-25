@@ -34,4 +34,86 @@
 @isTest
 public with sharing class PermissionSetMapper_TEST {
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns a new instance of the 
+    * PermissionSetMapper class when one does not already exist.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceNew() {
+
+        Test.startTest();
+            PermissionSetMapper permissionSetMapperInstance = PermissionSetMapper.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(PermissionSetMapper.instance, permissionSetMapperInstance, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(true, permissionSetMapperInstance != null, 'Instance of mapper class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns the existing instance of the 
+    * PermissionSetMapper class when one already exists.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExisting() {
+
+        Test.startTest();
+            PermissionSetMapper permissionSetMapperInstance1 = PermissionSetMapper.getInstance();
+            PermissionSetMapper permissionSetMapperInstance2 = PermissionSetMapper.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(PermissionSetMapper.instance, permissionSetMapperInstance1, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(permissionSetMapperInstance1, permissionSetMapperInstance2, 'Subsequent retrievals of mapper class instance should return existing instance.');
+        System.assertEquals(true, permissionSetMapperInstance1 != null, 'Instance of mapper class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the checkPermissionSetsWithViewSetupFromIds method returns true 
+    * if any provided permission set has access to view setup
+    ***************************************************************************************************************************/
+    @isTest
+    private static void checkPermissionSetsWithViewSetupFromIdsTrue() {
+        
+        List<PermissionSet> permissionSets = new List<PermissionSet>();
+        for (Integer i = 0; i < 5; i++) {
+            PermissionSet permissionSet1 = new PermissionSet(PermissionsViewSetup = false);
+            permissionSets.add(permissionSet1);
+        }
+        permissionSets[0].PermissionsViewSetup = true;
+        insert permissionSets;
+        
+        Test.startTest();
+            List<Id> permissionSetIds = new List<Id>();
+            for (PermissionSet permissionSet : permissionSets) {
+                permissionSetIds.add(permissionSet.Id);
+            }    
+            Boolean permissionSetsWithViewSetup = checkPermissionSetsWithViewSetupFromIds(permissionSetIds);
+        Test.stopTest();
+
+        System.assertEquals(true, permissionSetsWithViewSetup, 'Some of the provided permission sets should have access to view setup');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the checkPermissionSetsWithViewSetupFromIds method returns false 
+    * if no provided permission set has access to view setup
+    ***************************************************************************************************************************/
+    @isTest
+    private static void checkPermissionSetsWithViewSetupFromIdsFalse() {
+        
+        List<PermissionSet> permissionSets = new List<PermissionSet>();
+        for (Integer i = 0; i < 5; i++) {
+            PermissionSet permissionSet1 = new PermissionSet(PermissionsViewSetup = false);
+            permissionSets.add(permissionSet1);
+        }
+        insert permissionSets;
+        
+        Test.startTest();
+            List<Id> permissionSetIds = new List<Id>();
+            for (PermissionSet permissionSet : permissionSets) {
+                permissionSetIds.add(permissionSet.Id);
+            }    
+            Boolean permissionSetsWithViewSetup = checkPermissionSetsWithViewSetupFromIds(permissionSetIds);
+        Test.stopTest();
+
+        System.assertEquals(false, permissionSetsWithViewSetup, 'None of the provided permission sets should have access to view setup');
+    }
 }

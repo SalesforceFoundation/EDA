@@ -33,4 +33,44 @@
 */
 public virtual with sharing class PermissionSetMapper {
     
+    /*********************************************
+    * @description Instance for Singleton Pattern
+    **********************************************/
+    @TestVisible
+    private static PermissionSetMapper instance;
+
+    /*********************************************************************
+    * @description Empty constructor is not public for Singleton Pattern
+    **********************************************************************/
+    protected PermissionSetMapper() {}
+
+    /*****************************************************************************
+    * @description Static method to get the current instance for Singleton pattern
+    * @return The instance of PermissionSetMapper.
+    ******************************************************************************/
+    public static PermissionSetMapper getInstance() {
+
+        if (instance == null) {
+            instance = new PermissionSetMapper();
+        }
+
+        return instance;
+    }
+    
+    /*****************************************************************************
+    * @description Check if provided Permission set has access to view Setup.
+    * @param permissionSetIds A list of Permission set ids.
+    * @return If provided permission set has access to view Setup.
+    ******************************************************************************/
+    public boolean checkPermissionSetsWithViewSetupFromIds( List<Id> permissionSetIds) {
+        
+        List<PermissionSet> permissionSets = [SELECT Id 
+                                            FROM PermissionSet
+                                            WHERE PermissionsViewSetup = true];
+        if (permissionSets.size() > 0) {
+            return true;
+        }
+
+        return false;
+    }
 }
