@@ -40,6 +40,15 @@ public with sharing class AccountNamingSettingsModel {
     public String customHouseholdAccountNamingFormat { get; private set; }
     public Boolean autoHouseholdAccountNamingEnabled { get; private set; }
 
+    /****************************************************************************************************************************
+    * @description Five parameter constructor
+    * @param  administrativeAccountNameFormat The format selected from a predetermined list to be use for naming administrative accounts.
+    * @param  householdAccountNamingFormat The format selected from a predetermined list to be use for naming household accounts.
+    * @param  customAdministrativeAccountNameFormat The custom format specified for naming administrative accounts.
+    * @param  customHouseholdAccountNamingFormat The custom format specified for naming household accounts.
+    * @param  autoHouseholdAccountNamingEnabled Indicator used to determine whether household account names are updated when new contacts are added.
+    * @return An AccountNamingSettingsModel with all properties populated.
+    ****************************************************************************************************************************/
     public AccountNamingSettingsModel(
         String administrativeAccountNameFormat,
         String householdAccountNamingFormat,

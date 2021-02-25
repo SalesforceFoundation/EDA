@@ -36,6 +36,11 @@ public with sharing class AccountNamingFormatModel {
 
     public Map<String, String> validAccountNamingFormatsByName { get; private set; }
 
+    /*************************************************************************************************
+    * @description One parameter Constructor
+    * @param  validAccountNamingFormatsByName Map of account naming formats mapped by format name.
+    * @return A AccountNamingFormatModel with all properties populated.
+    *************************************************************************************************/
     public AccountNamingFormatModel(Map<String, String> validAccountNamingFormatsByName) {
         this.validAccountNamingFormatsByName = validAccountNamingFormatsByName;
     }
