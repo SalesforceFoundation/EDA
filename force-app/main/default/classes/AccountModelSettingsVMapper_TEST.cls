@@ -44,8 +44,17 @@ public with sharing class AccountModelSettingsVMapper_TEST {
             AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
         Test.stopTest();
 
-        System.assertEquals(AccountModelSettingsVMapper.instance, accountModelSettingsVMapperInstance, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(true, accountModelSettingsVMapperInstance != null, 'Instance of service class should not be null.');
+        System.assertEquals(
+            AccountModelSettingsVMapper.instance, 
+            accountModelSettingsVMapperInstance, 
+            'Instance of service class returned should match static instance variable.'
+        );
+
+        System.assertEquals(
+            true, 
+            accountModelSettingsVMapperInstance != null, 
+            'Instance of service class should not be null.'
+        );
     }
 
     /**************************************************************************************************************************
@@ -60,9 +69,23 @@ public with sharing class AccountModelSettingsVMapper_TEST {
             AccountModelSettingsVMapper accountModelSettingsVMapperInstance2 = AccountModelSettingsVMapper.getInstance();
         Test.stopTest();
 
-        System.assertEquals(AccountModelSettingsVMapper.instance, accountModelSettingsVMapperInstance1, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(accountModelSettingsVMapperInstance1, accountModelSettingsVMapperInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
-        System.assertEquals(true, accountModelSettingsVMapperInstance1 != null, 'Instance of service class should not be null.');
+        System.assertEquals(
+            AccountModelSettingsVMapper.instance, 
+            accountModelSettingsVMapperInstance1, 
+            'Instance of service class returned should match static instance variable.'
+        );
+
+        System.assertEquals(
+            accountModelSettingsVMapperInstance1, 
+            accountModelSettingsVMapperInstance2, 
+            'Subsequent retrievals of service class instance should return existing instance.'
+        );
+
+        System.assertEquals(
+            true, 
+            accountModelSettingsVMapperInstance1 != null, 
+            'Instance of service class should not be null.'
+        );
     }
 
     /***********************************************************************************************************************************
