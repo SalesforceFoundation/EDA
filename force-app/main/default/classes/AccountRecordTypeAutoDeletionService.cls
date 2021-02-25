@@ -1,4 +1,3 @@
-
 /*
     Copyright (c) 2021, Salesforce.org
     All rights reserved.
@@ -30,57 +29,30 @@
 * @date 2021
 * @group EDA Settings
 * @group-content ../../ApexDocContent/edaSettings.htm
-* @description View model mapper class used to retrieve hierarchy setting mappings
-* related to Account model settings.
+* @description Service class acting as the service layer for 
+* Account Record Type Automatic Deletion functionality.
 */
-public virtual with sharing class AccountModelSettingsVMapper {
+public virtual with sharing class AccountRecordTypeAutoDeletionService {
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static AccountModelSettingsVMapper instance;
+    private static AccountRecordTypeAutoDeletionService instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected AccountModelSettingsVMapper() {}
+    protected AccountRecordTypeAutoDeletionService() {}
 
     /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of AccountModelSettingsVMapper.
+    * @return The instance of AccountRecordTypeAutoDeletionService.
     ******************************************************************************/
-    public static AccountModelSettingsVMapper getInstance() {
+    public static AccountRecordTypeAutoDeletionService getInstance() {
         if (instance == null) {
-            instance = new AccountModelSettingsVMapper();
+            instance = new AccountRecordTypeAutoDeletionService();
         }
 
         return instance;
-    }
-
-    /*****************************************************************************
-    * @description Retrieves an instance of the AccountModelSettingsService class.
-    * @return An instance of AccountModelSettingsService.
-    ******************************************************************************/
-    @TestVisible
-    private AccountModelSettingsService locateAccountModelSettingsService() {
-        return AccountModelSettingsService.getInstance();
-    }
-
-    /*****************************************************************************
-    * @description Retrieves an instance of the AccountRecordTypeAutomaticDeletionService class.
-    * @return An instance of AccountRecordTypeAutomaticDeletionService.
-    ******************************************************************************/
-    @TestVisible
-    private AccountRecordTypeAutomaticDeletionService locateAccountRecordTypeAutomaticDeletionService() {
-        return AccountRecordTypeAutomaticDeletionService.getInstance();
-    }
-
-    /*****************************************************************************
-    * @description Retrieves an instance of the RecordTypeService class.
-    * @return An instance of RecordTypeService.
-    ******************************************************************************/
-    @TestVisible
-    private RecordTypeService locateRecordTypeService() {
-        return RecordTypeService.getInstance();
     }
 }

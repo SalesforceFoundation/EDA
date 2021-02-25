@@ -110,21 +110,21 @@ public with sharing class AccountModelSettingsVMapper_TEST {
     * @description Test method to verify that the locateAccountRecordTypeAutomaticDeletionService method returns instance of 
     * AccountRecordTypeAutomaticDeletionService
     ***********************************************************************************************************************************/
-    // @isTest
-    // private static void locateAccountRecordTypeAutomaticDeletionServiceValid() {
-    //     AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
+    @isTest
+    private static void locateAccountRecordTypeAutomaticDeletionServiceValid() {
+        AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
 
-    //     Test.startTest();
-    //     AccountRecordTypeAutomaticDeletionService accountRecordTypeAutomaticDeletionServiceInstance = 
-    //         accountModelSettingsVMapperInstance.locateAccountRecordTypeAutomaticDeletionService();
-    //     Test.stopTest();
+        Test.startTest();
+        AccountRecordTypeAutomaticDeletionService accountRecordTypeAutomaticDeletionServiceInstance = 
+            accountModelSettingsVMapperInstance.locateAccountRecordTypeAutomaticDeletionService();
+        Test.stopTest();
 
-    //     System.assertEquals(
-    //         AccountRecordTypeAutomaticDeletionService.getInstance(), 
-    //         accountRecordTypeAutomaticDeletionServiceInstance, 
-    //         'Should return the instance of AccountModelSettingsService'
-    //     );
-    // }
+        System.assertEquals(
+            AccountRecordTypeAutomaticDeletionService.getInstance(), 
+            accountRecordTypeAutomaticDeletionServiceInstance, 
+            'Should return the instance of AccountModelSettingsService'
+        );
+    }
 
     /***********************************************************************************************************************************
     * @description Test method to verify that the locateRecordTypeService method returns instance of RecordTypeService
