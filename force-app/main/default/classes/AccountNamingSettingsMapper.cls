@@ -44,7 +44,7 @@ public virtual with sharing class AccountNamingSettingsMapper {
     protected AccountNamingSettingsMapper() {}
 
     /**********************************************************************************
-    * @description Static method to get the current instance for Singleton pattern\
+    * @description Static method to get the current instance for Singleton pattern.
     * @return The instance of AccountNamingSettingsMapper.
     **********************************************************************************/
     public static AccountNamingSettingsMapper getInstance() {
