@@ -2,7 +2,7 @@
     <div class="slds-grid slds-theme_default slds-grid--align-spread">
 
         <div class="slds-col slds-m-left_x-small">
-            <span>ComponentTitle</span>
+            <span>{ComponentTitle}</span>
         </div>
 
         <div class="slds-col">
@@ -12,8 +12,8 @@
                 </div>	
                 <div if:false={editButtonShown}>	
                     <lightning-button label={labelReference.settingsButtonCancel} title="Cancel" onclick={handleCancelClick} class="slds-m-left_x-small"></lightning-button>
-                        <lightning-button variant="brand" label={labelReference.settingsButtonSave} title="Primary action" onclick={handleSaveClick} class="slds-p-right_x-small"></lightning-button>
-                    </div>		
+                    <lightning-button variant="brand" label={labelReference.settingsButtonSave} title="Primary action" onclick={handleSaveClick} class="slds-p-right_x-small"></lightning-button>
+                </div>		
             </span>
         </div>
 
@@ -22,9 +22,9 @@
     <div class="slds-theme_default eda-height_full">
         <div class = "slds-m-left_x-small">
             <h1>SLOT - Content</h1>
-                <h1>Slot allowing frorm content from parent component</h1>
-                <slot></slot>
-            </div>
+            <h1>Slot allowing frorm content from parent component</h1>
+            <slot></slot>
+        </div>
     </div>
 
 </template>
