@@ -85,11 +85,11 @@ public with sharing class PermissionSetMapper_TEST {
         insert permissionSets;
         
         Test.startTest();
-            List<Id> permissionSetIds = new List<Id>();
+            Set<Id> permissionSetIdsSet = new Set<Id>();
             for (PermissionSet permissionSet : permissionSets) {
-                permissionSetIds.add(permissionSet.Id);
+                permissionSetIdsSet.add(permissionSet.Id);
             }    
-            Boolean permissionSetsWithViewSetup = PermissionSetMapper.getInstance().checkPermissionSetsWithViewSetupFromIds(permissionSetIds);
+            Boolean permissionSetsWithViewSetup = PermissionSetMapper.getInstance().checkPermissionSetsWithViewSetupFromIds(permissionSetIdsSet);
         Test.stopTest();
 
         System.assertEquals(true, permissionSetsWithViewSetup, 'Some of the provided permission sets should have access to view setup');
@@ -112,11 +112,11 @@ public with sharing class PermissionSetMapper_TEST {
         insert permissionSets;
         
         Test.startTest();
-            List<Id> permissionSetIds = new List<Id>();
+            Set<Id> permissionSetIdsSet = new Set<Id>();
             for (PermissionSet permissionSet : permissionSets) {
-                permissionSetIds.add(permissionSet.Id);
+                permissionSetIdsSet.add(permissionSet.Id);
             }    
-            Boolean permissionSetsWithViewSetup = PermissionSetMapper.getInstance().checkPermissionSetsWithViewSetupFromIds(permissionSetIds);
+            Boolean permissionSetsWithViewSetup = PermissionSetMapper.getInstance().checkPermissionSetsWithViewSetupFromIds(permissionSetIdsSet);
         Test.stopTest();
 
         System.assertEquals(false, permissionSetsWithViewSetup, 'None of the provided permission sets should have access to view setup');
