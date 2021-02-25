@@ -68,7 +68,6 @@ public virtual with sharing class PermissionSetMapper {
                                             FROM PermissionSet
                                             WHERE Id in :permissionSetIds
                                                 AND PermissionsViewSetup = true];
-        system.debug(permissionSets.size());                                           
         if (permissionSets.size() > 0) {
             return true;
         }
