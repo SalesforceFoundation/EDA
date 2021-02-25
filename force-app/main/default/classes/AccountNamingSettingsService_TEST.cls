@@ -32,7 +32,7 @@
 * @description Test class for AccountNamingSettingsService.
 */
 @isTest 
-public inherited sharing class AccountNamingSettingsService_TEST {
+private class AccountNamingSettingsService_TEST {
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns a new instance of the 
     * AccountNamingSettingsService class when one does not already exist.
@@ -213,5 +213,4 @@ public inherited sharing class AccountNamingSettingsService_TEST {
         }
     }
 }
-
 
