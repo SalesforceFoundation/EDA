@@ -107,6 +107,14 @@ tasks:
             path: unpackaged/config/translations/
             unmanaged: True
 
+    deploy_preferred_email_config:
+        description: Deploys Preferred Email configuration(custom email fields, translations, apex unit tests and sets Admin profile access to Email fields) for testing.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_managed_only/preferred_email
+            namespaced_org: True
+
     deploy_unpackaged_primary_affiliations_config:
         description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -123,21 +131,21 @@ tasks:
             path: unpackaged/test_packaged/relationship_autocreate
             unmanaged: True
 
-    deploy_preferred_email_config:
-        description: Deploys Preferred Email configuration(custom email fields, translations, apex unit tests and sets Admin profile access to Email fields) for testing. 
-        class_path: cumulusci.tasks.salesforce.Deploy
-        options:
-            namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test_managed_only/preferred_email
-            unmanaged: True
-
     deploy_unpackaged_test_metadata:
         description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
         class_path: cumulusci.tasks.salesforce.DeployBundles
-        group: 'EDA: Unpackaged Tests'
+        group: "EDA: Unpackaged Tests"
         options:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/test_unpackaged
+            unmanaged: True
+
+    deploy_unpackaged_healthcheck_tab_translation:
+        description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/localization/health_check_tab
             unmanaged: True
 
     deploy_trial_config:
@@ -156,6 +164,15 @@ tasks:
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
             command: "force:user:permset:assign -n Encryption"
+
+    check_translation_workbench_enabled:
+        group: "EDA Metadata"
+        description: Detects whether or not translation workbench is enabled
+        class_path: cumulusci.tasks.preflight.settings.CheckSettingsValue
+        options:
+            settings_type: languageSettings
+            settings_field: IsTranslationWorkbenchEnabled
+            value: true
 
     create_tenant_secret:
         group: "Shield Platform Encryption"
@@ -502,6 +519,17 @@ flows:
                 task: execute_enable_course_connections
                 options:
                     namespaced: False
+    
+    deploy_health_check_localization:
+        description: Deploys health check
+        steps:
+            1:
+                task: deploy_unpackaged_healthcheck_tab_translation
+                ui_options:
+                    name: "Health Check"
+                checks:
+                    - when: "not tasks.check_translation_workbench_enabled()"
+                      action: hide
 
     qa_org_2gp:
         steps:
@@ -563,6 +591,10 @@ flows:
                 task: deploy_qa_config
                 options:
                     unmanaged: False
+            4:
+                flow: eda_settings
+            5:
+                flow: eda_picklists
 
     translations:
         description: Enables Translation workbench, platform language settings and sets languages as active.
@@ -653,8 +685,12 @@ plans:
                         name: EDA - Facility Display Name Formula Field
                     case_behavior_record_types:
                         name: EDA - Case Behavior Record Types
+                    health_check_tab:
+                        name: Health Check
                 options:
                     unmanaged: False
+            4:
+                flow: deploy_health_check_localization
 
     ra_einstein_template:
         slug: ra_template
