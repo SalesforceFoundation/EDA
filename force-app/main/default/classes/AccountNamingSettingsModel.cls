@@ -32,7 +32,7 @@
 * @description Model to abstract data from Hierarchy Settings for 
 * Account Naming functionality.
 */
-public inherited sharing class AccountNamingSettingsModel {
+public with sharing class AccountNamingSettingsModel {
 
     public String administrativeAccountNameFormat { get; private set; }
     public String householdAccountNamingFormat { get; private set; }
