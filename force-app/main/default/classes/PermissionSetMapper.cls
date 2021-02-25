@@ -66,7 +66,9 @@ public virtual with sharing class PermissionSetMapper {
         
         List<PermissionSet> permissionSets = [SELECT Id 
                                             FROM PermissionSet
-                                            WHERE PermissionsViewSetup = true];
+                                            WHERE Id in :permissionSetIds
+                                                AND PermissionsViewSetup = true];
+        system.debug(permissionSets.size());                                           
         if (permissionSets.size() > 0) {
             return true;
         }

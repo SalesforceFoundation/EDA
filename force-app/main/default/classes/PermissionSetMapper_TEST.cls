@@ -75,9 +75,12 @@ public with sharing class PermissionSetMapper_TEST {
         
         List<PermissionSet> permissionSets = new List<PermissionSet>();
         for (Integer i = 0; i < 5; i++) {
-            PermissionSet permissionSet1 = new PermissionSet(PermissionsViewSetup = false);
-            permissionSets.add(permissionSet1);
+            PermissionSet permissionSet = new PermissionSet(PermissionsViewSetup = false,
+                                                            Name = 'testName' + i,
+                                                            Label = 'testLabel' + i);
+            permissionSets.add(permissionSet);
         }
+        permissionSets[0].PermissionsViewRoles = true;
         permissionSets[0].PermissionsViewSetup = true;
         insert permissionSets;
         
@@ -101,8 +104,10 @@ public with sharing class PermissionSetMapper_TEST {
         
         List<PermissionSet> permissionSets = new List<PermissionSet>();
         for (Integer i = 0; i < 5; i++) {
-            PermissionSet permissionSet1 = new PermissionSet(PermissionsViewSetup = false);
-            permissionSets.add(permissionSet1);
+            PermissionSet permissionSet = new PermissionSet(PermissionsViewSetup = false,
+                                                            Name = 'testName' + i,
+                                                            Label = 'testLabel' + i);
+            permissionSets.add(permissionSet);
         }
         insert permissionSets;
         
