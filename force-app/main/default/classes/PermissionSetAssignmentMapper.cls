@@ -33,4 +33,45 @@
 */
 public virtual with sharing class PermissionSetAssignmentMapper {
     
+    /*********************************************
+    * @description Instance for Singleton Pattern
+    **********************************************/
+    @TestVisible
+    private static PermissionSetAssignmentMapper instance;
+
+    /*********************************************************************
+    * @description Empty constructor is not public for Singleton Pattern
+    **********************************************************************/
+    protected PermissionSetAssignmentMapper() {}
+
+    /*****************************************************************************
+    * @description Static method to get the current instance for Singleton pattern
+    * @return The instance of PermissionSetAssignmentMapper.
+    ******************************************************************************/
+    public static PermissionSetAssignmentMapper getInstance() {
+
+        if (instance == null) {
+            instance = new PermissionSetAssignmentMapper();
+        }
+
+        return instance;
+    }
+
+    /*****************************************************************************
+    * @description Get a list of permission set ids assigned to the current user.
+    * @return A list of permission set ids assigned to the current user.
+    ***************************************************************************************************************************/
+    public List<Id> getAssignedPermissionSetIdListForCurrentUser() {
+
+        List<Id> assignedPermissionSetIdsList = new List<Id>();
+
+        List<PermissionSetAssignment> permissionSetAssignments = [SELECT PermissionSetId
+                                                                FROM PermissionSetAssignment
+                                                                WHERE AssigneeId = :UserInfo.getUserId()];
+        for (PermissionSetAssignment permissionSetAssignment : permissionSetAssignments) {
+            assignedPermissionSetIdsList.add(permissionSetAssignment.PermissionSetId);
+        }
+        
+        return assignedPermissionSetIdsList;      
+    }
 }
