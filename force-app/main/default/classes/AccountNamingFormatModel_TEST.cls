@@ -32,7 +32,7 @@
 * @description Test class for AccountNamingFormatModel.
 */
 @isTest
-public inherited sharing class AccountNamingFormatModel_TEST {
+private class AccountNamingFormatModel_TEST {
 
     @isTest
     private static void AccountNamingFormatModelSingleParamConstructor() {
