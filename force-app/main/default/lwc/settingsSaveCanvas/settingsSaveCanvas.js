@@ -4,7 +4,7 @@ import settingsButtonEdit from '@salesforce/label/c.stgBtnEdit';
 import settingsButtonCancel from '@salesforce/label/c.stgBtnCancel';
 import settingsButtonSave from '@salesforce/label/c.stgBtnSave';
 
-export default class EDASettings extends LightningElement {
+export default class SettingsSaveCanvas extends LightningElement {
 
     @api componentTitle;
 
@@ -24,15 +24,11 @@ export default class EDASettings extends LightningElement {
 
     @api
     handleHierarchySettingsChange(hierarchySettingsChange) {
-        if (typeof hierarchySettingsChange.settingsType === 'string') {
-            hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] = 
-                hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange] || [];
-            hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName].push(hierarchySettingsChange.settingsValue);
+        if (hierarchySettingsChange.settingsType === 'string') {
+            hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] = hierarchySettingsChange.settingsValue;
         }
-        if (typeof hierarchySettingsChange.settingsType === 'object') {
-            hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
-                hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] || [];
-            hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName].push(hierarchySettingsChange.settingsValue);
+        if (hierarchySettingsChange.settingsType === 'array') {
+            hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] = hierarchySettingsChange.settingsValue;
         }
     }
 

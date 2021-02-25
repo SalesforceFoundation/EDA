@@ -1,18 +1,18 @@
 <template>
-    <div class="slds-grid slds-theme_default slds-grid--align-spread">
+    <div class="slds-grid slds-wrap">
 
-        <div class="slds-col slds-m-left_x-small">
+        <div class="slds-col slds-m-left_x-small slds-text-heading_small">
             <span>{ComponentTitle}</span>
         </div>
 
-        <div class="slds-col">
+        <div class="slds-col slds-col_bump-left slds-text-align_right slds-size--1-of-2 slds-p-horizontal_small slds-p-vertical_small">
             <span>
                 <div if:true={editButtonShown}>	
-                    <lightning-button label={labelReference.settingsButtonEdit} title="Edit" onclick={handleEditClick} class="slds-p-right_x-small"></lightning-button>	
+                    <lightning-button label={labelReference.settingsButtonEdit} title={labelReference.settingsButtonEdit} onclick={handleEditClick} class="slds-p-right_x-small"></lightning-button>	
                 </div>	
                 <div if:false={editButtonShown}>	
-                    <lightning-button label={labelReference.settingsButtonCancel} title="Cancel" onclick={handleCancelClick} class="slds-m-left_x-small"></lightning-button>
-                    <lightning-button variant="brand" label={labelReference.settingsButtonSave} title="Primary action" onclick={handleSaveClick} class="slds-p-right_x-small"></lightning-button>
+                    <lightning-button label={labelReference.settingsButtonCancel} title={labelReference.settingsButtonCancel} onclick={handleCancelClick} class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button variant="brand" label={labelReference.settingsButtonSave} title={labelReference.settingsButtonSave} onclick={handleSaveClick} class="slds-p-right_x-small"></lightning-button>
                 </div>		
             </span>
         </div>
