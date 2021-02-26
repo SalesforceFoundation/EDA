@@ -6,7 +6,7 @@ export default class AccountModelSettings extends LightningElement {
     @track affordancesDisabledToggle = true;
 
     get affordancesDisabled() {
-        if (affordancesDisabledToggle === true) {
+        if (this.isEditMode == true || this.affordancesDisabledToggle == true) {
             return true;
         } 
         return undefined;
@@ -16,24 +16,24 @@ export default class AccountModelSettings extends LightningElement {
         stgAccountModelSettingsTitle
     }
 
-    handleSettingsEditModeChange(event) {
+    handleSettingsEditModeChange(event) { 
+        //edit button shown == false on save
+        // edit button shown == true on cancel
         this.isEditMode =!event.detail;
         this.affordancesDisabledToggle = !event.detail;
+
         this.refreshAllApex();
     }
 
-    handleSettingsSaving(event) {
+    handleSettingsSaving(event) { 
         this.affordancesDisabledToggle = true;
         this.template.querySelector('c-settings-save-canvas').updateHierarchySettings();
     }
     
     handleSettingsSaveCompleted(event) {
-        console.log('Settings save completed!');
-
         this.affordancesDisabledToggle = false;
     }
 
     refreshAllApex() {
-        console.log('refreshAllApex called');
     }
 }
