@@ -39,14 +39,14 @@ public virtual with sharing class EDASettingsController {
     ******************************************************************************/
     @AuraEnabled(cacheable=true)
     public static Boolean checkAccessForCurrentUser() {
-        Boolean accessForCurrentUser = true;
+        Boolean accessForCurrentUser = false;
         try {
             accessForCurrentUser = this.locateUserPermissionsService().checkViewSetupForCurrentUser();
         } catch (NoAccessException e) {
-            return false;
+            return accessForCurrentUser;
         }
 
-        return accessForCurrentUser;
+        return true;
     }
 
     /******************************************************************************

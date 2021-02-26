@@ -40,7 +40,6 @@ public with sharing class PermissionSetAssignmentMapper_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
-
         Test.startTest();
         PermissionSetAssignmentMapper permissionSetAssignmentMapperInstance = PermissionSetAssignmentMapper.getInstance();
         Test.stopTest();
@@ -55,7 +54,6 @@ public with sharing class PermissionSetAssignmentMapper_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
-
         Test.startTest();
             PermissionSetAssignmentMapper permissionSetAssignmentMapperInstance1 = PermissionSetAssignmentMapper.getInstance();
             PermissionSetAssignmentMapper permissionSetAssignmentMapperInstance2 = PermissionSetAssignmentMapper.getInstance();
@@ -72,7 +70,6 @@ public with sharing class PermissionSetAssignmentMapper_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getAssignedPermissionSetIdsSetForCurrentUserExisting() {
-
         User user = UTIL_UnitTestData_TEST.createNewUserForTests('testUser@eda.com');
 
         List<PermissionSet> permissionSets = new List<PermissionSet>();
@@ -113,7 +110,6 @@ public with sharing class PermissionSetAssignmentMapper_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getAssignedPermissionSetIdsSetForCurrentUserNoneAssigned() {
-
         User user = UTIL_UnitTestData_TEST.createNewUserForTests('testUser@eda.com');
 
         List<PermissionSet> permissionSets = new List<PermissionSet>();

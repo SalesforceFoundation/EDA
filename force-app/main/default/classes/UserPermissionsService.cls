@@ -49,7 +49,6 @@ public virtual with sharing class UserPermissionsService {
     * @return The instance of UserPermissionsService.
     ******************************************************************************/
     public static UserPermissionsService getInstance() {
-
         if (instance == null) {
             instance = new UserPermissionsService();
         }
@@ -62,7 +61,6 @@ public virtual with sharing class UserPermissionsService {
     * @return If current user has access to view setup
     ******************************************************************************/
     public Boolean checkViewSetupForCurrentUser() {
-
         Set<Id> assignedPermissionSetIdsSet = this.locatePermissionSetAssignmentMapper().getAssignedPermissionSetIdsSetForCurrentUser();
         Boolean viewSetupForCurrentUser = this.locatePermissionSetMapper().checkPermissionSetsWithViewSetupFromIds(assignedPermissionSetIdsSet);
 

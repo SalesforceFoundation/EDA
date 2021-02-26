@@ -49,7 +49,6 @@ public virtual with sharing class PermissionSetMapper {
     * @return The instance of PermissionSetMapper.
     ******************************************************************************/
     public static PermissionSetMapper getInstance() {
-
         if (instance == null) {
             instance = new PermissionSetMapper();
         }
@@ -63,7 +62,6 @@ public virtual with sharing class PermissionSetMapper {
     * @return If provided permission set has access to view Setup.
     ******************************************************************************/
     public Boolean checkPermissionSetsWithViewSetupFromIds(Set<Id> permissionSetIdsSet) {
-        
         List<PermissionSet> permissionSets = [SELECT Id 
                                             FROM PermissionSet
                                             WHERE Id in :permissionSetIdsSet

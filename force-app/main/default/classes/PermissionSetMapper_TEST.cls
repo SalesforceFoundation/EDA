@@ -40,7 +40,6 @@ public with sharing class PermissionSetMapper_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
-
         Test.startTest();
             PermissionSetMapper permissionSetMapperInstance = PermissionSetMapper.getInstance();
         Test.stopTest();
@@ -55,7 +54,6 @@ public with sharing class PermissionSetMapper_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
-
         Test.startTest();
             PermissionSetMapper permissionSetMapperInstance1 = PermissionSetMapper.getInstance();
             PermissionSetMapper permissionSetMapperInstance2 = PermissionSetMapper.getInstance();
@@ -71,8 +69,7 @@ public with sharing class PermissionSetMapper_TEST {
     * if any provided permission set has access to view setup
     ***************************************************************************************************************************/
     @isTest
-    private static void checkPermissionSetsWithViewSetupFromIdsTrue() {
-        
+    private static void checkPermissionSetsWithViewSetupFromIdsTrue() {    
         List<PermissionSet> permissionSets = new List<PermissionSet>();
         for (Integer i = 0; i < 5; i++) {
             PermissionSet permissionSet = new PermissionSet(PermissionsViewSetup = false,
@@ -101,7 +98,6 @@ public with sharing class PermissionSetMapper_TEST {
     ***************************************************************************************************************************/
     @isTest
     private static void checkPermissionSetsWithViewSetupFromIdsFalse() {
-        
         List<PermissionSet> permissionSets = new List<PermissionSet>();
         for (Integer i = 0; i < 5; i++) {
             PermissionSet permissionSet = new PermissionSet(PermissionsViewSetup = false,
