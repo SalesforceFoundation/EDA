@@ -33,13 +33,11 @@ Verify account model health check settings checks pass
     ...                     record type checks.Also verifies the status of each setting.
     [tags]                  unstable        rbt:high        W-8880346
     Click health check button       Run Health Check
-    Click expand button             AccountModel
+    ${all_checks_status} =      Verify all checks status        Account Model       All checks passed
+    Log To Console              ${all_checks_status}
+    Run Keyword If  '${all_checks_status}' == 'True'  Click expand button   AccountModel
     Verify status of account model settings     AccountModelResults
     ...         Administrative Account Record Type=Passed
     ...         Default Account Model=Passed
     ...         Household Account Record Type=Passed
     ...         Unique Administrative and Household Account Record Type Settings.=Passed
-
-
-
-

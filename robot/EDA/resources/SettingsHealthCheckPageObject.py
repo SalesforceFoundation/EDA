@@ -68,5 +68,18 @@ class SettingsHealthCheckPage(BaseEDAPage, HomePage):
             if not str(expected_value).lower() == str(actual_value).lower() :
                 raise Exception (f"Status of {field} is {actual_value} but it should be {expected_value}")
 
+    def verify_all_checks_status(self,healthCheckCard,expected_value):
+        """ This method will verify the status of of all checks before clicking on expand all
+            button to verify status of each setting. Pass the name of the health check card and
+            the expected text from robot. Returns true if all settings are passed and false if any
+            one of the setting is failed
+        """
+        locator = eda_lex_locators["settings_health_check"]["all_checks_status"].format(healthCheckCard,expected_value)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
+        actual_value = self.selenium.get_webelement(locator).text
+        return True if str(actual_value).lower() == str(expected_value).lower() else False
+
 
 
