@@ -90,5 +90,4 @@ public virtual with sharing class UserPermissionsService {
     private PermissionSetMapper locatePermissionSetMapper() {
         return PermissionSetMapper.getInstance();
     }
-
 }

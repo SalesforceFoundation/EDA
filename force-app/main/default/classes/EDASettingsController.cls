@@ -33,4 +33,28 @@
 */
 public virtual with sharing class EDASettingsController {
 
+    /******************************************************************************
+    * @description Check if current user has access.
+    * @return If current user has access.
+    ******************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static Boolean checkAccessForCurrentUser() {
+        Boolean accessForCurrentUser = true;
+        try {
+            accessForCurrentUser = this.locateUserPermissionsService().checkViewSetupForCurrentUser();
+        } catch (NoAccessException e) {
+            return false;
+        }
+
+        return accessForCurrentUser;
+    }
+
+    /******************************************************************************
+    * @description Retrieves an instance of the UserPermissionsService class.
+    * @return An instance of UserPermissionsService.
+    ******************************************************************************/
+    @TestVisible
+    private UserPermissionsService locateUserPermissionsService() {
+        return UserPermissionsService.getInstance();
+    }
 }
