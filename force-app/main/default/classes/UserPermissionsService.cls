@@ -56,4 +56,39 @@ public virtual with sharing class UserPermissionsService {
 
         return instance;
     }
+
+    /*****************************************************************************
+    * @description Check if current user has access to view setup.
+    * @return If current user has access to view setup
+    ******************************************************************************/
+    public Boolean checkViewSetupForCurrentUser() {
+
+        Set<Id> assignedPermissionSetIdsSet = this.locatePermissionSetAssignmentMapper().getAssignedPermissionSetIdsSetForCurrentUser();
+        Boolean viewSetupForCurrentUser = this.locatePermissionSetMapper().checkPermissionSetsWithViewSetupFromIds(assignedPermissionSetIdsSet);
+
+        if (viewSetupForCurrentUser == false) {
+            throw new NoAccessException();
+        } else {
+            return true;
+        }
+    }
+
+    /******************************************************************************
+    * @description Retrieves an instance of the PermissionSetAssignmentMapper class.
+    * @return An instance of PermissionSetAssignmentMapper.
+    ******************************************************************************/
+    @TestVisible
+    private PermissionSetAssignmentMapper locatePermissionSetAssignmentMapper() {
+        return PermissionSetAssignmentMapper.getInstance();
+    }
+
+    /******************************************************************************
+    * @description Retrieves an instance of the PermissionSetMapper class.
+    * @return An instance of PermissionSetMapper.
+    ******************************************************************************/
+    @TestVisible
+    private PermissionSetMapper locatePermissionSetMapper() {
+        return PermissionSetMapper.getInstance();
+    }
+
 }

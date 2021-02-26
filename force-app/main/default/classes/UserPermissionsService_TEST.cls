@@ -65,4 +65,30 @@ public with sharing class UserPermissionsService_TEST {
         System.assertEquals(userPermissionsServiceInstance1, userPermissionsServiceInstance2, 'Subsequent retrievals of mapper class instance should return existing instance.');
         System.assertEquals(true, userPermissionsServiceInstance1 != null, 'Instance of mapper class should not be null.');
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the locatePermissionSetAssignmentMapper method 
+    * returns an instance of PermissionSetAssignmentMapper
+    ***************************************************************************************************************************/
+    @isTest
+    private static void locatePermissionSetAssignmentMapperTest() {
+        Test.startTest();
+            PermissionSetAssignmentMapper permissionSetAssignmentMapperInstance = PermissionSetAssignmentMapper.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(PermissionSetAssignmentMapper.instance, permissionSetAssignmentMapperInstance);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the locatePermissionSetMapper method 
+    * returns an instance of PermissionSetMapper
+    ***************************************************************************************************************************/
+    @isTest
+    private static void locatePermissionSetMapperTest() {
+        Test.startTest();
+            PermissionSetMapper PermissionSetMapperInstance = PermissionSetMapper.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(PermissionSetMapper.instance, PermissionSetMapperInstance);
+    }
 }

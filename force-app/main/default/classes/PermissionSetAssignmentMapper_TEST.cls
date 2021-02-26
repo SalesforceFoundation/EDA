@@ -71,7 +71,7 @@ public with sharing class PermissionSetAssignmentMapper_TEST {
     * returns a set of permission set ids assigned to the current user when there are some assigned
     ***************************************************************************************************************************/
     @isTest
-    private static void getAssignedPermissionSetIdSetForCurrentUserExisting() {
+    private static void getAssignedPermissionSetIdsSetForCurrentUserExisting() {
 
         User user = UTIL_UnitTestData_TEST.createNewUserForTests('testUser@eda.com');
 
@@ -94,17 +94,17 @@ public with sharing class PermissionSetAssignmentMapper_TEST {
 
         
         Test.startTest();
-            Set<Id> assignedPermissionSetIdSet = new Set<Id>();
+            Set<Id> assignedPermissionSetIdsSet = new Set<Id>();
             System.runAs(user) {
-                assignedPermissionSetIdSet = PermissionSetAssignmentMapper.getInstance().getAssignedPermissionSetIdSetForCurrentUser();
+                assignedPermissionSetIdsSet = PermissionSetAssignmentMapper.getInstance().getAssignedPermissionSetIdsSetForCurrentUser();
             }
         Test.stopTest();
 
-        System.assertEquals(true, assignedPermissionSetIdSet.contains(permissionSets[0].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
-        System.assertEquals(true, assignedPermissionSetIdSet.contains(permissionSets[1].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
-        System.assertEquals(true, assignedPermissionSetIdSet.contains(permissionSets[2].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
-        System.assertEquals(true, assignedPermissionSetIdSet.contains(permissionSets[3].Id), 'assignedPermissionSetIdSet should contain every test permission set created');    
-        System.assertEquals(true, assignedPermissionSetIdSet.contains(permissionSets[4].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
+        System.assertEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[0].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
+        System.assertEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[1].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
+        System.assertEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[2].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
+        System.assertEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[3].Id), 'assignedPermissionSetIdSet should contain every test permission set created');    
+        System.assertEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[4].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
     }
 
     /**************************************************************************************************************************
@@ -112,7 +112,7 @@ public with sharing class PermissionSetAssignmentMapper_TEST {
     * returns a empty set of permission set ids assigned to the current user when there is no assigned
     ***************************************************************************************************************************/
     @isTest
-    private static void getAssignedPermissionSetIdSetForCurrentUserNoneAssigned() {
+    private static void getAssignedPermissionSetIdsSetForCurrentUserNoneAssigned() {
 
         User user = UTIL_UnitTestData_TEST.createNewUserForTests('testUser@eda.com');
 
@@ -126,16 +126,16 @@ public with sharing class PermissionSetAssignmentMapper_TEST {
         insert permissionSets;
         
         Test.startTest();
-            Set<Id> assignedPermissionSetIdSet = new Set<Id>();
+            Set<Id> assignedPermissionSetIdsSet = new Set<Id>();
             System.runAs(user) {
-                assignedPermissionSetIdSet = PermissionSetAssignmentMapper.getInstance().getAssignedPermissionSetIdSetForCurrentUser();
+                assignedPermissionSetIdsSet = PermissionSetAssignmentMapper.getInstance().getAssignedPermissionSetIdsSetForCurrentUser();
             }
         Test.stopTest();
 
-        System.assertNotEquals(true, assignedPermissionSetIdSet.contains(permissionSets[0].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
-        System.assertNotEquals(true, assignedPermissionSetIdSet.contains(permissionSets[1].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
-        System.assertNotEquals(true, assignedPermissionSetIdSet.contains(permissionSets[2].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
-        System.assertNotEquals(true, assignedPermissionSetIdSet.contains(permissionSets[3].Id), 'assignedPermissionSetIdSet should contain every test permission set created');    
-        System.assertNotEquals(true, assignedPermissionSetIdSet.contains(permissionSets[4].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
+        System.assertNotEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[0].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
+        System.assertNotEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[1].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
+        System.assertNotEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[2].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
+        System.assertNotEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[3].Id), 'assignedPermissionSetIdSet should contain every test permission set created');    
+        System.assertNotEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[4].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
     }
 }

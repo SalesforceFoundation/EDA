@@ -61,7 +61,7 @@ public virtual with sharing class PermissionSetAssignmentMapper {
     * @description Get a list of permission set ids assigned to the current user.
     * @return A Set of permission set ids assigned to the current user.
     ***************************************************************************************************************************/
-    public Set<Id> getAssignedPermissionSetIdSetForCurrentUser() {
+    public Set<Id> getAssignedPermissionSetIdsSetForCurrentUser() {
 
         Set<Id> assignedPermissionSetIdsSet = new Set<Id>();
 
