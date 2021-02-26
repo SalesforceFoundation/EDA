@@ -41,7 +41,7 @@ public virtual with sharing class EDASettingsController {
     public static Boolean checkAccessForCurrentUser() {
         Boolean accessForCurrentUser = false;
         try {
-            accessForCurrentUser = this.locateUserPermissionsService().checkViewSetupForCurrentUser();
+            accessForCurrentUser = EDASettingsController.locateUserPermissionService().checkViewSetupForCurrentUser();
         } catch (NoAccessException e) {
             return accessForCurrentUser;
         }
@@ -50,11 +50,11 @@ public virtual with sharing class EDASettingsController {
     }
 
     /******************************************************************************
-    * @description Retrieves an instance of the UserPermissionsService class.
-    * @return An instance of UserPermissionsService.
+    * @description Retrieves an instance of the UserPermissionService class.
+    * @return An instance of UserPermissionService.
     ******************************************************************************/
     @TestVisible
-    private UserPermissionsService locateUserPermissionsService() {
-        return UserPermissionsService.getInstance();
+    private static UserPermissionService locateUserPermissionService() {
+        return UserPermissionService.getInstance();
     }
 }

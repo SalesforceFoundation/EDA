@@ -61,7 +61,7 @@ public virtual with sharing class PermissionSetMapper {
     * @param permissionSetIds A set of Permission set ids.
     * @return If provided permission set has access to view Setup.
     ******************************************************************************/
-    public Boolean checkPermissionSetsWithViewSetupFromIds(Set<Id> permissionSetIdsSet) {
+    public virtual Boolean checkPermissionSetsWithViewSetupFromIds(Set<Id> permissionSetIdsSet) {
         List<PermissionSet> permissionSets = [SELECT Id 
                                             FROM PermissionSet
                                             WHERE Id in :permissionSetIdsSet

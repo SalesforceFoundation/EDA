@@ -29,41 +29,41 @@
 * @date 2021
 * @group Test
 * @group-content ../../ApexDocContent/Test.htm
-* @description Test class for UserPermissionsService.
+* @description Test class for UserPermissionService.
 */
 @isTest
-public with sharing class UserPermissionsService_TEST {
+public with sharing class UserPermissionService_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns a new instance of the 
-    * UserPermissionsService class when one does not already exist.
+    * UserPermissionService class when one does not already exist.
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
 
         Test.startTest();
-            UserPermissionsService userPermissionsServiceInstance = UserPermissionsService.getInstance();
+            UserPermissionService userPermissionServiceInstance = UserPermissionService.getInstance();
         Test.stopTest();
 
-        System.assertEquals(UserPermissionsService.instance, userPermissionsServiceInstance, 'Instance of mapper class returned should match static instance variable.');
-        System.assertEquals(true, userPermissionsServiceInstance != null, 'Instance of mapper class should not be null.');
+        System.assertEquals(UserPermissionService.instance, userPermissionServiceInstance, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(true, userPermissionServiceInstance != null, 'Instance of mapper class should not be null.');
     }
 
     /**************************************************************************************************************************
     * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * UserPermissionsService class when one already exists.
+    * UserPermissionService class when one already exists.
     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
 
         Test.startTest();
-            UserPermissionsService userPermissionsServiceInstance1 = UserPermissionsService.getInstance();
-            UserPermissionsService userPermissionsServiceInstance2 = UserPermissionsService.getInstance();
+            UserPermissionService UserPermissionServiceInstance1 = UserPermissionService.getInstance();
+            UserPermissionService UserPermissionServiceInstance2 = UserPermissionService.getInstance();
         Test.stopTest();
 
-        System.assertEquals(UserPermissionsService.instance, userPermissionsServiceInstance1, 'Instance of mapper class returned should match static instance variable.');
-        System.assertEquals(userPermissionsServiceInstance1, userPermissionsServiceInstance2, 'Subsequent retrievals of mapper class instance should return existing instance.');
-        System.assertEquals(true, userPermissionsServiceInstance1 != null, 'Instance of mapper class should not be null.');
+        System.assertEquals(UserPermissionService.instance, UserPermissionServiceInstance1, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(UserPermissionServiceInstance1, UserPermissionServiceInstance2, 'Subsequent retrievals of mapper class instance should return existing instance.');
+        System.assertEquals(true, UserPermissionServiceInstance1 != null, 'Instance of mapper class should not be null.');
     }
 
     /**************************************************************************************************************************
@@ -90,5 +90,41 @@ public with sharing class UserPermissionsService_TEST {
         Test.stopTest();
 
         System.assertEquals(PermissionSetMapper.instance, PermissionSetMapperInstance);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the checkViewSetupForCurrentUser returns true when current user has access.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void checkViewSetupForCurrentUserHasAccess() {
+        PermissionSetMapper.instance = new STUB_PermissionSetMapperHasAccess();
+        
+        Test.startTest();
+            Boolean viewSetupForCurrentUser = UserPermissionService.checkViewSetupForCurrentUser();
+        Test.stopTest();
+
+        System.assertEquals(true, viewSetupForCurrentUser);
+    }
+
+    /**************************************************************************************************************************
+    ****************************************************** STUB CLASS *********************************************************
+    **************************************************************************************************************************/
+
+    /*************************************************************************************************************
+    * @description Stub class to simulate the response from PermissionSetMapper to return true
+    */
+    private class STUB_PermissionSetMapperHasAccess extends PermissionSetMapper {
+        public override Boolean checkPermissionSetsWithViewSetupFromIds(Set<Id> permissionSetIdsSet) {
+            return true;     
+        }
+    }
+
+    /*************************************************************************************************************
+    * @description Stub class to simulate the response from PermissionSetMapper to return false
+    */
+    private class STUB_PermissionSetMapperNoAccess extends PermissionSetMapper {
+        public override Boolean checkPermissionSetsWithViewSetupFromIds(Set<Id> permissionSetIdsSet) {
+            return false;     
+        }
     }
 }

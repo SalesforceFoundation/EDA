@@ -31,26 +31,26 @@
 * @group-content ../../ApexDocContent/Permission.htm
 * @description Service class for User Permission.
 */
-public virtual with sharing class UserPermissionsService {
+public virtual with sharing class UserPermissionService {
 
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static UserPermissionsService instance;
+    private static UserPermissionService instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected UserPermissionsService() {}
+    protected UserPermissionService() {}
 
     /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of UserPermissionsService.
+    * @return The instance of UserPermissionService.
     ******************************************************************************/
-    public static UserPermissionsService getInstance() {
+    public static UserPermissionService getInstance() {
         if (instance == null) {
-            instance = new UserPermissionsService();
+            instance = new UserPermissionService();
         }
 
         return instance;
