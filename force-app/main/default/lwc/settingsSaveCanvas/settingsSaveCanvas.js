@@ -32,6 +32,10 @@ export default class SettingsSaveCanvas extends LightningElement {
         }
     }
 
+    @api updateHierarchySettings() {
+        this.dispatchSettingsSaveCompletedEvent();
+    }
+
     handleEditClick(event) {
         this.switchEditMode(false);
         this.dispatchEditModeSwitchEvent();
@@ -47,7 +51,14 @@ export default class SettingsSaveCanvas extends LightningElement {
     }
 
     dispatchEditModeSwitchEvent() {
-        this.dispatchEvent(new CustomEvent('settingseditmodechange', { detail: this.editButtonShown }));
+        this.dispatchEvent(
+            new CustomEvent(
+                'settingseditmodechange', 
+                { 
+                    detail: this.editButtonShown 
+                }
+            )
+        );
     }
 
     handleCancelClick(event) {
@@ -61,11 +72,26 @@ export default class SettingsSaveCanvas extends LightningElement {
     }
 
     handleSaveClick() {
+        console.log('Settings savings button clicked!');
         this.switchEditMode(true);
         this.dispatchSettingsSavingEvent();
     }
 
     dispatchSettingsSavingEvent() {
-        this.dispatchEvent(new CustomEvent('settingssaving', { detail: this.editButtonShown }));
+        this.dispatchEvent(
+            new CustomEvent(
+                'settingssaving', 
+                { 
+                    detail: this.editButtonShown 
+                }
+            )
+        );
+    }
+
+    dispatchSettingsSaveCompletedEvent() {
+        console.log('dispatchSettingsSaveCompletedEvent called');
+        this.dispatchEvent(
+            new CustomEvent('settingssavecompleted')
+        );
     }
 }

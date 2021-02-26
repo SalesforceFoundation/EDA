@@ -19,15 +19,12 @@ export default class AccountModelSettings extends LightningElement {
     handleSettingsEditModeChange(event) {
         this.isEditMode =!event.detail;
         this.affordancesDisabledToggle = !event.detail;
-
         this.refreshAllApex();
     }
 
     handleSettingsSaving(event) {
-        console.log('Settings savings button clicked!');
-
         this.affordancesDisabledToggle = true;
-        this.template.querySeletor("c-settings-save-canvas").updateHierarchySettings();
+        this.template.querySelector('c-settings-save-canvas').updateHierarchySettings();
     }
     
     handleSettingsSaveCompleted(event) {
