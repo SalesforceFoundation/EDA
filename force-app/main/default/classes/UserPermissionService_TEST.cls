@@ -86,7 +86,7 @@ public with sharing class UserPermissionService_TEST {
     @isTest
     private static void locatePermissionSetMapperTest() {
         Test.startTest();
-            PermissionSetMapper PermissionSetMapperInstance = PermissionSetMapper.getInstance();
+            PermissionSetMapper permissionSetMapperInstance = PermissionSetMapper.getInstance();
         Test.stopTest();
 
         System.assertEquals(PermissionSetMapper.instance, PermissionSetMapperInstance);
@@ -104,6 +104,23 @@ public with sharing class UserPermissionService_TEST {
         Test.stopTest();
 
         System.assertEquals(true, viewSetupForCurrentUser);
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the checkViewSetupForCurrentUser returns false when current user has no access.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void checkViewSetupForCurrentUserNoAccess() {
+        PermissionSetMapper.instance = new STUB_PermissionSetMapperNoAccess();
+        
+        try {
+            Test.startTest();
+                Boolean viewSetupForCurrentUser = UserPermissionService.getInstance().checkViewSetupForCurrentUser();
+            Test.stopTest();
+        } catch (System.NoAccessException ex){
+            System.assertEquals('System.NoAccessException', ex.getTypeName(), 'NoAccessException should be thrown when exception occurs.');
+            System.assertEquals('Script-thrown exception', ex.getMessage(), 'NoAccessException text should be associated with message when exception occurs.');
+        }
     }
 
     /**************************************************************************************************************************

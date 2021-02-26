@@ -41,7 +41,7 @@ public virtual with sharing class EDASettingsController {
     public static Boolean checkAccessForCurrentUser() {
         try {
             return EDASettingsController.locateUserPermissionService().checkViewSetupForCurrentUser();
-        } catch (NoAccessException e) {
+        } catch (System.NoAccessException ex) {
             return false;
         }
     }
