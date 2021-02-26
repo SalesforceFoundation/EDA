@@ -93,7 +93,7 @@ tasks:
 
     deploy_install_emulator:
         group: "EDA: Metadata"
-        description: Deploys "Manage Encryption Keys" permission set.
+        description: Deploys an install context class, allowing for batch jobs from the installer to resolve.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: unpackaged/config/install_emulator
