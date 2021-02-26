@@ -97,7 +97,6 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: unpackaged/config/install_emulator
-            namespace_inject: $project_config.project__package__namespace
 
     deploy_workbench_translation_settings:
         description: Deploys settings to enable Translation Workbench, end user languages, and platform languages.
