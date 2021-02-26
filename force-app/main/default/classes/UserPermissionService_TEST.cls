@@ -100,7 +100,7 @@ public with sharing class UserPermissionService_TEST {
         PermissionSetMapper.instance = new STUB_PermissionSetMapperHasAccess();
         
         Test.startTest();
-            Boolean viewSetupForCurrentUser = UserPermissionService.checkViewSetupForCurrentUser();
+            Boolean viewSetupForCurrentUser = UserPermissionService.getInstance().checkViewSetupForCurrentUser();
         Test.stopTest();
 
         System.assertEquals(true, viewSetupForCurrentUser);
