@@ -60,7 +60,7 @@ public virtual with sharing class UserPermissionService {
     * @description Check if current user has access to view setup.
     * @return If current user has access to view setup
     ******************************************************************************/
-    public Boolean checkViewSetupForCurrentUser() {
+    public virtual Boolean checkViewSetupForCurrentUser() {
         Set<Id> assignedPermissionSetIdsSet = this.locatePermissionSetAssignmentMapper().getAssignedPermissionSetIdsSetForCurrentUser();
         Boolean viewSetupForCurrentUser = this.locatePermissionSetMapper().checkPermissionSetsWithViewSetupFromIds(assignedPermissionSetIdsSet);
 
