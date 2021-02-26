@@ -2,5 +2,5 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <name>MailingStreet2__c</name>
     <help>Detalls addicionals de l&apos;adreça postal d&apos;aquesta adreça, com ara Planta o Pis.</help>
-    <label>Carrer2 de correu postal</label>
+    <label>Carrer 2 de correu postal</label>
 </CustomFieldTranslation>

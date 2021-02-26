@@ -977,11 +977,11 @@
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label>Si cette option s&apos;est sélectionnée, la Date de fin d&apos;inscription au programme est copiée dans la date de fin des nouveaux enregistrements Affiliation. Sinon, la date de fin d&apos;affiliation reste vide.</label>
+        <label>Si cette option est sélectionnée, la Date de fin d&apos;inscription au programme est copiée dans la date de fin des nouveaux enregistrements Affiliation. Sinon, la date de fin d&apos;affiliation reste vide.</label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>Si cette option s&apos;est sélectionnée, la Date de début d&apos;inscription au programme est copiée dans la date de début des nouveaux enregistrements Affiliation. Sinon, la date de début d&apos;affiliation reste vide.</label>
+        <label>Si cette option est sélectionnée, la Date de début d&apos;inscription au programme est copiée dans la date de début des nouveaux enregistrements Affiliation. Sinon, la date de début d&apos;affiliation reste vide.</label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -1013,7 +1013,7 @@
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label>Le statut défini dans l&apos;affiliation créée avec une l&apos;inscription au programme.</label>
+        <label>Le statut défini dans l&apos;affiliation créée avec une inscription au programme.</label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
