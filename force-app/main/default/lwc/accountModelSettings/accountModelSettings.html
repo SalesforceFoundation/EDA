@@ -1,7 +1,14 @@
 <template>
-    <div class="slds-theme_default">
-        <div class="slds-text-heading_small">
-            <span>{labelReference.stgAccountModelSettingsTitle}</span>
+    <div class="slds-grid--vertical slds-theme_default">
+        <div class="slds-col slds-p-top_small">
+            <c-settings-save-canvas
+                component-title={labelReference.stgAccountModelSettingsTitle}
+                onsettingseditmodechange={handleSettingsEditModeChange}
+                onsettingssaving={handleSettingsSaving}
+                onsettingssavecompleted={handleSettingsSaveCompleted}
+            >
+                <div class="slds-text-body_small">Affordances Disabled</div>
+            </c-settings-save-canvas>
         </div>
     </div>
 </template>
