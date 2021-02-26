@@ -32,7 +32,28 @@
 * @description Service class for User Permission.
 */
 public virtual with sharing class UserPermissionsService {
-    public UserPermissionsService() {
 
+    /*********************************************
+    * @description Instance for Singleton Pattern
+    **********************************************/
+    @TestVisible
+    private static UserPermissionsService instance;
+
+    /*********************************************************************
+    * @description Empty constructor is not public for Singleton Pattern
+    **********************************************************************/
+    protected UserPermissionsService() {}
+
+    /*****************************************************************************
+    * @description Static method to get the current instance for Singleton pattern
+    * @return The instance of UserPermissionsService.
+    ******************************************************************************/
+    public static UserPermissionsService getInstance() {
+
+        if (instance == null) {
+            instance = new UserPermissionsService();
+        }
+
+        return instance;
     }
 }

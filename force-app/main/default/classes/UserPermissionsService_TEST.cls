@@ -34,4 +34,35 @@
 @isTest
 public with sharing class UserPermissionsService_TEST {
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns a new instance of the 
+    * UserPermissionsService class when one does not already exist.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceNew() {
+
+        Test.startTest();
+            UserPermissionsService userPermissionsServiceInstance = UserPermissionsService.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(UserPermissionsService.instance, userPermissionsServiceInstance, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(true, userPermissionsServiceInstance != null, 'Instance of mapper class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns the existing instance of the 
+    * UserPermissionsService class when one already exists.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExisting() {
+
+        Test.startTest();
+            UserPermissionsService userPermissionsServiceInstance1 = UserPermissionsService.getInstance();
+            UserPermissionsService userPermissionsServiceInstance2 = UserPermissionsService.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(UserPermissionsService.instance, userPermissionsServiceInstance1, 'Instance of mapper class returned should match static instance variable.');
+        System.assertEquals(userPermissionsServiceInstance1, userPermissionsServiceInstance2, 'Subsequent retrievals of mapper class instance should return existing instance.');
+        System.assertEquals(true, userPermissionsServiceInstance1 != null, 'Instance of mapper class should not be null.');
+    }
 }

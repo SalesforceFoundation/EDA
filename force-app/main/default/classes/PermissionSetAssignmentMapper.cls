@@ -59,19 +59,19 @@ public virtual with sharing class PermissionSetAssignmentMapper {
 
     /*****************************************************************************
     * @description Get a list of permission set ids assigned to the current user.
-    * @return A list of permission set ids assigned to the current user.
+    * @return A Set of permission set ids assigned to the current user.
     ***************************************************************************************************************************/
-    public List<Id> getAssignedPermissionSetIdListForCurrentUser() {
+    public Set<Id> getAssignedPermissionSetIdSetForCurrentUser() {
 
-        List<Id> assignedPermissionSetIdsList = new List<Id>();
+        Set<Id> assignedPermissionSetIdsSet = new Set<Id>();
 
         List<PermissionSetAssignment> permissionSetAssignments = [SELECT PermissionSetId
                                                                 FROM PermissionSetAssignment
                                                                 WHERE AssigneeId = :UserInfo.getUserId()];
         for (PermissionSetAssignment permissionSetAssignment : permissionSetAssignments) {
-            assignedPermissionSetIdsList.add(permissionSetAssignment.PermissionSetId);
+            assignedPermissionSetIdsSet.add(permissionSetAssignment.PermissionSetId);
         }
         
-        return assignedPermissionSetIdsList;      
+        return assignedPermissionSetIdsSet;      
     }
 }
