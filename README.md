@@ -21,7 +21,7 @@ You can customize Prettier files in .prettierrc.yml and specify code that Pretti
 
 ## Learn More
 
-* To learn about EDA objects and fields, see <a href="https://powerofus.force.com/s/article/EDA-Data-Dictionary" target="_blank">EDA Data Dictionary</a>
+* To learn about EDA objects and fields, see <a href="https://powerofus.force.com/s/article/EDA-Data-Dictionary" target="_blank">EDA Data Dictionary</a>.
 * To learn about Prettier, see <a href="https://prettier.io/docs/en/index.html" target="_blank">What is Prettier?</a>
 * To learn about the Prettier Apex plugin, see the <a href="https://github.com/dangmai/prettier-plugin-apex" target="_blank">prettier-plugin-apex repository</a> in GitHub.
 
