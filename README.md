@@ -1,27 +1,23 @@
 ![Salesforce Education Data Architecture](https://github.com/SalesforceFoundation/EDA/blob/master/EDA%20GitHub.png "Salesforce Education Data Architecture")
 
-Education Data Architecture (EDA) standardizes the starting point for educational institutions building out a CRM.  It provides a core and common data model that supports the entire K-20 student journey. It's an open-source architecture—anyone can view the source code in GitHub. It's been developed in close collaboration with our customers, partners, and the K-20 community to foster common acceptance. Solutions built on EDA share the same open and flexible, extendable framework that accommodates a range of use cases and end-user customization. With EDA, you get an architecture along with preconfigured objects, logic and functionality, and automation, tailored for education right out of the box.
+Education Data Architecture (EDA) standardizes the starting point for educational institutions building out a CRM. It provides a core and common data model that supports the entire K-20 student journey. It's an open-source architecture—meaning anyone can view the source code in GitHub. It's been developed in close collaboration with our customers, partners, and the K-20 community to foster common acceptance. Solutions built on EDA share the same open and flexible, extensible framework that accommodates a range of use cases and end-user customization. With EDA, you get a standardized data model—including preconfigured objects, functionality, logic, and automation—tailored for education right out of the box.
 
-The EDA framework, supported by the Salesforce Platform, can serve as the foundation for managing data and data relationships across your entire institution.
-
-As an open-source project, we welcome your feedback on and contributions to EDA. 
+The EDA framework, supported by the Salesforce Platform, can serve as the foundation for managing data and data relationships across your entire institution. We welcome your feedback and contributions to EDA. 
 
 ## Get EDA
 
-Install EDA in any Salesforce Developer Edition, Enterprise Edition, or Sandbox org.
-
-* <a href="https://install.salesforce.org/products/eda" target="_blank">EDA Installer</a>
+The easiest way to get started with EDA is to sign up for a <a href="https://www.salesforce.org/trial/eda/" target="_blank">trial</a>. If you need to install EDA in an existing Salesforce org, use the <a href="https://install.salesforce.org/products/eda" target="_blank">EDA Installer</a>. See <a href="https://powerofus.force.com/s/article/EDA-Install-EDA" target="_blank">Install EDA</a> for more information.
 
 ## Contribute Code Using Prettier
 
-Use Prettier to format code contributed to EDA. To get started with Prettier, in a command line interface, run `yarn install`. The following packages will be installed:
+Use Prettier to format code to contribute to EDA. To get started with Prettier, in a command-line interface, run `yarn install` to install these packages.
 
 * prettier
 * prettier-plugin-apex
 
 If you encounter errors, remove the node_modules folder and run `yarn install` again.
 
-You can customize Prettier files in .prettierrc.yml and specify code that Prettier will ignore in .prettierignore.    
+You can customize Prettier files in .prettierrc.yml and specify code that Prettier will ignore in .prettierignore.
 
 ## Learn More
 
