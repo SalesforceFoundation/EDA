@@ -2,6 +2,7 @@
 
 eda_lex_locators = {
     "app_tile": "//one-app-launcher-modal//one-app-launcher-app-tile//a[.='{}']",
+    "app_item": "//a[@data-label='{}']",
     "frame": "//iframe[contains(@id, '{}') or contains(@title, '{}') or contains(@name, '{}')]",
     "input_placeholder": "//input[contains(@placeholder,'{}')]",
     "panel_tab_lookup": "//a/span[text()='{}']",
@@ -214,6 +215,11 @@ eda_lex_locators = {
         "save_button": "(//span[@class=' label bBody' and text()='Save']/ancestor::button[contains(@class, 'slds-button')])[3]",
         "next_save_button": "//div[contains(@class, 'inlineFooter')]/descendant::button[@title='Save']",
         "final_save_button": "(//span[@class=' label bBody' and text()='Save'])[3]/ancestor::button",
+    },
+    "settings_health_check": {
+        "run_health_check_button": "//button[@title='{}']",
+        "health_check_header": "//h2[contains(@class, 'header')]/span[text()='{}']",
+        "last_run_date": "//button[@title='Run Health Check']/preceding::div[1]",
     },
     "term": {
         "new_term_button": "//span[@class='itemLabel slds-truncate slds-show--inline-block slds-m-left--xx-small' and contains(text(), 'New Term')]//..",
