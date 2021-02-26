@@ -64,7 +64,7 @@ class SettingsHealthCheckPage(BaseEDAPage, HomePage):
             self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_webelement(locator).text
-            self.builtin.log(f"Actual value of {locator} is {actual_value}")
+            self.builtin.log(f"Actual value of {field} is {actual_value}")
             if not str(expected_value).lower() == str(actual_value).lower() :
                 raise Exception (f"Status of {field} is {actual_value} but it should be {expected_value}")
 
