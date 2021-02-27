@@ -72,7 +72,6 @@ export default class SettingsSaveCanvas extends LightningElement {
     }
 
     handleSaveClick() {
-        console.log('Settings savings button clicked!');
         this.switchEditMode(true);
         this.dispatchSettingsSavingEvent();
     }
