@@ -68,7 +68,7 @@ class SettingsHealthCheckPage(BaseEDAPage, HomePage):
             if not str(expected_value).lower() == str(actual_value).lower() :
                 raise Exception (f"Status of {field} is {actual_value} but it should be {expected_value}")
 
-    def verify_all_checks_status(self,healthCheckCard,expected_value):
+    def return_all_checks_status(self,healthCheckCard,expected_value):
         """ This method will verify the status of of all checks before clicking on expand all
             button to verify status of each setting. Pass the name of the health check card and
             the expected text from robot. Returns true if all settings are passed and false if any
