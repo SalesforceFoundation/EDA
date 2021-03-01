@@ -34,15 +34,16 @@ export default class SettingsSaveCanvas extends LightningElement {
 
     @api updateHierarchySettings() {
         this.dispatchSettingsSaveCompletedEvent();
+        this.dispatchEditModeSwitchEvent(false);
     }
 
     handleEditClick(event) {
-        this.switchEditMode(false);
+        this.switchEditMode(true);
         this.dispatchEditModeSwitchEvent();
     }
 
     switchEditMode(editMode) {
-        this.editButtonShown = editMode;
+        this.editButtonShown = !editMode;
         if (this.editMode === true) {
             this.saveCancelDisabled = true;
         } else {
@@ -62,8 +63,9 @@ export default class SettingsSaveCanvas extends LightningElement {
     }
 
     handleCancelClick(event) {
-        this.switchEditMode(true);
+        this.switchEditMode(false);
         this.clearHierarchySettingsChanges();
+        this.dispatchEditModeSwitchEvent(false);
     }
 
     clearHierarchySettingsChanges() {
@@ -72,7 +74,7 @@ export default class SettingsSaveCanvas extends LightningElement {
     }
 
     handleSaveClick() {
-        this.switchEditMode(true);
+        this.switchEditMode(false);
         this.dispatchSettingsSavingEvent();
     }
 
@@ -88,7 +90,6 @@ export default class SettingsSaveCanvas extends LightningElement {
     }
 
     dispatchSettingsSaveCompletedEvent() {
-        console.log('dispatchSettingsSaveCompletedEvent called');
         this.dispatchEvent(
             new CustomEvent('settingssavecompleted')
         );

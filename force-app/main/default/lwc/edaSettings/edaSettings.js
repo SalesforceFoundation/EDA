@@ -12,12 +12,9 @@ export default class EDASettings extends LightningElement {
     };
 
     changePageToDisplay(pageName) {
-        for (let settingPageName in this.settingsPageToDisplay) {
-            if (settingPageName.toLocaleLowerCase() === pageName.toLocaleLowerCase()) {
-                this.settingsPageToDisplay[settingPageName] = true;
-            } else {
-                this.settingsPageToDisplay[settingPageName] = false;
-            }
-        }
+        let settingsPageDisplay = {};
+        settingsPageDisplay[pageName.toLowerCase()] = true;
+        
+        settingsPageToDisplay = settingsPageDisplay;
     }
 }

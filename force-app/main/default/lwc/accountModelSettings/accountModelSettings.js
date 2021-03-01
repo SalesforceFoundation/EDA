@@ -2,11 +2,11 @@ import { LightningElement, api, track } from 'lwc';
 import stgAccountModelSettingsTitle from '@salesforce/label/c.stgAccountModelSettingsTitle';
 
 export default class AccountModelSettings extends LightningElement {
-    @track isEditMode = false;
-    @track affordancesDisabledToggle = true;
+    isEditMode = false;
+    affordancesDisabledToggle = false;
 
     get affordancesDisabled() {
-        if (this.isEditMode == true || this.affordancesDisabledToggle == true) {
+        if (!this.isEditMode || this.affordancesDisabledToggle === true) {
             return true;
         } 
         return undefined;
@@ -17,10 +17,8 @@ export default class AccountModelSettings extends LightningElement {
     }
 
     handleSettingsEditModeChange(event) { 
-        //edit button shown == false on save
-        // edit button shown == true on cancel
         this.isEditMode =!event.detail;
-        this.affordancesDisabledToggle = !event.detail;
+        this.affordancesDisabledToggle = event.detail;
 
         this.refreshAllApex();
     }

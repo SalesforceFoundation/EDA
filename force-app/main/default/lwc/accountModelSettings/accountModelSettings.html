@@ -7,8 +7,7 @@
                 onsettingssaving={handleSettingsSaving}
                 onsettingssavecompleted={handleSettingsSaveCompleted}
             >
-                
-                <div class="slds-text-body_small">Affordances Disabled: {affordancesDisabled}</div>
+                <lightning-button label="Am I disabled?" disabled={affordancesDisabled}></lightning-button>
             </c-settings-save-canvas>
         </div>
     </div>
