@@ -344,11 +344,6 @@ class EDA(BaseEDAPage):
         locator = eda_lex_locators["app_tile"].format(app)
         self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{app} did not open in 1 min')
 
-    def verify_item_exists(self, item):
-        """Verifies that the given item is present in the app launcher"""
-        locator = eda_lex_locators["app_item"].format(item)
-        self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{item} did not open in 1 min')
-
     def select_frame_with_value(self, value):
         """ Selects the first displayed iframe on the page identified by the given value
             :param value should be the 'id', 'title' or 'name' attribute of the webelement used to identify the iframe
