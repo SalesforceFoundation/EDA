@@ -561,6 +561,10 @@
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
+        <label><!-- Message for when you don&apos;t have the permissions to view a page. --></label>
+        <name>stgErrorInsufficientAccess</name>
+    </customLabels>
+    <customLabels>
         <label>Notificaciones de error en:</label>
         <name>stgErrorNotiTo</name>
     </customLabels>
