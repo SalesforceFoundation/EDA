@@ -29,6 +29,7 @@ Verify last run date is updated upon clicking run health check Button
     ...     Go to custom settings setup     AND
     ...     Select App Launcher Tab      Settings Health Check      AND
     ...     Verify last run date
+    ...     ELSE    Fail
 
 Verify account model health check settings checks pass
     [Documentation]         Validates the account model health card is displayed with settings for
@@ -37,6 +38,7 @@ Verify account model health check settings checks pass
     [tags]                  unstable        rbt:high        W-8880346
     Log To Console          ${PREV TEST STATUS}
     Run Keyword If  '${PREV TEST STATUS}' == 'PASS'  Run account model health check settings
+    ...     ELSE    Fail
 
 
 *** Keywords ***
