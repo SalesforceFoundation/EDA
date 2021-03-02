@@ -561,6 +561,14 @@
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
+        <label><!-- Error when you don't have the permissions to save settings --></label>
+        <name>stgErrorInsufficientAccessSaving</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when SFDO or SFDC has broken something and we encounter a generic error --></label>
+        <name>stgErrorInvalidSettings</name>
+    </customLabels>
+    <customLabels>
         <label>Notifications d’erreur à :</label>
         <name>stgErrorNotiTo</name>
     </customLabels>
