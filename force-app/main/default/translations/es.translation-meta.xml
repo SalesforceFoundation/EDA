@@ -49,6 +49,10 @@
         <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
+        <label><!-- EDA Settings --></label>
+        <name>EDASettingsContainerAuraComponentLabel</name>
+    </customLabels>
+    <customLabels>
         <label>Female</label>
         <name>Female</name>
     </customLabels>
