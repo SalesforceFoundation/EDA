@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Type__c</name>
+    <help>Die Reaktion auf den Verhaltensvorfall, z. B. &quot;Akademische Bewährung&quot;, &quot;Verweis&quot; oder &quot;Sonstiges&quot;.</help>
+    <label>Typ</label>
+    <picklistValues>
+        <masterLabel>Academic Probation</masterLabel>
+        <translation>Akademische Bewährung</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Expulsion</masterLabel>
+        <translation>Verweis</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Sonstiges</translation>
+    </picklistValues>
+</CustomFieldTranslation>

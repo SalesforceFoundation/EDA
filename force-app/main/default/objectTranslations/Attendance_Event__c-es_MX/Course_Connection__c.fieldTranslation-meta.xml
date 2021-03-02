@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Connection__c</name>
+    <help>La clase y el periodo en el que el estudiante fue impuntual o estuvo ausente.</help>
+    <relationshipLabel>Eventos de asistencia</relationshipLabel>
+    <label>Enlace de cursos</label>
+</CustomFieldTranslation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Sent__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether an email notification has been sent regarding this error.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates whether an email notification has been sent regarding this error.</inlineHelpText>
+    <label>Email Sent</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

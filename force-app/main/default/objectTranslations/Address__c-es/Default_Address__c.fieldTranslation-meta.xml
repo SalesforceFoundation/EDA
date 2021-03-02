@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Default_Address__c</name>
+    <help>Indica si esta es la dirección predeterminada a utilizar para este hogar y sus contactos.</help>
+    <label>Dirección predeterminada</label>
+</CustomFieldTranslation>

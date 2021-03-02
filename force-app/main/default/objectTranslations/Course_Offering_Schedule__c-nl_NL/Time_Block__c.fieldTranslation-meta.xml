@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Time_Block__c</name>
+    <help>Het tijdblok waarbinnen dit cursusaanbod plaatsvindt.</help>
+    <relationshipLabel>Roosters voor cursusaanbod</relationshipLabel>
+    <label>Tijdblok</label>
+</CustomFieldTranslation>

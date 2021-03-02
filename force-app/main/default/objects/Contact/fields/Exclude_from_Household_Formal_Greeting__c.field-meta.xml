@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exclude_from_Household_Formal_Greeting__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field currently isn&apos;t tied to product functionality.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field currently isn&apos;t tied to product functionality.</inlineHelpText>
+    <label>Exclude from Household Formal Greeting</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

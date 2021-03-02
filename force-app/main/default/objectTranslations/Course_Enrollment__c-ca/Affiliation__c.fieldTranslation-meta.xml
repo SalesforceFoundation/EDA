@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Affiliation__c</name>
+    <help>El programa acadèmic associat a aquesta connexió del curs. Representa una afiliació de compte de contacte.</help>
+    <relationshipLabel>Connexió del curs</relationshipLabel>
+    <label>Afiliació</label>
+</CustomFieldTranslation>

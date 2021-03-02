@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Enrollment_Status__c</name>
+    <help>学生の登録状況 (全日制、半日制など)</help>
+    <label>登録状況</label>
+    <picklistValues>
+        <masterLabel>Full-time</masterLabel>
+        <translation>全日制</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Half-time</masterLabel>
+        <translation>半日制</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Less than half-time</masterLabel>
+        <translation>半日未満</translation>
+    </picklistValues>
+</CustomFieldTranslation>

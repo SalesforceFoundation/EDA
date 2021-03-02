@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Program_Plan</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Is_Primary__c</columns>
+    <columns>Status__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Is_Primary__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Primary Program Plans</label>
+</ListView>

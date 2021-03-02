@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>ReciprocalRelationship__c</name>
+    <help>Cerqueu el registre de relació recíproca relacionat. Aquest camp s&apos;omple automàticament. L’actualització manual d’aquest camp pot provocar errors.</help>
+    <relationshipLabel>Relacions</relationshipLabel>
+    <label>Relació recíproca</label>
+</CustomFieldTranslation>

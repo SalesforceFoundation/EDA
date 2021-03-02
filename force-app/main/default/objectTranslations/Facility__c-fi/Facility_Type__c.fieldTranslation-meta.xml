@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Facility_Type__c</name>
+    <help>Valitse tilan tyyppi, esimerkiksi tietokoneluokka, terveyskeskus, luentosali jne.</help>
+    <label>Laitoksen tyyppi</label>
+    <picklistValues>
+        <masterLabel>Building</masterLabel>
+        <translation>Rakennus</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cafeteria/Food Hall</masterLabel>
+        <translation>Kahvila/ruokasali</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Classroom</masterLabel>
+        <translation>Luokkahuone</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Computer Lab</masterLabel>
+        <translation>Tietokoneluokka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gymnasium</masterLabel>
+        <translation>Kuntosali</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Health Center</masterLabel>
+        <translation>Terveyskeskus</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Laboratory</masterLabel>
+        <translation>Laboratorio</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lecture Hall</masterLabel>
+        <translation>Luentosali</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Library</masterLabel>
+        <translation>Kirjasto</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Total_Required_Credits__c</name>
+    <help>Die Gesamtanzahl der Leistungspunkte, die ein Schüler/Studenten zur Erfüllung dieses Programmplans benötigt.</help>
+    <label>Insgesamt erforderliche Leistungspunkte</label>
+</CustomFieldTranslation>

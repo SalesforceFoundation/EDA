@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>ReciprocalRelationship__c</name>
+    <help>Verweis auf den zugehörigen Datensatz &quot;Wechselseitige Beziehung&quot;. Dieses Feld wird automatisch aufgefüllt. Manuelles Aktualisieren dieses Felds kann zu Fehlern führen.</help>
+    <relationshipLabel>Beziehungen</relationshipLabel>
+    <label>Wechselseitige Beziehung</label>
+</CustomFieldTranslation>

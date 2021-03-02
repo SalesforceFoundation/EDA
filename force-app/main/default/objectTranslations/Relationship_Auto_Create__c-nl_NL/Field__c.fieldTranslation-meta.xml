@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Field__c</name>
+    <help>Het label van het opzoekveld dat het maken van deze relatie triggert wanneer de veldwaarde wordt bijgewerkt.</help>
+    <label>Veld</label>
+</CustomFieldTranslation>

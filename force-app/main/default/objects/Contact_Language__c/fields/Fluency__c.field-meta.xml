@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fluency__c</fullName>
+    <description>The fluency with which this person speaks this language.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The fluency with which this person speaks this language.</inlineHelpText>
+    <label>Fluency</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fluent</fullName>
+                <default>false</default>
+                <label>Fluent</label>
+            </value>
+            <value>
+                <fullName>Intermediate</fullName>
+                <default>false</default>
+                <label>Intermediate</label>
+            </value>
+            <value>
+                <fullName>Beginner</fullName>
+                <default>false</default>
+                <label>Beginner</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

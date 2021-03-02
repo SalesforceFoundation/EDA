@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Emergency_Contact__c</name>
+    <help>Indique que le contact associé est une personne à contacter d&apos;urgence.</help>
+    <label>Contact d&apos;urgence</label>
+</CustomFieldTranslation>

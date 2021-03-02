@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Description__c</name>
+    <help>Este campo ha sido sustituido por el campo Descripción ampliada, que acomoda descripciones más largas. Su administrador puede migrar texto desde la Descripción al campo Descripción ampliada en Configuración de EDA | Cursos.</help>
+    <label>Descripción</label>
+</CustomFieldTranslation>

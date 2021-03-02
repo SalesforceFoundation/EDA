@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Course Offering Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID d&apos;offre de cours</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>ID d&apos;offre de cours</label>
+    </standardFields>
+    <gender>Feminine</gender>
+    <startsWith>Vowel</startsWith>
+    <caseValues>
+        <plural>false</plural>
+        <value>Choix de module</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Choix de modules</value>
+    </caseValues>
+</CustomObjectTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank__c</name>
+    <help>La classificació acadèmica de l&apos;estudiant en relació amb la seva promoció. Per exemple, un estudiant que ocupa el 5è lloc de la classe de 200 té un valor de 5.</help>
+    <label>Classificació de classe</label>
+</CustomFieldTranslation>

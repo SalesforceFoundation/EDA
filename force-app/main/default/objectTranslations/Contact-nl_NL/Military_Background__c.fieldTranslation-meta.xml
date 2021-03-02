@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Military_Background__c</name>
+    <help>Beschrijf de militaire dienst van deze persoon, bijvoorbeeld de militaire afdeling, de tijd die in het leger is doorgebracht, de datum van ontslag, enz.</help>
+    <label>Militaire achtergrond</label>
+</CustomFieldTranslation>

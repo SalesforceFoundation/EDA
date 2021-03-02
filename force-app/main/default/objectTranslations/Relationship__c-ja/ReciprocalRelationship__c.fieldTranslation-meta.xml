@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>ReciprocalRelationship__c</name>
+    <help>関連する相互関係レコードへの参照。この項目は自動的に入力されます。この項目を手動で更新すると、エラーが発生する可能性があります。</help>
+    <relationshipLabel>リレーション</relationshipLabel>
+    <label>相互関係</label>
+</CustomFieldTranslation>

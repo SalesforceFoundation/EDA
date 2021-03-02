@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Account__c</name>
+    <help>El programa acadèmic al qual s’associa l’estudiant o membre del professorat.</help>
+    <relationshipLabel>Connexions del curs</relationshipLabel>
+    <label>Programa acadèmic del contacte</label>
+</CustomFieldTranslation>

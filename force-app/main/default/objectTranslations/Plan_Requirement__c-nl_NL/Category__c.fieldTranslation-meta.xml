@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Category__c</name>
+    <help>Geeft het vereistetype voor een plan aan, bijvoorbeeld optioneel of vereist.</help>
+    <label>Categorie</label>
+    <picklistValues>
+        <masterLabel>Required</masterLabel>
+        <translation>Verplicht</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Optional</masterLabel>
+        <translation>Optioneel</translation>
+    </picklistValues>
+</CustomFieldTranslation>

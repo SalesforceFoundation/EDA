@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <recordTypes>
+        <name>Credential</name>
+        <label>資格</label>
+        <description>スタッフまたは学生が取得したライセンス、証明書、または保証を教育機関が追跡できるようにします。</description>
+    </recordTypes>
+    <recordTypes>
+        <name>Student_Characteristic</name>
+        <label>学生の特徴</label>
+        <description>学生の教育に影響する可能性がある学生の重要な特徴を教育機関が追跡できるようにします。</description>
+    </recordTypes>
+    <layouts>
+        <layout>EDA Student Characteristic Layout</layout>
+        <sections>
+            <label>カスタムリンク</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EDA Credential Layout</layout>
+        <sections>
+            <label>カスタムリンク</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>特記事項名</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>特記事項名</label>
+    </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value>特記事項</value>
+    </caseValues>
+</CustomObjectTranslation>

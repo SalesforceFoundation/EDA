@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Reason__c</name>
+    <help>Valitse vaihtoehto, joka vastaa parhaiten opiskelijan poissaolon tai viivästymisen syytä. Syötä lisätietoja Syyn kuvaus -kenttään.</help>
+    <label>Syy</label>
+    <picklistValues>
+        <masterLabel>Family</masterLabel>
+        <translation>Perhe</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Medical</masterLabel>
+        <translation>Terveys</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Muu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Religious</masterLabel>
+        <translation>Uskonnollinen</translation>
+    </picklistValues>
+</CustomFieldTranslation>

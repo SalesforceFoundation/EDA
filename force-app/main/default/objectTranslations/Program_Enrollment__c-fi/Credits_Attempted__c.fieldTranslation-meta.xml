@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Credits_Attempted__c</name>
+    <help>Opintopisteiden määrä, jonka opiskelija on yrittänyt saada tähän mennessä. Tämä sisältää keskeneräiset opinnot ja epäonnistuneet kurssit, joista ei ole saatu opintopisteitä.</help>
+    <label>Opintopistetavoite</label>
+</CustomFieldTranslation>

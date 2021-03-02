@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>GPA_Scale_Type__c</name>
+    <help>Indique comment la moyenne pondérée cumulative a été déterminée, par exemple en utilisant une échelle pondérée ou non pondérée.</help>
+    <label>Type échelle moyenne pondérée cumulative</label>
+    <picklistValues>
+        <masterLabel>Unweighted</masterLabel>
+        <translation>Non pondérée</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Weighted</masterLabel>
+        <translation>Pondérée</translation>
+    </picklistValues>
+</CustomFieldTranslation>

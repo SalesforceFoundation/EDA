@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Parent_Account__c</name>
+    <help>Etsi tähän osoitteeseen liittyvä tili.</help>
+    <relationshipLabel>Osoitteet</relationshipLabel>
+    <label>Päätili</label>
+</CustomFieldTranslation>

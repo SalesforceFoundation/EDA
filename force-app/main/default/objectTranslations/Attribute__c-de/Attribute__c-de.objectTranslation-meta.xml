@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <recordTypes>
+        <name>Credential</name>
+        <label>Berechtigungsnachweis</label>
+        <description>Ermöglicht Bildungseinrichtungen die Nachverfolgung von Lizenzen, Zertifizierungen oder Bestätigungen, die von Mitarbeitern oder Schülern/Studenten erworben wurden.</description>
+    </recordTypes>
+    <recordTypes>
+        <name>Student_Characteristic</name>
+        <label>Teilnehmereigenschaft</label>
+        <description>Ermöglicht Bildungseinrichtungen die Nachverfolgung wichtiger Eigenschaften von Schülern/Studenten, die sich auf deren (Aus-) Bildung auswirken können.</description>
+    </recordTypes>
+    <layouts>
+        <layout>EDA Student Characteristic Layout</layout>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EDA Credential Layout</layout>
+        <sections>
+            <label>Benutzerdefinierte Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Attributname</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Attributname</label>
+    </standardFields>
+    <gender>Neuter</gender>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Nominative</caseType>
+        <value>Attribut</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Accusative</caseType>
+        <value>Attribut</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Dative</caseType>
+        <value>Attribut</value>
+    </caseValues>
+    <caseValues>
+        <plural>false</plural>
+        <caseType>Genitive</caseType>
+        <value>Attributs</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Nominative</caseType>
+        <value>Attribute</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Accusative</caseType>
+        <value>Attributen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Dative</caseType>
+        <value>Attributen</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <caseType>Genitive</caseType>
+        <value>Attribute</value>
+    </caseValues>
+</CustomObjectTranslation>

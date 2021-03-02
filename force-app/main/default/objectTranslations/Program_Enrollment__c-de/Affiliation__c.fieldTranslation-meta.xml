@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Affiliation__c</name>
+    <help>Dieses Feld wird automatisch mit dem Zugehörigkeitsdatensatz aufgefüllt, der die Registrierung des Studenten bei diesem Programm darstellt.</help>
+    <relationshipLabel>Programmregistrierungen</relationshipLabel>
+    <label>Zugehörigkeit</label>
+</CustomFieldTranslation>

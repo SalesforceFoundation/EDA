@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Usernames_to_Exclude__c</name>
+    <help>Lista de nombres de usuario de Salesforce separados por punto y coma para los que NO se ejecutará este desencadenador. Dejar en blanco para ejecutar para todos los usuarios.</help>
+    <label>Nombres de usuario para excluir</label>
+</CustomFieldTranslation>

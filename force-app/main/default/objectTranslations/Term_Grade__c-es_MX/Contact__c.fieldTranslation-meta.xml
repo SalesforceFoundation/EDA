@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Contact__c</name>
+    <help>El estudiante para el que se está registrando la evaluación. Cuando se deja en blanco, Contacto se rellena automáticamente desde la Conexión de curso válida al guardar.</help>
+    <relationshipLabel>Evaluaciones de periodo</relationshipLabel>
+    <label>Contacto</label>
+</CustomFieldTranslation>

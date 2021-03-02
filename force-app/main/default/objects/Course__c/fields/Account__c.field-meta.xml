@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account__c</fullName>
+    <description>The department (Account record) that offers this Course.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The department (Account record) that offers this Course.</inlineHelpText>
+    <label>Department</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Courses</relationshipLabel>
+    <relationshipName>Courses</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>true</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

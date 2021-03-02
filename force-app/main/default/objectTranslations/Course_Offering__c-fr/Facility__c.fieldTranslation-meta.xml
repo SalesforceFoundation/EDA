@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Facility__c</name>
+    <help>La structure dans laquelle cette offre de cours est dispensée.</help>
+    <relationshipLabel>Offres de cours</relationshipLabel>
+    <label>Structure</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Section_ID__c</name>
+    <help>Die Abschnitts-ID dieses Kursangebots. Die Abschnitts-ID wird in der Regel verwendet, wenn ein Kurs mehrere Abschnitte während eines einzigen Zeitabschnitts umfasst.</help>
+    <label>Abschnitts-ID</label>
+</CustomFieldTranslation>

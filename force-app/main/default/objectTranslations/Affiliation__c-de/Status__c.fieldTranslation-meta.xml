@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Status__c</name>
+    <help>Gibt an, ob es sich um eine aktuelle oder ehemalige Zugehörigkeit handelt.</help>
+    <label>Status</label>
+    <picklistValues>
+        <masterLabel>Current</masterLabel>
+        <translation>Aktuell</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Former</masterLabel>
+        <translation>Ehemalig</translation>
+    </picklistValues>
+</CustomFieldTranslation>

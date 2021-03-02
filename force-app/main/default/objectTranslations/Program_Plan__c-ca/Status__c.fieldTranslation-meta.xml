@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Status__c</name>
+    <help>Seleccioneu &quot;Actual&quot; si aquest pla del programa té alumnes inscrits o si és apte per inscriure&apos;n. En cas contrari, seleccioneu &quot;Arxivat&quot;.</help>
+    <label>Estat</label>
+    <picklistValues>
+        <masterLabel>Current</masterLabel>
+        <translation>Actual</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Archived</masterLabel>
+        <translation>Arxivat</translation>
+    </picklistValues>
+</CustomFieldTranslation>

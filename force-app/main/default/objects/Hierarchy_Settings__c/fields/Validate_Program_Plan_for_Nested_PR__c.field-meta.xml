@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Program_Plan_for_Nested_PR__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. For example, a Plan Requirement that has a parent Plan Requirement can’t also specify a Program Plan, or vice versa. If you specify both a Program Plan and a parent Plan Requirement, an error message prevents saving until only one is selected.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message prevents saving until only one is selected.</inlineHelpText>
+    <label>Validate Program Plan for Nested PR</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

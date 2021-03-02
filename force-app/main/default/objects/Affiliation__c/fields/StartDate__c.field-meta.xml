@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StartDate__c</fullName>
+    <description>The date this person became affiliated with this organization.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The date this person became affiliated with this organization.</inlineHelpText>
+    <label>Start Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

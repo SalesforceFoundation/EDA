@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>RelatedContact__c</name>
+    <help>Seleccioneu la persona relacionada amb el contacte.</help>
+    <relationshipLabel>Llista de relacions ocultades</relationshipLabel>
+    <label>Contacte relacionat</label>
+</CustomFieldTranslation>

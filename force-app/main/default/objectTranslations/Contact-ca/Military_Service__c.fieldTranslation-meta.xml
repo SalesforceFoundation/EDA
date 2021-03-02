@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Military_Service__c</name>
+    <help>Indica si aquesta persona està servint o ha servit anteriorment a l’exèrcit.</help>
+    <label>Servei militar</label>
+</CustomFieldTranslation>

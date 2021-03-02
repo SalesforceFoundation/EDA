@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Plan_Requirement_Deletion__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Reserved for future use.</description>
+    <externalId>false</externalId>
+    <label>Prevent Plan Requirement Deletion</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

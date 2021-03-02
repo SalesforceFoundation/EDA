@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>MailingStreet2__c</name>
+    <help>Additional street address detail for this Address, such as Suite or Apt.</help>
+    <label>Postal Street2</label>
+</CustomFieldTranslation>

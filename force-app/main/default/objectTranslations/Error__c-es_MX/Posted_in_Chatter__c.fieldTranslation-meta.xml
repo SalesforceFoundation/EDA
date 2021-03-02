@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Posted_in_Chatter__c</name>
+    <help>Indica si el error fue publicado en Chatter</help>
+    <label>Publicado en Chatter</label>
+</CustomFieldTranslation>

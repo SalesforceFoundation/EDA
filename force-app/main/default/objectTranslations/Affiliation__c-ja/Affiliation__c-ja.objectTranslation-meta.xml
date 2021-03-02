@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Affiliation Layout</layout>
+        <sections>
+            <label>所属情報</label>
+            <section>Affiliation Information</section>
+        </sections>
+        <sections>
+            <label>カスタムリンク</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>所属キー</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>所属キー</label>
+    </standardFields>
+    <caseValues>
+        <plural>false</plural>
+        <value>所属</value>
+    </caseValues>
+</CustomObjectTranslation>

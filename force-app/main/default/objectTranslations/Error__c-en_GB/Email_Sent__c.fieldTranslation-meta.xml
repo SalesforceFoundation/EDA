@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Email_Sent__c</name>
+    <help>Indicates whether an email notification has been sent regarding this error.</help>
+    <label>Email Sent</label>
+</CustomFieldTranslation>

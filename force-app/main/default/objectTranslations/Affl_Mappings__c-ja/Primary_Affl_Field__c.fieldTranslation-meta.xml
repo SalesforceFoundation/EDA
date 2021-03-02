@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary_Affl_Field__c</name>
+    <help>このレコードタイプの主取引先の値を保持する取引先責任者項目の表示ラベル。</help>
+    <label>主所属項目</label>
+</CustomFieldTranslation>

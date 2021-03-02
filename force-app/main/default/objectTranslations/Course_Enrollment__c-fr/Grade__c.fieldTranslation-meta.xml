@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Grade__c</name>
+    <help>La note numérique que l&apos;étudiant a obtenue pour cette offre de cours.</help>
+    <label>Note</label>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Educational_Institution__c</name>
+    <help>La institució educativa associada a aquest bloc de temps. Per exemple, una escola d&apos;un districte.</help>
+    <relationshipLabel>Blocs de temps</relationshipLabel>
+    <label>Institució educativa</label>
+</CustomFieldTranslation>

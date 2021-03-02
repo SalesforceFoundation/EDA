@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Language__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The language the Contact prefers to use.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The language the Contact prefers to use.</inlineHelpText>
+    <label>Primary Language</label>
+    <referenceTo>Language__c</referenceTo>
+    <relationshipLabel>Contacts</relationshipLabel>
+    <relationshipName>Contacts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Lookup</type>
+</CustomField>

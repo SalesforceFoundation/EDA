@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Current_Address__c</name>
+    <help>Consulta del registro de la dirección actual para esta cuenta. El campo de dirección de facturación de la cuenta se rellena con los campos de dirección procedentes del registro de la dirección actual.</help>
+    <relationshipLabel>Cuentas (Dirección actual)</relationshipLabel>
+    <label>Dirección actual</label>
+</CustomFieldTranslation>

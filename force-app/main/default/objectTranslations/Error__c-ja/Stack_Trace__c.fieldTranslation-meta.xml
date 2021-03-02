@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Stack_Trace__c</name>
+    <help>発生したエラーのスタック追跡 (実行時に使用可能な場合)。</help>
+    <label>スタック追跡</label>
+</CustomFieldTranslation>

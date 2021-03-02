@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Current_Address__c</name>
+    <help>Opzoeking van de huidige adresrecord voor deze contactpersoon. Het veld Postadres van de contactpersoon wordt automatisch ingevuld met de adresvelden uit de huidige adresrecord.</help>
+    <relationshipLabel>Contactpersonen (huidig adres)</relationshipLabel>
+    <label>Huidig adres</label>
+</CustomFieldTranslation>

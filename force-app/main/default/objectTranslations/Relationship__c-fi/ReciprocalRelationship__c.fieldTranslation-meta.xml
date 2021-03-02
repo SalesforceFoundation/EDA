@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>ReciprocalRelationship__c</name>
+    <help>Hae asiaankuuluva vastavuoroisten suhteiden tietue. Tämä kenttä täytetään automaattisesti. Tämän kentän päivittäminen manuaalisesti voi johtaa virheisiin.</help>
+    <relationshipLabel>Suhteet</relationshipLabel>
+    <label>Vastavuoroinen suhde</label>
+</CustomFieldTranslation>

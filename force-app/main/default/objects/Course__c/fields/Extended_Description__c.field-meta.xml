@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Extended_Description__c</fullName>
+    <description>Use this field to describe the Course, up to a maxium of 131,000 characters. This field replaces the Description field.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Use this field to describe the Course, up to a maxium of 131,000 characters. This field replaces the Description field.</inlineHelpText>
+    <label>Extended Description</label>
+    <length>131072</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>5</visibleLines>
+</CustomField>

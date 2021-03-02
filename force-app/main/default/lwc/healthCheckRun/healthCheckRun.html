@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title={labelReference.stgHealthCheckTitle}>
+        <div class="slds-grid slds-wrap">
+            <div
+                class="slds-col slds-size--2-of-2 slds-p-horizontal_small slds-p-vertical_small slds-text-body_regular"
+            >
+                <p>{labelReference.stgHealthCheckDescription}</p>
+            </div>
+
+            <div
+                class="slds-col slds-size--1-of-2 slds-text-align_left slds-text-body_small slds-p-horizontal_small slds-p-vertical_small"
+            >
+                {lastRunDate}
+            </div>
+            <div
+                class="slds-col slds-col_bump-left slds-text-align_right slds-size--1-of-2 slds-p-horizontal_small slds-p-vertical_small"
+            >
+                <lightning-button
+                    label={labelReference.stgHealthCheckRunButton}
+                    title={labelReference.stgHealthCheckRunButton}
+                    onclick={runHealthCheck}
+                ></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

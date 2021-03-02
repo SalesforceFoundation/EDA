@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Context_Type__c</fullName>
+    <description>Context that generated the error, if known.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Context that generated the error, if known.</inlineHelpText>
+    <label>Context Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

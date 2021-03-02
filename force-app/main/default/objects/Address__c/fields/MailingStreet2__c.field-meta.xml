@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MailingStreet2__c</fullName>
+    <description>Additional street address detail for this Address, such as Suite or Apt.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Additional street address detail for this Address, such as Suite or Apt.</inlineHelpText>
+    <label>Mailing Street2</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>End_Date__c</name>
+    <help>La date de la dernière session de cette offre de cours.</help>
+    <label>Date de fin</label>
+</CustomFieldTranslation>

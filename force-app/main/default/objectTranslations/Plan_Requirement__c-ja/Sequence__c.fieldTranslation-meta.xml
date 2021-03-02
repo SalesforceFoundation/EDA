@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Sequence__c</name>
+    <help>プログラムプラン内のこの要件の位置、たとえば、「1」は第 1 セメスターを示します。この項目を使用して、プログラムプランの全体的な進行状況を示したり、1 つの親プラン要件内でサブ要件の順序を並び替えたりします。</help>
+    <label>シーケンス</label>
+</CustomFieldTranslation>

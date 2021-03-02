@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Address Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Id. de Dirección</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Id. de Dirección</label>
+    </standardFields>
+    <gender>Feminine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <value>Dirección</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Direcciones</value>
+    </caseValues>
+</CustomObjectTranslation>

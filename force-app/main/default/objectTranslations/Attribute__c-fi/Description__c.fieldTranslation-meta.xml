@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Description__c</name>
+    <help>Lisätietoja hyväksynnästä tai opiskelijan attribuutista.</help>
+    <label>Kuvaus</label>
+</CustomFieldTranslation>

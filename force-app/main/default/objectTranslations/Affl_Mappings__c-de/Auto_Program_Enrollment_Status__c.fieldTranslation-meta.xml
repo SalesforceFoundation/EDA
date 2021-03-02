@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Auto_Program_Enrollment_Status__c</name>
+    <help>Der Status, der für den Programmregistrierungs-Datensatz festgelegt und automatisch erstellt wird, wenn &quot;Automatische Programmregistrierung&quot; ausgewählt wird.</help>
+    <label>Status &quot;Automatische Registrierung&quot;</label>
+</CustomFieldTranslation>
