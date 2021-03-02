@@ -1,0 +1,3 @@
+<aura:component implements="force:appHostable">
+    <c:edaSettings/>
+</aura:component>
