@@ -27,43 +27,42 @@
 /**
 * @author Salesforce.org
 * @date 2021
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Controller for healthCheck LWC component.
+* @group EDA Settings
+* @group-content ../../ApexDocContent/EdaSettings.htm
+* @description Controller for SettingsSaveCanvas LWC component.
 */
-public with sharing class HealthCheckController {
-
+public virtual with sharing class HierarchySettingsChangesController {
     /**********************************************************************************
-    * @description Locates and returns an instance of HealthCheckVMapper. 
+    * @description Instance for Singleton Pattern
     **********************************************************************************/
     @TestVisible
-    private static HealthCheckVMapper locateHealthCheckMapper() {
-        return HealthCheckVMapper.getInstance();
+    private static HierarchySettingsChangesController instance;
+
+    /**********************************************************************************
+    * @description Empty constructor is not public for Singleton Pattern
+    **********************************************************************************/
+    protected HierarchySettingsChangesController() {}
+
+    /**********************************************************************************
+    * @description Static method to get the current instance for Singleton pattern
+    * @return The instance of HierarchySettingsChangesController.
+    **********************************************************************************/
+    public static HierarchySettingsChangesController getInstance() {
+        if (instance == null) {
+            instance = new HierarchySettingsChangesController();
+        }
+
+        return instance;
     }
 
     /**********************************************************************************
-    * @description Retrieve a view model representing the Health Check to run.
-    * @return A HealthCheckVModel representing the view of the Health Check to run.
+    * @description Update the HierarchySettingsChangesModel with specified changes.
+    * @return True if update was successful, false otherwise.
     **********************************************************************************/
     @AuraEnabled(cacheable=true)
-    public static HealthCheckVModel getHealthCheckViewModel() {
+    public static Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
         try {
-            return HealthCheckController.locateHealthCheckMapper().getHealthCheckViewModel();
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
-    }
-
-    /**********************************************************************************
-    * @description Updates and retrieves the last run date of the health check
-    * @return The last run date of health check.
-    **********************************************************************************/
-    @AuraEnabled
-    public static String updateHealthCheckLastRunDate() {
-        try {
-            FeatureParameterDateModel featureParamDateModel = new FeatureParameterDateModel('SettingsHealthCheckLastRunDate', System.today());
-            FeatureParameterService.getInstance().updateFromFeatureParameterModel(featureParamDateModel);
-            return FeatureParameterService.getInstance().getFeatureParameterModel('SettingsHealthCheckLastRunDate').convertToString();
+            return true;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
