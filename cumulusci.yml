@@ -383,6 +383,8 @@ flows:
                     test_name_match: '%\_Unmanaged_TEST,%\_UTST'
             10:
                 flow: eda_settings
+            11:
+                task: deploy_Summer_21QA
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -449,6 +451,8 @@ flows:
                 task: deploy_qa_config
             8:
                 flow: eda_settings
+            9:
+                task: deploy_Summer_21QA
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.
