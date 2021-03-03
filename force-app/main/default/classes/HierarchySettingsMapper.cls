@@ -73,7 +73,7 @@ public virtual with sharing class HierarchySettingsMapper {
     public Schema.DescribeFieldResult getHierarchySettingsField(String apiName) {
         return UTIL_Describe.getFieldDescribe(
             UTIL_Namespace.StrTokenNSPrefix('Hierarchy_Settings__c'), 
-            UTIL_Namespace.StrTokenNSPrefix(apiName)
+            apiName
         );
     }
 

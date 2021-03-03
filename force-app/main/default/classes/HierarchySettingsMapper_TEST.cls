@@ -232,7 +232,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         );
         HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
-            'Async_Error_Check_Last_Run__c' => String.valueOf(Datetime.now().addDays(-1))
+            'Async_Error_Check_Last_Run__c' => String.valueOf(DateTime.newInstance(2021, 03, 17, 5, 0, 0))
         };
 
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
@@ -243,7 +243,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            Datetime.now().addDays(-1), 
+            DateTime.newInstance(2021, 03, 17, 5, 0, 0), 
             hierarchySettingsModel.hierarchySettings.Async_Error_Check_Last_Run__c, 
             'Async_Error_Check_Last_Run__c value should be updated.'
         );
