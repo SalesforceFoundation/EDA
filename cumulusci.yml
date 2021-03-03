@@ -596,7 +596,7 @@ flows:
                 flow: translations
 
     retrieve_custom_labels_and_translations:
-        description: "Retrieve custom labels and translations"
+        description: "Retrieve custom labels and translations from the default scratch org"
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options: 
             command: 'force:source:retrieve'
