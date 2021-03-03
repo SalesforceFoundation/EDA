@@ -121,11 +121,20 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
 
         Test.startTest();
-        Schema.DescribeFieldResult describeFieldResult = hierarchySettingsMapperInstance.getHierarchySettingsField('Account_Processor__c');
+        Schema.DescribeFieldResult describeFieldResult = 
+            hierarchySettingsMapperInstance.getHierarchySettingsField(UTIL_Namespace.StrTokenNSPrefix('Account_Processor__c'));
         Test.stopTest();
 
-        System.assertEquals('Account Processor', describeFieldResult.getLabel(), 'Should match field label value specified for Account Processor.');
-        System.assertEquals('Account_Processor__c', describeFieldResult.getName(), 'Should match api name value specified for Account Processor.');
+        System.assertEquals(
+            'Account Processor', 
+            describeFieldResult.getLabel(), 
+            'Should match field label value specified for Account Processor.'
+        );
+        System.assertEquals(
+            UTIL_Namespace.StrTokenNSPrefix('Account_Processor__c'), 
+            describeFieldResult.getName(), 
+            'Should match api name value specified for Account Processor.'
+        );
     }
 
     /**************************************************************************************************************************
@@ -138,10 +147,15 @@ public inherited sharing class HierarchySettingsMapper_TEST {
 
         try {
             Test.startTest();
-            Schema.DescribeFieldResult describeFieldResult = hierarchySettingsMapperInstance.getHierarchySettingsField('Invalid_Field_Name__c');
+            Schema.DescribeFieldResult describeFieldResult = 
+                hierarchySettingsMapperInstance.getHierarchySettingsField(UTIL_Namespace.StrTokenNSPrefix('Invalid_Field_Name__c'));
             Test.stopTest();
         } catch (UTIL_Describe.SchemaDescribeException e) {
-            System.assertEquals('Invalid field name \'Invalid_Field_Name__c\'', e.getMessage(), 'Invalid field name should cause exception');
+            System.assertEquals(
+                'Invalid field name \'' + UTIL_Namespace.StrTokenNSPrefix('Invalid_Field_Name__c') + '\'', 
+                e.getMessage(), 
+                'Invalid field name should cause exception'
+            );
         }
     }
 
@@ -261,11 +275,17 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             Test.stopTest();
         } catch (UTIL_Describe.SchemaDescribeException e) {
             System.assertEquals(
-                'Invalid field name \'Invalid_Field_Name__c\'', 
+                'Invalid field name \'' + UTIL_Namespace.StrTokenNSPrefix('Invalid_Field_Name__c') + '\'', 
                 e.getMessage(), 
                 'Invalid mapping should throw exception.'
             );
-        } 
+        } catch (HierarchySettingsMapper.InvalidSettingsException e) {
+            System.assertEquals(
+                Label.stgErrorInvalidSettings,  
+                e.getMessage(),
+                'Invalid mapping should throw exception.'
+            );
+        }
     }
 
     /**************************************************************************************************************************
@@ -397,7 +417,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
     * Hierarchy Setting field is specified for update.
     ***************************************************************************************************************************/
     @isTest 
-    private static void updateHierarchySettingsWithListValuesInValid() {
+    private static void updateHierarchySettingsWithListValuesInValidFieldName() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Accounts_to_Delete__c = 'Original Value1;Original Value2'
@@ -417,10 +437,24 @@ public inherited sharing class HierarchySettingsMapper_TEST {
                 hierarchySettingsMapperInstance.updateHierarchySettingsWithListValues(hierarchySettingsModelToUpdate, listValueSettingUpdatesByName);
             Test.stopTest();
         } catch (UTIL_Describe.SchemaDescribeException e) {
-            System.assertEquals('Invalid field name \'Not_A_Valid_Field__c\'', e.getMessage(), 'Invalid field mapping should throw error.');
-        }
+            System.assertEquals(
+                'Invalid field name \'' + UTIL_Namespace.StrTokenNSPrefix('Not_A_Valid_Field__c') + '\'', 
+                e.getMessage(), 
+                'Invalid field mapping should throw error.'
+            );
+        } catch (HierarchySettingsMapper.InvalidSettingsException e) {
+            System.assertEquals(
+                Label.stgErrorInvalidSettings,  
+                e.getMessage(),
+                'Invalid mapping should throw exception.'
+            );
+        } 
     }
 
+    /**************************************************************************************************************************
+    * @description Test method to verify that the updateHierarchySettings method updates Hierarchy Setting values of both
+    * primitive and collection data types.
+    ***************************************************************************************************************************/
     @isTest 
     private static void updateHierarchySettingsValid() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(

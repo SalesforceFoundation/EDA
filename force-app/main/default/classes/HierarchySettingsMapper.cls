@@ -114,10 +114,10 @@ public virtual with sharing class HierarchySettingsMapper {
         }
 
         for (String changedSettingName : singleValueSettingUpdatesByName.keySet()) {
-            Schema.DescribeFieldResult fieldDescribeResult = this.getHierarchySettingsField(changedSettingName);
-            Schema.DisplayType displayType = fieldDescribeResult.getType();
-
             try{
+                Schema.DescribeFieldResult fieldDescribeResult = this.getHierarchySettingsField(changedSettingName);
+                Schema.DisplayType displayType = fieldDescribeResult.getType();
+
                 if (displayType == Schema.DisplayType.STRING) {
                     String hierarchySettingValue = (String)singleValueSettingUpdatesByName.get(changedSettingName);
                     hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
@@ -135,9 +135,6 @@ public virtual with sharing class HierarchySettingsMapper {
 
             } catch (UTIL_Describe.SchemaDescribeException e) {
                 UTIL_Debug.debug('****SchemaDescribeException encountered: ' + e.getMessage());
-                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
-            } catch (System.StringException e) {
-                UTIL_Debug.debug('****StringException encountered: ' + e.getMessage());
                 throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
             } catch (System.TypeException e) {
                 UTIL_Debug.debug('****TypeException encountered: ' + e.getMessage());
@@ -166,21 +163,14 @@ public virtual with sharing class HierarchySettingsMapper {
         }
 
         for (String changedSettingName : listValueSettingUpdatesByName.keySet()) {
-            Schema.DescribeFieldResult fieldDescribeResult = this.getHierarchySettingsField(changedSettingName);
-
             try {
+                Schema.DescribeFieldResult fieldDescribeResult = this.getHierarchySettingsField(changedSettingName);
+
                 String hierarchySettingValue = this.denormalizeListSettingChange(listValueSettingUpdatesByName.get(changedSettingName));
                 hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
 
             } catch (UTIL_Describe.SchemaDescribeException e) {
                 UTIL_Debug.debug('****SchemaDescribeException encountered: ' + e.getMessage());
-                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
-            } catch (System.StringException e) {
-                UTIL_Debug.debug('****StringException encountered: ' + e.getMessage());
-                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
-            } catch (System.TypeException e) {
-                System.debug('Type Exception');
-                UTIL_Debug.debug('****TypeException encountered: ' + e.getMessage());
                 throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
             } catch (Exception e) {
                 UTIL_Debug.debug('****Exception encountered: ' + e.getMessage());
