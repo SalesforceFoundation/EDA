@@ -595,6 +595,14 @@ flows:
             0.1:
                 flow: translations
 
+    retrieve_custom_labels_and_translations:
+        description: "Retrieve custom labels and translations"
+        class_path: cumulusci.tasks.sfdx.SFDXOrgTask
+        options: 
+            command: 'force:source:retrieve'
+            extra: '-m CustomLabels,Translations'
+        group: "EDA: Metadata"
+
 services:
     mockaroo:
         description: Configure connection for Mockaroo tasks
