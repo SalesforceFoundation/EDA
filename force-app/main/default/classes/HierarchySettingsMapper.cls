@@ -138,7 +138,7 @@ public virtual with sharing class HierarchySettingsMapper {
         for (String changedSettingName : listValueSettingUpdatesByName.keySet()) {
             hierarchySettingsModelToUpdate.hierarchySettings.put(
                 changedSettingName, 
-                listValueSettingUpdatesByName.get(changedSettingName)
+                String.join(listValueSettingUpdatesByName.get(changedSettingName), ';')
             );
         }
 
