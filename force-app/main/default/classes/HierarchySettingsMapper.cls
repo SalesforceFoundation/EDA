@@ -80,30 +80,30 @@ public virtual with sharing class HierarchySettingsMapper {
     * @return A HierarchySettingsModel with updates recorded.
     ****************************************************************************************************/
     public HierarchySettingsModel updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
-        HierarchySettingsModel hierarchySettingsModelToUpdate = this.getHierarchySettings();
 
-        hierarchySettingsModelToUpdate = this.updateHierarchySettingsWithSingleValues(
-            hierarchySettingsModelToUpdate, 
+        HierarchySettingsModel updatedHierarchySettingsModel = this.getHierarchySettings();
+
+        updatedHierarchySettingsModel = this.updateHierarchySettingsWithSingleValues(
+            updatedHierarchySettingsModel,
             hierarchySettingsChangesModel.settingsSingleValueBySettingsName
         );
 
-        hierarchySettingsModelToUpdate = this.updateHierarchySettingsWithListValues(
-            hierarchySettingsModelToUpdate, 
+        updatedHierarchySettingsModel = this.updateHierarchySettingsWithListValues(
+            updatedHierarchySettingsModel,
             hierarchySettingsChangesModel.settingsListSettingsName
         );
 
-        return hierarchySettingsModelToUpdate;
+        return  updatedHierarchySettingsModel;
     }
 
     /****************************************************************************************************
     * @description Helper method to update Hierarchy Settings with values represented by primitive data types.
-    * @param  hierarchySettingsModelToUpdate  The Hierarchy Settings Model to be updated
     * @param  singleValueSettingUpdatesByName A map of updated hierarchy settings with primitive data types
-    * @return A HierarchySettingsModel with updates to settings with primitive data types recorded.
+    * @return A HierarchySettingsModel with updates to settings with single values recorded.
     ****************************************************************************************************/
     @TestVisible
-    private HierarchySettingsModel updateHierarchySettingsWithSingleValues(
-        HierarchySettingsModel hierarchySettingsModelToUpdate, 
+    public HierarchySettingsModel updateHierarchySettingsWithSingleValues(
+        HierarchySettingsModel hierarchySettingsModelToUpdate,
         Map<String, String> singleValueSettingUpdatesByName) 
     {
         if (singleValueSettingUpdatesByName.isEmpty() == true) {
@@ -111,10 +111,38 @@ public virtual with sharing class HierarchySettingsMapper {
         }
 
         for (String changedSettingName : singleValueSettingUpdatesByName.keySet()) {
-            hierarchySettingsModelToUpdate.hierarchySettings.put(
-                changedSettingName, 
-                singleValueSettingUpdatesByName.get(changedSettingName)
-            );
+            Schema.DescribeFieldResult fieldDescribeResult = this.getHierarchySettingsField(changedSettingName);
+            Schema.DisplayType displayType = fieldDescribeResult.getType();
+
+            try{
+                if (displayType == Schema.DisplayType.STRING) {
+                    String hierarchySettingValue = (String)singleValueSettingUpdatesByName.get(changedSettingName);
+                    hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
+                }
+
+                if (displayType == Schema.DisplayType.BOOLEAN) {
+                    Boolean hierarchySettingValue = Boolean.valueOf(singleValueSettingUpdatesByName.get(changedSettingName));
+                    hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
+                }
+
+                if (displayType == Schema.DisplayType.DATETIME) {
+                    Datetime hierarchySettingValue = Datetime.valueOf(singleValueSettingUpdatesByName.get(changedSettingName));
+                    hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
+                }
+
+            } catch (UTIL_Describe.SchemaDescribeException e) {
+                UTIL_Debug.debug('****SchemaDescribeException encountered: ' + e.getMessage());
+                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+            } catch (System.StringException e) {
+                UTIL_Debug.debug('****StringException encountered: ' + e.getMessage());
+                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+            } catch (System.TypeException e) {
+                UTIL_Debug.debug('****TypeException encountered: ' + e.getMessage());
+                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+            } catch (Exception e) {
+                UTIL_Debug.debug('****Exception encountered: ' + e.getMessage());
+                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+            }
         }
 
         return hierarchySettingsModelToUpdate;
@@ -122,13 +150,12 @@ public virtual with sharing class HierarchySettingsMapper {
 
     /****************************************************************************************************
     * @description Helper method to update Hierarchy Settings with values represented by collections.
-    * @param  hierarchySettingsModelToUpdate  The Hierarchy Settings Model to be updated
     * @param  listValueSettingUpdatesByName A map of updated hierarchy settings with collections
     * @return A HierarchySettingsModel with updates to settings with collections recorded.
     ****************************************************************************************************/
     @TestVisible
     private HierarchySettingsModel updateHierarchySettingsWithListValues(
-        HierarchySettingsModel hierarchySettingsModelToUpdate, 
+        HierarchySettingsModel hierarchySettingsModelToUpdate,
         Map<String, List<String>> listValueSettingUpdatesByName) 
     {
         if (listValueSettingUpdatesByName.isEmpty() == true) {
@@ -136,12 +163,43 @@ public virtual with sharing class HierarchySettingsMapper {
         }
 
         for (String changedSettingName : listValueSettingUpdatesByName.keySet()) {
-            hierarchySettingsModelToUpdate.hierarchySettings.put(
-                changedSettingName, 
-                String.join(listValueSettingUpdatesByName.get(changedSettingName), ';')
-            );
+            Schema.DescribeFieldResult fieldDescribeResult = this.getHierarchySettingsField(changedSettingName);
+
+            try {
+                String hierarchySettingValue = this.denormalizeListSettingChange(listValueSettingUpdatesByName.get(changedSettingName));
+                hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
+
+            } catch (UTIL_Describe.SchemaDescribeException e) {
+                UTIL_Debug.debug('****SchemaDescribeException encountered: ' + e.getMessage());
+                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+            } catch (System.StringException e) {
+                UTIL_Debug.debug('****StringException encountered: ' + e.getMessage());
+                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+            } catch (System.TypeException e) {
+                System.debug('Type Exception');
+                UTIL_Debug.debug('****TypeException encountered: ' + e.getMessage());
+                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+            } catch (Exception e) {
+                UTIL_Debug.debug('****Exception encountered: ' + e.getMessage());
+                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+            }
         }
 
         return hierarchySettingsModelToUpdate;
     }
+
+    /******************************************************************************************************
+    * @description Converts a List of Strings to a semicolon-delimited string.
+    * @param  collectionTypeHierarchySettingsUpdateList List<String> to convert
+    * @return A semicolon-delimited String representing each String in the specified list.
+    ******************************************************************************************************/
+    @TestVisible
+    private String denormalizeListSettingChange(List<String> collectionTypeHierarchySettingsUpdateList) {
+        return String.join(collectionTypeHierarchySettingsUpdateList, ';');
+    }
+
+    /********************************************************************************************************
+    * @description A custom exception class to represent errors associated with updates to Hierarchy Settings.
+    ********************************************************************************************************/
+    public class InvalidSettingsException extends Exception {}
 }

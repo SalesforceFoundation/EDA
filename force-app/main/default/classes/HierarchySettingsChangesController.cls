@@ -61,10 +61,14 @@ public virtual with sharing class HierarchySettingsChangesController {
     **********************************************************************************/
     @AuraEnabled(cacheable=true)
     public static Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
-        try {
-            return true;
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
+        return HierarchySettingsChangesController.locateHierarchySettingsUpdaterService().updateHierarchySettings(hierarchySettingsChangesModel);
+    }
+
+    /************************************************************************************
+    * @description Retrieve an instance of the HierarchySettingsService class.
+    * @return An instance of the HierarchySettingsService class.
+    ************************************************************************************/
+    private static HierarchySettingsService locateHierarchySettingsUpdaterService() {
+        return HierarchySettingsService.getInstance();
     }
 }

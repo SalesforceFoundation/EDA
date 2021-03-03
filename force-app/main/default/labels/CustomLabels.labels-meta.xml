@@ -1124,7 +1124,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Error when you don't have the permissions to save settings</shortDescription>
-        <value>You can't save settings because you no longer have permission to edit it. Your Salesforce admin can help with that.</value>
+        <value>You can't save these settings because you no longer have permission to edit them. Your Salesforce admin can help with that.</value>
     </labels>
     <labels>
         <fullName>stgErrorInvalidSettings</fullName>

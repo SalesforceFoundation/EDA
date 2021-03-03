@@ -147,10 +147,10 @@ public inherited sharing class HierarchySettingsMapper_TEST {
 
     /**************************************************************************************************************************
     * @description Test method to verify that the updateHierarchySettingsWithSingleValuesValid method updates the fields on a
-    * HierarchySettingsModel for updates to fields with primitive data types.
+    * HierarchySettingsModel for updates to fields with String type.
     ***************************************************************************************************************************/
     @isTest 
-    private static void updateHierarchySettingsWithSingleValuesValid() {
+    private static void updateHierarchySettingsWithSingleValuesValidString() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = 'Original Value'
@@ -176,11 +176,71 @@ public inherited sharing class HierarchySettingsMapper_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettingsWithSingleValuesValid method throws an error when a 
-    * mapping to an invalid Hierarchy Settings field is updated.
+    * @description Test method to verify that the updateHierarchySettingsWithSingleValuesValid method updates the fields on a
+    * HierarchySettingsModel for updates to fields with Boolean type.
     ***************************************************************************************************************************/
     @isTest 
-    private static void updateHierarchySettingsWithSingleValuesInValid() {
+    private static void updateHierarchySettingsWithSingleValuesValidBoolean() {
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Allow_AutoCreated_Duplicates__c = false
+            )
+        );
+        HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
+        Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
+            'Allow_AutoCreated_Duplicates__c' => 'true'
+        };
+
+        HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
+
+        Test.startTest();
+        HierarchySettingsModel hierarchySettingsModel = 
+            hierarchySettingsMapperInstance.updateHierarchySettingsWithSingleValues(hierarchySettingsModelToUpdate, singleValueSettingUpdatesByName);
+        Test.stopTest();
+
+        System.assertEquals(
+            true, 
+            hierarchySettingsModel.hierarchySettings.Allow_AutoCreated_Duplicates__c, 
+            'Allow_AutoCreated_Duplicates__c value should be updated.'
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the updateHierarchySettingsWithSingleValuesValid method updates the fields on a
+    * HierarchySettingsModel for updates to fields with Datetime type.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void updateHierarchySettingsWithSingleValuesValidDateTime() {
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Async_Error_Check_Last_Run__c = Datetime.now().addDays(-3)
+            )
+        );
+        HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
+        Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
+            'Async_Error_Check_Last_Run__c' => String.valueOf(Datetime.now().addDays(-1))
+        };
+
+        HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
+
+        Test.startTest();
+        HierarchySettingsModel hierarchySettingsModel = 
+            hierarchySettingsMapperInstance.updateHierarchySettingsWithSingleValues(hierarchySettingsModelToUpdate, singleValueSettingUpdatesByName);
+        Test.stopTest();
+
+        System.assertEquals(
+            Datetime.now().addDays(-1), 
+            hierarchySettingsModel.hierarchySettings.Async_Error_Check_Last_Run__c, 
+            'Async_Error_Check_Last_Run__c value should be updated.'
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the updateHierarchySettingsWithSingleValuesValid method throws an error when an 
+    * update is made for a field that is not in Hierarchy Settings.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void updateHierarchySettingsWithSingleValuesInValidFieldName() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = 'Original Value'
@@ -199,10 +259,48 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             HierarchySettingsModel hierarchySettingsModel = 
                 hierarchySettingsMapperInstance.updateHierarchySettingsWithSingleValues(hierarchySettingsModelToUpdate, singleValueSettingUpdatesByName);
             Test.stopTest();
-        } catch (System.SObjectException e) {
+        } catch (UTIL_Describe.SchemaDescribeException e) {
             System.assertEquals(
-                'Invalid field Invalid_Field_Name__c for Hierarchy_Settings__c', 
+                'Invalid field name \'Invalid_Field_Name__c\'', 
                 e.getMessage(), 
+                'Invalid mapping should throw exception.'
+            );
+        } 
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the updateHierarchySettingsWithSingleValuesValid method throws an error when a 
+    * mapping to an invalid Hierarchy Settings field is updated.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void updateHierarchySettingsWithSingleValuesInValidDateTime() {
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Async_Error_Check_Last_Run__c = Datetime.now().addDays(-1)
+            )
+        );
+        HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
+        Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
+            'Async_Error_Check_Last_Run__c' => 'Updated Value'
+        };
+
+        HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
+
+        try {
+            Test.startTest();
+            HierarchySettingsModel hierarchySettingsModel = 
+                hierarchySettingsMapperInstance.updateHierarchySettingsWithSingleValues(hierarchySettingsModelToUpdate, singleValueSettingUpdatesByName);
+            Test.stopTest();
+        } catch (System.TypeException e) {
+            System.assertEquals(
+                'Invalid date/time: Updated Value',
+                e.getMessage(), 
+                'Invalid mapping should throw exception.'
+            );
+        } catch (HierarchySettingsMapper.InvalidSettingsException e) {
+            System.assertEquals(
+                Label.stgErrorInvalidSettings,  
+                e.getMessage(),
                 'Invalid mapping should throw exception.'
             );
         }
@@ -318,8 +416,8 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             HierarchySettingsModel hierarchySettingsModel = 
                 hierarchySettingsMapperInstance.updateHierarchySettingsWithListValues(hierarchySettingsModelToUpdate, listValueSettingUpdatesByName);
             Test.stopTest();
-        } catch (System.SObjectException e) {
-            System.assertEquals('Invalid field Not_A_Valid_Field__c for Hierarchy_Settings__c', e.getMessage(), 'Invalid field mapping should throw error.');
+        } catch (UTIL_Describe.SchemaDescribeException e) {
+            System.assertEquals('Invalid field name \'Not_A_Valid_Field__c\'', e.getMessage(), 'Invalid field mapping should throw error.');
         }
     }
 

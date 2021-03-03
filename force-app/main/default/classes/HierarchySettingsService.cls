@@ -66,12 +66,9 @@ public virtual with sharing class HierarchySettingsService {
             HierarchySettingsModel hierarchySettingsModel = 
             this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsChangesModel);
             update hierarchySettingsModel.hierarchySettings;
-        } catch (System.SObjectException e) {
+        } catch (HierarchySettingsMapper.InvalidSettingsException e) {
             // invalid field mapping specified in HierarchySettingsChangesModel
-            throw new InvalidSettingsException(e.getMessage());
-        } catch (System.DmlException e) {
-            return false;
-        }
+        } 
 
         return true;
     }
@@ -79,13 +76,4 @@ public virtual with sharing class HierarchySettingsService {
     private HierarchySettingsMapper locateHierarchySettingsMapper() {
         return HierarchySettingsMapper.getInstance();
     }
-
-    private String denormalizeListSettingChange(List<String> collectionTypeHierarchySettingsUpdateList) {
-        return String.join(collectionTypeHierarchySettingsUpdateList, ';');
-    }
-
-    /********************************************************************************************************
-    * @description A custom exception class to represent errors associated with updates to Hierarchy Settings.
-    ********************************************************************************************************/
-    public class InvalidSettingsException extends Exception {}
 }
