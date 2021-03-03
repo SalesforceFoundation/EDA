@@ -172,7 +172,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         );
         HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
-            'Account_Processor__c' => 'Updated Value'
+            UTIL_Namespace.StrTokenNSPrefix('Account_Processor__c') => 'Updated Value'
         };
 
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
@@ -202,7 +202,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         );
         HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
-            'Allow_AutoCreated_Duplicates__c' => 'true'
+            UTIL_Namespace.StrTokenNSPrefix('Allow_AutoCreated_Duplicates__c') => 'true'
         };
 
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
@@ -232,7 +232,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         );
         HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
-            'Async_Error_Check_Last_Run__c' => String.valueOf(DateTime.newInstance(2021, 03, 17, 5, 0, 0))
+            UTIL_Namespace.StrTokenNSPrefix('Async_Error_Check_Last_Run__c') => String.valueOf(DateTime.newInstance(2021, 03, 17, 5, 0, 0))
         };
 
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
@@ -262,8 +262,8 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         );
         HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
-            'Account_Processor__c' => 'Updated Value',
-            'Invalid_Field_Name__c' => 'Updated Invalid Value'
+            UTIL_Namespace.StrTokenNSPrefix('Account_Processor__c') => 'Updated Value',
+            UTIL_Namespace.StrTokenNSPrefix('Invalid_Field_Name__c') => 'Updated Invalid Value'
         };
 
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
@@ -301,7 +301,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         );
         HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
-            'Async_Error_Check_Last_Run__c' => 'Updated Value'
+            UTIL_Namespace.StrTokenNSPrefix('Async_Error_Check_Last_Run__c') => 'Updated Value'
         };
 
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
@@ -367,7 +367,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         );
         HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
         Map<String, List<String>> listValueSettingUpdatesByName = new Map<String, List<String>>{
-            'Accounts_to_Delete__c' => new List<String>{'Updated Value 1', 'Updated Value 2'}
+            UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{'Updated Value 1', 'Updated Value 2'}
         };
 
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
@@ -425,8 +425,8 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         );
         HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
         Map<String, List<String>> listValueSettingUpdatesByName = new Map<String, List<String>>{
-            'Accounts_to_Delete__c' => new List<String>{'Updated Value 1', 'Updated Value 2'},
-            'Not_A_Valid_Field__c' => new List<String>{'Invalid value'}
+            UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{'Updated Value 1', 'Updated Value 2'},
+            UTIL_Namespace.StrTokenNSPrefix('Not_A_Valid_Field__c') => new List<String>{'Invalid value'}
         };
 
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
@@ -465,11 +465,11 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         );
 
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
-            'Account_Processor__c' => 'Updated Value'
+            UTIL_Namespace.StrTokenNSPrefix('Account_Processor__c') => 'Updated Value'
         };
 
         Map<String, List<String>> listValueSettingUpdatesByName = new Map<String, List<String>>{
-            'Accounts_to_Delete__c' => new List<String>{'Updated Value 1', 'Updated Value 2'}
+            UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{'Updated Value 1', 'Updated Value 2'}
         };
 
         HierarchySettingsChangesModel hierarchySettingsChangesModel = new HierarchySettingsChangesModel(
@@ -480,7 +480,8 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
 
         Test.startTest();
-        HierarchySettingsModel hierarchySettingsModel = hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModel);
+        HierarchySettingsModel hierarchySettingsModel = 
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModel);
         Test.stopTest();
 
         System.assertEquals(
@@ -493,6 +494,46 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             'Updated Value 1;Updated Value 2', 
             hierarchySettingsModel.hierarchySettings.Accounts_to_Delete__c, 
             'Hierarchy Settings model value should be updated.'
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the denormalizeListSettingChange returns a semicolon-delimited string containing
+    * all values in a specified list of strings.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void denormalizeListSettingChangeValid() {
+        List<String> stringsToConvertList = new List<String>{'value1', 'value2', 'value3'};
+        HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
+
+        Test.startTest();
+        String denormalizedString = hierarchySettingsMapperInstance.denormalizeListSettingChange(stringsToConvertList);
+        Test.stopTest();
+
+        System.assertEquals(
+            'value1;value2;value3', 
+            denormalizedString,
+            'Should return semicolon-delimited string containing values in list.'
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the denormalizeListSettingChange returns an empty string when an empty list of
+    * Strings is provided.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void denormalizeListSettingChangeEmptyList() {
+        List<String> stringsToConvertList = new List<String>();
+        HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
+
+        Test.startTest();
+        String denormalizedString = hierarchySettingsMapperInstance.denormalizeListSettingChange(stringsToConvertList);
+        Test.stopTest();
+
+        System.assertEquals(
+            '', 
+            denormalizedString,
+            'Should return empty string.'
         );
     }
 }

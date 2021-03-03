@@ -67,13 +67,29 @@ public virtual with sharing class HierarchySettingsService {
             this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsChangesModel);
             update hierarchySettingsModel.hierarchySettings;
         } catch (HierarchySettingsMapper.InvalidSettingsException e) {
-            // invalid field mapping specified in HierarchySettingsChangesModel
+            return false;
+        } catch (System.DmlException e) {
+            return false;
         } 
-
+        
         return true;
     }
 
+    /************************************************************************************************************
+    * @description Retrieve an instance of HierarchySettingsMapper
+    * @return An instance of the HierarchySettingsMapper class
+    ************************************************************************************************************/ 
+    @TestVisible
     private HierarchySettingsMapper locateHierarchySettingsMapper() {
         return HierarchySettingsMapper.getInstance();
     }
+
+    /************************************************************************************************************
+    * @description Retrieve an instance of UserPermissionsService
+    * @return An instance of the UserPermissionsService class
+    ************************************************************************************************************/ 
+    // @TestVisible
+    // private UserPermissionsService locateUserPermissionsService() {
+    //     return UserPermissionsService.getInstance();
+    // }
 }
