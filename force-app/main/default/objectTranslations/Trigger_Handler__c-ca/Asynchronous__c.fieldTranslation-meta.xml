@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Asynchronous__c</name>
+    <help>Indica si aquesta classe s&apos;ha d&apos;executar de manera asíncrona en aquesta transacció per a qualsevol dels seus esdeveniments Després.</help>
+    <label>Asíncron</label>
+</CustomFieldTranslation>

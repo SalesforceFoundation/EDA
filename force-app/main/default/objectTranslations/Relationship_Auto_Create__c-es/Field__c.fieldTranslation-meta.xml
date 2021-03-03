@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Field__c</name>
+    <help>La etiqueta para el campo de consulta que desencadena la creación de esta relación cuando el valor del campo se actualiza.</help>
+    <label>Campo</label>
+</CustomFieldTranslation>

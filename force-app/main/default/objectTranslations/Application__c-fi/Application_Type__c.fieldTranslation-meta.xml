@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Application_Type__c</name>
+    <help>Ohjelman tai polun tyyppi, johon hakija hakee.</help>
+    <label>Hakemustyyppi</label>
+    <picklistValues>
+        <masterLabel>Graduate</masterLabel>
+        <translation>Valmistunut</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer</masterLabel>
+        <translation>Siirto</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Undergraduate</masterLabel>
+        <translation>Tutkintoa suorittava</translation>
+    </picklistValues>
+</CustomFieldTranslation>

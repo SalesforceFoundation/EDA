@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Program_Plan__c</name>
+    <help>The Program Plan this requirement is for. If you&apos;re grouping Plan Requirements together under a Parent Plan Requirement, best practice is to link only the top-level Plan Requirement to a Program Plan.</help>
+    <relationshipLabel>Plan Requirements</relationshipLabel>
+    <label>Program Plan</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>User_Managed__c</name>
+    <help>Quan se selecciona, ja no enviarem actualitzacions a aquest Gestor de disparador. Seleccioneu aquesta opció si heu fet canvis que no voleu que sobreescrivim.</help>
+    <label>Usuari gestionat</label>
+</CustomFieldTranslation>

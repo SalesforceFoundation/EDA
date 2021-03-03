@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <recordTypes>
+        <name>Credential</name>
+        <label>Credencial</label>
+        <description>Permite a las instituciones educativas realizar un seguimiento de las licencias, certificaciones o aprobaciones obtenidas por la plantilla o los estudiantes.</description>
+    </recordTypes>
+    <recordTypes>
+        <name>Student_Characteristic</name>
+        <label>Característica del estudiante</label>
+        <description>Permite a las instituciones educativas realizar un seguimiento de características importantes de estudiantes que podrían afectar a la educación de los estudiantes.</description>
+    </recordTypes>
+    <layouts>
+        <layout>EDA Student Characteristic Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EDA Credential Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de atributo</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Nombre de atributo</label>
+    </standardFields>
+    <gender>Masculine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <value>Atributo</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Atributos</value>
+    </caseValues>
+</CustomObjectTranslation>

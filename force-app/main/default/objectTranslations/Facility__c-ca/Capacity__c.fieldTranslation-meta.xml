@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Capacity__c</name>
+    <help>El nombre màxim d&apos;ocupants que pot acollir la instal·lació.</help>
+    <label>Capacitat</label>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Parent_Term__c</name>
+    <help>必要に応じて、この学期が含まれる学期を選択します。たとえば、この学期が 2020 年秋クォーターの場合、親学期は 2020/2021 学年度になります。</help>
+    <relationshipLabel>学期</relationshipLabel>
+    <label>親学期</label>
+</CustomFieldTranslation>

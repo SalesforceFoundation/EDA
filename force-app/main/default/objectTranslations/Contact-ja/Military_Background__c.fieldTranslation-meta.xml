@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Military_Background__c</name>
+    <help>この個人の兵役について記述します (軍種、兵役期間、除隊日など)。</help>
+    <label>軍隊経験</label>
+</CustomFieldTranslation>

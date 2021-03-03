@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Preferred_Email__c</fullName>
+    <description>The email (University, Work, Alternate) that this Contact prefers you to use.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The email (University, Work, Alternate) that this Contact prefers you to use.</inlineHelpText>
+    <label>Preferred Email</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>University Email</fullName>
+                <default>false</default>
+                <label>University Email</label>
+            </value>
+            <value>
+                <fullName>Work Email</fullName>
+                <default>false</default>
+                <label>Work Email</label>
+            </value>
+            <value>
+                <fullName>Alternate Email</fullName>
+                <default>false</default>
+                <label>Alternate Email</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Owned_by_Namespace__c</name>
+    <help>このトリガハンドラを制御するパッケージまたは組織の名前空間。</help>
+    <label>所有者名前空間</label>
+</CustomFieldTranslation>

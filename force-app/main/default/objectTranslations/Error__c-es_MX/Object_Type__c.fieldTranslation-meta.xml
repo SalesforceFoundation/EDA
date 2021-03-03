@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Object_Type__c</name>
+    <help>El objeto en el que se produjo el error, si se conoce.</help>
+    <label>Tipo de objeto</label>
+</CustomFieldTranslation>

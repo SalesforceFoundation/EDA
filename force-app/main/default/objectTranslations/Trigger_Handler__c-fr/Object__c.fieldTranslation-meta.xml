@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Object__c</name>
+    <help>Le nom de l’objet pour lequel ce gestionnaire doit être exécuté, par exemple compte, contact, opportunité.</help>
+    <label>Objet</label>
+</CustomFieldTranslation>

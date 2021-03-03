@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Plan_Requirement__c</name>
+    <help>Si el requisit del pla és un dels diversos requisits o diversos nivells de requisits, especifiqueu el requisit del pla principal. Utilitzeu aquest camp per agrupar una llista de cursos opcionals que compleixin un requisit genèric.</help>
+    <relationshipLabel>Requisits del pla</relationshipLabel>
+    <label>Requisit del pla principal</label>
+</CustomFieldTranslation>

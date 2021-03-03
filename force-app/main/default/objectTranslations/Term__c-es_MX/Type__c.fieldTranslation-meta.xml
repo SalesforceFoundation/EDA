@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Type__c</name>
+    <help>El tipo de plazo, por ejemplo, Semestre, Trimestre o Curso lectivo.</help>
+    <label>Tipo</label>
+    <picklistValues>
+        <masterLabel>Quarter</masterLabel>
+        <translation>Trimestre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Semester</masterLabel>
+        <translation>Semestre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>School Year</masterLabel>
+        <translation>Curso lectivo</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Part of Term</masterLabel>
+        <translation>Parte de plazo</translation>
+    </picklistValues>
+</CustomFieldTranslation>

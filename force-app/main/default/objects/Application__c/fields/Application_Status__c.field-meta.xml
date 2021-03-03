@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Application_Status__c</fullName>
+    <description>The status of the application process.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The status of the application process.</inlineHelpText>
+    <label>Application Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+                <label>Submitted</label>
+            </value>
+            <value>
+                <fullName>Incomplete</fullName>
+                <default>false</default>
+                <label>Incomplete</label>
+            </value>
+            <value>
+                <fullName>Received</fullName>
+                <default>false</default>
+                <label>Received</label>
+            </value>
+            <value>
+                <fullName>In Review</fullName>
+                <default>false</default>
+                <label>In Review</label>
+            </value>
+            <value>
+                <fullName>Waitlist</fullName>
+                <default>false</default>
+                <label>Waitlist</label>
+            </value>
+            <value>
+                <fullName>Admit</fullName>
+                <default>false</default>
+                <label>Admit</label>
+            </value>
+            <value>
+                <fullName>Admit with Conditions</fullName>
+                <default>false</default>
+                <label>Admit with Conditions</label>
+            </value>
+            <value>
+                <fullName>Deny</fullName>
+                <default>false</default>
+                <label>Deny</label>
+            </value>
+            <value>
+                <fullName>Deferred Offer</fullName>
+                <default>false</default>
+                <label>Deferred Offer</label>
+            </value>
+            <value>
+                <fullName>Accepted Offer</fullName>
+                <default>false</default>
+                <label>Accepted Offer</label>
+            </value>
+            <value>
+                <fullName>Declined Offer</fullName>
+                <default>false</default>
+                <label>Declined Offer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

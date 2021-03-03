@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Latest_End_Date__c</name>
+    <help>Viimeisin päättymispäivä, jolloin tätä osoitetta käytettiin. Käytetään yleensä viimeisimmän alkamispäivän kanssa seuraamaan päivämääräaluetta osoitteelle, jota ei enää käytetä.</help>
+    <label>Viimeisin päättymispäivä</label>
+</CustomFieldTranslation>

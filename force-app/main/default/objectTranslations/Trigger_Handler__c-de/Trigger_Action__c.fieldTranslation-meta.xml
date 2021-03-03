@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Trigger_Action__c</name>
+    <help>Der Kontext, in dem diese Klasse ausgeführt werden sollte, z. B. bevor ein Datensatz eingefügt wird, nachdem ein Datensatz gelöscht wird usw.</help>
+    <label>Auslöseraktion</label>
+    <picklistValues>
+        <masterLabel>BeforeInsert</masterLabel>
+        <translation>BeforeInsert</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BeforeUpdate</masterLabel>
+        <translation>BeforeUpdate</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BeforeDelete</masterLabel>
+        <translation>BeforeDelete</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AfterInsert</masterLabel>
+        <translation>AfterInsert</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AfterUpdate</masterLabel>
+        <translation>AfterUpdate</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AfterDelete</masterLabel>
+        <translation>AfterDelete</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AfterUndelete</masterLabel>
+        <translation>AfterUndelete</translation>
+    </picklistValues>
+</CustomFieldTranslation>

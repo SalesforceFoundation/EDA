@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Eligible_to_Enroll__c</name>
+    <help>Quan se selecciona, indica que l&apos;alumne ha complert els requisits del programa i és apte per inscriure&apos;s.</help>
+    <label>Elegible per inscriure&apos;s</label>
+</CustomFieldTranslation>

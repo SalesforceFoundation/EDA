@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>FERPA__c</name>
+    <help>この個人が Family Education Rights and Privacy Act (家族教育権とプライバシー法) に従って情報の開示をオプトアウトしたかどうかを示します。</help>
+    <label>FERPA</label>
+</CustomFieldTranslation>

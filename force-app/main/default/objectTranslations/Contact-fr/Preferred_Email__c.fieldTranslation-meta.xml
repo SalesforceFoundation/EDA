@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Preferred_Email__c</name>
+    <help>L&apos;adresse e-mail (université, professionnelle, alternative) que ce contact préfère utiliser.</help>
+    <label>Adresse e-mail préférée</label>
+    <picklistValues>
+        <masterLabel>University Email</masterLabel>
+        <translation>Adresse e-mail de l&apos;université</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Work Email</masterLabel>
+        <translation>Adresse e-mail professionnelle</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Alternate Email</masterLabel>
+        <translation>Autre adresse e-mail</translation>
+    </picklistValues>
+</CustomFieldTranslation>

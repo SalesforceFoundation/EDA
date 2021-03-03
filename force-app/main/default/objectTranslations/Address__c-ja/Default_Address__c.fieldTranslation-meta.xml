@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Default_Address__c</name>
+    <help>このデフォルト住所は世帯およびその取引先責任者が使用しますか?</help>
+    <label>デフォルト住所</label>
+</CustomFieldTranslation>

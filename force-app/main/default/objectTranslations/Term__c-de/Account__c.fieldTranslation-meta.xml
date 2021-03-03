@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Account__c</name>
+    <help>Studienprogramm, Fachbereich oder gesamte Bildungseinrichtung, für die der Zeitabschnitt gilt. Wählen Sie den Account, der Ihre Bildungseinrichtung darstellt, wenn &quot;Zeitabschnitte&quot; in allen Programmen und Fachbereichen der Bildungsinstitution gleich sind.</help>
+    <relationshipLabel>Zeitabschnitte</relationshipLabel>
+    <label>Account</label>
+</CustomFieldTranslation>

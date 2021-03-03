@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Campaign_Types__c</name>
+    <help>Pour des relations automatiquement créées basées sur les membres de campagne, la liste des types de campagne auxquels l&apos;automatisation s&apos;applique. Ce champ est vide pour des relations automatiquement créées basées sur des contacts.</help>
+    <label>Types de campagne</label>
+</CustomFieldTranslation>

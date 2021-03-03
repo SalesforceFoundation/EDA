@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Section_ID__c</name>
+    <help>この開講科目のセクション ID。通常、セクション ID は、科目で 1 学期中に複数のセクションが提供される場合に使用されます。</help>
+    <label>セクション ID</label>
+</CustomFieldTranslation>

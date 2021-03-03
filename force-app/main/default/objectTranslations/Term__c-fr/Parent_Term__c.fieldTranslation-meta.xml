@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Parent_Term__c</name>
+    <help>Vous pouvez sélectionner le parent auquel cette période appartient. Par exemple, si cette période est le 1er trimestre 2020, la période de parente peut être Année scolaire 2020/2021.</help>
+    <relationshipLabel>Périodes scolaires</relationshipLabel>
+    <label>Période parente</label>
+</CustomFieldTranslation>

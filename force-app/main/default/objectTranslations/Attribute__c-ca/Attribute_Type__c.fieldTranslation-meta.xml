@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Attribute_Type__c</name>
+    <help>El tipus de credencial o Atribut de l&apos;alumne.</help>
+    <label>Tipus d&apos;atribut</label>
+    <picklistValues>
+        <masterLabel>Certification</masterLabel>
+        <translation>Certificació</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Endorsement</masterLabel>
+        <translation>Aprovació</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Licensure</masterLabel>
+        <translation>Llicència</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Accommodation</masterLabel>
+        <translation>Allotjament</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Asylee</masterLabel>
+        <translation>Asilat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Economically Disadvantaged</masterLabel>
+        <translation>Desfavorit econòmicament</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>English Learners</masterLabel>
+        <translation>Estudiants d&apos;anglès</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Family Consideration</masterLabel>
+        <translation>Consideració familiar</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foster Care</masterLabel>
+        <translation>Acollida temporal</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Free Lunch</masterLabel>
+        <translation>Dinar gratuït</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Homeless</masterLabel>
+        <translation>Sense llar</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Immigrant</masterLabel>
+        <translation>Immigrant</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>International Student</masterLabel>
+        <translation>Estudiant internacional</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Altres</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Parent in Military</masterLabel>
+        <translation>Pare o mare militar</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pregnant</masterLabel>
+        <translation>Embarassada</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reduced Price Lunch</masterLabel>
+        <translation>Preu de dinar reduït</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refugee</masterLabel>
+        <translation>Refugiat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Section 504 Handicapped</masterLabel>
+        <translation>Minusvàlid de secció 504</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Contact Layout</layout>
+        <sections>
+            <label>Dades de contacte</label>
+            <section>Contact Details</section>
+        </sections>
+        <sections>
+            <label>Informació addicional</label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label>Afiliacions primàries</label>
+            <section>Primary Affiliations</section>
+        </sections>
+        <sections>
+            <label>Preferències de comunicació</label>
+            <section>Communication Preferences</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

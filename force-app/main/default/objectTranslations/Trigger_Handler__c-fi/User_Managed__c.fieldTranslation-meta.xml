@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>User_Managed__c</name>
+    <help>Kun tämä valitaan, emme enää työnnä päivityksiä tähän käynnistimen käsittelijään. Valitse tämä vaihtoehto, jos olet tehnyt muutoksia, joita et halua meidän korvaavan.</help>
+    <label>Käyttäjien hallitsema</label>
+</CustomFieldTranslation>

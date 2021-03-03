@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Current_Address__c</name>
+    <help>Lookup to the current Address record for this Contact. The Contact&apos;s Mailing Address field is automatically populated with the address fields from the current Address record.</help>
+    <relationshipLabel>Contacts (Current Address)</relationshipLabel>
+    <label>Current Address</label>
+</CustomFieldTranslation>

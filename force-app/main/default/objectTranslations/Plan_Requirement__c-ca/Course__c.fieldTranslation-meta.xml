@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course__c</name>
+    <help>El curs associat a aquest requisit del pla. Deixeu-ho en blanc per a un requisit del pla principal amb requisits del pla enclavats.</help>
+    <relationshipLabel>Requisits del pla</relationshipLabel>
+    <label>Curs</label>
+</CustomFieldTranslation>

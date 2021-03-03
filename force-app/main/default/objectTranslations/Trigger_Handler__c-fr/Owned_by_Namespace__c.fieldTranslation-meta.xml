@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Owned_by_Namespace__c</name>
+    <help>L&apos;espace de noms du package ou de l&apos;organisation qui contrôle ce gestionnaire de déclencheur.</help>
+    <label>Propriété par espace de noms</label>
+</CustomFieldTranslation>

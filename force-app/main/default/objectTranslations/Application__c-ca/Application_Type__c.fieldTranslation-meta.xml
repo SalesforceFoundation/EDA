@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Application_Type__c</name>
+    <help>El tipus de programa o que sol·licita el sol·licitant.</help>
+    <label>Tipus d&apos;aplicació</label>
+    <picklistValues>
+        <masterLabel>Graduate</masterLabel>
+        <translation>Graduat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer</masterLabel>
+        <translation>Trasllat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Undergraduate</masterLabel>
+        <translation>Llicenciat</translation>
+    </picklistValues>
+</CustomFieldTranslation>

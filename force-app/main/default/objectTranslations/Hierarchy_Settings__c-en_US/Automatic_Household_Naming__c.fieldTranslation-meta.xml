@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If checked, the system will provide automatic naming for Household Names, Informal and Formal Greetings. --></help>
+    <label><!-- Automatic Household Naming --></label>
+    <name>Automatic_Household_Naming__c</name>
+</CustomFieldTranslation>

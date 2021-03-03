@@ -10,6 +10,7 @@ project:
         prefix_release: rel/
         repo_url: https://github.com/SalesforceFoundation/EDA
         default_branch: main
+    source_format: sfdx
     apexdoc:
         homepage: ApexDocContent/homepage.htm
         banner: ApexDocContent/projectheader.htm
@@ -114,12 +115,20 @@ tasks:
             path: unpackaged/test_managed_only/preferred_email
             namespaced_org: True
 
-    deploy_primary_affiliations_config:
+    deploy_unpackaged_primary_affiliations_config:
         description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test/primary_affiliations/pre
+            path: unpackaged/test_packaged/primary_affiliations
+            unmanaged: True
+
+    deploy_unpackaged_relationship_autocreate_config:
+        description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing.  
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_packaged/relationship_autocreate
             unmanaged: True
 
     deploy_unpackaged_test_metadata:
@@ -364,17 +373,8 @@ flows:
             4:
                 task: deploy_dev_config
             5:
-                task: deploy_primary_affiliations_config
+                flow: run_unmanaged_unit_tests
             6:
-                task: execute_primary_affiliation_mapping_apex
-            7:
-                task: deploy_unpackaged_test_metadata
-            8:
-                # execute tests in unmanaged package
-                task: run_tests
-                options:
-                    test_name_match: '%\_Unmanaged_TEST,%\_UTST'
-            10:
                 flow: eda_settings_unmanaged
 
     config_dev_namespaced:
@@ -448,7 +448,7 @@ flows:
             4:
                 flow: eda_settings
             5:
-                flow: preferred_email_testing
+                flow: run_unmanaged_unit_tests
 
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
@@ -519,7 +519,7 @@ flows:
                 task: execute_enable_course_connections
                 options:
                     namespaced: False
-
+    
     deploy_health_check_localization:
         description: Deploys health check
         steps:
@@ -535,6 +535,30 @@ flows:
         steps:
             2:
                 flow: config_2gp
+
+    run_unmanaged_unit_tests:
+        # description: Configure an org for use as a dev org after package metadata is deployed.
+        steps:
+            1:
+                task: deploy_unpackaged_test_metadata
+                when: "'hed' not in org_config.installed_packages"
+            2:
+                task: deploy_unpackaged_primary_affiliations_config
+                when: "'hed' in org_config.installed_packages"
+            3:
+                task: execute_primary_affiliation_mapping_apex
+                when: "'hed' in org_config.installed_packages"
+            4: 
+                task: deploy_unpackaged_relationship_autocreate_config
+                when: "'hed' in org_config.installed_packages"
+            5:
+                task: deploy_preferred_email_config
+                when: "'hed' in org_config.installed_packages"
+            6: 
+                # execute tests in unmanaged package
+                task: run_tests 
+                options: 
+                    test_name_match: '%\_Unmanaged_TEST,%\_ATST,%\_MTST,%\_PTST,%\_UTST'
 
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.
@@ -607,18 +631,6 @@ flows:
             7:
                 flow: eda_picklists
 
-    preferred_email_testing:
-        description: Deploys Preferred Email configuration and runs apex tests.
-        steps:
-            1:
-                task: deploy_preferred_email_config
-
-            2:
-                task: run_tests
-                options:
-                    test_name_match: "%_MTST"
-                    managed: False
-
     regression_org:
         description:
         steps:
@@ -643,6 +655,8 @@ orgs:
         prerelease_namespaced:
             config_file: orgs/prerelease.json
             namespaced: True
+        regression:
+            config_file: orgs/regression.json
         trial:
             config_file: orgs/trial.json
 

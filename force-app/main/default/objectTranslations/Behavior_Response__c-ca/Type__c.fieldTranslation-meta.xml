@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Type__c</name>
+    <help>La resposta a l’esdeveniment de comportament, per exemple, Període de prova acadèmica, Expulsió o Altres.</help>
+    <label>Tipus</label>
+    <picklistValues>
+        <masterLabel>Academic Probation</masterLabel>
+        <translation>Període de prova acadèmica</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Expulsion</masterLabel>
+        <translation>Expulsió</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Altres</translation>
+    </picklistValues>
+</CustomFieldTranslation>

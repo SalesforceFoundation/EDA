@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Standing__c</name>
+    <help>Het niveau van een student in een programma, bijvoorbeeld eerstejaars, tweedejaars, derdejaars of vierdejaars.</help>
+    <label>Jaarstatus</label>
+    <picklistValues>
+        <masterLabel>Freshman</masterLabel>
+        <translation>Eerstejaars</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sophomore</masterLabel>
+        <translation>Tweedejaars</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Junior</masterLabel>
+        <translation>Derdejaars</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Senior</masterLabel>
+        <translation>Vierdejaars</translation>
+    </picklistValues>
+</CustomFieldTranslation>

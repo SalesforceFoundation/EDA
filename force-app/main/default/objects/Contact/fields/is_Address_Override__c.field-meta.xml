@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>is_Address_Override__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When selected, this Contact&apos;s address won&apos;t be synced with the Household Default or Seasonal Address. Use this to maintain a separate Mailing Address for this particular Contact. (Applies to Household Contacts only.)</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When selected, this Contact&apos;s address won&apos;t be synced with the Household Default or Seasonal Address. Use this to maintain a separate Mailing Address for this particular Contact. (Applies to Household Contacts only.)</inlineHelpText>
+    <label>Do Not Automatically Update</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

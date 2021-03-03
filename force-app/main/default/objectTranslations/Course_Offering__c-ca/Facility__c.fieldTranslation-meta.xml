@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Facility__c</name>
+    <help>La instal·lació on tindrà lloc aquesta oferta de curs.</help>
+    <relationshipLabel>Ofertes de cursos</relationshipLabel>
+    <label>Instal·lació</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>GPA__c</name>
+    <help>El promedio académico final del contacto.</help>
+    <label>Promedio</label>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Parent_Term__c</name>
+    <help>Wählen Sie optional den Zeitabschnitt aus, zu dem dieser Zeitabschnitt gehört. Wenn dieser Zeitabschnitt beispielsweise das Herbstquartal 2020 ist, kann das Studienjahr 2020/2021 der übergeordnete Zeitabschnitt sein.</help>
+    <relationshipLabel>Zeitabschnitte</relationshipLabel>
+    <label>Übergeordneter Zeitabschnitt</label>
+</CustomFieldTranslation>

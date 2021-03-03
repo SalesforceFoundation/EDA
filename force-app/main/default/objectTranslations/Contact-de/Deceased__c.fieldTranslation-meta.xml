@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Deceased__c</name>
+    <help>Gibt an, dass diese Person verstorben ist. Falls ausgewählt, werden auch &quot;Nicht kontaktieren&quot;, &quot;Nicht anrufen&quot;, &quot;Keine E-Mails&quot; und &quot;Kein Fax&quot; aktiviert. Ist der Kontakt nicht das einzige Haushaltsmitglied, wird der Kontaktname aus dem Haushalt entfernt.</help>
+    <label>Verstorben</label>
+</CustomFieldTranslation>

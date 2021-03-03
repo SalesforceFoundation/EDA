@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Category__c</name>
+    <help>プラン要件の種別を示します (省略可能、必須など)。</help>
+    <label>カテゴリ</label>
+    <picklistValues>
+        <masterLabel>Required</masterLabel>
+        <translation>必須</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Optional</masterLabel>
+        <translation>省略可能</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disable_Preferred_Phone_Enforcement__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Disable the enforcement of the Preferred Phone field for Contact.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select to disable the enforcement of the Preferred Phone field for Contacts.</inlineHelpText>
+    <label>Disable Preferred Phone Enforcement</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

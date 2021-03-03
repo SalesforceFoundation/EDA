@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course_Name__c</fullName>
+    <description>The name of the Course in which the student was tardy or absent (read-only).</description>
+    <externalId>false</externalId>
+    <formula>Course_Connection__r.Course_Offering__r.Course__r.Name</formula>
+    <inlineHelpText>The name of the Course in which the student was tardy or absent (read-only).</inlineHelpText>
+    <label>Course Name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

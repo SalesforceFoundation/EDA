@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Preparer__c</name>
+    <help>出願を作成した取引先責任者。たとえば、保護者、または特別な支援を必要とする人をサポートする個人。</help>
+    <relationshipLabel>出願 (作成者)</relationshipLabel>
+    <label>作成者</label>
+</CustomFieldTranslation>

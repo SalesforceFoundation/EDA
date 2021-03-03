@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Expired__c</name>
+    <help>Gibt an, ob das Attribut abgelaufen ist. Wird automatisch ausgewählt, wenn das Enddatum des Attributs in der Vergangenheit liegt.</help>
+    <label>Abgelaufen</label>
+</CustomFieldTranslation>

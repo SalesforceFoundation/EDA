@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>SYSTEM_SystemCreated__c</name>
+    <help>Champ système qui indique si cette Relation a été automatiquement créée en tant que Réciproque d’une autre Relation.</help>
+    <label>_SYSTEM: SystemCreated</label>
+</CustomFieldTranslation>

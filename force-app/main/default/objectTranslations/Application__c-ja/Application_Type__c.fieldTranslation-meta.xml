@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Application_Type__c</name>
+    <help>出願者が申請しているプログラムまたはトラックの種別。</help>
+    <label>出願種別</label>
+    <picklistValues>
+        <masterLabel>Graduate</masterLabel>
+        <translation>卒業</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer</masterLabel>
+        <translation>転校</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Undergraduate</masterLabel>
+        <translation>学部生</translation>
+    </picklistValues>
+</CustomFieldTranslation>

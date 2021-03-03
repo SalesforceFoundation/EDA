@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>FERPA__c</name>
+    <help>Indica si aquesta persona ha optat per no revelar informació segons la Llei de drets d’educació familiar i privadesa.</help>
+    <label>FERPA</label>
+</CustomFieldTranslation>

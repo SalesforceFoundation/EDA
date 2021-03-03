@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Term Grade Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Term Grade Name</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Term Grade Name</label>
+    </standardFields>
+    <startsWith>Consonant</startsWith>
+    <caseValues>
+        <plural>false</plural>
+        <value>Term Grade</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Term Grades</value>
+    </caseValues>
+</CustomObjectTranslation>

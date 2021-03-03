@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Status__c</name>
+    <help>Select &quot;Current&quot; if this Program Plan has students enrolled in it, or is eligible for students to enrol. Otherwise, select &quot;Archived.&quot;</help>
+    <label>Status</label>
+    <picklistValues>
+        <masterLabel>Current</masterLabel>
+        <translation>Current</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Archived</masterLabel>
+        <translation>Archived</translation>
+    </picklistValues>
+</CustomFieldTranslation>

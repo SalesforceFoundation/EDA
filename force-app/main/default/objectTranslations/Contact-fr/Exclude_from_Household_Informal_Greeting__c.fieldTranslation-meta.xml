@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Exclude_from_Household_Informal_Greeting__c</name>
+    <help>Actuellement, ce champ n&apos;est pas lié à une fonctionnalité produit.</help>
+    <label>Exclure de salutation informelle foyer</label>
+</CustomFieldTranslation>

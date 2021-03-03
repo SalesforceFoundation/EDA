@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Auto_Program_Enrollment_Status__c</name>
+    <help>[自動プログラム登録] が選択されている場合に自動的に作成されるプログラム登録レコードに設定する状況。</help>
+    <label>自動登録の状況</label>
+</CustomFieldTranslation>

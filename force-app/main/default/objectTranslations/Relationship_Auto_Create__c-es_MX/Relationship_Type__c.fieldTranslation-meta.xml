@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Relationship_Type__c</name>
+    <help>El tipo Relación (el referente, familia, etc.) que se creará entre el objeto base definido en el campo Objeto, y el objeto de consulta.</help>
+    <label>Tipo de relación</label>
+</CustomFieldTranslation>

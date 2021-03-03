@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Program_Enrollment__c</name>
+    <help>Pour des étudiants, indique leur inscription à un programme principal. En enseignement supérieur, représente généralement la matière principale ou discipline choisie par étudiant.</help>
+    <relationshipLabel>Connexions aux cours</relationshipLabel>
+    <label>ID d&apos;inscription au programme</label>
+</CustomFieldTranslation>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Naming_Exclusions__c</fullName>
+    <description>Selecting the Household Name option excludes this Contact from the Household Name. NOTE: The Household Formal Greeting and Household Informal Greeting options are not currently tied to existing product functionality.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Selecting the Household Name option excludes this Contact from the Household Name. NOTE: The Household Formal Greeting and Household Informal Greeting options are not currently tied to existing product functionality.</inlineHelpText>
+    <label>Naming Exclusions</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Household__c.Name</fullName>
+                <default>false</default>
+                <label>Household__c.Name</label>
+            </value>
+            <value>
+                <fullName>Household__c.Formal_Greeting__c</fullName>
+                <default>false</default>
+                <label>Household__c.Formal_Greeting__c</label>
+            </value>
+            <value>
+                <fullName>Household__c.Informal_Greeting__c</fullName>
+                <default>false</default>
+                <label>Household__c.Informal_Greeting__c</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

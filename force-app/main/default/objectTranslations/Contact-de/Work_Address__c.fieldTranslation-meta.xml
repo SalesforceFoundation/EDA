@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Work_Address__c</name>
+    <help>Wenn &quot;Büro&quot; als &quot;Primärer Adresstyp&quot; festgelegt ist, wird &quot;Adresse Büro&quot; mit &quot;Postanschrift&quot; aufgefüllt. Wenn &quot;Büro&quot; der &quot;Sekundäre Adresstyp&quot; ist, wird die &quot;Adresse Büro&quot; mit &quot;Sonstige Adresse&quot; aufgefüllt. Dieses Feld ist schreibgeschützt.</help>
+    <label>Adresse Büro</label>
+</CustomFieldTranslation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Financial_Aid_Applicant__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether this student has applied for financial aid.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates whether this student has applied for financial aid.</inlineHelpText>
+    <label>Financial Aid Applicant</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

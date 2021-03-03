@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Start_Time__c</name>
+    <help>Pour une absence partielle excusée, l&apos;heure à laquelle l&apos;étudiant a quitté l&apos;école.</help>
+    <label>Heure de début</label>
+</CustomFieldTranslation>

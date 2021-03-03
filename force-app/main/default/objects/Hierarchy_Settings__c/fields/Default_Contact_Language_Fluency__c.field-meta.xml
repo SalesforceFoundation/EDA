@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_Contact_Language_Fluency__c</fullName>
+    <description>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</inlineHelpText>
+    <label>Default Contact Language Fluency</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

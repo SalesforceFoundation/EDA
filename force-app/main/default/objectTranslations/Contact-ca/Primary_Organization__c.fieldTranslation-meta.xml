@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary_Organization__c</name>
+    <help>Cerqueu l&apos;organització primària (registre del compte) amb què està associat aquest contacte.</help>
+    <relationshipLabel>Contactes (Organització primària)</relationshipLabel>
+    <label>Organització empresarial primària</label>
+</CustomFieldTranslation>

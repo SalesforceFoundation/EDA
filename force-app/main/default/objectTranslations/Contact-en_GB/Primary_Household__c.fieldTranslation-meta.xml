@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary_Household__c</name>
+    <help>Lookup to the main Household (Account record) this Contact is associated with.</help>
+    <relationshipLabel>Contacts (Primary Household)</relationshipLabel>
+    <label>Primary Household</label>
+</CustomFieldTranslation>

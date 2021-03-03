@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>is_Address_Override__c</name>
+    <help>Quan se selecciona, l&apos;adreça d&apos;aquest contacte no se sincronitzarà amb l&apos;adreça predeterminada de la llar o l&apos;adreça temporal. Utilitzeu aquesta opció per mantenir una adreça de correu independent per a aquest contacte en particular. (Només s&apos;aplica als contactes familiars.)</help>
+    <label>No actualitzis automàticament</label>
+</CustomFieldTranslation>

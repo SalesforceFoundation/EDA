@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attendance_Type__c</fullName>
+    <description>Indicate whether this tardy or absence was for one class period or for the day.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicate whether this tardy or absence was for one class period or for the day.</inlineHelpText>
+    <label>Attendance Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Class Absence</fullName>
+                <default>false</default>
+                <label>Class Absence</label>
+            </value>
+            <value>
+                <fullName>Class Tardy</fullName>
+                <default>false</default>
+                <label>Class Tardy</label>
+            </value>
+            <value>
+                <fullName>Day Absence</fullName>
+                <default>false</default>
+                <label>Day Absence</label>
+            </value>
+            <value>
+                <fullName>Day Tardy</fullName>
+                <default>false</default>
+                <label>Day Tardy</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
