@@ -89,6 +89,13 @@
         <value>Household</value>
     </labels>
     <labels>
+        <fullName>EDASettingsContainerAuraComponentLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Settings</shortDescription>
+        <value>EDA Settings</value>
+    </labels>
+    <labels>
         <fullName>Female</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
