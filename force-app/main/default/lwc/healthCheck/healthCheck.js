@@ -50,6 +50,4 @@ export default class HealthCheck extends LightningElement {
         return !(!this.displayHealthCheckGroup || !this.healthCheckDefinitionsToDisplayList);
     }
 
-
-    
 }
