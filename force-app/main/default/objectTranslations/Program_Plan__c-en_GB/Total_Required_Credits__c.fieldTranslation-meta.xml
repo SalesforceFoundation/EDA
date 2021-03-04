@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Total_Required_Credits__c</name>
+    <help>The total number of credits a student needs to complete to satisfy this Program Plan.</help>
+    <label>Total Required Credits</label>
+</CustomFieldTranslation>

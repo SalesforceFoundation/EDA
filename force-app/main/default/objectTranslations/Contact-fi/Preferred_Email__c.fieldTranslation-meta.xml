@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Preferred_Email__c</name>
+    <help>Sähköposti (yliopisto, työ, vaihtoehtoinen), jota tämä yhteyshenkilö haluaa sinun käyttävän.</help>
+    <label>Ensisijainen sähköposti</label>
+    <picklistValues>
+        <masterLabel>University Email</masterLabel>
+        <translation>Yliopiston sähköposti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Work Email</masterLabel>
+        <translation>Työsähköposti</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Alternate Email</masterLabel>
+        <translation>Vaihtoehtoinen sähköposti</translation>
+    </picklistValues>
+</CustomFieldTranslation>

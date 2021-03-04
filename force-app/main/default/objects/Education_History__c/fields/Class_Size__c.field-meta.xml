@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Class_Size__c</fullName>
+    <description>The number of students that were in the Contact&apos;s class.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The number of students that were in the Contact&apos;s class.</inlineHelpText>
+    <label>Class Size</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

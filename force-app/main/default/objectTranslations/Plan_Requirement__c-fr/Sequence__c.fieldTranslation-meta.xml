@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Sequence__c</name>
+    <help>La position de cette exigence dans le plan. Par exemple, 1 désigne le premier trimestre. Utilisez ce champ pour montrer la progression générale du plan complet ou pour organiser des exigences secondaires dans une exigence de plan parente unique.</help>
+    <label>Séquence</label>
+</CustomFieldTranslation>

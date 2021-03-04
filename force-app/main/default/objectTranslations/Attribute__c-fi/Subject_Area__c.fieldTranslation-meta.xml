@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Subject_Area__c</name>
+    <help>Sisältö tai aihealue, jolle hyväksyntä on tarkoitettu.</help>
+    <label>Aihealue</label>
+    <picklistValues>
+        <masterLabel>Biology</masterLabel>
+        <translation>Biologia</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Career and Technical Education</masterLabel>
+        <translation>Ura ja tekninen koulutus</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Economics</masterLabel>
+        <translation>Taloustiede</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>English Language Arts</masterLabel>
+        <translation>Englannin kielitaide</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fine and Performing Arts</masterLabel>
+        <translation>Kuvataide ja esittävät taiteet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foreign Language</masterLabel>
+        <translation>Vieras kieli</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>History</masterLabel>
+        <translation>Historia</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Life and Physical Sciences</masterLabel>
+        <translation>Biotieteet ja fysiikka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mathematics</masterLabel>
+        <translation>Matematiikka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Muu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Physical, Health, and Safety Education</masterLabel>
+        <translation>Liikunta, terveys- ja turvallisuuskasvatus</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Physics</masterLabel>
+        <translation>Fysiikka</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Psychology</masterLabel>
+        <translation>Psykologia</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Science</masterLabel>
+        <translation>Tiede</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Social Studies</masterLabel>
+        <translation>Sosiaaliala</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sociology</masterLabel>
+        <translation>Sosiologia</translation>
+    </picklistValues>
+</CustomFieldTranslation>

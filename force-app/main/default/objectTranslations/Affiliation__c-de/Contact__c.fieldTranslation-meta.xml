@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Contact__c</name>
+    <help>Die zu dieser Organisation gehörige Person.</help>
+    <relationshipLabel>Zugehörige Accounts</relationshipLabel>
+    <label>Kontakt</label>
+</CustomFieldTranslation>

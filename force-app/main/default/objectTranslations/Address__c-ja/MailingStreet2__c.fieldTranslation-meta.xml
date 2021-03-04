@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>MailingStreet2__c</name>
+    <help>この住所の追加の町名・番地の詳細 (スイート、アパートなど)。</help>
+    <label>町名・番地 2(郵送先)</label>
+</CustomFieldTranslation>

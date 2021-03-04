@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Account__c</name>
+    <help>El programa acadèmic d’aquest pla de programa és, per exemple, llicenciat en filosofia.</help>
+    <relationshipLabel>Plans del programa</relationshipLabel>
+    <label>Compte</label>
+</CustomFieldTranslation>

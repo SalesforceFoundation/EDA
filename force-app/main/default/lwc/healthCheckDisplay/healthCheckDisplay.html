@@ -1,0 +1,24 @@
+<template>
+    <template if:false={displayHealthCheckGroup}>
+        <!-- Display spinner -->
+        <lightning-spinner
+            alternative-text={LabelReference.spinnerLoadingAltText}
+            variant="brand"
+            size="medium"
+        >
+        </lightning-spinner>
+    </template>
+    <ul>
+        <template for:each={healthCheckDefinitionsList} for:item="hcdefinition">
+            <li key={hcdefinition.name} class="slds-p-top_small">
+                <c-health-check-group
+                    is-display-group={displayHealthCheckGroup}
+                    health-check-definition={hcdefinition}
+                    onhealthcheckgrouploaded={handleHealthCheckGroupLoaded}
+                    aria-label={hcdefinition.name}
+                >
+                </c-health-check-group>
+            </li>
+        </template>
+    </ul>
+</template>

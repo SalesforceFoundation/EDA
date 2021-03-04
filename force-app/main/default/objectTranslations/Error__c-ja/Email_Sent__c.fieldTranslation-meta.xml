@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Email_Sent__c</name>
+    <help>このエラーに関するメール通知が送信されたかどうかを示します。</help>
+    <label>メール送信済み</label>
+</CustomFieldTranslation>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Term_Grade_Type__c</name>
+    <help>Die Art der Benotungsperiode für diese Benotung, z. B. Zwischennote, Abschlussnote, Prüfungsnote, Benotungsperiode.</help>
+    <label>Typ der zeitabschnittsbezogenen Note</label>
+    <picklistValues>
+        <masterLabel>Exam Grade</masterLabel>
+        <translation>Prüfungsnote</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Final Grade</masterLabel>
+        <translation>Abschlussnote</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grading Period</masterLabel>
+        <translation>Benotungsperiode</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mid-Term Grade</masterLabel>
+        <translation>Zwischennote</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Field__c</name>
+    <help>項目値が更新されたときにこのリレーションの作成をトリガする参照項目の表示ラベル。</help>
+    <label>項目</label>
+</CustomFieldTranslation>

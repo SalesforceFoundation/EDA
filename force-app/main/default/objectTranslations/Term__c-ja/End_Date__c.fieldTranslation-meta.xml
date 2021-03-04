@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>End_Date__c</name>
+    <help>この学期が終了する日付。</help>
+    <label>終了日</label>
+</CustomFieldTranslation>

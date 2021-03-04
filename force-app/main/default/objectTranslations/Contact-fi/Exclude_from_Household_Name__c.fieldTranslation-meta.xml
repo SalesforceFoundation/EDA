@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Exclude_from_Household_Name__c</name>
+    <help>Kun tämä valitaan, yhteyshenkilö jätetään pois kotitalouden nimestä.</help>
+    <label>Jätä pois kotitalouden nimestä</label>
+</CustomFieldTranslation>

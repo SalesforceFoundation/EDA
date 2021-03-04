@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The Course Offering to which this record belongs. --></help>
+    <label><!-- Course Offering --></label>
+    <name>Course_Offering__c</name>
+    <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
+</CustomFieldTranslation>

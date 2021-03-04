@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Plan_Requirement__c</name>
+    <help>If the Plan Requirement is one of multiple requirements or multiple levels of requirements, specifies the parent Plan Requirement. Use this field to group a list of optional Courses that satisfy a generic requirement.</help>
+    <relationshipLabel>Plan Requirements</relationshipLabel>
+    <label>Parent Plan Requirement</label>
+</CustomFieldTranslation>

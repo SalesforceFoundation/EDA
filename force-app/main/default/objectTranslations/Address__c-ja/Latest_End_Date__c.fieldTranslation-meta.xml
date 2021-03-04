@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Latest_End_Date__c</name>
+    <help>この世帯でこの住所が使用された最新の終了日。</help>
+    <label>最も遅い終了日</label>
+</CustomFieldTranslation>

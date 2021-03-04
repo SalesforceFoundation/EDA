@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Status__c</name>
+    <help>Selecteer Huidig als er voor dit programmaplan studenten zijn ingeschreven of als studenten zich ervoor kunnen inschrijven. Selecteer anders Gearchiveerd.</help>
+    <label>Status</label>
+    <picklistValues>
+        <masterLabel>Current</masterLabel>
+        <translation>Huidig</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Archived</masterLabel>
+        <translation>Gearchiveerd</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course__c</name>
+    <help>Tähän suunnitelmavaatimukseen liittyvä kurssi. Jätä tyhjäksi pääsuunnitelmavaatimuksille, joihin sisältyy sisäisiä suunnitelmavaatimuksia.</help>
+    <relationshipLabel>Suunnitelmavaatimukset</relationshipLabel>
+    <label>Kurssi</label>
+</CustomFieldTranslation>

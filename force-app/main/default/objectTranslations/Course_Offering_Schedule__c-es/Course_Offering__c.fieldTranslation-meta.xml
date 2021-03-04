@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Offering__c</name>
+    <help>La Oferta de curso para la que es esta programación.</help>
+    <relationshipLabel>Programaciones de ofertas de cursos</relationshipLabel>
+    <label>Oferta de curso</label>
+</CustomFieldTranslation>

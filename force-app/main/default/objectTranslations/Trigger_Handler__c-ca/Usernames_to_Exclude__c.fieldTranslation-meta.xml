@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Usernames_to_Exclude__c</name>
+    <help>Llista separada de punts de coma dels noms d&apos;usuari de Salesforce per als quals aquest activador NO s&apos;executarà. Deixeu-vos en blanc per executar-lo per a tots els usuaris.</help>
+    <label>Noms d&apos;usuari per excloure</label>
+</CustomFieldTranslation>

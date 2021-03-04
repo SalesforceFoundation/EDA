@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Filter_Value__c</name>
+    <help>De waarde van het veld dat voor het filteren wordt gebruikt.</help>
+    <label>Filterwaarde</label>
+</CustomFieldTranslation>

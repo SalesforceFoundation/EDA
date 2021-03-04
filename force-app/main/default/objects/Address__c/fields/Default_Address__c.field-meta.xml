@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_Address__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether this is the Default Address to use for the Household and its Contacts.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates whether this is the Default Address to use for the Household and its Contacts.</inlineHelpText>
+    <label>Default Address</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

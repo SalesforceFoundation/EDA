@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Grading_Period_Sequence__c</name>
+    <help>これがどの学期であるかを示します。たとえば、第 1 クォーターまたはセメスターでは「１」、第 2 クォーターまたはセメスターでは「2」を入力します。</help>
+    <label>評価期間シーケンス</label>
+</CustomFieldTranslation>

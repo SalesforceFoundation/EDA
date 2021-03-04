@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Offering__c</name>
+    <help>Kurssitarjonta, jossa opiskelija tai opetushenkiöstön jäsen on mukana.</help>
+    <relationshipLabel>Kurssiyhteys</relationshipLabel>
+    <label>Kurssitarjontatunnus</label>
+</CustomFieldTranslation>

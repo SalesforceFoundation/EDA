@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Facility Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de instalación</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Nombre de instalación</label>
+    </standardFields>
+    <gender>Feminine</gender>
+    <caseValues>
+        <plural>false</plural>
+        <value>Instalación</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Instalaciones</value>
+    </caseValues>
+</CustomObjectTranslation>

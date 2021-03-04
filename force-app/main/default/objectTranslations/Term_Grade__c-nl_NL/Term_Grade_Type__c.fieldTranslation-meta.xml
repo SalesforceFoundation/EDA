@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Term_Grade_Type__c</name>
+    <help>Het type beoordelingsperiode waar deze score voor geldt, bijvoorbeeld tussentijdse score, eindscore, examenscore of beoordelingsperiode.</help>
+    <label>Type termijnscore</label>
+    <picklistValues>
+        <masterLabel>Exam Grade</masterLabel>
+        <translation>Examenscore</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Final Grade</masterLabel>
+        <translation>Eindscore</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grading Period</masterLabel>
+        <translation>Beoordelingsperiode</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mid-Term Grade</masterLabel>
+        <translation>Tussentijdse score</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Sequence__c</name>
+    <help>El lloc d&apos;aquest requisit al pla del programa, per exemple, &quot;1&quot; indica el primer semestre. Utilitzeu aquest camp per indicar la progressió general de tot el pla del programa o per ordenar l&apos;ordre dels subrequisits dins d&apos;un requisit del pla principal.</help>
+    <label>Seqüència</label>
+</CustomFieldTranslation>

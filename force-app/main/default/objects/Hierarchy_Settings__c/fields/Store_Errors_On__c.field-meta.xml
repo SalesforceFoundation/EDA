@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Store_Errors_On__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>Enable this feature to store errors.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enable this feature to store errors.</inlineHelpText>
+    <label>Store Errors</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The type of program or track the applicant is applying to.--></help>
+    <label><!-- Application Type --></label>
+    <name>Application_Type__c</name>
+    <picklistValues>
+        <masterLabel>Graduate</masterLabel>
+        <translation><!-- Graduate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Transfer</masterLabel>
+        <translation><!-- Transfer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Undergraduate</masterLabel>
+        <translation><!-- Undergraduate --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Affiliation_Type__c</name>
+    <help>Le type d&apos;enregistrement du compte affilié, par exemple Département universitaire ou Organisme sportif (lecture seule)</help>
+    <label>Type d&apos;affiliation</label>
+</CustomFieldTranslation>

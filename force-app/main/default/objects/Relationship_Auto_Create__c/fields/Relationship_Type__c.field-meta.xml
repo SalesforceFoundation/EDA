@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Relationship_Type__c</fullName>
+    <description>The Relationship type (referer, family, etc.) to be created between the base object defined in the Object field, and the lookup object.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Relationship type (referer, family, etc.) to be created between the base object defined in the Object field, and the lookup object.</inlineHelpText>
+    <label>Relationship Type</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

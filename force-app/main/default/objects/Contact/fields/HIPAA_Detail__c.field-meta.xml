@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HIPAA_Detail__c</fullName>
+    <description>Can be used to store information about the student Contact, such as the names of related Contacts authorized to communicate about the student. May require restricted field visibility so that only authorized users can view.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Information about this person, such as the names of related Contacts authorized to communicate about the person.</inlineHelpText>
+    <label>HIPAA Detail</label>
+    <length>32768</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

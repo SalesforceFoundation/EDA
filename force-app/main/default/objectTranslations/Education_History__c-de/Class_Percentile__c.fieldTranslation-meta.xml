@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Percentile__c</name>
+    <help>Die perzentile Einstufung des Schülers/Studenten in seiner Klasse. Beispielsweise hat ein Schüler/Student, der zu den besten 10 % gehört, den Wert 90 %.</help>
+    <label>Klassenperzentil</label>
+</CustomFieldTranslation>

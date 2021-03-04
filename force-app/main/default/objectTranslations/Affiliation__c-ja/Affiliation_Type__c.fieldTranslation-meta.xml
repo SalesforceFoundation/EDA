@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Affiliation_Type__c</name>
+    <help>関係する取引先のレコードタイプ (学科、スポーツ団体など) (参照のみ)。</help>
+    <label>所属種別</label>
+</CustomFieldTranslation>

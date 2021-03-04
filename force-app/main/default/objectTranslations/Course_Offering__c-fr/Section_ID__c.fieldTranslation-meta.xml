@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Section_ID__c</name>
+    <help>L&apos;ID de section de cette offre de cours. Il est généralement utilisé lorsqu&apos;un cours offre plusieurs sections une période scolaire unique.</help>
+    <label>ID de section</label>
+</CustomFieldTranslation>

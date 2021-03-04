@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Affiliation__c</name>
+    <help>Het academische programma dat aan deze cursusverbinding is gekoppeld. Vertegenwoordigt een affiliatie tussen een contactpersoon en een account.</help>
+    <relationshipLabel>Cursusverbinding</relationshipLabel>
+    <label>Affiliatie</label>
+</CustomFieldTranslation>

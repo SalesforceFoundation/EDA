@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Applying_To__c</name>
+    <help>El programa académico o especialidad que el solicitante está solicitando.</help>
+    <relationshipLabel>Solicitudes</relationshipLabel>
+    <label>Solicitando a</label>
+</CustomFieldTranslation>

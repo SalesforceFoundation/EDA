@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The Facility associated with the Course Offering for the specified time and day of week. --></help>
+    <label><!-- Facility --></label>
+    <name>Facility__c</name>
+    <relationshipLabel><!-- Course Offering Schedules --></relationshipLabel>
+</CustomFieldTranslation>

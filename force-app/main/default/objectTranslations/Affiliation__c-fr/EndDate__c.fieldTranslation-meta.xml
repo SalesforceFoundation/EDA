@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>EndDate__c</name>
+    <help>La date à laquelle cette affiliation a pris fin ou va prendre fin.</help>
+    <label>Date de fin</label>
+</CustomFieldTranslation>

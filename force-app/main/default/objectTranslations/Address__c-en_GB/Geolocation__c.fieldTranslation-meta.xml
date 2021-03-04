@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Geolocation__c</name>
+    <help>The Address expressed as latitude and longitude.</help>
+    <label>Geolocation</label>
+</CustomFieldTranslation>

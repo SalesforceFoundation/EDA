@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Text formula that constructs a sentence explaining the relationship between the two Contacts --></help>
+    <label><!-- Relationship Explanation --></label>
+    <name>Relationship_Explanation__c</name>
+</CustomFieldTranslation>

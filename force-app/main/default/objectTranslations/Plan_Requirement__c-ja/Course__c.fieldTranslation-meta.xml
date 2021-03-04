@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course__c</name>
+    <help>このプラン要件に関連付けられた科目。ネストされたプラン要件を持つ親プラン要件の場合は、空白のままにします。</help>
+    <relationshipLabel>プラン要件</relationshipLabel>
+    <label>科目</label>
+</CustomFieldTranslation>

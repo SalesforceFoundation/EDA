@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Check this if you&apos;d like errors to be stored in the database. --></help>
+    <label><!-- Store Errors --></label>
+    <name>Store_Errors_On__c</name>
+</CustomFieldTranslation>

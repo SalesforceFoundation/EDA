@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Application_Status__c</name>
+    <help>Der Status des Bewerbungsprozesses.</help>
+    <label>Bewerbungsstatus</label>
+    <picklistValues>
+        <masterLabel>Submitted</masterLabel>
+        <translation>Eingereicht</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Incomplete</masterLabel>
+        <translation>Unvollständig</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Received</masterLabel>
+        <translation>Empfangen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Review</masterLabel>
+        <translation>Wird geprüft</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Waitlist</masterLabel>
+        <translation>Warteliste</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Admit</masterLabel>
+        <translation>Zulassen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Admit with Conditions</masterLabel>
+        <translation>Unter Bedingungen zulassen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deny</masterLabel>
+        <translation>Ablehnen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deferred Offer</masterLabel>
+        <translation>Zurückgestelltes Angebot</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Accepted Offer</masterLabel>
+        <translation>Angenommenes Angebot</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Declined Offer</masterLabel>
+        <translation>Abgelehntes Angebot</translation>
+    </picklistValues>
+</CustomFieldTranslation>

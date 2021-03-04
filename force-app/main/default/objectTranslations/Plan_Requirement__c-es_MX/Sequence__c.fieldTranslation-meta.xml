@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Sequence__c</name>
+    <help>El lugar de este requisito en el plan del programa; por ejemplo, &quot;1&quot; indica el primer semestre. Utilice este campo para indicar la progresión general del plan del programa completo, o para ordenar los requisitos secundarios dentro de un Requisito del plan principal único.</help>
+    <label>Secuencia</label>
+</CustomFieldTranslation>

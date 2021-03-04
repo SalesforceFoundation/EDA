@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Type --></label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>Part of Term</masterLabel>
+        <translation><!-- Part of Term --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quarter</masterLabel>
+        <translation><!-- Quarter --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>School Year</masterLabel>
+        <translation><!-- School Year --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Semester</masterLabel>
+        <translation><!-- Semester --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

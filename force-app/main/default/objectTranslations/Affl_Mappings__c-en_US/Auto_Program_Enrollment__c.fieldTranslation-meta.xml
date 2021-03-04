@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If checked, a Program Enrollment record will be automatically created when the user creates an Affiliation to an Account of this type. --></help>
+    <label><!-- Auto Enrollment --></label>
+    <name>Auto_Program_Enrollment__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>End_Date__c</name>
+    <help>資格または特記事項の期限が切れる日付、または更新が必要になる日付</help>
+    <label>終了日</label>
+</CustomFieldTranslation>

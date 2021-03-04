@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Account__c</name>
+    <help>The Academic Program, Department, or entire Educational Institution this Term applies to. Select the Account that represents your Educational Institution if Terms are consistent across all Programs and Departments in your school.</help>
+    <relationshipLabel>Terms</relationshipLabel>
+    <label>Account</label>
+</CustomFieldTranslation>

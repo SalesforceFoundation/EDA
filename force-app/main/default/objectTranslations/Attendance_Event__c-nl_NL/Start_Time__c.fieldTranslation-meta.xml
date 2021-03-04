@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Start_Time__c</name>
+    <help>Voor een afwezig dagdeel met toestemming, de tijd dat de student de school verliet.</help>
+    <label>Begintijd</label>
+</CustomFieldTranslation>

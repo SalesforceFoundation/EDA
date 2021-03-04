@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Usernames_to_Exclude__c</name>
+    <help>Puolipisteillä erotettu luettelo Salesforcen käyttäjätunnuksista, joita tämä käynnistin EI käytä. Jätä tyhjäksi suoritettavaksi kaikille käyttäjille.</help>
+    <label>Poisjätettävät käyttätunnukset</label>
+</CustomFieldTranslation>

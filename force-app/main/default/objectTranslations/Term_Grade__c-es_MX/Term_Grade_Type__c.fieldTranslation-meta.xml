@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Term_Grade_Type__c</name>
+    <help>El tipo de periodo de evaluación para el que esta evaluación, como por ejemplo, Evaluación a medio plazo, Evaluación final, Evaluación de examen, Periodo de evaluación.</help>
+    <label>Tipo de evaluación de periodo</label>
+    <picklistValues>
+        <masterLabel>Exam Grade</masterLabel>
+        <translation>Evaluación de examen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Final Grade</masterLabel>
+        <translation>Evaluación final</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grading Period</masterLabel>
+        <translation>Periodo de evaluación</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mid-Term Grade</masterLabel>
+        <translation>Evaluación a medio plazo</translation>
+    </picklistValues>
+</CustomFieldTranslation>

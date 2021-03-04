@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Percentile__c</name>
+    <help>La clasificación de percentil del estudiante para su clase. Por ejemplo, un estudiante con una clasificación en los principales del 10% tiene un valor del 90%.</help>
+    <label>Percentil de clase</label>
+</CustomFieldTranslation>

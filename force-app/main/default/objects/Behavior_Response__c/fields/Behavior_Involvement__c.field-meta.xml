@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Behavior_Involvement__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Behavior Involvement record this Behavior Response is for.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Behavior Involvement record this Behavior Response is for.</inlineHelpText>
+    <label>Behavior Involvement</label>
+    <referenceTo>Behavior_Involvement__c</referenceTo>
+    <relationshipLabel>Behavior Responses</relationshipLabel>
+    <relationshipName>Behavior_Responses</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

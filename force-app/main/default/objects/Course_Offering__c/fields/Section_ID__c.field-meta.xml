@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Section_ID__c</fullName>
+    <description>The Section ID for this Course Offering. Section ID is typically used when a Course offers multiple sections during a single Term.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Section ID for this Course Offering. Section ID is typically used when a Course offers multiple sections during a single Term.</inlineHelpText>
+    <label>Section ID</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

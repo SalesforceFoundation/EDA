@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Record_URL__c</name>
+    <help>Linkki virheen aiheuttaneeseen tietueeseen, jos sellainen on käytettävissä.</help>
+    <label>Tietueen URL-osoite</label>
+</CustomFieldTranslation>

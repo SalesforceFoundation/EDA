@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Status__c</name>
+    <help>Indica si es tracta d&apos;una afiliació actual o anterior.</help>
+    <label>Estat</label>
+    <picklistValues>
+        <masterLabel>Current</masterLabel>
+        <translation>Actual</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Former</masterLabel>
+        <translation>Antic</translation>
+    </picklistValues>
+</CustomFieldTranslation>

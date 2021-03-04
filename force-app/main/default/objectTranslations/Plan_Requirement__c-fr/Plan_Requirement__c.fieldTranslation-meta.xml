@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Plan_Requirement__c</name>
+    <help>Si l&apos;exigence du plan fait partie d&apos;exigences multiples ou de niveaux d&apos;exigence multiples, spécifiez l&apos;exigence de plan parente. Utilisez ce champ pour regrouper une liste de cours facultatifs qui répondent à une exigence globale.</help>
+    <relationshipLabel>Exigences du plan</relationshipLabel>
+    <label>Exigence du plan parente</label>
+</CustomFieldTranslation>

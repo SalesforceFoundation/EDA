@@ -1,0 +1,26 @@
+<template>
+    <div>
+        <div class="slds-grid--vertical">
+            <!--Hidden until Settings Work
+                <div class="slds-col">
+                    <c-health-check-highlights-panel></c-health-check-highlights-panel>
+                </div>
+            -->
+            <div class="slds-col slds-p-top_small">
+                <c-health-check-run
+                    run-date={lastRunDate}
+                    onrunhealthcheck={handleHealthCheckRun}
+                >
+                </c-health-check-run>
+            </div>
+            <div class="slds-col">
+                <template if:true={displayHealthCheck}>
+                    <c-health-check-display
+                        health-check-definitions-list={healthCheckDefinitionsToDisplayList}
+                    >
+                    </c-health-check-display>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

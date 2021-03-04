@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Term__c</fullName>
+    <description>Lookup to the Term record that represents when this Course Offering takes place.</description>
+    <externalId>false</externalId>
+    <label>Term</label>
+    <referenceTo>Term__c</referenceTo>
+    <relationshipLabel>Course Offerings</relationshipLabel>
+    <relationshipName>Course_Offerings</relationshipName>
+    <relationshipOrder>1</relationshipOrder>
+    <reparentableMasterDetail>true</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

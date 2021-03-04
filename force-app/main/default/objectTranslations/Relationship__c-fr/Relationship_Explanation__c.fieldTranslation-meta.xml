@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Relationship_Explanation__c</name>
+    <help>Une phrase qui clarifie qui est qui dans la relation, par exemple Joe Ada est l&apos;employeur de Sara Cordova. Ce champ est en lecture seule.</help>
+    <label>Explication de la relation</label>
+</CustomFieldTranslation>

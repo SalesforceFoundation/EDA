@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Account_Record_Type__c</name>
+    <help>L&apos;étiquette du type d&apos;enregistrement Compte qui est mappé.</help>
+    <label>Type d&apos;enregistrement de compte</label>
+</CustomFieldTranslation>

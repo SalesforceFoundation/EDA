@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Reason__c</name>
+    <help>Sélectionnez l&apos;option décrivant avec le plus de précision le motif d&apos;absence ou de retard de l&apos;étudiant. Utilisez le champ Description du motif pour saisir des informations supplémentaires.</help>
+    <label>Motif</label>
+    <picklistValues>
+        <masterLabel>Family</masterLabel>
+        <translation>Familial</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Medical</masterLabel>
+        <translation>Médical</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Autre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Religious</masterLabel>
+        <translation>Religieux</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Trigger_Action__c</name>
+    <help>El contexto en el que esta clase debe ejecutarse, como por ejemplo antes de que se inserte un registro, después de que se elimine un registro, etc.</help>
+    <label>Desencadenar acción</label>
+    <picklistValues>
+        <masterLabel>BeforeInsert</masterLabel>
+        <translation>BeforeInsert</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BeforeUpdate</masterLabel>
+        <translation>BeforeUpdate</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BeforeDelete</masterLabel>
+        <translation>BeforeDelete</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AfterInsert</masterLabel>
+        <translation>AfterInsert</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AfterUpdate</masterLabel>
+        <translation>AfterUpdate</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AfterDelete</masterLabel>
+        <translation>AfterDelete</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AfterUndelete</masterLabel>
+        <translation>AfterUndelete</translation>
+    </picklistValues>
+</CustomFieldTranslation>

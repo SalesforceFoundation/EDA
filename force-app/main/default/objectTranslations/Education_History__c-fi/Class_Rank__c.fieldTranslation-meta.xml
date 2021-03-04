@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank__c</name>
+    <help>Opiskelijan akateeminen sijoitus suhteessa valmistuvaan luokkaan. Esimerkiksi jos 200 opiskelijan luokassa opiskelija on 5., arvo on 5.</help>
+    <label>Sijoitus luokassa</label>
+</CustomFieldTranslation>

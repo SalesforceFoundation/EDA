@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Course Offering that the Contact is connected to. Identifies a specific occurence of a Course, for a specific Term. --></help>
+    <label><!-- Course Offering ID --></label>
+    <name>Course_Offering__c</name>
+    <relationshipLabel><!-- Course Connection --></relationshipLabel>
+</CustomFieldTranslation>

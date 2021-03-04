@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank_Scale__c</name>
+    <help>Tracks how the Class Percentile was determined. For example, using exact decile, quintile, or quartile.</help>
+    <label>Class Rank Scale</label>
+    <picklistValues>
+        <masterLabel>Exact</masterLabel>
+        <translation>Exact</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Decile</masterLabel>
+        <translation>Decile</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quintile</masterLabel>
+        <translation>Quintile</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quartile</masterLabel>
+        <translation>Quartile</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>None</masterLabel>
+        <translation>None</translation>
+    </picklistValues>
+</CustomFieldTranslation>

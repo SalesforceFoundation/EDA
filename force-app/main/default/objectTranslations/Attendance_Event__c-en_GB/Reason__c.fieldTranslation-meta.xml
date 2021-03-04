@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Reason__c</name>
+    <help>Select an option that most closely matches the reason the student was absent or tardy. Use the Reason Description field to enter more details.</help>
+    <label>Reason</label>
+    <picklistValues>
+        <masterLabel>Family</masterLabel>
+        <translation>Family</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Medical</masterLabel>
+        <translation>Medical</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Other</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Religious</masterLabel>
+        <translation>Religious</translation>
+    </picklistValues>
+</CustomFieldTranslation>

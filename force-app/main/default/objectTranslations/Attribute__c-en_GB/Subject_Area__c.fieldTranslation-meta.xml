@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Subject_Area__c</name>
+    <help>The content or subject area that a credential is for.</help>
+    <label>Subject Area</label>
+    <picklistValues>
+        <masterLabel>Biology</masterLabel>
+        <translation>Biology</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Career and Technical Education</masterLabel>
+        <translation>Career and Technical Education</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Economics</masterLabel>
+        <translation>Economics</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>English Language Arts</masterLabel>
+        <translation>English Language Arts</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fine and Performing Arts</masterLabel>
+        <translation>Fine and Performing Arts</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foreign Language</masterLabel>
+        <translation>Foreign Language</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>History</masterLabel>
+        <translation>History</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Life and Physical Sciences</masterLabel>
+        <translation>Life and Physical Sciences</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mathematics</masterLabel>
+        <translation>Mathematics</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Other</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Physical, Health, and Safety Education</masterLabel>
+        <translation>Physical, Health, and Safety Education</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Physics</masterLabel>
+        <translation>Physics</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Psychology</masterLabel>
+        <translation>Psychology</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Science</masterLabel>
+        <translation>Science</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Social Studies</masterLabel>
+        <translation>Social Studies</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sociology</masterLabel>
+        <translation>Sociology</translation>
+    </picklistValues>
+</CustomFieldTranslation>

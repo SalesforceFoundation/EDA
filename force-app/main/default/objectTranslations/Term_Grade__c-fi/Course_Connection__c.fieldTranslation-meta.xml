@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Connection__c</name>
+    <help>Luokka, josta opiskelija sai tämän arvosanan. Yhteyshenkilön ja kurssitarjonnan on oltava yhtäpitäviä kurssin yhteystietueessa olevan yhteyshenkilön ja kurssitarjonnan kanssa.</help>
+    <relationshipLabel>Jakson arvosanat</relationshipLabel>
+    <label>Kurssiyhteys</label>
+</CustomFieldTranslation>

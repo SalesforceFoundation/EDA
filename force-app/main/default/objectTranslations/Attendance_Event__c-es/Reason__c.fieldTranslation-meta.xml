@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Reason__c</name>
+    <help>Seleccione una opción que se ajuste con más precisión al motivo por el que el estudiante fue impuntual o estuvo ausente. Utilice el campo Descripción de motivo para introducir más detalles.</help>
+    <label>Motivo</label>
+    <picklistValues>
+        <masterLabel>Family</masterLabel>
+        <translation>Familiar</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Medical</masterLabel>
+        <translation>Médico</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Otro</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Religious</masterLabel>
+        <translation>Religioso</translation>
+    </picklistValues>
+</CustomFieldTranslation>

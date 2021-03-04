@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Term__c</name>
+    <help>出願者が登録を希望する学期。</help>
+    <relationshipLabel>出願</relationshipLabel>
+    <label>学期</label>
+</CustomFieldTranslation>

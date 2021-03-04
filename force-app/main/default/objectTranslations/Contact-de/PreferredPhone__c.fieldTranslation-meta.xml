@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>PreferredPhone__c</name>
+    <help>Die Telefonnummer (geschäftlich, privat, mobil, sonstige), die dieser Kontakt bevorzugt.</help>
+    <label>Bevorzugte Telefonnummer</label>
+    <picklistValues>
+        <masterLabel>Home Phone</masterLabel>
+        <translation>Telefon privat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Work Phone</masterLabel>
+        <translation>Telefon Büro</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mobile Phone</masterLabel>
+        <translation>Telefon mobil</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other Phone</masterLabel>
+        <translation>Weitere Tel-Nr.</translation>
+    </picklistValues>
+</CustomFieldTranslation>

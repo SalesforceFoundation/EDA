@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Student_Characteristic</fullName>
+    <active>true</active>
+    <description>Allows educational institutions to track important student characteristics that might affect students&apos; education.</description>
+    <label>Student Characteristic</label>
+    <picklistValues>
+        <picklist>Attribute_Type__c</picklist>
+        <values>
+            <fullName>Accommodation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Asylee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Economically Disadvantaged</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>English Learners</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Family Consideration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foster Care</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Free Lunch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Homeless</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Immigrant</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>International Student</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Parent in Military</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pregnant</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reduced Price Lunch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Refugee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Section 504 Handicapped</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Subject_Area__c</picklist>
+        <values>
+            <fullName>Biology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Career and Technical Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Economics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>English Language Arts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fine and Performing Arts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Foreign Language</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>History</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Life and Physical Sciences</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mathematics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Physical%2C Health%2C and Safety Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Physics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Psychology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Science</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Social Studies</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sociology</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

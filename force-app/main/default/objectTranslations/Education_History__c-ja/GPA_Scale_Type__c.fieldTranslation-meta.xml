@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>GPA_Scale_Type__c</name>
+    <help>GPA がどのように決定されたかを追跡します。たとえば、[加重あり] または [加重なし] のスケールが使用されます。</help>
+    <label>GPA スケール種別</label>
+    <picklistValues>
+        <masterLabel>Unweighted</masterLabel>
+        <translation>加重なし</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Weighted</masterLabel>
+        <translation>加重あり</translation>
+    </picklistValues>
+</CustomFieldTranslation>

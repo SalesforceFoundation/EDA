@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank_Type__c</name>
+    <help>Seuraa kuinka luokan sijoitus määritettiin. Esimerkiksi painotetulla tai painottamattomalla asteikolla.</help>
+    <label>Luokassa sijoituksen tyyppi</label>
+    <picklistValues>
+        <masterLabel>Unweighted</masterLabel>
+        <translation>Painottamaton</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Weighted</masterLabel>
+        <translation>Painotettu</translation>
+    </picklistValues>
+</CustomFieldTranslation>

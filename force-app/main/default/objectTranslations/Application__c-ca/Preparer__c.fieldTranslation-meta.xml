@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Preparer__c</name>
+    <help>El contacte que prepara la sol·licitud. Per exemple, un tutor o una persona que ajuda algú amb necessitats especials.</help>
+    <relationshipLabel>Sol·licituds (Preparador)</relationshipLabel>
+    <label>Preparador</label>
+</CustomFieldTranslation>

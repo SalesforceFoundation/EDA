@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Parent_Term__c</name>
+    <help>Valitse vaihtoehtoisesti jakso, johon tämä jakso kuuluu. Esimerkiksi, jos tämä jakso on syksyn vuosineljännes 2020, pääjakso voi olla lukuvuosi 2020–2021.</help>
+    <relationshipLabel>Jaksot</relationshipLabel>
+    <label>Pääjakso</label>
+</CustomFieldTranslation>

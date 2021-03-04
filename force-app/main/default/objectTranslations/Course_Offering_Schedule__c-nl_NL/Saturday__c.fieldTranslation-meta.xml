@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Saturday__c</name>
+    <help>Selecteer om aan te geven dat dit cursusaanbod op zaterdag plaatsvindt. U kunt meerdere dagen selecteren.</help>
+    <label>Zaterdag</label>
+</CustomFieldTranslation>

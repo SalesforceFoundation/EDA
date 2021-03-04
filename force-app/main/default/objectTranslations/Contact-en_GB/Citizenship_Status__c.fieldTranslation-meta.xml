@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Citizenship_Status__c</name>
+    <help>The Contact&apos;s citizenship status.</help>
+    <label>Citizenship Status</label>
+    <picklistValues>
+        <masterLabel>U.S. Citizen or U.S. National</masterLabel>
+        <translation>U.S. Citizen or U.S. National</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U.S. Dual Citizen</masterLabel>
+        <translation>U.S. Dual Citizen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U.S. Permanent Resident</masterLabel>
+        <translation>U.S. Permanent Resident</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>U.S. Refugee or Asylee</masterLabel>
+        <translation>U.S. Refugee or Asylee</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Temporary Resident</masterLabel>
+        <translation>Temporary Resident</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other (Non-U.S.)</masterLabel>
+        <translation>Other (Non-U.S.)</translation>
+    </picklistValues>
+</CustomFieldTranslation>

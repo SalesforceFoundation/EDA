@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Location__c</name>
+    <help>De locatie waar de case plaatsvond.</help>
+    <label>Locatie</label>
+    <picklistValues>
+        <masterLabel>Off Campus</masterLabel>
+        <translation>Buiten de campus</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>On Campus</masterLabel>
+        <translation>Op de campus</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Overig</translation>
+    </picklistValues>
+</CustomFieldTranslation>

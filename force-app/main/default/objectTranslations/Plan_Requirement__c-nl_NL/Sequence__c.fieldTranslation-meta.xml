@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Sequence__c</name>
+    <help>De plek van deze vereiste in het programmaplan. &apos;1&apos; geeft bijv. het eerste semester aan. Gebruik dit veld om de algehele progressie voor het hele programmaplan aan te geven of om de volgorde van subvereisten in één bovenliggende planvereiste te sorteren.</help>
+    <label>Volgorde</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Total_Required_Credits__c</name>
+    <help>Le nombre total de crédits qu&apos;un étudiant doit obtenir pour satisfaire à ce plan de programme.</help>
+    <label>Nombre total de crédits requis</label>
+</CustomFieldTranslation>

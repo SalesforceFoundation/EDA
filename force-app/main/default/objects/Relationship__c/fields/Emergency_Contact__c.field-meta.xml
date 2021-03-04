@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Emergency_Contact__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates the Related Contact is an emergency contact.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates the Related Contact is an emergency contact.</inlineHelpText>
+    <label>Emergency Contact</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

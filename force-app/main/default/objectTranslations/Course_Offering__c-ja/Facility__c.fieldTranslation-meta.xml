@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Facility__c</name>
+    <help>この開講科目が行われる施設。</help>
+    <relationshipLabel>開講科目</relationshipLabel>
+    <label>施設</label>
+</CustomFieldTranslation>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Related_Contact_Do_Not_Change</fullName>
+    <active>true</active>
+    <description>Do not allow user to change Related Contact value as it damages the paired relationship data</description>
+    <errorConditionFormula>and(not( ISNEW()), ISCHANGED( RelatedContact__c ))</errorConditionFormula>
+    <errorDisplayField>RelatedContact__c</errorDisplayField>
+    <errorMessage>Instead of changing the Contacts in this Relationship, either delete this record, or if appropriate, add an end date and update the status to Former. Then create a new Relationship record between the new Contacts.</errorMessage>
+</ValidationRule>

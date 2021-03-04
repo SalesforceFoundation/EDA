@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Description__c</fullName>
+    <description>This field has been replaced by the Extended Description field, which accomodates longer descriptions. Your admin can migrate text from the Description to the Extended Description field in EDA Settings | Courses.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field has been replaced by the Extended Description field, which accomodates longer descriptions. Your admin can migrate text from the Description to the Extended Description field in EDA Settings | Courses.</inlineHelpText>
+    <label>Description</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

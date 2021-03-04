@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Load_Order__c</name>
+    <help>このモジュールが実行される順序。モジュールとデータの連動関係の維持に役立ちます。</help>
+    <label>読み込み順序</label>
+</CustomFieldTranslation>

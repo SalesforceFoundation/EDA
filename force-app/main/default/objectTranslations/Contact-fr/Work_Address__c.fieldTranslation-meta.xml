@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Work_Address__c</name>
+    <help>Si Type d&apos;adresse principale est Professionnelle, Adresse professionnelle est remplie avec les valeurs Adresse postale. Si Type d&apos;adresse secondaire est Professionnelle, Adresse professionnelle est remplie avec les valeurs Autre adresse. En lecture seule.</help>
+    <label>Adresse professionnelle</label>
+</CustomFieldTranslation>

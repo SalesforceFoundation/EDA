@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Contact__c</name>
+    <help>遅刻または欠席した学生。</help>
+    <relationshipLabel>出席イベント</relationshipLabel>
+    <label>取引先責任者</label>
+</CustomFieldTranslation>

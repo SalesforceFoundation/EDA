@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>School_Code__c</name>
+    <help>Koodi, joka yksilöi oppilaitoksen omalla alueellasi tunnustettujen standardien avulla.</help>
+    <label>Koulukoodi</label>
+</CustomFieldTranslation>

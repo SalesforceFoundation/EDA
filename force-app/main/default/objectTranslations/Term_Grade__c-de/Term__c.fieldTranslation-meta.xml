@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Term__c</name>
+    <help>Gibt an, in welchem Zeitabschnitt der Schüler/Student diese Note erhalten hat.</help>
+    <relationshipLabel>Zeitabschnittsbezogene Noten</relationshipLabel>
+    <label>Zeitabschnitt</label>
+</CustomFieldTranslation>

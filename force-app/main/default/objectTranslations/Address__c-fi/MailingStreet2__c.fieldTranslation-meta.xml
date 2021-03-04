@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>MailingStreet2__c</name>
+    <help>Tämän osoitteen katuosoitteen lisätiedot, kuten rappu ja asunto.</help>
+    <label>Postiosoite: Katuosoite 2</label>
+</CustomFieldTranslation>

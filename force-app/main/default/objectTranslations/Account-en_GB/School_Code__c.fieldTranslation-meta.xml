@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>School_Code__c</name>
+    <help>A code that uniquely identifies an educational institution using standards recognized in your region.</help>
+    <label>School Code</label>
+</CustomFieldTranslation>

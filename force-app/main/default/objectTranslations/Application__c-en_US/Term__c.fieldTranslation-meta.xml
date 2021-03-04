@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The term when the applicant wants to enroll. --></help>
+    <label><!-- Term --></label>
+    <name>Term__c</name>
+    <relationshipLabel><!-- Applications --></relationshipLabel>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Arrival_Time__c</name>
+    <help>遅刻した学生が到着した時刻。</help>
+    <label>到着時刻</label>
+</CustomFieldTranslation>
