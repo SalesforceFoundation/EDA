@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Usernames_to_Exclude__c</name>
+    <help>Liste de noms d&apos;utilisateur Salesforce, séparés par un point virgule, pour lesquels ce déclencheur ne sera pas exécuté. Si vous souhaitez l&apos;exécuter pour tous les utilisateurs, laissez vide.</help>
+    <label>Noms d&apos;utilisateur à exclure</label>
+</CustomFieldTranslation>

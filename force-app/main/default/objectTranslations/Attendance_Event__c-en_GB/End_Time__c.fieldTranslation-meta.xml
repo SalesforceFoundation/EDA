@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>End_Time__c</name>
+    <help>For a partial-day excused absence, the time the student returned.</help>
+    <label>End Time</label>
+</CustomFieldTranslation>

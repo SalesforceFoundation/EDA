@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Connection__c</name>
+    <help>La classe i el període en què l&apos;alumne ha arribat tard o ha faltat.</help>
+    <relationshipLabel>Esdeveniments d&apos;assistència</relationshipLabel>
+    <label>Connexió del curs</label>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Financial_Aid_Applicant__c</name>
+    <help>Indica si aquest estudiant ha sol·licitat ajuda econòmica.</help>
+    <label>Sol·licitant d&apos;ajuda financera</label>
+</CustomFieldTranslation>

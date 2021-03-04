@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>End_Date__c</name>
+    <help>De datum waarop het identificatiegegeven of studentenkenmerk vervalt of moet worden vernieuwd.</help>
+    <label>Einddatum</label>
+</CustomFieldTranslation>

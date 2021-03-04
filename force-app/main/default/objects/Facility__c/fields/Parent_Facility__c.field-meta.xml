@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parent_Facility__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Optionally indicates the Facility that this one is a part of. For example, if this Facility is a classroom, the Parent Facility would be the building this classroom is in.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Optionally indicates the Facility that this one is a part of. For example, if this Facility is a classroom, the Parent Facility would be the building this classroom is in.</inlineHelpText>
+    <label>Parent Facility</label>
+    <referenceTo>Facility__c</referenceTo>
+    <relationshipLabel>Facilities</relationshipLabel>
+    <relationshipName>Facilities</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

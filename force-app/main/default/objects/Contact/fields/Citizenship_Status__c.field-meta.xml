@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Citizenship_Status__c</fullName>
+    <externalId>false</externalId>
+    <description>The Contact&apos;s citizenship status.</description>
+    <inlineHelpText>The Contact&apos;s citizenship status.</inlineHelpText>
+    <label>Citizenship Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>U.S. Citizen or U.S. National</fullName>
+                <default>false</default>
+                <label>U.S. Citizen or U.S. National</label>
+            </value>
+            <value>
+                <fullName>U.S. Dual Citizen</fullName>
+                <default>false</default>
+                <label>U.S. Dual Citizen</label>
+            </value>
+            <value>
+                <fullName>U.S. Permanent Resident</fullName>
+                <default>false</default>
+                <label>U.S. Permanent Resident</label>
+            </value>
+            <value>
+                <fullName>U.S. Refugee or Asylee</fullName>
+                <default>false</default>
+                <label>U.S. Refugee or Asylee</label>
+            </value>
+            <value>
+                <fullName>Temporary Resident</fullName>
+                <default>false</default>
+                <label>Temporary Resident</label>
+            </value>
+            <value>
+                <fullName>Other (Non-U.S.)</fullName>
+                <default>false</default>
+                <label>Other (Non-U.S.)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

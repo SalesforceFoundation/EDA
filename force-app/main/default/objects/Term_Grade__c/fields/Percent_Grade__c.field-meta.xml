@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Percent_Grade__c</fullName>
+    <description>If your school grades on a percentage basis, enter the percentage grade the student earned.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If your school grades on a percentage basis, enter the percentage grade the student earned.</inlineHelpText>
+    <label>Percent Grade</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>3</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

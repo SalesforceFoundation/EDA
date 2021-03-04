@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Application_Status__c</name>
+    <help>出願プロセスの状況。</help>
+    <label>出願状況</label>
+    <picklistValues>
+        <masterLabel>Submitted</masterLabel>
+        <translation>送信済み</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Incomplete</masterLabel>
+        <translation>不完全</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Received</masterLabel>
+        <translation>受信済み</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Review</masterLabel>
+        <translation>レビュー中</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Waitlist</masterLabel>
+        <translation>待機リスト</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Admit</masterLabel>
+        <translation>入学許可</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Admit with Conditions</masterLabel>
+        <translation>条件付き入学許可</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deny</masterLabel>
+        <translation>却下</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Deferred Offer</masterLabel>
+        <translation>延期された提案</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Accepted Offer</masterLabel>
+        <translation>受諾された提案</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Declined Offer</masterLabel>
+        <translation>却下された提案</translation>
+    </picklistValues>
+</CustomFieldTranslation>

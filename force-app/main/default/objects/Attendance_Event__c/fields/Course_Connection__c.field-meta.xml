@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course_Connection__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The class and period in which the student was tardy or absent.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The class and period in which the student was tardy or absent.</inlineHelpText>
+    <label>Course Connection</label>
+    <referenceTo>Course_Enrollment__c</referenceTo>
+    <relationshipLabel>Attendance Events</relationshipLabel>
+    <relationshipName>Attendance_Events</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The Test for which this score is being recorded. --></help>
+    <label><!-- Test --></label>
+    <name>Test__c</name>
+    <relationshipLabel><!-- Test Scores --></relationshipLabel>
+</CustomFieldTranslation>

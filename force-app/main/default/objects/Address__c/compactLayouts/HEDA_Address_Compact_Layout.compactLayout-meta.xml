@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HEDA_Address_Compact_Layout</fullName>
+    <fields>Formula_MailingAddress__c</fields>
+    <fields>Seasonal_Start_Day__c</fields>
+    <fields>Seasonal_Start_Month__c</fields>
+    <fields>Seasonal_End_Day__c</fields>
+    <fields>Seasonal_End_Month__c</fields>
+    <label>HEDA Address Compact Layout</label>
+</CompactLayout>

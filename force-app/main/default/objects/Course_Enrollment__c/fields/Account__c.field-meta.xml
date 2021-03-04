@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Academic Program that the student or faculty member is associated with.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Academic Program that the student or faculty member is associated with.</inlineHelpText>
+    <label>Contact&apos;s Academic Program</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Course Connections</relationshipLabel>
+    <relationshipName>Course_Enrollments</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>HIPAA__c</name>
+    <help>Indica si el registre d&apos;aquesta persona està subjecte a les normes de la Llei de portabilitat i responsabilitat de l&apos;assegurança mèdica.</help>
+    <label>HIPAA</label>
+</CustomFieldTranslation>

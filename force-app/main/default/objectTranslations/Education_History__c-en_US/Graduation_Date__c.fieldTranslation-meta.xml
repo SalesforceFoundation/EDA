@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- If applicable, the date the Contact graduated from this Educational Institution. --></help>
+    <label><!-- Graduation Date --></label>
+    <name>Graduation_Date__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Object__c</name>
+    <help>El nombre del objeto sobre el que debe actuar esta clase, como por ejemplo Cuenta, Contacto, Oportunidad.</help>
+    <label>Objeto</label>
+</CustomFieldTranslation>

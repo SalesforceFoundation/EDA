@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Facility_Type__c</name>
+    <help>Sélectionnez le type de structure, par exemple une salle informatique, un centre de soins, un amphithéâtre, etc.</help>
+    <label>Type de structure</label>
+    <picklistValues>
+        <masterLabel>Building</masterLabel>
+        <translation>Bâtiment</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cafeteria/Food Hall</masterLabel>
+        <translation>Cafétéria / réfectoire</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Classroom</masterLabel>
+        <translation>Salle de classe</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Computer Lab</masterLabel>
+        <translation>Salle informatique</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gymnasium</masterLabel>
+        <translation>Gymnase</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Health Center</masterLabel>
+        <translation>Centre de soins</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Laboratory</masterLabel>
+        <translation>Laboratoire</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lecture Hall</masterLabel>
+        <translation>Amphithéâtre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Library</masterLabel>
+        <translation>Bibliothèque</translation>
+    </picklistValues>
+</CustomFieldTranslation>

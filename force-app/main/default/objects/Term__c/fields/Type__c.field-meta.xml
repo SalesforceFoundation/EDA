@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <description>The type of Term, for example, Semester, Quarter, or School Year.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The type of Term, for example, Semester, Quarter, or School Year.</inlineHelpText>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Quarter</fullName>
+                <default>false</default>
+                <label>Quarter</label>
+            </value>
+            <value>
+                <fullName>Semester</fullName>
+                <default>false</default>
+                <label>Semester</label>
+            </value>
+            <value>
+                <fullName>School Year</fullName>
+                <default>false</default>
+                <label>School Year</label>
+            </value>
+            <value>
+                <fullName>Part of Term</fullName>
+                <default>false</default>
+                <label>Part of Term</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

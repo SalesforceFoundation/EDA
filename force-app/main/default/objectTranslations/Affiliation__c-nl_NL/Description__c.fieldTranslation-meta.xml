@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Description__c</name>
+    <help>Informatie over hoe de persoon en organisatie geaffilieerd zijn.</help>
+    <label>Beschrijving</label>
+</CustomFieldTranslation>

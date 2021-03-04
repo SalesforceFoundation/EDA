@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Term_Grade_Type__c</name>
+    <help>この評価の対象である評価期間の種別 (中間評価、最終評価、試験評価、評価期間など)。</help>
+    <label>学期評価種別</label>
+    <picklistValues>
+        <masterLabel>Exam Grade</masterLabel>
+        <translation>試験評価</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Final Grade</masterLabel>
+        <translation>最終評価</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grading Period</masterLabel>
+        <translation>評価期間</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mid-Term Grade</masterLabel>
+        <translation>中間評価</translation>
+    </picklistValues>
+</CustomFieldTranslation>

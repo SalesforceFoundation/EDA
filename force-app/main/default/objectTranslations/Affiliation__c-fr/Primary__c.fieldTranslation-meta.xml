@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary__c</name>
+    <help>Indique s&apos;il s&apos;agit de l&apos;affiliation principale pour cette personne. Si cette option est sélectionnée, le nom de l&apos;organisation est stocké dans le champ Affiliation principale dans l&apos;enregistrement Contact.</help>
+    <label>Principal</label>
+</CustomFieldTranslation>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Type__c</name>
+    <help>Descriu com està connectat el contacte relacionat amb el contacte, per exemple, amic, company de feina, tia, etc.</help>
+    <label>Tipus</label>
+    <picklistValues>
+        <masterLabel>Father</masterLabel>
+        <translation>Pare</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stepfather</masterLabel>
+        <translation>Padrastre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mother</masterLabel>
+        <translation>Mare</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stepmother</masterLabel>
+        <translation>Madrastra</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Parent</masterLabel>
+        <translation>Pare</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stepparent</masterLabel>
+        <translation>Padrastre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foster Parent</masterLabel>
+        <translation>Pare adoptiu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Daughter</masterLabel>
+        <translation>Filla</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stepdaughter</masterLabel>
+        <translation>Fillastra</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foster Daughter</masterLabel>
+        <translation>Filla adoptiva</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Son</masterLabel>
+        <translation>Fill</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stepson</masterLabel>
+        <translation>Fillastre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foster Son</masterLabel>
+        <translation>Fill adoptiu</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Child</masterLabel>
+        <translation>Nen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Stepchild</masterLabel>
+        <translation>Fillastre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Foster Child</masterLabel>
+        <translation>Nen adoptat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Husband</masterLabel>
+        <translation>Marit</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wife</masterLabel>
+        <translation>Dona</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partner</masterLabel>
+        <translation>Company</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Aunt</masterLabel>
+        <translation>Tia</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Uncle</masterLabel>
+        <translation>Oncle</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Parent&apos;s Sibling</masterLabel>
+        <translation>Germà/germana de progenitor</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Niece</masterLabel>
+        <translation>Neboda</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Nephew</masterLabel>
+        <translation>Nebot</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sibling&apos;s Child</masterLabel>
+        <translation>Fill/a de germà/germana</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cousin</masterLabel>
+        <translation>Cosí/na</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grandmother</masterLabel>
+        <translation>Àvia</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grandfather</masterLabel>
+        <translation>Avi</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grandparent</masterLabel>
+        <translation>Avi</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grandson</masterLabel>
+        <translation>Net</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Granddaughter</masterLabel>
+        <translation>Neta</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Grandchild</masterLabel>
+        <translation>Net/a</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Guardian</masterLabel>
+        <translation>Tutor legal</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dependent</masterLabel>
+        <translation>Dependent</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Employer</masterLabel>
+        <translation>Empresari</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Employee</masterLabel>
+        <translation>Empleat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Friend</masterLabel>
+        <translation>Amic</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Family</masterLabel>
+        <translation>Família</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Coworker</masterLabel>
+        <translation>Company de feina</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Program_Enrollment__c</name>
+    <help>For students, their primary Program Enrolment. In Higher Ed, this typically represents a student&apos;s academic major.</help>
+    <relationshipLabel>Course Connections</relationshipLabel>
+    <label>Program Enrolment ID</label>
+</CustomFieldTranslation>

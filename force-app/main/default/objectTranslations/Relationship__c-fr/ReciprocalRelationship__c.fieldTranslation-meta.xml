@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>ReciprocalRelationship__c</name>
+    <help>Référence à l&apos;enregistrement Relation réciproque. Ce champ est automatiquement rempli. Sa mise à jour manuelle pourrait entraîner des erreurs.</help>
+    <relationshipLabel>Relations</relationshipLabel>
+    <label>Relation réciproque</label>
+</CustomFieldTranslation>

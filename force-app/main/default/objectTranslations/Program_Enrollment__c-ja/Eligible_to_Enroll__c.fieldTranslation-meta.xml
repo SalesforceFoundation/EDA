@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Eligible_to_Enroll__c</name>
+    <help>選択した場合、学生がプログラム要件を満たし、登録可能であることを示します。</help>
+    <label>登録可能</label>
+</CustomFieldTranslation>

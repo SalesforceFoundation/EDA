@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Do_Not_Contact__c</name>
+    <help>Osoittaa, että tämä henkilö ei halua organisaatiosi soittavan tai lähettävän sähköpostia. Tämän kentän avulla voit suodattaa yhteyshenkilöt sähköposti- ja puhelinluetteloista.</help>
+    <label>Ei yhteydenpitoa</label>
+</CustomFieldTranslation>

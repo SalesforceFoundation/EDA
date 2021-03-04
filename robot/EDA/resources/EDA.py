@@ -11,12 +11,12 @@ from selenium.common.exceptions import NoSuchWindowException
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 
+from locators_51 import eda_lex_locators as locators_51
 from locators_50 import eda_lex_locators as locators_50
-from locators_49 import eda_lex_locators as locators_49
 
 locators_by_api_version = {
-    50.0: locators_50,  # Winter '21
-    49.0: locators_49   # Summer '20
+    51.0: locators_51,  # Spring '21
+    50.0: locators_50   # Winter '21
 }
 # will get populated in _init_locators
 eda_lex_locators = {}
@@ -343,6 +343,11 @@ class EDA(BaseEDAPage):
         """Verifies that the given app is present in the app launcher"""
         locator = eda_lex_locators["app_tile"].format(app)
         self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{app} did not open in 1 min')
+
+    def verify_item_exists(self, item):
+        """Verifies that the given item is present in the app launcher"""
+        locator = eda_lex_locators["app_item"].format(item)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{item} did not open in 1 min')
 
     def select_frame_with_value(self, value):
         """ Selects the first displayed iframe on the page identified by the given value

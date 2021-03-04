@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Offering__c</name>
+    <help>Das mit der aufgezeichneten Note verknüpfte Kursangebot. Bleibt das Feld leer, wird &quot;Kursangebot&quot; beim Speichern automatisch anhand der gültigen Kursverbindung aufgefüllt.</help>
+    <relationshipLabel>Zeitabschnittsbezogene Noten</relationshipLabel>
+    <label>Kursangebot</label>
+</CustomFieldTranslation>

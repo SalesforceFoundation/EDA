@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Auto_Program_Enrollment_Role__c</name>
+    <help>La funció que cal establir al registre d&apos;inscripció al programa que es crea automàticament si se selecciona Inscripció automàtica al programa.</help>
+    <label>Funció d&apos;inscripció automàtica</label>
+</CustomFieldTranslation>

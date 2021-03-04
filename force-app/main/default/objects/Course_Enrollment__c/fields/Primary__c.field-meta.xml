@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>For faculty members, indicates they are the primary faculty (for example, lead instructor) for the Course Offering.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>For faculty members, indicates they are the primary faculty (for example, lead instructor) for the Course Offering.</inlineHelpText>
+    <label>Primary</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

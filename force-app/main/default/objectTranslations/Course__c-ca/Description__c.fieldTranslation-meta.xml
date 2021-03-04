@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Description__c</name>
+    <help>Aquest camp s&apos;ha substituït pel camp Descripció ampliada, que s&apos;adapta a descripcions més llargues. El vostre administrador pot migrar text des del camp Descripció al camp Descripció ampliada a Configuració EDA | Cursos.</help>
+    <label>Descripció</label>
+</CustomFieldTranslation>

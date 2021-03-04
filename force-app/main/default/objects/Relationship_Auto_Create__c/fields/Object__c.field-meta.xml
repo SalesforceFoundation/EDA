@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Object__c</fullName>
+    <description>The API name of the object (either Contact or CampaignMember) that the custom lookup field is on.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The API name of the object (either Contact or CampaignMember) that the custom lookup field is on.</inlineHelpText>
+    <label>Object</label>
+    <length>50</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

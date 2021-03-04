@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Attendance_Type__c</name>
+    <help>Geef aan of de student een hele dag of voor één lesperiode te laat of afwezig was.</help>
+    <label>Aanwezigheidstype</label>
+    <picklistValues>
+        <masterLabel>Class Absence</masterLabel>
+        <translation>Afwezig voor les</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Class Tardy</masterLabel>
+        <translation>Te laat voor les</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Day Absence</masterLabel>
+        <translation>Dag afwezig</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Day Tardy</masterLabel>
+        <translation>Dag te laat</translation>
+    </picklistValues>
+</CustomFieldTranslation>

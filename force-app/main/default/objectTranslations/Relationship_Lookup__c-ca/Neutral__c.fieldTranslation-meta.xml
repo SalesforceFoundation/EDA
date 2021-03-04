@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Neutral__c</name>
+    <help>El valor que s’utilitza si els camps Sexe i Salutació del contacte no indiquen el sexe.</help>
+    <label>Neutral</label>
+</CustomFieldTranslation>

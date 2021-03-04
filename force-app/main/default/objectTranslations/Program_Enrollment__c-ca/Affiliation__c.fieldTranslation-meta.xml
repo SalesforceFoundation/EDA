@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Affiliation__c</name>
+    <help>Aquest camp s&apos;omple automàticament amb el registre d&apos;afiliació que representa la inscripció de l&apos;alumne en aquest programa.</help>
+    <relationshipLabel>Inscripcions del programa</relationshipLabel>
+    <label>Afiliació</label>
+</CustomFieldTranslation>

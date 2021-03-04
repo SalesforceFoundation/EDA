@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Race__c</name>
+    <help>Valitse rotu/rodut, joita tämä henkilö käyttää kuvaamaan itseään.</help>
+    <label>Rotu</label>
+    <picklistValues>
+        <masterLabel>American Indian or Alaska Native</masterLabel>
+        <translation>Amerikan intiaani tai syntyperäinen alaskalainen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Asian</masterLabel>
+        <translation>Aasialainen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Black or African American</masterLabel>
+        <translation>Musta tai afrikkalais-amerikkalainen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hispanic or Latino</masterLabel>
+        <translation>Latinalaisamerikkalainen tai latino</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Native Hawaiian or Other Pacific Islander</masterLabel>
+        <translation>Syntyperäinen havaijilainen tai muu Tyynenmeren saaristolainen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>White</masterLabel>
+        <translation>Valkoinen</translation>
+    </picklistValues>
+</CustomFieldTranslation>

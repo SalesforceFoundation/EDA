@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Current_Address__c</name>
+    <help>Cerqueu el registre d’adreces actual d’aquest contacte. El camp Adreça de correu del contacte s&apos;omple automàticament amb els camps d&apos;adreça del registre d&apos;adreces actual.</help>
+    <relationshipLabel>Contactes (adreça actual)</relationshipLabel>
+    <label>Adreça actual</label>
+</CustomFieldTranslation>

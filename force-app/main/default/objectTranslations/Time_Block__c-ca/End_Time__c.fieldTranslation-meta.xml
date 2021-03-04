@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>End_Time__c</name>
+    <help>Hora del dia en què acaba el bloc de temps.</help>
+    <label>Hora de finalització</label>
+</CustomFieldTranslation>

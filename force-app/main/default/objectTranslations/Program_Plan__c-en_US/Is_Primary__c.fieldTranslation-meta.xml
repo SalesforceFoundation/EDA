@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Checkbox to designate this Plan as the one to assign to a student when creating a Program Enrollment --></help>
+    <label><!-- Is Primary --></label>
+    <name>Is_Primary__c</name>
+</CustomFieldTranslation>

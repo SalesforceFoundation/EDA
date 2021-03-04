@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Record_URL__c</name>
+    <help>エラーが発生したレコードへのリンク (使用可能な場合)。</help>
+    <label>レコード URL</label>
+</CustomFieldTranslation>

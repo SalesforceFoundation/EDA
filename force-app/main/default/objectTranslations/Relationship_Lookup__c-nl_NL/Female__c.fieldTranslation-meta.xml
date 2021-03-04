@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Female__c</name>
+    <help>De waarde die voor de wederzijdse instelling wordt gebruikt als het veld Geslacht/gender of Aanhef van de contactpersoon het geslacht vrouw aangeeft.</help>
+    <label>Vrouw</label>
+</CustomFieldTranslation>

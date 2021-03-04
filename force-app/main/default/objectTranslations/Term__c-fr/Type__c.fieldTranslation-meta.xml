@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Type__c</name>
+    <help>Le type de période, par exemple Semestre, Trimestre ou Année scolaire.</help>
+    <label>Type</label>
+    <picklistValues>
+        <masterLabel>Quarter</masterLabel>
+        <translation>Trimestre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Semester</masterLabel>
+        <translation>Semestre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>School Year</masterLabel>
+        <translation>Année scolaire</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Part of Term</masterLabel>
+        <translation>Partie de la période</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Parent_Term__c</name>
+    <help>Optionally, select the Term that this Term is a part of. For example, if this Term is Fall Quarter 2020, the Parent Term might be 2020/2021 School Year.</help>
+    <relationshipLabel>Terms</relationshipLabel>
+    <label>Parent Term</label>
+</CustomFieldTranslation>

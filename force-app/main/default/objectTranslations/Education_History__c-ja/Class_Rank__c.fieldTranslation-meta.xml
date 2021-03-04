@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank__c</name>
+    <help>同期卒業のクラスでの相対的な学生の順位。たとえば、200 人のクラスで 5 番目の順位の学生の値は 5 です。</help>
+    <label>クラス順位</label>
+</CustomFieldTranslation>

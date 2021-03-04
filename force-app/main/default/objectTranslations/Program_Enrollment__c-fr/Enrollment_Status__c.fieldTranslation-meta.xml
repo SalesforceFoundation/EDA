@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Enrollment_Status__c</name>
+    <help>Le statut d&apos;inscription de l&apos;étudiant, par exemple plein-temps ou mi-temps.</help>
+    <label>Statut d&apos;inscription</label>
+    <picklistValues>
+        <masterLabel>Full-time</masterLabel>
+        <translation>Plein-temps</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Half-time</masterLabel>
+        <translation>Mi-temps</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Less than half-time</masterLabel>
+        <translation>Inférieur à mi-temps</translation>
+    </picklistValues>
+</CustomFieldTranslation>

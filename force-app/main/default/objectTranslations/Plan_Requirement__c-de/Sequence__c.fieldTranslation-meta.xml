@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Sequence__c</name>
+    <help>Rang dieser Anforderung im Programmplan. &quot;1&quot; gibt z. B. das erste Semester an. Geben Sie hiermit den Gesamtfortschritt für den gesamten Programmplan an oder sortieren Sie die Reihenfolge der Unteranforderungen in einer übergeordneten Plananforderung.</help>
+    <label>Sequenz</label>
+</CustomFieldTranslation>

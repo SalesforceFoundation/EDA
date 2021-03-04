@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Plan_Requirement__c</name>
+    <help>このプラン要件が複数の要件または複数レベルの要件のうちの 1 つの場合、親プラン要件を指定します。この項目を使用して、一般的な要件を満たす省略可能な科目のリストをグループ化します。</help>
+    <relationshipLabel>プラン要件</relationshipLabel>
+    <label>親プラン要件</label>
+</CustomFieldTranslation>

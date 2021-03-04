@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Affiliation Layout</layout>
+        <sections>
+            <label>Informació d&apos;afiliació</label>
+            <section>Affiliation Information</section>
+        </sections>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clau d’afiliació</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Clau d’afiliació</label>
+    </standardFields>
+</CustomObjectTranslation>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Allow_AutoCreated_Duplicates__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Auto-created Relationships are deduplicated to prevent duplication of Relationship records between Contacts. Select Allow Auto-Created Duplicate Relations to disable this behavior and allow multiple Relationships of the same type between two Contacts.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Auto-created Relationships are deduplicated to prevent duplication of Relationship records between Contacts. Select Allow Auto-Created Duplicate Relations to disable this behavior and allow multiple Relationships of the same type between two Contacts.</inlineHelpText>
+    <label>Allow Auto-Created Duplicate Relations</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

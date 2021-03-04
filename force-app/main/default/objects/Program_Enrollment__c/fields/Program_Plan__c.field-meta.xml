@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Program_Plan__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Program Plan that contains all of the program requirements in effect for this student.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Program Plan that contains all of the program requirements in effect for this student.</inlineHelpText>
+    <label>Program Plan</label>
+    <referenceTo>Program_Plan__c</referenceTo>
+    <relationshipLabel>Program Enrollments</relationshipLabel>
+    <relationshipName>Program_Enrollments</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

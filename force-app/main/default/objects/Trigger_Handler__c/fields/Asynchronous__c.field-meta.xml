@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Asynchronous__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether this class should run asynchronously in this transaction, for any of its After events.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates whether this class should run asynchronously in this transaction, for any of its After events.</inlineHelpText>
+    <label>Asynchronous</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

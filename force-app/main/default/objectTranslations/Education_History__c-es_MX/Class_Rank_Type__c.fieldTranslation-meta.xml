@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Rank_Type__c</name>
+    <help>Realiza un seguimiento del modo de determinar la clasificación de la clase. Por ejemplo, usando una escala ponderada o sin ponderar.</help>
+    <label>Tipo de clasificación de clase</label>
+    <picklistValues>
+        <masterLabel>Unweighted</masterLabel>
+        <translation>Sin ponderar</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Weighted</masterLabel>
+        <translation>Ponderado</translation>
+    </picklistValues>
+</CustomFieldTranslation>

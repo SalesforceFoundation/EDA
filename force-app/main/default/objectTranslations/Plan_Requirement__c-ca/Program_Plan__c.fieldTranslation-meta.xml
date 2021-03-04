@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Program_Plan__c</name>
+    <help>El pla del programa per al qual és aquest requisit. Si agrupeu els requisits del pla sota un requisit principal del pla, us recomanem enllaçar només el requisit del pla de nivell superior amb un pla del programa.</help>
+    <relationshipLabel>Requisits del pla</relationshipLabel>
+    <label>Pla del programa</label>
+</CustomFieldTranslation>

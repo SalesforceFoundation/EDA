@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Primary_Affl_Field__c</name>
+    <help>L&apos;etiqueta del camp de contacte que conté el valor del compte principal per a aquest tipus de registre.</help>
+    <label>Camp d&apos;afiliació primària</label>
+</CustomFieldTranslation>

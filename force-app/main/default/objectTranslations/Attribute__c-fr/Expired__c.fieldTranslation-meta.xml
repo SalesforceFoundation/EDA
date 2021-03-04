@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Expired__c</name>
+    <help>Indique si l’attribut a expiré. Cette option est automatiquement sélectionnée si la date de fin de l&apos;attribut est passée.</help>
+    <label>Expiré</label>
+</CustomFieldTranslation>

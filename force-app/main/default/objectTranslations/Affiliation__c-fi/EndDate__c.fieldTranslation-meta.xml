@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>EndDate__c</name>
+    <help>Päivämäärä, jona tämä jäsenyys päättyi tai päättyy.</help>
+    <label>Päättymispäivä</label>
+</CustomFieldTranslation>

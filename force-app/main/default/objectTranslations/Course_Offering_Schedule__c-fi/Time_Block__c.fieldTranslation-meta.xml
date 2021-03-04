@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Time_Block__c</name>
+    <help>Aikalohko, jolloin tämä kurssitarjonta pidetään.</help>
+    <relationshipLabel>Kurssitarjonnan aikataulut</relationshipLabel>
+    <label>Aikalohko</label>
+</CustomFieldTranslation>

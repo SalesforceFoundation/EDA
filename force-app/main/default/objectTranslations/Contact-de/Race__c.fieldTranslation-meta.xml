@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Race__c</name>
+    <help>Wählen Sie die Rasse(n) aus, mit der/denen diese Person sich selbst beschreibt.</help>
+    <label>Rasse</label>
+    <picklistValues>
+        <masterLabel>American Indian or Alaska Native</masterLabel>
+        <translation>Indianer oder Ureinwohner Alaskas</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Asian</masterLabel>
+        <translation>Asiatisch</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Black or African American</masterLabel>
+        <translation>Schwarz oder afroamerikanisch</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hispanic or Latino</masterLabel>
+        <translation>Hispanic oder Latino</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Native Hawaiian or Other Pacific Islander</masterLabel>
+        <translation>Hawaiianer oder anderer pazifischer Insulaner</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>White</masterLabel>
+        <translation>Weiß</translation>
+    </picklistValues>
+</CustomFieldTranslation>

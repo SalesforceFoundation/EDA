@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <validationRules>
+        <errorMessage>En lloc de canviar els contactes d&apos;aquesta relació, suprimiu aquest registre o, si escau, afegiu una data de finalització i actualitzeu l&apos;estat a anterior. A continuació, creeu un nou registre de relació entre els nous contactes.</errorMessage>
+        <name>Contact_Do_Not_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>En lloc de canviar els contactes d&apos;aquesta relació, suprimiu aquest registre o, si escau, afegiu una data de finalització i actualitzeu l&apos;estat a anterior. A continuació, creeu un nou registre de relació entre els nous contactes.</errorMessage>
+        <name>Related_Contact_Do_Not_Change</name>
+    </validationRules>
+    <layouts>
+        <layout>HEDA Relationship Layout</layout>
+        <sections>
+            <label>Informació de la relació</label>
+            <section>Relationship Information</section>
+        </sections>
+        <sections>
+            <label>Enllaços personalitzats</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Clau de relació</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>Clau de relació</label>
+    </standardFields>
+</CustomObjectTranslation>

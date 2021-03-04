@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Status__c</name>
+    <help>Wählen Sie &quot;Aktuell&quot; aus, wenn Schüler/Studenten für diesen Programmplan registriert sind oder für die Registrierung berechtigt sind. Wählen Sie andernfalls &quot;Archiviert&quot;.</help>
+    <label>Status</label>
+    <picklistValues>
+        <masterLabel>Current</masterLabel>
+        <translation>Aktuell</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Archived</masterLabel>
+        <translation>Archiviert</translation>
+    </picklistValues>
+</CustomFieldTranslation>

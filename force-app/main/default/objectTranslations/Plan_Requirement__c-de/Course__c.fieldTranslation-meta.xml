@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course__c</name>
+    <help>Der zu dieser Plananforderung gehörige Kurs. Lassen Sie das Feld für eine übergeordnete Plananforderung mit geschachtelten Plananforderungen leer.</help>
+    <relationshipLabel>Plananforderungen</relationshipLabel>
+    <label>Kurs</label>
+</CustomFieldTranslation>

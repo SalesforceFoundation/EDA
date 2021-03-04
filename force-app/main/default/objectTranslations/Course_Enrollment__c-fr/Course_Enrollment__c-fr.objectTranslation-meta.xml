@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>HEDA Course Enrollment Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>ID de connexion au cours</nameFieldLabel>
+    <standardFields>
+        <name>Name</name>
+        <label>ID de connexion au cours</label>
+    </standardFields>
+    <gender>Feminine</gender>
+    <startsWith>Consonant</startsWith>
+    <caseValues>
+        <plural>false</plural>
+        <value>Inscription à un module</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Inscriptions à des modules</value>
+    </caseValues>
+</CustomObjectTranslation>

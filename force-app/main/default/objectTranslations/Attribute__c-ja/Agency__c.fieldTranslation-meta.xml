@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Agency__c</name>
+    <help>資格を提供または認定した機関。</help>
+    <relationshipLabel>特記事項</relationshipLabel>
+    <label>機関</label>
+</CustomFieldTranslation>

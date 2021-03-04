@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Class_Standing__c</name>
+    <help>Die Stufe des Studenten in einem Programm, z. B. Student im ersten, zweiten, dritten oder vierten Jahr.</help>
+    <label>Einstufung</label>
+    <picklistValues>
+        <masterLabel>Freshman</masterLabel>
+        <translation>Student im ersten Jahr</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sophomore</masterLabel>
+        <translation>Student im zweiten Jahr</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Junior</masterLabel>
+        <translation>Student im dritten Jahr</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Senior</masterLabel>
+        <translation>Student im vierten Jahr</translation>
+    </picklistValues>
+</CustomFieldTranslation>

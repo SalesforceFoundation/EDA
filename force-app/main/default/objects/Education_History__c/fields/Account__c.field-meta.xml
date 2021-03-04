@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Educational Institution Account related to this data.</description>
+    <externalId>false</externalId>
+    <label>Educational Institution Account</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Education History</relationshipLabel>
+    <relationshipName>Education_History</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

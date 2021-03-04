@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Start_Time__c</name>
+    <help>Hora del dia en què comença el bloc de temps.</help>
+    <label>Hora inicial</label>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Course_Offering__c</name>
+    <help>La Oferta de curso con la que el estudiante o miembro de institución está involucrado.</help>
+    <relationshipLabel>Enlace de cursos</relationshipLabel>
+    <label>Id. de Oferta de curso</label>
+</CustomFieldTranslation>

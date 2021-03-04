@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course_Offering__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The Course Offering this schedule is for.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Course Offering this schedule is for.</inlineHelpText>
+    <label>Course Offering</label>
+    <referenceTo>Course_Offering__c</referenceTo>
+    <relationshipLabel>Course Offering Schedules</relationshipLabel>
+    <relationshipName>Course_Offering_Schedules</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

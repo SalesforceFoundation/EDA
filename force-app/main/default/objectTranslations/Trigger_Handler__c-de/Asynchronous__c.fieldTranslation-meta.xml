@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Asynchronous__c</name>
+    <help>Gibt an, ob dieses Modul in dieser Transaktion asynchron ausgeführt werden sollte, und zwar für alle seine &quot;after&quot;-Ereignisse.</help>
+    <label>Asynchron</label>
+</CustomFieldTranslation>

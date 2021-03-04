@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Naming_Exclusions__c</name>
+    <help>[世帯名] オプションを選択すると、この取引先責任者が世帯名から除外されます。注意: 現在、[世帯の公式の挨拶] オプションと [世帯の非公式の挨拶] オプションは既存の製品機能に結び付けられていません。</help>
+    <label>命名除外</label>
+    <picklistValues>
+        <masterLabel>Household__c.Name</masterLabel>
+        <translation>Household__c.Name</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Household__c.Formal_Greeting__c</masterLabel>
+        <translation>Household__c.Formal_Greeting__c</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Household__c.Informal_Greeting__c</masterLabel>
+        <translation>Household__c.Informal_Greeting__c</translation>
+    </picklistValues>
+</CustomFieldTranslation>

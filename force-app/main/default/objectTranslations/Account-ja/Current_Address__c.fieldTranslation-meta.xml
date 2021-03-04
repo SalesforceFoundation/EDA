@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Current_Address__c</name>
+    <help>この取引先の現在の住所レコードへの参照。取引先の [住所(請求先)] 項目には、現在の住所レコードから住所項目が入力されます。</help>
+    <relationshipLabel>取引先 (現在の住所)</relationshipLabel>
+    <label>現在の住所</label>
+</CustomFieldTranslation>
