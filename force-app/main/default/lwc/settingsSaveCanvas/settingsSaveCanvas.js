@@ -42,12 +42,13 @@ export default class SettingsSaveCanvas extends LightningElement {
                     // update successful
                     console.log('Updated!');
                 } else {
-                    // update failed
+                    // update failed - DML Exception encountered
                     console.log('Update failed.');
                 }
             })
             .catch(error => {
-                // what to do on error - need to determine type of error thrown from server
+                // TODO: handle catch (System.NoAccessException e)
+                // TODO: handle catch (HierarchySettingsMapper.InvalidSettingsException e)
                 console.log('Error: ' + JSON.stringify(error));
             });
     }
