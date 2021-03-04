@@ -11,6 +11,6 @@
         }
     },
     "lint-staged": {
-        "*.{js,css,md}": "prettier --check"
+        "*.{html,md,yml,yaml,json}": "prettier --check"
     }
 }
