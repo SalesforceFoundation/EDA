@@ -50,6 +50,56 @@ public without sharing class UTIL_CustomSettingsFacade {
     public static List<Relationship_Auto_Create__c> relationshipAutocreate;
     public static List<Relationship_Lookup__c> relationshipLookup;
 
+    private static Map<Schema.SObjectType, List<Relationship_Auto_Create__c>> relationshipAutoCreateListBySObjectType;
+    private static List<Relationship_Lookup__c> activeRelationshipLookupList;
+
+    /******************************************************************************************************
+    * @description Generates a list of Relationship Auto Create settings for Contact
+    * @return A  of Relationship Auto Create settings specified for the Contact object
+    ******************************************************************************************************/
+    public static List<Relationship_Auto_Create__c> getAutoCreateSettingsForContact(){
+        if (UTIL_CustomSettingsFacade.relationshipAutoCreateListBySObjectType != null){
+            return UTIL_CustomSettingsFacade.relationshipAutoCreateListBySObjectType.get(Contact.SObjectType);
+        }
+
+        if (UTIL_CustomSettingsFacade.relationshipAutocreate == null || UTIL_CustomSettingsFacade.relationshipAutocreate.isEmpty() == true){
+            UTIL_CustomSettingsFacade.relationshipAutocreate = UTIL_CustomSettingsFacade.getAutocreateSettings();
+        }
+
+        List<Relationship_Auto_Create__c> relationshipAutoCreateList = new List<Relationship_Auto_Create__c>();
+
+        for (Relationship_Auto_Create__c relAutoCreate : relationshipAutocreate){
+            if (relAutoCreate.Object__c.equalsIgnoreCase('Contact')){
+                relationshipAutoCreateList.add(relAutoCreate);
+            }
+        }
+
+        UTIL_CustomSettingsFacade.relationshipAutoCreateListBySObjectType = new Map<Schema.SObjectType, List<Relationship_Auto_Create__c>>();
+        relationshipAutoCreateListBySObjectType.put(Contact.SObjectType, relationshipAutoCreateList);
+
+        return relationshipAutoCreateList;
+    }
+
+    /******************************************************************************************************
+    * @description Generates a list of active Relationship Lookup mappings.
+    * @return A list containing the current active Relationship Lookup mappings.
+    ******************************************************************************************************/ 
+    public static List<Relationship_Lookup__c> getActiveRelationshipLookups(){
+        if (UTIL_CustomSettingsFacade.activeRelationshipLookupList != null){
+            return UTIL_CustomSettingsFacade.activeRelationshipLookupList;
+        }
+
+        UTIL_CustomSettingsFacade.activeRelationshipLookupList = new List<Relationship_Lookup__c>();
+
+        for (Relationship_Lookup__c relLookup : UTIL_CustomSettingsFacade.getReciprocalSettings()){
+            if (relLookup.Active__c == true){
+                UTIL_CustomSettingsFacade.activeRelationshipLookupList.add(relLookup);
+            }
+        }
+
+        return UTIL_CustomSettingsFacade.activeRelationshipLookupList;
+    }
+    
     /*******************************************************************************************************
     * @description Returns the default settings.
     * @return Hierarchy_Settings__c custom settings record.
@@ -183,6 +233,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affl_ProgEnroll_Role_Map__c = mySettings.Affl_ProgEnroll_Role_Map__c;
         settings.Affl_ProgEnroll_Set_Role__c= mySettings.Affl_ProgEnroll_Set_Role__c;
         settings.Affl_ProgEnroll_Status_Map__c= mySettings.Affl_ProgEnroll_Status_Map__c;
+        settings.Allow_AutoCreated_Duplicates__c = mySettings.Allow_AutoCreated_Duplicates__c;
         settings.Async_Error_Check_Last_Run__c = mySettings.Async_Error_Check_Last_Run__c;
         settings.Automatic_Household_Naming__c = mySettings.Automatic_Household_Naming__c;
         settings.Contacts_Addresses_Enabled__c = mySettings.Contacts_Addresses_Enabled__c;
@@ -264,9 +315,15 @@ public without sharing class UTIL_CustomSettingsFacade {
     **/
     public static List<Relationship_Auto_Create__c> getAutoCreateSettings() {
         if(relationshipAutocreate == null) {
-            relationshipAutocreate = [select Id, Name, Campaign_Types__c, Field__c, Object__c, Relationship_Type__c from Relationship_Auto_Create__c
-                limit 50000];
+            relationshipAutocreate = [SELECT Id, 
+                                             Name, 
+                                             Campaign_Types__c, 
+                                             Field__c, Object__c, 
+                                             Relationship_Type__c 
+                                     FROM Relationship_Auto_Create__c
+                                     LIMIT 50000];
         }
+
         return relationshipAutocreate;
     }
 
