@@ -631,6 +631,14 @@
         <value>Default Account Model</value>
     </labels>
     <labels>
+        <fullName>stgAccountModelSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message for the Account Model Settings page title</shortDescription>
+        <value>Account Model Settings</value>
+    </labels>
+    <labels>
         <fullName>stgAccountRecordTypeSupportsHHAddress</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

@@ -34,8 +34,7 @@ export default class SettingsSaveCanvas extends LightningElement {
         }
     }
 
-    @api
-    updateHierarchySettings() {
+    @api updateHierarchySettings() {
         updateHierarchySettingsServerSide({hierarchySettingsChangesModel: this.hierarchySettingsChanges})
             .then(result => {
                 if (result === true) {
@@ -51,15 +50,18 @@ export default class SettingsSaveCanvas extends LightningElement {
                 // TODO: handle catch (HierarchySettingsMapper.InvalidSettingsException e)
                 console.log('Error: ' + JSON.stringify(error));
             });
+
+        this.dispatchSettingsSaveCompletedEvent();
+        this.dispatchEditModeSwitchEvent(false);
     }
 
     handleEditClick(event) {
-        this.switchEditMode(false);
+        this.switchEditMode(true);
         this.dispatchEditModeSwitchEvent();
     }
 
     switchEditMode(editMode) {
-        this.editButtonShown = editMode;
+        this.editButtonShown = !editMode;
         if (this.editMode === true) {
             this.saveCancelDisabled = true;
         } else {
@@ -68,12 +70,20 @@ export default class SettingsSaveCanvas extends LightningElement {
     }
 
     dispatchEditModeSwitchEvent() {
-        this.dispatchEvent(new CustomEvent('settingseditmodechange', { detail: this.editButtonShown }));
+        this.dispatchEvent(
+            new CustomEvent(
+                'settingseditmodechange', 
+                { 
+                    detail: this.editButtonShown 
+                }
+            )
+        );
     }
 
     handleCancelClick(event) {
-        this.switchEditMode(true);
+        this.switchEditMode(false);
         this.clearHierarchySettingsChanges();
+        this.dispatchEditModeSwitchEvent(false);
     }
 
     clearHierarchySettingsChanges() {
@@ -82,12 +92,24 @@ export default class SettingsSaveCanvas extends LightningElement {
     }
 
     handleSaveClick() {
-        this.switchEditMode(true);
-        this.updateHierarchySettings();
+        this.switchEditMode(false);
         this.dispatchSettingsSavingEvent();
     }
 
     dispatchSettingsSavingEvent() {
-        this.dispatchEvent(new CustomEvent('settingssaving', { detail: this.editButtonShown }));
+        this.dispatchEvent(
+            new CustomEvent(
+                'settingssaving', 
+                { 
+                    detail: this.editButtonShown 
+                }
+            )
+        );
+    }
+
+    dispatchSettingsSaveCompletedEvent() {
+        this.dispatchEvent(
+            new CustomEvent('settingssavecompleted')
+        );
     }
 }

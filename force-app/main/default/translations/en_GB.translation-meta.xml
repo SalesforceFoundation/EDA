@@ -321,6 +321,10 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Message for the Account Model Settings page title --></label>
+        <name>stgAccountModelSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Household Account Record Type</label>
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>

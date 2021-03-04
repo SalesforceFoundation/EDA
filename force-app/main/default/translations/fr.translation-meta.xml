@@ -321,6 +321,10 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Message for the Account Model Settings page title --></label>
+        <name>stgAccountModelSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Type d’enregistrement de compte de foyer</label>
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
