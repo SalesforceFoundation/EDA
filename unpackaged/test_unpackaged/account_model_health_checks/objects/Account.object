@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <recordTypes>
+        <fullName>An_Active_Record_Type</fullName>
+        <active>true</active>
+        <description>A custom active record type for unmanaged primary affiliation testing.</description>
+        <label>An Active Record Type</label>
+    </recordTypes>
+    <recordTypes>
         <fullName>An_Inactive_Record_Type</fullName>
         <active>false</active>
         <description>A custom inactive record type for unmanaged primary affiliation testing.</description>
