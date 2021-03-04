@@ -61,7 +61,16 @@ public virtual with sharing class HierarchySettingsChangesController {
     **********************************************************************************/
     @AuraEnabled(cacheable=true)
     public static Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
-        return HierarchySettingsChangesController.locateHierarchySettingsUpdaterService().updateHierarchySettings(hierarchySettingsChangesModel);
+        try {
+            return HierarchySettingsChangesController.locateHierarchySettingsUpdaterService().updateHierarchySettings(hierarchySettingsChangesModel);
+        } catch (System.NoAccessException e) {
+            return false;
+        } catch (HierarchySettingsMapper.InvalidSettingsException e) {
+            return false;
+        } catch (System.DmlException e) {
+            return false;
+        } 
+        
     }
 
     /************************************************************************************

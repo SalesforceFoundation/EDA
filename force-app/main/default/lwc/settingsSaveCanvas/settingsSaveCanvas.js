@@ -4,6 +4,8 @@ import settingsButtonEdit from '@salesforce/label/c.stgBtnEdit';
 import settingsButtonCancel from '@salesforce/label/c.stgBtnCancel';
 import settingsButtonSave from '@salesforce/label/c.stgBtnSave';
 
+import updateHierarchySettingsServerSide from '@salesforce/apex/HierarchySettingsChangesController.updateHierarchySettings';
+
 export default class SettingsSaveCanvas extends LightningElement {
 
     @api componentTitle;
@@ -30,6 +32,24 @@ export default class SettingsSaveCanvas extends LightningElement {
         if (hierarchySettingsChange.settingsType === 'array') {
             hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] = hierarchySettingsChange.settingsValue;
         }
+    }
+
+    @api
+    updateHierarchySettings() {
+        updateHierarchySettingsServerSide({hierarchySettingsChangesModel: this.hierarchySettingsChanges})
+            .then(result => {
+                if (result === true) {
+                    // update successful
+                    console.log('Updated!');
+                } else {
+                    // update failed
+                    console.log('Update failed.');
+                }
+            })
+            .catch(error => {
+                // what to do on error - need to determine type of error thrown from server
+                console.log('Error: ' + JSON.stringify(error));
+            });
     }
 
     handleEditClick(event) {
@@ -62,6 +82,7 @@ export default class SettingsSaveCanvas extends LightningElement {
 
     handleSaveClick() {
         this.switchEditMode(true);
+        this.updateHierarchySettings();
         this.dispatchSettingsSavingEvent();
     }
 

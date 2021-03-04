@@ -140,7 +140,7 @@ public virtual with sharing class HierarchySettingsMapper {
                 UTIL_Debug.debug('****TypeException encountered: ' + e.getMessage());
                 throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
             } catch (Exception e) {
-                UTIL_Debug.debug('****Exception encountered: ' + e.getMessage());
+                UTIL_Debug.debug('****Unexpected Exception encountered: ' + e.getMessage());
                 throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
             }
         }
@@ -173,7 +173,7 @@ public virtual with sharing class HierarchySettingsMapper {
                 UTIL_Debug.debug('****SchemaDescribeException encountered: ' + e.getMessage());
                 throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
             } catch (Exception e) {
-                UTIL_Debug.debug('****Exception encountered: ' + e.getMessage());
+                UTIL_Debug.debug('****Unexpected Exception encountered: ' + e.getMessage());
                 throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
             }
         }
