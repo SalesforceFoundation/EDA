@@ -1,4 +1,4 @@
-![Salesforce Education Data Architecture](https://github.com/SalesforceFoundation/EDA/blob/master/EDA%20GitHub.png "Salesforce Education Data Architecture")
+![Salesforce Education Data Architecture](https://github.com/SalesforceFoundation/EDA/blob/main/EDA%20GitHub.png "Salesforce Education Data Architecture")
 
 Education Data Architecture (EDA) standardizes the starting point for educational institutions building out a CRM. It provides a core and common data model that supports the entire K-20 student journey. It's an open-source architecture—meaning anyone can view the source code in GitHub. It's been developed in close collaboration with our customers, partners, and the K-20 community to foster common acceptance. Solutions built on EDA share the same open and flexible, extensible framework that accommodates a range of use cases and end-user customization. With EDA, you get a standardized data model—including preconfigured objects, functionality, logic, and automation—tailored for education right out of the box.
 
