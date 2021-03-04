@@ -66,7 +66,7 @@ public virtual with sharing class PermissionSetMapper {
                                             FROM PermissionSet
                                             WHERE Id in :permissionSetIdsSet
                                                 AND PermissionsViewSetup = true];
-        if (permissionSets.size() > 0) {
+        if (permissionSets.isEmpty() == false) {
             return true;
         }
 

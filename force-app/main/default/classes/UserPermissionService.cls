@@ -66,9 +66,9 @@ public virtual with sharing class UserPermissionService {
 
         if (viewSetupForCurrentUser == false) {
             throw new NoAccessException();
-        } else {
-            return true;
         }
+
+        return true;
     }
 
     /******************************************************************************
