@@ -27,6 +27,17 @@ class SettingsHealthCheckPage(BaseEDAPage, HomePage):
             locator, timeout=60, error=f"Run Health Check button with locator '{locator}' is not available")
         self.selenium.click_element(locator)
 
+    def click_expand_button(self, settingName):
+        """ This method will click the expand button on tree grids on settings health check page
+            Pass the name of health check category from your test ex - AccountModel, Affiliation
+            Mappings, ReciprocalRelationships and CourseConnections
+        """
+        locator = eda_lex_locators["settings_health_check"]["expand_button"].format(settingName)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f"Expand button is not displayed to the user")
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
+        self.selenium.click_element(locator)
+
     def verify_last_run_date(self):
         """ This method will verify 'Last Run' field on Settings Health Check page has a date in it
             and the date is equal to todays date(system date).
@@ -41,5 +52,34 @@ class SettingsHealthCheckPage(BaseEDAPage, HomePage):
         self.builtin.log(todays_date)
         if not todays_date in last_run_date:
             raise Exception(f"Value of {todays_date} is not present in {last_run_date} and so the dates are not matching as expected")
+
+    def verify_status_of_account_model_settings(self,healthCheckCard,**kwargs):
+        """ This method validates the status of setting for the setting passed in kwargs
+            Pass the setting name and the expected status to be verified from the tests using
+            keyword arguments
+        """
+        for field,expected_value in kwargs.items():
+            locator = eda_lex_locators["settings_health_check"]["status_value"].format(healthCheckCard,field)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
+            actual_value = self.selenium.get_webelement(locator).text
+            self.builtin.log(f"Actual value of {field} is {actual_value}")
+            if not str(expected_value).lower() == str(actual_value).lower() :
+                raise Exception (f"Status of {field} is {actual_value} but it should be {expected_value}")
+
+    def return_all_checks_status(self,healthCheckCard,expected_value):
+        """ This method will verify the status of of all checks before clicking on expand all
+            button to verify status of each setting. Pass the name of the health check card and
+            the expected text from robot. Returns true if all settings are passed and false if any
+            one of the setting is failed
+        """
+        locator = eda_lex_locators["settings_health_check"]["all_checks_status"].format(healthCheckCard,expected_value)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
+        actual_value = self.selenium.get_webelement(locator).text
+        return True if str(actual_value).lower() == str(expected_value).lower() else False
+
 
 
