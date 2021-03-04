@@ -32,8 +32,19 @@
 * @description Model to abstract data for changes made to Hierarchy Settings.
 */
 public with sharing class HierarchySettingsChangesModel {
-    public Map<String, String> settingsSingleValueBySettingsName { get; private set; }
-    public Map<String, List<String>> settingsListSettingsName { get; private set; }
+    public Map<String, String> settingsSingleValueBySettingsName { get; set; }
+    public Map<String, List<String>> settingsListSettingsName { get; set; }
+
+
+    /**********************************************************************************************************************
+    * @description No argument constructor
+    * @return A HierarchySettingsChangesModel with empty maps
+    **********************************************************************************************************************/
+    public HierarchySettingsChangesModel() {
+        this.settingsSingleValueBySettingsName = new Map<String, String>();
+        this.settingsListSettingsName = new Map<String, List<String>>();
+
+    }
 
     /**********************************************************************************************************************
     * @description Two parameter constructor

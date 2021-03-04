@@ -67,6 +67,8 @@ public virtual with sharing class HierarchySettingsService {
            // if (this.locateUserPermissionService().checkViewSetupForCurrentUser() == true) {
                 HierarchySettingsModel hierarchySettingsModel = 
                 this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsChangesModel);
+
+                System.debug('hierarchySettingsModel before update: ' + hierarchySettingsModel);
                 update hierarchySettingsModel.hierarchySettings;
            // }  
         } catch (System.DmlException e) {

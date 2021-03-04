@@ -4,6 +4,41 @@
             <span>{componentTitle}</span>
         </div>
 
+        <!-- Test area to display error messages -->
+        <template if:true={hasErrors}>
+            <div
+                class="slds-col slds-p-horizontal_xx-small slds-notify slds-notify_alert slds-alert_error"
+                role="alert"
+            >
+                <span class="slds-assistive-text">error</span>
+                <span
+                    class="slds-icon_container slds-icon-utility-error slds-m-right_x-small"
+                    title="Description of icon when needed"
+                >
+                    <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                        <use
+                            xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"
+                        ></use>
+                    </svg>
+                </span>
+                <h2>{errorMessage}</h2>
+                <div class="slds-notify__close">
+                    <button
+                        class="slds-button slds-button_icon slds-button_icon-small slds-button_icon-inverse"
+                        title="Close"
+                    >
+                        <svg class="slds-button__icon" aria-hidden="true">
+                            <use
+                                xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"
+                            ></use>
+                        </svg>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </div>
+            </div>
+        </template>
+
+        <!-- Display Edit/Save/Cancel buttons -->
         <div
             class="slds-col slds-col_bump-left slds-text-align_right slds-size--1-of-2 slds-p-horizontal_small slds-p-vertical_small"
         >
@@ -35,10 +70,10 @@
         </div>
     </div>
 
+    <!-- Display Content from Parent Component Body -->
     <div class="slds-theme_default eda-height_full">
         <div class="slds-m-left_x-small">
-            <!-- <h1>SLOT - Content</h1>
-            <h1>Slot allowing form content from parent component</h1> -->
+            <!-- Slot that will be populated with body from parent component -->
             <slot></slot>
         </div>
     </div>

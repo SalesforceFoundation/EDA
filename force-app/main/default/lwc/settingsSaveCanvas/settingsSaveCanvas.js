@@ -1,13 +1,16 @@
-import { LightningElement, api } from "lwc";
+import { LightningElement, api, track } from "lwc";
 
 import settingsButtonEdit from "@salesforce/label/c.stgBtnEdit";
 import settingsButtonCancel from "@salesforce/label/c.stgBtnCancel";
 import settingsButtonSave from "@salesforce/label/c.stgBtnSave";
 
-import updateHierarchySettingsServerSide from "@salesforce/apex/HierarchySettingsChangesController.updateHierarchySettings";
+import updateHierarchySettings from "@salesforce/apex/HierarchySettingsChangesController.updateHierarchySettings";
 
 export default class SettingsSaveCanvas extends LightningElement {
     @api componentTitle;
+
+    @track errorMessage = '';
+    @track hasErrors = false;
 
     editButtonShown = true;
     saveCancelDisabled = undefined;
@@ -41,7 +44,7 @@ export default class SettingsSaveCanvas extends LightningElement {
     updateHierarchySettings() {
         this.dispatchEditModeSwitchEvent(false);
 
-        updateHierarchySettingsServerSide({
+        updateHierarchySettings({
             hierarchySettingsChangesModel: this.hierarchySettingsChanges,
         })
             .then((result) => {
@@ -54,12 +57,27 @@ export default class SettingsSaveCanvas extends LightningElement {
                 }
             })
             .catch((error) => {
-                // TODO: handle catch (System.NoAccessException e)
-                // TODO: handle catch (HierarchySettingsMapper.InvalidSettingsException e)
-                console.log("Error: " + JSON.stringify(error));
+                // Check the exception type
+                let exceptionType = error.body.exceptionType;
+                let errorMessage = error.body.message;
+                console.log('error json: ' + JSON.stringify(error));
+                console.log('error message: ' + errorMessage);
+
+                this.hasErrors = true;
+                this.errorMessage = errorMessage;
+
+                if (exceptionType === 'System.NoAccessException') {
+                    console.log('TODO: handle NoAccessException');
+                    this.errorMessage = errorMessage;
+                }
+
+                if (exceptionType === 'HierarchySettingsMapper.InvalidSettingsException') {
+                    console.log('TODO: handle HierarchySettingsMapper.InvalidSettingsException');
+                    this.errorMessage = errorMessage;
+                }
             });
 
-        this.dispatchSettingsSaveCompletedEvent();
+        this.dispatchSettingsSaveCompletedEvent(); // does this event happen even in the case of an error?
     }
 
     handleEditClick(event) {
