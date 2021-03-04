@@ -3,6 +3,6 @@
 	<apiVersion>50</apiVersion>
 	<isExposed>true</isExposed>
 	<targets>
-        <target>lightning__Tab</target>
-    </targets>
+		<target>lightning__Tab</target>
+	</targets>
 </LightningComponentBundle>

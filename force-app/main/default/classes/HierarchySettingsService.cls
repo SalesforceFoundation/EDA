@@ -64,11 +64,11 @@ public virtual with sharing class HierarchySettingsService {
     public Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
         //TODO: check permissions first
         try {
-            if (this.locateUserPermissionService().checkViewSetupForCurrentUser() == true) {
+           // if (this.locateUserPermissionService().checkViewSetupForCurrentUser() == true) {
                 HierarchySettingsModel hierarchySettingsModel = 
                 this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsChangesModel);
                 update hierarchySettingsModel.hierarchySettings;
-            }  
+           // }  
         } catch (System.DmlException e) {
             return false;
         } 
@@ -89,8 +89,8 @@ public virtual with sharing class HierarchySettingsService {
     * @description Retrieve an instance of UserPermissionService
     * @return An instance of the UserPermissionService class
     ************************************************************************************************************/ 
-    @TestVisible
-    private UserPermissionService locateUserPermissionService() {
-        return UserPermissionService.getInstance();
-    }
+    // @TestVisible
+    // private UserPermissionService locateUserPermissionService() {
+    //     return UserPermissionService.getInstance();
+    // }
 }

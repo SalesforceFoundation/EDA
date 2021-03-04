@@ -1,13 +1,12 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api } from "lwc";
 
-import settingsButtonEdit from '@salesforce/label/c.stgBtnEdit';
-import settingsButtonCancel from '@salesforce/label/c.stgBtnCancel';
-import settingsButtonSave from '@salesforce/label/c.stgBtnSave';
+import settingsButtonEdit from "@salesforce/label/c.stgBtnEdit";
+import settingsButtonCancel from "@salesforce/label/c.stgBtnCancel";
+import settingsButtonSave from "@salesforce/label/c.stgBtnSave";
 
-import updateHierarchySettingsServerSide from '@salesforce/apex/HierarchySettingsChangesController.updateHierarchySettings';
+import updateHierarchySettingsServerSide from "@salesforce/apex/HierarchySettingsChangesController.updateHierarchySettings";
 
 export default class SettingsSaveCanvas extends LightningElement {
-
     @api componentTitle;
 
     editButtonShown = true;
@@ -15,44 +14,52 @@ export default class SettingsSaveCanvas extends LightningElement {
 
     hierarchySettingsChanges = {
         settingsSingleValueBySettingsName: {},
-        settingsListSettingsName: {}
-    }
+        settingsListSettingsName: {},
+    };
 
     labelReference = {
         settingsButtonEdit,
         settingsButtonCancel,
-        settingsButtonSave
-    }
+        settingsButtonSave,
+    };
 
     @api
     handleHierarchySettingsChange(hierarchySettingsChange) {
-        if (hierarchySettingsChange.settingsType === 'string') {
-            hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] = hierarchySettingsChange.settingsValue;
+        if (hierarchySettingsChange.settingsType === "string") {
+            hierarchySettingsChanges.settingsSingleValueBySettingsName[
+                hierarchySettingsChange.settingsName
+            ] = hierarchySettingsChange.settingsValue;
         }
-        if (hierarchySettingsChange.settingsType === 'array') {
-            hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] = hierarchySettingsChange.settingsValue;
+        if (hierarchySettingsChange.settingsType === "array") {
+            hierarchySettingsChanges.settingsListSettingsName[
+                hierarchySettingsChange.settingsName
+            ] = hierarchySettingsChange.settingsValue;
         }
     }
 
-    @api updateHierarchySettings() {
-        updateHierarchySettingsServerSide({hierarchySettingsChangesModel: this.hierarchySettingsChanges})
-            .then(result => {
+    @api
+    updateHierarchySettings() {
+        this.dispatchEditModeSwitchEvent(false);
+
+        updateHierarchySettingsServerSide({
+            hierarchySettingsChangesModel: this.hierarchySettingsChanges,
+        })
+            .then((result) => {
                 if (result === true) {
                     // update successful
-                    console.log('Updated!');
+                    console.log("Updated!");
                 } else {
                     // update failed - DML Exception encountered
-                    console.log('Update failed.');
+                    console.log("Update failed.");
                 }
             })
-            .catch(error => {
+            .catch((error) => {
                 // TODO: handle catch (System.NoAccessException e)
                 // TODO: handle catch (HierarchySettingsMapper.InvalidSettingsException e)
-                console.log('Error: ' + JSON.stringify(error));
+                console.log("Error: " + JSON.stringify(error));
             });
 
         this.dispatchSettingsSaveCompletedEvent();
-        this.dispatchEditModeSwitchEvent(false);
     }
 
     handleEditClick(event) {
@@ -71,12 +78,9 @@ export default class SettingsSaveCanvas extends LightningElement {
 
     dispatchEditModeSwitchEvent() {
         this.dispatchEvent(
-            new CustomEvent(
-                'settingseditmodechange', 
-                { 
-                    detail: this.editButtonShown 
-                }
-            )
+            new CustomEvent("settingseditmodechange", {
+                detail: this.editButtonShown,
+            })
         );
     }
 
@@ -98,18 +102,13 @@ export default class SettingsSaveCanvas extends LightningElement {
 
     dispatchSettingsSavingEvent() {
         this.dispatchEvent(
-            new CustomEvent(
-                'settingssaving', 
-                { 
-                    detail: this.editButtonShown 
-                }
-            )
+            new CustomEvent("settingssaving", {
+                detail: this.editButtonShown,
+            })
         );
     }
 
     dispatchSettingsSaveCompletedEvent() {
-        this.dispatchEvent(
-            new CustomEvent('settingssavecompleted')
-        );
+        this.dispatchEvent(new CustomEvent("settingssavecompleted"));
     }
 }
