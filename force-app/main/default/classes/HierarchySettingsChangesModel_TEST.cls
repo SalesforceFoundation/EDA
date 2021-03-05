@@ -34,8 +34,31 @@
 @isTest 
 public with sharing class HierarchySettingsChangesModel_TEST {
     /******************************************************************************
-    * @description Test method to verify two parameter constructor returns a
-    * HierarchySettingsChangesModel with all parameters populated.
+    * @description Test method to verify the no argument constructor returns a
+    * HierarchySettingsChangesModel with empty properties initialized.
+    ******************************************************************************/
+    @isTest 
+    private static void noParameterConstructor() {
+        Test.startTest();
+        HierarchySettingsChangesModel hierarchySettingsChangesModel = new HierarchySettingsChangesModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            true, 
+            hierarchySettingsChangesModel.settingsSingleValueBySettingsName.isEmpty(), 
+            'settingsSingleValueBySettingsName should be an empty map.'
+        );
+
+        System.assertEquals(
+            true, 
+            hierarchySettingsChangesModel.settingsListSettingsName.isEmpty(), 
+            'settingsListSettingsName should be an empty map.'
+        );
+    }
+
+    /******************************************************************************
+    * @description Test method to verify two argument constructor returns a
+    * HierarchySettingsChangesModel with all properties populated.
     ******************************************************************************/
     @isTest 
     private static void twoParameterConstructor() {
