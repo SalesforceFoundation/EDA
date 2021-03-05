@@ -61,7 +61,7 @@ public virtual with sharing class HierarchySettingsService {
     * @param  hierarchySettingsChangesModel A HierarchySettingsChangesModel representing updates to Hierarchy Settings.
     * @return True if the updates were completed successfully, false otherwise.
     ************************************************************************************************************/ 
-    public Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+    public virtual Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
         //TODO: check permissions first
         try {
            // if (this.locateUserPermissionService().checkViewSetupForCurrentUser() == true) {

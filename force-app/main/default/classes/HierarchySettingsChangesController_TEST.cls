@@ -33,8 +33,209 @@
 */
 @isTest
 public with sharing class HierarchySettingsChangesController_TEST {
-    @isTest 
-    private static void test() {
-        
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns a new instance of the 
+    * HierarchySettingsChangesController class when one does not already exist.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceNew() {
+
+        Test.startTest();
+            HierarchySettingsChangesController hierarchySettingsChangesControllerInstance = 
+                HierarchySettingsChangesController.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(
+            HierarchySettingsChangesController.instance, 
+            hierarchySettingsChangesControllerInstance, 
+            'Instance of mapper class returned should match static instance variable.'
+        );
+        System.assertEquals(true, 
+            hierarchySettingsChangesControllerInstance != null, 
+            'Instance of mapper class should not be null.'
+        );
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getInstance method returns the existing instance of the 
+    * HierarchySettingsChangesController class when one already exists.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExisting() {
+
+        Test.startTest();
+            HierarchySettingsChangesController hierarchySettingsChangesControllerInstance1 = 
+                HierarchySettingsChangesController.getInstance();
+            HierarchySettingsChangesController hierarchySettingsChangesControllerInstance2 = 
+                HierarchySettingsChangesController.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(HierarchySettingsChangesController.instance, 
+            hierarchySettingsChangesControllerInstance1, 
+            'Instance of mapper class returned should match static instance variable.'
+        );
+
+        System.assertEquals(hierarchySettingsChangesControllerInstance1, 
+            hierarchySettingsChangesControllerInstance2, 
+            'Subsequent retrievals of mapper class instance should return existing instance.'
+        );
+
+        System.assertEquals(true, 
+            hierarchySettingsChangesControllerInstance1 != null, 
+            'Instance of mapper class should not be null.'
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the locateHierarchySettingsUpdaterService method returns an instance of the
+    * HierarchySettingsService class.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void locateHierarchySettingsUpdaterServiceValid() {
+        Test.startTest();
+        HierarchySettingsService hierarchySettingsServiceInstance = 
+            HierarchySettingsChangesController.locateHierarchySettingsUpdaterService();
+        Test.stopTest();
+
+        System.assertEquals(
+            HierarchySettingsService.instance, 
+            hierarchySettingsServiceInstance,
+            'Should return instance of HierarchySettingsService class.');
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the updateHierarchySettings method returns true when an update to Hierarchy
+    * Settings is successfully processed.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void updateHierarchySettingsValid() {
+        HierarchySettingsService.instance = new STUB_HierarchySettingsService();
+
+        Map<String, String> settingsSingleValueBySettingsName = new Map<String, String> {
+            'Value1' => 'Changed Value 1'
+        };
+
+        Map<String, List<String>> settingsListSettingsName = new Map<String, List<String>> {
+            'CollectionValue1' => new List<String>{'Change1', 'Change2', 'Change3'}
+        };
+
+        HierarchySettingsChangesModel hierarchySettingsChangesModel = 
+            new HierarchySettingsChangesModel(settingsSingleValueBySettingsName, settingsListSettingsName);
+
+        Test.startTest();
+        Boolean updateHierarchySettingsResult = 
+            HierarchySettingsChangesController.updateHierarchySettings(hierarchySettingsChangesModel);
+        Test.stopTest();
+
+        System.assertEquals(
+            true, 
+            updateHierarchySettingsResult,
+            'Should return true indicating a successful update.'
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the updateHierarchySettings method returns false when an update to Hierarchy
+    * Settings is fails due to a DML exception.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void updateHierarchySettingsInValid() {
+        HierarchySettingsService.instance = new STUB_HierarchySettingsServiceDMLFailure();
+
+        Map<String, String> settingsSingleValueBySettingsName = new Map<String, String> {
+            'Value1' => 'Changed Value 1'
+        };
+
+        Map<String, List<String>> settingsListSettingsName = new Map<String, List<String>> {
+            'CollectionValue1' => new List<String>{'Change1', 'Change2', 'Change3'}
+        };
+
+        HierarchySettingsChangesModel hierarchySettingsChangesModel = 
+            new HierarchySettingsChangesModel(settingsSingleValueBySettingsName, settingsListSettingsName);
+
+        Test.startTest();
+        Boolean updateHierarchySettingsResult = 
+            HierarchySettingsChangesController.updateHierarchySettings(hierarchySettingsChangesModel);
+        Test.stopTest();
+
+        System.assertEquals(
+            false, 
+            updateHierarchySettingsResult,
+            'Should return true indicating a failure due to a DML Exception.'
+        );
+    }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the updateHierarchySettings method throws an exception when the update fails due
+    * to inadequate permissions or casting errors.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void updateHierarchySettingsException() {
+        HierarchySettingsService.instance = new STUB_HierarchySettingsExceptionResponse();
+
+        Map<String, String> settingsSingleValueBySettingsName = new Map<String, String> {
+            'Value1' => 'Changed Value 1'
+        };
+
+        Map<String, List<String>> settingsListSettingsName = new Map<String, List<String>> {
+            'CollectionValue1' => new List<String>{'Change1', 'Change2', 'Change3'}
+        };
+
+        HierarchySettingsChangesModel hierarchySettingsChangesModel = 
+            new HierarchySettingsChangesModel(settingsSingleValueBySettingsName, settingsListSettingsName);
+
+        try {
+            Test.startTest();
+            Boolean updateHierarchySettingsResult = 
+                HierarchySettingsChangesController.updateHierarchySettings(hierarchySettingsChangesModel);
+            Test.stopTest();
+        } catch (TestException e) {
+            System.assertEquals(
+                'HierarchySettingsChangesController_TEST.TestException', 
+                e.getTypeName(),
+                'Should throw a TestException.'
+            );
+
+            System.assertEquals(
+                'Test Exception Encountered', 
+                e.getMessage(),
+                'Should throw a TestException.'
+            );
+        }        
+    }
+    /**************************************************************************************************************************
+    ****************************************************** STUBS **************************************************************
+    **************************************************************************************************************************/
+    
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from HierarchySettingsService to indicate a successful update
+    **************************************************************************************************************************************/ 
+    private class STUB_HierarchySettingsService extends HierarchySettingsService {
+        public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+            return true;
+        }
+    }
+    
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from HierarchySettingsService to indicate a failure due to a DML exception.
+    **************************************************************************************************************************************/ 
+    private class STUB_HierarchySettingsServiceDMLFailure extends HierarchySettingsService {
+        public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+            return false;
+        }
+    }
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate the response from HierarchySettingsService to indicate a failure due to a DML exception.
+    **************************************************************************************************************************************/ 
+    private class STUB_HierarchySettingsExceptionResponse extends HierarchySettingsService {
+        public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+            throw new TestException('Test Exception Encountered');
+        }
+    }
+
+    /********************************************************************************************************
+    * @description A custom exception class to for testing.
+    ********************************************************************************************************/
+    public class TestException extends Exception {}
 }

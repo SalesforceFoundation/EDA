@@ -61,8 +61,6 @@ public virtual with sharing class HierarchySettingsChangesController {
     **********************************************************************************/
     @AuraEnabled
     public static Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
-        System.debug('Updating Hierarchy settings for');
-        System.debug('hierarchySettingsChangesModel: ' + hierarchySettingsChangesModel);
        // try {
             return HierarchySettingsChangesController.locateHierarchySettingsUpdaterService().updateHierarchySettings(hierarchySettingsChangesModel);
         // } catch (System.NoAccessException e) {
@@ -76,6 +74,7 @@ public virtual with sharing class HierarchySettingsChangesController {
     * @description Retrieve an instance of the HierarchySettingsService class.
     * @return An instance of the HierarchySettingsService class.
     ************************************************************************************/
+    @TestVisible
     private static HierarchySettingsService locateHierarchySettingsUpdaterService() {
         return HierarchySettingsService.getInstance();
     }
