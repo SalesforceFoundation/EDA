@@ -59,7 +59,7 @@ public virtual with sharing class HierarchySettingsChangesController {
     * @description Update the HierarchySettingsChangesModel with specified changes.
     * @return True if update was successful, false otherwise.
     **********************************************************************************/
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
         System.debug('Updating Hierarchy settings for');
         System.debug('hierarchySettingsChangesModel: ' + hierarchySettingsChangesModel);

@@ -4,13 +4,12 @@ import settingsButtonEdit from "@salesforce/label/c.stgBtnEdit";
 import settingsButtonCancel from "@salesforce/label/c.stgBtnCancel";
 import settingsButtonSave from "@salesforce/label/c.stgBtnSave";
 
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
+
 import updateHierarchySettings from "@salesforce/apex/HierarchySettingsChangesController.updateHierarchySettings";
 
 export default class SettingsSaveCanvas extends LightningElement {
     @api componentTitle;
-
-    @track errorMessage = '';
-    @track hasErrors = false;
 
     editButtonShown = true;
     saveCancelDisabled = undefined;
@@ -25,6 +24,13 @@ export default class SettingsSaveCanvas extends LightningElement {
         settingsButtonCancel,
         settingsButtonSave,
     };
+
+    @api
+    handleValidationFailure() {
+        this.clearHierarchySettingsChanges();
+        this.switchEditMode(false);
+        this.dispatchSettingsSaveCompletedEvent();
+    }
 
     @api
     handleHierarchySettingsChange(hierarchySettingsChange) {
@@ -51,33 +57,27 @@ export default class SettingsSaveCanvas extends LightningElement {
                 if (result === true) {
                     // update successful
                     console.log("Updated!");
+                    this.switchEditMode(false); // turn off edit mode?
+                    this.dispatchSettingsSaveCompletedEvent();
                 } else {
                     // update failed - DML Exception encountered
                     console.log("Update failed.");
                 }
             })
             .catch((error) => {
-                // Check the exception type
                 let exceptionType = error.body.exceptionType;
                 let errorMessage = error.body.message;
-                console.log('error json: ' + JSON.stringify(error));
-                console.log('error message: ' + errorMessage);
 
-                this.hasErrors = true;
-                this.errorMessage = errorMessage;
-
-                if (exceptionType === 'System.NoAccessException') {
-                    console.log('TODO: handle NoAccessException');
-                    this.errorMessage = errorMessage;
+                if (exceptionType === "System.NoAccessException") {
+                    this.displayNoAccessError(exceptionType, errorMessage);
                 }
 
-                if (exceptionType === 'HierarchySettingsMapper.InvalidSettingsException') {
-                    console.log('TODO: handle HierarchySettingsMapper.InvalidSettingsException');
-                    this.errorMessage = errorMessage;
+                if (
+                    exceptionType === "HierarchySettingsMapper.InvalidSettingsException"
+                ) {
+                    this.displayInvalidSettingsError(exceptionType, errorMessage);
                 }
             });
-
-        this.dispatchSettingsSaveCompletedEvent(); // does this event happen even in the case of an error?
     }
 
     handleEditClick(event) {
@@ -128,5 +128,29 @@ export default class SettingsSaveCanvas extends LightningElement {
 
     dispatchSettingsSaveCompletedEvent() {
         this.dispatchEvent(new CustomEvent("settingssavecompleted"));
+    }
+
+    displayNoAccessError(errorType, errorMessage) {
+        this.showErrorToast(errorType, errorMessage);
+        this.dispatchSettingsSaveCompletedEvent();
+    }
+
+    displayInvalidSettingsError(errorType, errorMessage) {
+        this.showErrorToast(errorType, errorMessage);
+        this.dispatchSettingsSaveCompletedEvent();
+    }
+
+    completeSave() {
+        // TODO: Update this method
+    }
+
+    showErrorToast(toastTitle, toastMessage) {
+        const evt = new ShowToastEvent({
+            title: toastTitle,
+            message: toastMessage,
+            variant: "error",
+            mode: "dismissable",
+        });
+        this.dispatchEvent(evt);
     }
 }
