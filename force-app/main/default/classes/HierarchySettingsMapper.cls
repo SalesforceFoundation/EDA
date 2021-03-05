@@ -82,8 +82,7 @@ public virtual with sharing class HierarchySettingsMapper {
     * @param hierarchySettingsChangesModel A HierarchySettingsChangesModel containing all updates to Hierarchy Settings.
     * @return A HierarchySettingsModel with updates recorded.
     ****************************************************************************************************/
-    public HierarchySettingsModel updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
-
+    public virtual HierarchySettingsModel updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
         HierarchySettingsModel updatedHierarchySettingsModel = this.getHierarchySettings();
 
         updatedHierarchySettingsModel = this.updateHierarchySettingsWithSingleValues(
@@ -105,7 +104,7 @@ public virtual with sharing class HierarchySettingsMapper {
     * @return A HierarchySettingsModel with updates to settings with single values recorded.
     ****************************************************************************************************/
     @TestVisible
-    public HierarchySettingsModel updateHierarchySettingsWithSingleValues(
+    private HierarchySettingsModel updateHierarchySettingsWithSingleValues(
         HierarchySettingsModel hierarchySettingsModelToUpdate,
         Map<String, String> singleValueSettingUpdatesByName) 
     {
