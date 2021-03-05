@@ -1,4 +1,4 @@
-import { LightningElement, api, track } from "lwc";
+import { LightningElement, api } from "lwc";
 
 import settingsButtonEdit from "@salesforce/label/c.stgBtnEdit";
 import settingsButtonCancel from "@salesforce/label/c.stgBtnCancel";
@@ -80,9 +80,29 @@ export default class SettingsSaveCanvas extends LightningElement {
             });
     }
 
+    clearHierarchySettingsChanges() {
+        this.hierarchySettingsChanges.settingsSingleValueBySettingsName = {};
+        this.hierarchySettingsChanges.settingsListSettingsName = {};
+    }
+
+    completeSave() {
+        // TODO: Update this method
+    }
+
     handleEditClick(event) {
         this.switchEditMode(true);
         this.dispatchEditModeSwitchEvent();
+    }
+
+    handleCancelClick(event) {
+        this.switchEditMode(false);
+        this.clearHierarchySettingsChanges();
+        this.dispatchEditModeSwitchEvent(false);
+    }
+
+    handleSaveClick() {
+        this.switchEditMode(false);
+        this.dispatchSettingsSavingEvent();
     }
 
     switchEditMode(editMode) {
@@ -100,23 +120,7 @@ export default class SettingsSaveCanvas extends LightningElement {
                 detail: this.editButtonShown,
             })
         );
-    }
-
-    handleCancelClick(event) {
-        this.switchEditMode(false);
-        this.clearHierarchySettingsChanges();
-        this.dispatchEditModeSwitchEvent(false);
-    }
-
-    clearHierarchySettingsChanges() {
-        this.hierarchySettingsChanges.settingsSingleValueBySettingsName = {};
-        this.hierarchySettingsChanges.settingsListSettingsName = {};
-    }
-
-    handleSaveClick() {
-        this.switchEditMode(false);
-        this.dispatchSettingsSavingEvent();
-    }
+    }   
 
     dispatchSettingsSavingEvent() {
         this.dispatchEvent(
@@ -140,17 +144,13 @@ export default class SettingsSaveCanvas extends LightningElement {
         this.dispatchSettingsSaveCompletedEvent();
     }
 
-    completeSave() {
-        // TODO: Update this method
-    }
-
     showErrorToast(toastTitle, toastMessage) {
-        const evt = new ShowToastEvent({
+        const showToastEvent = new ShowToastEvent({
             title: toastTitle,
             message: toastMessage,
             variant: "error",
             mode: "dismissable",
         });
-        this.dispatchEvent(evt);
+        this.dispatchEvent(showToastEvent);
     }
 }
