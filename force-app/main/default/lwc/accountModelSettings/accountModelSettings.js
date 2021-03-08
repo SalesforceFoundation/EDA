@@ -3,7 +3,7 @@ import stgAccountModelSettingsTitle from '@salesforce/label/c.stgAccountModelSet
 
 export default class AccountModelSettings extends LightningElement {
     isEditMode = false;
-    affordancesDisabledToggle = false;
+    affordancesDisabledToggle = true;
 
     get affordancesDisabled() {
         if (!this.isEditMode || this.affordancesDisabledToggle === true) {
