@@ -62,20 +62,7 @@ public virtual with sharing class HierarchySettingsService {
     * @return True if the updates were completed successfully, false otherwise.
     ************************************************************************************************************/ 
     public virtual Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
-        //TODO: check permissions first
-        try {
-           // if (this.locateUserPermissionService().checkViewSetupForCurrentUser() == true) {
-                HierarchySettingsModel hierarchySettingsModel = 
-                this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsChangesModel);
-
-                System.debug('hierarchySettingsModel before update: ' + hierarchySettingsModel);
-                update hierarchySettingsModel.hierarchySettings;
-           // }  
-        } catch (System.DmlException e) {
-            return false;
-        } 
-
-        return true;
+        return this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsChangesModel);
     }
 
     /************************************************************************************************************

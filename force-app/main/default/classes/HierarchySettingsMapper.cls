@@ -82,102 +82,59 @@ public virtual with sharing class HierarchySettingsMapper {
     * @param hierarchySettingsChangesModel A HierarchySettingsChangesModel containing all updates to Hierarchy Settings.
     * @return A HierarchySettingsModel with updates recorded.
     ****************************************************************************************************/
-    public virtual HierarchySettingsModel updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
-        HierarchySettingsModel updatedHierarchySettingsModel = this.getHierarchySettings();
+    public virtual boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+        HierarchySettingsModel hierarchySettingsModelToUpdate = this.getHierarchySettings();
 
-        updatedHierarchySettingsModel = this.updateHierarchySettingsWithSingleValues(
-            updatedHierarchySettingsModel,
-            hierarchySettingsChangesModel.settingsSingleValueBySettingsName
-        );
-
-        updatedHierarchySettingsModel = this.updateHierarchySettingsWithListValues(
-            updatedHierarchySettingsModel,
-            hierarchySettingsChangesModel.settingsListSettingsName
-        );
-
-        return  updatedHierarchySettingsModel;
-    }
-
-    /****************************************************************************************************
-    * @description Helper method to update Hierarchy Settings with values represented by primitive data types.
-    * @param  singleValueSettingUpdatesByName A map of updated hierarchy settings with primitive data types
-    * @return A HierarchySettingsModel with updates to settings with single values recorded.
-    ****************************************************************************************************/
-    @TestVisible
-    private HierarchySettingsModel updateHierarchySettingsWithSingleValues(
-        HierarchySettingsModel hierarchySettingsModelToUpdate,
-        Map<String, String> singleValueSettingUpdatesByName) 
-    {
-        if (singleValueSettingUpdatesByName.isEmpty() == true) {
-            return hierarchySettingsModelToUpdate;
-        }
-
-        for (String changedSettingName : singleValueSettingUpdatesByName.keySet()) {
-            try{
+        try {
+            // Update Hierarchy Settings fields with single values
+            for (String changedSettingName : hierarchySettingsChangesModel.settingsSingleValueBySettingsName.keySet()) {
                 Schema.DescribeFieldResult fieldDescribeResult = this.getHierarchySettingsField(changedSettingName);
                 Schema.DisplayType displayType = fieldDescribeResult.getType();
 
                 if (displayType == Schema.DisplayType.STRING) {
-                    String hierarchySettingValue = (String)singleValueSettingUpdatesByName.get(changedSettingName);
-                    hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
+                    String hierarchySettingValue = 
+                        (String)hierarchySettingsChangesModel.settingsSingleValueBySettingsName.get(changedSettingName);
+                    hierarchySettingsModelToUpdate.setSettingsField(changedSettingName, hierarchySettingValue);
                 }
 
                 if (displayType == Schema.DisplayType.BOOLEAN) {
-                    Boolean hierarchySettingValue = Boolean.valueOf(singleValueSettingUpdatesByName.get(changedSettingName));
-                    hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
+                    Boolean hierarchySettingValue = 
+                        Boolean.valueOf(hierarchySettingsChangesModel.settingsSingleValueBySettingsName.get(changedSettingName));
+                    hierarchySettingsModelToUpdate.setSettingsField(changedSettingName, hierarchySettingValue);
                 }
 
                 if (displayType == Schema.DisplayType.DATETIME) {
-                    Datetime hierarchySettingValue = Datetime.valueOf(singleValueSettingUpdatesByName.get(changedSettingName));
-                    hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
+                    Datetime hierarchySettingValue = 
+                        Datetime.valueOf(hierarchySettingsChangesModel.settingsSingleValueBySettingsName.get(changedSettingName));
+                    hierarchySettingsModelToUpdate.setSettingsField(changedSettingName, hierarchySettingValue);
                 }
-
-            } catch (UTIL_Describe.SchemaDescribeException e) {
-                UTIL_Debug.debug('****SchemaDescribeException encountered: ' + e.getMessage());
-                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
-            } catch (System.TypeException e) {
-                UTIL_Debug.debug('****TypeException encountered: ' + e.getMessage());
-                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
-            } catch (Exception e) {
-                UTIL_Debug.debug('****Unexpected Exception encountered: ' + e.getMessage());
-                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
             }
-        }
 
-        return hierarchySettingsModelToUpdate;
-    }
-
-    /****************************************************************************************************
-    * @description Helper method to update Hierarchy Settings with values represented by collections.
-    * @param  listValueSettingUpdatesByName A map of updated hierarchy settings with collections
-    * @return A HierarchySettingsModel with updates to settings with collections recorded.
-    ****************************************************************************************************/
-    @TestVisible
-    private HierarchySettingsModel updateHierarchySettingsWithListValues(
-        HierarchySettingsModel hierarchySettingsModelToUpdate,
-        Map<String, List<String>> listValueSettingUpdatesByName) 
-    {
-        if (listValueSettingUpdatesByName.isEmpty() == true) {
-            return hierarchySettingsModelToUpdate;
-        }
-
-        for (String changedSettingName : listValueSettingUpdatesByName.keySet()) {
-            try {
+            // Update Hierarchy Settings fields with collections as values
+            for (String changedSettingName : hierarchySettingsChangesModel.settingsListSettingsName.keySet()) {
                 Schema.DescribeFieldResult fieldDescribeResult = this.getHierarchySettingsField(changedSettingName);
 
-                String hierarchySettingValue = this.denormalizeListSettingChange(listValueSettingUpdatesByName.get(changedSettingName));
+                String hierarchySettingValue = 
+                    this.denormalizeListSettingChange(hierarchySettingsChangesModel.settingsListSettingsName.get(changedSettingName));
                 hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
-
-            } catch (UTIL_Describe.SchemaDescribeException e) {
-                UTIL_Debug.debug('****SchemaDescribeException encountered: ' + e.getMessage());
-                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
-            } catch (Exception e) {
-                UTIL_Debug.debug('****Unexpected Exception encountered: ' + e.getMessage());
-                throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
             }
-        }
 
-        return hierarchySettingsModelToUpdate;
+            update hierarchySettingsModelToUpdate.hierarchySettings;
+            return true;
+
+        } catch (UTIL_Describe.SchemaDescribeException e) {
+            UTIL_Debug.debug('****SchemaDescribeException encountered: ' + e.getMessage());
+            throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+        } catch (System.TypeException e) {
+            UTIL_Debug.debug('****TypeException encountered: ' + e.getMessage());
+            throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+        } catch (System.DmlException e) {
+            // update failed
+            return false;
+        } catch (Exception e) {
+            UTIL_Debug.debug('****Unexpected Exception encountered: ' + e.getMessage());
+            throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+        }
     }
 
     /******************************************************************************************************

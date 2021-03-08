@@ -65,6 +65,8 @@ export default class SettingsSaveCanvas extends LightningElement {
                 }
             })
             .catch((error) => {
+
+                // TODO: check that affordances are re-enabled
                 let exceptionType = error.body.exceptionType;
                 let errorMessage = error.body.message;
 
