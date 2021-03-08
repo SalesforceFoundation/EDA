@@ -16,7 +16,7 @@
     </types>
     <types>
         <members>STG_UnmanagedInstall</members>
-        <members>UTIL_Describe_Unmanaged_TEST</members>
+        <members>UTIL_Describe_PTST</members>
         <name>ApexClass</name>
     </types>
     <version>48.0</version>

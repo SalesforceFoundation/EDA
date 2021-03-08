@@ -62,19 +62,7 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
     }
 
     @isTest
-    public static void getReciprocalSettings() {
-        insert new Relationship_Lookup__c(Name = 'test' + system.now(), Active__c = true, Female__c = 'wife',
-        Male__c = 'husband', Neutral__c = 'spouse');
-
-        Test.startTest();
-        List<Relationship_Lookup__c> settings = UTIL_CustomSettingsFacade.getReciprocalSettings();
-        Test.stopTest();
-
-        System.assertEquals(1, settings.size());
-    }
-
-    @isTest
-    public static void getAutoCreateSettings() {
+    private static void getAutoCreateSettings() {
         insert new Relationship_Auto_Create__c(Name = 'test'+ system.now(), Object__c = 'Contact', Field__c = 'coworker__c',
         Relationship_Type__c = 'coworker', Campaign_Types__c = 'fun event');
 
@@ -83,6 +71,42 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
         Test.stopTest();
 
         System.assertEquals(1, settings.size());
+    }
+
+    /**
+     * @description Tests getting new relationship autocreate settings for Contact
+     */
+    @isTest
+    public static void getAutoCreateSettingsForContactNew() {
+        insert new Relationship_Auto_Create__c(Name = 'test'+ System.now(), Object__c = 'Contact', Field__c = 'coworker__c',
+        Relationship_Type__c = 'coworker', Campaign_Types__c = 'fun event');
+
+        Test.startTest();
+        List<Relationship_Auto_Create__c> relAutoCreateForContactList =
+            UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
+        Test.stopTest();
+
+        System.assertNotEquals(true,relAutoCreateForContactList.isEmpty(),'Relationship auto create settings for Contact should not be empty.');
+        System.assertEquals(1,relAutoCreateForContactList.size(),'Only one relationship auto create mapping should exist for the Contact.');
+    }
+
+    /**
+     * @description Tests getting relationship autocreate settings caching for Contact
+     */
+    @isTest
+    public static void getAutoCreateSettingsForContactCached() {
+        insert new Relationship_Auto_Create__c(Name = 'test'+ System.now(), Object__c = 'Contact', Field__c = 'coworker__c',
+        Relationship_Type__c = 'coworker', Campaign_Types__c = 'fun event');
+
+        List<Relationship_Auto_Create__c> relAutoCreateForContactList =
+            UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
+
+        Test.startTest();
+        List<Relationship_Auto_Create__c> relAutoCreateForContactCachedList =
+            UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
+        Test.stopTest();
+
+        System.assertEquals(relAutoCreateForContactList,relAutoCreateForContactCachedList,'Relationship auto create mappings for contact should be cached.');
     }
 
     @isTest
@@ -118,5 +142,81 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
         Test.stopTest();
 
         System.assertEquals(0, mappings.size());
+    }
+
+    @isTest
+    public static void getReciprocalSettings() {
+        insert new Relationship_Lookup__c(Name = 'test' + system.now(), Active__c = true, Female__c = 'wife',
+        Male__c = 'husband', Neutral__c = 'spouse');
+
+        Test.startTest();
+        List<Relationship_Lookup__c> settings = UTIL_CustomSettingsFacade.getReciprocalSettings();
+        Test.stopTest();
+
+        System.assertEquals(1, settings.size());
+    }
+
+    /**
+     * @description Tests getting new active relationship lookup settings
+     */
+    @isTest
+    public static void getActiveRelationshipLookupsNew() {
+        List<Relationship_Lookup__c> relationshipLookups = new List<Relationship_Lookup__c>();
+        relationshipLookups.add(
+            new Relationship_Lookup__c(Name = 'test' + system.now() + '1',
+            Active__c = true,
+            Female__c = 'wife',
+            Male__c = 'husband',
+            Neutral__c = 'spouse')
+        );
+        relationshipLookups.add(
+            new Relationship_Lookup__c(Name = 'test' + system.now() + '2',
+            Active__c = false,
+            Female__c = 'wife',
+            Male__c = 'husband',
+            Neutral__c = 'spouse')
+        );
+        insert relationshipLookups;
+
+        Test.startTest();
+        List<Relationship_Lookup__c> activeRelationshipLookups =
+            UTIL_CustomSettingsFacade.getActiveRelationshipLookups();
+        Test.stopTest();
+
+        System.assertNotEquals(true,activeRelationshipLookups.isEmpty(),'The active Reciprocal Relationship settings list should not be empty.');
+        System.assertEquals(1,activeRelationshipLookups.size(),'Only one reciprocal relationship mapping should be found.');
+    }
+
+    /**
+     * @description Tests caching active relationship lookup settings
+     */
+    @isTest
+    public static void getActiveRelationshipLookupsCached() {
+        List<Relationship_Lookup__c> relationshipLookups = new List<Relationship_Lookup__c>();
+        relationshipLookups.add(
+            new Relationship_Lookup__c(Name = 'test' + system.now() + '1',
+            Active__c = true,
+            Female__c = 'wife',
+            Male__c = 'husband',
+            Neutral__c = 'spouse')
+        );
+        relationshipLookups.add(
+            new Relationship_Lookup__c(Name = 'test' + system.now() + '2',
+            Active__c = false,
+            Female__c = 'wife',
+            Male__c = 'husband',
+            Neutral__c = 'spouse')
+        );
+        insert relationshipLookups;
+
+        List<Relationship_Lookup__c> activeRelationshipLookups =
+            UTIL_CustomSettingsFacade.getActiveRelationshipLookups();
+
+        Test.startTest();
+        List<Relationship_Lookup__c> activeRelationshipLookups2 =
+            UTIL_CustomSettingsFacade.getActiveRelationshipLookups();
+        Test.stopTest();
+
+        System.assertEquals(activeRelationshipLookups,activeRelationshipLookups2,'Active Reciprocal Relationship mappings should be cached.');
     }
 }
