@@ -174,11 +174,11 @@ public with sharing class HierarchySettingsChangesController_TEST {
         HierarchySettingsService.instance = new STUB_HierarchySettingsExceptionResponse();
 
         Map<String, String> settingsSingleValueBySettingsName = new Map<String, String> {
-            'Value1' => 'Changed Value 1'
+            UTIL_Namespace.StrTokenNSPrefix('Value1') => 'Changed Value 1'
         };
 
         Map<String, List<String>> settingsListSettingsName = new Map<String, List<String>> {
-            'CollectionValue1' => new List<String>{'Change1', 'Change2', 'Change3'}
+            UTIL_Namespace.StrTokenNSPrefix('CollectionValue1') => new List<String>{'Change1', 'Change2', 'Change3'}
         };
 
         HierarchySettingsChangesModel hierarchySettingsChangesModel = 
