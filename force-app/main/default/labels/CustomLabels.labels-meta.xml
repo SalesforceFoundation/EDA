@@ -1127,7 +1127,14 @@
         <value>Enable Enhanced Preferred Phone Functionality</value>
     </labels>
     <labels>
-<<<<<<< HEAD
+        <fullName>stgErrorInsufficientAccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message for when you don&apos;t have the permissions to view a page.</shortDescription>
+        <value>You can&apos;t view this page. Your Salesforce admin can help with that.</value>
+    </labels>
+    <labels>
         <fullName>stgErrorInsufficientAccessSaving</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1142,14 +1149,6 @@
         <protected>true</protected>
         <shortDescription>Error when SFDO or SFDC has broken something and we encounter a generic error</shortDescription>
         <value>We couldn’t save your work. Please refresh the page and try again.</value>
-=======
-        <fullName>stgErrorInsufficientAccess</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Message for when you don&apos;t have the permissions to view a page.</shortDescription>
-        <value>You can&apos;t view this page. Your Salesforce admin can help with that.</value>
->>>>>>> feature/232__edaSettingsPermission
     </labels>
     <labels>
         <fullName>stgErrorNotiTo</fullName>
