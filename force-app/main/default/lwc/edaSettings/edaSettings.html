@@ -1,12 +1,14 @@
 <template>
-<div class="slds-grid slds-theme_default eda-height_full">
-    <div class="slds-col slds-no-flex slds-size_4-of-12 slds-scrollable_y eda-height_full">
-        {labelReference.settingsNavigation}
+    <div class="slds-grid slds-theme_default eda-height_full">
+        <div
+            class="slds-col slds-p-top_large slds-p-left_small slds-text-heading_small slds-no-flex slds-size_4-of-12 slds-scrollable_y eda-height_full"
+        >
+            {labelReference.settingsNavigation}
+        </div>
+        <div class="slds-col slds-no-flex slds-size_8-of-12 slds-scrollable_y eda-height_full">
+            <template if:true={settingsPageToDisplay.accountModelSettings}>
+                <c-account-model-settings></c-account-model-settings>
+            </template>
+        </div>
     </div>
-    <div class="slds-col slds-no-flex slds-size_8-of-12 slds-scrollable_y eda-height_full">
-        <template if:true={settingsPageToDisplay.accountModelSettings}>
-            <c-account-model-settings></c-account-model-settings>
-        </template>
-    </div>
-</div>
 </template>
