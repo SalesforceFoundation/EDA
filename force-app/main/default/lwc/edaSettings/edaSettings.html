@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
     <div class="slds-grid slds-theme_default eda-height_full">
         <div
             class="slds-col slds-p-top_large slds-p-left_small slds-text-heading_small slds-no-flex slds-size_4-of-12 slds-scrollable_y eda-height_full"
@@ -12,23 +11,4 @@
             </template>
         </div>
     </div>
-=======
-    <template if:true={currentUserHasAccess}>
-        <div class="slds-grid slds-theme_default eda-height_full">
-            <div
-                class="slds-col slds-no-flex slds-size_4-of-12 slds-scrollable_y eda-height_full"
-            >
-                {labelReference.settingsNavigation}
-            </div>
-            <div
-                class="slds-col slds-no-flex slds-size_8-of-12 slds-scrollable_y eda-height_full"
-            >
-                {labelReference.settingsPage}
-            </div>
-        </div>
-    </template>
-    <template if:false={currentUserHasAccess}>
-        {labelReference.stgErrorInsufficientAccess}
-    </template>
->>>>>>> feature/232__edaSettingsPermission
 </template>
