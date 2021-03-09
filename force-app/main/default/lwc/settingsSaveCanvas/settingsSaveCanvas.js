@@ -59,14 +59,12 @@ export default class SettingsSaveCanvas extends LightningElement {
                     console.log("Updated!");
                     this.switchEditMode(false); // turn off edit mode?
                     this.dispatchSettingsSaveCompletedEvent();
-                } else {
-                    // update failed - DML Exception encountered
-                    console.log("Update failed.");
                 }
             })
             .catch((error) => {
+                // affordances are re-enabled
+                this.switchEditMode(true);
 
-                // TODO: check that affordances are re-enabled
                 let exceptionType = error.body.exceptionType;
                 let errorMessage = error.body.message;
 
@@ -122,7 +120,7 @@ export default class SettingsSaveCanvas extends LightningElement {
                 detail: this.editButtonShown,
             })
         );
-    }   
+    }
 
     dispatchSettingsSavingEvent() {
         this.dispatchEvent(

@@ -130,38 +130,21 @@ public with sharing class HierarchySettingsService_TEST {
     ***************************************************************************************************************************/
     @isTest 
     private static void updateHierarchySettingsValid() {
-        // HierarchySettingsMapper.instance = new STUB_HierarchySettingsMapper();
+        HierarchySettingsMapper.instance = new STUB_HierarchySettingsMapper();
 
-        // HierarchySettingsChangesModel hierarchySettingsChangesModel = new HierarchySettingsChangesModel();
-        // HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
+        HierarchySettingsChangesModel hierarchySettingsChangesModel = new HierarchySettingsChangesModel();
+        HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
 
-        // Test.startTest();
-        // Boolean updateHierarchySettingsResult = 
-        //     hierarchySettingsServiceInstance.updateHierarchySettings(hierarchySettingsChangesModel);
-        // Test.stopTest();
+        Test.startTest();
+        Boolean updateHierarchySettingsResult = 
+            hierarchySettingsServiceInstance.updateHierarchySettings(hierarchySettingsChangesModel);
+        Test.stopTest();
 
-        // Hierarchy_Settings__c updatedHierarchySettings = UTIL_CustomSettings_API.getSettings();
-
-        // System.assertEquals(
-        //     true, 
-        //     updateHierarchySettingsResult,
-        //     'Should return true indicating a successful update.'
-        // );
-
-        // System.assertEquals(
-        //     'Test Account', 
-        //     updatedHierarchySettings.Account_Processor__c,
-        //     'Hierarchy Setting should be updated.'
-        // );
-    }
-
-    /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettings method returns false when an update to Hierarchy
-    * Settings is fails due to a DML exception.
-    ***************************************************************************************************************************/
-    @isTest 
-    private static void updateHierarchySettingsDMLException() {
-        // no stubbing, perform update with inaccurate data
+        System.assertEquals(
+            true, 
+            updateHierarchySettingsResult,
+            'Should return true indicating a successful update.'
+        );
     }
 
     /**************************************************************************************************************************
@@ -180,7 +163,22 @@ public with sharing class HierarchySettingsService_TEST {
     @isTest 
     private static void updateHierarchySettingsThrownException() {
         HierarchySettingsMapper.instance = new STUB_HierarchySettingsMapperExceptionResponse();
-        
+
+        HierarchySettingsChangesModel hierarchySettingsChangesModel = new HierarchySettingsChangesModel();
+        HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
+
+        try {
+            Test.startTest();
+            Boolean updateHierarchySettingsResult = 
+            hierarchySettingsServiceInstance.updateHierarchySettings(hierarchySettingsChangesModel);
+            Test.stopTest();
+        } catch(TestException e) {
+            System.assertEquals(
+                'Test Exception encountered', 
+                e.getMessage(),
+                'Should throw an error.'
+            );
+        }
     }
 
     /**************************************************************************************************************************
@@ -193,15 +191,6 @@ public with sharing class HierarchySettingsService_TEST {
     private class STUB_HierarchySettingsMapper extends HierarchySettingsMapper {
         public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
             return true;
-        }
-    }
-
-    /**************************************************************************************************************************************
-    * @description Stub class to simulate a failed response from HierarchySettingsMapper 
-    **************************************************************************************************************************************/ 
-    private class STUB_HierarchySettingsMapperFailed extends HierarchySettingsMapper {
-        public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
-            return false;
         }
     }
 
