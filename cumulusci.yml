@@ -378,10 +378,12 @@ flows:
             3:
                 task: execute_install_apex
             4:
-                task: deploy_dev_config
+                task: cancel_eda_scheduled_jobs
             5:
-                flow: run_unmanaged_unit_tests
+                task: deploy_dev_config
             6:
+                flow: run_unmanaged_unit_tests
+            7:
                 flow: eda_settings_unmanaged
 
     config_dev_namespaced:
