@@ -11,14 +11,22 @@ public static void cancelScheduledJobs() {
         Name,
         JobType
         FROM CronJobDetail
-        WHERE Name IN:edaScheduledJobs
+        WHERE Name IN: edaScheduledJobs
     ];
+
+    if(edaCronJobDetailList.isEmpty()) {
+        return;
+    }
 
     List<CronTrigger> edaCronTriggerList = [
         SELECT Id
         FROM CronTrigger
         WHERE CronJobDetailId IN: edaCronJobDetailList
     ];
+
+    if(edaCronTriggerList.isEmpty()) {
+        return;
+    }
 
     for(CronTrigger cronTrigger : edaCronTriggerList) {
         System.abortJob(cronTrigger.Id);
