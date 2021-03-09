@@ -34,59 +34,6 @@
 @isTest
 public with sharing class HierarchySettingsChangesController_TEST {
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns a new instance of the 
-    * HierarchySettingsChangesController class when one does not already exist.
-    ***************************************************************************************************************************/
-    @isTest
-    private static void getInstanceNew() {
-
-        Test.startTest();
-            HierarchySettingsChangesController hierarchySettingsChangesControllerInstance = 
-                HierarchySettingsChangesController.getInstance();
-        Test.stopTest();
-
-        System.assertEquals(
-            HierarchySettingsChangesController.instance, 
-            hierarchySettingsChangesControllerInstance, 
-            'Instance of mapper class returned should match static instance variable.'
-        );
-        System.assertEquals(true, 
-            hierarchySettingsChangesControllerInstance != null, 
-            'Instance of mapper class should not be null.'
-        );
-    }
-
-    /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * HierarchySettingsChangesController class when one already exists.
-    ***************************************************************************************************************************/
-    @isTest
-    private static void getInstanceExisting() {
-
-        Test.startTest();
-            HierarchySettingsChangesController hierarchySettingsChangesControllerInstance1 = 
-                HierarchySettingsChangesController.getInstance();
-            HierarchySettingsChangesController hierarchySettingsChangesControllerInstance2 = 
-                HierarchySettingsChangesController.getInstance();
-        Test.stopTest();
-
-        System.assertEquals(HierarchySettingsChangesController.instance, 
-            hierarchySettingsChangesControllerInstance1, 
-            'Instance of mapper class returned should match static instance variable.'
-        );
-
-        System.assertEquals(hierarchySettingsChangesControllerInstance1, 
-            hierarchySettingsChangesControllerInstance2, 
-            'Subsequent retrievals of mapper class instance should return existing instance.'
-        );
-
-        System.assertEquals(true, 
-            hierarchySettingsChangesControllerInstance1 != null, 
-            'Instance of mapper class should not be null.'
-        );
-    }
-
-    /**************************************************************************************************************************
     * @description Test method to verify that the locateHierarchySettingsUpdaterService method returns an instance of the
     * HierarchySettingsService class.
     ***************************************************************************************************************************/
