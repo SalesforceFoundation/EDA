@@ -3,10 +3,10 @@
         <div
             class="slds-col slds-p-top_large slds-p-left_small slds-text-heading_small slds-no-flex slds-size_4-of-12 slds-scrollable_y eda-height_full"
         >
-            {labelReference.settingsNavigation}
+            <c-eda-settings-navigation onsettingsnavigation={handleSettingsNavigation}></c-eda-settings-navigation>
         </div>
         <div class="slds-col slds-no-flex slds-size_8-of-12 slds-scrollable_y eda-height_full">
-            <template if:true={settingsPageToDisplay.accountModelSettings}>
+            <template if:true={settingsPageToDisplay.accountmodelsettings}>
                 <c-account-model-settings></c-account-model-settings>
             </template>
         </div>
