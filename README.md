@@ -1,6 +1,6 @@
 ![Salesforce Education Data Architecture](https://github.com/SalesforceFoundation/EDA/blob/main/EDA%20GitHub.png "Salesforce Education Data Architecture")
 
-Education Data Architecture (EDA) standardizes the starting point for educational institutions building a CRM. Its core and common data model supports the entire K-20 student journey and its open-source architecture allows anyone to view the source code in GitHub. EDA is developed in close collaboration with our customers, partners, and the K-20 community to foster common acceptance. Solutions built on EDA share an open and flexible, extensible framework that accommodates a range of use cases and end-user customization. With EDA, you get a standardized data model—including preconfigured objects, functionality, logic, and automation—tailored for education right out of the box.
+Education Data Architecture (EDA) from <a href="http://salesforce.org/" target="_blank">Salesforce.org</a> standardizes the starting point for educational institutions building a CRM. Its core and common data model supports the entire K-20 student journey and its open-source architecture allows anyone to view the source code in GitHub. EDA is developed in close collaboration with our customers, partners, and the K-20 community to foster common acceptance. Solutions built on EDA share an open and flexible, extensible framework that accommodates a range of use cases and end-user customization. With EDA, you get a standardized data model—including preconfigured objects, functionality, logic, and automation—tailored for education right out of the box.
 
 The EDA framework, supported by the Salesforce Platform, can serve as the foundation for managing data and data relationships across your entire institution. We welcome your feedback and contributions to EDA. 
 
@@ -43,7 +43,7 @@ Make sure `yarn` is installed on your local machine. For more information, check
 * <a href="https://powerofus.force.com/" target="_blank">Ask questions or get help</a>
 * <a href="https://github.com/SalesforceFoundation/EDA/issues/new" target="_blank">Log a confirmed Issue</a> or <a href="https://powerofus.force.com/hub-ideas" target="_blank">Feature Request</a>
 * <a href="https://powerofus.force.com/EDA-Documentation" target="_blank">User Documentation</a>
-* Check out existing <a href="https://github.com/SalesforceFoundation/EDA/labels/bug" target="_blank">bugs</a> and <a href="https://powerofus.force.com/hub-ideas?product=EDA" target="_blank">feature and enhancement requests</a>
+* Check out existing <a href="https://github.com/SalesforceFoundation/EDA/labels/bug" target="_blank">bugs</a> and <a href="https://trailblazer.salesforce.com/ideaSearch?filter=Education+%3E+Education+Data+Architecture" target="_blank">feature and enhancement requests</a>
 * <a href="https://github.com/SalesforceFoundation/EDA/releases" target="_blank">Release Notes and Beta Releases</a>
 * Learn about EDA objects and fields, see <a href="https://powerofus.force.com/s/article/EDA-Data-Dictionary" target="_blank">EDA Data Dictionary</a>.
 
