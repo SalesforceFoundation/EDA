@@ -124,7 +124,7 @@ tasks:
             unmanaged: True
 
     deploy_unpackaged_relationship_autocreate_config:
-        description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing.  
+        description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
@@ -165,8 +165,15 @@ tasks:
         options:
             command: "force:user:permset:assign -n Encryption"
 
+    cancel_eda_scheduled_jobs:
+        description: Unscheduleds EDA Apex jobs
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            path: scripts/schedule.cls
+            apex: cancelScheduledJobs();
+
     check_translation_workbench_enabled:
-        group: "EDA Metadata"
+        group: "EDA: Metadata"
         description: Detects whether or not translation workbench is enabled
         class_path: cumulusci.tasks.preflight.settings.CheckSettingsValue
         options:
@@ -519,7 +526,7 @@ flows:
                 task: execute_enable_course_connections
                 options:
                     namespaced: False
-    
+
     deploy_health_check_localization:
         description: Deploys health check
         steps:
@@ -548,16 +555,16 @@ flows:
             3:
                 task: execute_primary_affiliation_mapping_apex
                 when: "'hed' in org_config.installed_packages"
-            4: 
+            4:
                 task: deploy_unpackaged_relationship_autocreate_config
                 when: "'hed' in org_config.installed_packages"
             5:
                 task: deploy_preferred_email_config
                 when: "'hed' in org_config.installed_packages"
-            6: 
+            6:
                 # execute tests in unmanaged package
-                task: run_tests 
-                options: 
+                task: run_tests
+                options:
                     test_name_match: '%\_Unmanaged_TEST,%\_ATST,%\_MTST,%\_PTST,%\_UTST'
 
     upgraded_org:
