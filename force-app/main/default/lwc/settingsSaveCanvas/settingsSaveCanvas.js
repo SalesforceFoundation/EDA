@@ -27,22 +27,18 @@ export default class SettingsSaveCanvas extends LightningElement {
 
     @api
     handleValidationFailure() {
-        this.clearHierarchySettingsChanges();
-        this.switchEditMode(false);
         this.dispatchSettingsSaveCompletedEvent();
     }
 
     @api
     handleHierarchySettingsChange(hierarchySettingsChange) {
         if (hierarchySettingsChange.settingsType === "string") {
-            hierarchySettingsChanges.settingsSingleValueBySettingsName[
-                hierarchySettingsChange.settingsName
-            ] = hierarchySettingsChange.settingsValue;
+            hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
+                hierarchySettingsChange.settingsValue;
         }
         if (hierarchySettingsChange.settingsType === "array") {
-            hierarchySettingsChanges.settingsListSettingsName[
-                hierarchySettingsChange.settingsName
-            ] = hierarchySettingsChange.settingsValue;
+            hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
+                hierarchySettingsChange.settingsValue;
         }
     }
 
@@ -56,8 +52,7 @@ export default class SettingsSaveCanvas extends LightningElement {
             .then((result) => {
                 if (result === true) {
                     // update successful
-                    console.log("Updated!");
-                    this.switchEditMode(false); // turn off edit mode?
+                    this.switchEditMode(false);
                     this.dispatchSettingsSaveCompletedEvent();
                 }
             })
@@ -72,17 +67,17 @@ export default class SettingsSaveCanvas extends LightningElement {
                     this.displayNoAccessError(exceptionType, errorMessage);
                 }
 
-                if (
-                    exceptionType === "HierarchySettingsMapper.InvalidSettingsException"
-                ) {
+                if (exceptionType === "HierarchySettingsMapper.InvalidSettingsException") {
                     this.displayInvalidSettingsError(exceptionType, errorMessage);
                 }
             });
     }
 
     clearHierarchySettingsChanges() {
-        this.hierarchySettingsChanges.settingsSingleValueBySettingsName = {};
-        this.hierarchySettingsChanges.settingsListSettingsName = {};
+        this.hierarchySettingsChanges = {
+            settingsSingleValueBySettingsName: {},
+            settingsListSettingsName: {},
+        };
     }
 
     completeSave() {
