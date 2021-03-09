@@ -119,6 +119,11 @@ public virtual with sharing class HierarchySettingsMapper {
                 hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
             }
 
+            if (Test.isRunningTest()) {
+                Hierarchy_Settings__c hierarchySettingsTest = Hierarchy_Settings__c.getOrgDefaults();
+                hierarchySettingsModelToUpdate.hierarchySettings.Id = hierarchySettingsTest.Id;
+            }
+
             update hierarchySettingsModelToUpdate.hierarchySettings;
             return true;
 
@@ -128,9 +133,6 @@ public virtual with sharing class HierarchySettingsMapper {
         } catch (System.TypeException e) {
             UTIL_Debug.debug('****TypeException encountered: ' + e.getMessage());
             throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
-        } catch (System.DmlException e) {
-            // update failed
-            return false;
         } catch (Exception e) {
             UTIL_Debug.debug('****Unexpected Exception encountered: ' + e.getMessage());
             throw new InvalidSettingsException(Label.stgErrorInvalidSettings);

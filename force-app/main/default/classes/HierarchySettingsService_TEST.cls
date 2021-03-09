@@ -191,13 +191,17 @@ public with sharing class HierarchySettingsService_TEST {
     * @description Stub class to simulate a successful response from HierarchySettingsMapper 
     **************************************************************************************************************************************/ 
     private class STUB_HierarchySettingsMapper extends HierarchySettingsMapper {
-        public override HierarchySettingsModel updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
-            Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
-                new Hierarchy_Settings__c(
-                    Account_Processor__c = 'Test Account'
-                )
-            );
-            return new HierarchySettingsModel(hierarchySettings);
+        public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+            return true;
+        }
+    }
+
+    /**************************************************************************************************************************************
+    * @description Stub class to simulate a failed response from HierarchySettingsMapper 
+    **************************************************************************************************************************************/ 
+    private class STUB_HierarchySettingsMapperFailed extends HierarchySettingsMapper {
+        public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+            return false;
         }
     }
 
@@ -205,7 +209,7 @@ public with sharing class HierarchySettingsService_TEST {
     * @description Stub class to simulate an exception response from HierarchySettingsMapper 
     **************************************************************************************************************************************/ 
     private class STUB_HierarchySettingsMapperExceptionResponse extends HierarchySettingsMapper {
-        public override HierarchySettingsModel updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+        public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
             throw new TestException('Test Exception encountered');
         }
     }

@@ -160,8 +160,8 @@ public inherited sharing class HierarchySettingsMapper_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettingsWithSingleValuesValid method updates the fields on a
-    * HierarchySettingsModel for updates to fields with String type.
+    * @description Test method to verify that the updateHierarchySetting method updates the Hierarchy Settings fields for 
+    * updates to fields with String type.
     ***************************************************************************************************************************/
     @isTest 
     private static void updateHierarchySettingsWithSingleValuesValidString() {
@@ -170,28 +170,43 @@ public inherited sharing class HierarchySettingsMapper_TEST {
                 Account_Processor__c = 'Original Value'
             )
         );
-        HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
+        insert hierarchySettings;
+        
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
             UTIL_Namespace.StrTokenNSPrefix('Account_Processor__c') => 'Updated Value'
         };
 
+        HierarchySettingsChangesModel hierarchySettingsChangesModelStringValues = 
+            new HierarchySettingsChangesModel(
+                singleValueSettingUpdatesByName,
+                new Map<String, List<String>>()
+            );
+
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
 
+        Boolean updateResult;
         Test.startTest();
-        HierarchySettingsModel hierarchySettingsModel = 
-            hierarchySettingsMapperInstance.updateHierarchySettingsWithSingleValues(hierarchySettingsModelToUpdate, singleValueSettingUpdatesByName);
+            updateResult = 
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelStringValues);        
         Test.stopTest();
 
         System.assertEquals(
+            true, 
+            updateResult,
+            'Update to string value should complete successfully.');
+
+        Hierarchy_Settings__c updatedHierarchySettings = UTIL_CustomSettings_API.getSettings();
+
+        System.assertEquals(
             'Updated Value', 
-            hierarchySettingsModel.hierarchySettings.Account_Processor__c, 
+            updatedHierarchySettings.Account_Processor__c, 
             'Account Processor value should be updated.'
         );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettingsWithSingleValuesValid method updates the fields on a
-    * HierarchySettingsModel for updates to fields with Boolean type.
+    * @description Test method to verify that the updateHierarchySettings method updates the Hierarchy Settings fields
+    * for updates to fields with Boolean type.
     ***************************************************************************************************************************/
     @isTest 
     private static void updateHierarchySettingsWithSingleValuesValidBoolean() {
@@ -200,28 +215,42 @@ public inherited sharing class HierarchySettingsMapper_TEST {
                 Allow_AutoCreated_Duplicates__c = false
             )
         );
-        HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
+        insert hierarchySettings;
+
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
             UTIL_Namespace.StrTokenNSPrefix('Allow_AutoCreated_Duplicates__c') => 'true'
         };
 
+        HierarchySettingsChangesModel hierarchySettingsChangesModelBooleanValues = 
+            new HierarchySettingsChangesModel(
+                singleValueSettingUpdatesByName,
+                new Map<String, List<String>>()
+            );
+
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
 
         Test.startTest();
-        HierarchySettingsModel hierarchySettingsModel = 
-            hierarchySettingsMapperInstance.updateHierarchySettingsWithSingleValues(hierarchySettingsModelToUpdate, singleValueSettingUpdatesByName);
+        Boolean updateResult = 
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelBooleanValues);
         Test.stopTest();
 
         System.assertEquals(
             true, 
-            hierarchySettingsModel.hierarchySettings.Allow_AutoCreated_Duplicates__c, 
+            updateResult,
+            'Update to Boolean value should complete successfully.');
+
+        Hierarchy_Settings__c updatedHierarchySettings = UTIL_CustomSettings_API.getSettings();
+
+        System.assertEquals(
+            true, 
+            updatedHierarchySettings.Allow_AutoCreated_Duplicates__c, 
             'Allow_AutoCreated_Duplicates__c value should be updated.'
         );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettingsWithSingleValuesValid method updates the fields on a
-    * HierarchySettingsModel for updates to fields with Datetime type.
+    * @description Test method to verify that the updateHierarchySettings method updates the Hierarchy Settings fields
+    * for updates to fields with Datetime type.
     ***************************************************************************************************************************/
     @isTest 
     private static void updateHierarchySettingsWithSingleValuesValidDateTime() {
@@ -230,27 +259,41 @@ public inherited sharing class HierarchySettingsMapper_TEST {
                 Async_Error_Check_Last_Run__c = Datetime.now().addDays(-3)
             )
         );
-        HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
+        insert hierarchySettings;
+
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
             UTIL_Namespace.StrTokenNSPrefix('Async_Error_Check_Last_Run__c') => String.valueOf(DateTime.newInstance(2021, 03, 17, 5, 0, 0))
         };
 
+        HierarchySettingsChangesModel hierarchySettingsChangesModelDateTimeValues = 
+            new HierarchySettingsChangesModel(
+                singleValueSettingUpdatesByName,
+                new Map<String, List<String>>()
+            );
+
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
 
         Test.startTest();
-        HierarchySettingsModel hierarchySettingsModel = 
-            hierarchySettingsMapperInstance.updateHierarchySettingsWithSingleValues(hierarchySettingsModelToUpdate, singleValueSettingUpdatesByName);
+        Boolean updateResult = 
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelDateTimeValues);
         Test.stopTest();
 
         System.assertEquals(
+            true, 
+            updateResult,
+            'Update to DateTime value should complete successfully.');
+
+        Hierarchy_Settings__c updatedHierarchySettings = UTIL_CustomSettings_API.getSettings();
+
+        System.assertEquals(
             DateTime.newInstance(2021, 03, 17, 5, 0, 0), 
-            hierarchySettingsModel.hierarchySettings.Async_Error_Check_Last_Run__c, 
+            updatedHierarchySettings.Async_Error_Check_Last_Run__c, 
             'Async_Error_Check_Last_Run__c value should be updated.'
         );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettingsWithSingleValuesValid method throws an error when an 
+    * @description Test method to verify that the updateHierarchySettings method throws an error when an 
     * update is made for a field that is not in Hierarchy Settings.
     ***************************************************************************************************************************/
     @isTest 
@@ -260,18 +303,24 @@ public inherited sharing class HierarchySettingsMapper_TEST {
                 Account_Processor__c = 'Original Value'
             )
         );
-        HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
+        insert hierarchySettings;
+
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
             UTIL_Namespace.StrTokenNSPrefix('Account_Processor__c') => 'Updated Value',
             UTIL_Namespace.StrTokenNSPrefix('Invalid_Field_Name__c') => 'Updated Invalid Value'
         };
 
+        HierarchySettingsChangesModel hierarchySettingsChangesModelError = new HierarchySettingsChangesModel(
+            singleValueSettingUpdatesByName,
+            new Map<String, List<String>>()
+        );
+
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
 
         try {
             Test.startTest();
-            HierarchySettingsModel hierarchySettingsModel = 
-                hierarchySettingsMapperInstance.updateHierarchySettingsWithSingleValues(hierarchySettingsModelToUpdate, singleValueSettingUpdatesByName);
+            Boolean updateResult = 
+                hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelError);
             Test.stopTest();
         } catch (UTIL_Describe.SchemaDescribeException e) {
             System.assertEquals(
@@ -289,8 +338,8 @@ public inherited sharing class HierarchySettingsMapper_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettingsWithSingleValuesValid method throws an error when a 
-    * mapping to an invalid Hierarchy Settings field is updated.
+    * @description Test method to verify that the updateHierarchySettings method throws an error when a field is mapped to a 
+    * Hierarchy Settings field with the wrong data type is updated.
     ***************************************************************************************************************************/
     @isTest 
     private static void updateHierarchySettingsWithSingleValuesInValidDateTime() {
@@ -299,17 +348,23 @@ public inherited sharing class HierarchySettingsMapper_TEST {
                 Async_Error_Check_Last_Run__c = Datetime.now().addDays(-1)
             )
         );
-        HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
+        insert hierarchySettings;
+
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
             UTIL_Namespace.StrTokenNSPrefix('Async_Error_Check_Last_Run__c') => 'Updated Value'
         };
+
+        HierarchySettingsChangesModel hierarchySettingsChangesModelInvalidType = new HierarchySettingsChangesModel(
+            singleValueSettingUpdatesByName,
+            new Map<String, List<String>>()
+        );
 
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
 
         try {
             Test.startTest();
-            HierarchySettingsModel hierarchySettingsModel = 
-                hierarchySettingsMapperInstance.updateHierarchySettingsWithSingleValues(hierarchySettingsModelToUpdate, singleValueSettingUpdatesByName);
+            Boolean updateResult = 
+                hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelInvalidType);
             Test.stopTest();
         } catch (System.TypeException e) {
             System.assertEquals(
@@ -327,8 +382,8 @@ public inherited sharing class HierarchySettingsMapper_TEST {
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettingsWithSingleValuesValid method does not update the fields on a
-    * HierarchySettingsModel for updates to fields with primitive data types when no updates are specified.
+    * @description Test method to verify that the updateHierarchySettings method does not update Hierarchy Settings fields
+    * when updates for a primitive data type are not specified.
     ***************************************************************************************************************************/
     @isTest 
     private static void updateHierarchySettingsWithSingleValuesEmpty() {
@@ -337,26 +392,40 @@ public inherited sharing class HierarchySettingsMapper_TEST {
                 Account_Processor__c = 'Original Value'
             )
         );
-        HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
+        insert hierarchySettings;
+
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>();
+
+        HierarchySettingsChangesModel hierarchySettingsChangesModelEmptySingleValues= new HierarchySettingsChangesModel(
+            singleValueSettingUpdatesByName,
+            new Map<String, List<String>>()
+        );
 
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
 
         Test.startTest();
-        HierarchySettingsModel hierarchySettingsModel = 
-            hierarchySettingsMapperInstance.updateHierarchySettingsWithSingleValues(hierarchySettingsModelToUpdate, singleValueSettingUpdatesByName);
+        Boolean updateResult = 
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelEmptySingleValues);
         Test.stopTest();
 
         System.assertEquals(
+            true, 
+            updateResult,
+            'Update to string value should complete successfully.'
+        );
+
+        Hierarchy_Settings__c updatedHierarchySettings = UTIL_CustomSettings_API.getSettings();
+
+        System.assertEquals(
             'Original Value', 
-            hierarchySettingsModel.hierarchySettings.Account_Processor__c, 
+            updatedHierarchySettings.Account_Processor__c, 
             'Account Processor value should remain unchanged.'
         );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettingsWithListValues method updates the specified fields 
-    * of type collection on a HierarchySettingsModel.
+    * @description Test method to verify that the updateHierarchySettings method updates the specified Hierarchy Settings fields 
+    * of a collection type.
     ***************************************************************************************************************************/
     @isTest 
     private static void updateHierarchySettingsWithListValuesValid() {
@@ -365,28 +434,42 @@ public inherited sharing class HierarchySettingsMapper_TEST {
                 Accounts_to_Delete__c = 'Original Value1;Original Value2'
             )
         );
-        HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
+        insert hierarchySettings;
+
         Map<String, List<String>> listValueSettingUpdatesByName = new Map<String, List<String>>{
             UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{'Updated Value 1', 'Updated Value 2'}
         };
 
+        HierarchySettingsChangesModel hierarchySettingsChangesModelListValues = new HierarchySettingsChangesModel(
+            new Map<String, String>(),
+            listValueSettingUpdatesByName
+        );
+
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
 
         Test.startTest();
-        HierarchySettingsModel hierarchySettingsModel = 
-            hierarchySettingsMapperInstance.updateHierarchySettingsWithListValues(hierarchySettingsModelToUpdate, listValueSettingUpdatesByName);
+        Boolean updateResult = 
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelListValues);
         Test.stopTest();
 
         System.assertEquals(
+            true, 
+            updateResult,
+            'Update to string value should complete successfully.'
+        );
+
+        Hierarchy_Settings__c updatedHierarchySettings = UTIL_CustomSettings_API.getSettings();
+
+        System.assertEquals(
             'Updated Value 1;Updated Value 2', 
-            hierarchySettingsModel.hierarchySettings.Accounts_to_Delete__c, 
+            updatedHierarchySettings.Accounts_to_Delete__c, 
             'Accounts_to_Delete__c value should be updated.'
         );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettingsWithListValues method does not update the specified fields 
-    * of type collection on a HierarchySettingsModel when no updates are specified.
+    * @description Test method to verify that the updateHierarchySettings method does not update the specified Hierarchy
+    * Settings fields of type collection when no updates are specified.
     ***************************************************************************************************************************/
     @isTest 
     private static void updateHierarchySettingsWithListValuesEmpty() {
@@ -395,19 +478,33 @@ public inherited sharing class HierarchySettingsMapper_TEST {
                 Accounts_to_Delete__c = 'Original Value1;Original Value2'
             )
         );
-        HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
+        insert hierarchySettings;
+
         Map<String, List<String>> listValueSettingUpdatesByName = new Map<String, List<String>>();
+
+        HierarchySettingsChangesModel hierarchySettingsChangesModelListValuesEmpty = new HierarchySettingsChangesModel(
+            new Map<String, String>(),
+            listValueSettingUpdatesByName
+        );
 
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
 
         Test.startTest();
-        HierarchySettingsModel hierarchySettingsModel = 
-            hierarchySettingsMapperInstance.updateHierarchySettingsWithListValues(hierarchySettingsModelToUpdate, listValueSettingUpdatesByName);
+        Boolean updateResult = 
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelListValuesEmpty);
         Test.stopTest();
 
         System.assertEquals(
+            true, 
+            updateResult,
+            'Update to string value should complete successfully.'
+        );
+
+        Hierarchy_Settings__c updatedHierarchySettings = UTIL_CustomSettings_API.getSettings();
+
+        System.assertEquals(
             'Original Value1;Original Value2', 
-            hierarchySettingsModel.hierarchySettings.Accounts_to_Delete__c, 
+            updatedHierarchySettings.Accounts_to_Delete__c, 
             'Accounts_to_Delete__c value should remain unchanged.'
         );
     }
@@ -423,18 +520,24 @@ public inherited sharing class HierarchySettingsMapper_TEST {
                 Accounts_to_Delete__c = 'Original Value1;Original Value2'
             )
         );
-        HierarchySettingsModel hierarchySettingsModelToUpdate = new HierarchySettingsModel(hierarchySettings);
+        insert hierarchySettings;
+
         Map<String, List<String>> listValueSettingUpdatesByName = new Map<String, List<String>>{
             UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{'Updated Value 1', 'Updated Value 2'},
             UTIL_Namespace.StrTokenNSPrefix('Not_A_Valid_Field__c') => new List<String>{'Invalid value'}
         };
 
+        HierarchySettingsChangesModel hierarchySettingsChangesModelListValuesError = new HierarchySettingsChangesModel(
+            new Map<String, String>(),
+            listValueSettingUpdatesByName
+        );
+
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
 
         try {
             Test.startTest();
-            HierarchySettingsModel hierarchySettingsModel = 
-                hierarchySettingsMapperInstance.updateHierarchySettingsWithListValues(hierarchySettingsModelToUpdate, listValueSettingUpdatesByName);
+            Boolean updateResult = 
+                hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelListValuesError);
             Test.stopTest();
         } catch (UTIL_Describe.SchemaDescribeException e) {
             System.assertEquals(
@@ -452,6 +555,69 @@ public inherited sharing class HierarchySettingsMapper_TEST {
     }
 
     /**************************************************************************************************************************
+    * @description Test method to verify that the updateHierarchySettings method throws an error and does not update any 
+    * Hierarchy Settings fields when an error is encountered.
+    ***************************************************************************************************************************/
+    @isTest 
+    private static void updateHierarchySettingsUpdateError() {
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = 'Original Account',
+                Accounts_to_Delete__c = 'Original Value1;Original Value2'
+            )
+        );
+        insert hierarchySettings;
+
+        Map<String, String> singleValueSettingUpdatesByNameInvalid = new Map<String, String>{
+            UTIL_Namespace.StrTokenNSPrefix('Account_Processor_Invalid__c') => 'Updated Value'
+        };
+
+        Map<String, List<String>> listValueSettingUpdatesByName = new Map<String, List<String>>{
+            UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{'Updated Value 1', 'Updated Value 2'}
+        };
+
+        HierarchySettingsChangesModel hierarchySettingsChangesModel = new HierarchySettingsChangesModel(
+            singleValueSettingUpdatesByNameInvalid,
+            listValueSettingUpdatesByName
+        );
+
+        HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
+
+        try {
+            Test.startTest();
+            Boolean updateResult = 
+                hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModel);
+            Test.stopTest();
+        } catch (UTIL_Describe.SchemaDescribeException e) {
+            System.assertEquals(
+                'Invalid field name \'' + UTIL_Namespace.StrTokenNSPrefix('Account_Processor_Invalid__c') + '\'', 
+                e.getMessage(), 
+                'Invalid field name should cause exception'
+            );
+        } catch (HierarchySettingsMapper.InvalidSettingsException e) {
+            System.assertEquals(
+                Label.stgErrorInvalidSettings,  
+                e.getMessage(),
+                'Invalid mapping should throw exception.'
+            );
+        }
+
+        Hierarchy_Settings__c updatedHierarchySettings = UTIL_CustomSettings_API.getSettings();
+
+        System.assertEquals(
+            'Original Account', 
+            updatedHierarchySettings.Account_Processor__c, 
+            'Account_Processor__c value should remain unchanged.'
+        );   
+        
+        System.assertEquals(
+            'Original Value1;Original Value2', 
+            updatedHierarchySettings.Accounts_to_Delete__c, 
+            'Accounts_to_Delete__c value should remain unchanged.'
+        );   
+    }
+
+    /**************************************************************************************************************************
     * @description Test method to verify that the updateHierarchySettings method updates Hierarchy Setting values of both
     * primitive and collection data types.
     ***************************************************************************************************************************/
@@ -463,6 +629,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
                 Accounts_to_Delete__c = 'Original Value1;Original Value2'
             )
         );
+        insert hierarchySettings;
 
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
             UTIL_Namespace.StrTokenNSPrefix('Account_Processor__c') => 'Updated Value'
@@ -480,20 +647,24 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         HierarchySettingsMapper hierarchySettingsMapperInstance = HierarchySettingsMapper.getInstance();
 
         Test.startTest();
-        HierarchySettingsModel hierarchySettingsModel = 
+        Boolean updateResult = 
             hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModel);
         Test.stopTest();
 
+        System.assertEquals(true, updateResult, 'Update should complete successfully.');
+
+        Hierarchy_Settings__c updatedHierarchySettings = UTIL_CustomSettings_API.getSettings();
+
         System.assertEquals(
             'Updated Value', 
-            hierarchySettingsModel.hierarchySettings.Account_Processor__c, 
-            'Hierarchy Settings model value should be updated.'
+            updatedHierarchySettings.Account_Processor__c, 
+            'Account_Processor__c value should be updated.'
         );
 
         System.assertEquals(
             'Updated Value 1;Updated Value 2', 
-            hierarchySettingsModel.hierarchySettings.Accounts_to_Delete__c, 
-            'Hierarchy Settings model value should be updated.'
+            updatedHierarchySettings.Accounts_to_Delete__c, 
+            'Accounts_to_Delete__c value should be updated.'
         );
     }
 
