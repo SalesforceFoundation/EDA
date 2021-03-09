@@ -110,19 +110,19 @@ public with sharing class HierarchySettingsService_TEST {
     * @description Test method to verify that the locateUserPermissionService method returns a valid instance of 
     * UserPermissionService.
     ***************************************************************************************************************************/
-    // @isTest 
-    // private static void locateUserPermissionServiceValid(){
-    //     HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
+    @isTest 
+    private static void locateUserPermissionServiceValid(){
+        HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
 
-    //     Test.startTest();
-    //     UserPermissionService userPermissionServiceInstance = hierarchySettingsServiceInstance.locateUserPermissionService();
-    //     Test.stopTest();
+        Test.startTest();
+        UserPermissionService userPermissionServiceInstance = hierarchySettingsServiceInstance.locateUserPermissionService();
+        Test.stopTest();
 
-    //     System.assertEquals(
-    //         UserPermissionService.getInstance(), 
-    //         userPermissionServiceInstance, 
-    //         'Should return instance of UserPermissionService.');
-    // }
+        System.assertEquals(
+            UserPermissionService.getInstance(), 
+            userPermissionServiceInstance, 
+            'Should return instance of UserPermissionService.');
+    }
 
     /**************************************************************************************************************************
     * @description Test method to verify that the updateHierarchySettings method returns true when an update to Hierarchy

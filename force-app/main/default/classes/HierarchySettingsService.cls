@@ -78,8 +78,8 @@ public virtual with sharing class HierarchySettingsService {
     * @description Retrieve an instance of UserPermissionService
     * @return An instance of the UserPermissionService class
     ************************************************************************************************************/ 
-    // @TestVisible
-    // private UserPermissionService locateUserPermissionService() {
-    //     return UserPermissionService.getInstance();
-    // }
+    @TestVisible
+    private UserPermissionService locateUserPermissionService() {
+        return UserPermissionService.getInstance();
+    }
 }

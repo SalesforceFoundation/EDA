@@ -32,9 +32,8 @@
 * @description Model to abstract data for changes made to Hierarchy Settings.
 */
 public with sharing class HierarchySettingsChangesVModel {
-    public Map<String, String> settingsSingleValueBySettingsName { get; set; }
-    public Map<String, List<String>> settingsListSettingsName { get; set; }
-
+    @AuraEnabled public Map<String, String> settingsSingleValueBySettingsName { get; set; }
+    @AuraEnabled public Map<String, List<String>> settingsListSettingsName { get; set; }
 
     /**********************************************************************************************************************
     * @description No argument constructor
@@ -43,7 +42,6 @@ public with sharing class HierarchySettingsChangesVModel {
     public HierarchySettingsChangesModel() {
         this.settingsSingleValueBySettingsName = new Map<String, String>();
         this.settingsListSettingsName = new Map<String, List<String>>();
-
     }
 
     /**********************************************************************************************************************
