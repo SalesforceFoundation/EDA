@@ -12,7 +12,7 @@ The easiest way to get started with EDA is to sign up for a <a href="https://www
 
 Use a code formatter, like Prettier, to ensure that code you contribute to EDA is formatted consistent with the EDA code base. 
 
-### Install package manager
+### Install a package manager
 
 Make sure `yarn` is installed on your local machine. For more information, check <a href="https://classic.yarnpkg.com/en/docs/install/#mac-stableA" target="_blank">yarn installation</a>.
 
