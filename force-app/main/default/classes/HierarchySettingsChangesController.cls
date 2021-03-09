@@ -31,29 +31,7 @@
 * @group-content ../../ApexDocContent/EdaSettings.htm
 * @description Controller for SettingsSaveCanvas LWC component.
 */
-public virtual with sharing class HierarchySettingsChangesController {
-    /**********************************************************************************
-    * @description Instance for Singleton Pattern
-    **********************************************************************************/
-    @TestVisible
-    private static HierarchySettingsChangesController instance;
-
-    /**********************************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************************/
-    protected HierarchySettingsChangesController() {}
-
-    /**********************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HierarchySettingsChangesController.
-    **********************************************************************************/
-    public static HierarchySettingsChangesController getInstance() {
-        if (instance == null) {
-            instance = new HierarchySettingsChangesController();
-        }
-
-        return instance;
-    }
+public with sharing class HierarchySettingsChangesController {
 
     /**********************************************************************************
     * @description Update the HierarchySettingsChangesModel with specified changes.
