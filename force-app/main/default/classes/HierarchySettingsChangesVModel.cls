@@ -37,9 +37,9 @@ public with sharing class HierarchySettingsChangesVModel {
 
     /**********************************************************************************************************************
     * @description No argument constructor
-    * @return A HierarchySettingsChangesModel with empty maps
+    * @return A HierarchySettingsChangesVModel with empty maps
     **********************************************************************************************************************/
-    public HierarchySettingsChangesModel() {
+    public HierarchySettingsChangesVModel() {
         this.settingsSingleValueBySettingsName = new Map<String, String>();
         this.settingsListSettingsName = new Map<String, List<String>>();
     }
@@ -48,9 +48,9 @@ public with sharing class HierarchySettingsChangesVModel {
     * @description Two parameter constructor
     * @param  settingsSingleValueBySettingsName A map of changed hierarchy settings with single values mapped by name 
     * @param  settingsListSettingsName A map of changed hierarchy settings with collections mapped by name 
-    * @return A HierarchySettingsChangesModel with all properties populated
+    * @return A HierarchySettingsChangesVModel with all properties populated
     **********************************************************************************************************************/ 
-    public HierarchySettingsChangesModel(
+    public HierarchySettingsChangesVModel(
         Map<String, String> settingsSingleValueBySettingsName, 
         Map<String, List<String>> settingsListSettingsName
     ) {

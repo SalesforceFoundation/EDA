@@ -29,36 +29,36 @@
 * @date 2021
 * @group 
 * @group-content ../../ApexDocContent/Tests.htm
-* @description Test class for HierarchySettingsChangesModel class.
+* @description Test class for HierarchySettingsChangesVModel class.
 */
 @isTest 
-public with sharing class HierarchySettingsChangesModel_TEST {
+public with sharing class HierarchySettingsChangesVModel_TEST {
     /******************************************************************************
     * @description Test method to verify the no argument constructor returns a
-    * HierarchySettingsChangesModel with empty properties initialized.
+    * HierarchySettingsChangesVModel with empty properties initialized.
     ******************************************************************************/
     @isTest 
     private static void noParameterConstructor() {
         Test.startTest();
-        HierarchySettingsChangesModel hierarchySettingsChangesModel = new HierarchySettingsChangesModel();
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModel = new HierarchySettingsChangesVModel();
         Test.stopTest();
 
         System.assertEquals(
             true, 
-            hierarchySettingsChangesModel.settingsSingleValueBySettingsName.isEmpty(), 
+            hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.isEmpty(), 
             'settingsSingleValueBySettingsName should be an empty map.'
         );
 
         System.assertEquals(
             true, 
-            hierarchySettingsChangesModel.settingsListSettingsName.isEmpty(), 
+            hierarchySettingsChangesVModel.settingsListSettingsName.isEmpty(), 
             'settingsListSettingsName should be an empty map.'
         );
     }
 
     /******************************************************************************
     * @description Test method to verify two argument constructor returns a
-    * HierarchySettingsChangesModel with all properties populated.
+    * HierarchySettingsChangesVModel with all properties populated.
     ******************************************************************************/
     @isTest 
     private static void twoParameterConstructor() {
@@ -71,37 +71,37 @@ public with sharing class HierarchySettingsChangesModel_TEST {
         };
 
         Test.startTest();
-        HierarchySettingsChangesModel hierarchySettingsChangesModel = 
-            new HierarchySettingsChangesModel(settingsSingleValueBySettingsName, settingsListSettingsName);
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModel = 
+            new HierarchySettingsChangesVModel(settingsSingleValueBySettingsName, settingsListSettingsName);
         Test.stopTest();
 
         System.assertEquals(
             'Changed Value 1', 
-            hierarchySettingsChangesModel.settingsSingleValueBySettingsName.get('Value1'), 
+            hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get('Value1'), 
             'Mapped value should match parameter value.'
         );
 
         System.assertEquals(
             3, 
-            hierarchySettingsChangesModel.settingsListSettingsName.get('CollectionValue1').size(), 
+            hierarchySettingsChangesVModel.settingsListSettingsName.get('CollectionValue1').size(), 
             'Mapped value should be list of 3 elements.'
         );
 
         System.assertEquals(
             true, 
-            hierarchySettingsChangesModel.settingsListSettingsName.get('CollectionValue1').contains('Change1'),
+            hierarchySettingsChangesVModel.settingsListSettingsName.get('CollectionValue1').contains('Change1'),
             'List of changes to setting should include \'Change1\''
         );
 
         System.assertEquals(
             true, 
-            hierarchySettingsChangesModel.settingsListSettingsName.get('CollectionValue1').contains('Change2'),
+            hierarchySettingsChangesVModel.settingsListSettingsName.get('CollectionValue1').contains('Change2'),
             'List of changes to setting should include \'Change2\''
         );
 
         System.assertEquals(
             true, 
-            hierarchySettingsChangesModel.settingsListSettingsName.get('CollectionValue1').contains('Change3'),
+            hierarchySettingsChangesVModel.settingsListSettingsName.get('CollectionValue1').contains('Change3'),
             'List of changes to setting should include \'Change3\''
         );
     }

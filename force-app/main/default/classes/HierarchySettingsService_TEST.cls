@@ -132,12 +132,12 @@ public with sharing class HierarchySettingsService_TEST {
     private static void updateHierarchySettingsValid() {
         HierarchySettingsMapper.instance = new STUB_HierarchySettingsMapper();
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModel = new HierarchySettingsChangesModel();
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModel = new HierarchySettingsChangesVModel();
         HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
 
         Test.startTest();
         Boolean updateHierarchySettingsResult = 
-            hierarchySettingsServiceInstance.updateHierarchySettings(hierarchySettingsChangesModel);
+            hierarchySettingsServiceInstance.updateHierarchySettings(hierarchySettingsChangesVModel);
         Test.stopTest();
 
         System.assertEquals(
@@ -164,13 +164,13 @@ public with sharing class HierarchySettingsService_TEST {
     private static void updateHierarchySettingsThrownException() {
         HierarchySettingsMapper.instance = new STUB_HierarchySettingsMapperExceptionResponse();
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModel = new HierarchySettingsChangesModel();
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModel = new HierarchySettingsChangesVModel();
         HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
 
         try {
             Test.startTest();
             Boolean updateHierarchySettingsResult = 
-            hierarchySettingsServiceInstance.updateHierarchySettings(hierarchySettingsChangesModel);
+            hierarchySettingsServiceInstance.updateHierarchySettings(hierarchySettingsChangesVModel);
             Test.stopTest();
         } catch(TestException e) {
             System.assertEquals(
@@ -189,7 +189,7 @@ public with sharing class HierarchySettingsService_TEST {
     * @description Stub class to simulate a successful response from HierarchySettingsMapper 
     **************************************************************************************************************************************/ 
     private class STUB_HierarchySettingsMapper extends HierarchySettingsMapper {
-        public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+        public override Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
             return true;
         }
     }
@@ -198,7 +198,7 @@ public with sharing class HierarchySettingsService_TEST {
     * @description Stub class to simulate an exception response from HierarchySettingsMapper 
     **************************************************************************************************************************************/ 
     private class STUB_HierarchySettingsMapperExceptionResponse extends HierarchySettingsMapper {
-        public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+        public override Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
             throw new TestException('Test Exception encountered');
         }
     }

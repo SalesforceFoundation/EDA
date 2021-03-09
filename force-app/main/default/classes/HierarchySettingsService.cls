@@ -58,11 +58,11 @@ public virtual with sharing class HierarchySettingsService {
 
     /************************************************************************************************************
     * @description Update Hierarchy Settings fields with specified changes.
-    * @param  hierarchySettingsChangesModel A HierarchySettingsChangesModel representing updates to Hierarchy Settings.
+    * @param  hierarchySettingsChangesVModel A HierarchySettingsChangesVModel representing updates to Hierarchy Settings.
     * @return True if the updates were completed successfully, false otherwise.
     ************************************************************************************************************/ 
-    public virtual Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
-        return this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsChangesModel);
+    public virtual Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
+        return this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsChangesVModel);
     }
 
     /************************************************************************************************************

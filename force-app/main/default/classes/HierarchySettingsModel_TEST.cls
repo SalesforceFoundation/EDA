@@ -35,7 +35,7 @@
 public with sharing class HierarchySettingsModel_TEST {
     /******************************************************************************
     * @description Test method to verify single parameter constructor returns a
-    * HierarchySettingsChangesModel with all parameters populated.
+    * HierarchySettingsChangesVModel with all parameters populated.
     ******************************************************************************/
     @isTest 
     private static void singleParameterConstructor() {

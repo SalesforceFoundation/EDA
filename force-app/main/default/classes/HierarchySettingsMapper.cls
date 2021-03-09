@@ -79,43 +79,43 @@ public virtual with sharing class HierarchySettingsMapper {
 
     /****************************************************************************************************
     * @description Update a HierarchySettingsModel to reflect changes made to setting values.
-    * @param hierarchySettingsChangesModel A HierarchySettingsChangesModel containing all updates to Hierarchy Settings.
+    * @param hierarchySettingsChangesVModel A HierarchySettingsChangesVModel containing all updates to Hierarchy Settings.
     * @return A HierarchySettingsModel with updates recorded.
     ****************************************************************************************************/
-    public virtual boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+    public virtual boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
         HierarchySettingsModel hierarchySettingsModelToUpdate = this.getHierarchySettings();
 
         try {
             // Update Hierarchy Settings fields with single values
-            for (String changedSettingName : hierarchySettingsChangesModel.settingsSingleValueBySettingsName.keySet()) {
+            for (String changedSettingName : hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.keySet()) {
                 Schema.DescribeFieldResult fieldDescribeResult = this.getHierarchySettingsField(changedSettingName);
                 Schema.DisplayType displayType = fieldDescribeResult.getType();
 
                 if (displayType == Schema.DisplayType.STRING) {
                     String hierarchySettingValue = 
-                        (String)hierarchySettingsChangesModel.settingsSingleValueBySettingsName.get(changedSettingName);
+                        (String)hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(changedSettingName);
                     hierarchySettingsModelToUpdate.setSettingsField(changedSettingName, hierarchySettingValue);
                 }
 
                 if (displayType == Schema.DisplayType.BOOLEAN) {
                     Boolean hierarchySettingValue = 
-                        Boolean.valueOf(hierarchySettingsChangesModel.settingsSingleValueBySettingsName.get(changedSettingName));
+                        Boolean.valueOf(hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(changedSettingName));
                     hierarchySettingsModelToUpdate.setSettingsField(changedSettingName, hierarchySettingValue);
                 }
 
                 if (displayType == Schema.DisplayType.DATETIME) {
                     Datetime hierarchySettingValue = 
-                        Datetime.valueOf(hierarchySettingsChangesModel.settingsSingleValueBySettingsName.get(changedSettingName));
+                        Datetime.valueOf(hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(changedSettingName));
                     hierarchySettingsModelToUpdate.setSettingsField(changedSettingName, hierarchySettingValue);
                 }
             }
 
             // Update Hierarchy Settings fields with collections as values
-            for (String changedSettingName : hierarchySettingsChangesModel.settingsListSettingsName.keySet()) {
+            for (String changedSettingName : hierarchySettingsChangesVModel.settingsListSettingsName.keySet()) {
                 Schema.DescribeFieldResult fieldDescribeResult = this.getHierarchySettingsField(changedSettingName);
 
                 String hierarchySettingValue = 
-                    this.denormalizeListSettingChange(hierarchySettingsChangesModel.settingsListSettingsName.get(changedSettingName));
+                    this.denormalizeListSettingChange(hierarchySettingsChangesVModel.settingsListSettingsName.get(changedSettingName));
                 hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
             }
 

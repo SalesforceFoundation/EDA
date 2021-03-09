@@ -47,7 +47,7 @@ export default class SettingsSaveCanvas extends LightningElement {
         this.dispatchEditModeSwitchEvent(false);
 
         updateHierarchySettings({
-            hierarchySettingsChangesModel: this.hierarchySettingsChanges,
+            hierarchySettingsChangesVModel: this.hierarchySettingsChanges,
         })
             .then((result) => {
                 if (result === true) {

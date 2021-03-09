@@ -34,12 +34,12 @@
 public with sharing class HierarchySettingsChangesController {
 
     /**********************************************************************************
-    * @description Update the HierarchySettingsChangesModel with specified changes.
+    * @description Update the HierarchySettingsChangesVModel with specified changes.
     * @return True if update was successful, false otherwise.
     **********************************************************************************/
     @AuraEnabled
-    public static Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
-        return HierarchySettingsChangesController.locateHierarchySettingsUpdaterService().updateHierarchySettings(hierarchySettingsChangesModel);
+    public static Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
+        return HierarchySettingsChangesController.locateHierarchySettingsUpdaterService().updateHierarchySettings(hierarchySettingsChangesVModel);
     }
 
     /************************************************************************************

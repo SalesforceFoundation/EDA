@@ -66,12 +66,12 @@ public with sharing class HierarchySettingsChangesController_TEST {
             'CollectionValue1' => new List<String>{'Change1', 'Change2', 'Change3'}
         };
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModel = 
-            new HierarchySettingsChangesModel(settingsSingleValueBySettingsName, settingsListSettingsName);
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModel = 
+            new HierarchySettingsChangesVModel(settingsSingleValueBySettingsName, settingsListSettingsName);
 
         Test.startTest();
         Boolean updateHierarchySettingsResult = 
-            HierarchySettingsChangesController.updateHierarchySettings(hierarchySettingsChangesModel);
+            HierarchySettingsChangesController.updateHierarchySettings(hierarchySettingsChangesVModel);
         Test.stopTest();
 
         System.assertEquals(
@@ -97,12 +97,12 @@ public with sharing class HierarchySettingsChangesController_TEST {
             'CollectionValue1' => new List<String>{'Change1', 'Change2', 'Change3'}
         };
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModel = 
-            new HierarchySettingsChangesModel(settingsSingleValueBySettingsName, settingsListSettingsName);
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModel = 
+            new HierarchySettingsChangesVModel(settingsSingleValueBySettingsName, settingsListSettingsName);
 
         Test.startTest();
         Boolean updateHierarchySettingsResult = 
-            HierarchySettingsChangesController.updateHierarchySettings(hierarchySettingsChangesModel);
+            HierarchySettingsChangesController.updateHierarchySettings(hierarchySettingsChangesVModel);
         Test.stopTest();
 
         System.assertEquals(
@@ -128,13 +128,13 @@ public with sharing class HierarchySettingsChangesController_TEST {
             UTIL_Namespace.StrTokenNSPrefix('CollectionValue1') => new List<String>{'Change1', 'Change2', 'Change3'}
         };
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModel = 
-            new HierarchySettingsChangesModel(settingsSingleValueBySettingsName, settingsListSettingsName);
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModel = 
+            new HierarchySettingsChangesVModel(settingsSingleValueBySettingsName, settingsListSettingsName);
 
         try {
             Test.startTest();
             Boolean updateHierarchySettingsResult = 
-                HierarchySettingsChangesController.updateHierarchySettings(hierarchySettingsChangesModel);
+                HierarchySettingsChangesController.updateHierarchySettings(hierarchySettingsChangesVModel);
             Test.stopTest();
         } catch (TestException e) {
             System.assertEquals(
@@ -152,7 +152,7 @@ public with sharing class HierarchySettingsChangesController_TEST {
     * @description Stub class to simulate the response from HierarchySettingsService to indicate a successful update
     **************************************************************************************************************************************/ 
     private class STUB_HierarchySettingsService extends HierarchySettingsService {
-        public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+        public override Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
             return true;
         }
     }
@@ -161,7 +161,7 @@ public with sharing class HierarchySettingsChangesController_TEST {
     * @description Stub class to simulate the response from HierarchySettingsService to indicate a failure due to a DML exception.
     **************************************************************************************************************************************/ 
     private class STUB_HierarchySettingsServiceDMLFailure extends HierarchySettingsService {
-        public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+        public override Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
             return false;
         }
     }
@@ -170,7 +170,7 @@ public with sharing class HierarchySettingsChangesController_TEST {
     * @description Stub class to simulate the response from HierarchySettingsService to indicate a failure due to a DML exception.
     **************************************************************************************************************************************/ 
     private class STUB_HierarchySettingsExceptionResponse extends HierarchySettingsService {
-        public override Boolean updateHierarchySettings(HierarchySettingsChangesModel hierarchySettingsChangesModel) {
+        public override Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
             throw new TestException('Test Exception Encountered');
         }
     }

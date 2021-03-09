@@ -176,8 +176,8 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             UTIL_Namespace.StrTokenNSPrefix('Account_Processor__c') => 'Updated Value'
         };
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModelStringValues = 
-            new HierarchySettingsChangesModel(
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModelStringValues = 
+            new HierarchySettingsChangesVModel(
                 singleValueSettingUpdatesByName,
                 new Map<String, List<String>>()
             );
@@ -187,7 +187,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         Boolean updateResult;
         Test.startTest();
             updateResult = 
-            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelStringValues);        
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesVModelStringValues);        
         Test.stopTest();
 
         System.assertEquals(
@@ -221,8 +221,8 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             UTIL_Namespace.StrTokenNSPrefix('Allow_AutoCreated_Duplicates__c') => 'true'
         };
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModelBooleanValues = 
-            new HierarchySettingsChangesModel(
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModelBooleanValues = 
+            new HierarchySettingsChangesVModel(
                 singleValueSettingUpdatesByName,
                 new Map<String, List<String>>()
             );
@@ -231,7 +231,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
 
         Test.startTest();
         Boolean updateResult = 
-            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelBooleanValues);
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesVModelBooleanValues);
         Test.stopTest();
 
         System.assertEquals(
@@ -265,8 +265,8 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             UTIL_Namespace.StrTokenNSPrefix('Async_Error_Check_Last_Run__c') => String.valueOf(DateTime.newInstance(2021, 03, 17, 5, 0, 0))
         };
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModelDateTimeValues = 
-            new HierarchySettingsChangesModel(
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModelDateTimeValues = 
+            new HierarchySettingsChangesVModel(
                 singleValueSettingUpdatesByName,
                 new Map<String, List<String>>()
             );
@@ -275,7 +275,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
 
         Test.startTest();
         Boolean updateResult = 
-            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelDateTimeValues);
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesVModelDateTimeValues);
         Test.stopTest();
 
         System.assertEquals(
@@ -310,7 +310,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             UTIL_Namespace.StrTokenNSPrefix('Invalid_Field_Name__c') => 'Updated Invalid Value'
         };
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModelError = new HierarchySettingsChangesModel(
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModelError = new HierarchySettingsChangesVModel(
             singleValueSettingUpdatesByName,
             new Map<String, List<String>>()
         );
@@ -320,7 +320,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         try {
             Test.startTest();
             Boolean updateResult = 
-                hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelError);
+                hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesVModelError);
             Test.stopTest();
         } catch (UTIL_Describe.SchemaDescribeException e) {
             System.assertEquals(
@@ -354,7 +354,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             UTIL_Namespace.StrTokenNSPrefix('Async_Error_Check_Last_Run__c') => 'Updated Value'
         };
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModelInvalidType = new HierarchySettingsChangesModel(
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModelInvalidType = new HierarchySettingsChangesVModel(
             singleValueSettingUpdatesByName,
             new Map<String, List<String>>()
         );
@@ -364,7 +364,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         try {
             Test.startTest();
             Boolean updateResult = 
-                hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelInvalidType);
+                hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesVModelInvalidType);
             Test.stopTest();
         } catch (System.TypeException e) {
             System.assertEquals(
@@ -396,7 +396,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
 
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>();
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModelEmptySingleValues= new HierarchySettingsChangesModel(
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModelEmptySingleValues= new HierarchySettingsChangesVModel(
             singleValueSettingUpdatesByName,
             new Map<String, List<String>>()
         );
@@ -405,7 +405,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
 
         Test.startTest();
         Boolean updateResult = 
-            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelEmptySingleValues);
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesVModelEmptySingleValues);
         Test.stopTest();
 
         System.assertEquals(
@@ -440,7 +440,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{'Updated Value 1', 'Updated Value 2'}
         };
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModelListValues = new HierarchySettingsChangesModel(
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModelListValues = new HierarchySettingsChangesVModel(
             new Map<String, String>(),
             listValueSettingUpdatesByName
         );
@@ -449,7 +449,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
 
         Test.startTest();
         Boolean updateResult = 
-            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelListValues);
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesVModelListValues);
         Test.stopTest();
 
         System.assertEquals(
@@ -482,7 +482,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
 
         Map<String, List<String>> listValueSettingUpdatesByName = new Map<String, List<String>>();
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModelListValuesEmpty = new HierarchySettingsChangesModel(
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModelListValuesEmpty = new HierarchySettingsChangesVModel(
             new Map<String, String>(),
             listValueSettingUpdatesByName
         );
@@ -491,7 +491,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
 
         Test.startTest();
         Boolean updateResult = 
-            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelListValuesEmpty);
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesVModelListValuesEmpty);
         Test.stopTest();
 
         System.assertEquals(
@@ -527,7 +527,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             UTIL_Namespace.StrTokenNSPrefix('Not_A_Valid_Field__c') => new List<String>{'Invalid value'}
         };
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModelListValuesError = new HierarchySettingsChangesModel(
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModelListValuesError = new HierarchySettingsChangesVModel(
             new Map<String, String>(),
             listValueSettingUpdatesByName
         );
@@ -537,7 +537,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         try {
             Test.startTest();
             Boolean updateResult = 
-                hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModelListValuesError);
+                hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesVModelListValuesError);
             Test.stopTest();
         } catch (UTIL_Describe.SchemaDescribeException e) {
             System.assertEquals(
@@ -576,7 +576,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{'Updated Value 1', 'Updated Value 2'}
         };
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModel = new HierarchySettingsChangesModel(
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModel = new HierarchySettingsChangesVModel(
             singleValueSettingUpdatesByNameInvalid,
             listValueSettingUpdatesByName
         );
@@ -586,7 +586,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
         try {
             Test.startTest();
             Boolean updateResult = 
-                hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModel);
+                hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesVModel);
             Test.stopTest();
         } catch (UTIL_Describe.SchemaDescribeException e) {
             System.assertEquals(
@@ -639,7 +639,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
             UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{'Updated Value 1', 'Updated Value 2'}
         };
 
-        HierarchySettingsChangesModel hierarchySettingsChangesModel = new HierarchySettingsChangesModel(
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModel = new HierarchySettingsChangesVModel(
             singleValueSettingUpdatesByName,
             listValueSettingUpdatesByName
         );
@@ -648,7 +648,7 @@ public inherited sharing class HierarchySettingsMapper_TEST {
 
         Test.startTest();
         Boolean updateResult = 
-            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesModel);
+            hierarchySettingsMapperInstance.updateHierarchySettings(hierarchySettingsChangesVModel);
         Test.stopTest();
 
         System.assertEquals(true, updateResult, 'Update should complete successfully.');
