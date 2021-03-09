@@ -191,7 +191,7 @@ public with sharing class HierarchySettingsChangesController_TEST {
             Test.stopTest();
         } catch (TestException e) {
             System.assertEquals(
-                'HierarchySettingsChangesController_TEST.TestException', 
+                UTIL_Namespace.StrTokenNSPrefix('HierarchySettingsChangesController_TEST.TestException'), 
                 e.getTypeName(),
                 'Should throw a TestException.'
             );
