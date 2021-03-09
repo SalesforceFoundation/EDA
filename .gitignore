@@ -32,3 +32,5 @@ robot/EDA/results/
 .AppleDouble
 .LSOverride
 
+# Dependency directories
+node_modules/
