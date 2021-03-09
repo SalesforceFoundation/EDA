@@ -122,12 +122,20 @@ tasks:
             path: unpackaged/test_managed_only/preferred_email
             namespaced_org: True
 
-    deploy_primary_affiliations_config:
+    deploy_unpackaged_primary_affiliations_config:
         description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test/primary_affiliations/pre
+            path: unpackaged/test_packaged/primary_affiliations
+            unmanaged: True
+
+    deploy_unpackaged_relationship_autocreate_config:
+        description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing.  
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_packaged/relationship_autocreate
             unmanaged: True
 
     deploy_unpackaged_test_metadata:
@@ -371,20 +379,13 @@ flows:
             5:
                 task: deploy_dev_config
             6:
-                task: deploy_primary_affiliations_config
-            7:
-                task: execute_primary_affiliation_mapping_apex
-            8:
-                task: deploy_unpackaged_test_metadata
-            9:
-                # execute tests in unmanaged package
-                task: run_tests
-                options:
-                    test_name_match: '%\_Unmanaged_TEST,%\_UTST'
-            10:
                 flow: eda_settings
-            11:
+            7:
                 task: deploy_Summer_21QA
+            8:
+                flow: run_unmanaged_unit_tests
+            9:
+                flow: eda_settings_unmanaged
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -466,7 +467,7 @@ flows:
             4:
                 flow: eda_settings
             5:
-                flow: preferred_email_testing
+                flow: run_unmanaged_unit_tests
 
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
@@ -494,7 +495,33 @@ flows:
                 task: execute_automatic_household_naming
             5:
                 task: execute_enable_course_connections
+                options:
+                    namespaced: True
 
+    eda_settings_unmanaged:
+        description: Enables various settings in an unmanaged context on the EDA Settings tab.
+        steps:
+            1:
+                task: execute_enable_record_type_validation
+                options:
+                    namespaced: False
+            2:
+                task: execute_preferred_phone_selection
+                options:
+                    namespaced: False
+            3:
+                task: execute_send_error_notifications
+                options:
+                    namespaced: False
+            4:
+                task: execute_automatic_household_naming
+                options:
+                    namespaced: False
+            5:
+                task: execute_enable_course_connections
+                options:
+                    namespaced: False
+    
     deploy_health_check_localization:
         description: Deploys health check
         steps:
@@ -505,6 +532,35 @@ flows:
                 checks:
                     - when: "not tasks.check_translation_workbench_enabled()"
                       action: hide
+
+    qa_org_2gp:
+        steps:
+            2:
+                flow: config_2gp
+
+    run_unmanaged_unit_tests:
+        # description: Configure an org for use as a dev org after package metadata is deployed.
+        steps:
+            1:
+                task: deploy_unpackaged_test_metadata
+                when: "'hed' not in org_config.installed_packages"
+            2:
+                task: deploy_unpackaged_primary_affiliations_config
+                when: "'hed' in org_config.installed_packages"
+            3:
+                task: execute_primary_affiliation_mapping_apex
+                when: "'hed' in org_config.installed_packages"
+            4: 
+                task: deploy_unpackaged_relationship_autocreate_config
+                when: "'hed' in org_config.installed_packages"
+            5:
+                task: deploy_preferred_email_config
+                when: "'hed' in org_config.installed_packages"
+            6: 
+                # execute tests in unmanaged package
+                task: run_tests 
+                options: 
+                    test_name_match: '%\_Unmanaged_TEST,%\_ATST,%\_MTST,%\_PTST,%\_UTST'
 
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.
@@ -577,23 +633,19 @@ flows:
             7:
                 flow: eda_picklists
 
-    preferred_email_testing:
-        description: Deploys Preferred Email configuration and runs apex tests.
-        steps:
-            1:
-                task: deploy_preferred_email_config
-
-            2:
-                task: run_tests
-                options:
-                    test_name_match: "%_MTST"
-                    managed: False
-
     regression_org:
         description:
         steps:
             0.1:
                 flow: translations
+
+    retrieve_custom_labels_and_translations:
+        description: "Retrieve custom labels and translations from the default scratch org"
+        class_path: cumulusci.tasks.sfdx.SFDXOrgTask
+        options: 
+            command: 'force:source:retrieve'
+            extra: '-m CustomLabels,Translations'
+        group: "EDA: Metadata"
 
 services:
     mockaroo:
