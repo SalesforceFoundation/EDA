@@ -28,7 +28,7 @@ export default class EdaSettingsNavigation extends LightningElement {
     };
 
     @api setActivePage(pageName) {
-        this.edaNavigationViewModel.navigationSections.forEach((navigationSection) => {
+        this.settingsNavigationViewModel.navigationSections.forEach((navigationSection) => {
             if (navigationSection.pageName === pageName) {
                 navigationSection.isActive = true;
             } else {
