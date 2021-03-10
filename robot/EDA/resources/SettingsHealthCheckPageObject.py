@@ -53,10 +53,10 @@ class SettingsHealthCheckPage(BaseEDAPage, HomePage):
         if not todays_date in last_run_date:
             raise Exception(f"Value of {todays_date} is not present in {last_run_date} and so the dates are not matching as expected")
 
-    def verify_status_of_account_model_settings(self,healthCheckCard,**kwargs):
-        """ This method validates the status of setting for the setting passed in kwargs
-            Pass the setting name and the expected status to be verified from the tests using
-            keyword arguments
+    def verify_status_of_a_setting(self,healthCheckCard,**kwargs):
+        """ This method validates the status of a setting for the setting passed in kwargs
+            Pass the health check card, setting name and the expected status to be verified from the
+            tests using keyword arguments
         """
         for field,expected_value in kwargs.items():
             locator = eda_lex_locators["settings_health_check"]["status_value"].format(healthCheckCard,field)
