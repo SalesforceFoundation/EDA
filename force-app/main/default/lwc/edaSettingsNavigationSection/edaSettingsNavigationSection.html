@@ -9,7 +9,7 @@
             <template if:false={viewModel.page}> {viewModel.label} </template>
         </h2>
         <template if:true={viewModel.navigationSubSections}>
-            <ul aria-describedby={viewModel.sectionkey}>
+            <ul aria-describedby={viewModel.sectionkey} class="slds-p-left_medium">
                 <template for:each={viewModel.navigationSubSections} for:item="navigationSubsection">
                     <li key={navigationSubsection.sectionkey}>
                         <c-eda-settings-navigation-subsection
@@ -22,7 +22,7 @@
         <template if:true={menuItems}>
             <ul aria-describedby={viewModel.sectionkey}>
                 <template for:each={menuItems} for:item="menuItem">
-                    <li key={menuItem.sectionkey} class="slds-nav-vertical__item slds-p-left_medium">
+                    <li key={menuItem.sectionkey} class="slds-nav-vertical__item slds-p-left_x-large">
                         <a href="javascript:void(0)" class="slds-nav-vertical__action" onclick={handleNavigationClick}
                             >{menuItem.label}</a
                         >
