@@ -1,8 +1,10 @@
-import { LightningElement, api, wire } from "lwc";
+import { LightningElement, api, track, wire } from "lwc";
 
 import stgErrorInsufficientAccess from "@salesforce/label/c.stgErrorInsufficientAccess";
 import checkAccessForCurrentUser from "@salesforce/apex/EDASettingsController.checkAccessForCurrentUser";
 export default class EDASettings extends LightningElement {
+    @api pageReference;
+
     labelReference = {
         stgErrorInsufficientAccess,
     };
