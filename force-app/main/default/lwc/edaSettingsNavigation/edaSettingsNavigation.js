@@ -6,7 +6,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         accountModelSettingsTitle,
     };
 
-    edaNavigationViewModel = {
+    settingsNavigationViewModel = {
         navigationSections: [
             {
                 label: labelReference.accountModelSettingsTitle,

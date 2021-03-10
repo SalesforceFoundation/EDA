@@ -1,7 +1,7 @@
 <template>
     <div class="slds-grid slds-wrap">
         <nav class="slds-nav-vertical slds-nav-vertical_compact">
-            <template for:each={edaNavigationViewModel.navigationSections} for:item="navigationSection">
+            <template for:each={settingsNavigationViewModel.navigationSections} for:item="navigationSection">
                 <c-eda-settings-navigation-section
                     key={navigationSection.sectionkey}
                     view-model={navigationSection}
