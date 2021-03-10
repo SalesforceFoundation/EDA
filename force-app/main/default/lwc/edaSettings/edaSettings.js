@@ -11,7 +11,15 @@ export default class EDASettings extends LightningElement {
         stgErrorInsufficientAccess,
     };
 
-    @wire(checkAccessForCurrentUser) currentUserHasAccess;
+    currentUserHasAccess = false;
+
+    @wire(checkAccessForCurrentUser)
+    currentUserHasAccessWire(result) {
+        const { error, data } = result;
+        if (data) {
+            this.currentUserHasAccess = data;
+        }
+    }
 
     settingsPageToDisplay = {
         accountModelSettings: true,
