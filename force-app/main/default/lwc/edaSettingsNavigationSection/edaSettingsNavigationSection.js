@@ -9,7 +9,7 @@ export default class EdaSettingsNavigationSection extends LightningElement {
 
     dispatchSettingsNavigationEvent() {
         const settingsNavigationDetail = {
-            pageName: this.viewModel.pageName,
+            pageName: this.viewModel.page,
         };
         this.dispatchEvent(
             new CustomEvent("settingsnavigation", {
