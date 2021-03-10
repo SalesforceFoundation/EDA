@@ -1,6 +1,21 @@
-import { LightningElement, api, track } from "lwc";
+import { LightningElement, api, wire } from "lwc";
+
+import stgErrorInsufficientAccess from "@salesforce/label/c.stgErrorInsufficientAccess";
+import checkAccessForCurrentUser from "@salesforce/apex/EDASettingsController.checkAccessForCurrentUser";
 export default class EDASettings extends LightningElement {
-    @api pageReference;
+    labelReference = {
+        stgErrorInsufficientAccess,
+    };
+
+    currentUserHasAccess = false;
+
+    @wire(checkAccessForCurrentUser)
+    currentUserHasAccessWire(result) {
+        const { error, data } = result;
+        if (data) {
+            this.currentUserHasAccess = data;
+        }
+    }
 
     @track settingsPageToDisplay = {
         accountmodelsettings: true,
