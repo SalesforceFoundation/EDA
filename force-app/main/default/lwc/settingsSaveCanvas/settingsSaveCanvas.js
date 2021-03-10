@@ -80,10 +80,6 @@ export default class SettingsSaveCanvas extends LightningElement {
         };
     }
 
-    completeSave() {
-        // TODO: Update this method
-    }
-
     handleEditClick(event) {
         this.switchEditMode(true);
         this.dispatchEditModeSwitchEvent();
