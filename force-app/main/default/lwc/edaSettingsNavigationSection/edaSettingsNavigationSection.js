@@ -3,11 +3,11 @@ import { LightningElement, api } from "lwc";
 export default class EdaSettingsNavigationSection extends LightningElement {
     @api viewModel;
 
-    handleNavigationClick(event) {
+    handleNavigationClick() {
         this.dispatchSettingsNavigationEvent();
     }
 
-    dispatchSettingsNavigationEvent(pageName) {
+    dispatchSettingsNavigationEvent() {
         const settingsNavigationDetail = {
             pageName: viewModel.pageName,
         };
