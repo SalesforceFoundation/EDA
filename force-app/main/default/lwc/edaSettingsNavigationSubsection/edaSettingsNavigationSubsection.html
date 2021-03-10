@@ -1,0 +1,20 @@
+<template>
+    <div>
+        <h3 id={viewModel.sectionkey} class="slds-nav-vertical__title">
+            <a href="javascript:void(0)" class="eda-nav-vertical_title-link" onclick={handleNavigationClick}
+                >{viewModel.label}</a
+            >
+        </h3>
+        <template if:true={menuItems}>
+            <ul aria-describedby={viewModel.sectionkey}>
+                <template for:each={menuItems} for:item="menuItem">
+                    <li key={menuItem.sectionkey} class="slds-nav-vertical__item slds-p-left_medium">
+                        <a href="javascript:void(0)" class="slds-nav-vertical__action" onclick={handleNavigationClick}
+                            >{menuItem.label}</a
+                        >
+                    </li>
+                </template>
+            </ul>
+        </template>
+    </div>
+</template>

@@ -8,6 +8,17 @@
             </template>
             <template if:false={viewModel.page}> {viewModel.label} </template>
         </h2>
+        <template if:true={viewModel.navigationSubSections}>
+            <ul aria-describedby={viewModel.sectionkey}>
+                <template for:each={viewModel.navigationSubSections} for:item="navigationSubsection">
+                    <li key={navigationSubsection.sectionkey}>
+                        <c-eda-settings-navigation-subsection
+                            view-model={navigationSubsection}
+                        ></c-eda-settings-navigation-subsection>
+                    </li>
+                </template>
+            </ul>
+        </template>
         <template if:true={menuItems}>
             <ul aria-describedby={viewModel.sectionkey}>
                 <template for:each={menuItems} for:item="menuItem">
