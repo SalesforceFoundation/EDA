@@ -7,6 +7,10 @@ export default class EDASettings extends LightningElement {
         stgErrorInsufficientAccess,
     };
 
+    @track settingsPageToDisplay = {
+        accountmodelsettings: true,
+    };
+
     currentUserHasAccess = false;
 
     @wire(checkAccessForCurrentUser)
@@ -16,10 +20,6 @@ export default class EDASettings extends LightningElement {
             this.currentUserHasAccess = data;
         }
     }
-
-    @track settingsPageToDisplay = {
-        accountmodelsettings: true,
-    };
 
     handleSettingsNavigation(event) {
         this.changePageToDisplay(event.detail.pageName);
