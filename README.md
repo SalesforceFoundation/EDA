@@ -41,7 +41,7 @@ Make sure `yarn` is installed on your local machine. For more information, check
 ## Learn More
 
 * <a href="https://powerofus.force.com/" target="_blank">Ask questions or get help</a>
-* <a href="https://github.com/SalesforceFoundation/EDA/issues/new" target="_blank">Log a confirmed Issue</a> or <a href="https://powerofus.force.com/hub-ideas" target="_blank">Feature Request</a>
+* <a href="https://powerofus.force.com/hub-ideas" target="_blank">Feature Request</a>
 * <a href="https://powerofus.force.com/EDA-Documentation" target="_blank">User Documentation</a>
 * Check out existing <a href="https://github.com/SalesforceFoundation/EDA/labels/bug" target="_blank">bugs</a> and <a href="https://trailblazer.salesforce.com/ideaSearch?filter=Education+%3E+Education+Data+Architecture" target="_blank">feature and enhancement requests</a>
 * <a href="https://github.com/SalesforceFoundation/EDA/releases" target="_blank">Release Notes and Beta Releases</a>
