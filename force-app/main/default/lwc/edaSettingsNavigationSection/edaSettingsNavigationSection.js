@@ -3,6 +3,25 @@ import { LightningElement, api } from "lwc";
 export default class EdaSettingsNavigationSection extends LightningElement {
     @api viewModel;
 
+    get menuItems() {
+        if (!this.viewModel.menuItems) {
+            return undefined;
+        }
+
+        let formattedMenuItems = [];
+
+        this.viewModel.menuItems.forEach((menuItem) => {
+            let formattedMenuItem = {
+                label: menuItem.label,
+                sectionKey: menuItem.sectionKey,
+                page: this.viewModel.page,
+            };
+            formattedMenuItems.push(formattedMenuItem);
+        });
+
+        return formattedMenuItems;
+    }
+
     handleNavigationClick() {
         this.dispatchSettingsNavigationEvent();
     }

@@ -8,5 +8,16 @@
             </template>
             <template if:false={viewModel.page}> {viewModel.label} </template>
         </h2>
+        <template if:true={menuItems}>
+            <ul aria-describedby={viewModel.sectionkey}>
+                <template for:each={menuItems} for:item="menuItem">
+                    <li key={menuItem.sectionkey} class="slds-nav-vertical__item slds-p-left_medium">
+                        <a href="javascript:void(0)" class="slds-nav-vertical__action" onclick={handleNavigationClick}
+                            >{menuItem.label}</a
+                        >
+                    </li>
+                </template>
+            </ul>
+        </template>
     </div>
 </template>
