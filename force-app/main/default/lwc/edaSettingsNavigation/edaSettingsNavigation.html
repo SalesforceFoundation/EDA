@@ -1,12 +1,10 @@
 <template>
-    <div class="slds-grid slds-wrap">
-        <nav class="slds-nav-vertical slds-nav-vertical_compact">
-            <template for:each={settingsNavigationViewModel.navigationSections} for:item="navigationSection">
-                <c-eda-settings-navigation-section
-                    key={navigationSection.sectionkey}
-                    view-model={navigationSection}
-                ></c-eda-settings-navigation-section>
-            </template>
-        </nav>
-    </div>
+    <nav class="slds-nav-vertical slds-nav-vertical_compact">
+        <template for:each={settingsNavigationViewModel.navigationSections} for:item="navigationSection">
+            <c-eda-settings-navigation-section
+                key={navigationSection.sectionkey}
+                view-model={navigationSection}
+            ></c-eda-settings-navigation-section>
+        </template>
+    </nav>
 </template>
