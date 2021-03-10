@@ -25,29 +25,30 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group 
-* @group-content ../../ApexDocContent/EdaSettings.htm
-* @description Acts as the Service Layer between the HierarchySettingsChangesController and
-* the HierarchySettingsMapper.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group
+ * @group-content ../../ApexDocContent/EdaSettings.htm
+ * @description Acts as the Service Layer between the HierarchySettingsChangesController and
+ * the HierarchySettingsMapper.
+ */
 public virtual with sharing class HierarchySettingsService {
     /**********************************************************************************
-    * @description Instance for Singleton Pattern
-    **********************************************************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************************************************/
     @TestVisible
     private static HierarchySettingsService instance;
 
     /**********************************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************************/
-    protected HierarchySettingsService() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************************/
+    protected HierarchySettingsService() {
+    }
 
     /**********************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HierarchySettingsService.
-    **********************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of HierarchySettingsService.
+     **********************************************************************************/
     public static HierarchySettingsService getInstance() {
         if (instance == null) {
             instance = new HierarchySettingsService();
@@ -57,27 +58,31 @@ public virtual with sharing class HierarchySettingsService {
     }
 
     /************************************************************************************************************
-    * @description Update Hierarchy Settings fields with specified changes.
-    * @param  hierarchySettingsChangesVModel A HierarchySettingsChangesVModel representing updates to Hierarchy Settings.
-    * @return True if the updates were completed successfully, false otherwise.
-    ************************************************************************************************************/ 
+     * @description Update Hierarchy Settings fields with specified changes.
+     * @param  hierarchySettingsChangesVModel A HierarchySettingsChangesVModel representing updates to Hierarchy Settings.
+     * @return True if the updates were completed successfully, false otherwise.
+     ************************************************************************************************************/
     public virtual Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
-        return this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsChangesVModel);
+        if (this.locateUserPermissionService().checkViewSetupForCurrentUser() == true) {
+            return this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsChangesVModel);
+        }
+
+        return false;
     }
 
     /************************************************************************************************************
-    * @description Retrieve an instance of HierarchySettingsMapper
-    * @return An instance of the HierarchySettingsMapper class
-    ************************************************************************************************************/ 
+     * @description Retrieve an instance of HierarchySettingsMapper
+     * @return An instance of the HierarchySettingsMapper class
+     ************************************************************************************************************/
     @TestVisible
     private HierarchySettingsMapper locateHierarchySettingsMapper() {
         return HierarchySettingsMapper.getInstance();
     }
 
     /************************************************************************************************************
-    * @description Retrieve an instance of UserPermissionService
-    * @return An instance of the UserPermissionService class
-    ************************************************************************************************************/ 
+     * @description Retrieve an instance of UserPermissionService
+     * @return An instance of the UserPermissionService class
+     ************************************************************************************************************/
     @TestVisible
     private UserPermissionService locateUserPermissionService() {
         return UserPermissionService.getInstance();

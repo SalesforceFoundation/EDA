@@ -25,75 +25,73 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group 
-* @group-content ../../ApexDocContent/Tests.htm
-* @description Test class for HierarchySettingsService class
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group
+ * @group-content ../../ApexDocContent/Tests.htm
+ * @description Test class for HierarchySettingsService class
+ */
 @isTest
 public with sharing class HierarchySettingsService_TEST {
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns a new instance of the 
-    * HierarchySettingsService class when one does not already exist.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getInstance method returns a new instance of the
+     * HierarchySettingsService class when one does not already exist.
+     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
-
         Test.startTest();
-            HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
+        HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
         Test.stopTest();
 
         System.assertEquals(
-            HierarchySettingsService.instance, 
-            hierarchySettingsServiceInstance, 
+            HierarchySettingsService.instance,
+            hierarchySettingsServiceInstance,
             'Instance of mapper class returned should match static instance variable.'
         );
 
         System.assertEquals(
-            true, 
-            hierarchySettingsServiceInstance != null, 
+            true,
+            hierarchySettingsServiceInstance != null,
             'Instance of mapper class should not be null.'
         );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * HierarchySettingsService class when one already exists.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getInstance method returns the existing instance of the
+     * HierarchySettingsService class when one already exists.
+     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
-
         Test.startTest();
-            HierarchySettingsService hierarchySettingsServiceInstance1 = HierarchySettingsService.getInstance();
-            HierarchySettingsService hierarchySettingsServiceInstance2 = HierarchySettingsService.getInstance();
+        HierarchySettingsService hierarchySettingsServiceInstance1 = HierarchySettingsService.getInstance();
+        HierarchySettingsService hierarchySettingsServiceInstance2 = HierarchySettingsService.getInstance();
         Test.stopTest();
 
         System.assertEquals(
-            HierarchySettingsService.instance, 
-            hierarchySettingsServiceInstance1, 
+            HierarchySettingsService.instance,
+            hierarchySettingsServiceInstance1,
             'Instance of mapper class returned should match static instance variable.'
         );
 
         System.assertEquals(
-            hierarchySettingsServiceInstance1, 
-            hierarchySettingsServiceInstance2, 
+            hierarchySettingsServiceInstance1,
+            hierarchySettingsServiceInstance2,
             'Subsequent retrievals of mapper class instance should return existing instance.'
         );
 
         System.assertEquals(
-            true, 
-            hierarchySettingsServiceInstance1 != null, 
+            true,
+            hierarchySettingsServiceInstance1 != null,
             'Instance of mapper class should not be null.'
         );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the locateHierarchySettingsMapper method returns a valid instance of 
-    * HierarchySettingsMapper.
-    ***************************************************************************************************************************/
-    @isTest 
-    private static void locateHierarchySettingsMapperValid(){
+     * @description Test method to verify that the locateHierarchySettingsMapper method returns a valid instance of
+     * HierarchySettingsMapper.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void locateHierarchySettingsMapperValid() {
         HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
 
         Test.startTest();
@@ -101,17 +99,18 @@ public with sharing class HierarchySettingsService_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            HierarchySettingsMapper.getInstance(), 
-            hierarchySettingsMapperInstance, 
-            'Should return instance of HierarchySettingsMapper.');
+            HierarchySettingsMapper.getInstance(),
+            hierarchySettingsMapperInstance,
+            'Should return instance of HierarchySettingsMapper.'
+        );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the locateUserPermissionService method returns a valid instance of 
-    * UserPermissionService.
-    ***************************************************************************************************************************/
-    @isTest 
-    private static void locateUserPermissionServiceValid(){
+     * @description Test method to verify that the locateUserPermissionService method returns a valid instance of
+     * UserPermissionService.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void locateUserPermissionServiceValid() {
         HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
 
         Test.startTest();
@@ -119,49 +118,66 @@ public with sharing class HierarchySettingsService_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            UserPermissionService.getInstance(), 
-            userPermissionServiceInstance, 
-            'Should return instance of UserPermissionService.');
+            UserPermissionService.getInstance(),
+            userPermissionServiceInstance,
+            'Should return instance of UserPermissionService.'
+        );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettings method returns true when an update to Hierarchy
-    * Settings is successfully processed.
-    ***************************************************************************************************************************/
-    @isTest 
+     * @description Test method to verify that the updateHierarchySettings method returns true when an update to Hierarchy
+     * Settings is successfully processed.
+     ***************************************************************************************************************************/
+    @isTest
     private static void updateHierarchySettingsValid() {
+        PermissionSetMapper.instance = new STUB_PermissionSetMapperHasAccess();
         HierarchySettingsMapper.instance = new STUB_HierarchySettingsMapper();
 
         HierarchySettingsChangesVModel hierarchySettingsChangesVModel = new HierarchySettingsChangesVModel();
         HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
 
         Test.startTest();
-        Boolean updateHierarchySettingsResult = 
-            hierarchySettingsServiceInstance.updateHierarchySettings(hierarchySettingsChangesVModel);
+        Boolean updateHierarchySettingsResult = hierarchySettingsServiceInstance.updateHierarchySettings(
+            hierarchySettingsChangesVModel
+        );
         Test.stopTest();
 
-        System.assertEquals(
-            true, 
-            updateHierarchySettingsResult,
-            'Should return true indicating a successful update.'
-        );
+        System.assertEquals(true, updateHierarchySettingsResult, 'Should return true indicating a successful update.');
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettings method throws an exception when an exception is 
-    * encountered from the UserPermissionService class
-    ***************************************************************************************************************************/
-    @isTest 
+     * @description Test method to verify that the updateHierarchySettings method throws an exception when an exception is
+     * encountered from the UserPermissionService class
+     ***************************************************************************************************************************/
+    @isTest
     private static void updateHierarchySettingsPermissionException() {
-        // stub UserPermissionService().checkViewSetupForCurrentUser()
+        PermissionSetMapper.instance = new STUB_PermissionSetMapperNoAccess();
+
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModel = new HierarchySettingsChangesVModel();
+        HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
+
+        try {
+            Test.startTest();
+            Boolean updateHierarchySettingsResult = hierarchySettingsServiceInstance.updateHierarchySettings(
+                hierarchySettingsChangesVModel
+            );
+            Test.stopTest();
+        } catch (System.NoAccessException e) {
+            System.assertEquals(
+                'Script-thrown exception',
+                e.getMessage(),
+                'Should throw an error when permissions are missing.'
+            );
+        }
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the updateHierarchySettings method throws an exception when an exception is 
-    * encountered from the HierarchySettingsMapper class
-    ***************************************************************************************************************************/
-    @isTest 
+     * @description Test method to verify that the updateHierarchySettings method throws an exception when an exception is
+     * encountered from the HierarchySettingsMapper class
+     ***************************************************************************************************************************/
+    @isTest
     private static void updateHierarchySettingsThrownException() {
+        PermissionSetMapper.instance = new STUB_PermissionSetMapperHasAccess();
         HierarchySettingsMapper.instance = new STUB_HierarchySettingsMapperExceptionResponse();
 
         HierarchySettingsChangesVModel hierarchySettingsChangesVModel = new HierarchySettingsChangesVModel();
@@ -169,25 +185,22 @@ public with sharing class HierarchySettingsService_TEST {
 
         try {
             Test.startTest();
-            Boolean updateHierarchySettingsResult = 
-            hierarchySettingsServiceInstance.updateHierarchySettings(hierarchySettingsChangesVModel);
-            Test.stopTest();
-        } catch(TestException e) {
-            System.assertEquals(
-                'Test Exception encountered', 
-                e.getMessage(),
-                'Should throw an error.'
+            Boolean updateHierarchySettingsResult = hierarchySettingsServiceInstance.updateHierarchySettings(
+                hierarchySettingsChangesVModel
             );
+            Test.stopTest();
+        } catch (TestException e) {
+            System.assertEquals('Test Exception encountered', e.getMessage(), 'Should throw an error.');
         }
     }
 
     /**************************************************************************************************************************
-    ****************************************************** STUBS **************************************************************
-    **************************************************************************************************************************/
-    
+     ****************************************************** STUBS **************************************************************
+     **************************************************************************************************************************/
+
     /**************************************************************************************************************************************
-    * @description Stub class to simulate a successful response from HierarchySettingsMapper 
-    **************************************************************************************************************************************/ 
+     * @description Stub class to simulate a successful response from HierarchySettingsMapper
+     **************************************************************************************************************************************/
     private class STUB_HierarchySettingsMapper extends HierarchySettingsMapper {
         public override Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
             return true;
@@ -195,16 +208,35 @@ public with sharing class HierarchySettingsService_TEST {
     }
 
     /**************************************************************************************************************************************
-    * @description Stub class to simulate an exception response from HierarchySettingsMapper 
-    **************************************************************************************************************************************/ 
+     * @description Stub class to simulate an exception response from HierarchySettingsMapper
+     **************************************************************************************************************************************/
     private class STUB_HierarchySettingsMapperExceptionResponse extends HierarchySettingsMapper {
         public override Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
             throw new TestException('Test Exception encountered');
         }
     }
 
+    /*************************************************************************************************************
+     * @description Stub class to simulate the response from PermissionSetMapper to return true
+     */
+    private class STUB_PermissionSetMapperHasAccess extends PermissionSetMapper {
+        public override Boolean checkPermissionSetsWithViewSetupFromIds(Set<Id> permissionSetIdsSet) {
+            return true;
+        }
+    }
+
+    /*************************************************************************************************************
+     * @description Stub class to simulate the response from PermissionSetMapper to return false
+     */
+    private class STUB_PermissionSetMapperNoAccess extends PermissionSetMapper {
+        public override Boolean checkPermissionSetsWithViewSetupFromIds(Set<Id> permissionSetIdsSet) {
+            return false;
+        }
+    }
+
     /********************************************************************************************************
-    * @description A custom exception class to for testing.
-    ********************************************************************************************************/
-    public class TestException extends Exception {}
+     * @description A custom exception class to for testing.
+     ********************************************************************************************************/
+    public class TestException extends Exception {
+    }
 }

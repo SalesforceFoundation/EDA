@@ -1,4 +1,3 @@
-
 /*
     Copyright (c) 2021, Salesforce.org
     All rights reserved.
@@ -26,29 +25,30 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group 
-* @group-content ../../ApexDocContent/EdaSettings.htm
-* @description Acts as the Mapper Layer for the Hierarchy Settings service, 
-* abstracting the data in the database so we can use mocks and stubs in our Singleton Pattern.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group
+ * @group-content ../../ApexDocContent/EdaSettings.htm
+ * @description Acts as the Mapper Layer for the Hierarchy Settings service,
+ * abstracting the data in the database so we can use mocks and stubs in our Singleton Pattern.
+ */
 public virtual with sharing class HierarchySettingsMapper {
     /**********************************************************************************
-    * @description Instance for Singleton Pattern
-    **********************************************************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************************************************/
     @TestVisible
     private static HierarchySettingsMapper instance;
 
     /**********************************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************************/
-    protected HierarchySettingsMapper() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************************/
+    protected HierarchySettingsMapper() {
+    }
 
     /**********************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HierarchySettingsMapper.
-    **********************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of HierarchySettingsMapper.
+     **********************************************************************************/
     public static HierarchySettingsMapper getInstance() {
         if (instance == null) {
             instance = new HierarchySettingsMapper();
@@ -58,54 +58,56 @@ public virtual with sharing class HierarchySettingsMapper {
     }
 
     /**********************************************************************************
-    * @description Retrieve a model representing the values set in Hierarchy Settings.
-    * @return A HierarchySettingsModel.
-    **********************************************************************************/
+     * @description Retrieve a model representing the values set in Hierarchy Settings.
+     * @return A HierarchySettingsModel.
+     **********************************************************************************/
     public HierarchySettingsModel getHierarchySettings() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
         return new HierarchySettingsModel(hierarchySettings);
     }
 
     /**********************************************************************************
-    * @description Retrieve the describe result for a specified Hierarchy Settings field.
-    * @return A Schema.DescribeFieldResult for the specified Hierarchy Settings field.
-    **********************************************************************************/
+     * @description Retrieve the describe result for a specified Hierarchy Settings field.
+     * @return A Schema.DescribeFieldResult for the specified Hierarchy Settings field.
+     **********************************************************************************/
     public Schema.DescribeFieldResult getHierarchySettingsField(String apiName) {
-        return UTIL_Describe.getFieldDescribe(
-            UTIL_Namespace.StrTokenNSPrefix('Hierarchy_Settings__c'), 
-            apiName
-        );
+        return UTIL_Describe.getFieldDescribe(UTIL_Namespace.StrTokenNSPrefix('Hierarchy_Settings__c'), apiName);
     }
 
     /****************************************************************************************************
-    * @description Update a HierarchySettingsModel to reflect changes made to setting values.
-    * @param hierarchySettingsChangesVModel A HierarchySettingsChangesVModel containing all updates to Hierarchy Settings.
-    * @return A HierarchySettingsModel with updates recorded.
-    ****************************************************************************************************/
+     * @description Update a HierarchySettingsModel to reflect changes made to setting values.
+     * @param hierarchySettingsChangesVModel A HierarchySettingsChangesVModel containing all updates to Hierarchy Settings.
+     * @return A HierarchySettingsModel with updates recorded.
+     ****************************************************************************************************/
     public virtual boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
         HierarchySettingsModel hierarchySettingsModelToUpdate = this.getHierarchySettings();
 
         try {
             // Update Hierarchy Settings fields with single values
-            for (String changedSettingName : hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.keySet()) {
+            for (
+                String changedSettingName : hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.keySet()
+            ) {
                 Schema.DescribeFieldResult fieldDescribeResult = this.getHierarchySettingsField(changedSettingName);
                 Schema.DisplayType displayType = fieldDescribeResult.getType();
 
                 if (displayType == Schema.DisplayType.STRING) {
-                    String hierarchySettingValue = 
-                        (String)hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(changedSettingName);
+                    String hierarchySettingValue = (String) hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(
+                        changedSettingName
+                    );
                     hierarchySettingsModelToUpdate.setSettingsField(changedSettingName, hierarchySettingValue);
                 }
 
                 if (displayType == Schema.DisplayType.BOOLEAN) {
-                    Boolean hierarchySettingValue = 
-                        Boolean.valueOf(hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(changedSettingName));
+                    Boolean hierarchySettingValue = Boolean.valueOf(
+                        hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(changedSettingName)
+                    );
                     hierarchySettingsModelToUpdate.setSettingsField(changedSettingName, hierarchySettingValue);
                 }
 
                 if (displayType == Schema.DisplayType.DATETIME) {
-                    Datetime hierarchySettingValue = 
-                        Datetime.valueOf(hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(changedSettingName));
+                    Datetime hierarchySettingValue = Datetime.valueOf(
+                        hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(changedSettingName)
+                    );
                     hierarchySettingsModelToUpdate.setSettingsField(changedSettingName, hierarchySettingValue);
                 }
             }
@@ -114,8 +116,9 @@ public virtual with sharing class HierarchySettingsMapper {
             for (String changedSettingName : hierarchySettingsChangesVModel.settingsListSettingsName.keySet()) {
                 Schema.DescribeFieldResult fieldDescribeResult = this.getHierarchySettingsField(changedSettingName);
 
-                String hierarchySettingValue = 
-                    this.denormalizeListSettingChange(hierarchySettingsChangesVModel.settingsListSettingsName.get(changedSettingName));
+                String hierarchySettingValue = this.denormalizeListSettingChange(
+                    hierarchySettingsChangesVModel.settingsListSettingsName.get(changedSettingName)
+                );
                 hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
             }
 
@@ -126,7 +129,6 @@ public virtual with sharing class HierarchySettingsMapper {
 
             update hierarchySettingsModelToUpdate.hierarchySettings;
             return true;
-
         } catch (UTIL_Describe.SchemaDescribeException e) {
             UTIL_Debug.debug('****SchemaDescribeException encountered: ' + e.getMessage());
             throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
@@ -140,17 +142,18 @@ public virtual with sharing class HierarchySettingsMapper {
     }
 
     /******************************************************************************************************
-    * @description Converts a List of Strings to a semicolon-delimited string.
-    * @param  collectionTypeHierarchySettingsUpdateList List<String> to convert
-    * @return A semicolon-delimited String representing each String in the specified list.
-    ******************************************************************************************************/
+     * @description Converts a List of Strings to a semicolon-delimited string.
+     * @param  collectionTypeHierarchySettingsUpdateList List<String> to convert
+     * @return A semicolon-delimited String representing each String in the specified list.
+     ******************************************************************************************************/
     @TestVisible
     private String denormalizeListSettingChange(List<String> collectionTypeHierarchySettingsUpdateList) {
         return String.join(collectionTypeHierarchySettingsUpdateList, ';');
     }
 
     /********************************************************************************************************
-    * @description A custom exception class to represent errors associated with updates to Hierarchy Settings.
-    ********************************************************************************************************/
-    public class InvalidSettingsException extends Exception {}
+     * @description A custom exception class to represent errors associated with updates to Hierarchy Settings.
+     ********************************************************************************************************/
+    public class InvalidSettingsException extends Exception {
+    }
 }

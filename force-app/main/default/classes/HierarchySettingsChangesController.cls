@@ -25,27 +25,27 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group EDA Settings
-* @group-content ../../ApexDocContent/EdaSettings.htm
-* @description Controller for SettingsSaveCanvas LWC component.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group EDA Settings
+ * @group-content ../../ApexDocContent/EdaSettings.htm
+ * @description Controller for SettingsSaveCanvas LWC component.
+ */
 public with sharing class HierarchySettingsChangesController {
-
     /**********************************************************************************
-    * @description Update the HierarchySettingsChangesVModel with specified changes.
-    * @return True if update was successful, false otherwise.
-    **********************************************************************************/
+     * @description Update the HierarchySettingsChangesVModel with specified changes.
+     * @return True if update was successful, false otherwise.
+     **********************************************************************************/
     @AuraEnabled
     public static Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
-        return HierarchySettingsChangesController.locateHierarchySettingsUpdaterService().updateHierarchySettings(hierarchySettingsChangesVModel);
+        return HierarchySettingsChangesController.locateHierarchySettingsUpdaterService()
+            .updateHierarchySettings(hierarchySettingsChangesVModel);
     }
 
     /************************************************************************************
-    * @description Retrieve an instance of the HierarchySettingsService class.
-    * @return An instance of the HierarchySettingsService class.
-    ************************************************************************************/
+     * @description Retrieve an instance of the HierarchySettingsService class.
+     * @return An instance of the HierarchySettingsService class.
+     ************************************************************************************/
     @TestVisible
     private static HierarchySettingsService locateHierarchySettingsUpdaterService() {
         return HierarchySettingsService.getInstance();
