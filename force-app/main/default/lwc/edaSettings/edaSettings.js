@@ -12,7 +12,14 @@ export default class EDASettings extends LightningElement {
     };
 
     currentUserHasAccess = false;
-    //@wire(checkAccessForCurrentUser) currentUserHasAccess;
+
+    @wire(checkAccessForCurrentUser)
+    currentUserHasAccessWire(result) {
+        const { error, data } = result;
+        if (data) {
+            this.currentUserHasAccess = data;
+        }
+    }
 
     settingsPageToDisplay = {
         accountModelSettings: true,
