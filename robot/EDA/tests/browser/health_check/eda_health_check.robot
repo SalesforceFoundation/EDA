@@ -19,17 +19,17 @@ Verify last run date is updated upon clicking run health check Button
     ...                     run health check button.
     [tags]                  unstable        rbt:high        W-8874163
     Log To Console          ${PREV TEST STATUS}
-    Run Keyword If  '${PREV TEST STATUS}' == 'PASS'
-    ...     Run Keywords
-    ...     Reload Page     AND
-    ...     Select App Launcher Tab      Settings Health Check      AND
-    ...     Current page should be      Home        Settings Health Check       AND
-    ...     Click health check button       Run Health Check        AND
-    ...     Verify last run date        AND
-    ...     Go to custom settings setup     AND
-    ...     Select App Launcher Tab      Settings Health Check      AND
-    ...     Verify last run date
-    ...     ELSE    Fail
+    Run Keyword If          '${PREV TEST STATUS}' == 'PASS'
+    ...                     Run Keywords
+    ...                     Reload Page     AND
+    ...                     Select App Launcher Tab      Settings Health Check      AND
+    ...                     Current page should be      Home        Settings Health Check       AND
+    ...                     Click health check button       Run Health Check        AND
+    ...                     Verify last run date        AND
+    ...                     Go to custom settings setup     AND
+    ...                     Select App Launcher Tab      Settings Health Check      AND
+    ...                     Verify last run date
+    ...                     ELSE    Fail
 
 Verify account model health check settings checks pass
     [Documentation]         Validates the account model health card is displayed with settings for
@@ -37,8 +37,17 @@ Verify account model health check settings checks pass
     ...                     record type checks.Also verifies the status of each setting.
     [tags]                  unstable        rbt:high        W-8880346
     Log To Console          ${PREV TEST STATUS}
-    Run Keyword If  '${PREV TEST STATUS}' == 'PASS'  Run account model health check settings
-    ...     ELSE    Fail
+    Run Keyword If          '${PREV TEST STATUS}' == 'PASS'  Run account model health check settings
+    ...                     ELSE    Fail
+
+Verify affiliation mappings health check settings checks pass
+    [Documentation]         Validates the affiliation mappings health card is displayed with
+    ...                     settings for default account record types. Also verifies the status of
+    ...                     each setting.
+    [tags]                  unstable        rbt:high        W-8925750
+    Log To Console    ${PREV TEST STATUS}
+    Run Keyword If    '${PREV TEST STATUS}' == 'PASS'  Run affiliation mapping health check settings
+    ...                     ELSE    Fail
 
 
 *** Keywords ***
@@ -47,9 +56,22 @@ Run account model health check settings
     Click health check button       Run Health Check
     ${all_checks_status} =      Return all checks status        Account Model       All checks passed
     Log To Console              ${all_checks_status}
-    Run Keyword If  '${all_checks_status}' == 'True'  Click expand button   AccountModel
-    Verify status of account model settings     AccountModelResults
-    ...         Administrative Account Record Type=Passed
-    ...         Default Account Model=Passed
-    ...         Household Account Record Type=Passed
-    ...         Unique Administrative and Household Account Record Type Settings.=Passed
+    Run Keyword If              '${all_checks_status}' == 'True'  Click expand button   AccountModel
+    Verify status of a setting     AccountModelResults
+    ...                     Administrative Account Record Type=Passed
+    ...                     Default Account Model=Passed
+    ...                     Household Account Record Type=Passed
+    ...                     Unique Administrative and Household Account Record Type Settings.=Passed
+
+Run affiliation mapping health check settings
+    [Documentation]             Validates the affiliation mapping health check settings row by row
+    ${all_checks_status} =      Return all checks status        Affiliation Mappings       All checks passed
+    Log To Console       ${all_checks_status}
+    Run Keyword If      '${all_checks_status}' == 'True'  Click expand button   AffiliationMappings
+    Verify status of a setting     AffiliationMappingsResults
+    ...         Academic_Program Affiliation Mapping=Passed
+    ...         Business_Organization Affiliation Mapping=Passed
+    ...         Educational_Institution Affiliation Mapping=Passed
+    ...         HH_Account Affiliation Mapping=Passed
+    ...         Sports_Organization Affiliation Mapping=Passed
+    ...         University_Department Affiliation Mapping=Passed
