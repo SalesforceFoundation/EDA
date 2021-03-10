@@ -1,0 +1,14 @@
+<template>
+    <div class="slds-grid--vertical slds-theme_default">
+        <div class="slds-col slds-p-top_large slds-p-left_small">
+            <c-settings-save-canvas
+                component-title={labelReference.stgAccountModelSettingsTitle}
+                onsettingseditmodechange={handleSettingsEditModeChange}
+                onsettingssaving={handleSettingsSaving}
+                onsettingssavecompleted={handleSettingsSaveCompleted}
+            >
+                <lightning-button label="Test Button" disabled={affordancesDisabled}></lightning-button>
+            </c-settings-save-canvas>
+        </div>
+    </div>
+</template>
