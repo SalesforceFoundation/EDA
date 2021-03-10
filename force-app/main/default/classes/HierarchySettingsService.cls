@@ -63,11 +63,76 @@ public virtual with sharing class HierarchySettingsService {
      * @return True if the updates were completed successfully, false otherwise.
      ************************************************************************************************************/
     public virtual Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
-        if (this.locateUserPermissionService().checkViewSetupForCurrentUser() == true) {
-            return this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsChangesVModel);
+        if (this.locateUserPermissionService().checkViewSetupForCurrentUser() == false) {
+            return false;
         }
 
-        return false;
+        HierarchySettingsModel hierarchySettingsModelToUpdate = this.locateHierarchySettingsMapper()
+            .getHierarchySettings();
+
+        try {
+            // Update Hierarchy Settings fields with single values
+            for (
+                String changedSettingName : hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.keySet()
+            ) {
+                Schema.DescribeFieldResult fieldDescribeResult = this.locateHierarchySettingsMapper()
+                    .getHierarchySettingsField(changedSettingName);
+                Schema.DisplayType displayType = fieldDescribeResult.getType();
+
+                if (displayType == Schema.DisplayType.STRING) {
+                    String hierarchySettingValue = (String) hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(
+                        changedSettingName
+                    );
+                    hierarchySettingsModelToUpdate.setSettingsField(changedSettingName, hierarchySettingValue);
+                }
+
+                if (displayType == Schema.DisplayType.BOOLEAN) {
+                    Boolean hierarchySettingValue = Boolean.valueOf(
+                        hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(changedSettingName)
+                    );
+                    hierarchySettingsModelToUpdate.setSettingsField(changedSettingName, hierarchySettingValue);
+                }
+
+                if (displayType == Schema.DisplayType.DATETIME) {
+                    Datetime hierarchySettingValue = Datetime.valueOf(
+                        hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(changedSettingName)
+                    );
+                    hierarchySettingsModelToUpdate.setSettingsField(changedSettingName, hierarchySettingValue);
+                }
+            }
+
+            // Update Hierarchy Settings fields with collections as values
+            for (String changedSettingName : hierarchySettingsChangesVModel.settingsListSettingsName.keySet()) {
+                Schema.DescribeFieldResult fieldDescribeResult = this.locateHierarchySettingsMapper()
+                    .getHierarchySettingsField(changedSettingName);
+
+                String hierarchySettingValue = this.denormalizeListSettingChange(
+                    hierarchySettingsChangesVModel.settingsListSettingsName.get(changedSettingName)
+                );
+                hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
+            }
+        } catch (UTIL_Describe.SchemaDescribeException e) {
+            UTIL_Debug.debug('****SchemaDescribeException encountered: ' + e.getMessage());
+            throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+        } catch (System.TypeException e) {
+            UTIL_Debug.debug('****TypeException encountered: ' + e.getMessage());
+            throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+        } catch (Exception e) {
+            UTIL_Debug.debug('****Unexpected Exception encountered: ' + e.getMessage());
+            throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
+        }
+
+        return this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsModelToUpdate);
+    }
+
+    /******************************************************************************************************
+     * @description Converts a List of Strings to a semicolon-delimited string.
+     * @param  collectionTypeHierarchySettingsUpdateList List<String> to convert
+     * @return A semicolon-delimited String representing each String in the specified list.
+     ******************************************************************************************************/
+    @TestVisible
+    private String denormalizeListSettingChange(List<String> collectionTypeHierarchySettingsUpdateList) {
+        return String.join(collectionTypeHierarchySettingsUpdateList, ';');
     }
 
     /************************************************************************************************************
@@ -86,5 +151,11 @@ public virtual with sharing class HierarchySettingsService {
     @TestVisible
     private UserPermissionService locateUserPermissionService() {
         return UserPermissionService.getInstance();
+    }
+
+    /********************************************************************************************************
+     * @description A custom exception class to represent errors associated with updates to Hierarchy Settings.
+     ********************************************************************************************************/
+    public class InvalidSettingsException extends Exception {
     }
 }
