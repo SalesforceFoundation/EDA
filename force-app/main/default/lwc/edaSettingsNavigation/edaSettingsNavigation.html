@@ -1,17 +1,12 @@
 <template>
     <div class="slds-grid slds-wrap">
-        <template for:each={edaNavigationViewModel} for:item="navigationMenuItem">
-            <div
-                key={navigationMenuItem.page}
-                class="slds-no-flex slds-size_12-of-12 slds-text-heading_small slds-p-bottom_small"
-                onclick={handleNavigationClick}
-                data-page-selected={navigationMenuItem.page}
-                role="button"
-                tabindex="0"
-                onkeyup={handleKeyUp}
-            >
-                {navigationMenuItem.label}
-            </div>
-        </template>
+        <nav class="slds-nav-vertical slds-nav-vertical_compact">
+            <template for:each={edaNavigationViewModel.navigationSections} for:item="navigationSection">
+                <c-eda-settings-navigation-section
+                    key={navigationSection.sectionkey}
+                    view-model={navigationSection}
+                ></c-eda-settings-navigation-section>
+            </template>
+        </nav>
     </div>
 </template>

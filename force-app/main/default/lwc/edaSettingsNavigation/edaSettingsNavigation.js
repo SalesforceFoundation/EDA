@@ -1,50 +1,39 @@
-import { LightningElement } from "lwc";
+import { LightningElement, api } from "lwc";
+import accountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
 
 export default class EdaSettingsNavigation extends LightningElement {
-    currentPage = "page1";
+    labelReference = {
+        accountModelSettingsTitle,
+    };
 
-    edaNavigationViewModel = [
-        {
-            label: "Account Model",
-            page: "accountmodelsettings",
-        },
-        {
-            label: "Contact Information",
-            page: "contactinfosettings",
-        },
-        {
-            label: "Addresses",
-            page: "addresssettings",
-        },
-    ];
+    edaNavigationViewModel = {
+        navigationSections: [
+            {
+                label: labelReference.accountModelSettingsTitle,
+                page: "accountmodelsettings",
+                sectionkey: "accountmodelsettings",
+                isActive: true,
+            },
+            {
+                label: "Contact Information",
+                page: "contactinfosettings",
+                sectionkey: "contactinfosettings",
+            },
+            {
+                label: "Addresses",
+                page: "addresssettings",
+                sectionkey: "addresssettings",
+            },
+        ],
+    };
 
-    handleNavigationClick(event) {
-        this.navigateToSettingsPage(event.currentTarget.dataset.pageSelected);
-    }
-
-    handleKeyUp(event) {
-        console.log(JSON.stringify(event));
-        //this.navigateToSettingsPage(event.currentTarget.dataset.pageSelected);
-    }
-
-    navigateToSettingsPage(pageName) {
-        if (this.currentPage === pageName) {
-            return;
-        }
-
-        this.currentPage = pageName;
-
-        this.dispatchSettingsNavigationEvent(pageName);
-    }
-
-    dispatchSettingsNavigationEvent(pageName) {
-        const settingsNavigationDetail = {
-            pageName: pageName,
-        };
-        this.dispatchEvent(
-            new CustomEvent("settingsnavigation", {
-                detail: settingsNavigationDetail,
-            })
-        );
+    @api setActivePage(pageName) {
+        this.edaNavigationViewModel.navigationSections.forEach((navigationSection) => {
+            if (navigationSection.pageName === pageName) {
+                navigationSection.isActive = true;
+            } else {
+                navigationSection.isActive = undefined;
+            }
+        });
     }
 }

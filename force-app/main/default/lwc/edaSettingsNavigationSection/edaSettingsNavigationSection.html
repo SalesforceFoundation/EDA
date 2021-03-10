@@ -1,0 +1,16 @@
+<template>
+    <div class="slds-nav-vertical__section">
+        <h2 id={viewModel.sectionkey} class="slds-nav-vertical__title">
+            <template if:true={viewModel.page}>
+                <a
+                    href="javascript:void(0)"
+                    class="eda-nav-vertical_title-link"
+                    onclick={handleNavigationClick}
+                    data-page-selected={viewModel.page}
+                    >{viewModel.label}</a
+                >
+            </template>
+            <template if:false={viewModel.page}> {viewModel.label} </template>
+        </h2>
+    </div>
+</template>

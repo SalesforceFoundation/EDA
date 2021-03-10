@@ -1,17 +1,14 @@
-import { LightningElement, api } from "lwc";
+import { LightningElement, api, track } from "lwc";
 export default class EDASettings extends LightningElement {
     @api pageReference;
 
-    labelReference = {
-        settingsNavigation: "Navigation Pane Here",
-    };
-
-    settingsPageToDisplay = {
-        accountModelSettings: true,
+    @track settingsPageToDisplay = {
+        accountmodelsettings: true,
     };
 
     handleSettingsNavigation(event) {
         this.changePageToDisplay(event.detail.pageName);
+        event.stopPropagation();
     }
 
     changePageToDisplay(pageName) {
@@ -19,5 +16,7 @@ export default class EDASettings extends LightningElement {
         settingsPageDisplay[pageName.toLowerCase()] = true;
 
         this.settingsPageToDisplay = settingsPageDisplay;
+
+        this.template.querySelector("c-eda-settings-navigation").setActivePage(pageName);
     }
 }
