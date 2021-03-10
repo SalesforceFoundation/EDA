@@ -65,6 +65,10 @@ public virtual with sharing class AccountRecordTypeAutoDeletionMapper {
     public virtual AccountRecordTypeAutoDeletionModel getAccountRecordTypeAutoDeletionModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
+        if (String.isEmpty(hierarchySettings.Accounts_to_Delete__c) == true) {
+            return new AccountRecordTypeAutoDeletionModel(new List<String>());
+        }
+
         // split on semi-colon and optional space
         List<String> recordTypesToDeleteList = hierarchySettings.Accounts_to_Delete__c.split(';\\s?');
         return new AccountRecordTypeAutoDeletionModel(recordTypesToDeleteList);

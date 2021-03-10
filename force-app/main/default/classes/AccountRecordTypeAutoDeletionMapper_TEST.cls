@@ -120,4 +120,31 @@ private with sharing class AccountRecordTypeAutoDeletionMapper_TEST {
             );
         }        
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getAccountRecordTypeAutoDeletionModel method correctly returns an empty list
+    * Ids when there are no Account Record Types marked for deletion in Hierarchy Settings.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getAccountRecordTypeAutoDeletionModelEmpty() {
+        UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Accounts_to_Delete__c = null
+            )
+        );
+
+        AccountRecordTypeAutoDeletionMapper accountRecordTypeAutoDeletionMapperInstance = 
+                AccountRecordTypeAutoDeletionMapper.getInstance();
+
+        Test.startTest();
+        AccountRecordTypeAutoDeletionModel accountRecordTypeAutoDeletionModel = 
+            accountRecordTypeAutoDeletionMapperInstance.getAccountRecordTypeAutoDeletionModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            0,
+            accountRecordTypeAutoDeletionModel.accountRecordTypeIdsForDeletionWhenOrphanedList.size(),
+            'accountRecordTypeAutoDeletionModel should contain an empty list of Strings.'
+        );     
+    }
 }
