@@ -1,3 +1,7 @@
 .eda-nav-vertical_title-link {
     color: var(--lwc-colorTextActionLabelActive);
 }
+
+.eda-nav-is-active {
+    background-color: var(--lwc-colorBackground);
+}

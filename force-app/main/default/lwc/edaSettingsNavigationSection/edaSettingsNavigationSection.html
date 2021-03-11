@@ -2,7 +2,7 @@
     <div class="slds-nav-vertical__section">
         <h2 id={viewModel.sectionkey} class="slds-nav-vertical__title">
             <template if:true={viewModel.page}>
-                <a href="javascript:void(0)" class="slds-text-color_default" onclick={handleNavigationClick}
+                <a href="javascript:void(0);" class="slds-text-color_default" onclick={handleNavigationClick}
                     >{viewModel.label}</a
                 >
             </template>
@@ -22,8 +22,8 @@
         <template if:true={menuItems}>
             <ul aria-describedby={viewModel.sectionkey}>
                 <template for:each={menuItems} for:item="menuItem">
-                    <li key={menuItem.sectionkey} class="slds-nav-vertical__item slds-p-left_x-large">
-                        <a href="javascript:void(0)" class="slds-nav-vertical__action" onclick={handleNavigationClick}
+                    <li key={menuItem.sectionkey} class={menuItemClass}>
+                        <a href="javascript:void(0);" class="slds-nav-vertical__action" onclick={handleNavigationClick}
                             >{menuItem.label}</a
                         >
                     </li>
