@@ -25,72 +25,70 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group 
-* @group-content ../../ApexDocContent/Tests.htm
-* @description Test class for AccountModelSettingsVMapper class
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group
+ * @group-content ../../ApexDocContent/Tests.htm
+ * @description Test class for AccountModelSettingsVMapper class
+ */
 @isTest
 public with sharing class AccountModelSettingsVMapper_TEST {
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns a new instance of the 
-    * AccountModelSettingsVMapper class when one does not already exist.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getInstance method returns a new instance of the
+     * AccountModelSettingsVMapper class when one does not already exist.
+     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
-
         Test.startTest();
-            AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
+        AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
         Test.stopTest();
 
         System.assertEquals(
-            AccountModelSettingsVMapper.instance, 
-            accountModelSettingsVMapperInstance, 
+            AccountModelSettingsVMapper.instance,
+            accountModelSettingsVMapperInstance,
             'Instance of service class returned should match static instance variable.'
         );
 
         System.assertEquals(
-            true, 
-            accountModelSettingsVMapperInstance != null, 
+            true,
+            accountModelSettingsVMapperInstance != null,
             'Instance of service class should not be null.'
         );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * AccountModelSettingsVMapper class when one already exists.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getInstance method returns the existing instance of the
+     * AccountModelSettingsVMapper class when one already exists.
+     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
-
         Test.startTest();
-            AccountModelSettingsVMapper accountModelSettingsVMapperInstance1 = AccountModelSettingsVMapper.getInstance();
-            AccountModelSettingsVMapper accountModelSettingsVMapperInstance2 = AccountModelSettingsVMapper.getInstance();
+        AccountModelSettingsVMapper accountModelSettingsVMapperInstance1 = AccountModelSettingsVMapper.getInstance();
+        AccountModelSettingsVMapper accountModelSettingsVMapperInstance2 = AccountModelSettingsVMapper.getInstance();
         Test.stopTest();
 
         System.assertEquals(
-            AccountModelSettingsVMapper.instance, 
-            accountModelSettingsVMapperInstance1, 
+            AccountModelSettingsVMapper.instance,
+            accountModelSettingsVMapperInstance1,
             'Instance of service class returned should match static instance variable.'
         );
 
         System.assertEquals(
-            accountModelSettingsVMapperInstance1, 
-            accountModelSettingsVMapperInstance2, 
+            accountModelSettingsVMapperInstance1,
+            accountModelSettingsVMapperInstance2,
             'Subsequent retrievals of service class instance should return existing instance.'
         );
 
         System.assertEquals(
-            true, 
-            accountModelSettingsVMapperInstance1 != null, 
+            true,
+            accountModelSettingsVMapperInstance1 != null,
             'Instance of service class should not be null.'
         );
     }
 
     /***********************************************************************************************************************************
-    * @description Test method to verify that the locateAccountModelSettingsService method returns instance of AccountModelSettingsMapper
-    ***********************************************************************************************************************************/
+     * @description Test method to verify that the locateAccountModelSettingsService method returns instance of AccountModelSettingsMapper
+     ***********************************************************************************************************************************/
     @isTest
     private static void locateAccountModelSettingsServiceValid() {
         AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
@@ -100,35 +98,35 @@ public with sharing class AccountModelSettingsVMapper_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            AccountModelSettingsService.getInstance(), 
-            accountModelSettingsServiceInstance, 
+            AccountModelSettingsService.getInstance(),
+            accountModelSettingsServiceInstance,
             'Should return the instance of AccountModelSettingsService'
         );
     }
 
     /***********************************************************************************************************************************
-    * @description Test method to verify that the locateAccountRecordTypeAutomaticDeletionService method returns instance of 
-    * AccountRecordTypeAutomaticDeletionService
-    ***********************************************************************************************************************************/
+     * @description Test method to verify that the locateAccountRecordTypeAutomaticDeletionService method returns instance of
+     * AccountRecordTypeAutomaticDeletionService
+     ***********************************************************************************************************************************/
     // @isTest
     // private static void locateAccountRecordTypeAutomaticDeletionServiceValid() {
     //     AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
 
     //     Test.startTest();
-    //     AccountRecordTypeAutomaticDeletionService accountRecordTypeAutomaticDeletionServiceInstance = 
+    //     AccountRecordTypeAutomaticDeletionService accountRecordTypeAutomaticDeletionServiceInstance =
     //         accountModelSettingsVMapperInstance.locateAccountRecordTypeAutomaticDeletionService();
     //     Test.stopTest();
 
     //     System.assertEquals(
-    //         AccountRecordTypeAutomaticDeletionService.getInstance(), 
-    //         accountRecordTypeAutomaticDeletionServiceInstance, 
+    //         AccountRecordTypeAutomaticDeletionService.getInstance(),
+    //         accountRecordTypeAutomaticDeletionServiceInstance,
     //         'Should return the instance of AccountModelSettingsService'
     //     );
     // }
 
     /***********************************************************************************************************************************
-    * @description Test method to verify that the locateRecordTypeService method returns instance of RecordTypeService
-    ***********************************************************************************************************************************/
+     * @description Test method to verify that the locateRecordTypeService method returns instance of RecordTypeService
+     ***********************************************************************************************************************************/
     @isTest
     private static void locateRecordTypeServiceValid() {
         AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
@@ -138,10 +136,29 @@ public with sharing class AccountModelSettingsVMapper_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            RecordTypeService.getInstance(), 
-            recordTypeServiceInstance, 
+            RecordTypeService.getInstance(),
+            recordTypeServiceInstance,
             'Should return the instance of RecordTypeService'
         );
     }
-}
 
+    @isTest
+    private static void getAccountModelSettingsViewModelValid() {
+        // only active record types available
+    }
+
+    @isTest
+    private static void getAccountModelSettingsViewModelWithInactiveRecordTypes() {
+        // include inactive record types and ensure they are filtered out of final result
+    }
+
+    @isTest
+    private static void getAccountModelSettingsViewModelWithBlankAccounSettingFields() {
+        // TODO: what happens if account setting field in hierarchy settings is blank?
+    }
+
+    @isTest
+    private static void getAccountModelSettingsViewModelWithNoRecordTypes() {
+        // TODO: what happens if there are zero Account record types in the org?
+    }
+}
