@@ -40,7 +40,7 @@ export default class EdaSettingsNavigationSection extends LightningElement {
     }
 
     get menuItemClass() {
-        let menuItemClass = "slds-nav-vertical__item slds-p-left_x-large";
+        let menuItemClass = "slds-p-left_x-large";
 
         if (this.viewModel.isActive) {
             menuItemClass += " eda-nav-is-active";
@@ -50,7 +50,7 @@ export default class EdaSettingsNavigationSection extends LightningElement {
     }
 
     get menuItemAnchorClass() {
-        let menuItemClass = "slds-nav-vertical__item slds-p-left_x-large";
+        let menuItemClass = "slds-p-left_x-large";
 
         if (this.viewModel.isActive) {
             menuItemClass += " eda-nav-is-active";
