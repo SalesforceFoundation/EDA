@@ -231,17 +231,44 @@ public with sharing class AccountModelSettingsVMapper_TEST {
     }
 
     @isTest
-    private static void getAccountModelSettingsViewModelWithInactiveRecordTypes() {
-        // include inactive record types and ensure they are filtered out of final result
-    }
-
-    @isTest
     private static void getAccountModelSettingsViewModelWithBlankAccounSettingFields() {
         // TODO: what happens if account setting field in hierarchy settings is blank?
     }
 
     @isTest
+    private static void getAccountModelSettingsViewModelWithInactiveRecordTypes() {
+        // include inactive record types and ensure they are filtered out of final result
+    }
+
+    @isTest
     private static void getAccountModelSettingsViewModelWithNoRecordTypes() {
         // TODO: what happens if there are zero Account record types in the org?
+    }
+
+    /***********************************************************************************************************************************
+     * @description Helper method to retrieve active ComboboxValueVModels corresponding to the Account record types existing in the
+     * org for testing.
+     * @return A of ComboboxValueVModels representing the active Account record types in the org mapped by record type ID (value).
+     ***********************************************************************************************************************************/
+    private static Map<String, ComboboxValueVModel> getActiveAccountRecordTypeComboboxValueVModelsByRecordTypeId() {
+        Map<Id, RecordTypeModel> activeAccountRecordTypeModelsById = RecordTypeService.getInstance()
+            .getModelByIdMapForSObjectType(Account.SObjectType);
+
+        // filter out inactive record types
+        for (Id accountRecordTypeModelId : activeAccountRecordTypeModelsById.keySet()) {
+            if (activeAccountRecordTypeModelsById.get(accountRecordTypeModelId).isActive == false) {
+                activeAccountRecordTypeModelsById.remove(accountRecordTypeModelId);
+            }
+        }
+
+        Map<String, ComboboxValueVModel> activeAccountRecordTypeComboboxValueVModelsByValue = new Map<String, ComboboxValueVModel>();
+        for (RecordTypeModel recordTypeModel : activeAccountRecordTypeModelsById.values()) {
+            activeAccountRecordTypeComboboxValueVModelsByValue.put(
+                recordTypeModel.Id,
+                new ComboboxValueVModel(recordTypeModel.name, recordTypeModel.id)
+            );
+        }
+
+        return activeAccountRecordTypeComboboxValueVModelsByValue;
     }
 }
