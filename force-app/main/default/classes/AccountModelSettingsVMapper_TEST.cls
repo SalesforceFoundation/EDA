@@ -107,24 +107,24 @@ public with sharing class AccountModelSettingsVMapper_TEST {
     }
 
     /***********************************************************************************************************************************
-    * @description Test method to verify that the locateAccountRecordTypeAutomaticDeletionService method returns instance of 
-    * AccountRecordTypeAutomaticDeletionService
+    * @description Test method to verify that the locateAccountRecordTypeAutoDeletionService method returns instance of 
+    * AccountRecordTypeAutoDeletionService
     ***********************************************************************************************************************************/
-    // @isTest
-    // private static void locateAccountRecordTypeAutomaticDeletionServiceValid() {
-    //     AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
+    @isTest
+    private static void locateAccountRecordTypeAutoDeletionServiceValid() {
+        AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
 
-    //     Test.startTest();
-    //     AccountRecordTypeAutomaticDeletionService accountRecordTypeAutomaticDeletionServiceInstance = 
-    //         accountModelSettingsVMapperInstance.locateAccountRecordTypeAutomaticDeletionService();
-    //     Test.stopTest();
+        Test.startTest();
+        AccountRecordTypeAutoDeletionService accountRecordTypeAutoDeletionServiceInstance = 
+            accountModelSettingsVMapperInstance.locateAccountRecordTypeAutoDeletionService();
+        Test.stopTest();
 
-    //     System.assertEquals(
-    //         AccountRecordTypeAutomaticDeletionService.getInstance(), 
-    //         accountRecordTypeAutomaticDeletionServiceInstance, 
-    //         'Should return the instance of AccountModelSettingsService'
-    //     );
-    // }
+        System.assertEquals(
+            AccountRecordTypeAutoDeletionService.getInstance(), 
+            accountRecordTypeAutoDeletionServiceInstance, 
+            'Should return the instance of AccountModelSettingsService'
+        );
+    }
 
     /***********************************************************************************************************************************
     * @description Test method to verify that the locateRecordTypeService method returns instance of RecordTypeService
