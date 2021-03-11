@@ -85,7 +85,6 @@ export default class EdaSettingsNavigation extends LightningElement {
         ],
     };
 
-    //TODO: Figure out map framework. Should be doable if objects are references.
     @api setActivePage(pageName) {
         this.settingsNavigationViewModel.navigationSections.forEach((navigationSection) => {
             if (navigationSection.page === pageName) {
