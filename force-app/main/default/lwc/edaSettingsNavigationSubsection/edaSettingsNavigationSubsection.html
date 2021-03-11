@@ -3,7 +3,7 @@
         <h3 id={viewModel.sectionkey} class={subsectionHeaderClass}>
             <a
                 href="javascript:void(0);"
-                class="slds-text-title_caps slds-text-color_weak"
+                class="slds-text-title_caps slds-text-color_weak eda-nav-subsection-header_link"
                 onclick={handleNavigationClick}
                 >{viewModel.label}</a
             >
@@ -12,7 +12,10 @@
             <ul aria-describedby={viewModel.sectionkey}>
                 <template for:each={menuItems} for:item="menuItem">
                     <li key={menuItem.sectionkey} class={menuItemClass}>
-                        <a href="javascript:void(0);" class="slds-text-color_default" onclick={handleNavigationClick}
+                        <a
+                            href="javascript:void(0);"
+                            class="slds-text-color_default eda-nav-menu-item_link"
+                            onclick={handleNavigationClick}
                             >{menuItem.label}</a
                         >
                     </li>

@@ -1,3 +1,7 @@
+.eda-nav-menu-item_link:hover {
+    color: var(--lwc-colorTextActionLabelActive);
+}
+
 .eda-nav-is-active {
     background-color: var(--lwc-colorBackground);
 }
