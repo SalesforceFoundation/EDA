@@ -1,6 +1,9 @@
 <template>
     <div class="slds-col slds-size_12-of-12">
-        <h2 id={viewModel.sectionkey} class="slds-text-title_bold slds-p-horizontal_large slds-p-vertical__xx-small">
+        <h2
+            id={viewModel.sectionkey}
+            class="slds-text-heading_small slds-p-horizontal_large slds-p-top_medium slds-p-bottom_xx-small"
+        >
             <template if:true={viewModel.page}>
                 <a href="javascript:void(0);" class="slds-text-color_default" onclick={handleNavigationClick}
                     >{viewModel.label}</a
@@ -23,7 +26,10 @@
             <ul aria-describedby={viewModel.sectionkey}>
                 <template for:each={menuItems} for:item="menuItem">
                     <li key={menuItem.sectionkey} class={menuItemClass}>
-                        <a href="javascript:void(0);" class="slds-nav-vertical__action" onclick={handleNavigationClick}
+                        <a
+                            href="javascript:void(0);"
+                            class="slds-text-color_default slds-p-horizontal_medium slds-p-vertical_xx-small"
+                            onclick={handleNavigationClick}
                             >{menuItem.label}</a
                         >
                     </li>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 id={viewModel.sectionkey} class="slds-p-horizontal_large slds-p-vertical__xx-small">
+        <h3 id={viewModel.sectionkey} class="slds-p-horizontal_large slds-p-top_small slds-p-bottom_xx-small">
             <a
                 href="javascript:void(0)"
                 class="slds-text-title_caps slds-text-color_weak"
@@ -11,10 +11,10 @@
         <template if:true={menuItems}>
             <ul aria-describedby={viewModel.sectionkey}>
                 <template for:each={menuItems} for:item="menuItem">
-                    <li key={menuItem.sectionkey} class="slds-nav-vertical__item slds-p-left_medium">
+                    <li key={menuItem.sectionkey} class="slds-p-horizontal_xx-large slds-p-vertical_xx-small">
                         <a
                             href="javascript:void(0)"
-                            class="slds-nav-vertical__action slds-truncate"
+                            class="slds-text-color_default slds-truncate"
                             onclick={handleNavigationClick}
                             >{menuItem.label}</a
                         >

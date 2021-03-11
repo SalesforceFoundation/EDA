@@ -9,6 +9,11 @@ export default class EdaSettingsNavigation extends LightningElement {
     settingsNavigationViewModel = {
         navigationSections: [
             {
+                label: "Setup Home",
+                page: "setuphome",
+                sectionkey: "setuphome",
+            },
+            {
                 label: "People and Groups",
                 sectionkey: "peopleandgroups",
                 navigationSubSections: [
