@@ -33,6 +33,10 @@
  */
 @isTest
 public with sharing class AccountModelSettingsVMapper_TEST {
+    public static String adminAccRecordTypeId = UTIL_Describe_API.getAdminAccRecTypeID();
+    public static String businessAccRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID();
+    public static String hhAccRecordTypeId = UTIL_Describe_API.getHhAccRecTypeID();
+
     /**************************************************************************************************************************
      * @description Test method to verify that the getInstance method returns a new instance of the
      * AccountModelSettingsVMapper class when one does not already exist.
@@ -145,6 +149,85 @@ public with sharing class AccountModelSettingsVMapper_TEST {
     @isTest
     private static void getAccountModelSettingsViewModelValid() {
         // only active record types available
+
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = adminAccRecordTypeId,
+                Household_Addresses_RecType__c = hhAccRecordTypeId,
+                Administrative_Account_Record_Type__c = adminAccRecordTypeId
+            )
+        );
+
+        AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
+
+        Test.startTest();
+        AccountModelSettingsVModel accountModelSettingsVModel = accountModelSettingsVMapperInstance.getAccountModelSettingsViewModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            adminAccRecordTypeId,
+            accountModelSettingsVModel.defaultAccountRecordType.value,
+            'Selected value for default account record type should be set as admin account.'
+        );
+
+        System.assertEquals(
+            hhAccRecordTypeId,
+            accountModelSettingsVModel.householdAccountRecordType.value,
+            'Selected value for household account record type should be set as household account.'
+        );
+
+        System.assertEquals(
+            adminAccRecordTypeId,
+            accountModelSettingsVModel.adminAccountRecordType.value,
+            'Selected value for admin account record type should be set as admin account.'
+        );
+
+        Map<String, ComboboxValueVModel> activeAccountRecordTypeComboboxValueVModelsByValue = AccountModelSettingsVMapper_TEST.getActiveAccountRecordTypeComboboxValueVModelsByRecordTypeId();
+
+        System.assertEquals(
+            activeAccountRecordTypeComboboxValueVModelsByValue.values().size(),
+            accountModelSettingsVModel.adminAccountRecordType.options.size(),
+            'Number of Account Record Type options should match number of active record types in org.'
+        );
+
+        for (
+            ComboboxValueVModel accountRecordTypeComboboxValueVModel : accountModelSettingsVModel.adminAccountRecordType.options
+        ) {
+            System.assertEquals(
+                true,
+                activeAccountRecordTypeComboboxValueVModelsByValue.containsKey(
+                    accountRecordTypeComboboxValueVModel.value
+                ),
+                'Account record type options should contain all active record types in org.'
+            );
+        }
+    }
+
+    /***********************************************************************************************************************************
+     * @description Helper method to retrieve active ComboboxValueVModels corresponding to the Account record types existing in the
+     * org for testing.
+     * @return A of ComboboxValueVModels representing the active Account record types in the org mapped by record type ID (value).
+     ***********************************************************************************************************************************/
+    private static Map<String, ComboboxValueVModel> getActiveAccountRecordTypeComboboxValueVModelsByRecordTypeId() {
+        Map<Id, RecordTypeModel> activeAccountRecordTypeModelsById = RecordTypeService.getInstance()
+            .getModelByIdMapForSObjectType(Account.SObjectType);
+
+        // filter out inactive record types
+        for (Id accountRecordTypeModelId : activeAccountRecordTypeModelsById.keySet()) {
+            if (activeAccountRecordTypeModelsById.get(accountRecordTypeModelId).isActive == false) {
+                activeAccountRecordTypeModelsById.remove(accountRecordTypeModelId);
+            }
+        }
+
+        Map<String, ComboboxValueVModel> activeAccountRecordTypeComboboxValueVModelsByValue = new Map<String, ComboboxValueVModel>();
+        for (RecordTypeModel recordTypeModel : activeAccountRecordTypeModelsById.values()) {
+            activeAccountRecordTypeComboboxValueVModelsByValue.put(
+                recordTypeModel.Id,
+                new ComboboxValueVModel(recordTypeModel.name, recordTypeModel.id)
+            );
+        }
+
+        return activeAccountRecordTypeComboboxValueVModelsByValue;
     }
 
     @isTest
