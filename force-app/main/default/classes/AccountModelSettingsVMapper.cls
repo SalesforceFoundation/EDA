@@ -121,13 +121,13 @@ public virtual with sharing class AccountModelSettingsVMapper {
     }
 
     /*****************************************************************************
-     * @description Retrieves an instance of the AccountRecordTypeAutomaticDeletionService class.
-     * @return An instance of AccountRecordTypeAutomaticDeletionService.
+     * @description Retrieves an instance of the AccountRecordTypeAutoDeletionService class.
+     * @return An instance of AccountRecordTypeAutoDeletionService.
      ******************************************************************************/
-    //@TestVisible
-    // private AccountRecordTypeAutomaticDeletionService locateAccountRecordTypeAutomaticDeletionService() {
-    //     return AccountRecordTypeAutomaticDeletionService.getInstance();
-    // }
+    @TestVisible
+    private AccountRecordTypeAutoDeletionService locateAccountRecordTypeAutoDeletionService() {
+        return AccountRecordTypeAutoDeletionService.getInstance();
+    }
 
     /*****************************************************************************
      * @description Retrieves an instance of the RecordTypeService class.
