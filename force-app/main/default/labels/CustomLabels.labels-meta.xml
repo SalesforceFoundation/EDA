@@ -102,7 +102,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error when a Contact's Primary Affiliation field isn't an Account lookup field</shortDescription>
-        <value>We can't save this record because of an error with the Contact field {1}. It must be an Account lookup field. Ask your admin to check Affiliation Mappings in EDA Settings, and make sure that the value for {0} currently set to {1} is set to the API name of an Account lookup field on the Contact object.</value>
+        <value>We can't save this record because of an error with the Contact field {1}. Ask your admin to check Affiliation Mappings in EDA Settings, and make sure that the value for {0} is set to the API name of an Account lookup field on the Contact object instead of {1}.</value>
     </labels>
     <labels>
         <fullName>InvalidFilter</fullName>
@@ -118,7 +118,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error when an Affiliation Mapping's Account record type isn't valid</shortDescription>
-        <value>We can't save this record because of an error with the Contact field {1}. It references an invalid Account record type. Ask your admin to check Affiliation Mappings in EDA Settings, and make sure that the value for {0} currently set to {1} is set to the API name of a valid Account record type.</value>
+        <value>We can't save this record because {1} isn't a valid Account record type. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of a valid Account record type instead of {1}.</value>
     </labels>
     <labels>
         <fullName>Male</fullName>
