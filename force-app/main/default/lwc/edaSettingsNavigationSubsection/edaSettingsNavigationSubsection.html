@@ -1,18 +1,18 @@
 <template>
     <div>
-        <h3 id={viewModel.sectionkey} class="slds-p-horizontal_large slds-p-top_small slds-p-bottom_xx-small">
+        <h3 id={viewModel.sectionkey} class={subsectionHeaderClass}>
             <a
-                href="javascript:void(0)"
+                href="javascript:void(0);"
                 class="slds-text-title_caps slds-text-color_weak"
                 onclick={handleNavigationClick}
-                >{viewModel.label} {viewModel.isActive}</a
+                >{viewModel.label}</a
             >
         </h3>
         <template if:true={menuItems}>
             <ul aria-describedby={viewModel.sectionkey}>
                 <template for:each={menuItems} for:item="menuItem">
                     <li key={menuItem.sectionkey} class={menuItemClass}>
-                        <a href="javascript:void(0)" class="slds-text-color_default" onclick={handleNavigationClick}
+                        <a href="javascript:void(0);" class="slds-text-color_default" onclick={handleNavigationClick}
                             >{menuItem.label}</a
                         >
                     </li>

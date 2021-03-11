@@ -2,11 +2,11 @@
     <div class="slds-col slds-size_12-of-12">
         <h2
             id={viewModel.sectionkey}
-            class="slds-text-heading_small slds-p-horizontal_large slds-p-top_medium slds-p-bottom_xx-small"
+            class="slds-text-heading_small slds-p-left_large slds-p-top_medium slds-p-bottom_xx-small"
         >
             <template if:true={viewModel.page}>
                 <a href="javascript:void(0);" class="slds-text-color_default" onclick={handleNavigationClick}
-                    >{viewModel.label} {viewModel.isActive}</a
+                    >{viewModel.label}</a
                 >
             </template>
             <template if:false={viewModel.page}> {viewModel.label} </template>

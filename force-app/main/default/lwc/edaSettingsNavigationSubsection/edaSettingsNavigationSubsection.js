@@ -39,6 +39,16 @@ export default class EdaSettingsNavigationSubsection extends LightningElement {
         );
     }
 
+    get subsectionHeaderClass() {
+        let subsectionHeaderClass = "slds-p-horizontal_large slds-p-top_small slds-p-bottom_xx-small";
+
+        if (this.viewModel.isActive) {
+            subsectionHeaderClass += " eda-nav-is-active";
+        }
+
+        return subsectionHeaderClass;
+    }
+
     get menuItemClass() {
         let menuItemClass = "slds-p-left_x-large slds-truncate";
 
