@@ -1135,6 +1135,22 @@
         <value>You can&apos;t view this page. Your Salesforce admin can help with that.</value>
     </labels>
     <labels>
+        <fullName>stgErrorInsufficientAccessSaving</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when the user doesn't have the permissions to save settings</shortDescription>
+        <value>You can't save these settings because you no longer have permission to edit them. Your Salesforce admin can help with that.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorInvalidSettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when a generic error occurs</shortDescription>
+        <value>We couldn’t save your work. Please refresh the page and try again.</value>
+    </labels>
+    <labels>
         <fullName>stgErrorNotiTo</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

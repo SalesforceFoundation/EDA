@@ -7,7 +7,11 @@
                 onsettingssaving={handleSettingsSaving}
                 onsettingssavecompleted={handleSettingsSaveCompleted}
             >
-                <lightning-button label="Test Button" disabled={affordancesDisabled}></lightning-button>
+                <!-- Body of Account Model Settings page (populates Slot in child component) -->
+                <lightning-button
+                    label="Test Button"
+                    disabled={affordancesDisabled}
+                ></lightning-button>
             </c-settings-save-canvas>
         </div>
     </div>
