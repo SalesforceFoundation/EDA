@@ -1,4 +1,4 @@
-import { LightningElement, api } from "lwc";
+import { LightningElement, api, track } from "lwc";
 import accountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
 
 export default class EdaSettingsNavigation extends LightningElement {
@@ -6,7 +6,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         accountModelSettingsTitle,
     };
 
-    settingsNavigationViewModel = {
+    @track settingsNavigationViewModel = {
         navigationSections: [
             {
                 label: "Setup Home",
@@ -85,12 +85,28 @@ export default class EdaSettingsNavigation extends LightningElement {
         ],
     };
 
+    //TODO: Figure out map framework. Should be doable if objects are references.
     @api setActivePage(pageName) {
         this.settingsNavigationViewModel.navigationSections.forEach((navigationSection) => {
-            if (navigationSection.pageName === pageName) {
+            if (navigationSection.page === pageName) {
                 navigationSection.isActive = true;
             } else {
                 navigationSection.isActive = undefined;
+                this.setActiveSubpage(pageName, navigationSection);
+            }
+        });
+    }
+
+    setActiveSubpage(pageName, navigationSection) {
+        if (!navigationSection.navigationSubSections) {
+            return;
+        }
+
+        navigationSection.navigationSubSections.forEach((navigationSubSection) => {
+            if (navigationSubSection.page === pageName) {
+                navigationSubSection.isActive = true;
+            } else {
+                navigationSubSection.isActive = undefined;
             }
         });
     }

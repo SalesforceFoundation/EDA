@@ -48,14 +48,4 @@ export default class EdaSettingsNavigationSubsection extends LightningElement {
 
         return menuItemClass;
     }
-
-    get menuItemAnchorClass() {
-        let menuItemClass = "slds-p-left_x-large";
-
-        if (this.viewModel.isActive) {
-            menuItemClass += " eda-nav-is-active slds-text-heading_small";
-        }
-
-        return menuItemClass;
-    }
 }
