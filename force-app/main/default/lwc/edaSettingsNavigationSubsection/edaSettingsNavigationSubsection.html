@@ -1,20 +1,52 @@
 <template>
-    <div>
-        <h3 id={viewModel.sectionkey} class={subsectionHeaderClass}>
-            <a
-                href="javascript:void(0);"
-                class="slds-text-title_caps slds-text-color_weak eda-nav-subsection-header_link"
-                onclick={handleNavigationClick}
-                aria-current={viewModel.isActive}
-                >{viewModel.label}</a
-            >
-        </h3>
-        <template if:true={hasMenuItems}>
-            <ul aria-describedby={viewModel.sectionkey}>
-                <c-eda-settings-navigation-menu-items
-                    view-model={menuItemsViewModel}
-                ></c-eda-settings-navigation-menu-items>
-            </ul>
-        </template>
-    </div>
+    <template if:true={viewModel.isActive}>
+        <div class="slds-grid slds-nowrap eda-nav-is-active">
+            <div class="slds-col slds-size_11-of-12">
+                <h3 id={viewModel.sectionkey} class={subsectionHeaderClass}>
+                    <a
+                        href="javascript:void(0);"
+                        class="slds-text-title_caps slds-text-color_weak eda-nav-subsection-header_link"
+                        onclick={handleNavigationClick}
+                        aria-current={viewModel.isActive}
+                        >{viewModel.label}</a
+                    >
+                </h3>
+                <template if:true={hasMenuItems}>
+                    <ul aria-describedby={viewModel.sectionkey}>
+                        <c-eda-settings-navigation-menu-items
+                            view-model={menuItemsViewModel}
+                        ></c-eda-settings-navigation-menu-items>
+                    </ul>
+                </template>
+            </div>
+            <div class="slds-col slds-bump-left slds-size_1-of-12 slds-align_absolute-center slds-text-align_right">
+                <lightning-icon
+                    icon-name="utility:chevronright"
+                    alternative-text="Active"
+                    size="small"
+                    title="Active"
+                ></lightning-icon>
+            </div>
+        </div>
+    </template>
+    <template if:false={viewModel.isActive}>
+        <div>
+            <h3 id={viewModel.sectionkey} class={subsectionHeaderClass}>
+                <a
+                    href="javascript:void(0);"
+                    class="slds-text-title_caps slds-text-color_weak eda-nav-subsection-header_link"
+                    onclick={handleNavigationClick}
+                    aria-current={viewModel.isActive}
+                    >{viewModel.label}</a
+                >
+            </h3>
+            <template if:true={hasMenuItems}>
+                <ul aria-describedby={viewModel.sectionkey}>
+                    <c-eda-settings-navigation-menu-items
+                        view-model={menuItemsViewModel}
+                    ></c-eda-settings-navigation-menu-items>
+                </ul>
+            </template>
+        </div>
+    </template>
 </template>
