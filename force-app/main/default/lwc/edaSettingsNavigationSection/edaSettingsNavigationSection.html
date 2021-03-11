@@ -6,7 +6,7 @@
         >
             <template if:true={viewModel.page}>
                 <a href="javascript:void(0);" class="slds-text-color_default" onclick={handleNavigationClick}
-                    >{viewModel.label}</a
+                    >{viewModel.label} {viewModel.isActive}</a
                 >
             </template>
             <template if:false={viewModel.page}> {viewModel.label} </template>

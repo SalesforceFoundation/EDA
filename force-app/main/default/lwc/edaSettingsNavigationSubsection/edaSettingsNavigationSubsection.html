@@ -11,11 +11,8 @@
         <template if:true={menuItems}>
             <ul aria-describedby={viewModel.sectionkey}>
                 <template for:each={menuItems} for:item="menuItem">
-                    <li key={menuItem.sectionkey} class="slds-p-horizontal_xx-large slds-p-vertical_xx-small">
-                        <a
-                            href="javascript:void(0)"
-                            class="slds-text-color_default slds-truncate"
-                            onclick={handleNavigationClick}
+                    <li key={menuItem.sectionkey} class={menuItemClass}>
+                        <a href="javascript:void(0)" class="slds-text-color_default" onclick={handleNavigationClick}
                             >{menuItem.label}</a
                         >
                     </li>

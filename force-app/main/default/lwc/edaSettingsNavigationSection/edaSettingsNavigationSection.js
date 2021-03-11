@@ -40,7 +40,7 @@ export default class EdaSettingsNavigationSection extends LightningElement {
     }
 
     get menuItemClass() {
-        let menuItemClass = "slds-p-left_x-large";
+        let menuItemClass = "slds-p-left_x-large slds-truncate";
 
         if (this.viewModel.isActive) {
             menuItemClass += " eda-nav-is-active";
@@ -50,12 +50,12 @@ export default class EdaSettingsNavigationSection extends LightningElement {
     }
 
     get menuItemAnchorClass() {
-        let menuItemClass = "slds-p-left_x-large";
+        let menuAnchorClass = "slds-p-left_x-large";
 
         if (this.viewModel.isActive) {
-            menuItemClass += " eda-nav-is-active";
+            menuAnchorClass += " eda-nav-is-active slds-text-heading_small";
         }
 
-        return menuItemClass;
+        return menuAnchorClass;
     }
 }

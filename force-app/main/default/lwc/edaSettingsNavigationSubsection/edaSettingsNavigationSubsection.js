@@ -38,4 +38,24 @@ export default class EdaSettingsNavigationSubsection extends LightningElement {
             })
         );
     }
+
+    get menuItemClass() {
+        let menuItemClass = "slds-p-left_x-large slds-truncate";
+
+        if (this.viewModel.isActive) {
+            menuItemClass += " eda-nav-is-active";
+        }
+
+        return menuItemClass;
+    }
+
+    get menuItemAnchorClass() {
+        let menuItemClass = "slds-p-left_x-large";
+
+        if (this.viewModel.isActive) {
+            menuItemClass += " eda-nav-is-active slds-text-heading_small";
+        }
+
+        return menuItemClass;
+    }
 }
