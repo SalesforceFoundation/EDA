@@ -29,14 +29,16 @@
         <template if:true={hasMenuItems}>
             <template if:true={viewModel.isActive}>
                 <div class="slds-grid slds-nowrap eda-nav-is-active">
-                    <div class="slds-col">
+                    <div class="slds-col slds-size_11-of-12">
                         <ul aria-describedby={viewModel.sectionkey}>
                             <c-eda-settings-navigation-menu-items
                                 view-model={menuItemsViewModel}
                             ></c-eda-settings-navigation-menu-items>
                         </ul>
                     </div>
-                    <div class="slds-col slds-bump-left slds-shrink slds-text-align_right">
+                    <div
+                        class="slds-col slds-bump-left slds-size_1-of-12 slds-align_absolute-center slds-text-align_right"
+                    >
                         <lightning-icon
                             icon-name="utility:chevronright"
                             alternative-text="Active"
