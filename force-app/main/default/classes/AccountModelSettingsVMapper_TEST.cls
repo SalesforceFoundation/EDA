@@ -145,10 +145,13 @@ public with sharing class AccountModelSettingsVMapper_TEST {
         );
     }
 
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getAccountModelSettingsViewModel returns an AccountModelSettingsVModel with the selected
+     * value set to the current field value specified in Hierarchy Settings for Account Record Types and a list of comboboxVModels that
+     * correspond to all active Account Record Types in the org.
+     ***********************************************************************************************************************************/
     @isTest
     private static void getAccountModelSettingsViewModelValid() {
-        // only active record types available
-
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = adminAccRecordTypeId,
@@ -203,37 +206,66 @@ public with sharing class AccountModelSettingsVMapper_TEST {
     }
 
     /***********************************************************************************************************************************
-     * @description Helper method to retrieve active ComboboxValueVModels corresponding to the Account record types existing in the
-     * org for testing.
-     * @return A of ComboboxValueVModels representing the active Account record types in the org mapped by record type ID (value).
+     * @description Test method to verify that the getAccountModelSettingsViewModel returns an AccountModelSettingsVModel with the selected
+     * value set to blank when there is no value specified in the associated Hierarchy Settings fields and a list of comboboxVModels that
+     * correspond to all active Account Record Types in the org.
      ***********************************************************************************************************************************/
-    private static Map<String, ComboboxValueVModel> getActiveAccountRecordTypeComboboxValueVModelsByRecordTypeId() {
-        Map<Id, RecordTypeModel> activeAccountRecordTypeModelsById = RecordTypeService.getInstance()
-            .getModelByIdMapForSObjectType(Account.SObjectType);
+    @isTest
+    private static void getAccountModelSettingsViewModelWithBlankAccountSettingFields() {
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = '',
+                Household_Addresses_RecType__c = null,
+                Administrative_Account_Record_Type__c = ''
+            )
+        );
 
-        // filter out inactive record types
-        for (Id accountRecordTypeModelId : activeAccountRecordTypeModelsById.keySet()) {
-            if (activeAccountRecordTypeModelsById.get(accountRecordTypeModelId).isActive == false) {
-                activeAccountRecordTypeModelsById.remove(accountRecordTypeModelId);
-            }
-        }
+        AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
 
-        Map<String, ComboboxValueVModel> activeAccountRecordTypeComboboxValueVModelsByValue = new Map<String, ComboboxValueVModel>();
-        for (RecordTypeModel recordTypeModel : activeAccountRecordTypeModelsById.values()) {
-            activeAccountRecordTypeComboboxValueVModelsByValue.put(
-                recordTypeModel.Id,
-                new ComboboxValueVModel(recordTypeModel.name, recordTypeModel.id)
+        Test.startTest();
+        AccountModelSettingsVModel accountModelSettingsVModel = accountModelSettingsVMapperInstance.getAccountModelSettingsViewModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            '""',
+            accountModelSettingsVModel.defaultAccountRecordType.value,
+            'Selected value for default account record type should be blank.'
+        );
+
+        System.assertEquals(
+            '""',
+            accountModelSettingsVModel.householdAccountRecordType.value,
+            'Selected value for household account record type should be blank.'
+        );
+
+        System.assertEquals(
+            '""',
+            accountModelSettingsVModel.adminAccountRecordType.value,
+            'Selected value for admin account record type should be blank.'
+        );
+
+        Map<String, ComboboxValueVModel> activeAccountRecordTypeComboboxValueVModelsByValue = AccountModelSettingsVMapper_TEST.getActiveAccountRecordTypeComboboxValueVModelsByRecordTypeId();
+
+        System.assertEquals(
+            activeAccountRecordTypeComboboxValueVModelsByValue.values().size(),
+            accountModelSettingsVModel.adminAccountRecordType.options.size(),
+            'Number of Account Record Type options should match number of active record types in org.'
+        );
+
+        for (
+            ComboboxValueVModel accountRecordTypeComboboxValueVModel : accountModelSettingsVModel.adminAccountRecordType.options
+        ) {
+            System.assertEquals(
+                true,
+                activeAccountRecordTypeComboboxValueVModelsByValue.containsKey(
+                    accountRecordTypeComboboxValueVModel.value
+                ),
+                'Account record type options should contain all active record types in org.'
             );
         }
-
-        return activeAccountRecordTypeComboboxValueVModelsByValue;
     }
 
-    @isTest
-    private static void getAccountModelSettingsViewModelWithBlankAccounSettingFields() {
-        // TODO: what happens if account setting field in hierarchy settings is blank?
-    }
-
+    // TODO: Move the next 2 tests to unmanaged tests?
     @isTest
     private static void getAccountModelSettingsViewModelWithInactiveRecordTypes() {
         // include inactive record types and ensure they are filtered out of final result
