@@ -9,18 +9,11 @@
                 >{viewModel.label}</a
             >
         </h3>
-        <template if:true={menuItems}>
+        <template if:true={hasMenuItems}>
             <ul aria-describedby={viewModel.sectionkey}>
-                <template for:each={menuItems} for:item="menuItem">
-                    <li key={menuItem.sectionkey} class={menuItemClass}>
-                        <a
-                            href="javascript:void(0);"
-                            class="slds-text-color_default eda-nav-menu-item_link"
-                            onclick={handleNavigationClick}
-                            >{menuItem.label}</a
-                        >
-                    </li>
-                </template>
+                <c-eda-settings-navigation-menu-items
+                    view-model={menuItemsViewModel}
+                ></c-eda-settings-navigation-menu-items>
             </ul>
         </template>
     </div>

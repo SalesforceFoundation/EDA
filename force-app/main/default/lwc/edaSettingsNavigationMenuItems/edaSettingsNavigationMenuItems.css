@@ -1,11 +1,3 @@
-.eda-nav-subsection-header_link:hover {
-    color: var(--lwc-colorTextActionLabel);
-}
-
-.eda-nav-subsection-header_link:active {
-    color: var(--lwc-colorTextActionLabel);
-}
-
 .eda-nav-menu-item_link:hover {
     color: var(--lwc-colorTextActionLabelActive);
 }

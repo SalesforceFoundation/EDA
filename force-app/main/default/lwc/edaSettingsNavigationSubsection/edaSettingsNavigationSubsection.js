@@ -3,10 +3,15 @@ import { LightningElement, api } from "lwc";
 export default class EdaSettingsNavigationSubsection extends LightningElement {
     @api viewModel;
 
-    get menuItems() {
-        if (!this.viewModel.menuItems) {
-            return undefined;
-        }
+    get hasMenuItems() {
+        return !!this.viewModel.menuItems;
+    }
+
+    get menuItemsViewModel() {
+        let menuItemsViewModel = {
+            page: this.viewModel.page,
+            isActive: this.viewModel.isActive,
+        };
 
         let formattedMenuItems = [];
 
@@ -19,7 +24,9 @@ export default class EdaSettingsNavigationSubsection extends LightningElement {
             formattedMenuItems.push(formattedMenuItem);
         });
 
-        return formattedMenuItems;
+        menuItemsViewModel.menuItems = formattedMenuItems;
+
+        return menuItemsViewModel;
     }
 
     handleNavigationClick() {
@@ -47,15 +54,5 @@ export default class EdaSettingsNavigationSubsection extends LightningElement {
         }
 
         return subsectionHeaderClass;
-    }
-
-    get menuItemClass() {
-        let menuItemClass = "slds-p-left_x-large slds-p-bottom_xxx-small slds-truncate";
-
-        if (this.viewModel.isActive) {
-            menuItemClass += " eda-nav-is-active";
-        }
-
-        return menuItemClass;
     }
 }
