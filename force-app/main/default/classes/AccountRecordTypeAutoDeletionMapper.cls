@@ -1,4 +1,3 @@
-
 /*
     Copyright (c) 2021, Salesforce.org
     All rights reserved.
@@ -30,57 +29,48 @@
 * @date 2021
 * @group EDA Settings
 * @group-content ../../ApexDocContent/edaSettings.htm
-* @description View model mapper class used to retrieve hierarchy setting mappings
-* related to Account model settings.
+* @description Mapper class acting as the mapper layer to abstract data in Database
+* for Automatic deletion functionality.
 */
-public virtual with sharing class AccountModelSettingsVMapper {
+public virtual with sharing class AccountRecordTypeAutoDeletionMapper {
     /*********************************************
     * @description Instance for Singleton Pattern
     **********************************************/
     @TestVisible
-    private static AccountModelSettingsVMapper instance;
+    private static AccountRecordTypeAutoDeletionMapper instance;
 
     /*********************************************************************
     * @description Empty constructor is not public for Singleton Pattern
     **********************************************************************/
-    protected AccountModelSettingsVMapper() {}
+    protected AccountRecordTypeAutoDeletionMapper() {}
 
     /*****************************************************************************
     * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of AccountModelSettingsVMapper.
+    * @return The instance of AccountRecordTypeAutoDeletionMapper.
     ******************************************************************************/
-    public static AccountModelSettingsVMapper getInstance() {
+    public static AccountRecordTypeAutoDeletionMapper getInstance() {
         if (instance == null) {
-            instance = new AccountModelSettingsVMapper();
+            instance = new AccountRecordTypeAutoDeletionMapper();
         }
 
         return instance;
     }
 
     /*****************************************************************************
-    * @description Retrieves an instance of the AccountModelSettingsService class.
-    * @return An instance of AccountModelSettingsService.
-    ******************************************************************************/
-    @TestVisible
-    private AccountModelSettingsService locateAccountModelSettingsService() {
-        return AccountModelSettingsService.getInstance();
-    }
+    * @description Retrieves an AccountRecordTypeAutoDeletionModel populated with
+    * a list of Account Record Type Ids specified in Hierarchy Settings 
+    * selected for deletion when not associated with any Contact records.
+    * @return An AccountRecordTypeAutoDeletionModel
+    *****************************************************************************/
+    public virtual AccountRecordTypeAutoDeletionModel getAccountRecordTypeAutoDeletionModel() {
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
-    /*****************************************************************************
-    * @description Retrieves an instance of the AccountRecordTypeAutoDeletionService class.
-    * @return An instance of AccountRecordTypeAutoDeletionService.
-    ******************************************************************************/
-    @TestVisible
-    private AccountRecordTypeAutoDeletionService locateAccountRecordTypeAutoDeletionService() {
-        return AccountRecordTypeAutoDeletionService.getInstance();
-    }
+        if (String.isEmpty(hierarchySettings.Accounts_to_Delete__c) == true) {
+            return new AccountRecordTypeAutoDeletionModel(new List<String>());
+        }
 
-    /*****************************************************************************
-    * @description Retrieves an instance of the RecordTypeService class.
-    * @return An instance of RecordTypeService.
-    ******************************************************************************/
-    @TestVisible
-    private RecordTypeService locateRecordTypeService() {
-        return RecordTypeService.getInstance();
+        // split on semi-colon and optional space
+        List<String> recordTypesToDeleteList = hierarchySettings.Accounts_to_Delete__c.split(';\\s?');
+        return new AccountRecordTypeAutoDeletionModel(recordTypesToDeleteList);
     }
 }
