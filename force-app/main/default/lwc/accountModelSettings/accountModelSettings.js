@@ -31,7 +31,6 @@ export default class AccountModelSettings extends LightningElement {
         stgHelpAdminRecType,
         stgAccountRecordTypeSupportsHHAddress,
         stgHelpHouseholdRecType,
-        placeHolderText: "Select an Option",
     };
 
     @wire(getAccountModelSettingsViewModel)
