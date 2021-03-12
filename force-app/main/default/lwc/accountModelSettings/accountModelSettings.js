@@ -9,6 +9,7 @@ import stgAdminAccountRecordType from "@salesforce/label/c.stgAdminAccountRecord
 import stgHelpAdminRecType from "@salesforce/label/c.stgHelpAdminRecType";
 import stgAccountRecordTypeSupportsHHAddress from "@salesforce/label/c.stgAccountRecordTypeSupportsHHAddress";
 import stgHelpHouseholdRecType from "@salesforce/label/c.stgHelpHouseholdRecType";
+import AfflMappingsDescription from "@salesforce/label/c.AfflMappingsDescription";
 
 export default class AccountModelSettings extends LightningElement {
     isEditMode = false;
@@ -43,15 +44,36 @@ export default class AccountModelSettings extends LightningElement {
     }
 
     handleDefaultAccountModelChange(event) {
-        console.log("Default Account model changed");
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Account_Processor__c".toLowerCase(),
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
     handleHouseholdAccountModelChange(event) {
-        console.log("HH Account model changed");
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Household_Addresses_RecType__c".toLowerCase(),
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
     handleAdministrativeAccountModelChange(event) {
-        console.log("Admin Account model changed");
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Administrative_Account_Record_Type__c".toLowerCase(),
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
     handleSettingsEditModeChange(event) {
