@@ -11,6 +11,12 @@ export default class HealthCheckActionCard extends LightningElement {
 
     labelReference = {stgHealthCheckTitle,stgHealthCheckDescription,stgHealthCheckLastRun,stgHealthCheckRunButton}
 
+
+
+
+
+    
+
     get lastRunDate() {
         if (this.runDate){
             return this.labelReference.stgHealthCheckLastRun.replace(
