@@ -9,12 +9,7 @@ import stgHealthCheckRunButton from '@salesforce/label/c.stgHealthCheckRunButton
 export default class HealthCheckActionCard extends LightningElement {
     @api runDate;
 
-    labelReference = {
-        stgHealthCheckTitle,
-        stgHealthCheckDescription,
-        stgHealthCheckLastRun,
-        stgHealthCheckRunButton
-    }
+    labelReference = {stgHealthCheckTitle,stgHealthCheckDescription,stgHealthCheckLastRun,stgHealthCheckRunButton}
 
     get lastRunDate() {
         if (this.runDate){
