@@ -72,6 +72,7 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
     ************************************************************************/
     public List<Affiliation__c> getAffiliationsToCreate(List<Contact> contactList, List<MODL_PrimaryAfflMapper> afflMappingsModelsList) {
         List<Affiliation__c> affiliationsToCreateList = new List<Affiliation__c>();
+        
         for (Contact eachContact: contactList) {
             List<Affiliation__c> affiliationsToCreateForEachContactList = this.getAffiliationsToCreateForContact(eachContact, afflMappingsModelsList);
             affiliationsToCreateList.addAll(affiliationsToCreateForEachContactList);
@@ -87,27 +88,30 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
     @TestVisible
     private List<Affiliation__c> getAffiliationsToCreateForContact(Contact contact, List<MODL_PrimaryAfflMapper> afflMappingsModelsList) {
         List<Affiliation__c> affiliationsToCreateForEachContactList = new List<Affiliation__c>();
+
         try {
             for (MODL_PrimaryAfflMapper eachModel: afflMappingsModelsList) {
                 if (contact.get(eachModel.getContactFieldApiName()) == null) {
                     continue;
                 }
 
-                if (eachModel.getIsValid() == false){
-                    contact.addError(Label.afflAccoutMappingError);
-                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                if (eachModel.getIsValid() == false || String.isNotBlank(eachModel.getInvalidErrorMessage()) == true){
+                    contact.addError(eachModel.getInvalidErrorMessage());
+                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                 }
-
+                
                 Affiliation__c afflToCreate;
                 
                 try {
                     afflToCreate = new Affiliation__c(Contact__c = contact.ID, Account__c = (Id)contact.get(eachModel.getContactFieldApiName()), Primary__c = true);
                 } catch (System.TypeException typeExc) {
-                    Contact.addError(typeExc.getMessage());
-                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    // mapped contact field is valid, but value provided is not a Lookup to a contact Id
+                    contact.addError(eachModel.getInvalidErrorMessage());
+                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                 } catch (System.StringException stringExc) {
-                    Contact.addError(stringExc.getMessage());
-                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    // mapped contact field is valid, but value provided is not a string 
+                    contact.addError(eachModel.getInvalidErrorMessage());
+                    throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                 }
                 affiliationsToCreateForEachContactList.add(afflToCreate);
             }
@@ -170,27 +174,25 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
 
         try{
             for (MODL_PrimaryAfflMapper eachModel: afflMappingsModelsList) {
-
                 if (newContact.get(eachModel.getContactFieldApiName()) == oldContact.get(eachModel.getContactFieldApiName())) {
                     continue;
                 }
-
+               
                 if (newContact.get(eachModel.getContactFieldApiName()) != null) {
-                    if (eachModel.getIsValid() == false){
-                        newContact.addError(Label.afflAccoutMappingError);
-                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                    if (eachModel.getIsValid() == false || String.isNotBlank(eachModel.getInvalidErrorMessage()) == true){ 
+                        newContact.addError(eachModel.getInvalidErrorMessage());
+                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                     }
-
                     Affiliation__c afflToCreate;
 
                     try {
                         afflToCreate = new Affiliation__c(Contact__c = newContact.ID, Account__c = (Id)newContact.get(eachModel.getContactFieldApiName()), Primary__c = true);
                     } catch (System.TypeException typeExc) {
-                        newContact.addError(typeExc.getMessage());
-                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                        newContact.addError(eachModel.getInvalidErrorMessage());
+                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                     } catch (System.StringException stringExc) {
-                        newContact.addError(stringExc.getMessage());
-                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
+                        newContact.addError(eachModel.getInvalidErrorMessage());
+                        throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(eachModel.getInvalidErrorMessage());
                     }
                     affiliationsToCreateForEachContactList.add(afflToCreate);
                 }
@@ -221,11 +223,10 @@ public virtual with sharing class SRVC_Contact_PrimaryAffiliations {
         Set<Id> accountIds = new Set<Id>();
 
         for (MODL_PrimaryAfflMapper eachModel: afflMappingsModelsList) {
-
             if (newContact.get(eachModel.getContactFieldApiName()) == oldContact.get(eachModel.getContactFieldApiName())) {
                 continue;
             }
-
+            
             if (oldContact.get(eachModel.getContactFieldApiName()) != null) {
                 accountIds.add((Id)oldContact.get(eachModel.getContactFieldApiName()));
             }

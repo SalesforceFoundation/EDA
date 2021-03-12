@@ -97,12 +97,28 @@
         <value>Female</value>
     </labels>
     <labels>
+        <fullName>invalidContactFieldInAffiliationMapping</fullName>
+        <categories>Affiliations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when a Contact's Primary Affiliation field isn't an Account lookup field</shortDescription>
+        <value>We can't save this record because of an error with the Contact field {1}. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of an Account lookup field on the Contact object instead of {1}</value>
+    </labels>
+    <labels>
         <fullName>InvalidFilter</fullName>
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error message for TDTM filtering functionality</shortDescription>
         <value>The field entered as the Filter Field isn&apos;t valid. Filter Fields can be any standard or custom field on the object this trigger is for, as well as fields on related records. Make sure you use the field&apos;s API name, and omit any EDA namespace prefix (&quot;hed__&quot;).</value>
+    </labels>
+    <labels>
+        <fullName>invalidRecordTypeInAffiliationMapping</fullName>
+        <categories>Affiliations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when an Affiliation Mapping's Account record type isn't valid</shortDescription>
+        <value>We can't save this record because {1} isn't a valid Account record type. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of a valid Account record type instead of {1}.</value>
     </labels>
     <labels>
         <fullName>Male</fullName>
