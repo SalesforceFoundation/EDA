@@ -13,6 +13,7 @@ import stgHelpHouseholdRecType from "@salesforce/label/c.stgHelpHouseholdRecType
 export default class AccountModelSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
+    @track accountModelSettingsViewModel;
 
     get affordancesDisabled() {
         if (!this.isEditMode || this.affordancesDisabledToggle === true) {
@@ -29,9 +30,17 @@ export default class AccountModelSettings extends LightningElement {
         stgHelpAdminRecType,
         stgAccountRecordTypeSupportsHHAddress,
         stgHelpHouseholdRecType,
+        placeHolderText: "Select an Option",
     };
 
-    @wire(getAccountModelSettingsViewModel) accountModelSettingsViewModel;
+    @wire(getAccountModelSettingsViewModel)
+    accountModelSettingsViewModel({ error, data }) {
+        if (data) {
+            this.accountModelSettingsViewModel = data;
+        } else if (error) {
+            console.log("error retrieving accountmodelsettingsvmodel");
+        }
+    }
 
     handleDefaultAccountModelChange(event) {
         console.log("Default Account model changed");

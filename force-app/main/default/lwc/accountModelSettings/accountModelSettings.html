@@ -7,12 +7,79 @@
                 onsettingssaving={handleSettingsSaving}
                 onsettingssavecompleted={handleSettingsSaveCompleted}
             >
-                <!-- Body of Account Model Settings page (populates Slot in child component) -->
-                <lightning-button
-                    label="Test Button"
-                    disabled={affordancesDisabled}
-                ></lightning-button>
             </c-settings-save-canvas>
+
+            <!-- Body of Account Model Settings page (populates Slot in child component) -->
+            <template if:true={accountModelSettingsViewModel}>
+                <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                    <!-- Default Account Record Type Setting -->
+                    <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                        <p class="slds-text-title slds-text-color_default">{labelReference.stgAccModelTitle}</p>
+                        <p class="slds-text-body_small slds-p-left_x-small slds-text-color_weak">
+                            {labelReference.stgHelpAccountModel}
+                        </p>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_medium">
+                        <lightning-combobox
+                            name="defaultAccountModel"
+                            label="Default Account Record Type"
+                            value={accountModelSettingsViewModel.defaultAccountRecordType.value}
+                            placeholder=""
+                            options={accountModelSettingsViewModel.defaultAccountRecordType.options}
+                            onchange={handleDefaultAccountModelChange}
+                            disabled={affordancesDisabled}
+                            variant="label-hidden"
+                        ></lightning-combobox>
+                    </div>
+
+                    <!-- Administrative Account Record Type Setting -->
+                    <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                        <div class="slds-text-title slds-text-color_default">
+                            {labelReference.stgAdminAccountRecordType}
+                        </div>
+                        <div class="slds-text-body_small slds-p-left_x-small slds-text-color_weak">
+                            {labelReference.stgHelpAdminRecType}
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_medium">
+                        <lightning-combobox
+                            name="adminAccountModel"
+                            label="Administrative Account Record Type"
+                            value={accountModelSettingsViewModel.adminAccountRecordType.value}
+                            placeholder=""
+                            options={accountModelSettingsViewModel.adminAccountRecordType.options}
+                            onchange={handleAdministrativeAccountModelChange}
+                            disabled={affordancesDisabled}
+                            variant="label-hidden"
+                        ></lightning-combobox>
+                    </div>
+
+                    <!-- Household Account Record Type Setting -->
+                    <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                        <div class="slds-text-title slds-text-color_default">
+                            {labelReference.stgAccountRecordTypeSupportsHHAddress}
+                        </div>
+                        <div class="slds-text-body_small slds-p-left_x-small slds-text-color_weak">
+                            {labelReference.stgHelpHouseholdRecType}
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_medium">
+                        <lightning-combobox
+                            name="adminAccountModel"
+                            label="Household Account Record Type"
+                            value={accountModelSettingsViewModel.householdAccountRecordType.value}
+                            placeholder=""
+                            options={accountModelSettingsViewModel.householdAccountRecordType.options}
+                            onchange={handleHouseholdAccountModelChange}
+                            disabled={affordancesDisabled}
+                            variant="label-hidden"
+                        ></lightning-combobox>
+                    </div>
+                </div>
+            </template>
         </div>
     </div>
 </template>
