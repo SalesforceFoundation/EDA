@@ -10,4 +10,4 @@ jobs:
           node-version: '14'
       - name: prettier
         run: |
-          npx prettier "*.{html,md,yml,yaml,json}" --check
+          npx prettier "**/*.{html,md,yml,yaml,json}" --check
