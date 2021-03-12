@@ -4,7 +4,7 @@ export default class EdaSettingsNavigationSubsection extends LightningElement {
     @api viewModel;
 
     get qaLocator() {
-        return "edasettingsnav" + this.viewModel.id;
+        return "eda-settings-nav-" + this.viewModel.id;
     }
 
     get hasMenuItems() {
@@ -12,25 +12,23 @@ export default class EdaSettingsNavigationSubsection extends LightningElement {
     }
 
     get menuItemsViewModel() {
-        let menuItemsViewModel = {
-            page: this.viewModel.page,
-            isActive: this.viewModel.isActive,
-            paddingLeft: "slds-p-left_x-large",
-        };
-
         let formattedMenuItems = [];
 
         this.viewModel.menuItems.forEach((menuItem) => {
             let formattedMenuItem = {
                 label: menuItem.label,
                 id: menuItem.id,
-                qaLocator: "edasettingsnav" + menuItem.id,
-                page: this.viewModel.page,
+                qaLocator: "eda-settings-nav-" + menuItem.id,
             };
             formattedMenuItems.push(formattedMenuItem);
         });
 
-        menuItemsViewModel.menuItems = formattedMenuItems;
+        const menuItemsViewModel = {
+            page: this.viewModel.page,
+            isActive: this.viewModel.isActive,
+            paddingLeft: "slds-p-left_x-large",
+            menuItems: formattedMenuItems,
+        };
 
         return menuItemsViewModel;
     }
