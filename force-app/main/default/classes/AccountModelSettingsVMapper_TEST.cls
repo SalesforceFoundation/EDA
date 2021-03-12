@@ -32,11 +32,7 @@
  * @description Test class for AccountModelSettingsVMapper class
  */
 @isTest
-public with sharing class AccountModelSettingsVMapper_TEST {
-    public static String adminAccRecordTypeId = UTIL_Describe_API.getAdminAccRecTypeID();
-    public static String businessAccRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID();
-    public static String hhAccRecordTypeId = UTIL_Describe_API.getHhAccRecTypeID();
-
+private with sharing class AccountModelSettingsVMapper_TEST {
     /**************************************************************************************************************************
      * @description Test method to verify that the getInstance method returns a new instance of the
      * AccountModelSettingsVMapper class when one does not already exist.
@@ -154,9 +150,9 @@ public with sharing class AccountModelSettingsVMapper_TEST {
     private static void getAccountModelSettingsViewModelValid() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = adminAccRecordTypeId,
-                Household_Addresses_RecType__c = hhAccRecordTypeId,
-                Administrative_Account_Record_Type__c = adminAccRecordTypeId
+                Account_Processor__c = 'Default Account ID',
+                Household_Addresses_RecType__c = 'HH Account ID',
+                Administrative_Account_Record_Type__c = 'Admin Account ID'
             )
         );
 
@@ -167,19 +163,19 @@ public with sharing class AccountModelSettingsVMapper_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            adminAccRecordTypeId,
+            'Default Account ID',
             accountModelSettingsVModel.defaultAccountRecordType.value,
-            'Selected value for default account record type should be set as admin account.'
+            'Selected value for default account record type should be set as default account.'
         );
 
         System.assertEquals(
-            hhAccRecordTypeId,
+            'HH Account ID',
             accountModelSettingsVModel.householdAccountRecordType.value,
             'Selected value for household account record type should be set as household account.'
         );
 
         System.assertEquals(
-            adminAccRecordTypeId,
+            'Admin Account ID',
             accountModelSettingsVModel.adminAccountRecordType.value,
             'Selected value for admin account record type should be set as admin account.'
         );

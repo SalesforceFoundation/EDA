@@ -64,7 +64,7 @@ public virtual with sharing class AccountModelSettingsVMapper {
      * Household Addresses Acc Record Type
      * @return An AccountModelSettingsVModel
      *****************************************************************************/
-    public AccountModelSettingsVModel getAccountModelSettingsViewModel() {
+    public virtual AccountModelSettingsVModel getAccountModelSettingsViewModel() {
         // retrieve current account settings from Hierarchy settings
         AccountModelSettingsModel currentAccountSettingsModel = this.locateAccountModelSettingsService()
             .getAccountModelSettingsModel();
