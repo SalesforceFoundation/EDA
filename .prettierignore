@@ -14,6 +14,7 @@ README.md
 .gitignore
 .prettierignore
 .eslintignore
+cumulusci.yml
 
 # Images
 *.png
