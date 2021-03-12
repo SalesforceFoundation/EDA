@@ -169,7 +169,6 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     ********************************************************************************************************/
     @TestVisible
     private void handleAfterInsert(List<SObject> newSObjectList) {
-
         if (this.isInsertRecursion() == true) {
             return;
         }
@@ -196,7 +195,6 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
         this.resetAffiliationUpdateRecursion();
         this.unsetInsertRecursion();
-
     }
 
     /*******************************************************************************************************
@@ -208,7 +206,6 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
     ********************************************************************************************************/
     @TestVisible
     private void handleAfterUpdate(List<SObject> oldSObjectList, List<SObject> newSObjectList) {
-
         if (this.isUpdateRecursion() == true) {
             return;
         }
@@ -235,7 +232,6 @@ public class CON_PrimaryAffls_TDTM extends TDTM_Runnable {
             }
 
             dmlWrapper.objectsToInsert.addAll((List<SObject>)(AffiliationsToInsertAndUpdate.getAffiliationListToInsertClone()));
-
         }
 
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
