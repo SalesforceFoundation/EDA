@@ -2,7 +2,7 @@
     <template if:true={viewModel.isActive}>
         <div class="slds-grid slds-nowrap eda-nav-is-active">
             <div class="slds-col slds-size_11-of-12">
-                <h3 id={viewModel.sectionkey} class={subsectionHeaderClass}>
+                <h3 id={viewModel.id} class={subsectionHeaderClass}>
                     <a
                         href="javascript:void(0);"
                         class="slds-text-title_caps slds-text-color_weak eda-nav-subsection-header_link"
@@ -12,7 +12,7 @@
                     >
                 </h3>
                 <template if:true={hasMenuItems}>
-                    <ul aria-describedby={viewModel.sectionkey}>
+                    <ul aria-describedby={viewModel.id}>
                         <c-eda-settings-navigation-menu-items
                             view-model={menuItemsViewModel}
                         ></c-eda-settings-navigation-menu-items>
@@ -26,7 +26,7 @@
     </template>
     <template if:false={viewModel.isActive}>
         <div>
-            <h3 id={viewModel.sectionkey} class={subsectionHeaderClass}>
+            <h3 id={viewModel.id} class={subsectionHeaderClass}>
                 <a
                     href="javascript:void(0);"
                     class="slds-text-title_caps slds-text-color_weak eda-nav-subsection-header_link"
@@ -36,7 +36,7 @@
                 >
             </h3>
             <template if:true={hasMenuItems}>
-                <ul aria-describedby={viewModel.sectionkey}>
+                <ul aria-describedby={viewModel.id}>
                     <c-eda-settings-navigation-menu-items
                         view-model={menuItemsViewModel}
                     ></c-eda-settings-navigation-menu-items>

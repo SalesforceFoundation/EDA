@@ -1,9 +1,11 @@
 <template>
     <div class="slds-col slds-size_12-of-12">
+        <!--Section header-->
         <h2
-            id={viewModel.sectionkey}
+            id={viewModel.id}
             class="slds-text-heading_small slds-p-left_large slds-p-top_medium slds-p-bottom_xx-small"
         >
+            <template if:false={viewModel.page}> {viewModel.label} </template>
             <template if:true={viewModel.page}>
                 <a
                     href="javascript:void(0);"
@@ -13,24 +15,23 @@
                     >{viewModel.label}</a
                 >
             </template>
-            <template if:false={viewModel.page}> {viewModel.label} </template>
         </h2>
-        <template if:true={viewModel.navigationSubSections}>
-            <ul aria-describedby={viewModel.sectionkey} class="slds-p-left_medium">
-                <template for:each={viewModel.navigationSubSections} for:item="navigationSubsection">
-                    <li key={navigationSubsection.sectionkey}>
-                        <c-eda-settings-navigation-subsection
-                            view-model={navigationSubsection}
-                        ></c-eda-settings-navigation-subsection>
-                    </li>
-                </template>
-            </ul>
-        </template>
+
+        <!--Header Only Menu Items-->
         <template if:true={hasMenuItems}>
+            <!--Base State-->
+            <template if:false={viewModel.isActive}>
+                <ul aria-describedby={viewModel.id}>
+                    <c-eda-settings-navigation-menu-items
+                        view-model={menuItemsViewModel}
+                    ></c-eda-settings-navigation-menu-items>
+                </ul>
+            </template>
+            <!--Active State-->
             <template if:true={viewModel.isActive}>
                 <div class="slds-grid slds-nowrap eda-nav-is-active">
                     <div class="slds-col slds-size_11-of-12">
-                        <ul aria-describedby={viewModel.sectionkey}>
+                        <ul aria-describedby={viewModel.id}>
                             <c-eda-settings-navigation-menu-items
                                 view-model={menuItemsViewModel}
                             ></c-eda-settings-navigation-menu-items>
@@ -47,13 +48,19 @@
                     </div>
                 </div>
             </template>
-            <template if:false={viewModel.isActive}>
-                <ul aria-describedby={viewModel.sectionkey}>
-                    <c-eda-settings-navigation-menu-items
-                        view-model={menuItemsViewModel}
-                    ></c-eda-settings-navigation-menu-items>
-                </ul>
-            </template>
+        </template>
+
+        <!--Subsections-->
+        <template if:true={viewModel.navigationSubSections}>
+            <ul aria-describedby={viewModel.id} class="slds-p-left_medium">
+                <template for:each={viewModel.navigationSubSections} for:item="navigationSubsection">
+                    <li key={navigationSubsection.id}>
+                        <c-eda-settings-navigation-subsection
+                            view-model={navigationSubsection}
+                        ></c-eda-settings-navigation-subsection>
+                    </li>
+                </template>
+            </ul>
         </template>
     </div>
 </template>

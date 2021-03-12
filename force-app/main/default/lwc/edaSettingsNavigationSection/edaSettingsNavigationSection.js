@@ -19,7 +19,7 @@ export default class EdaSettingsNavigationSection extends LightningElement {
         this.viewModel.menuItems.forEach((menuItem) => {
             let formattedMenuItem = {
                 label: menuItem.label,
-                sectionKey: menuItem.sectionKey,
+                id: menuItem.id,
                 page: this.viewModel.page,
             };
             formattedMenuItems.push(formattedMenuItem);

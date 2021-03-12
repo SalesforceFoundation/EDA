@@ -3,7 +3,7 @@
         <div class="slds-grid slds-grid_vertical eda-height_full">
             <template for:each={settingsNavigationViewModel.navigationSections} for:item="navigationSection">
                 <c-eda-settings-navigation-section
-                    key={navigationSection.sectionkey}
+                    key={navigationSection.id}
                     view-model={navigationSection}
                 ></c-eda-settings-navigation-section>
             </template>
