@@ -12,5 +12,6 @@
     },
     "lint-staged": {
         "**/*.{html,js,css,yml,cls,apex,trigger}": "prettier --check"
-    }
+    },
+    "version": "0.0.0"
 }
