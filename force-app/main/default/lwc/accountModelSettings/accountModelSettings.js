@@ -54,6 +54,12 @@ export default class AccountModelSettings extends LightningElement {
 
     handleSettingsSaving(event) {
         this.affordancesDisabledToggle = true;
+        // TODO: perform client side validation
+
+        // if validation fails, call this.handleValidationFailure()
+        //this.template.querySelector("c-settings-save-canvas").handleValidationFailure();
+
+        // else, update hierarchy settings
         this.template.querySelector("c-settings-save-canvas").updateHierarchySettings();
     }
 

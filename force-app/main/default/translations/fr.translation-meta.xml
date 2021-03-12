@@ -573,6 +573,14 @@
         <name>stgErrorInsufficientAccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Error when the user doesn't have the permissions to save settings --></label>
+        <name>stgErrorInsufficientAccessSaving</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when a generic error occurs --></label>
+        <name>stgErrorInvalidSettings</name>
+    </customLabels>
+    <customLabels>
         <label>Notifications d’erreur à :</label>
         <name>stgErrorNotiTo</name>
     </customLabels>
