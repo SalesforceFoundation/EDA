@@ -22,7 +22,7 @@
         <template if:true={hasMenuItems}>
             <!--Base State-->
             <template if:false={viewModel.isActive}>
-                <ul aria-describedby={viewModel.id} class="slds-p-left_medium">
+                <ul aria-describedby={viewModel.id}>
                     <c-eda-settings-navigation-menu-items
                         view-model={menuItemsViewModel}
                     ></c-eda-settings-navigation-menu-items>
