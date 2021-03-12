@@ -11,6 +11,7 @@ export default class EdaSettingsNavigationSubsection extends LightningElement {
         let menuItemsViewModel = {
             page: this.viewModel.page,
             isActive: this.viewModel.isActive,
+            leftPadding: "slds-p-left_x-large",
         };
 
         let formattedMenuItems = [];

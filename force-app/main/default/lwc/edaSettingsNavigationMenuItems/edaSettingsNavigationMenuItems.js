@@ -21,7 +21,7 @@ export default class EdaSettingsMenuItems extends LightningElement {
     }
 
     get menuItemClass() {
-        let menuItemClass = "slds-p-left_x-large slds-p-bottom_xxx-small slds-truncate";
+        let menuItemClass = this.viewModel.leftPadding + " slds-p-bottom_xxx-small slds-truncate";
 
         if (this.viewModel.isActive) {
             menuItemClass += " eda-nav-is-active";
