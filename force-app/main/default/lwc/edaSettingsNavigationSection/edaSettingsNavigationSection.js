@@ -3,6 +3,10 @@ import { LightningElement, api } from "lwc";
 export default class EdaSettingsNavigationSection extends LightningElement {
     @api viewModel;
 
+    get qaLocator() {
+        return "edasettingsnav" + this.viewModel.id;
+    }
+
     get hasMenuItems() {
         return !!this.viewModel.menuItems;
     }
@@ -11,7 +15,6 @@ export default class EdaSettingsNavigationSection extends LightningElement {
         let menuItemsViewModel = {
             page: this.viewModel.page,
             isActive: this.viewModel.isActive,
-            leftPadding: "slds-p-left_xx-large",
         };
 
         let formattedMenuItems = [];
@@ -20,6 +23,7 @@ export default class EdaSettingsNavigationSection extends LightningElement {
             let formattedMenuItem = {
                 label: menuItem.label,
                 id: menuItem.id,
+                qaLocator: "edasettingsnav" + menuItem.id,
                 page: this.viewModel.page,
             };
             formattedMenuItems.push(formattedMenuItem);

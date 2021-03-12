@@ -12,6 +12,7 @@
                     class="slds-text-color_default eda-nav-menu-item_link"
                     onclick={handleNavigationClick}
                     aria-current={viewModel.isActive}
+                    data-qa-locator={qaLocator}
                     >{viewModel.label}</a
                 >
             </template>
@@ -21,7 +22,7 @@
         <template if:true={hasMenuItems}>
             <!--Base State-->
             <template if:false={viewModel.isActive}>
-                <ul aria-describedby={viewModel.id}>
+                <ul aria-describedby={viewModel.id} class="slds-p-left_medium">
                     <c-eda-settings-navigation-menu-items
                         view-model={menuItemsViewModel}
                     ></c-eda-settings-navigation-menu-items>
