@@ -148,11 +148,13 @@ private with sharing class AccountModelSettingsVMapper_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void getAccountModelSettingsViewModelValid() {
+        RecordTypeMapper.instance = new STUB_RecordTypeMapper();
+
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = 'Default Account ID',
-                Household_Addresses_RecType__c = 'HH Account ID',
-                Administrative_Account_Record_Type__c = 'Admin Account ID'
+                Account_Processor__c = '000000000000000001',
+                Household_Addresses_RecType__c = '',
+                Administrative_Account_Record_Type__c = null
             )
         );
 
@@ -163,54 +165,48 @@ private with sharing class AccountModelSettingsVMapper_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            'Default Account ID',
+            '000000000000000001',
             accountModelSettingsVModel.defaultAccountRecordType.value,
             'Selected value for default account record type should be set as default account.'
         );
 
         System.assertEquals(
-            'HH Account ID',
+            '""',
             accountModelSettingsVModel.householdAccountRecordType.value,
             'Selected value for household account record type should be set as household account.'
         );
 
         System.assertEquals(
-            'Admin Account ID',
+            '""',
             accountModelSettingsVModel.adminAccountRecordType.value,
             'Selected value for admin account record type should be set as admin account.'
         );
 
-        Map<String, ComboboxValueVModel> activeAccountRecordTypeComboboxValueVModelsByValue = AccountModelSettingsVMapper_TEST.getActiveAccountRecordTypeComboboxValueVModelsByRecordTypeId();
-
         System.assertEquals(
-            activeAccountRecordTypeComboboxValueVModelsByValue.values().size(),
-            accountModelSettingsVModel.adminAccountRecordType.options.size(),
-            'Number of Account Record Type options should match number of active record types in org.'
+            1,
+            accountModelSettingsVModel.defaultAccountRecordType.options.size(),
+            'Should only list active record types as options.'
         );
-
-        for (
-            ComboboxValueVModel accountRecordTypeComboboxValueVModel : accountModelSettingsVModel.adminAccountRecordType.options
-        ) {
-            System.assertEquals(
-                true,
-                activeAccountRecordTypeComboboxValueVModelsByValue.containsKey(
-                    accountRecordTypeComboboxValueVModel.value
-                ),
-                'Account record type options should contain all active record types in org.'
-            );
-        }
+        System.assertEquals(
+            '000000000000000001',
+            accountModelSettingsVModel.defaultAccountRecordType.options[0].value,
+            'Should only list active record types as options.'
+        );
     }
 
     /***********************************************************************************************************************************
      * @description Test method to verify that the getAccountModelSettingsViewModel returns an AccountModelSettingsVModel with the selected
-     * value set to blank when there is no value specified in the associated Hierarchy Settings fields and a list of comboboxVModels that
-     * correspond to all active Account Record Types in the org.
+     * value set to the value specified in the associated Hierarchy Settings fields and an empty list of comboboxVModels when there are
+     * no active Account Record Types in the org.
      ***********************************************************************************************************************************/
     @isTest
-    private static void getAccountModelSettingsViewModelWithBlankAccountSettingFields() {
+    private static void getAccountModelSettingsViewModelWithNoRecordTypes() {
+        // TODO: what happens if there are zero Account record types in the org?
+        RecordTypeMapper.instance = new STUB_RecordTypeMapperEmpty();
+
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = '',
+                Account_Processor__c = 'Default Account',
                 Household_Addresses_RecType__c = null,
                 Administrative_Account_Record_Type__c = ''
             )
@@ -223,9 +219,9 @@ private with sharing class AccountModelSettingsVMapper_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            '""',
+            'Default Account',
             accountModelSettingsVModel.defaultAccountRecordType.value,
-            'Selected value for default account record type should be blank.'
+            'Selected value for default account record type should be set.'
         );
 
         System.assertEquals(
@@ -240,62 +236,57 @@ private with sharing class AccountModelSettingsVMapper_TEST {
             'Selected value for admin account record type should be blank.'
         );
 
-        Map<String, ComboboxValueVModel> activeAccountRecordTypeComboboxValueVModelsByValue = AccountModelSettingsVMapper_TEST.getActiveAccountRecordTypeComboboxValueVModelsByRecordTypeId();
-
         System.assertEquals(
-            activeAccountRecordTypeComboboxValueVModelsByValue.values().size(),
-            accountModelSettingsVModel.adminAccountRecordType.options.size(),
-            'Number of Account Record Type options should match number of active record types in org.'
+            true,
+            accountModelSettingsVModel.defaultAccountRecordType.options.isEmpty(),
+            'Default Account model should have no Account Record Type options available.'
         );
 
-        for (
-            ComboboxValueVModel accountRecordTypeComboboxValueVModel : accountModelSettingsVModel.adminAccountRecordType.options
-        ) {
-            System.assertEquals(
-                true,
-                activeAccountRecordTypeComboboxValueVModelsByValue.containsKey(
-                    accountRecordTypeComboboxValueVModel.value
-                ),
-                'Account record type options should contain all active record types in org.'
+        System.assertEquals(
+            true,
+            accountModelSettingsVModel.householdAccountRecordType.options.isEmpty(),
+            'HH Account model should have no Account Record Type options available.'
+        );
+        System.assertEquals(
+            true,
+            accountModelSettingsVModel.adminAccountRecordType.options.isEmpty(),
+            'Admin Account model should have no Account Record Type options available.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** STUBS **************************************************************
+     **************************************************************************************************************************/
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from RecordTypeMapper to return a map of Account Record Types, both active and inactive
+     **************************************************************************************************************************************/
+    private class STUB_RecordTypeMapper extends RecordTypeMapper {
+        public override Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+            Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>();
+
+            recordTypeModelsById.put(
+                '000000000000000001',
+                new RecordTypeModel('000000000000000001', 'Active Record Type 1', 'Active_Record_Type_1', true)
             );
-        }
-    }
-
-    // TODO: Move the next 2 tests to unmanaged tests?
-    @isTest
-    private static void getAccountModelSettingsViewModelWithInactiveRecordTypes() {
-        // include inactive record types and ensure they are filtered out of final result
-    }
-
-    @isTest
-    private static void getAccountModelSettingsViewModelWithNoRecordTypes() {
-        // TODO: what happens if there are zero Account record types in the org?
-    }
-
-    /***********************************************************************************************************************************
-     * @description Helper method to retrieve active ComboboxValueVModels corresponding to the Account record types existing in the
-     * org for testing.
-     * @return A of ComboboxValueVModels representing the active Account record types in the org mapped by record type ID (value).
-     ***********************************************************************************************************************************/
-    private static Map<String, ComboboxValueVModel> getActiveAccountRecordTypeComboboxValueVModelsByRecordTypeId() {
-        Map<Id, RecordTypeModel> activeAccountRecordTypeModelsById = RecordTypeService.getInstance()
-            .getModelByIdMapForSObjectType(Account.SObjectType);
-
-        // filter out inactive record types
-        for (Id accountRecordTypeModelId : activeAccountRecordTypeModelsById.keySet()) {
-            if (activeAccountRecordTypeModelsById.get(accountRecordTypeModelId).isActive == false) {
-                activeAccountRecordTypeModelsById.remove(accountRecordTypeModelId);
-            }
-        }
-
-        Map<String, ComboboxValueVModel> activeAccountRecordTypeComboboxValueVModelsByValue = new Map<String, ComboboxValueVModel>();
-        for (RecordTypeModel recordTypeModel : activeAccountRecordTypeModelsById.values()) {
-            activeAccountRecordTypeComboboxValueVModelsByValue.put(
-                recordTypeModel.Id,
-                new ComboboxValueVModel(recordTypeModel.name, recordTypeModel.id)
+            recordTypeModelsById.put(
+                '000000000000000002',
+                new RecordTypeModel('000000000000000002', 'Inactive Record Type 1', 'Inactive_Record_Type_1', false)
             );
-        }
+            recordTypeModelsById.put(
+                '000000000000000003',
+                new RecordTypeModel('000000000000000003', 'Inactive Record Type 2', 'Inactive_Record_Type_2', false)
+            );
 
-        return activeAccountRecordTypeComboboxValueVModelsByValue;
+            return recordTypeModelsById;
+        }
+    }
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from RecordTypeMapper to return an empty map of Account Record Types
+     **************************************************************************************************************************************/
+    private class STUB_RecordTypeMapperEmpty extends RecordTypeMapper {
+        public override Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+            return new Map<Id, RecordTypeModel>();
+        }
     }
 }
