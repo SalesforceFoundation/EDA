@@ -11,6 +11,6 @@
         }
     },
     "lint-staged": {
-        "*.{html,js,css,yml,cls,apex,trigger}": "prettier --check"
+        "**/*.{html,js,css,yml,cls,apex,trigger}": "prettier --check"
     }
 }
