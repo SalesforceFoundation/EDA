@@ -325,6 +325,18 @@
         <name>stgAccountModelSettingsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Title for the list of Available Account Record Types --></label>
+        <name>stgAccountRecordTypeAvailableListTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Group label for the Account record type selection --></label>
+        <name>stgAccountRecordTypeGroupLabelTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the list of Selected Account Record Types --></label>
+        <name>stgAccountRecordTypeSelectedListTitle</name>
+    </customLabels>
+    <customLabels>
         <label>世帯取引先レコードタイプ</label>
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
@@ -333,7 +345,7 @@
         <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
-        <label>削除する取引先責任者がない取引先種別</label>
+        <label><!-- Field label for the Accounts Without Contacts setting --></label>
         <name>stgAccoutTypesWithoutContactsDelete</name>
     </customLabels>
     <customLabels>
@@ -985,7 +997,7 @@
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label>関連付けられたすべての取引先責任者が削除された場合に自動的に削除される取引先のレコードタイプ。</label>
+        <label><!-- Description of the Accounts Without Contacts setting --></label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
