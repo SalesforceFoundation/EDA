@@ -29,7 +29,7 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/EdaSettings.htm
- * @description Model to abstract data needed for a Dual ListView option.
+ * @description Model to abstract data needed for a Dual ListView.
  */
 public with sharing class DualListboxVModel {
     @AuraEnabled
