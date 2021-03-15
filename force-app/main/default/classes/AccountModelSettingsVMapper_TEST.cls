@@ -201,7 +201,6 @@ private with sharing class AccountModelSettingsVMapper_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void getAccountModelSettingsViewModelWithNoRecordTypes() {
-        // TODO: what happens if there are zero Account record types in the org?
         RecordTypeMapper.instance = new STUB_RecordTypeMapperEmpty();
 
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
