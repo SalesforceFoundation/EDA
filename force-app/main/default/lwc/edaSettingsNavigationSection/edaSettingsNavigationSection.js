@@ -4,7 +4,7 @@ export default class EdaSettingsNavigationSection extends LightningElement {
     @api viewModel;
 
     get qaLocator() {
-        return "eda-settings-nav-" + this.viewModel.id;
+        return "edaSettingsNav" + this.viewModel.id;
     }
 
     get hasMenuItems() {
@@ -18,7 +18,7 @@ export default class EdaSettingsNavigationSection extends LightningElement {
             let formattedMenuItem = {
                 label: menuItem.label,
                 id: menuItem.id,
-                qaLocator: "eda-settings-nav-" + menuItem.id,
+                qaLocator: "edaSettingsNav" + menuItem.id,
             };
             formattedMenuItems.push(formattedMenuItem);
         });

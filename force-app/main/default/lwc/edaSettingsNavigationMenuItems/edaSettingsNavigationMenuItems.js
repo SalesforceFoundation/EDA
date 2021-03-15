@@ -4,7 +4,7 @@ export default class EdaSettingsMenuItems extends LightningElement {
     @api viewModel;
 
     get qaLocator() {
-        return "eda-settings-nav" + this.viewModel.id;
+        return "edaSettingsNav" + this.viewModel.id;
     }
 
     handleNavigationClick() {

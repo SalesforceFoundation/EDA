@@ -15,54 +15,54 @@ export default class EdaSettingsNavigation extends LightningElement {
             },
             {
                 label: "People and Groups",
-                id: "peopleandgroups",
+                id: "peopleAndGroups",
                 navigationSubSections: [
                     {
                         label: this.labelReference.accountModelSettingsTitle,
-                        page: "accountmodelsettings",
-                        id: "accountmodelsettings",
+                        page: "accountModelSettings",
+                        id: "accountModelSettings",
                         menuItems: [
                             { label: "Default Account Model", id: "defaultaccountmodel" },
                             {
                                 label: "Administrative Account Record Type",
-                                menuitemkey: "administrativeaccountrecordtype",
+                                menuitemkey: "administrativeAccountRecordType",
                             },
-                            { label: "Household Account Record Type", id: "householdaccountrecordtype" },
+                            { label: "Household Account Record Type", id: "householdAccountRecordType" },
                             {
                                 label:
                                     "Select Account Record Types That Should be Deleted when no Contacts are Related",
-                                id: "autodeleterecordtypes",
+                                id: "AutodeleteRecordTypes",
                             },
-                            { label: "Administrative Account Naming", id: "administrativeaccountnaming" },
+                            { label: "Administrative Account Naming", id: "administrativeAccountNaming" },
                             { label: "Household Account Naming", id: "householdAccountNaming" },
-                            { label: "Rename Household Accounts", id: "renamehouseholdaccounts" },
+                            { label: "Rename Household Accounts", id: "renameHouseholdAccounts" },
                         ],
                         isActive: true,
                     },
                     {
                         label: "Contact Information",
-                        page: "contactinfosettings",
-                        id: "contactinfosettings",
+                        page: "contactInformation",
+                        id: "contactInformation",
                         menuItems: [
-                            { label: "Default Contact Language Fluency", id: "defaultcontactlanguagefluency" },
-                            { label: "Require Preferred Email", id: "requirepreferredemail" },
-                            { label: "Enhanced Preferred Phone Functionality", id: "enhancedpreferredphone" },
-                            { label: "Default Preferred Phone", id: "defaultpreferredphone" },
+                            { label: "Default Contact Language Fluency", id: "defaultContactLanguageFluency" },
+                            { label: "Require Preferred Email", id: "requirePreferredEmail" },
+                            { label: "Enhanced Preferred Phone Functionality", id: "enhancedPreferredPhone" },
+                            { label: "Default Preferred Phone", id: "defaultPreferredPhone" },
                         ],
                     },
                     {
                         label: "Addresses",
-                        page: "addresssettings",
-                        id: "addresssettings",
+                        page: "addresses",
+                        id: "addresses",
                         menuItems: [
-                            { label: "Allow Multiple Contact Addresses", id: "contactmultipleaddresses" },
+                            { label: "Allow Multiple Contact Addresses", id: "contactMultipleAddresses" },
                             {
                                 label: "Enable Multiple Addresses for Account Types",
-                                id: "addressaccountrecordtypes",
+                                id: "addressAccountRecordTypes",
                             },
                             {
                                 label: "Update Address Records for Simple Address Changes",
-                                id: "simpleaddresschangeisupdate",
+                                id: "simpleAddressChangeIsUpdate",
                             },
                         ],
                     },
@@ -72,15 +72,15 @@ export default class EdaSettingsNavigation extends LightningElement {
                 label: "Affiliations",
                 page: "affiliations",
                 id: "affiliations",
-                menuItems: [{ label: "Enforce Record Type Validation", id: "enforcerecordtypevalidation" }],
+                menuItems: [{ label: "Enforce Record Type Validation", id: "enforceRecordTypeValidation" }],
             },
             {
                 label: "Courses and Enrollments",
-                id: "coursesandenrollments",
+                id: "coursesAndEnrollments",
             },
             {
                 label: "System Tools",
-                id: "systemtools",
+                id: "systemTools",
             },
         ],
     };
