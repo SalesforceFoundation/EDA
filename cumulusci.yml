@@ -553,13 +553,13 @@ flows:
                 when: "'hed' not in org_config.installed_packages"
             2:
                 task: deploy_unpackaged_primary_affiliations_config
-                when: "'hed' in org_config.installed_packages"
+                when: "'hed' not in org_config.installed_packages"
             3:
                 task: execute_primary_affiliation_mapping_apex
-                when: "'hed' in org_config.installed_packages"
+                when: "'hed' not in org_config.installed_packages"
             4:
                 task: deploy_unpackaged_relationship_autocreate_config
-                when: "'hed' in org_config.installed_packages"
+                when: "'hed' not in org_config.installed_packages"
             5:
                 task: deploy_preferred_email_config
                 when: "'hed' in org_config.installed_packages"
