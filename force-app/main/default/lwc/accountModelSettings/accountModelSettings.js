@@ -9,6 +9,7 @@ import stgAdminAccountRecordType from "@salesforce/label/c.stgAdminAccountRecord
 import stgHelpAdminRecType from "@salesforce/label/c.stgHelpAdminRecType";
 import stgAccountRecordTypeSupportsHHAddress from "@salesforce/label/c.stgAccountRecordTypeSupportsHHAddress";
 import stgHelpHouseholdRecType from "@salesforce/label/c.stgHelpHouseholdRecType";
+import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 
 export default class AccountModelSettings extends LightningElement {
     isEditMode = false;
@@ -24,10 +25,10 @@ export default class AccountModelSettings extends LightningElement {
         adminAccountModelDescription: stgHelpAdminRecType,
         hhAccountModelTitle: stgAccountRecordTypeSupportsHHAddress,
         hhAccountModelDescription: stgHelpHouseholdRecType,
-        comboboxPlaceholderText: "Select an Option",
-        defaultAccountModelQALocator: "defaultAccountModel",
-        adminAccountModelQALocator: "adminAccountModel",
-        hhAccountModelQALocator: "hhAccountModel",
+        comboboxPlaceholderText: stgOptSelect,
+        defaultAccountModelComboboxId: "defaultAccountModel",
+        adminAccountModelComboboxId: "adminAccountModel",
+        hhAccountModelComboboxId: "hhAccountModel",
     };
 
     get affordancesDisabled() {
