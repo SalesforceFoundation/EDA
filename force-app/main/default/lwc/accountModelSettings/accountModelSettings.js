@@ -26,9 +26,9 @@ export default class AccountModelSettings extends LightningElement {
         hhAccountModelTitle: stgAccountRecordTypeSupportsHHAddress,
         hhAccountModelDescription: stgHelpHouseholdRecType,
         comboboxPlaceholderText: stgOptSelect,
-        defaultAccountModelQALocator: "defaultAccountModel",
-        adminAccountModelQALocator: "adminAccountModel",
-        hhAccountModelQALocator: "hhAccountModel",
+        defaultAccountModelComboboxId: "defaultAccountModel",
+        adminAccountModelComboboxId: "adminAccountModel",
+        hhAccountModelComboboxId: "hhAccountModel",
     };
 
     get affordancesDisabled() {

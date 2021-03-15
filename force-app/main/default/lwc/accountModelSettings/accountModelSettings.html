@@ -22,9 +22,9 @@
 
                         <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_x-large">
                             <lightning-combobox
-                                id={labelReference.defaultAccountModelQALocator}
-                                aria-labelledby={labelReference.defaultAccountModelQALocator}
-                                name={labelReference.defaultAccountModelQALocator}
+                                id={labelReference.defaultAccountModelComboboxId}
+                                aria-labelledby={labelReference.defaultAccountModelComboboxId}
+                                name={labelReference.defaultAccountModelComboboxId}
                                 label={labelReference.defaultAccountModelTitle}
                                 value={accountModelSettingsViewModel.defaultAccountRecordType.value}
                                 placeholder={labelReference.comboboxPlaceholderText}
@@ -32,7 +32,7 @@
                                 onchange={handleDefaultAccountModelChange}
                                 disabled={affordancesDisabled}
                                 variant="label-hidden"
-                                data-qa-locator={labelReference.defaultAccountModelQALocator}
+                                data-qa-locator={labelReference.defaultAccountModelComboboxId}
                             ></lightning-combobox>
                         </div>
 
@@ -48,9 +48,9 @@
 
                         <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_x-large">
                             <lightning-combobox
-                                id={labelReference.adminAccountModelQALocator}
-                                aria-labelledby={labelReference.adminAccountModelQALocator}
-                                name={labelReference.adminAccountModelQALocator}
+                                id={labelReference.adminAccountModelComboboxId}
+                                aria-labelledby={labelReference.adminAccountModelComboboxId}
+                                name={labelReference.adminAccountModelComboboxId}
                                 label={labelReference.adminAccountModelTitle}
                                 value={accountModelSettingsViewModel.adminAccountRecordType.value}
                                 placeholder={labelReference.comboboxPlaceholderText}
@@ -58,7 +58,7 @@
                                 onchange={handleAdministrativeAccountModelChange}
                                 disabled={affordancesDisabled}
                                 variant="label-hidden"
-                                data-qa-locator={labelReference.adminAccountModelQALocator}
+                                data-qa-locator={labelReference.adminAccountModelComboboxId}
                             ></lightning-combobox>
                         </div>
 
@@ -74,9 +74,9 @@
 
                         <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_x-large">
                             <lightning-combobox
-                                id={labelReference.hhAccountModelQALocator}
-                                aria-labelledby={labelReference.hhAccountModelQALocator}
-                                name={labelReference.hhAccountModelQALocator}
+                                id={labelReference.hhAccountModelComboboxId}
+                                aria-labelledby={labelReference.hhAccountModelComboboxId}
+                                name={labelReference.hhAccountModelComboboxId}
                                 label={labelReference.hhAccountModelTitle}
                                 value={accountModelSettingsViewModel.householdAccountRecordType.value}
                                 placeholder={labelReference.comboboxPlaceholderText}
@@ -84,7 +84,7 @@
                                 onchange={handleHouseholdAccountModelChange}
                                 disabled={affordancesDisabled}
                                 variant="label-hidden"
-                                data-qa-locator={labelReference.hhAccountModelQALocator}
+                                data-qa-locator={labelReference.hhAccountModelComboboxId}
                             ></lightning-combobox>
                         </div>
                     </div>
