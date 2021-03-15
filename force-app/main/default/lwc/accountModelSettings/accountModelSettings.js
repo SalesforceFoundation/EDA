@@ -9,12 +9,26 @@ import stgAdminAccountRecordType from "@salesforce/label/c.stgAdminAccountRecord
 import stgHelpAdminRecType from "@salesforce/label/c.stgHelpAdminRecType";
 import stgAccountRecordTypeSupportsHHAddress from "@salesforce/label/c.stgAccountRecordTypeSupportsHHAddress";
 import stgHelpHouseholdRecType from "@salesforce/label/c.stgHelpHouseholdRecType";
-import AfflMappingsDescription from "@salesforce/label/c.AfflMappingsDescription";
 
 export default class AccountModelSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
+
     @track accountModelSettingsViewModel;
+
+    labelReference = {
+        accountModelSettingsTitle: stgAccountModelSettingsTitle,
+        defaultAccountModelTitle: stgAccModelTitle,
+        defaultAccountModelDescription: stgHelpAccountModel,
+        adminAccountModelTitle: stgAdminAccountRecordType,
+        adminAccountModelDescription: stgHelpAdminRecType,
+        hhAccountModelTitle: stgAccountRecordTypeSupportsHHAddress,
+        hhAccountModelDescription: stgHelpHouseholdRecType,
+        comboboxPlaceholderText: "Select an Option",
+        defaultAccountModelQALocator: "defaultAccountModel",
+        adminAccountModelQALocator: "adminAccountModel",
+        hhAccountModelQALocator: "hhAccountModel",
+    };
 
     get affordancesDisabled() {
         if (!this.isEditMode || this.affordancesDisabledToggle === true) {
@@ -23,22 +37,12 @@ export default class AccountModelSettings extends LightningElement {
         return undefined;
     }
 
-    labelReference = {
-        stgAccountModelSettingsTitle,
-        stgAccModelTitle,
-        stgHelpAccountModel,
-        stgAdminAccountRecordType,
-        stgHelpAdminRecType,
-        stgAccountRecordTypeSupportsHHAddress,
-        stgHelpHouseholdRecType,
-    };
-
     @wire(getAccountModelSettingsViewModel)
     accountModelSettingsViewModel({ error, data }) {
         if (data) {
             this.accountModelSettingsViewModel = data;
         } else if (error) {
-            console.log("error retrieving accountmodelsettingsvmodel");
+            //console.log("error retrieving accountmodelsettingsvmodel");
         }
     }
 
@@ -46,7 +50,7 @@ export default class AccountModelSettings extends LightningElement {
         // add updated setting to hierarchySettingsChanges object
         let hierarchySettingsChange = {
             settingsType: "string",
-            settingsName: "Account_Processor__c".toLowerCase(),
+            settingsName: "Account_Processor__c",
             settingsValue: event.detail.value,
         };
 
@@ -57,7 +61,7 @@ export default class AccountModelSettings extends LightningElement {
         // add updated setting to hierarchySettingsChanges object
         let hierarchySettingsChange = {
             settingsType: "string",
-            settingsName: "Household_Addresses_RecType__c".toLowerCase(),
+            settingsName: "Household_Addresses_RecType__c",
             settingsValue: event.detail.value,
         };
 
@@ -68,7 +72,7 @@ export default class AccountModelSettings extends LightningElement {
         // add updated setting to hierarchySettingsChanges object
         let hierarchySettingsChange = {
             settingsType: "string",
-            settingsName: "Administrative_Account_Record_Type__c".toLowerCase(),
+            settingsName: "Administrative_Account_Record_Type__c",
             settingsValue: event.detail.value,
         };
 
