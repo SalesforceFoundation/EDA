@@ -28,9 +28,7 @@ export default class HealthCheck extends LightningElement {
                     return;
                 }
 
-                let healthCheckDisplay = this.template.querySelector(
-                    "c-health-check-display"
-                );
+                let healthCheckDisplay = this.template.querySelector("c-health-check-display");
                 healthCheckDisplay.refreshHealthCheck();
             })
             .catch((error) => {
@@ -49,8 +47,6 @@ export default class HealthCheck extends LightningElement {
     }
 
     get displayHealthCheck() {
-        return !(
-            !this.displayHealthCheckGroup || !this.healthCheckDefinitionsToDisplayList
-        );
+        return !(!this.displayHealthCheckGroup || !this.healthCheckDefinitionsToDisplayList);
     }
 }
