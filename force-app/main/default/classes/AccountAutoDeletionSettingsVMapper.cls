@@ -63,23 +63,19 @@ public virtual with sharing class AccountAutoDeletionSettingsVMapper {
 
         // get all active account record types in org
         Map<Id, RecordTypeModel> activeAccountRecordTypeModelsById = this.locateRecordTypeService()
-            .getModelByIdMapForSObjectType(Account.SObjectType);
-
-        // filter out inactive record types
-        for (Id accountRecordTypeModelId : activeAccountRecordTypeModelsById.keySet()) {
-            if (activeAccountRecordTypeModelsById.get(accountRecordTypeModelId).isActive == false) {
-                activeAccountRecordTypeModelsById.remove(accountRecordTypeModelId);
-            }
-        }
+            .getActiveRecordTypeModelsById(
+                this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType).values()
+            );
 
         // create DualListboxValueVModels for each of the selected and available options
         List<DualListboxValueVModel> selectedDualListboxValuesList = new List<DualListboxValueVModel>();
         List<DualListboxValueVModel> availableDualListboxValuesList = new List<DualListboxValueVModel>(); // should be all active record types - selected record types
+
         for (
             String accountRecordTypeIdToDelete : currentAutoDeletionSettings.accountRecordTypeIdsForDeletionWhenOrphanedList
         ) {
             selectedDualListboxValuesList.add(
-                //TODO: what is selected account RT is inactive?  Does is show?
+                //TODO: what if selected account RT is inactive?  Does is show?
                 new DualListboxValueVModel(
                     activeAccountRecordTypeModelsById.get((Id) accountRecordTypeIdToDelete)?.name,
                     accountRecordTypeIdToDelete
