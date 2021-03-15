@@ -1,11 +1,7 @@
 <template>
     <template if:false={displayHealthCheckGroup}>
         <!-- Display spinner -->
-        <lightning-spinner
-            alternative-text={LabelReference.spinnerLoadingAltText}
-            variant="brand"
-            size="medium"
-        >
+        <lightning-spinner alternative-text={LabelReference.spinnerLoadingAltText} variant="brand" size="medium">
         </lightning-spinner>
     </template>
     <ul>
