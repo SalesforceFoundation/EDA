@@ -65,28 +65,22 @@ public virtual with sharing class AccountModelSettingsVMapper {
      * @return An AccountModelSettingsVModel
      *****************************************************************************/
     public virtual AccountModelSettingsVModel getAccountModelSettingsViewModel() {
+        Map<Id, RecordTypeModel> activeAccountRecordTypeModelsById = new Map<Id, RecordTypeModel>();
+
         // retrieve current account settings from Hierarchy settings
         AccountModelSettingsModel currentAccountSettingsModel = this.locateAccountModelSettingsService()
             .getAccountModelSettingsModel();
 
-        Map<Id, RecordTypeModel> activeAccountRecordTypeModelsById = this.locateRecordTypeService()
+        Map<Id, RecordTypeModel> allAccountRecordTypeModelsById = this.locateRecordTypeService()
             .getModelByIdMapForSObjectType(Account.SObjectType);
 
-        // filter out inactive record types
-        for (Id accountRecordTypeModelId : activeAccountRecordTypeModelsById.keySet()) {
-            if (activeAccountRecordTypeModelsById.get(accountRecordTypeModelId).isActive == false) {
-                activeAccountRecordTypeModelsById.remove(accountRecordTypeModelId);
-            }
-        }
-
-        List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = new List<ComboboxValueVModel>();
+        activeAccountRecordTypeModelsById = this.locateRecordTypeService()
+            .getActiveRecordTypeModelsById(allAccountRecordTypeModelsById.values());
 
         // populate available combobox options with active Account record types
-        for (RecordTypeModel activeAccountRecordTypeModel : activeAccountRecordTypeModelsById.values()) {
-            activeRecordTypeComboboxValueVModelsList.add(
-                new ComboboxValueVModel(activeAccountRecordTypeModel.name, activeAccountRecordTypeModel.id)
-            );
-        }
+        List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = this.getComboboxVModelOptionsForActiveAccountRecordTypes(
+            activeAccountRecordTypeModelsById.values()
+        );
 
         // generate comboboxVModels for each account setting with selected value set as current value in hierarchy settings
         ComboboxVModel defaultAccountComboboxVModel = new ComboboxVModel(
@@ -109,6 +103,26 @@ public virtual with sharing class AccountModelSettingsVMapper {
             hhAccountComboboxVModel,
             adminAccountComboboxVModel
         );
+    }
+
+    /**********************************************************************************************************************
+     * @description Helper method to generate a list of comboboxValueVModels for all active Account record types.
+     * @param  activeAccountRecordTypeModelsList A list of RecordType models corresponding to active Account record types.
+     * @return A List<ComboboxValueVModel> containing comboboxValueVModels for all active Account record types.
+     **********************************************************************************************************************/
+    @TestVisible
+    private List<ComboboxValueVModel> getComboboxVModelOptionsForActiveAccountRecordTypes(
+        List<RecordTypeModel> activeAccountRecordTypeModelsList
+    ) {
+        List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = new List<ComboboxValueVModel>();
+
+        for (RecordTypeModel activeAccountRecordTypeModel : activeAccountRecordTypeModelsList) {
+            activeRecordTypeComboboxValueVModelsList.add(
+                new ComboboxValueVModel(activeAccountRecordTypeModel.name, activeAccountRecordTypeModel.id)
+            );
+        }
+
+        return activeRecordTypeComboboxValueVModelsList;
     }
 
     /*****************************************************************************
