@@ -33,6 +33,8 @@
  */
 @isTest
 private with sharing class AccountModelSettingsVMapper_TEST {
+    private static Integer loopCounter = 5;
+
     /**************************************************************************************************************************
      * @description Test method to verify that the getInstance method returns a new instance of the
      * AccountModelSettingsVMapper class when one does not already exist.
@@ -251,6 +253,51 @@ private with sharing class AccountModelSettingsVMapper_TEST {
             accountModelSettingsVModel.adminAccountRecordType.options.isEmpty(),
             'Admin Account model should have no Account Record Type options available.'
         );
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getComboboxVModelOptionsForActiveAccountRecordTypes returns an list of ComboboxValueVModels
+     * corresponding to all active Account Record Types.
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getComboboxVModelOptionsForActiveAccountRecordTypesValid() {
+        List<RecordTypeModel> recordTypeModelsList = new List<RecordTypeModel>();
+
+        for (Integer i = 0; i < loopCounter; i++) {
+            recordTypeModelsList.add(
+                new RecordTypeModel('00000000000000000' + i, 'Active RecordType ' + i, 'Active_RecordType_' + i, true)
+            );
+        }
+
+        AccountModelSettingsVMapper accountModelSettingsVMapperInstance = AccountModelSettingsVMapper.getInstance();
+
+        Test.startTest();
+        List<ComboboxValueVModel> comboboxValueVModelsList = accountModelSettingsVMapperInstance.getComboboxVModelOptionsForActiveAccountRecordTypes(
+            recordTypeModelsList
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            loopCounter,
+            comboboxValueVModelsList.size(),
+            'Should return ' +
+            loopCounter +
+            ' ComboboxValueVModels.'
+        );
+
+        for (Integer i = 0; i < loopCounter; i++) {
+            System.assertEquals(
+                'Active RecordType ' + i,
+                comboboxValueVModelsList[i].label,
+                'Label should correspond to record type model name property.'
+            );
+
+            System.assertEquals(
+                '00000000000000000' + i,
+                comboboxValueVModelsList[i].value,
+                'Value should correspond to record type model ID property.'
+            );
+        }
     }
 
     /**************************************************************************************************************************
