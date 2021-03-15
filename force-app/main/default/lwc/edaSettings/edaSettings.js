@@ -10,7 +10,7 @@ export default class EDASettings extends LightningElement {
     };
 
     @track settingsPageToDisplay = {
-        accountmodelsettings: true,
+        accountModelSettings: true,
     };
 
     currentUserHasAccess = false;
@@ -30,7 +30,7 @@ export default class EDASettings extends LightningElement {
 
     changePageToDisplay(pageName) {
         let settingsPageDisplay = {};
-        settingsPageDisplay[pageName.toLowerCase()] = true;
+        settingsPageDisplay[pageName] = true;
 
         this.settingsPageToDisplay = settingsPageDisplay;
 

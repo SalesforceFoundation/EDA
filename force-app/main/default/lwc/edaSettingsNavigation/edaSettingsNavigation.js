@@ -10,19 +10,19 @@ export default class EdaSettingsNavigation extends LightningElement {
         navigationSections: [
             {
                 label: this.labelReference.accountModelSettingsTitle,
-                page: "accountmodelsettings",
-                sectionkey: "accountmodelsettings",
+                page: "accountModelSettings",
+                sectionkey: "accountModelSettings",
                 isActive: true,
             },
             {
                 label: "Contact Information",
-                page: "contactinfosettings",
-                sectionkey: "contactinfosettings",
+                page: "contactInfoSettings",
+                sectionkey: "contactInfoSettings",
             },
             {
                 label: "Addresses",
-                page: "addresssettings",
-                sectionkey: "addresssettings",
+                page: "addressSettings",
+                sectionkey: "addressSettings",
             },
         ],
     };
