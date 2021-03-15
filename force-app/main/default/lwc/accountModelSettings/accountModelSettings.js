@@ -26,6 +26,9 @@ export default class AccountModelSettings extends LightningElement {
         hhAccountModelTitle: stgAccountRecordTypeSupportsHHAddress,
         hhAccountModelDescription: stgHelpHouseholdRecType,
         comboboxPlaceholderText: stgOptSelect,
+    };
+
+    inputAttributeReference = {
         defaultAccountModelComboboxId: "defaultAccountModel",
         adminAccountModelComboboxId: "adminAccountModel",
         hhAccountModelComboboxId: "hhAccountModel",
