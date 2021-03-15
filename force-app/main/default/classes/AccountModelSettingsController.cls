@@ -27,7 +27,7 @@
 /**
  * @author Salesforce.org
  * @date 2021
- * @group Health Check
+ * @group EDA Settings
  * @group-content ../../ApexDocContent/EdaSettings.htm
  * @description Apex controller for accountModelSettings LWC component.
  */
