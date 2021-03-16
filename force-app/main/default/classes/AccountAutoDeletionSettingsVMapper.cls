@@ -62,7 +62,7 @@ public virtual with sharing class AccountAutoDeletionSettingsVMapper {
      * availabe for selection.
      * @return  A DualListboxVModel
      *******************************************************************************************************/
-    public DualListboxVModel getAccountAutoDeletionSettingsViewModel() {
+    public virtual DualListboxVModel getAccountAutoDeletionSettingsViewModel() {
         // get current values set for deletion from hierarchy settings
         AccountRecordTypeAutoDeletionModel currentAutoDeletionSettings = this.locateAccountRecordTypeAutoDeletionService()
             .getAccountRecordTypeAutoDeletionModel();
