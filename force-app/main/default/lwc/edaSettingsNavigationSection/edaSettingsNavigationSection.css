@@ -1,4 +1,16 @@
+.eda-nav-menu-item_link:link {
+    color: var(--lwc-colorTextActionLabelActive);
+}
+
+.eda-nav-menu-item_link:visited {
+    color: var(--lwc-colorTextActionLabelActive);
+}
+
 .eda-nav-menu-item_link:hover {
+    color: var(--lwc-colorTextActionLabelActive);
+}
+
+.eda-nav-menu-item_link:active {
     color: var(--lwc-colorTextActionLabelActive);
 }
 
