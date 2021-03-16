@@ -130,7 +130,9 @@ private with sharing class AccountAutoDeletionSettingsVMapper_TEST {
 
     /*************************************************************************************************************
      * @description Test method to verify getAccountAutoDeletionSettingsViewModel() returns a DualListboxVModel
-     * representing only the active Account Record Types as selected and available options.
+     * representing only the active Account Record Types as selected and available options.  It also ensures that
+     * all active Record Types are represented as available options regardless of whether they are also in the
+     * selected list.
      *************************************************************************************************************/
     @isTest
     private static void getAccountAutoDeletionSettingsViewModelValid() {
@@ -153,94 +155,23 @@ private with sharing class AccountAutoDeletionSettingsVMapper_TEST {
         );
         System.assertEquals(
             '000000000000000001',
-            dualListboxVModel.value[0].value,
+            dualListboxVModel.value[0],
             'Should only display active account record type as selected value.'
         );
         System.assertEquals(
-            1,
+            2,
             dualListboxVModel.options.size(),
             'Should only display active account record types as available options.'
         );
         System.assertEquals(
-            '000000000000000003',
+            '000000000000000001',
             dualListboxVModel.options[0].value,
             'Should only display active account record types as available options.'
-        );
-    }
-
-    /*************************************************************************************************************
-     * @description Test method to verify getAccountAutoDeletionSettingsViewModel() returns a DualListboxVModel
-     * representing all selected active Account Record Types and an empty options list when all active values are
-     * set in Hierarchy Settings.
-     *************************************************************************************************************/
-    @isTest
-    private static void getAccountAutoDeletionSettingsViewModelAllSelected() {
-        RecordTypeMapper.instance = new STUB_RecordTypeMapper();
-
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(
-                Accounts_to_Delete__c = '000000000000000001;000000000000000002; 000000000000000003'
-            )
-        );
-
-        AccountAutoDeletionSettingsVMapper accountAutoDeletionSettingsVMapperInstance = AccountAutoDeletionSettingsVMapper.getInstance();
-
-        Test.startTest();
-        DualListboxVModel dualListboxVModel = accountAutoDeletionSettingsVMapperInstance.getAccountAutoDeletionSettingsViewModel();
-        Test.stopTest();
-
-        System.assertEquals(
-            2,
-            dualListboxVModel.value.size(),
-            'Should only display active account record types as selected values.'
-        );
-        System.assertEquals(0, dualListboxVModel.options.size(), 'Available options list should be empty.');
-        System.assertEquals(
-            '000000000000000001',
-            dualListboxVModel.value[0].value,
-            'Should only display active account record type as selected value.'
-        );
-        System.assertEquals(
-            '000000000000000003',
-            dualListboxVModel.value[1].value,
-            'Should only display active account record type as selected value.'
-        );
-    }
-
-    /*************************************************************************************************************
-     * @description Test method to verify getAccountAutoDeletionSettingsViewModel() returns a DualListboxVModel
-     * representing an empty list of selected Account Record Types and an all Active record types in the options list
-     * when no active values are set in Hierarchy Settings.
-     *************************************************************************************************************/
-    @isTest
-    private static void getAccountAutoDeletionSettingsViewModelNoneSelected() {
-        RecordTypeMapper.instance = new STUB_RecordTypeMapper();
-
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(Accounts_to_Delete__c = '000000000000000002')
-        );
-
-        AccountAutoDeletionSettingsVMapper accountAutoDeletionSettingsVMapperInstance = AccountAutoDeletionSettingsVMapper.getInstance();
-
-        Test.startTest();
-        DualListboxVModel dualListboxVModel = accountAutoDeletionSettingsVMapperInstance.getAccountAutoDeletionSettingsViewModel();
-        Test.stopTest();
-
-        System.assertEquals(
-            2,
-            dualListboxVModel.options.size(),
-            'Should only display active account record types as options.'
-        );
-        System.assertEquals(0, dualListboxVModel.value.size(), 'Selected values list should be empty.');
-        System.assertEquals(
-            '000000000000000001',
-            dualListboxVModel.options[0].value,
-            'Should only display active account record types as options.'
         );
         System.assertEquals(
             '000000000000000003',
             dualListboxVModel.options[1].value,
-            'Should only display active account record types as options.'
+            'Should only display active account record types as available options.'
         );
     }
 

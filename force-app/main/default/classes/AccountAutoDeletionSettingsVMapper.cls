@@ -68,46 +68,40 @@ public virtual with sharing class AccountAutoDeletionSettingsVMapper {
             .getAccountRecordTypeAutoDeletionModel();
 
         // get all active account record types in org
-        Map<Id, RecordTypeModel> availableActiveAccountRecordTypeModelsById = this.locateRecordTypeService()
+        Map<Id, RecordTypeModel> activeAccountRecordTypeModelsById = this.locateRecordTypeService()
             .getActiveRecordTypeModelsById(
                 this.locateRecordTypeService().getModelByIdMapForSObjectType(Account.SObjectType).values()
             );
 
         // create DualListboxValueVModels for each of the selected and available options
-        List<DualListboxValueVModel> selectedDualListboxValuesList = new List<DualListboxValueVModel>();
-        List<DualListboxValueVModel> availableDualListboxValuesList = new List<DualListboxValueVModel>(); // should be all active record types - selected record types
+        List<String> selectedOptionsDualListboxValuesList = new List<String>();
+        List<DualListboxValueVModel> optionsDualListboxValuesList = new List<DualListboxValueVModel>();
 
-        // populate selected listbox
+        // populate available listbox - should contain all values regardless of if they are selected
+        for (Id recordTypeId : activeAccountRecordTypeModelsById.keySet()) {
+            optionsDualListboxValuesList.add(
+                new DualListboxValueVModel(
+                    activeAccountRecordTypeModelsById.get(recordTypeId).name,
+                    activeAccountRecordTypeModelsById.get(recordTypeId).id
+                )
+            );
+        }
+
+        // populate selected listbox - only requires the String representing the value of the selected option
         for (
             Id accountRecordTypeIdToDelete : (List<Id>) currentAutoDeletionSettings.accountRecordTypeIdsForDeletionWhenOrphanedList
         ) {
-            if (availableActiveAccountRecordTypeModelsById.containsKey(accountRecordTypeIdToDelete) == false) {
+            if (activeAccountRecordTypeModelsById.containsKey(accountRecordTypeIdToDelete) == false) {
                 // inactive Account Record Type selected => skip
                 continue;
             }
 
-            selectedDualListboxValuesList.add(
-                new DualListboxValueVModel(
-                    availableActiveAccountRecordTypeModelsById.get(accountRecordTypeIdToDelete).name,
-                    availableActiveAccountRecordTypeModelsById.get(accountRecordTypeIdToDelete).id
-                )
-            );
-
-            // remove record type model from active map (remaining will be used to create available list)
-            availableActiveAccountRecordTypeModelsById.remove(accountRecordTypeIdToDelete);
-        }
-
-        // populate available listbox
-        for (Id recordTypeId : availableActiveAccountRecordTypeModelsById.keySet()) {
-            availableDualListboxValuesList.add(
-                new DualListboxValueVModel(
-                    availableActiveAccountRecordTypeModelsById.get(recordTypeId).name,
-                    availableActiveAccountRecordTypeModelsById.get(recordTypeId).id
-                )
+            selectedOptionsDualListboxValuesList.add(
+                (String) activeAccountRecordTypeModelsById.get(accountRecordTypeIdToDelete).id
             );
         }
 
-        return new DualListboxVModel(selectedDualListboxValuesList, availableDualListboxValuesList);
+        return new DualListboxVModel(selectedOptionsDualListboxValuesList, optionsDualListboxValuesList);
     }
 
     /*****************************************************************************

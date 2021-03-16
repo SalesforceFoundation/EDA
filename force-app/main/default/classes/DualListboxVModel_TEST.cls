@@ -39,50 +39,48 @@ private with sharing class DualListboxVModel_TEST {
      ***********************************************************************************/
     @isTest
     private static void twoArgumentConstructorValid() {
-        List<DualListboxValueVModel> selectedValuesList = new List<DualListboxValueVModel>();
-        List<DualListboxValueVModel> availableValuesList = new List<DualListboxValueVModel>();
+        List<String> selectedValuesList = new List<String>();
+        List<DualListboxValueVModel> allOptionsDualListboxValueVModelsList = new List<DualListboxValueVModel>();
 
-        selectedValuesList.add(new DualListboxValueVModel('Selected Record Type 1', '000000000000000001'));
-        selectedValuesList.add(new DualListboxValueVModel('Selected Record Type 2', '000000000000000002'));
-        selectedValuesList.add(new DualListboxValueVModel('Selected Record Type 3', '000000000000000003'));
+        allOptionsDualListboxValueVModelsList.add(new DualListboxValueVModel('Record Type 1', '000000000000000001'));
+        allOptionsDualListboxValueVModelsList.add(new DualListboxValueVModel('Record Type 2', '000000000000000002'));
+        allOptionsDualListboxValueVModelsList.add(new DualListboxValueVModel('Record Type 3', '000000000000000003'));
 
-        availableValuesList.add(new DualListboxValueVModel('Available Record Type 1', '100000000000000001'));
-        availableValuesList.add(new DualListboxValueVModel('Available Record Type 2', '100000000000000002'));
+        selectedValuesList.add('000000000000000001');
+        selectedValuesList.add('000000000000000002');
 
         Test.startTest();
-        DualListboxVModel dualListboxVModel = new DualListboxVModel(selectedValuesList, availableValuesList);
+        DualListboxVModel dualListboxVModel = new DualListboxVModel(
+            selectedValuesList,
+            allOptionsDualListboxValueVModelsList
+        );
         Test.stopTest();
 
-        System.assertEquals(3, dualListboxVModel.value.size(), 'Should have 3 record types set as selected.');
+        System.assertEquals(2, dualListboxVModel.value.size(), 'Should have 2 record type Ids set as selected.');
         System.assertEquals(
-            2,
+            3,
             dualListboxVModel.options.size(),
-            'Should have 2 record types set as available for selection.'
+            'Options list should include all record types regardless of whether they are also selected.'
         );
 
         for (Integer i = 0; i < dualListboxVModel.value.size(); i++) {
             System.assertEquals(
-                'Selected Record Type ' + (i + 1),
-                dualListboxVModel.value[i].label,
-                'Label for current DualListboxValueVModel in values list should match.'
-            );
-            System.assertEquals(
                 '00000000000000000' + (i + 1),
-                dualListboxVModel.value[i].value,
-                'Value for current DualListboxValueVModel in values list should match.'
+                dualListboxVModel.value[i],
+                'Value for selected record type in DualListboxVModel should match value provided to constructor.'
             );
         }
 
         for (Integer i = 0; i < dualListboxVModel.options.size(); i++) {
             System.assertEquals(
-                'Available Record Type ' + (i + 1),
+                'Record Type ' + (i + 1),
                 dualListboxVModel.options[i].label,
-                'Label for current DualListboxValueVModel in options list should match.'
+                'Label for current DualListboxValueVModel in options list should match value provided to constructor.'
             );
             System.assertEquals(
-                '10000000000000000' + (i + 1),
+                '00000000000000000' + (i + 1),
                 dualListboxVModel.options[i].value,
-                'Value for current DualListboxValueVModel in options list should match.'
+                'Value for current DualListboxValueVModel in options list should match value provided to constructor.'
             );
         }
     }

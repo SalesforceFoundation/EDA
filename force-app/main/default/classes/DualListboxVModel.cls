@@ -33,18 +33,19 @@
  */
 public with sharing class DualListboxVModel {
     @AuraEnabled
-    public List<DualListboxValueVModel> value { get; private set; }
+    public List<String> value { get; private set; }
 
     @AuraEnabled
     public List<DualListboxValueVModel> options { get; private set; }
 
     /****************************************************************************************
      * @description Two argument constructor
-     * @param  value A list of DualListboxValueVModel representing the selected values
-     * @param  options A list of DualListboxValueVModel representing the available values
+     * @param  value A list of String representing the value of each selected option
+     * @param  options A list of DualListboxValueVModel representing all options for selection
+     * (regardless of whether they are currently selected)
      * @return A DualListboxVModel with all properties populated.
      ****************************************************************************************/
-    public DualListboxVModel(List<DualListboxValueVModel> value, List<DualListboxValueVModel> options) {
+    public DualListboxVModel(List<String> value, List<DualListboxValueVModel> options) {
         this.value = value;
         this.options = options;
     }
