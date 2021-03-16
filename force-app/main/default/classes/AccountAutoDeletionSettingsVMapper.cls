@@ -56,10 +56,12 @@ public virtual with sharing class AccountAutoDeletionSettingsVMapper {
         return instance;
     }
 
-    /**
-     * @description getAccountAutoDeletionSettingsViewModel description
-     * @return   return description
-     */
+    /*******************************************************************************************************
+     * @description Retrieve a DualListboxVModel representing the Account Record Types currently selected
+     * for deletion when not associated with Contact records and any remaining active account record types
+     * availabe for selection.
+     * @return  A DualListboxVModel
+     *******************************************************************************************************/
     public DualListboxVModel getAccountAutoDeletionSettingsViewModel() {
         // get current values set for deletion from hierarchy settings
         AccountRecordTypeAutoDeletionModel currentAutoDeletionSettings = this.locateAccountRecordTypeAutoDeletionService()
@@ -77,26 +79,30 @@ public virtual with sharing class AccountAutoDeletionSettingsVMapper {
 
         // populate selected listbox
         for (
-            String accountRecordTypeIdToDelete : currentAutoDeletionSettings.accountRecordTypeIdsForDeletionWhenOrphanedList
+            Id accountRecordTypeIdToDelete : (List<Id>) currentAutoDeletionSettings.accountRecordTypeIdsForDeletionWhenOrphanedList
         ) {
+            if (availableActiveAccountRecordTypeModelsById.containsKey(accountRecordTypeIdToDelete) == false) {
+                // inactive Account Record Type selected => skip
+                continue;
+            }
+
             selectedDualListboxValuesList.add(
-                //TODO: what if selected account RT is inactive?  Does is show?
                 new DualListboxValueVModel(
-                    availableActiveAccountRecordTypeModelsById.get((Id) accountRecordTypeIdToDelete)?.name,
-                    availableActiveAccountRecordTypeModelsById.get((Id) accountRecordTypeIdToDelete)?.id
+                    availableActiveAccountRecordTypeModelsById.get(accountRecordTypeIdToDelete).name,
+                    availableActiveAccountRecordTypeModelsById.get(accountRecordTypeIdToDelete).id
                 )
             );
 
             // remove record type model from active map (remaining will be used to create available list)
-            availableActiveAccountRecordTypeModelsById.remove((Id) accountRecordTypeIdToDelete);
+            availableActiveAccountRecordTypeModelsById.remove(accountRecordTypeIdToDelete);
         }
 
         // populate available listbox
         for (Id recordTypeId : availableActiveAccountRecordTypeModelsById.keySet()) {
             availableDualListboxValuesList.add(
                 new DualListboxValueVModel(
-                    availableActiveAccountRecordTypeModelsById.get(recordTypeId)?.name,
-                    availableActiveAccountRecordTypeModelsById.get(recordTypeId)?.id
+                    availableActiveAccountRecordTypeModelsById.get(recordTypeId).name,
+                    availableActiveAccountRecordTypeModelsById.get(recordTypeId).id
                 )
             );
         }
