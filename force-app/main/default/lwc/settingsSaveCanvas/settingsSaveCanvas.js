@@ -23,6 +23,7 @@ export default class SettingsSaveCanvas extends LightningElement {
         settingsButtonEdit,
         settingsButtonCancel,
         settingsButtonSave,
+        successMessage: "Your updates have been successfully applied.",
     };
 
     @api
@@ -53,6 +54,7 @@ export default class SettingsSaveCanvas extends LightningElement {
                 if (result === true) {
                     // update successful
                     this.switchEditMode(false);
+                    this.showToast("success", "Save Complete", this.labelReference.successMessage);
                     this.dispatchSettingsSaveCompletedEvent();
                 }
             })
@@ -126,20 +128,20 @@ export default class SettingsSaveCanvas extends LightningElement {
     }
 
     displayNoAccessError(errorType, errorMessage) {
-        this.showErrorToast(errorType, errorMessage);
+        this.showToast("error", errorType, errorMessage);
         this.dispatchSettingsSaveCompletedEvent();
     }
 
     displayInvalidSettingsError(errorType, errorMessage) {
-        this.showErrorToast(errorType, errorMessage);
+        this.showToast("error", errorType, errorMessage);
         this.dispatchSettingsSaveCompletedEvent();
     }
 
-    showErrorToast(toastTitle, toastMessage) {
+    showToast(toastType, toastTitle, toastMessage) {
         const showToastEvent = new ShowToastEvent({
             title: toastTitle,
             message: toastMessage,
-            variant: "error",
+            variant: toastType,
             mode: "dismissable",
         });
         this.dispatchEvent(showToastEvent);

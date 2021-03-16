@@ -137,26 +137,34 @@ private with sharing class AccountModelSettingsController_TEST {
 
         System.assertEquals(2, dualListboxVModel.value.size(), 'Should have 2 Account Record Types selected.');
         System.assertEquals(
-            1,
+            loopCounter,
             dualListboxVModel.options.size(),
-            'Should have 1 Account Record Type available for selection.'
+            'Should include all active Account Record Types as options even if they are also selected.'
         );
 
         System.assertEquals(
             '000000000000000001',
-            dualListboxVModel.value[0].value,
+            dualListboxVModel.value[0],
             'Value of selected Account Record Type should match Id of active record type that is selected.'
         );
         System.assertEquals(
             '000000000000000002',
-            dualListboxVModel.value[1].value,
+            dualListboxVModel.value[1],
             'Value of selected Account Record Type should match Id of active record type that is selected.'
         );
-        System.assertEquals(
-            '000000000000000003',
-            dualListboxVModel.options[0].value,
-            'Value of available Account Record Type should match Id of remaining active record type that is not selected.'
-        );
+
+        for (Integer i = 0; i < loopCounter; i++) {
+            System.assertEquals(
+                'RecordType' + (i + 1),
+                dualListboxVModel.options[i].label,
+                'Options list should contain all active account record type labels.'
+            );
+            System.assertEquals(
+                '00000000000000000' + (i + 1),
+                dualListboxVModel.options[i].value,
+                'Options list should contain all active account record type values.'
+            );
+        }
     }
 
     /****************************************************************************************************************************
@@ -226,15 +234,17 @@ private with sharing class AccountModelSettingsController_TEST {
      **************************************************************************************************************************************/
     private class STUB_AccountAutoDeletionSettingsVMapper extends AccountAutoDeletionSettingsVMapper {
         public override DualListboxVModel getAccountAutoDeletionSettingsViewModel() {
-            List<DualListboxValueVModel> selectedValuesList = new List<DualListboxValueVModel>{
-                new DualListboxValueVModel('Selected Label 1', '000000000000000001'),
-                new DualListboxValueVModel('Selected Label 2', '000000000000000002')
-            };
-            List<DualListboxValueVModel> availableValuesList = new List<DualListboxValueVModel>{
-                new DualListboxValueVModel('Available Label', '000000000000000003')
-            };
+            List<String> selectedValuesList = new List<String>{ '000000000000000001', '000000000000000002' };
 
-            return new DualListboxVModel(selectedValuesList, availableValuesList);
+            List<DualListboxValueVModel> allOptionsDualListBoxValueVModelsList = new List<DualListboxValueVModel>();
+
+            for (Integer i = 0; i < loopCounter; i++) {
+                allOptionsDualListBoxValueVModelsList.add(
+                    new DualListboxValueVModel('RecordType' + (i + 1), '00000000000000000' + (i + 1))
+                );
+            }
+
+            return new DualListboxVModel(selectedValuesList, allOptionsDualListBoxValueVModelsList);
         }
     }
 

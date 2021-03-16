@@ -1,4 +1,5 @@
 import { LightningElement, api, track, wire } from "lwc";
+import { refreshApex } from "@salesforce/apex";
 
 import getAccountModelSettingsViewModel from "@salesforce/apex/AccountModelSettingsController.getAccountModelSettingsViewModel";
 import getAccountAutoDeletionSettingsViewModel from "@salesforce/apex/AccountModelSettingsController.getAccountAutoDeletionSettingsViewModel";
@@ -67,7 +68,6 @@ export default class AccountModelSettings extends LightningElement {
     accountAutoDeletionSettingsViewModel({ error, data }) {
         if (data) {
             this.accountAutoDeletionSettingsViewModel = data;
-            console.log("selected values: " + JSON.stringify(this.accountAutoDeletionSettingsViewModel.value));
         } else if (error) {
             //console.log("error retrieving accountAutoDeletionSettingsViewModel");
         }
@@ -107,7 +107,6 @@ export default class AccountModelSettings extends LightningElement {
     }
 
     handleAccountAutoDeletionChange(event) {
-        console.log("auto deletion change: " + event.detail.value);
         // add selected values to hierarchySettingsChanges object
         let hierarchySettingsChange = {
             settingsType: "array",
@@ -140,5 +139,8 @@ export default class AccountModelSettings extends LightningElement {
         this.affordancesDisabledToggle = false;
     }
 
-    refreshAllApex() {}
+    refreshAllApex() {
+        refreshApex(this.accountModelSettingsViewModel);
+        refreshApex(this.accountAutoDeletionSettingsViewModel);
+    }
 }
