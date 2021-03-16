@@ -33,4 +33,57 @@
  */
 @isTest
 private with sharing class DualListboxVModel_TEST {
+    /***********************************************************************************
+     * @description Test to verify that the 2 argument constructor generates a model
+     * with all properties populated as expected.
+     ***********************************************************************************/
+    @isTest
+    private static void twoArgumentConstructorValid() {
+        List<DualListboxValueVModel> selectedValuesList = new List<DualListboxValueVModel>();
+        List<DualListboxValueVModel> availableValuesList = new List<DualListboxValueVModel>();
+
+        selectedValuesList.add(new DualListboxValueVModel('Selected Record Type 1', '000000000000000001'));
+        selectedValuesList.add(new DualListboxValueVModel('Selected Record Type 2', '000000000000000002'));
+        selectedValuesList.add(new DualListboxValueVModel('Selected Record Type 3', '000000000000000003'));
+
+        availableValuesList.add(new DualListboxValueVModel('Available Record Type 1', '100000000000000001'));
+        availableValuesList.add(new DualListboxValueVModel('Available Record Type 2', '100000000000000002'));
+
+        Test.startTest();
+        DualListboxVModel dualListboxVModel = new DualListboxVModel(selectedValuesList, availableValuesList);
+        Test.stopTest();
+
+        System.assertEquals(3, dualListboxVModel.value.size(), 'Should have 3 record types set as selected.');
+        System.assertEquals(
+            2,
+            dualListboxVModel.options.size(),
+            'Should have 2 record types set as available for selection.'
+        );
+
+        for (Integer i = 0; i < dualListboxVModel.value.size(); i++) {
+            System.assertEquals(
+                'Selected Record Type ' + (i + 1),
+                dualListboxVModel.value[i].label,
+                'Label for current DualListboxValueVModel in values list should match.'
+            );
+            System.assertEquals(
+                '00000000000000000' + (i + 1),
+                dualListboxVModel.value[i].value,
+                'Value for current DualListboxValueVModel in values list should match.'
+            );
+        }
+
+        for (Integer i = 0; i < dualListboxVModel.options.size(); i++) {
+            System.assertEquals(
+                'Available Record Type ' + (i + 1),
+                dualListboxVModel.options[i].label,
+                'Label for current DualListboxValueVModel in options list should match.'
+            );
+            System.assertEquals(
+                '10000000000000000' + (i + 1),
+                dualListboxVModel.options[i].value,
+                'Value for current DualListboxValueVModel in options list should match.'
+            );
+        }
+    }
 }

@@ -33,4 +33,17 @@
  */
 @isTest
 private with sharing class DualListboxValueVModel_TEST {
+    /***********************************************************************************
+     * @description Test to verify that the 2 argument constructor generates a model
+     * with all properties populated as expected.
+     ***********************************************************************************/
+    @isTest
+    private static void twoArgumentConstructorValid() {
+        Test.startTest();
+        DualListboxValueVModel dualListboxValueVModel = new DualListboxValueVModel('Record Type', '000000000000000001');
+        Test.stopTest();
+
+        System.assertEquals('Record Type', dualListboxValueVModel.label, 'Label should be set.');
+        System.assertEquals('000000000000000001', dualListboxValueVModel.value, 'Value should be set.');
+    }
 }
