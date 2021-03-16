@@ -4,7 +4,7 @@
     <label><!-- Area of Interest --></label>
     <name>Area_of_Interest__c</name>
     <picklistValues>
-        <masterLabel>Undecided</masterLabel>
+        <masterLabel>None</masterLabel>
         <translation><!-- Undecided --></translation>
     </picklistValues>
 </CustomFieldTranslation>

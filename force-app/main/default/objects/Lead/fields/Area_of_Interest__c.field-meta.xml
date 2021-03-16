@@ -12,9 +12,9 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Undecided</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
-                <label>Undecided</label>
+                <label>None</label>
             </value>
         </valueSetDefinition>
     </valueSet>
