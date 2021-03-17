@@ -39,7 +39,7 @@ public with sharing class ContactInformationSettingsController {
      * @description getContactLanguageSettingsVModel description
      * @return A ContactLanguageSettingsVModel.
      */
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static ContactLanguageSettingsVModel getContactLanguageSettingsVModel() {
         try {
             return ContactInformationSettingsController.locateContactInformationSettingsVMapper()

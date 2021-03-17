@@ -1,0 +1,44 @@
+<template>
+    <div class="slds-grid--vertical slds-theme_default">
+        <div class="slds-col slds-p-top_large slds-p-left_small">
+            <c-settings-save-canvas
+                component-title={labelReference.contactInformationSettingsTitle}
+                onsettingseditmodechange={handleSettingsEditModeChange}
+                onsettingssaving={handleSettingsSaving}
+                onsettingssavecompleted={handleSettingsSaveCompleted}
+            >
+                <!-- Body of Contact Information Model Settings page (populates Slot in child component) -->
+                <!-- <lightning-button label="Test Button" disabled={affordancesDisabled}></lightning-button> -->
+                <template if:true={contactLanguageSettingsVModel}>
+                    <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                        <!-- Default Contact Language Fluency Setting -->
+                        <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                            <div class="slds-p-left_small slds-text-title_bold">
+                                {labelReference.contactLanguageDefaultFluencyTitle}
+                            </div>
+                            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                                {labelReference.contactLanguageDefaultFluencyDescription}
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_x-large">
+                            <lightning-combobox
+                                id={inputAttributeReference.defaultContactLanugageFluencyComboboxId}
+                                aria-labelledby={inputAttributeReference.defaultContactLanugageFluencyComboboxId}
+                                name={inputAttributeReference.defaultContactLanugageFluencyComboboxId}
+                                label={labelReference.contactLanguageDefaultFluencyTitle}
+                                value={contactLanguageSettingsVModel.defaultContactLanguageFluency.value}
+                                placeholder=""
+                                options={contactLanguageSettingsVModel.defaultContactLanguageFluency.options}
+                                onchange={handleDefaultContactLanguageFluencyChange}
+                                disabled={affordancesDisabled}
+                                variant="label-hidden"
+                                data-qa-locator={inputAttributeReference.defaultContactLanugageFluencyComboboxId}
+                            ></lightning-combobox>
+                        </div>
+                    </div>
+                </template>
+            </c-settings-save-canvas>
+        </div>
+    </div>
+</template>
