@@ -74,7 +74,6 @@ public virtual with sharing class AccountAutoDeletionSettingsVMapper {
             );
 
         // create DualListboxValueVModels for each of the selected and available options
-        List<String> selectedOptionsDualListboxValuesList = new List<String>();
         List<DualListboxValueVModel> optionsDualListboxValuesList = new List<DualListboxValueVModel>();
 
         // populate available listbox - should contain all values regardless of if they are selected
@@ -88,18 +87,24 @@ public virtual with sharing class AccountAutoDeletionSettingsVMapper {
         }
 
         // populate selected listbox - only requires the String representing the value of the selected option
-        for (
-            Id accountRecordTypeIdToDelete : (List<Id>) currentAutoDeletionSettings.accountRecordTypeIdsForDeletionWhenOrphanedList
-        ) {
-            if (activeAccountRecordTypeModelsById.containsKey(accountRecordTypeIdToDelete) == false) {
-                // inactive Account Record Type selected => skip
-                continue;
-            }
-
-            selectedOptionsDualListboxValuesList.add(
-                (String) activeAccountRecordTypeModelsById.get(accountRecordTypeIdToDelete).id
+        List<String> selectedOptionsDualListboxValuesList = (List<String>) this.locateRecordTypeService()
+            .filterListForValidIds(
+                (List<Id>) currentAutoDeletionSettings.accountRecordTypeIdsForDeletionWhenOrphanedList,
+                activeAccountRecordTypeModelsById
             );
-        }
+
+        // for (
+        //     Id accountRecordTypeIdToDelete : (List<Id>) currentAutoDeletionSettings.accountRecordTypeIdsForDeletionWhenOrphanedList
+        // ) {
+        //     if (activeAccountRecordTypeModelsById.containsKey(accountRecordTypeIdToDelete) == false) {
+        //         // inactive Account Record Type selected => skip
+        //         continue;
+        //     }
+
+        //     selectedOptionsDualListboxValuesList.add(
+        //         (String) activeAccountRecordTypeModelsById.get(accountRecordTypeIdToDelete).id
+        //     );
+        // }
 
         return new DualListboxVModel(selectedOptionsDualListboxValuesList, optionsDualListboxValuesList);
     }

@@ -65,11 +65,11 @@ public virtual with sharing class RecordTypeService {
         return this.locateRecordTypeMapper().getModelByIdMapForSObjectType(sObjectType);
     }
 
-    /************************************************************************************************************************************
+    /***********************************************************************************************************************
      * @description Retrieve a map of active record types by Id from a list of all record types associated with an SObject.
      * @param allRecordTypeModelsList A list containing all record type models in an org.
      * @return A map of Active Record Type Models By Id.
-     ************************************************************************************************************************************/
+     ***********************************************************************************************************************/
     public virtual Map<Id, RecordTypeModel> getActiveRecordTypeModelsById(
         List<RecordTypeModel> allRecordTypeModelsList
     ) {
@@ -84,6 +84,30 @@ public virtual with sharing class RecordTypeService {
         }
 
         return activeRecordTypeModelsById;
+    }
+
+    /***********************************************************************************************************************
+     * @description Filter through a map of valid Record Type models to retrieve a list of Ids corresponding to values in a specified list.
+     * @param  idsToFindList A list of Ids corresponding to Record Type models
+     * @param  recordTypeModelsToSortThroughById A map of valid Record Type models by Id
+     * @return A List<Id> containing Ids that correspond to valid Record Type models and match a value in the specified list of Ids to find.
+     ***********************************************************************************************************************/
+    public virtual List<Id> filterListForValidIds(
+        List<Id> idsToFindList,
+        Map<Id, RecordTypeModel> recordTypeModelsToSortThroughById
+    ) {
+        List<Id> validIdsList = new List<Id>();
+
+        for (Id idToFind : idsToFindList) {
+            if (recordTypeModelsToSortThroughById.containsKey(idToFind) == false) {
+                // Id to find has no match to a valid record type model => omit
+                continue;
+            }
+
+            validIdsList.add(idToFind);
+        }
+
+        return validIdsList;
     }
 
     /******************************************************************************
