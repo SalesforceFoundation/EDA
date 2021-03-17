@@ -221,7 +221,7 @@ eda_lex_locators = {
         "health_check_header": "//h2[contains(@class, 'header')]/span[text()='{}']",
         "last_run_date": "//button[@title='Run Health Check']/preceding::div[1]",
         "expand_button": "//button[@title='Expand these results' and contains(@aria-controls, '{}')]",
-        "all_checks_status": "//div[text()='{}']/../descendant::div[text()='{}']",
+        "all_checks_status": "//div[text()='{}']/following-sibling::div/div[contains(@class, 'text')]",
         "status_value": "//div[contains(@id, '{}')]/descendant::td/descendant::lightning-base-formatted-text[text()='{}']/ancestor::td/preceding-sibling::th[@data-label='Status']/descendant::lightning-base-formatted-text",
     },
     "term": {
