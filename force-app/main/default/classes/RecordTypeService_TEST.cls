@@ -455,6 +455,80 @@ private class RecordTypeService_TEST {
         );
     }
 
+    @isTest
+    private static void filterListForValidIdsValid() {
+        List<Id> idsToFindList = new List<Id>{ '000000000000000001', '000000000000000002', '000000000000000003' };
+        Map<Id, RecordTypeModel> validRecordTypeModelsById = new Map<Id, RecordTypeModel>{
+            '000000000000000001' => new RecordTypeModel('000000000000000001', 'RecordType1', 'Record_Type1', true),
+            '000000000000000003' => new RecordTypeModel('000000000000000003', 'RecordType3', 'Record_Type3', true)
+        };
+
+        RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
+        Test.startTest();
+        List<Id> validIdsList = recordTypeServiceInstance.filterListForValidIds(
+            idsToFindList,
+            validRecordTypeModelsById
+        );
+        Test.stopTest();
+
+        System.assertEquals(2, validIdsList.size(), 'Should only contain ids matching valid record type models.');
+        System.assertEquals(
+            '000000000000000001',
+            validIdsList[0],
+            'Should contain valid Ids specified in list of Ids to find.'
+        );
+        System.assertEquals(
+            '000000000000000003',
+            validIdsList[1],
+            'Should contain valid Ids specified in list of Ids to find.'
+        );
+    }
+
+    @isTest
+    private static void filterListForValidIdsNoIdsToFind() {
+        List<Id> idsToFindList = new List<Id>();
+        Map<Id, RecordTypeModel> validRecordTypeModelsById = new Map<Id, RecordTypeModel>{
+            '000000000000000001' => new RecordTypeModel('000000000000000001', 'RecordType1', 'Record_Type1', true),
+            '000000000000000003' => new RecordTypeModel('000000000000000003', 'RecordType3', 'Record_Type3', true)
+        };
+
+        RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
+
+        Test.startTest();
+        List<Id> validIdsList = recordTypeServiceInstance.filterListForValidIds(
+            idsToFindList,
+            validRecordTypeModelsById
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            0,
+            validIdsList.size(),
+            'No Ids to find should return an empty list of matching valid Ids.'
+        );
+    }
+
+    @isTest
+    private static void filterListForValidIdsNoValidIds() {
+        List<Id> idsToFindList = new List<Id>{ '000000000000000001', '000000000000000002', '000000000000000003' };
+        Map<Id, RecordTypeModel> validRecordTypeModelsById = new Map<Id, RecordTypeModel>();
+
+        RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
+
+        Test.startTest();
+        List<Id> validIdsList = recordTypeServiceInstance.filterListForValidIds(
+            idsToFindList,
+            validRecordTypeModelsById
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            0,
+            validIdsList.size(),
+            'No valid Ids in map should return an empty list of matching valid Ids.'
+        );
+    }
+
     /**************************************************************************************************************************
      ****************************************************** STUB CLASS *********************************************************
      **************************************************************************************************************************/

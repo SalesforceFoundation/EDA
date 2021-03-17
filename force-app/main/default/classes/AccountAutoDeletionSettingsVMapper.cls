@@ -93,19 +93,6 @@ public virtual with sharing class AccountAutoDeletionSettingsVMapper {
                 activeAccountRecordTypeModelsById
             );
 
-        // for (
-        //     Id accountRecordTypeIdToDelete : (List<Id>) currentAutoDeletionSettings.accountRecordTypeIdsForDeletionWhenOrphanedList
-        // ) {
-        //     if (activeAccountRecordTypeModelsById.containsKey(accountRecordTypeIdToDelete) == false) {
-        //         // inactive Account Record Type selected => skip
-        //         continue;
-        //     }
-
-        //     selectedOptionsDualListboxValuesList.add(
-        //         (String) activeAccountRecordTypeModelsById.get(accountRecordTypeIdToDelete).id
-        //     );
-        // }
-
         return new DualListboxVModel(selectedOptionsDualListboxValuesList, optionsDualListboxValuesList);
     }
 

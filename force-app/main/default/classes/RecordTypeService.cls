@@ -89,17 +89,17 @@ public virtual with sharing class RecordTypeService {
     /***********************************************************************************************************************
      * @description Filter through a map of valid Record Type models to retrieve a list of Ids corresponding to values in a specified list.
      * @param  idsToFindList A list of Ids corresponding to Record Type models
-     * @param  recordTypeModelsToSortThroughById A map of valid Record Type models by Id
+     * @param  validRecordTypeModelsById A map of valid Record Type models by Id
      * @return A List<Id> containing Ids that correspond to valid Record Type models and match a value in the specified list of Ids to find.
      ***********************************************************************************************************************/
     public virtual List<Id> filterListForValidIds(
         List<Id> idsToFindList,
-        Map<Id, RecordTypeModel> recordTypeModelsToSortThroughById
+        Map<Id, RecordTypeModel> validRecordTypeModelsById
     ) {
         List<Id> validIdsList = new List<Id>();
 
         for (Id idToFind : idsToFindList) {
-            if (recordTypeModelsToSortThroughById.containsKey(idToFind) == false) {
+            if (validRecordTypeModelsById.containsKey(idToFind) == false) {
                 // Id to find has no match to a valid record type model => omit
                 continue;
             }
