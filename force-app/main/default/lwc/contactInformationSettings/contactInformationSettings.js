@@ -32,11 +32,10 @@ export default class ContactInformationSettings extends LightningElement {
 
     @wire(getContactLanguageSettingsVModel)
     contactLanguageSettingsVModel({ error, data }) {
-        console.log("data retrieved: " + JSON.stringify(data));
         if (data) {
             this.contactLanguageSettingsVModel = data;
         } else if (error) {
-            console.log("error retrieving contactLanguageSettingsVModel: " + JSON.stringify(error));
+            console.log("error retrieving contactLanguageSettingsVModel");
         }
     }
 
@@ -64,6 +63,13 @@ export default class ContactInformationSettings extends LightningElement {
 
     handleDefaultContactLanguageFluencyChange(event) {
         console.log("default language changed");
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Default_Contact_Language_Fluency__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
     refreshAllApex() {
