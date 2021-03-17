@@ -455,6 +455,10 @@ private class RecordTypeService_TEST {
         );
     }
 
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the filterListForValidIds returns a list of Ids corresponding to valid record type models
+     * when matches exist in the specified list.
+     ***********************************************************************************************************************************/
     @isTest
     private static void filterListForValidIdsValid() {
         List<Id> idsToFindList = new List<Id>{ '000000000000000001', '000000000000000002', '000000000000000003' };
@@ -484,6 +488,10 @@ private class RecordTypeService_TEST {
         );
     }
 
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the filterListForValidIds returns an empty list of when no Ids are included in list of
+     * Ids to find.
+     ***********************************************************************************************************************************/
     @isTest
     private static void filterListForValidIdsNoIdsToFind() {
         List<Id> idsToFindList = new List<Id>();
@@ -508,6 +516,10 @@ private class RecordTypeService_TEST {
         );
     }
 
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the filterListForValidIds returns an empty list of when no valid record type models are
+     * specified.
+     ***********************************************************************************************************************************/
     @isTest
     private static void filterListForValidIdsNoValidIds() {
         List<Id> idsToFindList = new List<Id>{ '000000000000000001', '000000000000000002', '000000000000000003' };
