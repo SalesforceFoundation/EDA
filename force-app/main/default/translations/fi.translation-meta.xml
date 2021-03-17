@@ -329,7 +329,7 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message for the Account Model Settings page title --></label>
+        <label><!-- Section title for Account Model Settings --></label>
         <name>stgAccountModelSettingsTitle</name>
     </customLabels>
     <customLabels>
@@ -993,7 +993,7 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label>Korkeakouluille suosittelemme hallintatili-mallia. K-12-kouluille suosittelemme kotitaloustili-mallia.</label>
+        <label><!-- Description of the Default Account Model setting --></label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
@@ -1005,7 +1005,7 @@
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>Hallintatileihin käytetty tilitietueen tyyppi. Tämä asetus vaikuttaa osoitetietueiden hallintaan ja hallintatilien nimeämismuotoon.</label>
+        <label><!-- Description of the Administrative Account Record Type setting --></label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
@@ -1137,7 +1137,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>Kotitaloustileille käytetty tilin tietuetyyppi. Tämä asetus vaikuttaa osoitetietueiden hallintaan ja kotitaloustilien nimeämismuotoon.</label>
+        <label><!-- Description of the Household Account Record Type setting --></label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>

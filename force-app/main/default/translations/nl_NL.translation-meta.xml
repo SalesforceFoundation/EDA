@@ -329,7 +329,7 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message for the Account Model Settings page title --></label>
+        <label><!-- Section title for Account Model Settings --></label>
         <name>stgAccountModelSettingsTitle</name>
     </customLabels>
     <customLabels>
@@ -993,7 +993,7 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label>Voor instellingen voor hoger onderwijs raden we het accountmodel &apos;Administratief&apos; aan. Voor het basis- en middelbaar onderwijs raden we het accountmodel &apos;Huishouden&apos; aan.</label>
+        <label><!-- Description of the Default Account Model setting --></label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
@@ -1005,7 +1005,7 @@
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>Het accountrecordtype dat voor administratieve accounts wordt gebruikt. Deze instelling is van invloed op het beheer van adresrecords en de naamindeling van administratieve accounts.</label>
+        <label><!-- Description of the Administrative Account Record Type setting --></label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
@@ -1137,7 +1137,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>Het accountrecordtype dat voor huishoudenaccounts wordt gebruikt. Deze instelling is van invloed op het beheer van adresrecords en de naamindeling van huishoudenaccounts.</label>
+        <label><!-- Description of the Household Account Record Type setting --></label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>

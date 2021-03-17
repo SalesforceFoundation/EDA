@@ -9,7 +9,6 @@ export default class EDASettings extends LightningElement {
 
     labelReference = {
         settingsNavigation: "Navigation Pane Here",
-        settingsPage: "Settings Page Here",
         stgErrorInsufficientAccess,
     };
 

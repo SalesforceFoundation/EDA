@@ -1,4 +1,3 @@
-
 /*
     Copyright (c) 2021, Salesforce.org
     All rights reserved.
@@ -26,29 +25,30 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group EDA Settings
-* @group-content ../../ApexDocContent/edaSettings.htm
-* @description View model mapper class used to retrieve hierarchy setting mappings
-* related to Account model settings.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group EDA Settings
+ * @group-content ../../ApexDocContent/edaSettings.htm
+ * @description View model mapper class used to retrieve hierarchy setting mappings
+ * related to Account model settings.
+ */
 public virtual with sharing class AccountModelSettingsVMapper {
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static AccountModelSettingsVMapper instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected AccountModelSettingsVMapper() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected AccountModelSettingsVMapper() {
+    }
 
     /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of AccountModelSettingsVMapper.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of AccountModelSettingsVMapper.
+     ******************************************************************************/
     public static AccountModelSettingsVMapper getInstance() {
         if (instance == null) {
             instance = new AccountModelSettingsVMapper();
@@ -58,27 +58,95 @@ public virtual with sharing class AccountModelSettingsVMapper {
     }
 
     /*****************************************************************************
-    * @description Retrieves an instance of the AccountModelSettingsService class.
-    * @return An instance of AccountModelSettingsService.
-    ******************************************************************************/
+     * @description Retrieve a model representing active Account record types available
+     * for selection in Account settings and the current values set in the Hierarchy Settings
+     * fields for: Account Processor, Administrative Account Record Type and
+     * Household Addresses Acc Record Type
+     * @return An AccountModelSettingsVModel
+     *****************************************************************************/
+    public virtual AccountModelSettingsVModel getAccountModelSettingsViewModel() {
+        Map<Id, RecordTypeModel> activeAccountRecordTypeModelsById = new Map<Id, RecordTypeModel>();
+
+        // retrieve current account settings from Hierarchy settings
+        AccountModelSettingsModel currentAccountSettingsModel = this.locateAccountModelSettingsService()
+            .getAccountModelSettingsModel();
+
+        Map<Id, RecordTypeModel> allAccountRecordTypeModelsById = this.locateRecordTypeService()
+            .getModelByIdMapForSObjectType(Account.SObjectType);
+
+        activeAccountRecordTypeModelsById = this.locateRecordTypeService()
+            .getActiveRecordTypeModelsById(allAccountRecordTypeModelsById.values());
+
+        // populate available combobox options with active Account record types
+        List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = this.getComboboxVModelOptionsForActiveAccountRecordTypes(
+            activeAccountRecordTypeModelsById.values()
+        );
+
+        // generate comboboxVModels for each account setting with selected value set as current value in hierarchy settings
+        ComboboxVModel defaultAccountComboboxVModel = new ComboboxVModel(
+            currentAccountSettingsModel.defaultAccountModelId,
+            activeRecordTypeComboboxValueVModelsList
+        );
+
+        ComboboxVModel hhAccountComboboxVModel = new ComboboxVModel(
+            currentAccountSettingsModel.householdAccountRecordTypeId,
+            activeRecordTypeComboboxValueVModelsList
+        );
+
+        ComboboxVModel adminAccountComboboxVModel = new ComboboxVModel(
+            currentAccountSettingsModel.administrativeAccountRecordTypeId,
+            activeRecordTypeComboboxValueVModelsList
+        );
+
+        return new AccountModelSettingsVModel(
+            defaultAccountComboboxVModel,
+            hhAccountComboboxVModel,
+            adminAccountComboboxVModel
+        );
+    }
+
+    /**********************************************************************************************************************
+     * @description Helper method to generate a list of comboboxValueVModels for all active Account record types.
+     * @param  activeAccountRecordTypeModelsList A list of RecordType models corresponding to active Account record types.
+     * @return A List<ComboboxValueVModel> containing comboboxValueVModels for all active Account record types.
+     **********************************************************************************************************************/
+    @TestVisible
+    private List<ComboboxValueVModel> getComboboxVModelOptionsForActiveAccountRecordTypes(
+        List<RecordTypeModel> activeAccountRecordTypeModelsList
+    ) {
+        List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = new List<ComboboxValueVModel>();
+
+        for (RecordTypeModel activeAccountRecordTypeModel : activeAccountRecordTypeModelsList) {
+            activeRecordTypeComboboxValueVModelsList.add(
+                new ComboboxValueVModel(activeAccountRecordTypeModel.name, activeAccountRecordTypeModel.id)
+            );
+        }
+
+        return activeRecordTypeComboboxValueVModelsList;
+    }
+
+    /*****************************************************************************
+     * @description Retrieves an instance of the AccountModelSettingsService class.
+     * @return An instance of AccountModelSettingsService.
+     ******************************************************************************/
     @TestVisible
     private AccountModelSettingsService locateAccountModelSettingsService() {
         return AccountModelSettingsService.getInstance();
     }
 
     /*****************************************************************************
-    * @description Retrieves an instance of the AccountRecordTypeAutoDeletionService class.
-    * @return An instance of AccountRecordTypeAutoDeletionService.
-    ******************************************************************************/
+     * @description Retrieves an instance of the AccountRecordTypeAutoDeletionService class.
+     * @return An instance of AccountRecordTypeAutoDeletionService.
+     ******************************************************************************/
     @TestVisible
     private AccountRecordTypeAutoDeletionService locateAccountRecordTypeAutoDeletionService() {
         return AccountRecordTypeAutoDeletionService.getInstance();
     }
 
     /*****************************************************************************
-    * @description Retrieves an instance of the RecordTypeService class.
-    * @return An instance of RecordTypeService.
-    ******************************************************************************/
+     * @description Retrieves an instance of the RecordTypeService class.
+     * @return An instance of RecordTypeService.
+     ******************************************************************************/
     @TestVisible
     private RecordTypeService locateRecordTypeService() {
         return RecordTypeService.getInstance();
