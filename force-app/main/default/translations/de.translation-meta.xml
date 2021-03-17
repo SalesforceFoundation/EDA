@@ -521,6 +521,10 @@
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
+        <label><!-- Section title for Contact Information --></label>
+        <name>stgContactInformationSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Mehrere Adressen für Kontakt aktiviert</label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
@@ -541,7 +545,7 @@
         <name>stgCourseDescriptionCopyEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>Standardkontakt – Sprachkompetenz</label>
+        <label><!-- Field label for the Contact Language Fluency setting --></label>
         <name>stgDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
@@ -1085,7 +1089,7 @@
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
     </customLabels>
     <customLabels>
-        <label>Der Wert &quot;Fließende Beherrschung&quot; wird automatisch für neu erstellte Datensätze für die Kontaktsprache festgelegt, wenn Benutzer das Nachschlagefeld &quot;Primäre Sprache&quot; für einen Kontakt festlegen.</label>
+        <label><!-- Description of the Contact Language Fluency setting --></label>
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>

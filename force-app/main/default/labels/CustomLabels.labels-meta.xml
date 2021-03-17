@@ -1031,6 +1031,14 @@
         <value>I understand and am ready to run Backfill.</value>
     </labels>
     <labels>
+        <fullName>stgContactInformationSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Contact Information</shortDescription>
+        <value>Contact Information</value>
+    </labels>
+    <labels>
         <fullName>stgContactMultiAddressesEnabled</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1075,8 +1083,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Default Contact Language Fluency</value>
+        <shortDescription>Field label for the Contact Language Fluency setting</shortDescription>
+        <value>Contact Language Fluency</value>
     </labels>
     <labels>
         <fullName>stgDefaultFacultyTypeTitle</fullName>
@@ -2163,8 +2171,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</value>
+        <shortDescription>Description of the Contact Language Fluency setting</shortDescription>
+        <value>The Fluency value set when changing or setting a Contact's Primary Language on a Contact Language record.</value>
     </labels>
     <labels>
         <fullName>stgHelpDefaultFacultyType</fullName>
