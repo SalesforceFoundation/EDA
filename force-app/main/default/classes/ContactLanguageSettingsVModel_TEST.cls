@@ -31,7 +31,7 @@
  * @author Salesforce.org
  * @date 2021
  * @group
- * @group-content ../../ApexDocContent/Relationships
+ * @group-content
  * @description Test class for ContactLanguageSettingsVModel.
  */
 @isTest
