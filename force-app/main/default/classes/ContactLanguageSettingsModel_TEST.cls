@@ -1,8 +1,10 @@
 /*
     Copyright (c) 2021, Salesforce.org
     All rights reserved.
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
+
     * Redistributions of source code must retain the above copyright
       notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
@@ -11,6 +13,7 @@
     * Neither the name of Salesforce.org nor the names of
       its contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
+
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -27,22 +30,30 @@
 /**
  * @author Salesforce.org
  * @date 2021
- * @group Health Check
- * @group-content ../../ApexDocContent/HealthCheck.htm
- * @description Model to abstract data needed for Contact Language Settings.
+ * @group
+ * @group-content ../../ApexDocContent/Relationships
+ * @description Test class for ContactLanguageSettingsModel.
  */
-public with sharing class ContactLanguageSettingsModel {
-    @AuraEnabled
-    public String defaultContactLanguageFluency { get; private set; }
+@isTest
+private with sharing class ContactLanguageSettingsModel_TEST {
+    /********************************************************************************
+     * @description Test method to verify the single argument constructor returns a
+     * ContactLanguageSettingsModel with all properties populated.
+     ********************************************************************************/
+    @isTest
+    private static void singleArgumentConstructorValid() {
+        String defaultContactLanguageFluency = 'Test Fluency';
 
-    /*********************************************************************************
-     * @description Single argument constructor
-     * @param  defaultContactLanguageFluency A string representing language fluency
-     * @return A ContactLanguageSettingsModel with all properties populated
-     *********************************************************************************/
-    public ContactLanguageSettingsModel(String defaultContactLanguageFluency) {
-        this.defaultContactLanguageFluency = (String.isBlank(defaultContactLanguageFluency))
-            ? '""'
-            : defaultContactLanguageFluency;
+        Test.startTest();
+        ContactLanguageSettingsModel contactLanguageSettingsModel = new ContactLanguageSettingsModel(
+            defaultContactLanguageFluency
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Test Fluency',
+            contactLanguageSettingsModel.defaultContactLanguageFluency,
+            'Default fluency property should be populated.'
+        );
     }
 }

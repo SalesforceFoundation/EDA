@@ -65,7 +65,7 @@ public virtual with sharing class ContactLanguageSettingsMapper {
      * fluency set to the value specified in Hierarchy Settings.
      * @return  A ContactLanguageSettingsModel
      ********************************************************************************************/
-    public ContactLanguageSettingsModel getContactLanguageSettingsModel() {
+    public virtual ContactLanguageSettingsModel getContactLanguageSettingsModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
         return new ContactLanguageSettingsModel(hierarchySettings.Default_Contact_Language_Fluency__c);

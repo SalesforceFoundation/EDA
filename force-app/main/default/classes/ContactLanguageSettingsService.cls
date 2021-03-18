@@ -73,6 +73,7 @@ public virtual with sharing class ContactLanguageSettingsService {
      * @description Retrieve an instance of the ContactLanguageSettingsMapper class
      * @return An instance of ContactLanguageSettingsMapper
      **********************************************************************************************/
+    @TestVisible
     private ContactLanguageSettingsMapper locateContactLanguageSettingsMapper() {
         return ContactLanguageSettingsMapper.getInstance();
     }
