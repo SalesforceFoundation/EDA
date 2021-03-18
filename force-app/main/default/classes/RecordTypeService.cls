@@ -96,13 +96,12 @@ public virtual with sharing class RecordTypeService {
         List<String> validIdsList = new List<String>();
 
         for (String idToFind : idsToFindList) {
-            try {
-                if (validRecordTypeIdsSet.contains((Id) idToFind) == false) {
-                    // Id to find has no match to a valid record type model => omit
-                    continue;
-                }
-            } catch (System.StringException e) {
-                // Id to find is not a valid ID string => omit
+            if ((idToFind instanceof Id) == false) {
+                // Id to find is not a valid Id string => omit
+                continue;
+            }
+            if (validRecordTypeIdsSet.contains((Id) idToFind) == false) {
+                // Id to find has no match to a valid record type model => omit
                 continue;
             }
 

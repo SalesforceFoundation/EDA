@@ -461,7 +461,7 @@ private class RecordTypeService_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void filterListForValidIdsValid() {
-        List<Id> idsToFindList = new List<Id>{
+        List<String> idsToFindList = new List<String>{
             '000000000000000001',
             '000000000000000002',
             '000000000000000003',
@@ -493,7 +493,7 @@ private class RecordTypeService_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void filterListForValidIdsNoIdsToFind() {
-        List<Id> idsToFindList = new List<Id>();
+        List<String> idsToFindList = new List<String>();
         Set<Id> validRecordTypeIdsSet = new Set<Id>{ '000000000000000001', '000000000000000003' };
 
         RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
@@ -515,7 +515,11 @@ private class RecordTypeService_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void filterListForValidIdsNoValidIds() {
-        List<String> idsToFindList = new List<Id>{ '000000000000000001', '000000000000000002', '000000000000000003' };
+        List<String> idsToFindList = new List<String>{
+            '000000000000000001',
+            '000000000000000002',
+            '000000000000000003'
+        };
         Set<Id> validRecordTypeIdsSet = new Set<Id>();
 
         RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
