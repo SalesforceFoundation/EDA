@@ -561,11 +561,11 @@
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
-        <label>Erzwingung von &quot;Bevorzugte E-Mail-Adresse&quot; deaktivieren</label>
+        <label><!-- Field label for the Require Preferred Email setting --></label>
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
-        <label>Erzwingung von &quot;Bevorzugte Telefonnummer&quot; deaktivieren</label>
+        <label><!-- Field label for the Require Preferred Phone setting --></label>
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
@@ -577,7 +577,7 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Verbesserte Funktionalität für &quot;Bevorzugte Telefonnummer&quot; aktivieren</label>
+        <label><!-- Field label for the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1053,15 +1053,15 @@
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label>Verlangen Sie nicht, dass Kontakte eine bevorzugte E-Mail-Adresse haben.</label>
+        <label><!-- Description of the Require Preferred Email setting --></label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label>Verlangen Sie nicht, dass Kontakte eine bevorzugte Telefonnummer haben.</label>
+        <label><!-- Description for the Require Preferred Phone setting --></label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label>Synchronisiert das Feld &quot;Bevorzugte Telefonnummer&quot; mit dem Standardfeld &quot;Telefon&quot; des Kontakts und überprüft, ob der Wert in &quot;Bevorzugte Telefonnummer&quot; vorhanden ist und entsprechend eingestellt ist.</label>
+        <label><!-- Description of the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1213,8 +1213,16 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for the Default Preferred Phone setting --></label>
+        <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
         <label>Wählen Sie ein Feld für &quot;Bevorzugte Telefonnummer&quot; aus, aus dem der Wert kopiert werden soll, wenn das Standardfeld &quot;Telefonnummer&quot; keinen Wert hat oder mehr als ein Feld &quot;Telefonnummer&quot; definiert ist.</label>
         <name>stgPreferredPhoneSelection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description for the Default Preferred Phone setting --></label>
+        <name>stgPreferredPhoneSelectionDesc</name>
     </customLabels>
     <customLabels>
         <label>Listeneinstellung</label>

@@ -62,9 +62,9 @@ private with sharing class PreferredContactInfoSettingsModel_TEST {
             'Should not require enhanced phone functionality.'
         );
         System.assertEquals(
-            true,
+            false,
             referredContactInfoSettingsModel.preferredPhoneEnforcement,
-            'Should require preferred phone enforcement.'
+            'Should not require preferred phone enforcement.'
         );
         System.assertEquals(
             'Test Phone Field',
