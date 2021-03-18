@@ -1,7 +1,7 @@
 import { LightningElement, wire, track } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
-import getContactLanguageSettingsVModel from "@salesforce/apex/ContactInformationSettingsController.getContactLanguageSettingsVModel";
+import getContactLanguageSettingsVModel from "@salesforce/apex/ContactInfoSettingsController.getContactLanguageSettingsVModel";
 
 import stgContactInformationSettingsTitle from "@salesforce/label/c.stgContactInformationSettingsTitle";
 import stgDefaultContactLanguageFluency from "@salesforce/label/c.stgDefaultContactLanguageFluency";

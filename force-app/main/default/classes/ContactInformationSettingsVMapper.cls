@@ -65,7 +65,7 @@ public virtual with sharing class ContactInformationSettingsVMapper {
      * in Hierarchy Settings and all available active options.
      * @return A ContactLanguageSettingsVModel.
      **********************************************************************************************/
-    public ContactLanguageSettingsVModel getContactLanguageSettingsVModel() {
+    public virtual ContactLanguageSettingsVModel getContactLanguageSettingsVModel() {
         ContactLanguageSettingsModel contactLanguageSettingsModel = this.locateContactLanguageSettingsService()
             .getContactLanguageSettingsModel();
 

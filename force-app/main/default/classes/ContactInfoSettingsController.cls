@@ -34,20 +34,22 @@
  * @group-content ../../ApexDocContent/
  * @description Server-side controller for ContactInformationSettings lwc component.
  */
-public with sharing class ContactInformationSettingsController {
-    /**
-     * @description getContactLanguageSettingsVModel description
+public with sharing class ContactInfoSettingsController {
+    /********************************************************************************
+     * @description Retrieve a view model representing the default language fluency specified in
+     * Hierarchy Settings and all active language fluency picklist options.
      * @return A ContactLanguageSettingsVModel.
-     */
+     ********************************************************************************/
     @AuraEnabled(cacheable=true)
     public static ContactLanguageSettingsVModel getContactLanguageSettingsVModel() {
         try {
-            return ContactInformationSettingsController.locateContactInformationSettingsVMapper()
+            return ContactInfoSettingsController.locateContactInformationSettingsVMapper()
                 .getContactLanguageSettingsVModel();
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
     /******************************************************************************
      * @description Retrieve an instance of the ContactInformationSettingsVMapper class.
      * @return An instance of ContactInformationSettingsVMapper.
