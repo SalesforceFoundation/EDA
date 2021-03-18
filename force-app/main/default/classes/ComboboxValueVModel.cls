@@ -27,8 +27,8 @@
 /**
  * @author Salesforce.org
  * @date 2021
- * @group Health Check
- * @group-content ../../ApexDocContent/EdaSettings.htm
+ * @group
+ * @group-content
  * @description View model to abstract data needed to populate a lightning combobox list item
  */
 public with sharing class ComboboxValueVModel {

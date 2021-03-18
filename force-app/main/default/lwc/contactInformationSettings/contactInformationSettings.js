@@ -37,7 +37,7 @@ export default class ContactInformationSettings extends LightningElement {
         if (data) {
             this.contactLanguageSettingsVModel = data;
         } else if (error) {
-            console.log("error retrieving contactLanguageSettingsVModel");
+            //console.log("error retrieving contactLanguageSettingsVModel");
         }
     }
 
