@@ -6,6 +6,7 @@ import getContactLanguageSettingsVModel from "@salesforce/apex/ContactInfoSettin
 import stgContactInformationSettingsTitle from "@salesforce/label/c.stgContactInformationSettingsTitle";
 import stgDefaultContactLanguageFluency from "@salesforce/label/c.stgDefaultContactLanguageFluency";
 import stgHelpDefaultContactLanguageFluency from "@salesforce/label/c.stgHelpDefaultContactLanguageFluency";
+import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 
 export default class ContactInformationSettings extends LightningElement {
     isEditMode = false;
@@ -17,6 +18,7 @@ export default class ContactInformationSettings extends LightningElement {
         contactInformationSettingsTitle: stgContactInformationSettingsTitle,
         contactLanguageDefaultFluencyTitle: stgDefaultContactLanguageFluency,
         contactLanguageDefaultFluencyDescription: stgHelpDefaultContactLanguageFluency,
+        comboboxPlaceholderText: stgOptSelect,
     };
 
     inputAttributeReference = {

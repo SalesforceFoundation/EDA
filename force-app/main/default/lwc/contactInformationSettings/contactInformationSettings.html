@@ -8,7 +8,6 @@
                 onsettingssavecompleted={handleSettingsSaveCompleted}
             >
                 <!-- Body of Contact Information Model Settings page (populates Slot in child component) -->
-                <!-- <lightning-button label="Test Button" disabled={affordancesDisabled}></lightning-button> -->
                 <template if:true={contactLanguageSettingsVModel}>
                     <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
                         <!-- Default Contact Language Fluency Setting -->
@@ -28,7 +27,7 @@
                                 name={inputAttributeReference.defaultContactLanugageFluencyComboboxId}
                                 label={labelReference.contactLanguageDefaultFluencyTitle}
                                 value={contactLanguageSettingsVModel.defaultContactLanguageFluency.value}
-                                placeholder=""
+                                placeholder={labelReference.comboboxPlaceholderText}
                                 options={contactLanguageSettingsVModel.defaultContactLanguageFluency.options}
                                 onchange={handleDefaultContactLanguageFluencyChange}
                                 disabled={affordancesDisabled}
