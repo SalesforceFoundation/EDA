@@ -85,4 +85,97 @@ private with sharing class PreferredContactInfoSettingsMapper_TEST {
             'Instance of mapper class should not be null.'
         );
     }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getPreferredContactInfoSettingsModel method returns a PreferredContactInfoSettingsModel
+     * with all properties set to match the corresponding values in hierarchy settings.  In the case of Disable_Preferred_Email_Enforcement__c
+     * and Disable_Preferred_Phone_Enforcement__c, the model values should be the invers of the hierarchy setting values.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getPreferredContactInfoSettingsModelValid() {
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Disable_Preferred_Email_Enforcement__c = true, //false
+                Enable_New_Preferred_Phone_Sync__c = true,
+                Disable_Preferred_Phone_Enforcement__c = true, //false
+                Preferred_Phone_Selection__c = 'Test Phone Field'
+            )
+        );
+        PreferredContactInfoSettingsMapper preferredContactInfoSettingsMapperInstance = PreferredContactInfoSettingsMapper.getInstance();
+
+        Test.startTest();
+        PreferredContactInfoSettingsModel preferredContactInfoSettingsModel = preferredContactInfoSettingsMapperInstance.getPreferredContactInfoSettingsModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            false,
+            preferredContactInfoSettingsModel.requirePreferredEmail,
+            'True value for hierarchy setting Disable_Preferred_Email_Enforcement__c, should set requirePreferredEmail property to false.'
+        );
+
+        System.assertEquals(
+            true,
+            preferredContactInfoSettingsModel.enhancedPhoneFunctionality,
+            'True value for hierarchy setting Enable_New_Preferred_Phone_Sync__c, should set enhancedPhoneFunctionality property to true.'
+        );
+
+        System.assertEquals(
+            false,
+            preferredContactInfoSettingsModel.preferredPhoneEnforcement,
+            'True value for hierarchy setting Disable_Preferred_Phone_Enforcement__c, should set preferredPhoneEnforcement property to false.'
+        );
+
+        System.assertEquals(
+            'Test Phone Field',
+            preferredContactInfoSettingsModel.defaultPreferredPhone,
+            'defaultPreferredPhone property should be set to match Preferred_Phone_Selection__c hierarchy setting.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getPreferredContactInfoSettingsModel method returns a PreferredContactInfoSettingsModel
+     * with all properties set to match the corresponding values in hierarchy settings and specify a blank value when no preferred
+     * phone value is specified.  In the case of Disable_Preferred_Email_Enforcement__c
+     * and Disable_Preferred_Phone_Enforcement__c, the model values should be the invers of the hierarchy setting values.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getPreferredContactInfoSettingsModelBlankString() {
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Disable_Preferred_Email_Enforcement__c = false, //true
+                Enable_New_Preferred_Phone_Sync__c = false,
+                Disable_Preferred_Phone_Enforcement__c = false, //true
+                Preferred_Phone_Selection__c = ''
+            )
+        );
+        PreferredContactInfoSettingsMapper preferredContactInfoSettingsMapperInstance = PreferredContactInfoSettingsMapper.getInstance();
+
+        Test.startTest();
+        PreferredContactInfoSettingsModel preferredContactInfoSettingsModel = preferredContactInfoSettingsMapperInstance.getPreferredContactInfoSettingsModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            preferredContactInfoSettingsModel.requirePreferredEmail,
+            'False value for hierarchy setting Disable_Preferred_Email_Enforcement__c, should set requirePreferredEmail property to true.'
+        );
+
+        System.assertEquals(
+            false,
+            preferredContactInfoSettingsModel.enhancedPhoneFunctionality,
+            'False value for hierarchy setting Enable_New_Preferred_Phone_Sync__c, should set enhancedPhoneFunctionality property to false.'
+        );
+
+        System.assertEquals(
+            true,
+            preferredContactInfoSettingsModel.preferredPhoneEnforcement,
+            'False value for hierarchy setting Disable_Preferred_Phone_Enforcement__c, should set preferredPhoneEnforcement property to true.'
+        );
+
+        System.assertEquals(
+            '""',
+            preferredContactInfoSettingsModel.defaultPreferredPhone,
+            'defaultPreferredPhone property should be blank when no valud is specified for Preferred_Phone_Selection__c hierarchy setting.'
+        );
+    }
 }
