@@ -32,10 +32,10 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Model to represent data required for Preferred Contact
- * Information Settings functionality.
+ * @description View model representing data necessary to display Preferred Contact Information
+ * Settings.
  */
-public with sharing class PreferredContactInfoSettingsModel {
+public with sharing class PreferredContactInfoSettingsVModel {
     @AuraEnabled
     public Boolean requirePreferredEmail { get; private set; }
 
@@ -46,26 +46,26 @@ public with sharing class PreferredContactInfoSettingsModel {
     public Boolean preferredPhoneEnforcement { get; private set; }
 
     @AuraEnabled
-    public String defaultPreferredPhone { get; private set; }
+    public ComboboxVModel defaultPreferredPhone { get; private set; }
 
     /*****************************************************************************************************************
      * @description Four argument constructor
      * @param  requirePreferredEmail A boolean value representing the inverse of Disable_Preferred_Email_Enforcement__c setting in Hierarchy Settings
      * @param  enhancedPhoneFunctionality A boolean value representing Enable_New_Preferred_Phone_Sync__c setting in Hierarchy Settings
      * @param  preferredPhoneEnforcement A boolean value representing the inverse of Disable_Preferred_Phone_Enforcement__c setting in Hierarchy Settings
-     * @param  defaultPreferredPhone A String representing Preferred_Phone_Selection__c setting in Hierarchy Settings
-     * @return A PreferredContactInfoSettingsModel with all properties populated
+     * @param  defaultPreferredPhone A ComboboxVModel representing Preferred_Phone_Selection__c setting in Hierarchy Settings and a list of all
+     * Contact fields of type Phone
+     * @return A PreferredContactInfoSettingsVModel with all properties populated
      *****************************************************************************************************************/
-    public PreferredContactInfoSettingsModel(
+    public PreferredContactInfoSettingsVModel(
         Boolean requirePreferredEmail,
         Boolean enhancedPhoneFunctionality,
         Boolean preferredPhoneEnforcement,
-        String defaultPreferredPhone
+        ComboboxVModel defaultPreferredPhone
     ) {
         this.requirePreferredEmail = requirePreferredEmail;
         this.enhancedPhoneFunctionality = enhancedPhoneFunctionality;
         this.preferredPhoneEnforcement = preferredPhoneEnforcement;
-
-        this.defaultPreferredPhone = String.isBlank(defaultPreferredPhone) ? '""' : defaultPreferredPhone;
+        this.defaultPreferredPhone = defaultPreferredPhone;
     }
 }
