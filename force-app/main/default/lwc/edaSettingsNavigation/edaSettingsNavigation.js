@@ -25,7 +25,7 @@ export default class EdaSettingsNavigation extends LightningElement {
                             { label: "Default Account Model", id: "defaultaccountmodel" },
                             {
                                 label: "Administrative Account Record Type",
-                                menuitemkey: "administrativeAccountRecordType",
+                                id: "administrativeAccountRecordType",
                             },
                             { label: "Household Account Record Type", id: "householdAccountRecordType" },
                             {
