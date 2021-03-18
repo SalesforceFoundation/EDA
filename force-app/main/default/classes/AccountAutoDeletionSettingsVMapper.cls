@@ -89,8 +89,8 @@ public virtual with sharing class AccountAutoDeletionSettingsVMapper {
         // populate selected listbox - only requires the String representing the value of the selected option
         List<String> selectedOptionsDualListboxValuesList = (List<String>) this.locateRecordTypeService()
             .filterListForValidIds(
-                (List<Id>) currentAutoDeletionSettings.accountRecordTypeIdsForDeletionWhenOrphanedList,
-                activeAccountRecordTypeModelsById
+                currentAutoDeletionSettings.accountRecordTypeIdsForDeletionWhenOrphanedList,
+                activeAccountRecordTypeModelsById.keySet()
             );
 
         return new DualListboxVModel(selectedOptionsDualListboxValuesList, optionsDualListboxValuesList);
