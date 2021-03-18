@@ -32,47 +32,49 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Mapper class to retrieve data needed for Preferred Contact Information
- * Settings functionality.
+ * @description Service class to handle business logic associated with Preferred
+ * Contact Information settings functionality.
  */
-public virtual with sharing class PreferredContactInfoSettingsMapper {
+public virtual with sharing class PreferredContactInfoSettingsService {
     /*********************************************
      * @description Instance for Singleton Pattern
      **********************************************/
     @TestVisible
-    private static PreferredContactInfoSettingsMapper instance;
+    private static PreferredContactInfoSettingsService instance;
 
     /*********************************************************************
      * @description Empty constructor is not public for Singleton Pattern
      **********************************************************************/
-    protected PreferredContactInfoSettingsMapper() {
+    protected PreferredContactInfoSettingsService() {
     }
 
-    /*****************************************************************************
+    /******************************************************************************
      * @description Static method to get the current instance for Singleton pattern
-     * @return The instance of PreferredContactInfoSettingsMapper.
+     * @return The instance of PreferredContactInfoSettingsService.
      ******************************************************************************/
-    public static PreferredContactInfoSettingsMapper getInstance() {
+    public static PreferredContactInfoSettingsService getInstance() {
         if (instance == null) {
-            instance = new PreferredContactInfoSettingsMapper();
+            instance = new PreferredContactInfoSettingsService();
         }
 
         return instance;
     }
 
     /************************************************************************************************************
-     * @description Retrieve a PreferredContactInfoSettingsModel representing the Preferred Contact Information
-     * settings specified in Hierarchy Settings.
+     * @description Retrieve a PreferredContactInfoSettingsModel representing the values specified in hierarchy
+     * settings for preferred contact information functionality.
      * @return A PreferredContactInfoSettingsModel
      ************************************************************************************************************/
     public virtual PreferredContactInfoSettingsModel getPreferredContactInfoSettingsModel() {
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
+        return this.locatePreferredContactInfoSettingsMapper().getPreferredContactInfoSettingsModel();
+    }
 
-        return new PreferredContactInfoSettingsModel(
-            !hierarchySettings.Disable_Preferred_Email_Enforcement__c,
-            hierarchySettings.Enable_New_Preferred_Phone_Sync__c,
-            !hierarchySettings.Disable_Preferred_Phone_Enforcement__c,
-            hierarchySettings.Preferred_Phone_Selection__c
-        );
+    /************************************************************************************************************
+     * @description Retrieve an instance of PreferredContactInfoSettingsMapper
+     * @return An instance of the PreferredContactInfoSettingsMapper class
+     ************************************************************************************************************/
+    @TestVisible
+    private PreferredContactInfoSettingsMapper locatePreferredContactInfoSettingsMapper() {
+        return PreferredContactInfoSettingsMapper.getInstance();
     }
 }

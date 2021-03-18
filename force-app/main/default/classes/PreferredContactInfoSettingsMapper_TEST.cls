@@ -65,23 +65,23 @@ private with sharing class PreferredContactInfoSettingsMapper_TEST {
     @isTest
     private static void getInstanceExisting() {
         Test.startTest();
-        PreferredContactInfoSettingsMapper permissionSetAssignmentMapperInstance1 = PreferredContactInfoSettingsMapper.getInstance();
-        PreferredContactInfoSettingsMapper permissionSetAssignmentMapperInstance2 = PreferredContactInfoSettingsMapper.getInstance();
+        PreferredContactInfoSettingsMapper preferredContactInfoSettingsMapper1 = PreferredContactInfoSettingsMapper.getInstance();
+        PreferredContactInfoSettingsMapper preferredContactInfoSettingsMapper2 = PreferredContactInfoSettingsMapper.getInstance();
         Test.stopTest();
 
         System.assertEquals(
             PreferredContactInfoSettingsMapper.instance,
-            permissionSetAssignmentMapperInstance1,
+            preferredContactInfoSettingsMapper1,
             'Instance of mapper class returned should match static instance variable.'
         );
         System.assertEquals(
-            permissionSetAssignmentMapperInstance1,
-            permissionSetAssignmentMapperInstance2,
+            preferredContactInfoSettingsMapper1,
+            preferredContactInfoSettingsMapper2,
             'Subsequent retrievals of mapper class instance should return existing instance.'
         );
         System.assertEquals(
             true,
-            permissionSetAssignmentMapperInstance1 != null,
+            preferredContactInfoSettingsMapper1 != null,
             'Instance of mapper class should not be null.'
         );
     }
