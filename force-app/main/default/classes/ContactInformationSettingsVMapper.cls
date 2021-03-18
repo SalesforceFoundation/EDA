@@ -69,11 +69,11 @@ public virtual with sharing class ContactInformationSettingsVMapper {
         ContactLanguageSettingsModel contactLanguageSettingsModel = this.locateContactLanguageSettingsService()
             .getContactLanguageSettingsModel();
 
+        Map<String, PicklistEntryModel> allContactLanguageFluencyPicklistEntryModelsByName = this.locatePicklistEntryService()
+            .getModelsByNameForSObjectField(Contact_Language__c.SObjectType, Contact_Language__c.Fluency__c);
+
         Map<String, PicklistEntryModel> activeContactLanguageFluencyPicklistEntryModelsByName = this.locatePicklistEntryService()
-            .getActivePicklistEntryModelsByName(
-                this.locatePicklistEntryService()
-                    .getModelsByNameForSObjectField(Contact_Language__c.SObjectType, Contact_Language__c.Fluency__c)
-            );
+            .getActivePicklistEntryModelsByName(allContactLanguageFluencyPicklistEntryModelsByName);
 
         List<ComboboxValueVModel> contactLanguageFluencyComboboxValueVModelsList = new List<ComboboxValueVModel>();
 
