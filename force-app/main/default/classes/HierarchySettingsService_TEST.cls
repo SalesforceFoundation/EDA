@@ -187,14 +187,11 @@ public with sharing class HierarchySettingsService_TEST {
         );
 
         Map<String, String> singleValueSettingUpdatesByNameInvalid = new Map<String, String>{
-            UTIL_Namespace.StrTokenNSPrefix('Account_Processor_Invalid__c') => 'Updated Value'
+            'Account_Processor_Invalid__c' => 'Updated Value'
         };
 
         Map<String, List<String>> listValueSettingUpdatesByName = new Map<String, List<String>>{
-            UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{
-                'Updated Value 1',
-                'Updated Value 2'
-            }
+            'Accounts_to_Delete__c' => new List<String>{ 'Updated Value 1', 'Updated Value 2' }
         };
 
         HierarchySettingsChangesVModel hierarchySettingsChangesVModel = new HierarchySettingsChangesVModel(
@@ -213,7 +210,7 @@ public with sharing class HierarchySettingsService_TEST {
         } catch (UTIL_Describe.SchemaDescribeException e) {
             System.assertEquals(
                 'Invalid field name \'' +
-                UTIL_Namespace.StrTokenNSPrefix('Account_Processor_Invalid__c') +
+                'Account_Processor_Invalid__c' +
                 '\'',
                 e.getMessage(),
                 'Invalid field name should cause exception'
@@ -254,11 +251,8 @@ public with sharing class HierarchySettingsService_TEST {
         );
 
         Map<String, List<String>> listValueSettingUpdatesByName = new Map<String, List<String>>{
-            UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{
-                'Updated Value 1',
-                'Updated Value 2'
-            },
-            UTIL_Namespace.StrTokenNSPrefix('Not_A_Valid_Field__c') => new List<String>{ 'Invalid value' }
+            'Accounts_to_Delete__c' => new List<String>{ 'Updated Value 1', 'Updated Value 2' },
+            'Not_A_Valid_Field__c' => new List<String>{ 'Invalid value' }
         };
 
         HierarchySettingsChangesVModel hierarchySettingsChangesVModelListValuesError = new HierarchySettingsChangesVModel(
@@ -277,7 +271,7 @@ public with sharing class HierarchySettingsService_TEST {
         } catch (UTIL_Describe.SchemaDescribeException e) {
             System.assertEquals(
                 'Invalid field name \'' +
-                UTIL_Namespace.StrTokenNSPrefix('Not_A_Valid_Field__c') +
+                'Not_A_Valid_Field__c' +
                 '\'',
                 e.getMessage(),
                 'Invalid field mapping should throw error.'
@@ -382,7 +376,7 @@ public with sharing class HierarchySettingsService_TEST {
         );
 
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
-            UTIL_Namespace.StrTokenNSPrefix('Async_Error_Check_Last_Run__c') => 'Updated Value'
+            'Async_Error_Check_Last_Run__c' => 'Updated Value'
         };
 
         HierarchySettingsChangesVModel hierarchySettingsChangesVModelInvalidType = new HierarchySettingsChangesVModel(
@@ -427,10 +421,7 @@ public with sharing class HierarchySettingsService_TEST {
         );
 
         Map<String, List<String>> listValueSettingUpdatesByName = new Map<String, List<String>>{
-            UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{
-                'Updated Value 1',
-                'Updated Value 2'
-            }
+            'Accounts_to_Delete__c' => new List<String>{ 'Updated Value 1', 'Updated Value 2' }
         };
 
         HierarchySettingsChangesVModel hierarchySettingsChangesVModelListValues = new HierarchySettingsChangesVModel(
@@ -470,8 +461,8 @@ public with sharing class HierarchySettingsService_TEST {
         );
 
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
-            UTIL_Namespace.StrTokenNSPrefix('Account_Processor__c') => 'Updated Value',
-            UTIL_Namespace.StrTokenNSPrefix('Invalid_Field_Name__c') => 'Updated Invalid Value'
+            'Account_Processor__c' => 'Updated Value',
+            'Invalid_Field_Name__c' => 'Updated Invalid Value'
         };
 
         HierarchySettingsChangesVModel hierarchySettingsChangesVModelError = new HierarchySettingsChangesVModel(
@@ -490,7 +481,7 @@ public with sharing class HierarchySettingsService_TEST {
         } catch (UTIL_Describe.SchemaDescribeException e) {
             System.assertEquals(
                 'Invalid field name \'' +
-                UTIL_Namespace.StrTokenNSPrefix('Invalid_Field_Name__c') +
+                'Invalid_Field_Name__c' +
                 '\'',
                 e.getMessage(),
                 'Invalid mapping should throw exception.'
@@ -518,9 +509,7 @@ public with sharing class HierarchySettingsService_TEST {
         );
 
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
-            UTIL_Namespace.StrTokenNSPrefix('Async_Error_Check_Last_Run__c') => String.valueOf(
-                DateTime.newInstance(2021, 3, 17, 5, 0, 0)
-            )
+            'Async_Error_Check_Last_Run__c' => String.valueOf(DateTime.newInstance(2021, 3, 17, 5, 0, 0))
         };
 
         HierarchySettingsChangesVModel hierarchySettingsChangesVModelDateTimeValues = new HierarchySettingsChangesVModel(
@@ -561,7 +550,7 @@ public with sharing class HierarchySettingsService_TEST {
         );
 
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
-            UTIL_Namespace.StrTokenNSPrefix('Allow_AutoCreated_Duplicates__c') => 'true'
+            'Allow_AutoCreated_Duplicates__c' => 'true'
         };
 
         HierarchySettingsChangesVModel hierarchySettingsChangesVModelBooleanValues = new HierarchySettingsChangesVModel(
@@ -602,7 +591,7 @@ public with sharing class HierarchySettingsService_TEST {
         );
 
         Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
-            UTIL_Namespace.StrTokenNSPrefix('Account_Processor__c') => 'Updated Value'
+            'Account_Processor__c' => 'Updated Value'
         };
 
         HierarchySettingsChangesVModel hierarchySettingsChangesVModelStringValues = new HierarchySettingsChangesVModel(

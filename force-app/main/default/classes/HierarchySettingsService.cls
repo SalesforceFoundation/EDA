@@ -70,11 +70,20 @@ public virtual with sharing class HierarchySettingsService {
         HierarchySettingsModel hierarchySettingsModelToUpdate = this.locateHierarchySettingsMapper()
             .getHierarchySettings();
 
+        if (String.isNotBlank(UTIL_Namespace.getNamespace())) {
+            // replace hierarchy settings field names with prefixed version when in managed context
+            hierarchySettingsChangesVModel = this.addNamespacePrefixToHierarchySettingsChangesFields(
+                hierarchySettingsChangesVModel
+            );
+        }
+
         try {
             // Update Hierarchy Settings fields with single values
             for (
                 String changedSettingName : hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.keySet()
             ) {
+                //changedSettingName = UTIL_Namespace.StrTokenNSPrefix(changedSettingName);
+
                 Schema.DescribeFieldResult fieldDescribeResult = this.locateHierarchySettingsMapper()
                     .getHierarchySettingsField(changedSettingName);
                 Schema.DisplayType displayType = fieldDescribeResult.getType();
@@ -113,16 +122,57 @@ public virtual with sharing class HierarchySettingsService {
             }
         } catch (UTIL_Describe.SchemaDescribeException e) {
             UTIL_Debug.debug('****SchemaDescribeException encountered: ' + e.getMessage());
+            System.debug('****SchemaDescribeException encountered: ' + e.getMessage());
             throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
         } catch (System.TypeException e) {
             UTIL_Debug.debug('****TypeException encountered: ' + e.getMessage());
+            System.debug('****TypeException encountered: ' + e.getMessage());
             throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
         } catch (Exception e) {
             UTIL_Debug.debug('****Unexpected Exception encountered: ' + e.getMessage());
+            System.debug('****Unexpected Exception encountered: ' + e.getMessage());
             throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
         }
 
         return this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsModelToUpdate);
+    }
+
+    /******************************************************************************************************************************
+     * @description Append the hed__ prefix to all hierarchy settings field names specified in the settingsSingleValueBySettingsName
+     * and settingsListSettingsName of a HierarchySettingsChangesVModel when handled in a managed context.
+     * @param  hierarchySettingsChangesVModelToNamespace A HierarchySettingsChangesVModel with fields requiring a namespace prefix
+     * @return A HierarchySettingsChangesVModel
+     ******************************************************************************************************************************/
+    private HierarchySettingsChangesVModel addNamespacePrefixToHierarchySettingsChangesFields(
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModelToNamespace
+    ) {
+        for (
+            String hierarchySettingFieldName : hierarchySettingsChangesVModelToNamespace.settingsSingleValueBySettingsName.keySet()
+        ) {
+            hierarchySettingsChangesVModelToNamespace.settingsSingleValueBySettingsName.put(
+                UTIL_Namespace.StrTokenNSPrefix(hierarchySettingFieldName),
+                hierarchySettingsChangesVModelToNamespace.settingsSingleValueBySettingsName.get(
+                    hierarchySettingFieldName
+                )
+            );
+
+            hierarchySettingsChangesVModelToNamespace.settingsSingleValueBySettingsName.remove(
+                hierarchySettingFieldName
+            );
+        }
+
+        for (
+            String hierarchySettingFieldName : hierarchySettingsChangesVModelToNamespace.settingsListSettingsName.keySet()
+        ) {
+            hierarchySettingsChangesVModelToNamespace.settingsListSettingsName.put(
+                UTIL_Namespace.StrTokenNSPrefix(hierarchySettingFieldName),
+                hierarchySettingsChangesVModelToNamespace.settingsListSettingsName.get(hierarchySettingFieldName)
+            );
+
+            hierarchySettingsChangesVModelToNamespace.settingsListSettingsName.remove(hierarchySettingFieldName);
+        }
+
+        return hierarchySettingsChangesVModelToNamespace;
     }
 
     /******************************************************************************************************
