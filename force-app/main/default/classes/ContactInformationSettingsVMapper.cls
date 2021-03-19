@@ -110,6 +110,9 @@ public virtual with sharing class ContactInformationSettingsVMapper {
 
         List<ComboboxValueVModel> preferredPhoneComboboxValueVModelsList = new List<ComboboxValueVModel>();
 
+        // add --None-- option
+        preferredPhoneComboboxValueVModelsList.add(new ComboboxValueVModel(label.NoneOption, ''));
+
         for (SObjectFieldModel phoneSObjectFieldModel : phoneTypeSObjectFieldModelsByFieldName.values()) {
             preferredPhoneComboboxValueVModelsList.add(
                 // value for the combobox option should match the phone field label

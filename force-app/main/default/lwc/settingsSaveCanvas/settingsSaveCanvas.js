@@ -37,6 +37,14 @@ export default class SettingsSaveCanvas extends LightningElement {
             this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
                 hierarchySettingsChange.settingsValue;
         }
+        if (hierarchySettingsChange.settingsType === "boolean") {
+            this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
+                hierarchySettingsChange.settingsValue;
+        }
+        if (hierarchySettingsChange.settingsType === "dateTime") {
+            this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
+                hierarchySettingsChange.settingsValue;
+        }
         if (hierarchySettingsChange.settingsType === "array") {
             this.hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
                 hierarchySettingsChange.settingsValue;
@@ -58,6 +66,8 @@ export default class SettingsSaveCanvas extends LightningElement {
 
                     this.dispatchSettingsSaveCompletedEvent();
                 }
+
+                console.log("error updating?: ");
             })
             .catch((error) => {
                 // affordances are re-enabled

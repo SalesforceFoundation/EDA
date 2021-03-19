@@ -37,6 +37,38 @@
                         </div>
                     </div>
                 </template>
+
+                <template if:true={preferredContactInfoSettingsVModel}>
+                    <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                        <!-- Require Preferred Email  Setting -->
+                        <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                            <div class="slds-p-left_small slds-text-title_bold">
+                                {labelReference.requirePreferredEmailTitle}
+                            </div>
+                            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                                {labelReference.requirePreferredEmailDescription}
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-3">
+                            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+                                <lightning-input
+                                    type="toggle"
+                                    label=""
+                                    id={inputAttributeReference.requirePreferredEmailToggleId}
+                                    name={preferredContactInfoSettingsVModel.requirePreferredEmail}
+                                    message-toggle-active=""
+                                    message-toggle-inactive=""
+                                    onchange={handleRequirePreferredEmailChange}
+                                    aria-describedby={inputAttributeReference.requirePreferredEmailToggleId}
+                                    disabled={affordancesDisabled}
+                                    checked={preferredContactInfoSettingsVModel.requirePreferredEmail}
+                                    data-qa-locator={inputAttributeReference.requirePreferredEmailToggleId}
+                                ></lightning-input>
+                            </div>
+                        </div>
+                    </div>
+                </template>
             </c-settings-save-canvas>
         </div>
     </div>
