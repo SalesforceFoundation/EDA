@@ -18,14 +18,5 @@ Verify course connections health check when course connections is disabled
     Update enable cc to default
     Go to settings health check
     Current page should be      Home        Settings Health Check
-    Run course connections health check settings to check warning message
-
-*** Keywords ***
-Run course connections health check settings to check warning message
-    [Documentation]             Validates the course connections health check settings row by row
-    Click health check button       Run Health Check
-    ${all_checks_status} =      Return all checks status        Course Connections       All checks passed
-    Log To Console              ${all_checks_status}
-    Run Keyword If              '${all_checks_status}' == 'True'  Click expand button   courseconnection
-    Verify status of a setting     courseconnectionsettingsResults
-    ...                     Enable Course Connections=Warning
+    Run health check settings   Course Connections  courseconnection   courseconnectionsettingsResults
+    ...                         Enable Course Connections=Warning
