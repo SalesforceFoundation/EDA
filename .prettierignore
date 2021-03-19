@@ -7,6 +7,9 @@ yarn.lock
 .vscode
 venv
 
+# Robot
+robot
+
 # README.md contains prettier-ignore examples
 README.md
 
@@ -14,7 +17,6 @@ README.md
 .gitignore
 .prettierignore
 .eslintignore
-cumulusci.yml
 
 # Images
 *.png
