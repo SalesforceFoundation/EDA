@@ -57,8 +57,8 @@
                                     label=""
                                     id={inputAttributeReference.requirePreferredEmailToggleId}
                                     name={preferredContactInfoSettingsVModel.requirePreferredEmail}
-                                    message-toggle-active=""
-                                    message-toggle-inactive=""
+                                    message-toggle-active={labelReference.enabledText}
+                                    message-toggle-inactive={labelReference.disabledText}
                                     onchange={handleRequirePreferredEmailChange}
                                     aria-describedby={inputAttributeReference.requirePreferredEmailToggleId}
                                     disabled={affordancesDisabled}
@@ -66,6 +66,88 @@
                                     data-qa-locator={inputAttributeReference.requirePreferredEmailToggleId}
                                 ></lightning-input>
                             </div>
+                        </div>
+
+                        <!-- Enhanced Phone Functionality  Setting -->
+                        <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                            <div class="slds-p-left_small slds-text-title_bold">
+                                {labelReference.enhancedPhoneFunctionalityTitle}
+                            </div>
+                            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                                {labelReference.enhancedPhoneFunctionalityDescription}
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-3">
+                            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+                                <lightning-input
+                                    type="toggle"
+                                    label=""
+                                    id={inputAttributeReference.enhancedPhoneFunctionalityToggleId}
+                                    name={preferredContactInfoSettingsVModel.enhancedPhoneFunctionality}
+                                    message-toggle-active={labelReference.enabledText}
+                                    message-toggle-inactive={labelReference.disabledText}
+                                    onchange={handleEnhancedPhoneFunctionalityChange}
+                                    aria-describedby={inputAttributeReference.enhancedPhoneFunctionalityToggleId}
+                                    disabled={affordancesDisabled}
+                                    checked={preferredContactInfoSettingsVModel.enhancedPhoneFunctionality}
+                                    data-qa-locator={inputAttributeReference.enhancedPhoneFunctionalityToggleId}
+                                ></lightning-input>
+                            </div>
+                        </div>
+
+                        <!-- Preferred Phone Enforcement Setting -->
+                        <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                            <div class="slds-p-left_small slds-text-title_bold">
+                                {labelReference.preferredPhoneEnforcementTitle}
+                            </div>
+                            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                                {labelReference.preferredPhoneEnforcementDescription}
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-3">
+                            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+                                <lightning-input
+                                    type="toggle"
+                                    label=""
+                                    id={inputAttributeReference.preferredPhoneEnforcementToggleId}
+                                    name={preferredContactInfoSettingsVModel.preferredPhoneEnforcement}
+                                    message-toggle-active={labelReference.enabledText}
+                                    message-toggle-inactive={labelReference.disabledText}
+                                    onchange={handlePreferredPhoneEnforcementChange}
+                                    aria-describedby={inputAttributeReference.preferredPhoneEnforcementToggleId}
+                                    disabled={affordancesDisabled}
+                                    checked={preferredContactInfoSettingsVModel.preferredPhoneEnforcement}
+                                    data-qa-locator={inputAttributeReference.preferredPhoneEnforcementToggleId}
+                                ></lightning-input>
+                            </div>
+                        </div>
+
+                        <!-- Default Preferred Phone Setting -->
+                        <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                            <div class="slds-p-left_small slds-text-title_bold">
+                                {labelReference.defaultPreferredPhoneTitle}
+                            </div>
+                            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                                {labelReference.defaultPreferredPhoneDescription}
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_x-large">
+                            <lightning-combobox
+                                id={inputAttributeReference.defaultPreferredPhoneComboboxId}
+                                aria-labelledby={inputAttributeReference.defaultPreferredPhoneComboboxId}
+                                name={inputAttributeReference.defaultPreferredPhoneComboboxId}
+                                label={labelReference.defaultPreferredPhoneTitle}
+                                value={preferredContactInfoSettingsVModel.defaultPreferredPhone.value}
+                                placeholder={labelReference.comboboxPlaceholderText}
+                                options={preferredContactInfoSettingsVModel.defaultPreferredPhone.options}
+                                onchange={handleDefaultPreferredPhoneChange}
+                                disabled={affordancesDisabled}
+                                variant="label-hidden"
+                                data-qa-locator={inputAttributeReference.defaultPreferredPhoneComboboxId}
+                            ></lightning-combobox>
                         </div>
                     </div>
                 </template>

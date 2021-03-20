@@ -38,7 +38,6 @@ public with sharing class HierarchySettingsChangesController {
      **********************************************************************************/
     @AuraEnabled
     public static Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
-        System.debug('Updating hierarchy settings...' + hierarchySettingsChangesVModel);
         return HierarchySettingsChangesController.locateHierarchySettingsUpdaterService()
             .updateHierarchySettings(hierarchySettingsChangesVModel);
     }

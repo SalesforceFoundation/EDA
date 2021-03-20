@@ -110,8 +110,8 @@ public virtual with sharing class ContactInformationSettingsVMapper {
 
         List<ComboboxValueVModel> preferredPhoneComboboxValueVModelsList = new List<ComboboxValueVModel>();
 
-        // add --None-- option
-        preferredPhoneComboboxValueVModelsList.add(new ComboboxValueVModel(label.NoneOption, ''));
+        // add --None-- option, maps to a blank value in hierarchy settings field
+        preferredPhoneComboboxValueVModelsList.add(new ComboboxValueVModel(label.NoneOption, '""'));
 
         for (SObjectFieldModel phoneSObjectFieldModel : phoneTypeSObjectFieldModelsByFieldName.values()) {
             preferredPhoneComboboxValueVModelsList.add(

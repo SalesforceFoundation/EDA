@@ -35,15 +35,18 @@ export default class ContactInformationSettings extends LightningElement {
         enhancedPhoneFunctionalityTitle: stgEnablePreferredPhoneSync,
         enhancedPhoneFunctionalityDescription: stgHelpContactPreferredPhoneSync,
         preferredPhoneEnforcementTitle: stgDisablePreferredPhoneEnforcement,
-        enhancedPhoneFunctionalityDescritpion: stgHelpContactPreferredPhone,
+        preferredPhoneEnforcementDescription: stgHelpContactPreferredPhone,
         defaultPreferredPhoneTitle: stgPreferredPhoneDefault,
         defaultPreferredPhoneDescription: stgPreferredPhoneSelectionDesc,
+        enabledText: "Enabled",
+        disabledText: "Disabled",
     };
 
     inputAttributeReference = {
         defaultContactLanugageFluencyComboboxId: "defaultContactLanguageFluency",
         requirePreferredEmailToggleId: "requirePreferredEmail",
-        enhancedPreferredPhoneToggleId: "enhancedPreferredPhone",
+        enhancedPhoneFunctionalityToggleId: "enhancedPhoneFunctionality",
+        preferredPhoneEnforcementToggleId: "preferredPhoneEnforcement",
         defaultPreferredPhoneComboboxId: "defaultPreferredPhone",
     };
 
@@ -135,10 +138,17 @@ export default class ContactInformationSettings extends LightningElement {
     }
 
     handleDefaultPreferredPhoneChange(event) {
+        var defaultPreferredPhoneValue = event.detail.value;
+
+        if (event.detail.value === '""') {
+            // set Hierarchy Settings field to a blank value (not "")
+            defaultPreferredPhoneValue = "";
+        }
+
         let hierarchySettingsChange = {
             settingsType: "string",
             settingsName: "Preferred_Phone_Selection__c",
-            settingsValue: event.detail.value,
+            settingsValue: defaultPreferredPhoneValue,
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
