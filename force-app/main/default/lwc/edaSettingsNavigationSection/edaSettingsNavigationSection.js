@@ -3,6 +3,14 @@ import { LightningElement, api } from "lwc";
 export default class EdaSettingsNavigationSection extends LightningElement {
     @api viewModel;
 
+    get ariaCurrent() {
+        if (!this.viewModel.isActive) {
+            return undefined;
+        }
+
+        return "page";
+    }
+
     get qaLocator() {
         return "edaSettingsNav" + this.viewModel.id;
     }
