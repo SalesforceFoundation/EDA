@@ -125,7 +125,6 @@ public virtual with sharing class HierarchySettingsService {
             throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
         } catch (System.TypeException e) {
             UTIL_Debug.debug('****TypeException encountered: ' + e.getMessage());
-            System.debug('****TypeException encountered: ' + e.getMessage());
             throw new InvalidSettingsException(Label.stgErrorInvalidSettings);
         } catch (Exception e) {
             UTIL_Debug.debug('****Unexpected Exception encountered: ' + e.getMessage());
