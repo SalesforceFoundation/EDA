@@ -35,7 +35,7 @@ export default class SettingsSaveCanvas extends LightningElement {
     handleHierarchySettingsChange(hierarchySettingsChange) {
         if (hierarchySettingsChange.settingsType === "string") {
             this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
-                hierarchySettingsChange.settingsValue; // hierarchy settingsName is prefixed with hed__ in namespaced context...how to handle this?
+                hierarchySettingsChange.settingsValue;
         }
         if (hierarchySettingsChange.settingsType === "array") {
             this.hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
