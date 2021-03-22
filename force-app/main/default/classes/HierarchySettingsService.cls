@@ -70,22 +70,15 @@ public virtual with sharing class HierarchySettingsService {
         HierarchySettingsModel hierarchySettingsModelToUpdate = this.locateHierarchySettingsMapper()
             .getHierarchySettings();
 
-        if (String.isNotBlank(UTIL_Namespace.getNamespace())) {
-            // replace hierarchy settings field names with prefixed version when in managed context
-            hierarchySettingsChangesVModel = this.addNamespacePrefixToHierarchySettingsChangesFields(
-                hierarchySettingsChangesVModel
-            );
-        }
-
         try {
             // Update Hierarchy Settings fields with single values
             for (
                 String changedSettingName : hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.keySet()
             ) {
-                //changedSettingName = UTIL_Namespace.StrTokenNSPrefix(changedSettingName);
+                String settingsField = UTIL_Namespace.StrTokenNSPrefix(changedSettingName);
 
                 Schema.DescribeFieldResult fieldDescribeResult = this.locateHierarchySettingsMapper()
-                    .getHierarchySettingsField(changedSettingName);
+                    .getHierarchySettingsField(settingsField);
                 Schema.DisplayType displayType = fieldDescribeResult.getType();
 
                 if (displayType == Schema.DisplayType.STRING) {
