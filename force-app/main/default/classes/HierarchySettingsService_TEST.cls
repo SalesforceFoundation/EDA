@@ -421,7 +421,10 @@ public with sharing class HierarchySettingsService_TEST {
         );
 
         Map<String, List<String>> listValueSettingUpdatesByName = new Map<String, List<String>>{
-            'Accounts_to_Delete__c' => new List<String>{ 'Updated Value 1', 'Updated Value 2' }
+            UTIL_Namespace.StrTokenNSPrefix('Accounts_to_Delete__c') => new List<String>{
+                'Updated Value 1',
+                'Updated Value 2'
+            }
         };
 
         HierarchySettingsChangesVModel hierarchySettingsChangesVModelListValues = new HierarchySettingsChangesVModel(
