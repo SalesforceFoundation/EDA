@@ -21,9 +21,9 @@ export default class ContactInformationSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
-    @track showPreferredPhoneEnforcement = false;
     @track contactLanguageSettingsVModel;
     @track preferredContactInfoSettingsVModel;
+    @track showPreferredPhoneEnforcement;
 
     labelReference = {
         contactInformationSettingsTitle: stgContactInformationSettingsTitle,
@@ -38,8 +38,8 @@ export default class ContactInformationSettings extends LightningElement {
         preferredPhoneEnforcementDescription: stgHelpContactPreferredPhone,
         defaultPreferredPhoneTitle: stgPreferredPhoneDefault,
         defaultPreferredPhoneDescription: stgPreferredPhoneSelectionDesc,
-        enabledText: "Enabled",
-        disabledText: "Disabled",
+        enabledText: "Active",
+        disabledText: "Inactive",
     };
 
     inputAttributeReference = {
@@ -70,6 +70,9 @@ export default class ContactInformationSettings extends LightningElement {
     preferredContactInfoSettingsVModel({ error, data }) {
         if (data) {
             this.preferredContactInfoSettingsVModel = data;
+
+            // preferred phone visibility dependent on enhanced phone functionality setting
+            this.showPreferredPhoneEnforcement = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
         } else if (error) {
             console.log("error retrieving preferredContactInfoSettingsVModel");
         }
