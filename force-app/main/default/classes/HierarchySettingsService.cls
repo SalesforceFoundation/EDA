@@ -127,44 +127,6 @@ public virtual with sharing class HierarchySettingsService {
         return this.locateHierarchySettingsMapper().updateHierarchySettings(hierarchySettingsModelToUpdate);
     }
 
-    /******************************************************************************************************************************
-     * @description Append the hed__ prefix to all hierarchy settings field names specified in the settingsSingleValueBySettingsName
-     * and settingsListSettingsName of a HierarchySettingsChangesVModel when handled in a managed context.
-     * @param  hierarchySettingsChangesVModelToNamespace A HierarchySettingsChangesVModel with fields requiring a namespace prefix
-     * @return A HierarchySettingsChangesVModel
-     ******************************************************************************************************************************/
-    private HierarchySettingsChangesVModel addNamespacePrefixToHierarchySettingsChangesFields(
-        HierarchySettingsChangesVModel hierarchySettingsChangesVModelToNamespace
-    ) {
-        for (
-            String hierarchySettingFieldName : hierarchySettingsChangesVModelToNamespace.settingsSingleValueBySettingsName.keySet()
-        ) {
-            hierarchySettingsChangesVModelToNamespace.settingsSingleValueBySettingsName.put(
-                UTIL_Namespace.StrTokenNSPrefix(hierarchySettingFieldName),
-                hierarchySettingsChangesVModelToNamespace.settingsSingleValueBySettingsName.get(
-                    hierarchySettingFieldName
-                )
-            );
-
-            hierarchySettingsChangesVModelToNamespace.settingsSingleValueBySettingsName.remove(
-                hierarchySettingFieldName
-            );
-        }
-
-        for (
-            String hierarchySettingFieldName : hierarchySettingsChangesVModelToNamespace.settingsListSettingsName.keySet()
-        ) {
-            hierarchySettingsChangesVModelToNamespace.settingsListSettingsName.put(
-                UTIL_Namespace.StrTokenNSPrefix(hierarchySettingFieldName),
-                hierarchySettingsChangesVModelToNamespace.settingsListSettingsName.get(hierarchySettingFieldName)
-            );
-
-            hierarchySettingsChangesVModelToNamespace.settingsListSettingsName.remove(hierarchySettingFieldName);
-        }
-
-        return hierarchySettingsChangesVModelToNamespace;
-    }
-
     /******************************************************************************************************
      * @description Converts a List of Strings to a semicolon-delimited string.
      * @param  collectionTypeHierarchySettingsUpdateList List<String> to convert
