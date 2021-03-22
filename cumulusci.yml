@@ -540,11 +540,6 @@ flows:
                     - when: "not tasks.check_translation_workbench_enabled()"
                       action: hide
 
-    qa_org_2gp:
-        steps:
-            2:
-                flow: config_2gp
-
     run_unmanaged_unit_tests:
         # description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
