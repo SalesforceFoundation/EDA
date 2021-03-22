@@ -20,8 +20,8 @@ import stgPreferredPhoneSelectionDesc from "@salesforce/label/c.stgPreferredPhon
 export default class ContactInformationSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
-    showPreferredPhoneEnforcement = false; //?
 
+    @track showPreferredPhoneEnforcement = false;
     @track contactLanguageSettingsVModel;
     @track preferredContactInfoSettingsVModel;
 
@@ -118,6 +118,9 @@ export default class ContactInformationSettings extends LightningElement {
     }
 
     handleEnhancedPhoneFunctionalityChange(event) {
+        // display preferred phone setting if enhanced phone functionality selected
+        this.showPreferredPhoneEnforcement = event.target.checked;
+
         let hierarchySettingsChange = {
             settingsType: "boolean",
             settingsName: "Enable_New_Preferred_Phone_Sync__c",
