@@ -65,7 +65,7 @@ public virtual with sharing class SObjectFieldMapper {
      * @param  fieldType A String representing the field type to find
      * @return A Map<String, SObjectFieldModel>
      ****************************************************************************************************************/
-    public Map<String, SObjectFieldModel> getModelsByTypeForSObject(SObjectType sObjectType, String fieldType) {
+    public virtual Map<String, SObjectFieldModel> getModelsByTypeForSObject(SObjectType sObjectType, String fieldType) {
         Map<String, SObjectFieldModel> sObjectFieldModelsByType = new Map<String, SObjectFieldModel>();
 
         Map<String, Schema.DescribeFieldResult> fieldDescribeResultsOfTypeByFieldName = UTIL_Describe.getFieldsOfType(
