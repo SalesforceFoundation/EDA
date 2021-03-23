@@ -46,7 +46,7 @@ private class REL_Relationships_Con_PTST {
     *********************************************************************************************************/
     @isTest
     private static void insertContactWithMultipleAutoCreateMappingsAllPopulated(){
-        REL_Relationships_Con_AfterInsert_MTST.setupMultipleAutoCreateRelationships();
+        REL_Relationships_Con_PTST.setupMultipleAutoCreateRelationships();
 
         Contact relatedContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
         relatedContact.FirstName = 'Test';
@@ -126,7 +126,7 @@ private class REL_Relationships_Con_PTST {
     @isTest
     private static void insertContactWithMultipleAutoCreateMappingsSomePopulated(){
 
-        REL_Relationships_Con_AfterInsert_MTST.setupMultipleAutoCreateRelationships();
+        REL_Relationships_Con_PTST.setupMultipleAutoCreateRelationships();
 
         Contact employerContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
         employerContact.FirstName = 'Test';
@@ -191,7 +191,7 @@ private class REL_Relationships_Con_PTST {
     @isTest
     private static void insertContactWithMultipleAutoCreateMappingsNonePopulated(){
 
-        REL_Relationships_Con_AfterInsert_MTST.setupMultipleAutoCreateRelationships();
+        REL_Relationships_Con_PTST.setupMultipleAutoCreateRelationships();
 
         List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(loopCount);
         for (Integer i = 0; i < contactsList.size(); i++){
