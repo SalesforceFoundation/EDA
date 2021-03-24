@@ -1,0 +1,6 @@
+<aura:component>
+    <aura:handler name="primaryAffiliationsSave" event="c:primaryAffiliationsSave" action="{!c.handleSaveEvent}" />
+
+    <aura:method name="handleShowModal" action="{!c.handleShowModal}" description="Shows the modal" />
+    <lightning:overlayLibrary aura:id="primaryAffiliationsOverlayLibrary" />
+</aura:component>

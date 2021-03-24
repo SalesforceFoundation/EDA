@@ -1,0 +1,9 @@
+<aura:component>
+    <lightning:overlayLibrary aura:id="primaryAffiliationsOverlayLibrary" />
+    <aura:attribute name="toggle" type="Boolean" default="false" />
+    <aura:attribute name="primaryAffiliationsModalSave" type="Object" />
+
+    <lightning:button label="Toggle" onclick="{!c.handleToggle}"></lightning:button>
+    <lightning:button label="Cancel" onclick="{!c.handleCancel}"></lightning:button>
+    <lightning:button label="Save" onclick="{!c.handleSave}"></lightning:button>
+</aura:component>
