@@ -172,6 +172,13 @@ tasks:
         options:
             command: "force:user:permset:assign -n Encryption"
 
+    cancel_eda_scheduled_jobs:
+        description: Unscheduleds EDA Apex jobs
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            path: scripts/schedule.cls
+            apex: cancelScheduledJobs();
+
     check_translation_workbench_enabled:
         group: "EDA: Metadata"
         description: Detects whether or not translation workbench is enabled
@@ -377,15 +384,13 @@ flows:
                 task: execute_install_apex
                 when: "'hed' not in org_config.installed_packages"
             5:
-                task: deploy_dev_config
+                task: cancel_eda_scheduled_jobs
             6:
-                flow: eda_settings
+                task: deploy_dev_config
             7:
-                task: deploy_Summer_21QA
+                flow: eda_settings
             8:
-                flow: run_unmanaged_unit_tests
-            9:
-                flow: eda_settings_unmanaged
+                task: deploy_Summer_21QA
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -495,8 +500,6 @@ flows:
                 task: execute_automatic_household_naming
             5:
                 task: execute_enable_course_connections
-                options:
-                    namespaced: True
 
     eda_settings_unmanaged:
         description: Enables various settings in an unmanaged context on the EDA Settings tab.
@@ -532,11 +535,6 @@ flows:
                 checks:
                     - when: "not tasks.check_translation_workbench_enabled()"
                       action: hide
-
-    qa_org_2gp:
-        steps:
-            2:
-                flow: config_2gp
 
     run_unmanaged_unit_tests:
         # description: Configure an org for use as a dev org after package metadata is deployed.
