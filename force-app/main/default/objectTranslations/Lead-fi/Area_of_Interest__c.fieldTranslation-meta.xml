@@ -2,7 +2,7 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <help><!-- The Lead&apos;s area of interest, such as a program, degree, or concentration. --></help>
     <label><!-- Area of Interest --></label>
-    <name>Area_of_Interest__c</name>
+    <name>Area_Of_Interest__c</name>
     <picklistValues>
         <masterLabel>None</masterLabel>
         <translation><!-- None --></translation>
