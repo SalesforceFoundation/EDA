@@ -21,7 +21,10 @@ export default class ContactInformationSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
+    @track contactLanguageSettingsWireResult;
     @track contactLanguageSettingsVModel;
+
+    @track preferredContactInfoSettingsWireResult;
     @track preferredContactInfoSettingsVModel;
     @track showPreferredPhoneEnforcement;
 
@@ -58,22 +61,28 @@ export default class ContactInformationSettings extends LightningElement {
     }
 
     @wire(getContactLanguageSettingsVModel)
-    contactLanguageSettingsVModel({ error, data }) {
-        if (data) {
-            this.contactLanguageSettingsVModel = data;
-        } else if (error) {
+    contactLanguageSettingsVModelWire(result) {
+        this.contactLanguageSettingsWireResult = result;
+
+        if (result.data) {
+            this.contactLanguageSettingsVModel = JSON.parse(JSON.stringify(result.data));
+
+            console.log("contactLanguageSettingsVModel BEFORE: " + JSON.stringify(this.contactLanguageSettingsVModel));
+        } else if (result.error) {
             //console.log("error retrieving contactLanguageSettingsVModel");
         }
     }
 
     @wire(getPreferredContactInfoSettingsVModel)
-    preferredContactInfoSettingsVModel({ error, data }) {
-        if (data) {
-            this.preferredContactInfoSettingsVModel = data;
+    preferredContactInfoSettingsVModelWire(result) {
+        this.preferredContactInfoSettingsWireResult = result;
+
+        if (result.data) {
+            this.preferredContactInfoSettingsVModel = result.data;
 
             // preferred phone visibility dependent on enhanced phone functionality setting
             this.showPreferredPhoneEnforcement = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
-        } else if (error) {
+        } else if (result.error) {
             console.log("error retrieving preferredContactInfoSettingsVModel");
         }
     }
@@ -82,7 +91,7 @@ export default class ContactInformationSettings extends LightningElement {
         this.isEditMode = !event.detail;
         this.affordancesDisabledToggle = event.detail;
 
-        this.refreshAllApex();
+        //this.refreshAllApex();
     }
 
     handleSettingsSaving(event) {
@@ -96,8 +105,13 @@ export default class ContactInformationSettings extends LightningElement {
         this.template.querySelector("c-settings-save-canvas").updateHierarchySettings();
     }
 
+    handleSettingsSaveCancel(event) {
+        this.refreshAllApex();
+    }
+
     handleSettingsSaveCompleted(event) {
         this.affordancesDisabledToggle = false;
+        this.refreshAllApex();
     }
 
     handleDefaultContactLanguageFluencyChange(event) {
@@ -161,7 +175,38 @@ export default class ContactInformationSettings extends LightningElement {
     }
 
     refreshAllApex() {
-        refreshApex(this.contactLanguageSettingsVModel);
-        refreshApex(this.preferredContactInfoSettingsVModel);
+        refreshApex(this.contactLanguageSettingsWireResult).then(() => {
+            this.template.querySelectorAll("lightning-combobox").forEach((combobox) => {
+                if (
+                    combobox.dataset["qaLocator"] ===
+                    this.inputAttributeReference.defaultContactLanugageFluencyComboboxId
+                ) {
+                    combobox.value = this.contactLanguageSettingsVModel.defaultContactLanguageFluency.value;
+                }
+            });
+        });
+
+        refreshApex(this.preferredContactInfoSettingsWireResult).then(() => {
+            // this.template.querySelectorAll("lightning-combobox").forEach((combobox) => {
+            //     if (combobox.dataset["qaLocator"] === this.inputAttributeReference.defaultPreferredPhoneComboboxId) {
+            //         combobox.value = this.contactLanguageSettingsVModel.defaultPreferredPhone.value;
+            //     }
+            // });
+
+            console.log("toggles..");
+            this.template.querySelectorAll("lightning-input").forEach((toggle) => {
+                if (toggle.dataset["qaLocator"] === this.inputAttributeReference.requirePreferredEmailToggleId) {
+                    toggle.checked = this.contactLanguageSettingsVModel.requirePreferredEmail;
+                }
+
+                if (toggle.dataset["qaLocator"] === this.inputAttributeReference.enhancedPhoneFunctionalityToggleId) {
+                    toggle.checked = this.contactLanguageSettingsVModel.enhancedPhoneFunctionality;
+                }
+
+                if (toggle.dataset["qaLocator"] === this.inputAttributeReference.preferredPhoneEnforcementToggleId) {
+                    toggle.checked = this.contactLanguageSettingsVModel.preferredPhoneEnforcement;
+                }
+            });
+        });
     }
 }
