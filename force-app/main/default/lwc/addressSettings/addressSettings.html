@@ -40,6 +40,7 @@
                         </div>
 
                         <!-- Account Record Types with Multi Address Enabled Setting -->
+                        <!--
                         <div class="slds-col slds-size_2-of-3 slds-p-bottom_small">
                             <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
                                 {labelReference.stgAccountTypesMultiAddressesEnabled}
@@ -63,7 +64,7 @@
                                 data-qa-locator={inputAttributeReference.accountRecTypesDualListboxId}
                             ></lightning-dual-listbox>
                         </div>
-
+                        -->
                         <c-settings-row-dual-listbox
                             title={labelReference.stgAccountTypesMultiAddressesEnabled}
                             description={labelReference.stgHelpAddressAccRecType}
@@ -74,7 +75,7 @@
                             selected-label={labelReference.stgAccountRecordTypeSelectedListTitle}
                             options={addressSettingsViewModel.accountRecordTypesWithAddressesEnabled.options}
                             value={addressSettingsViewModel.accountRecordTypesWithAddressesEnabled.value}
-                            onchange={handleAccountRecordTypesChange}
+                            onsettingsduallistboxchange={handleAccountRecordTypesChange}
                             disbaled={affordancesDisabled}
                             data-qa-locator={inputAttributeReference.accountRecTypesDualListboxId}
                         ></c-settings-row-dual-listbox>
