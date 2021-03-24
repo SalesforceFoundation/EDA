@@ -165,8 +165,15 @@ tasks:
         options:
             command: "force:user:permset:assign -n Encryption"
 
+    cancel_eda_scheduled_jobs:
+        description: Unscheduleds EDA Apex jobs
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            path: scripts/schedule.cls
+            apex: cancelScheduledJobs();
+
     check_translation_workbench_enabled:
-        group: "EDA Metadata"
+        group: "EDA: Metadata"
         description: Detects whether or not translation workbench is enabled
         class_path: cumulusci.tasks.preflight.settings.CheckSettingsValue
         options:
@@ -371,10 +378,12 @@ flows:
             3:
                 task: execute_install_apex
             4:
-                task: deploy_dev_config
+                task: cancel_eda_scheduled_jobs
             5:
-                flow: run_unmanaged_unit_tests
+                task: deploy_dev_config
             6:
+                flow: run_unmanaged_unit_tests
+            7:
                 flow: eda_settings_unmanaged
 
     config_dev_namespaced:
@@ -530,11 +539,6 @@ flows:
                 checks:
                     - when: "not tasks.check_translation_workbench_enabled()"
                       action: hide
-
-    qa_org_2gp:
-        steps:
-            2:
-                flow: config_2gp
 
     run_unmanaged_unit_tests:
         # description: Configure an org for use as a dev org after package metadata is deployed.
