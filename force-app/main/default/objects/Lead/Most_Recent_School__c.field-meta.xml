@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Most_Recent_School__c</fullName>
+    <description>The school the Lead is currently attending or has most recently attended.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The school the Lead is currently attending or has most recently attended.</inlineHelpText>
+    <label>Most Recent School</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
