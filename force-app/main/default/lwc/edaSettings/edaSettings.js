@@ -23,6 +23,7 @@ export default class EDASettings extends LightningElement {
 
     settingsPageToDisplay = {
         accountModelSettings: true,
+        addressSettings: true,
     };
 
     changePageToDisplay(pageName) {

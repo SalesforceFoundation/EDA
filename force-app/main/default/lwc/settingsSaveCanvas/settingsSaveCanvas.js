@@ -33,11 +33,16 @@ export default class SettingsSaveCanvas extends LightningElement {
     @api
     handleHierarchySettingsChange(hierarchySettingsChange) {
         if (hierarchySettingsChange.settingsType === "string") {
-            hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
+            this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
                 hierarchySettingsChange.settingsValue;
         }
         if (hierarchySettingsChange.settingsType === "array") {
-            hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
+            this.hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
+                hierarchySettingsChange.settingsValue;
+
+        }
+        if (hierarchySettingsChange.settingsType === "boolean") {
+            this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
                 hierarchySettingsChange.settingsValue;
         }
     }
