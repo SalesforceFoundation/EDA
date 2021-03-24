@@ -1070,7 +1070,7 @@ public class UTIL_Describe {
     /*******************************************************************************************************
     * @description Get a map of Schema.RecordTypeInfo by Record Type name 
     * @return A map of Schema.RecordTypeInfo by Record Type name
-    */
+    */ 
     public static Map<String, Schema.RecordTypeInfo> getRecordTypeInfoDevNameMap(String objectName) {
         if (recordTypeInfoByDeveloperName.get(objectName) == null) {
             populateRecordTypeInfoForSObject(objectName);
@@ -1083,7 +1083,7 @@ public class UTIL_Describe {
     * @param  fieldDescribe The Schema.DescribeFieldResult of a specified field
     * @param  sObjectType   The SObjectType for the lookup object
     * @return True if the specified field is a lookup to the specified SObjectType, false otherwise
-    *******************************************************************************************************/ 
+    */ 
     public static Boolean isLookupFieldTo(Schema.DescribeFieldResult fieldDescribe, SObjectType sObjectType) {
         Set<Schema.SObjectType> mappedLookupTypesSet = new Set<Schema.SObjectType>(fieldDescribe.getReferenceTo());
 

@@ -1,13 +1,17 @@
-import { LightningElement, api, wire } from "lwc";
+import { LightningElement, api, track, wire } from "lwc";
+
 import stgErrorInsufficientAccess from "@salesforce/label/c.stgErrorInsufficientAccess";
 import checkAccessForCurrentUser from "@salesforce/apex/EDASettingsController.checkAccessForCurrentUser";
-
 export default class EDASettings extends LightningElement {
     @api pageReference;
 
     labelReference = {
         settingsNavigation: "Navigation Pane Here",
         stgErrorInsufficientAccess,
+    };
+
+    @track settingsPageToDisplay = {
+        accountModelSettings: true,
     };
 
     currentUserHasAccess = false;
@@ -20,14 +24,17 @@ export default class EDASettings extends LightningElement {
         }
     }
 
-    settingsPageToDisplay = {
-        accountModelSettings: true,
-    };
+    handleSettingsNavigation(event) {
+        this.changePageToDisplay(event.detail.pageName);
+        event.stopPropagation();
+    }
 
     changePageToDisplay(pageName) {
         let settingsPageDisplay = {};
-        settingsPageDisplay[pageName.toLowerCase()] = true;
+        settingsPageDisplay[pageName] = true;
 
-        settingsPageToDisplay = settingsPageDisplay;
+        this.settingsPageToDisplay = settingsPageDisplay;
+
+        this.template.querySelector("c-eda-settings-navigation").setActivePage(pageName);
     }
 }
