@@ -12,10 +12,6 @@
     </types>
     <types>
         <members>*</members>
-        <name>CustomFields</name>
-    </types>
-    <types>
-        <members>*</members>
         <name>CustomTab</name>
     </types>
     <types>
