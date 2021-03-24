@@ -121,4 +121,26 @@ private with sharing class SObjectFieldMapper_TEST {
             'Fields of type phone should not exist for Affiliation object.'
         );
     }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getModelsByTypeForSObject method returns an emtpy map when an invalid
+     * field type is specified for an SObject.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getModelsByTypeForSObjectInvalidType() {
+        SObjectFieldMapper sObjectFieldMapperInstance = SObjectFieldMapper.getInstance();
+
+        Test.startTest();
+        Map<String, SObjectFieldModel> sObjectFieldModelsByTypeForSObject = sObjectFieldMapperInstance.getModelsByTypeForSObject(
+            Affiliation__c.SObjectType,
+            'INVALID FIELD TYPE'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            0,
+            sObjectFieldModelsByTypeForSObject.keySet().size(),
+            'Empty map should be returned when an invalid field type is specified.'
+        );
+    }
 }
