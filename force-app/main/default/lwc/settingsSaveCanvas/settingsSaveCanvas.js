@@ -66,8 +66,6 @@ export default class SettingsSaveCanvas extends LightningElement {
 
                     this.dispatchSettingsSaveCompletedEvent();
                 }
-
-                console.log("error updating?: ");
             })
             .catch((error) => {
                 // affordances are re-enabled
