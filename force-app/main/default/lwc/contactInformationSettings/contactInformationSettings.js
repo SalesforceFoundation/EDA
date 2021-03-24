@@ -187,25 +187,26 @@ export default class ContactInformationSettings extends LightningElement {
         });
 
         refreshApex(this.preferredContactInfoSettingsWireResult).then(() => {
-            // this.template.querySelectorAll("lightning-combobox").forEach((combobox) => {
-            //     if (combobox.dataset["qaLocator"] === this.inputAttributeReference.defaultPreferredPhoneComboboxId) {
-            //         combobox.value = this.contactLanguageSettingsVModel.defaultPreferredPhone.value;
-            //     }
-            // });
+            this.template.querySelectorAll("lightning-combobox").forEach((combobox) => {
+                if (combobox.dataset["qaLocator"] === this.inputAttributeReference.defaultPreferredPhoneComboboxId) {
+                    combobox.value = this.preferredContactInfoSettingsVModel.defaultPreferredPhone.value;
+                }
+            });
 
-            console.log("toggles..");
             this.template.querySelectorAll("lightning-input").forEach((toggle) => {
                 if (toggle.dataset["qaLocator"] === this.inputAttributeReference.requirePreferredEmailToggleId) {
-                    toggle.checked = this.contactLanguageSettingsVModel.requirePreferredEmail;
+                    toggle.checked = this.preferredContactInfoSettingsVModel.requirePreferredEmail;
                 }
 
                 if (toggle.dataset["qaLocator"] === this.inputAttributeReference.enhancedPhoneFunctionalityToggleId) {
-                    toggle.checked = this.contactLanguageSettingsVModel.enhancedPhoneFunctionality;
+                    toggle.checked = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
                 }
 
                 if (toggle.dataset["qaLocator"] === this.inputAttributeReference.preferredPhoneEnforcementToggleId) {
-                    toggle.checked = this.contactLanguageSettingsVModel.preferredPhoneEnforcement;
+                    toggle.checked = this.preferredContactInfoSettingsVModel.preferredPhoneEnforcement;
                 }
+
+                this.showPreferredPhoneEnforcement = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
             });
         });
     }
