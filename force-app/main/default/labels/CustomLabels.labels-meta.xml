@@ -1083,7 +1083,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for the Contact Language Fluency setting</shortDescription>
+        <shortDescription>Label for the Contact Language Fluency setting</shortDescription>
         <value>Contact Language Fluency</value>
     </labels>
     <labels>
