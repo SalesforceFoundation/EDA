@@ -5,18 +5,36 @@
     </div>
 
     <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_x-large">
-        <lightning-combobox
-            id={inputId}
-            aria-labelledby={inputId}
-            name={inputId}
-            label={title}
-            value={value}
-            placeholder={placeholder}
-            options={options}
-            onchange={handleComboboxChange}
-            disabled={affordancesDisabled}
-            variant="label-hidden"
-            data-qa-locator={inputId}
-        ></lightning-combobox>
+        <template if:true={isCombobox}>
+            <lightning-combobox
+                id={inputId}
+                aria-labelledby={inputId}
+                name={inputId}
+                label={title}
+                value={value}
+                placeholder={placeholder}
+                options={options}
+                onchange={handleInputChange}
+                disabled={affordancesDisabled}
+                variant="label-hidden"
+                data-qa-locator={inputId}
+            ></lightning-combobox>
+        </template>
+        <template if:true={isInput}>
+            <lightning-input
+                type={type}
+                label={title}
+                id={inputId}
+                name={inputId}
+                message-toggle-active=""
+                message-toggle-inactive=""
+                onchange={handleInputChange}
+                aria-describedby={inputId}
+                disabled={affordancesDisabled}
+                checked={checked}
+                variant="label-hidden"
+                data-qa-locator={inputId}
+            ></lightning-input>
+        </template>
     </div>
 </template>

@@ -19,6 +19,7 @@ export default class addressSettings extends LightningElement {
     affordancesDisabledToggle = false;
 
     @track addressSettingsViewModel;
+    @track addressSettingsWireResult;
 
     labelReference = {
         stgAddressSettingsTitle: stgAddressSettingsTitle,
@@ -47,10 +48,11 @@ export default class addressSettings extends LightningElement {
     }
 
     @wire(getAddressSettingsVModel)
-    addressSettingsViewModel({ error, data }) {
-        if (data) {
-            this.addressSettingsViewModel = data;
-        } else if (error) {
+    addressSettingsViewModelWire(result) {
+        this.addressSettingsWireResult = result;
+        if (result.data) {
+            this.addressSettingsViewModel = result.data;
+        } else if (result.error) {
             //console.log("error retrieving accountmodelsettingsvmodel");
         }
     }
@@ -89,8 +91,6 @@ export default class addressSettings extends LightningElement {
     handleSettingsEditModeChange(event) {
         this.isEditMode = !event.detail;
         this.affordancesDisabledToggle = event.detail;
-
-        this.refreshAllApex();
     }
 
     handleSettingsSaving(event) {
@@ -106,9 +106,20 @@ export default class addressSettings extends LightningElement {
 
     handleSettingsSaveCompleted(event) {
         this.affordancesDisabledToggle = false;
+        this.refreshAllApex();
+    }
+
+    handleSettingsSaveCancel(event) {
+        console.log("111");
+        this.refreshAllApex();
     }
 
     refreshAllApex() {
-        refreshApex(this.addressSettingsViewModel);
+        console.log("Inisde refresh all apex");
+        refreshApex(this.addressSettingsWireResult).then(() => {
+            this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
+                dualListBox.resetValue();
+            });
+        });
     }
 }

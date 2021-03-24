@@ -5,6 +5,7 @@
                 component-title={labelReference.stgAddressSettingsTitle}
                 onsettingseditmodechange={handleSettingsEditModeChange}
                 onsettingssaving={handleSettingsSaving}
+                onsettingssavecancel={handleSettingsSaveCancel}
                 onsettingssavecompleted={handleSettingsSaveCompleted}
             >
                 <!-- Body of Account Model Settings page (populates Slot in child component) -->
@@ -66,21 +67,21 @@
                         </div>
                         -->
                         <c-settings-row-dual-listbox
+                            class="slds-size_3-of-3"
                             title={labelReference.stgAccountTypesMultiAddressesEnabled}
                             description={labelReference.stgHelpAddressAccRecType}
-                            id={inputAttributeReference.accountRecTypesDualListboxId}
-                            name={inputAttributeReference.accountRecTypesDualListboxId}
+                            dual-listbox-id={inputAttributeReference.accountRecTypesDualListboxId}
                             label={labelReference.stgAccountRecordTypeGroupLabelTitle}
                             source-label={labelReference.stgAccountRecordTypeAvailableListTitle}
                             selected-label={labelReference.stgAccountRecordTypeSelectedListTitle}
                             options={addressSettingsViewModel.accountRecordTypesWithAddressesEnabled.options}
                             value={addressSettingsViewModel.accountRecordTypesWithAddressesEnabled.value}
                             onsettingsduallistboxchange={handleAccountRecordTypesChange}
-                            disbaled={affordancesDisabled}
-                            data-qa-locator={inputAttributeReference.accountRecTypesDualListboxId}
+                            disabled={affordancesDisabled}
                         ></c-settings-row-dual-listbox>
 
                         <!-- Simple Address Change treated as update Setting -->
+                        <!--
                         <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
                             <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
                                 {labelReference.stgSimpleAddressChangeUpdate}
@@ -107,6 +108,17 @@
                                 ></lightning-input>
                             </div>
                         </div>
+                   -->
+                        <c-settings-row-input
+                            class="slds-size_3-of-3"
+                            title={labelReference.stgSimpleAddressChangeUpdate}
+                            description={labelReference.stgHelpSimpleAddrChangeIsUpdate}
+                            type="toggle"
+                            input-id={inputAttributeReference.simpleAddressChangeTreatedAsUpdateToggleId}
+                            value={addressSettingsViewModel.simpleAddressChangeTreatedAsUpdate}
+                            onsettingsinputchange={handleSimpleAddressUpdateChange}
+                            disabled={affordancesDisabled}
+                        ></c-settings-row-input>
                     </div>
                 </template>
             </c-settings-save-canvas>

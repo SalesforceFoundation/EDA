@@ -8,12 +8,40 @@ export default class SettingsRowInput extends LightningElement {
     @api placeholder;
     @api options;
     @api disabled;
+    @api type;
 
-    handleComboboxChange(event) {
+    handleInputChange(event) {
         const eventDetail = {
             value: event.detail.value,
         };
-        const settingsComboboxChange = new CustomEvent("settingscomboboxchange", { detail: eventDetail });
-        this.dispatchEvent(settingsComboboxChange);
+        const settingsInputChange = new CustomEvent("settingsinputchange", { detail: eventDetail });
+        this.dispatchEvent(settingsInputChange);
+    }
+
+    @api
+    resetValue() {
+        switch (this.type) {
+            case "toggle":
+                this.template.querySelector("lightning-input").checked = this.value;
+                break;
+            case "combobox":
+                this.template.querySelector("lightning-combobox").value = this.value;
+                break;
+        }
+    }
+
+    get checked() {
+        if (this.type === "toggle") {
+            return this.value;
+        }
+        return undefined;
+    }
+
+    get isCombobox() {
+        return this.type === "combobox";
+    }
+
+    get isInput() {
+        return this.type !== "combobox";
     }
 }
