@@ -379,13 +379,16 @@ flows:
                 task: deploy_install_emulator
                 when: "'hed' not in org_config.installed_packages"
             4:
-                task: cancel_eda_scheduled_jobs
+                task: execute_install_apex
+                when: "'hed' not in org_config.installed_packages"
             5:
-                task: deploy_dev_config
+                task: cancel_eda_scheduled_jobs
             6:
-                flow: run_unmanaged_unit_tests
+                task: deploy_dev_config
             7:
-                flow: eda_settings_unmanaged
+                flow: eda_settings
+            8:
+                task: deploy_Summer_21QA
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -495,8 +498,6 @@ flows:
                 task: execute_automatic_household_naming
             5:
                 task: execute_enable_course_connections
-                options:
-                    namespaced: True
 
     eda_settings_unmanaged:
         description: Enables various settings in an unmanaged context on the EDA Settings tab.
