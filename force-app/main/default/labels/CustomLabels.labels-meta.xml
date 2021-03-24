@@ -683,7 +683,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for the Accounts Without Contacts setting</shortDescription>
+        <shortDescription>Label for the Accounts Without Contacts setting</shortDescription>
         <value>Accounts Without Contacts</value>
     </labels>
     <labels>
