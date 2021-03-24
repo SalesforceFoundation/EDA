@@ -349,6 +349,10 @@
         <name>stgAddHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- Section title for Addresses --></label>
+        <name>stgAddressSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Voeg indien nodig &apos;Niet Spaans of Latino&apos; als keuzelijstwaarde toe aan het veld Etniciteit.</label>
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>

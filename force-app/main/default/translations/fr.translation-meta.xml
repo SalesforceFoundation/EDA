@@ -349,6 +349,10 @@
         <name>stgAddHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- Section title for Addresses --></label>
+        <name>stgAddressSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Si nécessaire, ajoutez « Non Hispanique ou Latino-Américain » en tant que valeur de liste de sélection dans le champ Appartenance ethnique.</label>
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>

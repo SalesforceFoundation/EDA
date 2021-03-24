@@ -349,6 +349,10 @@
         <name>stgAddHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- Section title for Addresses --></label>
+        <name>stgAddressSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>必要に応じて、「ヒスパニックまたはラテン系ではない」を選択リスト値として [民族] 項目に追加します。</label>
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
