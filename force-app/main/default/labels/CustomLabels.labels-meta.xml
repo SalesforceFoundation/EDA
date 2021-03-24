@@ -627,7 +627,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for the Account Model Settings setting</shortDescription>
+        <shortDescription>Label for the Account Model setting</shortDescription>
         <value>Default Account Model</value>
     </labels>
     <labels>
@@ -667,7 +667,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for the Household Account Record Type setting</shortDescription>
+        <shortDescription>Label for the Household Account Record Type setting</shortDescription>
         <value>Household Account Record Type</value>
     </labels>
     <labels>
