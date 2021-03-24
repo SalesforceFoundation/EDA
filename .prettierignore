@@ -6,6 +6,7 @@ yarn.lock
 .sfdx
 .vscode
 venv
+scripts
 
 # Robot
 robot
