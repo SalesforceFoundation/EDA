@@ -1,0 +1,21 @@
+<template>
+    <div class="slds-col slds-size_3-of-3 slds-p-bottom_x-large">
+        <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">{title}</div>
+        <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">{description}</div>
+    </div>
+
+    <div class="slds-col slds-size_1-of-1 slds-p-bottom_x-large slds-p-left_large">
+        <lightning-dual-listbox
+            id={dualListboxId}
+            name={dualListboxId}
+            label={label}
+            source-label={sourceLabel}
+            selected-label={selectedLabel}
+            options={options}
+            value={value}
+            onchange={handleDualListBoxChange}
+            disabled={disabled}
+            data-qa-locator={dualListboxId}
+        ></lightning-dual-listbox>
+    </div>
+</template>

@@ -1,0 +1,22 @@
+<template>
+    <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+        <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">{title}</div>
+        <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">{description}</div>
+    </div>
+
+    <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_x-large">
+        <lightning-combobox
+            id={inputId}
+            aria-labelledby={inputId}
+            name={inputId}
+            label={title}
+            value={value}
+            placeholder={placeholder}
+            options={options}
+            onchange={handleComboboxChange}
+            disabled={affordancesDisabled}
+            variant="label-hidden"
+            data-qa-locator={inputId}
+        ></lightning-combobox>
+    </div>
+</template>

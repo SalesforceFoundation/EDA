@@ -55,7 +55,7 @@
                             <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
                                 <lightning-input
                                     type="toggle"
-                                    label=""
+                                    label={labelReference.requirePreferredEmailTitle}
                                     id={inputAttributeReference.requirePreferredEmailToggleId}
                                     name={preferredContactInfoSettingsVModel.requirePreferredEmailToggleId}
                                     message-toggle-active=""
@@ -65,6 +65,7 @@
                                     disabled={affordancesDisabled}
                                     checked={preferredContactInfoSettingsVModel.requirePreferredEmail}
                                     data-qa-locator={inputAttributeReference.requirePreferredEmailToggleId}
+                                    variant="label-hidden"
                                 ></lightning-input>
                             </div>
                         </div>
@@ -83,7 +84,7 @@
                             <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
                                 <lightning-input
                                     type="toggle"
-                                    label=""
+                                    label={labelReference.enhancedPhoneFunctionalityTitle}
                                     id={inputAttributeReference.enhancedPhoneFunctionalityToggleId}
                                     name={preferredContactInfoSettingsVModel.enhancedPhoneFunctionalityToggleId}
                                     message-toggle-active=""
@@ -93,6 +94,7 @@
                                     disabled={affordancesDisabled}
                                     checked={preferredContactInfoSettingsVModel.enhancedPhoneFunctionality}
                                     data-qa-locator={inputAttributeReference.enhancedPhoneFunctionalityToggleId}
+                                    variant="label-hidden"
                                 ></lightning-input>
                             </div>
                         </div>
@@ -112,7 +114,7 @@
                                 <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
                                     <lightning-input
                                         type="toggle"
-                                        label=""
+                                        label={labelReference.preferredPhoneEnforcementTitle}
                                         id={inputAttributeReference.preferredPhoneEnforcementToggleId}
                                         name={preferredContactInfoSettingsVModel.preferredPhoneEnforcementToggleId}
                                         message-toggle-active=""
@@ -122,6 +124,7 @@
                                         disabled={affordancesDisabled}
                                         checked={preferredContactInfoSettingsVModel.preferredPhoneEnforcement}
                                         data-qa-locator={inputAttributeReference.preferredPhoneEnforcementToggleId}
+                                        variant="label-hidden"
                                     ></lightning-input>
                                 </div>
                             </div>
