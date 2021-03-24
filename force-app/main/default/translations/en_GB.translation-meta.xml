@@ -337,7 +337,7 @@
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
     <customLabels>
-        <label>Account Types with Multi-Addresses Enabled</label>
+        <label><!-- Label for the Enable Multiple Addresses for Account Types setting --></label>
         <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -525,7 +525,7 @@
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Contact Multi-Addresses Enabled</label>
+        <label><!-- Label for the Allow Multiple Contact Addresses setting --></label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -1001,7 +1001,7 @@
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label>The Account record types that support multiple address management.</label>
+        <label><!-- Description of the Enable Multiple Addresses for Account Types setting --></label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
@@ -1049,7 +1049,7 @@
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label>Select this option to enable multiple address management for Contacts.</label>
+        <label><!-- Description of the Allow Multiple Contact Addresses setting --></label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
@@ -1165,7 +1165,7 @@
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label>Treats changes to single Contact or Account address fields as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</label>
+        <label>T<!-- Description of the Update Address Records for Simple Changes setting --></label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
@@ -1261,7 +1261,7 @@
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Simple Address Change Treated as Update</label>
+        <label><!-- Label for the Update Address Records for Simple Changes setting --></label>
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>
