@@ -36,8 +36,6 @@
  */
 @isTest
 private with sharing class ContactInformationSettingsVMapper_TEST {
-    private static Integer loopCounter = 5;
-
     /**************************************************************************************************************************
      * @description Test method to verify that the getInstance method returns a new instance of the
      * ContactInformationSettingsVMapper class when one does not already exist.
@@ -112,25 +110,6 @@ private with sharing class ContactInformationSettingsVMapper_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that the locateSObjectFieldService method returns an instance of
-     * SObjectFieldService
-     ***************************************************************************************************************************/
-    @isTest
-    private static void locateSObjectFieldServiceValid() {
-        ContactInformationSettingsVMapper contactInformationSettingsVMapperInstance = ContactInformationSettingsVMapper.getInstance();
-
-        Test.startTest();
-        SObjectFieldService SObjectFieldServiceInstance = contactInformationSettingsVMapperInstance.locateSObjectFieldService();
-        Test.stopTest();
-
-        System.assertEquals(
-            SObjectFieldService.getInstance(),
-            SObjectFieldServiceInstance,
-            'Should return instance of SObjectFieldService class.'
-        );
-    }
-
-    /**************************************************************************************************************************
      * @description Test method to verify that the locateContactLanguageSettingsService method returns an instance of
      * ContactLanguageSettingsService
      ***************************************************************************************************************************/
@@ -146,25 +125,6 @@ private with sharing class ContactInformationSettingsVMapper_TEST {
             ContactLanguageSettingsService.getInstance(),
             contactLanguageSettingsServiceInstance,
             'Should return instance of ContactLanguageSettingsService class.'
-        );
-    }
-
-    /**************************************************************************************************************************
-     * @description Test method to verify that the locatePreferredContactInfoSettingsService method returns an instance of
-     * PreferredContactInfoSettingsService
-     ***************************************************************************************************************************/
-    @isTest
-    private static void locatePreferredContactInfoSettingsServiceValid() {
-        ContactInformationSettingsVMapper contactInformationSettingsVMapperInstance = ContactInformationSettingsVMapper.getInstance();
-
-        Test.startTest();
-        PreferredContactInfoSettingsService PreferredContactInfoSettingsServiceInstance = contactInformationSettingsVMapperInstance.locatePreferredContactInfoSettingsService();
-        Test.stopTest();
-
-        System.assertEquals(
-            PreferredContactInfoSettingsService.getInstance(),
-            PreferredContactInfoSettingsServiceInstance,
-            'Should return instance of PreferredContactInfoSettingsService class.'
         );
     }
 
@@ -210,130 +170,6 @@ private with sharing class ContactInformationSettingsVMapper_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that the getPreferredContactInformationSettingsVModel method returns a valid
-     * PreferredContactInfoSettingsVModel representing all available phone fields, without 'Business Phone' and an addition
-     * option for '--None--' as options and the selected value set to match the value specified in Hierarchy Settings.
-     ***************************************************************************************************************************/
-    @isTest
-    private static void getPreferredContactInformationSettingsVModelValid() {
-        SObjectFieldMapper.instance = new STUB_SObjectFieldMapper();
-        PreferredContactInfoSettingsMapper.instance = new STUB_PreferredContactInfoSettingsMapper();
-
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(
-                Disable_Preferred_Email_Enforcement__c = false,
-                Enable_New_Preferred_Phone_Sync__c = true,
-                Disable_Preferred_Phone_Enforcement__c = true,
-                Preferred_Phone_Selection__c = 'Phone Field Value 1'
-            )
-        );
-
-        ContactInformationSettingsVMapper contactInformationSettingsVMapperInstance = ContactInformationSettingsVMapper.getInstance();
-
-        Test.startTest();
-        PreferredContactInfoSettingsVModel preferredContactInfoSettingsVModel = contactInformationSettingsVMapperInstance.getPreferredContactInformationSettingsVModel();
-        Test.stopTest();
-
-        System.assertEquals(
-            true,
-            preferredContactInfoSettingsVModel.requirePreferredEmail,
-            'Require preferred email setting should be opposite of value specified in corresponding hierarchy setting field.'
-        );
-
-        System.assertEquals(
-            true,
-            preferredContactInfoSettingsVModel.enhancedPhoneFunctionality,
-            'Enhanced phone functionality setting should equal value specified in corresponding hierarchy setting field.'
-        );
-
-        System.assertEquals(
-            false,
-            preferredContactInfoSettingsVModel.preferredPhoneEnforcement,
-            'Preferred phone enforcement setting should be opposite of value specified in corresponding hierarchy setting field.'
-        );
-
-        System.assertEquals(
-            'Phone Field Value 1',
-            preferredContactInfoSettingsVModel.defaultPreferredPhone.value,
-            'Preferred phone selected value should match value specified in corresponding hierarchy setting field.'
-        );
-
-        System.assertEquals(
-            loopCounter + 1,
-            preferredContactInfoSettingsVModel.defaultPreferredPhone.options.size(),
-            'Available phone field options should not include \'Business Phone\' and include additional option for \'--None--\'.'
-        );
-
-        for (
-            ComboboxValueVModel preferredPhoneComboboxValueVModel : preferredContactInfoSettingsVModel.defaultPreferredPhone.options
-        ) {
-            if (preferredPhoneComboboxValueVModel.label.equalsIgnoreCase(Label.NoneOption)) {
-                System.assert(true, 'Should include \'--None--\' option.');
-            }
-
-            if (preferredPhoneComboboxValueVModel.label.equalsIgnoreCase('Phone')) {
-                System.assert(false, 'Should not include \'Business Phone\' option.');
-            }
-        }
-    }
-
-    /**************************************************************************************************************************
-     * @description Test method to verify that the getPreferredContactInformationSettingsVModel method returns a valid
-     * PreferredContactInfoSettingsVModel with "--None--" as the selected value and no additional phone field options when none
-     * exist and Preferred_Phone_Selection__c is blank in Hierarchy Settings.
-     ***************************************************************************************************************************/
-    @isTest
-    private static void getPreferredContactInformationSettingsVModelEmpty() {
-        SObjectFieldMapper.instance = new STUB_SObjectFieldMapperNoPhoneFields();
-        PreferredContactInfoSettingsMapper.instance = new STUB_PreferredContactInfoSettingsMapperEmptyPreferredPhone();
-
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(
-                Disable_Preferred_Email_Enforcement__c = false,
-                Enable_New_Preferred_Phone_Sync__c = true,
-                Disable_Preferred_Phone_Enforcement__c = true,
-                Preferred_Phone_Selection__c = ''
-            )
-        );
-
-        ContactInformationSettingsVMapper contactInformationSettingsVMapperInstance = ContactInformationSettingsVMapper.getInstance();
-
-        Test.startTest();
-        PreferredContactInfoSettingsVModel preferredContactInfoSettingsVModel = contactInformationSettingsVMapperInstance.getPreferredContactInformationSettingsVModel();
-        Test.stopTest();
-
-        System.assertEquals(
-            true,
-            preferredContactInfoSettingsVModel.requirePreferredEmail,
-            'Require preferred email setting should be opposite of value specified in corresponding hierarchy setting field.'
-        );
-
-        System.assertEquals(
-            true,
-            preferredContactInfoSettingsVModel.enhancedPhoneFunctionality,
-            'Enhanced phone functionality setting should equal value specified in corresponding hierarchy setting field.'
-        );
-
-        System.assertEquals(
-            false,
-            preferredContactInfoSettingsVModel.preferredPhoneEnforcement,
-            'Preferred phone enforcement setting should be opposite of value specified in corresponding hierarchy setting field.'
-        );
-
-        System.assertEquals(
-            '""',
-            preferredContactInfoSettingsVModel.defaultPreferredPhone.value,
-            'Preferred phone selected value correspond to value associated with --None-- when nothing is set in corresponding hierarchy setting field.'
-        );
-
-        System.assertEquals(
-            1,
-            preferredContactInfoSettingsVModel.defaultPreferredPhone.options.size(),
-            'Should have one option for --None-- when no phone field options exist.'
-        );
-    }
-
-    /**************************************************************************************************************************
      ****************************************************** STUB CLASS *********************************************************
      **************************************************************************************************************************/
 
@@ -359,63 +195,6 @@ private with sharing class ContactInformationSettingsVMapper_TEST {
     private class STUB_ContactLanguageSettingsMapper extends ContactLanguageSettingsMapper {
         public override ContactLanguageSettingsModel getContactLanguageSettingsModel() {
             return new ContactLanguageSettingsModel('Fluency1');
-        }
-    }
-
-    /*************************************************************************************************************
-     * @description Stub class to simulate the response from SObjectFieldMapper to return a valid
-     * Map<String, SObjectFieldModel>
-     */
-    private class STUB_SObjectFieldMapper extends SObjectFieldMapper {
-        public override Map<String, SObjectFieldModel> getModelsByTypeForSObject(
-            SObjectType sObjectType,
-            String fieldType
-        ) {
-            Map<String, SObjectFieldModel> phoneSObjectFieldModelsByFieldName = new Map<String, SObjectFieldModel>();
-
-            for (Integer i = 0; i < loopCounter; i++) {
-                phoneSObjectFieldModelsByFieldName.put(
-                    'Phone_Field_Name_' + i,
-                    new SObjectFieldModel('Phone Field ' + i, 'Phone_Field_Name_' + i)
-                );
-            }
-
-            phoneSObjectFieldModelsByFieldName.put('Phone', new SObjectFieldModel('Phone', 'Business_Phone'));
-
-            return phoneSObjectFieldModelsByFieldName;
-        }
-    }
-
-    /*************************************************************************************************************
-     * @description Stub class to simulate the response from SObjectFieldMapper to return an empty
-     * Map<String, SObjectFieldModel>
-     */
-    private class STUB_SObjectFieldMapperNoPhoneFields extends SObjectFieldMapper {
-        public override Map<String, SObjectFieldModel> getModelsByTypeForSObject(
-            SObjectType sObjectType,
-            String fieldType
-        ) {
-            return new Map<String, SObjectFieldModel>();
-        }
-    }
-
-    /*************************************************************************************************************
-     * @description Stub class to simulate the response from PreferredContactInfoSettingsMapper to return a valid
-     * PreferredContactInfoSettingsModel
-     */
-    private class STUB_PreferredContactInfoSettingsMapper extends PreferredContactInfoSettingsMapper {
-        public override PreferredContactInfoSettingsModel getPreferredContactInfoSettingsModel() {
-            return new PreferredContactInfoSettingsModel(true, true, false, 'Phone Field Value 1');
-        }
-    }
-
-    /*************************************************************************************************************
-     * @description Stub class to simulate the response from PreferredContactInfoSettingsMapper to return a valid
-     * PreferredContactInfoSettingsModel with no default preferred phone value specified.
-     */
-    private class STUB_PreferredContactInfoSettingsMapperEmptyPreferredPhone extends PreferredContactInfoSettingsMapper {
-        public override PreferredContactInfoSettingsModel getPreferredContactInfoSettingsModel() {
-            return new PreferredContactInfoSettingsModel(true, true, false, '');
         }
     }
 }

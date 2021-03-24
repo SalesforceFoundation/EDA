@@ -561,11 +561,11 @@
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Require Preferred Email setting --></label>
+        <label>Desactivar aplicación de correo electrónico preferido</label>
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Require Preferred Phone setting --></label>
+        <label>Desactivar aplicación de teléfono preferido</label>
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
@@ -577,7 +577,7 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Enhanced Preferred Phone Functionality setting --></label>
+        <label>Activar funciones de teléfono de preferencia mejoradas</label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1053,15 +1053,15 @@
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Require Preferred Email setting --></label>
+        <label>No requiere que Contactos tenga un Correo electrónico preferido.</label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Require Preferred Phone setting --></label>
+        <label>No requiere que Contactos tenga un Teléfono preferido.</label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Enhanced Preferred Phone Functionality setting --></label>
+        <label>Sincroniza el campo Teléfono de preferencia con el campo Teléfono estándar del contacto y valida que el valor en Teléfono de preferencia existe y tiene un valor.</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1213,16 +1213,8 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Default Preferred Phone setting --></label>
-        <name>stgPreferredPhoneDefault</name>
-    </customLabels>
-    <customLabels>
         <label>Seleccione un campo para Teléfono preferido desde el que copiar el valor cuando el campo Teléfono estándar no tenga un valor, o se defina más de un campo &quot;Teléfono&quot;.</label>
         <name>stgPreferredPhoneSelection</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description for the Default Preferred Phone setting --></label>
-        <name>stgPreferredPhoneSelectionDesc</name>
     </customLabels>
     <customLabels>
         <label>Configuración de lista</label>

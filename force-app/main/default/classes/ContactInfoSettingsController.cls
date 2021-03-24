@@ -50,22 +50,6 @@ public with sharing class ContactInfoSettingsController {
         }
     }
 
-    /********************************************************************************
-     * @description Retrieve a view model representing the preferred contact information
-     * settings specified in Hierarchy Settings and a list of fields of type "Phone" on
-     * Contact.
-     * @return A PreferredContactInfoSettingsVModel.
-     ********************************************************************************/
-    @AuraEnabled(cacheable=true)
-    public static PreferredContactInfoSettingsVModel getPreferredContactInfoSettingsVModel() {
-        try {
-            return ContactInfoSettingsController.locateContactInformationSettingsVMapper()
-                .getPreferredContactInformationSettingsVModel();
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
-    }
-
     /******************************************************************************
      * @description Retrieve an instance of the ContactInformationSettingsVMapper class.
      * @return An instance of ContactInformationSettingsVMapper.
