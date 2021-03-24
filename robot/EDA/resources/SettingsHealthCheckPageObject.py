@@ -74,7 +74,7 @@ class SettingsHealthCheckPage(BaseEDAPage, HomePage):
             the expected text from robot. Returns true if all settings are passed and false if any
             one of the setting is failed
         """
-        locator = eda_lex_locators["settings_health_check"]["all_checks_status"].format(healthCheckCard,expected_value)
+        locator = eda_lex_locators["settings_health_check"]["all_checks_status"].format(healthCheckCard)
         self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
         self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
