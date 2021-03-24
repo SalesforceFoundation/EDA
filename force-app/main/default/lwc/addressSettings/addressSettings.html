@@ -7,15 +7,11 @@
                 onsettingssaving={handleSettingsSaving}
                 onsettingssavecompleted={handleSettingsSaveCompleted}
             >
-
                 <!-- Body of Account Model Settings page (populates Slot in child component) -->
                 <template if:true={addressSettingsViewModel}>
-
                     <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
-
                         <!-- Multi Address Enabled Setting -->
                         <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
-
                             <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
                                 {labelReference.stgContactMultiAddressesEnabled}
                             </div>
@@ -68,6 +64,21 @@
                             ></lightning-dual-listbox>
                         </div>
 
+                        <c-settings-row-dual-listbox
+                            title={labelReference.stgAccountTypesMultiAddressesEnabled}
+                            description={labelReference.stgHelpAddressAccRecType}
+                            id={inputAttributeReference.accountRecTypesDualListboxId}
+                            name={inputAttributeReference.accountRecTypesDualListboxId}
+                            label={labelReference.stgAccountRecordTypeGroupLabelTitle}
+                            source-label={labelReference.stgAccountRecordTypeAvailableListTitle}
+                            selected-label={labelReference.stgAccountRecordTypeSelectedListTitle}
+                            options={addressSettingsViewModel.accountRecordTypesWithAddressesEnabled.options}
+                            value={addressSettingsViewModel.accountRecordTypesWithAddressesEnabled.value}
+                            onchange={handleAccountRecordTypesChange}
+                            disbaled={affordancesDisabled}
+                            data-qa-locator={inputAttributeReference.accountRecTypesDualListboxId}
+                        ></c-settings-row-dual-listbox>
+
                         <!-- Simple Address Change treated as update Setting -->
                         <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
                             <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
@@ -78,23 +89,23 @@
                             </div>
                         </div>
 
-                       <div class="slds-col slds-size_1-of-3 slds-p-top_small">
-                           <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
-                               <lightning-input
-                                   type="toggle"
-                                   label=""
-                                   id={inputAttributeReference.simpleAddressChangeTreatedAsUpdateToggleId}
-                                   name={inputAttributeReference.simpleAddressChangeTreatedAsUpdateToggleId}
-                                   message-toggle-active=""
-                                   message-toggle-inactive=""
-                                   onchange={handleSimpleAddressUpdateChange}
-                                   aria-describedby={inputAttributeReference.simpleAddressChangeTreatedAsUpdateToggleId}
-                                   disabled={affordancesDisabled}
-                                   checked={addressSettingsViewModel.simpleAddressChangeTreatedAsUpdate}
-                                   data-qa-locator={inputAttributeReference.simpleAddressChangeTreatedAsUpdateToggleId}
-                               ></lightning-input>
-                           </div>
-                       </div>		
+                        <div class="slds-col slds-size_1-of-3 slds-p-top_small">
+                            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+                                <lightning-input
+                                    type="toggle"
+                                    label=""
+                                    id={inputAttributeReference.simpleAddressChangeTreatedAsUpdateToggleId}
+                                    name={inputAttributeReference.simpleAddressChangeTreatedAsUpdateToggleId}
+                                    message-toggle-active=""
+                                    message-toggle-inactive=""
+                                    onchange={handleSimpleAddressUpdateChange}
+                                    aria-describedby={inputAttributeReference.simpleAddressChangeTreatedAsUpdateToggleId}
+                                    disabled={affordancesDisabled}
+                                    checked={addressSettingsViewModel.simpleAddressChangeTreatedAsUpdate}
+                                    data-qa-locator={inputAttributeReference.simpleAddressChangeTreatedAsUpdateToggleId}
+                                ></lightning-input>
+                            </div>
+                        </div>
                     </div>
                 </template>
             </c-settings-save-canvas>

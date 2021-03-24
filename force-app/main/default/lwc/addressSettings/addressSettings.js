@@ -30,14 +30,13 @@ export default class addressSettings extends LightningElement {
         stgAccountRecordTypeAvailableListTitle: stgAccountRecordTypeAvailableListTitle,
         stgAccountRecordTypeSelectedListTitle: stgAccountRecordTypeSelectedListTitle,
         stgSimpleAddressChangeUpdate: stgSimpleAddressChangeUpdate,
-        stgHelpSimpleAddrChangeIsUpdate: stgHelpSimpleAddrChangeIsUpdate
-    }
+        stgHelpSimpleAddrChangeIsUpdate: stgHelpSimpleAddrChangeIsUpdate,
+    };
 
     inputAttributeReference = {
         multiAddressEnabledToggleId: "multiAddressModel",
         accountRecTypesDualListboxId: "accountRectypeModel",
-        simpleAddressChangeTreatedAsUpdateToggleId : "simpleUpdateModel"
-
+        simpleAddressChangeTreatedAsUpdateToggleId: "simpleUpdateModel",
     };
 
     get affordancesDisabled() {
@@ -51,14 +50,12 @@ export default class addressSettings extends LightningElement {
     addressSettingsViewModel({ error, data }) {
         if (data) {
             this.addressSettingsViewModel = data;
-            
         } else if (error) {
             //console.log("error retrieving accountmodelsettingsvmodel");
         }
     }
 
     handleMultiAddressEnabledChange(event) {
-
         let hierarchySettingsChange = {
             settingsType: "boolean",
             settingsName: "Contacts_Addresses_Enabled__c",
@@ -80,7 +77,6 @@ export default class addressSettings extends LightningElement {
     }
 
     handleSimpleAddressUpdateChange(event) {
-
         let hierarchySettingsChange = {
             settingsType: "boolean",
             settingsName: "Simple_Address_Change_Treated_as_Update__c",
