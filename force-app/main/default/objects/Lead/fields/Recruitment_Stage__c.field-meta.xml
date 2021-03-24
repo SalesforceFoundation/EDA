@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Type__c</fullName>
-    <description>The type of Lead the data is for.</description>
+    <fullName>Recruitment_Stage__c</fullName>
+    <description>The Lead&apos;s stage in the recruitment process.</description>
     <externalId>false</externalId>
-    <inlineHelpText>The type of Lead the data is for.</inlineHelpText>
-    <label>Type</label>
+    <inlineHelpText>The Lead&apos;s stage in the recruitment process.</inlineHelpText>
+    <label>Recruitment Stage</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Picklist</type>
