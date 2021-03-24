@@ -150,8 +150,7 @@ export default class HealthCheckGroup extends LightningElement {
         for (let i = 0; i < healthCheckItemArray.length; i++) {
             if (healthCheckItemArray[i]["healthCheckItemList"]) {
                 if (healthCheckItemArray[i]["healthCheckItemList"].length > 0) {
-                    healthCheckItemArray[i]._children =
-                        healthCheckItemArray[i]["healthCheckItemList"];
+                    healthCheckItemArray[i]._children = healthCheckItemArray[i]["healthCheckItemList"];
                     this.generateHealthCheckItemRows(healthCheckItemArray[i]._children);
                 }
 
