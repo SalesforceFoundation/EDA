@@ -107,3 +107,11 @@ Get Records Count
     ...                     SELECT COUNT(Name) FROM ${NS}${obj_name} where ${NS}${field_name}=${field_value}
     &{Id} =                 Get From List  ${result['records']}  0
     [return]                ${Id}[expr0]
+
+Run health check settings
+    [Documentation]             Validates the health check settings row by row
+    [Arguments]                 ${HealthCheckCard}  ${Button}   ${Results}      &{fields}
+    Click health check button       Run Health Check
+    ${all_checks_status} =      Return all checks status        ${HealthCheckCard}       All checks passed
+    Run Keyword If              '${all_checks_status}' == 'True'  Click expand button   ${Button}
+    Verify status of a setting     ${Results}       &{fields}
