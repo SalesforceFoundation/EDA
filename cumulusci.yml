@@ -381,7 +381,7 @@ flows:
                 task: deploy_install_emulator
                 when: "'hed' not in org_config.installed_packages"
             4:
-                task: execute_instal_apex
+                task: execute_install_apex
                 when: "'hed' not in org_config.installed_packages"
             5:
                 task: cancel_eda_scheduled_jobs
