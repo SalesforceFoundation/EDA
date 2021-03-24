@@ -131,7 +131,19 @@
                         </template>
 
                         <!-- Default Preferred Phone Setting -->
-                        <div class="slds-col slds-size_2-of-3 slds-p-top_x-large slds-p-bottom_x-large">
+                        <c-settings-row-input
+                            class="slds-size_3-of-3"
+                            title={labelReference.defaultPreferredPhoneTitle}
+                            description={labelReference.defaultPreferredPhoneDescription}
+                            type="combobox"
+                            input-id={inputAttributeReference.defaultPreferredPhoneComboboxId}
+                            value={preferredContactInfoSettingsVModel.defaultPreferredPhone.value}
+                            placeholder={labelReference.comboboxPlaceholderText}
+                            options={preferredContactInfoSettingsVModel.defaultPreferredPhone.options}
+                            onsettingsinputchange={handleDefaultPreferredPhoneChange}
+                            disabled={affordancesDisabled}
+                        ></c-settings-row-input>
+                        <!-- <div class="slds-col slds-size_2-of-3 slds-p-top_x-large slds-p-bottom_x-large">
                             <div class="slds-p-left_small slds-text-title_bold">
                                 {labelReference.defaultPreferredPhoneTitle}
                             </div>
@@ -156,7 +168,7 @@
                                 variant="label-hidden"
                                 data-qa-locator={inputAttributeReference.defaultPreferredPhoneComboboxId}
                             ></lightning-combobox>
-                        </div>
+                        </div> -->
                     </div>
                 </template>
             </c-settings-save-canvas>

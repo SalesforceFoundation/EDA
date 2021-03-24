@@ -18,4 +18,9 @@ export default class SettingsRowDualListbox extends LightningElement {
         const settingsDualListboxChange = new CustomEvent("settingsduallistboxchange", { detail: eventDetail });
         this.dispatchEvent(settingsDualListboxChange);
     }
+
+    @api
+    resetValue() {
+        this.template.querySelector("lightning-dual-listbox").value = this.value;
+    }
 }

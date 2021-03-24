@@ -90,8 +90,10 @@ export default class ContactInformationSettings extends LightningElement {
     handleSettingsEditModeChange(event) {
         this.isEditMode = !event.detail;
         this.affordancesDisabledToggle = event.detail;
+    }
 
-        //this.refreshAllApex();
+    handleSettingsSaveCancel(event) {
+        this.refreshAllApex();
     }
 
     handleSettingsSaving(event) {
@@ -103,10 +105,6 @@ export default class ContactInformationSettings extends LightningElement {
 
         // else, update hierarchy settings
         this.template.querySelector("c-settings-save-canvas").updateHierarchySettings();
-    }
-
-    handleSettingsSaveCancel(event) {
-        this.refreshAllApex();
     }
 
     handleSettingsSaveCompleted(event) {
@@ -175,38 +173,48 @@ export default class ContactInformationSettings extends LightningElement {
     }
 
     refreshAllApex() {
-        refreshApex(this.contactLanguageSettingsWireResult).then(() => {
-            this.template.querySelectorAll("lightning-combobox").forEach((combobox) => {
-                if (
-                    combobox.dataset["qaLocator"] ===
-                    this.inputAttributeReference.defaultContactLanugageFluencyComboboxId
-                ) {
-                    combobox.value = this.contactLanguageSettingsVModel.defaultContactLanguageFluency.value;
-                }
+        // refreshApex(this.contactLanguageSettingsWireResult).then(() => {
+        //     this.template.querySelectorAll("lightning-combobox").forEach((combobox) => {
+        //         if (
+        //             combobox.dataset["qaLocator"] ===
+        //             this.inputAttributeReference.defaultContactLanugageFluencyComboboxId
+        //         ) {
+        //             combobox.value = this.contactLanguageSettingsVModel.defaultContactLanguageFluency.value;
+        //         }
+        //     });
+        // });
+
+        // refreshApex(this.preferredContactInfoSettingsWireResult).then(() => {
+        //     this.template.querySelectorAll("lightning-combobox").forEach((combobox) => {
+        //         if (combobox.dataset["qaLocator"] === this.inputAttributeReference.defaultPreferredPhoneComboboxId) {
+        //             combobox.value = this.preferredContactInfoSettingsVModel.defaultPreferredPhone.value;
+        //         }
+        //     });
+
+        //     this.template.querySelectorAll("lightning-input").forEach((toggle) => {
+        //         if (toggle.dataset["qaLocator"] === this.inputAttributeReference.requirePreferredEmailToggleId) {
+        //             toggle.checked = this.preferredContactInfoSettingsVModel.requirePreferredEmail;
+        //         }
+
+        //         if (toggle.dataset["qaLocator"] === this.inputAttributeReference.enhancedPhoneFunctionalityToggleId) {
+        //             toggle.checked = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
+        //         }
+
+        //         if (toggle.dataset["qaLocator"] === this.inputAttributeReference.preferredPhoneEnforcementToggleId) {
+        //             toggle.checked = this.preferredContactInfoSettingsVModel.preferredPhoneEnforcement;
+        //         }
+
+        //         this.showPreferredPhoneEnforcement = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
+        //     });
+        // });
+
+        console.log("refresh all apex");
+        refreshApex(this.addressSettingsWireResult).then(() => {
+            this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
+                dualListBox.resetValue();
             });
-        });
-
-        refreshApex(this.preferredContactInfoSettingsWireResult).then(() => {
-            this.template.querySelectorAll("lightning-combobox").forEach((combobox) => {
-                if (combobox.dataset["qaLocator"] === this.inputAttributeReference.defaultPreferredPhoneComboboxId) {
-                    combobox.value = this.preferredContactInfoSettingsVModel.defaultPreferredPhone.value;
-                }
-            });
-
-            this.template.querySelectorAll("lightning-input").forEach((toggle) => {
-                if (toggle.dataset["qaLocator"] === this.inputAttributeReference.requirePreferredEmailToggleId) {
-                    toggle.checked = this.preferredContactInfoSettingsVModel.requirePreferredEmail;
-                }
-
-                if (toggle.dataset["qaLocator"] === this.inputAttributeReference.enhancedPhoneFunctionalityToggleId) {
-                    toggle.checked = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
-                }
-
-                if (toggle.dataset["qaLocator"] === this.inputAttributeReference.preferredPhoneEnforcementToggleId) {
-                    toggle.checked = this.preferredContactInfoSettingsVModel.preferredPhoneEnforcement;
-                }
-
-                this.showPreferredPhoneEnforcement = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
+            this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
+                input.resetValue();
             });
         });
     }
