@@ -156,6 +156,7 @@ export default class ContactInformationSettings extends LightningElement {
     }
 
     handleDefaultPreferredPhoneChange(event) {
+        console.log("handling preferred phone");
         var defaultPreferredPhoneValue = event.detail.value;
 
         if (event.detail.value === '""') {
@@ -207,13 +208,21 @@ export default class ContactInformationSettings extends LightningElement {
         //         this.showPreferredPhoneEnforcement = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
         //     });
         // });
-
-        console.log("refresh all apex");
-        refreshApex(this.addressSettingsWireResult).then(() => {
+        refreshApex(this.contactLanguageSettingsWireResult).then(() => {
             this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
                 dualListBox.resetValue();
             });
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
+                input.resetValue();
+            });
+        });
+
+        refreshApex(this.preferredContactInfoSettingsWireResult).then(() => {
+            this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
+                dualListBox.resetValue();
+            });
+            this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
+                // toggle settings are not saving!!!!!!!!!
                 input.resetValue();
             });
         });
