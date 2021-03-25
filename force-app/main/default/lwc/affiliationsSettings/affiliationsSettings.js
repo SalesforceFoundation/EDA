@@ -1,5 +1,10 @@
 import { LightningElement, api, track, wire } from "lwc";
 
+import primaryAffiliationsDescription from "@salesforce/label/c.AfflMappingsDescription";
+import editAction from "@salesforce/label/c.stgBtnEdit";
+import accountRecordTypeColumn from "@salesforce/label/c.stgColAccountRecordType";
+import contactFieldColumn from "@salesforce/label/c.stgColContactPrimaryAfflField";
+import primaryAffiliationsTitle from "@salesforce/label/c.stgTabAfflMappings";
 export default class AffiliationsSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -9,11 +14,11 @@ export default class AffiliationsSettings extends LightningElement {
     @track showPreferredPhoneEnforcement;
 
     labelReference = {
-        title: "title",
-        description: "description",
-        accountRecordTypeColumn: "Account Record Type",
-        contactFieldColumn: "Primary Affiliation Field",
-        editAction: "Edit",
+        primaryAffiliationsTitle,
+        primaryAffiliationsDescription,
+        accountRecordTypeColumn,
+        contactFieldColumn,
+        editAction,
     };
 
     inputAttributeReference = {
@@ -31,22 +36,21 @@ export default class AffiliationsSettings extends LightningElement {
         return [
             { label: this.labelReference.accountRecordTypeColumn, fieldName: "accountRecordTypeLabel" },
             { label: this.labelReference.contactFieldColumn, fieldName: "contactFieldLabel" },
-            { type: "action", typeAttributes: { rowActions: this.primaryAffiliationsActions } },
+            {
+                type: "action",
+                typeAttributes: { rowActions: [{ label: this.labelReference.editAction, name: "edit" }] },
+            },
         ];
-    }
-
-    get primaryAffiliationsActions() {
-        return [{ label: this.labelReference.editAction, name: "edit" }];
     }
 
     get data() {
         return [
             {
-                name: "item1",
+                mappingName: "item1",
+                accountRecordTypeName: "Academic_Program",
                 accountRecordTypeLabel: "Academic Program",
-                accountRecordType: "Academic_Program",
+                contactFieldName: "Primary_Academic_Program__c",
                 contactFieldLabel: "Primary Academic Program",
-                contactField: "Primary_Academic_Program__c",
             },
         ];
     }
@@ -90,15 +94,26 @@ export default class AffiliationsSettings extends LightningElement {
     handlePrimaryAffiliationsRowAction(event) {
         const actionName = event.detail.action.name;
         const actionRow = event.detail.row;
-        switch (actionName) {
-            case "edit":
-                console.log(JSON.stringify(actionRow));
-                this.editPrimaryAffiliation(actionRow);
-                break;
-        }
+        this.dispatchPrimaryAffiliationModalEvent(actionName, actionRow);
     }
 
-    editPrimaryAffiliation(primaryAffiliationRow) {}
+    dispatchPrimaryAffiliationModalEvent(eventAction, primaryAffiliation) {
+        const eventDetail = {
+            action: eventAction,
+            mappingName: primaryAffiliation.mappingName,
+            accountRecordTypeLabel: primaryAffiliation.accountRecordTypeLabel,
+            accountRecordTypeName: primaryAffiliation.accountRecordTypeName,
+            contactFieldLabel: primaryAffiliation.contactFieldLabel,
+            contactFieldName: primaryAffiliation.contactFieldName,
+        };
+        this.dispatchEvent(
+            new CustomEvent("primaryaffiliationmodalrequest", {
+                detail: eventDetail,
+                bubbles: true,
+                composed: true,
+            })
+        );
+    }
 
     refreshAllApex() {
         Promise.all([refreshApex(this.primaryAffiliationsSettingsWireResult)]).then(() => {});

@@ -1,7 +1,9 @@
 ({
-    init: function (cmp, evt, helper) {
-        var myPageRef = cmp.get("v.pageReference");
-        cmp.set("v.pageReference", myPageRef);
-        cmp.find("primaryAffiliationsModel").handleShowModal();
+    init: function (component, event, helper) {
+        helper.setPageReference(component);
+    },
+    primaryAffiliationModalRequestHandler: function (component, event, helper) {
+        console.log("opening modal");
+        helper.openPrimaryAffiliationModal(component, event);
     }
 });
