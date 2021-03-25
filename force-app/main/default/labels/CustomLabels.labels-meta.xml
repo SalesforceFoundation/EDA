@@ -181,7 +181,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Provides a blank value option to custom built picklists</shortDescription>
-        <value>--None--</value>
+        <value>None</value>
     </labels>
     <labels>
         <fullName>OnlyCourseConnectionPopulated</fullName>
