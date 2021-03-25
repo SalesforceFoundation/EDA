@@ -60,7 +60,7 @@ export default class EdaSettingsNavigation extends LightningElement {
                     },
                     {
                         label: stgAddressSettingsTitle,
-                        page: "addresses",
+                        page: "addressSettings",
                         id: "addresses",
                         menuItems: [
                             { label: stgContactMultiAddressesEnabled, id: "contactMultipleAddresses" },
