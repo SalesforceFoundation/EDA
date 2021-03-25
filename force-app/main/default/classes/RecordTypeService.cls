@@ -65,11 +65,11 @@ public virtual with sharing class RecordTypeService {
         return this.locateRecordTypeMapper().getModelByIdMapForSObjectType(sObjectType);
     }
 
-    /***********************************************************************************************************************
+    /************************************************************************************************************************************
      * @description Retrieve a map of active record types by Id from a list of all record types associated with an SObject.
      * @param allRecordTypeModelsList A list containing all record type models in an org.
      * @return A map of Active Record Type Models By Id.
-     ***********************************************************************************************************************/
+     ************************************************************************************************************************************/
     public virtual Map<Id, RecordTypeModel> getActiveRecordTypeModelsById(
         List<RecordTypeModel> allRecordTypeModelsList
     ) {

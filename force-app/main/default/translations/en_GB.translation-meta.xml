@@ -329,7 +329,7 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message for the Account Model Settings page title --></label>
+        <label><!-- Section title for Account Model Settings --></label>
         <name>stgAccountModelSettingsTitle</name>
     </customLabels>
     <customLabels>
@@ -993,7 +993,7 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label>For Higher Education institutions, we recommend the &quot;Administrative&quot; Account model. For K-12 schools, we recommend the &quot;Household&quot; Account model.</label>
+        <label><!-- Description of the Default Account Model setting --></label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
@@ -1005,7 +1005,7 @@
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts.</label>
+        <label><!-- Description of the Administrative Account Record Type setting --></label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
@@ -1137,7 +1137,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>The Account record type used for Household Accounts. This setting affects management of Address records and the naming format of Household Accounts.</label>
+        <label><!-- Description of the Household Account Record Type setting --></label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>

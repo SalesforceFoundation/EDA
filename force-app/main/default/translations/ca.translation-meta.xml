@@ -329,7 +329,7 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message for the Account Model Settings page title --></label>
+        <label><!-- Section title for Account Model Settings --></label>
         <name>stgAccountModelSettingsTitle</name>
     </customLabels>
     <customLabels>
@@ -993,7 +993,7 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label>Per a les institucions d’educació superior, recomanem el model de compte “Administratiu”. A les escoles K-12, recomanem el model de compte &quot;Llar&quot;.</label>
+        <label><!-- Description of the Default Account Model setting --></label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
@@ -1005,7 +1005,7 @@
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>El tipus de registre del compte utilitzat per als comptes administratius. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes administratius.</label>
+        <label><!-- Description of the Administrative Account Record Type setting --></label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
@@ -1137,7 +1137,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>El tipus de registre del compte utilitzat per als comptes domèstics. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes domèstics.</label>
+        <label><!-- Description of the Household Account Record Type setting --></label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
