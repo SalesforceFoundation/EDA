@@ -1,5 +1,8 @@
 ({
     handleToggle: function (component) {
+        console.log(component.get("v.accountRecordType"));
+        console.log(component.get("v.contactField"));
+        /*
         component.set("v.accountRecordType", "Academic_Program");
         component.set("v.contactField", "Primary_Academic_Program__c");
         let primaryAffiliationEvent = component.getEvent("modalEvent");
@@ -8,7 +11,7 @@
             accountRecordType: component.get("v.accountRecordType"),
             contactField: component.get("v.contactField")
         });
-        primaryAffiliationEvent.fire();
+        primaryAffiliationEvent.fire();*/
     },
     handleCancel: function (component, event, helper) {
         component.find("primaryAffiliationsOverlayLibrary").notifyClose();

@@ -3,8 +3,9 @@
     <lightning:overlayLibrary aura:id="primaryAffiliationsOverlayLibrary" />
 
     <aura:attribute name="affiliationsAction" type="String" />
+    <aura:attribute name="mappingName" type="String" />
     <aura:attribute name="accountRecordType" type="String" />
     <aura:attribute name="contactField" type="String" />
 
-    <aura:method name="handleShowModal" action="{!c.handleShowModal}" description="Shows the modal" />
+    <aura:method name="openPrimaryAffiliationsModal" action="{!c.openPrimaryAffiliationsModal}"/>
 </aura:component>
