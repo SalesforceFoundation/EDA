@@ -99,6 +99,7 @@ export default class AffiliationsSettings extends LightningElement {
 
     dispatchPrimaryAffiliationModalEvent(affiliationsAction, primaryAffiliation) {
         let affiliationsDetail = {
+            affiliationsAction: affiliationsAction,
             mappingName: primaryAffiliation.mappingName,
             accountRecordTypeName: primaryAffiliation.accountRecordTypeName,
             contactFieldName: primaryAffiliation.contactFieldName,
