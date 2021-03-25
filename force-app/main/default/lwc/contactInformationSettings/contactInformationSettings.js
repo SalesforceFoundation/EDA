@@ -174,22 +174,17 @@ export default class ContactInformationSettings extends LightningElement {
     }
 
     refreshAllApex() {
-        refreshApex(this.contactLanguageSettingsWireResult).then(() => {
-            this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
-                dualListBox.resetValue();
-            });
-            this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
-                input.resetValue();
-            });
-        });
+        Promise.all([
+            refreshApex(this.contactLanguageSettingsWireResult),
+            refreshApex(this.preferredContactInfoSettingsWireResult),
+        ]).then(() => {
+            this.showPreferredPhoneEnforcement = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
 
-        refreshApex(this.preferredContactInfoSettingsWireResult).then(() => {
             this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
                 dualListBox.resetValue();
             });
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
-                this.showPreferredPhoneEnforcement = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
             });
         });
     }
