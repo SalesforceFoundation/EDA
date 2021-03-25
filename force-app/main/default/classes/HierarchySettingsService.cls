@@ -75,8 +75,10 @@ public virtual with sharing class HierarchySettingsService {
             for (
                 String changedSettingName : hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.keySet()
             ) {
+                String settingsField = UTIL_Namespace.StrTokenNSPrefix(changedSettingName);
+
                 Schema.DescribeFieldResult fieldDescribeResult = this.locateHierarchySettingsMapper()
-                    .getHierarchySettingsField(changedSettingName);
+                    .getHierarchySettingsField(settingsField);
                 Schema.DisplayType displayType = fieldDescribeResult.getType();
 
                 if (displayType == Schema.DisplayType.STRING) {
@@ -103,12 +105,15 @@ public virtual with sharing class HierarchySettingsService {
 
             // Update Hierarchy Settings fields with collections as values
             for (String changedSettingName : hierarchySettingsChangesVModel.settingsListSettingsName.keySet()) {
+                String settingsField = UTIL_Namespace.StrTokenNSPrefix(changedSettingName);
+
                 Schema.DescribeFieldResult fieldDescribeResult = this.locateHierarchySettingsMapper()
-                    .getHierarchySettingsField(changedSettingName);
+                    .getHierarchySettingsField(settingsField);
 
                 String hierarchySettingValue = this.denormalizeListSettingChange(
                     hierarchySettingsChangesVModel.settingsListSettingsName.get(changedSettingName)
                 );
+
                 hierarchySettingsModelToUpdate.hierarchySettings.put(changedSettingName, hierarchySettingValue);
             }
         } catch (UTIL_Describe.SchemaDescribeException e) {
