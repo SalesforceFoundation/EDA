@@ -65,7 +65,6 @@ export default class ContactInformationSettings extends LightningElement {
         this.contactLanguageSettingsWireResult = result;
 
         if (result.data) {
-            //this.contactLanguageSettingsVModel = JSON.parse(JSON.stringify(result.data));
             this.contactLanguageSettingsVModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving contactLanguageSettingsVModel");
