@@ -671,14 +671,6 @@
         <value>Available Account Record Types</value>
     </labels>
     <labels>
-        <fullName>stgAccountRecordTypeSelectedListTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Title for the list of Selected Account Record Types</shortDescription>
-        <value>Selected Account Record Types</value>
-    </labels>
-    <labels>
         <fullName>stgAccountModelSettingsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -693,14 +685,6 @@
         <protected>true</protected>
         <shortDescription>Title for the list of Available Account Record Types</shortDescription>
         <value>Available Account Record Types</value>
-    </labels>
-    <labels>
-        <fullName>stgAccountRecordTypeGroupLabelTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Group label for the Account record type selection</shortDescription>
-        <value>Select Account Record Types</value>
     </labels>
     <labels>
         <fullName>stgAccountRecordTypeSelectedListTitle</fullName>
