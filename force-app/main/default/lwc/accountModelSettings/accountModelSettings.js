@@ -22,8 +22,11 @@ export default class AccountModelSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
-    @track accountModelSettingsViewModel;
-    @track accountAutoDeletionSettingsViewModel;
+    @track accountModelSettingsWireResult;
+    @track accountModelSettingsVModel;
+
+    @track accountAutoDeletionSettingsWireResult;
+    @track accountAutoDeletionSettingsVModel;
 
     labelReference = {
         accountModelSettingsTitle: stgAccountModelSettingsTitle,
@@ -56,19 +59,23 @@ export default class AccountModelSettings extends LightningElement {
     }
 
     @wire(getAccountModelSettingsViewModel)
-    accountModelSettingsViewModel({ error, data }) {
-        if (data) {
-            this.accountModelSettingsViewModel = data;
-        } else if (error) {
+    accountModelSettingsViewModelWire(result) {
+        this.accountModelSettingsWireResult = result;
+
+        if (result.data) {
+            this.accountModelSettingsVModel = result.data;
+        } else if (result.error) {
             //console.log("error retrieving accountmodelsettingsvmodel");
         }
     }
 
     @wire(getAccountAutoDeletionSettingsViewModel)
-    accountAutoDeletionSettingsViewModel({ error, data }) {
-        if (data) {
-            this.accountAutoDeletionSettingsViewModel = data;
-        } else if (error) {
+    accountAutoDeletionSettingsViewModelWire(result) {
+        this.accountAutoDeletionSettingsWireResult = result;
+
+        if (result.data) {
+            this.accountAutoDeletionSettingsVModel = result.data;
+        } else if (result.error) {
             //console.log("error retrieving accountAutoDeletionSettingsViewModel");
         }
     }
@@ -120,7 +127,9 @@ export default class AccountModelSettings extends LightningElement {
     handleSettingsEditModeChange(event) {
         this.isEditMode = !event.detail;
         this.affordancesDisabledToggle = event.detail;
+    }
 
+    handleSettingsSaveCancel(event) {
         this.refreshAllApex();
     }
 
@@ -137,10 +146,20 @@ export default class AccountModelSettings extends LightningElement {
 
     handleSettingsSaveCompleted(event) {
         this.affordancesDisabledToggle = false;
+        this.refreshAllApex();
     }
 
     refreshAllApex() {
-        refreshApex(this.accountModelSettingsViewModel);
-        refreshApex(this.accountAutoDeletionSettingsViewModel);
+        Promise.all([
+            refreshApex(this.accountModelSettingsWireResult),
+            refreshApex(this.accountAutoDeletionSettingsWireResult),
+        ]).then(() => {
+            this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
+                dualListBox.resetValue();
+            });
+            this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
+                input.resetValue();
+            });
+        });
     }
 }
