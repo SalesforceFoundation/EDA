@@ -41,8 +41,6 @@ export default class ContactInformationSettings extends LightningElement {
         preferredPhoneEnforcementDescription: stgHelpContactPreferredPhone,
         defaultPreferredPhoneTitle: stgPreferredPhoneDefault,
         defaultPreferredPhoneDescription: stgPreferredPhoneSelectionDesc,
-        enabledText: "Active",
-        disabledText: "Inactive",
     };
 
     inputAttributeReference = {
