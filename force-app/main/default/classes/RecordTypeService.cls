@@ -65,11 +65,11 @@ public virtual with sharing class RecordTypeService {
         return this.locateRecordTypeMapper().getModelByIdMapForSObjectType(sObjectType);
     }
 
-    /************************************************************************************************************************************
+    /***********************************************************************************************************************
      * @description Retrieve a map of active record types by Id from a list of all record types associated with an SObject.
      * @param allRecordTypeModelsList A list containing all record type models in an org.
      * @return A map of Active Record Type Models By Id.
-     ************************************************************************************************************************************/
+     ***********************************************************************************************************************/
     public virtual Map<Id, RecordTypeModel> getActiveRecordTypeModelsById(
         List<RecordTypeModel> allRecordTypeModelsList
     ) {
@@ -84,6 +84,31 @@ public virtual with sharing class RecordTypeService {
         }
 
         return activeRecordTypeModelsById;
+    }
+
+    /***********************************************************************************************************************
+     * @description Filter through a map of valid Record Type models to retrieve a list of Ids corresponding to values in a specified list.
+     * @param  idsToFindList A list of Id strings corresponding to Record Types
+     * @param  validRecordTypeIdsSet A set of Ids associated with valid Record Types
+     * @return A List<Id> containing Ids that correspond to valid Record Types and match a value in the specified list of Ids to find.
+     ***********************************************************************************************************************/
+    public virtual List<Id> filterListForValidIds(List<String> idsToFindList, Set<Id> validRecordTypeIdsSet) {
+        List<String> validIdsList = new List<String>();
+
+        for (String idToFind : idsToFindList) {
+            if ((idToFind instanceof Id) == false) {
+                // Id to find is not a valid Id string => omit
+                continue;
+            }
+            if (validRecordTypeIdsSet.contains((Id) idToFind) == false) {
+                // Id to find has no match to a valid record type model => omit
+                continue;
+            }
+
+            validIdsList.add(idToFind);
+        }
+
+        return validIdsList;
     }
 
     /******************************************************************************

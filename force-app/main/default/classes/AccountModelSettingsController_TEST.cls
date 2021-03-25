@@ -34,6 +34,7 @@
 @isTest
 private with sharing class AccountModelSettingsController_TEST {
     private static Integer loopCounter = 5;
+
     /****************************************************************************************************************************
      * @description Test method to verify that the locateAccountModelSettingsVMapper method returns instance of AccountModelSettingsVMapper.
      ****************************************************************************************************************************/
@@ -50,6 +51,27 @@ private with sharing class AccountModelSettingsController_TEST {
         );
     }
 
+    /****************************************************************************************************************************
+     * @description Test method to verify that the locateAccountAutoDeletionSettingsVMapper method returns instance of AccountAutoDeletionSettingsVMapper.
+     ****************************************************************************************************************************/
+    @isTest
+    private static void locateAccountAutoDeletionSettingsVMapperValid() {
+        Test.startTest();
+        AccountAutoDeletionSettingsVMapper accountAutoDeletionSettingsVMapperInstance = AccountModelSettingsController.locateAccountAutoDeletionSettingsVMapper();
+        Test.stopTest();
+
+        System.assertEquals(
+            AccountAutoDeletionSettingsVMapper.getInstance(),
+            accountAutoDeletionSettingsVMapperInstance,
+            'Should return the instance of AccountAutoDeletionSettingsVMapper.'
+        );
+    }
+
+    /****************************************************************************************************************************
+     * @description Test method to verify that the getAccountModelSettingsViewModel method returns an AccountModelSettingsVModel
+     * with values set for default, HH and Admin accounts set to the values specified in Hierarchy Settings and each are associated
+     * with a list of ComboboxVModels representing active Account Record Types for selection.
+     ****************************************************************************************************************************/
     @isTest
     private static void getAccountModelSettingsViewModelValid() {
         AccountModelSettingsVMapper.instance = new STUB_AccountModelSettingsVMapper();
@@ -83,6 +105,10 @@ private with sharing class AccountModelSettingsController_TEST {
         );
     }
 
+    /****************************************************************************************************************************
+     * @description Test method to verify that the getAccountModelSettingsViewModel method fails gracefully when an exception is
+     * encountered.
+     ****************************************************************************************************************************/
     @isTest
     private static void getAccountModelSettingsViewModelException() {
         AccountModelSettingsVMapper.instance = new STUB_ExceptionAccountModelSettingsVMapper();
@@ -90,6 +116,68 @@ private with sharing class AccountModelSettingsController_TEST {
         try {
             Test.startTest();
             AccountModelSettingsVModel accountModelSettingsVModel = AccountModelSettingsController.getAccountModelSettingsViewModel();
+            Test.stopTest();
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /****************************************************************************************************************************
+     * @description Test method to verify that the getAccountAutoDeletionSettingsViewModel method returns a DualListboxVModel
+     * representing all active Account Record Types selected for deletion when not associated with Contacts in Hierarchy Settings
+     * and all remaining active Account Record Types as selection options.
+     ****************************************************************************************************************************/
+    @isTest
+    private static void getAccountAutoDeletionSettingsViewModelValid() {
+        AccountAutoDeletionSettingsVMapper.instance = new STUB_AccountAutoDeletionSettingsVMapper();
+
+        Test.startTest();
+        DualListboxVModel dualListboxVModel = AccountModelSettingsController.getAccountAutoDeletionSettingsViewModel();
+        Test.stopTest();
+
+        System.assertEquals(2, dualListboxVModel.value.size(), 'Should have 2 Account Record Types selected.');
+        System.assertEquals(
+            loopCounter,
+            dualListboxVModel.options.size(),
+            'Should include all active Account Record Types as options even if they are also selected.'
+        );
+
+        System.assertEquals(
+            '000000000000000001',
+            dualListboxVModel.value[0],
+            'Value of selected Account Record Type should match Id of active record type that is selected.'
+        );
+        System.assertEquals(
+            '000000000000000002',
+            dualListboxVModel.value[1],
+            'Value of selected Account Record Type should match Id of active record type that is selected.'
+        );
+
+        for (Integer i = 0; i < loopCounter; i++) {
+            System.assertEquals(
+                'RecordType' + (i + 1),
+                dualListboxVModel.options[i].label,
+                'Options list should contain all active account record type labels.'
+            );
+            System.assertEquals(
+                '00000000000000000' + (i + 1),
+                dualListboxVModel.options[i].value,
+                'Options list should contain all active account record type values.'
+            );
+        }
+    }
+
+    /****************************************************************************************************************************
+     * @description Test method to verify that the getAccountAutoDeletionSettingsViewModel method fails gracefully when an exception is
+     * encountered.
+     ****************************************************************************************************************************/
+    @isTest
+    private static void getAccountAutoDeletionSettingsViewModelException() {
+        AccountAutoDeletionSettingsVMapper.instance = new STUB_ExceptionAccountAutoDeletionSettingsVMapper();
+
+        try {
+            Test.startTest();
+            DualListboxVModel dualListboxVModel = AccountModelSettingsController.getAccountAutoDeletionSettingsViewModel();
             Test.stopTest();
         } catch (AuraHandledException e) {
             System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
@@ -138,6 +226,34 @@ private with sharing class AccountModelSettingsController_TEST {
     private class STUB_ExceptionAccountModelSettingsVMapper extends AccountModelSettingsVMapper {
         public override AccountModelSettingsVModel getAccountModelSettingsViewModel() {
             throw new TestException('Test exception!');
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from AccountAutoDeletionSettingsVMapper to return a valid DualListboxVModel
+     **************************************************************************************************************************************/
+    private class STUB_AccountAutoDeletionSettingsVMapper extends AccountAutoDeletionSettingsVMapper {
+        public override DualListboxVModel getAccountAutoDeletionSettingsViewModel() {
+            List<String> selectedValuesList = new List<String>{ '000000000000000001', '000000000000000002' };
+
+            List<DualListboxValueVModel> allOptionsDualListBoxValueVModelsList = new List<DualListboxValueVModel>();
+
+            for (Integer i = 0; i < loopCounter; i++) {
+                allOptionsDualListBoxValueVModelsList.add(
+                    new DualListboxValueVModel('RecordType' + (i + 1), '00000000000000000' + (i + 1))
+                );
+            }
+
+            return new DualListboxVModel(selectedValuesList, allOptionsDualListBoxValueVModelsList);
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from AccountAutoDeletionSettingsVMapper to throw an exception
+     **************************************************************************************************************************************/
+    private class STUB_ExceptionAccountAutoDeletionSettingsVMapper extends AccountAutoDeletionSettingsVMapper {
+        public override DualListboxVModel getAccountAutoDeletionSettingsViewModel() {
+            throw new TestException('Exception encountered!');
         }
     }
 
