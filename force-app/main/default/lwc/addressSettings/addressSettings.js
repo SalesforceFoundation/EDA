@@ -61,9 +61,8 @@ export default class addressSettings extends LightningElement {
         let hierarchySettingsChange = {
             settingsType: "boolean",
             settingsName: "Contacts_Addresses_Enabled__c",
-            settingsValue: event.detail.checked,
+            settingsValue: event.detail.value,
         };
-
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
@@ -82,7 +81,7 @@ export default class addressSettings extends LightningElement {
         let hierarchySettingsChange = {
             settingsType: "boolean",
             settingsName: "Simple_Address_Change_Treated_as_Update__c",
-            settingsValue: event.detail.checked,
+            settingsValue: event.detail.value,
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
@@ -110,12 +109,10 @@ export default class addressSettings extends LightningElement {
     }
 
     handleSettingsSaveCancel(event) {
-        console.log("111");
         this.refreshAllApex();
     }
 
     refreshAllApex() {
-        console.log("Inisde refresh all apex");
         refreshApex(this.addressSettingsWireResult).then(() => {
             this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
                 dualListBox.resetValue();

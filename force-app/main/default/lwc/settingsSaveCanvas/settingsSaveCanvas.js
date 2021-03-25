@@ -33,21 +33,22 @@ export default class SettingsSaveCanvas extends LightningElement {
 
     @api
     handleHierarchySettingsChange(hierarchySettingsChange) {
-        if (hierarchySettingsChange.settingsType === "string") {
-            this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
-                hierarchySettingsChange.settingsValue;
-        }
-        if (hierarchySettingsChange.settingsType === "boolean") {
-            this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
-                hierarchySettingsChange.settingsValue;
-        }
-        if (hierarchySettingsChange.settingsType === "dateTime") {
-            this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
-                hierarchySettingsChange.settingsValue;
-        }
-        if (hierarchySettingsChange.settingsType === "array") {
-            this.hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
-                hierarchySettingsChange.settingsValue;
+        switch (hierarchySettingsChange.settingsType) {
+            case "string":
+                this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
+                    hierarchySettingsChange.settingsValue;
+                break;
+            case "boolean":
+                this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
+                    hierarchySettingsChange.settingsValue;
+                break;
+            case "dateTime":
+                this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
+                    hierarchySettingsChange.settingsValue;
+                break;
+            case "array":
+                this.hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
+                    hierarchySettingsChange.settingsValue;
         }
     }
 
