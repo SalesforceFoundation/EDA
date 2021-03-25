@@ -7,6 +7,7 @@
 
     <aura:if isTrue="{!or(v.affiliationsAction == 'edit', v.affiliationsAction == 'save')}">
         {!$Label.c.stgAffiliationsEditModalBody}
+        <!--TODO: Place lwc with dropdowns in here-->
         <lightning:button label="Toggle" onclick="{!c.handleToggle}"></lightning:button>
     </aura:if>
 </aura:component>
