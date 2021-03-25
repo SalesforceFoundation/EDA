@@ -56,12 +56,11 @@ public virtual with sharing class AddressSettingsVMapper {
         return instance;
     }
 
-    /*******************************************************************************************************
-     * @description Retrieve a DualListboxVModel representing the Account Record Types currently selected
-     * for deletion when not associated with Contact records and any remaining active account record types
-     * availabe for selection.
+    /**********************************************************************************************************
+     * @description Retrieve a AddressSettingsVModel representing a dual list box with all account record types
+     * and selected account record types, multi address settings enabled and simple change treated as update.
      * @return  A AddressSettingsViewModel
-     *******************************************************************************************************/
+     *********************************************************************************************************/
     public virtual AddressSettingsVModel getAddressSettingsViewModel() {
         // get current Address Settings values set from hierarchy settings
         AddressSettingsModel currentAddressSettings = this.locateAddressSettingsService()

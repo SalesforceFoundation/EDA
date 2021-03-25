@@ -29,13 +29,13 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/Tests.htm
- * @description Test class for AccountAutoDeletionSettingsVMapper.
+ * @description Test class for AddressSettingsVMapper.
  */
 @isTest
 private with sharing class AddressSettingsVMapper_TEST {
     /**************************************************************************************************************************
      * @description Test method to verify that the getInstance method returns a new instance of the
-     * AccountAutoDeletionSettingsVMapper class when one does not already exist.
+     * AddressSettingsVMapper class when one does not already exist.
      ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
@@ -106,10 +106,10 @@ private with sharing class AddressSettingsVMapper_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test to verify locateAccountRecordTypeAutoDeletionService() returns an instance of the AccountRecordTypeAutoDeletionService class.
+     * @description Test to verify locateAddressSettingsService() returns an instance of the AccountRecordTypeAutoDeletionService class.
      **************************************************************************************************************************/
     @isTest
-    private static void locateAccountRecordTypeAutoDeletionServiceValid() {
+    private static void locateAddressSettingsService() {
         AddressSettingsVMapper addressSettingsVMapperInstance = AddressSettingsVMapper.getInstance();
 
         Test.startTest();
@@ -119,23 +119,23 @@ private with sharing class AddressSettingsVMapper_TEST {
         System.assertEquals(
             AddressSettingsService.getInstance(),
             addressSettingsServiceInstance,
-            'Should return instance of AccountRecordTypeAutoDeletionService class.'
+            'Should return instance of locateAddressSettingsService class.'
         );
         System.assertEquals(
             true,
             addressSettingsServiceInstance != null,
-            'Instance of AccountRecordTypeAutoDeletionService class should not be null.'
+            'Instance of locateAddressSettingsService class should not be null.'
         );
     }
 
     /*************************************************************************************************************
-     * @description Test method to verify getAccountAutoDeletionSettingsViewModel() returns a DualListboxVModel
+     * @description Test method to verify getAddressSettingsViewModel() returns a DualListboxVModel
      * representing only the active Account Record Types as selected and available options.  It also ensures that
      * all active Record Types are represented as available options regardless of whether they are also in the
      * selected list.
      *************************************************************************************************************/
     @isTest
-    private static void getAccountAutoDeletionSettingsViewModelValid() {
+    private static void getAddressSettingsViewModelValid() {
         RecordTypeMapper.instance = new STUB_RecordTypeMapper();
 
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettingsForTests(

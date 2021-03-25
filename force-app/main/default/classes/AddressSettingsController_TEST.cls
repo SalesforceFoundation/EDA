@@ -98,7 +98,7 @@ private with sharing class AddressSettingsController_TEST {
     }
 
     /****************************************************************************************************************************
-     * @description Test method to verify that the getAccountAutoDeletionSettingsViewModel method fails gracefully when an exception is
+     * @description Test method to verify that the getAddressSettingsViewModel method fails gracefully when an exception is
      * encountered.
      ****************************************************************************************************************************/
     @isTest
