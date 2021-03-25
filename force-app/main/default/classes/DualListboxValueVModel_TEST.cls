@@ -28,25 +28,22 @@
  * @author Salesforce.org
  * @date 2021
  * @group
- * @group-content ../../ApexDocContent/EdaSettings.htm
- * @description Model to abstract data needed for a Dual ListView.
+ * @group-content ../../ApexDocContent/Tests.htm
+ * @description Test class for DualListboxValueVModel.
  */
-public with sharing class DualListboxVModel {
-    @AuraEnabled
-    public List<String> value { get; private set; }
+@isTest
+private with sharing class DualListboxValueVModel_TEST {
+    /***********************************************************************************
+     * @description Test to verify that the 2 argument constructor generates a model
+     * with all properties populated as expected.
+     ***********************************************************************************/
+    @isTest
+    private static void twoArgumentConstructorValid() {
+        Test.startTest();
+        DualListboxValueVModel dualListboxValueVModel = new DualListboxValueVModel('Record Type', '000000000000000001');
+        Test.stopTest();
 
-    @AuraEnabled
-    public List<DualListboxValueVModel> options { get; private set; }
-
-    /****************************************************************************************
-     * @description Two argument constructor
-     * @param  value A list of String representing the value of each selected option
-     * @param  options A list of DualListboxValueVModel representing all options for selection
-     * (regardless of whether they are currently selected)
-     * @return A DualListboxVModel with all properties populated.
-     ****************************************************************************************/
-    public DualListboxVModel(List<String> value, List<DualListboxValueVModel> options) {
-        this.value = value;
-        this.options = options;
+        System.assertEquals('Record Type', dualListboxValueVModel.label, 'Label should be set.');
+        System.assertEquals('000000000000000001', dualListboxValueVModel.value, 'Value should be set.');
     }
 }

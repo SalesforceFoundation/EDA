@@ -333,6 +333,18 @@
         <name>stgAccountModelSettingsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Title for the list of Available Account Record Types --></label>
+        <name>stgAccountRecordTypeAvailableListTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Group label for the Account record type selection --></label>
+        <name>stgAccountRecordTypeGroupLabelTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the list of Selected Account Record Types --></label>
+        <name>stgAccountRecordTypeSelectedListTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Tipo de registro para cuenta doméstica</label>
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
@@ -341,7 +353,7 @@
         <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
-        <label>Tipos de cuenta sin Contactos para eliminar</label>
+        <label><!-- Label for the Accounts Without Contacts setting --></label>
         <name>stgAccoutTypesWithoutContactsDelete</name>
     </customLabels>
     <customLabels>
@@ -997,7 +1009,7 @@
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label>Tipos de registros de cuentas que se eliminarán automáticamente si se eliminaron sus contactos asociados.</label>
+        <label><!-- Description of the Accounts Without Contacts setting --></label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>

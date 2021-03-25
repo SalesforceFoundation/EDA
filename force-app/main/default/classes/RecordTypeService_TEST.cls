@@ -455,6 +455,86 @@ private class RecordTypeService_TEST {
         );
     }
 
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the filterListForValidIds correctly removes values from the specified list of Ids to find
+     * that do not match a value in the set of valid Ids.
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void filterListForValidIdsValid() {
+        List<String> idsToFindList = new List<String>{
+            '000000000000000001',
+            '000000000000000002',
+            '000000000000000003',
+            'Not an Id String'
+        };
+        Set<Id> validRecordTypeIdsSet = new Set<Id>{ '000000000000000001', '000000000000000003' };
+
+        RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
+        Test.startTest();
+        List<Id> validIdsList = recordTypeServiceInstance.filterListForValidIds(idsToFindList, validRecordTypeIdsSet);
+        Test.stopTest();
+
+        System.assertEquals(2, validIdsList.size(), 'Should only contain ids matching valid record type Ids.');
+        System.assertEquals(
+            '000000000000000001',
+            validIdsList[0],
+            'Should contain valid Ids specified in list of Ids to find.'
+        );
+        System.assertEquals(
+            '000000000000000003',
+            validIdsList[1],
+            'Should contain valid Ids specified in list of Ids to find.'
+        );
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the filterListForValidIds returns an empty list of when no Ids are included in list of
+     * Ids to find.
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void filterListForValidIdsNoIdsToFind() {
+        List<String> idsToFindList = new List<String>();
+        Set<Id> validRecordTypeIdsSet = new Set<Id>{ '000000000000000001', '000000000000000003' };
+
+        RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
+
+        Test.startTest();
+        List<Id> validIdsList = recordTypeServiceInstance.filterListForValidIds(idsToFindList, validRecordTypeIdsSet);
+        Test.stopTest();
+
+        System.assertEquals(
+            0,
+            validIdsList.size(),
+            'No Ids to find should return an empty list of matching valid Ids.'
+        );
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the filterListForValidIds returns an empty list of when no valid record type Ids are
+     * specified.
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void filterListForValidIdsNoValidIds() {
+        List<String> idsToFindList = new List<String>{
+            '000000000000000001',
+            '000000000000000002',
+            '000000000000000003'
+        };
+        Set<Id> validRecordTypeIdsSet = new Set<Id>();
+
+        RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
+
+        Test.startTest();
+        List<Id> validIdsList = recordTypeServiceInstance.filterListForValidIds(idsToFindList, validRecordTypeIdsSet);
+        Test.stopTest();
+
+        System.assertEquals(
+            0,
+            validIdsList.size(),
+            'No valid Ids in map should return an empty list of matching valid Ids.'
+        );
+    }
+
     /**************************************************************************************************************************
      ****************************************************** STUB CLASS *********************************************************
      **************************************************************************************************************************/
