@@ -6,7 +6,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Info text for Mapped Primary Affiliations</shortDescription>
-        <value>Mapped Primary Affiliations appear in a special Primary Affiliations section on the Contact record. The value set as Primary for an Account Record Type appears in the corresponding fields on the Contact record, as defined below. For more information, see the</value>
+        <value>Map Account record types to the Primary Affiliation fields on Contacts to define how updates to those fields impact Affiliation records and how updates to Affiliation records impact Contact records.</value>
     </labels>
     <labels>
         <fullName>AfflProgEnrollDeleted</fullName>
@@ -104,28 +104,12 @@
         <value>Female</value>
     </labels>
     <labels>
-        <fullName>invalidContactFieldInAffiliationMapping</fullName>
-        <categories>Affiliations</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Error when a Contact's Primary Affiliation field isn't an Account lookup field</shortDescription>
-        <value>We can't save this record because of an error with the Contact field {1}. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of an Account lookup field on the Contact object instead of {1}</value>
-    </labels>
-    <labels>
         <fullName>InvalidFilter</fullName>
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error message for TDTM filtering functionality</shortDescription>
         <value>The field entered as the Filter Field isn&apos;t valid. Filter Fields can be any standard or custom field on the object this trigger is for, as well as fields on related records. Make sure you use the field&apos;s API name, and omit any EDA namespace prefix (&quot;hed__&quot;).</value>
-    </labels>
-    <labels>
-        <fullName>invalidRecordTypeInAffiliationMapping</fullName>
-        <categories>Affiliations</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Error when an Affiliation Mapping's Account record type isn't valid</shortDescription>
-        <value>We can't save this record because {1} isn't a valid Account record type. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of a valid Account record type instead of {1}.</value>
     </labels>
     <labels>
         <fullName>Male</fullName>
@@ -535,6 +519,22 @@
         <value>Family</value>
     </labels>
     <labels>
+        <fullName>invalidContactFieldInAffiliationMapping</fullName>
+        <categories>Affiliations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when a Contact&apos;s Primary Affiliation field isn&apos;t an Account lookup field</shortDescription>
+        <value>We can&apos;t save this record because of an error with the Contact field {1}. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of an Account lookup field on the Contact object instead of {1}</value>
+    </labels>
+    <labels>
+        <fullName>invalidRecordTypeInAffiliationMapping</fullName>
+        <categories>Affiliations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when an Affiliation Mapping&apos;s Account record type isn&apos;t valid</shortDescription>
+        <value>We can&apos;t save this record because {1} isn&apos;t a valid Account record type. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of a valid Account record type instead of {1}.</value>
+    </labels>
+    <labels>
         <fullName>lastNameAdminAcc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -727,6 +727,30 @@
         <value>Administrative Account Record Type</value>
     </labels>
     <labels>
+        <fullName>stgAffiliationsEditModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Edit Affiliation Mapping window</shortDescription>
+        <value>Select an Account Record Type and then select a Primary Affiliation Field on Contact to map it to. For example, select the Academic_Program record type and map it to the Primary Academic Program field. When a Primary Affiliation record is created for an Account with the Academic Program record type, the Primary Academic Program field on the Contact record is updated with a lookup to the specified Account.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsEditModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Edit Affiliation Mapping window</shortDescription>
+        <value>Edit Affiliation Mapping</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsEditSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when an Affiliation Mapping is edited</shortDescription>
+        <value>Affiliation mapping for {0} was saved.</value>
+    </labels>
+    <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -797,6 +821,14 @@
         <protected>true</protected>
         <shortDescription>Label for Accounts and Contacts Backfill</shortDescription>
         <value>After Running the Backfill</value>
+    </labels>
+    <labels>
+        <fullName>stgApiNameLabel</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The API name associated with the selected Account Record Type</shortDescription>
+        <value>Api Name: {0}</value>
     </labels>
     <labels>
         <fullName>stgAutoCompleteEnterChatterGroupName</fullName>
@@ -955,7 +987,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header and label for Affiliation Mappings Settings</shortDescription>
+        <shortDescription>Header label for the list of Account Record Types</shortDescription>
         <value>Account Record Type</value>
     </labels>
     <labels>
@@ -979,7 +1011,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Affiliation Mappings Settings</shortDescription>
+        <shortDescription>Header label for the list of Primary Affiliation Fields on Contact</shortDescription>
         <value>Contact Primary Affl Field</value>
     </labels>
     <labels>
@@ -1179,8 +1211,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when the user doesn't have the permissions to save settings</shortDescription>
-        <value>You can't save these settings because you no longer have permission to edit them. Your Salesforce admin can help with that.</value>
+        <shortDescription>Error when the user doesn&apos;t have the permissions to save settings</shortDescription>
+        <value>You can&apos;t save these settings because you no longer have permission to edit them. Your Salesforce admin can help with that.</value>
     </labels>
     <labels>
         <fullName>stgErrorInvalidSettings</fullName>
@@ -2589,7 +2621,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Settings tab name</shortDescription>
+        <shortDescription>Label for the Affiliation Mappings setting</shortDescription>
         <value>Affiliation Mappings</value>
     </labels>
     <labels>
