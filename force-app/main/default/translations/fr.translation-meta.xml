@@ -49,6 +49,10 @@
         <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
+        <label><!-- EDA Settings --></label>
+        <name>EDASettingsContainerAuraComponentLabel</name>
+    </customLabels>
+    <customLabels>
         <label>Female</label>
         <name>Female</name>
     </customLabels>
@@ -325,6 +329,10 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Section title for Account Model Settings --></label>
+        <name>stgAccountModelSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Type d’enregistrement de compte de foyer</label>
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
@@ -567,6 +575,18 @@
     <customLabels>
         <label>Activer les fonctionnalités améliorées de téléphone préféré</label>
         <name>stgEnablePreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Message for when you don&apos;t have the permissions to view a page. --></label>
+        <name>stgErrorInsufficientAccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when the user doesn't have the permissions to save settings --></label>
+        <name>stgErrorInsufficientAccessSaving</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when a generic error occurs --></label>
+        <name>stgErrorInvalidSettings</name>
     </customLabels>
     <customLabels>
         <label>Notifications d’erreur à :</label>
@@ -969,7 +989,7 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label>Pour les établissements d’enseignement supérieur, nous recommandons le modèle de compte « administratif ». Pour les écoles de niveau primaire et secondaire, nous recommandons le modèle de compte « foyer ».</label>
+        <label><!-- Description of the Default Account Model setting --></label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
@@ -981,7 +1001,7 @@
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>Le type d&apos;enregistrement Compte utilisé pour des Comptes administratifs. Ce paramètre affecte la gestion des enregistrements d&apos;adresse et le format de nommage des comptes administratifs.</label>
+        <label><!-- Description of the Administrative Account Record Type setting --></label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
@@ -1113,7 +1133,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>Le type d&apos;enregistrement Compte utilisé pour des Comptes de foyer. Ce paramètre affecte la gestion des enregistrements Adresse et le format de nommage des comptes de foyer.</label>
+        <label><!-- Description of the Household Account Record Type setting --></label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>

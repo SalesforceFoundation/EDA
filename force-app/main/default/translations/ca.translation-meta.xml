@@ -49,6 +49,10 @@
         <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
+        <label><!-- EDA Settings --></label>
+        <name>EDASettingsContainerAuraComponentLabel</name>
+    </customLabels>
+    <customLabels>
         <label>Female</label>
         <name>Female</name>
     </customLabels>
@@ -325,6 +329,10 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Section title for Account Model Settings --></label>
+        <name>stgAccountModelSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Tipus de registre del compte domèstic</label>
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
@@ -567,6 +575,18 @@
     <customLabels>
         <label>Activa la funcionalitat de telèfon preferit millorada</label>
         <name>stgEnablePreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Message for when you don&apos;t have the permissions to view a page. --></label>
+        <name>stgErrorInsufficientAccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when the user doesn't have the permissions to save settings --></label>
+        <name>stgErrorInsufficientAccessSaving</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when a generic error occurs --></label>
+        <name>stgErrorInvalidSettings</name>
     </customLabels>
     <customLabels>
         <label>Notificacions d&apos;errors a:</label>
@@ -969,7 +989,7 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label>Per a les institucions d’educació superior, recomanem el model de compte “Administratiu”. A les escoles K-12, recomanem el model de compte &quot;Llar&quot;.</label>
+        <label><!-- Description of the Default Account Model setting --></label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
@@ -981,7 +1001,7 @@
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>El tipus de registre del compte utilitzat per als comptes administratius. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes administratius.</label>
+        <label><!-- Description of the Administrative Account Record Type setting --></label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
@@ -1113,7 +1133,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>El tipus de registre del compte utilitzat per als comptes domèstics. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes domèstics.</label>
+        <label><!-- Description of the Household Account Record Type setting --></label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>

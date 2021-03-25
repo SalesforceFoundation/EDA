@@ -1,0 +1,95 @@
+<template>
+    <div class="slds-grid--vertical slds-theme_default">
+        <div class="slds-col slds-p-top_large slds-p-left_small">
+            <c-settings-save-canvas
+                component-title={labelReference.accountModelSettingsTitle}
+                onsettingseditmodechange={handleSettingsEditModeChange}
+                onsettingssaving={handleSettingsSaving}
+                onsettingssavecompleted={handleSettingsSaveCompleted}
+            >
+                <!-- Body of Account Model Settings page (populates Slot in child component) -->
+                <template if:true={accountModelSettingsViewModel}>
+                    <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                        <!-- Default Account Record Type Setting -->
+                        <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+                                {labelReference.defaultAccountModelTitle}
+                            </div>
+                            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                                {labelReference.defaultAccountModelDescription}
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_x-large">
+                            <lightning-combobox
+                                id={inputAttributeReference.defaultAccountModelComboboxId}
+                                aria-labelledby={inputAttributeReference.defaultAccountModelComboboxId}
+                                name={inputAttributeReference.defaultAccountModelComboboxId}
+                                label={labelReference.defaultAccountModelTitle}
+                                value={accountModelSettingsViewModel.defaultAccountRecordType.value}
+                                placeholder={labelReference.comboboxPlaceholderText}
+                                options={accountModelSettingsViewModel.defaultAccountRecordType.options}
+                                onchange={handleDefaultAccountModelChange}
+                                disabled={affordancesDisabled}
+                                variant="label-hidden"
+                                data-qa-locator={inputAttributeReference.defaultAccountModelComboboxId}
+                            ></lightning-combobox>
+                        </div>
+
+                        <!-- Administrative Account Record Type Setting -->
+                        <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+                                {labelReference.adminAccountModelTitle}
+                            </div>
+                            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                                {labelReference.adminAccountModelDescription}
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_x-large">
+                            <lightning-combobox
+                                id={inputAttributeReference.adminAccountModelComboboxId}
+                                aria-labelledby={inputAttributeReference.adminAccountModelComboboxId}
+                                name={inputAttributeReference.adminAccountModelComboboxId}
+                                label={labelReference.adminAccountModelTitle}
+                                value={accountModelSettingsViewModel.adminAccountRecordType.value}
+                                placeholder={labelReference.comboboxPlaceholderText}
+                                options={accountModelSettingsViewModel.adminAccountRecordType.options}
+                                onchange={handleAdministrativeAccountModelChange}
+                                disabled={affordancesDisabled}
+                                variant="label-hidden"
+                                data-qa-locator={inputAttributeReference.adminAccountModelComboboxId}
+                            ></lightning-combobox>
+                        </div>
+
+                        <!-- Household Account Record Type Setting -->
+                        <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+                                {labelReference.hhAccountModelTitle}
+                            </div>
+                            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                                {labelReference.hhAccountModelDescription}
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_x-large">
+                            <lightning-combobox
+                                id={inputAttributeReference.hhAccountModelComboboxId}
+                                aria-labelledby={inputAttributeReference.hhAccountModelComboboxId}
+                                name={inputAttributeReference.hhAccountModelComboboxId}
+                                label={labelReference.hhAccountModelTitle}
+                                value={accountModelSettingsViewModel.householdAccountRecordType.value}
+                                placeholder={labelReference.comboboxPlaceholderText}
+                                options={accountModelSettingsViewModel.householdAccountRecordType.options}
+                                onchange={handleHouseholdAccountModelChange}
+                                disabled={affordancesDisabled}
+                                variant="label-hidden"
+                                data-qa-locator={inputAttributeReference.hhAccountModelComboboxId}
+                            ></lightning-combobox>
+                        </div>
+                    </div>
+                </template>
+            </c-settings-save-canvas>
+        </div>
+    </div>
+</template>

@@ -47,7 +47,7 @@ public class UTIL_Debug {
     public static void debug (string message) {
         if (enabled) {
             System.debug(message);
-        }
+        }    
     }
 
     /*******************************************************************************************************

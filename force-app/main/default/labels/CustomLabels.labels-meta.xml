@@ -89,6 +89,13 @@
         <value>Household</value>
     </labels>
     <labels>
+        <fullName>EDASettingsContainerAuraComponentLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Settings</shortDescription>
+        <value>EDA Settings</value>
+    </labels>
+    <labels>
         <fullName>Female</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
@@ -636,15 +643,23 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Account model</shortDescription>
+        <shortDescription>Field label for the Account Model Settings setting</shortDescription>
         <value>Default Account Model</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountModelSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Account Model Settings</shortDescription>
+        <value>Account Model</value>
     </labels>
     <labels>
         <fullName>stgAccountRecordTypeSupportsHHAddress</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <shortDescription>Field label for the Household Account Record Type setting</shortDescription>
         <value>Household Account Record Type</value>
     </labels>
     <labels>
@@ -684,7 +699,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Account record types Setting</shortDescription>
+        <shortDescription>Field label for the Administrative Account Record Type setting</shortDescription>
         <value>Administrative Account Record Type</value>
     </labels>
     <labels>
@@ -1126,6 +1141,30 @@
         <protected>true</protected>
         <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
         <value>Enable Enhanced Preferred Phone Functionality</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorInsufficientAccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message for when you don&apos;t have the permissions to view a page.</shortDescription>
+        <value>You can&apos;t view this page. Your Salesforce admin can help with that.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorInsufficientAccessSaving</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when the user doesn't have the permissions to save settings</shortDescription>
+        <value>You can't save these settings because you no longer have permission to edit them. Your Salesforce admin can help with that.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorInvalidSettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when a generic error occurs</shortDescription>
+        <value>We couldn’t save your work. Please refresh the page and try again.</value>
     </labels>
     <labels>
         <fullName>stgErrorNotiTo</fullName>
@@ -1932,8 +1971,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for System Settings</shortDescription>
-        <value>For Higher Education institutions, we recommend the &quot;Administrative&quot; Account model. For K-12 schools, we recommend the &quot;Household&quot; Account model.</value>
+        <shortDescription>Description of the Default Account Model setting</shortDescription>
+        <value>The Account record type used when an Account is automatically created for an independent Contact.</value>
     </labels>
     <labels>
         <fullName>stgHelpAccoutsDeletedIfChildContactsDeleted</fullName>
@@ -1956,8 +1995,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts.</value>
+        <shortDescription>Description of the Administrative Account Record Type setting</shortDescription>
+        <value>The Account record type used for Administrative Accounts.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCopyProgramEnrollmentEndDate</fullName>
@@ -2220,8 +2259,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Account record type used for Household Accounts. This setting affects management of Address records and the naming format of Household Accounts.</value>
+        <shortDescription>Description of the Household Account Record Type setting</shortDescription>
+        <value>The Account record type used for Household Accounts.</value>
     </labels>
     <labels>
         <fullName>stgHelpIfCustomValuesEthnicityCopyRace</fullName>
