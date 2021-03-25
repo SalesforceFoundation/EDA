@@ -1,10 +1,5 @@
 ({
     handleToggle: function (component) {
-        console.log(component.get("v.accountRecordType"));
-        console.log(component.get("v.contactField"));
-
-        component.set("v.accountRecordType", "Academic_Program");
-        component.set("v.contactField", "Primary_Academic_Program__c");
         let primaryAffiliationEvent = component.getEvent("affiliationsModalEvent");
         primaryAffiliationEvent.setParams({
             affiliationsAction: "change",
@@ -13,10 +8,10 @@
         });
         primaryAffiliationEvent.fire();
     },
-    handleCancel: function (component, event, helper) {
+    handleCancel: function (component) {
         component.find("primaryAffiliationsOverlayLibrary").notifyClose();
     },
-    handleSave: function (component, event, helper) {
+    handleSave: function (component) {
         let primaryAffiliationEvent = component.getEvent("affiliationsModalEvent");
         primaryAffiliationEvent.setParams({
             affiliationsAction: component.get("v.affiliationsAction"),

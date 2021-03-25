@@ -5,6 +5,12 @@
             buttonClicked: buttonClicked,
             sourceName: component.get("v.sourceName")
         });
-        customModalFooterButtonClickEvent.fire();
+
+        try {
+            customModalFooterButtonClickEvent.fire();
+        } catch (e) {
+            //save for validation handling
+            //console.error(e);
+        }
     }
 });
