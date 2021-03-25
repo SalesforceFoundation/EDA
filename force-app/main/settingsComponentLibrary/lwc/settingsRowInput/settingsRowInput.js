@@ -11,9 +11,19 @@ export default class SettingsRowInput extends LightningElement {
     @api type;
 
     handleInputChange(event) {
-        const eventDetail = {
-            value: event.detail.value,
-        };
+        let eventDetail = {};
+
+        if (this.type === "toggle") {
+            eventDetail = {
+                // event.detail.value is undefined for a toggle
+                value: event.detail.checked,
+            };
+        } else {
+            eventDetail = {
+                value: event.detail.value,
+            };
+        }
+
         const settingsInputChange = new CustomEvent("settingsinputchange", { detail: eventDetail });
         this.dispatchEvent(settingsInputChange);
     }

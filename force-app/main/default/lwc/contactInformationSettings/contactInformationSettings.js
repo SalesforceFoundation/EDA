@@ -65,9 +65,8 @@ export default class ContactInformationSettings extends LightningElement {
         this.contactLanguageSettingsWireResult = result;
 
         if (result.data) {
-            this.contactLanguageSettingsVModel = JSON.parse(JSON.stringify(result.data));
-
-            console.log("contactLanguageSettingsVModel BEFORE: " + JSON.stringify(this.contactLanguageSettingsVModel));
+            //this.contactLanguageSettingsVModel = JSON.parse(JSON.stringify(result.data));
+            this.contactLanguageSettingsVModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving contactLanguageSettingsVModel");
         }
@@ -83,7 +82,7 @@ export default class ContactInformationSettings extends LightningElement {
             // preferred phone visibility dependent on enhanced phone functionality setting
             this.showPreferredPhoneEnforcement = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
         } else if (result.error) {
-            console.log("error retrieving preferredContactInfoSettingsVModel");
+            //console.log("error retrieving preferredContactInfoSettingsVModel");
         }
     }
 
@@ -123,40 +122,44 @@ export default class ContactInformationSettings extends LightningElement {
     }
 
     handleRequirePreferredEmailChange(event) {
+        const eventDetail = event.detail;
+
         let hierarchySettingsChange = {
             settingsType: "boolean",
             settingsName: "Disable_Preferred_Email_Enforcement__c",
-            settingsValue: !event.target.checked, // UI input should display inverse of value specified in hierarchy settings for this field
+            settingsValue: !eventDetail.value, // UI input should display inverse of value specified in hierarchy settings for this field
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
     handleEnhancedPhoneFunctionalityChange(event) {
+        const eventDetail = event.detail;
         // display preferred phone setting if enhanced phone functionality selected
-        this.showPreferredPhoneEnforcement = event.target.checked;
+        this.showPreferredPhoneEnforcement = eventDetail.value;
 
         let hierarchySettingsChange = {
             settingsType: "boolean",
             settingsName: "Enable_New_Preferred_Phone_Sync__c",
-            settingsValue: event.target.checked,
+            settingsValue: eventDetail.value,
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
     handlePreferredPhoneEnforcementChange(event) {
+        const eventDetail = event.detail;
+
         let hierarchySettingsChange = {
             settingsType: "boolean",
             settingsName: "Disable_Preferred_Phone_Enforcement__c",
-            settingsValue: !event.target.checked, // UI input should display inverse of value specified in hierarchy settings for this field
+            settingsValue: !eventDetail.value, // UI input should display inverse of value specified in hierarchy settings for this field
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
     handleDefaultPreferredPhoneChange(event) {
-        console.log("handling preferred phone");
         var defaultPreferredPhoneValue = event.detail.value;
 
         if (event.detail.value === '""') {
@@ -174,40 +177,6 @@ export default class ContactInformationSettings extends LightningElement {
     }
 
     refreshAllApex() {
-        // refreshApex(this.contactLanguageSettingsWireResult).then(() => {
-        //     this.template.querySelectorAll("lightning-combobox").forEach((combobox) => {
-        //         if (
-        //             combobox.dataset["qaLocator"] ===
-        //             this.inputAttributeReference.defaultContactLanugageFluencyComboboxId
-        //         ) {
-        //             combobox.value = this.contactLanguageSettingsVModel.defaultContactLanguageFluency.value;
-        //         }
-        //     });
-        // });
-
-        // refreshApex(this.preferredContactInfoSettingsWireResult).then(() => {
-        //     this.template.querySelectorAll("lightning-combobox").forEach((combobox) => {
-        //         if (combobox.dataset["qaLocator"] === this.inputAttributeReference.defaultPreferredPhoneComboboxId) {
-        //             combobox.value = this.preferredContactInfoSettingsVModel.defaultPreferredPhone.value;
-        //         }
-        //     });
-
-        //     this.template.querySelectorAll("lightning-input").forEach((toggle) => {
-        //         if (toggle.dataset["qaLocator"] === this.inputAttributeReference.requirePreferredEmailToggleId) {
-        //             toggle.checked = this.preferredContactInfoSettingsVModel.requirePreferredEmail;
-        //         }
-
-        //         if (toggle.dataset["qaLocator"] === this.inputAttributeReference.enhancedPhoneFunctionalityToggleId) {
-        //             toggle.checked = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
-        //         }
-
-        //         if (toggle.dataset["qaLocator"] === this.inputAttributeReference.preferredPhoneEnforcementToggleId) {
-        //             toggle.checked = this.preferredContactInfoSettingsVModel.preferredPhoneEnforcement;
-        //         }
-
-        //         this.showPreferredPhoneEnforcement = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
-        //     });
-        // });
         refreshApex(this.contactLanguageSettingsWireResult).then(() => {
             this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
                 dualListBox.resetValue();
@@ -222,8 +191,8 @@ export default class ContactInformationSettings extends LightningElement {
                 dualListBox.resetValue();
             });
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
-                // toggle settings are not saving!!!!!!!!!
                 input.resetValue();
+                this.showPreferredPhoneEnforcement = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
             });
         });
     }

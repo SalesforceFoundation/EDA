@@ -37,6 +37,7 @@
                             type="toggle"
                             input-id={inputAttributeReference.requirePreferredEmailToggleId}
                             value={preferredContactInfoSettingsVModel.requirePreferredEmail}
+                            checked={preferredContactInfoSettingsVModel.requirePreferredEmail}
                             onsettingsinputchange={handleRequirePreferredEmailChange}
                             disabled={affordancesDisabled}
                         ></c-settings-row-input>
@@ -56,7 +57,7 @@
                         <template if:true={showPreferredPhoneEnforcement}>
                             <!-- Preferred Phone Enforcement Setting -->
                             <c-settings-row-input
-                                class="slds-size_3-of-3"
+                                class="slds-size_3-of-3 slds-p-left_x-large"
                                 title={labelReference.preferredPhoneEnforcementTitle}
                                 description={labelReference.preferredPhoneEnforcementDescription}
                                 type="toggle"
@@ -69,7 +70,7 @@
 
                         <!-- Default Preferred Phone Setting -->
                         <c-settings-row-input
-                            class="slds-size_3-of-3 slds-p-top_x-large"
+                            class="slds-size_3-of-3"
                             title={labelReference.defaultPreferredPhoneTitle}
                             description={labelReference.defaultPreferredPhoneDescription}
                             type="combobox"
