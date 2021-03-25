@@ -89,6 +89,34 @@
                         </div>
                     </div>
                 </template>
+
+                <!-- Account Auto Deletion Settings -->
+                <template if:true={accountAutoDeletionSettingsViewModel}>
+                    <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                        <div class="slds-col slds-size_2-of-3 slds-p-bottom_small">
+                            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+                                {labelReference.accountAutoDeletionTitle}
+                            </div>
+                            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                                {labelReference.accountAutoDeletionDescription}
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_3-of-3 slds-p-bottom_x-large slds-p-left_large">
+                            <lightning-dual-listbox
+                                id={inputAttributeReference.accountAutoDeletionDualListboxId}
+                                name={inputAttributeReference.accountAutoDeletionDualListboxId}
+                                label={labelReference.accountAutoDeletionLisboxGroupHeading}
+                                source-label={labelReference.accountAutoDeletionAvailableValuesHeading}
+                                selected-label={labelReference.accountAutoDeletionSelectedValuesHeading}
+                                options={accountAutoDeletionSettingsViewModel.options}
+                                value={accountAutoDeletionSettingsViewModel.value}
+                                onchange={handleAccountAutoDeletionChange}
+                                disabled={affordancesDisabled}
+                                data-qa-locator={inputAttributeReference.accountAutoDeletionDualListboxId}
+                            ></lightning-dual-listbox>
+                        </div>
+                    </div>
+                </template>
             </c-settings-save-canvas>
         </div>
     </div>

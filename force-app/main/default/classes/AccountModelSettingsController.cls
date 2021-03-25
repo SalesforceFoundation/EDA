@@ -48,11 +48,35 @@ public with sharing class AccountModelSettingsController {
         }
     }
 
+    /************************************************************************************
+     * @description Retrieve a DualListboxVModel represeting the current Account Record Types
+     * specified for deletion when not associated with Contacts in Hierarchy Settings and
+     * the remaining active Account Record Types available for selection.
+     * @return A DualListboxVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static DualListboxVModel getAccountAutoDeletionSettingsViewModel() {
+        try {
+            return AccountModelSettingsController.locateAccountAutoDeletionSettingsVMapper()
+                .getAccountAutoDeletionSettingsViewModel();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /**********************************************************************************
      * @description Locates and returns an instance of AccountModelSettingsVMapper.
      **********************************************************************************/
     @TestVisible
     private static AccountModelSettingsVMapper locateAccountModelSettingsVMapper() {
         return AccountModelSettingsVMapper.getInstance();
+    }
+
+    /**********************************************************************************
+     * @description Locates and returns an instance of AccountAutoDeletionSettingsVMapper.
+     **********************************************************************************/
+    @TestVisible
+    private static AccountAutoDeletionSettingsVMapper locateAccountAutoDeletionSettingsVMapper() {
+        return AccountAutoDeletionSettingsVMapper.getInstance();
     }
 }
