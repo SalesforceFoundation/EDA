@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation   Validates account model health check card displays failures
+Documentation   Verifies Account Model health check failure status
 Resource        robot/EDA/resources/EDA.robot
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/SettingsHealthCheckPageObject.py
@@ -11,7 +11,7 @@ Suite Teardown  Capture screenshot and delete records and close browser
 Verify account model health check settings checks pass
     [Documentation]         Verifies the failure status of the Account Model test
     [tags]                  unstable        rbt:high        W-8977007
-    Go to EDA settings tab          Accounts and Contacts
+    Go to EDA settings tab      Accounts and Contacts
     Update system dropdown value
     ...                       Administrative Account Record Type=Household Account
     Click action button on EDA settings page    Save
