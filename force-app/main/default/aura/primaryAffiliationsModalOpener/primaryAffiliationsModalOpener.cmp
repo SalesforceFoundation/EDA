@@ -1,5 +1,6 @@
 <aura:component>
     <aura:handler name="modalEventHandler" event="c:primaryAffiliationsModalEvent" action="{!c.handleModalEventMethod}" />
+    <aura:handler name="modalFooterEventHandler" event="c:customModalFooterEvent" action="{!c.handleModalFooterEventMethod}" />
     <lightning:overlayLibrary aura:id="edaSettingsOverlayLibrary" />
 
     <aura:attribute name="affiliationsAction" type="String" />

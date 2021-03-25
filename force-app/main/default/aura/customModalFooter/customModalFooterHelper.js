@@ -2,7 +2,7 @@
     fireButtonClickEvent: function (component, buttonClicked) {
         let customModalFooterButtonClickEvent = component.getEvent("customModalFooterButtonClickEvent");
         customModalFooterButtonClickEvent.setParams({
-            type: buttonClicked
+            action: buttonClicked
         });
 
         try {

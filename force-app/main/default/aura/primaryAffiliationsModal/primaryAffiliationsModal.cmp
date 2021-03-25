@@ -4,6 +4,9 @@
     <aura:attribute name="affiliationsAction" type="String" />
     <aura:attribute name="accountRecordType" type="String" />
     <aura:attribute name="contactField" type="String" />
-    {!$Label.c.stgAffiliationsEditModalBody}
-    <lightning:button label="Toggle" onclick="{!c.handleToggle}"></lightning:button>
+
+    <aura:if isTrue="{!or(v.affiliationsAction == 'edit', v.affiliationsAction == 'save')}">
+        {!$Label.c.stgAffiliationsEditModalBody}
+        <lightning:button label="Toggle" onclick="{!c.handleToggle}"></lightning:button>
+    </aura:if>
 </aura:component>
