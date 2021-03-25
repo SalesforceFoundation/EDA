@@ -14,6 +14,10 @@
                 <template if:true={settingsPageToDisplay.accountModelSettings}>
                     <c-account-model-settings></c-account-model-settings>
                 </template>
+
+                <template if:true={settingsPageToDisplay.affiliations}>
+                    <c-affiliations-settings></c-affiliations-settings>
+                </template>
             </div>
         </div>
     </template>
