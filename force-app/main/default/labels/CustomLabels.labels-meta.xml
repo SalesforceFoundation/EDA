@@ -396,16 +396,16 @@
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliations setting</shortDescription>
-        <value>Enable Record Type Validation</value>
+        <shortDescription>Label for the Record Type Validation setting</shortDescription>
+        <value>Record Type Validation</value>
     </labels>
     <labels>
         <fullName>afflTypeEnforcedDescription</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for the Enable Record Type Validation setting for Affilliations</shortDescription>
-        <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, the Account is required to have a record type and all Account Record Type values must be correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
+        <shortDescription> Description of the Record Type Validation setting</shortDescription>
+        <value>Require Accounts specified as a Contact’s Primary Affiliation use a record type. Also ensure that all Account record types are mapped to Primary Affiliation fields on the Contact object. If validation fails, the Affiliation isn’t saved.</value>
     </labels>
     <labels>
         <fullName>automaticHHNaming</fullName>
@@ -726,6 +726,14 @@
         <shortDescription>Field label for the Administrative Account Record Type setting</shortDescription>
         <value>Administrative Account Record Type</value>
     </labels>
+    <labels>
+        <fullName>stgAffiliationsSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Affiliations</shortDescription>
+        <value>Affiliations</value>
+        </labels>
     <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>

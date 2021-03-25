@@ -201,11 +201,11 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label>レコードタイプの検証を有効化</label>
+        <label><!-- Label for the Record Type Validation setting --></label>
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label>選択した場合、ユーザが取引先を取引先責任者の主所属として指定すると、取引先にレコードタイプが必要になり、すべての取引先レコードタイプ値を、所属対応付け内の対応する取引先責任者の [主所属] 項目に正しく対応付ける必要があります。検証に失敗した場合、エラーにより所属を保存できません。</label>
+        <label><!-- Description of the Enable Record Type Validation setting --></label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -371,6 +371,10 @@
     <customLabels>
         <label>所属の終了日をプログラム登録からコピー</label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Section title for Affiliations --></label>
+        <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>所属の開始日をプログラム登録からコピー</label>
