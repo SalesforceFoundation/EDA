@@ -55,7 +55,6 @@ export default class SettingsSaveCanvas extends LightningElement {
                     // update successful
                     this.switchEditMode(false);
                     this.showToast("success", "Save Complete", this.labelReference.successMessage);
-
                     this.dispatchSettingsSaveCompletedEvent();
                 }
             })
