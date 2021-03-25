@@ -1,7 +1,11 @@
 <aura:component>
     <lightning:overlayLibrary aura:id="primaryAffiliationsOverlayLibrary" />
-    <aura:attribute name="toggle" type="Boolean" default="false" />
-    <aura:attribute name="primaryAffiliationsModalSave" type="Object" />
+
+    <aura:registerEvent name="affiliationsModalEvent" type="c:primaryAffiliationsModalEvent" />
+
+    <aura:attribute name="affiliationsAction" type="String" />
+    <aura:attribute name="accountRecordType" type="String" />
+    <aura:attribute name="contactField" type="String" />
 
     <lightning:button label="Toggle" onclick="{!c.handleToggle}"></lightning:button>
     <lightning:button label="Cancel" onclick="{!c.handleCancel}"></lightning:button>

@@ -1,3 +1,0 @@
-<aura:event type="COMPONENT" description="Event template">
-    <aura:attribute name="toggleSave" type="String"
-/></aura:event>

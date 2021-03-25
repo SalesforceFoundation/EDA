@@ -4,7 +4,7 @@
         $A.createComponent(
             "c:primaryAffiliationsModal",
             {
-                primaryAffiliationsModalSave: component.getReference("c.primaryAffiliationsSave")
+                "affiliationsModalEvent": component.getReference("c.handleModalEventMethod"),
             },
             function (content, status) {
                 if (status === "SUCCESS") {
@@ -13,16 +13,13 @@
                         header: "Application Confirmation",
                         body: modalBody,
                         showCloseButton: true,
-                        cssClass: "mymodal",
-                        closeCallback: function () {
-                            alert("You closed the alert");
-                        }
+                        cssClass: "mymodal"
                     });
                 }
             }
         );
     },
-    handleSaveEvent: function (component, event, helper) {
-        console.log("mid level save");
-    }
+    handleModalEventMethod: function (component, event, helper) {
+        console.log("Account Record Type " + event.getParam("accountRecordType"));
+        console.log("Contact Field " + event.getParam("contactField"));    }
 });
