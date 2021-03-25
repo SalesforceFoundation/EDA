@@ -6,6 +6,7 @@ export default class EDASettings extends LightningElement {
     @api pageReference;
 
     labelReference = {
+        settingsNavigation: "Navigation Pane Here",
         stgErrorInsufficientAccess,
     };
 

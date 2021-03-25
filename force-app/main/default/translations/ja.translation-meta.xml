@@ -329,7 +329,7 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message for the Account Model Settings page title --></label>
+        <label><!-- Section title for Account Model Settings --></label>
         <name>stgAccountModelSettingsTitle</name>
     </customLabels>
     <customLabels>
@@ -989,7 +989,7 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label>高等教育機関では、「管理」取引先モデルをお勧めします。K-12 の学校 (幼稚園から高等学校) では、「世帯」取引先モデルをお勧めします。</label>
+        <label><!-- Description of the Default Account Model setting --></label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
@@ -1001,7 +1001,7 @@
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>管理取引先で使用する取引先レコードタイプ。この設定は、住所レコードの管理と管理取引先の命名形式に影響します。</label>
+        <label><!-- Description of the Administrative Account Record Type setting --></label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
@@ -1133,7 +1133,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>世帯取引先で使用する取引先レコードタイプ。この設定は、住所レコードの管理と世帯取引先の命名形式に影響します。</label>
+        <label><!-- Description of the Household Account Record Type setting --></label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
