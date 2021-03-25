@@ -63,7 +63,6 @@ export default class SettingsSaveCanvas extends LightningElement {
                     // update successful
                     this.switchEditMode(false);
                     this.showToast("success", "Save Complete", this.labelReference.successMessage);
-
                     this.dispatchSettingsSaveCompletedEvent();
                 }
             })
@@ -78,7 +77,8 @@ export default class SettingsSaveCanvas extends LightningElement {
                     this.displayNoAccessError(exceptionType, errorMessage);
                 }
 
-                if (exceptionType === "HierarchySettingsMapper.InvalidSettingsException") {
+                if (exceptionType.includes("HierarchySettingsService.InvalidSettingsException")) {
+                    // need to account for namespace in custom error thrown
                     this.displayInvalidSettingsError(exceptionType, errorMessage);
                 }
             });

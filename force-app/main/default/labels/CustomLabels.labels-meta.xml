@@ -643,7 +643,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for the Account Model Settings setting</shortDescription>
+        <shortDescription>Label for the Account Model setting</shortDescription>
         <value>Default Account Model</value>
     </labels>
     <labels>
@@ -655,11 +655,35 @@
         <value>Account Model</value>
     </labels>
     <labels>
+        <fullName>stgAccountRecordTypeAvailableListTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the list of Available Account Record Types</shortDescription>
+        <value>Available Account Record Types</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountRecordTypeGroupLabelTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Group label for the Account record type selection</shortDescription>
+        <value>Select Account Record Types</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountRecordTypeSelectedListTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the list of Selected Account Record Types</shortDescription>
+        <value>Selected Account Record Types</value>
+    </labels>
+    <labels>
         <fullName>stgAccountRecordTypeSupportsHHAddress</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for the Household Account Record Type setting</shortDescription>
+        <shortDescription>Label for the Household Account Record Type setting</shortDescription>
         <value>Household Account Record Type</value>
     </labels>
     <labels>
@@ -675,8 +699,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Account Types without Contacts to Delete</value>
+        <shortDescription>Label for the Accounts Without Contacts setting</shortDescription>
+        <value>Accounts Without Contacts</value>
     </labels>
     <labels>
         <fullName>stgAddHispanicOrLatinoPicklistValue</fullName>
@@ -1987,8 +2011,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Record types of Accounts that are automatically deleted if all their associated Contacts have been deleted.</value>
+        <shortDescription>Description of the Accounts Without Contacts setting</shortDescription>
+        <value>Delete Accounts with these record types if they have no Contacts.</value>
     </labels>
     <labels>
         <fullName>stgHelpAddressAccRecType</fullName>

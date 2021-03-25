@@ -333,6 +333,18 @@
         <name>stgAccountModelSettingsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Title for the list of Available Account Record Types --></label>
+        <name>stgAccountRecordTypeAvailableListTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Group label for the Account record type selection --></label>
+        <name>stgAccountRecordTypeGroupLabelTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the list of Selected Account Record Types --></label>
+        <name>stgAccountRecordTypeSelectedListTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Tipus de registre del compte domèstic</label>
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
@@ -341,7 +353,7 @@
         <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
-        <label>Tipus de compte sense contactes per esborrar</label>
+        <label><!-- Label for the Accounts Without Contacts setting --></label>
         <name>stgAccoutTypesWithoutContactsDelete</name>
     </customLabels>
     <customLabels>
@@ -997,7 +1009,7 @@
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label>Registre els tipus dels comptes que s&apos;eliminaran automàticament si s&apos;han eliminat tots els contactes associats.</label>
+        <label><!-- Description of the Accounts Without Contacts setting --></label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
