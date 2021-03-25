@@ -18,6 +18,22 @@ import stgAccountRecordTypeGroupLabelTitle from "@salesforce/label/c.stgAccountR
 import stgAccountRecordTypeAvailableListTitle from "@salesforce/label/c.stgAccountRecordTypeAvailableListTitle";
 import stgAccountRecordTypeSelectedListTitle from "@salesforce/label/c.stgAccountRecordTypeSelectedListTitle";
 
+// import Account Naming Settings labels
+import stgAdminAccountNamingTitle from "@salesforce/label/c.stgAdminAccountNamingTitle";
+import adminAccNameFormat from "@salesforce/label/c.adminAccNameFormat";
+import adminAccNameFormatHelpText from "@salesforce/label/c.adminAccNameFormatHelpText";
+
+import stgAdminAccountCustomName from "@salesforce/label/c.stgAdminAccountCustomName";
+import stgCustomAdminAccountNamingHelp from "@salesforce/label/c.stgCustomAdminAccountNamingHelp";
+import stgHHAccountNamingTitle from "@salesforce/label/c.stgHHAccountNamingTitle";
+import hhAccNameFormat from "@salesforce/label/c.hhAccNameFormat";
+import hhAccNameFormatHelpText from "@salesforce/label/c.hhAccNameFormatHelpText";
+
+import stgHHAccountCustomName from "@salesforce/label/c.stgHHAccountCustomName";
+import stgHHAccountCustomNameHelp from "@salesforce/label/c.stgHHAccountCustomNameHelp";
+import automaticHHNaming from "@salesforce/label/c.automaticHHNaming";
+import automaticHHNamingHelpText from "@salesforce/label/c.automaticHHNamingHelpText";
+
 export default class AccountModelSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -37,11 +53,26 @@ export default class AccountModelSettings extends LightningElement {
         hhAccountModelTitle: stgAccountRecordTypeSupportsHHAddress,
         hhAccountModelDescription: stgHelpHouseholdRecType,
         comboboxPlaceholderText: stgOptSelect,
+
         accountAutoDeletionTitle: stgAccoutTypesWithoutContactsDelete,
         accountAutoDeletionDescription: stgHelpAccoutsDeletedIfChildContactsDeleted,
         accountAutoDeletionLisboxGroupHeading: stgAccountRecordTypeGroupLabelTitle,
         accountAutoDeletionSelectedValuesHeading: stgAccountRecordTypeSelectedListTitle,
         accountAutoDeletionAvailableValuesHeading: stgAccountRecordTypeAvailableListTitle,
+
+        adminAccountNamingTitle: stgAdminAccountNamingTitle,
+        adminAccountNameFormatHeading: adminAccNameFormat,
+        adminAccountNameFormatDescription: adminAccNameFormatHelpText,
+        adminAccountCustomNameFormatHeading: stgAdminAccountCustomName,
+        adminAccountCustomNameFormatDescription: stgCustomAdminAccountNamingHelp,
+
+        hhAccountNamingTitle: stgHHAccountNamingTitle,
+        hhAccountNameFormatHeading: hhAccNameFormat,
+        hhAccountNameFormatDescription: hhAccNameFormatHelpText,
+        hhAccountCustomNameFormatHeading: stgHHAccountCustomName,
+        hhAccountCustomNameFormatDescription: stgHHAccountCustomNameHelp,
+        hhAutomaticAccountNamingTitle: automaticHHNaming,
+        hhAutomaticAccountNamingDescription: automaticHHNamingHelpText,
     };
 
     inputAttributeReference = {
