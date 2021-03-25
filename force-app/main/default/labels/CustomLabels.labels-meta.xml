@@ -276,8 +276,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for Admin and Household Account Name Format fields</shortDescription>
-        <value>Other</value>
+        <shortDescription>Picklist value for the naming format used for Admin and Household Accounts</shortDescription>
+        <value>Custom Format</value>
     </labels>
     <labels>
         <fullName>adapterException</fullName>
@@ -348,7 +348,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Admin Acct Name format</shortDescription>
+        <shortDescription>Field label for the Administrative Account Name Format setting</shortDescription>
         <value>Administrative Account Name Format</value>
     </labels>
     <labels>
@@ -356,8 +356,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text under Admin Acct Name Format field label</shortDescription>
-        <value>The name format used for auto-created Administrative Accounts.</value>
+        <shortDescription>Description of the Administrative Account Name Format setting</shortDescription>
+        <value>The format for naming Administrative Accounts when they are automatically created. More Info(link to the URL redirect that we need to create for https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names)</value>
     </labels>
     <labels>
         <fullName>affiliationWithSameAccExists</fullName>
@@ -412,7 +412,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Automatic HH Naming</shortDescription>
+        <shortDescription>Field label for the Automatically Rename Household Accounts setting</shortDescription>
         <value>Automatically Rename Household Accounts</value>
     </labels>
     <labels>
@@ -420,8 +420,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Automatic Household Naming</shortDescription>
-        <value>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is changed.</value>
+        <shortDescription>Description of the Automatically Rename Household Accounts setting</shortDescription>
+        <value>Automatically rename Household Accounts when Contacts are added or changed.</value>
     </labels>
     <labels>
         <fullName>defaultAccountRecordTypeMissingError</fullName>
@@ -480,11 +480,11 @@
         <value>The Filter Field can&apos;t include namespace prefixes such as hed__. Remove the namespace prefix and try again.</value>
     </labels>
     <labels>
-        <fullName>firstNameLastNameAdminACC</fullName>
+        <fullName>firstNameLastNameAdminAcc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>A picklist value for the Admin Account Name Format setting</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Administrative Accounts</shortDescription>
         <value>{!{!FirstName}} {!LastName} Administrative Account</value>
     </labels>
     <labels>
@@ -492,7 +492,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>A picklist value for the Household Account Name Format setting</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!{!FirstName}} {!LastName} Family</value>
     </labels>
     <labels>
@@ -500,7 +500,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>A picklist value for the Household Account Name Format setting</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!{!FirstName}} {!LastName} Household</value>
     </labels>
     <labels>
@@ -515,7 +515,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for the Household Account Name format setting</shortDescription>
+        <shortDescription>Field label for the Household Account Name setting</shortDescription>
         <value>Household Account Name Format</value>
     </labels>
     <labels>
@@ -523,8 +523,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Household Acct Naming Format</shortDescription>
-        <value>The format used for naming Household Accounts.</value>
+        <shortDescription>Description of the Household Account Name Format setting</shortDescription>
+        <value>The format for naming Household Accounts when they are automatically created. More Info(link to the URL redirect that we need to create for https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names)</value>
     </labels>
     <labels>
         <fullName>hhFamily</fullName>
@@ -539,7 +539,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Admin Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Administrative Accounts</shortDescription>
         <value>{!LastName} Administrative Account</value>
     </labels>
     <labels>
@@ -547,7 +547,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!LastName} Family</value>
     </labels>
     <labels>
@@ -555,7 +555,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Admin Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Administrative Accounts</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Administrative Account</value>
     </labels>
     <labels>
@@ -563,7 +563,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Household Account Name format.</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Family</value>
     </labels>
     <labels>
@@ -571,7 +571,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Household</value>
     </labels>
     <labels>
@@ -579,7 +579,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!LastName} Household</value>
     </labels>
     <labels>
@@ -717,6 +717,22 @@
         <protected>true</protected>
         <shortDescription>Instructions for Ethnicity and Race Backfill</shortDescription>
         <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
+    </labels>
+    <labels>
+        <fullName>stgAdminAccountCustomName</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field label for Custom Name Format for Administrative Accounts</shortDescription>
+        <value>Custom Name Format</value>
+    </labels>
+    <labels>
+        <fullName>stgAdminAccountNamingTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Administrative Account Naming</shortDescription>
+        <value>Administrative Account Naming</value>
     </labels>
     <labels>
         <fullName>stgAdminAccountRecordType</fullName>
@@ -1093,6 +1109,14 @@
         <protected>true</protected>
         <shortDescription>Email subject on completion of Run Copy on Courses Description Data Migration</shortDescription>
         <value>Course Description Copy Job Completed with a status of:</value>
+    </labels>
+    <labels>
+        <fullName>stgCustomAdminAccountNamingHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Info text for Custom Name Format</shortDescription>
+        <value>Specify your own naming convention.</value>
     </labels>
     <labels>
         <fullName>stgDefaultContactLanguageFluency</fullName>
@@ -2357,6 +2381,30 @@
         <protected>true</protected>
         <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
         <value>If you had reports or formula fields that referenced the previous values in the Ethnicity field, update them.</value>
+    </labels>
+    <labels>
+        <fullName>stgHHAccountCustomName</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field label for Custom Name Format for Household Accounts</shortDescription>
+        <value>Custom Name Format</value>
+    </labels>
+    <labels>
+        <fullName>stgHHAccountCustomNameHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Info text for Custom Name Format</shortDescription>
+        <value>Specify your own naming convention.</value>
+    </labels>
+    <labels>
+        <fullName>stgHHAccountNamingTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Household Account Naming</shortDescription>
+        <value>Household Account Naming</value>
     </labels>
     <labels>
         <fullName>stgNestedPlanRequirementPP</fullName>

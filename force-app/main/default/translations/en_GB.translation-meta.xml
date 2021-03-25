@@ -141,7 +141,7 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label>Other</label>
+        <label><!-- Picklist value for the naming format used for Admin and Household Accounts --></label>
         <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
@@ -181,7 +181,7 @@
         <name>adminAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>The name format used for auto-created Administrative Accounts.</label>
+        <label><!-- Description of the Administrative Account Name Format setting --></label>
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -213,7 +213,7 @@
         <name>automaticHHNaming</name>
     </customLabels>
     <customLabels>
-        <label>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is changed.</label>
+        <label><!-- Description of the Automatically Rename Household Accounts setting --></label>
         <name>automaticHHNamingHelpText</name>
     </customLabels>
     <customLabels>
@@ -246,7 +246,7 @@
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} Administrative Account</label>
-        <name>firstNameLastNameAdminACC</name>
+        <name>firstNameLastNameAdminAcc</name>
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} Family</label>
@@ -261,11 +261,11 @@
         <name>giftProcessingConfigException</name>
     </customLabels>
     <customLabels>
-        <label>Household Account Name Format</label>
+        <label><!-- Field label for the Household Account Name setting --></label>
         <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>The format used for naming Household Accounts.</label>
+        <label><!-- Description of the Household Account Name Format setting --></label>
         <name>hhAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -363,6 +363,14 @@
     <customLabels>
         <label>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</label>
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Field label for Custom Name Format for Administrative Accounts --></label>
+        <name>stgAdminAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Administrative Account Naming --></label>
+        <name>stgAdminAccountNamingTitle</name>
     </customLabels>
     <customLabels>
         <label>Administrative Account Record Type</label>
@@ -551,6 +559,10 @@
     <customLabels>
         <label>Course Description Copy Job Completed with a status of:</label>
         <name>stgCourseDescriptionCopyEmailSubject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgCustomAdminAccountNamingHelp</name>
     </customLabels>
     <customLabels>
         <label>Default Contact Language Fluency</label>
@@ -1183,6 +1195,18 @@
     <customLabels>
         <label>If you had reports or formula fields that referenced the previous values in the Ethnicity field, update them.</label>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Field label for Custom Name Format for Household Accounts --></label>
+        <name>stgHHAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgHHAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Household Account Naming --></label>
+        <name>stgHHAccountNamingTitle</name>
     </customLabels>
     <customLabels>
         <label>Validate Program Plan for Nested Plan Requirements</label>
