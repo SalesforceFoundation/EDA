@@ -12,16 +12,20 @@ export default class SettingsRowInput extends LightningElement {
 
     handleInputChange(event) {
         let eventDetail = {};
+        let typeLowercased = this.type.toLowerCase();
 
-        if (this.type === "toggle") {
-            eventDetail = {
-                // event.detail.value is undefined for a toggle
-                value: event.detail.checked,
-            };
-        } else {
-            eventDetail = {
-                value: event.detail.value,
-            };
+        switch (typeLowercased) {
+            case "toggle":
+                eventDetail = {
+                    // event.detail.value is undefined for a toggle
+                    value: event.detail.checked,
+                };
+                break;
+
+            default:
+                eventDetail = {
+                    value: event.detail.value,
+                };
         }
 
         const settingsInputChange = new CustomEvent("settingsinputchange", { detail: eventDetail });
@@ -30,7 +34,9 @@ export default class SettingsRowInput extends LightningElement {
 
     @api
     resetValue() {
-        switch (this.type) {
+        let typeLowercased = this.type.toLowerCase();
+
+        switch (typeLowercased) {
             case "toggle":
                 this.template.querySelector("lightning-input").checked = this.value;
                 break;
