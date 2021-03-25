@@ -107,9 +107,7 @@ export default class AffiliationsSettings extends LightningElement {
         console.log("affiliationsDetail: " + JSON.stringify(affiliationsDetail));
 
         let primaryAffiliationsModalRequestEvent = new CustomEvent("primaryaffiliationmodalrequest", {
-            detail: {
-                affiliationsDetail: affiliationsDetail,
-            },
+            detail: affiliationsDetail,
             bubbles: true,
             composed: true,
         });

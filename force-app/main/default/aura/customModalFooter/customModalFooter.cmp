@@ -1,5 +1,6 @@
 <aura:component>
     <aura:registerEvent name="customModalFooterButtonClickEvent" type="c:customModalFooterEvent" />
+    <lightning:overlayLibrary aura:id="edaSettingsOverlayLibrary" />
 
     <aura:attribute name="confirmButtonLabel" type="String" required="true" />
     <aura:attribute name="confirmButtonTitle" type="String" required="true" />

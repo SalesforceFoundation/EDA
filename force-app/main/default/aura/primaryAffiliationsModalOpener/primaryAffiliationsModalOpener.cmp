@@ -1,6 +1,6 @@
 <aura:component>
     <aura:handler name="modalEventHandler" event="c:primaryAffiliationsModalEvent" action="{!c.handleModalEventMethod}" />
-    <lightning:overlayLibrary aura:id="primaryAffiliationsOverlayLibrary" />
+    <lightning:overlayLibrary aura:id="edaSettingsOverlayLibrary" />
 
     <aura:attribute name="affiliationsAction" type="String" />
     <aura:attribute name="mappingName" type="String" />
