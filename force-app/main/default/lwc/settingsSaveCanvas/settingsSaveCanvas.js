@@ -23,6 +23,7 @@ export default class SettingsSaveCanvas extends LightningElement {
         settingsButtonEdit,
         settingsButtonCancel,
         settingsButtonSave,
+        successMessage: "Your updates have been successfully applied.",
     };
 
     @api
@@ -33,11 +34,11 @@ export default class SettingsSaveCanvas extends LightningElement {
     @api
     handleHierarchySettingsChange(hierarchySettingsChange) {
         if (hierarchySettingsChange.settingsType === "string") {
-            hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
+            this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
                 hierarchySettingsChange.settingsValue;
         }
         if (hierarchySettingsChange.settingsType === "array") {
-            hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
+            this.hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
                 hierarchySettingsChange.settingsValue;
         }
     }
@@ -53,6 +54,7 @@ export default class SettingsSaveCanvas extends LightningElement {
                 if (result === true) {
                     // update successful
                     this.switchEditMode(false);
+                    this.showToast("success", "Save Complete", this.labelReference.successMessage);
                     this.dispatchSettingsSaveCompletedEvent();
                 }
             })
@@ -67,7 +69,8 @@ export default class SettingsSaveCanvas extends LightningElement {
                     this.displayNoAccessError(exceptionType, errorMessage);
                 }
 
-                if (exceptionType === "HierarchySettingsMapper.InvalidSettingsException") {
+                if (exceptionType.includes("HierarchySettingsService.InvalidSettingsException")) {
+                    // need to account for namespace in custom error thrown
                     this.displayInvalidSettingsError(exceptionType, errorMessage);
                 }
             });
@@ -126,20 +129,20 @@ export default class SettingsSaveCanvas extends LightningElement {
     }
 
     displayNoAccessError(errorType, errorMessage) {
-        this.showErrorToast(errorType, errorMessage);
+        this.showToast("error", errorType, errorMessage);
         this.dispatchSettingsSaveCompletedEvent();
     }
 
     displayInvalidSettingsError(errorType, errorMessage) {
-        this.showErrorToast(errorType, errorMessage);
+        this.showToast("error", errorType, errorMessage);
         this.dispatchSettingsSaveCompletedEvent();
     }
 
-    showErrorToast(toastTitle, toastMessage) {
+    showToast(toastType, toastTitle, toastMessage) {
         const showToastEvent = new ShowToastEvent({
             title: toastTitle,
             message: toastMessage,
-            variant: "error",
+            variant: toastType,
             mode: "dismissable",
         });
         this.dispatchEvent(showToastEvent);

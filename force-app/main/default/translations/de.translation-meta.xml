@@ -329,8 +329,20 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message for the Account Model Settings page title --></label>
+        <label><!-- Section title for Account Model Settings --></label>
         <name>stgAccountModelSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the list of Available Account Record Types --></label>
+        <name>stgAccountRecordTypeAvailableListTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Group label for the Account record type selection --></label>
+        <name>stgAccountRecordTypeGroupLabelTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the list of Selected Account Record Types --></label>
+        <name>stgAccountRecordTypeSelectedListTitle</name>
     </customLabels>
     <customLabels>
         <label>Datensatztyp für Haushalt-Accounts</label>
@@ -341,7 +353,7 @@
         <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
-        <label>Accounttypen ohne zu löschende Kontakte</label>
+        <label><!-- Label for the Accounts Without Contacts setting --></label>
         <name>stgAccoutTypesWithoutContactsDelete</name>
     </customLabels>
     <customLabels>
@@ -989,11 +1001,11 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label>Für höhere Bildungseinrichtungen empfehlen wir das Accountmodell &quot;Verwaltung&quot;. Für Grund- und weiterführende Schulen empfehlen wir das Accountmodell &quot;Haushalt&quot;.</label>
+        <label><!-- Description of the Default Account Model setting --></label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label>Datensatztypen von Accounts, die automatisch gelöscht werden, wenn alle zugehörigen Kontakte gelöscht wurden.</label>
+        <label><!-- Description of the Accounts Without Contacts setting --></label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
@@ -1001,7 +1013,7 @@
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>Der Account-Datensatztyp, der für Verwaltungs-Accounts verwendet wird. Diese Einstellung wirkt sich auf die Verwaltung von Adressdatensätzen und das Benennungsformat von Verwaltung-Accounts aus.</label>
+        <label><!-- Description of the Administrative Account Record Type setting --></label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
@@ -1133,7 +1145,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>Der Account-Datensatztyp, der für Haushalt-Accounts verwendet wird. Diese Einstellung wirkt sich auf die Verwaltung von Adressdatensätzen und das Benennungsformat von Haushalt-Accounts aus.</label>
+        <label><!-- Description of the Household Account Record Type setting --></label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
