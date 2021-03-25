@@ -61,7 +61,7 @@ public virtual with sharing class AccountNamingSettingsVMapper {
      * in Hierarchy Settings.
      * @return An AccountNamingSettingsVModel
      ************************************************************************************/
-    public AccountNamingSettingsVModel getAccountNamingSettingsVModel() {
+    public virtual AccountNamingSettingsVModel getAccountNamingSettingsVModel() {
         // get model representing current Account Naming settings in Hierarchy Settings
         AccountNamingSettingsModel currentAccountNamingSettingsModel = this.locateAccountNamingSettingsService()
             .getAccountNamingSettingsModel();
