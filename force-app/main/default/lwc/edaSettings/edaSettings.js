@@ -5,16 +5,15 @@ import checkAccessForCurrentUser from "@salesforce/apex/EDASettingsController.ch
 export default class EDASettings extends LightningElement {
     @api pageReference;
 
+    currentUserHasAccess = false;
+
     labelReference = {
-        settingsNavigation: "Navigation Pane Here",
         stgErrorInsufficientAccess,
     };
 
     @track settingsPageToDisplay = {
         accountModelSettings: true,
     };
-
-    currentUserHasAccess = false;
 
     @wire(checkAccessForCurrentUser)
     currentUserHasAccessWire(result) {

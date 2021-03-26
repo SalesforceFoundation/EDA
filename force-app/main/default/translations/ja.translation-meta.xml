@@ -533,6 +533,10 @@
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
+        <label><!-- Section title for Contact Information --></label>
+        <name>stgContactInformationSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>取引先責任者の複数住所が有効</label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
@@ -553,7 +557,7 @@
         <name>stgCourseDescriptionCopyEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>取引先責任者の言語のデフォルトの流暢さ</label>
+        <label><!-- Label for the Contact Language Fluency setting --></label>
         <name>stgDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
@@ -1097,7 +1101,7 @@
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
     </customLabels>
     <customLabels>
-        <label>ユーザが取引先責任者の [第一言語] 参照項目を設定した場合に、新しく作成される取引先責任者の言語レコードで自動的に設定される [流暢さ] の値。</label>
+        <label><!-- Description of the Contact Language Fluency setting --></label>
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
