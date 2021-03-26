@@ -45,7 +45,7 @@ export default class EdaSettingsNavigation extends LightningElement {
                     },
                     {
                         label: "Contact Information",
-                        page: "contactInformation",
+                        page: "contactInformationSettings",
                         id: "contactInformation",
                         menuItems: [
                             { label: "Default Contact Language Fluency", id: "defaultContactLanguageFluency" },

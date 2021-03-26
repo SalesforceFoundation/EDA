@@ -549,6 +549,10 @@
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
+        <label><!-- Section title for Contact Information --></label>
+        <name>stgContactInformationSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Meerdere adressen ingeschakeld voor contactpersoon</label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
@@ -569,7 +573,7 @@
         <name>stgCourseDescriptionCopyEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>Standaardbeheersing taal contactpersoon</label>
+        <label><!-- Label for the Contact Language Fluency setting --></label>
         <name>stgDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
@@ -1113,7 +1117,7 @@
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
     </customLabels>
     <customLabels>
-        <label>De beheersingswaarde die automatisch wordt ingesteld voor nieuw gemaakte records voor de taal van een contactpersoon wanneer gebruikers het opzoekveld Primaire taal instellen voor een contactpersoon.</label>
+        <label><!-- Description of the Contact Language Fluency setting --></label>
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
