@@ -3,24 +3,6 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/healthCheck": [
-                "healthCheck/healthCheck.js"
-            ],
-            "c/healthCheckDisplay": [
-                "healthCheckDisplay/healthCheckDisplay.js"
-            ],
-            "c/healthCheckGroup": [
-                "healthCheckGroup/healthCheckGroup.js"
-            ],
-            "c/healthCheckHighlightsPanel": [
-                "healthCheckHighlightsPanel/healthCheckHighlightsPanel.js"
-            ],
-            "c/healthCheckRun": [
-                "healthCheckRun/healthCheckRun.js"
-            ],
-            "c/affiliationSettings": [
-                "affiliationSettings/affiliationSettings.js"
-            ],
             "c/accountModelSettings": [
                 "accountModelSettings/accountModelSettings.js"
             ],
@@ -39,8 +21,29 @@
             "c/edaSettingsNavigationSubsection": [
                 "edaSettingsNavigationSubsection/edaSettingsNavigationSubsection.js"
             ],
+            "c/healthCheck": [
+                "healthCheck/healthCheck.js"
+            ],
+            "c/healthCheckDisplay": [
+                "healthCheckDisplay/healthCheckDisplay.js"
+            ],
+            "c/healthCheckGroup": [
+                "healthCheckGroup/healthCheckGroup.js"
+            ],
+            "c/healthCheckHighlightsPanel": [
+                "healthCheckHighlightsPanel/healthCheckHighlightsPanel.js"
+            ],
+            "c/healthCheckRun": [
+                "healthCheckRun/healthCheckRun.js"
+            ],
             "c/settingsSaveCanvas": [
                 "settingsSaveCanvas/settingsSaveCanvas.js"
+            ],
+            "c/settingsRowInput": [
+                "../../settingsComponentLibrary/lwc/settingsRowInput/settingsRowInput.js"
+            ],
+            "c/affiliationSettings": [
+                "affiliationSettings/affiliationSettings.js"
             ]
         }
     },

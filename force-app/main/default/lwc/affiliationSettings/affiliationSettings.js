@@ -1,43 +1,27 @@
 import { LightningElement, wire, track } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
-import getAddressSettingsVModel from "@salesforce/apex/AddressSettingsController.getAddressSettingsVModel";
+import getAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getAffiliationsSettingsVModel";
 
-import stgAddressSettingsTitle from "@salesforce/label/c.stgAddressSettingsTitle";
-import stgContactMultiAddressesEnabled from "@salesforce/label/c.stgContactMultiAddressesEnabled";
-import stgHelpContactAddrs from "@salesforce/label/c.stgHelpContactAddrs";
-import stgAccountTypesMultiAddressesEnabled from "@salesforce/label/c.stgAccountTypesMultiAddressesEnabled";
-import stgHelpAddressAccRecType from "@salesforce/label/c.stgHelpAddressAccRecType";
-import stgAccountRecordTypeGroupLabelTitle from "@salesforce/label/c.stgAccountRecordTypeGroupLabelTitle";
-import stgAccountRecordTypeAvailableListTitle from "@salesforce/label/c.stgAccountRecordTypeAvailableListTitle";
-import stgAccountRecordTypeSelectedListTitle from "@salesforce/label/c.stgAccountRecordTypeSelectedListTitle";
-import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressChangeUpdate";
-import stgHelpSimpleAddrChangeIsUpdate from "@salesforce/label/c.stgHelpSimpleAddrChangeIsUpdate";
+import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsTitle";
+import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
+import afflTypeEnforcedDescription from "@salesforce/label/c.afflTypeEnforcedDescription";
 
-export default class addressSettings extends LightningElement {
+export default class affiliationSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
-    @track addressSettingsViewModel;
-    @track addressSettingsWireResult;
+    @track affiliationsSettingsViewModel;
+    @track affiliationsSettingsWireResult;
 
     labelReference = {
-        stgAddressSettingsTitle: stgAddressSettingsTitle,
-        stgContactMultiAddressesEnabled: stgContactMultiAddressesEnabled,
-        stgHelpContactAddrs: stgHelpContactAddrs,
-        stgAccountTypesMultiAddressesEnabled: stgAccountTypesMultiAddressesEnabled,
-        stgHelpAddressAccRecType: stgHelpAddressAccRecType,
-        stgAccountRecordTypeGroupLabelTitle: stgAccountRecordTypeGroupLabelTitle,
-        stgAccountRecordTypeAvailableListTitle: stgAccountRecordTypeAvailableListTitle,
-        stgAccountRecordTypeSelectedListTitle: stgAccountRecordTypeSelectedListTitle,
-        stgSimpleAddressChangeUpdate: stgSimpleAddressChangeUpdate,
-        stgHelpSimpleAddrChangeIsUpdate: stgHelpSimpleAddrChangeIsUpdate,
+        stgAffiliationsSettingsTitle: stgAffiliationsSettingsTitle,
+        afflTypeEnforced: afflTypeEnforced,
+        afflTypeEnforcedDescription: afflTypeEnforcedDescription,
     };
 
     inputAttributeReference = {
-        multiAddressEnabledToggleId: "multiAddressModel",
-        accountRecTypesDualListboxId: "accountRectypeModel",
-        simpleAddressChangeTreatedAsUpdateToggleId: "simpleUpdateModel",
+        recordTypeValidation: "recordTypeValidation",
     };
 
     get affordancesDisabled() {
@@ -47,43 +31,22 @@ export default class addressSettings extends LightningElement {
         return undefined;
     }
 
-    @wire(getAddressSettingsVModel)
-    addressSettingsViewModelWire(result) {
-        this.addressSettingsWireResult = result;
+    @wire(getAffiliationsSettingsVModel)
+    affiliationsSettingsViewModelWire(result) {
+        this.affiliationsSettingsWireResult = result;
         if (result.data) {
-            this.addressSettingsViewModel = result.data;
+            this.affiliationsSettingsViewModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving accountmodelsettingsvmodel");
         }
     }
 
-    handleMultiAddressEnabledChange(event) {
+    handleRecordtypeValidationChange(event) {
         let hierarchySettingsChange = {
             settingsType: "boolean",
-            settingsName: "Contacts_Addresses_Enabled__c",
+            settingsName: "Affiliation_Record_Type_Enforced__c",
             settingsValue: event.detail.value,
         };
-        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
-    }
-
-    handleAccountRecordTypesChange(event) {
-        // add selected values to hierarchySettingsChanges object
-        let hierarchySettingsChange = {
-            settingsType: "array",
-            settingsName: "Accounts_Addresses_Enabled__c",
-            settingsValue: event.detail.value,
-        };
-
-        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
-    }
-
-    handleSimpleAddressUpdateChange(event) {
-        let hierarchySettingsChange = {
-            settingsType: "boolean",
-            settingsName: "Simple_Address_Change_Treated_as_Update__c",
-            settingsValue: event.detail.value,
-        };
-
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
@@ -113,10 +76,7 @@ export default class addressSettings extends LightningElement {
     }
 
     refreshAllApex() {
-        refreshApex(this.addressSettingsWireResult).then(() => {
-            this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
-                dualListBox.resetValue();
-            });
+        refreshApex(this.affiliationsSettingsWireResult).then(() => {
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });

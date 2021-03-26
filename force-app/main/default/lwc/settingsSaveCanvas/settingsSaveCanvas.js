@@ -33,13 +33,28 @@ export default class SettingsSaveCanvas extends LightningElement {
 
     @api
     handleHierarchySettingsChange(hierarchySettingsChange) {
-        if (hierarchySettingsChange.settingsType === "string") {
-            this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
-                hierarchySettingsChange.settingsValue;
-        }
-        if (hierarchySettingsChange.settingsType === "array") {
-            this.hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
-                hierarchySettingsChange.settingsValue;
+        let hierarchySettingsTypeLowercased = hierarchySettingsChange.settingsType.toLowerCase();
+
+        switch (hierarchySettingsTypeLowercased) {
+            case "string":
+                this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
+                    hierarchySettingsChange.settingsValue;
+                break;
+
+            case "boolean":
+                this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
+                    hierarchySettingsChange.settingsValue;
+                break;
+
+            case "datetime":
+                this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
+                    hierarchySettingsChange.settingsValue;
+                break;
+
+            case "array":
+                this.hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
+                    hierarchySettingsChange.settingsValue;
+                break;
         }
     }
 
@@ -92,6 +107,7 @@ export default class SettingsSaveCanvas extends LightningElement {
         this.switchEditMode(false);
         this.clearHierarchySettingsChanges();
         this.dispatchEditModeSwitchEvent(false);
+        this.dispatchSettingsSaveCancelEvent();
     }
 
     handleSaveClick() {
@@ -106,6 +122,10 @@ export default class SettingsSaveCanvas extends LightningElement {
         } else {
             this.saveCancelDisabled = undefined;
         }
+    }
+
+    dispatchSettingsSaveCancelEvent() {
+        this.dispatchEvent(new CustomEvent("settingssavecancel"));
     }
 
     dispatchEditModeSwitchEvent() {

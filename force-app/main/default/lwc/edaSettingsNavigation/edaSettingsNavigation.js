@@ -1,9 +1,13 @@
 import { LightningElement, api, track } from "lwc";
 import accountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
+import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsTitle";
+import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
         accountModelSettingsTitle,
+        stgAffiliationsSettingsTitle,
+        afflTypeEnforced,
     };
 
     @track settingsNavigationViewModel = {
@@ -69,10 +73,10 @@ export default class EdaSettingsNavigation extends LightningElement {
                 ],
             },
             {
-                label: "Affiliations",
-                page: "affiliations",
+                label: "stgAffiliationsSettingsTitle",
+                page: "affiliationSettings",
                 id: "affiliations",
-                menuItems: [{ label: "Enforce Record Type Validation", id: "enforceRecordTypeValidation" }],
+                menuItems: [{ label: afflTypeEnforced, id: "enforceRecordTypeValidation" }],
             },
             {
                 label: "Courses and Enrollments",
