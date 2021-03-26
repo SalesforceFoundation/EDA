@@ -6,7 +6,9 @@ export default class EdaSettingsNavigation extends LightningElement {
         accountModelSettingsTitle,
     };
 
-    @track settingsNavigationViewModel = {
+    @api activePage;
+
+    @track viewModel = {
         navigationSections: [
             {
                 label: "Setup Home",
@@ -84,29 +86,4 @@ export default class EdaSettingsNavigation extends LightningElement {
             },
         ],
     };
-
-    @api setActivePage(pageName) {
-        this.settingsNavigationViewModel.navigationSections.forEach((navigationSection) => {
-            if (navigationSection.page === pageName) {
-                navigationSection.isActive = true;
-            } else {
-                navigationSection.isActive = undefined;
-                this.setActiveSubpage(pageName, navigationSection);
-            }
-        });
-    }
-
-    setActiveSubpage(pageName, navigationSection) {
-        if (!navigationSection.navigationSubSections) {
-            return;
-        }
-
-        navigationSection.navigationSubSections.forEach((navigationSubSection) => {
-            if (navigationSubSection.page === pageName) {
-                navigationSubSection.isActive = true;
-            } else {
-                navigationSubSection.isActive = undefined;
-            }
-        });
-    }
 }

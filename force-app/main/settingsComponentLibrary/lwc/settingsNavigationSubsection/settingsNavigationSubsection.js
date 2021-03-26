@@ -1,6 +1,6 @@
 import { LightningElement, api } from "lwc";
 
-export default class EdaSettingsNavigationSubsection extends LightningElement {
+export default class SettingsNavigationSubsection extends LightningElement {
     @api viewModel;
 
     get ariaCurrent() {
@@ -12,7 +12,7 @@ export default class EdaSettingsNavigationSubsection extends LightningElement {
     }
 
     get qaLocator() {
-        return "edaSettingsNav" + this.viewModel.id;
+        return "settingsNav" + this.viewModel.id;
     }
 
     get hasMenuItems() {
@@ -26,7 +26,7 @@ export default class EdaSettingsNavigationSubsection extends LightningElement {
             let formattedMenuItem = {
                 label: menuItem.label,
                 id: menuItem.id,
-                qaLocator: "edaSettingsNav" + menuItem.id,
+                qaLocator: "settingsNav" + menuItem.id,
             };
             formattedMenuItems.push(formattedMenuItem);
         });
@@ -62,7 +62,7 @@ export default class EdaSettingsNavigationSubsection extends LightningElement {
         let subsectionHeaderClass = "slds-p-horizontal_large slds-p-top_small slds-p-bottom_xx-small";
 
         if (this.viewModel.isActive) {
-            subsectionHeaderClass += " eda-nav-is-active";
+            subsectionHeaderClass += " nav-is-active";
         }
 
         return subsectionHeaderClass;

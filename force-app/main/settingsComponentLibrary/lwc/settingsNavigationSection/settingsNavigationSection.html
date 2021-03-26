@@ -9,7 +9,7 @@
             <template if:true={viewModel.page}>
                 <a
                     href="javascript:void(0);"
-                    class="slds-text-color_default eda-nav-menu-item_link"
+                    class="slds-text-color_default nav-menu-item_link"
                     onclick={handleNavigationClick}
                     aria-current={ariaCurrent}
                     data-qa-locator={qaLocator}
@@ -23,20 +23,20 @@
             <!--Base State-->
             <template if:false={viewModel.isActive}>
                 <ul aria-describedby={viewModel.id}>
-                    <c-eda-settings-navigation-menu-items
+                    <c-settings-navigation-menu-items
                         view-model={menuItemsViewModel}
-                    ></c-eda-settings-navigation-menu-items>
+                    ></c-settings-navigation-menu-items>
                 </ul>
             </template>
             <!--Active State-->
             <template if:true={viewModel.isActive}>
-                <div class="slds-grid slds-nowrap eda-nav-is-active">
+                <div class="slds-grid slds-nowrap nav-is-active">
                     <!--Content Area-->
                     <div class="slds-col slds-size_11-of-12">
                         <ul aria-describedby={viewModel.id}>
-                            <c-eda-settings-navigation-menu-items
+                            <c-settings-navigation-menu-items
                                 view-model={menuItemsViewModel}
-                            ></c-eda-settings-navigation-menu-items>
+                            ></c-settings-navigation-menu-items>
                         </ul>
                     </div>
                     <!--Active Chevron-->
@@ -58,9 +58,9 @@
             <ul aria-describedby={viewModel.id} class="slds-p-left_medium">
                 <template for:each={viewModel.navigationSubSections} for:item="navigationSubsection">
                     <li key={navigationSubsection.id}>
-                        <c-eda-settings-navigation-subsection
+                        <c-settings-navigation-subsection
                             view-model={navigationSubsection}
-                        ></c-eda-settings-navigation-subsection>
+                        ></c-settings-navigation-subsection>
                     </li>
                 </template>
             </ul>

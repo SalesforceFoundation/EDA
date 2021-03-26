@@ -4,6 +4,7 @@ import stgErrorInsufficientAccess from "@salesforce/label/c.stgErrorInsufficient
 import checkAccessForCurrentUser from "@salesforce/apex/EDASettingsController.checkAccessForCurrentUser";
 export default class EDASettings extends LightningElement {
     @api pageReference;
+    activePage = "accountModelSettings";
 
     labelReference = {
         settingsNavigation: "Navigation Pane Here",
@@ -34,7 +35,6 @@ export default class EDASettings extends LightningElement {
         settingsPageDisplay[pageName] = true;
 
         this.settingsPageToDisplay = settingsPageDisplay;
-
-        this.template.querySelector("c-eda-settings-navigation").setActivePage(pageName);
+        this.activePage = pageName;
     }
 }
