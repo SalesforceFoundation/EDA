@@ -281,23 +281,6 @@ export default class AccountModelSettings extends LightningElement {
         // if validation fails, call this.handleValidationFailure()
         //this.template.querySelector("c-settings-save-canvas").handleValidationFailure();
 
-        // Set Custom naming format fields if selected
-        // if (
-        //     this.accountNamingSettingsVModel.administrativeAccountNameFormat.value ===
-        //     this.labelReference.accountNamingComboboxCustomOption
-        // ) {
-        //     console.log("Need to get custom Admin naming format!");
-        //     this.handleAdministrativeAccountCustomNamingChange();
-        // }
-        // if (
-        //     this.accountNamingSettingsVModel.householdAccountNameFormat.value ===
-        //     this.labelReference.accountNamingComboboxCustomOption
-        // ) {
-        //     console.log("Need to get custom HH naming format!");
-        //     this.handleHouseholdAccountCustomNamingChange();
-        // }
-
-        // else, update hierarchy settings
         this.template.querySelector("c-settings-save-canvas").updateHierarchySettings();
     }
 
