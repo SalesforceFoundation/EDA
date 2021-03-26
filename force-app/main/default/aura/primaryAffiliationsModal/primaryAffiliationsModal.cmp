@@ -9,5 +9,7 @@
         affiliationsAction="{!v.affiliationsAction}"
         accountRecordType="{!v.accountRecordType}"
         contactField="{!v.contactField}"
+        onaccountrecordtypechange="{!c.handleAccountRecordTypeChange}"
+        oncontactfieldchange="{!c.handleContactFieldChange}"
     ></c:primaryAffiliationsModalBody>
 </aura:component>

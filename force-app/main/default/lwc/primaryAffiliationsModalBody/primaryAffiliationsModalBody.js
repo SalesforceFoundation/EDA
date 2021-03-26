@@ -12,13 +12,11 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
     @api contactField;
 
     accountRecordTypeComboboxVModel = {
-        options: [{ label: "test", value: "example" }],
-        value: this.accountRecordType,
+        options: [{ label: "Account Record Type", value: "account record type" }],
     };
 
     contactFieldComboboxVModel = {
-        options: [{ label: "test", value: "example" }],
-        value: this.contactField,
+        options: [{ label: "Contact Field", value: "contact field" }],
     };
 
     labelReference = {
@@ -41,8 +39,44 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
     get accountRecordTypeApiNameLabel() {
         return this.labelReference.apiNameDisplay.replace("{0}", this.accountRecordType);
     }
-    /*
+
     get contactFieldApiNameLabel() {
         return this.labelReference.apiNameDisplay.replace("{0}", this.contactField);
-    }*/
+    }
+
+    handleAccountRecordTypeChange(event) {
+        this.dispatchContactFieldChangeEvent(event.detail.value);
+    }
+
+    dispatchAccountRecordTypeChangeEvent(accountRecordType) {
+        const accountRecordTypeDetails = {
+            accountRecordType: accountRecordType,
+        };
+
+        const accountRecordTypeChangeEvent = new CustomEvent("accountrecordtypechange", {
+            detail: accountRecordTypeDetails,
+            bubbles: true,
+            composed: true,
+        });
+
+        this.dispatchEvent(accountRecordTypeChangeEvent);
+    }
+
+    handleContactFieldChange(event) {
+        this.dispatchContactFieldChangeEvent(event.detail.value);
+    }
+
+    dispatchContactFieldChangeEvent(contactField) {
+        const contactFieldDetails = {
+            contactField: contactField,
+        };
+
+        const contactFieldChangeEvent = new CustomEvent("contactfieldchange", {
+            detail: contactFieldDetails,
+            bubbles: true,
+            composed: true,
+        });
+
+        this.dispatchEvent(contactFieldChangeEvent);
+    }
 }

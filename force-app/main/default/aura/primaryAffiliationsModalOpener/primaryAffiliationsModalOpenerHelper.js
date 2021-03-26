@@ -60,11 +60,21 @@
     },
     handleModalFooterEvent: function (component, event) {
         switch(event.getParam("action")){
-            case "save":
-                //Call controller directly in Apex and attempt save,
-                //Fail out if save does not resolve
-                //Use accountRecordType, contactField, and mappingName
+            case "confirm":
+                this.handleModalFooterConfirm(component);
                 break;
         }
+    },
+    handleModalFooterConfirm: function(component) {
+        switch(component.get("v.affiliationsAction")) {
+            case "edit":
+                this.handleModalEditConfirm(component);
+                break;
+        }
+    },
+    handleModalEditConfirm: function(component) {
+        //Call controller directly in Apex and attempt save,
+        //Fail out if save does not resolve
+        //Use accountRecordType, contactField, and mappingName
     }
 });
