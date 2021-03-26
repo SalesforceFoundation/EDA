@@ -135,7 +135,7 @@ export default class AccountModelSettings extends LightningElement {
                 this.accountNamingSettingsVModel.householdAccountNameFormat.value ===
                 this.labelReference.accountNamingComboboxCustomOption;
         } else if (result.error) {
-            console.log("error retrieving accountNamingSettingsVModel");
+            //console.log("error retrieving accountNamingSettingsVModel");
         }
     }
 
@@ -199,8 +199,6 @@ export default class AccountModelSettings extends LightningElement {
     }
 
     handleAdministrativeAccountCustomNamingChange(event) {
-        console.log("admin custom name");
-        //console.log("setting Admin custom format: " + JSON.stringify(event));
         let adminAccountCustomNamingFormat = event.detail.value;
 
         if (event.detail.value === '""') {
@@ -234,9 +232,6 @@ export default class AccountModelSettings extends LightningElement {
     }
 
     handleHouseholdAccountCustomNamingChange(event) {
-        console.log("HH custom name change");
-
-        //console.log("setting Custom HH Naming format: " + JSON.stringify(event));
         let hhAccountCustomNamingFormat = event.detail.value;
 
         if (event.detail.value === '""') {
