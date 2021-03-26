@@ -1,19 +1,8 @@
 ({
-    openPrimaryAffiliationsModal: function (component, event) {
-        //TODO: Figure out what's going on here and why the details aren't passing.
-        let hack = JSON.parse(JSON.stringify(event.getParam('arguments')));
-        let eventDetails = hack[0].Xo;
-        //console.log("Parameters: " + JSON.stringify(event.getParams()));
-        //console.log("affiliationsAction: " + JSON.stringify(event.getParam('affiliationsAction')));
-        //console.log("affiliationsDetail: " + JSON.stringify(event.getParam('affiliationsDetail')));
-        //console.log("Arguments: " + JSON.stringify(event.getParam('arguments')));
-        //console.log("HACK: " + JSON.stringify(hack));
-        //console.log("HACK Object: " + JSON.stringify(hack[0]));
-        //console.log("HACK ARGH: " + JSON.stringify(hackDetails));
-
-        const accountRecordType = eventDetails.accountRecordType;
-        const affiliationsAction = eventDetails.affiliationsAction;
-        const contactField = eventDetails.contactField;
+    openPrimaryAffiliationsModal: function (component, eventParameters) {
+        const affiliationsAction = eventParameters.affiliationsAction;
+        const accountRecordType = eventParameters.accountRecordType;
+        const contactField = eventParameters.contactField;
 
         component.set("v.accountRecordType",accountRecordType);
         component.set("v.affiliationsAction",affiliationsAction);

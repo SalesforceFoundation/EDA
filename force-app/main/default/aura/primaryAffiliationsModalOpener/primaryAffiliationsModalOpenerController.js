@@ -1,6 +1,6 @@
 ({
     openPrimaryAffiliationsModal: function (component, event, helper) {
-        helper.openPrimaryAffiliationsModal(component,event)
+        helper.openPrimaryAffiliationsModal(component, event.getParam('arguments'));
     },
     handleModalEvent: function (component, event, helper) {
         helper.handleModalEvent(component,event);

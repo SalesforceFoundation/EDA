@@ -3,6 +3,8 @@
         helper.setPageReference(component);
     },
     primaryAffiliationModalRequestHandler: function (component, event, helper) {
-        helper.openPrimaryAffiliationModal(component, event);
+        event.stopPropagation();
+        const eventParameters = event.getParams();
+        helper.openPrimaryAffiliationModal(component, eventParameters);
     }
 });

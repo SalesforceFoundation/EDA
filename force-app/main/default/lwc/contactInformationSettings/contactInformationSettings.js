@@ -64,7 +64,6 @@ export default class ContactInformationSettings extends LightningElement {
     }
 
     handleDefaultContactLanguageFluencyChange(event) {
-        console.log("default language changed");
         let hierarchySettingsChange = {
             settingsType: "string",
             settingsName: "Default_Contact_Language_Fluency__c",
