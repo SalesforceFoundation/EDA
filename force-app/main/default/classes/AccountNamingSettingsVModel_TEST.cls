@@ -77,7 +77,7 @@ private with sharing class AccountNamingSettingsVModel_TEST {
 
         System.assertEquals(
             'Custom HH Naming Format',
-            accountNamingSettingsVModel.customHouseholdAccountNamingFormat,
+            accountNamingSettingsVModel.customHouseholdAccountNameFormat,
             'Custom househould naming format string should match value provided.'
         );
 
@@ -156,7 +156,7 @@ private with sharing class AccountNamingSettingsVModel_TEST {
 
         System.assertEquals(
             '""',
-            accountNamingSettingsVModel.customHouseholdAccountNamingFormat,
+            accountNamingSettingsVModel.customHouseholdAccountNameFormat,
             'Custom househould naming format string should be blank.'
         );
 

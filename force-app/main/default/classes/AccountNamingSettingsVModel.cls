@@ -36,7 +36,7 @@ public with sharing class AccountNamingSettingsVModel {
     public String customAdministrativeAccountNameFormat { get; private set; }
 
     @AuraEnabled
-    public String customHouseholdAccountNamingFormat { get; private set; }
+    public String customHouseholdAccountNameFormat { get; private set; }
 
     @AuraEnabled
     public Boolean autoHouseholdAccountNamingEnabled { get; private set; }
@@ -50,7 +50,7 @@ public with sharing class AccountNamingSettingsVModel {
     /**************************************************************************************************************************
      * @description Five argument constructor
      * @param  customAdministrativeAccountNameFormat A String representing a custom format to be used for Admin account names
-     * @param  customHouseholdAccountNamingFormat A String representing a custom format to be used for HH account names
+     * @param  customHouseholdAccountNameFormat A String representing a custom format to be used for HH account names
      * @param  autoHouseholdAccountNamingEnabled A Boolean to indicate whether automatic HH naming functionality is enabled
      * @param  administrativeAccountNameFormat A ComboboxVModel representing the selected and available formats for Admin Account naming
      * @param  householdAccountNameFormat A ComboboxVModel representing the the selected and available formats for HH Account naming
@@ -58,7 +58,7 @@ public with sharing class AccountNamingSettingsVModel {
      **************************************************************************************************************************/
     public AccountNamingSettingsVModel(
         String customAdministrativeAccountNameFormat,
-        String customHouseholdAccountNamingFormat,
+        String customHouseholdAccountNameFormat,
         Boolean autoHouseholdAccountNamingEnabled,
         ComboboxVModel administrativeAccountNameFormat,
         ComboboxVModel householdAccountNameFormat
@@ -67,9 +67,9 @@ public with sharing class AccountNamingSettingsVModel {
             ? '""'
             : customAdministrativeAccountNameFormat;
 
-        this.customHouseholdAccountNamingFormat = String.isBlank(customHouseholdAccountNamingFormat)
+        this.customHouseholdAccountNameFormat = String.isBlank(customHouseholdAccountNameFormat)
             ? '""'
-            : customHouseholdAccountNamingFormat;
+            : customHouseholdAccountNameFormat;
 
         this.autoHouseholdAccountNamingEnabled = autoHouseholdAccountNamingEnabled;
         this.administrativeAccountNameFormat = administrativeAccountNameFormat;

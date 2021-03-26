@@ -99,7 +99,7 @@ public virtual with sharing class AccountNamingSettingsVMapper {
 
         return new AccountNamingSettingsVModel(
             currentAccountNamingSettingsModel.customAdministrativeAccountNameFormat,
-            currentAccountNamingSettingsModel.customHouseholdAccountNamingFormat,
+            currentAccountNamingSettingsModel.customHouseholdAccountNameFormat,
             currentAccountNamingSettingsModel.autoHouseholdAccountNamingEnabled,
             administrativeAccountNameFormatComboboxVModel,
             householdAccountNameFormatComboboxVModel

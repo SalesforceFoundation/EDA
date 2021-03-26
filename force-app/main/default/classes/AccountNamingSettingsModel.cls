@@ -36,7 +36,7 @@ public with sharing class AccountNamingSettingsModel {
     public String administrativeAccountNameFormat { get; private set; }
     public String householdAccountNamingFormat { get; private set; }
     public String customAdministrativeAccountNameFormat { get; private set; }
-    public String customHouseholdAccountNamingFormat { get; private set; }
+    public String customHouseholdAccountNameFormat { get; private set; }
     public Boolean autoHouseholdAccountNamingEnabled { get; private set; }
 
     /****************************************************************************************************************************
@@ -44,7 +44,7 @@ public with sharing class AccountNamingSettingsModel {
      * @param  administrativeAccountNameFormat The format selected from a predetermined list to be use for naming administrative accounts.
      * @param  householdAccountNamingFormat The format selected from a predetermined list to be use for naming household accounts.
      * @param  customAdministrativeAccountNameFormat The custom format specified for naming administrative accounts.
-     * @param  customHouseholdAccountNamingFormat The custom format specified for naming household accounts.
+     * @param  customHouseholdAccountNameFormat The custom format specified for naming household accounts.
      * @param  autoHouseholdAccountNamingEnabled Indicator used to determine whether household account names are updated when new contacts are added.
      * @return An AccountNamingSettingsModel with all properties populated.
      ****************************************************************************************************************************/
@@ -52,7 +52,7 @@ public with sharing class AccountNamingSettingsModel {
         String administrativeAccountNameFormat,
         String householdAccountNamingFormat,
         String customAdministrativeAccountNameFormat,
-        String customHouseholdAccountNamingFormat,
+        String customHouseholdAccountNameFormat,
         Boolean autoHouseholdAccountNamingEnabled
     ) {
         this.administrativeAccountNameFormat = administrativeAccountNameFormat;
@@ -60,9 +60,9 @@ public with sharing class AccountNamingSettingsModel {
         this.customAdministrativeAccountNameFormat = String.isBlank(customAdministrativeAccountNameFormat)
             ? '""'
             : customAdministrativeAccountNameFormat;
-        this.customHouseholdAccountNamingFormat = String.isBlank(customHouseholdAccountNamingFormat)
+        this.customHouseholdAccountNameFormat = String.isBlank(customHouseholdAccountNameFormat)
             ? '""'
-            : customHouseholdAccountNamingFormat;
+            : customHouseholdAccountNameFormat;
         this.autoHouseholdAccountNamingEnabled = autoHouseholdAccountNamingEnabled;
     }
 }

@@ -117,7 +117,7 @@ private class AccountNamingSettingsVMapper_TEST {
                 Admin_Account_Naming_Format__c = 'administrativeAccountNameFormat',
                 Household_Account_Naming_Format__c = 'householdAccountNamingFormat',
                 Admin_Other_Name_Setting__c = 'customAdministrativeAccountNameFormat',
-                Household_Other_Name_Setting__c = 'customHouseholdAccountNamingFormat',
+                Household_Other_Name_Setting__c = 'customHouseholdAccountNameFormat',
                 Automatic_Household_Naming__c = false
             )
         );
@@ -135,8 +135,8 @@ private class AccountNamingSettingsVMapper_TEST {
         );
 
         System.assertEquals(
-            'customHouseholdAccountNamingFormat',
-            accountNamingSettingsVModel.customHouseholdAccountNamingFormat,
+            'customHouseholdAccountNameFormat',
+            accountNamingSettingsVModel.customHouseholdAccountNameFormat,
             'Custom HH Naming format should match value in hierarchy settings.'
         );
 
@@ -189,7 +189,7 @@ private class AccountNamingSettingsVMapper_TEST {
                 'administrativeAccountNameFormat1',
                 'householdAccountNamingFormat1',
                 'customAdministrativeAccountNameFormat',
-                'customHouseholdAccountNamingFormat',
+                'customHouseholdAccountNameFormat',
                 false
             );
         }

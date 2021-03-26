@@ -72,7 +72,7 @@ private with sharing class AccountNamingSettingsController_TEST {
 
         System.assertEquals(
             'customHHAccountNamingFormat',
-            accountNamingSettingsVModel.customHouseholdAccountNamingFormat,
+            accountNamingSettingsVModel.customHouseholdAccountNameFormat,
             'Custom HH Account naming format should match value in hierarchy settings.'
         );
 

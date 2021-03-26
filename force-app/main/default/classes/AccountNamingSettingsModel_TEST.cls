@@ -69,7 +69,7 @@ private class AccountNamingSettingsModel_TEST {
 
         System.assertEquals(
             'custom hh format',
-            accountNamingSettingsModel.customHouseholdAccountNamingFormat,
+            accountNamingSettingsModel.customHouseholdAccountNameFormat,
             'Custom Household Account name format should be set to specified value.'
         );
 
@@ -116,7 +116,7 @@ private class AccountNamingSettingsModel_TEST {
 
         System.assertEquals(
             '""',
-            accountNamingSettingsModel.customHouseholdAccountNamingFormat,
+            accountNamingSettingsModel.customHouseholdAccountNameFormat,
             'Custom Household Account name format should be blank.'
         );
 
