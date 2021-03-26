@@ -93,7 +93,7 @@
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
-        <label>--Cap--</label>
+        <label>Cap</label>
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
@@ -581,11 +581,11 @@
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
-        <label>Desactiva l&apos;aplicació de correu electrònic preferit</label>
+        <label><!-- Field label for the Require Preferred Email setting --></label>
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
-        <label>Desactiva l&apos;aplicació de telèfon preferit</label>
+        <label><!-- Field label for the Require Preferred Phone setting --></label>
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
@@ -597,7 +597,7 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Activa la funcionalitat de telèfon preferit millorada</label>
+        <label><!-- Field label for the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1073,15 +1073,15 @@
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label>No requereix que els contactes tinguin un correu electrònic preferit.</label>
+        <label><!-- Description of the Require Preferred Email setting --></label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label>No requereix que els contactes tinguin un telèfon preferit.</label>
+        <label><!-- Description for the Require Preferred Phone setting --></label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label>Sincronitza el camp del telèfon preferit amb el camp de telèfon estàndard del contacte i valida que el valor del telèfon preferent existeixi i que tingui un valor.</label>
+        <label><!-- Description of the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1233,8 +1233,16 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for the Default Preferred Phone setting --></label>
+        <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
         <label>Seleccioneu un camp del telèfon preferent per copiar el valor quan el camp del telèfon estàndard no tingui valor o es defineixi més d&apos;un camp &quot;telèfon&quot;.</label>
         <name>stgPreferredPhoneSelection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description for the Default Preferred Phone setting --></label>
+        <name>stgPreferredPhoneSelectionDesc</name>
     </customLabels>
     <customLabels>
         <label>Configuració de la llista</label>

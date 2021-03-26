@@ -93,7 +93,7 @@
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
-        <label>- Aucun -</label>
+        <label>Aucun</label>
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
@@ -581,11 +581,11 @@
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
-        <label>Désactiver application e-mail préféré</label>
+        <label><!-- Field label for the Require Preferred Email setting --></label>
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
-        <label>Désactiver applic. du téléphone préféré</label>
+        <label><!-- Field label for the Require Preferred Phone setting --></label>
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
@@ -597,7 +597,7 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Activer les fonctionnalités améliorées de téléphone préféré</label>
+        <label><!-- Field label for the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1073,15 +1073,15 @@
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label>Ne pas exiger une adresse e-mail préférée pour les contacts.</label>
+        <label><!-- Description of the Require Preferred Email setting --></label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label>Ne pas exiger un téléphone préféré pour les contacts.</label>
+        <label><!-- Description for the Require Preferred Phone setting --></label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label>Synchronisez le champ Téléphone préféré avec le champ Téléphone standard du contact et vérifiez que la valeur dans Téléphone préféré existe et a une valeur.</label>
+        <label><!-- Description of the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1233,8 +1233,16 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for the Default Preferred Phone setting --></label>
+        <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
         <label>Sélectionnez un champ pour le téléphone préféré afin de copier la valeur lorsque le champ Téléphone standard n’a pas de valeur, ou lorsque plusieurs champs Téléphone sont définis.</label>
         <name>stgPreferredPhoneSelection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description for the Default Preferred Phone setting --></label>
+        <name>stgPreferredPhoneSelectionDesc</name>
     </customLabels>
     <customLabels>
         <label>Paramètre de la liste</label>
