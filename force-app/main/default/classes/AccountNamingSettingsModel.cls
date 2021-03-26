@@ -25,15 +25,14 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group EDA Settings
-* @group-content ../../ApexDocContent/EdaSettings.htm
-* @description Model to abstract data from Hierarchy Settings for 
-* Account Naming functionality.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group EDA Settings
+ * @group-content ../../ApexDocContent/EdaSettings.htm
+ * @description Model to abstract data from Hierarchy Settings for
+ * Account Naming functionality.
+ */
 public with sharing class AccountNamingSettingsModel {
-
     public String administrativeAccountNameFormat { get; private set; }
     public String householdAccountNamingFormat { get; private set; }
     public String customAdministrativeAccountNameFormat { get; private set; }
@@ -41,14 +40,14 @@ public with sharing class AccountNamingSettingsModel {
     public Boolean autoHouseholdAccountNamingEnabled { get; private set; }
 
     /****************************************************************************************************************************
-    * @description Five parameter constructor
-    * @param  administrativeAccountNameFormat The format selected from a predetermined list to be use for naming administrative accounts.
-    * @param  householdAccountNamingFormat The format selected from a predetermined list to be use for naming household accounts.
-    * @param  customAdministrativeAccountNameFormat The custom format specified for naming administrative accounts.
-    * @param  customHouseholdAccountNamingFormat The custom format specified for naming household accounts.
-    * @param  autoHouseholdAccountNamingEnabled Indicator used to determine whether household account names are updated when new contacts are added.
-    * @return An AccountNamingSettingsModel with all properties populated.
-    ****************************************************************************************************************************/
+     * @description Five parameter constructor
+     * @param  administrativeAccountNameFormat The format selected from a predetermined list to be use for naming administrative accounts.
+     * @param  householdAccountNamingFormat The format selected from a predetermined list to be use for naming household accounts.
+     * @param  customAdministrativeAccountNameFormat The custom format specified for naming administrative accounts.
+     * @param  customHouseholdAccountNamingFormat The custom format specified for naming household accounts.
+     * @param  autoHouseholdAccountNamingEnabled Indicator used to determine whether household account names are updated when new contacts are added.
+     * @return An AccountNamingSettingsModel with all properties populated.
+     ****************************************************************************************************************************/
     public AccountNamingSettingsModel(
         String administrativeAccountNameFormat,
         String householdAccountNamingFormat,
@@ -56,11 +55,14 @@ public with sharing class AccountNamingSettingsModel {
         String customHouseholdAccountNamingFormat,
         Boolean autoHouseholdAccountNamingEnabled
     ) {
-
         this.administrativeAccountNameFormat = administrativeAccountNameFormat;
         this.householdAccountNamingFormat = householdAccountNamingFormat;
-        this.customAdministrativeAccountNameFormat = customAdministrativeAccountNameFormat;
-        this.customHouseholdAccountNamingFormat = customHouseholdAccountNamingFormat;
+        this.customAdministrativeAccountNameFormat = String.isBlank(customAdministrativeAccountNameFormat)
+            ? '""'
+            : customAdministrativeAccountNameFormat;
+        this.customHouseholdAccountNamingFormat = String.isBlank(customHouseholdAccountNamingFormat)
+            ? '""'
+            : customHouseholdAccountNamingFormat;
         this.autoHouseholdAccountNamingEnabled = autoHouseholdAccountNamingEnabled;
     }
 }

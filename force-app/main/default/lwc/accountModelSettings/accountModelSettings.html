@@ -137,30 +137,18 @@
 
                         <!-- HH Account Naming Custom format -->
                         <template if:true={showCustomHouseholdAccountNaming}>
-                            <!-- <c-settings-row-input
-                                class="slds-size_3-of-3"
+                            <c-settings-row-input
+                                class="slds-size_3-of-3 slds-p-bottom_x-large"
                                 type="text"
-                                field-level-help={labelReference.hhAccountCustomNameFormatDescription}
-                                title={labelReference.hhAccountCustomNameFormatHeading}
+                                help-text={labelReference.hhAccountCustomNameFormatDescription}
+                                title=""
+                                label={labelReference.hhAccountCustomNameFormatHeading}
                                 input-id={inputAttributeReference.hhAccountCustomNamingFormatTextBoxId}
+                                value={accountNamingSettingsVModel.customHouseholdAccountNameFormat}
                                 onsettingsinputchange={handleHouseholdAccountCustomNamingChange}
                                 disabled={affordancesDisabled}
-                            ></c-settings-row-input> -->
-
-                            <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
-                                <div class="slds-col slds-size_3-of-3 slds-p-top_small">
-                                    <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
-                                        <lightning-input
-                                            type="text"
-                                            label={labelReference.hhAccountCustomNameFormatHeading}
-                                            field-level-help={labelReference.hhAccountCustomNameFormatDescription}
-                                            value={accountNamingSettingsVModel.customHouseholdAccountNamingFormat}
-                                            onchange={handleHouseholdAccountCustomNamingChange}
-                                            disabled={affordancesDisabled}
-                                        ></lightning-input>
-                                    </div>
-                                </div>
-                            </div>
+                                variant={inputVariant}
+                            ></c-settings-row-input>
                         </template>
 
                         <c-settings-row-input
