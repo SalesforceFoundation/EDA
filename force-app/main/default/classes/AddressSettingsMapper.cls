@@ -32,7 +32,6 @@
  * @description Mapper class to retrieve data needed for Addresses Settings functionality.
  */
 public virtual with sharing class AddressSettingsMapper {
-
     /*********************************************
      * @description Instance for Singleton Pattern
      **********************************************/
@@ -65,10 +64,16 @@ public virtual with sharing class AddressSettingsMapper {
     public virtual AddressSettingsModel getAddressSettingsModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
+        List<String> accountRecordTypesForAddress = new List<String>();
+
+        if (String.isNotEmpty(hierarchySettings.Accounts_Addresses_Enabled__c)) {
+            accountRecordTypesForAddress = hierarchySettings.Accounts_Addresses_Enabled__c.split(';');
+        }
+
         return new AddressSettingsModel(
             hierarchySettings.Contacts_Addresses_Enabled__c,
             hierarchySettings.Simple_Address_Change_Treated_as_Update__c,
-            hierarchySettings.Accounts_Addresses_Enabled__c.split(';')
+            accountRecordTypesForAddress
         );
     }
 }

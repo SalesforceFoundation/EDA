@@ -33,22 +33,28 @@ export default class SettingsSaveCanvas extends LightningElement {
 
     @api
     handleHierarchySettingsChange(hierarchySettingsChange) {
-        switch (hierarchySettingsChange.settingsType) {
+        let hierarchySettingsTypeLowercased = hierarchySettingsChange.settingsType.toLowerCase();
+
+        switch (hierarchySettingsTypeLowercased) {
             case "string":
                 this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
                     hierarchySettingsChange.settingsValue;
                 break;
+
             case "boolean":
                 this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
                     hierarchySettingsChange.settingsValue;
                 break;
-            case "dateTime":
+
+            case "datetime":
                 this.hierarchySettingsChanges.settingsSingleValueBySettingsName[hierarchySettingsChange.settingsName] =
                     hierarchySettingsChange.settingsValue;
                 break;
+
             case "array":
                 this.hierarchySettingsChanges.settingsListSettingsName[hierarchySettingsChange.settingsName] =
                     hierarchySettingsChange.settingsValue;
+                break;
         }
     }
 

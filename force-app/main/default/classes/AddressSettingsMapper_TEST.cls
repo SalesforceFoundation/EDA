@@ -122,4 +122,43 @@ private with sharing class AddressSettingsMapper_TEST {
 
     }
 
+         /**************************************************************************************************************************
+     * @description Test method to verify that the getAddressSettingsModel method returns a AddressSettingsModel
+     * with all properties set to match the corresponding values in hierarchy settings when there are no values in Accounts_Addresses_Enabled__c.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getAddressSettingsModelEmptyAddress() {
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Contacts_Addresses_Enabled__c = true,
+                Simple_Address_Change_Treated_as_Update__c = true,
+                Accounts_Addresses_Enabled__c = ''
+            )
+        );
+        AddressSettingsMapper addressSettingsMapperInstance = AddressSettingsMapper.getInstance();
+
+        Test.startTest();
+            AddressSettingsModel addressSettingsModel = addressSettingsMapperInstance.getAddressSettingsModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            addressSettingsModel.contactsMultiAddress,
+            'True value for hierarchy setting Contacts_Addresses_Enabled__c, should set contactsMultiAddress property to true.'
+        );
+
+        System.assertEquals(
+            true,
+            addressSettingsModel.simpleAddressChangeIsUpdate,
+            'True value for hierarchy setting Simple_Address_Change_Treated_as_Update__c, should set simpleAddressChangeIsUpdate property to true.'
+        );
+
+        System.assertEquals(
+            true,
+            addressSettingsModel.multiAddressRecordTypeList.isEmpty(),
+            'No values should be populated in the list multiAddressRecordTypeList as there are no values in Accounts_Addresses_Enabled__c'
+        );
+
+    }
+
 }
