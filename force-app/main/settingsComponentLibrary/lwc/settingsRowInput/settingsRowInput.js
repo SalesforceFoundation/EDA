@@ -2,9 +2,7 @@ import { LightningElement, api } from "lwc";
 
 export default class SettingsRowInput extends LightningElement {
     @api title;
-    @api label; // optional
     @api description;
-    @api helpText;
     @api inputId;
     @api value;
     @api placeholder;
@@ -12,6 +10,8 @@ export default class SettingsRowInput extends LightningElement {
     @api disabled;
     @api type;
     @api variant = "label-hidden";
+    @api label; // optional
+    @api helpText;
 
     handleInputChange(event) {
         let eventDetail = {};
