@@ -1,0 +1,31 @@
+<template>
+    <div class="slds-grid--vertical slds-theme_default">
+        <div class="slds-col slds-p-top_large slds-p-left_small">
+            <c-settings-save-canvas
+                component-title={labelReference.stgAddressSettingsTitle}
+                onsettingseditmodechange={handleSettingsEditModeChange}
+                onsettingssaving={handleSettingsSaving}
+                onsettingssavecancel={handleSettingsSaveCancel}
+                onsettingssavecompleted={handleSettingsSaveCompleted}
+            >
+                <!-- Body of Account Model Settings page (populates Slot in child component) -->
+                <template if:true={addressSettingsViewModel}>
+                    <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                        <!-- Multi Address Enabled Setting -->
+
+                        <c-settings-row-input
+                            class="slds-size_3-of-3"
+                            title={labelReference.stgContactMultiAddressesEnabled}
+                            description={labelReference.stgHelpContactAddrs}
+                            type="toggle"
+                            input-id={inputAttributeReference.multiAddressEnabledToggleId}
+                            value={addressSettingsViewModel.addressessEnabledForContacts}
+                            onsettingsinputchange={handleMultiAddressEnabledChange}
+                            disabled={affordancesDisabled}
+                        ></c-settings-row-input>
+                    </div>
+                </template>
+            </c-settings-save-canvas>
+        </div>
+    </div>
+</template>
