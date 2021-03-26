@@ -3,6 +3,7 @@ import { LightningElement, api } from "lwc";
 export default class SettingsRowInput extends LightningElement {
     @api title;
     @api description;
+    @api helpText;
     @api inputId;
     @api value;
     @api placeholder;
@@ -39,6 +40,9 @@ export default class SettingsRowInput extends LightningElement {
         switch (typeLowercased) {
             case "toggle":
                 this.template.querySelector("lightning-input").checked = this.value;
+                break;
+            case "text":
+                this.template.querySelector("lightning-input").value = this.value;
                 break;
             case "combobox":
                 this.template.querySelector("lightning-combobox").value = this.value;

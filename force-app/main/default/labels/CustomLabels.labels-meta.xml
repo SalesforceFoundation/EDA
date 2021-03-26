@@ -276,7 +276,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the naming format used for Admin and Household Accounts</shortDescription>
+        <shortDescription>Picklist value for naming format used for Administrative and Household Accounts</shortDescription>
         <value>Custom Format</value>
     </labels>
     <labels>
@@ -727,6 +727,14 @@
         <value>Custom Name Format</value>
     </labels>
     <labels>
+        <fullName>stgAdminAccountCustomNameHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Info text for Custom Name Format</shortDescription>
+        <value>Specify your own naming convention.</value>
+    </labels>
+    <labels>
         <fullName>stgAdminAccountNamingTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1109,14 +1117,6 @@
         <protected>true</protected>
         <shortDescription>Email subject on completion of Run Copy on Courses Description Data Migration</shortDescription>
         <value>Course Description Copy Job Completed with a status of:</value>
-    </labels>
-    <labels>
-        <fullName>stgCustomAdminAccountNamingHelp</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Info text for Custom Name Format</shortDescription>
-        <value>Specify your own naming convention.</value>
     </labels>
     <labels>
         <fullName>stgDefaultContactLanguageFluency</fullName>

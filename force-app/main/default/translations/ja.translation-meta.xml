@@ -141,7 +141,7 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for the naming format used for Admin and Household Accounts --></label>
+        <label><!-- Picklist value for naming format used for Administrative and Household Accounts --></label>
         <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
@@ -369,6 +369,10 @@
         <name>stgAdminAccountCustomName</name>
     </customLabels>
     <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgAdminAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Section title for Administrative Account Naming --></label>
         <name>stgAdminAccountNamingTitle</name>
     </customLabels>
@@ -559,10 +563,6 @@
     <customLabels>
         <label>科目説明のコピージョブが次の状況で完了しました:</label>
         <name>stgCourseDescriptionCopyEmailSubject</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Info text for Custom Name Format --></label>
-        <name>stgCustomAdminAccountNamingHelp</name>
     </customLabels>
     <customLabels>
         <label>取引先責任者の言語のデフォルトの流暢さ</label>
