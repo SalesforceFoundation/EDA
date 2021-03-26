@@ -29,22 +29,22 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Test class for AffiliationsettingsService class.
+ * @description Test class for AffiliationsSettingsService class.
  */
 @isTest
-private with sharing class AffiliationsettingsService_TEST {
+private with sharing class AffiliationsSettingsService_TEST {
     /**************************************************************************************************************************
      * @description Test method to verify that the getInstance method returns a new instance of the
-     * AffiliationsettingsService class when one does not already exist.
+     * AffiliationsSettingsService class when one does not already exist.
      ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
         Test.startTest();
-        AffiliationsettingsService affiliationsSettingsServiceInstance = AffiliationsettingsService.getInstance();
+        AffiliationsSettingsService affiliationsSettingsServiceInstance = AffiliationsSettingsService.getInstance();
         Test.stopTest();
 
         System.assertEquals(
-            AffiliationsettingsService.instance,
+            AffiliationsSettingsService.instance,
             affiliationsSettingsServiceInstance,
             'Instance of mapper class returned should match static instance variable.'
         );
@@ -62,12 +62,12 @@ private with sharing class AffiliationsettingsService_TEST {
     @isTest
     private static void getInstanceExisting() {
         Test.startTest();
-        AffiliationsettingsService affiliationsSettingsServiceInstance1 = AffiliationsettingsService.getInstance();
-        AffiliationsettingsService affiliationsSettingsServiceInstance2 = AffiliationsettingsService.getInstance();
+        AffiliationsSettingsService affiliationsSettingsServiceInstance1 = AffiliationsSettingsService.getInstance();
+        AffiliationsSettingsService affiliationsSettingsServiceInstance2 = AffiliationsSettingsService.getInstance();
         Test.stopTest();
 
         System.assertEquals(
-            AffiliationsettingsService.instance,
+            AffiliationsSettingsService.instance,
             affiliationsSettingsServiceInstance1,
             'Instance of mapper class returned should match static instance variable.'
         );
@@ -88,7 +88,7 @@ private with sharing class AffiliationsettingsService_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void locateAffiliatonsSettingsMapper() {
-        AffiliationsettingsService addressSettingsServiceInstance = AffiliationsettingsService.getInstance();
+        AffiliationsSettingsService addressSettingsServiceInstance = AffiliationsSettingsService.getInstance();
 
         Test.startTest();
         AffiliationsSettingsMapper addressSettingsMapperInstance = addressSettingsServiceInstance.locateAffiliatonsSettingsMapper();
@@ -112,7 +112,7 @@ private with sharing class AffiliationsettingsService_TEST {
             new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true)
         );
 
-        AffiliationsettingsService affiliationsSettingsServiceInstance = AffiliationsettingsService.getInstance();
+        AffiliationsSettingsService affiliationsSettingsServiceInstance = AffiliationsSettingsService.getInstance();
 
         Test.startTest();
         AffiliationsSettingsModel affiliationsSettingsModel = affiliationsSettingsServiceInstance.getAffiliationsSettingsModel();

@@ -31,26 +31,26 @@
  * @group-content ../../ApexDocContent/
  * @description Service class to handle business logic associated with Affilaitons Settings functionality.
  */
-public virtual with sharing class AffiliationsettingsService {
+public virtual with sharing class AffiliationsSettingsService {
     /*********************************************
      * @description Instance for Singleton Pattern
      **********************************************/
     @TestVisible
-    private static AffiliationsettingsService instance;
+    private static AffiliationsSettingsService instance;
 
     /*********************************************************************
      * @description Empty constructor is not public for Singleton Pattern
      **********************************************************************/
-    protected AffiliationsettingsService() {
+    protected AffiliationsSettingsService() {
     }
 
     /******************************************************************************
      * @description Static method to get the current instance for Singleton pattern
-     * @return The instance of AffiliationsettingsService.
+     * @return The instance of AffiliationsSettingsService.
      ******************************************************************************/
-    public static AffiliationsettingsService getInstance() {
+    public static AffiliationsSettingsService getInstance() {
         if (instance == null) {
-            instance = new AffiliationsettingsService();
+            instance = new AffiliationsSettingsService();
         }
 
         return instance;

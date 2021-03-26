@@ -60,20 +60,20 @@ public virtual with sharing class AffiliationsSettingsVMapper {
      * @description Retrieve a AffiliationsSettingsVModel Affiliation Record type enforced
      * @return  A AffiliationsSettingsViewModel
      *********************************************************************************************************/
-    public virtual AffiliationsSettingsVModel getAddressSettingsViewModel() {
+    public virtual AffiliationsSettingsVModel getAffiliationsSettingsViewModel() {
         // get current Affiliations Settings values set from hierarchy settings
-        AffiliationsSettingsModel currentAffiliationsSettings = this.locateAffiliationsettingsService()
+        AffiliationsSettingsModel currentAffiliationsSettings = this.locateAffiliationsSettingsService()
             .getAffiliationsSettingsModel();
 
         return new AffiliationsSettingsVModel(currentAffiliationsSettings.accountRecordTypesEnforced);
     }
 
     /*****************************************************************************
-     * @description Retrieve an instance of the AffiliationsettingsService class.
-     * @return An instance of AffiliationsettingsService.
+     * @description Retrieve an instance of the AffiliationsSettingsService class.
+     * @return An instance of AffiliationsSettingsService.
      *****************************************************************************/
     @TestVisible
-    private AffiliationsettingsService locateAffiliationsettingsService() {
-        return AffiliationsettingsService.getInstance();
+    private AffiliationsSettingsService locateAffiliationsSettingsService() {
+        return AffiliationsSettingsService.getInstance();
     }
 }
