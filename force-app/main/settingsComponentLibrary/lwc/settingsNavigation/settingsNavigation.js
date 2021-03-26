@@ -3,6 +3,7 @@ import { LightningElement, api, track } from "lwc";
 export default class SettingsNavigation extends LightningElement {
     @api viewModel;
     @api activePage;
+    @api spinnerLoadingAltText;
 
     @track parsedViewModel;
 

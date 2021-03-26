@@ -1,28 +1,40 @@
 import { LightningElement, api, track, wire } from "lwc";
 
-import stgErrorInsufficientAccess from "@salesforce/label/c.stgErrorInsufficientAccess";
 import checkAccessForCurrentUser from "@salesforce/apex/EDASettingsController.checkAccessForCurrentUser";
+
+import stgErrorInsufficientAccess from "@salesforce/label/c.stgErrorInsufficientAccess";
+import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
+
 export default class EDASettings extends LightningElement {
     @api pageReference;
-    activePage = "accountModelSettings";
 
-    labelReference = {
-        settingsNavigation: "Navigation Pane Here",
-        stgErrorInsufficientAccess,
-    };
+    currentUserHasAccessWireResult;
+    currentUserHasAccess;
+
+    activePage = "accountModelSettings";
 
     @track settingsPageToDisplay = {
         accountModelSettings: true,
     };
 
-    currentUserHasAccess = false;
+    labelReference = {
+        insufficientAccessError: stgErrorInsufficientAccess,
+        spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
+    };
 
     @wire(checkAccessForCurrentUser)
     currentUserHasAccessWire(result) {
-        const { error, data } = result;
-        if (data) {
-            this.currentUserHasAccess = data;
+        this.currentUserHasAccessWireResult = result;
+        if (result.data) {
+            this.currentUserHasAccess = result.data;
         }
+    }
+
+    get currentUserDoesNotHaveAccess() {
+        if (this.currentUserHasAccess === false) {
+            return true;
+        }
+        return undefined;
     }
 
     handleSettingsNavigation(event) {

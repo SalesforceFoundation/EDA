@@ -1,9 +1,11 @@
 import { LightningElement, api, track } from "lwc";
 import accountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
+import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
         accountModelSettingsTitle,
+        spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
     };
 
     @api activePage;
