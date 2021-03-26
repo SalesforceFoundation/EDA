@@ -5,6 +5,9 @@
             "c/accountModelSettings": [
                 "../../default/lwc/accountModelSettings/accountModelSettings.js"
             ],
+            "c/settingsSaveCanvas": [
+                "../../default/lwc/settingsSaveCanvas/settingsSaveCanvas.js"
+            ],
             "c/edaSettings": [
                 "../../default/lwc/edaSettings/edaSettings.js"
             ],
@@ -35,14 +38,17 @@
             "c/healthCheckRun": [
                 "../../default/lwc/healthCheckRun/healthCheckRun.js"
             ],
-            "c/settingsSaveCanvas": [
-                "../../default/lwc/settingsSaveCanvas/settingsSaveCanvas.js"
-            ],
             "c/settingsRowInput": [
                 "settingsRowInput/settingsRowInput.js"
             ],
             "c/affiliationSettings": [
                 "../../default/lwc/affiliationSettings/affiliationSettings.js"
+            ],
+            "c/contactInformationSettings": [
+                "../../default/lwc/contactInformationSettings/contactInformationSettings.js"
+            ],
+            "c/addressSettings": [
+                "../../default/lwc/addressSettings/addressSettings.js"
             ]
         }
     }

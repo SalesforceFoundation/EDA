@@ -144,6 +144,10 @@ export default class SettingsSaveCanvas extends LightningElement {
         );
     }
 
+    dispatchSettingsSaveCancelEvent() {
+        this.dispatchEvent(new CustomEvent("settingssavecancel"));
+    }
+
     dispatchSettingsSaveCompletedEvent() {
         this.dispatchEvent(new CustomEvent("settingssavecompleted"));
     }

@@ -2,12 +2,20 @@ import { LightningElement, api, track } from "lwc";
 import accountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
 import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsTitle";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
+import stgAddressSettingsTitle from "@salesforce/label/c.stgAddressSettingsTitle";
+import stgContactMultiAddressesEnabled from "@salesforce/label/c.stgContactMultiAddressesEnabled";
+import stgAccountTypesMultiAddressesEnabled from "@salesforce/label/c.stgAccountTypesMultiAddressesEnabled";
+import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressChangeUpdate";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
         accountModelSettingsTitle,
         stgAffiliationsSettingsTitle,
         afflTypeEnforced,
+        stgAddressSettingsTitle,
+        stgContactMultiAddressesEnabled,
+        stgAccountTypesMultiAddressesEnabled,
+        stgSimpleAddressChangeUpdate,
     };
 
     @track settingsNavigationViewModel = {
@@ -45,7 +53,7 @@ export default class EdaSettingsNavigation extends LightningElement {
                     },
                     {
                         label: "Contact Information",
-                        page: "contactInformation",
+                        page: "contactInformationSettings",
                         id: "contactInformation",
                         menuItems: [
                             { label: "Default Contact Language Fluency", id: "defaultContactLanguageFluency" },
@@ -55,17 +63,17 @@ export default class EdaSettingsNavigation extends LightningElement {
                         ],
                     },
                     {
-                        label: "Addresses",
-                        page: "addresses",
+                        label: stgAddressSettingsTitle,
+                        page: "addressSettings",
                         id: "addresses",
                         menuItems: [
-                            { label: "Allow Multiple Contact Addresses", id: "contactMultipleAddresses" },
+                            { label: stgContactMultiAddressesEnabled, id: "contactMultipleAddresses" },
                             {
-                                label: "Enable Multiple Addresses for Account Types",
+                                label: stgAccountTypesMultiAddressesEnabled,
                                 id: "addressAccountRecordTypes",
                             },
                             {
-                                label: "Update Address Records for Simple Address Changes",
+                                label: stgSimpleAddressChangeUpdate,
                                 id: "simpleAddressChangeIsUpdate",
                             },
                         ],

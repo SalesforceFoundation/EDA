@@ -44,6 +44,12 @@
             ],
             "c/affiliationSettings": [
                 "affiliationSettings/affiliationSettings.js"
+            ],
+            "c/contactInformationSettings": [
+                "contactInformationSettings/contactInformationSettings.js"
+            ],
+            "c/addressSettings": [
+                "addressSettings/addressSettings.js"
             ]
         }
     },

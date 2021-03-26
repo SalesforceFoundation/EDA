@@ -18,8 +18,14 @@
                 <template if:true={settingsPageToDisplay.affiliationSettings}>
                     <c-affiliation-settings></c-affiliation-settings>
                 </template>
+                <template if:true={settingsPageToDisplay.contactInformationSettings}>
+                    <c-contact-information-settings></c-contact-information-settings>
+                </template>
+
+                <template if:true={settingsPageToDisplay.addressSettings}>
+                    <c-address-settings></c-address-settings>
+                </template>
             </div>
         </div>
     </template>
-    <template if:false={currentUserHasAccess}> {labelReference.stgErrorInsufficientAccess} </template>
 </template>
