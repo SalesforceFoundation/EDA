@@ -142,6 +142,9 @@ export default class ContactInformationSettings extends LightningElement {
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+        if (!eventDetail.value) {
+            this.handlePreferredPhoneEnforcementChange({ value: false });
+        }
     }
 
     handlePreferredPhoneEnforcementChange(event) {
