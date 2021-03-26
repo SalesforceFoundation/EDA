@@ -20,6 +20,27 @@
             ],
             "c/affiliationSettings": [
                 "affiliationSettings/affiliationSettings.js"
+            ],
+            "c/accountModelSettings": [
+                "accountModelSettings/accountModelSettings.js"
+            ],
+            "c/edaSettings": [
+                "edaSettings/edaSettings.js"
+            ],
+            "c/edaSettingsNavigation": [
+                "edaSettingsNavigation/edaSettingsNavigation.js"
+            ],
+            "c/edaSettingsNavigationMenuItems": [
+                "edaSettingsNavigationMenuItems/edaSettingsNavigationMenuItems.js"
+            ],
+            "c/edaSettingsNavigationSection": [
+                "edaSettingsNavigationSection/edaSettingsNavigationSection.js"
+            ],
+            "c/edaSettingsNavigationSubsection": [
+                "edaSettingsNavigationSubsection/edaSettingsNavigationSubsection.js"
+            ],
+            "c/settingsSaveCanvas": [
+                "settingsSaveCanvas/settingsSaveCanvas.js"
             ]
         }
     },
