@@ -349,7 +349,7 @@
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
     <customLabels>
-        <label>Accounttypen die meerdere adressen kunnen bevatten</label>
+        <label><!-- Label for the Enable Multiple Addresses for Account Types setting --></label>
         <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -359,6 +359,10 @@
     <customLabels>
         <label>Voeg indien nodig &apos;Spaans of Latino&apos; als keuzelijstwaarde toe aan het veld Etniciteit.</label>
         <name>stgAddHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Addresses --></label>
+        <name>stgAddressSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Voeg indien nodig &apos;Niet Spaans of Latino&apos; als keuzelijstwaarde toe aan het veld Etniciteit.</label>
@@ -537,7 +541,7 @@
         <name>stgContactInformationSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Meerdere adressen ingeschakeld voor contactpersoon</label>
+        <label><!-- Label for the Allow Multiple Contact Addresses setting --></label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -1013,7 +1017,7 @@
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label>De accountrecordtypen die beheer van meerdere adressen ondersteunen.</label>
+        <label><!-- Description of the Enable Multiple Addresses for Account Types setting --></label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
@@ -1061,7 +1065,7 @@
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label>Selecteer deze optie om beheer van meerdere adressen mogelijk te maken voor contactpersonen.</label>
+        <label><!-- Description of the Allow Multiple Contact Addresses setting --></label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
@@ -1177,7 +1181,7 @@
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label>Ziet wijzigingen van enkele adresvelden voor een contactpersoon of account als updates van het bestaande adres (d.w.z. er wordt geen nieuw adresobject gemaakt). Wijzigingen van spaties en hoofd- of kleine letters worden ook als updates gezien.</label>
+        <label><!-- Description of the Update Address Records for Simple Changes setting --></label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
@@ -1273,7 +1277,7 @@
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Simpele adreswijziging gezien als update</label>
+        <label><!-- Label for the Update Address Records for Simple Changes setting --></label>
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>
