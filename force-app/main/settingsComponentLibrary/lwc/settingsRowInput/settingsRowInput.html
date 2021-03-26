@@ -25,9 +25,10 @@
                 <template if:true={isInput}>
                     <lightning-input
                         type={type}
-                        label={title}
+                        label={label}
                         id={inputId}
                         name={inputId}
+                        field-level-help={helpText}
                         message-toggle-active=""
                         message-toggle-inactive=""
                         onchange={handleInputChange}
@@ -35,7 +36,7 @@
                         disabled={disabled}
                         checked={checked}
                         value={value}
-                        variant="label-hidden"
+                        variant={variant}
                         data-qa-locator={inputId}
                     ></lightning-input>
                 </template>

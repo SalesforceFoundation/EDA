@@ -22,7 +22,7 @@ import stgAdminAccountNamingTitle from "@salesforce/label/c.stgAdminAccountNamin
 import adminAccNameFormat from "@salesforce/label/c.adminAccNameFormat";
 import adminAccNameFormatHelpText from "@salesforce/label/c.adminAccNameFormatHelpText";
 import stgAdminAccountCustomName from "@salesforce/label/c.stgAdminAccountCustomName";
-import stgCustomAdminAccountNamingHelp from "@salesforce/label/c.stgCustomAdminAccountNamingHelp";
+import stgAdminAccountCustomNameHelp from "@salesforce/label/c.stgAdminAccountCustomNameHelp";
 import stgHHAccountNamingTitle from "@salesforce/label/c.stgHHAccountNamingTitle";
 import hhAccNameFormat from "@salesforce/label/c.hhAccNameFormat";
 import hhAccNameFormatHelpText from "@salesforce/label/c.hhAccNameFormatHelpText";
@@ -35,6 +35,7 @@ import acctNamingOther from "@salesforce/label/c.acctNamingOther";
 export default class AccountModelSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
+    inputVariant = "standard";
 
     @track accountModelSettingsWireResult;
     @track accountModelSettingsVModel;
@@ -65,7 +66,7 @@ export default class AccountModelSettings extends LightningElement {
         adminAccountNameFormatHeading: adminAccNameFormat,
         adminAccountNameFormatDescription: adminAccNameFormatHelpText,
         adminAccountCustomNameFormatHeading: stgAdminAccountCustomName,
-        adminAccountCustomNameFormatDescription: stgCustomAdminAccountNamingHelp,
+        adminAccountCustomNameFormatDescription: stgAdminAccountCustomNameHelp,
         hhAccountNamingTitle: stgHHAccountNamingTitle,
         hhAccountNameFormatHeading: hhAccNameFormat,
         hhAccountNameFormatDescription: hhAccNameFormatHelpText,
@@ -198,6 +199,8 @@ export default class AccountModelSettings extends LightningElement {
     }
 
     handleAdministrativeAccountCustomNamingChange(event) {
+        console.log("admin custom name");
+        //console.log("setting Admin custom format: " + JSON.stringify(event));
         let adminAccountCustomNamingFormat = event.detail.value;
 
         if (event.detail.value === '""') {
@@ -231,6 +234,9 @@ export default class AccountModelSettings extends LightningElement {
     }
 
     handleHouseholdAccountCustomNamingChange(event) {
+        console.log("HH custom name change");
+
+        //console.log("setting Custom HH Naming format: " + JSON.stringify(event));
         let hhAccountCustomNamingFormat = event.detail.value;
 
         if (event.detail.value === '""') {
@@ -274,6 +280,22 @@ export default class AccountModelSettings extends LightningElement {
 
         // if validation fails, call this.handleValidationFailure()
         //this.template.querySelector("c-settings-save-canvas").handleValidationFailure();
+
+        // Set Custom naming format fields if selected
+        // if (
+        //     this.accountNamingSettingsVModel.administrativeAccountNameFormat.value ===
+        //     this.labelReference.accountNamingComboboxCustomOption
+        // ) {
+        //     console.log("Need to get custom Admin naming format!");
+        //     this.handleAdministrativeAccountCustomNamingChange();
+        // }
+        // if (
+        //     this.accountNamingSettingsVModel.householdAccountNameFormat.value ===
+        //     this.labelReference.accountNamingComboboxCustomOption
+        // ) {
+        //     console.log("Need to get custom HH naming format!");
+        //     this.handleHouseholdAccountCustomNamingChange();
+        // }
 
         // else, update hierarchy settings
         this.template.querySelector("c-settings-save-canvas").updateHierarchySettings();
