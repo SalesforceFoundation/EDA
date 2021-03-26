@@ -349,7 +349,7 @@
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
     <customLabels>
-        <label>複数住所が有効な取引先種別</label>
+        <label><!-- Label for the Enable Multiple Addresses for Account Types setting --></label>
         <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -359,6 +359,10 @@
     <customLabels>
         <label>必要に応じて、「ヒスパニックまたはラテン系」を選択リスト値として [民族] 項目に追加します。</label>
         <name>stgAddHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Addresses --></label>
+        <name>stgAddressSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>必要に応じて、「ヒスパニックまたはラテン系ではない」を選択リスト値として [民族] 項目に追加します。</label>
@@ -537,7 +541,7 @@
         <name>stgContactInformationSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>取引先責任者の複数住所が有効</label>
+        <label><!-- Label for the Allow Multiple Contact Addresses setting --></label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -1013,7 +1017,7 @@
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label>複数の住所の管理をサポートする取引先レコードタイプ。</label>
+        <label><!-- Description of the Enable Multiple Addresses for Account Types setting --></label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
@@ -1061,7 +1065,7 @@
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label>取引先の複数の住所の管理を有効にするには、このオプションを選択します。</label>
+        <label><!-- Description of the Allow Multiple Contact Addresses setting --></label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
@@ -1177,7 +1181,7 @@
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label>1 つの取引先責任者または取引先の住所項目の変更が既存の住所の更新として扱われます (新しい住所オブジェクトが作成されない)。また、空白や大文字/小文字の変更も更新として扱われます。</label>
+        <label><!-- Description of the Update Address Records for Simple Changes setting --></label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
@@ -1273,7 +1277,7 @@
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
-        <label>1 つの住所の変更を更新として処理</label>
+        <label><!-- Label for the Update Address Records for Simple Changes setting --></label>
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>

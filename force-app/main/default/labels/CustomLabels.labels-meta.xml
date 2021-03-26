@@ -647,6 +647,22 @@
         <value>Default Account Model</value>
     </labels>
     <labels>
+        <fullName>stgAddressSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Addresses</shortDescription>
+        <value>Addresses</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountRecordTypeGroupLabelTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Group label for the Account record type selection</shortDescription>
+        <value>Select Account Record Types</value>
+    </labels>
+    <labels>
         <fullName>stgAccountModelSettingsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -661,14 +677,6 @@
         <protected>true</protected>
         <shortDescription>Title for the list of Available Account Record Types</shortDescription>
         <value>Available Account Record Types</value>
-    </labels>
-    <labels>
-        <fullName>stgAccountRecordTypeGroupLabelTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Group label for the Account record type selection</shortDescription>
-        <value>Select Account Record Types</value>
     </labels>
     <labels>
         <fullName>stgAccountRecordTypeSelectedListTitle</fullName>
@@ -691,8 +699,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for multi address functionality Settings</shortDescription>
-        <value>Account Types with Multi-Addresses Enabled</value>
+        <shortDescription>Label for the Enable Multiple Addresses for Account Types setting</shortDescription>
+        <value>Enable Multiple Addresses for Account Types</value>
     </labels>
     <labels>
         <fullName>stgAccoutTypesWithoutContactsDelete</fullName>
@@ -1067,8 +1075,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Contact Multi-Addresses Enabled</value>
+        <shortDescription>Label for Accounts and Contacts Settings</shortDescription>
+        <value>Allow Multiple Contact Addresses</value>
     </labels>
     <labels>
         <fullName>stgCourseConnBackFillError</fullName>
@@ -2019,8 +2027,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Account record types that support multiple address management.</value>
+        <shortDescription>Description of the Enable Multiple Addresses for Account Types setting</shortDescription>
+        <value>Select the Account record types that support multiple addresses.</value>
     </labels>
     <labels>
         <fullName>stgHelpAdminRecType</fullName>
@@ -2115,8 +2123,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts address mgmt</shortDescription>
-        <value>Select this option to enable multiple address management for Contacts.</value>
+        <shortDescription>Description of the Allow Multiple Contact Addresses setting</shortDescription>
+        <value>Allow Contacts to have multiple address records.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactPreferredEmail</fullName>
@@ -2347,8 +2355,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Treats changes to single Contact or Account address fields as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</value>
+        <shortDescription>Description of the Update Address Records for Simple Changes setting</shortDescription>
+        <value>For simple address changes to Contacts or Accounts, update existing Address records rather than creating new ones.</value>
     </labels>
     <labels>
         <fullName>stgHelpStoreErrorsOn</fullName>
@@ -2539,8 +2547,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Address mgmt Setting</shortDescription>
-        <value>Simple Address Change Treated as Update</value>
+        <shortDescription>Label for the Update Address Records for Simple Changes setting</shortDescription>
+        <value>Update Address Records for Simple Changes</value>
     </labels>
     <labels>
         <fullName>stgStoreErrorsTitle</fullName>
