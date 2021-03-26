@@ -145,7 +145,7 @@ export default class ContactInformationSettings extends LightningElement {
 
         // disable require preferred phone when enhanced phone functionality is disabled
         if (!eventDetail.value) {
-            this.handlePreferredPhoneEnforcementChange({ value: false });
+            this.handlePreferredPhoneEnforcementChange(event);
         }
     }
 
