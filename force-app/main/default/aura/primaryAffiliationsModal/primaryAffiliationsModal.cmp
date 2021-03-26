@@ -5,9 +5,9 @@
     <aura:attribute name="accountRecordType" type="String" />
     <aura:attribute name="contactField" type="String" />
 
-    <aura:if isTrue="{!or(v.affiliationsAction == 'edit', v.affiliationsAction == 'save')}">
-        {!$Label.c.stgAffiliationsEditModalBody}
-        <!--TODO: Place lwc with dropdowns in here-->
-        <lightning:button label="Toggle" onclick="{!c.handleToggle}"></lightning:button>
-    </aura:if>
+    <c:primaryAffiliationsModalBody
+        affiliationsAction="{!v.affiliationsAction}"
+        accountRecordType="{!v.accountRecordType}"
+        contactField="{!v.contactField}"
+    ></c:primaryAffiliationsModalBody>
 </aura:component>

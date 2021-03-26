@@ -25,8 +25,8 @@
         $A.createComponents([
             ["c:primaryAffiliationsModal",
             {
-                "accountRecordType": component.get("v.accountRecordType"),
                 "affiliationsAction": component.get("v.affiliationsAction"),
+                "accountRecordType": component.get("v.accountRecordType"),
                 "contactField": component.get("v.contactField"),
                 "affiliationsModalEvent": component.getReference("c.handleModalEvent"),
             }],

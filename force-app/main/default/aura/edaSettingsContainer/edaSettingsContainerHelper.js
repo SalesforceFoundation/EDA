@@ -9,10 +9,11 @@
         const accountRecordType = eventParameters.accountRecordType;
         const contactField = eventParameters.contactField;
 
-        component.set("v.mappingName", mappingName);
-        component.set("v.accountRecordType", accountRecordType);
-        component.set("v.affiliationsAction", affiliationsAction);
-        component.set("v.contactField", contactField);
+        console.log("pre-modal");
+        console.log(mappingName);
+        console.log(accountRecordType);
+        console.log(affiliationsAction);
+        console.log(contactField);
 
         component
             .find("primaryAffiliationsModal")
