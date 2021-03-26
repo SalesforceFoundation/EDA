@@ -193,11 +193,11 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label>Recordtypevalidatie inschakelen</label>
+        <label><!-- Label for the Record Type Validation setting --></label>
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label>Indien dit is geselecteerd en gebruikers een account opgeven als primaire affiliatie van een contactpersoon, moet dit account een recordtype hebben en moeten alle accountrecordtypewaarden correct zijn toegewezen aan de respectievelijke velden voor de primaire contactpersoonaffiliatie in de affiliatietoewijzingen. Als de validatie mislukt, kan de affiliatie door een fout niet worden opgeslagen.</label>
+        <label><!-- Description of the Enable Record Type Validation setting --></label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -379,6 +379,10 @@
     <customLabels>
         <label><!-- Toast message when an Affiliation Mapping is edited --></label>
         <name>stgAffiliationsEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Section title for Affiliations --></label>
+        <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Einddatum affiliatie uit programma-inschrijving kopiëren</label>

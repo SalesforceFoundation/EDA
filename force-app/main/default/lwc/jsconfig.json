@@ -3,13 +3,24 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/healthCheck": ["healthCheck/healthCheck.js"],
-            "c/healthCheckDisplay": ["healthCheckDisplay/healthCheckDisplay.js"],
-            "c/healthCheckGroup": ["healthCheckGroup/healthCheckGroup.js"],
+            "c/healthCheck": [
+                "healthCheck/healthCheck.js"
+            ],
+            "c/healthCheckDisplay": [
+                "healthCheckDisplay/healthCheckDisplay.js"
+            ],
+            "c/healthCheckGroup": [
+                "healthCheckGroup/healthCheckGroup.js"
+            ],
             "c/healthCheckHighlightsPanel": [
                 "healthCheckHighlightsPanel/healthCheckHighlightsPanel.js"
             ],
-            "c/healthCheckRun": ["healthCheckRun/healthCheckRun.js"]
+            "c/healthCheckRun": [
+                "healthCheckRun/healthCheckRun.js"
+            ],
+            "c/affiliationSettings": [
+                "affiliationSettings/affiliationSettings.js"
+            ]
         }
     },
     "include": [
@@ -18,9 +29,13 @@
         "../../../../.sfdx/typings/lwc/**/*.d.ts"
     ],
     "paths": {
-        "c/*": ["*"]
+        "c/*": [
+            "*"
+        ]
     },
     "typeAcquisition": {
-        "include": ["jest"]
+        "include": [
+            "jest"
+        ]
     }
 }

@@ -193,11 +193,11 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label>Validierung von Datensatztypen aktivieren</label>
+        <label><!-- Label for the Record Type Validation setting --></label>
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label>Wenn Benutzer, falls ausgewählt, einen Account als primäre Zugehörigkeit eines Kontakts angeben, muss der Account einen Datensatztyp haben. Alle Account-Datensatztypen müssen in &quot;Zugehörigkeitszuordnungen&quot; ihren entsprechenden Feldern für die primäre Zugehörigkeit zum Kontakt ordnungsgemäß zugeordnet sein. Wenn die Validierung fehlschlägt, verhindert ein Fehler das Speichern der Zugehörigkeit.</label>
+        <label><!-- Description of the Enable Record Type Validation setting --></label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -379,6 +379,10 @@
     <customLabels>
         <label><!-- Toast message when an Affiliation Mapping is edited --></label>
         <name>stgAffiliationsEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Section title for Affiliations --></label>
+        <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Enddatum der Zugehörigkeit aus der Programmregistrierung kopieren</label>

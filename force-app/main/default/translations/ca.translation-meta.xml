@@ -193,11 +193,11 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label>Activa la validació del tipus de registre</label>
+        <label><!-- Label for the Record Type Validation setting --></label>
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label>Quan se selecciona, si els usuaris especifiquen un compte com a afiliació principal de contacte, el compte ha de tenir un tipus de registre i tots els valors del tipus de registre del compte s&apos;han d&apos;assignar correctament als seus camps corresponents d&apos;afiliació de contacte principal en assignacions d&apos;afiliació. Si la validació falla, un error impedeix que es desi l’afiliació.</label>
+        <label><!-- Description of the Enable Record Type Validation setting --></label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -379,6 +379,10 @@
     <customLabels>
         <label><!-- Toast message when an Affiliation Mapping is edited --></label>
         <name>stgAffiliationsEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Section title for Affiliations --></label>
+        <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Copia la data de finalització de l’afiliació a la inscripció al programa</label>

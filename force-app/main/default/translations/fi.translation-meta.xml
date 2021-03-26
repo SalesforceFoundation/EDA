@@ -193,11 +193,11 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label>Ota tietuetyypin vahvistus käyttöön</label>
+        <label><!-- Label for the Record Type Validation setting --></label>
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label>Kun tämä on valittuna, jos käyttäjät määrittävät tilin yhteyshenkilön ensisijaiseksi jäsenyydeksi, tilillä on oltava tietuetyyppi ja kaikki tilin tietuetyypin arvot on kartoitettava oikein vastaaviin yhteyshenkilöiden ensisijaisten jäsenyyksien kenttiin jäsenyyskartoituksissa. Jos vahvistus epäonnistuu, virhe estää jäsenyyden tallentamisen.</label>
+        <label><!-- Description of the Enable Record Type Validation setting --></label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -379,6 +379,10 @@
     <customLabels>
         <label><!-- Toast message when an Affiliation Mapping is edited --></label>
         <name>stgAffiliationsEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Section title for Affiliations --></label>
+        <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Kopioi jäsenyyden päättymispäivä ohjelman ilmoittautumisesta</label>
