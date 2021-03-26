@@ -81,7 +81,7 @@ export default class EdaSettingsNavigation extends LightningElement {
                 ],
             },
             {
-                label: "stgAffiliationsSettingsTitle",
+                label: stgAffiliationsSettingsTitle,
                 page: "affiliationSettings",
                 id: "affiliations",
                 menuItems: [{ label: afflTypeEnforced, id: "enforceRecordTypeValidation" }],
