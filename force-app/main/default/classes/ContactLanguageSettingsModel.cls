@@ -4,13 +4,13 @@
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     * Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
+      notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
-    documentation and/or other materials provided with the distribution.
+      notice, this List of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
     * Neither the name of Salesforce.org nor the names of
-    its contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
+      its contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -27,25 +27,22 @@
 /**
  * @author Salesforce.org
  * @date 2021
- * @group
- * @group-content
- * @description View model to abstract data needed to populate a lightning combobox list item
+ * @group Health Check
+ * @group-content ../../ApexDocContent/HealthCheck.htm
+ * @description Model to abstract data needed for Contact Language Settings.
  */
-public with sharing class ComboboxValueVModel {
+public with sharing class ContactLanguageSettingsModel {
     @AuraEnabled
-    public String label { get; private set; }
+    public String defaultContactLanguageFluency { get; private set; }
 
-    @AuraEnabled
-    public String value { get; private set; }
-
-    /********************************************************************************************
-     * @description Two argument constructor
-     * @param  label A string representing the setting for the label attribute of a combobox list item
-     * @param  value A string representing the setting for the value attribute of a combobox list item
-     * @return A ComboboxValueVModel with all properties populated.
-     ********************************************************************************************/
-    public ComboboxValueVModel(String label, String value) {
-        this.label = label;
-        this.value = value;
+    /*********************************************************************************
+     * @description Single argument constructor
+     * @param  defaultContactLanguageFluency A string representing language fluency
+     * @return A ContactLanguageSettingsModel with all properties populated
+     *********************************************************************************/
+    public ContactLanguageSettingsModel(String defaultContactLanguageFluency) {
+        this.defaultContactLanguageFluency = (String.isBlank(defaultContactLanguageFluency))
+            ? '""'
+            : defaultContactLanguageFluency;
     }
 }
