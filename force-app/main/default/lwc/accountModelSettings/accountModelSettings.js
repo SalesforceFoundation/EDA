@@ -32,6 +32,8 @@ import automaticHHNaming from "@salesforce/label/c.automaticHHNaming";
 import automaticHHNamingHelpText from "@salesforce/label/c.automaticHHNamingHelpText";
 import acctNamingOther from "@salesforce/label/c.acctNamingOther";
 
+const DELAY_INTERVAL = 500; // 0.5 second delay
+
 export default class AccountModelSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -206,14 +208,23 @@ export default class AccountModelSettings extends LightningElement {
             adminAccountCustomNamingFormat = "";
         }
 
-        // add updated setting to hierarchySettingsChanges object
-        let hierarchySettingsChange = {
-            settingsType: "string",
-            settingsName: "Admin_Other_Name_Setting__c",
-            settingsValue: adminAccountCustomNamingFormat,
-        };
+        // Wait a period of time determined by DELAY_INTERVAL before calling handleHierarchySettingsChange
+        // prevents multiple calls while user is typing
+        window.clearTimeout(this.delayTimeout);
 
-        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+        this.delayTimeout = setTimeout(() => {
+            // add updated setting to hierarchySettingsChanges object
+            console.log("updating Admin custom name string");
+            let hierarchySettingsChange = {
+                settingsType: "string",
+                settingsName: "Admin_Other_Name_Setting__c",
+                settingsValue: adminAccountCustomNamingFormat,
+            };
+
+            this.template
+                .querySelector("c-settings-save-canvas")
+                .handleHierarchySettingsChange(hierarchySettingsChange);
+        }, DELAY_INTERVAL);
     }
 
     handleHouseholdAccountNamingChange(event) {
@@ -238,14 +249,24 @@ export default class AccountModelSettings extends LightningElement {
             // set Hierarchy Settings field to a blank value (not "")
             hhAccountCustomNamingFormat = "";
         }
-        // add updated setting to hierarchySettingsChanges object
-        let hierarchySettingsChange = {
-            settingsType: "string",
-            settingsName: "Household_Other_Name_Setting__c",
-            settingsValue: hhAccountCustomNamingFormat,
-        };
 
-        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+        // Wait a period of time determined by DELAY_INTERVAL before calling handleHierarchySettingsChange
+        // prevents multiple calls while user is typing
+        window.clearTimeout(this.delayTimeout);
+
+        this.delayTimeout = setTimeout(() => {
+            // add updated setting to hierarchySettingsChanges object
+            console.log("updating HH custom name string");
+            let hierarchySettingsChange = {
+                settingsType: "string",
+                settingsName: "Household_Other_Name_Setting__c",
+                settingsValue: hhAccountCustomNamingFormat,
+            };
+
+            this.template
+                .querySelector("c-settings-save-canvas")
+                .handleHierarchySettingsChange(hierarchySettingsChange);
+        }, DELAY_INTERVAL);
     }
 
     handleHouseholdAccountAutoNamingChange(event) {
