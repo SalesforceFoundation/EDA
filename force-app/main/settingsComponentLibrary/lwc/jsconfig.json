@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "c/settingsSaveCanvas": [
+                "../../default/lwc/settingsSaveCanvas/settingsSaveCanvas.js"
+            ],
+            "c/edaSettings": [
+                "../../default/lwc/edaSettings/edaSettings.js"
+            ],
+            "c/contactInformationSettings": [
+                "../../default/lwc/contactInformationSettings/contactInformationSettings.js"
+            ],
+            "c/addressSettings": [
+                "../../default/lwc/addressSettings/addressSettings.js"
+            ]
+        }
+    }
+}

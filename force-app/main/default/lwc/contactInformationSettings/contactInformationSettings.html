@@ -5,36 +5,82 @@
                 component-title={labelReference.contactInformationSettingsTitle}
                 onsettingseditmodechange={handleSettingsEditModeChange}
                 onsettingssaving={handleSettingsSaving}
+                onsettingssavecancel={handleSettingsSaveCancel}
                 onsettingssavecompleted={handleSettingsSaveCompleted}
             >
                 <!-- Body of Contact Information Model Settings page (populates Slot in child component) -->
                 <template if:true={contactLanguageSettingsVModel}>
                     <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
                         <!-- Default Contact Language Fluency Setting -->
-                        <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
-                            <div class="slds-p-left_small slds-text-title_bold">
-                                {labelReference.contactLanguageDefaultFluencyTitle}
-                            </div>
-                            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
-                                {labelReference.contactLanguageDefaultFluencyDescription}
-                            </div>
-                        </div>
+                        <c-settings-row-input
+                            class="slds-size_3-of-3"
+                            title={labelReference.contactLanguageDefaultFluencyTitle}
+                            description={labelReference.contactLanguageDefaultFluencyDescription}
+                            type="combobox"
+                            input-id={inputAttributeReference.defaultContactLanugageFluencyComboboxId}
+                            value={contactLanguageSettingsVModel.defaultContactLanguageFluency.value}
+                            placeholder={labelReference.comboboxPlaceholderText}
+                            options={contactLanguageSettingsVModel.defaultContactLanguageFluency.options}
+                            onsettingsinputchange={handleDefaultContactLanguageFluencyChange}
+                            disabled={affordancesDisabled}
+                        ></c-settings-row-input>
+                    </div>
+                </template>
 
-                        <div class="slds-col slds-size_1-of-3 slds-col_bump-right slds-p-right_x-large">
-                            <lightning-combobox
-                                id={inputAttributeReference.defaultContactLanugageFluencyComboboxId}
-                                aria-labelledby={inputAttributeReference.defaultContactLanugageFluencyComboboxId}
-                                name={inputAttributeReference.defaultContactLanugageFluencyComboboxId}
-                                label={labelReference.contactLanguageDefaultFluencyTitle}
-                                value={contactLanguageSettingsVModel.defaultContactLanguageFluency.value}
-                                placeholder={labelReference.comboboxPlaceholderText}
-                                options={contactLanguageSettingsVModel.defaultContactLanguageFluency.options}
-                                onchange={handleDefaultContactLanguageFluencyChange}
+                <template if:true={preferredContactInfoSettingsVModel}>
+                    <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                        <!-- Require Preferred Email  Setting -->
+                        <c-settings-row-input
+                            class="slds-size_3-of-3"
+                            title={labelReference.requirePreferredEmailTitle}
+                            description={labelReference.requirePreferredEmailDescription}
+                            type="toggle"
+                            input-id={inputAttributeReference.requirePreferredEmailToggleId}
+                            value={preferredContactInfoSettingsVModel.requirePreferredEmail}
+                            checked={preferredContactInfoSettingsVModel.requirePreferredEmail}
+                            onsettingsinputchange={handleRequirePreferredEmailChange}
+                            disabled={affordancesDisabled}
+                        ></c-settings-row-input>
+
+                        <!-- Enhanced Phone Functionality  Setting -->
+                        <c-settings-row-input
+                            class="slds-size_3-of-3"
+                            title={labelReference.enhancedPhoneFunctionalityTitle}
+                            description={labelReference.enhancedPhoneFunctionalityDescription}
+                            type="toggle"
+                            input-id={inputAttributeReference.enhancedPhoneFunctionalityToggleId}
+                            value={preferredContactInfoSettingsVModel.enhancedPhoneFunctionality}
+                            onsettingsinputchange={handleEnhancedPhoneFunctionalityChange}
+                            disabled={affordancesDisabled}
+                        ></c-settings-row-input>
+
+                        <template if:true={showPreferredPhoneEnforcement}>
+                            <!-- Preferred Phone Enforcement Setting -->
+                            <c-settings-row-input
+                                class="slds-size_3-of-3 slds-p-left_x-large"
+                                title={labelReference.preferredPhoneEnforcementTitle}
+                                description={labelReference.preferredPhoneEnforcementDescription}
+                                type="toggle"
+                                input-id={inputAttributeReference.preferredPhoneEnforcementToggleId}
+                                value={preferredContactInfoSettingsVModel.preferredPhoneEnforcement}
+                                onsettingsinputchange={handlePreferredPhoneEnforcementChange}
                                 disabled={affordancesDisabled}
-                                variant="label-hidden"
-                                data-qa-locator={inputAttributeReference.defaultContactLanugageFluencyComboboxId}
-                            ></lightning-combobox>
-                        </div>
+                            ></c-settings-row-input>
+                        </template>
+
+                        <!-- Default Preferred Phone Setting -->
+                        <c-settings-row-input
+                            class="slds-size_3-of-3"
+                            title={labelReference.defaultPreferredPhoneTitle}
+                            description={labelReference.defaultPreferredPhoneDescription}
+                            type="combobox"
+                            input-id={inputAttributeReference.defaultPreferredPhoneComboboxId}
+                            value={preferredContactInfoSettingsVModel.defaultPreferredPhone.value}
+                            placeholder={labelReference.comboboxPlaceholderText}
+                            options={preferredContactInfoSettingsVModel.defaultPreferredPhone.options}
+                            onsettingsinputchange={handleDefaultPreferredPhoneChange}
+                            disabled={affordancesDisabled}
+                        ></c-settings-row-input>
                     </div>
                 </template>
             </c-settings-save-canvas>

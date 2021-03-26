@@ -181,7 +181,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Provides a blank value option to custom built picklists</shortDescription>
-        <value>--None--</value>
+        <value>None</value>
     </labels>
     <labels>
         <fullName>OnlyCourseConnectionPopulated</fullName>
@@ -647,6 +647,22 @@
         <value>Default Account Model</value>
     </labels>
     <labels>
+        <fullName>stgAddressSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Addresses</shortDescription>
+        <value>Addresses</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountRecordTypeGroupLabelTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Group label for the Account record type selection</shortDescription>
+        <value>Select Account Record Types</value>
+    </labels>
+    <labels>
         <fullName>stgAccountModelSettingsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -661,14 +677,6 @@
         <protected>true</protected>
         <shortDescription>Title for the list of Available Account Record Types</shortDescription>
         <value>Available Account Record Types</value>
-    </labels>
-    <labels>
-        <fullName>stgAccountRecordTypeGroupLabelTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Group label for the Account record type selection</shortDescription>
-        <value>Select Account Record Types</value>
     </labels>
     <labels>
         <fullName>stgAccountRecordTypeSelectedListTitle</fullName>
@@ -691,8 +699,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for multi address functionality Settings</shortDescription>
-        <value>Account Types with Multi-Addresses Enabled</value>
+        <shortDescription>Label for the Enable Multiple Addresses for Account Types setting</shortDescription>
+        <value>Enable Multiple Addresses for Account Types</value>
     </labels>
     <labels>
         <fullName>stgAccoutTypesWithoutContactsDelete</fullName>
@@ -1091,8 +1099,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Contact Multi-Addresses Enabled</value>
+        <shortDescription>Label for Accounts and Contacts Settings</shortDescription>
+        <value>Allow Multiple Contact Addresses</value>
     </labels>
     <labels>
         <fullName>stgCourseConnBackFillError</fullName>
@@ -1163,16 +1171,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Disable Preferred Email Enforcement</value>
+        <shortDescription>Field label for the Require Preferred Email setting</shortDescription>
+        <value>Require Preferred Email</value>
     </labels>
     <labels>
         <fullName>stgDisablePreferredPhoneEnforcement</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Disable Preferred Phone Enforcement</value>
+        <shortDescription>Field label for the Require Preferred Phone setting</shortDescription>
+        <value>Require Preferred Phone</value>
     </labels>
     <labels>
         <fullName>stgEDASetupTitle</fullName>
@@ -1195,8 +1203,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Enable Enhanced Preferred Phone Functionality</value>
+        <shortDescription>Field label for the Enhanced Preferred Phone Functionality setting</shortDescription>
+        <value>Enhanced Preferred Phone Functionality</value>
     </labels>
     <labels>
         <fullName>stgErrorInsufficientAccess</fullName>
@@ -2043,8 +2051,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Account record types that support multiple address management.</value>
+        <shortDescription>Description of the Enable Multiple Addresses for Account Types setting</shortDescription>
+        <value>Select the Account record types that support multiple addresses.</value>
     </labels>
     <labels>
         <fullName>stgHelpAdminRecType</fullName>
@@ -2139,32 +2147,32 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts address mgmt</shortDescription>
-        <value>Select this option to enable multiple address management for Contacts.</value>
+        <shortDescription>Description of the Allow Multiple Contact Addresses setting</shortDescription>
+        <value>Allow Contacts to have multiple address records.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactPreferredEmail</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Preferred Email</shortDescription>
-        <value>Do not require Contacts to have a Preferred Email.</value>
+        <shortDescription>Description of the Require Preferred Email setting</shortDescription>
+        <value>Require Contacts to have a Preferred Email.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactPreferredPhone</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Do not require Contacts to have a Preferred Phone.</value>
+        <shortDescription>Description for the Require Preferred Phone setting</shortDescription>
+        <value>Require Contacts to have a Preferred Phone.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactPreferredPhoneSync</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</value>
+        <shortDescription>Description of the Enhanced Preferred Phone Functionality setting</shortDescription>
+        <value>Copy the Contact's Preferred Phone to their Phone field.</value>
     </labels>
     <labels>
         <fullName>stgHelpCopyQueuedEmailSent</fullName>
@@ -2371,8 +2379,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Treats changes to single Contact or Account address fields as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</value>
+        <shortDescription>Description of the Update Address Records for Simple Changes setting</shortDescription>
+        <value>For simple address changes to Contacts or Accounts, update existing Address records rather than creating new ones.</value>
     </labels>
     <labels>
         <fullName>stgHelpStoreErrorsOn</fullName>
@@ -2487,12 +2495,28 @@
         <value>Preferred Email/Phone Data Cleanup:</value>
     </labels>
     <labels>
+        <fullName>stgPreferredPhoneDefault</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field label for the Default Preferred Phone setting</shortDescription>
+        <value>Default Preferred Phone</value>
+    </labels>
+    <labels>
         <fullName>stgPreferredPhoneSelection</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Select a desired picklist value for the batch job to selct a value from</shortDescription>
         <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &apos;Phone&apos; field is defined.</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneSelectionDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Default Preferred Phone setting</shortDescription>
+        <value>The field to use for Preferred Phone when the Phone field is blank, or more than one phone value is defined.</value>
     </labels>
     <labels>
         <fullName>stgReciprocalMethodListSetting</fullName>
@@ -2587,8 +2611,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Address mgmt Setting</shortDescription>
-        <value>Simple Address Change Treated as Update</value>
+        <shortDescription>Label for the Update Address Records for Simple Changes setting</shortDescription>
+        <value>Update Address Records for Simple Changes</value>
     </labels>
     <labels>
         <fullName>stgStoreErrorsTitle</fullName>
