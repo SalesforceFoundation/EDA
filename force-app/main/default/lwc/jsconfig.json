@@ -45,11 +45,14 @@
             "c/affiliationSettings": [
                 "affiliationSettings/affiliationSettings.js"
             ],
+            "c/addressSettings": [
+                "addressSettings/addressSettings.js"
+            ],
             "c/contactInformationSettings": [
                 "contactInformationSettings/contactInformationSettings.js"
             ],
-            "c/addressSettings": [
-                "addressSettings/addressSettings.js"
+            "c/settingsRowDualListbox": [
+                "../../settingsComponentLibrary/lwc/settingsRowDualListbox/settingsRowDualListbox.js"
             ]
         }
     },

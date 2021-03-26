@@ -44,11 +44,14 @@
             "c/affiliationSettings": [
                 "../../default/lwc/affiliationSettings/affiliationSettings.js"
             ],
+            "c/addressSettings": [
+                "../../default/lwc/addressSettings/addressSettings.js"
+            ],
             "c/contactInformationSettings": [
                 "../../default/lwc/contactInformationSettings/contactInformationSettings.js"
             ],
-            "c/addressSettings": [
-                "../../default/lwc/addressSettings/addressSettings.js"
+            "c/settingsRowDualListbox": [
+                "settingsRowDualListbox/settingsRowDualListbox.js"
             ]
         }
     }
