@@ -23,23 +23,23 @@
                     class="slds-col slds-no-flex slds-size_8-of-12 slds-scrollable_y eda-height_full"
                     data-qa-locator="edaSettingsPage"
                 >
+                    <template if:true={settingsPageToDisplay.accountModelSettings}>
+                        <c-account-model-settings></c-account-model-settings>
+                    </template>
 
-                <template if:true={settingsPageToDisplay.accountModelSettings}>
-                    <c-account-model-settings></c-account-model-settings>
-                </template>
+                    <template if:true={settingsPageToDisplay.addressSettings}>
+                        <c-address-settings></c-address-settings>
+                    </template>
 
-                <template if:true={settingsPageToDisplay.addressSettings}>
-                    <c-address-settings></c-address-settings>
-                </template>
+                    <template if:true={settingsPageToDisplay.affiliationSettings}>
+                        <c-affiliation-settings></c-affiliation-settings>
+                    </template>
 
-                <template if:true={settingsPageToDisplay.affiliationSettings}>
-                    <c-affiliation-settings></c-affiliation-settings>
-                </template>
-
-                <template if:true={settingsPageToDisplay.contactInformationSettings}>
-                    <c-contact-information-settings></c-contact-information-settings>
-                </template>
-            </div>
-        </div>
-    </template>
+                    <template if:true={settingsPageToDisplay.contactInformationSettings}>
+                        <c-contact-information-settings></c-contact-information-settings>
+                    </template>
+                </div>
+            </template>
+        </template>
+    </div>
 </template>
