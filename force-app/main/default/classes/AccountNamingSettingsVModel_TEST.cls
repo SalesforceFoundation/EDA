@@ -149,13 +149,13 @@ private with sharing class AccountNamingSettingsVModel_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            '""',
+            '',
             accountNamingSettingsVModel.customAdministrativeAccountNameFormat,
             'Custom administrative naming format string should be blank.'
         );
 
         System.assertEquals(
-            '""',
+            '',
             accountNamingSettingsVModel.customHouseholdAccountNameFormat,
             'Custom househould naming format string should be blank.'
         );

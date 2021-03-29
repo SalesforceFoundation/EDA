@@ -109,13 +109,13 @@ private class AccountNamingSettingsModel_TEST {
         );
 
         System.assertEquals(
-            '""',
+            '',
             accountNamingSettingsModel.customAdministrativeAccountNameFormat,
             'Custom Administrative Account name format should be blank.'
         );
 
         System.assertEquals(
-            '""',
+            '',
             accountNamingSettingsModel.customHouseholdAccountNameFormat,
             'Custom Household Account name format should be blank.'
         );
