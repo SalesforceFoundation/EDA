@@ -12,6 +12,7 @@ export default class SettingsRowInput extends LightningElement {
     @api variant = "label-hidden";
     @api label; // optional
     @api helpText;
+    @api styling = "";
 
     handleInputChange(event) {
         let eventDetail = {};
