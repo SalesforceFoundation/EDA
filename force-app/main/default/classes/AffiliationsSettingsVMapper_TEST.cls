@@ -107,7 +107,7 @@ private with sharing class AffiliationsSettingsVMapper_TEST {
     }
 
     /*************************************************************************************************************
-     * @description Test method to verify getAddressSettingsViewModel() returns a DualListboxVModel
+     * @description Test method to verify getAffiliationsSettingsViewModel() returns a DualListboxVModel
      * representing only the active Account Record Types as selected and available options.  It also ensures that
      * all active Record Types are represented as available options regardless of whether they are also in the
      * selected list.

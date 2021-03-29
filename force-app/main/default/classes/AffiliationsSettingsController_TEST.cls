@@ -50,9 +50,8 @@ private with sharing class AffiliationsSettingsController_TEST {
     }
 
     /****************************************************************************************************************************
-     * @description Test method to verify that the getddressSettingsVModel method returns a AddressSettingsVModel
-     * representing all active Account Record Types selected for Multi Address Accounts in Hierarchy Settings
-     * and all remaining active Account Record Types as selection options.
+     * @description Test method to verify that the getAffiliationsSettingsVModel method returns a AffiliationsSettingsVModel
+     * representing Affiliations Settings in Hierarchy Settings.
      ****************************************************************************************************************************/
     @isTest
     private static void getAffiliationsSettingsVModel() {
@@ -70,11 +69,11 @@ private with sharing class AffiliationsSettingsController_TEST {
     }
 
     /****************************************************************************************************************************
-     * @description Test method to verify that the getAddressSettingsViewModel method fails gracefully when an exception is
+     * @description Test method to verify that the getAffiliationsSettingsVModel method fails gracefully when an exception is
      * encountered.
      ****************************************************************************************************************************/
     @isTest
-    private static void getAddressSettingsViewModelException() {
+    private static void getAffiliationsSettingsViewModelException() {
         AffiliationsSettingsVMapper.instance = new STUB_ExceptionAffiliationsSettingsVMapper();
 
         try {

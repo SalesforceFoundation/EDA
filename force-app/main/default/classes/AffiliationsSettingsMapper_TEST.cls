@@ -84,7 +84,7 @@ private with sharing class AffiliationsSettingsMapper_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that the getAffiliationsSettingsModel method returns a AddressSettingsModel
+     * @description Test method to verify that the getAffiliationsSettingsModel method returns a AffiliationsSettingsModel
      * with all properties set to match the corresponding values in hierarchy settings.
      ***************************************************************************************************************************/
     @isTest

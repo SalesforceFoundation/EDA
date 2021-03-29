@@ -1,11 +1,23 @@
 import { LightningElement, api, track } from "lwc";
 import accountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
+import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
+import stgAccountTypesMultiAddressesEnabled from "@salesforce/label/c.stgAccountTypesMultiAddressesEnabled";
+import stgAddressSettingsTitle from "@salesforce/label/c.stgAddressSettingsTitle";
+import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsTitle";
+import stgContactMultiAddressesEnabled from "@salesforce/label/c.stgContactMultiAddressesEnabled";
 import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
+import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressChangeUpdate";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
         accountModelSettingsTitle,
+        afflTypeEnforced,
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
+        stgAffiliationsSettingsTitle,
+        stgAccountTypesMultiAddressesEnabled,
+        stgAddressSettingsTitle,
+        stgContactMultiAddressesEnabled,
+        stgSimpleAddressChangeUpdate,
     };
 
     @api activePage;
@@ -55,17 +67,17 @@ export default class EdaSettingsNavigation extends LightningElement {
                         ],
                     },
                     {
-                        label: "Addresses",
-                        page: "addresses",
+                        label: stgAddressSettingsTitle,
+                        page: "addressSettings",
                         id: "addresses",
                         menuItems: [
-                            { label: "Allow Multiple Contact Addresses", id: "contactMultipleAddresses" },
+                            { label: stgContactMultiAddressesEnabled, id: "contactMultipleAddresses" },
                             {
-                                label: "Enable Multiple Addresses for Account Types",
+                                label: stgAccountTypesMultiAddressesEnabled,
                                 id: "addressAccountRecordTypes",
                             },
                             {
-                                label: "Update Address Records for Simple Address Changes",
+                                label: stgSimpleAddressChangeUpdate,
                                 id: "simpleAddressChangeIsUpdate",
                             },
                         ],
@@ -73,10 +85,10 @@ export default class EdaSettingsNavigation extends LightningElement {
                 ],
             },
             {
-                label: "Affiliations",
-                page: "affiliations",
+                label: stgAffiliationsSettingsTitle,
+                page: "affiliationSettings",
                 id: "affiliations",
-                menuItems: [{ label: "Enforce Record Type Validation", id: "enforceRecordTypeValidation" }],
+                menuItems: [{ label: afflTypeEnforced, id: "enforceRecordTypeValidation" }],
             },
             {
                 label: "Courses and Enrollments",

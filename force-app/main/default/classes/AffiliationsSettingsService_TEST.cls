@@ -57,7 +57,7 @@ private with sharing class AffiliationsSettingsService_TEST {
 
     /**************************************************************************************************************************
      * @description Test method to verify that the getInstance method returns the existing instance of the
-     * AddressSettingsService class when one already exists.
+     * AffiliationsSettingsService class when one already exists.
      ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
@@ -88,24 +88,24 @@ private with sharing class AffiliationsSettingsService_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void locateAffiliatonsSettingsMapper() {
-        AffiliationsSettingsService addressSettingsServiceInstance = AffiliationsSettingsService.getInstance();
+        AffiliationsSettingsService affiliationsSettingsServiceInstance = AffiliationsSettingsService.getInstance();
 
         Test.startTest();
-        AffiliationsSettingsMapper addressSettingsMapperInstance = addressSettingsServiceInstance.locateAffiliatonsSettingsMapper();
+        AffiliationsSettingsMapper affiliationsSettingsMapperInstance = affiliationsSettingsServiceInstance.locateAffiliatonsSettingsMapper();
         Test.stopTest();
 
         System.assertEquals(
             AffiliationsSettingsMapper.getInstance(),
-            addressSettingsMapperInstance,
-            'Should return the instance of addressSettingsMapperInstance'
+            affiliationsSettingsMapperInstance,
+            'Should return the instance of affiliationsSettingsMapperInstance'
         );
     }
 
     /***********************************************************************************************************************************
-     * @description Test method to verify that the getAddressSettingsModel method returns a valid AddressSettingsModel
+     * @description Test method to verify that the getAffiliationsSettingsModel method returns a valid AffiliationsSettingsModel
      ***********************************************************************************************************************************/
     @isTest
-    private static void getAddressSettingsModelValid() {
+    private static void getAffiliationsSettingsModelValid() {
         AffiliationsSettingsMapper.instance = new STUB_AffiliationsSettingsMapper();
 
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettingsForTests(

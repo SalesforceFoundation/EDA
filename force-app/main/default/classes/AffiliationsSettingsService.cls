@@ -57,9 +57,9 @@ public virtual with sharing class AffiliationsSettingsService {
     }
 
     /************************************************************************************************************
-     * @description Retrieve a AddressSettingsModel representing the values specified in hierarchy
-     * settings for Address Settings functionality.
-     * @return A AddressSettingsModel
+     * @description Retrieve a AffiliationsSettingsModel representing the values specified in hierarchy
+     * settings for Affiliations Settings functionality.
+     * @return A AffiliationsSettingsModel
      ************************************************************************************************************/
     public virtual AffiliationsSettingsModel getAffiliationsSettingsModel() {
         return this.locateAffiliatonsSettingsMapper().getAffiliationsSettingsModel();

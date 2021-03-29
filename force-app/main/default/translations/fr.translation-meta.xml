@@ -85,7 +85,7 @@
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
-        <label>- Aucun -</label>
+        <label>Aucun</label>
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
@@ -349,7 +349,7 @@
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
     <customLabels>
-        <label>Types de compte avec plusieurs adresses activées</label>
+        <label><!-- Label for the Enable Multiple Addresses for Account Types setting --></label>
         <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -359,6 +359,10 @@
     <customLabels>
         <label>Si nécessaire, ajoutez « Hispanique ou Latino-Américain » en tant que valeur de liste de sélection dans le champ Appartenance ethnique.</label>
         <name>stgAddHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Addresses --></label>
+        <name>stgAddressSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Si nécessaire, ajoutez « Non Hispanique ou Latino-Américain » en tant que valeur de liste de sélection dans le champ Appartenance ethnique.</label>
@@ -557,7 +561,7 @@
         <name>stgContactInformationSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Contact avec plusieurs adresses activé</label>
+        <label><!-- Label for the Allow Multiple Contact Addresses setting --></label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -593,11 +597,11 @@
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
-        <label>Désactiver application e-mail préféré</label>
+        <label><!-- Field label for the Require Preferred Email setting --></label>
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
-        <label>Désactiver applic. du téléphone préféré</label>
+        <label><!-- Field label for the Require Preferred Phone setting --></label>
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
@@ -609,7 +613,7 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Activer les fonctionnalités améliorées de téléphone préféré</label>
+        <label><!-- Field label for the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1033,7 +1037,7 @@
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label>Les types d&apos;enregistrement de compte qui prennent en charge la gestion des adresses multiples.</label>
+        <label><!-- Description of the Enable Multiple Addresses for Account Types setting --></label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
@@ -1081,19 +1085,19 @@
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label>Sélectionnez cette option pour activer la gestion des adresses multiples pour les contacts.</label>
+        <label><!-- Description of the Allow Multiple Contact Addresses setting --></label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label>Ne pas exiger une adresse e-mail préférée pour les contacts.</label>
+        <label><!-- Description of the Require Preferred Email setting --></label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label>Ne pas exiger un téléphone préféré pour les contacts.</label>
+        <label><!-- Description for the Require Preferred Phone setting --></label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label>Synchronisez le champ Téléphone préféré avec le champ Téléphone standard du contact et vérifiez que la valeur dans Téléphone préféré existe et a une valeur.</label>
+        <label><!-- Description of the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1197,7 +1201,7 @@
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label>Traite les modifications apportées aux champs d&apos;adresse individuels Contact ou Compte en tant que mises à jour de l&apos;adresse existante (c&apos;est-à-dire, sans créer un autre objet Adresse). Traite également les espaces vides et les modifications des requêtes en tant que mises à jour.</label>
+        <label><!-- Description of the Update Address Records for Simple Changes setting --></label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
@@ -1245,8 +1249,16 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for the Default Preferred Phone setting --></label>
+        <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
         <label>Sélectionnez un champ pour le téléphone préféré afin de copier la valeur lorsque le champ Téléphone standard n’a pas de valeur, ou lorsque plusieurs champs Téléphone sont définis.</label>
         <name>stgPreferredPhoneSelection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description for the Default Preferred Phone setting --></label>
+        <name>stgPreferredPhoneSelectionDesc</name>
     </customLabels>
     <customLabels>
         <label>Paramètre de la liste</label>
@@ -1293,7 +1305,7 @@
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Simple modif. d’adresse traitée en m à j</label>
+        <label><!-- Label for the Update Address Records for Simple Changes setting --></label>
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>

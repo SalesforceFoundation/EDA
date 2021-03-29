@@ -37,6 +37,9 @@ export default class EDASettings extends LightningElement {
         return undefined;
     }
 
+    settingsPageToDisplay = {
+        accountModelSettings: true,
+    };
     handleSettingsNavigation(event) {
         this.changePageToDisplay(event.detail.pageName);
         event.stopPropagation();

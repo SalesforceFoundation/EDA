@@ -85,7 +85,7 @@
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
-        <label>--Ei mitään--</label>
+        <label>Ei mitään</label>
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
@@ -349,7 +349,7 @@
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
     <customLabels>
-        <label>Tilityypit, joissa on käytössä useita osoitteita</label>
+        <label><!-- Label for the Enable Multiple Addresses for Account Types setting --></label>
         <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -359,6 +359,10 @@
     <customLabels>
         <label>Lisää tarvittaessa ”latinalaisamerikkalainen tai latino” valintaluettelon arvoksi etnisyys-kenttään.</label>
         <name>stgAddHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Addresses --></label>
+        <name>stgAddressSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Lisää tarvittaessa ”ei latinalaisamerikkalainen tai latino” valintaluettelon arvoksi etnisyys-kenttään.</label>
@@ -557,7 +561,7 @@
         <name>stgContactInformationSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Yhteyshenkilön monet osoitteet käytössä</label>
+        <label><!-- Label for the Allow Multiple Contact Addresses setting --></label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -593,11 +597,11 @@
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
-        <label>Poista ensisij. s-postipakotus käytöstä</label>
+        <label><!-- Field label for the Require Preferred Email setting --></label>
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
-        <label>Poista ensisij. puhelinvalvonta käytöstä</label>
+        <label><!-- Field label for the Require Preferred Phone setting --></label>
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
@@ -609,7 +613,7 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Ota parannettu ensisijaisen puhelimen toiminnallisuus käyttöön</label>
+        <label><!-- Field label for the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1033,7 +1037,7 @@
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label>Tilitietueen tyypit, jotka tukevat monien osoitteiden hallintaa.</label>
+        <label><!-- Description of the Enable Multiple Addresses for Account Types setting --></label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
@@ -1081,19 +1085,19 @@
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label>Valitse tämä vaihtoehto, jos haluat ottaa käyttöön yhteyshenkilöiden monien osoitteiden hallinnan.</label>
+        <label><!-- Description of the Allow Multiple Contact Addresses setting --></label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label>Älä vaadi yhteyshenkilöiltä ensisijaista sähköpostiosoitetta.</label>
+        <label><!-- Description of the Require Preferred Email setting --></label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label>Älä vaadi yhteyshenkilöiltä ensisijaista puhelinta.</label>
+        <label><!-- Description for the Require Preferred Phone setting --></label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label>Synkronoi ensisijainen puhelin -kenttä yhteyshenkilön vakiopuhelin-kenttään ja tarkista, että ensisijaisen puhelimen arvo on olemassa ja että sillä on arvo.</label>
+        <label><!-- Description of the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1197,7 +1201,7 @@
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label>Käsittelee yksittäisen yhteyshenkilön tai tilin osoitekenttien muutokset päivityksinä olemassa olevaan osoitteeseen (ts. uutta osoiteobjektia ei luoda). Aiheuttaa myös välilyönnin ja kirjainkoon muutosten käsittelyn päivityksinä.</label>
+        <label><!-- Description of the Update Address Records for Simple Changes setting --></label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
@@ -1245,8 +1249,16 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for the Default Preferred Phone setting --></label>
+        <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
         <label>Valitse kenttä ensisijaisesta puhelimesta, josta arvo kopioidaan, kun vakiopuhelinkentässä ei ole arvoa tai jos useampi kuin yksi puhelinkenttä on määritetty.</label>
         <name>stgPreferredPhoneSelection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description for the Default Preferred Phone setting --></label>
+        <name>stgPreferredPhoneSelectionDesc</name>
     </customLabels>
     <customLabels>
         <label>Luetteloasetus</label>
@@ -1293,7 +1305,7 @@
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Nopea osoitteenmuutos päivityksenä</label>
+        <label><!-- Label for the Update Address Records for Simple Changes setting --></label>
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>
