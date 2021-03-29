@@ -58,10 +58,10 @@ public with sharing class AccountNamingSettingsModel {
         this.administrativeAccountNameFormat = administrativeAccountNameFormat;
         this.householdAccountNamingFormat = householdAccountNamingFormat;
         this.customAdministrativeAccountNameFormat = String.isBlank(customAdministrativeAccountNameFormat)
-            ? '""'
+            ? ''
             : customAdministrativeAccountNameFormat;
         this.customHouseholdAccountNameFormat = String.isBlank(customHouseholdAccountNameFormat)
-            ? '""'
+            ? ''
             : customHouseholdAccountNameFormat;
         this.autoHouseholdAccountNamingEnabled = autoHouseholdAccountNamingEnabled;
     }

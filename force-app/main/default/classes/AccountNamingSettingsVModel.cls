@@ -64,11 +64,11 @@ public with sharing class AccountNamingSettingsVModel {
         ComboboxVModel householdAccountNameFormat
     ) {
         this.customAdministrativeAccountNameFormat = String.isBlank(customAdministrativeAccountNameFormat)
-            ? '""'
+            ? ''
             : customAdministrativeAccountNameFormat;
 
         this.customHouseholdAccountNameFormat = String.isBlank(customHouseholdAccountNameFormat)
-            ? '""'
+            ? ''
             : customHouseholdAccountNameFormat;
 
         this.autoHouseholdAccountNamingEnabled = autoHouseholdAccountNamingEnabled;

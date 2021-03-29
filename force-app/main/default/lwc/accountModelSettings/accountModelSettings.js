@@ -126,12 +126,6 @@ export default class AccountModelSettings extends LightningElement {
 
         if (result.data) {
             this.accountNamingSettingsVModel = result.data;
-            console.log("****** before" + this.accountNamingSettingsVModel.customAdministrativeAccountNameFormat);
-            if (this.accountNamingSettingsVModel.customAdministrativeAccountNameFormat === '""') {
-                console.log("inside **8");
-                this.accountNamingSettingsVModel.customAdministrativeAccountNameFormat = "";
-                console.log("****** after" + this.accountNamingSettingsVModel.customAdministrativeAccountNameFormat);
-            }
 
             // hide/show custom Admin Account naming input field
             this.showCustomAdministrativeAccountNaming =
