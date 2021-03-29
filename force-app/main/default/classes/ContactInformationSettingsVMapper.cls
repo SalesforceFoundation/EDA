@@ -91,6 +91,46 @@ public virtual with sharing class ContactInformationSettingsVMapper {
         );
     }
 
+    /**********************************************************************************************
+     * @description Retrieve a model representing the Preferred Contact Information settings specified
+     * in Hierarchy Settings and all available phone type options.
+     * @return A PreferredContactInfoSettingsVModel.
+     **********************************************************************************************/
+    public virtual PreferredContactInfoSettingsVModel getPreferredContactInformationSettingsVModel() {
+        // get current preferred contact info settings in hierarchy settings
+        PreferredContactInfoSettingsModel preferredContactInfoSettingsModel = this.locatePreferredContactInfoSettingsService()
+            .getPreferredContactInfoSettingsModel();
+
+        // get all fields from Contact of type "Phone"
+        Map<String, SObjectFieldModel> phoneTypeSObjectFieldModelsByFieldName = this.locateSObjectFieldService()
+            .getModelsByTypeForSObject(Contact.SObjectType, 'PHONE');
+
+        // exclude "Business Phone" field to preserve existing behavior (API name is Phone, label is Business Phone)
+        phoneTypeSObjectFieldModelsByFieldName.remove('Phone');
+
+        List<ComboboxValueVModel> preferredPhoneComboboxValueVModelsList = new List<ComboboxValueVModel>();
+
+        // add --None-- option, maps to a blank value in hierarchy settings field
+        preferredPhoneComboboxValueVModelsList.add(new ComboboxValueVModel(label.NoneOption, '""'));
+
+        for (SObjectFieldModel phoneSObjectFieldModel : phoneTypeSObjectFieldModelsByFieldName.values()) {
+            preferredPhoneComboboxValueVModelsList.add(
+                // value for the combobox option should match the phone field label
+                new ComboboxValueVModel(phoneSObjectFieldModel.label, phoneSObjectFieldModel.label)
+            );
+        }
+
+        return new PreferredContactInfoSettingsVModel(
+            preferredContactInfoSettingsModel.requirePreferredEmail,
+            preferredContactInfoSettingsModel.enhancedPhoneFunctionality,
+            preferredContactInfoSettingsModel.preferredPhoneEnforcement,
+            new ComboboxVModel(
+                preferredContactInfoSettingsModel.defaultPreferredPhone,
+                preferredPhoneComboboxValueVModelsList
+            )
+        );
+    }
+
     /******************************************************************************
      * @description Retrieve an instance of the PicklistEntryService class.
      * @return An instance of PicklistEntryService.
@@ -101,11 +141,29 @@ public virtual with sharing class ContactInformationSettingsVMapper {
     }
 
     /******************************************************************************
+     * @description Retrieve an instance of the SObjectFieldService class.
+     * @return An instance of SObjectFieldService.
+     ******************************************************************************/
+    @TestVisible
+    private SObjectFieldService locateSObjectFieldService() {
+        return SObjectFieldService.getInstance();
+    }
+
+    /******************************************************************************
      * @description Retrieve an instance of the ContactLanguageSettingsService class.
      * @return An instance of ContactLanguageSettingsService.
      ******************************************************************************/
     @TestVisible
     private ContactLanguageSettingsService locateContactLanguageSettingsService() {
         return ContactLanguageSettingsService.getInstance();
+    }
+
+    /******************************************************************************
+     * @description Retrieve an instance of the PreferredContactInfoSettingsService class.
+     * @return An instance of PreferredContactInfoSettingsService.
+     ******************************************************************************/
+    @TestVisible
+    private PreferredContactInfoSettingsService locatePreferredContactInfoSettingsService() {
+        return PreferredContactInfoSettingsService.getInstance();
     }
 }

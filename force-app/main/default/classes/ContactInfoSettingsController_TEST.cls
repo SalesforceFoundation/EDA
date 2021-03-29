@@ -36,6 +36,8 @@
  */
 @isTest
 private with sharing class ContactInfoSettingsController_TEST {
+    private static Integer loopCounter = 5;
+
     /**************************************************************************************************************************
      * @description Test method to verify that the locateContactInformationSettingsVMapper method returns an instance of
      * ContactInformationSettingsVMapper
@@ -104,12 +106,92 @@ private with sharing class ContactInfoSettingsController_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify that the getPreferredContactInfoSettingsVModel method returns a PreferredContactInfoSettingsVModel
+     * with selected value matching Hierarchy Settings field when set and a list of active picklist options.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getPreferredContactInfoSettingsVModelValid() {
+        ContactInformationSettingsVMapper.instance = new STUB_ContactInformationSettingsVMapper();
+
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Disable_Preferred_Email_Enforcement__c = false,
+                Enable_New_Preferred_Phone_Sync__c = true,
+                Disable_Preferred_Phone_Enforcement__c = true,
+                Preferred_Phone_Selection__c = 'PhoneField label1'
+            )
+        );
+
+        Test.startTest();
+        PreferredContactInfoSettingsVModel preferredContactInfoSettingsVModel = ContactInfoSettingsController.getPreferredContactInfoSettingsVModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            preferredContactInfoSettingsVModel.requirePreferredEmail,
+            'Require Preferred Email should be inverse of value set in Hierarchy Settings.'
+        );
+
+        System.assertEquals(
+            true,
+            preferredContactInfoSettingsVModel.enhancedPhoneFunctionality,
+            'Enhanced Phone Functionality should match value set in Hierarchy Settings.'
+        );
+
+        System.assertEquals(
+            false,
+            preferredContactInfoSettingsVModel.preferredPhoneEnforcement,
+            'Preferred Phone Enforcement should be inverse of value set in Hierarchy Settings.'
+        );
+
+        System.assertEquals(
+            'PhoneField label1',
+            preferredContactInfoSettingsVModel.defaultPreferredPhone.value,
+            'Selected Default Preferred Phone should match value set in Hierarchy Settings.'
+        );
+
+        System.assertEquals(
+            loopCounter,
+            preferredContactInfoSettingsVModel.defaultPreferredPhone.options.size(),
+            'Should have ' +
+            loopCounter +
+            ' Default Preferred Phone options to choose from.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getContactLanguageSettingsVModel method throws an exception when an error is
+     * encountered.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getPreferredContactInfoSettingsVModelException() {
+        ContactInformationSettingsVMapper.instance = new STUB_ExceptionContactInformationSettingsVMapper();
+
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Disable_Preferred_Email_Enforcement__c = false,
+                Enable_New_Preferred_Phone_Sync__c = true,
+                Disable_Preferred_Phone_Enforcement__c = true,
+                Preferred_Phone_Selection__c = 'PhoneField label1'
+            )
+        );
+
+        try {
+            Test.startTest();
+            PreferredContactInfoSettingsVModel preferredContactInfoSettingsVModel = ContactInfoSettingsController.getPreferredContactInfoSettingsVModel();
+            Test.stopTest();
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw AuraHandledException.');
+        }
+    }
+
+    /**************************************************************************************************************************
      ****************************************************** STUB CLASS *********************************************************
      **************************************************************************************************************************/
 
     /*************************************************************************************************************
      * @description Stub class to simulate the response from ContactInformationSettingsVMapper to return a valid
-     * ContactLanguageSettingsVModel
+     * ContactLanguageSettingsVModel or PreferredContactInfoSettingsVModel
      */
     private class STUB_ContactInformationSettingsVMapper extends ContactInformationSettingsVMapper {
         public override ContactLanguageSettingsVModel getContactLanguageSettingsVModel() {
@@ -126,13 +208,34 @@ private with sharing class ContactInfoSettingsController_TEST {
 
             return new ContactLanguageSettingsVModel(defaultLanguageFluencyComboboxVModel);
         }
+
+        public override PreferredContactInfoSettingsVModel getPreferredContactInformationSettingsVModel() {
+            List<ComboboxValueVModel> preferredPhoneComboboxValueVModelsList = new List<ComboboxValueVModel>();
+
+            for (Integer i = 0; i < loopCounter; i++) {
+                preferredPhoneComboboxValueVModelsList.add(
+                    new ComboboxValueVModel('PhoneField label' + i, 'PhoneField label' + i)
+                );
+            }
+
+            ComboboxVModel defaultPreferredPhoneComboboxVModel = new ComboboxVModel(
+                'PhoneField label1',
+                preferredPhoneComboboxValueVModelsList
+            );
+
+            return new PreferredContactInfoSettingsVModel(true, true, false, defaultPreferredPhoneComboboxVModel);
+        }
     }
 
     /*************************************************************************************************************
-     * @description Stub class to simulate an error response from ContactInformationSettingsVMapper
+     * @description Stub class to simulate an error response from ContactInformationSettingsVMapper methods
      */
     private class STUB_ExceptionContactInformationSettingsVMapper extends ContactInformationSettingsVMapper {
         public override ContactLanguageSettingsVModel getContactLanguageSettingsVModel() {
+            throw new TestException('Exception encountered!');
+        }
+
+        public override PreferredContactInfoSettingsVModel getPreferredContactInformationSettingsVModel() {
             throw new TestException('Exception encountered!');
         }
     }
