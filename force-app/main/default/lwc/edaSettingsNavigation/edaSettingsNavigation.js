@@ -1,5 +1,6 @@
 import { LightningElement, api, track } from "lwc";
 import accountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
+import stgAffiliationsSettingsNav from "@salesforce/label/c.stgAffiliationsSettingsNav";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 import stgAccountTypesMultiAddressesEnabled from "@salesforce/label/c.stgAccountTypesMultiAddressesEnabled";
 import stgAddressSettingsTitle from "@salesforce/label/c.stgAddressSettingsTitle";
@@ -11,6 +12,7 @@ import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressCh
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
         accountModelSettingsTitle,
+        stgAffiliationsSettingsNav,
         afflTypeEnforced,
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
         stgAffiliationsSettingsTitle,
@@ -85,7 +87,7 @@ export default class EdaSettingsNavigation extends LightningElement {
                 ],
             },
             {
-                label: stgAffiliationsSettingsTitle,
+                label: stgAffiliationsSettingsNav,
                 page: "affiliationSettings",
                 id: "affiliations",
                 menuItems: [{ label: afflTypeEnforced, id: "enforceRecordTypeValidation" }],

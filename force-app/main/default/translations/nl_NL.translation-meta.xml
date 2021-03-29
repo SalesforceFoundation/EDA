@@ -385,6 +385,10 @@
         <name>stgAffiliationsEditSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!--Navigation Section title for Affiliations --></label>
+        <name>stgAffiliationsSettingsNav</name>
+    </customLabels>
+    <customLabels>
         <label><!--Section title for Affiliations --></label>
         <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
