@@ -77,48 +77,52 @@
 
                 <template if:true={accountNamingSettingsVModel}>
                     <!-- Administrative Account Naming -->
-                    <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
-                        <div
+                    <!-- <div class="slds-grid slds-grid_vertical-align-start slds-wrap"> -->
+                    <!-- <div
                             class="slds-col slds-size--11-of-12 slds-text-heading_small slds-border_top slds-p-bottom_x-large slds-p-top_x-large"
                         >
                             {labelReference.adminAccountNamingTitle}
-                        </div>
-                        <c-settings-row-input
-                            class="slds-size_3-of-3"
-                            title={labelReference.adminAccountNameFormatHeading}
-                            description={labelReference.adminAccountNameFormatDescription}
-                            type="combobox"
-                            input-id={inputAttributeReference.adminAccountNamingFormatComboboxId}
-                            value={accountNamingSettingsVModel.administrativeAccountNameFormat.value}
-                            placeholder={labelReference.comboboxPlaceholderText}
-                            options={accountNamingSettingsVModel.administrativeAccountNameFormat.options}
-                            onsettingsinputchange={handleAdministrativeAccountNamingChange}
-                            disabled={affordancesDisabled}
-                        ></c-settings-row-input>
+                        </div> -->
+                    <c-settings-sub-heading sub-heading={labelReference.adminAccountNamingTitle}>
+                    </c-settings-sub-heading>
 
-                        <!-- Admin Account Naming Custom format -->
-                        <template if:true={showCustomAdministrativeAccountNaming}>
-                            <c-settings-row-input
-                                class="slds-size_3-of-3 slds-p-bottom_x-large"
-                                type="text"
-                                help-text={labelReference.adminAccountCustomNameFormatDescription}
-                                title=""
-                                label={labelReference.adminAccountCustomNameFormatHeading}
-                                input-id={inputAttributeReference.adminAccountCustomNamingFormatTextBoxId}
-                                value={accountNamingSettingsVModel.customAdministrativeAccountNameFormat}
-                                onsettingsinputchange={handleAdministrativeAccountCustomNamingChange}
-                                disabled={affordancesDisabled}
-                                variant={inputVariant}
-                            ></c-settings-row-input>
-                        </template>
-                    </div>
+                    <c-settings-row-input
+                        class="slds-size_3-of-3"
+                        title={labelReference.adminAccountNameFormatHeading}
+                        description={labelReference.adminAccountNameFormatDescription}
+                        type="combobox"
+                        input-id={inputAttributeReference.adminAccountNamingFormatComboboxId}
+                        value={accountNamingSettingsVModel.administrativeAccountNameFormat.value}
+                        placeholder={labelReference.comboboxPlaceholderText}
+                        options={accountNamingSettingsVModel.administrativeAccountNameFormat.options}
+                        onsettingsinputchange={handleAdministrativeAccountNamingChange}
+                        disabled={affordancesDisabled}
+                    ></c-settings-row-input>
+
+                    <!-- Admin Account Naming Custom format -->
+                    <template if:true={showCustomAdministrativeAccountNaming}>
+                        <c-settings-row-input
+                            class="slds-size_3-of-3 slds-p-bottom_x-large"
+                            type="text"
+                            help-text={labelReference.adminAccountCustomNameFormatDescription}
+                            title=""
+                            label={labelReference.adminAccountCustomNameFormatHeading}
+                            input-id={inputAttributeReference.adminAccountCustomNamingFormatTextBoxId}
+                            value={accountNamingSettingsVModel.customAdministrativeAccountNameFormat}
+                            onsettingsinputchange={handleAdministrativeAccountCustomNamingChange}
+                            disabled={affordancesDisabled}
+                            variant={inputVariant}
+                        ></c-settings-row-input>
+                    </template>
+                    <!-- </div> -->
 
                     <!-- Household Account Naming -->
-                    <div
+                    <!-- <div
                         class="slds-col slds-size--11-of-12 slds-text-heading_small slds-border_top slds-p-bottom_x-large slds-p-top_x-large"
                     >
                         {labelReference.hhAccountNamingTitle}
-                    </div>
+                    </div> -->
+                    <c-settings-sub-heading sub-heading={labelReference.hhAccountNamingTitle}> </c-settings-sub-heading>
 
                     <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
                         <c-settings-row-input

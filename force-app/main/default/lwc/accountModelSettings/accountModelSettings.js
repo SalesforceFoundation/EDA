@@ -126,6 +126,12 @@ export default class AccountModelSettings extends LightningElement {
 
         if (result.data) {
             this.accountNamingSettingsVModel = result.data;
+            console.log("****** before" + this.accountNamingSettingsVModel.customAdministrativeAccountNameFormat);
+            if (this.accountNamingSettingsVModel.customAdministrativeAccountNameFormat === '""') {
+                console.log("inside **8");
+                this.accountNamingSettingsVModel.customAdministrativeAccountNameFormat = "";
+                console.log("****** after" + this.accountNamingSettingsVModel.customAdministrativeAccountNameFormat);
+            }
 
             // hide/show custom Admin Account naming input field
             this.showCustomAdministrativeAccountNaming =
@@ -214,7 +220,6 @@ export default class AccountModelSettings extends LightningElement {
 
         this.delayTimeout = setTimeout(() => {
             // add updated setting to hierarchySettingsChanges object
-            console.log("updating Admin custom name string");
             let hierarchySettingsChange = {
                 settingsType: "string",
                 settingsName: "Admin_Other_Name_Setting__c",
@@ -256,7 +261,6 @@ export default class AccountModelSettings extends LightningElement {
 
         this.delayTimeout = setTimeout(() => {
             // add updated setting to hierarchySettingsChanges object
-            console.log("updating HH custom name string");
             let hierarchySettingsChange = {
                 settingsType: "string",
                 settingsName: "Household_Other_Name_Setting__c",
