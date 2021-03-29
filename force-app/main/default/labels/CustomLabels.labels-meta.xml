@@ -735,13 +735,21 @@
         <value>Administrative Account Record Type</value>
     </labels>
     <labels>
+        <fullName>stgAffiliationsSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation Section title for Affiliations</shortDescription>
+        <value>Affiliations</value>
+    </labels>
+    <labels>
         <fullName>stgAffiliationsSettingsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Section title for Affiliations</shortDescription>
-        <value>Affiliations</value>
-        </labels>
+        <value>Affiliation Settings</value>
+    </labels>
     <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>
