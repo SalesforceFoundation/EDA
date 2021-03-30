@@ -23,20 +23,15 @@ import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
+        peopleAndGroups: "People and Groups",
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
+        systemSettings: "System",
         accountModel: {
             accountAutoDeletionModel: stgAccoutTypesWithoutContactsDelete,
             accountModelSettings: stgAccountModelSettingsTitle,
             adminAccountModel: stgAdminAccountRecordType,
             defaultAccountModel: stgAccModelTitle,
             hhAccountModel: stgAccountRecordTypeSupportsHHAddress,
-        },
-        contactInformation: {
-            contactInformation: stgContactInformationSettingsTitle,
-            defaultContactLanguageFluency: stgDefaultContactLanguageFluency,
-            defaultPreferredPhone: stgPreferredPhoneDefault,
-            enhancedPhoneFunctionality: stgEnablePreferredPhoneSync,
-            requirePreferredEmail: stgDisablePreferredEmailEnforcement,
         },
         addressSettings: {
             addressAccountRecordTypes: stgAccountTypesMultiAddressesEnabled,
@@ -48,6 +43,45 @@ export default class EdaSettingsNavigation extends LightningElement {
             affiliationMappings: stgTabAfflMappings,
             affiliationSettings: stgAffiliationsSettingsNav,
             enforceRecordTypeValidation: afflTypeEnforced,
+        },
+        contactInformation: {
+            contactInformation: stgContactInformationSettingsTitle,
+            defaultContactLanguageFluency: stgDefaultContactLanguageFluency,
+            defaultPreferredPhone: stgPreferredPhoneDefault,
+            enhancedPhoneFunctionality: stgEnablePreferredPhoneSync,
+            requirePreferredEmail: stgDisablePreferredEmailEnforcement,
+        },
+        coursesAndEnrollmentsSettings: {
+            coursesAndEnrollmentsSettings: "Courses and Enrollments",
+        },
+        errorSettings: {
+            enableDebug: "Enable Debug",
+            enableErrorHandling: "Enable Error Handling",
+            errorSettings: "Errors",
+            sendErrorNotifications: "Send Error Notifications",
+            storeErrors: "Store Errors",
+        },
+        programSettings: {
+            programSettings: "Programs",
+            programAutoEnrollmentMappings: "Program Auto-Enrollment Mappings",
+            programEnrollmentDeletions: "Program Enrollment Deletions",
+        },
+        relationshipSettings: {
+            preventAutoCreatedDuplicateRelationships: "Prevent Auto-Created Duplicate Relations",
+            reciprocalMethod: "Reciprocal Method",
+            reciprocalRelationshipMappings: "Reciprocal Relationship mappings",
+            relationshipAutocreateCampaignMappings: "Autocreate Campaign Mappings",
+            relationshipAutocreateContactMappings: "Autocreate Contact Mappings",
+            relationshipSettings: "Relationships",
+        },
+        systemTools: {
+            courseConnectionBackfill: "Course Connection Backfill",
+            courseDescriptionMigration: "Course Description Migration",
+            ethnicityAndRaceBackfill: "Ethnicity and Race Backfill",
+            preferredEmailCleanup: "Preferred Email and Phone Cleanup",
+            systemTools: "System Tools",
+            refreshAdministrativeAccountNames: "Refresh Administrative Account Names",
+            refreshHouseholdAccountNames: "Refresh Household Account Names",
         },
     };
 
@@ -61,7 +95,7 @@ export default class EdaSettingsNavigation extends LightningElement {
                 id: "setuphome",
             },
             {
-                label: "People and Groups",
+                label: this.labelReference.peopleAndGroups,
                 id: "peopleAndGroups",
                 navigationSubSections: [
                     {
@@ -145,12 +179,110 @@ export default class EdaSettingsNavigation extends LightningElement {
                 ],
             },
             {
-                label: "Courses and Enrollments",
-                id: "coursesAndEnrollments",
+                label: this.labelReference.relationshipSettings.relationshipSettings,
+                page: "relationshipSettings",
+                id: "relationshipSettings",
+                menuItems: [
+                    {
+                        label: this.labelReference.relationshipSettings.reciprocalMethod,
+                        id: "reciprocalMethod",
+                    },
+                    {
+                        label: this.labelReference.relationshipSettings.preventAutoCreatedDuplicateRelationships,
+                        id: "preventAutoCreatedDuplicateRelationships",
+                    },
+                    {
+                        label: this.labelReference.relationshipSettings.preventAutoCreatedDuplicateRelationships,
+                        id: "preventAutoCreatedDuplicateRelationships",
+                    },
+                    {
+                        label: this.labelReference.relationshipSettings.reciprocalRelationshipMappings,
+                        id: "reciprocalRelationshipMappings",
+                    },
+                    {
+                        label: this.labelReference.relationshipSettings.relationshipAutocreateCampaignMappings,
+                        id: "relationshipAutocreateCampaignMappings",
+                    },
+                    {
+                        label: this.labelReference.relationshipSettings.relationshipAutocreateContactMappings,
+                        id: "relationshipAutocreateContactMappings",
+                    },
+                ],
             },
             {
-                label: "System Tools",
-                id: "systemTools",
+                label: this.labelReference.coursesAndEnrollmentsSettings.coursesAndEnrollmentsSettings,
+                id: "coursesAndEnrollments",
+                navigationSubSections: [
+                    {
+                        label: this.labelReference.programSettings.programSettings,
+                        page: "programSettings",
+                        id: "programSettings",
+                        menuItems: [
+                            {
+                                label: this.labelReference.programSettings.programAutoEnrollmentMappings,
+                                id: "programAutoEnrollmentMappings",
+                            },
+                            {
+                                label: this.labelReference.programSettings.programEnrollmentDeletions,
+                                id: "programEnrollmentDeletions",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                label: this.labelReference.systemSettings,
+                id: "systemSettings",
+                navigationSubSections: [
+                    {
+                        label: this.labelReference.errorSettings.errorSettings,
+                        page: "errorSettings",
+                        id: "errorSettings",
+                        menuItems: [
+                            { label: this.labelReference.errorSettings.storeErrors, id: "storeErrors" },
+                            {
+                                label: this.labelReference.errorSettings.sendErrorNotifications,
+                                id: "sendErrorNotifications",
+                            },
+                            {
+                                label: this.labelReference.errorSettings.enableErrorHandling,
+                                id: "enableErrorHandling",
+                            },
+                            { label: this.labelReference.errorSettings.enableDebug, id: "enableDebug" },
+                        ],
+                    },
+                    {
+                        label: this.labelReference.systemTools.systemTools,
+                        page: "systemTools",
+                        id: "systemTools",
+                        menuItems: [
+                            {
+                                label: this.labelReference.systemTools.refreshAdministrativeAccountNames,
+                                id: "refreshAdministrativeAccountNames",
+                            },
+                            {
+                                label: this.labelReference.systemTools.refreshHouseholdAccountNames,
+                                id: "refreshHouseholdAccountNames",
+                            },
+                            {
+                                label: this.labelReference.systemTools.preferredEmailCleanup,
+                                id: "preferredEmailCleanup",
+                            },
+                            {
+                                label: this.labelReference.systemTools.ethnicityAndRaceBackfill,
+                                id: "ethnicityAndRaceBackfill",
+                            },
+                            {
+                                label: this.labelReference.systemTools.courseConnectionBackfill,
+                                id: "courseConnectionBackfill",
+                            },
+                            {
+                                label: this.labelReference.systemTools.courseDescriptionMigration,
+                                id: "courseDescriptionMigration",
+                            },
+                        ],
+                    },
+                ],
             },
         ],
     };
