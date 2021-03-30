@@ -377,7 +377,11 @@
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label><!--Section title for Affiliations --></label>
+        <label><!--Navigation Section title for Affiliations --></label>
+        <name>stgAffiliationsSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Section title for Affiliation Settings --></label>
         <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
