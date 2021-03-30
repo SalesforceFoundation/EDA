@@ -9,11 +9,11 @@
             <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
                 <template if:true={isCombobox}>
                     <lightning-combobox
-                        class={styling}
+                        class={comboboxStyling}
                         id={inputId}
                         aria-labelledby={inputId}
                         name={inputId}
-                        label={title}
+                        label={inputLabel}
                         value={value}
                         placeholder={placeholder}
                         options={options}
@@ -25,9 +25,9 @@
                 </template>
                 <template if:true={isInput}>
                     <lightning-input
-                        class={styling}
+                        class={inputStyling}
                         type={type}
-                        label={label}
+                        label={inputLabel}
                         id={inputId}
                         name={inputId}
                         field-level-help={helpText}

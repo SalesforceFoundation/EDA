@@ -4,15 +4,16 @@ export default class SettingsRowInput extends LightningElement {
     @api title;
     @api description;
     @api inputId;
+    @api label; // optional
+    @api helpText;
     @api value;
     @api placeholder;
     @api options;
     @api disabled;
     @api type;
     @api variant = "label-hidden";
-    @api label; // optional
-    @api helpText;
-    @api styling = "";
+
+    // overide label to use title
 
     handleInputChange(event) {
         let eventDetail = {};
@@ -66,5 +67,26 @@ export default class SettingsRowInput extends LightningElement {
 
     get isInput() {
         return this.type !== "combobox";
+    }
+
+    get comboboxStyling() {
+        return "slds-size_3-of-3 ";
+    }
+
+    get inputStyling() {
+        switch (this.type) {
+            case "text":
+                return "slds-size_3-of-3 slds-p-bottom_large";
+
+            default:
+                return undefined;
+        }
+    }
+
+    get inputLabel() {
+        if (!this.label) {
+            return this.title;
+        }
+        return this.label;
     }
 }

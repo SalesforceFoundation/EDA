@@ -23,7 +23,6 @@
                             options={accountModelSettingsVModel.defaultAccountRecordType.options}
                             onsettingsinputchange={handleDefaultAccountModelChange}
                             disabled={affordancesDisabled}
-                            styling="slds-col slds-size_3-of-3 slds-p-right_x-large"
                         ></c-settings-row-input>
 
                         <!-- Administrative Account Record Type Setting -->
@@ -38,7 +37,6 @@
                             options={accountModelSettingsVModel.adminAccountRecordType.options}
                             onsettingsinputchange={handleAdministrativeAccountModelChange}
                             disabled={affordancesDisabled}
-                            styling="slds-col slds-size_3-of-3 slds-p-right_x-large"
                         ></c-settings-row-input>
 
                         <!-- Household Account Record Type Setting -->
@@ -53,7 +51,6 @@
                             options={accountModelSettingsVModel.householdAccountRecordType.options}
                             onsettingsinputchange={handleHouseholdAccountModelChange}
                             disabled={affordancesDisabled}
-                            styling="slds-col slds-size_3-of-3 slds-p-right_x-large"
                         ></c-settings-row-input>
                     </div>
                 </template>
@@ -95,7 +92,6 @@
                         options={accountNamingSettingsVModel.administrativeAccountNameFormat.options}
                         onsettingsinputchange={handleAdministrativeAccountNamingChange}
                         disabled={affordancesDisabled}
-                        styling="slds-col slds-size_3-of-3 slds-p-right_x-large"
                     ></c-settings-row-input>
 
                     <!-- Admin Account Naming Custom format -->
@@ -104,14 +100,12 @@
                             class="slds-size_3-of-3 slds-p-bottom_x-large"
                             type="text"
                             help-text={labelReference.adminAccountCustomNameFormatDescription}
-                            title=""
                             label={labelReference.adminAccountCustomNameFormatHeading}
                             input-id={inputAttributeReference.adminAccountCustomNamingFormatTextBoxId}
                             value={accountNamingSettingsVModel.customAdministrativeAccountNameFormat}
                             onsettingsinputchange={handleAdministrativeAccountCustomNamingChange}
                             disabled={affordancesDisabled}
                             variant={inputVariant}
-                            styling="slds-col slds-size_3-of-3 slds-p-right_x-large slds-p-bottom_large"
                         ></c-settings-row-input>
                     </template>
 
@@ -131,7 +125,6 @@
                             options={accountNamingSettingsVModel.householdAccountNameFormat.options}
                             onsettingsinputchange={handleHouseholdAccountNamingChange}
                             disabled={affordancesDisabled}
-                            styling="slds-col slds-size_3-of-3 slds-p-right_x-large"
                         ></c-settings-row-input>
 
                         <!-- HH Account Naming Custom format -->
@@ -140,14 +133,12 @@
                                 class="slds-size_3-of-3 slds-p-bottom_x-large"
                                 type="text"
                                 help-text={labelReference.hhAccountCustomNameFormatDescription}
-                                title=""
                                 label={labelReference.hhAccountCustomNameFormatHeading}
                                 input-id={inputAttributeReference.hhAccountCustomNamingFormatTextBoxId}
                                 value={accountNamingSettingsVModel.customHouseholdAccountNameFormat}
                                 onsettingsinputchange={handleHouseholdAccountCustomNamingChange}
                                 disabled={affordancesDisabled}
                                 variant={inputVariant}
-                                styling="slds-col slds-size_3-of-3 slds-p-right_x-large slds-p-bottom_large"
                             ></c-settings-row-input>
                         </template>
 
