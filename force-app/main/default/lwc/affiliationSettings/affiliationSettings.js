@@ -32,7 +32,7 @@ export default class affiliationSettings extends LightningElement {
 
     inputAttributeReference = {
         recordTypeValidation: "recordTypeValidation",
-        affiliationsTableId: "TODO",
+        affiliationMappings: "affiliationMappings",
     };
 
     get affordancesDisabled() {
