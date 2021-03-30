@@ -4,9 +4,9 @@
     <aura:attribute name="accountRecordType" type="String" />
     <aura:attribute name="contactField" type="String" />
 
-    <aura:handler name="modalEventHandler" event="c:primaryAffiliationsModalEvent" action="{!c.handleModalEventMethod}" />
-    <aura:handler name="modalFooterEventHandler" event="c:customModalFooterEvent" action="{!c.handleModalFooterEventMethod}" />
-    <lightning:overlayLibrary aura:id="edaSettingsOverlayLibrary" />
+    <aura:handler name="modalDataChangeEventHandler" event="c:modalDataChangeEvent" action="{!c.handleModalDataChangeEvent}" />
+    <aura:handler name="modalFooterEventHandler" event="c:customModalFooterEvent" action="{!c.handleModalFooterEvent}" />
+    <lightning:overlayLibrary aura:id="edaOverlayLibrary" />
 
     <aura:method name="openPrimaryAffiliationsModal" action="{!c.openPrimaryAffiliationsModal}">
         <aura:attribute name="affiliationsAction" type="String" />

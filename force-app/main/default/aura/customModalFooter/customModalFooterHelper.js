@@ -1,16 +1,23 @@
 ({
     fireButtonClickEvent: function (component, buttonClicked) {
-        let customModalFooterButtonClickEvent = component.getEvent("customModalFooterButtonClickEvent");
-        customModalFooterButtonClickEvent.setParams({
+        let customModalFooterEvent = component.getEvent("customModalFooterEvent");
+        customModalFooterEvent.setParams({
             action: buttonClicked
         });
 
         try {
-            customModalFooterButtonClickEvent.fire();
+            customModalFooterEvent.fire();
             component.find("edaSettingsOverlayLibrary").notifyClose();
         } catch (e) {
             //save for validation handling
             //console.error(e);
+        }
+    },
+    handleToggleSaveButtonVisibility: function (component, sourceName) {
+        if (event.getParam("sourceName") === component.get("v.sourceName")) {
+            event.stopPropagation();
+            const disableSaveButton = event.getParam("disableSaveButton");
+            component.set("v.disableSaveButton", disableSaveButton);
         }
     }
 });

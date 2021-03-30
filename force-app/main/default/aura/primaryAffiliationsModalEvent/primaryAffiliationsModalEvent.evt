@@ -1,4 +1,0 @@
-<aura:event type="Component" description="Event template">
-    <aura:attribute name="accountRecordType" type="String" />
-    <aura:attribute name="contactField" type="String" />
-</aura:event>

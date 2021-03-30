@@ -1,5 +1,5 @@
 <aura:component>
-    <aura:registerEvent name="affiliationsModalEvent" type="c:primaryAffiliationsModalEvent" />
+    <aura:registerEvent name="modalDataChangeEvent" type="c:modalDataChangeEvent" />
 
     <aura:attribute name="affiliationsAction" type="String" />
     <aura:attribute name="accountRecordType" type="String" />

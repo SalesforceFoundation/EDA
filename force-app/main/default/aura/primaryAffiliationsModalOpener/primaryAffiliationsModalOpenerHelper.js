@@ -28,7 +28,7 @@
                 "affiliationsAction": component.get("v.affiliationsAction"),
                 "accountRecordType": component.get("v.accountRecordType"),
                 "contactField": component.get("v.contactField"),
-                "affiliationsModalEvent": component.getReference("c.handleModalEvent"),
+                "modalDataChangeEvent": component.getReference("c.handleModalDataChangeEvent"),
             }],
             ["c:customModalFooter",
             {
@@ -36,7 +36,7 @@
                 "confirmButtonTitle": confirmButton,
                 "cancelButtonLabel": cancelButton,
                 "cancelButtonTitle": cancelButton,
-                "customModalFooterButtonClickEvent": component.getReference("c.handleModalFooterEvent"),
+                "customModalFooterEvent": component.getReference("c.handleModalFooterEvent"),
             }]
         ],
             function (components, status) {
@@ -54,9 +54,18 @@
             }
         );
     },
-    handleModalEvent: function (component, event) {
-        component.set("v.accountRecordType", event.getParam("accountRecordType"));
-        component.set("v.contactField", event.getParam("contactField"));
+    handleModalDataChangeEvent: function (component, event) {
+        const field = event.getParam("field");
+        const fieldValue = event.getParam("fieldValue");
+
+        switch(field) {
+            case "accountRecordType":
+                component.set("v.accountRecordType", fieldValue);
+                break;
+            case "contactField":
+                component.set("v.contactField", fieldValue);
+                break;
+        }
     },
     handleModalFooterEvent: function (component, event) {
         switch(event.getParam("action")){
