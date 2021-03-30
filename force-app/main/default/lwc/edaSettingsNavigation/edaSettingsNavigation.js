@@ -1,4 +1,6 @@
 import { LightningElement, api, track } from "lwc";
+import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
+
 import stgAccountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
 import stgAccModelTitle from "@salesforce/label/c.stgAccModelTitle";
 import stgAdminAccountRecordType from "@salesforce/label/c.stgAdminAccountRecordType";
@@ -14,16 +16,16 @@ import stgPreferredPhoneDefault from "@salesforce/label/c.stgPreferredPhoneDefau
 import stgAccountTypesMultiAddressesEnabled from "@salesforce/label/c.stgAccountTypesMultiAddressesEnabled";
 import stgAddressSettingsTitle from "@salesforce/label/c.stgAddressSettingsTitle";
 import stgContactMultiAddressesEnabled from "@salesforce/label/c.stgContactMultiAddressesEnabled";
-import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
 import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressChangeUpdate";
-import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 
+import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 import stgAffiliationsSettingsNav from "@salesforce/label/c.stgAffiliationsSettingsNav";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
         peopleAndGroups: "People and Groups",
+        setupHome: "Setup Home",
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
         systemSettings: "System",
         accountModel: {
@@ -93,9 +95,9 @@ export default class EdaSettingsNavigation extends LightningElement {
     @track viewModel = {
         navigationSections: [
             {
-                label: "Setup Home",
-                page: "setuphome",
-                id: "setuphome",
+                label: this.labelReference.setupHome,
+                page: "setupHome",
+                id: "setupHome",
             },
             {
                 label: this.labelReference.peopleAndGroups,
