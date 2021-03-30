@@ -1,23 +1,23 @@
 import { LightningElement, api, track } from "lwc";
 import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
-
+//Account Model Settings Labels
 import stgAccountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
 import stgAccModelTitle from "@salesforce/label/c.stgAccModelTitle";
 import stgAdminAccountRecordType from "@salesforce/label/c.stgAdminAccountRecordType";
 import stgAccountRecordTypeSupportsHHAddress from "@salesforce/label/c.stgAccountRecordTypeSupportsHHAddress";
 import stgAccoutTypesWithoutContactsDelete from "@salesforce/label/c.stgAccoutTypesWithoutContactsDelete";
-
+//Contact Information Settings Labels
 import stgContactInformationSettingsTitle from "@salesforce/label/c.stgContactInformationSettingsTitle";
 import stgDefaultContactLanguageFluency from "@salesforce/label/c.stgDefaultContactLanguageFluency";
 import stgDisablePreferredEmailEnforcement from "@salesforce/label/c.stgDisablePreferredEmailEnforcement";
 import stgEnablePreferredPhoneSync from "@salesforce/label/c.stgEnablePreferredPhoneSync";
 import stgPreferredPhoneDefault from "@salesforce/label/c.stgPreferredPhoneDefault";
-
+//Address Settings Labels
 import stgAccountTypesMultiAddressesEnabled from "@salesforce/label/c.stgAccountTypesMultiAddressesEnabled";
 import stgAddressSettingsTitle from "@salesforce/label/c.stgAddressSettingsTitle";
 import stgContactMultiAddressesEnabled from "@salesforce/label/c.stgContactMultiAddressesEnabled";
 import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressChangeUpdate";
-
+//Affiliation Settings Labels
 import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 import stgAffiliationsSettingsNav from "@salesforce/label/c.stgAffiliationsSettingsNav";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
