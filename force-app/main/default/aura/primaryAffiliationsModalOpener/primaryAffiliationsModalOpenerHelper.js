@@ -1,9 +1,11 @@
 ({
     openPrimaryAffiliationsModal: function (component, eventParameters) {
+        const mappingName = eventParameters.mappingName;
         const affiliationsAction = eventParameters.affiliationsAction;
         const accountRecordType = eventParameters.accountRecordType;
         const contactField = eventParameters.contactField;
 
+        component.set("v.mappingName",mappingName);
         component.set("v.accountRecordType",accountRecordType);
         component.set("v.affiliationsAction",affiliationsAction);
         component.set("v.contactField",contactField);
@@ -43,12 +45,11 @@
                 if (status === "SUCCESS") {
                     modalBody = components[0];
                     modalFooter = components[1];
-                    component.find("edaSettingsOverlayLibrary").showCustomModal({
+                    component.find("edaOverlayLibrary").showCustomModal({
                         header: modalHeaderLabel,
                         body: modalBody,
                         footer: modalFooter,
-                        showCloseButton: false,
-                        cssClass: "mymodal"
+                        showCloseButton: false
                     });
                 }
             }

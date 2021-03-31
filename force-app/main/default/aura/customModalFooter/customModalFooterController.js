@@ -7,6 +7,7 @@
     },
     handleToggleSaveButtonVisibility: function (component, event, helper) {
         const sourceName = event.getParam("sourceName");
-        helper.handleToggleSaveButtonVisibility(component, sourceName);
+        const disableSaveButton = event.getParam("disableSaveButton");
+        helper.handleToggleSaveButtonVisibility(component, sourceName, disableSaveButton);
     }
 });

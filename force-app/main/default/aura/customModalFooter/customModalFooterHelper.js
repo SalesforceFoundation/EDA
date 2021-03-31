@@ -7,16 +7,14 @@
 
         try {
             customModalFooterEvent.fire();
-            component.find("edaSettingsOverlayLibrary").notifyClose();
+            component.find("edaOverlayLibrary").notifyClose();
         } catch (e) {
             //save for validation handling
             //console.error(e);
         }
     },
-    handleToggleSaveButtonVisibility: function (component, sourceName) {
-        if (event.getParam("sourceName") === component.get("v.sourceName")) {
-            event.stopPropagation();
-            const disableSaveButton = event.getParam("disableSaveButton");
+    handleToggleSaveButtonVisibility: function (component, sourceName, disableSaveButton) {
+        if (sourceName === component.get("v.sourceName")) {
             component.set("v.disableSaveButton", disableSaveButton);
         }
     }

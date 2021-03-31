@@ -11,6 +11,6 @@
 
         component
             .find("primaryAffiliationsModal")
-            .openPrimaryAffiliationsModal(affiliationsAction, accountRecordType, contactField);
+            .openPrimaryAffiliationsModal(affiliationsAction, mappingName, accountRecordType, contactField);
     }
 });
