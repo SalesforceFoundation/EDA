@@ -140,6 +140,7 @@ eda_lex_locators = {
         "checkbox_value": "//span[text()='{}']/following::label[1][contains(@class, 'checkbox')]/span[contains(@class, 'checkbox')]",
         "checkbox_list": "//span[text()='{}']/../../following-sibling::div[1]/descendant::span[contains(@class, 'checkbox')]",
         "checkbox_list_read": "//span[text()='{}']/../../following-sibling::div[1]/descendant::img",
+        "dropdown_acc": "//span[text()='{}']/../following-sibling::div[1]/select/option[text()='{}']",
     },
     "eda_settings_relationships": {
         "dropdown_read": "//span[text()='{}']/../following-sibling::div[1]/descendant::span",
@@ -223,6 +224,7 @@ eda_lex_locators = {
         "expand_button": "//button[@title='Expand these results' and contains(@aria-controls, '{}')]",
         "all_checks_status": "//div[text()='{}']/following-sibling::div/div[contains(@class, 'text')]",
         "status_value": "//div[contains(@id, '{}')]/descendant::td/descendant::lightning-base-formatted-text[text()='{}']/ancestor::td/preceding-sibling::th[@data-label='Status']/descendant::lightning-base-formatted-text",
+        "recommended_fix_value": "//div[contains(@id, '{}')]/descendant::td/descendant::lightning-base-formatted-text[text()='{}']/ancestor::tr/descendant::td[@data-label='Recommended Fix']/descendant::lightning-base-formatted-text[contains(text(), '{}')]",
     },
     "term": {
         "new_term_button": "//span[@class='itemLabel slds-truncate slds-show--inline-block slds-m-left--xx-small' and contains(text(), 'New Term')]//..",

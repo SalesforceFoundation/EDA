@@ -72,7 +72,7 @@ class AccountsAndContactsSettingsPage(BaseEDAPage, BasePage):
             "Saving changes.\n" +
             "Proper configuration is in place for testing 'Disable Preferred Phone enforcement'."
         )
-
+    
     def disable_enhanced_checkbox(self):
         """ Verify that Enable Enhanced Preferred Phone Functionality checkbox is not checked
             Clear the checkbox if it is set
@@ -264,6 +264,16 @@ class AccountsAndContactsSettingsPage(BaseEDAPage, BasePage):
                             else:
                                 continue
 
+    def update_account_contact_record_type(self,**kwargs):
+        """ This method will update the drop down field present under 'Accounts and Contacts' with a value passed in keyword arguments
+            Pass the expected value to be set in the drop down field from the tests
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_accounts_contacts"]["dropdown_acc"].format(field,value)
+            self.selenium.wait_until_page_contains_element(locator,
+                                                error=f"'{value}' as dropdown value in '{field}' field is not available ")
+            self.selenium.click_element(locator)
+    
     def verify_multi_account_contact_checkbox(self,**kwargs):
         """ This method will verify the value of checkboxes present under 'Account Types with Multi
             Addresses Enabled' and 'Account Types without Contacts to Delete' based on the key
@@ -279,4 +289,5 @@ class AccountsAndContactsSettingsPage(BaseEDAPage, BasePage):
                     actual_value = self.selenium.get_element_attribute(element, "alt")
                     if not str(value).lower() == str(actual_value).lower() :
                         raise Exception (f"Checkbox value in {field} is {actual_value} but it should be {value}")
+
 
