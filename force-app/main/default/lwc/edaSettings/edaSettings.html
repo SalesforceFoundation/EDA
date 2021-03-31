@@ -28,4 +28,5 @@
             </div>
         </div>
     </template>
+    <template if:false={currentUserHasAccess}> {labelReference.stgErrorInsufficientAccess} </template>
 </template>
