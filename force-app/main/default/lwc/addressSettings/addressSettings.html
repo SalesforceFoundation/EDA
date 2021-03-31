@@ -10,7 +10,7 @@
         <template if:true={addressSettingsViewModel}>
             <!-- Multi Address Enabled Setting -->
             <c-settings-row-input
-                class="slds-size_3-of-3"
+                class="slds-col"
                 title={labelReference.stgContactMultiAddressesEnabled}
                 description={labelReference.stgHelpContactAddrs}
                 type="toggle"
@@ -22,11 +22,10 @@
 
             <!-- Account Record Types with Multi Address Enabled Setting -->
             <c-settings-row-dual-listbox
-                class="slds-size_3-of-3"
+                class="slds-col"
                 title={labelReference.stgAccountTypesMultiAddressesEnabled}
                 description={labelReference.stgHelpAddressAccRecType}
                 dual-listbox-id={inputAttributeReference.accountRecTypesDualListboxId}
-                label={labelReference.stgAccountRecordTypeGroupLabelTitle}
                 source-label={labelReference.stgAccountRecordTypeAvailableListTitle}
                 selected-label={labelReference.stgAccountRecordTypeSelectedListTitle}
                 options={addressSettingsViewModel.accountRecordTypesWithAddressesEnabled.options}
@@ -37,7 +36,7 @@
 
             <!-- Simple Address Change treated as update Setting -->
             <c-settings-row-input
-                class="slds-size_3-of-3"
+                class="slds-col"
                 title={labelReference.stgSimpleAddressChangeUpdate}
                 description={labelReference.stgHelpSimpleAddrChangeIsUpdate}
                 type="toggle"
