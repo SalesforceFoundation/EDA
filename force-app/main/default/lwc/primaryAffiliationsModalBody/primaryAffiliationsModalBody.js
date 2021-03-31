@@ -3,11 +3,11 @@ import { LightningElement, api, track, wire } from "lwc";
 import getAccountRecordTypeComboboxVModel from "@salesforce/apex/AffiliationsSettingsController.getAccountRecordTypeComboboxVModel";
 import getContactAccountLookupFieldComboboxVModel from "@salesforce/apex/AffiliationsSettingsController.getContactAccountLookupFieldComboboxVModel";
 
-import apiNameDisplay from "@salesforce/label/c.stgApiNameLabel";
-import accountRecordTypeCombobox from "@salesforce/label/c.stgColAccountRecordType";
-import contactFieldCombobox from "@salesforce/label/c.stgColContactPrimaryAfflField";
-import comboboxPlaceholderText from "@salesforce/label/c.stgOptSelect";
-import modalBodyEditSave from "@salesforce/label/c.stgAffiliationsEditModalBody";
+import stgApiNameLabel from "@salesforce/label/c.stgApiNameLabel";
+import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType";
+import stgColContactPrimaryAfflField from "@salesforce/label/c.stgColContactPrimaryAfflField";
+import stgOptSelect from "@salesforce/label/c.stgOptSelect";
+import stgAffiliationsEditModalBody from "@salesforce/label/c.stgAffiliationsEditModalBody";
 
 export default class PrimaryAffiliationsModalBody extends LightningElement {
     @api affiliationsAction;
@@ -21,11 +21,11 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
     @track contactAccountLookupFieldComboboxWireResult;
 
     labelReference = {
-        accountRecordTypeCombobox,
-        apiNameDisplay,
-        comboboxPlaceholderText,
-        contactFieldCombobox,
-        modalBodyEditSave,
+        accountRecordTypeCombobox: stgColAccountRecordType,
+        apiNameDisplay: stgApiNameLabel,
+        comboboxPlaceholderText: stgOptSelect,
+        contactFieldCombobox: stgColContactPrimaryAfflField,
+        modalBodyEditSave: stgAffiliationsEditModalBody,
     };
 
     inputAttributeReference = {
@@ -64,11 +64,11 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
     }
 
     get accountRecordTypeApiNameLabel() {
-        return this.labelReference.apiNameDisplay.replace("{0}", this.accountRecordType);
+        return this.labelReference.apiNameDisplay.replace("{0}", this.accountRecordTypeComboboxVModel.value);
     }
 
     get contactFieldApiNameLabel() {
-        return this.labelReference.apiNameDisplay.replace("{0}", this.contactField);
+        return this.labelReference.apiNameDisplay.replace("{0}", this.contactAccountLookupFieldComboboxVModel.value);
     }
 
     handleAccountRecordTypeChange(event) {

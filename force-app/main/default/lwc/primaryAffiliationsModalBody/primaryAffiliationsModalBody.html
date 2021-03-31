@@ -15,7 +15,7 @@
                         data-qa-locator={inputAttributeReference.accountRecordType}
                     ></lightning-combobox>
                 </div>
-                <div class="slds-col slds-size-1-of-1">{accountRecordTypeComboboxVModel.value}</div>
+                <div class="slds-col slds-size-1-of-1">{accountRecordTypeApiNameLabel}</div>
             </template>
             <template if:true={contactAccountLookupFieldComboboxVModel}>
                 <div class="slds-col slds-size-1-of-1">
@@ -30,7 +30,7 @@
                         data-qa-locator={inputAttributeReference.contactField}
                     ></lightning-combobox>
                 </div>
-                <div class="slds-col slds-size-1-of-1">{contactAccountLookupFieldComboboxVModel.value}</div>
+                <div class="slds-col slds-size-1-of-1">{contactFieldApiNameLabel}</div>
             </template>
         </template>
     </div>
