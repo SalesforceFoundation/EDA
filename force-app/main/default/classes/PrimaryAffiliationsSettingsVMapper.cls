@@ -107,8 +107,8 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
     ) {
         String accountRecordTypeName = affiliationMappingsModel.accountRecordTypeFieldValue;
         String accountRecordTypeLabel = affiliationMappingsModel.accountRecordTypeFieldValue;
-        String contactFieldName = affiliationMappingModel.primaryAffiliationField;
-        String contactFieldLabel = affiliationMappingModel.primaryAffiliationField;
+        String contactFieldName = affiliationMappingsModel.primaryAffiliationField;
+        String contactFieldLabel = affiliationMappingsModel.primaryAffiliationField;
 
         RecordTypeModel recordTypeModel = this.locateRecordTypeService()
             .getRecordTypeModelFromNameAndLabelMaps(
