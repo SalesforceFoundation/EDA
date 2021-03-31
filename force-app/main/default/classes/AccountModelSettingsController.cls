@@ -33,7 +33,7 @@
  */
 public with sharing class AccountModelSettingsController {
     /************************************************************************************
-     * @description Retrieve an AccountModelSettingsVModel represeting the current values
+     * @description Retrieve an AccountModelSettingsVModel representing the current values
      * specified for Account Settings fields in Hierarchy Settings and a list of models
      * representing the available active Account Record Types.
      * @return An AccountModelSettingsVModel
