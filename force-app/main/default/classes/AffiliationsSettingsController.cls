@@ -33,7 +33,7 @@
  */
 public with sharing class AffiliationsSettingsController {
     /************************************************************************************
-     * @description Retrieve an AffiliationsSettingsVModel represeting the current values
+     * @description Retrieve an AffiliationsSettingsVModel representing the current values
      * specified for Affiliations Settings fields in Hierarchy Settings.
      * @return An AffiliationsSettingsVModel
      ************************************************************************************/
@@ -47,6 +47,21 @@ public with sharing class AffiliationsSettingsController {
         }
     }
 
+    /************************************************************************************
+     * @description Retrieve an PrimaryAffiliationSettingsVModel representing the current values
+     * specified for Affiliations Mappings.
+     * @return An PrimaryAffiliationSettingsVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static PrimaryAffiliationSettingsVModel getPrimaryAffiliationsSettingsVModel() {
+        try {
+            return AffiliationsSettingsController.locatePrimaryAffiliationsSettingsVMapper()
+                .getPrimaryAffiliationsSettingsVModel();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /**********************************************************************************
      * @description Locates and returns an instance of AffiliationsSettingsVMapper.
      **********************************************************************************/
@@ -55,4 +70,11 @@ public with sharing class AffiliationsSettingsController {
         return AffiliationsSettingsVMapper.getInstance();
     }
 
+    /**********************************************************************************
+     * @description Locates and returns an instance of PrimaryAffiliationsSettingsVMapper.
+     **********************************************************************************/
+    @TestVisible
+    private static PrimaryAffiliationsSettingsVMapper locatePrimaryAffiliationsSettingsVMapper() {
+        return PrimaryAffiliationsSettingsVMapper.getInstance();
+    }
 }

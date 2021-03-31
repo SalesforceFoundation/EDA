@@ -25,12 +25,12 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Model representing an abstraction of Affiliation Mappings in EDA Settings.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group Health Check
+ * @group-content ../../ApexDocContent/HealthCheck.htm
+ * @description Model representing an abstraction of Affiliation Mappings in EDA Settings.
+ */
 public with sharing class AffiliationMappingsModel {
     public String name;
     public String accountRecordTypeFieldValue;
@@ -50,9 +50,13 @@ public with sharing class AffiliationMappingsModel {
         this.name = name;
         this.autoProgramEnrollment = autoProgramEnrollment;
 
-        this.accountRecordTypeFieldValue = String.isBlank(accountRecordTypeFieldValue) ? '""' : accountRecordTypeFieldValue;        
+        this.accountRecordTypeFieldValue = String.isBlank(accountRecordTypeFieldValue)
+            ? '""'
+            : accountRecordTypeFieldValue;
         this.primaryAffiliationField = String.isBlank(primaryAffiliationField) ? '""' : primaryAffiliationField;
-        this.autoProgramEnrollmentStatus = String.isBlank(autoProgramEnrollmentStatus) ? '""' : autoProgramEnrollmentStatus;
-        this.autoProgramEnrollmentRole =  String.isBlank(autoProgramEnrollmentRole) ? '""' : autoProgramEnrollmentRole;
+        this.autoProgramEnrollmentStatus = String.isBlank(autoProgramEnrollmentStatus)
+            ? '""'
+            : autoProgramEnrollmentStatus;
+        this.autoProgramEnrollmentRole = String.isBlank(autoProgramEnrollmentRole) ? '""' : autoProgramEnrollmentRole;
     }
 }

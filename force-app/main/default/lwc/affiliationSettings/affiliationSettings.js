@@ -2,15 +2,16 @@ import { LightningElement, api, wire, track } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
 import getAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getAffiliationsSettingsVModel";
+import getPrimaryAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getPrimaryAffiliationsSettingsVModel";
 
 import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsTitle";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 import afflTypeEnforcedDescription from "@salesforce/label/c.afflTypeEnforcedDescription";
-import primaryAffiliationsDescription from "@salesforce/label/c.AfflMappingsDescription";
-import editAction from "@salesforce/label/c.stgBtnEdit";
-import accountRecordTypeColumn from "@salesforce/label/c.stgColAccountRecordType";
-import contactFieldColumn from "@salesforce/label/c.stgColContactPrimaryAfflField";
-import primaryAffiliationsTitle from "@salesforce/label/c.stgTabAfflMappings";
+import AfflMappingsDescription from "@salesforce/label/c.AfflMappingsDescription";
+import stgBtnEdit from "@salesforce/label/c.stgBtnEdit";
+import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType";
+import stgColContactPrimaryAfflField from "@salesforce/label/c.stgColContactPrimaryAfflField";
+import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 
 export default class affiliationSettings extends LightningElement {
     isEditMode = false;
@@ -19,15 +20,20 @@ export default class affiliationSettings extends LightningElement {
     @track affiliationsSettingsViewModel;
     @track affiliationsSettingsWireResult;
 
+    @track primaryAffiliationsSettingsVModel;
+    @track primaryAffiliationsSettingsWireResult;
+
     labelReference = {
-        stgAffiliationsSettingsTitle: stgAffiliationsSettingsTitle,
         afflTypeEnforced: afflTypeEnforced,
         afflTypeEnforcedDescription: afflTypeEnforcedDescription,
-        primaryAffiliationsTitle,
-        primaryAffiliationsDescription,
-        accountRecordTypeColumn,
-        contactFieldColumn,
-        editAction,
+        stgAffiliationsSettingsTitle: stgAffiliationsSettingsTitle,
+        primaryAffiliationMappingsTable: {
+            accountRecordTypeColumn: stgColAccountRecordType,
+            contactFieldColumn: stgColContactPrimaryAfflField,
+            editAction: stgBtnEdit,
+            primaryAffiliationsDescription: AfflMappingsDescription,
+            primaryAffiliationsTitle: stgTabAfflMappings,
+        },
     };
 
     inputAttributeReference = {
@@ -42,25 +48,23 @@ export default class affiliationSettings extends LightningElement {
         return undefined;
     }
 
-    get columns() {
+    get primaryAffiliationMappingsTableColumns() {
         return [
-            { label: this.labelReference.accountRecordTypeColumn, fieldName: "accountRecordTypeLabel" },
-            { label: this.labelReference.contactFieldColumn, fieldName: "contactFieldLabel" },
+            {
+                label: this.labelReference.primaryAffiliationMappingsTable.accountRecordTypeColumn,
+                fieldName: "accountRecordTypeLabel",
+            },
+            {
+                label: this.labelReference.primaryAffiliationMappingsTable.contactFieldColumn,
+                fieldName: "contactFieldLabel",
+            },
             {
                 type: "action",
-                typeAttributes: { rowActions: [{ label: this.labelReference.editAction, name: "edit" }] },
-            },
-        ];
-    }
-
-    get data() {
-        return [
-            {
-                mappingName: "item1",
-                accountRecordTypeName: "Academic_Program",
-                accountRecordTypeLabel: "Academic Program",
-                contactFieldName: "Primary_Academic_Program__c",
-                contactFieldLabel: "Primary Academic Program",
+                typeAttributes: {
+                    rowActions: [
+                        { label: this.labelReference.primaryAffiliationMappingsTable.editAction, name: "edit" },
+                    ],
+                },
             },
         ];
     }
@@ -75,7 +79,7 @@ export default class affiliationSettings extends LightningElement {
         }
     }
 
-    /*@wire(getPrimaryAffiliationsSettingsVModel)
+    @wire(getPrimaryAffiliationsSettingsVModel)
     primaryAffiliationsSettingsVModelWire(result) {
         this.primaryAffiliationsSettingsWireResult = result;
 
@@ -84,7 +88,7 @@ export default class affiliationSettings extends LightningElement {
         } else if (result.error) {
             //console.log("error retrieving preferredContactInfoSettingsVModel");
         }
-    }*/
+    }
 
     handleRecordtypeValidationChange(event) {
         let hierarchySettingsChange = {
