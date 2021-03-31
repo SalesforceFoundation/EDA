@@ -357,7 +357,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Administrative Account Name Format setting</shortDescription>
-        <value>The format for naming Administrative Accounts when they are automatically created. More Info(link to the URL redirect that we need to create for https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names)</value>
+        <value>The format for naming Administrative Accounts when they are automatically created.</value>
     </labels>
     <labels>
         <fullName>affiliationWithSameAccExists</fullName>
@@ -524,7 +524,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Household Account Name Format setting</shortDescription>
-        <value>The format for naming Household Accounts when they are automatically created. More Info(link to the URL redirect that we need to create for https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names)</value>
+        <value>The format for naming Household Accounts when they are automatically created.</value>
     </labels>
     <labels>
         <fullName>hhFamily</fullName>
@@ -2759,6 +2759,14 @@
         <protected>true</protected>
         <shortDescription>Settings tab name</shortDescription>
         <value>System</value>
+    </labels>
+    <labels>
+        <fullName>stgTellMeMoreLink</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Link label to EDA Documentation</shortDescription>
+        <value>Tell Me More.</value>
     </labels>
     <labels>
         <fullName>stgTitleAllowAutocreatedDuplicateRel</fullName>

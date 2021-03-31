@@ -1387,6 +1387,10 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
+        <label><!-- Link label to EDA Documentation --></label>
+        <name>stgTellMeMoreLink</name>
+    </customLabels>
+    <customLabels>
         <label>Autom. erst. dopp. Beziehungen zulassen</label>
         <name>stgTitleAllowAutocreatedDuplicateRel</name>
     </customLabels>

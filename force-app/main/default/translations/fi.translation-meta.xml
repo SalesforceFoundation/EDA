@@ -1387,6 +1387,10 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
+        <label><!-- Link label to EDA Documentation --></label>
+        <name>stgTellMeMoreLink</name>
+    </customLabels>
+    <customLabels>
         <label>Salli autom. luodut päällekkäissuhteet</label>
         <name>stgTitleAllowAutocreatedDuplicateRel</name>
     </customLabels>

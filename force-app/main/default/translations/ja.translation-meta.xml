@@ -1387,6 +1387,10 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
+        <label><!-- Link label to EDA Documentation --></label>
+        <name>stgTellMeMoreLink</name>
+    </customLabels>
+    <customLabels>
         <label>自動作成された重複リレーションを許可</label>
         <name>stgTitleAllowAutocreatedDuplicateRel</name>
     </customLabels>

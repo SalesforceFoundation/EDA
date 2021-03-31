@@ -1385,6 +1385,10 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
+        <label><!-- Link label to EDA Documentation --></label>
+        <name>stgTellMeMoreLink</name>
+    </customLabels>
+    <customLabels>
         <label>Permitir creación auto. de r. duplicadas</label>
         <name>stgTitleAllowAutocreatedDuplicateRel</name>
     </customLabels>
