@@ -40,6 +40,7 @@ export default class EDASettings extends LightningElement {
     settingsPageToDisplay = {
         accountModelSettings: true,
     };
+
     handleSettingsNavigation(event) {
         this.changePageToDisplay(event.detail.pageName);
         event.stopPropagation();
@@ -51,5 +52,14 @@ export default class EDASettings extends LightningElement {
 
         this.settingsPageToDisplay = settingsPageDisplay;
         this.activePage = pageName;
+    }
+
+    @api modalSave(saveModel) {
+        console.log("entering save model:" + JSON.stringify(saveModel));
+        switch (saveModel.modalType) {
+            case "affiliations":
+                this.template.querySelector("c-affiliation-settings").modalSave(saveModel);
+                break;
+        }
     }
 }

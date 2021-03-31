@@ -102,10 +102,10 @@ export default class affiliationSettings extends LightningElement {
     handlePrimaryAffiliationsRowAction(event) {
         const actionName = event.detail.action.name;
         const actionRow = event.detail.row;
-        this.dispatchPrimaryAffiliationModalEvent(actionName, actionRow);
+        this.dispatchPrimaryAffiliationModalRequestEvent(actionName, actionRow);
     }
 
-    dispatchPrimaryAffiliationModalEvent(affiliationsAction, primaryAffiliation) {
+    dispatchPrimaryAffiliationModalRequestEvent(affiliationsAction, primaryAffiliation) {
         const affiliationsDetail = {
             affiliationsAction: affiliationsAction,
             mappingName: primaryAffiliation.mappingName,
@@ -145,6 +145,20 @@ export default class affiliationSettings extends LightningElement {
 
     handleSettingsSaveCancel(event) {
         this.refreshAllApex();
+    }
+
+    @api modalSave(saveModel) {
+        switch (saveModel.action) {
+            case "edit":
+                this.updateAffiliation(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
+                break;
+        }
+    }
+
+    updateAffiliation(mappingName, accountRecordType, contactField) {
+        console.log("Updating Affiliation!");
+        //TODO: await Apex action to save!
+        //TODO: Success toast if it works, throw the exception if it doesn't!
     }
 
     refreshAllApex() {

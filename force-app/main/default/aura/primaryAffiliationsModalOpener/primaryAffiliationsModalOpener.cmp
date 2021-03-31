@@ -6,6 +6,7 @@
 
     <aura:handler name="modalDataChangeEventHandler" event="c:modalDataChangeEvent" action="{!c.handleModalDataChangeEvent}" />
     <aura:handler name="modalFooterEventHandler" event="c:customModalFooterEvent" action="{!c.handleModalFooterEvent}" />
+    <aura:registerEvent name="modalSaveEvent" type="c:modalSaveEvent" />
     <lightning:overlayLibrary aura:id="edaOverlayLibrary" />
 
     <aura:method name="openPrimaryAffiliationsModal" action="{!c.openPrimaryAffiliationsModal}">

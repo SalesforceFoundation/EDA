@@ -12,5 +12,10 @@
         component
             .find("primaryAffiliationsModal")
             .openPrimaryAffiliationsModal(affiliationsAction, mappingName, accountRecordType, contactField);
+    },
+    handleModalSaveEvent: function (component, saveModel) {
+        const edaSettings = component.find("edaSettings");
+        const edaSettingsElement = edaSettings.getElement();
+        edaSettingsElement.modalSave(saveModel);
     }
 });

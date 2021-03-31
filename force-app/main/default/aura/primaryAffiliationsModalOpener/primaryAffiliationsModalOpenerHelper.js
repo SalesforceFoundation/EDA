@@ -1,17 +1,18 @@
 ({
     openPrimaryAffiliationsModal: function (component, eventParameters) {
-        const mappingName = eventParameters.mappingName;
         const affiliationsAction = eventParameters.affiliationsAction;
+        const mappingName = eventParameters.mappingName;
         const accountRecordType = eventParameters.accountRecordType;
         const contactField = eventParameters.contactField;
 
+        component.set("v.affiliationsAction",affiliationsAction);
         component.set("v.mappingName",mappingName);
         component.set("v.accountRecordType",accountRecordType);
-        component.set("v.affiliationsAction",affiliationsAction);
         component.set("v.contactField",contactField);
 
         let modalBody;
         let modalFooter;
+
         let modalHeaderLabel;
         let confirmButton;
         let cancelButton;
@@ -45,6 +46,7 @@
                 if (status === "SUCCESS") {
                     modalBody = components[0];
                     modalFooter = components[1];
+                    //Create the modal
                     component.find("edaOverlayLibrary").showCustomModal({
                         header: modalHeaderLabel,
                         body: modalBody,
@@ -56,6 +58,7 @@
         );
     },
     handleModalDataChangeEvent: function (component, event) {
+        event.stopPropagation();
         const field = event.getParam("field");
         const fieldValue = event.getParam("fieldValue");
 
@@ -69,6 +72,7 @@
         }
     },
     handleModalFooterEvent: function (component, event) {
+        event.stopPropagation();
         switch(event.getParam("action")){
             case "confirm":
                 this.handleModalFooterConfirm(component);
@@ -83,8 +87,24 @@
         }
     },
     handleModalEditConfirm: function(component) {
-        //Call controller directly in Apex and attempt save,
-        //Fail out if save does not resolve
-        //Use accountRecordType, contactField, and mappingName
-    }
+        let modalSaveEvent = component.getEvent("modalSaveEvent");
+
+        const mappingName = component.get("v.mappingName");
+        const affiliationsAction = component.get("v.affiliationsAction");
+        const accountRecordType = component.get("v.accountRecordType");
+        const contactField = component.get("v.contactField");
+
+        const saveModel = {
+            modalType: "affiliations",
+            action: affiliationsAction,
+            mappingName: mappingName,
+            accountRecordType: accountRecordType,
+            contactField: contactField
+        };
+        
+        modalSaveEvent.setParams({
+            saveModel: saveModel
+        });
+        modalSaveEvent.fire();
+    },
 });
