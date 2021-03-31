@@ -58,7 +58,7 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
 
     /**********************************************************************************************************
      * @description Retrieve a PrimaryffiliationsSettingsVModel for affiliations mappings
-     * @return  A AffiliationsSettingsViewModel
+     * @return  A PrimaryffiliationsSettingsVModel
      *********************************************************************************************************/
     public virtual PrimaryAffiliationSettingsVModel getPrimaryAffiliationsSettingsVModel() {
         List<AffiliationMappingsModel> affiliationsMappings = this.locateAffiliationMappingsService()
@@ -141,6 +141,118 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
             contactFieldName,
             contactFieldLabel
         );
+    }
+
+    /**********************************************************************************************************
+     * @description Retrieve a ComboBoxVModel for all active account record types
+     * @return  A ComboBoxVModel
+     *********************************************************************************************************/
+    public virtual ComboBoxVModel getAccountRecordTypeComboboxVModel(String recordTypeToCheck) {
+        String comboboxValue = recordTypeToCheck;
+        Map<Id, RecordTypeModel> accRecordTypeModelsById = this.locateRecordTypeService()
+            .getModelByIdMapForSObjectType(Account.SObjectType);
+
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
+            .getRecordTypeModelByName(accRecordTypeModelsById);
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
+            .getRecordTypeModelByLabel(accRecordTypeModelsById);
+
+        List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
+
+        RecordTypeModel recordTypeModel = this.locateRecordTypeService()
+            .getRecordTypeModelFromNameAndLabelMaps(
+                recordTypeToCheck,
+                accountRecordTypeModelsByName,
+                accountRecordTypeModelsByLabel
+            );
+
+        if (recordTypeModel == null) {
+            comboboxValues.add(new ComboboxValueVModel(recordTypeToCheck, recordTypeToCheck));
+        } else {
+            comboboxValue = recordTypeModel.developerName;
+        }
+
+        comboboxValues.addAll(
+            this.getComboboxVModelOptionsForActiveAccountRecordTypes(accRecordTypeModelsById.values())
+        );
+
+        return new ComboboxVModel(comboboxValue, comboboxValues);
+    }
+
+    /**********************************************************************************************************************
+     * @description Helper method to generate a list of comboboxValueVModels for all active Account record types.
+     * @param  activeAccountRecordTypeModelsList A list of RecordType models corresponding to active Account record types.
+     * @return A List<ComboboxValueVModel> containing comboboxValueVModels for all active Account record types.
+     **********************************************************************************************************************/
+    @TestVisible
+    private List<ComboboxValueVModel> getComboboxVModelOptionsForActiveAccountRecordTypes(
+        List<RecordTypeModel> activeAccountRecordTypeModelsList
+    ) {
+        List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = new List<ComboboxValueVModel>();
+
+        for (RecordTypeModel activeAccountRecordTypeModel : activeAccountRecordTypeModelsList) {
+            activeRecordTypeComboboxValueVModelsList.add(
+                new ComboboxValueVModel(activeAccountRecordTypeModel.name, activeAccountRecordTypeModel.developerName)
+            );
+        }
+
+        return activeRecordTypeComboboxValueVModelsList;
+    }
+
+    /**********************************************************************************************************
+     * @description Retrieve a ComboBoxVModel for all Contact Account Lookup Fields
+     * @return  A ComboBoxVModel
+     *********************************************************************************************************/
+    public virtual ComboBoxVModel getContactAccountLookupFieldComboboxVModel(String contactFieldToCheck) {
+        String comboboxValue = contactFieldToCheck;
+
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = this.locateLookupFieldService()
+            .getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel = this.locateLookupFieldService()
+            .getModelByLabelMapForSObjectType(accountLookupsOnContactFieldModelsByName);
+
+        List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
+
+        LookupFieldModel lookupFieldModel = this.locateLookupFieldService()
+            .getLookupFieldModelFromNameAndLabelMaps(
+                contactFieldToCheck,
+                accountLookupsOnContactFieldModelsByName,
+                accountLookupsOnContactFieldModelsByLabel
+            );
+
+        if (lookupFieldModel == null) {
+            comboboxValues.add(new ComboboxValueVModel(contactFieldToCheck, contactFieldToCheck));
+        } else {
+            comboboxValue = lookupFieldModel.name;
+        }
+
+        comboboxValues.addAll(
+            this.getComboboxVModelOptionsForContactAccountLookupFields(
+                accountLookupsOnContactFieldModelsByName.values()
+            )
+        );
+
+        return new ComboboxVModel(comboboxValue, comboboxValues);
+    }
+
+    /**********************************************************************************************************************
+     * @description Helper method to generate a list of comboboxValueVModels for all Contact Account Lookup Fields.
+     * @param  contactLookupFieldModelList A list of LookupField models corresponding to Contact Account Lookup Fields.
+     * @return A List<ComboboxValueVModel> containing comboboxValueVModels for all Contact Account Lookup Fields.
+     **********************************************************************************************************************/
+    @TestVisible
+    private List<ComboboxValueVModel> getComboboxVModelOptionsForContactAccountLookupFields(
+        List<LookupFieldModel> contactLookupFieldModelList
+    ) {
+        List<ComboboxValueVModel> contactAccountLookupFieldComboboxValueVModelsList = new List<ComboboxValueVModel>();
+
+        for (LookupFieldModel contactLookupFieldModel : contactLookupFieldModelList) {
+            contactAccountLookupFieldComboboxValueVModelsList.add(
+                new ComboboxValueVModel(contactLookupFieldModel.label, contactLookupFieldModel.name)
+            );
+        }
+
+        return contactAccountLookupFieldComboboxValueVModelsList;
     }
 
     /*****************************************************************************

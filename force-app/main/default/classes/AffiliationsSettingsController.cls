@@ -48,15 +48,45 @@ public with sharing class AffiliationsSettingsController {
     }
 
     /************************************************************************************
-     * @description Retrieve an PrimaryAffiliationSettingsVModel representing the current values
+     * @description Retrieve a PrimaryAffiliationSettingsVModel representing the current values
      * specified for Affiliations Mappings.
-     * @return An PrimaryAffiliationSettingsVModel
+     * @return A PrimaryAffiliationSettingsVModel
      ************************************************************************************/
     @AuraEnabled(cacheable=true)
     public static PrimaryAffiliationSettingsVModel getPrimaryAffiliationsSettingsVModel() {
         try {
             return AffiliationsSettingsController.locatePrimaryAffiliationsSettingsVMapper()
                 .getPrimaryAffiliationsSettingsVModel();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************
+     * @description Retrieve a ComoboxVModel representing the list of active Account
+     * Record Types
+     * @return A ComboboxVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static ComboBoxVModel getAccountRecordTypeComboboxVModel(String recordTypeToCheck) {
+        try {
+            return AffiliationsSettingsController.locatePrimaryAffiliationsSettingsVMapper()
+                .getAccountRecordTypeComboboxVModel(recordTypeToCheck);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************
+     * @description Retrieve a ComoboxVModel representing the list of active Account
+     * Record Types
+     * @return A ComboboxVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static ComboBoxVModel getContactAccountLookupFieldComboboxVModel(String contactFieldToCheck) {
+        try {
+            return AffiliationsSettingsController.locatePrimaryAffiliationsSettingsVMapper()
+                .getContactAccountLookupFieldComboboxVModel(contactFieldToCheck);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

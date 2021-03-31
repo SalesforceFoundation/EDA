@@ -1,4 +1,7 @@
-import { LightningElement, api } from "lwc";
+import { LightningElement, api, track, wire } from "lwc";
+
+import getAccountRecordTypeComboboxVModel from "@salesforce/apex/AffiliationsSettingsController.getAccountRecordTypeComboboxVModel";
+import getContactAccountLookupFieldComboboxVModel from "@salesforce/apex/AffiliationsSettingsController.getContactAccountLookupFieldComboboxVModel";
 
 import apiNameDisplay from "@salesforce/label/c.stgApiNameLabel";
 import accountRecordTypeCombobox from "@salesforce/label/c.stgColAccountRecordType";
@@ -11,13 +14,11 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
     @api accountRecordType;
     @api contactField;
 
-    accountRecordTypeComboboxVModel = {
-        options: [{ label: "Account Record Type", value: "account record type" }],
-    };
+    @track accountRecordTypeComboboxVModel;
+    @track accountRecordTypeComboboxWireResult;
 
-    contactFieldComboboxVModel = {
-        options: [{ label: "Contact Field", value: "contact field" }],
-    };
+    @track contactAccountLookupFieldComboboxVModel;
+    @track contactAccountLookupFieldComboboxWireResult;
 
     labelReference = {
         accountRecordTypeCombobox,
@@ -32,6 +33,32 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
         contactField: "primaryAffiliationsContactField",
     };
 
+    @wire(getAccountRecordTypeComboboxVModel, {
+        recordTypeToCheck: "$accountRecordType",
+    })
+    accountRecordTypeComboboxVModelWire(result) {
+        this.accountRecordTypeComboboxWireResult = result;
+
+        if (result.data) {
+            this.accountRecordTypeComboboxVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving preferredContactInfoSettingsVModel");
+        }
+    }
+
+    @wire(getContactAccountLookupFieldComboboxVModel, {
+        contactFieldToCheck: "$contactField",
+    })
+    contactAccountLookupFieldComboboxVModelWire(result) {
+        this.contactAccountLookupFieldComboboxWireResult = result;
+
+        if (result.data) {
+            this.contactAccountLookupFieldComboboxVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving preferredContactInfoSettingsVModel");
+        }
+    }
+
     get modifyRecords() {
         return this.affiliationsAction === "edit" || this.affiliationsAction === "create";
     }
@@ -45,7 +72,7 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
     }
 
     handleAccountRecordTypeChange(event) {
-        this.dispatchContactFieldChangeEvent(event.detail.value);
+        this.dispatchAccountRecordTypeChangeEvent(event.detail.value);
     }
 
     dispatchAccountRecordTypeChangeEvent(accountRecordType) {
