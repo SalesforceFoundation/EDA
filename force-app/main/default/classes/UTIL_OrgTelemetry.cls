@@ -28,22 +28,21 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2019
-* @group Utilities
-* @group-content ../../ApexDocContent/Utilities.htm
-* @description Collects information about the current org and EDA setup information
-* and sends it back to the EDA License Management Application to assist with better
-* understanding of how our customers use our application. This logic is called on
-* every push upgrade by the STG_InstallScript class.
-*
-* Uses "without sharing" so that it has full rights to query all records in all objects.
-* This is needed to ensure a consistent return of telemetry data even if the process is
-* called by different users with different permissions. Specifie PII is never queried or
-* returned by this class.
-*/
+ * @author Salesforce.org
+ * @date 2019
+ * @group Utilities
+ * @group-content ../../ApexDocContent/Utilities.htm
+ * @description Collects information about the current org and EDA setup information
+ * and sends it back to the EDA License Management Application to assist with better
+ * understanding of how our customers use our application. This logic is called on
+ * every push upgrade by the STG_InstallScript class.
+ *
+ * Uses "without sharing" so that it has full rights to query all records in all objects.
+ * This is needed to ensure a consistent return of telemetry data even if the process is
+ * called by different users with different permissions. Specifie PII is never queried or
+ * returned by this class.
+ */
 public without sharing class UTIL_OrgTelemetry {
-
     @testVisible
     private UTIL_FeatureManagement featureManager = new UTIL_FeatureManagement();
 
@@ -108,16 +107,13 @@ public without sharing class UTIL_OrgTelemetry {
      * @param telemetryCategory The individual telemetry type to process.
      */
     public void processTelemetryType(TelemetryBatchCategory telemetryCategory) {
-
         switch on (telemetryCategory) {
             when EDA_Settings {
                 handleEDASettingsTelemetry();
             }
-
             when Org_Environment {
                 handleOrgEnvironmentTelemetry();
             }
-
             when Object_Usage {
                 handleObjectUsageTelemetry();
             }
@@ -129,7 +125,6 @@ public without sharing class UTIL_OrgTelemetry {
      * custom settings.
      */
     private void handleEDASettingsTelemetry() {
-
         Hierarchy_Settings__c edaSettings = UTIL_CustomSettingsFacade.getSettings();
 
         Integer campaignMemberRelationshipRules = 0;
@@ -144,29 +139,62 @@ public without sharing class UTIL_OrgTelemetry {
             }
         }
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountCampaignMemberRelationshipRules.name(), campaignMemberRelationshipRules);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountCampaignMemberRelationshipRules.name(),
+            campaignMemberRelationshipRules
+        );
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountContactRelationshipRules.name(), contactRelationshipRules);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountContactRelationshipRules.name(),
+            contactRelationshipRules
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_AutomaticHouseholdNaming.name(), edaSettings.Automatic_Household_Naming__c);
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.IsEnabled_AutomaticHouseholdNaming.name(),
+            edaSettings.Automatic_Household_Naming__c
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_CourseConnections.name(), UTIL_CustomSettingsFacade.courseConnectionsEnabled());
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.IsEnabled_CourseConnections.name(),
+            UTIL_CustomSettingsFacade.courseConnectionsEnabled()
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.HasDefaultAdministrativeAccountModel.name(), 
-            edaSettings.Account_Processor__c != null && edaSettings.Account_Processor__c == UTIL_Describe.getAdminAccRecTypeID());
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasDefaultAdministrativeAccountModel.name(),
+            edaSettings.Account_Processor__c != null &&
+            edaSettings.Account_Processor__c == UTIL_Describe.getAdminAccRecTypeID()
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.HasDefaultHouseholdAccountModel.name(), 
-            edaSettings.Account_Processor__c != null && edaSettings.Account_Processor__c == UTIL_Describe.getHhAccRecTypeID());
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasDefaultHouseholdAccountModel.name(),
+            edaSettings.Account_Processor__c != null &&
+            edaSettings.Account_Processor__c == UTIL_Describe.getCustomHHAccRecTypeID()
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_ErrorHandling.name(), edaSettings.Disable_Error_Handling__c == false);
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.IsEnabled_ErrorHandling.name(),
+            edaSettings.Disable_Error_Handling__c == false
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.HasCustomAdministrativeAccountNaming.name(), edaSettings.Admin_Account_Naming_Format__c == Label.acctNamingOther);
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasCustomAdministrativeAccountNaming.name(),
+            edaSettings.Admin_Account_Naming_Format__c == Label.acctNamingOther
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.HasCustomHouseholdAccountNaming.name(), edaSettings.Household_Account_Naming_Format__c == Label.acctNamingOther);
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasCustomHouseholdAccountNaming.name(),
+            edaSettings.Household_Account_Naming_Format__c == Label.acctNamingOther
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.HasValueInversionReciprocalMethod.name(), edaSettings.Reciprocal_Method__c == 'Value Inversion');
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasValueInversionReciprocalMethod.name(),
+            edaSettings.Reciprocal_Method__c == 'Value Inversion'
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.IsEnabled_StoreErrors.name(), edaSettings.Store_Errors_On__c);
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.IsEnabled_StoreErrors.name(),
+            edaSettings.Store_Errors_On__c
+        );
     }
 
     /**
@@ -174,14 +202,12 @@ public without sharing class UTIL_OrgTelemetry {
      configuration.
      */
     private void handleOrgEnvironmentTelemetry() {
-
         Integer activeCourseConnectionRecordTypes = 0;
         Integer activeEthnicityPicklistValues = 0;
         Boolean usingOldCourseDescription = false;
 
         // Determine the number of active Course Connection record types.
-        Map<String, Schema.RecordTypeInfo> courseConnectionRecordTypesByDeveloperName = 
-                Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByDeveloperName();
+        Map<String, Schema.RecordTypeInfo> courseConnectionRecordTypesByDeveloperName = Schema.SObjectType.Course_Enrollment__c.getRecordTypeInfosByDeveloperName();
 
         for (String developerName : courseConnectionRecordTypesByDeveloperName.keySet()) {
             Schema.RecordTypeInfo rti = courseConnectionRecordTypesByDeveloperName.get(developerName);
@@ -202,24 +228,42 @@ public without sharing class UTIL_OrgTelemetry {
 
         // Determine if the customer is using the new Extended Description field on the Course object.
         // For this, we look at the 500 most recently modified Course records.
-        for (Course__c course : [SELECT Description__c, Extended_Description__c FROM Course__c ORDER BY LastModifiedDate DESC LIMIT 500]) {
+        for (Course__c course : [
+            SELECT Description__c, Extended_Description__c
+            FROM Course__c
+            ORDER BY LastModifiedDate DESC
+            LIMIT 500
+        ]) {
             if (course.Description__c != null && course.Extended_Description__c == null) {
                 usingOldCourseDescription = true;
                 break;
             }
         }
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name(), activeCourseConnectionRecordTypes);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name(),
+            activeCourseConnectionRecordTypes
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.HasEDAInactiveTDTM.name(), 
-                [SELECT COUNT() FROM Trigger_Handler__c WHERE Owned_By_Namespace__c = 'hed' AND Active__c = false] > 0);
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasEDAInactiveTDTM.name(),
+            [SELECT COUNT() FROM Trigger_Handler__c WHERE Owned_By_Namespace__c = 'hed' AND Active__c = FALSE] > 0
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.HasUserManagedTDTM.name(), 
-                [SELECT COUNT() FROM Trigger_Handler__c WHERE User_Managed__c = true AND Active__c = true] > 0);
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasUserManagedTDTM.name(),
+            [SELECT COUNT() FROM Trigger_Handler__c WHERE User_Managed__c = TRUE AND Active__c = TRUE] > 0
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.UsingOldContactEthnicity.name(), activeEthnicityPicklistValues > 2);
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.UsingOldContactEthnicity.name(),
+            activeEthnicityPicklistValues > 2
+        );
 
-        featureManager.setPackageBooleanValue(TelemetryParameterName.UsingOldCourseDescription.name(), usingOldCourseDescription);
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.UsingOldCourseDescription.name(),
+            usingOldCourseDescription
+        );
     }
 
     /**
@@ -227,33 +271,67 @@ public without sharing class UTIL_OrgTelemetry {
      * custom object record count.
      */
     private void handleObjectUsageTelemetry() {
-
         Integer countAdministrativeAccounts = 0;
         if (UTIL_Describe.getCustomAdminAccRecTypeId() != null) {
-            countAdministrativeAccounts = [SELECT COUNT() FROM Account WHERE RecordTypeId = :UTIL_Describe.getCustomAdminAccRecTypeId()];
+            countAdministrativeAccounts = [
+                SELECT COUNT()
+                FROM Account
+                WHERE RecordTypeId = :UTIL_Describe.getCustomAdminAccRecTypeId()
+            ];
         }
 
         Integer countHouseholdAccounts = 0;
-        if (UTIL_Describe.getHhAccRecTypeID() != null) {
-            countHouseholdAccounts = [SELECT COUNT() FROM Account WHERE RecordTypeId = :UTIL_Describe.getHhAccRecTypeID()];
+        if (UTIL_Describe.getCustomHHAccRecTypeID() != null) {
+            countHouseholdAccounts = [
+                SELECT COUNT()
+                FROM Account
+                WHERE RecordTypeId = :UTIL_Describe.getCustomHHAccRecTypeID()
+            ];
         }
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountAdministrativeAccounts.name(), countAdministrativeAccounts);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountAdministrativeAccounts.name(),
+            countAdministrativeAccounts
+        );
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountHouseholdAccounts.name(), countHouseholdAccounts);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountHouseholdAccounts.name(),
+            countHouseholdAccounts
+        );
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountCourseConnections.name(), [SELECT COUNT() FROM Course_Enrollment__c]);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountCourseConnections.name(),
+            [SELECT COUNT() FROM Course_Enrollment__c]
+        );
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountCourseOfferingSchedules.name(), [SELECT COUNT() FROM Course_Offering_Schedule__c]);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountCourseOfferingSchedules.name(),
+            [SELECT COUNT() FROM Course_Offering_Schedule__c]
+        );
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountErrorLog.name(), [SELECT COUNT() FROM Error__c]);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountErrorLog.name(),
+            [SELECT COUNT() FROM Error__c]
+        );
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountFacilities.name(), [SELECT COUNT() FROM Facility__c]);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountFacilities.name(),
+            [SELECT COUNT() FROM Facility__c]
+        );
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountPlanRequirements.name(), [SELECT COUNT() FROM Plan_Requirement__c]);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountPlanRequirements.name(),
+            [SELECT COUNT() FROM Plan_Requirement__c]
+        );
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountProgramPlans.name(), [SELECT COUNT() FROM Program_Plan__c]);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountProgramPlans.name(),
+            [SELECT COUNT() FROM Program_Plan__c]
+        );
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountTermGrades.name(), [SELECT COUNT() FROM Term_Grade__c]);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountTermGrades.name(),
+            [SELECT COUNT() FROM Term_Grade__c]
+        );
     }
 }
