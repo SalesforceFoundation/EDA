@@ -201,11 +201,11 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label>Enable Record Type Validation</label>
+        <label><!-- Label for the Record Type Validation setting --></label>
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, the Account is required to have a record type and all Account Record Type values must be correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</label>
+        <label><!-- Description of the Enable Record Type Validation setting --></label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -383,6 +383,14 @@
     <customLabels>
         <label>Administrative Account Record Type</label>
         <name>stgAdminAccountRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Navigation Section title for Affiliations --></label>
+        <name>stgAffiliationsSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Section title for Affiliation Settings --></label>
+        <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Copy Affiliation End Date from Program Enrolment</label>
