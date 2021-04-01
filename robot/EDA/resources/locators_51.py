@@ -132,6 +132,10 @@ eda_lex_locators = {
         "checkbox_edit": "(//span[text()='{}']/../following-sibling::div/descendant::span)[1]",
         "updated_checkbox_edit": "//span[text()='{}']/../following-sibling::div[1]/descendant::span[contains(@class, 'checkbox')]",
     },
+    "eda_settings_affiliations": {
+        "acc_rec_type_edit": "//span[text()='Acc Record Type: {}']/../following-sibling::input[contains(@class, 'mapping-acc-rec-type')]",
+        "acc_rec_type_cleared": "//span[text()='Acc Record Type: ']/../following-sibling::input[contains(@class, 'mapping-acc-rec-type')]",
+    },
     "eda_settings_courses": {
         "text_message": "//span[text()='{}']",
     },
@@ -224,7 +228,7 @@ eda_lex_locators = {
         "expand_button": "//button[@title='Expand these results' and contains(@aria-controls, '{}')]",
         "all_checks_status": "//div[text()='{}']/following-sibling::div/div[contains(@class, 'text')]",
         "status_value": "//div[contains(@id, '{}')]/descendant::td/descendant::lightning-base-formatted-text[text()='{}']/ancestor::td/preceding-sibling::th[@data-label='Status']/descendant::lightning-base-formatted-text",
-        "recommended_fix_value": "//div[contains(@id, '{}')]/descendant::td/descendant::lightning-base-formatted-text[text()='{}']/ancestor::tr/descendant::td[@data-label='Recommended Fix']/descendant::lightning-base-formatted-text[contains(text(), '{}')]",
+        "recommended_fix_value": "//div[contains(@id, '{}')]/descendant::td/descendant::lightning-base-formatted-text[text()='{}']/ancestor::tr/descendant::td[@data-label='Recommended Fix']/descendant::lightning-base-formatted-text",
     },
     "term": {
         "new_term_button": "//span[@class='itemLabel slds-truncate slds-show--inline-block slds-m-left--xx-small' and contains(text(), 'New Term')]//..",
