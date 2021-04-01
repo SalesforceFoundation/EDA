@@ -28,95 +28,109 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2019
-* @group Utilities
-* @group-content ../../ApexDocContent/Utilities.htm
-* @description Contains unit tests for testing the UTIL_OrgTelemetry and UTIL_OrgTelemetry_BATCH functionality.
-*/
+ * @author Salesforce.org
+ * @date 2019
+ * @group Utilities
+ * @group-content ../../ApexDocContent/Utilities.htm
+ * @description Contains unit tests for testing the UTIL_OrgTelemetry and UTIL_OrgTelemetry_BATCH functionality.
+ */
 @isTest
 private class UTIL_OrgTelemetry_TEST {
-
     private static UTIL_FeatureManagement_TEST.Mock featureManagementMock;
 
     /*******************************************************************************************************
-    * @description Executes the EDA Telemetry batch job and asserts that it runs properly.
-    ********************************************************************************************************/
+     * @description Executes the EDA Telemetry batch job and asserts that it runs properly.
+     ********************************************************************************************************/
     @isTest
     private static void validateTelemetryBatchJob() {
         Test.startTest();
         UTIL_OrgTelemetry.dispatchTelemetryBatchJob();
         Test.stopTest();
 
-        System.assertEquals(true, UTIL_OrgTelemetry_BATCH.jobProcessed, 'Expected the EDA Telemetry batch job to process.');
+        System.assertEquals(
+            true,
+            UTIL_OrgTelemetry_BATCH.jobProcessed,
+            'Expected the EDA Telemetry batch job to process.'
+        );
     }
 
     /*******************************************************************************************************
-    * @description Calls the processTelemetryType() method of the UTIL_OrgTelemetry class outside of the
-    * context of the batch job to synchronously process the EDA_Settings batch category. Asserts that the
-    * system sends the telemetry data to the UTIL_FeatureManagement wrapper class.
-    ********************************************************************************************************/
+     * @description Calls the processTelemetryType() method of the UTIL_OrgTelemetry class outside of the
+     * context of the batch job to synchronously process the EDA_Settings batch category. Asserts that the
+     * system sends the telemetry data to the UTIL_FeatureManagement wrapper class.
+     ********************************************************************************************************/
     @IsTest
     private static void validateEDASettingsTelemetry() {
         Hierarchy_Settings__c edaSettings = UTIL_CustomSettingsFacade.getSettings();
-        
+
         featureManagementMock = new UTIL_FeatureManagement_TEST.Mock();
         UTIL_OrgTelemetry orgTelemetry = new UTIL_OrgTelemetry();
-        orgTelemetry.featureManager = (UTIL_FeatureManagement)Test.createStub(UTIL_FeatureManagement.class, featureManagementMock);
+        orgTelemetry.featureManager = (UTIL_FeatureManagement) Test.createStub(
+            UTIL_FeatureManagement.class,
+            featureManagementMock
+        );
 
         Test.startTest();
         orgTelemetry.processTelemetryType(UTIL_OrgTelemetry.TelemetryBatchCategory.EDA_Settings);
         Test.stopTest();
 
         assertIntegerValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCampaignMemberRelationshipRules.name(), 0
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCampaignMemberRelationshipRules.name(),
+            0
         );
 
-        assertIntegerValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountContactRelationshipRules.name(), 0
-        );
+        assertIntegerValue(UTIL_OrgTelemetry.TelemetryParameterName.Data_CountContactRelationshipRules.name(), 0);
 
         assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_AutomaticHouseholdNaming.name(), edaSettings.Automatic_Household_Naming__c
+            UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_AutomaticHouseholdNaming.name(),
+            edaSettings.Automatic_Household_Naming__c
         );
         assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_CourseConnections.name(), UTIL_CustomSettingsFacade.courseConnectionsEnabled()
-        );
-
-        assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.HasDefaultAdministrativeAccountModel.name(), edaSettings.Account_Processor__c == UTIL_Describe.getAdminAccRecTypeID()
+            UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_CourseConnections.name(),
+            UTIL_CustomSettingsFacade.courseConnectionsEnabled()
         );
 
         assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.HasDefaultHouseholdAccountModel.name(), edaSettings.Account_Processor__c == UTIL_Describe.getHhAccRecTypeID()
+            UTIL_OrgTelemetry.TelemetryParameterName.HasDefaultAdministrativeAccountModel.name(),
+            edaSettings.Account_Processor__c == UTIL_Describe.getAdminAccRecTypeID()
         );
 
         assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_ErrorHandling.name(), edaSettings.Disable_Error_Handling__c == false
+            UTIL_OrgTelemetry.TelemetryParameterName.HasDefaultHouseholdAccountModel.name(),
+            edaSettings.Account_Processor__c == UTIL_Describe.getHhAccRecTypeID()
         );
 
         assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.HasCustomAdministrativeAccountNaming.name(), edaSettings.Admin_Account_Naming_Format__c == Label.acctNamingOther
+            UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_ErrorHandling.name(),
+            edaSettings.Disable_Error_Handling__c == false
         );
 
         assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.HasCustomHouseholdAccountNaming.name(), edaSettings.Household_Account_Naming_Format__c == Label.acctNamingOther
+            UTIL_OrgTelemetry.TelemetryParameterName.HasCustomAdministrativeAccountNaming.name(),
+            edaSettings.Admin_Account_Naming_Format__c == Label.acctNamingOther
         );
 
         assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.HasValueInversionReciprocalMethod.name(), edaSettings.Reciprocal_Method__c == 'Value Inversion'
+            UTIL_OrgTelemetry.TelemetryParameterName.HasCustomHouseholdAccountNaming.name(),
+            edaSettings.Household_Account_Naming_Format__c == Label.acctNamingOther
         );
 
         assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_StoreErrors.name(), edaSettings.Store_Errors_On__c
+            UTIL_OrgTelemetry.TelemetryParameterName.HasValueInversionReciprocalMethod.name(),
+            edaSettings.Reciprocal_Method__c == 'Value Inversion'
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_StoreErrors.name(),
+            edaSettings.Store_Errors_On__c
         );
     }
 
     /*******************************************************************************************************
-    * @description Calls the processTelemetryType() method of the UTIL_OrgTelemetry class outside of the
-    * context of the batch job to synchronously process the Org_Environment batch category. Asserts that the
-    * system sends the telemetry data to the UTIL_FeatureManagement wrapper class.
-    ********************************************************************************************************/
+     * @description Calls the processTelemetryType() method of the UTIL_OrgTelemetry class outside of the
+     * context of the batch job to synchronously process the Org_Environment batch category. Asserts that the
+     * system sends the telemetry data to the UTIL_FeatureManagement wrapper class.
+     ********************************************************************************************************/
     @IsTest
     private static void validateOrgEnvironmentTelemetry() {
         // Set one of the EDA TDTM classes to inactive.
@@ -137,12 +151,19 @@ private class UTIL_OrgTelemetry_TEST {
         insert userManagedHandler;
 
         Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(null, null);
-        Course__c testCourse = new Course__c(Id = courseOffering.Course__c, Description__c = 'Test Description', Extended_Description__c = 'Test Description');
+        Course__c testCourse = new Course__c(
+            Id = courseOffering.Course__c,
+            Description__c = 'Test Description',
+            Extended_Description__c = 'Test Description'
+        );
         update testCourse;
 
         featureManagementMock = new UTIL_FeatureManagement_TEST.Mock();
         UTIL_OrgTelemetry orgTelemetry = new UTIL_OrgTelemetry();
-        orgTelemetry.featureManager = (UTIL_FeatureManagement)Test.createStub(UTIL_FeatureManagement.class, featureManagementMock);
+        orgTelemetry.featureManager = (UTIL_FeatureManagement) Test.createStub(
+            UTIL_FeatureManagement.class,
+            featureManagementMock
+        );
 
         Test.startTest();
         orgTelemetry.processTelemetryType(UTIL_OrgTelemetry.TelemetryBatchCategory.Org_Environment);
@@ -153,25 +174,17 @@ private class UTIL_OrgTelemetry_TEST {
             featureManagementMock.packageIntegerValuesByName.get(
                 UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name()
             ),
-            'setPackageIntegerValue should have been called with the feature ' + 
-                UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name()
+            'setPackageIntegerValue should have been called with the feature ' +
+            UTIL_OrgTelemetry.TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name()
         );
 
-        assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.HasEDAInactiveTDTM.name(), true
-        );
+        assertBooleanValue(UTIL_OrgTelemetry.TelemetryParameterName.HasEDAInactiveTDTM.name(), true);
 
-        assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.HasUserManagedTDTM.name(), true
-        );
+        assertBooleanValue(UTIL_OrgTelemetry.TelemetryParameterName.HasUserManagedTDTM.name(), true);
 
-        assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.UsingOldContactEthnicity.name(), false
-        );
+        assertBooleanValue(UTIL_OrgTelemetry.TelemetryParameterName.UsingOldContactEthnicity.name(), false);
 
-        assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.UsingOldCourseDescription.name(), false
-        );
+        assertBooleanValue(UTIL_OrgTelemetry.TelemetryParameterName.UsingOldCourseDescription.name(), false);
 
         // Make a few configuration changes to test different parameter values.
         defaultTDTM[0].Active__c = true;
@@ -186,24 +199,18 @@ private class UTIL_OrgTelemetry_TEST {
         orgTelemetry.processTelemetryType(UTIL_OrgTelemetry.TelemetryBatchCategory.Org_Environment);
 
         // Assert the parameter values that should have changed.
-        assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.HasEDAInactiveTDTM.name(), false
-        );
+        assertBooleanValue(UTIL_OrgTelemetry.TelemetryParameterName.HasEDAInactiveTDTM.name(), false);
 
-        assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.HasUserManagedTDTM.name(), false
-        );
+        assertBooleanValue(UTIL_OrgTelemetry.TelemetryParameterName.HasUserManagedTDTM.name(), false);
 
-        assertBooleanValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.UsingOldCourseDescription.name(), true
-        );
+        assertBooleanValue(UTIL_OrgTelemetry.TelemetryParameterName.UsingOldCourseDescription.name(), true);
     }
 
     /*******************************************************************************************************
-    * @description Calls the processTelemetryType() method of the UTIL_OrgTelemetry class outside of the
-    * context of the batch job to synchronously process the Object_Usage batch category. Asserts that the
-    * system sends the telemetry data to the UTIL_FeatureManagement wrapper class.
-    ********************************************************************************************************/
+     * @description Calls the processTelemetryType() method of the UTIL_OrgTelemetry class outside of the
+     * context of the batch job to synchronously process the Object_Usage batch category. Asserts that the
+     * system sends the telemetry data to the UTIL_FeatureManagement wrapper class.
+     ********************************************************************************************************/
     @IsTest
     private static void validateObjectUsageTelemetry() {
         Integer expectedAdministrativeAccounts = 5;
@@ -213,11 +220,17 @@ private class UTIL_OrgTelemetry_TEST {
         insert contacts;
 
         // Insert a few household accounts.
-        List<Account> householdAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(expectedHouseholdAccounts, UTIL_Describe.getHhAccRecTypeID());
+        List<Account> householdAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            expectedHouseholdAccounts,
+            UTIL_Describe.getCustomHHAccRecTypeID()
+        );
         insert householdAccounts;
 
         // Insert a few more random accounts.
-        List<Account> businessAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(10, UTIL_Describe.getBizAccRecTypeID());
+        List<Account> businessAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            10,
+            UTIL_Describe.getBizAccRecTypeID()
+        );
         insert businessAccounts;
 
         // Insert other random test records to test the object usage telemetry - course offerings, course connections, etc.
@@ -230,10 +243,18 @@ private class UTIL_OrgTelemetry_TEST {
         insert courseConnections;
 
         List<Course_Offering_Schedule__c> courseOfferingSchedules = new List<Course_Offering_Schedule__c>();
-        courseOfferingSchedules.add(new Course_Offering_Schedule__c(Course_Offering__c = courseOffering.Id, Monday__c = true));
-        courseOfferingSchedules.add(new Course_Offering_Schedule__c(Course_Offering__c = courseOffering.Id, Tuesday__c = true));
-        courseOfferingSchedules.add(new Course_Offering_Schedule__c(Course_Offering__c = courseOffering.Id, Wednesday__c = true));
-        courseOfferingSchedules.add(new Course_Offering_Schedule__c(Course_Offering__c = courseOffering.Id, Thursday__c = true));
+        courseOfferingSchedules.add(
+            new Course_Offering_Schedule__c(Course_Offering__c = courseOffering.Id, Monday__c = true)
+        );
+        courseOfferingSchedules.add(
+            new Course_Offering_Schedule__c(Course_Offering__c = courseOffering.Id, Tuesday__c = true)
+        );
+        courseOfferingSchedules.add(
+            new Course_Offering_Schedule__c(Course_Offering__c = courseOffering.Id, Wednesday__c = true)
+        );
+        courseOfferingSchedules.add(
+            new Course_Offering_Schedule__c(Course_Offering__c = courseOffering.Id, Thursday__c = true)
+        );
         insert courseOfferingSchedules;
 
         List<Error__c> errors = UTIL_UnitTestData_TEST.getListOfErrors(25);
@@ -247,50 +268,50 @@ private class UTIL_OrgTelemetry_TEST {
 
         List<Program_Plan__c> programPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(12);
         insert programPlans;
-        
+
         featureManagementMock = new UTIL_FeatureManagement_TEST.Mock();
         UTIL_OrgTelemetry orgTelemetry = new UTIL_OrgTelemetry();
-        orgTelemetry.featureManager = (UTIL_FeatureManagement)Test.createStub(UTIL_FeatureManagement.class, featureManagementMock);
+        orgTelemetry.featureManager = (UTIL_FeatureManagement) Test.createStub(
+            UTIL_FeatureManagement.class,
+            featureManagementMock
+        );
 
         Test.startTest();
         orgTelemetry.processTelemetryType(UTIL_OrgTelemetry.TelemetryBatchCategory.Object_Usage);
         Test.stopTest();
 
         assertIntegerValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountAdministrativeAccounts.name(), expectedAdministrativeAccounts
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountAdministrativeAccounts.name(),
+            expectedAdministrativeAccounts
         );
 
         assertIntegerValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountHouseholdAccounts.name(), expectedHouseholdAccounts
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountHouseholdAccounts.name(),
+            expectedHouseholdAccounts
         );
 
         assertIntegerValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCourseConnections.name(), courseConnections.size()
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCourseConnections.name(),
+            courseConnections.size()
         );
 
         assertIntegerValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCourseOfferingSchedules.name(), courseOfferingSchedules.size()
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCourseOfferingSchedules.name(),
+            courseOfferingSchedules.size()
         );
 
-        assertIntegerValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountErrorLog.name(), errors.size()
-        );
+        assertIntegerValue(UTIL_OrgTelemetry.TelemetryParameterName.Data_CountErrorLog.name(), errors.size());
+
+        assertIntegerValue(UTIL_OrgTelemetry.TelemetryParameterName.Data_CountFacilities.name(), facilities.size());
 
         assertIntegerValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountFacilities.name(), facilities.size()
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountPlanRequirements.name(),
+            planRequirements.size()
         );
 
-        assertIntegerValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountPlanRequirements.name(), planRequirements.size()
-        );
+        assertIntegerValue(UTIL_OrgTelemetry.TelemetryParameterName.Data_CountProgramPlans.name(), programPlans.size());
 
-        assertIntegerValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountProgramPlans.name(), programPlans.size()
-        );
-
-        assertIntegerValue(
-            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountTermGrades.name(), 0
-        );
+        assertIntegerValue(UTIL_OrgTelemetry.TelemetryParameterName.Data_CountTermGrades.name(), 0);
     }
 
     private static void assertBooleanValue(String parameterValue, Boolean expectedResult) {

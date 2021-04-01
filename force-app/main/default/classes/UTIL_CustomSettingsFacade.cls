@@ -202,7 +202,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Error_Notifications_On__c = false;
         hs.Error_Notifications_To__c = ERR_Notifier.NotificationOptions.sysAdmins;
         hs.Household_Account_Naming_Format__c = '{!LastName} Household';
-        hs.Household_Addresses_RecType__c = UTIL_Describe.getCustomHHAccRecTypeID();
+        hs.Household_Addresses_RecType__c = UTIL_Describe.getHHAccRecTypeID();
         hs.Reciprocal_Method__c = 'List Setting';
         hs.Store_Errors_On__c = true;
     }
