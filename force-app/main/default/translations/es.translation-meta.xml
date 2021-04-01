@@ -201,11 +201,11 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label>Activar validación de tipo de registro</label>
+        <label><!-- Label for the Record Type Validation setting --></label>
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label>Cuando se selecciona, si los usuarios especifican una cuenta como Afiliación principal de un contacto, se requiere que la cuenta tenga un tipo de registro y que todos los valores de Tipo de registro de cuenta tengan que estar asignados correctamente a sus campos Afiliación principal de contacto respectivos en Asignaciones de afiliación. Si la validación falla, un error evita que se guarde la afiliación.</label>
+        <label><!-- Description of the Enable Record Type Validation setting --></label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -371,6 +371,14 @@
     <customLabels>
         <label>Tipo de registro de cuenta administrativa</label>
         <name>stgAdminAccountRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Navigation Section title for Affiliations --></label>
+        <name>stgAffiliationsSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Section title for Affiliation Settings --></label>
+        <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Copiar fecha de finalización de afiliación desde Inscripción de programa</label>
