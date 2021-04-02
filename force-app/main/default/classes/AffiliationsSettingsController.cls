@@ -48,6 +48,23 @@ public with sharing class AffiliationsSettingsController {
     }
 
     /************************************************************************************
+     * @description Updates Affiliaions mapping custom settings
+     * @param mappingName
+     * @param accRecordType
+     * @param conPrimaryAfflField
+     * @return An AffiliationsSettingsVModel
+     ************************************************************************************/
+    @AuraEnabled
+    public static void updateAffiliationMappings(String mappingName, String accRecordType, String conPrimaryAfflField) {
+        try {
+            AffiliationsSettingsController.locateAffiliationMappingsService()
+                .updateAffiliationMappings(mappingName, accRecordType, conPrimaryAfflField);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************
      * @description Retrieve a PrimaryAffiliationSettingsVModel representing the current values
      * specified for Affiliations Mappings.
      * @return A PrimaryAffiliationSettingsVModel
@@ -98,6 +115,14 @@ public with sharing class AffiliationsSettingsController {
     @TestVisible
     private static AffiliationsSettingsVMapper locateAffiliationsSettingsVMapper() {
         return AffiliationsSettingsVMapper.getInstance();
+    }
+
+    /**********************************************************************************
+     * @description Locates and returns an instance of AffiliationMappingsService.
+     **********************************************************************************/
+    @TestVisible
+    private static AffiliationMappingsService locateAffiliationMappingsService() {
+        return AffiliationMappingsService.getInstance();
     }
 
     /**********************************************************************************

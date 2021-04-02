@@ -1,8 +1,11 @@
 import { LightningElement, api, wire, track } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
+
 import getAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getAffiliationsSettingsVModel";
 import getPrimaryAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getPrimaryAffiliationsSettingsVModel";
+import updateAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.updateAffiliationMappings";
 
 import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsTitle";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
@@ -34,6 +37,7 @@ export default class affiliationSettings extends LightningElement {
             primaryAffiliationsDescription: AfflMappingsDescription,
             primaryAffiliationsTitle: stgTabAfflMappings,
         },
+        successMessage: "Your updates have been successfully applied.",
     };
 
     inputAttributeReference = {
@@ -156,9 +160,18 @@ export default class affiliationSettings extends LightningElement {
     }
 
     updateAffiliation(mappingName, accountRecordType, contactField) {
-        console.log("Updating Affiliation!");
-        //TODO: await Apex action to save!
-        //TODO: Success toast if it works, throw the exception if it doesn't!
+        try {
+            let result = updateAffiliationMappings({
+                mappingName: mappingName,
+                accRecordType: accountRecordType,
+                conPrimaryAfflField: contactField,
+            });
+
+            this.showToast("success", "Save Complete", this.labelReference.successMessage);
+            this.refreshAllApex();
+        } catch (e) {
+            // console.log('An excpetion occured.');
+        }
     }
 
     refreshAllApex() {
@@ -170,5 +183,15 @@ export default class affiliationSettings extends LightningElement {
                 input.resetValue();
             });
         });
+    }
+
+    showToast(toastType, toastTitle, toastMessage) {
+        const showToastEvent = new ShowToastEvent({
+            title: toastTitle,
+            message: toastMessage,
+            variant: toastType,
+            mode: "dismissable",
+        });
+        this.dispatchEvent(showToastEvent);
     }
 }

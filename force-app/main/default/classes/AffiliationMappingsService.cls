@@ -25,28 +25,29 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Acts as service layer to AffiliationMappingsMapper.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group Health Check
+ * @group-content ../../ApexDocContent/HealthCheck.htm
+ * @description Acts as service layer to AffiliationMappingsMapper.
+ */
 public virtual with sharing class AffiliationMappingsService {
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static AffiliationMappingsService instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected AffiliationMappingsService() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected AffiliationMappingsService() {
+    }
 
     /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of AffiliationMappingsService.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of AffiliationMappingsService.
+     ******************************************************************************/
     public static AffiliationMappingsService getInstance() {
         if (instance == null) {
             instance = new AffiliationMappingsService();
@@ -56,20 +57,45 @@ public virtual with sharing class AffiliationMappingsService {
     }
 
     /*****************************************************************************
-    * @description Retrieves a list of models representing all Affiliation Mappings
-    * configured in EDA Settings.
-    * @return A list of AffiliationMappingsModel
-    *****************************************************************************/
-    public virtual List<AffiliationMappingsModel> getAffiliationMappingsModels(){
+     * @description Retrieves a list of models representing all Affiliation Mappings
+     * configured in EDA Settings.
+     * @return A list of AffiliationMappingsModel
+     *****************************************************************************/
+    public virtual List<AffiliationMappingsModel> getAffiliationMappingsModels() {
         return this.locateAffiliationMappingsMapper().getAffiliationMappingsModel();
     }
 
     /*****************************************************************************
-    * @description Retrieves an instance of the AffiliationMappingsMapper.
-    * @return The instance of AffiliationMappingsMapper.
-    ******************************************************************************/
+     * @description Checks user permissions, creates a model and passes to
+     * updateAffiliationMappings.
+     *****************************************************************************/
+    public void updateAffiliationMappings(String mappingName, String accRecordType, String conPrimaryAfflField) {
+        Boolean hasPermission = this.locateUserPermissionService().checkViewSetupForCurrentUser();
+        if (hasPermission == true) {
+            AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel(
+                mappingName,
+                accRecordType,
+                conPrimaryAfflField
+            );
+            this.locateAffiliationMappingsMapper().updateAffiliationMappings(afflMappingModel);
+        }
+    }
+
+    /*****************************************************************************
+     * @description Retrieves an instance of the AffiliationMappingsMapper.
+     * @return The instance of AffiliationMappingsMapper.
+     ******************************************************************************/
     @TestVisible
-    private AffiliationMappingsMapper locateAffiliationMappingsMapper(){
+    private AffiliationMappingsMapper locateAffiliationMappingsMapper() {
         return AffiliationMappingsMapper.getInstance();
+    }
+
+    /*****************************************************************************
+     * @description Retrieves an instance of the UserPermissionService.
+     * @return The instance of UserPermissionService.
+     ******************************************************************************/
+    @TestVisible
+    private UserPermissionService locateUserPermissionService() {
+        return UserPermissionService.getInstance();
     }
 }

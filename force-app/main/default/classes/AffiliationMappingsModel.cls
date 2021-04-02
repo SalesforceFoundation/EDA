@@ -39,6 +39,16 @@ public with sharing class AffiliationMappingsModel {
     public String autoProgramEnrollmentStatus;
     public String autoProgramEnrollmentRole;
 
+    /*****************************************************************************************************************
+     * @description Six argument constructor
+     * @param  name The name of the affiliation mappings in Affl_Mappings__c custom settings
+     * @param accountRecordTypeFieldValue The value in Account_Record_Type__c field in Affl_Mappings__c custom settings
+     * @param primaryAffiliationField The value in Primary_Affl_Field__c in  Primary_Affl_Field__c custom settings
+     * @param autoProgramEnrollment The value in Auto_Program_Enrollment__c in  Primary_Affl_Field__c custom settings
+     * @param autoProgramEnrollmentStatus The value in Auto_Program_Enrollment_Status__c	 in  Primary_Affl_Field__c custom settings
+     * @param autoProgramEnrollmentRole The value in Auto_Program_Enrollment_Role__c in  Primary_Affl_Field__c custom settings
+     *****************************************************************************************************************/
+
     public AffiliationMappingsModel(
         String name,
         String accountRecordTypeFieldValue,
@@ -58,5 +68,22 @@ public with sharing class AffiliationMappingsModel {
             ? '""'
             : autoProgramEnrollmentStatus;
         this.autoProgramEnrollmentRole = String.isBlank(autoProgramEnrollmentRole) ? '""' : autoProgramEnrollmentRole;
+    }
+
+    /*****************************************************************************************************************
+     * @description Three argument constructor
+     * @param  name The name of the affiliation mappings in Affl_Mappings__c custom settings
+     * @param accountRecordTypeFieldValue The value in Account_Record_Type__c field in Affl_Mappings__c custom settings
+     * @param primaryAffiliationField The value in Primary_Affl_Field__c in  Primary_Affl_Field__c custom settings
+     *****************************************************************************************************************/
+
+    public AffiliationMappingsModel(String name, String accountRecordTypeFieldValue, String primaryAffiliationField) {
+        this.name = name;
+
+        this.accountRecordTypeFieldValue = String.isBlank(accountRecordTypeFieldValue)
+            ? '""'
+            : accountRecordTypeFieldValue;
+
+        this.primaryAffiliationField = String.isBlank(primaryAffiliationField) ? '""' : primaryAffiliationField;
     }
 }
