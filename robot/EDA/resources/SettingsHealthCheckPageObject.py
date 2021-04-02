@@ -87,14 +87,14 @@ class SettingsHealthCheckPage(BaseEDAPage, HomePage):
             tests using keyword arguments
         """
         for field,expected_value in kwargs.items():
-            locator = eda_lex_locators["settings_health_check"]["recommended_fix_value"].format(healthCheckCard,field,expected_value)
+            locator = eda_lex_locators["settings_health_check"]["recommended_fix_value"].format(healthCheckCard,field)
             self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
             self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
             actual_value = self.selenium.get_webelement(locator).text
             self.builtin.log(f"Actual value of {field} is {actual_value}")
             if not str(expected_value).lower() in str(actual_value).lower() :
-                raise Exception (f"Status of {field} is {actual_value} but it should be {expected_value}")
+                raise Exception (f"Expected text :{expected_value} in recommended fix message is not found in {actual_value}")
 
 
 
