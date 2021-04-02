@@ -8,7 +8,6 @@
                     label={labelReference.settingsButtonEdit}
                     title={labelReference.settingsButtonEdit}
                     onclick={handleEditClick}
-                    class="slds-p-right_x-small"
                 ></lightning-button>
             </div>
             <div if:false={editButtonShown}>
@@ -23,16 +22,15 @@
                     label={labelReference.settingsButtonSave}
                     title={labelReference.settingsButtonSave}
                     onclick={handleSaveClick}
-                    class="slds-p-right_x-small"
                 ></lightning-button>
             </div>
         </div>
     </div>
 
     <!-- Display Content from Parent Component Body -->
-    <div class="slds-theme_default eda-height_full">
-        <div class="slds-m-left_x-small">
-            <!-- Slot that will be populated with body from parent component -->
+    <div class="slds-theme_default eda-height_full slds-m-right_x-small">
+        <!-- Slot that will be populated with body from parent component -->
+        <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
             <slot></slot>
         </div>
     </div>
