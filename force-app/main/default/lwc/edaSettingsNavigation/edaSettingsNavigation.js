@@ -1,5 +1,7 @@
 import { LightningElement, api, track } from "lwc";
 import accountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
+import stgAffiliationsSettingsNav from "@salesforce/label/c.stgAffiliationsSettingsNav";
+import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 import stgAddressSettingsTitle from "@salesforce/label/c.stgAddressSettingsTitle";
 import stgContactMultiAddressesEnabled from "@salesforce/label/c.stgContactMultiAddressesEnabled";
 import stgAccountTypesMultiAddressesEnabled from "@salesforce/label/c.stgAccountTypesMultiAddressesEnabled";
@@ -8,6 +10,8 @@ import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressCh
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
         accountModelSettingsTitle,
+        stgAffiliationsSettingsNav,
+        afflTypeEnforced,
         stgAddressSettingsTitle,
         stgContactMultiAddressesEnabled,
         stgAccountTypesMultiAddressesEnabled,
@@ -77,10 +81,10 @@ export default class EdaSettingsNavigation extends LightningElement {
                 ],
             },
             {
-                label: "Affiliations",
-                page: "affiliations",
+                label: stgAffiliationsSettingsNav,
+                page: "affiliationSettings",
                 id: "affiliations",
-                menuItems: [{ label: "Enforce Record Type Validation", id: "enforceRecordTypeValidation" }],
+                menuItems: [{ label: afflTypeEnforced, id: "enforceRecordTypeValidation" }],
             },
             {
                 label: "Courses and Enrollments",

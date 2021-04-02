@@ -201,11 +201,11 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label>Activer la validation du type d&apos;enregistrement</label>
+        <label><!-- Label for the Record Type Validation setting --></label>
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label>Lorsque cette option est sélectionnée, si des utilisateurs spécifient un compte en tant qu&apos;affiliation principale du contact, le compte doit avoir un type d&apos;enregistrement et toutes valeurs Type d&apos;enregistrement du compte doivent être correctement mappées avec leur Champ d&apos;affiliation principal du contact respectif dans Mappages d&apos;affiliation. Si la validation échoue, une erreur empêche l&apos;enregistrement de l&apos;affiliation.</label>
+        <label><!-- Description of the Enable Record Type Validation setting --></label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -371,6 +371,14 @@
     <customLabels>
         <label>Type enregistrement compte administratif</label>
         <name>stgAdminAccountRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Navigation Section title for Affiliations --></label>
+        <name>stgAffiliationsSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Section title for Affiliation Settings --></label>
+        <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Copier la date de fin de l&apos;affiliation depuis l&apos;inscription au programme</label>

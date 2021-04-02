@@ -15,6 +15,9 @@
                     <c-account-model-settings></c-account-model-settings>
                 </template>
 
+                <template if:true={settingsPageToDisplay.affiliationSettings}>
+                    <c-affiliation-settings></c-affiliation-settings>
+                </template>
                 <template if:true={settingsPageToDisplay.contactInformationSettings}>
                     <c-contact-information-settings></c-contact-information-settings>
                 </template>
