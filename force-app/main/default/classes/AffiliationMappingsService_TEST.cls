@@ -243,29 +243,7 @@ public with sharing class AffiliationMappingsService_TEST {
         );
     }
 
-    /****************************************************************************************************************************
-     * @description Test method to verify that the updateAffiliationMappings method fails gracefully when user has no setup access
-     * permisison.
-     ****************************************************************************************************************************/
-    @isTest
-    private static void updateAffiliationMappingsNegative() {
-        UserPermissionService.instance = new STUB_UserPermissionServiceFalse();
-        try {
-            Test.startTest();
-            AffiliationMappingsService.getInstance()
-                .updateAffiliationMappings('Household Account', 'Business_Organization', 'Primary_Department__c');
-            Test.stopTest();
-            System.assert(false, 'Always throw an exception if user doesn\'t have access');
-        } catch (System.NoAccessException e) {
-            System.assertEquals(
-                'Script-thrown exception',
-                e.getMessage(),
-                'Should throw an error when permissions are missing.'
-            );
-        }
-    }
-
-      /***********************************************************************************************************************************
+    /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
 
@@ -312,12 +290,4 @@ public with sharing class AffiliationMappingsService_TEST {
         }
     }
 
-    /**************************************************************************************************************************************
-     * @description Stub class to simulate the response from UserPermissionService to throw an exception when user has no access
-     **************************************************************************************************************************************/
-    private class STUB_UserPermissionServiceFalse extends UserPermissionService {
-        public override Boolean checkViewSetupForCurrentUser() {
-            throw new NoAccessException();
-        }
-    }
 }

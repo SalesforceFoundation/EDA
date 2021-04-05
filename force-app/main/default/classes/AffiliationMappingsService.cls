@@ -70,15 +70,15 @@ public virtual with sharing class AffiliationMappingsService {
      * updateAffiliationMappings.
      *****************************************************************************/
     public void updateAffiliationMappings(String mappingName, String accRecordType, String conPrimaryAfflField) {
-        Boolean hasPermission = this.locateUserPermissionService().checkViewSetupForCurrentUser();
-        if (hasPermission == true) {
-            AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel(
-                mappingName,
-                accRecordType,
-                conPrimaryAfflField
-            );
-            this.locateAffiliationMappingsMapper().updateAffiliationMappings(afflMappingModel);
-        }
+
+        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+        AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel(
+            mappingName,
+            accRecordType,
+            conPrimaryAfflField
+        );
+        this.locateAffiliationMappingsMapper().updateAffiliationMappings(afflMappingModel);
+
     }
 
     /*****************************************************************************
