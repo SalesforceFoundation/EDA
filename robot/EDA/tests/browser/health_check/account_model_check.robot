@@ -7,7 +7,19 @@ Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/SystemSettingsPageObject.py
 
 Suite Setup     Open Test Browser
-Suite Teardown  Capture screenshot and delete records and close browser
+Suite Teardown  Run Keywords
+...             Reset accounts and contacts settings        AND
+...             Capture screenshot and delete records and close browser
+
+*** Keywords ***
+Reset accounts and contacts settings
+    [Documentation]             Reverts the changes made to the account record type. This is added
+    ...                         to clean the data so this suite runs clean on every run.
+    Go to EDA settings tab                      Accounts and Contacts
+    Click action button on EDA settings page    Edit
+    Update account contact record type
+    ...                       Administrative Account Record Type=Administrative
+    Click action button on EDA settings page    Save
 
 *** Test Cases ***
 Verify account model health check settings checks pass
