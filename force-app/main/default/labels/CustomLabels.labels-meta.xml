@@ -2782,7 +2782,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Link label to EDA Documentation</shortDescription>
-        <value>Tell Me More.</value>
+        <value>Tell Me More</value>
     </labels>
     <labels>
         <fullName>stgTitleAllowAutocreatedDuplicateRel</fullName>
