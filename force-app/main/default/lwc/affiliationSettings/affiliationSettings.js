@@ -6,6 +6,7 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import getAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getAffiliationsSettingsVModel";
 import getPrimaryAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getPrimaryAffiliationsSettingsVModel";
 import updateAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.updateAffiliationMappings";
+import getRecordTypeLabelFromDeveloperName from "@salesforce/apex/UTIL_Describe.getRecordTypeLabelFromDeveloperName";
 
 import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsTitle";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
@@ -15,6 +16,7 @@ import stgBtnEdit from "@salesforce/label/c.stgBtnEdit";
 import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType";
 import stgColContactPrimaryAfflField from "@salesforce/label/c.stgColContactPrimaryAfflField";
 import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
+import stgAffiliationsEditSuccess from "@salesforce/label/c.stgAffiliationsEditSuccess";
 
 export default class affiliationSettings extends LightningElement {
     isEditMode = false;
@@ -37,7 +39,7 @@ export default class affiliationSettings extends LightningElement {
             primaryAffiliationsDescription: AfflMappingsDescription,
             primaryAffiliationsTitle: stgTabAfflMappings,
         },
-        successMessage: "Your updates have been successfully applied.",
+        successMessage: stgAffiliationsEditSuccess,
     };
 
     inputAttributeReference = {
@@ -166,12 +168,24 @@ export default class affiliationSettings extends LightningElement {
                 accRecordType: accountRecordType,
                 conPrimaryAfflField: contactField,
             });
-
-            this.showToast("success", "Save Complete", this.labelReference.successMessage);
+            this.createToast(accountRecordType);
             this.refreshAllApex();
         } catch (e) {
             // console.log('An excpetion occured.');
         }
+    }
+
+    createToast(accountRecordType) {
+        getRecordTypeLabelFromDeveloperName({
+            objectName: "Account",
+            recordTypeDevName: accountRecordType,
+        })
+            .then((result) => {
+                this.showToast("success", "Save Complete", this.labelReference.successMessage.replace("{0}", result));
+            })
+            .catch((error) => {
+                // console.log('Inside error');
+            });
     }
 
     refreshAllApex() {

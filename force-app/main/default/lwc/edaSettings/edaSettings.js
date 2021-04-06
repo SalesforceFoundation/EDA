@@ -55,7 +55,6 @@ export default class EDASettings extends LightningElement {
     }
 
     @api modalSave(saveModel) {
-        console.log("entering save model:" + JSON.stringify(saveModel));
         switch (saveModel.modalType) {
             case "affiliations":
                 this.template.querySelector("c-affiliation-settings").modalSave(saveModel);

@@ -740,7 +740,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Edit Affiliation Mapping window</shortDescription>
-        <value>Select an Account Record Type and then select a Primary Affiliation Field on Contact to map it to. For example, select the Academic_Program record type and map it to the Primary Academic Program field. When a Primary Affiliation record is created for an Account with the Academic Program record type, the Primary Academic Program field on the Contact record is updated with a lookup to the specified Account.</value>
+        <value>Select the Account Record Type to map to the Primary Affiliation field on Contacts. The value of the Account Record Type automatically populates in the Primary Affiliation field.</value>
     </labels>
     <labels>
         <fullName>stgAffiliationsEditModalTitle</fullName>
