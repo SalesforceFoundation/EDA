@@ -1,0 +1,32 @@
+<template>
+    <template if:true={currentUserHasAccess}>
+        <div class="slds-grid slds-theme_default eda-height_full">
+            <div
+                class="slds-col slds-no-flex slds-size_4-of-12 slds-scrollable_y slds-p-top_x-small eda-height_full"
+                data-qa-locator="edaSettingsNavigation"
+            >
+                <c-eda-settings-navigation onsettingsnavigation={handleSettingsNavigation}></c-eda-settings-navigation>
+            </div>
+            <div
+                class="slds-col slds-no-flex slds-size_8-of-12 slds-scrollable_y slds-p-top_large slds-p-left_small eda-height_full"
+                data-qa-locator="edaSettingsPage"
+            >
+                <template if:true={settingsPageToDisplay.accountModelSettings}>
+                    <c-account-model-settings></c-account-model-settings>
+                </template>
+
+                <template if:true={settingsPageToDisplay.affiliationSettings}>
+                    <c-affiliation-settings></c-affiliation-settings>
+                </template>
+                <template if:true={settingsPageToDisplay.contactInformationSettings}>
+                    <c-contact-information-settings></c-contact-information-settings>
+                </template>
+
+                <template if:true={settingsPageToDisplay.addressSettings}>
+                    <c-address-settings></c-address-settings>
+                </template>
+            </div>
+        </div>
+    </template>
+    <template if:false={currentUserHasAccess}> {labelReference.stgErrorInsufficientAccess} </template>
+</template>
