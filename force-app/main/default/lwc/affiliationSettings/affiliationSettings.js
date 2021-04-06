@@ -6,7 +6,6 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import getAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getAffiliationsSettingsVModel";
 import getPrimaryAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getPrimaryAffiliationsSettingsVModel";
 import updateAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.updateAffiliationMappings";
-import getRecordTypeLabelFromDeveloperName from "@salesforce/apex/UTIL_Describe.getRecordTypeLabelFromDeveloperName";
 
 import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsTitle";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
@@ -162,30 +161,19 @@ export default class affiliationSettings extends LightningElement {
     }
 
     updateAffiliation(mappingName, accountRecordType, contactField) {
-        try {
-            let result = updateAffiliationMappings({
-                mappingName: mappingName,
-                accRecordType: accountRecordType,
-                conPrimaryAfflField: contactField,
-            });
-            this.createToast(accountRecordType);
-            this.refreshAllApex();
-        } catch (e) {
-            // console.log('An excpetion occured.');
-        }
-    }
-
-    createToast(accountRecordType) {
-        getRecordTypeLabelFromDeveloperName({
-            objectName: "Account",
-            recordTypeDevName: accountRecordType,
+        updateAffiliationMappings({
+            mappingName: mappingName,
+            accRecordType: accountRecordType,
+            conPrimaryAfflField: contactField,
         })
             .then((result) => {
                 this.showToast("success", "Save Complete", this.labelReference.successMessage.replace("{0}", result));
             })
+
             .catch((error) => {
                 // console.log('Inside error');
             });
+        this.refreshAllApex();
     }
 
     refreshAllApex() {

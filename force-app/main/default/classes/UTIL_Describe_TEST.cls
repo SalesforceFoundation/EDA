@@ -203,40 +203,6 @@ public with sharing class UTIL_Describe_TEST {
         }
     }
 
-    /***********************************************************************************************
-    * @description Test to verify that getRecordTypeLabelFromDeveloperName() returns a valid 
-    * recordtype label
-    ***********************************************************************************************/
-    @isTest 
-    private static void getRecordTypeLabelFromDeveloperNamePositive(){
-        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
-
-        System.runAs(stdUser){
-            Test.startTest();
-            String recTypeLabel = Util_Describe.getRecordTypeLabelFromDeveloperName('Account', 'Academic_Program');
-            Test.stopTest();
-
-            System.assertEquals('Academic Program', recTypeLabel, 'Should retrieve the record type label for the recordtype API name');
-        }
-    }
-
-    /***********************************************************************************************
-    * @description Test to verify that getRecordTypeLabelFromDeveloperName() returns null when
-    * there are no record types assigned and an invalid Record Type is used.
-    ***********************************************************************************************/
-    @isTest 
-    private static void getRecordTypeLabelFromDeveloperNameNegative(){
-        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
-
-        System.runAs(stdUser){
-            Test.startTest();
-            String recTypeLabel = Util_Describe.getRecordTypeLabelFromDeveloperName('Account', 'test only rec type');
-            Test.stopTest();
-            
-            System.assertEquals('', recTypeLabel, 'Should not retrieve record type info for invalid record type when Account record types are not assigned.');
-        }
-    }
-
      // Positive test for getRecordTypeInfoByDevName
     @isTest
     private static void getRecordTypeInfoByDevNamePositiveTest() {

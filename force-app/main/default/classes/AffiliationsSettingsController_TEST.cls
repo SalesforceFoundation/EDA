@@ -66,6 +66,22 @@ private with sharing class AffiliationsSettingsController_TEST {
     }
 
     /**************************************************************************************************************************************************
+    * @description Test method to verify that the locateRecordTypeService method returns instance of locateRecordTypeService.
+    *************************************************************************************************************************************************/
+    @isTest
+    private static void locateRecordTypeService() {
+        Test.startTest();
+        RecordTypeService recordTypeServiceInstance = AffiliationsSettingsController.locateRecordTypeService();
+        Test.stopTest();
+
+        System.assertEquals(
+            RecordTypeService.getInstance(),
+            recordTypeServiceInstance,
+            'Should return the instance of RecordTypeService.'
+        );
+    }
+
+    /**************************************************************************************************************************************************
      * @description Test method to verify that the locatePrimaryAffiliationsSettingsVMapper method returns instance of locatePrimaryAffiliationsSettingsVMapper.
      *************************************************************************************************************************************************/
     @isTest
@@ -300,11 +316,11 @@ private with sharing class AffiliationsSettingsController_TEST {
         insert afflMapping;
 
         Test.startTest();
-        AffiliationsSettingsController.updateAffiliationMappings(
-            'Household Account',
-            'Business_Organization',
-            'Primary_Department__c'
-        );
+        String accRectypeLabelAfterUpdate = AffiliationsSettingsController.updateAffiliationMappings(
+                                                'Household Account',
+                                                'Business_Organization',
+                                                'Primary_Department__c'
+                                            );
         Test.stopTest();
 
         Affl_Mappings__c afflSettings = Affl_Mappings__c.getInstance('Household Account');
@@ -319,6 +335,7 @@ private with sharing class AffiliationsSettingsController_TEST {
             afflSettings.Primary_Affl_Field__c,
             'Primary Affiliation Field should change to Primary Department'
         );
+        System.assertEquals('Business Organization', accRectypeLabelAfterUpdate, 'The recordtype label of the changed account rectype should be returned');
     }
 
     /****************************************************************************************************************************
@@ -340,6 +357,29 @@ private with sharing class AffiliationsSettingsController_TEST {
         } catch (AuraHandledException e) {
             System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
         }
+    }
+
+    /****************************************************************************************************************************
+    * @description Test method to verify that the updateAffiliationMappings method updates the custom settings
+    ****************************************************************************************************************************/
+    @isTest
+    private static void updateAffiliationMappingsNull() {
+        Affl_Mappings__c afflMapping = new Affl_Mappings__c(
+            Name = 'Household Account',
+            Account_Record_Type__c = 'HH_Account',
+            Primary_Affl_Field__c = 'Primary_Household__c'
+        );
+        insert afflMapping;
+        RecordTypeMapper.instance = new STUB_RecordTypeMapperNull();
+        Test.startTest();
+        String accRectypeLabelAfterUpdate = AffiliationsSettingsController.updateAffiliationMappings(
+                                            'Household Account',
+                                            'Business_Organization',
+                                            'Primary_Department__c'
+                                           );
+        Test.stopTest();
+        System.assertEquals('', accRectypeLabelAfterUpdate, 'Account recordtype label should be empty');
+        
     }
 
     /****************************************************************************************************************************
@@ -458,6 +498,15 @@ private with sharing class AffiliationsSettingsController_TEST {
     private class STUB_UserPermissionServiceFalse extends UserPermissionService {
         public override Boolean checkViewSetupForCurrentUser() {
             throw new NoAccessException();
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from RecordTypeMapper to return null
+     **************************************************************************************************************************************/
+    private class STUB_RecordTypeMapperNull extends RecordTypeMapper {
+        public override RecordTypeModel getRecordTypeModelFromRecTypeDevName(String objectAPI, String recTypeDevName) {
+            return null;
         }
     }
 

@@ -55,10 +55,19 @@ public with sharing class AffiliationsSettingsController {
      * @return An AffiliationsSettingsVModel
      ************************************************************************************/
     @AuraEnabled
-    public static void updateAffiliationMappings(String mappingName, String accRecordType, String conPrimaryAfflField) {
+    public static String updateAffiliationMappings(String mappingName, String accRecordType, String conPrimaryAfflField) {
         try {
             AffiliationsSettingsController.locateAffiliationMappingsService()
                 .updateAffiliationMappings(mappingName, accRecordType, conPrimaryAfflField);
+
+            RecordTypeModel accRecTypeModel = AffiliationsSettingsController.locateRecordTypeService()
+                .getRecordTypeModelFromRecTypeDevName('Account', accRecordType);
+            
+            if (accRecTypeModel == null) {
+                return '';
+            }
+
+            return accRecTypeModel.name;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -131,5 +140,13 @@ public with sharing class AffiliationsSettingsController {
     @TestVisible
     private static PrimaryAffiliationsSettingsVMapper locatePrimaryAffiliationsSettingsVMapper() {
         return PrimaryAffiliationsSettingsVMapper.getInstance();
+    }
+
+    /**********************************************************************************
+     * @description Locates and returns an instance of RecordTypeService.
+     **********************************************************************************/
+    @TestVisible
+    private static RecordTypeService locateRecordTypeService() {
+        return RecordTypeService.getInstance();
     }
 }

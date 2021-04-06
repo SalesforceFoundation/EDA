@@ -747,20 +747,6 @@ public class UTIL_Describe {
         return recordTypeInfoByDeveloperName.get(objectName).get(recordTypeDevName);
     }
 
-    /************************************************************************************************************
-    * @description Returns the record type label from an object and its record type api name
-    * @param objectName Name of the object to retrieve record type label for.
-    * @param recordTypedevName The record type's developer name.
-    */
-    @AuraEnabled(cacheable=true)
-    public static String getRecordTypeLabelFromDeveloperName(String objectName, String recordTypeDevName) {
-        Schema.RecordTypeInfo recTypeInfo = UTIL_Describe.getRecordTypeInfoByDeveloperName(objectName, recordTypeDevName);
-        if (recTypeInfo == null) {
-            return '';
-        }
-        return recTypeInfo.getName();
-    }
-
     /*******************************************************************************************************************
     * @description Cache for the map recordTypeInfoByName
     */
