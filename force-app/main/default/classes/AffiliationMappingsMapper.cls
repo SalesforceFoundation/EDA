@@ -83,13 +83,39 @@ public virtual with sharing class AffiliationMappingsMapper {
     }
 
     /*****************************************************************************
+     * @description inserts an affiliation mapping record
+     * @param affiliationMappingModel Model of an affiliation mappingto to insert
+     *****************************************************************************/
+    public void insertAffiliationMappingModel(AffiliationMappingsModel affiliationMappingModel) {
+        Affl_Mappings__c affiliationMappings = new Affl_Mappings__c(
+            name = affiliationMappingModel.name,
+            Account_Record_Type__c = affiliationMappingModel.accountRecordTypeFieldValue,
+            Auto_Program_Enrollment__c = affiliationMappingModel.autoProgramEnrollment,
+            Auto_Program_Enrollment_Role__c = affiliationMappingModel.autoProgramEnrollmentRole,
+            Auto_Program_Enrollment_Status__c = affiliationMappingModel.autoProgramEnrollmentStatus,
+            Primary_Affl_Field__c = affiliationMappingModel.primaryAffiliationField
+        );
+
+        insert affiliationMappings;
+    }
+
+    /*****************************************************************************
      * @description Updates affiliation mapping record
-     * @param afflMappingModel Model to update affiliaion mapping record from
+     * @param afflMappingModel Model to update affiliation mapping record from
      *****************************************************************************/
     public void updateAffiliationMappings(AffiliationMappingsModel afflMappingModel) {
         Affl_Mappings__c afflSettings = Affl_Mappings__c.getInstance(afflMappingModel.name);
         afflSettings.Account_Record_Type__c = afflMappingModel.accountRecordTypeFieldValue;
         afflSettings.Primary_Affl_Field__c = afflMappingModel.primaryAffiliationField;
         update afflSettings;
+    }
+
+    /*****************************************************************************
+     * @description deletes an affiliation mapping record
+     * @param affiliationMappingModel Model of an affiliation mappingto be deleted
+     *****************************************************************************/
+    public void deleteAffiliationMappingModel(AffiliationMappingsModel affiliationMappingModel) {
+        Affl_Mappings__c affiliationMappingsToDelete = Affl_Mappings__c.getInstance(affiliationMappingModel.name);
+        delete affiliationMappingsToDelete;
     }
 }

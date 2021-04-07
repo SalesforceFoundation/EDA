@@ -65,12 +65,41 @@ public virtual with sharing class AffiliationMappingsService {
         return this.locateAffiliationMappingsMapper().getAffiliationMappingsModel();
     }
 
+    /********************************************************************************************************************************************
+     * @description Insert an affiliation mapping
+     * @param  affiliationMappingName A string representing the name of the new affiliation mapping
+     * @param  recordTypeName A string representing the Record Type name for the new affiliation mapping
+     * @param  contactFieldName A string representing the field label for the Contact primary affiliation field associated with the new affiliation mapping
+     * @param  autoProgramEnrollment A boolean indicating whether auto program enrollment is enabled for the new affiliation mapping
+     * @param  autoProgramEnrollmentStatus A string representing the auto program enrollment status of the new affiliation mapping
+     * @param  autoProgramEnrollmentRole A string representing the auto program enrollment role of the new affiliation mapping
+     ********************************************************************************************************************************************/
+    public void insertAffiliationMappings(
+        String affiliationMappingName,
+        String recordTypeName,
+        String contactFieldName,
+        Boolean autoProgramEnrollment,
+        String autoProgramEnrollmentStatus,
+        String autoProgramEnrollmentRole
+    ) {
+        this.locateAffiliationMappingsMapper()
+            .insertAffiliationMappingModel(
+                new AffiliationMappingsModel(
+                    affiliationMappingName,
+                    recordTypeName,
+                    contactFieldName,
+                    autoProgramEnrollment,
+                    autoProgramEnrollmentStatus,
+                    autoProgramEnrollmentRole
+                )
+            );
+    }
+
     /*****************************************************************************
      * @description Checks user permissions, creates a model and passes to
      * updateAffiliationMappings.
      *****************************************************************************/
     public void updateAffiliationMappings(String mappingName, String accRecordType, String conPrimaryAfflField) {
-
         this.locateUserPermissionService().checkViewSetupForCurrentUser();
         AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel(
             mappingName,
@@ -78,7 +107,32 @@ public virtual with sharing class AffiliationMappingsService {
             conPrimaryAfflField
         );
         this.locateAffiliationMappingsMapper().updateAffiliationMappings(afflMappingModel);
+    }
 
+    /*****************************************************************************************
+     * @description Delete an affiliation mapping record.
+     * @param  mappingName A string representing the name of the affiliation mapping to delete
+     *****************************************************************************************/
+    public void deleteAffiliationMapping(String mappingName) {
+        if (this.locateUserPermissionService().checkViewSetupForCurrentUser() == false) {
+            return;
+        }
+
+        Affl_Mappings__c affiliationMappingsToDelete = Affl_Mappings__c.getInstance(mappingName);
+
+        if (affiliationMappingsToDelete == null) {
+            // no affiliation mapping matching specified name
+            return;
+        }
+
+        this.locateAffiliationMappingsMapper()
+            .deleteAffiliationMappingModel(
+                new AffiliationMappingsModel(
+                    affiliationMappingsToDelete.name,
+                    affiliationMappingsToDelete.Account_Record_Type__c,
+                    affiliationMappingsToDelete.Primary_Affl_Field__c
+                )
+            );
     }
 
     /*****************************************************************************
