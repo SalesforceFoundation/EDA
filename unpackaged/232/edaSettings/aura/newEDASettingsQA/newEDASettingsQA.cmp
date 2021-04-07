@@ -1,3 +1,1 @@
-<aura:component implements="force:appHostable">
-    <c:edaSettings/>
-</aura:component>
+<aura:component implements="force:appHostable"> <%%%NAMESPACE_OR_C%%%:edaSettingsContainer/> </aura:component>

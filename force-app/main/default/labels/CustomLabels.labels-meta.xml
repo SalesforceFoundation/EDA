@@ -104,12 +104,28 @@
         <value>Female</value>
     </labels>
     <labels>
+        <fullName>invalidContactFieldInAffiliationMapping</fullName>
+        <categories>Affiliations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when a Contact's Primary Affiliation field isn't an Account lookup field</shortDescription>
+        <value>We can't save this record because of an error with the Contact field {1}. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of an Account lookup field on the Contact object instead of {1}</value>
+    </labels>
+    <labels>
         <fullName>InvalidFilter</fullName>
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error message for TDTM filtering functionality</shortDescription>
         <value>The field entered as the Filter Field isn&apos;t valid. Filter Fields can be any standard or custom field on the object this trigger is for, as well as fields on related records. Make sure you use the field&apos;s API name, and omit any EDA namespace prefix (&quot;hed__&quot;).</value>
+    </labels>
+    <labels>
+        <fullName>invalidRecordTypeInAffiliationMapping</fullName>
+        <categories>Affiliations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when an Affiliation Mapping's Account record type isn't valid</shortDescription>
+        <value>We can't save this record because {1} isn't a valid Account record type. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of a valid Account record type instead of {1}.</value>
     </labels>
     <labels>
         <fullName>Male</fullName>
@@ -165,7 +181,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Provides a blank value option to custom built picklists</shortDescription>
-        <value>--None--</value>
+        <value>None</value>
     </labels>
     <labels>
         <fullName>OnlyCourseConnectionPopulated</fullName>
@@ -380,16 +396,16 @@
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliations setting</shortDescription>
-        <value>Enable Record Type Validation</value>
+        <shortDescription>Label for the Record Type Validation setting</shortDescription>
+        <value>Record Type Validation</value>
     </labels>
     <labels>
         <fullName>afflTypeEnforcedDescription</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for the Enable Record Type Validation setting for Affilliations</shortDescription>
-        <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, the Account is required to have a record type and all Account Record Type values must be correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
+        <shortDescription> Description of the Record Type Validation setting</shortDescription>
+        <value>Require Accounts specified as a Contact’s Primary Affiliation use a record type. Also ensure that all Account record types are mapped to Primary Affiliation fields on the Contact object. If validation fails, the Affiliation isn’t saved.</value>
     </labels>
     <labels>
         <fullName>automaticHHNaming</fullName>
@@ -627,15 +643,55 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Account model</shortDescription>
+        <shortDescription>Label for the Account Model setting</shortDescription>
         <value>Default Account Model</value>
+    </labels>
+    <labels>
+        <fullName>stgAddressSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Addresses</shortDescription>
+        <value>Addresses</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountRecordTypeGroupLabelTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Group label for the Account record type selection</shortDescription>
+        <value>Select Account Record Types</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountModelSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Account Model Settings</shortDescription>
+        <value>Account Model</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountRecordTypeAvailableListTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the list of Available Account Record Types</shortDescription>
+        <value>Available Account Record Types</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountRecordTypeSelectedListTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the list of Selected Account Record Types</shortDescription>
+        <value>Selected Account Record Types</value>
     </labels>
     <labels>
         <fullName>stgAccountRecordTypeSupportsHHAddress</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <shortDescription>Label for the Household Account Record Type setting</shortDescription>
         <value>Household Account Record Type</value>
     </labels>
     <labels>
@@ -643,16 +699,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for multi address functionality Settings</shortDescription>
-        <value>Account Types with Multi-Addresses Enabled</value>
+        <shortDescription>Label for the Enable Multiple Addresses for Account Types setting</shortDescription>
+        <value>Enable Multiple Addresses for Account Types</value>
     </labels>
     <labels>
         <fullName>stgAccoutTypesWithoutContactsDelete</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Account Types without Contacts to Delete</value>
+        <shortDescription>Label for the Accounts Without Contacts setting</shortDescription>
+        <value>Accounts Without Contacts</value>
     </labels>
     <labels>
         <fullName>stgAddHispanicOrLatinoPicklistValue</fullName>
@@ -675,8 +731,24 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Account record types Setting</shortDescription>
+        <shortDescription>Field label for the Administrative Account Record Type setting</shortDescription>
         <value>Administrative Account Record Type</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation Section title for Affiliations</shortDescription>
+        <value>Affiliations</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Affiliation Settings</shortDescription>
+        <value>Affiliation Settings</value>
     </labels>
     <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
@@ -1007,12 +1079,20 @@
         <value>I understand and am ready to run Backfill.</value>
     </labels>
     <labels>
+        <fullName>stgContactInformationSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Contact Information</shortDescription>
+        <value>Contact Information</value>
+    </labels>
+    <labels>
         <fullName>stgContactMultiAddressesEnabled</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Contact Multi-Addresses Enabled</value>
+        <shortDescription>Label for Accounts and Contacts Settings</shortDescription>
+        <value>Allow Multiple Contact Addresses</value>
     </labels>
     <labels>
         <fullName>stgCourseConnBackFillError</fullName>
@@ -1051,8 +1131,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Default Contact Language Fluency</value>
+        <shortDescription>Label for the Contact Language Fluency setting</shortDescription>
+        <value>Contact Language Fluency</value>
     </labels>
     <labels>
         <fullName>stgDefaultFacultyTypeTitle</fullName>
@@ -1083,16 +1163,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Disable Preferred Email Enforcement</value>
+        <shortDescription>Field label for the Require Preferred Email setting</shortDescription>
+        <value>Require Preferred Email</value>
     </labels>
     <labels>
         <fullName>stgDisablePreferredPhoneEnforcement</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Disable Preferred Phone Enforcement</value>
+        <shortDescription>Field label for the Require Preferred Phone setting</shortDescription>
+        <value>Require Preferred Phone</value>
     </labels>
     <labels>
         <fullName>stgEDASetupTitle</fullName>
@@ -1115,8 +1195,32 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Enable Enhanced Preferred Phone Functionality</value>
+        <shortDescription>Field label for the Enhanced Preferred Phone Functionality setting</shortDescription>
+        <value>Enhanced Preferred Phone Functionality</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorInsufficientAccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message for when you don&apos;t have the permissions to view a page.</shortDescription>
+        <value>You can&apos;t view this page. Your Salesforce admin can help with that.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorInsufficientAccessSaving</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when the user doesn't have the permissions to save settings</shortDescription>
+        <value>You can't save these settings because you no longer have permission to edit them. Your Salesforce admin can help with that.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorInvalidSettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when a generic error occurs</shortDescription>
+        <value>We couldn’t save your work. Please refresh the page and try again.</value>
     </labels>
     <labels>
         <fullName>stgErrorNotiTo</fullName>
@@ -1923,32 +2027,32 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for System Settings</shortDescription>
-        <value>For Higher Education institutions, we recommend the &quot;Administrative&quot; Account model. For K-12 schools, we recommend the &quot;Household&quot; Account model.</value>
+        <shortDescription>Description of the Default Account Model setting</shortDescription>
+        <value>The Account record type used when an Account is automatically created for an independent Contact.</value>
     </labels>
     <labels>
         <fullName>stgHelpAccoutsDeletedIfChildContactsDeleted</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Record types of Accounts that are automatically deleted if all their associated Contacts have been deleted.</value>
+        <shortDescription>Description of the Accounts Without Contacts setting</shortDescription>
+        <value>Delete Accounts with these record types if they have no Contacts.</value>
     </labels>
     <labels>
         <fullName>stgHelpAddressAccRecType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Account record types that support multiple address management.</value>
+        <shortDescription>Description of the Enable Multiple Addresses for Account Types setting</shortDescription>
+        <value>Select the Account record types that support multiple addresses.</value>
     </labels>
     <labels>
         <fullName>stgHelpAdminRecType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts.</value>
+        <shortDescription>Description of the Administrative Account Record Type setting</shortDescription>
+        <value>The Account record type used for Administrative Accounts.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCopyProgramEnrollmentEndDate</fullName>
@@ -2035,32 +2139,32 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts address mgmt</shortDescription>
-        <value>Select this option to enable multiple address management for Contacts.</value>
+        <shortDescription>Description of the Allow Multiple Contact Addresses setting</shortDescription>
+        <value>Allow Contacts to have multiple address records.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactPreferredEmail</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Preferred Email</shortDescription>
-        <value>Do not require Contacts to have a Preferred Email.</value>
+        <shortDescription>Description of the Require Preferred Email setting</shortDescription>
+        <value>Require Contacts to have a Preferred Email.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactPreferredPhone</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Do not require Contacts to have a Preferred Phone.</value>
+        <shortDescription>Description for the Require Preferred Phone setting</shortDescription>
+        <value>Require Contacts to have a Preferred Phone.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactPreferredPhoneSync</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</value>
+        <shortDescription>Description of the Enhanced Preferred Phone Functionality setting</shortDescription>
+        <value>Copy the Contact's Preferred Phone to their Phone field.</value>
     </labels>
     <labels>
         <fullName>stgHelpCopyQueuedEmailSent</fullName>
@@ -2115,8 +2219,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</value>
+        <shortDescription>Description of the Contact Language Fluency setting</shortDescription>
+        <value>The Fluency value set when changing or setting a Contact's Primary Language on a Contact Language record.</value>
     </labels>
     <labels>
         <fullName>stgHelpDefaultFacultyType</fullName>
@@ -2211,8 +2315,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Account record type used for Household Accounts. This setting affects management of Address records and the naming format of Household Accounts.</value>
+        <shortDescription>Description of the Household Account Record Type setting</shortDescription>
+        <value>The Account record type used for Household Accounts.</value>
     </labels>
     <labels>
         <fullName>stgHelpIfCustomValuesEthnicityCopyRace</fullName>
@@ -2267,8 +2371,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Treats changes to single Contact or Account address fields as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</value>
+        <shortDescription>Description of the Update Address Records for Simple Changes setting</shortDescription>
+        <value>For simple address changes to Contacts or Accounts, update existing Address records rather than creating new ones.</value>
     </labels>
     <labels>
         <fullName>stgHelpStoreErrorsOn</fullName>
@@ -2359,12 +2463,28 @@
         <value>Preferred Email/Phone Data Cleanup:</value>
     </labels>
     <labels>
+        <fullName>stgPreferredPhoneDefault</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field label for the Default Preferred Phone setting</shortDescription>
+        <value>Default Preferred Phone</value>
+    </labels>
+    <labels>
         <fullName>stgPreferredPhoneSelection</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Select a desired picklist value for the batch job to selct a value from</shortDescription>
         <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &apos;Phone&apos; field is defined.</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneSelectionDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Default Preferred Phone setting</shortDescription>
+        <value>The field to use for Preferred Phone when the Phone field is blank, or more than one phone value is defined.</value>
     </labels>
     <labels>
         <fullName>stgReciprocalMethodListSetting</fullName>
@@ -2459,8 +2579,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Address mgmt Setting</shortDescription>
-        <value>Simple Address Change Treated as Update</value>
+        <shortDescription>Label for the Update Address Records for Simple Changes setting</shortDescription>
+        <value>Update Address Records for Simple Changes</value>
     </labels>
     <labels>
         <fullName>stgStoreErrorsTitle</fullName>

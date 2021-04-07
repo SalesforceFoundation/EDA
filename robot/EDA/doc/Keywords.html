@@ -407,6 +407,16 @@ pre {
                 <td class="kwdoc"><p>Navigates to the Home view of the groups tab</p></td>
               </tr>
               
+              <tr class="kwrow" id="EDA.py.Go To Settings Health Check">
+                <td class="kwname">
+                  Go To Settings Health Check
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Navigates to the Home view of Settings Health Check app</p></td>
+              </tr>
+              
               <tr class="kwrow" id="EDA.py.Header Field Value">
                 <td class="kwname">
                   Header Field Value
@@ -913,6 +923,24 @@ pre {
                 <td class="kwdoc"><p>Returns the no of record identified by the given field_name and field_value input for a specific object</p></td>
               </tr>
               
+              <tr class="kwrow" id="EDA.robot.Run health check settings">
+                <td class="kwname">
+                  Run health check settings
+                </td>
+                <td class="kwargs">
+                  
+                  <i>HealthCheckCard</i>, 
+                  
+                  <i>Button</i>, 
+                  
+                  <i>Results</i>, 
+                  
+                  <i>**fields</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Validates the health check settings row by row</p></td>
+              </tr>
+              
             </tbody>
           </table>
         </div> 
@@ -1038,6 +1066,18 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>Verify that Disable Preferred Phone enforcement checkbox is checked. Set the checkbox if it is not already set. Do nothing if the checkbox is already checked.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AccountsAndContactsSettingsPageObject.py.Update Account Contact Record Type">
+                <td class="kwname">
+                  Update Account Contact Record Type
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will update the drop down field present under 'Accounts and Contacts' with a value passed in keyword arguments Pass the expected value to be set in the drop down field from the tests</p></td>
               </tr>
               
               <tr class="kwrow" id="AccountsAndContactsSettingsPageObject.py.Update Disable Preferred Phone Checkbox Value">
@@ -1217,6 +1257,20 @@ pre {
                 </td>
                 <td class="kwdoc"><p>Logs the name of the current page object</p>
 <p>The current page object is also returned as an object</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="AffiliationsSettingsPageObject.py.Modify Account Record Type">
+                <td class="kwname">
+                  Modify Account Record Type
+                </td>
+                <td class="kwargs">
+                  
+                  <i>recordType</i>, 
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will modify/update the value of the account record type based on the record type name passed as a parameter from the test</p></td>
               </tr>
               
               <tr class="kwrow" id="AffiliationsSettingsPageObject.py.Open Item">
@@ -2177,9 +2231,9 @@ pre {
                 <td class="kwdoc"><p>This method will verify 'Last Run' field on Settings Health Check page has a date in it and the date is equal to todays date(system date).</p></td>
               </tr>
               
-              <tr class="kwrow" id="SettingsHealthCheckPageObject.py.Verify Status Of Account Model Settings">
+              <tr class="kwrow" id="SettingsHealthCheckPageObject.py.Verify Recommended Fix">
                 <td class="kwname">
-                  Verify Status Of Account Model Settings
+                  Verify Recommended Fix
                 </td>
                 <td class="kwargs">
                   
@@ -2188,7 +2242,21 @@ pre {
                   <i>**kwargs</i>
                   
                 </td>
-                <td class="kwdoc"><p>This method validates the status of setting for the setting passed in kwargs Pass the setting name and the expected status to be verified from the tests using keyword arguments</p></td>
+                <td class="kwdoc"><p>This method validates the status of a setting for the setting passed in kwargs Pass the health check card, setting name and the expected status to be verified from the tests using keyword arguments</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="SettingsHealthCheckPageObject.py.Verify Status Of A Setting">
+                <td class="kwname">
+                  Verify Status Of A Setting
+                </td>
+                <td class="kwargs">
+                  
+                  <i>healthCheckCard</i>, 
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method validates the status of a setting for the setting passed in kwargs Pass the health check card, setting name and the expected status to be verified from the tests using keyword arguments</p></td>
               </tr>
               
             </tbody>
@@ -2481,7 +2549,7 @@ pre {
       
     </div>
     <div class="footer">
-      Generated on Friday February 26, 07:38 PM - cumulusci v3.28.0
+      Generated on Thursday April 01, 11:27 AM - cumulusci v3.31.0
     </div>
   </body>
 </html>

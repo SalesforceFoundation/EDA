@@ -131,7 +131,7 @@ tasks:
             unmanaged: True
 
     deploy_unpackaged_relationship_autocreate_config:
-        description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing.  
+        description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
@@ -151,9 +151,7 @@ tasks:
         description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
-            namespace_inject: $project_config.project__package__namespace
             path: unpackaged/localization/health_check_tab
-            unmanaged: True
 
     deploy_trial_config:
         description: Deploys metadata and configuration for TSOs.
@@ -171,6 +169,13 @@ tasks:
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
             command: "force:user:permset:assign -n Encryption"
+
+    cancel_eda_scheduled_jobs:
+        description: Unscheduleds EDA Apex jobs
+        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
+        options:
+            path: scripts/schedule.cls
+            apex: cancelScheduledJobs();
 
     check_translation_workbench_enabled:
         group: "EDA: Metadata"
@@ -301,9 +306,7 @@ tasks:
         description: Deploys QA and Dev Only Config for Summer ‘21
         class_path: cumulusci.tasks.salesforce.DeployBundles
         options:
-            namespace_inject: $project_config.project__package__namespace
             path: unpackaged/232
-            unmanaged: True
 
     robot:
         # description: Runs a Robot Framework test from a .robot file.
@@ -377,15 +380,13 @@ flows:
                 task: execute_install_apex
                 when: "'hed' not in org_config.installed_packages"
             5:
-                task: deploy_dev_config
+                task: cancel_eda_scheduled_jobs
             6:
-                flow: eda_settings
+                task: deploy_dev_config
             7:
-                task: deploy_Summer_21QA
+                flow: eda_settings
             8:
-                flow: run_unmanaged_unit_tests
-            9:
-                flow: eda_settings_unmanaged
+                task: deploy_Summer_21QA
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -495,8 +496,6 @@ flows:
                 task: execute_automatic_household_naming
             5:
                 task: execute_enable_course_connections
-                options:
-                    namespaced: True
 
     eda_settings_unmanaged:
         description: Enables various settings in an unmanaged context on the EDA Settings tab.
@@ -521,7 +520,7 @@ flows:
                 task: execute_enable_course_connections
                 options:
                     namespaced: False
-    
+
     deploy_health_check_localization:
         description: Deploys health check
         steps:
@@ -533,11 +532,6 @@ flows:
                     - when: "not tasks.check_translation_workbench_enabled()"
                       action: hide
 
-    qa_org_2gp:
-        steps:
-            2:
-                flow: config_2gp
-
     run_unmanaged_unit_tests:
         # description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
@@ -546,20 +540,20 @@ flows:
                 when: "'hed' not in org_config.installed_packages"
             2:
                 task: deploy_unpackaged_primary_affiliations_config
-                when: "'hed' in org_config.installed_packages"
+                when: "'hed' not in org_config.installed_packages"
             3:
                 task: execute_primary_affiliation_mapping_apex
-                when: "'hed' in org_config.installed_packages"
-            4: 
+                when: "'hed' not in org_config.installed_packages"
+            4:
                 task: deploy_unpackaged_relationship_autocreate_config
-                when: "'hed' in org_config.installed_packages"
+                when: "'hed' not in org_config.installed_packages"
             5:
                 task: deploy_preferred_email_config
                 when: "'hed' in org_config.installed_packages"
-            6: 
+            6:
                 # execute tests in unmanaged package
-                task: run_tests 
-                options: 
+                task: run_tests
+                options:
                     test_name_match: '%\_Unmanaged_TEST,%\_ATST,%\_MTST,%\_PTST,%\_UTST'
 
     upgraded_org:
@@ -642,9 +636,9 @@ flows:
     retrieve_custom_labels_and_translations:
         description: "Retrieve custom labels and translations from the default scratch org"
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
-        options: 
-            command: 'force:source:retrieve'
-            extra: '-m CustomLabels,Translations'
+        options:
+            command: "force:source:retrieve"
+            extra: "-m CustomLabels,Translations"
         group: "EDA: Metadata"
 
 services:

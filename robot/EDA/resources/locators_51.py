@@ -132,6 +132,10 @@ eda_lex_locators = {
         "checkbox_edit": "(//span[text()='{}']/../following-sibling::div/descendant::span)[1]",
         "updated_checkbox_edit": "//span[text()='{}']/../following-sibling::div[1]/descendant::span[contains(@class, 'checkbox')]",
     },
+    "eda_settings_affiliations": {
+        "acc_rec_type_edit": "//span[text()='Acc Record Type: {}']/../following-sibling::input[contains(@class, 'mapping-acc-rec-type')]",
+        "acc_rec_type_cleared": "//span[text()='Acc Record Type: ']/../following-sibling::input[contains(@class, 'mapping-acc-rec-type')]",
+    },
     "eda_settings_courses": {
         "text_message": "//span[text()='{}']",
     },
@@ -140,6 +144,7 @@ eda_lex_locators = {
         "checkbox_value": "//span[text()='{}']/following::label[1][contains(@class, 'checkbox')]/span[contains(@class, 'checkbox')]",
         "checkbox_list": "//span[text()='{}']/../../following-sibling::div[1]/descendant::span[contains(@class, 'checkbox')]",
         "checkbox_list_read": "//span[text()='{}']/../../following-sibling::div[1]/descendant::img",
+        "dropdown_acc": "//span[text()='{}']/../following-sibling::div[1]/select/option[text()='{}']",
     },
     "eda_settings_relationships": {
         "dropdown_read": "//span[text()='{}']/../following-sibling::div[1]/descendant::span",
@@ -221,8 +226,9 @@ eda_lex_locators = {
         "health_check_header": "//h2[contains(@class, 'header')]/span[text()='{}']",
         "last_run_date": "//button[@title='Run Health Check']/preceding::div[1]",
         "expand_button": "//button[@title='Expand these results' and contains(@aria-controls, '{}')]",
-        "all_checks_status": "//div[text()='{}']/../descendant::div[text()='{}']",
+        "all_checks_status": "//div[text()='{}']/following-sibling::div/div[contains(@class, 'text')]",
         "status_value": "//div[contains(@id, '{}')]/descendant::td/descendant::lightning-base-formatted-text[text()='{}']/ancestor::td/preceding-sibling::th[@data-label='Status']/descendant::lightning-base-formatted-text",
+        "recommended_fix_value": "//div[contains(@id, '{}')]/descendant::td/descendant::lightning-base-formatted-text[text()='{}']/ancestor::tr/descendant::td[@data-label='Recommended Fix']/descendant::lightning-base-formatted-text",
     },
     "term": {
         "new_term_button": "//span[@class='itemLabel slds-truncate slds-show--inline-block slds-m-left--xx-small' and contains(text(), 'New Term')]//..",

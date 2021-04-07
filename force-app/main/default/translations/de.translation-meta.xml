@@ -57,8 +57,16 @@
         <name>Female</name>
     </customLabels>
     <customLabels>
+        <name>invalidContactFieldInAffiliationMapping</name>
+        <label><!-- Error when a Contact's Primary Affiliation field isn't an Account lookup field --></label>
+    </customLabels>
+    <customLabels>
         <label>Das als Filterfeld eingegebene Feld ist nicht gültig. Bei Filterfeldern kann es sich um jedes Standard- oder benutzerdefinierte Feld des Objekts handeln, für das dieser Auslöser gilt, sowie um Felder in verwandten Datensätzen. Stellen Sie sicher, dass Sie den API-Namen des Feldes verwenden, und lassen Sie EDA-Namespace-Präfixe (&quot;hed__&quot;) weg.</label>
         <name>InvalidFilter</name>
+    </customLabels>
+    <customLabels>
+        <name>invalidRecordTypeInAffiliationMapping</name>
+        <label><!-- Error when an Affiliation Mapping's Account record type isn't valid --></label>
     </customLabels>
     <customLabels>
         <label>Male</label>
@@ -85,7 +93,7 @@
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
-        <label>--Ohne--</label>
+        <label>Ohne</label>
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
@@ -193,11 +201,11 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label>Validierung von Datensatztypen aktivieren</label>
+        <label><!-- Label for the Record Type Validation setting --></label>
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label>Wenn Benutzer, falls ausgewählt, einen Account als primäre Zugehörigkeit eines Kontakts angeben, muss der Account einen Datensatztyp haben. Alle Account-Datensatztypen müssen in &quot;Zugehörigkeitszuordnungen&quot; ihren entsprechenden Feldern für die primäre Zugehörigkeit zum Kontakt ordnungsgemäß zugeordnet sein. Wenn die Validierung fehlschlägt, verhindert ein Fehler das Speichern der Zugehörigkeit.</label>
+        <label><!-- Description of the Enable Record Type Validation setting --></label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -321,20 +329,40 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Section title for Account Model Settings --></label>
+        <name>stgAccountModelSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the list of Available Account Record Types --></label>
+        <name>stgAccountRecordTypeAvailableListTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Group label for the Account record type selection --></label>
+        <name>stgAccountRecordTypeGroupLabelTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the list of Selected Account Record Types --></label>
+        <name>stgAccountRecordTypeSelectedListTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Datensatztyp für Haushalt-Accounts</label>
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
     <customLabels>
-        <label>Accounttypen mit aktivierten mehreren Adressen</label>
+        <label><!-- Label for the Enable Multiple Addresses for Account Types setting --></label>
         <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
-        <label>Accounttypen ohne zu löschende Kontakte</label>
+        <label><!-- Label for the Accounts Without Contacts setting --></label>
         <name>stgAccoutTypesWithoutContactsDelete</name>
     </customLabels>
     <customLabels>
         <label>Fügen Sie bei Bedarf dem Feld &quot;Ethnische Zugehörigkeit&quot; als Auswahllistenwert &quot;Hispanic oder Latino&quot; hinzu.</label>
         <name>stgAddHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Addresses --></label>
+        <name>stgAddressSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Fügen Sie bei Bedarf dem Feld &quot;Ethnische Zugehörigkeit&quot; als Auswahllistenwert &quot;Nicht Hispanic oder Latino&quot; hinzu.</label>
@@ -343,6 +371,14 @@
     <customLabels>
         <label>Datensatztyp für Verwaltungs-Accounts</label>
         <name>stgAdminAccountRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Navigation Section title for Affiliations --></label>
+        <name>stgAffiliationsSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Section title for Affiliation Settings --></label>
+        <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Enddatum der Zugehörigkeit aus der Programmregistrierung kopieren</label>
@@ -509,7 +545,11 @@
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Mehrere Adressen für Kontakt aktiviert</label>
+        <label><!-- Section title for Contact Information --></label>
+        <name>stgContactInformationSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Allow Multiple Contact Addresses setting --></label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -529,7 +569,7 @@
         <name>stgCourseDescriptionCopyEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>Standardkontakt – Sprachkompetenz</label>
+        <label><!-- Label for the Contact Language Fluency setting --></label>
         <name>stgDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
@@ -545,11 +585,11 @@
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
-        <label>Erzwingung von &quot;Bevorzugte E-Mail-Adresse&quot; deaktivieren</label>
+        <label><!-- Field label for the Require Preferred Email setting --></label>
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
-        <label>Erzwingung von &quot;Bevorzugte Telefonnummer&quot; deaktivieren</label>
+        <label><!-- Field label for the Require Preferred Phone setting --></label>
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
@@ -561,8 +601,20 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Verbesserte Funktionalität für &quot;Bevorzugte Telefonnummer&quot; aktivieren</label>
+        <label><!-- Field label for the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgEnablePreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Message for when you don&apos;t have the permissions to view a page. --></label>
+        <name>stgErrorInsufficientAccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when the user doesn't have the permissions to save settings --></label>
+        <name>stgErrorInsufficientAccessSaving</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when a generic error occurs --></label>
+        <name>stgErrorInvalidSettings</name>
     </customLabels>
     <customLabels>
         <label>Fehlerbenachrichtigungen an:</label>
@@ -965,19 +1017,19 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label>Für höhere Bildungseinrichtungen empfehlen wir das Accountmodell &quot;Verwaltung&quot;. Für Grund- und weiterführende Schulen empfehlen wir das Accountmodell &quot;Haushalt&quot;.</label>
+        <label><!-- Description of the Default Account Model setting --></label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label>Datensatztypen von Accounts, die automatisch gelöscht werden, wenn alle zugehörigen Kontakte gelöscht wurden.</label>
+        <label><!-- Description of the Accounts Without Contacts setting --></label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label>Die Account-Datensatztypen, die die Verwaltung mehrerer Adressen unterstützen.</label>
+        <label><!-- Description of the Enable Multiple Addresses for Account Types setting --></label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>Der Account-Datensatztyp, der für Verwaltungs-Accounts verwendet wird. Diese Einstellung wirkt sich auf die Verwaltung von Adressdatensätzen und das Benennungsformat von Verwaltung-Accounts aus.</label>
+        <label><!-- Description of the Administrative Account Record Type setting --></label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
@@ -1021,19 +1073,19 @@
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label>Wählen Sie diese Option aus, um die Verwaltung mehrerer Adressen für Kontakte zu aktivieren.</label>
+        <label><!-- Description of the Allow Multiple Contact Addresses setting --></label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label>Verlangen Sie nicht, dass Kontakte eine bevorzugte E-Mail-Adresse haben.</label>
+        <label><!-- Description of the Require Preferred Email setting --></label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label>Verlangen Sie nicht, dass Kontakte eine bevorzugte Telefonnummer haben.</label>
+        <label><!-- Description for the Require Preferred Phone setting --></label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label>Synchronisiert das Feld &quot;Bevorzugte Telefonnummer&quot; mit dem Standardfeld &quot;Telefon&quot; des Kontakts und überprüft, ob der Wert in &quot;Bevorzugte Telefonnummer&quot; vorhanden ist und entsprechend eingestellt ist.</label>
+        <label><!-- Description of the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1061,7 +1113,7 @@
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
     </customLabels>
     <customLabels>
-        <label>Der Wert &quot;Fließende Beherrschung&quot; wird automatisch für neu erstellte Datensätze für die Kontaktsprache festgelegt, wenn Benutzer das Nachschlagefeld &quot;Primäre Sprache&quot; für einen Kontakt festlegen.</label>
+        <label><!-- Description of the Contact Language Fluency setting --></label>
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
@@ -1109,7 +1161,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>Der Account-Datensatztyp, der für Haushalt-Accounts verwendet wird. Diese Einstellung wirkt sich auf die Verwaltung von Adressdatensätzen und das Benennungsformat von Haushalt-Accounts aus.</label>
+        <label><!-- Description of the Household Account Record Type setting --></label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
@@ -1137,7 +1189,7 @@
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label>Behandelt Änderungen an einzelnen Adressfeldern für Kontakte oder Accounts wie Aktualisierungen der bestehenden Adresse (d. h. es wird kein neues Adressobjekt erstellt). Bewirkt auch, dass Leerzeichen und Änderungen von Groß-/Kleinschreibung als Aktualisierungen behandelt werden.</label>
+        <label><!-- Description of the Update Address Records for Simple Changes setting --></label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
@@ -1185,8 +1237,16 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for the Default Preferred Phone setting --></label>
+        <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
         <label>Wählen Sie ein Feld für &quot;Bevorzugte Telefonnummer&quot; aus, aus dem der Wert kopiert werden soll, wenn das Standardfeld &quot;Telefonnummer&quot; keinen Wert hat oder mehr als ein Feld &quot;Telefonnummer&quot; definiert ist.</label>
         <name>stgPreferredPhoneSelection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description for the Default Preferred Phone setting --></label>
+        <name>stgPreferredPhoneSelectionDesc</name>
     </customLabels>
     <customLabels>
         <label>Listeneinstellung</label>
@@ -1233,7 +1293,7 @@
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Einfache Adressänd. als Aktualisierung</label>
+        <label><!-- Label for the Update Address Records for Simple Changes setting --></label>
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>
