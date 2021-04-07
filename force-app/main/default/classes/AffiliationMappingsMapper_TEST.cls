@@ -197,7 +197,7 @@ public with sharing class AffiliationMappingsMapper_TEST {
         affiliationMappingsMapperInstance.insertAffiliationMappingModel(affiliationMappingsModelToInsert);
         Test.stopTest();
 
-        Affl_Mappings__c affiliationMappingsResult = [
+        List<Affl_Mappings__c> affiliationMappingsResultsList = [
             SELECT
                 Name,
                 Account_Record_Type__c,
@@ -207,38 +207,37 @@ public with sharing class AffiliationMappingsMapper_TEST {
                 Primary_Affl_Field__c
             FROM Affl_Mappings__c
             WHERE Name = :affiliationMappingsModelToInsert.name
-            LIMIT 1
         ];
 
-        System.assertEquals(true, affiliationMappingsResult != null, 'New affiliation mapping should be inserted.');
+        System.assertEquals(1, affiliationMappingsResultsList.size(), 'New affiliation mapping should be inserted.');
         System.assertEquals(
             'Test Affiliation Mapping',
-            affiliationMappingsResult.Name,
+            affiliationMappingsResultsList[0].Name,
             'Name of new affiliation mapping should match specified value.'
         );
         System.assertEquals(
             'Test_Record_Type',
-            affiliationMappingsResult.Account_Record_Type__c,
+            affiliationMappingsResultsList[0].Account_Record_Type__c,
             'Account Record Type of new affiliation mapping should match specified value.'
         );
         System.assertEquals(
             'Test Contact Primary Affl Field',
-            affiliationMappingsResult.Primary_Affl_Field__c,
+            affiliationMappingsResultsList[0].Primary_Affl_Field__c,
             'Contact primary affiliation field of new affiliation mapping should match specified value.'
         );
         System.assertEquals(
             true,
-            affiliationMappingsResult.Auto_Program_Enrollment__c,
+            affiliationMappingsResultsList[0].Auto_Program_Enrollment__c,
             'Auto Program Enrollment of new affiliation mapping should be enabled.'
         );
         System.assertEquals(
             'Test Auto Enrollment Status',
-            affiliationMappingsResult.Auto_Program_Enrollment_Status__c,
+            affiliationMappingsResultsList[0].Auto_Program_Enrollment_Status__c,
             'Auto Program Enrollment status of new affiliation mapping should match specified value.'
         );
         System.assertEquals(
             '""',
-            affiliationMappingsResult.Auto_Program_Enrollment_Role__c,
+            affiliationMappingsResultsList[0].Auto_Program_Enrollment_Role__c,
             'Auto Program Enrollment role of new affiliation mapping should be blank.'
         );
     }

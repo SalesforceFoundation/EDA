@@ -188,8 +188,6 @@ public with sharing class AffiliationMappingsService_TEST {
         );
     }
 
-  
-
     /**************************************************************************************************************************
      * @description Test method to verify that the locateUserPermissionService method returns a valid instance of
      * UserPermissionService.
@@ -243,6 +241,203 @@ public with sharing class AffiliationMappingsService_TEST {
         );
     }
 
+    /**************************************************************************************************************************
+     * @description Test method to verify insertAffiliationMappings inserts a new affiliation mapping.
+     **************************************************************************************************************************/
+    @isTest
+    private static void insertAffiliationMappingsValid() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+
+        AffiliationMappingsService affiliationMappingsServiceInstance = AffiliationMappingsService.getInstance();
+
+        Test.startTest();
+        affiliationMappingsServiceInstance.insertAffiliationMappings(
+            'Test Affiliation Mapping',
+            'Test_Record_Type',
+            'Test Contact Primary Affl Field',
+            false,
+            '',
+            'Test Auto Enrollment Role'
+        );
+        Test.stopTest();
+
+        List<Affl_Mappings__c> affiliationMappingsResultsList = [
+            SELECT
+                Name,
+                Account_Record_Type__c,
+                Auto_Program_Enrollment__c,
+                Auto_Program_Enrollment_Role__c,
+                Auto_Program_Enrollment_Status__c,
+                Primary_Affl_Field__c
+            FROM Affl_Mappings__c
+            WHERE Name = 'Test Affiliation Mapping'
+        ];
+
+        System.assertEquals(1, affiliationMappingsResultsList.size(), 'New affiliation mapping should be inserted.');
+        System.assertEquals(
+            'Test Affiliation Mapping',
+            affiliationMappingsResultsList[0].Name,
+            'Name of new affiliation mapping should match specified value.'
+        );
+        System.assertEquals(
+            'Test_Record_Type',
+            affiliationMappingsResultsList[0].Account_Record_Type__c,
+            'Account Record Type of new affiliation mapping should match specified value.'
+        );
+        System.assertEquals(
+            'Test Contact Primary Affl Field',
+            affiliationMappingsResultsList[0].Primary_Affl_Field__c,
+            'Contact primary affiliation field of new affiliation mapping should match specified value.'
+        );
+        System.assertEquals(
+            false,
+            affiliationMappingsResultsList[0].Auto_Program_Enrollment__c,
+            'Auto Program Enrollment of new affiliation mapping should be enabled.'
+        );
+        System.assertEquals(
+            '""',
+            affiliationMappingsResultsList[0].Auto_Program_Enrollment_Status__c,
+            'Auto Program Enrollment status of new affiliation mapping should be blank.'
+        );
+        System.assertEquals(
+            'Test Auto Enrollment Role',
+            affiliationMappingsResultsList[0].Auto_Program_Enrollment_Role__c,
+            'Auto Program Enrollment role of new affiliation mapping should match specified value.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify insertAffiliationMappings does not insert a new affiliation mapping when a user does
+     * not have the appropriate permissions.
+     **************************************************************************************************************************/
+    @isTest
+    private static void insertAffiliationMappingsNoPermission() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceFalse();
+
+        AffiliationMappingsService affiliationMappingsServiceInstance = AffiliationMappingsService.getInstance();
+
+        Test.startTest();
+        affiliationMappingsServiceInstance.insertAffiliationMappings(
+            'Test Affiliation Mapping',
+            'Test_Record_Type',
+            'Test Contact Primary Affl Field',
+            false,
+            '',
+            'Test Auto Enrollment Role'
+        );
+        Test.stopTest();
+
+        List<Affl_Mappings__c> affiliationMappingsResultsList = [
+            SELECT
+                Name,
+                Account_Record_Type__c,
+                Auto_Program_Enrollment__c,
+                Auto_Program_Enrollment_Role__c,
+                Auto_Program_Enrollment_Status__c,
+                Primary_Affl_Field__c
+            FROM Affl_Mappings__c
+            WHERE Name = 'Test Affiliation Mapping'
+        ];
+
+        System.assertEquals(
+            0,
+            affiliationMappingsResultsList.size(),
+            'New affiliation mapping should not be inserted.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify deleteAffiliationMapping deletes a specified affiliation mapping when it exists.
+     **************************************************************************************************************************/
+    @isTest
+    private static void deleteAffiliationMappingValid() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+
+        AffiliationMappingsService affiliationMappingsServiceInstance = AffiliationMappingsService.getInstance();
+        Affl_Mappings__c affiliationMappingToDelete = new Affl_Mappings__c(
+            Name = 'Test Affiliation Mapping',
+            Account_Record_Type__c = 'Test_Record_Type',
+            Primary_Affl_Field__c = 'Test Contact Primary Affl Field',
+            Auto_Program_Enrollment__c = false,
+            Auto_Program_Enrollment_Status__c = '',
+            Auto_Program_Enrollment_Role__c = 'Test Auto Enrollment Role'
+        );
+
+        insert affiliationMappingToDelete;
+
+        Test.startTest();
+        affiliationMappingsServiceInstance.deleteAffiliationMapping('Test Affiliation Mapping');
+        Test.stopTest();
+
+        List<Affl_Mappings__c> affiliationMappingsResultsList = [
+            SELECT
+                Name,
+                Account_Record_Type__c,
+                Auto_Program_Enrollment__c,
+                Auto_Program_Enrollment_Role__c,
+                Auto_Program_Enrollment_Status__c,
+                Primary_Affl_Field__c
+            FROM Affl_Mappings__c
+            WHERE Name = 'Test Affiliation Mapping'
+        ];
+
+        System.assertEquals(0, affiliationMappingsResultsList.size(), 'New affiliation mapping should be deleted.');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify deleteAffiliationMapping exits gracefully when an affiliation mapping specified for
+     * deletion does not exist.
+     **************************************************************************************************************************/
+    @isTest
+    private static void deleteAffiliationMappingInvalid() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+
+        AffiliationMappingsService affiliationMappingsServiceInstance = AffiliationMappingsService.getInstance();
+
+        Test.startTest();
+        affiliationMappingsServiceInstance.deleteAffiliationMapping('Non-Existent Affiliation Mapping');
+        Test.stopTest();
+
+        System.assert(true, 'Deleting non-existent affiliation mapping should not cause error.');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify deleteAffiliationMapping does not delete an affiliation mapping without sufficient
+     * user permissions.
+     **************************************************************************************************************************/
+    @isTest
+    private static void deleteAffiliationMappingNoPermission() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceFalse();
+        AffiliationMappingsService affiliationMappingsServiceInstance = AffiliationMappingsService.getInstance();
+
+        Affl_Mappings__c affiliationMappingToDelete = new Affl_Mappings__c(
+            Name = 'Test Affiliation Mapping',
+            Account_Record_Type__c = 'Test_Record_Type',
+            Primary_Affl_Field__c = 'Test Contact Primary Affl Field',
+            Auto_Program_Enrollment__c = false,
+            Auto_Program_Enrollment_Status__c = '',
+            Auto_Program_Enrollment_Role__c = 'Test Auto Enrollment Role'
+        );
+
+        insert affiliationMappingToDelete;
+
+        Test.startTest();
+        affiliationMappingsServiceInstance.deleteAffiliationMapping('Test Affiliation Mapping');
+        Test.stopTest();
+
+        List<Affl_Mappings__c> affiliationMappingsResultsList = [
+            SELECT Name
+            FROM Affl_Mappings__c
+            WHERE Name = 'Test Affiliation Mapping'
+        ];
+
+        System.assertEquals(
+            1,
+            affiliationMappingsResultsList.size(),
+            'Affiliation mapping should not be deleted due to insufficient user permissions.'
+        );
+    }
+
     /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
@@ -280,7 +475,7 @@ public with sharing class AffiliationMappingsService_TEST {
             return afflMappingsModelsList;
         }
     }
-    
+
     /**************************************************************************************************************************************
      * @description Stub class to simulate the response from UserPermissionService to return true
      **************************************************************************************************************************************/
@@ -290,4 +485,12 @@ public with sharing class AffiliationMappingsService_TEST {
         }
     }
 
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from UserPermissionService to return false
+     **************************************************************************************************************************************/
+    private class STUB_UserPermissionServiceFalse extends UserPermissionService {
+        public override Boolean checkViewSetupForCurrentUser() {
+            return false;
+        }
+    }
 }

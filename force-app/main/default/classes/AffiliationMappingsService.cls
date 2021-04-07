@@ -82,6 +82,10 @@ public virtual with sharing class AffiliationMappingsService {
         String autoProgramEnrollmentStatus,
         String autoProgramEnrollmentRole
     ) {
+        if (this.locateUserPermissionService().checkViewSetupForCurrentUser() != true) {
+            return;
+        }
+
         this.locateAffiliationMappingsMapper()
             .insertAffiliationMappingModel(
                 new AffiliationMappingsModel(
@@ -114,7 +118,7 @@ public virtual with sharing class AffiliationMappingsService {
      * @param  mappingName A string representing the name of the affiliation mapping to delete
      *****************************************************************************************/
     public void deleteAffiliationMapping(String mappingName) {
-        if (this.locateUserPermissionService().checkViewSetupForCurrentUser() == false) {
+        if (this.locateUserPermissionService().checkViewSetupForCurrentUser() != true) {
             return;
         }
 
