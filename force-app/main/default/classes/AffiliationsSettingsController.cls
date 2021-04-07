@@ -55,16 +55,20 @@ public with sharing class AffiliationsSettingsController {
      * @return An AffiliationsSettingsVModel
      ************************************************************************************/
     @AuraEnabled
-    public static String updateAffiliationMappings(String mappingName, String accRecordType, String conPrimaryAfflField) {
+    public static String updateAffiliationMappings(
+        String mappingName,
+        String accRecordType,
+        String conPrimaryAfflField
+    ) {
         try {
             AffiliationsSettingsController.locateAffiliationMappingsService()
                 .updateAffiliationMappings(mappingName, accRecordType, conPrimaryAfflField);
 
             RecordTypeModel accRecTypeModel = AffiliationsSettingsController.locateRecordTypeService()
                 .getRecordTypeModelFromRecTypeDevName('Account', accRecordType);
-            
+
             if (accRecTypeModel == null) {
-                return '';
+                return accRecordType;
             }
 
             return accRecTypeModel.name;
