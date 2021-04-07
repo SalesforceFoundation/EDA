@@ -86,7 +86,7 @@ eda_lex_locators = {
         "save_button": "//div[@class='slds-button-group']//span[contains(text(), 'Save')]",
         "administrative_account": "//div/a[text()='{} Administrative Account']",
         "contact_edit": "//a[@title='Edit']",
-        "en_re_type_validation": "(//div/span[text()='Enable Record Type Validation']/following::div)[1]/div/div/label/span[@class='slds-checkbox--faux']",
+        "en_re_type_validation": "(//div/span[text()='Record Type Validation']/following::div)[1]/div/div/label/span[@class='slds-checkbox--faux']",
         "ert_validation": "//span/img[@class='affl-record-type-enforced checked' and @alt='True']",
         "un_ert_validation": "//span/img[@class='affl-record-type-enforced unchecked' and @alt='False']",
         "delete_rec_affl": "//span/img[@class='delete-prog-enroll checked' and @alt='True']",
