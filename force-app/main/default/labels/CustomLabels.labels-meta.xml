@@ -735,6 +735,30 @@
         <value>Administrative Account Record Type</value>
     </labels>
     <labels>
+        <fullName>stgAffiliationsDeleteModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message that appears before deleting an Affiliation mapping</shortDescription>
+        <value>You're about to delete an Affiliation mapping that connects an Account with this record type to a Primary Affiliation field on Contact. Are you sure you want to delete this mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsDeleteModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for warning about deleting an Affiliation mapping</shortDescription>
+        <value>Just a heads-up...</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsDeleteSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when an Affiliation mapping is deleted</shortDescription>
+        <value>{0} primary Affiliation was deleted.</value>
+    </labels>
+    <labels>
         <fullName>stgAffiliationsEditModalBody</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -797,6 +821,14 @@
         <protected>true</protected>
         <shortDescription>Field label for Affiliation Settings</shortDescription>
         <value>Status for Affiliations Not Deleted</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflDeleteWithAutoEnrollment</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message that appears before deleting an Affiliation mapping that has an associated auto-enrollment</shortDescription>
+        <value>This Affiliation mapping is associated with an auto-enrollment setting in Courses and Enrollments. If you delete it, a Program Enrollment record won't be created when an Affilation is created between a Contact and an Account of this record type.</value>
     </labels>
     <labels>
         <fullName>stgAfflNotInserted</fullName>
@@ -949,6 +981,14 @@
         <protected>true</protected>
         <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
         <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnDelete</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button label for delete Affiliation mapping warning</shortDescription>
+        <value>Delete</value>
     </labels>
     <labels>
         <fullName>stgBtnEdit</fullName>
