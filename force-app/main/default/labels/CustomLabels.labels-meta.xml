@@ -827,7 +827,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Message that appears before deleting an Affiliation mapping that has an associated auto-enrollment</shortDescription>
+        <shortDescription>Message that appears before deleting Affiliation mapping with an auto-enrollment</shortDescription>
         <value>This Affiliation mapping is associated with an auto-enrollment setting in Courses and Enrollments. If you delete it, a Program Enrollment record won't be created when an Affilation is created between a Contact and an Account of this record type.</value>
     </labels>
     <labels>
