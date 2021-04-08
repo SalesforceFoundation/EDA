@@ -8,6 +8,7 @@ import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType
 import stgColContactPrimaryAfflField from "@salesforce/label/c.stgColContactPrimaryAfflField";
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgAffiliationsEditModalBody from "@salesforce/label/c.stgAffiliationsEditModalBody";
+import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 
 export default class PrimaryAffiliationsModalBody extends LightningElement {
     @api affiliationsAction;
@@ -26,7 +27,13 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
         comboboxPlaceholderText: stgOptSelect,
         contactFieldCombobox: stgColContactPrimaryAfflField,
         modalBodyEditSave: stgAffiliationsEditModalBody,
+        tellMeMoreLink: stgTellMeMoreLink,
     };
+
+    affiliationsHyperLink =
+        '<a href="https://powerofus.force.com/s/article/EDA-Configure-Affiliations-Settings">' +
+        this.labelReference.tellMeMoreLink +
+        "</a>";
 
     inputAttributeReference = {
         accountRecordType: "primaryAffiliationsAccountRecordType",
@@ -105,5 +112,9 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
         });
 
         this.dispatchEvent(contactFieldChangeEvent);
+    }
+
+    get affiliationsDesc() {
+        return this.labelReference.modalBodyEditSave + " " + this.affiliationsHyperLink;
     }
 }

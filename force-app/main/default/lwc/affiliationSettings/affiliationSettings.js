@@ -16,6 +16,7 @@ import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType
 import stgColContactPrimaryAfflField from "@salesforce/label/c.stgColContactPrimaryAfflField";
 import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 import stgAffiliationsEditSuccess from "@salesforce/label/c.stgAffiliationsEditSuccess";
+import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 
 export default class affiliationSettings extends LightningElement {
     isEditMode = false;
@@ -39,7 +40,13 @@ export default class affiliationSettings extends LightningElement {
             primaryAffiliationsTitle: stgTabAfflMappings,
         },
         successMessage: stgAffiliationsEditSuccess,
+        tellMeMoreLink: stgTellMeMoreLink,
     };
+
+    affiliationsHyperLink =
+        '<a href="https://powerofus.force.com/s/article/EDA-Configure-Affiliations-Settings">' +
+        this.labelReference.tellMeMoreLink +
+        "</a>";
 
     inputAttributeReference = {
         recordTypeValidation: "recordTypeValidation",
@@ -195,5 +202,13 @@ export default class affiliationSettings extends LightningElement {
             mode: "dismissable",
         });
         this.dispatchEvent(showToastEvent);
+    }
+
+    get affiliationsDesc() {
+        return (
+            this.labelReference.primaryAffiliationMappingsTable.primaryAffiliationsDescription +
+            " " +
+            this.affiliationsHyperLink
+        );
     }
 }
