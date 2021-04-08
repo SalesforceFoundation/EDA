@@ -132,7 +132,7 @@ public with sharing class AffiliationsSettingsController {
                 .getRecordTypeModelFromRecTypeDevName('Account', accRecordType);
 
             if (accRecTypeModel == null) {
-                return '';
+                return accRecordType;
             }
 
             return accRecTypeModel.name;
