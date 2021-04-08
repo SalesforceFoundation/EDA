@@ -2801,6 +2801,14 @@
         <value>System</value>
     </labels>
     <labels>
+        <fullName>stgTellMeMoreLink</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Link label to EDA Documentation</shortDescription>
+        <value>Tell Me More.</value>
+    </labels>
+    <labels>
         <fullName>stgTitleAllowAutocreatedDuplicateRel</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
