@@ -1,6 +1,6 @@
 import { LightningElement, api } from "lwc";
 
-export default class EdaSettingsNavigationSection extends LightningElement {
+export default class SettingsNavigationSubsection extends LightningElement {
     @api viewModel;
 
     get ariaCurrent() {
@@ -12,7 +12,7 @@ export default class EdaSettingsNavigationSection extends LightningElement {
     }
 
     get qaLocator() {
-        return "edaSettingsNav" + this.viewModel.id;
+        return "settingsNav" + this.viewModel.id;
     }
 
     get hasMenuItems() {
@@ -26,7 +26,7 @@ export default class EdaSettingsNavigationSection extends LightningElement {
             let formattedMenuItem = {
                 label: menuItem.label,
                 id: menuItem.id,
-                qaLocator: "edaSettingsNav" + menuItem.id,
+                qaLocator: "settingsNav" + menuItem.id,
             };
             formattedMenuItems.push(formattedMenuItem);
         });
@@ -34,7 +34,7 @@ export default class EdaSettingsNavigationSection extends LightningElement {
         const menuItemsViewModel = {
             page: this.viewModel.page,
             isActive: this.viewModel.isActive,
-            paddingLeft: "slds-p-left_xx-large",
+            paddingLeft: "slds-p-left_x-large",
             menuItems: formattedMenuItems,
         };
 
@@ -56,5 +56,15 @@ export default class EdaSettingsNavigationSection extends LightningElement {
                 composed: true,
             })
         );
+    }
+
+    get subsectionHeaderClass() {
+        let subsectionHeaderClass = "slds-p-horizontal_large slds-p-top_small slds-p-bottom_xx-small";
+
+        if (this.viewModel.isActive) {
+            subsectionHeaderClass += " nav-is-active";
+        }
+
+        return subsectionHeaderClass;
     }
 }
