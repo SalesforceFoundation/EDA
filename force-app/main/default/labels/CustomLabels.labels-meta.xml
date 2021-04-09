@@ -1271,6 +1271,22 @@
         <value>Error Notification Recipients</value>
     </labels>
     <labels>
+        <fullName>stgErrorSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Subsection navigation title for Errors</shortDescription>
+        <value>Errors</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Errors Settings</shortDescription>
+        <value>Errors Settings</value>
+    </labels>
+    <labels>
         <fullName>stgEthnicityRaceBackfillContacts</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -2647,6 +2663,22 @@
         <shortDescription>Success message for Household Account naming refresh</shortDescription>
         <value>The Household Account naming refresh was queued successfully.
         An email will be sent at the completion of the batch.</value>
+    </labels>
+    <labels>
+        <fullName>stgSystemSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation section title for System</shortDescription>
+        <value>System</value>
+    </labels>
+    <labels>
+        <fullName>stgSystemSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for System Settings</shortDescription>
+        <value>System Settings</value>
     </labels>
     <labels>
         <fullName>stgTabAccCont</fullName>

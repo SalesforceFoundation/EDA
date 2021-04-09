@@ -641,6 +641,14 @@
         <name>stgErrorNotifRecipientsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Subsection navigation title for Errors --></label>
+        <name>stgErrorSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Errors Settings --></label>
+        <name>stgErrorSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Ethnicity and Race Backfill for Contacts</label>
         <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
@@ -1329,6 +1337,14 @@
         <label>The Household Account naming refresh was queued successfully.
         An email will be sent at the completion of the batch.</label>
         <name>stgSuccessHHAccountNameRefresh</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation section title for System --></label>
+        <name>stgSystemSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for System Settings --></label>
+        <name>stgSystemSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Accounts and Contacts</label>

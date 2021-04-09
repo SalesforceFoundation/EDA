@@ -641,6 +641,14 @@
         <name>stgErrorNotifRecipientsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Subsection navigation title for Errors --></label>
+        <name>stgErrorSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Errors Settings --></label>
+        <name>stgErrorSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>取引先責任者の民族および人種のバックフィル</label>
         <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
@@ -1329,6 +1337,14 @@
         <label>世帯取引先の命名の更新がキューに正常に登録されました。
         バッチの完了時にメールが送信されます。</label>
         <name>stgSuccessHHAccountNameRefresh</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation section title for System --></label>
+        <name>stgSystemSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for System Settings --></label>
+        <name>stgSystemSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>取引先および取引先責任者</label>

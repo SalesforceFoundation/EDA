@@ -21,6 +21,8 @@ import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressCh
 import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 import stgAffiliationsSettingsNav from "@salesforce/label/c.stgAffiliationsSettingsNav";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
+//Errors Settings Labels
+import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
@@ -62,7 +64,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         errorSettings: {
             enableDebug: "Enable Debug",
             enableErrorHandling: "Enable Error Handling",
-            errorSettings: "Errors",
+            errorSettings: stgErrorSettingsNav,
             sendErrorNotifications: "Send Error Notifications",
             storeErrors: "Store Errors",
         },
