@@ -208,7 +208,7 @@ export default class affiliationSettings extends LightningElement {
                     this.showToast(
                         "success",
                         "Delete Complete",
-                        this.labelReference.editSuccessMessage.replace("{0}", result)
+                        this.labelReference.deleteSuccessMessage.replace("{0}", result)
                     );
                 } else {
                     //console.log("error finding or deleting mapping");

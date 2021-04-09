@@ -373,7 +373,7 @@
         <name>stgAdminAccountRecordType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message before deleting Affiliation mapping --></label>
+        <label><!-- Description of the Delete Affiliation mapping window --></label>
         <name>stgAffiliationsDeleteModalBody</name>
     </customLabels>
     <customLabels>

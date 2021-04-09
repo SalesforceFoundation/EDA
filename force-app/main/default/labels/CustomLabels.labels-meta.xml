@@ -739,7 +739,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Message that appears before deleting an Affiliation mapping</shortDescription>
+        <shortDescription>Description of the Delete Affiliation mapping window</shortDescription>
         <value>This Affiliation mapping maps the {0} Account record type to the {1} field on Contact records. We're just making sure that you want to delete it.</value>
     </labels>
     <labels>
@@ -827,8 +827,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Message that appears before deleting Affiliation mapping with an auto-enrollment</shortDescription>
-        <value>Deleting this Affiliation mapping also means that when an Affiliation with the {0} Account record type is created for a Contact, a Program Enrollment record is no longer automatically created.</value>
+        <shortDescription>Message before deleting Affiliation mapping with an auto-enrollment</shortDescription>
+        <value>If you delete this Affiliation mapping, when an Affiliation with the {0} Account record type is created for a Contact, a Program Enrollment record is no longer automatically created.</value>
     </labels>
     <labels>
         <fullName>stgAfflNotInserted</fullName>
