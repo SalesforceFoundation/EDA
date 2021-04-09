@@ -62,55 +62,6 @@ public with sharing class AffiliationsSettingsController {
         }
     }
 
-    /********************************************************************************************************************************************
-     * @description Insert a new Affiliation Mapping custom setting; auto-enrollment settings are defaulted to false and blank values.
-     * @param  mappingName A string representing the name of the new affiliation mapping
-     * @param  recordTypeName A string representing the Record Type name for the new affiliation mapping
-     * @param  contactFieldName A string representing the field label for the Contact primary affiliation field associated with the new affiliation mapping
-     ********************************************************************************************************************************************/
-    @AuraEnabled
-    public static void insertAffiliationMappings(String mappingName, String recordTypeName, String contactFieldName) {
-        try {
-            AffiliationsSettingsController.locateAffiliationMappingsService()
-                .insertAffiliationMappings(mappingName, recordTypeName, contactFieldName, false, '', '');
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
-    }
-
-    /********************************************************************************************************************************************
-     * @description Overloaded method to insert a new Affiliation Mapping custom setting with auto-enrollment settings specified.
-     * @param  mappingName A string representing the name of the new affiliation mapping
-     * @param  recordTypeName A string representing the Record Type name for the new affiliation mapping
-     * @param  contactFieldName A string representing the field label for the Contact primary affiliation field associated with the new affiliation mapping
-     * @param  autoEnrollment A boolean indicating whether auto program enrollment is enabled for the new affiliation mapping
-     * @param  autoEnrollmentStatus A string representing the auto program enrollment status of the new affiliation mapping
-     * @param  autoEnrollmentRole A string representing the auto program enrollment role of the new affiliation mapping
-     ********************************************************************************************************************************************/
-    @AuraEnabled
-    public static void insertAffiliationMappings(
-        String mappingName,
-        String recordTypeName,
-        String contactFieldName,
-        Boolean autoEnrollment,
-        String autoEnrollmentStatus,
-        String autoEnrollmentRole
-    ) {
-        try {
-            AffiliationsSettingsController.locateAffiliationMappingsService()
-                .insertAffiliationMappings(
-                    mappingName,
-                    recordTypeName,
-                    contactFieldName,
-                    autoEnrollment,
-                    autoEnrollmentStatus,
-                    autoEnrollmentRole
-                );
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
-    }
-
     /************************************************************************************
      * @description Updates Affiliation mapping custom settings
      * @param mappingName
