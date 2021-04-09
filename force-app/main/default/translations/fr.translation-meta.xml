@@ -57,16 +57,8 @@
         <name>Female</name>
     </customLabels>
     <customLabels>
-        <name>invalidContactFieldInAffiliationMapping</name>
-        <label><!-- Error when a Contact's Primary Affiliation field isn't an Account lookup field --></label>
-    </customLabels>
-    <customLabels>
         <label>Le champ saisi dans le Champ de filtrage n&apos;est pas valide. Les champs de filtrage peuvent correspondre à n&apos;importe quel champ standard ou personnalisé dans l&apos;objet auquel ce déclencheur est destiné, ainsi qu&apos;à des champs dans des enregistrements associés. Assurez-vous d&apos;utiliser le nom d&apos;API du champ sans insérer le préfixe d&apos;espace de noms EDA (&quot;hed__&quot;).</label>
         <name>InvalidFilter</name>
-    </customLabels>
-    <customLabels>
-        <name>invalidRecordTypeInAffiliationMapping</name>
-        <label><!-- Error when an Affiliation Mapping's Account record type isn't valid --></label>
     </customLabels>
     <customLabels>
         <label>Male</label>
@@ -273,6 +265,14 @@
         <name>hhFamily</name>
     </customLabels>
     <customLabels>
+        <label><!-- Error when a Contact&apos;s Primary Affiliation field isn&apos;t an Account lookup field --></label>
+        <name>invalidContactFieldInAffiliationMapping</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when an Affiliation Mapping&apos;s Account record type isn&apos;t valid --></label>
+        <name>invalidRecordTypeInAffiliationMapping</name>
+    </customLabels>
+    <customLabels>
         <label>Compte administratif {!LastName}</label>
         <name>lastNameAdminAcc</name>
     </customLabels>
@@ -373,6 +373,18 @@
         <name>stgAdminAccountRecordType</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Edit Affiliation Mapping window --></label>
+        <name>stgAffiliationsEditModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Edit Affiliation Mapping window --></label>
+        <name>stgAffiliationsEditModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an Affiliation Mapping is edited --></label>
+        <name>stgAffiliationsEditSuccess</name>
+    </customLabels>
+    <customLabels>
         <label><!--Navigation Section title for Affiliations --></label>
         <name>stgAffiliationsSettingsNav</name>
     </customLabels>
@@ -415,6 +427,10 @@
     <customLabels>
         <label>Après avoir exécuté le remplissage</label>
         <name>stgAfterRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- The API name associated with the selected Account Record Type --></label>
+        <name>stgApiNameLabel</name>
     </customLabels>
     <customLabels>
         <label>Commencez à saisir nom du groupe Chatter à rechercher.</label>
@@ -609,7 +625,7 @@
         <name>stgErrorInsufficientAccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when the user doesn't have the permissions to save settings --></label>
+        <label><!-- Error when the user doesn&apos;t have the permissions to save settings --></label>
         <name>stgErrorInsufficientAccessSaving</name>
     </customLabels>
     <customLabels>
