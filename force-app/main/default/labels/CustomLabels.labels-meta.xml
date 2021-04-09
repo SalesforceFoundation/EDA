@@ -759,6 +759,22 @@
         <value>Affiliation mapping for {0} was saved.</value>
     </labels>
     <labels>
+        <fullName>stgAffiliationsNewModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the New Affiliation Mapping window</shortDescription>
+        <value>Select the Account Record Type to map to the Primary Affiliation field on Contacts. The value of the Account Record Type automatically populates in the Primary Affiliation field.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsNewSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when an Affiliation Mapping is created</shortDescription>
+        <value>{0} Primary Affiliation was created</value>
+    </labels>
+    <labels>
         <fullName>stgAffiliationsSettingsNav</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -931,8 +947,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for Affiliation Mappings Settings</shortDescription>
-        <value>Add Mapping</value>
+        <shortDescription>Button label for New Affiliation Mapping modal</shortDescription>
+        <value>New</value>
     </labels>
     <labels>
         <fullName>stgBtnAddSetting</fullName>
@@ -947,7 +963,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
+        <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Cancel</value>
     </labels>
     <labels>
@@ -955,7 +971,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
+        <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Edit</value>
     </labels>
     <labels>
@@ -995,7 +1011,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
+        <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Save</value>
     </labels>
     <labels>
@@ -1036,7 +1052,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Header label for the list of Primary Affiliation Fields on Contact</shortDescription>
-        <value>Contact Primary Affl Field</value>
+        <value>Primary Affiliation Field on Contact</value>
     </labels>
     <labels>
         <fullName>stgColFemale</fullName>
@@ -2435,7 +2451,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Section header for Affiliation Mappings Settings</shortDescription>
+        <shortDescription>Title for the New Affiliation Mapping window</shortDescription>
         <value>New Affiliation Mapping</value>
     </labels>
     <labels>

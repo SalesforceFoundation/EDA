@@ -385,6 +385,14 @@
         <name>stgAffiliationsEditSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the New Affiliation Mapping window --></label>
+        <name>stgAffiliationsNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an Affiliation Mapping is created --></label>
+        <name>stgAffiliationsNewSuccess</name>
+    </customLabels>
+    <customLabels>
         <label>所属の終了日をプログラム登録からコピー</label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
@@ -469,7 +477,7 @@
         <name>stgBeforeRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>対応付けを追加</label>
+        <label><!-- Button label for New Affiliation Mapping modal --></label>
         <name>stgBtnAddMapping</name>
     </customLabels>
     <customLabels>
@@ -521,7 +529,7 @@
         <name>stgColCampTypes</name>
     </customLabels>
     <customLabels>
-        <label>取引先責任者の主所属項目</label>
+        <label><!-- Header label for the list of Primary Affiliation Fields on Contact --></label>
         <name>stgColContactPrimaryAfflField</name>
     </customLabels>
     <customLabels>
