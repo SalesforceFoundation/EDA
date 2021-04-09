@@ -123,4 +123,27 @@ public with sharing class AffiliationMappingsMapper_TEST {
         System.assertEquals(AffiliationMappingsMapperInstance1, AffiliationMappingsMapperInstance2, 'Subsequent retrievals of mapper class instance should return existing instance.');
         System.assertEquals(true, AffiliationMappingsMapperInstance1 != null, 'Instance of mapper class should not be null.');
     }
+
+        /**************************************************************************************************************************
+    * @description Test method to verify that the updateAffiliationMappings method updates the affiliation Mappings
+    ***************************************************************************************************************************/
+    @isTest
+    public static void updateAffiliationMappings() {
+  
+        Affl_Mappings__c afflMapping = new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account', Primary_Affl_Field__c = 'Primary_Household__c');
+        insert afflMapping;
+        
+        AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel('Household Account', 'Business_Organization', 'Primary_Department__c');
+        
+        Test.startTest();
+        AffiliationMappingsMapper.getInstance().updateAffiliationMappings(afflMappingModel);
+        Test.stopTest();
+
+        Affl_Mappings__c afflSettings = Affl_Mappings__c.getInstance(afflMappingModel.name);
+        System.assertEquals('Household Account', afflSettings.name, 'Household account mappings should be retrieved');
+        System.assertEquals('Business_Organization',  afflSettings.Account_Record_Type__c, 'Account record type should be changed to Business organization');
+        System.assertEquals('Primary_Department__c', afflSettings.Primary_Affl_Field__c, 'Primary Affiliation Field should change to Primary Department');
+
+
+    }
 }

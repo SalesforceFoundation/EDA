@@ -535,6 +535,23 @@ private class RecordTypeService_TEST {
         );
     }
 
+     /***********************************************************************************************************************************
+     * @description Test method to verify getRecordTypeModelFromRecTypeDevName retrieves a recordtype model for given object and a record
+     * type
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getRecordTypeModelFromRecTypeDevName() {
+        RecordTypeMapper.instance = new STUB_RecordTypeMapperModel();
+        Test.startTest();
+        RecordTypeModel recTypeMdl = RecordTypeService.getInstance().getRecordTypeModelFromRecTypeDevName('Account', 'Household_Account');
+        Test.stopTest();
+
+        System.assert(recTypeMdl.Id != null, 'The id of the account recordtype in the model should have a value');
+        System.assertEquals('Household', recTypeMdl.name, 'The name of the account recordtype in the model should have a value');
+        System.assertEquals('Household Account', recTypeMdl.developerName, 'The developer name of the account recordtype in the model should have a value');
+        System.assertEquals(true, recTypeMdl.isActive, 'The account record type should be active.');
+    }
+
     /**************************************************************************************************************************
      ****************************************************** STUB CLASS *********************************************************
      **************************************************************************************************************************/
@@ -556,6 +573,23 @@ private class RecordTypeService_TEST {
             stubRecordTypeModelById.put('000000000000000000', recordTypeModel);
 
             return stubRecordTypeModelById;
+        }
+    }
+
+    /*************************************************************************************************************
+    * @description Stub class to simulate the response from RecordTypeMapper to return a recordtype model
+    */
+    private class STUB_RecordTypeMapperModel extends RecordTypeMapper {
+        public override RecordTypeModel getRecordTypeModelFromRecTypeDevName(String objectAPI, String recTypeDevName) {
+           
+            RecordTypeModel recordTypeModel = new RecordTypeModel(
+                '000000000000000000',
+                'Household',
+                'Household Account',
+                true
+            );
+
+            return recordTypeModel;
         }
     }
 }

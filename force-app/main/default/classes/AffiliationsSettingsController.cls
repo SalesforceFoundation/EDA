@@ -33,7 +33,7 @@
  */
 public with sharing class AffiliationsSettingsController {
     /************************************************************************************
-     * @description Retrieve an AffiliationsSettingsVModel represeting the current values
+     * @description Retrieve an AffiliationsSettingsVModel representing the current values
      * specified for Affiliations Settings fields in Hierarchy Settings.
      * @return An AffiliationsSettingsVModel
      ************************************************************************************/
@@ -47,6 +47,81 @@ public with sharing class AffiliationsSettingsController {
         }
     }
 
+    /************************************************************************************
+     * @description Updates Affiliaions mapping custom settings
+     * @param mappingName
+     * @param accRecordType
+     * @param conPrimaryAfflField
+     * @return An AffiliationsSettingsVModel
+     ************************************************************************************/
+    @AuraEnabled
+    public static String updateAffiliationMappings(
+        String mappingName,
+        String accRecordType,
+        String conPrimaryAfflField
+    ) {
+        try {
+            AffiliationsSettingsController.locateAffiliationMappingsService()
+                .updateAffiliationMappings(mappingName, accRecordType, conPrimaryAfflField);
+
+            RecordTypeModel accRecTypeModel = AffiliationsSettingsController.locateRecordTypeService()
+                .getRecordTypeModelFromRecTypeDevName('Account', accRecordType);
+
+            if (accRecTypeModel == null) {
+                return accRecordType;
+            }
+
+            return accRecTypeModel.name;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************
+     * @description Retrieve a PrimaryAffiliationSettingsVModel representing the current values
+     * specified for Affiliations Mappings.
+     * @return A PrimaryAffiliationSettingsVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static PrimaryAffiliationSettingsVModel getPrimaryAffiliationsSettingsVModel() {
+        try {
+            return AffiliationsSettingsController.locatePrimaryAffiliationsSettingsVMapper()
+                .getPrimaryAffiliationsSettingsVModel();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************
+     * @description Retrieve a ComoboxVModel representing the list of active Account
+     * Record Types
+     * @return A ComboboxVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static ComboBoxVModel getAccountRecordTypeComboboxVModel(String recordTypeToCheck) {
+        try {
+            return AffiliationsSettingsController.locatePrimaryAffiliationsSettingsVMapper()
+                .getAccountRecordTypeComboboxVModel(recordTypeToCheck);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************
+     * @description Retrieve a ComoboxVModel representing the list of active Account
+     * Record Types
+     * @return A ComboboxVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static ComboBoxVModel getContactAccountLookupFieldComboboxVModel(String contactFieldToCheck) {
+        try {
+            return AffiliationsSettingsController.locatePrimaryAffiliationsSettingsVMapper()
+                .getContactAccountLookupFieldComboboxVModel(contactFieldToCheck);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /**********************************************************************************
      * @description Locates and returns an instance of AffiliationsSettingsVMapper.
      **********************************************************************************/
@@ -55,4 +130,27 @@ public with sharing class AffiliationsSettingsController {
         return AffiliationsSettingsVMapper.getInstance();
     }
 
+    /**********************************************************************************
+     * @description Locates and returns an instance of AffiliationMappingsService.
+     **********************************************************************************/
+    @TestVisible
+    private static AffiliationMappingsService locateAffiliationMappingsService() {
+        return AffiliationMappingsService.getInstance();
+    }
+
+    /**********************************************************************************
+     * @description Locates and returns an instance of PrimaryAffiliationsSettingsVMapper.
+     **********************************************************************************/
+    @TestVisible
+    private static PrimaryAffiliationsSettingsVMapper locatePrimaryAffiliationsSettingsVMapper() {
+        return PrimaryAffiliationsSettingsVMapper.getInstance();
+    }
+
+    /**********************************************************************************
+     * @description Locates and returns an instance of RecordTypeService.
+     **********************************************************************************/
+    @TestVisible
+    private static RecordTypeService locateRecordTypeService() {
+        return RecordTypeService.getInstance();
+    }
 }

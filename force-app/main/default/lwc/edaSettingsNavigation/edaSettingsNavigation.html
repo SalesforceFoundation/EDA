@@ -1,15 +1,7 @@
 <template>
-    <nav class="slds-nav-vertical slds-nav-vertical_compact">
-        <div class="slds-grid slds-grid_vertical eda-height_full" data-qa-locator="edaSettingsNavigationMenu">
-            <ul>
-                <template for:each={settingsNavigationViewModel.navigationSections} for:item="navigationSection">
-                    <li key={navigationSection.id}>
-                        <c-eda-settings-navigation-section
-                            view-model={navigationSection}
-                        ></c-eda-settings-navigation-section>
-                    </li>
-                </template>
-            </ul>
-        </div>
-    </nav>
+    <c-settings-navigation
+        view-model={viewModel}
+        active-page={activePage}
+        spinner-loading-alt-text={labelReference.spinnerLoadingAltText}
+    ></c-settings-navigation>
 </template>

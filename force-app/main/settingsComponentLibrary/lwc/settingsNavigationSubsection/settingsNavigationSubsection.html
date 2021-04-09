@@ -6,7 +6,7 @@
             <h3 id={viewModel.id} class={subsectionHeaderClass}>
                 <a
                     href="javascript:void(0);"
-                    class="slds-text-title_caps slds-text-color_weak eda-nav-subsection-header_link"
+                    class="slds-text-title_caps slds-text-color_weak nav-subsection-header_link"
                     onclick={handleNavigationClick}
                     aria-current={ariaCurrent}
                     data-qa-locator={qaLocator}
@@ -16,23 +16,23 @@
             <!--Menu Items-->
             <template if:true={hasMenuItems}>
                 <ul aria-describedby={viewModel.id}>
-                    <c-eda-settings-navigation-menu-items
+                    <c-settings-navigation-menu-items
                         view-model={menuItemsViewModel}
-                    ></c-eda-settings-navigation-menu-items>
+                    ></c-settings-navigation-menu-items>
                 </ul>
             </template>
         </div>
     </template>
     <!-- Active State-->
     <template if:true={viewModel.isActive}>
-        <div class="slds-grid slds-nowrap eda-nav-is-active">
+        <div class="slds-grid slds-nowrap nav-is-active">
             <!--Content Area-->
             <div class="slds-col slds-size_11-of-12">
                 <!--Subsection Header-->
                 <h3 id={viewModel.id} class={subsectionHeaderClass}>
                     <a
                         href="javascript:void(0);"
-                        class="slds-text-title_caps slds-text-color_weak eda-nav-subsection-header_link"
+                        class="slds-text-title_caps slds-text-color_weak nav-subsection-header_link"
                         onclick={handleNavigationClick}
                         aria-current={ariaCurrent}
                         data-qa-locator={qaLocator}
@@ -42,9 +42,9 @@
                 <!--Menu Items-->
                 <template if:true={hasMenuItems}>
                     <ul aria-describedby={viewModel.id}>
-                        <c-eda-settings-navigation-menu-items
+                        <c-settings-navigation-menu-items
                             view-model={menuItemsViewModel}
-                        ></c-eda-settings-navigation-menu-items>
+                        ></c-settings-navigation-menu-items>
                     </ul>
                 </template>
             </div>

@@ -1,10 +1,10 @@
 import { LightningElement, api } from "lwc";
 
-export default class EdaSettingsMenuItems extends LightningElement {
+export default class SettingsNavigationMenuItems extends LightningElement {
     @api viewModel;
 
     get qaLocator() {
-        return "edaSettingsNav" + this.viewModel.id;
+        return "settingsNav" + this.viewModel.id;
     }
 
     handleNavigationClick() {
@@ -28,7 +28,7 @@ export default class EdaSettingsMenuItems extends LightningElement {
         let menuItemClass = this.viewModel.paddingLeft + " slds-p-bottom_xxx-small slds-truncate";
 
         if (this.viewModel.isActive) {
-            menuItemClass += " eda-nav-is-active";
+            menuItemClass += " nav-is-active";
         }
 
         return menuItemClass;

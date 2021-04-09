@@ -1,19 +1,19 @@
-.eda-nav-menu-item_link:link {
+.nav-menu-item_link:link {
     color: var(--lwc-colorTextActionLabelActive);
 }
 
-.eda-nav-menu-item_link:visited {
+.nav-menu-item_link:visited {
     color: var(--lwc-colorTextActionLabelActive);
 }
 
-.eda-nav-menu-item_link:hover {
+.nav-menu-item_link:hover {
     color: var(--lwc-colorTextActionLabelActive);
 }
 
-.eda-nav-menu-item_link:active {
+.nav-menu-item_link:active {
     color: var(--lwc-colorTextActionLabelActive);
 }
 
-.eda-nav-is-active {
+.nav-is-active {
     background-color: var(--lwc-colorBackground);
 }
