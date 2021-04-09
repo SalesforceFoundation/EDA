@@ -29,48 +29,28 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description View Mapper class for Error Settings functionality in EDA settings
+ * @description Apex controller for errorSettings LWC component
  */
-public virtual with sharing class ErrorSettingsVMapper {
-    /*********************************************
-     * @description Instance for Singleton Pattern
-     **********************************************/
-    @TestVisible
-    private static ErrorSettingsVMapper instance;
-
-    /*********************************************************************
-     * @description Empty constructor is not public for Singleton Pattern
-     **********************************************************************/
-    protected ErrorSettingsVMapper() {
-    }
-
+public with sharing class ErrorSettingsController {
     /******************************************************************************
-     * @description Static method to get the current instance for Singleton pattern
-     * @return The instance of ErrorSettingsVMapper.
+     * @description Retrieve an instance of the ErrorSettingsVMapper class.
+     * @return An instance of ErrorSettingsVMapper
      ******************************************************************************/
-    public static ErrorSettingsVMapper getInstance() {
-        if (instance == null) {
-            instance = new ErrorSettingsVMapper();
-        }
-
-        return instance;
+    @TestVisible
+    private static ErrorSettingsVMapper locateErrorSettingsVMapper() {
+        return ErrorSettingsVMapper.getInstance();
     }
 
     /*********************************************************************************************
      * @description Retrieve a view model representing the error settings in hierarchy settings.
      * @return An ErrorSettingsVModel
      *********************************************************************************************/
-    public ErrorSettingsVModel getErrorSettingsViewModel() {
-        ErrorSettingsModel errorSettingsModel = this.locateErrorSettingsService().getErrorSettingsModel();
-        return new ErrorSettingsVModel(errorSettingsModel.storeErrors);
-    }
-
-    /******************************************************************************
-     * @description Retrieve an instance of the ErrorSettingsService class.
-     * @return An instance of ErrorSettingsService
-     ******************************************************************************/
-    @TestVisible
-    private ErrorSettingsService locateErrorSettingsService() {
-        return ErrorSettingsService.getInstance();
+    @AuraEnabled(cacheable=true)
+    public static ErrorSettingsVModel getErrorSettingsViewModel() {
+        try {
+            return ErrorSettingsController.locateErrorSettingsVMapper().getErrorSettingsViewModel();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
     }
 }
