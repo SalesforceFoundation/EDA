@@ -133,7 +133,7 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label>Muu</label>
+        <label><!-- Picklist value for naming format used for Administrative and Household Accounts --></label>
         <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
@@ -173,7 +173,7 @@
         <name>adminAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>Nimimuoto, jota käytetään automaattisesti luotuihin hallintatileihin.</label>
+        <label><!-- Description of the Administrative Account Name Format setting --></label>
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -205,7 +205,7 @@
         <name>automaticHHNaming</name>
     </customLabels>
     <customLabels>
-        <label>Jos tämä on valittu, nimetään nykyinen kotitaloustili uudelleen automaattisesti, kun yhteyshenkilö lisätään tiliin tai jos nykyistä yhteyshenkilöä muutetaan.</label>
+        <label><!-- Description of the Automatically Rename Household Accounts setting --></label>
         <name>automaticHHNamingHelpText</name>
     </customLabels>
     <customLabels>
@@ -238,7 +238,7 @@
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} hallintatili</label>
-        <name>firstNameLastNameAdminACC</name>
+        <name>firstNameLastNameAdminAcc</name>
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} perhe</label>
@@ -253,11 +253,11 @@
         <name>giftProcessingConfigException</name>
     </customLabels>
     <customLabels>
-        <label>Kotitaloustilin nimen muoto</label>
+        <label><!-- Field label for the Household Account Name setting --></label>
         <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>Kotitaloustilien nimeämisessä käytetty muoto.</label>
+        <label><!-- Description of the Household Account Name Format setting --></label>
         <name>hhAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -367,6 +367,18 @@
     <customLabels>
         <label>Lisää tarvittaessa ”ei latinalaisamerikkalainen tai latino” valintaluettelon arvoksi etnisyys-kenttään.</label>
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Field label for Custom Name Format for Administrative Accounts --></label>
+        <name>stgAdminAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgAdminAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Administrative Account Naming --></label>
+        <name>stgAdminAccountNamingTitle</name>
     </customLabels>
     <customLabels>
         <label>Hallintatilin tietuetyyppi</label>
@@ -1217,6 +1229,18 @@
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for Custom Name Format for Household Accounts --></label>
+        <name>stgHHAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgHHAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Household Account Naming --></label>
+        <name>stgHHAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Vahvista sisäkkäisten suunnitelmavaatimukset sisältävä ohjelmasuunnitelma</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
@@ -1385,6 +1409,10 @@
     <customLabels>
         <label>Järjestelmä</label>
         <name>stgTabSystem</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Link label to EDA Documentation --></label>
+        <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
         <label>Salli autom. luodut päällekkäissuhteet</label>

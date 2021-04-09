@@ -25,28 +25,29 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group EDA Settings
-* @group-content ../../ApexDocContent/EdaSettings.htm
-* @description Class to generate a view model for Administrative Account Naming Settings.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group EDA Settings
+ * @group-content ../../ApexDocContent/EdaSettings.htm
+ * @description Class to generate a view model for Administrative Account Naming Settings.
+ */
 public virtual with sharing class AccountNamingSettingsVMapper {
     /**********************************************************************************
-    * @description Instance for Singleton Pattern
-    **********************************************************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************************************************/
     @TestVisible
     private static AccountNamingSettingsVMapper instance;
 
     /**********************************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************************/
-    protected AccountNamingSettingsVMapper() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************************/
+    protected AccountNamingSettingsVMapper() {
+    }
 
     /**********************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of AccountNamingSettingsVMapper.
-    **********************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of AccountNamingSettingsVMapper.
+     **********************************************************************************/
     public static AccountNamingSettingsVMapper getInstance() {
         if (instance == null) {
             instance = new AccountNamingSettingsVMapper();
@@ -55,10 +56,60 @@ public virtual with sharing class AccountNamingSettingsVMapper {
         return instance;
     }
 
+    /************************************************************************************
+     * @description Retrieve a view model representing the Account Naming settings
+     * in Hierarchy Settings.
+     * @return An AccountNamingSettingsVModel
+     ************************************************************************************/
+    public virtual AccountNamingSettingsVModel getAccountNamingSettingsVModel() {
+        // get model representing current Account Naming settings in Hierarchy Settings
+        AccountNamingSettingsModel currentAccountNamingSettingsModel = this.locateAccountNamingSettingsService()
+            .getAccountNamingSettingsModel();
+
+        // get valid naming formats for Admin and HH accounts
+        AccountNamingFormatModel administrativeAccountNamingFormatModel = this.locateAccountNamingSettingsService()
+            .getAdministrativeAccountNamingFormatModel();
+        AccountNamingFormatModel householdAccountNamingFormatModel = this.locateAccountNamingSettingsService()
+            .getHouseholdAccountNamingFormatModel();
+
+        List<ComboboxValueVModel> administrativeAccountNamingComboboxValueVModelsList = new List<ComboboxValueVModel>();
+        List<ComboboxValueVModel> householdAccountNamingComboboxValueVModelsList = new List<ComboboxValueVModel>();
+
+        for (
+            String adminNamingFormat : administrativeAccountNamingFormatModel.validAccountNamingFormatsByName.values()
+        ) {
+            administrativeAccountNamingComboboxValueVModelsList.add(
+                new ComboboxValueVModel(adminNamingFormat, adminNamingFormat)
+            );
+        }
+
+        for (String hhNamingFormat : householdAccountNamingFormatModel.validAccountNamingFormatsByName.values()) {
+            householdAccountNamingComboboxValueVModelsList.add(new ComboboxValueVModel(hhNamingFormat, hhNamingFormat));
+        }
+
+        ComboboxVModel administrativeAccountNameFormatComboboxVModel = new ComboboxVModel(
+            currentAccountNamingSettingsModel.administrativeAccountNameFormat,
+            administrativeAccountNamingComboboxValueVModelsList
+        );
+
+        ComboboxVModel householdAccountNameFormatComboboxVModel = new ComboboxVModel(
+            currentAccountNamingSettingsModel.householdAccountNamingFormat,
+            householdAccountNamingComboboxValueVModelsList
+        );
+
+        return new AccountNamingSettingsVModel(
+            currentAccountNamingSettingsModel.customAdministrativeAccountNameFormat,
+            currentAccountNamingSettingsModel.customHouseholdAccountNameFormat,
+            currentAccountNamingSettingsModel.autoHouseholdAccountNamingEnabled,
+            administrativeAccountNameFormatComboboxVModel,
+            householdAccountNameFormatComboboxVModel
+        );
+    }
+
     /**********************************************************************************
-    * @description Retrieve an instance of AccountNamingSettingsService.
-    * @return An instance of AccountNamingSettingsService class.
-    **********************************************************************************/
+     * @description Retrieve an instance of AccountNamingSettingsService.
+     * @return An instance of AccountNamingSettingsService class.
+     **********************************************************************************/
     @TestVisible
     private AccountNamingSettingsService locateAccountNamingSettingsService() {
         return AccountNamingSettingsService.getInstance();
