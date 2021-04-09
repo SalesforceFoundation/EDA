@@ -133,7 +133,7 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label>Altres</label>
+        <label><!-- Picklist value for naming format used for Administrative and Household Accounts --></label>
         <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
@@ -173,7 +173,7 @@
         <name>adminAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>El format de nom utilitzat per als comptes administratius de creació automàtica.</label>
+        <label><!-- Description of the Administrative Account Name Format setting --></label>
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -205,7 +205,7 @@
         <name>automaticHHNaming</name>
     </customLabels>
     <customLabels>
-        <label>Si se selecciona aquesta opció, es canviarà el nom automàticament d&apos;un compte domèstic existent cada vegada que s&apos;afegeixi un contacte al compte o es canviï un contacte existent.</label>
+        <label><!-- Description of the Automatically Rename Household Accounts setting --></label>
         <name>automaticHHNamingHelpText</name>
     </customLabels>
     <customLabels>
@@ -238,7 +238,7 @@
     </customLabels>
     <customLabels>
         <label>Compte administratiu de {!{!FirstName}} {!LastName}</label>
-        <name>firstNameLastNameAdminACC</name>
+        <name>firstNameLastNameAdminAcc</name>
     </customLabels>
     <customLabels>
         <label>Família de {!{!FirstName}} {!LastName}</label>
@@ -253,11 +253,11 @@
         <name>giftProcessingConfigException</name>
     </customLabels>
     <customLabels>
-        <label>Format de noms del compte domèstic</label>
+        <label><!-- Field label for the Household Account Name setting --></label>
         <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>El format utilitzat per posar noms als comptes domèstics.</label>
+        <label><!-- Description of the Household Account Name Format setting --></label>
         <name>hhAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -367,6 +367,18 @@
     <customLabels>
         <label>Afegiu &quot;No hispà ni llatí&quot; com a valor de llista de selecció al camp Ètnia si és necessari.</label>
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Field label for Custom Name Format for Administrative Accounts --></label>
+        <name>stgAdminAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgAdminAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Administrative Account Naming --></label>
+        <name>stgAdminAccountNamingTitle</name>
     </customLabels>
     <customLabels>
         <label>Tipus de registre del compte administratiu</label>
@@ -1225,6 +1237,18 @@
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for Custom Name Format for Household Accounts --></label>
+        <name>stgHHAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgHHAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Household Account Naming --></label>
+        <name>stgHHAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Validar el pla del programa per als requisits del pla enclavat</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
@@ -1393,6 +1417,10 @@
     <customLabels>
         <label>Sistema</label>
         <name>stgTabSystem</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Link label to EDA Documentation --></label>
+        <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
         <label>Permetre relacions duplicades creades automàticament</label>

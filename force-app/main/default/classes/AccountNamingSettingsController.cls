@@ -29,54 +29,31 @@
  * @date 2021
  * @group EDA Settings
  * @group-content ../../ApexDocContent/EdaSettings.htm
- * @description Apex controller for Account model settings in accountModelSettings LWC component.
+ * @description Apex controller for Acount Naming functionality in accountModelSettings LWC component.
  */
-public with sharing class AccountModelSettingsController {
+public with sharing class AccountNamingSettingsController {
     /************************************************************************************
-     * @description Retrieve an AccountModelSettingsVModel representing the current values
-     * specified for Account Settings fields in Hierarchy Settings and a list of models
-     * representing the available active Account Record Types.
-     * @return An AccountModelSettingsVModel
+     * @description Retrieve an AccountNamingSettingsVModel represeting the current values
+     * specified for Account Settings fields in Hierarchy Settings related to Account
+     * Naming functionality list of models representing the valid naming formats
+     * for Administrative and Household accounts.
+     * @return An AccountNamingSettingsVModel
      ************************************************************************************/
     @AuraEnabled(cacheable=true)
-    public static AccountModelSettingsVModel getAccountModelSettingsViewModel() {
+    public static AccountNamingSettingsVModel getAccountNamingSettingsViewModel() {
         try {
-            return AccountModelSettingsController.locateAccountModelSettingsVMapper()
-                .getAccountModelSettingsViewModel();
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
-    }
-
-    /************************************************************************************
-     * @description Retrieve a DualListboxVModel representing the current Account Record Types
-     * specified for deletion when not associated with Contacts in Hierarchy Settings and
-     * the remaining active Account Record Types available for selection.
-     * @return A DualListboxVModel
-     ************************************************************************************/
-    @AuraEnabled(cacheable=true)
-    public static DualListboxVModel getAccountAutoDeletionSettingsViewModel() {
-        try {
-            return AccountModelSettingsController.locateAccountAutoDeletionSettingsVMapper()
-                .getAccountAutoDeletionSettingsViewModel();
+            return AccountNamingSettingsController.locateAccountNamingSettingsVMapper()
+                .getAccountNamingSettingsVModel();
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
 
     /**********************************************************************************
-     * @description Locates and returns an instance of AccountModelSettingsVMapper.
+     * @description Locates and returns an instance of AccountNamingSettingsVMapper.
      **********************************************************************************/
     @TestVisible
-    private static AccountModelSettingsVMapper locateAccountModelSettingsVMapper() {
-        return AccountModelSettingsVMapper.getInstance();
-    }
-
-    /**********************************************************************************
-     * @description Locates and returns an instance of AccountAutoDeletionSettingsVMapper.
-     **********************************************************************************/
-    @TestVisible
-    private static AccountAutoDeletionSettingsVMapper locateAccountAutoDeletionSettingsVMapper() {
-        return AccountAutoDeletionSettingsVMapper.getInstance();
+    private static AccountNamingSettingsVMapper locateAccountNamingSettingsVMapper() {
+        return AccountNamingSettingsVMapper.getInstance();
     }
 }
