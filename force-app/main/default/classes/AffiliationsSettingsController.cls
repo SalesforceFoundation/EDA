@@ -57,7 +57,7 @@ public with sharing class AffiliationsSettingsController {
     public static String insertAffiliationMappings(String mappingName, String recordTypeName, String contactFieldName) {
         try {
             AffiliationsSettingsController.locateAffiliationMappingsService()
-                .insertAffiliationMappings(mappingName, recordTypeName, contactFieldName, false, '', '');
+                .insertAffiliationMappings(mappingName, recordTypeName, contactFieldName);
 
             RecordTypeModel accRecTypeModel = AffiliationsSettingsController.locateRecordTypeService()
                 .getRecordTypeModelFromRecTypeDevName('Account', recordTypeName);

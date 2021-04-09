@@ -333,21 +333,6 @@ private with sharing class AffiliationsSettingsController_TEST {
             'Primary Affiliation Field should change to Primary Department'
         );
         System.assertEquals(
-            false,
-            afflSettings.Auto_Program_Enrollment__c,
-            'The recordtype label of the changed account rectype should be returned'
-        );
-        System.assertEquals(
-            '""',
-            afflSettings.Auto_Program_Enrollment_Role__c,
-            'The recordtype label of the changed account rectype should be returned'
-        );
-        System.assertEquals(
-            '""',
-            afflSettings.Auto_Program_Enrollment_Status__c,
-            'The recordtype label of the changed account rectype should be returned'
-        );
-        System.assertEquals(
             'Business Organization',
             mappingName,
             'The recordtype label of the changed account rectype should be returned'
@@ -403,21 +388,6 @@ private with sharing class AffiliationsSettingsController_TEST {
             'Primary_Department__c',
             afflSettings.Primary_Affl_Field__c,
             'Primary Affiliation Field should change to Primary Department'
-        );
-        System.assertEquals(
-            false,
-            afflSettings.Auto_Program_Enrollment__c,
-            'The recordtype label of the changed account rectype should be returned'
-        );
-        System.assertEquals(
-            '""',
-            afflSettings.Auto_Program_Enrollment_Role__c,
-            'The recordtype label of the changed account rectype should be returned'
-        );
-        System.assertEquals(
-            '""',
-            afflSettings.Auto_Program_Enrollment_Status__c,
-            'The recordtype label of the changed account rectype should be returned'
         );
         System.assertEquals(
             'Business_Organization',

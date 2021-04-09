@@ -220,10 +220,7 @@ public with sharing class AffiliationMappingsService_TEST {
         affiliationMappingsServiceInstance.insertAffiliationMappings(
             'Test Affiliation Mapping',
             'Test_Record_Type',
-            'Test Contact Primary Affl Field',
-            false,
-            '',
-            'Test Auto Enrollment Role'
+            'Test Contact Primary Affl Field'
         );
         Test.stopTest();
 
@@ -254,21 +251,6 @@ public with sharing class AffiliationMappingsService_TEST {
             'Test Contact Primary Affl Field',
             affiliationMappingsResultsList[0].Primary_Affl_Field__c,
             'Contact primary affiliation field of new affiliation mapping should match specified value.'
-        );
-        System.assertEquals(
-            false,
-            affiliationMappingsResultsList[0].Auto_Program_Enrollment__c,
-            'Auto Program Enrollment of new affiliation mapping should be enabled.'
-        );
-        System.assertEquals(
-            '""',
-            affiliationMappingsResultsList[0].Auto_Program_Enrollment_Status__c,
-            'Auto Program Enrollment status of new affiliation mapping should be blank.'
-        );
-        System.assertEquals(
-            'Test Auto Enrollment Role',
-            affiliationMappingsResultsList[0].Auto_Program_Enrollment_Role__c,
-            'Auto Program Enrollment role of new affiliation mapping should match specified value.'
         );
     }
 

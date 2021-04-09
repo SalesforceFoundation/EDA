@@ -189,21 +189,6 @@ public with sharing class AffiliationMappingsMapper_TEST {
             affiliationMappingsResultsList[0].Primary_Affl_Field__c,
             'Contact primary affiliation field of new affiliation mapping should match specified value.'
         );
-        System.assertEquals(
-            true,
-            affiliationMappingsResultsList[0].Auto_Program_Enrollment__c,
-            'Auto Program Enrollment of new affiliation mapping should be enabled.'
-        );
-        System.assertEquals(
-            'Test Auto Enrollment Status',
-            affiliationMappingsResultsList[0].Auto_Program_Enrollment_Status__c,
-            'Auto Program Enrollment status of new affiliation mapping should match specified value.'
-        );
-        System.assertEquals(
-            '""',
-            affiliationMappingsResultsList[0].Auto_Program_Enrollment_Role__c,
-            'Auto Program Enrollment role of new affiliation mapping should be blank.'
-        );
     }
 
     /**************************************************************************************************************************

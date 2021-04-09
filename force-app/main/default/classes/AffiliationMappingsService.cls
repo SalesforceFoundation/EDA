@@ -77,23 +77,13 @@ public virtual with sharing class AffiliationMappingsService {
     public void insertAffiliationMappings(
         String affiliationMappingName,
         String recordTypeName,
-        String contactFieldName,
-        Boolean autoProgramEnrollment,
-        String autoProgramEnrollmentStatus,
-        String autoProgramEnrollmentRole
+        String contactFieldName
     ) {
         this.locateUserPermissionService().checkViewSetupForCurrentUser();
 
         this.locateAffiliationMappingsMapper()
             .insertAffiliationMappingModel(
-                new AffiliationMappingsModel(
-                    affiliationMappingName,
-                    recordTypeName,
-                    contactFieldName,
-                    autoProgramEnrollment,
-                    autoProgramEnrollmentStatus,
-                    autoProgramEnrollmentRole
-                )
+                new AffiliationMappingsModel(affiliationMappingName, recordTypeName, contactFieldName)
             );
     }
 

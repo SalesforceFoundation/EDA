@@ -201,7 +201,7 @@ export default class affiliationSettings extends LightningElement {
             })
 
             .catch((error) => {
-                this.showToast("error", "Save Incomplete", this.labelReference.stgAfflNotInserted);
+                //this.showToast("error", "Save Incomplete", this.labelReference.stgAfflNotInserted);
             });
         this.refreshAllApex();
     }
