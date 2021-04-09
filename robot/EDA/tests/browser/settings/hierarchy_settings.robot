@@ -18,7 +18,7 @@ Validate hierarchy settings under custom settings
     Go to EDA settings tab      Accounts and Contacts
     Click action button on EDA settings page    Edit
     Select accounts contacts checkbox
-    ...         Account Types with Multi-Addresses Enabled=Household Account
+    ...         Enable Multiple Addresses for Account Types=Household Account
     Click action button on EDA settings page    Save
     Load Page Object                     Home                          Setup
     Go to custom settings setup
