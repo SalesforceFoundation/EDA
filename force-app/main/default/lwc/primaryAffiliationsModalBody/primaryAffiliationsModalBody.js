@@ -9,6 +9,8 @@ import stgColContactPrimaryAfflField from "@salesforce/label/c.stgColContactPrim
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgAffiliationsEditModalBody from "@salesforce/label/c.stgAffiliationsEditModalBody";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+import stgAffiliationsDeleteModalTitle from "@salesforce/label/c.stgAffiliationsDeleteModalTitle";
+import stgAffiliationsDeleteModalBody from "@salesforce/label/c.stgAffiliationsDeleteModalBody";
 
 export default class PrimaryAffiliationsModalBody extends LightningElement {
     @api affiliationsAction;
@@ -27,6 +29,7 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
         comboboxPlaceholderText: stgOptSelect,
         contactFieldCombobox: stgColContactPrimaryAfflField,
         modalBodyEditSave: stgAffiliationsEditModalBody,
+        modalBodyDelete: stgAffiliationsDeleteModalBody,
         tellMeMoreLink: stgTellMeMoreLink,
     };
 
@@ -68,6 +71,10 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
 
     get modifyRecords() {
         return this.affiliationsAction === "edit" || this.affiliationsAction === "create";
+    }
+
+    get deleteRecords() {
+        return this.affiliationsAction === "delete";
     }
 
     get accountRecordTypeApiNameLabel() {
@@ -116,5 +123,11 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
 
     get affiliationsDesc() {
         return this.labelReference.modalBodyEditSave + " " + this.affiliationsHyperLink;
+    }
+
+    get deleteConfirmationDescription() {
+        return this.labelReference.modalBodyDelete
+            .replace("{0}", this.accountRecordType)
+            .replace("{1}", this.contactField);
     }
 }

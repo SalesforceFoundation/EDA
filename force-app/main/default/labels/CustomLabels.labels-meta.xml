@@ -740,7 +740,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Message that appears before deleting an Affiliation mapping</shortDescription>
-        <value>You're about to delete an Affiliation mapping that connects an Account with this record type to a Primary Affiliation field on Contact. Are you sure you want to delete this mapping?</value>
+        <value>This Affiliation mapping maps the {0} Account record type to the {1} field on Contact records. We're just making sure that you want to delete it.</value>
     </labels>
     <labels>
         <fullName>stgAffiliationsDeleteModalTitle</fullName>
@@ -828,7 +828,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Message that appears before deleting Affiliation mapping with an auto-enrollment</shortDescription>
-        <value>This Affiliation mapping is associated with an auto-enrollment setting in Courses and Enrollments. If you delete it, a Program Enrollment record won't be created when an Affilation is created between a Contact and an Account of this record type.</value>
+        <value>Deleting this Affiliation mapping also means that when an Affiliation with the {0} Account record type is created for a Contact, a Program Enrollment record is no longer automatically created.</value>
     </labels>
     <labels>
         <fullName>stgAfflNotInserted</fullName>

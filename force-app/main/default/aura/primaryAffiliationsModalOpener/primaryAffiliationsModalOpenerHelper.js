@@ -23,6 +23,11 @@
                 confirmButton = $A.get("$Label.c.stgBtnSave");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 break;
+            case "delete":
+                modalHeaderLabel = $A.get("$Label.c.stgAffiliationsDeleteModalTitle");
+                confirmButton = $A.get("$Label.c.stgBtnDelete");
+                cancelButton = $A.get("$Label.c.stgBtnCancel");
+                break;
         }
 
         $A.createComponents([
@@ -84,9 +89,33 @@
             case "edit":
                 this.handleModalEditConfirm(component);
                 break;
+            case "delete":
+                this.handleModalDeleteConfirm(component);
+                break;
         }
     },
     handleModalEditConfirm: function(component) {
+        let modalSaveEvent = component.getEvent("modalSaveEvent");
+
+        const mappingName = component.get("v.mappingName");
+        const affiliationsAction = component.get("v.affiliationsAction");
+        const accountRecordType = component.get("v.accountRecordType");
+        const contactField = component.get("v.contactField");
+
+        const saveModel = {
+            modalType: "affiliations",
+            action: affiliationsAction,
+            mappingName: mappingName,
+            accountRecordType: accountRecordType,
+            contactField: contactField
+        };
+        
+        modalSaveEvent.setParams({
+            saveModel: saveModel
+        });
+        modalSaveEvent.fire();
+    },
+    handleModalDeleteConfirm: function(component) {
         let modalSaveEvent = component.getEvent("modalSaveEvent");
 
         const mappingName = component.get("v.mappingName");

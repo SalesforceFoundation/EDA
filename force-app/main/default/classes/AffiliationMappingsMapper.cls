@@ -113,9 +113,18 @@ public virtual with sharing class AffiliationMappingsMapper {
     /*****************************************************************************
      * @description deletes an affiliation mapping record
      * @param affiliationMappingModel Model of an affiliation mappingto be deleted
+     * @return A string representing the record type name associated with the deleted affiliation mapping
      *****************************************************************************/
-    public void deleteAffiliationMappingModel(AffiliationMappingsModel affiliationMappingModel) {
+    public String deleteAffiliationMappingModel(AffiliationMappingsModel affiliationMappingModel) {
         Affl_Mappings__c affiliationMappingsToDelete = Affl_Mappings__c.getInstance(affiliationMappingModel.name);
-        delete affiliationMappingsToDelete;
+        String deletedPrimaryAffiliationRecordTypeName = affiliationMappingsToDelete.Account_Record_Type__c;
+
+        try {
+            delete affiliationMappingsToDelete;
+        } catch (System.DmlException e) {
+            return null;
+        }
+
+        return deletedPrimaryAffiliationRecordTypeName;
     }
 }

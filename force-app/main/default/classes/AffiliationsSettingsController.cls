@@ -149,11 +149,13 @@ public with sharing class AffiliationsSettingsController {
      * @param  autoEnrollment A boolean indicating whether auto program enrollment is enabled for the new affiliation mapping
      * @param  autoEnrollmentStatus A string representing the auto program enrollment status of the new affiliation mapping
      * @param  autoEnrollmentRole A string representing the auto program enrollment role of the new affiliation mapping
+     * @return A string representing the Account Record Name associated with the deleted affiliation mapping.
      ********************************************************************************************************************************************/
     @AuraEnabled
-    public static void deleteAffiliationMapping(String mappingName) {
+    public static String deleteAffiliationMapping(String mappingName) {
         try {
-            AffiliationsSettingsController.locateAffiliationMappingsService().deleteAffiliationMapping(mappingName);
+            return AffiliationsSettingsController.locateAffiliationMappingsService()
+                .deleteAffiliationMapping(mappingName);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
