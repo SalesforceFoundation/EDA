@@ -117,11 +117,12 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
     }
 
     get affiliationsDesc() {
-        if (this.affiliationsAction === "edit") {
-            return this.labelReference.modalBodyEditSave + " " + this.affiliationsHyperLink;
-        }
-        if (this.affiliationsAction === "create") {
-            return this.labelReference.modalBodyCreate + " " + this.affiliationsHyperLink;
+        switch (this.affiliationsAction) {
+            case "edit":
+                return this.labelReference.modalBodyEditSave + " " + this.affiliationsHyperLink;
+
+            case "create":
+                return this.labelReference.modalBodyCreate + " " + this.affiliationsHyperLink;
         }
     }
 }
