@@ -149,10 +149,7 @@ public with sharing class AffiliationMappingsMapper_TEST {
         AffiliationMappingsModel affiliationMappingsModelToInsert = new AffiliationMappingsModel(
             'Test Affiliation Mapping',
             'Test_Record_Type',
-            'Test Contact Primary Affl Field',
-            true,
-            'Test Auto Enrollment Status',
-            null
+            'Test Contact Primary Affl Field'
         );
 
         AffiliationMappingsMapper affiliationMappingsMapperInstance = AffiliationMappingsMapper.getInstance();

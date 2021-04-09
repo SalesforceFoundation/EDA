@@ -53,7 +53,6 @@
                 ]
             ],
             function (components, status) {
-                window.alert("inside function");
                 if (status === "SUCCESS") {
                     modalBody = components[0];
                     modalFooter = components[1];

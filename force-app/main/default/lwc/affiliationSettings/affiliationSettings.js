@@ -18,7 +18,7 @@ import stgColContactPrimaryAfflField from "@salesforce/label/c.stgColContactPrim
 import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 import stgAffiliationsEditSuccess from "@salesforce/label/c.stgAffiliationsEditSuccess";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
-import stgAfflNotInserted from "@salesforce/label/c.stgAfflNotInserted";
+import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
 
 export default class affiliationSettings extends LightningElement {
     isEditMode = false;
@@ -43,7 +43,7 @@ export default class affiliationSettings extends LightningElement {
         },
         successMessage: stgAffiliationsEditSuccess,
         tellMeMoreLink: stgTellMeMoreLink,
-        stgAfflNotInserted: stgAfflNotInserted,
+        newButton: stgBtnAddMapping,
     };
 
     affiliationsHyperLink =
