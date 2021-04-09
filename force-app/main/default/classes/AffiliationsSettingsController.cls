@@ -144,11 +144,6 @@ public with sharing class AffiliationsSettingsController {
     /********************************************************************************************************************************************
      * @description Overloaded method to insert a new Affiliation Mapping custom setting with auto-enrollment settings specified.
      * @param  mappingName A string representing the name of the new affiliation mapping
-     * @param  recordTypeName A string representing the Record Type name for the new affiliation mapping
-     * @param  contactFieldName A string representing the field label for the Contact primary affiliation field associated with the new affiliation mapping
-     * @param  autoEnrollment A boolean indicating whether auto program enrollment is enabled for the new affiliation mapping
-     * @param  autoEnrollmentStatus A string representing the auto program enrollment status of the new affiliation mapping
-     * @param  autoEnrollmentRole A string representing the auto program enrollment role of the new affiliation mapping
      * @return A string representing the Account Record Name associated with the deleted affiliation mapping.
      ********************************************************************************************************************************************/
     @AuraEnabled

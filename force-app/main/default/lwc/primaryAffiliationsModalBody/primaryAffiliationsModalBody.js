@@ -9,13 +9,14 @@ import stgColContactPrimaryAfflField from "@salesforce/label/c.stgColContactPrim
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgAffiliationsEditModalBody from "@salesforce/label/c.stgAffiliationsEditModalBody";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
-import stgAffiliationsDeleteModalTitle from "@salesforce/label/c.stgAffiliationsDeleteModalTitle";
 import stgAffiliationsDeleteModalBody from "@salesforce/label/c.stgAffiliationsDeleteModalBody";
+import stgAfflDeleteWithAutoEnrollment from "@salesforce/label/c.stgAfflDeleteWithAutoEnrollment";
 
 export default class PrimaryAffiliationsModalBody extends LightningElement {
     @api affiliationsAction;
     @api accountRecordType;
     @api contactField;
+    @api autoEnrollmentEnabled;
 
     @track accountRecordTypeComboboxVModel;
     @track accountRecordTypeComboboxWireResult;
@@ -126,8 +127,15 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
     }
 
     get deleteConfirmationDescription() {
-        return this.labelReference.modalBodyDelete
+        let deleteConfirmationText = this.labelReference.modalBodyDelete
             .replace("{0}", this.accountRecordType)
             .replace("{1}", this.contactField);
+
+        if (this.autoEnrollmentEnabled === true) {
+            deleteConfirmationText +
+                this.labelReference.modalBodyDeleteWithAutoEnrollment.replace("{0}", this.accountRecordType);
+        }
+
+        return deleteConfirmationText;
     }
 }

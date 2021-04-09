@@ -366,7 +366,9 @@ public with sharing class AffiliationMappingsService_TEST {
         insert affiliationMappingToDelete;
 
         Test.startTest();
-        affiliationMappingsServiceInstance.deleteAffiliationMapping('Test Affiliation Mapping');
+        String primaryAccountRecordTypeName = affiliationMappingsServiceInstance.deleteAffiliationMapping(
+            'Test Affiliation Mapping'
+        );
         Test.stopTest();
 
         List<Affl_Mappings__c> affiliationMappingsResultsList = [
@@ -382,6 +384,11 @@ public with sharing class AffiliationMappingsService_TEST {
         ];
 
         System.assertEquals(0, affiliationMappingsResultsList.size(), 'New affiliation mapping should be deleted.');
+        System.assertEquals(
+            'Test_Record_Type',
+            primaryAccountRecordTypeName,
+            'Should return  name of record type associated with deleted affiliation mapping.'
+        );
     }
 
     /**************************************************************************************************************************
@@ -395,10 +402,16 @@ public with sharing class AffiliationMappingsService_TEST {
         AffiliationMappingsService affiliationMappingsServiceInstance = AffiliationMappingsService.getInstance();
 
         Test.startTest();
-        affiliationMappingsServiceInstance.deleteAffiliationMapping('Non-Existent Affiliation Mapping');
+        String primaryAccountRecordTypeName = affiliationMappingsServiceInstance.deleteAffiliationMapping(
+            'Non-Existent Affiliation Mapping'
+        );
         Test.stopTest();
 
-        System.assert(true, 'Deleting non-existent affiliation mapping should not cause error.');
+        System.assertEquals(
+            null,
+            primaryAccountRecordTypeName,
+            'Deleting non-existent affiliation mapping should return null value.'
+        );
     }
 
     /**************************************************************************************************************************
@@ -422,7 +435,9 @@ public with sharing class AffiliationMappingsService_TEST {
         insert affiliationMappingToDelete;
 
         Test.startTest();
-        affiliationMappingsServiceInstance.deleteAffiliationMapping('Test Affiliation Mapping');
+        String primaryAccountRecordTypeName = affiliationMappingsServiceInstance.deleteAffiliationMapping(
+            'Test Affiliation Mapping'
+        );
         Test.stopTest();
 
         List<Affl_Mappings__c> affiliationMappingsResultsList = [
@@ -435,6 +450,12 @@ public with sharing class AffiliationMappingsService_TEST {
             1,
             affiliationMappingsResultsList.size(),
             'Affiliation mapping should not be deleted due to insufficient user permissions.'
+        );
+
+        System.assertEquals(
+            null,
+            primaryAccountRecordTypeName,
+            'Deleting affiliation mapping without appropriate permissions should return null value.'
         );
     }
 

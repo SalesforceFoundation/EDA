@@ -118,7 +118,7 @@ public virtual with sharing class AffiliationMappingsService {
      * @param  mappingName A string representing the name of the affiliation mapping to delete
      * @return A string representing the record type name associated with the deleted affiliation mapping
      *****************************************************************************************/
-    public String deleteAffiliationMapping(String mappingName) {
+    public virtual String deleteAffiliationMapping(String mappingName) {
         if (this.locateUserPermissionService().checkViewSetupForCurrentUser() != true) {
             return null;
         }

@@ -270,7 +270,9 @@ public with sharing class AffiliationMappingsMapper_TEST {
         AffiliationMappingsMapper affiliationMappingsMapperInstance = AffiliationMappingsMapper.getInstance();
 
         Test.startTest();
-        affiliationMappingsMapperInstance.deleteAffiliationMappingModel(affiliationMappingsModelToDelete);
+        String primaryAffiliationRecordTypeName = affiliationMappingsMapperInstance.deleteAffiliationMappingModel(
+            affiliationMappingsModelToDelete
+        );
         Test.stopTest();
 
         List<Affl_Mappings__c> affiliationMappingsResultsList = [
@@ -280,5 +282,10 @@ public with sharing class AffiliationMappingsMapper_TEST {
         ];
 
         System.assertEquals(0, affiliationMappingsResultsList.size(), 'New affiliation mapping should be deleted.');
+        System.assertEquals(
+            'Test_Record_Type',
+            primaryAffiliationRecordTypeName,
+            'Should return name of account record type associated with deleted primary affiliation.'
+        );
     }
 }

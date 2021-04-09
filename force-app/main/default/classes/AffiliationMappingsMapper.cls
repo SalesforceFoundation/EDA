@@ -119,12 +119,7 @@ public virtual with sharing class AffiliationMappingsMapper {
         Affl_Mappings__c affiliationMappingsToDelete = Affl_Mappings__c.getInstance(affiliationMappingModel.name);
         String deletedPrimaryAffiliationRecordTypeName = affiliationMappingsToDelete.Account_Record_Type__c;
 
-        try {
-            delete affiliationMappingsToDelete;
-        } catch (System.DmlException e) {
-            return null;
-        }
-
+        delete affiliationMappingsToDelete;
         return deletedPrimaryAffiliationRecordTypeName;
     }
 }
