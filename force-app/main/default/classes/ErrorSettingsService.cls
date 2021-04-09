@@ -29,40 +29,47 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Mapper class for Error Settings functionality in EDA settings
+ * @description Service class for Error Settings functionality in EDA settings
  */
-public virtual with sharing class ErrorSettingsMapper {
+public virtual with sharing class ErrorSettingsService {
     /*********************************************
      * @description Instance for Singleton Pattern
      **********************************************/
     @TestVisible
-    private static ErrorSettingsMapper instance;
+    private static ErrorSettingsService instance;
 
     /*********************************************************************
      * @description Empty constructor is not public for Singleton Pattern
      **********************************************************************/
-    protected ErrorSettingsMapper() {
+    protected ErrorSettingsService() {
     }
 
     /******************************************************************************
      * @description Static method to get the current instance for Singleton pattern
-     * @return The instance of ErrorSettingsMapper.
+     * @return The instance of ErrorSettingsService.
      ******************************************************************************/
-    public static ErrorSettingsMapper getInstance() {
+    public static ErrorSettingsService getInstance() {
         if (instance == null) {
-            instance = new ErrorSettingsMapper();
+            instance = new ErrorSettingsService();
         }
 
         return instance;
     }
 
-    /*******************************************************************************************
-     * @description Retrieve a model representing error settings specified in Hierarchy Settings.
+    /******************************************************************************
+     * @description Retrieve a model representing error settings set in hierarchy settings.
      * @return An ErrorSettingsModel
-     ********************************************************************************************/
+     ******************************************************************************/
     public ErrorSettingsModel getErrorSettingsModel() {
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
+        return this.locateErrorSettingsMapper().getErrorSettingsModel();
+    }
 
-        return new ErrorSettingsModel(hierarchySettings.Store_Errors_On__c);
+    /******************************************************************************
+     * @description Retrieve an instance of the ErrorSettingsMapper class
+     * @return An instance of ErrorSettingsMapper
+     ******************************************************************************/
+    @TestVisible
+    private ErrorSettingsMapper locateErrorSettingsMapper() {
+        return ErrorSettingsMapper.getInstance();
     }
 }

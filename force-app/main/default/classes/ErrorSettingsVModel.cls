@@ -29,40 +29,18 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Mapper class for Error Settings functionality in EDA settings
+ * @description View model representing Error Settings functionality in EDA settings
  */
-public virtual with sharing class ErrorSettingsMapper {
-    /*********************************************
-     * @description Instance for Singleton Pattern
-     **********************************************/
-    @TestVisible
-    private static ErrorSettingsMapper instance;
+public with sharing class ErrorSettingsVModel {
+    @AuraEnabled
+    public Boolean storeErrors { get; private set; }
 
     /*********************************************************************
-     * @description Empty constructor is not public for Singleton Pattern
-     **********************************************************************/
-    protected ErrorSettingsMapper() {
-    }
-
-    /******************************************************************************
-     * @description Static method to get the current instance for Singleton pattern
-     * @return The instance of ErrorSettingsMapper.
-     ******************************************************************************/
-    public static ErrorSettingsMapper getInstance() {
-        if (instance == null) {
-            instance = new ErrorSettingsMapper();
-        }
-
-        return instance;
-    }
-
-    /*******************************************************************************************
-     * @description Retrieve a model representing error settings specified in Hierarchy Settings.
-     * @return An ErrorSettingsModel
-     ********************************************************************************************/
-    public ErrorSettingsModel getErrorSettingsModel() {
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
-
-        return new ErrorSettingsModel(hierarchySettings.Store_Errors_On__c);
+     * @description Single argument constructor
+     * @param  storeErrors A boolen indicating errors should be stored
+     * @return An ErrorSettingsVModel
+     *********************************************************************/
+    public ErrorSettingsVModel(Boolean storeErrors) {
+        this.storeErrors = storeErrors;
     }
 }

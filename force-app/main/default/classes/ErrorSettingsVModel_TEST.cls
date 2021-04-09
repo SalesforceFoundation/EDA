@@ -28,18 +28,21 @@
  * @author Salesforce.org
  * @date 2021
  * @group
- * @group-content ../../ApexDocContent/
- * @description Model class for Error Settings in EDA settings
+ * @group-content ../../ApexDocContent/Tests
+ * @description Test class for ErrorSettingsVModel
  */
-public with sharing class ErrorSettingsModel {
-    public Boolean storeErrors { get; private set; }
+@isTest
+public with sharing class ErrorSettingsVModel_TEST {
+    /****************************************************************************
+     * @description Test method to verify single argument constructore returns
+     * a view model with all properties populated.
+     ****************************************************************************/
+    @isTest
+    private static void singleArugumentConstructorValid() {
+        Test.startTest();
+        ErrorSettingsVModel errorSettingsVModel = new ErrorSettingsVModel(false);
+        Test.stopTest();
 
-    /************************************************************
-     * @description Single argument constructor
-     * @param  storeErrors storeErrors description
-     * @return A ErrorSettingsModel with all properties populated.
-     ************************************************************/
-    public ErrorSettingsModel(Boolean storeErrors) {
-        this.storeErrors = storeErrors;
+        System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');
     }
 }

@@ -96,9 +96,7 @@ public with sharing class ErrorSettingsMapper_TEST {
         ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
 
         Test.startTest();
-        ErrorSettingsModel errorSettingsModel = errorSettingsMapperInstance.getErrorSettingsModel(
-            hierarchySettings.Store_Errors_On__c
-        );
+        ErrorSettingsModel errorSettingsModel = errorSettingsMapperInstance.getErrorSettingsModel();
         Test.stopTest();
 
         System.assertEquals(
