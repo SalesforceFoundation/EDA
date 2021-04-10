@@ -1217,7 +1217,7 @@
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
-        <label>Kun tämä valitaan, virheet tallennetaan mukautettuun virhe-objektiin. Voit luoda välilehden virheet-objektille nähdäksesi luettelon kaikista tallennetuista virheistä.</label>
+        <label><!-- Description of the Store Errors setting --></label>
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
@@ -1321,7 +1321,7 @@
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>
-        <label>Tallenna virheet</label>
+        <label><!-- Label for the Store Errors setting --></label>
         <name>stgStoreErrorsTitle</name>
     </customLabels>
     <customLabels>

@@ -1217,7 +1217,7 @@
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
-        <label>Lorsque cette option est sélectionnée, les erreurs sont stockées dans un objet Erreur personnalisé. Vous pouvez créer un onglet pour l&apos;objet Erreurs afin de consulter la liste des erreurs stockées.</label>
+        <label><!-- Description of the Store Errors setting --></label>
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
@@ -1321,7 +1321,7 @@
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>
-        <label>Enregistrer les erreurs</label>
+        <label><!-- Label for the Store Errors setting --></label>
         <name>stgStoreErrorsTitle</name>
     </customLabels>
     <customLabels>
