@@ -60,7 +60,7 @@ public virtual with sharing class ErrorSettingsMapper {
      * @description Retrieve a model representing error settings specified in Hierarchy Settings.
      * @return An ErrorSettingsModel
      ********************************************************************************************/
-    public ErrorSettingsModel getErrorSettingsModel() {
+    public virtual ErrorSettingsModel getErrorSettingsModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
         return new ErrorSettingsModel(hierarchySettings.Store_Errors_On__c);
