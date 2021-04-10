@@ -1,4 +1,5 @@
 import { LightningElement, track, wire } from "lwc";
+import { refreshApex } from "@salesforce/apex";
 
 import getErrorSettingsViewModel from "@salesforce/apex/ErrorSettingsController.getErrorSettingsViewModel";
 
@@ -60,6 +61,10 @@ export default class ErrorSettings extends LightningElement {
     handleSettingsEditModeChange(event) {
         this.isEditMode = !event.detail;
         this.affordancesDisabledToggle = event.detail;
+    }
+
+    handleSettingsSaveCancel(event) {
+        this.refreshAllApex();
     }
 
     handleSettingsSaving(event) {
