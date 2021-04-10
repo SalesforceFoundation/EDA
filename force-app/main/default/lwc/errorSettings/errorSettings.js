@@ -1,17 +1,30 @@
-import { LightningElement } from "lwc";
+import { LightningElement, track, wire } from "lwc";
+
+import getErrorSettingsViewModel from "@salesforce/apex/ErrorSettingsController.getErrorSettingsViewModel";
 
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
 import stgErrorSettingsTitle from "@salesforce/label/c.stgErrorSettingsTitle";
+import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
+import stgHelpStoreErrorsOn from "@salesforce/label/c.stgHelpStoreErrorsOn";
 
 export default class ErrorSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
+    @track errorSettingsWireResult;
+    @track errorSettingsVModel;
+
     labelReference = {
         systemSettingsPageHeading: stgSystemSettingsNav,
         systemSettingsTitle: stgSystemSettingsTitle,
         errorSettingsTitle: stgErrorSettingsTitle,
+        storeErrorsSettingTitle: stgStoreErrorsTitle,
+        storeErrorsSettingDescription: stgHelpStoreErrorsOn,
+    };
+
+    inputAttributeReference = {
+        storeErrorsToggleId: "storeErrors",
     };
 
     get affordancesDisabled() {
@@ -19,6 +32,29 @@ export default class ErrorSettings extends LightningElement {
             return true;
         }
         return undefined;
+    }
+
+    @wire(getErrorSettingsViewModel)
+    errorSettingsVModelWire(result) {
+        this.errorSettingsWireResult = result;
+
+        if (result.data) {
+            this.errorSettingsVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving errorSettingsVModel");
+        }
+    }
+
+    handleStoreErrorsChange(event) {
+        const eventDetail = event.detail;
+
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Store_Errors_On__c",
+            settingsValue: eventDetail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
     handleSettingsEditModeChange(event) {
@@ -43,17 +79,13 @@ export default class ErrorSettings extends LightningElement {
     }
 
     refreshAllApex() {
-        // Promise.all([
-        //     refreshApex(this.contactLanguageSettingsWireResult),
-        //     refreshApex(this.preferredContactInfoSettingsWireResult),
-        // ]).then(() => {
-        //     this.showPreferredPhoneEnforcement = this.preferredContactInfoSettingsVModel.enhancedPhoneFunctionality;
-        //     this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
-        //         dualListBox.resetValue();
-        //     });
-        //     this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
-        //         input.resetValue();
-        //     });
-        // });
+        Promise.all([refreshApex(this.errorSettingsWireResult)]).then(() => {
+            this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
+                dualListBox.resetValue();
+            });
+            this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
+                input.resetValue();
+            });
+        });
     }
 }
