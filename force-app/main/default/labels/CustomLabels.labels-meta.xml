@@ -2021,7 +2021,23 @@
         <protected>true</protected>
         <shortDescription>Description of the Accounts Without Contacts setting</shortDescription>
         <value>Delete Accounts with these record types if they have no Contacts.</value>
-    </labels>
+    </labels>  
+    <labels>
+        <fullName>stgHelpLeadConversionAccountNaming</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Auto Account Naming setting</shortDescription>
+        <value>Automatically names new Accounts created from lead conversion based on the Account Naming settings set in your org instead of using the value in the Company field on Lead.</value>
+    </labels>    
+    <labels>
+        <fullName>stgLeadConversionAccountNaming</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Lead Conversion Auto Account Naming setting</shortDescription>
+        <value>Lead Conversion Auto Account Naming</value>
+    </labels>    
     <labels>
         <fullName>stgHelpAddressAccRecType</fullName>
         <categories>Settings</categories>

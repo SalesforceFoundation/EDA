@@ -44,6 +44,7 @@ export default class EdaSettingsNavigation extends LightningElement {
                             { label: "Administrative Account Naming", id: "administrativeAccountNaming" },
                             { label: "Household Account Naming", id: "householdAccountNaming" },
                             { label: "Rename Household Accounts", id: "renameHouseholdAccounts" },
+                            { label: "Lead Conversion Auto Account Naming", id: "leadConversionAutoAccountNaming" },
                         ],
                         isActive: true,
                     },
