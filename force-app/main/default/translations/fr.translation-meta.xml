@@ -133,7 +133,7 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label>Autre</label>
+        <label><!-- Picklist value for naming format used for Administrative and Household Accounts --></label>
         <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
@@ -173,7 +173,7 @@
         <name>adminAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>Le format de nom utilisé les comptes administratifs automatiquement créés.</label>
+        <label><!-- Description of the Administrative Account Name Format setting --></label>
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -205,7 +205,7 @@
         <name>automaticHHNaming</name>
     </customLabels>
     <customLabels>
-        <label>Si cette option est sélectionnée, un compte de foyer existant est automatiquement renommé lorsqu&apos;un contact est ajouté au compte ou modifié.</label>
+        <label><!-- Description of the Automatically Rename Household Accounts setting --></label>
         <name>automaticHHNamingHelpText</name>
     </customLabels>
     <customLabels>
@@ -238,7 +238,7 @@
     </customLabels>
     <customLabels>
         <label>Compte administratif {!{!FirstName}} {!LastName}</label>
-        <name>firstNameLastNameAdminACC</name>
+        <name>firstNameLastNameAdminAcc</name>
     </customLabels>
     <customLabels>
         <label>Famille {!{!FirstName}} {!LastName}</label>
@@ -253,11 +253,11 @@
         <name>giftProcessingConfigException</name>
     </customLabels>
     <customLabels>
-        <label>Format de nom du compte du foyer</label>
+        <label><!-- Field label for the Household Account Name setting --></label>
         <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>Le format utilisé pour nommer les comptes de foyer.</label>
+        <label><!-- Description of the Household Account Name Format setting --></label>
         <name>hhAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -367,6 +367,18 @@
     <customLabels>
         <label>Si nécessaire, ajoutez « Non Hispanique ou Latino-Américain » en tant que valeur de liste de sélection dans le champ Appartenance ethnique.</label>
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Field label for Custom Name Format for Administrative Accounts --></label>
+        <name>stgAdminAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgAdminAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Administrative Account Naming --></label>
+        <name>stgAdminAccountNamingTitle</name>
     </customLabels>
     <customLabels>
         <label>Type enregistrement compte administratif</label>
@@ -1225,6 +1237,18 @@
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for Custom Name Format for Household Accounts --></label>
+        <name>stgHHAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgHHAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Household Account Naming --></label>
+        <name>stgHHAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Valider le plan du programme pour les exigences du plan imbriquées</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
@@ -1399,6 +1423,10 @@
     <customLabels>
         <label>Système</label>
         <name>stgTabSystem</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Link label to EDA Documentation --></label>
+        <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
         <label>Autoriser relations dupl. autom. créées</label>

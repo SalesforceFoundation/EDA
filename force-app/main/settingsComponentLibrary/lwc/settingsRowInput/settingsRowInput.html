@@ -2,17 +2,20 @@
     <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
         <div class="slds-col slds-size_2-of-3">
             <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">{title}</div>
-            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">{description}</div>
+            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                <lightning-formatted-rich-text value={description}> </lightning-formatted-rich-text>
+            </div>
         </div>
 
         <div class="slds-col slds-size_1-of-3">
             <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
                 <template if:true={isCombobox}>
                     <lightning-combobox
+                        class={comboboxStyling}
                         id={inputId}
                         aria-labelledby={inputId}
                         name={inputId}
-                        label={title}
+                        label={inputLabel}
                         value={value}
                         placeholder={placeholder}
                         options={options}
@@ -24,17 +27,20 @@
                 </template>
                 <template if:true={isInput}>
                     <lightning-input
+                        class={inputStyling}
                         type={type}
-                        label={title}
+                        label={inputLabel}
                         id={inputId}
                         name={inputId}
+                        field-level-help={helpText}
                         message-toggle-active=""
                         message-toggle-inactive=""
                         onchange={handleInputChange}
                         aria-describedby={inputId}
                         disabled={disabled}
                         checked={checked}
-                        variant="label-hidden"
+                        value={value}
+                        variant={variant}
                         data-qa-locator={inputId}
                     ></lightning-input>
                 </template>
