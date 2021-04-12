@@ -3,6 +3,7 @@ import { refreshApex } from "@salesforce/apex";
 
 import getAccountModelSettingsViewModel from "@salesforce/apex/AccountModelSettingsController.getAccountModelSettingsViewModel";
 import getAccountAutoDeletionSettingsViewModel from "@salesforce/apex/AccountModelSettingsController.getAccountAutoDeletionSettingsViewModel";
+import getAccountNamingSettingsViewModel from "@salesforce/apex/AccountNamingSettingsController.getAccountNamingSettingsViewModel";
 
 import stgAccountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
 import stgAccModelTitle from "@salesforce/label/c.stgAccModelTitle";
@@ -17,13 +18,38 @@ import stgHelpAccoutsDeletedIfChildContactsDeleted from "@salesforce/label/c.stg
 import stgAccountRecordTypeGroupLabelTitle from "@salesforce/label/c.stgAccountRecordTypeGroupLabelTitle";
 import stgAccountRecordTypeAvailableListTitle from "@salesforce/label/c.stgAccountRecordTypeAvailableListTitle";
 import stgAccountRecordTypeSelectedListTitle from "@salesforce/label/c.stgAccountRecordTypeSelectedListTitle";
+import stgAdminAccountNamingTitle from "@salesforce/label/c.stgAdminAccountNamingTitle";
+import adminAccNameFormat from "@salesforce/label/c.adminAccNameFormat";
+import adminAccNameFormatHelpText from "@salesforce/label/c.adminAccNameFormatHelpText";
+import stgAdminAccountCustomName from "@salesforce/label/c.stgAdminAccountCustomName";
+import stgAdminAccountCustomNameHelp from "@salesforce/label/c.stgAdminAccountCustomNameHelp";
+import stgHHAccountNamingTitle from "@salesforce/label/c.stgHHAccountNamingTitle";
+import hhAccNameFormat from "@salesforce/label/c.hhAccNameFormat";
+import hhAccNameFormatHelpText from "@salesforce/label/c.hhAccNameFormatHelpText";
+import stgHHAccountCustomName from "@salesforce/label/c.stgHHAccountCustomName";
+import stgHHAccountCustomNameHelp from "@salesforce/label/c.stgHHAccountCustomNameHelp";
+import automaticHHNaming from "@salesforce/label/c.automaticHHNaming";
+import automaticHHNamingHelpText from "@salesforce/label/c.automaticHHNamingHelpText";
+import acctNamingOther from "@salesforce/label/c.acctNamingOther";
+import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+
+const DELAY_INTERVAL = 500; // 0.5 second delay
 
 export default class AccountModelSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
+    inputVariant = "standard";
 
-    @track accountModelSettingsViewModel;
-    @track accountAutoDeletionSettingsViewModel;
+    @track accountModelSettingsWireResult;
+    @track accountModelSettingsVModel;
+
+    @track accountAutoDeletionSettingsWireResult;
+    @track accountAutoDeletionSettingsVModel;
+
+    @track accountNamingSettingsWireResult;
+    @track accountNamingSettingsVModel;
+    @track showCustomAdministrativeAccountNaming;
+    @track showCustomHouseholdAccountNaming;
 
     labelReference = {
         accountModelSettingsTitle: stgAccountModelSettingsTitle,
@@ -39,13 +65,37 @@ export default class AccountModelSettings extends LightningElement {
         accountAutoDeletionLisboxGroupHeading: stgAccountRecordTypeGroupLabelTitle,
         accountAutoDeletionSelectedValuesHeading: stgAccountRecordTypeSelectedListTitle,
         accountAutoDeletionAvailableValuesHeading: stgAccountRecordTypeAvailableListTitle,
+        adminAccountNamingTitle: stgAdminAccountNamingTitle,
+        adminAccountNameFormatHeading: adminAccNameFormat,
+        adminAccountNameFormatDescription: adminAccNameFormatHelpText,
+        adminAccountCustomNameFormatHeading: stgAdminAccountCustomName,
+        adminAccountCustomNameFormatDescription: stgAdminAccountCustomNameHelp,
+        hhAccountNamingTitle: stgHHAccountNamingTitle,
+        hhAccountNameFormatHeading: hhAccNameFormat,
+        hhAccountNameFormatDescription: hhAccNameFormatHelpText,
+        hhAccountCustomNameFormatHeading: stgHHAccountCustomName,
+        hhAccountCustomNameFormatDescription: stgHHAccountCustomNameHelp,
+        hhAutomaticAccountNamingTitle: automaticHHNaming,
+        hhAutomaticAccountNamingDescription: automaticHHNamingHelpText,
+        accountNamingComboboxCustomOption: acctNamingOther,
+        tellMeMoreLink: stgTellMeMoreLink,
     };
+
+    accNamingHyperLink =
+        '<a href="https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names">' +
+        this.labelReference.tellMeMoreLink +
+        "</a>";
 
     inputAttributeReference = {
         defaultAccountModelComboboxId: "defaultAccountModel",
         adminAccountModelComboboxId: "adminAccountModel",
         hhAccountModelComboboxId: "hhAccountModel",
         accountAutoDeletionDualListboxId: "accountAutoDeletionModel",
+        adminAccountNamingFormatComboboxId: "adminAccountNaming",
+        adminAccountCustomNamingFormatTextBoxId: "adminAccountCustomNaming",
+        hhAccountNamingFormatComboboxId: "hhAccountNaming",
+        hhAccountCustomNamingFormatTextBoxId: "hhAccountCustomNaming",
+        autoHHAccountNamingToggleId: "autoHHAccountNaming",
     };
 
     get affordancesDisabled() {
@@ -56,20 +106,45 @@ export default class AccountModelSettings extends LightningElement {
     }
 
     @wire(getAccountModelSettingsViewModel)
-    accountModelSettingsViewModel({ error, data }) {
-        if (data) {
-            this.accountModelSettingsViewModel = data;
-        } else if (error) {
+    accountModelSettingsViewModelWire(result) {
+        this.accountModelSettingsWireResult = result;
+
+        if (result.data) {
+            this.accountModelSettingsVModel = result.data;
+        } else if (result.error) {
             //console.log("error retrieving accountmodelsettingsvmodel");
         }
     }
 
     @wire(getAccountAutoDeletionSettingsViewModel)
-    accountAutoDeletionSettingsViewModel({ error, data }) {
-        if (data) {
-            this.accountAutoDeletionSettingsViewModel = data;
-        } else if (error) {
+    accountAutoDeletionSettingsViewModelWire(result) {
+        this.accountAutoDeletionSettingsWireResult = result;
+
+        if (result.data) {
+            this.accountAutoDeletionSettingsVModel = result.data;
+        } else if (result.error) {
             //console.log("error retrieving accountAutoDeletionSettingsViewModel");
+        }
+    }
+
+    @wire(getAccountNamingSettingsViewModel)
+    accountNamingSettingsViewModelWire(result) {
+        this.accountNamingSettingsWireResult = result;
+
+        if (result.data) {
+            this.accountNamingSettingsVModel = result.data;
+
+            // hide/show custom Admin Account naming input field
+            this.showCustomAdministrativeAccountNaming =
+                this.accountNamingSettingsVModel.administrativeAccountNameFormat.value ===
+                this.labelReference.accountNamingComboboxCustomOption;
+
+            // hide/show custom HH Account naming input field
+            this.showCustomHouseholdAccountNaming =
+                this.accountNamingSettingsVModel.householdAccountNameFormat.value ===
+                this.labelReference.accountNamingComboboxCustomOption;
+        } else if (result.error) {
+            //console.log("error retrieving accountNamingSettingsVModel");
         }
     }
 
@@ -117,10 +192,106 @@ export default class AccountModelSettings extends LightningElement {
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
+    handleAdministrativeAccountNamingChange(event) {
+        // hide/show custom Admin Account naming input field
+        this.showCustomAdministrativeAccountNaming =
+            event.detail.value === this.labelReference.accountNamingComboboxCustomOption;
+
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Admin_Account_Naming_Format__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleAdministrativeAccountCustomNamingChange(event) {
+        let adminAccountCustomNamingFormat = event.detail.value;
+
+        if (event.detail.value === '""') {
+            // set Hierarchy Settings field to a blank value (not "")
+            adminAccountCustomNamingFormat = "";
+        }
+
+        // Wait a period of time determined by DELAY_INTERVAL before calling handleHierarchySettingsChange
+        // prevents multiple calls while user is typing
+        window.clearTimeout(this.delayTimeout);
+
+        this.delayTimeout = setTimeout(() => {
+            // add updated setting to hierarchySettingsChanges object
+            let hierarchySettingsChange = {
+                settingsType: "string",
+                settingsName: "Admin_Other_Name_Setting__c",
+                settingsValue: adminAccountCustomNamingFormat,
+            };
+
+            this.template
+                .querySelector("c-settings-save-canvas")
+                .handleHierarchySettingsChange(hierarchySettingsChange);
+        }, DELAY_INTERVAL);
+    }
+
+    handleHouseholdAccountNamingChange(event) {
+        // hide/show custom HH Account naming input field
+        this.showCustomHouseholdAccountNaming =
+            event.detail.value === this.labelReference.accountNamingComboboxCustomOption;
+
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Household_Account_Naming_Format__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleHouseholdAccountCustomNamingChange(event) {
+        let hhAccountCustomNamingFormat = event.detail.value;
+
+        if (event.detail.value === '""') {
+            // set Hierarchy Settings field to a blank value (not "")
+            hhAccountCustomNamingFormat = "";
+        }
+
+        // Wait a period of time determined by DELAY_INTERVAL before calling handleHierarchySettingsChange
+        // prevents multiple calls while user is typing
+        window.clearTimeout(this.delayTimeout);
+
+        this.delayTimeout = setTimeout(() => {
+            // add updated setting to hierarchySettingsChanges object
+            let hierarchySettingsChange = {
+                settingsType: "string",
+                settingsName: "Household_Other_Name_Setting__c",
+                settingsValue: hhAccountCustomNamingFormat,
+            };
+
+            this.template
+                .querySelector("c-settings-save-canvas")
+                .handleHierarchySettingsChange(hierarchySettingsChange);
+        }, DELAY_INTERVAL);
+    }
+
+    handleHouseholdAccountAutoNamingChange(event) {
+        const eventDetail = event.detail;
+
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Automatic_Household_Naming__c",
+            settingsValue: eventDetail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
     handleSettingsEditModeChange(event) {
         this.isEditMode = !event.detail;
         this.affordancesDisabledToggle = event.detail;
+    }
 
+    handleSettingsSaveCancel(event) {
         this.refreshAllApex();
     }
 
@@ -131,16 +302,44 @@ export default class AccountModelSettings extends LightningElement {
         // if validation fails, call this.handleValidationFailure()
         //this.template.querySelector("c-settings-save-canvas").handleValidationFailure();
 
-        // else, update hierarchy settings
         this.template.querySelector("c-settings-save-canvas").updateHierarchySettings();
     }
 
     handleSettingsSaveCompleted(event) {
         this.affordancesDisabledToggle = false;
+        this.refreshAllApex();
     }
 
     refreshAllApex() {
-        refreshApex(this.accountModelSettingsViewModel);
-        refreshApex(this.accountAutoDeletionSettingsViewModel);
+        Promise.all([
+            refreshApex(this.accountModelSettingsWireResult),
+            refreshApex(this.accountAutoDeletionSettingsWireResult),
+            refreshApex(this.accountNamingSettingsWireResult),
+        ]).then(() => {
+            // hide/show custom Admin Account naming input field
+            this.showCustomAdministrativeAccountNaming =
+                this.accountNamingSettingsVModel.administrativeAccountNameFormat.value ===
+                this.labelReference.accountNamingComboboxCustomOption;
+
+            // hide/show custom HH Account naming input field
+            this.showCustomHouseholdAccountNaming =
+                this.accountNamingSettingsVModel.householdAccountNameFormat.value ===
+                this.labelReference.accountNamingComboboxCustomOption;
+
+            this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
+                dualListBox.resetValue();
+            });
+            this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
+                input.resetValue();
+            });
+        });
+    }
+
+    get adminAccDesc() {
+        return this.labelReference.adminAccountNameFormatDescription + this.accNamingHyperLink;
+    }
+
+    get hhAccDesc() {
+        return this.labelReference.hhAccountNameFormatDescription + this.accNamingHyperLink;
     }
 }
