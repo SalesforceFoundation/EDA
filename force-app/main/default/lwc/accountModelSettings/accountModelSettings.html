@@ -153,21 +153,6 @@
                         ></c-settings-row-input>
                     </div>
                 </template>
-
-                <div class="slds-col slds-size_3-of-3 slds-p-bottom_x-large slds-p-left_large">
-                    <lightning-dual-listbox
-                        id={inputAttributeReference.accountAutoDeletionDualListboxId}
-                        name={inputAttributeReference.accountAutoDeletionDualListboxId}
-                        label={labelReference.accountAutoDeletionLisboxGroupHeading}
-                        source-label={labelReference.accountAutoDeletionAvailableValuesHeading}
-                        selected-label={labelReference.accountAutoDeletionSelectedValuesHeading}
-                        options={accountAutoDeletionSettingsViewModel.options}
-                        value={accountAutoDeletionSettingsViewModel.value}
-                        onchange={handleAccountAutoDeletionChange}
-                        disabled={affordancesDisabled}
-                        data-qa-locator={inputAttributeReference.accountAutoDeletionDualListboxId}
-                    ></lightning-dual-listbox>
-                </div>
             </c-settings-save-canvas>
         </div>
     </div>
