@@ -1355,6 +1355,14 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgSuccessHHAccountNameRefresh</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for System Tools --></label>
+        <name>stgSystemToolsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for System Tools --></label>
+        <name>stgSystemToolsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Accounts und Kontakte</label>
         <name>stgTabAccCont</name>
     </customLabels>

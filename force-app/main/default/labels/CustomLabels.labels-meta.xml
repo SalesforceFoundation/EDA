@@ -2697,6 +2697,22 @@
         An email will be sent at the completion of the batch.</value>
     </labels>
     <labels>
+        <fullName>stgSystemToolsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for System Tools</shortDescription>
+        <value>System Tools</value>
+    </labels>
+    <labels>
+        <fullName>stgSystemToolsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for System Tools</shortDescription>
+        <value>System Tools</value>
+    </labels>
+    <labels>
         <fullName>stgTabAccCont</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

@@ -1355,6 +1355,14 @@
         <name>stgSuccessHHAccountNameRefresh</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for System Tools --></label>
+        <name>stgSystemToolsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for System Tools --></label>
+        <name>stgSystemToolsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>取引先および取引先責任者</label>
         <name>stgTabAccCont</name>
     </customLabels>
