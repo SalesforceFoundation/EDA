@@ -33,4 +33,114 @@
  */
 @isTest
 public with sharing class ErrorSettingsVMapper_TEST {
+    private static Integer loopCounter = 5;
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getInstance method returns a new instance of the
+     * ErrorSettingsVMapper class when one does not already exist.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceNew() {
+        Test.startTest();
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(
+            ErrorSettingsVMapper.instance,
+            errorSettingsVMapperInstance,
+            'Instance of service class returned should match static instance variable.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsVMapperInstance != null,
+            'Instance of service class should not be null.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getInstance method returns the existing instance of the
+     * ErrorSettingsVMapper class when one already exists.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExisting() {
+        Test.startTest();
+        ErrorSettingsVMapper errorSettingsVMapperInstance1 = ErrorSettingsVMapper.getInstance();
+        ErrorSettingsVMapper errorSettingsVMapperInstance2 = ErrorSettingsVMapper.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(
+            ErrorSettingsVMapper.instance,
+            errorSettingsVMapperInstance1,
+            'Instance of service class returned should match static instance variable.'
+        );
+
+        System.assertEquals(
+            errorSettingsVMapperInstance1,
+            errorSettingsVMapperInstance2,
+            'Subsequent retrievals of service class instance should return existing instance.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsVMapperInstance1 != null,
+            'Instance of service class should not be null.'
+        );
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the locateErrorSettingsService method returns instance of ErrorSettingsService
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void locateErrorSettingsServiceValid() {
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ErrorSettingsService errorSettingsServiceInstance = errorSettingsVMapperInstance.locateErrorSettingsService();
+        Test.stopTest();
+
+        System.assertEquals(
+            ErrorSettingsService.getInstance(),
+            errorSettingsServiceInstance,
+            'Should return the instance of ErrorSettingsService'
+        );
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getErrorSettingsViewModel method returns an ErrorSettingsVModel that reflects the
+     * error settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getErrorSettingsViewModelValid() {
+        ErrorSettingsMapper.instance = new STUB_ErrorSettingsMapper();
+
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(Store_Errors_On__c = true)
+        );
+
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ErrorSettingsVModel errorSettingsVModel = errorSettingsVMapperInstance.getErrorSettingsViewModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            errorSettingsVModel.storeErrors,
+            'Store errors functionality should match value set in hierarchy settings.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** STUBS **************************************************************
+     **************************************************************************************************************************/
+
+    /*********************************************************************************************************************
+     * @description Stub class to simulate the response from ErrorSettingsMapper to return a valid ErrorSettingsModel
+     *********************************************************************************************************************/
+    private class STUB_ErrorSettingsMapper extends ErrorSettingsMapper {
+        public override ErrorSettingsModel getErrorSettingsModel() {
+            return new ErrorSettingsModel(true);
+        }
+    }
 }
