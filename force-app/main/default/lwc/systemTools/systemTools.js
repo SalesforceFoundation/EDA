@@ -7,19 +7,4 @@ export default class systemTools extends LightningElement {
     labelReference = {
         stgSystemToolsTitle: stgSystemToolsTitle,
     };
-
-    // handleRefreshAdministrativeAccountNamesClick(event) {
-    //     const eventDetail = event.detail;
-    //     this.dispatchSettingsModalEvent(eventDetail);
-    // }
-
-    // dispatchSettingsModalEvent(eventDetail) {
-    //     this.dispatchEvent(
-    //         new CustomEvent("settingsmodalevent", {
-    //             detail: event.detail,
-    //             bubbles: true,
-    //             composed: true,
-    //         })
-    //     );
-    // }
 }
