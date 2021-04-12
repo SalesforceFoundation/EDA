@@ -33,13 +33,16 @@
  */
 public with sharing class ErrorSettingsModel {
     public Boolean storeErrors { get; private set; }
+    public Boolean errorHandling { get; private set; }
 
-    /************************************************************
-     * @description Single argument constructor
-     * @param  storeErrors storeErrors description
+    /***************************************************************************************************
+     * @description Constructor
+     * @param  storeErrors A boolean indicating whether error storing functionality is enabled
+     * @param  errorHandling A boolean indicating whether error handling functionality is enabled
      * @return A ErrorSettingsModel with all properties populated.
-     ************************************************************/
-    public ErrorSettingsModel(Boolean storeErrors) {
+     ***************************************************************************************************/
+    public ErrorSettingsModel(Boolean storeErrors, Boolean errorHandling) {
         this.storeErrors = storeErrors;
+        this.errorHandling = errorHandling;
     }
 }
