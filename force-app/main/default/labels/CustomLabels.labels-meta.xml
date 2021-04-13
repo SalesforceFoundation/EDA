@@ -37,8 +37,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Batch message when there&apos;s a problem starting</shortDescription>
-        <value>There was a problem starting the Batch.</value>
+        <shortDescription>Message when a batch job can't run.</shortDescription>
+        <value>We couldn&apos;t run the batch job.</value>
     </labels>
     <labels>
         <fullName>BothFieldAndValue</fullName>

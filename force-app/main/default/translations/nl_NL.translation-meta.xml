@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label>Er is een probleem opgetreden bij het starten van de batch.</label>
+        <label><!-- Message when a batch job can't run. --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>

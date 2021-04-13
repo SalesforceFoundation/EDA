@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label>S&apos;ha produït un problema en iniciar el lot.</label>
+        <label><!-- Message when a batch job can't run. --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>

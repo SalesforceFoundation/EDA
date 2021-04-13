@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label>Erän käynnistämisessä oli ongelma.</label>
+        <label><!-- Message when a batch job can't run. --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>

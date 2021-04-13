@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label>バッチの開始中に問題が発生しました。</label>
+        <label><!-- Message when a batch job can't run. --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
