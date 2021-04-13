@@ -517,6 +517,10 @@
         <name>stgBtnSave</name>
     </customLabels>
     <customLabels>
+        <label><!-- Button label for updating Household Account Names --></label>
+        <name>stgBtnUpdate</name>
+    </customLabels>
+    <customLabels>
         <label>クリーンアップがキューに正常に登録されました。バッチの完了時にメールが送信されます。</label>
         <name>stgCleanupQueuedEmailSent</name>
     </customLabels>
@@ -577,7 +581,7 @@
         <name>stgContactInformationSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Allow Multiple Contact Addresses setting --></label>
+        <label><!-- Label for Accounts and Contacts Settings --></label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -1311,6 +1315,18 @@
     <customLabels>
         <label><!-- Label for the Household Account Names Settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update all Household Account names window --></label>
+        <name>stgRefreshHouseholdNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update all Household Account names window modal --></label>
+        <name>stgRefreshHouseholdNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Account names are queued for update --></label>
+        <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>クリーンアップを実行</label>

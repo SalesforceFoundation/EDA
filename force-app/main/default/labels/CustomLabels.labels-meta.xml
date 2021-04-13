@@ -1023,6 +1023,14 @@
         <value>Save</value>
     </labels>
     <labels>
+        <fullName>stgBtnUpdate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button label for updating Household Account Names</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
         <fullName>stgCleanupQueuedEmailSent</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -2613,6 +2621,29 @@
         <protected>true</protected>
         <shortDescription>Label for the Household Account Names Settings</shortDescription>
         <value>Household Account Names</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHouseholdNamesModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update all Household Account names window</shortDescription>
+        <value>We&apos;re just making sure you want to update all Household Acount Names and that you disabled any automation or processes that reference Household Accounts (for example, workflow rules). You can re-enable them after the update is complete.</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHouseholdNamesModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update all Household Account names window modal</shortDescription>
+        <value>Update all Household Account names?</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHouseholdNamesSuccessToast</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when Account names are queued for update</shortDescription>
+        <value>Household Account names will be updated during your next scheduled batch job run. We&apos;ll send you an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUp</fullName>
