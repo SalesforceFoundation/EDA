@@ -1,43 +1,49 @@
-import { LightningElement, wire, track } from "lwc";
+import { LightningElement, api, wire, track } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
-import getAddressSettingsVModel from "@salesforce/apex/AddressSettingsController.getAddressSettingsVModel";
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
-import stgAddressSettingsTitle from "@salesforce/label/c.stgAddressSettingsTitle";
-import stgContactMultiAddressesEnabled from "@salesforce/label/c.stgContactMultiAddressesEnabled";
-import stgHelpContactAddrs from "@salesforce/label/c.stgHelpContactAddrs";
-import stgAccountTypesMultiAddressesEnabled from "@salesforce/label/c.stgAccountTypesMultiAddressesEnabled";
-import stgHelpAddressAccRecType from "@salesforce/label/c.stgHelpAddressAccRecType";
-import stgAccountRecordTypeGroupLabelTitle from "@salesforce/label/c.stgAccountRecordTypeGroupLabelTitle";
-import stgAccountRecordTypeAvailableListTitle from "@salesforce/label/c.stgAccountRecordTypeAvailableListTitle";
-import stgAccountRecordTypeSelectedListTitle from "@salesforce/label/c.stgAccountRecordTypeSelectedListTitle";
-import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressChangeUpdate";
-import stgHelpSimpleAddrChangeIsUpdate from "@salesforce/label/c.stgHelpSimpleAddrChangeIsUpdate";
+//TODO
+import getAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getAffiliationsSettingsVModel";
+import getPrimaryAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getPrimaryAffiliationsSettingsVModel";
+import updateAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.updateAffiliationMappings";
 
-export default class addressSettings extends LightningElement {
+//custom labels
+
+export default class affiliationSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
-    @track addressSettingsViewModel;
-    @track addressSettingsWireResult;
+    //TODO
+    @track affiliationsSettingsViewModel;
+    @track affiliationsSettingsWireResult;
 
+    //TODO
     labelReference = {
-        stgAddressSettingsTitle: stgAddressSettingsTitle,
-        stgContactMultiAddressesEnabled: stgContactMultiAddressesEnabled,
-        stgHelpContactAddrs: stgHelpContactAddrs,
-        stgAccountTypesMultiAddressesEnabled: stgAccountTypesMultiAddressesEnabled,
-        stgHelpAddressAccRecType: stgHelpAddressAccRecType,
-        stgAccountRecordTypeGroupLabelTitle: stgAccountRecordTypeGroupLabelTitle,
-        stgAccountRecordTypeAvailableListTitle: stgAccountRecordTypeAvailableListTitle,
-        stgAccountRecordTypeSelectedListTitle: stgAccountRecordTypeSelectedListTitle,
-        stgSimpleAddressChangeUpdate: stgSimpleAddressChangeUpdate,
-        stgHelpSimpleAddrChangeIsUpdate: stgHelpSimpleAddrChangeIsUpdate,
+        afflTypeEnforced: afflTypeEnforced,
+        afflTypeEnforcedDescription: afflTypeEnforcedDescription,
+        stgAffiliationsSettingsTitle: stgAffiliationsSettingsTitle,
+        primaryAffiliationMappingsTable: {
+            accountRecordTypeColumn: stgColAccountRecordType,
+            contactFieldColumn: stgColContactPrimaryAfflField,
+            editAction: stgBtnEdit,
+            primaryAffiliationsDescription: AfflMappingsDescription,
+            primaryAffiliationsTitle: stgTabAfflMappings,
+        },
+        successMessage: stgAffiliationsEditSuccess,
+        tellMeMoreLink: stgTellMeMoreLink,
     };
 
+    //TODO
+    affiliationsHyperLink =
+        '<a href="https://powerofus.force.com/s/article/EDA-Configure-Affiliations-Settings">' +
+        this.labelReference.tellMeMoreLink +
+        "</a>";
+
+    //TODO
     inputAttributeReference = {
-        multiAddressEnabledToggleId: "multiAddressModel",
-        accountRecTypesDualListboxId: "accountRectypeModel",
-        simpleAddressChangeTreatedAsUpdateToggleId: "simpleUpdateModel",
+        recordTypeValidation: "recordTypeValidation",
+        affiliationMappings: "affiliationMappings",
     };
 
     get affordancesDisabled() {
@@ -47,44 +53,84 @@ export default class addressSettings extends LightningElement {
         return undefined;
     }
 
-    @wire(getAddressSettingsVModel)
-    addressSettingsViewModelWire(result) {
-        this.addressSettingsWireResult = result;
+    //TODO
+    get primaryAffiliationMappingsTableColumns() {
+        return [
+            {
+                label: this.labelReference.primaryAffiliationMappingsTable.accountRecordTypeColumn,
+                fieldName: "accountRecordTypeLabel",
+            },
+            {
+                label: this.labelReference.primaryAffiliationMappingsTable.contactFieldColumn,
+                fieldName: "contactFieldLabel",
+            },
+            {
+                type: "action",
+                typeAttributes: {
+                    rowActions: [
+                        { label: this.labelReference.primaryAffiliationMappingsTable.editAction, name: "edit" },
+                    ],
+                },
+            },
+        ];
+    }
+
+    //TODO
+    @wire(getAffiliationsSettingsVModel)
+    affiliationsSettingsViewModelWire(result) {
+        this.affiliationsSettingsWireResult = result;
         if (result.data) {
-            this.addressSettingsViewModel = result.data;
+            this.affiliationsSettingsViewModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving accountmodelsettingsvmodel");
         }
     }
 
-    handleMultiAddressEnabledChange(event) {
+    //TODO
+    @wire(getPrimaryAffiliationsSettingsVModel)
+    primaryAffiliationsSettingsVModelWire(result) {
+        this.primaryAffiliationsSettingsWireResult = result;
+
+        if (result.data) {
+            this.primaryAffiliationsSettingsVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving preferredContactInfoSettingsVModel");
+        }
+    }
+
+    //TODO
+    handleRecordtypeValidationChange(event) {
         let hierarchySettingsChange = {
             settingsType: "boolean",
-            settingsName: "Contacts_Addresses_Enabled__c",
+            settingsName: "Affiliation_Record_Type_Enforced__c",
             settingsValue: event.detail.value,
         };
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
-    handleAccountRecordTypesChange(event) {
-        // add selected values to hierarchySettingsChanges object
-        let hierarchySettingsChange = {
-            settingsType: "array",
-            settingsName: "Accounts_Addresses_Enabled__c",
-            settingsValue: event.detail.value,
-        };
-
-        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    //TODO
+    handlePrimaryAffiliationsRowAction(event) {
+        const actionName = event.detail.action.name;
+        const actionRow = event.detail.row;
+        this.dispatchPrimaryAffiliationModalRequestEvent(actionName, actionRow);
     }
 
-    handleSimpleAddressUpdateChange(event) {
-        let hierarchySettingsChange = {
-            settingsType: "boolean",
-            settingsName: "Simple_Address_Change_Treated_as_Update__c",
-            settingsValue: event.detail.value,
+    //TODO
+    dispatchPrimaryAffiliationModalRequestEvent(affiliationsAction, primaryAffiliation) {
+        const affiliationsDetail = {
+            affiliationsAction: affiliationsAction,
+            mappingName: primaryAffiliation.mappingName,
+            accountRecordType: primaryAffiliation.accountRecordTypeName,
+            contactField: primaryAffiliation.contactFieldName,
         };
 
-        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+        const primaryAffiliationsModalRequestEvent = new CustomEvent("primaryaffiliationmodalrequest", {
+            detail: affiliationsDetail,
+            bubbles: true,
+            composed: true,
+        });
+
+        this.dispatchEvent(primaryAffiliationsModalRequestEvent);
     }
 
     handleSettingsEditModeChange(event) {
@@ -112,14 +158,59 @@ export default class addressSettings extends LightningElement {
         this.refreshAllApex();
     }
 
-    refreshAllApex() {
-        refreshApex(this.addressSettingsWireResult).then(() => {
-            this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
-                dualListBox.resetValue();
+    //TODO
+    @api modalSave(saveModel) {
+        switch (saveModel.action) {
+            case "edit":
+                this.updateAffiliation(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
+                break;
+        }
+    }
+
+    //TODO
+    updateAffiliation(mappingName, accountRecordType, contactField) {
+        updateAffiliationMappings({
+            mappingName: mappingName,
+            accRecordType: accountRecordType,
+            conPrimaryAfflField: contactField,
+        })
+            .then((result) => {
+                this.showToast("success", "Save Complete", this.labelReference.successMessage.replace("{0}", result));
+            })
+
+            .catch((error) => {
+                // console.log('Inside error');
             });
+        this.refreshAllApex();
+    }
+
+    refreshAllApex() {
+        Promise.all([
+            refreshApex(this.affiliationsSettingsWireResult),
+            refreshApex(this.primaryAffiliationsSettingsWireResult),
+        ]).then(() => {
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });
         });
+    }
+
+    showToast(toastType, toastTitle, toastMessage) {
+        const showToastEvent = new ShowToastEvent({
+            title: toastTitle,
+            message: toastMessage,
+            variant: toastType,
+            mode: "dismissable",
+        });
+        this.dispatchEvent(showToastEvent);
+    }
+
+    //TODO
+    get affiliationsDesc() {
+        return (
+            this.labelReference.primaryAffiliationMappingsTable.primaryAffiliationsDescription +
+            " " +
+            this.affiliationsHyperLink
+        );
     }
 }

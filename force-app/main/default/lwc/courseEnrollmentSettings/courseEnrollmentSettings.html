@@ -1,50 +1,47 @@
 <template>
     <c-settings-save-canvas
-        component-title={labelReference.stgAddressSettingsTitle}
+        component-title={labelReference.stgAffiliationsSettingsTitle}
         onsettingseditmodechange={handleSettingsEditModeChange}
         onsettingssaving={handleSettingsSaving}
         onsettingssavecancel={handleSettingsSaveCancel}
         onsettingssavecompleted={handleSettingsSaveCompleted}
     >
-        <!-- Body of Account Model Settings page (populates Slot in child component) -->
-        <template if:true={addressSettingsViewModel}>
-            <!-- Multi Address Enabled Setting -->
-            <c-settings-row-input
-                class="slds-col"
-                title={labelReference.stgContactMultiAddressesEnabled}
-                description={labelReference.stgHelpContactAddrs}
-                type="toggle"
-                input-id={inputAttributeReference.multiAddressEnabledToggleId}
-                value={addressSettingsViewModel.addressessEnabledForContacts}
-                onsettingsinputchange={handleMultiAddressEnabledChange}
-                disabled={affordancesDisabled}
-            ></c-settings-row-input>
+        <!-- Body of Affiliations Settings page (populates Slot in child component) -->
+        <template if:true={affiliationsSettingsViewModel}>
+            <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                <!-- Enable RecordType Validation Setting -->
 
-            <!-- Account Record Types with Multi Address Enabled Setting -->
-            <c-settings-row-dual-listbox
-                class="slds-col"
-                title={labelReference.stgAccountTypesMultiAddressesEnabled}
-                description={labelReference.stgHelpAddressAccRecType}
-                dual-listbox-id={inputAttributeReference.accountRecTypesDualListboxId}
-                source-label={labelReference.stgAccountRecordTypeAvailableListTitle}
-                selected-label={labelReference.stgAccountRecordTypeSelectedListTitle}
-                options={addressSettingsViewModel.accountRecordTypesWithAddressesEnabled.options}
-                value={addressSettingsViewModel.accountRecordTypesWithAddressesEnabled.value}
-                onsettingsduallistboxchange={handleAccountRecordTypesChange}
-                disabled={affordancesDisabled}
-            ></c-settings-row-dual-listbox>
+                <c-settings-row-input
+                    class="slds-size_3-of-3"
+                    title={labelReference.afflTypeEnforced}
+                    description={labelReference.afflTypeEnforcedDescription}
+                    type="toggle"
+                    input-id={inputAttributeReference.recordTypeValidation}
+                    value={affiliationsSettingsViewModel.accountRecordTypesEnforced}
+                    onsettingsinputchange={handleRecordtypeValidationChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+            </div>
+        </template>
+        <!-- Affiliations Mappings -->
+        <template if:true={primaryAffiliationsSettingsVModel}>
+            <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+                    {labelReference.primaryAffiliationMappingsTable.primaryAffiliationsTitle}
+                </div>
+                <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                    <lightning-formatted-rich-text value={affiliationsDesc}> </lightning-formatted-rich-text>
+                </div>
+            </div>
 
-            <!-- Simple Address Change treated as update Setting -->
-            <c-settings-row-input
-                class="slds-col"
-                title={labelReference.stgSimpleAddressChangeUpdate}
-                description={labelReference.stgHelpSimpleAddrChangeIsUpdate}
-                type="toggle"
-                input-id={inputAttributeReference.simpleAddressChangeTreatedAsUpdateToggleId}
-                value={addressSettingsViewModel.simpleAddressChangeTreatedAsUpdate}
-                onsettingsinputchange={handleSimpleAddressUpdateChange}
-                disabled={affordancesDisabled}
-            ></c-settings-row-input>
+            <div class="slds-col slds-size_3-of-3 slds-col_bump-right slds-p-right_x-large">
+                <lightning-datatable
+                    key-field="mappingName"
+                    data={primaryAffiliationsSettingsVModel.primaryAffiliationMappings}
+                    columns={primaryAffiliationMappingsTableColumns}
+                    onrowaction={handlePrimaryAffiliationsRowAction}
+                ></lightning-datatable>
+            </div>
         </template>
     </c-settings-save-canvas>
 </template>
