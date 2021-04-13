@@ -501,7 +501,7 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Alle huishoudennamen opnieuw laden</label>
+        <label><!-- Button label for update Household Account Names --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
@@ -1305,11 +1305,11 @@
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Waarschuwing: Als u op deze knop klikt, worden ALLE bestaande huishoudenaccountrecords hernoemd volgens de indeling die is opgegeven in Naamindeling huishoudenaccount. Met deze actie schakelt u de instelling Huishoudenaccounts automatisch hernoemen in, ook als deze eerder niet geselecteerd was. Lees de productdocumentatie om er zeker van te zijn dat u de gevolgen van deze onomkeerbare wijziging begrijpt. Schakel voordat u verdergaat alle automatisering en processen die naar huishoudenaccounts verwijzen uit (zoals workflowregels). Nadat het opnieuw laden is voltooid, kunt u deze weer inschakelen.</label>
+        <label><!-- Description of the Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Alle huishoudenaccountnamen opnieuw laden</label>
+        <label><!-- Label for the Household Account Names Settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>

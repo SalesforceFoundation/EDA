@@ -501,7 +501,7 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>すべての世帯名を更新</label>
+        <label><!-- Button label for update Household Account Names --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
@@ -1305,11 +1305,11 @@
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>警告: このボタンをクリックすると、すべての既存の世帯取引先レコードの名前が、[世帯取引先名形式] で指定された形式に変更されます。[世帯取引先の名前を自動的に変更] 設定は以前に選択されていなくても、このアクションにより有効になります。製品ドキュメントを読んで、元に戻すことができないこの変更の影響を確実に理解してください。続行する前に、世帯取引先を参照するすべての自動化またはプロセス (ワークフロールールなど) を無効にしてください。更新が完了したら、それらを再度有効にすることができます。</label>
+        <label><!-- Description of the Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>すべての世帯取引先名を更新</label>
+        <label><!-- Label for the Household Account Names Settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>

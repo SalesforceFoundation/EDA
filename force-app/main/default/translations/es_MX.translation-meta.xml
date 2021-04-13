@@ -501,7 +501,7 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Actualizar todos los nombres domésticos</label>
+        <label><!-- Button label for update Household Account Names --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
@@ -1305,11 +1305,11 @@
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Advertencia: al hacer clic en este botón se cambia el nombre de TODOS los registros Cuenta doméstica al formato especificado en Formato de nombre de cuenta doméstica. Esta acción activa el parámetro Cambiar el nombre automáticamente a cuentas domésticas, incluso si no se seleccionó anteriormente. Lea la documentación del producto para asegurarse de que comprende todas las consecuencias de este cambio irreversible. Antes de proceder, desactive todas las automatizaciones o procesos que hacen referencia a Cuentas domésticas (por ejemplo, reglas de flujo de trabajo). Después de completar la actualización, podrá volver a activarlos.</label>
+        <label><!-- Description of the Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Actualizar todos los nombres de cuentas domésticas</label>
+        <label><!-- Label for the Household Account Names Settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>

@@ -501,7 +501,7 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Refresh All Household Names</label>
+        <label><!-- Button label for update Household Account Names --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
@@ -1305,11 +1305,11 @@
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Warning: Clicking this button renames ALL existing Household Account records to the format specified in Household Account Name Format. This action enables the Automatically Rename Household Accounts setting, even if previously unselected. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Household Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</label>
+        <label><!-- Description of the Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Refresh All Household Account Names</label>
+        <label><!-- Label for the Household Account Names Settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>

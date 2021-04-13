@@ -501,7 +501,7 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Actualiser tous les noms de foyer</label>
+        <label><!-- Button label for update Household Account Names --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
@@ -1305,11 +1305,11 @@
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Avertissement : Lorsque vous cliquez sur ce bouton, TOUS les enregistrements Comptes de foyer existants sont renommés vers le format spécifié dans Format de nom du compte de foyer. Cette action active le paramètre Renommer automatiquement les comptes de foyer, même si vous l&apos;aviez désélectionné. Lisez la documentation produit pour vous assurer de comprendre les conséquences de cette modification irréversible. Avant de continuer, désactivez toutes les automatisations ou tous les processus qui référencent des Comptes de foyer (par exemple des règles de workflow). Une fois l&apos;actualisation effectuée, vous ne pouvez pas les réactiver.</label>
+        <label><!-- Description of the Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Actualiser tous les noms de compte de foyer</label>
+        <label><!-- Label for the Household Account Names Settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>

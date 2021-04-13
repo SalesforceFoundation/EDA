@@ -501,7 +501,7 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Actualitza tots els noms domèstics</label>
+        <label><!-- Button label for update Household Account Names --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
@@ -1305,11 +1305,11 @@
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Advertiment: en fer clic en aquest botó, es canviarà el nom de TOTS els registres de comptes domèstics existents al format especificat al Format de noms de compte domèstic. Aquesta acció habilita el paràmetre Canvia automàticament el nom dels comptes domèstics, encara que prèviament no estigués seleccionat. Llegiu la documentació del producte per assegurar-vos que enteneu les conseqüències d’aquest canvi irreversible. Abans de continuar, desactiveu qualsevol procés o automatització que facin referència a comptes domèstics (per exemple, regles de flux de treball). Un cop s&apos;hagi completat l&apos;actualització, podeu tornar-los a activar.</label>
+        <label><!-- Description of the Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Actualitza tots els noms de compte domèstics</label>
+        <label><!-- Label for the Household Account Names Settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>

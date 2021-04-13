@@ -995,8 +995,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for refreshing Household Account Names</shortDescription>
-        <value>Refresh All Household Names</value>
+        <shortDescription>Button label for update Household Account Names</shortDescription>
+        <value>Update All Household Account Names</value>
     </labels>
     <labels>
         <fullName>stgBtnRunBackfill</fullName>
@@ -2603,16 +2603,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Warning for Refresh Household Account Names</shortDescription>
-        <value>Warning: Clicking this button renames ALL existing Household Account records to the format specified in Household Account Name Format. This action enables the Automatically Rename Household Accounts setting, even if previously unselected. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Household Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
+        <shortDescription>Description of the Household Account Names setting</shortDescription>
+        <value>Permanently update all existing Household Account records using the format specified in Household Account Name Format. Running this batch job enables Automatically Rename Household Accounts, even if previously disabled. </value>
     </labels>
     <labels>
         <fullName>stgRefreshHHAcctNameTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for System Settings</shortDescription>
-        <value>Refresh All Household Account Names</value>
+        <shortDescription>Label for the Household Account Names Settings</shortDescription>
+        <value>Household Account Names</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUp</fullName>

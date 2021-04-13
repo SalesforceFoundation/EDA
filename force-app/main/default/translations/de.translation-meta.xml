@@ -501,7 +501,7 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Alle Haushaltsnamen aktualisieren</label>
+        <label><!-- Button label for update Household Account Names --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
@@ -1305,11 +1305,11 @@
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Achtung: Wenn Sie auf diese Schaltfläche klicken, werden ALLE vorhandenen Haushalt-Accountdatensätze in das in &quot;Haushalt-Account – Namensformat&quot; angegebene Format umbenannt. Diese Aktion aktiviert die Einstellung &quot;Haushalt-Accounts automatisch umbenennen&quot;, auch wenn sie zuvor nicht aktiviert war. Lesen Sie die Produktdokumentation, um sicher zu sein, dass Sie die Folgen dieser unumkehrbaren Änderung verstehen. Bevor Sie fortfahren, deaktivieren Sie jegliche Automatisierung oder Prozesse, die auf Haushalt-Accounts verweisen (z. B. Workflow-Regeln). Nach der Aktualisierung können Sie sie wieder aktivieren.</label>
+        <label><!-- Description of the Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Alle Namen von Haushalt-Accounts aktualisieren</label>
+        <label><!-- Label for the Household Account Names Settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>

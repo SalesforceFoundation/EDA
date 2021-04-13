@@ -501,7 +501,7 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Päivitä kaikki kotitalousnimet</label>
+        <label><!-- Button label for update Household Account Names --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
@@ -1305,11 +1305,11 @@
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Varoitus: napsauttamalla tätä painiketta uudelleennimeää KAIKKI olemassa olevat kotitaloustilitietueet kotitaloustilin nimen muodossa määritettyyn muotoon. Tämä toiminto mahdollistaa Nimeä kotitaloustilit automaattisesti uudelleen -asetuksen, vaikka sitä ei olisikaan aiemmin valittu. Lue tuotedokumentaatio varmistaaksesi, että ymmärrät tämän peruuttamattoman muutoksen seuraukset. Poista ennen jatkamista kaikki automaatiot tai prosessit, jotka viittaavat hallintatileihin (esimerkiksi työnkulun säännöt). Kun päivitys on valmis, voit ottaa ne uudelleen käyttöön.</label>
+        <label><!-- Description of the Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Päivitä kaikki kotitaloustilien nimet</label>
+        <label><!-- Label for the Household Account Names Settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>
