@@ -34,15 +34,16 @@
 @isTest
 public with sharing class ErrorSettingsVModel_TEST {
     /****************************************************************************
-     * @description Test method to verify single argument constructore returns
-     * a view model with all properties populated.
+     * @description Test method to verify constructor returns a view model with
+     * all properties populated.
      ****************************************************************************/
     @isTest
     private static void singleArugumentConstructorValid() {
         Test.startTest();
-        ErrorSettingsVModel errorSettingsVModel = new ErrorSettingsVModel(false);
+        ErrorSettingsVModel errorSettingsVModel = new ErrorSettingsVModel(false, true);
         Test.stopTest();
 
         System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');
+        System.assertEquals(true, errorSettingsVModel.enableDebug, 'Enable debug functionality should be enabled.');
     }
 }

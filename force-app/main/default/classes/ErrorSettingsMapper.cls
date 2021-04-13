@@ -63,6 +63,6 @@ public virtual with sharing class ErrorSettingsMapper {
     public virtual ErrorSettingsModel getErrorSettingsModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
-        return new ErrorSettingsModel(hierarchySettings.Store_Errors_On__c);
+        return new ErrorSettingsModel(hierarchySettings.Store_Errors_On__c, hierarchySettings.Enable_Debug__c);
     }
 }
