@@ -16,6 +16,8 @@ project:
         banner: ApexDocContent/projectheader.htm
         branch: gh-pages
         repo_dir: ApexDocumentation
+    dependency_resolutions:
+        preproduction: include_beta
 
 sources:
     latest_release:
