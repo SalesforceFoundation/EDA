@@ -8,6 +8,8 @@ import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
 import stgErrorSettingsTitle from "@salesforce/label/c.stgErrorSettingsTitle";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 import stgHelpStoreErrorsOn from "@salesforce/label/c.stgHelpStoreErrorsOn";
+import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
+import stgEnableDebugHelp from "@salesforce/label/c.stgEnableDebugHelp";
 
 export default class ErrorSettings extends LightningElement {
     isEditMode = false;
@@ -22,10 +24,13 @@ export default class ErrorSettings extends LightningElement {
         errorSettingsTitle: stgErrorSettingsTitle,
         storeErrorsSettingTitle: stgStoreErrorsTitle,
         storeErrorsSettingDescription: stgHelpStoreErrorsOn,
+        enableDebugSettingsTitle: stgEnableDebugTitle,
+        enableDebugSettingsDescription: stgEnableDebugHelp,
     };
 
     inputAttributeReference = {
         storeErrorsToggleId: "storeErrors",
+        enableDebugToggleId: "enableDebug",
     };
 
     get affordancesDisabled() {
@@ -52,6 +57,18 @@ export default class ErrorSettings extends LightningElement {
         let hierarchySettingsChange = {
             settingsType: "boolean",
             settingsName: "Store_Errors_On__c",
+            settingsValue: eventDetail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleEnableDebugChange(event) {
+        const eventDetail = event.detail;
+
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Enable_Debug__c",
             settingsValue: eventDetail.value,
         };
 
