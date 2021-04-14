@@ -223,6 +223,7 @@ public without sharing class UTIL_CustomSettingsFacade {
 
         settings.Accounts_Addresses_Enabled__c = mySettings.Accounts_Addresses_Enabled__c;
         settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
+        settings.Lead_Naming_Account_RTypes__c =  mySettings.Lead_Naming_Account_RTypes__c;        
         settings.Admin_Account_Naming_Format__c = mySettings.Admin_Account_Naming_Format__c;
         settings.Admin_Other_Name_Setting__c = mySettings.Admin_Other_Name_Setting__c;
         settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
