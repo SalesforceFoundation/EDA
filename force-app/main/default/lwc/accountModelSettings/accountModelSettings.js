@@ -336,10 +336,10 @@ export default class AccountModelSettings extends LightningElement {
     }
 
     get adminAccDesc() {
-        return this.labelReference.adminAccountNameFormatDescription + this.accNamingHyperLink;
+        return this.labelReference.adminAccountNameFormatDescription + " " + this.accNamingHyperLink;
     }
 
     get hhAccDesc() {
-        return this.labelReference.hhAccountNameFormatDescription + this.accNamingHyperLink;
+        return this.labelReference.hhAccountNameFormatDescription + " " + this.accNamingHyperLink;
     }
 }
