@@ -8,6 +8,8 @@ import stgRefreshHHAcctNameTitle from "@salesforce/label/c.stgRefreshHHAcctNameT
 import stgRefreshHHAcctNameDesc from "@salesforce/label/c.stgRefreshHHAcctNameDesc";
 import stgRefreshAdminNamesSuccessToast from "@salesforce/label/c.stgRefreshAdminNamesSuccessToast";
 import BatchJobRunningProblem from "@salesforce/label/c.BatchJobRunningProblem";
+import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+
 import runRefreshHouseholdAccountNamingJob from "@salesforce/apex/AccountNamingBatchController.runRefreshHouseholdAccountNamingJob";
 
 export default class systemTools extends LightningElement {
@@ -18,7 +20,13 @@ export default class systemTools extends LightningElement {
         stgRefreshHHAcctNameDesc: stgRefreshHHAcctNameDesc,
         stgRefreshAdminNamesSuccessToast: stgRefreshAdminNamesSuccessToast,
         BatchJobRunningProblem: BatchJobRunningProblem,
+        tellMeMoreLink: stgTellMeMoreLink,
     };
+
+    houseHoldNamesHyperLink =
+        '<a href="https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names">' +
+        this.labelReference.tellMeMoreLink +
+        "</a>";
 
     handleRefreshHHNamesBtnClick(event) {
         const eventDetail = event.detail;
@@ -27,7 +35,6 @@ export default class systemTools extends LightningElement {
     }
 
     dispatchSettingsBatchJobModalEvent(eventDetail, batchJobToRun) {
-        window.alert("inside dispatch event");
         const settingsBatchJobDetail = {
             eventDetail: eventDetail,
             batchJobToRun: batchJobToRun,
@@ -42,7 +49,6 @@ export default class systemTools extends LightningElement {
     }
 
     @api modalSave(saveModel) {
-        window.alert("**** inside save");
         switch (saveModel.batchJobToRun) {
             case "ACCT_HouseholdNameRefresh_BATCH":
                 this.runHouseHoldNamingRefreshBatch();
@@ -59,7 +65,6 @@ export default class systemTools extends LightningElement {
             .catch((error) => {
                 this.showToast("error", "Error in batch job", this.labelReference.BatchJobRunningProblem);
             });
-        this.refreshAllApex();
     }
 
     showToast(toastType, toastTitle, toastMessage) {
@@ -70,5 +75,9 @@ export default class systemTools extends LightningElement {
             mode: "dismissable",
         });
         this.dispatchEvent(showToastEvent);
+    }
+
+    get houseHoldNamesRefreshDesc() {
+        return this.labelReference.stgRefreshHHAcctNameDesc + " " + this.houseHoldNamesHyperLink;
     }
 }

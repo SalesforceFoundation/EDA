@@ -1,6 +1,5 @@
 ({
     openSettingsBatchJobModal: function (component, eventParameters) {
-        window.alert("3 inside openSettingsBatchJobModal");
         const batchJobToRun = eventParameters.batchJobToRun;
 
         component.set("v.batchJobToRun", batchJobToRun);
@@ -54,20 +53,6 @@
             }
         );
     },
-    // handleModalDataChangeEvent: function (component, event) {
-    //     event.stopPropagation();
-    //     const field = event.getParam("field");
-    //     const fieldValue = event.getParam("fieldValue");
-
-    //     switch (field) {
-    //         case "accountRecordType":
-    //             component.set("v.accountRecordType", fieldValue);
-    //             break;
-    //         case "contactField":
-    //             component.set("v.contactField", fieldValue);
-    //             break;
-    //     }
-    // },
     handleModalFooterEvent: function (component, event) {
         event.stopPropagation();
         switch (event.getParam("action")) {

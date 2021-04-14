@@ -14,7 +14,6 @@
             .openPrimaryAffiliationsModal(affiliationsAction, mappingName, accountRecordType, contactField);
     },
     openSettingsBatchJobModal: function (component, eventParameters) {
-        window.alert("2 inside container helper");
         const batchJobToRun = eventParameters.batchJobToRun;
         component.find("settingBatchJobModal").openSettingsBatchJobModal(batchJobToRun);
     },
