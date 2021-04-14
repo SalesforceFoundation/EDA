@@ -62,5 +62,6 @@ public virtual with sharing class CourseEnrollmentSettingsMapper {
      * @return A CourseEnrollmentSettingsModel
      ************************************************************************************************************/
     public virtual CourseEnrollmentSettingsModel getCourseEnrollmentSettingsModel() {
+        return new CourseEnrollmentSettingsModel();
     }
 }
