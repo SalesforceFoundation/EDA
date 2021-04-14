@@ -8,6 +8,7 @@ import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType
 import stgColContactPrimaryAfflField from "@salesforce/label/c.stgColContactPrimaryAfflField";
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgAffiliationsEditModalBody from "@salesforce/label/c.stgAffiliationsEditModalBody";
+import stgAffiliationsNewModalBody from "@salesforce/label/c.stgAffiliationsNewModalBody";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 
 export default class PrimaryAffiliationsModalBody extends LightningElement {
@@ -28,6 +29,7 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
         contactFieldCombobox: stgColContactPrimaryAfflField,
         modalBodyEditSave: stgAffiliationsEditModalBody,
         tellMeMoreLink: stgTellMeMoreLink,
+        modalBodyCreate: stgAffiliationsNewModalBody,
     };
 
     affiliationsHyperLink =
@@ -115,6 +117,12 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
     }
 
     get affiliationsDesc() {
-        return this.labelReference.modalBodyEditSave + " " + this.affiliationsHyperLink;
+        switch (this.affiliationsAction) {
+            case "edit":
+                return this.labelReference.modalBodyEditSave + " " + this.affiliationsHyperLink;
+
+            case "create":
+                return this.labelReference.modalBodyCreate + " " + this.affiliationsHyperLink;
+        }
     }
 }

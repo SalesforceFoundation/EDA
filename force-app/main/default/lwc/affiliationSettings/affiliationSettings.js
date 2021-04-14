@@ -6,6 +6,7 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import getAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getAffiliationsSettingsVModel";
 import getPrimaryAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getPrimaryAffiliationsSettingsVModel";
 import updateAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.updateAffiliationMappings";
+import insertAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.insertAffiliationMappings";
 
 import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsTitle";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
@@ -16,7 +17,9 @@ import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType
 import stgColContactPrimaryAfflField from "@salesforce/label/c.stgColContactPrimaryAfflField";
 import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 import stgAffiliationsEditSuccess from "@salesforce/label/c.stgAffiliationsEditSuccess";
+import stgAffiliationsNewSuccess from "@salesforce/label/c.stgAffiliationsNewSuccess";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
 
 export default class affiliationSettings extends LightningElement {
     isEditMode = false;
@@ -41,6 +44,8 @@ export default class affiliationSettings extends LightningElement {
         },
         successMessage: stgAffiliationsEditSuccess,
         tellMeMoreLink: stgTellMeMoreLink,
+        newButton: stgBtnAddMapping,
+        successMessageForCreate: stgAffiliationsNewSuccess,
     };
 
     affiliationsHyperLink =
@@ -134,6 +139,23 @@ export default class affiliationSettings extends LightningElement {
         this.dispatchEvent(primaryAffiliationsModalRequestEvent);
     }
 
+    handleNewPrimaryAffiliationClick(event) {
+        const affiliationsDetail = {
+            affiliationsAction: "create",
+            mappingName: "",
+            accountRecordType: "",
+            contactField: "",
+        };
+
+        const primaryAffiliationsModalRequestEvent = new CustomEvent("primaryaffiliationmodalrequest", {
+            detail: affiliationsDetail,
+            bubbles: true,
+            composed: true,
+        });
+
+        this.dispatchEvent(primaryAffiliationsModalRequestEvent);
+    }
+
     handleSettingsEditModeChange(event) {
         this.isEditMode = !event.detail;
         this.affordancesDisabledToggle = event.detail;
@@ -164,7 +186,30 @@ export default class affiliationSettings extends LightningElement {
             case "edit":
                 this.updateAffiliation(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
                 break;
+            case "create":
+                this.insertAffiliations(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
+                break;
         }
+    }
+
+    insertAffiliations(mappingName, accountRecordType, contactField) {
+        insertAffiliationMappings({
+            mappingName: mappingName,
+            recordTypeName: accountRecordType,
+            contactFieldName: contactField,
+        })
+            .then((result) => {
+                this.showToast(
+                    "success",
+                    "Save Complete",
+                    this.labelReference.successMessageForCreate.replace("{0}", result)
+                );
+            })
+
+            .catch((error) => {
+                //this.showToast("error", "Save Incomplete", this.labelReference.stgAfflNotInserted);
+            });
+        this.refreshAllApex();
     }
 
     updateAffiliation(mappingName, accountRecordType, contactField) {
