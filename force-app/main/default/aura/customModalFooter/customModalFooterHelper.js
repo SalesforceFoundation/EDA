@@ -7,8 +7,10 @@
 
         try {
             customModalFooterEvent.fire();
+            window.alert("&&&& inside confirm TRY");
             component.find("edaOverlayLibrary").notifyClose();
         } catch (e) {
+            window.alert("&&&& inside confirm CATCH: " + e);
             //save for validation handling
             //console.error(e);
         }

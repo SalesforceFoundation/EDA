@@ -38,7 +38,7 @@ public with sharing class AccountNamingBatchController {
      * @return Boolean True if the batch job runs successfully
      ************************************************************************************/
     @AuraEnabled(cacheable=true)
-    public static Boolean getAddressSettingsVModel() {
+    public static Boolean runRefreshHouseholdAccountNamingJob() {
         try {
             Boolean batchJobSuccessful = AccountNamingBatchController.locateAccountNamingService()
                 .runRefreshHouseHoldAccountNamingJob();

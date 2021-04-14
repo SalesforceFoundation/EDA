@@ -2,10 +2,12 @@
     <aura:attribute name="pageReference" type="Object" />
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
     <c:primaryAffiliationsModalOpener aura:id="primaryAffiliationsModal"></c:primaryAffiliationsModalOpener>
+    <c:settingsBatchJobModalOpener aura:id="settingBatchJobModal"></c:settingsBatchJobModalOpener>
     <aura:handler name="modalSaveEvent" event="c:modalSaveEvent" action="{!c.handleModalSaveEvent}" />
     <c:edaSettings
         aura:id="edaSettings"
         pageReference="{!v.pageReference}"
         onprimaryaffiliationmodalrequest="{!c.primaryAffiliationModalRequestHandler}"
+        onsettingsbatchjobmodalrequest="{!c.settingsBatchJobModalRequestHandler}"
     />
 </aura:component>

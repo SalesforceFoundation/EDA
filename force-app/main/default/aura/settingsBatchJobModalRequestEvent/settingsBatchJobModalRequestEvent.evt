@@ -1,0 +1,3 @@
+<aura:event type="Component" description="Event capturing the batch job to run.">
+    <!-- <aura:attribute name="batchJobToRun" type="String" /> -->
+</aura:event>

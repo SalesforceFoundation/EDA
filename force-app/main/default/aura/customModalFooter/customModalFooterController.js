@@ -3,6 +3,7 @@
         helper.fireButtonClickEvent(component, "cancel");
     },
     handleConfirmButtonClick: function (component, event, helper) {
+        window.alert("&&&& inside confirm");
         helper.fireButtonClickEvent(component, "confirm");
     },
     handleToggleSaveButtonVisibility: function (component, event, helper) {

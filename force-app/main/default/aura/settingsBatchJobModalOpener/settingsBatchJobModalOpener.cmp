@@ -1,0 +1,15 @@
+<aura:component>
+    <aura:attribute name="batchJobToRun" type="String" />
+
+    <aura:handler
+        name="modalFooterEventHandler"
+        event="c:customModalFooterEvent"
+        action="{!c.handleModalFooterEvent}"
+    />
+    <aura:registerEvent name="modalSaveEvent" type="c:modalSaveEvent" />
+    <lightning:overlayLibrary aura:id="edaOverlayLibrary" />
+
+    <aura:method name="openSettingsBatchJobModal" action="{!c.openSettingsBatchJobModal}">
+        <aura:attribute name="batchJobToRun" type="String" />
+    </aura:method>
+</aura:component>
