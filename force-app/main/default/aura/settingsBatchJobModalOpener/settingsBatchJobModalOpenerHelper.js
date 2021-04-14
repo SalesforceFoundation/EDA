@@ -62,11 +62,7 @@
         }
     },
     handleModalFooterConfirm: function (component) {
-        switch (component.get("v.batchJobToRun")) {
-            case "ACCT_HouseholdNameRefresh_BATCH":
-                this.handleModalBatchConfirm(component);
-                break;
-        }
+        this.handleModalBatchConfirm(component);
     },
     handleModalBatchConfirm: function (component) {
         let modalSaveEvent = component.getEvent("modalSaveEvent");

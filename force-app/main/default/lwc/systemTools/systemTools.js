@@ -1,6 +1,5 @@
 import { LightningElement, wire, track, api } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
-import { refreshApex } from "@salesforce/apex";
 
 import stgSystemToolsTitle from "@salesforce/label/c.stgSystemToolsTitle";
 import stgBtnRefreshHouseholdNames from "@salesforce/label/c.stgBtnRefreshHouseholdNames";
@@ -59,11 +58,11 @@ export default class systemTools extends LightningElement {
     runHouseHoldNamingRefreshBatch() {
         runRefreshHouseholdAccountNamingJob()
             .then((result) => {
-                this.showToast("success", "Batch Job Running", this.labelReference.stgRefreshAdminNamesSuccessToast);
+                this.showToast("success", "Success", this.labelReference.stgRefreshAdminNamesSuccessToast);
             })
 
             .catch((error) => {
-                this.showToast("error", "Error in batch job", this.labelReference.BatchJobRunningProblem);
+                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
             });
     }
 
