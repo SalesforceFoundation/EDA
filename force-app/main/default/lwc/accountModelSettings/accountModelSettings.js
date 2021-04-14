@@ -3,6 +3,7 @@ import { refreshApex } from "@salesforce/apex";
 
 import getAccountModelSettingsViewModel from "@salesforce/apex/AccountModelSettingsController.getAccountModelSettingsViewModel";
 import getAccountAutoDeletionSettingsViewModel from "@salesforce/apex/AccountModelSettingsController.getAccountAutoDeletionSettingsViewModel";
+import getLeadConversionAccountNamingSettingsViewModel from "@salesforce/apex/AccountModelSettingsController.getLeadConversionAccountNamingViewModel";
 
 import stgAccountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
 import stgAccModelTitle from "@salesforce/label/c.stgAccModelTitle";
@@ -13,6 +14,8 @@ import stgAccountRecordTypeSupportsHHAddress from "@salesforce/label/c.stgAccoun
 import stgHelpHouseholdRecType from "@salesforce/label/c.stgHelpHouseholdRecType";
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgAccoutTypesWithoutContactsDelete from "@salesforce/label/c.stgAccoutTypesWithoutContactsDelete";
+import stgLeadConversionAccountNaming from "@salesforce/label/c.stgLeadConversionAccountNaming";
+import stgHelpLeadConversionAccountNaming from "@salesforce/label/c.stgHelpLeadConversionAccountNaming";
 import stgHelpAccoutsDeletedIfChildContactsDeleted from "@salesforce/label/c.stgHelpAccoutsDeletedIfChildContactsDeleted";
 import stgAccountRecordTypeGroupLabelTitle from "@salesforce/label/c.stgAccountRecordTypeGroupLabelTitle";
 import stgAccountRecordTypeAvailableListTitle from "@salesforce/label/c.stgAccountRecordTypeAvailableListTitle";
@@ -24,6 +27,7 @@ export default class AccountModelSettings extends LightningElement {
 
     @track accountModelSettingsViewModel;
     @track accountAutoDeletionSettingsViewModel;
+    @track leadConversionAccountNamingSettingsViewModel;
 
     labelReference = {
         accountModelSettingsTitle: stgAccountModelSettingsTitle,
@@ -39,6 +43,8 @@ export default class AccountModelSettings extends LightningElement {
         accountAutoDeletionLisboxGroupHeading: stgAccountRecordTypeGroupLabelTitle,
         accountAutoDeletionSelectedValuesHeading: stgAccountRecordTypeSelectedListTitle,
         accountAutoDeletionAvailableValuesHeading: stgAccountRecordTypeAvailableListTitle,
+        leadConversionAccountNamingTitle: stgLeadConversionAccountNaming,
+        leadConversionAccountNamingDescription: stgHelpLeadConversionAccountNaming,
     };
 
     inputAttributeReference = {
@@ -46,6 +52,7 @@ export default class AccountModelSettings extends LightningElement {
         adminAccountModelComboboxId: "adminAccountModel",
         hhAccountModelComboboxId: "hhAccountModel",
         accountAutoDeletionDualListboxId: "accountAutoDeletionModel",
+        leadAccountNamingDualListboxId: "leadConversionAccountNaming",
     };
 
     get affordancesDisabled() {
@@ -70,6 +77,15 @@ export default class AccountModelSettings extends LightningElement {
             this.accountAutoDeletionSettingsViewModel = data;
         } else if (error) {
             //console.log("error retrieving accountAutoDeletionSettingsViewModel");
+        }
+    }
+
+    @wire(getLeadConversionAccountNamingSettingsViewModel)
+    leadConversionAccountNamingSettingsViewModel({ error, data }) {
+        if (data) {
+            this.leadConversionAccountNamingSettingsViewModel = data;
+        } else if (error) {
+            //console.log("error retrieving leadConversionAccountNamingSettingsViewModel");
         }
     }
 
@@ -111,6 +127,17 @@ export default class AccountModelSettings extends LightningElement {
         let hierarchySettingsChange = {
             settingsType: "array",
             settingsName: "Accounts_to_Delete__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleLeadNamingAccountChange(event) {
+        // add selected values to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "array",
+            settingsName: "Lead_Naming_Account_RTypes__c",
             settingsValue: event.detail.value,
         };
 
