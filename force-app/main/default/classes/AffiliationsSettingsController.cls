@@ -47,6 +47,31 @@ public with sharing class AffiliationsSettingsController {
         }
     }
 
+    /********************************************************************************************************************************************
+     * @description Insert a new Affiliation Mapping custom setting; auto-enrollment settings are defaulted to false and blank values.
+     * @param  mappingName A string representing the name of the new affiliation mapping
+     * @param  recordTypeName A string representing the Record Type name for the new affiliation mapping
+     * @param  contactFieldName A string representing the field label for the Contact primary affiliation field associated with the new affiliation mapping
+     ********************************************************************************************************************************************/
+    @AuraEnabled
+    public static String insertAffiliationMappings(String mappingName, String recordTypeName, String contactFieldName) {
+        try {
+            AffiliationsSettingsController.locateAffiliationMappingsService()
+                .insertAffiliationMappings(mappingName, recordTypeName, contactFieldName);
+
+            RecordTypeModel accRecTypeModel = AffiliationsSettingsController.locateRecordTypeService()
+                .getRecordTypeModelFromRecTypeDevName('Account', recordTypeName);
+
+            if (accRecTypeModel == null) {
+                return recordTypeName;
+            }
+
+            return accRecTypeModel.name;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /************************************************************************************
      * @description Updates Affiliaions mapping custom settings
      * @param mappingName
