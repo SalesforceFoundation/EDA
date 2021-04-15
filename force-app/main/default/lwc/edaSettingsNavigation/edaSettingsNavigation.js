@@ -21,15 +21,18 @@ import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressCh
 import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 import stgAffiliationsSettingsNav from "@salesforce/label/c.stgAffiliationsSettingsNav";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
-//Errors Settings Labels
+//System Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
+import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
+//Error Settings Labels
+import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
         peopleAndGroups: "People and Groups",
         setupHome: "Setup Home",
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
-        systemSettings: "System",
+        systemSettings: stgSystemSettingsNav,
         accountModel: {
             accountAutoDeletionModel: stgAccoutTypesWithoutContactsDelete,
             accountModelSettings: stgAccountModelSettingsTitle,
@@ -66,7 +69,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             enableErrorHandling: "Enable Error Handling",
             errorSettings: stgErrorSettingsNav,
             sendErrorNotifications: "Send Error Notifications",
-            storeErrors: "Store Errors",
+            storeErrors: stgStoreErrorsTitle,
         },
         programSettings: {
             programSettings: "Programs",
