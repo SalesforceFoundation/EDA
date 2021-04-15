@@ -37,6 +37,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             adminAccountNaming: "Administrative Account Name Format",
             hhAccountNaming: "Household Account Name Format",
             autoHHAccountNaming: "Automatically Rename Household Accounts",
+            leadConversionAutoAccountNaming: "Lead Conversion Auto Account Naming",
         },
         addressSettings: {
             addressAccountRecordTypes: stgAccountTypesMultiAddressesEnabled,
