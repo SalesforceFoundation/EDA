@@ -1,0 +1,19 @@
+.nav-subsection-header_link:hover {
+    color: var(--lwc-colorTextActionLabel);
+}
+
+.nav-subsection-header_link:active {
+    color: var(--lwc-colorTextActionLabel);
+}
+
+.nav-menu-item_link:hover {
+    color: var(--lwc-colorTextActionLabelActive);
+}
+
+.nav-menu-item_link:active {
+    color: var(--lwc-colorTextActionLabelActive);
+}
+
+.nav-is-active {
+    background-color: var(--lwc-colorBackground);
+}

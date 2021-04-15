@@ -1,0 +1,4 @@
+<aura:event type="Component" description="Event capturing an individual field change in a modal.">
+    <aura:attribute name="field" type="String" />
+    <aura:attribute name="fieldValue" type="String" />
+</aura:event>
