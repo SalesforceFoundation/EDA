@@ -32,7 +32,7 @@
  * @description Test class for ErrorSettingsVMapper
  */
 @isTest
-public with sharing class ErrorSettingsVMapper_TEST {
+private with sharing class ErrorSettingsVMapper_TEST {
     private static Integer loopCounter = 5;
 
     /**************************************************************************************************************************
