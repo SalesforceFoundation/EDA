@@ -60,7 +60,7 @@ public virtual with sharing class LeadConversionAccountNamingMapper {
     * @description Retrieves an LeadConversionAccountNamingModel populated with
     * a list of Account Record Type Ids specified in Hierarchy Settings 
     * selected for renaming Accounts during Lead Conversion.
-    * @return A1 LeadConversionAccountNamingModel
+    * @return A LeadConversionAccountNamingModel
     *****************************************************************************/
     public virtual LeadConversionAccountNamingModel getLeadConversionAccountNamingModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
@@ -74,4 +74,3 @@ public virtual with sharing class LeadConversionAccountNamingMapper {
         return new LeadConversionAccountNamingModel(recordTypesToNameList);
     }
 }
-

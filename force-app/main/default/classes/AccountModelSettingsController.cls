@@ -65,7 +65,7 @@ public with sharing class AccountModelSettingsController {
     }
 
     /************************************************************************************
-     * @description Retrieve a DualListboxVModel represeting the current Account Record Types
+     * @description Retrieve a DualListboxVModel representing the current Account Record Types
      * specified for account renaming in Hierarchy Settings and
      * the remaining active Account Record Types available for selection.
      * @return A DualListboxVModel

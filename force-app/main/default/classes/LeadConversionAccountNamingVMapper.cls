@@ -59,8 +59,7 @@ public virtual with sharing class LeadConversionAccountNamingVMapper {
 
     /*******************************************************************************************************
      * @description Retrieve a DualListboxVModel representing the Account Record Types currently selected
-     * for renaming accounts during Lead Conversion
-     * availabe for selection.
+     * for renaming accounts during Lead Conversion that available for selection.
      * @return  A DualListboxVModel
      *******************************************************************************************************/
     public virtual DualListboxVModel getLeadConversionAccountNamingViewModel() {
