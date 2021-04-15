@@ -82,6 +82,7 @@ private with sharing class ErrorSettingsController_TEST {
         Test.startTest();
         try {
             ErrorSettingsVModel errorSettingsVModel = ErrorSettingsController.getErrorSettingsViewModel();
+            System.assert(false, 'should throw an exception.');
         } catch (AuraHandledException e) {
             System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
         }
