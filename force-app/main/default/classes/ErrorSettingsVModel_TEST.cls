@@ -32,7 +32,7 @@
  * @description Test class for ErrorSettingsVModel
  */
 @isTest
-public with sharing class ErrorSettingsVModel_TEST {
+private with sharing class ErrorSettingsVModel_TEST {
     /****************************************************************************
      * @description Test method to verify constructor returns a view model with
      * all properties populated.
