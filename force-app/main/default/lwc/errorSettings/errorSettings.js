@@ -3,8 +3,6 @@ import { refreshApex } from "@salesforce/apex";
 
 import getErrorSettingsViewModel from "@salesforce/apex/ErrorSettingsController.getErrorSettingsViewModel";
 
-import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
-import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
 import stgErrorSettingsTitle from "@salesforce/label/c.stgErrorSettingsTitle";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 import stgHelpStoreErrorsOn from "@salesforce/label/c.stgHelpStoreErrorsOn";
@@ -17,8 +15,6 @@ export default class ErrorSettings extends LightningElement {
     @track errorSettingsVModel;
 
     labelReference = {
-        systemSettingsPageHeading: stgSystemSettingsNav,
-        systemSettingsTitle: stgSystemSettingsTitle,
         errorSettingsTitle: stgErrorSettingsTitle,
         storeErrorsSettingTitle: stgStoreErrorsTitle,
         storeErrorsSettingDescription: stgHelpStoreErrorsOn,
@@ -85,9 +81,6 @@ export default class ErrorSettings extends LightningElement {
 
     refreshAllApex() {
         Promise.all([refreshApex(this.errorSettingsWireResult)]).then(() => {
-            this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
-                dualListBox.resetValue();
-            });
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });
