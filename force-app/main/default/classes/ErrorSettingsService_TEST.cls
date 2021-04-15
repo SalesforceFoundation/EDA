@@ -32,7 +32,7 @@
  * @description Test class for ErrorSettingsService
  */
 @isTest
-public with sharing class ErrorSettingsService_TEST {
+private with sharing class ErrorSettingsService_TEST {
     /**************************************************************************************************************************
      * @description Test method to verify that the getInstance method returns a new instance of the
      * ErrorSettingsService class when one does not already exist.
