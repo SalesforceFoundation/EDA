@@ -32,7 +32,7 @@
  * @description Test class for ErrorSettingsController
  */
 @isTest
-public with sharing class ErrorSettingsController_TEST {
+private with sharing class ErrorSettingsController_TEST {
     /***********************************************************************************************************************************
      * @description Test method to verify that the locateErrorSettingsVMapper method returns instance of ErrorSettingsVMapper
      ***********************************************************************************************************************************/
