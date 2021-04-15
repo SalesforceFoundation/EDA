@@ -1,6 +1,4 @@
 <aura:component>
-    <!-- <aura:registerEvent name="settingsBatchJobModalRequestEvent" type="c:settingsBatchJobModalRequestEvent" /> -->
-
     <aura:attribute name="batchJobToRun" type="String" />
 
     <c:batchJobModalBody batchJobToRun="{!v.batchJobToRun}"></c:batchJobModalBody>
