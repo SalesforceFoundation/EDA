@@ -29,8 +29,8 @@
 * @date 2021
 * @group EDA Settings
 * @group-content ../../ApexDocContent/edaSettings.htm
-* @description Model to represent Account record types selected for automatic deletion
-* when not associated with any Contact records.
+* @description Model to represent Account record types selected for account naming
+* during lead conversion.
 */
 public with sharing class LeadConversionAccountNamingModel {
     public List<String> accountRecordTypeIdsForLeadConversionWhenOrphanedList { get; private set; }

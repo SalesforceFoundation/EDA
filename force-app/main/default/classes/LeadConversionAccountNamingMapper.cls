@@ -30,7 +30,7 @@
 * @group EDA Settings
 * @group-content ../../ApexDocContent/edaSettings.htm
 * @description Mapper class acting as the mapper layer to abstract data in Database
-* for Automatic deletion functionality.
+* for Account Naming functionality.
 */
 public virtual with sharing class LeadConversionAccountNamingMapper {
     /*********************************************

@@ -30,7 +30,7 @@
 * @group EDA Settings
 * @group-content ../../ApexDocContent/edaSettings.htm
 * @description Service class acting as the service layer for 
-* Account Record Type Automatic Deletion functionality.
+* Account Record Type account naming during lead conversion functionality.
 */
 public virtual with sharing class LeadConversionAccountNamingService {
     /*********************************************

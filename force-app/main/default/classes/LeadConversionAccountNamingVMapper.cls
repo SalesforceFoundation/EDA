@@ -29,7 +29,8 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/EdaSettings.htm
- * @description View mapper to generate view models associated with Account Auto Deletion funtionality.
+ * @description View mapper to generate view models associated with account naming
+ * during lead conversion funtionality.
  */
 public virtual with sharing class LeadConversionAccountNamingVMapper {
     /**********************************************************************************
@@ -64,7 +65,7 @@ public virtual with sharing class LeadConversionAccountNamingVMapper {
      *******************************************************************************************************/
     public virtual DualListboxVModel getLeadConversionAccountNamingViewModel() {
         // get current values set for deletion from hierarchy settings
-        LeadConversionAccountNamingModel currentAutoDeletionSettings = this.locateLeadConversionAccountNamingService()
+        LeadConversionAccountNamingModel currentAccountNamingSettings = this.locateLeadConversionAccountNamingService()
             .getLeadConversionAccountNamingModel();
 
         // get all active account record types in org
@@ -89,7 +90,7 @@ public virtual with sharing class LeadConversionAccountNamingVMapper {
         // populate selected listbox - only requires the String representing the value of the selected option
         List<String> selectedOptionsDualListboxValuesList = (List<String>) this.locateRecordTypeService()
             .filterListForValidIds(
-                currentAutoDeletionSettings.accountRecordTypeIdsForLeadConversionWhenOrphanedList,
+                currentAccountNamingSettings.accountRecordTypeIdsForLeadConversionWhenOrphanedList,
                 activeAccountRecordTypeModelsById.keySet()
             );
 
