@@ -32,7 +32,7 @@
  * @description Test class for ErrorSettingsMapper
  */
 @isTest
-public with sharing class ErrorSettingsMapper_TEST {
+private with sharing class ErrorSettingsMapper_TEST {
     /**************************************************************************************************************************
      * @description Test method to verify that the getInstance method returns a new instance of the
      * ErrorSettingsMapper class when one does not already exist.
