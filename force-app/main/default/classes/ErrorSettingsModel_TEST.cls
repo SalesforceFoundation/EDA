@@ -32,7 +32,7 @@
  * @description Test class for ErrorSettingsModel
  */
 @isTest
-public with sharing class ErrorSettingsModel_TEST {
+private with sharing class ErrorSettingsModel_TEST {
     /*************************************************************************
      * @description Test to verify the single argument constructor returns
      * a model with all properties populated.
