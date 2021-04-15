@@ -1,0 +1,23 @@
+<aura:component>
+    <aura:registerEvent name="customModalFooterEvent" type="c:customModalFooterEvent" />
+    <lightning:overlayLibrary aura:id="edaOverlayLibrary" />
+
+    <aura:attribute name="confirmButtonLabel" type="String" required="true" />
+    <aura:attribute name="confirmButtonTitle" type="String" required="true" />
+    <aura:attribute name="cancelButtonLabel" type="String" required="true" />
+    <aura:attribute name="cancelButtonTitle" type="String" required="true" />
+    <aura:attribute name="disableSaveButton" type="String" default="false" />
+
+    <lightning:button
+        label="{!v.cancelButtonLabel}"
+        title="{!v.cancelButtonTitle}"
+        onclick="{!c.handleCancelButtonClick}"
+    />
+    <lightning:button
+        label="{!v.confirmButtonLabel}"
+        title="{!v.confirmButtonTitle}"
+        onclick="{!c.handleConfirmButtonClick}"
+        disabled="{!v.disableSaveButton}"
+        variant="brand"
+    />
+</aura:component>
