@@ -1,0 +1,11 @@
+({
+    openPrimaryAffiliationsModal: function (component, event, helper) {
+        helper.openPrimaryAffiliationsModal(component, event.getParam('arguments'));
+    },
+    handleModalDataChangeEvent: function (component, event, helper) {
+        helper.handleModalDataChangeEvent(component,event);
+    },
+    handleModalFooterEvent: function (component, event, helper) {
+        helper.handleModalFooterEvent(component,event);
+    }
+});

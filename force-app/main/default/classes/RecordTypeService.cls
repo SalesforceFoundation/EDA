@@ -65,6 +65,17 @@ public virtual with sharing class RecordTypeService {
         return this.locateRecordTypeMapper().getModelByIdMapForSObjectType(sObjectType);
     }
 
+    /******************************************************************************
+     * @description Returns a recordtype model for an Object and it's recordtype
+     * @param objectAPI The API name for object to get the record type model for
+     * @param recTypeDevName The record type dev name to get the record typpe model for
+     * for the given object
+     * @return A recordtype model
+     ******************************************************************************/
+    public virtual RecordTypeModel getRecordTypeModelFromRecTypeDevName(String objectAPI, String recTypeDevName) {
+        return this.locateRecordTypeMapper().getRecordTypeModelFromRecTypeDevName(objectAPI, recTypeDevName);
+    }
+
     /***********************************************************************************************************************
      * @description Retrieve a map of active record types by Id from a list of all record types associated with an SObject.
      * @param allRecordTypeModelsList A list containing all record type models in an org.

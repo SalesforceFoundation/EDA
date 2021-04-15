@@ -1,31 +1,46 @@
 import { LightningElement, api, track, wire } from "lwc";
 
-import stgErrorInsufficientAccess from "@salesforce/label/c.stgErrorInsufficientAccess";
 import checkAccessForCurrentUser from "@salesforce/apex/EDASettingsController.checkAccessForCurrentUser";
+
+import stgErrorInsufficientAccess from "@salesforce/label/c.stgErrorInsufficientAccess";
+import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
+
 export default class EDASettings extends LightningElement {
     @api pageReference;
 
-    currentUserHasAccess = false;
+    currentUserHasAccessWireResult;
+    currentUserHasAccess;
 
-    labelReference = {
-        stgErrorInsufficientAccess,
-    };
+    activePage = "accountModelSettings";
 
     @track settingsPageToDisplay = {
         accountModelSettings: true,
     };
 
+    labelReference = {
+        insufficientAccessError: stgErrorInsufficientAccess,
+        spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
+    };
+
     @wire(checkAccessForCurrentUser)
     currentUserHasAccessWire(result) {
-        const { error, data } = result;
-        if (data) {
-            this.currentUserHasAccess = data;
+        this.currentUserHasAccessWireResult = result;
+        if (result.data) {
+            this.currentUserHasAccess = result.data;
         }
+    }
+
+    get currentUserDoesNotHaveAccess() {
+        if (this.currentUserHasAccess === false) {
+            return true;
+        }
+        return undefined;
     }
 
     settingsPageToDisplay = {
         accountModelSettings: true,
     };
+
     handleSettingsNavigation(event) {
         this.changePageToDisplay(event.detail.pageName);
         event.stopPropagation();
@@ -36,7 +51,14 @@ export default class EDASettings extends LightningElement {
         settingsPageDisplay[pageName] = true;
 
         this.settingsPageToDisplay = settingsPageDisplay;
+        this.activePage = pageName;
+    }
 
-        this.template.querySelector("c-eda-settings-navigation").setActivePage(pageName);
+    @api modalSave(saveModel) {
+        switch (saveModel.modalType) {
+            case "affiliations":
+                this.template.querySelector("c-affiliation-settings").modalSave(saveModel);
+                break;
+        }
     }
 }

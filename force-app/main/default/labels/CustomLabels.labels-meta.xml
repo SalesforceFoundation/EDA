@@ -6,7 +6,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Info text for Mapped Primary Affiliations</shortDescription>
-        <value>Mapped Primary Affiliations appear in a special Primary Affiliations section on the Contact record. The value set as Primary for an Account Record Type appears in the corresponding fields on the Contact record, as defined below. For more information, see the</value>
+        <value>Map Account record types to the Primary Affiliation fields on Contacts to define how updates to those fields impact Affiliation records and how updates to Affiliation records impact Contact records.</value>
     </labels>
     <labels>
         <fullName>AfflProgEnrollDeleted</fullName>
@@ -104,28 +104,12 @@
         <value>Female</value>
     </labels>
     <labels>
-        <fullName>invalidContactFieldInAffiliationMapping</fullName>
-        <categories>Affiliations</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Error when a Contact's Primary Affiliation field isn't an Account lookup field</shortDescription>
-        <value>We can't save this record because of an error with the Contact field {1}. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of an Account lookup field on the Contact object instead of {1}</value>
-    </labels>
-    <labels>
         <fullName>InvalidFilter</fullName>
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error message for TDTM filtering functionality</shortDescription>
         <value>The field entered as the Filter Field isn&apos;t valid. Filter Fields can be any standard or custom field on the object this trigger is for, as well as fields on related records. Make sure you use the field&apos;s API name, and omit any EDA namespace prefix (&quot;hed__&quot;).</value>
-    </labels>
-    <labels>
-        <fullName>invalidRecordTypeInAffiliationMapping</fullName>
-        <categories>Affiliations</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Error when an Affiliation Mapping's Account record type isn't valid</shortDescription>
-        <value>We can't save this record because {1} isn't a valid Account record type. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of a valid Account record type instead of {1}.</value>
     </labels>
     <labels>
         <fullName>Male</fullName>
@@ -276,8 +260,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for Admin and Household Account Name Format fields</shortDescription>
-        <value>Other</value>
+        <shortDescription>Picklist value for naming format used for Administrative and Household Accounts</shortDescription>
+        <value>Custom Format</value>
     </labels>
     <labels>
         <fullName>adapterException</fullName>
@@ -348,7 +332,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Admin Acct Name format</shortDescription>
+        <shortDescription>Field label for the Administrative Account Name Format setting</shortDescription>
         <value>Administrative Account Name Format</value>
     </labels>
     <labels>
@@ -356,8 +340,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text under Admin Acct Name Format field label</shortDescription>
-        <value>The name format used for auto-created Administrative Accounts.</value>
+        <shortDescription>Description of the Administrative Account Name Format setting</shortDescription>
+        <value>The format for naming Administrative Accounts when they are automatically created.</value>
     </labels>
     <labels>
         <fullName>affiliationWithSameAccExists</fullName>
@@ -396,23 +380,23 @@
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliations setting</shortDescription>
-        <value>Enable Record Type Validation</value>
+        <shortDescription>Label for the Record Type Validation setting</shortDescription>
+        <value>Record Type Validation</value>
     </labels>
     <labels>
         <fullName>afflTypeEnforcedDescription</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for the Enable Record Type Validation setting for Affilliations</shortDescription>
-        <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, the Account is required to have a record type and all Account Record Type values must be correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
+        <shortDescription> Description of the Record Type Validation setting</shortDescription>
+        <value>Require Accounts specified as a Contact’s Primary Affiliation use a record type. Also ensure that all Account record types are mapped to Primary Affiliation fields on the Contact object. If validation fails, the Affiliation isn’t saved.</value>
     </labels>
     <labels>
         <fullName>automaticHHNaming</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Automatic HH Naming</shortDescription>
+        <shortDescription>Field label for the Automatically Rename Household Accounts setting</shortDescription>
         <value>Automatically Rename Household Accounts</value>
     </labels>
     <labels>
@@ -420,8 +404,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Automatic Household Naming</shortDescription>
-        <value>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is changed.</value>
+        <shortDescription>Description of the Automatically Rename Household Accounts setting</shortDescription>
+        <value>Automatically rename Household Accounts when Contacts are added or changed.</value>
     </labels>
     <labels>
         <fullName>defaultAccountRecordTypeMissingError</fullName>
@@ -480,11 +464,11 @@
         <value>The Filter Field can&apos;t include namespace prefixes such as hed__. Remove the namespace prefix and try again.</value>
     </labels>
     <labels>
-        <fullName>firstNameLastNameAdminACC</fullName>
+        <fullName>firstNameLastNameAdminAcc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>A picklist value for the Admin Account Name Format setting</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Administrative Accounts</shortDescription>
         <value>{!{!FirstName}} {!LastName} Administrative Account</value>
     </labels>
     <labels>
@@ -492,7 +476,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>A picklist value for the Household Account Name Format setting</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!{!FirstName}} {!LastName} Family</value>
     </labels>
     <labels>
@@ -500,7 +484,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>A picklist value for the Household Account Name Format setting</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!{!FirstName}} {!LastName} Household</value>
     </labels>
     <labels>
@@ -515,7 +499,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for the Household Account Name format setting</shortDescription>
+        <shortDescription>Field label for the Household Account Name setting</shortDescription>
         <value>Household Account Name Format</value>
     </labels>
     <labels>
@@ -523,8 +507,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Household Acct Naming Format</shortDescription>
-        <value>The format used for naming Household Accounts.</value>
+        <shortDescription>Description of the Household Account Name Format setting</shortDescription>
+        <value>The format for naming Household Accounts when they are automatically created.</value>
     </labels>
     <labels>
         <fullName>hhFamily</fullName>
@@ -535,11 +519,27 @@
         <value>Family</value>
     </labels>
     <labels>
+        <fullName>invalidContactFieldInAffiliationMapping</fullName>
+        <categories>Affiliations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when a Contact&apos;s Primary Affiliation field isn&apos;t an Account lookup field</shortDescription>
+        <value>We can&apos;t save this record because of an error with the Contact field {1}. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of an Account lookup field on the Contact object instead of {1}</value>
+    </labels>
+    <labels>
+        <fullName>invalidRecordTypeInAffiliationMapping</fullName>
+        <categories>Affiliations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when an Affiliation Mapping&apos;s Account record type isn&apos;t valid</shortDescription>
+        <value>We can&apos;t save this record because {1} isn&apos;t a valid Account record type. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of a valid Account record type instead of {1}.</value>
+    </labels>
+    <labels>
         <fullName>lastNameAdminAcc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Admin Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Administrative Accounts</shortDescription>
         <value>{!LastName} Administrative Account</value>
     </labels>
     <labels>
@@ -547,7 +547,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!LastName} Family</value>
     </labels>
     <labels>
@@ -555,7 +555,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Admin Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Administrative Accounts</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Administrative Account</value>
     </labels>
     <labels>
@@ -563,7 +563,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Household Account Name format.</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Family</value>
     </labels>
     <labels>
@@ -571,7 +571,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Household</value>
     </labels>
     <labels>
@@ -579,7 +579,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!LastName} Household</value>
     </labels>
     <labels>
@@ -727,12 +727,92 @@
         <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
     </labels>
     <labels>
+        <fullName>stgAdminAccountCustomName</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field label for Custom Name Format for Administrative Accounts</shortDescription>
+        <value>Custom Name Format</value>
+    </labels>
+    <labels>
+        <fullName>stgAdminAccountCustomNameHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Info text for Custom Name Format</shortDescription>
+        <value>Specify your own naming convention.</value>
+    </labels>
+    <labels>
+        <fullName>stgAdminAccountNamingTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Administrative Account Naming</shortDescription>
+        <value>Administrative Account Naming</value>
+    </labels>
+    <labels>
         <fullName>stgAdminAccountRecordType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Field label for the Administrative Account Record Type setting</shortDescription>
         <value>Administrative Account Record Type</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsEditModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Edit Affiliation Mapping window</shortDescription>
+        <value>Select the Account Record Type to map to the Primary Affiliation field on Contacts. The value of the Account Record Type automatically populates in the Primary Affiliation field.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsEditModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Edit Affiliation Mapping window</shortDescription>
+        <value>Edit Affiliation Mapping</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsEditSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when an Affiliation Mapping is edited</shortDescription>
+        <value>Affiliation mapping for {0} was saved.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsNewModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the New Affiliation Mapping window</shortDescription>
+        <value>Select the Account Record Type to map to the Primary Affiliation field on Contacts. The value of the Account Record Type automatically populates in the Primary Affiliation field.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsNewSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when an Affiliation Mapping is created</shortDescription>
+        <value>{0} Primary Affiliation was created</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation Section title for Affiliations</shortDescription>
+        <value>Affiliations</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Affiliation Settings</shortDescription>
+        <value>Affiliation Settings</value>
     </labels>
     <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
@@ -805,6 +885,14 @@
         <protected>true</protected>
         <shortDescription>Label for Accounts and Contacts Backfill</shortDescription>
         <value>After Running the Backfill</value>
+    </labels>
+    <labels>
+        <fullName>stgApiNameLabel</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The API name associated with the selected Account Record Type</shortDescription>
+        <value>Api Name: {0}</value>
     </labels>
     <labels>
         <fullName>stgAutoCompleteEnterChatterGroupName</fullName>
@@ -883,8 +971,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for Affiliation Mappings Settings</shortDescription>
-        <value>Add Mapping</value>
+        <shortDescription>Button label for New Affiliation Mapping modal</shortDescription>
+        <value>New</value>
     </labels>
     <labels>
         <fullName>stgBtnAddSetting</fullName>
@@ -899,7 +987,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
+        <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Cancel</value>
     </labels>
     <labels>
@@ -907,7 +995,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
+        <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Edit</value>
     </labels>
     <labels>
@@ -947,7 +1035,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
+        <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Save</value>
     </labels>
     <labels>
@@ -963,7 +1051,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header and label for Affiliation Mappings Settings</shortDescription>
+        <shortDescription>Header label for the list of Account Record Types</shortDescription>
         <value>Account Record Type</value>
     </labels>
     <labels>
@@ -987,8 +1075,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Affiliation Mappings Settings</shortDescription>
-        <value>Contact Primary Affl Field</value>
+        <shortDescription>Header label for the list of Primary Affiliation Fields on Contact</shortDescription>
+        <value>Primary Affiliation Field on Contact</value>
     </labels>
     <labels>
         <fullName>stgColFemale</fullName>
@@ -1195,8 +1283,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when the user doesn't have the permissions to save settings</shortDescription>
-        <value>You can't save these settings because you no longer have permission to edit them. Your Salesforce admin can help with that.</value>
+        <shortDescription>Error when the user doesn&apos;t have the permissions to save settings</shortDescription>
+        <value>You can&apos;t save these settings because you no longer have permission to edit them. Your Salesforce admin can help with that.</value>
     </labels>
     <labels>
         <fullName>stgErrorInvalidSettings</fullName>
@@ -2391,6 +2479,30 @@
         <value>If you had reports or formula fields that referenced the previous values in the Ethnicity field, update them.</value>
     </labels>
     <labels>
+        <fullName>stgHHAccountCustomName</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Field label for Custom Name Format for Household Accounts</shortDescription>
+        <value>Custom Name Format</value>
+    </labels>
+    <labels>
+        <fullName>stgHHAccountCustomNameHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Info text for Custom Name Format</shortDescription>
+        <value>Specify your own naming convention.</value>
+    </labels>
+    <labels>
+        <fullName>stgHHAccountNamingTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Household Account Naming</shortDescription>
+        <value>Household Account Naming</value>
+    </labels>
+    <labels>
         <fullName>stgNestedPlanRequirementPP</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
@@ -2403,7 +2515,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Section header for Affiliation Mappings Settings</shortDescription>
+        <shortDescription>Title for the New Affiliation Mapping window</shortDescription>
         <value>New Affiliation Mapping</value>
     </labels>
     <labels>
@@ -2637,7 +2749,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Settings tab name</shortDescription>
+        <shortDescription>Label for the Affiliation Mappings setting</shortDescription>
         <value>Affiliation Mappings</value>
     </labels>
     <labels>
@@ -2727,6 +2839,14 @@
         <protected>true</protected>
         <shortDescription>Settings tab name</shortDescription>
         <value>System</value>
+    </labels>
+    <labels>
+        <fullName>stgTellMeMoreLink</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Link label to EDA Documentation</shortDescription>
+        <value>Tell Me More</value>
     </labels>
     <labels>
         <fullName>stgTitleAllowAutocreatedDuplicateRel</fullName>

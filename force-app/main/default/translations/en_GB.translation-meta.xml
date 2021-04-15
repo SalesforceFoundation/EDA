@@ -57,16 +57,8 @@
         <name>Female</name>
     </customLabels>
     <customLabels>
-        <name>invalidContactFieldInAffiliationMapping</name>
-        <label><!-- Error when a Contact's Primary Affiliation field isn't an Account lookup field --></label>
-    </customLabels>
-    <customLabels>
         <label>The field entered as the Filter Field isn&apos;t valid. Filter Fields can be any standard or custom field on the object this trigger is for, as well as fields on related records. Make sure you use the field&apos;s API name, and omit any EDA namespace prefix (&quot;hed__&quot;).</label>
         <name>InvalidFilter</name>
-    </customLabels>
-    <customLabels>
-        <name>invalidRecordTypeInAffiliationMapping</name>
-        <label><!-- Error when an Affiliation Mapping's Account record type isn't valid --></label>
     </customLabels>
     <customLabels>
         <label>Male</label>
@@ -141,7 +133,7 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label>Other</label>
+        <label><!-- Picklist value for naming format used for Administrative and Household Accounts --></label>
         <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
@@ -181,7 +173,7 @@
         <name>adminAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>The name format used for auto-created Administrative Accounts.</label>
+        <label><!-- Description of the Administrative Account Name Format setting --></label>
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -201,11 +193,11 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label>Enable Record Type Validation</label>
+        <label><!-- Label for the Record Type Validation setting --></label>
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, the Account is required to have a record type and all Account Record Type values must be correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</label>
+        <label><!-- Description of the Enable Record Type Validation setting --></label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -213,7 +205,7 @@
         <name>automaticHHNaming</name>
     </customLabels>
     <customLabels>
-        <label>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is changed.</label>
+        <label><!-- Description of the Automatically Rename Household Accounts setting --></label>
         <name>automaticHHNamingHelpText</name>
     </customLabels>
     <customLabels>
@@ -246,7 +238,7 @@
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} Administrative Account</label>
-        <name>firstNameLastNameAdminACC</name>
+        <name>firstNameLastNameAdminAcc</name>
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} Family</label>
@@ -261,16 +253,24 @@
         <name>giftProcessingConfigException</name>
     </customLabels>
     <customLabels>
-        <label>Household Account Name Format</label>
+        <label><!-- Field label for the Household Account Name setting --></label>
         <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>The format used for naming Household Accounts.</label>
+        <label><!-- Description of the Household Account Name Format setting --></label>
         <name>hhAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
         <label>Family</label>
         <name>hhFamily</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when a Contact&apos;s Primary Affiliation field isn&apos;t an Account lookup field --></label>
+        <name>invalidContactFieldInAffiliationMapping</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when an Affiliation Mapping&apos;s Account record type isn&apos;t valid --></label>
+        <name>invalidRecordTypeInAffiliationMapping</name>
     </customLabels>
     <customLabels>
         <label>{!LastName} Administrative Account</label>
@@ -369,8 +369,48 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for Custom Name Format for Administrative Accounts --></label>
+        <name>stgAdminAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgAdminAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Administrative Account Naming --></label>
+        <name>stgAdminAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Administrative Account Record Type</label>
         <name>stgAdminAccountRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Edit Affiliation Mapping window --></label>
+        <name>stgAffiliationsEditModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Edit Affiliation Mapping window --></label>
+        <name>stgAffiliationsEditModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an Affiliation Mapping is edited --></label>
+        <name>stgAffiliationsEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the New Affiliation Mapping window --></label>
+        <name>stgAffiliationsNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an Affiliation Mapping is created --></label>
+        <name>stgAffiliationsNewSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Navigation Section title for Affiliations --></label>
+        <name>stgAffiliationsSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Section title for Affiliation Settings --></label>
+        <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Copy Affiliation End Date from Program Enrolment</label>
@@ -409,6 +449,10 @@
         <name>stgAfterRunBackfill</name>
     </customLabels>
     <customLabels>
+        <label><!-- The API name associated with the selected Account Record Type --></label>
+        <name>stgApiNameLabel</name>
+    </customLabels>
+    <customLabels>
         <label>Start typing Chatter Group name to search.</label>
         <name>stgAutoCompleteEnterChatterGroupName</name>
     </customLabels>
@@ -445,7 +489,7 @@
         <name>stgBeforeRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Add Mapping</label>
+        <label><!-- Button label for New Affiliation Mapping modal --></label>
         <name>stgBtnAddMapping</name>
     </customLabels>
     <customLabels>
@@ -497,7 +541,7 @@
         <name>stgColCampTypes</name>
     </customLabels>
     <customLabels>
-        <label>Contact Primary Affl Field</label>
+        <label><!-- Header label for the list of Primary Affiliation Fields on Contact --></label>
         <name>stgColContactPrimaryAfflField</name>
     </customLabels>
     <customLabels>
@@ -597,11 +641,11 @@
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-         <label><!-- Message for when you don&apos;t have the permissions to view a page. --></label>
+        <label><!-- Message for when you don&apos;t have the permissions to view a page. --></label>
         <name>stgErrorInsufficientAccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when the user doesn't have the permissions to save settings --></label>
+        <label><!-- Error when the user doesn&apos;t have the permissions to save settings --></label>
         <name>stgErrorInsufficientAccessSaving</name>
     </customLabels>
     <customLabels>
@@ -1193,6 +1237,18 @@
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for Custom Name Format for Household Accounts --></label>
+        <name>stgHHAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgHHAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Household Account Naming --></label>
+        <name>stgHHAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Validate Program Plan for Nested Plan Requirements</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
@@ -1361,6 +1417,10 @@
     <customLabels>
         <label>System</label>
         <name>stgTabSystem</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Link label to EDA Documentation --></label>
+        <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
         <label>Allow Auto-Created Duplicate Relations</label>

@@ -44,24 +44,38 @@ class AffiliationsSettingsPage(BaseEDAPage, BasePage):
                                                        error=f"'{sub_tab}' sub tab is not available on the page")
         self.selenium.click_element(locator)
 
+    def modify_account_record_type(self, recordType, value):
+        """
+        This method will modify/update the value of the account record type based on the record type
+        name passed as a parameter from the test
+
+        """
+        locator = eda_lex_locators["eda_settings_affiliations"]["acc_rec_type_edit"].format(recordType)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f"Account Record Type field is not available")
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
+        self.selenium.clear_element_text(locator)
+        locator = eda_lex_locators["eda_settings_affiliations"]["acc_rec_type_cleared"]
+        self.selenium.get_webelement(locator).send_keys(value)
+
     def go_to_affiliations_edit_mode(self, loc):
         """ Go into Edit mode and remove the con
-        """    
+        """
         self.selenium.driver.execute_script(
-            "arguments[0].click()", 
+            "arguments[0].click()",
             self.selenium.driver.find_element_by_xpath(loc)
         )
 
         self.selenium.driver.execute_script(
-            "arguments[0].click()", 
+            "arguments[0].click()",
             self.selenium.driver.find_element_by_xpath(eda_lex_locators["affiliations_locators"]["delete_icon"])
         )
 
         self.selenium.driver.execute_script(
-            "arguments[0].scrollIntoView()", 
+            "arguments[0].scrollIntoView()",
             self.selenium.driver.find_element_by_xpath(eda_lex_locators["affiliations_locators"]["primary_business_organization"])
         )
-        
+
         xpath = eda_lex_locators["affiliations_locators"]["primary_business_organization"]
         field = self.selenium.get_webelement(xpath)
         field.send_keys("Robot Academic Program Account" + Keys.ARROW_DOWN + Keys.ENTER)
@@ -70,18 +84,18 @@ class AffiliationsSettingsPage(BaseEDAPage, BasePage):
         self.eda.close_toast_message()
 
     def enable_the_checkbox(self, title, tab, loc_checkbox, loc_checkbox_edit):
-        """ Ensure that the specified checkbox is checked 
+        """ Ensure that the specified checkbox is checked
             Set the checkbox if it is not set
             Do nothing if the checkbox is already set
         """
-        
+
         self.selenium.wait_until_page_contains_element(
             tab,
             timeout=60
         )
         self.open_item(
             tab,
-            "Cannot find {} tab".format(tab), 
+            "Cannot find {} tab".format(tab),
             False
         )
 
@@ -89,7 +103,7 @@ class AffiliationsSettingsPage(BaseEDAPage, BasePage):
         if self.eda._check_if_element_exists(loc_checkbox):
             self.builtin.log("{} checkbox is checked.".format(title))
             return
-        else: 
+        else:
             self.builtin.log(
                 "{} checkbox is NOT checked.\n".format(title) +
                 "Opening EDIT mode"
@@ -101,28 +115,28 @@ class AffiliationsSettingsPage(BaseEDAPage, BasePage):
                 timeout=60
             )
             self.selenium.driver.execute_script(
-                "arguments[0].click()", 
+                "arguments[0].click()",
                 self.selenium.driver.find_element_by_xpath(loc_checkbox_edit)
             )
             self.selenium.click_button("Save")
             self.eda.close_toast_message()
             self.builtin.log(
-                "Checkbox for {} setting has been set.\n".format(title) 
+                "Checkbox for {} setting has been set.\n".format(title)
             )
 
     def disable_the_checkbox(self, title, tab, loc_checkbox, loc_checkbox_edit):
-        """ Ensure that the specified checkbox is NOT checked 
+        """ Ensure that the specified checkbox is NOT checked
             Uncheck the checkbox if it is checked
             Do nothing if the checkbox is already clear
         """
-        
+
         self.selenium.wait_until_page_contains_element(
             tab,
             timeout=60
         )
         self.open_item(
             tab,
-            "Cannot find {} tab".format(tab), 
+            "Cannot find {} tab".format(tab),
             False
         )
 
@@ -130,7 +144,7 @@ class AffiliationsSettingsPage(BaseEDAPage, BasePage):
         if self.eda._check_if_element_exists(loc_checkbox):
             self.builtin.log("{} checkbox is already clear.".format(title))
             return
-        else: 
+        else:
             self.builtin.log(
                 "{} checkbox is checked.\n" +
                 "Opening EDIT mode"
@@ -142,7 +156,7 @@ class AffiliationsSettingsPage(BaseEDAPage, BasePage):
                 timeout=60
             )
             self.selenium.driver.execute_script(
-                "arguments[0].click()", 
+                "arguments[0].click()",
                 self.selenium.driver.find_element_by_xpath(loc_checkbox_edit)
             )
             self.selenium.click_button("Save")
@@ -257,7 +271,7 @@ class AffiliationsSettingsPage(BaseEDAPage, BasePage):
 
         valText = self.selenium.get_text(eda_lex_locators["affiliations_locators"]["account_record_type_input"])
         self.builtin.log("Input text of Account Record Type is " + valText)
-        
+
         self.selenium.driver.find_element_by_xpath(eda_lex_locators["affiliations_locators"]["primary_affl_field_input"])
         self.selenium.driver.find_element_by_xpath(eda_lex_locators["affiliations_locators"]["auto_enrollment"])
         self.selenium.driver.find_element_by_xpath(eda_lex_locators["affiliations_locators"]["status_mapping_field_input"])
