@@ -93,7 +93,6 @@ export default class ErrorSettings extends LightningElement {
 
     handleSettingsSaveCompleted(event) {
         this.affordancesDisabledToggle = false;
-        console.log("refreshing");
         this.refreshAllApex();
     }
 

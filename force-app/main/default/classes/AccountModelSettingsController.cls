@@ -41,10 +41,6 @@ public with sharing class AccountModelSettingsController {
     @AuraEnabled(cacheable=true)
     public static AccountModelSettingsVModel getAccountModelSettingsViewModel() {
         try {
-            System.debug(
-                'AccountModelSettingsVModel: ' +
-                AccountModelSettingsController.locateAccountModelSettingsVMapper().getAccountModelSettingsViewModel()
-            );
             return AccountModelSettingsController.locateAccountModelSettingsVMapper()
                 .getAccountModelSettingsViewModel();
         } catch (Exception e) {
