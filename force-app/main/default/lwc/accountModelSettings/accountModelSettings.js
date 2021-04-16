@@ -48,7 +48,9 @@ export default class AccountModelSettings extends LightningElement {
 
     @track accountAutoDeletionSettingsWireResult;
     @track accountAutoDeletionSettingsVModel;
-    @track leadConversionAccountNamingSettingsViewModel;
+
+    @track leadConversionAccountNamingSettingsWireResult;
+    @track leadConversionAccountNamingSettingsVModel;
 
     @track accountNamingSettingsWireResult;
     @track accountNamingSettingsVModel;
@@ -135,11 +137,11 @@ export default class AccountModelSettings extends LightningElement {
     }
 
     @wire(getLeadConversionAccountNamingSettingsViewModel)
-    leadConversionAccountNamingSettingsViewModel(result) {
-        this.accountAutoDeletionSettingsWireResult = result;
+    leadConversionAccountNamingSettingsViewModelWire(result) {
+        this.leadConversionAccountNamingSettingsWireResult = result;
 
         if (result.data) {
-            this.leadConversionAccountNamingSettingsViewModel = result.data;
+            this.leadConversionAccountNamingSettingsVModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving accountAutoDeletionSettingsViewModel");
         }
@@ -328,6 +330,7 @@ export default class AccountModelSettings extends LightningElement {
         Promise.all([
             refreshApex(this.accountModelSettingsWireResult),
             refreshApex(this.accountAutoDeletionSettingsWireResult),
+            refreshApex(this.leadConversionAccountNamingSettingsWireResult),
             refreshApex(this.accountNamingSettingsWireResult),
         ]).then(() => {
             // hide/show custom Admin Account naming input field

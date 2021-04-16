@@ -155,17 +155,17 @@
                         ></c-settings-row-input>
 
                         <!-- Lead Conversion Account Naming Settings -->
-                        <template if:true={leadConversionAccountNamingSettingsViewModel}>
+                        <template if:true={leadConversionAccountNamingSettingsVModel}>
                             <c-settings-row-dual-listbox
                                 class="slds-size_3-of-3"
                                 title={labelReference.leadConversionAccountNamingTitle}
                                 description={labelReference.leadConversionAccountNamingDescription}
-                                label={labelReference.leadConversionAccountNamingDescription}
+                                label={labelReference.accountAutoDeletionLisboxGroupHeading}
                                 dual-listbox-id={inputAttributeReference.leadAccountNamingDualListboxId}
                                 source-label={labelReference.accountAutoDeletionAvailableValuesHeading}
                                 selected-label={labelReference.accountAutoDeletionSelectedValuesHeading}
-                                options={leadConversionAccountNamingSettingsViewModel.options}
-                                value={leadConversionAccountNamingSettingsViewModel.value}
+                                options={leadConversionAccountNamingSettingsVModel.options}
+                                value={leadConversionAccountNamingSettingsVModel.value}
                                 onsettingsduallistboxchange={handleLeadNamingAccountChange}
                                 disabled={affordancesDisabled}
                             >
