@@ -156,32 +156,20 @@
 
                         <!-- Lead Conversion Account Naming Settings -->
                         <template if:true={leadConversionAccountNamingSettingsViewModel}>
-                            <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
-                                <div class="slds-col slds-size_2-of-3 slds-p-bottom_small">
-                                    <div
-                                        class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold"
-                                    >
-                                        {labelReference.leadConversionAccountNamingTitle}
-                                    </div>
-                                    <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
-                                        {labelReference.leadConversionAccountNamingDescription}
-                                    </div>
-                                </div>
-                                <div class="slds-col slds-size_3-of-3 slds-p-bottom_x-large slds-p-left_large">
-                                    <lightning-dual-listbox
-                                        id={inputAttributeReference.leadAccountNamingDualListboxId}
-                                        name={inputAttributeReference.leadAccountNamingDualListboxId}
-                                        label={labelReference.accountAutoDeletionLisboxGroupHeading}
-                                        source-label={labelReference.accountAutoDeletionAvailableValuesHeading}
-                                        selected-label={labelReference.accountAutoDeletionSelectedValuesHeading}
-                                        options={leadConversionAccountNamingSettingsViewModel.options}
-                                        value={leadConversionAccountNamingSettingsViewModel.value}
-                                        onchange={handleLeadNamingAccountChange}
-                                        disabled={affordancesDisabled}
-                                        data-qa-locator={inputAttributeReference.leadAccountNamingDualListboxId}
-                                    ></lightning-dual-listbox>
-                                </div>
-                            </div>
+                            <c-settings-row-dual-listbox
+                                class="slds-size_3-of-3"
+                                title={labelReference.leadConversionAccountNamingTitle}
+                                description={labelReference.leadConversionAccountNamingDescription}
+                                label={labelReference.leadConversionAccountNamingDescription}
+                                dual-listbox-id={inputAttributeReference.leadAccountNamingDualListboxId}
+                                source-label={labelReference.accountAutoDeletionAvailableValuesHeading}
+                                selected-label={labelReference.accountAutoDeletionSelectedValuesHeading}
+                                options={leadConversionAccountNamingSettingsViewModel.options}
+                                value={leadConversionAccountNamingSettingsViewModel.value}
+                                onsettingsduallistboxchange={handleLeadNamingAccountChange}
+                                disabled={affordancesDisabled}
+                            >
+                            </c-settings-row-dual-listbox>
                         </template>
                     </div>
                 </template>
