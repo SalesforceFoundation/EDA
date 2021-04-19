@@ -9,8 +9,25 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import updateHierarchySettings from "@salesforce/apex/HierarchySettingsChangesController.updateHierarchySettings";
 
 export default class SettingsSaveCanvas extends LightningElement {
+    // initialize component
+    renderedCallback() {
+        if (this.hasRendered) {
+            return;
+        }
+
+        this.hasRendered = true;
+
+        this.dispatchEvent(
+            new CustomEvent("savecanvasrendered", {
+                bubbles: true,
+                composed: true,
+            })
+        );
+    }
+
     @api componentTitle;
 
+    hasRendered;
     editButtonShown = true;
     saveCancelDisabled = undefined;
 
@@ -25,6 +42,11 @@ export default class SettingsSaveCanvas extends LightningElement {
         settingsButtonSave,
         successMessage: "Your updates have been successfully applied.",
     };
+
+    @api
+    focusOnTitle() {
+        this.template.querySelector(".eda-settings-page-title").focus();
+    }
 
     @api
     handleValidationFailure() {
