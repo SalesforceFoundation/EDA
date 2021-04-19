@@ -88,8 +88,7 @@ private with sharing class AccountNamingService_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that the getInstance method returns the existing instance of the
-     * AccountNamingService class when one already exists.
+     * @description Test method to verify runRefreshHouseHoldAccountNamingJob runs succesfully
      ***************************************************************************************************************************/
     @isTest
     private static void runRefreshHouseHoldAccountNamingJobValid() {
@@ -101,17 +100,69 @@ private with sharing class AccountNamingService_TEST {
         );
         insert hs;
 
+        AccountNamingService.instance = new STUB_AccountNamingServiceBatchNotNull();
+
+        Test.startTest();
         Boolean apexJobSuccess = AccountNamingService.getInstance().runRefreshHouseHoldAccountNamingJob();
+        Test.stopTest();
         System.assertEquals(true, apexJobSuccess, 'Ensure apex batch job has run successfully');
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that the getInstance method returns the existing instance of the
-     * AccountNamingService class when one already exists.
+     * @description Test method to verify runRefreshHouseHoldAccountNamingJob thorws an error if batch job fails to run
      ***************************************************************************************************************************/
     @isTest
     private static void runRefreshHouseHoldAccountNamingJobInvalid() {
-        Boolean apexJobSuccess = AccountNamingService.getInstance().runRefreshHouseHoldAccountNamingJob();
-        System.assertEquals(true, apexJobSuccess, 'Ensure apex batch job has run successfully');
+        AccountNamingService.instance = new STUB_AccountNamingServiceBatchNull();
+        try {
+            Test.startTest();
+            Boolean apexJobSuccess = AccountNamingService.getInstance().runRefreshHouseHoldAccountNamingJob();
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify runHouseholdRefreshBatch runs successfully
+     ***************************************************************************************************************************/
+    @isTest
+    private static void runHouseholdRefreshBatch() {
+        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Household_Account_Naming_Format__c = '{!LastName} Household'
+            )
+        );
+        insert hs;
+
+        ACCT_HouseholdNameRefresh_BATCH accountRefresh = new ACCT_HouseholdNameRefresh_BATCH();
+        Test.startTest();
+        Id batchJobId = AccountNamingService.getInstance().runHouseholdRefreshBatch(accountRefresh);
+        Test.stopTest();
+        System.assertNotEquals(null, batchJobId, 'Ensure apex batch job has run successfully');
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** STUB CLASS *********************************************************
+     **************************************************************************************************************************/
+
+    /*************************************************************************************************************
+     * @description Stub class to simulate the response from AccountNamingService to null for batch job Id
+     */
+    private class STUB_AccountNamingServiceBatchNull extends AccountNamingService {
+        private override Id runHouseholdRefreshBatch(ACCT_HouseholdNameRefresh_BATCH accountRefresh) {
+            return null;
+        }
+    }
+
+    /*************************************************************************************************************
+     * @description Stub class to simulate the response from AccountNamingService to return an Id for batch job
+     */
+    private class STUB_AccountNamingServiceBatchNotNull extends AccountNamingService {
+        private override Id runHouseholdRefreshBatch(ACCT_HouseholdNameRefresh_BATCH accountRefresh) {
+            return '01217000002Zs0pAAC';
+        }
     }
 }
