@@ -112,7 +112,6 @@ private with sharing class LeadConversionAccountNamingMapper_TEST {
             LeadConversionAccountNamingMapperInstance.getLeadConversionAccountNamingModel();
         Test.stopTest();
 
-        System.debug('Orphaned list ' + LeadConversionAccountNamingModel.accountRecordTypeIdsForLeadConversionWhenOrphanedList);
 
         for (Integer i = 0; i<5; i++) {
             System.assertEquals(
