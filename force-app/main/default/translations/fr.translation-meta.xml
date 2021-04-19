@@ -605,6 +605,10 @@
         <name>stgCourseDescriptionCopyEmailSubject</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation section title for Courses and Enrollments --></label>
+        <name>stgCoursesAndEnrollmentsNav</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Label for the Contact Language Fluency setting --></label>
         <name>stgDefaultContactLanguageFluency</name>
     </customLabels>
@@ -1295,6 +1299,14 @@
     <customLabels>
         <label><!-- Description for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneSelectionDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Subsection navigation title for Programs --></label>
+        <name>stgProgramsSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Programs Settings --></label>
+        <name>stgProgramsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Paramètre de la liste</label>
