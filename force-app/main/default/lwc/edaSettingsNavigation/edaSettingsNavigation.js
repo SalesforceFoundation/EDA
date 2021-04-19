@@ -6,6 +6,7 @@ import stgAccModelTitle from "@salesforce/label/c.stgAccModelTitle";
 import stgAdminAccountRecordType from "@salesforce/label/c.stgAdminAccountRecordType";
 import stgAccountRecordTypeSupportsHHAddress from "@salesforce/label/c.stgAccountRecordTypeSupportsHHAddress";
 import stgAccoutTypesWithoutContactsDelete from "@salesforce/label/c.stgAccoutTypesWithoutContactsDelete";
+import stgLeadConversionAccountNaming from "@salesforce/label/c.stgLeadConversionAccountNaming";
 //Contact Information Settings Labels
 import stgContactInformationSettingsTitle from "@salesforce/label/c.stgContactInformationSettingsTitle";
 import stgDefaultContactLanguageFluency from "@salesforce/label/c.stgDefaultContactLanguageFluency";
@@ -37,7 +38,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             adminAccountNaming: "Administrative Account Name Format",
             hhAccountNaming: "Household Account Name Format",
             autoHHAccountNaming: "Automatically Rename Household Accounts",
-            leadConversionAutoAccountNaming: "Lead Conversion Auto Account Naming",
+            leadConversionAutoAccountNaming: stgLeadConversionAccountNaming,
         },
         addressSettings: {
             addressAccountRecordTypes: stgAccountTypesMultiAddressesEnabled,

@@ -212,6 +212,21 @@ export default class AccountModelSettings extends LightningElement {
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
+    handleAdministrativeAccountNamingChange(event) {
+        // hide/show custom Admin Account naming input field
+        this.showCustomAdministrativeAccountNaming =
+            event.detail.value === this.labelReference.accountNamingComboboxCustomOption;
+
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Admin_Account_Naming_Format__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
     handleLeadNamingAccountChange(event) {
         // add selected values to hierarchySettingsChanges object
         let hierarchySettingsChange = {
