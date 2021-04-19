@@ -58,7 +58,7 @@ public virtual with sharing class AccountNamingService {
 
     /**********************************************************************************
      * @description Runs the Household Account Naming Job
-     * @return Boolean
+     * @return Boolean True is success, else throws an error
      **********************************************************************************/
     public virtual Boolean runRefreshHouseHoldAccountNamingJob() {
         ACCT_HouseholdNameRefresh_BATCH accountRefresh = new ACCT_HouseholdNameRefresh_BATCH();
