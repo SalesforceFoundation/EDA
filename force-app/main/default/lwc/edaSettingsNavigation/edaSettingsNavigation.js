@@ -26,6 +26,7 @@ import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //Error Settings Labels
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
+import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
@@ -65,7 +66,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             coursesAndEnrollmentsSettings: "Courses and Enrollments",
         },
         errorSettings: {
-            enableDebug: "Enable Debug",
+            enableDebug: stgEnableDebugTitle,
             enableErrorHandling: "Enable Error Handling",
             errorSettings: stgErrorSettingsNav,
             sendErrorNotifications: "Send Error Notifications",
