@@ -37,7 +37,7 @@ public with sharing class AccountNamingBatchController {
      * runs successfully else throws an error
      * @return Boolean True if the batch job runs successfully
      ************************************************************************************/
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Boolean runRefreshHouseholdAccountNamingJob() {
         try {
             Boolean batchJobSuccessful = AccountNamingBatchController.locateAccountNamingService()
