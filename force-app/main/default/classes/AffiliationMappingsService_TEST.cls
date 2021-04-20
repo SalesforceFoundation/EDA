@@ -208,6 +208,53 @@ public with sharing class AffiliationMappingsService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify insertAffiliationMappings inserts a new affiliation mapping.
+     **************************************************************************************************************************/
+    @isTest
+    private static void insertAffiliationMappingsValid() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+
+        AffiliationMappingsService affiliationMappingsServiceInstance = AffiliationMappingsService.getInstance();
+
+        Test.startTest();
+        affiliationMappingsServiceInstance.insertAffiliationMappings(
+            'Test Affiliation Mapping',
+            'Test_Record_Type',
+            'Test Contact Primary Affl Field'
+        );
+        Test.stopTest();
+
+        List<Affl_Mappings__c> affiliationMappingsResultsList = [
+            SELECT
+                Name,
+                Account_Record_Type__c,
+                Auto_Program_Enrollment__c,
+                Auto_Program_Enrollment_Role__c,
+                Auto_Program_Enrollment_Status__c,
+                Primary_Affl_Field__c
+            FROM Affl_Mappings__c
+            WHERE Name = 'Test Affiliation Mapping'
+        ];
+
+        System.assertEquals(1, affiliationMappingsResultsList.size(), 'New affiliation mapping should be inserted.');
+        System.assertEquals(
+            'Test Affiliation Mapping',
+            affiliationMappingsResultsList[0].Name,
+            'Name of new affiliation mapping should match specified value.'
+        );
+        System.assertEquals(
+            'Test_Record_Type',
+            affiliationMappingsResultsList[0].Account_Record_Type__c,
+            'Account Record Type of new affiliation mapping should match specified value.'
+        );
+        System.assertEquals(
+            'Test Contact Primary Affl Field',
+            affiliationMappingsResultsList[0].Primary_Affl_Field__c,
+            'Contact primary affiliation field of new affiliation mapping should match specified value.'
+        );
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify that the updateAffiliationMappings method updates Affiliation custom settings
      ***************************************************************************************************************************/
     @isTest

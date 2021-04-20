@@ -65,6 +65,28 @@ public virtual with sharing class AffiliationMappingsService {
         return this.locateAffiliationMappingsMapper().getAffiliationMappingsModel();
     }
 
+    /********************************************************************************************************************************************
+     * @description Insert an affiliation mapping
+     * @param  affiliationMappingName A string representing the name of the new affiliation mapping
+     * @param  recordTypeName A string representing the Record Type name for the new affiliation mapping
+     * @param  contactFieldName A string representing the field label for the Contact primary affiliation field associated with the new affiliation mapping
+     * @param  autoProgramEnrollment A boolean indicating whether auto program enrollment is enabled for the new affiliation mapping
+     * @param  autoProgramEnrollmentStatus A string representing the auto program enrollment status of the new affiliation mapping
+     * @param  autoProgramEnrollmentRole A string representing the auto program enrollment role of the new affiliation mapping
+     ********************************************************************************************************************************************/
+    public void insertAffiliationMappings(
+        String affiliationMappingName,
+        String recordTypeName,
+        String contactFieldName
+    ) {
+        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+
+        this.locateAffiliationMappingsMapper()
+            .insertAffiliationMappingModel(
+                new AffiliationMappingsModel(affiliationMappingName, recordTypeName, contactFieldName)
+            );
+    }
+
     /*****************************************************************************
      * @description Checks user permissions, creates a model and passes to
      * updateAffiliationMappings.

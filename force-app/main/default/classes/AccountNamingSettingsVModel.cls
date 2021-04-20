@@ -29,40 +29,50 @@
  * @date 2021
  * @group EDA Settings
  * @group-content ../../ApexDocContent/EdaSettings.htm
- * @description Model to abstract data from Hierarchy Settings for
- * Account Naming functionality.
+ * @description View model to represent data associated with Account Naming functionality.
  */
-public with sharing class AccountNamingSettingsModel {
-    public String administrativeAccountNameFormat { get; private set; }
-    public String householdAccountNamingFormat { get; private set; }
+public with sharing class AccountNamingSettingsVModel {
+    @AuraEnabled
     public String customAdministrativeAccountNameFormat { get; private set; }
+
+    @AuraEnabled
     public String customHouseholdAccountNameFormat { get; private set; }
+
+    @AuraEnabled
     public Boolean autoHouseholdAccountNamingEnabled { get; private set; }
 
-    /****************************************************************************************************************************
-     * @description Five parameter constructor
-     * @param  administrativeAccountNameFormat The format selected from a predetermined list to be use for naming administrative accounts.
-     * @param  householdAccountNamingFormat The format selected from a predetermined list to be use for naming household accounts.
-     * @param  customAdministrativeAccountNameFormat The custom format specified for naming administrative accounts.
-     * @param  customHouseholdAccountNameFormat The custom format specified for naming household accounts.
-     * @param  autoHouseholdAccountNamingEnabled Indicator used to determine whether household account names are updated when new contacts are added.
-     * @return An AccountNamingSettingsModel with all properties populated.
-     ****************************************************************************************************************************/
-    public AccountNamingSettingsModel(
-        String administrativeAccountNameFormat,
-        String householdAccountNamingFormat,
+    @AuraEnabled
+    public ComboboxVModel administrativeAccountNameFormat { get; private set; }
+
+    @AuraEnabled
+    public ComboboxVModel householdAccountNameFormat { get; private set; }
+
+    /**************************************************************************************************************************
+     * @description Five argument constructor
+     * @param  customAdministrativeAccountNameFormat A String representing a custom format to be used for Admin account names
+     * @param  customHouseholdAccountNameFormat A String representing a custom format to be used for HH account names
+     * @param  autoHouseholdAccountNamingEnabled A Boolean to indicate whether automatic HH naming functionality is enabled
+     * @param  administrativeAccountNameFormat A ComboboxVModel representing the selected and available formats for Admin Account naming
+     * @param  householdAccountNameFormat A ComboboxVModel representing the the selected and available formats for HH Account naming
+     * @return An AccountNamingSettingsVModel with all properties populated
+     **************************************************************************************************************************/
+    public AccountNamingSettingsVModel(
         String customAdministrativeAccountNameFormat,
         String customHouseholdAccountNameFormat,
-        Boolean autoHouseholdAccountNamingEnabled
+        Boolean autoHouseholdAccountNamingEnabled,
+        ComboboxVModel administrativeAccountNameFormat,
+        ComboboxVModel householdAccountNameFormat
     ) {
-        this.administrativeAccountNameFormat = administrativeAccountNameFormat;
-        this.householdAccountNamingFormat = householdAccountNamingFormat;
         this.customAdministrativeAccountNameFormat = String.isBlank(customAdministrativeAccountNameFormat)
             ? ''
             : customAdministrativeAccountNameFormat;
+
         this.customHouseholdAccountNameFormat = String.isBlank(customHouseholdAccountNameFormat)
             ? ''
             : customHouseholdAccountNameFormat;
+
         this.autoHouseholdAccountNamingEnabled = autoHouseholdAccountNamingEnabled;
+        this.administrativeAccountNameFormat = administrativeAccountNameFormat;
+        this.householdAccountNameFormat = householdAccountNameFormat;
     }
 }

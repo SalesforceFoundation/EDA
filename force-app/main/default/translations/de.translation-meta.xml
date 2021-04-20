@@ -133,7 +133,7 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label>Sonstiges</label>
+        <label><!-- Picklist value for naming format used for Administrative and Household Accounts --></label>
         <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
@@ -173,7 +173,7 @@
         <name>adminAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>Das für automatisch erstellte Verwaltungs-Accounts verwendete Namensformat.</label>
+        <label><!-- Description of the Administrative Account Name Format setting --></label>
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -205,7 +205,7 @@
         <name>automaticHHNaming</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, wird ein vorhandener Haushalt-Account automatisch umbenannt, sobald dem Account ein Kontakt hinzugefügt oder ein vorhandener Kontakt geändert wird.</label>
+        <label><!-- Description of the Automatically Rename Household Accounts setting --></label>
         <name>automaticHHNamingHelpText</name>
     </customLabels>
     <customLabels>
@@ -238,7 +238,7 @@
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} Verwaltungs-Account</label>
-        <name>firstNameLastNameAdminACC</name>
+        <name>firstNameLastNameAdminAcc</name>
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} Familie</label>
@@ -253,11 +253,11 @@
         <name>giftProcessingConfigException</name>
     </customLabels>
     <customLabels>
-        <label>Haushalt-Account – Namensformat</label>
+        <label><!-- Field label for the Household Account Name setting --></label>
         <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>Das Format, das für das Benennen von Haushalt-Accounts verwendet werden soll.</label>
+        <label><!-- Description of the Household Account Name Format setting --></label>
         <name>hhAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -369,6 +369,18 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for Custom Name Format for Administrative Accounts --></label>
+        <name>stgAdminAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgAdminAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Administrative Account Naming --></label>
+        <name>stgAdminAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Datensatztyp für Verwaltungs-Accounts</label>
         <name>stgAdminAccountRecordType</name>
     </customLabels>
@@ -395,6 +407,14 @@
     <customLabels>
         <label><!-- Toast message when an Affiliation Mapping is edited --></label>
         <name>stgAffiliationsEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the New Affiliation Mapping window --></label>
+        <name>stgAffiliationsNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an Affiliation Mapping is created --></label>
+        <name>stgAffiliationsNewSuccess</name>
     </customLabels>
     <customLabels>
         <label><!--Navigation Section title for Affiliations --></label>
@@ -485,7 +505,7 @@
         <name>stgBeforeRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Zuordnung hinzufügen</label>
+        <label><!-- Button label for New Affiliation Mapping modal --></label>
         <name>stgBtnAddMapping</name>
     </customLabels>
     <customLabels>
@@ -541,7 +561,7 @@
         <name>stgColCampTypes</name>
     </customLabels>
     <customLabels>
-        <label>Feld &quot;Primäre Zugehörigkeit&quot; des Kontakts</label>
+        <label><!-- Header label for the list of Primary Affiliation Fields on Contact --></label>
         <name>stgColContactPrimaryAfflField</name>
     </customLabels>
     <customLabels>
@@ -1237,6 +1257,18 @@
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
+        <label><!-- Field label for Custom Name Format for Household Accounts --></label>
+        <name>stgHHAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgHHAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Household Account Naming --></label>
+        <name>stgHHAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Programmplan auf geschachtelte Plananforderungen prüfen</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
@@ -1405,6 +1437,10 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
     <customLabels>
         <label>System</label>
         <name>stgTabSystem</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Link label to EDA Documentation --></label>
+        <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
         <label>Autom. erst. dopp. Beziehungen zulassen</label>

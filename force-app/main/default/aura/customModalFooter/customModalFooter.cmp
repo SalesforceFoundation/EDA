@@ -18,5 +18,6 @@
         title="{!v.confirmButtonTitle}"
         onclick="{!c.handleConfirmButtonClick}"
         disabled="{!v.disableSaveButton}"
+        variant="brand"
     />
 </aura:component>

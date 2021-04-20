@@ -304,6 +304,99 @@ private with sharing class AffiliationsSettingsController_TEST {
     }
 
     /****************************************************************************************************************************
+     * @description Test method to verify that the insertAffiliationMappings method inserts records into custom settings
+     ****************************************************************************************************************************/
+    @isTest
+    private static void insertAffiliationMappings() {
+        Test.startTest();
+        String mappingName = AffiliationsSettingsController.insertAffiliationMappings(
+            'Business_Organization',
+            'Business_Organization',
+            'Primary_Department__c'
+        );
+        Test.stopTest();
+
+        Affl_Mappings__c afflSettings = Affl_Mappings__c.getInstance('Business_Organization');
+        System.assertEquals(
+            'Business_Organization',
+            afflSettings.name,
+            'Household account mappings should be retrieved'
+        );
+        System.assertEquals(
+            'Business_Organization',
+            afflSettings.Account_Record_Type__c,
+            'Account record type should be changed to Business organization'
+        );
+        System.assertEquals(
+            'Primary_Department__c',
+            afflSettings.Primary_Affl_Field__c,
+            'Primary Affiliation Field should change to Primary Department'
+        );
+        System.assertEquals(
+            'Business Organization',
+            mappingName,
+            'The recordtype label of the changed account rectype should be returned'
+        );
+    }
+
+    /****************************************************************************************************************************
+     * @description  Test method to verify that the insertAffiliationMappings method fails gracefully when an exception is
+     * encountered.
+     ****************************************************************************************************************************/
+    @isTest
+    private static void insertAffiliationMappingsException() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceFalse();
+        try {
+            Test.startTest();
+            AffiliationsSettingsController.insertAffiliationMappings(
+                'Business_Organization',
+                'Business_Organization',
+                'Primary_Department__c'
+            );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /****************************************************************************************************************************
+     * @description Test method to verify that the insertAffiliationMappings method updates the custom settings
+     ****************************************************************************************************************************/
+    @isTest
+    private static void insertAffiliationMappingsNull() {
+        RecordTypeMapper.instance = new STUB_RecordTypeMapperNull();
+        Test.startTest();
+        String accRectypeLabelAfterInsert = AffiliationsSettingsController.insertAffiliationMappings(
+            'Business_Organization',
+            'Business_Organization',
+            'Primary_Department__c'
+        );
+        Test.stopTest();
+        Affl_Mappings__c afflSettings = Affl_Mappings__c.getInstance('Business_Organization');
+        System.assertEquals(
+            'Business_Organization',
+            afflSettings.name,
+            'Household account mappings should be retrieved'
+        );
+        System.assertEquals(
+            'Business_Organization',
+            afflSettings.Account_Record_Type__c,
+            'Account record type should be changed to Business organization'
+        );
+        System.assertEquals(
+            'Primary_Department__c',
+            afflSettings.Primary_Affl_Field__c,
+            'Primary Affiliation Field should change to Primary Department'
+        );
+        System.assertEquals(
+            'Business_Organization',
+            accRectypeLabelAfterInsert,
+            'Account recordtype should be returned'
+        );
+    }
+
+    /****************************************************************************************************************************
      * @description Test method to verify that the updateAffiliationMappings method updates the custom settings
      ****************************************************************************************************************************/
     @isTest
@@ -385,7 +478,7 @@ private with sharing class AffiliationsSettingsController_TEST {
         System.assertEquals(
             'Business_Organization',
             accRectypeLabelAfterUpdate,
-            'Account recordtype label should be empty'
+            'Account recordtype should be returned'
         );
     }
 

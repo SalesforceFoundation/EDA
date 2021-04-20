@@ -9,6 +9,7 @@ import getAccountRecordTypeComboboxVModel from "@salesforce/apex/AffiliationsSet
 import getContactAccountLookupFieldComboboxVModel from "@salesforce/apex/AffiliationsSettingsController.getContactAccountLookupFieldComboboxVModel";
 import updateAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.updateAffiliationMappings";
 import deleteAffiliationMapping from "@salesforce/apex/AffiliationsSettingsController.deleteAffiliationMapping";
+import insertAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.insertAffiliationMappings";
 
 import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsTitle";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
@@ -19,10 +20,12 @@ import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType
 import stgColContactPrimaryAfflField from "@salesforce/label/c.stgColContactPrimaryAfflField";
 import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 import stgAffiliationsEditSuccess from "@salesforce/label/c.stgAffiliationsEditSuccess";
+import stgAffiliationsNewSuccess from "@salesforce/label/c.stgAffiliationsNewSuccess";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 import stgAfflDeleteWithAutoEnrollment from "@salesforce/label/c.stgAfflDeleteWithAutoEnrollment";
 import stgAffiliationsDeleteSuccess from "@salesforce/label/c.stgAffiliationsDeleteSuccess";
 import stgBtnDelete from "@salesforce/label/c.stgBtnDelete";
+import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
 
 export default class affiliationSettings extends LightningElement {
     isEditMode = false;
@@ -49,6 +52,8 @@ export default class affiliationSettings extends LightningElement {
         editSuccessMessage: stgAffiliationsEditSuccess,
         deleteSuccessMessage: stgAffiliationsDeleteSuccess,
         tellMeMoreLink: stgTellMeMoreLink,
+        newButton: stgBtnAddMapping,
+        successMessageForCreate: stgAffiliationsNewSuccess,
     };
 
     affiliationsHyperLink =
@@ -143,6 +148,23 @@ export default class affiliationSettings extends LightningElement {
         this.dispatchEvent(primaryAffiliationsModalRequestEvent);
     }
 
+    handleNewPrimaryAffiliationClick(event) {
+        const affiliationsDetail = {
+            affiliationsAction: "create",
+            mappingName: "",
+            accountRecordType: "",
+            contactField: "",
+        };
+
+        const primaryAffiliationsModalRequestEvent = new CustomEvent("primaryaffiliationmodalrequest", {
+            detail: affiliationsDetail,
+            bubbles: true,
+            composed: true,
+        });
+
+        this.dispatchEvent(primaryAffiliationsModalRequestEvent);
+    }
+
     handleSettingsEditModeChange(event) {
         this.isEditMode = !event.detail;
         this.affordancesDisabledToggle = event.detail;
@@ -170,6 +192,9 @@ export default class affiliationSettings extends LightningElement {
 
     @api modalSave(saveModel) {
         switch (saveModel.action) {
+            case "create":
+                this.insertAffiliations(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
+                break;
             case "edit":
                 this.updateAffiliation(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
                 break;
@@ -177,6 +202,26 @@ export default class affiliationSettings extends LightningElement {
                 this.deleteAffiliation(saveModel.mappingName);
                 break;
         }
+    }
+
+    insertAffiliations(mappingName, accountRecordType, contactField) {
+        insertAffiliationMappings({
+            mappingName: mappingName,
+            recordTypeName: accountRecordType,
+            contactFieldName: contactField,
+        })
+            .then((result) => {
+                this.showToast(
+                    "success",
+                    "Save Complete",
+                    this.labelReference.successMessageForCreate.replace("{0}", result)
+                );
+            })
+
+            .catch((error) => {
+                //this.showToast("error", "Save Incomplete", this.labelReference.stgAfflNotInserted);
+            });
+        this.refreshAllApex();
     }
 
     updateAffiliation(mappingName, accountRecordType, contactField) {
