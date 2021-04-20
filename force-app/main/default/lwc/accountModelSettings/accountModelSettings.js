@@ -72,7 +72,7 @@ export default class AccountModelSettings extends LightningElement {
         accountAutoDeletionLisboxGroupHeading: stgAccountRecordTypeGroupLabelTitle,
         accountAutoDeletionSelectedValuesHeading: stgAccountRecordTypeSelectedListTitle,
         accountAutoDeletionAvailableValuesHeading: stgAccountRecordTypeAvailableListTitle,
-        leadConversionAccountNamingTitle: stgLeadConversionAccountNaming,
+        leadConversionAccountNaming: stgLeadConversionAccountNaming,
         leadConversionAccountNamingDescription: stgLeadConversionAccountNamingDesc,
         leadConversionAccountNamingTitle: stgLeadConversionAccountNamingTitle,
         adminAccountNamingTitle: stgAdminAccountNamingTitle,
