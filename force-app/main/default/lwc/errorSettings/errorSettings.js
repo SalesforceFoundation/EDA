@@ -1,7 +1,5 @@
 import { LightningElement } from "lwc";
 
-import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
-import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
 import stgErrorSettingsTitle from "@salesforce/label/c.stgErrorSettingsTitle";
 
 export default class ErrorSettings extends LightningElement {
@@ -9,8 +7,6 @@ export default class ErrorSettings extends LightningElement {
     affordancesDisabledToggle = false;
 
     labelReference = {
-        systemSettingsPageHeading: stgSystemSettingsNav,
-        systemSettingsTitle: stgSystemSettingsTitle,
         errorSettingsTitle: stgErrorSettingsTitle,
     };
 
