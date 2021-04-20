@@ -7,7 +7,7 @@
         onsettingssavecompleted={handleSettingsSaveCompleted}
     >
         <!-- Body of Affiliations Settings page (populates Slot in child component) -->
-        <template if:true={affiliationsSettingsViewModel}>
+        <template if:true={affiliationsSettingsVModel}>
             <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
                 <!-- Enable RecordType Validation Setting -->
                 <c-settings-row-input
@@ -16,7 +16,7 @@
                     description={labelReference.afflTypeEnforcedDescription}
                     type="toggle"
                     input-id={inputAttributeReference.recordTypeValidation}
-                    value={affiliationsSettingsViewModel.accountRecordTypesEnforced}
+                    value={affiliationsSettingsVModel.accountRecordTypesEnforced}
                     onsettingsinputchange={handleRecordtypeValidationChange}
                     disabled={affordancesDisabled}
                 ></c-settings-row-input>

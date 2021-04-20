@@ -139,7 +139,8 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
             accountRecordTypeName,
             accountRecordTypeLabel,
             contactFieldName,
-            contactFieldLabel
+            contactFieldLabel,
+            affiliationMappingsModel.autoProgramEnrollment
         );
     }
 

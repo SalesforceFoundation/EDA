@@ -43,6 +43,8 @@ public with sharing class PrimaryAffiliationMappingVModel {
     public String contactFieldName { get; private set; }
     @AuraEnabled
     public String contactFieldLabel { get; private set; }
+    @AuraEnabled
+    public Boolean autoProgramEnrollment { get; private set; }
 
     /*****************************************************************************************************************
      * @description five argument constructor
@@ -57,12 +59,14 @@ public with sharing class PrimaryAffiliationMappingVModel {
         String accountRecordTypeName,
         String accountRecordTypeLabel,
         String contactFieldName,
-        String contactFieldLabel
+        String contactFieldLabel,
+        Boolean autoProgramEnrollment
     ) {
         this.mappingName = mappingName;
         this.accountRecordTypeName = accountRecordTypeName;
         this.accountRecordTypeLabel = accountRecordTypeLabel;
         this.contactFieldName = contactFieldName;
         this.contactFieldLabel = contactFieldLabel;
+        this.autoProgramEnrollment = autoProgramEnrollment;
     }
 }

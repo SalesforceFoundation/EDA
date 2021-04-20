@@ -32,6 +32,7 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
         contactFieldCombobox: stgColContactPrimaryAfflField,
         modalBodyEditSave: stgAffiliationsEditModalBody,
         modalBodyDelete: stgAffiliationsDeleteModalBody,
+        modalBodyDeleteWithAutoEnrollment: stgAfflDeleteWithAutoEnrollment,
         tellMeMoreLink: stgTellMeMoreLink,
         modalBodyCreate: stgAffiliationsNewModalBody,
     };
@@ -55,7 +56,7 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
         if (result.data) {
             this.accountRecordTypeComboboxVModel = result.data;
         } else if (result.error) {
-            //console.log("error retrieving preferredContactInfoSettingsVModel");
+            //console.log("error retrieving accountRecordTypeComboboxVModel");
         }
     }
 
@@ -134,16 +135,18 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
         }
     }
 
-    get deleteConfirmationDescription() {
-        let deleteConfirmationText = this.labelReference.modalBodyDelete
+    get deleteWarning() {
+        let deleteWarningText = this.labelReference.modalBodyDelete
             .replace("{0}", this.accountRecordType)
             .replace("{1}", this.contactField);
 
-        if (this.autoEnrollmentEnabled === true) {
-            deleteConfirmationText +
-                this.labelReference.modalBodyDeleteWithAutoEnrollment.replace("{0}", this.accountRecordType);
+        if (!this.autoEnrollmentEnabled) {
+            return deleteWarningText;
         }
 
-        return deleteConfirmationText;
+        let autoEnrollmentDeleteWarningText =
+            this.labelReference.modalBodyDeleteWithAutoEnrollment.replace("{0}", this.accountRecordType) + " ";
+
+        return autoEnrollmentDeleteWarningText.concat(deleteWarningText);
     }
 }

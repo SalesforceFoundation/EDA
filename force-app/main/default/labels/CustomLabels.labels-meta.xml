@@ -771,8 +771,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Title for warning about deleting an Affiliation mapping</shortDescription>
-        <value>Just a heads-up...</value>
+        <shortDescription>Title for the Delete Affiliation mapping window</shortDescription>
+        <value>Delete Affiliation mapping?</value>
     </labels>
     <labels>
         <fullName>stgAffiliationsDeleteSuccess</fullName>

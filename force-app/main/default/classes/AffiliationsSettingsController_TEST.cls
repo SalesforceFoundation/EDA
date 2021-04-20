@@ -175,6 +175,12 @@ private with sharing class AffiliationsSettingsController_TEST {
             primaryAffiliationSettingsVModel.primaryAffiliationMappings[0].contactFieldLabel,
             'Affiliation recordtype should be enforced.'
         );
+
+        System.assertEquals(
+            false,
+            primaryAffiliationSettingsVModel.primaryAffiliationMappings[0].autoProgramEnrollment,
+            'Affiliation auto-enrollment should not be enabled.'
+        );
     }
 
     /****************************************************************************************************************************
@@ -599,7 +605,8 @@ private with sharing class AffiliationsSettingsController_TEST {
                 'Primary_Academic_Program__c',
                 'Primary Academic Program',
                 'Academic_Program',
-                'Academic Program'
+                'Academic Program',
+                false
             );
             List<PrimaryAffiliationMappingVModel> primaryAfflSettingsVModel = new List<PrimaryAffiliationMappingVModel>();
             primaryAfflSettingsVModel.add(primaryAfflMappVModel);

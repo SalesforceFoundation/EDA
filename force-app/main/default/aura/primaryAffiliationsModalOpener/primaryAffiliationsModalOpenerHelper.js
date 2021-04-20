@@ -4,11 +4,13 @@
         const mappingName = eventParameters.mappingName;
         const accountRecordType = eventParameters.accountRecordType;
         const contactField = eventParameters.contactField;
+        const autoProgramEnrollment = eventParameters.autoProgramEnrollment;
 
         component.set("v.affiliationsAction", affiliationsAction);
         component.set("v.mappingName", mappingName);
         component.set("v.accountRecordType", accountRecordType);
         component.set("v.contactField", contactField);
+        component.set("v.autoProgramEnrollment", autoProgramEnrollment);
 
         let modalBody;
         let modalFooter;
@@ -30,6 +32,7 @@
                 break;
             case "delete":
                 modalHeaderLabel = $A.get("$Label.c.stgAffiliationsDeleteModalTitle");
+                cancelButton = $A.get("$Label.c.stgBtnCancel");
                 confirmButton = $A.get("$Label.c.stgBtnDelete");
                 break;
         }
@@ -42,6 +45,7 @@
                         affiliationsAction: component.get("v.affiliationsAction"),
                         accountRecordType: component.get("v.accountRecordType"),
                         contactField: component.get("v.contactField"),
+                        autoProgramEnrollment: component.get("v.autoProgramEnrollment"),
                         modalDataChangeEvent: component.getReference("c.handleModalDataChangeEvent")
                     }
                 ],
@@ -135,13 +139,15 @@
         const affiliationsAction = component.get("v.affiliationsAction");
         const accountRecordType = component.get("v.accountRecordType");
         const contactField = component.get("v.contactField");
+        const autoProgramEnrollment = component.get("v.autoProgramEnrollment");
 
         const saveModel = {
             modalType: "affiliations",
             action: affiliationsAction,
             mappingName: mappingName,
             accountRecordType: accountRecordType,
-            contactField: contactField
+            contactField: contactField,
+            autoEnrollmentEnabled: autoProgramEnrollment
         };
         
         modalSaveEvent.setParams({
