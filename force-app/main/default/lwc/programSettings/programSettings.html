@@ -1,16 +1,14 @@
 <template>
     <c-settings-save-canvas
-        component-title={labelReference.stgAffiliationsSettingsTitle}
+        component-title={labelReference.programsSettingsTitle}
         onsettingseditmodechange={handleSettingsEditModeChange}
         onsettingssaving={handleSettingsSaving}
         onsettingssavecancel={handleSettingsSaveCancel}
         onsettingssavecompleted={handleSettingsSaveCompleted}
     >
-        <!-- Body of Affiliations Settings page (populates Slot in child component) -->
+        <!-- Body of Course Enrollment Settings page (populates Slot in child component) Placeholder
         <template if:true={affiliationsSettingsViewModel}>
             <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
-                <!-- Enable RecordType Validation Setting -->
-
                 <c-settings-row-input
                     class="slds-size_3-of-3"
                     title={labelReference.afflTypeEnforced}
@@ -23,7 +21,7 @@
                 ></c-settings-row-input>
             </div>
         </template>
-        <!-- Affiliations Mappings -->
+        
         <template if:true={primaryAffiliationsSettingsVModel}>
             <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
                 <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
@@ -42,6 +40,6 @@
                     onrowaction={handlePrimaryAffiliationsRowAction}
                 ></lightning-datatable>
             </div>
-        </template>
+        </template>-->
     </c-settings-save-canvas>
 </template>
