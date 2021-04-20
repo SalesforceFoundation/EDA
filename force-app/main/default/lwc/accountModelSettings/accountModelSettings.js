@@ -16,7 +16,8 @@ import stgHelpHouseholdRecType from "@salesforce/label/c.stgHelpHouseholdRecType
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgAccoutTypesWithoutContactsDelete from "@salesforce/label/c.stgAccoutTypesWithoutContactsDelete";
 import stgLeadConversionAccountNaming from "@salesforce/label/c.stgLeadConversionAccountNaming";
-import stgHelpLeadConversionAccountNaming from "@salesforce/label/c.stgHelpLeadConversionAccountNaming";
+import stgLeadConversionAccountNamingDesc from "@salesforce/label/c.stgLeadConversionAccountNamingDesc";
+import stgLeadConversionAccountNamingTitle from "@salesforce/label/c.stgLeadConversionAccountNamingTitle";
 import stgHelpAccoutsDeletedIfChildContactsDeleted from "@salesforce/label/c.stgHelpAccoutsDeletedIfChildContactsDeleted";
 import stgAccountRecordTypeGroupLabelTitle from "@salesforce/label/c.stgAccountRecordTypeGroupLabelTitle";
 import stgAccountRecordTypeAvailableListTitle from "@salesforce/label/c.stgAccountRecordTypeAvailableListTitle";
@@ -72,7 +73,8 @@ export default class AccountModelSettings extends LightningElement {
         accountAutoDeletionSelectedValuesHeading: stgAccountRecordTypeSelectedListTitle,
         accountAutoDeletionAvailableValuesHeading: stgAccountRecordTypeAvailableListTitle,
         leadConversionAccountNamingTitle: stgLeadConversionAccountNaming,
-        leadConversionAccountNamingDescription: stgHelpLeadConversionAccountNaming,
+        leadConversionAccountNamingDescription: stgLeadConversionAccountNamingDesc,
+        leadConversionAccountNamingTitle: stgLeadConversionAccountNamingTitle,
         adminAccountNamingTitle: stgAdminAccountNamingTitle,
         adminAccountNameFormatHeading: adminAccNameFormat,
         adminAccountNameFormatDescription: adminAccNameFormatHelpText,

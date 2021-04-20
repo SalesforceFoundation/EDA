@@ -2111,21 +2111,29 @@
         <value>Delete Accounts with these record types if they have no Contacts.</value>
     </labels>  
     <labels>
-        <fullName>stgHelpLeadConversionAccountNaming</fullName>
+        <fullName>stgLeadConversionAccountNamingDesc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Auto Account Naming setting</shortDescription>
-        <value>Automatically names new Accounts created from lead conversion based on the Account Naming settings set in your org instead of using the value in the Company field on Lead.</value>
+        <value>When Leads are converted, automatically rename Accounts to use the account naming format associated with these selected record types.</value>
     </labels>    
     <labels>
         <fullName>stgLeadConversionAccountNaming</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Lead Conversion Auto Account Naming setting</shortDescription>
-        <value>Lead Conversion Auto Account Naming</value>
+        <shortDescription>Label for the Automatically Rename Lead-Converted Accounts setting</shortDescription>
+        <value>Automatically Rename Lead-Converted Accounts</value>
     </labels>    
+        <labels>
+        <fullName>stgLeadConversionAccountNamingTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Lead Conversion Account Naming</shortDescription>
+        <value>Lead Conversion Account Naming</value>
+    </labels>   
     <labels>
         <fullName>stgHelpAddressAccRecType</fullName>
         <categories>Settings</categories>
