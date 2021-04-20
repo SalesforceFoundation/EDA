@@ -2115,7 +2115,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description of the Auto Account Naming setting</shortDescription>
+        <shortDescription>Description of the Automatically Rename Lead-Converted Accounts setting</shortDescription>
         <value>When Leads are converted, automatically rename Accounts to use the account naming format associated with these selected record types.</value>
     </labels>    
     <labels>
