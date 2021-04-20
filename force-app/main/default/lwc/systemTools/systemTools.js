@@ -5,7 +5,7 @@ import stgSystemToolsTitle from "@salesforce/label/c.stgSystemToolsTitle";
 import stgBtnRefreshHouseholdNames from "@salesforce/label/c.stgBtnRefreshHouseholdNames";
 import stgRefreshHHAcctNameTitle from "@salesforce/label/c.stgRefreshHHAcctNameTitle";
 import stgRefreshHHAcctNameDesc from "@salesforce/label/c.stgRefreshHHAcctNameDesc";
-import stgRefreshAdminNamesSuccessToast from "@salesforce/label/c.stgRefreshAdminNamesSuccessToast";
+import stgRefreshHouseholdNamesSuccessToast from "@salesforce/label/c.stgRefreshHouseholdNamesSuccessToast";
 import BatchJobRunningProblem from "@salesforce/label/c.BatchJobRunningProblem";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 
@@ -17,15 +17,10 @@ export default class systemTools extends LightningElement {
         stgBtnRefreshHouseholdNames: stgBtnRefreshHouseholdNames,
         stgRefreshHHAcctNameTitle: stgRefreshHHAcctNameTitle,
         stgRefreshHHAcctNameDesc: stgRefreshHHAcctNameDesc,
-        stgRefreshAdminNamesSuccessToast: stgRefreshAdminNamesSuccessToast,
+        stgRefreshHouseholdNamesSuccessToast: stgRefreshHouseholdNamesSuccessToast,
         BatchJobRunningProblem: BatchJobRunningProblem,
         tellMeMoreLink: stgTellMeMoreLink,
     };
-
-    houseHoldNamesHyperLink =
-        '<a href="https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names">' +
-        this.labelReference.tellMeMoreLink +
-        "</a>";
 
     handleRefreshHHNamesBtnClick(event) {
         const eventDetail = event.detail;
@@ -47,7 +42,7 @@ export default class systemTools extends LightningElement {
         );
     }
 
-    @api modalSave(saveModel) {
+    @api modalConfirm(saveModel) {
         switch (saveModel.batchJobToRun) {
             case "ACCT_HouseholdNameRefresh_BATCH":
                 this.runHouseHoldNamingRefreshBatch();
@@ -58,7 +53,7 @@ export default class systemTools extends LightningElement {
     runHouseHoldNamingRefreshBatch() {
         runRefreshHouseholdAccountNamingJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.stgRefreshAdminNamesSuccessToast);
+                this.showToast("success", "Success", this.labelReference.stgRefreshHouseholdNamesSuccessToast);
             })
 
             .catch((error) => {
@@ -74,6 +69,14 @@ export default class systemTools extends LightningElement {
             mode: "dismissable",
         });
         this.dispatchEvent(showToastEvent);
+    }
+
+    get houseHoldNamesHyperLink() {
+        return (
+            '<a href="https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names">' +
+            this.labelReference.tellMeMoreLink +
+            "</a>"
+        );
     }
 
     get houseHoldNamesRefreshDesc() {

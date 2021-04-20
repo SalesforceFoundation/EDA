@@ -60,7 +60,7 @@ export default class EDASettings extends LightningElement {
                 this.template.querySelector("c-affiliation-settings").modalSave(saveModel);
                 break;
             case "batchjob":
-                this.template.querySelector("c-system-tools").modalSave(saveModel);
+                this.template.querySelector("c-system-tools").modalConfirm(saveModel);
                 break;
         }
     }

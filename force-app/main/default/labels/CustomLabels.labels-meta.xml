@@ -1011,8 +1011,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for update Household Account Names</shortDescription>
-        <value>Update All Household Account Names</value>
+        <shortDescription>Button label for Update All Household Account Names</shortDescription>
+        <value>Update</value>
     </labels>
     <labels>
         <fullName>stgBtnRunBackfill</fullName>
@@ -2652,7 +2652,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Update all Household Account names window</shortDescription>
-        <value>We&apos;re just making sure you want to update all Household Acount Names and that you disabled any automation or processes that reference Household Accounts (for example, workflow rules). You can re-enable them after the update is complete.</value>
+        <value>Updating refreshes all Household Account records to use the format specified in Household Account Name Format. Disable any processes that reference Household Accounts before continuing.</value>
     </labels>
     <labels>
         <fullName>stgRefreshHouseholdNamesModalTitle</fullName>

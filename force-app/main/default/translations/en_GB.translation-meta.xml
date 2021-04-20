@@ -509,7 +509,7 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for update Household Account Names --></label>
+        <label><!-- Button label for Update All Household Account Names --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
