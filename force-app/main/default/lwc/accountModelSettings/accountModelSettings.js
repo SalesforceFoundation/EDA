@@ -233,7 +233,7 @@ export default class AccountModelSettings extends LightningElement {
         // add selected values to hierarchySettingsChanges object
         let hierarchySettingsChange = {
             settingsType: "array",
-            settingsName: "Lead_Naming_Account_RTypes__c",
+            settingsName: "Lead_Converted_Account_RTypes__c",
             settingsValue: event.detail.value,
         };
 

@@ -100,7 +100,7 @@ private with sharing class LeadConversionAccountNamingMapper_TEST {
     private static void getLeadConversionAccountNamingModelValid() {
         UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Lead_Naming_Account_RTypes__c = 'Id1;Id2;Id3; Id4; Id5'
+                Lead_Converted_Account_RTypes__c = 'Id1;Id2;Id3; Id4; Id5'
             )
         );
 
@@ -130,7 +130,7 @@ private with sharing class LeadConversionAccountNamingMapper_TEST {
     private static void getLeadConversionAccountNamingModelEmpty() {
         UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Lead_Naming_Account_RTypes__c = null
+                Lead_Converted_Account_RTypes__c = null
             )
         );
 

@@ -65,12 +65,12 @@ public virtual with sharing class LeadConversionAccountNamingMapper {
     public virtual LeadConversionAccountNamingModel getLeadConversionAccountNamingModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
-        if (String.isEmpty(hierarchySettings.Lead_Naming_Account_RTypes__c) == true) {
+        if (String.isEmpty(hierarchySettings.Lead_Converted_Account_RTypes__c) == true) {
             return new LeadConversionAccountNamingModel(new List<String>());
         }  
 
         // split on semi-colon and optional space
-        List<String> recordTypesToNameList = hierarchySettings.Lead_Naming_Account_RTypes__c.split(';\\s?');
+        List<String> recordTypesToNameList = hierarchySettings.Lead_Converted_Account_RTypes__c.split(';\\s?');
         return new LeadConversionAccountNamingModel(recordTypesToNameList);
     }
 }

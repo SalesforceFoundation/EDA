@@ -139,7 +139,7 @@ private with sharing class LeadConversionAccountNamingVMapper_TEST {
         RecordTypeMapper.instance = new STUB_RecordTypeMapper();
 
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(Lead_Naming_Account_RTypes__c = '000000000000000001;000000000000000002')
+            new Hierarchy_Settings__c(Lead_Converted_Account_RTypes__c = '000000000000000001;000000000000000002')
         );
 
         LeadConversionAccountNamingVMapper leadConversionAccountNamingMapperInstance = LeadConversionAccountNamingVMapper.getInstance();
