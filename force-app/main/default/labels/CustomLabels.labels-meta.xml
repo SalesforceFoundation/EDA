@@ -1319,6 +1319,22 @@
         <value>Error Notification Recipients</value>
     </labels>
     <labels>
+        <fullName>stgErrorSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Errors</shortDescription>
+        <value>Errors</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Error Settings</shortDescription>
+        <value>Error Settings</value>
+    </labels>
+    <labels>
         <fullName>stgEthnicityRaceBackfillContacts</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -2765,6 +2781,22 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Section title for System Tools</shortDescription>
+        <value>System Tools</value>
+    </labels>
+    <labels>
+        <fullName>stgSystemSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation section title for System Tools</shortDescription>
+        <value>System Tools</value>
+    </labels>
+    <labels>
+        <fullName>stgSystemSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for System Tools Settings</shortDescription>
         <value>System Tools</value>
     </labels>
     <labels>

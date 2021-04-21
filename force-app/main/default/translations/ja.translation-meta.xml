@@ -665,6 +665,14 @@
         <name>stgErrorNotifRecipientsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation section title for Errors --></label>
+        <name>stgErrorSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Error Settings --></label>
+        <name>stgErrorSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>取引先責任者の民族および人種のバックフィル</label>
         <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
@@ -1389,6 +1397,14 @@
     <customLabels>
         <label><!-- Section title for System Tools --></label>
         <name>stgSystemToolsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation section title for System Tools --></label>
+        <name>stgSystemSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for System Tools Settings --></label>
+        <name>stgSystemSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>取引先および取引先責任者</label>
