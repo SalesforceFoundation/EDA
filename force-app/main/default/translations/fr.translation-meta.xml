@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label>Un problème est survenu lors du démarrage du lot.</label>
+        <label><!-- Message when a batch job can&apos;t run --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
@@ -377,7 +377,7 @@
         <name>stgAdminAccountCustomNameHelp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Administrative Account Naming --></label>
+        <label><!-- Label for the Administrative Account Names Setting --></label>
         <name>stgAdminAccountNamingTitle</name>
     </customLabels>
     <customLabels>
@@ -405,11 +405,11 @@
         <name>stgAffiliationsNewSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!--Navigation Section title for Affiliations --></label>
+        <label><!-- Navigation Section title for Affiliations --></label>
         <name>stgAffiliationsSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!--Section title for Affiliation Settings --></label>
+        <label><!-- Section title for Affiliation Settings --></label>
         <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
@@ -505,7 +505,7 @@
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
-        <label>Actualiser tous les noms administratifs</label>
+        <label><!-- Button label for Update All Administrative Account Names --></label>
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
@@ -525,6 +525,10 @@
         <name>stgBtnSave</name>
     </customLabels>
     <customLabels>
+        <label><!-- Button label for updating Administrative Account Names --></label>
+        <name>stgBtnUpdate</name>
+    </customLabels>
+    <customLabels>
         <label>Le nettoyage a été mis en file d&apos;attente avec succès. Un e-mail sera envoyé une fois le lot terminé.</label>
         <name>stgCleanupQueuedEmailSent</name>
     </customLabels>
@@ -541,7 +545,7 @@
         <name>stgColCampTypes</name>
     </customLabels>
     <customLabels>
-        <label>C<!-- Header label for the list of Primary Affiliation Fields on Contact --></label>
+        <label><!-- Header label for the list of Primary Affiliation Fields on Contact --></label>
         <name>stgColContactPrimaryAfflField</name>
     </customLabels>
     <customLabels>
@@ -1305,12 +1309,24 @@
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>
-        <label>Avertissement : Lorsque vous cliquez sur ce bouton, TOUS les enregistrements Comptes administratifs existants sont renommés vers le format spécifié dans Format de nom du compte administratif. Lisez la documentation produit pour vous assurer de comprendre les conséquences de cette modification irréversible. Avant de continuer, désactivez toutes les automatisations ou tous les processus qui référencent des Comptes administratifs (par exemple des règles de workflow). Une fois l&apos;actualisation effectuée, vous ne pouvez pas les réactiver.</label>
+        <label><!-- Description of the Administrative Account Names setting --></label>
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Actualiser tous les noms de compte administratifs</label>
+        <label><!-- Label for the Administrative Account Names Setting --></label>
         <name>stgRefreshAdminAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update all Administrative Account names window --></label>
+        <name>stgRefreshAdminNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update All Administrative Account Names window --></label>
+        <name>stgRefreshAdminNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Account names are queued for update --></label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Avertissement : Lorsque vous cliquez sur ce bouton, TOUS les enregistrements Comptes de foyer existants sont renommés vers le format spécifié dans Format de nom du compte de foyer. Cette action active le paramètre Renommer automatiquement les comptes de foyer, même si vous l&apos;aviez désélectionné. Lisez la documentation produit pour vous assurer de comprendre les conséquences de cette modification irréversible. Avant de continuer, désactivez toutes les automatisations ou tous les processus qui référencent des Comptes de foyer (par exemple des règles de workflow). Une fois l&apos;actualisation effectuée, vous ne pouvez pas les réactiver.</label>

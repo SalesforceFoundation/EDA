@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label>バッチの開始中に問題が発生しました。</label>
+        <label><!-- Message when a batch job can&apos;t run --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
@@ -377,7 +377,7 @@
         <name>stgAdminAccountCustomNameHelp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Administrative Account Naming --></label>
+        <label><!-- Label for the Administrative Account Names Setting --></label>
         <name>stgAdminAccountNamingTitle</name>
     </customLabels>
     <customLabels>
@@ -505,7 +505,7 @@
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
-        <label>すべての管理名を更新</label>
+        <label><!-- Button label for Update All Administrative Account Names --></label>
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
@@ -523,6 +523,10 @@
     <customLabels>
         <label>保存</label>
         <name>stgBtnSave</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for updating Administrative Account Names --></label>
+        <name>stgBtnUpdate</name>
     </customLabels>
     <customLabels>
         <label>クリーンアップがキューに正常に登録されました。バッチの完了時にメールが送信されます。</label>
@@ -1305,12 +1309,24 @@
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>
-        <label>警告: このボタンをクリックすると、すべての既存の管理取引先レコードの名前が、[管理取引先名形式] で指定された形式に変更されます。製品ドキュメントを読んで、元に戻すことができないこの変更の影響を確実に理解してください。続行する前に、管理取引先を参照するすべての自動化またはプロセス (ワークフロールールなど) を無効にしてください。更新が完了したら、それらを再度有効にすることができます。</label>
+        <label><!-- Description of the Administrative Account Names setting --></label>
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>すべての管理取引先名を更新</label>
+        <label><!-- Label for the Administrative Account Names Setting --></label>
         <name>stgRefreshAdminAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update all Administrative Account names window --></label>
+        <name>stgRefreshAdminNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update All Administrative Account Names window --></label>
+        <name>stgRefreshAdminNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Account names are queued for update --></label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>警告: このボタンをクリックすると、すべての既存の世帯取引先レコードの名前が、[世帯取引先名形式] で指定された形式に変更されます。[世帯取引先の名前を自動的に変更] 設定は以前に選択されていなくても、このアクションにより有効になります。製品ドキュメントを読んで、元に戻すことができないこの変更の影響を確実に理解してください。続行する前に、世帯取引先を参照するすべての自動化またはプロセス (ワークフロールールなど) を無効にしてください。更新が完了したら、それらを再度有効にすることができます。</label>

@@ -310,6 +310,14 @@ tasks:
         options:
             path: unpackaged/232
 
+    retrieve_custom_labels_and_translations:
+        description: "Retrieve custom labels and translations from the default scratch org"
+        class_path: cumulusci.tasks.sfdx.SFDXOrgTask
+        options:
+            command: "force:source:retrieve"
+            extra: "-m CustomLabels,Translations"
+        group: "EDA: Metadata"
+
     robot:
         # description: Runs a Robot Framework test from a .robot file.
         options:
@@ -640,14 +648,6 @@ flows:
         steps:
             0.1:
                 flow: translations
-
-    retrieve_custom_labels_and_translations:
-        description: "Retrieve custom labels and translations from the default scratch org"
-        class_path: cumulusci.tasks.sfdx.SFDXOrgTask
-        options:
-            command: "force:source:retrieve"
-            extra: "-m CustomLabels,Translations"
-        group: "EDA: Metadata"
 
 services:
     mockaroo:

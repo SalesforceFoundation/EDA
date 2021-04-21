@@ -37,8 +37,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Batch message when there&apos;s a problem starting</shortDescription>
-        <value>There was a problem starting the Batch.</value>
+        <shortDescription>Message when a batch job can&apos;t run</shortDescription>
+        <value>We couldn&apos;t run the batch job.</value>
     </labels>
     <labels>
         <fullName>BothFieldAndValue</fullName>
@@ -1003,8 +1003,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for refreshing Administrative Account Names</shortDescription>
-        <value>Refresh All Administrative Names</value>
+        <shortDescription>Button label for Update All Administrative Account Names</shortDescription>
+        <value>Update</value>
     </labels>
     <labels>
         <fullName>stgBtnRefreshHouseholdNames</fullName>
@@ -1037,6 +1037,14 @@
         <protected>true</protected>
         <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnUpdate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button label for updating Administrative Account Names</shortDescription>
+        <value>Update</value>
     </labels>
     <labels>
         <fullName>stgCleanupQueuedEmailSent</fullName>
@@ -2603,16 +2611,40 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Warning for Refresh Admin Account Names</shortDescription>
-        <value>Warning: Clicking this button renames ALL existing Administrative Account records to the format specified in Administrative Account Name Format. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Administrative Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
+        <shortDescription>Description of the Administrative Account Names setting</shortDescription>
+        <value>Updating refreshes all Administrative Account records to use the Administrative Account Name Format. Disable processes that reference Administrative Accounts before proceeding.</value>
     </labels>
     <labels>
         <fullName>stgRefreshAdminAcctNameTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for System Settings</shortDescription>
-        <value>Refresh All Administrative Account Names</value>
+        <shortDescription>Label for the Administrative Account Names Setting</shortDescription>
+        <value>Administrative Account Names</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshAdminNamesModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update all Administrative Account names window</shortDescription>
+        <value>Updating refreshed all Administrative Account records to use the format specified in Administrative Account Name Format. If that&apos;s what you want, be sure to disable any processes that reference those Accounts before continuing.</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshAdminNamesModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update All Administrative Account Names window</shortDescription>
+        <value>Update All Administrative Account Names</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshAdminNamesSuccessToast</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when Account names are queued for update</shortDescription>
+        <value>Administrative Account names will be updated during your next scheduled batch job run. We&apos;ll send you an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgRefreshHHAcctNameDesc</fullName>
