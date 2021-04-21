@@ -53,6 +53,7 @@ public with sharing class PrimaryAffiliationMappingVModel {
      * @param accountRecordTypeLabel The Account Record Type's label for the mapping
      * @param contactFieldName The Contact Field's label for the mappings
      * @param contactFieldLabel The Contact Field's label for the mapping
+     * @param autoProgamrEnrollment A boolean indicating whether auto-enrollment functionality is enabled
      *****************************************************************************************************************/
     public PrimaryAffiliationMappingVModel(
         String mappingName,

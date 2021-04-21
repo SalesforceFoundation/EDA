@@ -350,12 +350,351 @@ private with sharing class PrimaryAffiliationsSettingsVMapper_TEST {
         );
     }
 
+    /****************************************************************************************
+     * @description Test method to verify getPrimaryAffiliationsMappingVModel()
+     * returns a PrimaryAffiliationMappingVModel with account record type and lookup field names
+     * and labels corresponding to the matching model properties when matching models exists.
+     ****************************************************************************************/
+    @isTest
+    private static void getPrimaryAffiliationsMappingVModelValid() {
+        RecordTypeService.instance = new STUB_RecordTypeServiceValid();
+        LookupFieldService.instance = new STUB_LookupFieldServiceValid();
+
+        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
+            'Affliation Name',
+            'Account Record Type',
+            'Primary Affiliation Field',
+            true,
+            'autoProgramEnrollmentStatus',
+            'autoProgramEnrollmentRole'
+        );
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = new Map<String, RecordTypeModel>{
+            'Account_Record_Type' => new RecordTypeModel(
+                '000000000000000009',
+                'Account Record Type',
+                'Account_Record_Type',
+                true
+            )
+        };
+
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = new Map<String, RecordTypeModel>{
+            'Account Record Type' => new RecordTypeModel(
+                '000000000000000009',
+                'Account Record Type',
+                'Account_Record_Type',
+                true
+            )
+        };
+
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = new Map<String, LookupFieldModel>{
+            'Account Field Name' => new LookupFieldModel('Account Field Name', 'Account Field Label')
+        };
+
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel = new Map<String, LookupFieldModel>{
+            'Account Field Label' => new LookupFieldModel('Account Field Name', 'Account Field Label')
+        };
+
+        PrimaryAffiliationsSettingsVMapper primaryAffiliationsSettingsVMapperInstance = PrimaryAffiliationsSettingsVMapper.getInstance();
+
+        Test.startTest();
+        PrimaryAffiliationMappingVModel primaryAffiliationMappingVModel = primaryAffiliationsSettingsVMapperInstance.getPrimaryAffiliationsMappingVModel(
+            affiliationMappingsModel,
+            accountRecordTypeModelsByName,
+            accountRecordTypeModelsByLabel,
+            accountLookupsOnContactFieldModelsByName,
+            accountLookupsOnContactFieldModelsByLabel
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Affliation Name',
+            PrimaryAffiliationMappingVModel.mappingName,
+            'Mapping name should match name of affiliation mapping.'
+        );
+
+        System.assertEquals(
+            'Account_Record_Type',
+            PrimaryAffiliationMappingVModel.accountRecordTypeName,
+            'Account Record Type name should match developer name of Record Type model corresponding to record type specified for the affiliation mapping.'
+        );
+
+        System.assertEquals(
+            'Account Record Type',
+            PrimaryAffiliationMappingVModel.accountRecordTypeLabel,
+            'Account Record Type label should match label of Record Type model corresponding to record type specified for the affiliation mapping.'
+        );
+
+        System.assertEquals(
+            'Account Field Name',
+            PrimaryAffiliationMappingVModel.contactFieldName,
+            'Contact field name should match name of Lookup Field model corresponding to primary affiliation field specified for the affiliation mapping.'
+        );
+
+        System.assertEquals(
+            'Account Field Label',
+            PrimaryAffiliationMappingVModel.contactFieldLabel,
+            'Contact field label should match label of Lookup Field model corresponding to primary affiliation field specified for the affiliation mapping.'
+        );
+
+        System.assertEquals(
+            true,
+            PrimaryAffiliationMappingVModel.autoProgramEnrollment,
+            'Auto-enrollment enablement should match value specified for the affiliation mapping.'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getPrimaryAffiliationsMappingVModel()
+     * returns a PrimaryAffiliationMappingVModel with account record type and lookup field names
+     * and labels corresponding to the properties specified for the affiliation mapping
+     * when matching models do not exist.
+     ****************************************************************************************/
+    @isTest
+    private static void getPrimaryAffiliationsMappingVModelInValid() {
+        RecordTypeService.instance = new STUB_RecordTypeServiceInvalid();
+        LookupFieldService.instance = new STUB_LookupFieldServiceInvalid();
+
+        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
+            'Affliation Name',
+            'Invalid Account Record Type',
+            'Invalid Primary Affiliation Field',
+            false,
+            'autoProgramEnrollmentStatus',
+            'autoProgramEnrollmentRole'
+        );
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = new Map<String, RecordTypeModel>{
+            'Account_Record_Type' => new RecordTypeModel(
+                '000000000000000009',
+                'Account Record Type',
+                'Account_Record_Type',
+                true
+            )
+        };
+
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = new Map<String, RecordTypeModel>{
+            'Account Record Type' => new RecordTypeModel(
+                '000000000000000009',
+                'Account Record Type',
+                'Account_Record_Type',
+                true
+            )
+        };
+
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = new Map<String, LookupFieldModel>{
+            'Account Field Name' => new LookupFieldModel('Account Field Name', 'Account Field Label')
+        };
+
+        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel = new Map<String, LookupFieldModel>{
+            'Account Field Label' => new LookupFieldModel('Account Field Name', 'Account Field Label')
+        };
+
+        PrimaryAffiliationsSettingsVMapper primaryAffiliationsSettingsVMapperInstance = PrimaryAffiliationsSettingsVMapper.getInstance();
+
+        Test.startTest();
+        PrimaryAffiliationMappingVModel primaryAffiliationMappingVModel = primaryAffiliationsSettingsVMapperInstance.getPrimaryAffiliationsMappingVModel(
+            affiliationMappingsModel,
+            accountRecordTypeModelsByName,
+            accountRecordTypeModelsByLabel,
+            accountLookupsOnContactFieldModelsByName,
+            accountLookupsOnContactFieldModelsByLabel
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Affliation Name',
+            PrimaryAffiliationMappingVModel.mappingName,
+            'Mapping name should match name of affiliation mapping.'
+        );
+
+        System.assertEquals(
+            'Invalid Account Record Type',
+            PrimaryAffiliationMappingVModel.accountRecordTypeName,
+            'Account Record Type name should match value specified for the affiliation mapping.'
+        );
+
+        System.assertEquals(
+            'Invalid Account Record Type',
+            PrimaryAffiliationMappingVModel.accountRecordTypeLabel,
+            'Account Record Type label should match value specified for the affiliation mapping.'
+        );
+
+        System.assertEquals(
+            'Invalid Primary Affiliation Field',
+            PrimaryAffiliationMappingVModel.contactFieldName,
+            'Contact field name should match value specified for the affiliation mapping.'
+        );
+
+        System.assertEquals(
+            'Invalid Primary Affiliation Field',
+            PrimaryAffiliationMappingVModel.contactFieldLabel,
+            'Contact field label should match value specified for the affiliation mapping.'
+        );
+
+        System.assertEquals(
+            false,
+            PrimaryAffiliationMappingVModel.autoProgramEnrollment,
+            'Auto-enrollment enablement should match value specified for the affiliation mapping.'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getPrimaryAffiliationsSettingsVModel()
+     * returns a PrimaryAffiliationSettingsVModel with a list of PrimaryAffiliationMappingVModels
+     * corresponding to the affiliation mappings with account record type and lookup field names
+     * and labels matching the corresponding models when matching models exist.
+     ****************************************************************************************/
+    @isTest
+    private static void getPrimaryAffiliationsSettingsVModelValid() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+        RecordTypeService.instance = new STUB_RecordTypeService();
+        LookupFieldService.instance = new STUB_LookupFieldService();
+
+        PrimaryAffiliationsSettingsVMapper primaryAffiliationsSettingsVMapperInstance = PrimaryAffiliationsSettingsVMapper.getInstance();
+
+        Test.startTest();
+        PrimaryAffiliationSettingsVModel primaryAffiliationSettingsVModel = primaryAffiliationsSettingsVMapperInstance.getPrimaryAffiliationsSettingsVModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            2,
+            PrimaryAffiliationSettingsVModel.primaryAffiliationMappings.size(),
+            'Should return 2 PrimaryAffiliationMappingVModels.'
+        );
+
+        for (Integer i = 0; i < PrimaryAffiliationSettingsVModel.primaryAffiliationMappings.size(); i++) {
+            System.assertEquals(
+                'Affiliation Name ' + (i + 1),
+                PrimaryAffiliationSettingsVModel.primaryAffiliationMappings[i].mappingName,
+                'Mapping name on PrimaryAffiliationMappingVModel should match affiliation.'
+            );
+
+            System.assertEquals(
+                'Record_Type_' + (i + 1),
+                PrimaryAffiliationSettingsVModel.primaryAffiliationMappings[i].accountRecordTypeName,
+                'Account record type name on PrimaryAffiliationMappingVModel should match developer name of corresponding record type model.'
+            );
+
+            System.assertEquals(
+                'Record Type ' + (i + 1),
+                PrimaryAffiliationSettingsVModel.primaryAffiliationMappings[i].accountRecordTypeLabel,
+                'Account record type label on PrimaryAffiliationMappingVModel should match label of corresponding record type model.'
+            );
+
+            System.assertEquals(
+                'Contact Account Lookup Name ' + (i + 1),
+                PrimaryAffiliationSettingsVModel.primaryAffiliationMappings[i].contactFieldName,
+                'Contact field name on PrimaryAffiliationMappingVModel should match name of corresponding lookup field model.'
+            );
+
+            System.assertEquals(
+                'Contact Account Lookup Label ' + (i + 1),
+                PrimaryAffiliationSettingsVModel.primaryAffiliationMappings[i].contactFieldLabel,
+                'Contact field label on PrimaryAffiliationMappingVModel should match label of corresponding lookup field model.'
+            );
+
+            System.assertEquals(
+                true,
+                PrimaryAffiliationSettingsVModel.primaryAffiliationMappings[i].autoProgramEnrollment,
+                'Auto-Enrollment enablement on PrimaryAffiliationMappingVModel should match affiliation.'
+            );
+        }
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getPrimaryAffiliationsSettingsVModel()
+     * returns a PrimaryAffiliationSettingsVModel with a list of PrimaryAffiliationMappingVModels
+     * corresponding to the affiliation mappings with account record type and lookup field names
+     * and labels matching the affiliation model properties when matching models do not exist.
+     ****************************************************************************************/
+    @isTest
+    private static void getPrimaryAffiliationsSettingsVModelInValid() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+        RecordTypeService.instance = new STUB_RecordTypeServiceInvalid();
+        LookupFieldService.instance = new STUB_LookupFieldServiceInvalid();
+
+        PrimaryAffiliationsSettingsVMapper primaryAffiliationsSettingsVMapperInstance = PrimaryAffiliationsSettingsVMapper.getInstance();
+
+        Test.startTest();
+        PrimaryAffiliationSettingsVModel primaryAffiliationSettingsVModel = primaryAffiliationsSettingsVMapperInstance.getPrimaryAffiliationsSettingsVModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            2,
+            PrimaryAffiliationSettingsVModel.primaryAffiliationMappings.size(),
+            'Should return 2 PrimaryAffiliationMappingVModels.'
+        );
+
+        for (Integer i = 0; i < PrimaryAffiliationSettingsVModel.primaryAffiliationMappings.size(); i++) {
+            System.assertEquals(
+                'Affiliation Name ' + (i + 1),
+                PrimaryAffiliationSettingsVModel.primaryAffiliationMappings[i].mappingName,
+                'Mapping name on PrimaryAffiliationMappingVModel should match affiliation.'
+            );
+
+            System.assertEquals(
+                'Record Type ' + (i + 1),
+                PrimaryAffiliationSettingsVModel.primaryAffiliationMappings[i].accountRecordTypeName,
+                'Account record type name on PrimaryAffiliationMappingVModel should match affiliation.'
+            );
+
+            System.assertEquals(
+                'Record Type ' + (i + 1),
+                PrimaryAffiliationSettingsVModel.primaryAffiliationMappings[i].accountRecordTypeLabel,
+                'Account record type label on PrimaryAffiliationMappingVModel should match affiliation.'
+            );
+
+            System.assertEquals(
+                'Contact Account Lookup Label ' + (i + 1),
+                PrimaryAffiliationSettingsVModel.primaryAffiliationMappings[i].contactFieldName,
+                'Contact field name on PrimaryAffiliationMappingVModel should match affiliation.'
+            );
+
+            System.assertEquals(
+                'Contact Account Lookup Label ' + (i + 1),
+                PrimaryAffiliationSettingsVModel.primaryAffiliationMappings[i].contactFieldLabel,
+                'Contact field label on PrimaryAffiliationMappingVModel should match affiliation.'
+            );
+
+            System.assertEquals(
+                true,
+                PrimaryAffiliationSettingsVModel.primaryAffiliationMappings[i].autoProgramEnrollment,
+                'Auto-Enrollment enablement on PrimaryAffiliationMappingVModel should match affiliation.'
+            );
+        }
+    }
+
     /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
 
     /**************************************************************************************************************************************
-     * @description Stub class to simulate the response from LookupFieldService to return valid maps for Account Lookup fields on Contact
+     * @description Stub class to simulate valid responses from AffiliationMappingsService
+     **************************************************************************************************************************************/
+    private class STUB_AffiliationMappingsService extends AffiliationMappingsService {
+        public override List<AffiliationMappingsModel> getAffiliationMappingsModels() {
+            return new List<AffiliationMappingsModel>{
+                new AffiliationMappingsModel(
+                    'Affiliation Name 1',
+                    'Record Type 1',
+                    'Contact Account Lookup Label 1',
+                    true,
+                    'autoProgramEnrollmentStatus1',
+                    'autoProgramEnrollmentRole1'
+                ),
+                new AffiliationMappingsModel(
+                    'Affiliation Name 2',
+                    'Record Type 2',
+                    'Contact Account Lookup Label 2',
+                    true,
+                    'autoProgramEnrollmentStatus2',
+                    'autoProgramEnrollmentRole2'
+                )
+            };
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses from LookupFieldService
      **************************************************************************************************************************************/
     private class STUB_LookupFieldService extends LookupFieldService {
         public override Map<String, LookupFieldModel> getModelByNameMapForSObjectType(
@@ -376,7 +715,20 @@ private with sharing class PrimaryAffiliationsSettingsVMapper_TEST {
     }
 
     /**************************************************************************************************************************************
-     * @description Stub class to simulate the response from RecordTypeService to return valid maps for Account Lookup fields on Contact
+     * @description Stub class to simulate valid responses from LookupFieldService
+     **************************************************************************************************************************************/
+    private class STUB_LookupFieldServiceValid extends LookupFieldService {
+        public override LookupFieldModel getLookupFieldModelFromNameAndLabelMaps(
+            String lookupFieldNameOrLabel,
+            Map<String, LookupFieldModel> lookupFieldModelByName,
+            Map<String, LookupFieldModel> lookupFieldModelByLabel
+        ) {
+            return new LookupFieldModel('Account Field Name', 'Account Field Label');
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses from RecordTypeService
      **************************************************************************************************************************************/
     private class STUB_RecordTypeService extends RecordTypeService {
         public override Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
@@ -400,6 +752,45 @@ private with sharing class PrimaryAffiliationsSettingsVMapper_TEST {
                     false
                 )
             };
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses from RecordTypeService
+     **************************************************************************************************************************************/
+    private class STUB_RecordTypeServiceValid extends RecordTypeService {
+        public override RecordTypeModel getRecordTypeModelFromNameAndLabelMaps(
+            String recordTypeNameOrLabel,
+            Map<String, RecordTypeModel> recordTypeModelByName,
+            Map<String, RecordTypeModel> recordTypeModelByLabel
+        ) {
+            return new RecordTypeModel('000000000000000009', 'Account Record Type', 'Account_Record_Type', true);
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate invalid responses from LookupFieldService
+     **************************************************************************************************************************************/
+    private class STUB_LookupFieldServiceInvalid extends LookupFieldService {
+        public override LookupFieldModel getLookupFieldModelFromNameAndLabelMaps(
+            String lookupFieldNameOrLabel,
+            Map<String, LookupFieldModel> lookupFieldModelByName,
+            Map<String, LookupFieldModel> lookupFieldModelByLabel
+        ) {
+            return null;
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate invalid responses from RecordTypeService
+     **************************************************************************************************************************************/
+    private class STUB_RecordTypeServiceInvalid extends RecordTypeService {
+        public override RecordTypeModel getRecordTypeModelFromNameAndLabelMaps(
+            String recordTypeNameOrLabel,
+            Map<String, RecordTypeModel> recordTypeModelByName,
+            Map<String, RecordTypeModel> recordTypeModelByLabel
+        ) {
+            return null;
         }
     }
 }
