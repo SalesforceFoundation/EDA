@@ -23,13 +23,19 @@ import stgAffiliationsSettingsNav from "@salesforce/label/c.stgAffiliationsSetti
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 //System Tools Labels
 import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
+//System Settings Labels
+import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
+//Errors Settings Labels
+import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
+//System Tools SettingsLabels
+import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
         peopleAndGroups: "People and Groups",
         setupHome: "Setup Home",
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
-        systemSettings: "System",
+        systemSettings: stgSystemSettingsNav,
         accountModel: {
             accountAutoDeletionModel: stgAccoutTypesWithoutContactsDelete,
             accountModelSettings: stgAccountModelSettingsTitle,
@@ -64,7 +70,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         errorSettings: {
             enableDebug: "Enable Debug",
             enableErrorHandling: "Enable Error Handling",
-            errorSettings: "Errors",
+            errorSettings: stgErrorSettingsNav,
             sendErrorNotifications: "Send Error Notifications",
             storeErrors: "Store Errors",
         },
@@ -86,7 +92,8 @@ export default class EdaSettingsNavigation extends LightningElement {
             courseDescriptionMigration: "Course Description Migration",
             ethnicityAndRaceBackfill: "Ethnicity and Race Backfill",
             preferredEmailCleanup: "Preferred Email and Phone Cleanup",
-            systemTools: stgSystemToolsNav,
+            systemToolsnav: stgSystemToolsNav,
+            systemTools: stgSystemSettingsTitle,
             refreshAdministrativeAccountNames: "Refresh Administrative Account Names",
             refreshHouseholdAccountNames: "Refresh Household Account Names",
         },
@@ -259,7 +266,7 @@ export default class EdaSettingsNavigation extends LightningElement {
                         ],
                     },
                     {
-                        label: this.labelReference.systemTools.systemTools,
+                        label: this.labelReference.systemTools.systemToolsNav,
                         page: "systemTools",
                         id: "systemTools",
                         menuItems: [

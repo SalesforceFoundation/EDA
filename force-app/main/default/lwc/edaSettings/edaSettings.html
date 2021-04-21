@@ -38,6 +38,11 @@
                     <template if:true={settingsPageToDisplay.contactInformationSettings}>
                         <c-contact-information-settings></c-contact-information-settings>
                     </template>
+
+                    <template if:true={settingsPageToDisplay.errorSettings}>
+                        <c-error-settings></c-error-settings>
+                    </template>
+
                     <template if:true={settingsPageToDisplay.systemTools}>
                         <c-system-tools></c-system-tools>
                     </template>
