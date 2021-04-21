@@ -1331,7 +1331,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Subsection navigation title for Errors</shortDescription>
+        <shortDescription>Navigation title for Errors</shortDescription>
         <value>Errors</value>
     </labels>
     <labels>
@@ -1339,8 +1339,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Section title for Errors Settings</shortDescription>
-        <value>Errors Settings</value>
+        <shortDescription>Section title for Error Settings</shortDescription>
+        <value>Error Settings</value>
     </labels>
     <labels>
         <fullName>stgEthnicityRaceBackfillContacts</fullName>
@@ -2749,16 +2749,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Navigation section title for System</shortDescription>
-        <value>System</value>
+        <shortDescription>Navigation section title for System Tools</shortDescription>
+        <value>System Tools</value>
     </labels>
     <labels>
         <fullName>stgSystemSettingsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Section title for System Settings</shortDescription>
-        <value>System Settings</value>
+        <shortDescription>Section title for System Tools Settings</shortDescription>
+        <value>System Tools</value>
     </labels>
     <labels>
         <fullName>stgTabAccCont</fullName>

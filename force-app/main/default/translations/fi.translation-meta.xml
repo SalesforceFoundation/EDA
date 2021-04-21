@@ -669,11 +669,11 @@
         <name>stgErrorNotifRecipientsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Subsection navigation title for Errors --></label>
+        <label><!-- Navigation section title for Errors --></label>
         <name>stgErrorSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Errors Settings --></label>
+        <label><!-- Section title for Error Settings --></label>
         <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
@@ -1379,11 +1379,11 @@
         <name>stgSuccessHHAccountNameRefresh</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for System --></label>
+        <label><!-- Navigation section title for System Tools --></label>
         <name>stgSystemSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for System Settings --></label>
+        <label><!-- Section title for System Tools Settings --></label>
         <name>stgSystemSettingsTitle</name>
     </customLabels>
     <customLabels>
