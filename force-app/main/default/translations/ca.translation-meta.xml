@@ -505,7 +505,7 @@
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
-        <label>Actualitza tots els noms administratius</label>
+        <label><!-- Button label for Update All Administrative Account Names --></label>
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
@@ -1317,7 +1317,7 @@
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>
-        <label>Advertiment: en fer clic en aquest botó, es canviarà el nom de TOTS els registres de comptes administratius existents al format especificat al Format de noms de compte administratiu. Llegiu la documentació del producte per assegurar-vos que enteneu les conseqüències d’aquest canvi irreversible. Abans de continuar, desactiveu qualsevol procés o automatització que facin referència a comptes administratius (per exemple, regles de flux de treball). Un cop s&apos;hagi completat l&apos;actualització, podeu tornar-los a activar.</label>
+        <label><!-- Description of the Administrative Account Names setting --></label>
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
@@ -1325,8 +1325,20 @@
         <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label>Actualitza tots els noms de compte administratiu</label>
+        <label><!-- Label for the Administrative Account Names Setting --></label>
         <name>stgRefreshAdminAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update all Administrative Account names window --></label>
+        <name>stgRefreshAdminNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update All Administrative Account Names window --></label>
+        <name>stgRefreshAdminNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Account names are queued for update --></label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Household Account Names setting --></label>

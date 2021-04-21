@@ -505,7 +505,7 @@
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
-        <label>すべての管理名を更新</label>
+        <label><!-- Button label for Update All Administrative Account Names --></label>
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
@@ -1317,7 +1317,7 @@
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>
-        <label>警告: このボタンをクリックすると、すべての既存の管理取引先レコードの名前が、[管理取引先名形式] で指定された形式に変更されます。製品ドキュメントを読んで、元に戻すことができないこの変更の影響を確実に理解してください。続行する前に、管理取引先を参照するすべての自動化またはプロセス (ワークフロールールなど) を無効にしてください。更新が完了したら、それらを再度有効にすることができます。</label>
+        <label><!-- Description of the Administrative Account Names setting --></label>
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
@@ -1325,8 +1325,20 @@
         <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label>すべての管理取引先名を更新</label>
+        <label><!-- Label for the Administrative Account Names Setting --></label>
         <name>stgRefreshAdminAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update all Administrative Account names window --></label>
+        <name>stgRefreshAdminNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update All Administrative Account Names window --></label>
+        <name>stgRefreshAdminNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Account names are queued for update --></label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Household Account Names setting --></label>

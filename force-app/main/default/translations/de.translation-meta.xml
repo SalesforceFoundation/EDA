@@ -505,7 +505,7 @@
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
-        <label>Alle Verwaltungsnamen aktualisieren</label>
+        <label><!-- Button label for Update All Administrative Account Names --></label>
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
@@ -1317,7 +1317,7 @@
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>
-        <label>Achtung: Wenn Sie auf diese Schaltfläche klicken, werden ALLE vorhandenen Verwaltungs-Accountdatensätze in das in &quot;Verwaltungs-Account – Namensformat&quot; angegebene Format umbenannt. Lesen Sie die Produktdokumentation, um sicher zu sein, dass Sie die Folgen dieser unumkehrbaren Änderung verstehen. Bevor Sie fortfahren, deaktivieren Sie jegliche Automatisierung oder Prozesse, die auf Verwaltungs-Accounts verweisen (z. B. Workflow-Regeln). Nach der Aktualisierung können Sie sie wieder aktivieren.</label>
+        <label><!-- Description of the Administrative Account Names setting --></label>
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
@@ -1325,8 +1325,20 @@
         <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label>Alle Namen von Verwaltungs-Accounts aktualisieren</label>
+        <label><!-- Label for the Administrative Account Names Setting --></label>
         <name>stgRefreshAdminAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update all Administrative Account names window --></label>
+        <name>stgRefreshAdminNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update All Administrative Account Names window --></label>
+        <name>stgRefreshAdminNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Account names are queued for update --></label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Household Account Names setting --></label>
