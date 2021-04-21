@@ -4,9 +4,5 @@
         <members>EducationDataArchitecture</members>
         <name>CustomApplication</name>
     </types>
-    <types>
-        <members>Admin</members>
-        <name>Profile</name>
-    </types>
     <version>51.0</version>
 </Package>
