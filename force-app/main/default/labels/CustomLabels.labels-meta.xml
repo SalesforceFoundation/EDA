@@ -2627,24 +2627,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description of the Administrative Account Names setting</shortDescription>
-        <value>Updating refreshes all Administrative Account records to use the Administrative Account Name Format. Disable processes that reference Administrative Accounts before proceeding.</value>
-    </labels>
-    <labels>
-        <fullName>stgRefreshAdminNamesSuccessToast</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Toast message when Account names are queued for update</shortDescription>
-        <value>Administrative Account names will be updated during your next scheduled batch job run. We'll send you an email when the job is done.</value>
+        <shortDescription>Description of the Update All Administrative Account Names setting</shortDescription>
+        <value>Updates all Administrative Account records to use the format in Administrative Account Name Format. Warning Before Proceeding disable that reference Household ACcounts.</value>
     </labels>
     <labels>
         <fullName>stgRefreshAdminAcctNameTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Administrative Account Names Setting</shortDescription>
-        <value>Administrative Account Names</value>
+        <shortDescription>Label for Update All Administrative Names Settings</shortDescription>
+        <value>Update All Administrative Account Names</value>
     </labels>
     <labels>
         <fullName>stgRefreshAdminNamesModalBody</fullName>
