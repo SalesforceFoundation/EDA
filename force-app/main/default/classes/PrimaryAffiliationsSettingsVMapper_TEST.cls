@@ -185,4 +185,221 @@ private with sharing class PrimaryAffiliationsSettingsVMapper_TEST {
             );
         }
     }
+
+    /****************************************************************************************
+     * @description Test method to verify getContactAccountLookupFieldComboboxVModel()
+     * returns a ComboboxVModel representing the selected Account lookup field and a list of
+     * options all account lookup fields on contact.
+     ****************************************************************************************/
+    @isTest
+    private static void getContactAccountLookupFieldComboboxVModelValid() {
+        LookupFieldService.instance = new STUB_LookupFieldService();
+
+        PrimaryAffiliationsSettingsVMapper primaryAffiliationsSettingsVMapperInstance = PrimaryAffiliationsSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel accountLookupFieldComboBoxVModel = primaryAffiliationsSettingsVMapperInstance.getContactAccountLookupFieldComboboxVModel(
+            'Contact Account Lookup Name 1'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Contact Account Lookup Name 1',
+            accountLookupFieldComboBoxVModel.value,
+            'Selected value in combobox view model should match contact field to check.'
+        );
+
+        System.assertEquals(
+            2,
+            accountLookupFieldComboBoxVModel.options.size(),
+            'Combobox options should include only existing account lookup fields.'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getContactAccountLookupFieldComboboxVModel()
+     * returns a ComboboxVModel representing the selected Account lookup field and a list of
+     * options that includes the selected lookup field when it is not currently a specified field.
+     ****************************************************************************************/
+    @isTest
+    private static void getContactAccountLookupFieldComboboxVModelInValid() {
+        LookupFieldService.instance = new STUB_LookupFieldService();
+
+        PrimaryAffiliationsSettingsVMapper primaryAffiliationsSettingsVMapperInstance = PrimaryAffiliationsSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel accountLookupFieldComboBoxVModel = primaryAffiliationsSettingsVMapperInstance.getContactAccountLookupFieldComboboxVModel(
+            'Invalid Field Name'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Invalid Field Name',
+            accountLookupFieldComboBoxVModel.value,
+            'Selected value in combobox view model should match contact field to check.'
+        );
+
+        System.assertEquals(
+            3,
+            accountLookupFieldComboBoxVModel.options.size(),
+            'Combobox options should include invalid field name as an option in addition to existing account lookup fields.'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getComboboxVModelOptionsForActiveAccountRecordTypes()
+     * returns a List<ComboboxValueVModel> representing the record type models provided as
+     * arguments.
+     ****************************************************************************************/
+    @isTest
+    private static void getComboboxVModelOptionsForActiveAccountRecordTypesValid() {
+        List<RecordTypeModel> activeAccountRecordTypeModelsList = new List<RecordTypeModel>();
+
+        for (Integer i = 0; i < loopCounter; i++) {
+            activeAccountRecordTypeModelsList.add(
+                new RecordTypeModel('00000000000000000' + i, 'AcctRT' + i, 'Acct_RT_' + i, true)
+            );
+        }
+
+        PrimaryAffiliationsSettingsVMapper primaryAffiliationsSettingsVMapperInstance = PrimaryAffiliationsSettingsVMapper.getInstance();
+
+        Test.startTest();
+        List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = primaryAffiliationsSettingsVMapperInstance.getComboboxVModelOptionsForActiveAccountRecordTypes(
+            activeAccountRecordTypeModelsList
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            loopCounter,
+            activeRecordTypeComboboxValueVModelsList.size(),
+            'Should return ' +
+            loopCounter +
+            ' comboboxValueVModels corresponding to active record type models.'
+        );
+
+        for (Integer i = 0; i < loopCounter; i++) {
+            System.assertEquals(
+                'AcctRT' + i,
+                activeRecordTypeComboboxValueVModelsList[i].label,
+                'ComboboxVModel label should correspond to record type model name.'
+            );
+
+            System.assertEquals(
+                'Acct_RT_' + i,
+                activeRecordTypeComboboxValueVModelsList[i].value,
+                'ComboboxVModel label should correspond to record type model developer name.'
+            );
+        }
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAccountRecordTypeComboboxVModel()
+     * returns a ComboboxVModel representing a selected account record type that is also an
+     * existing value.
+     ****************************************************************************************/
+    @isTest
+    private static void getAccountRecordTypeComboboxVModelValid() {
+        RecordTypeService.instance = new STUB_RecordTypeService();
+
+        PrimaryAffiliationsSettingsVMapper primaryAffiliationsSettingsVMapperInstance = PrimaryAffiliationsSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel accountRTComboboxVModel = primaryAffiliationsSettingsVMapperInstance.getAccountRecordTypeComboboxVModel(
+            'Record_Type_2'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Record_Type_2',
+            accountRTComboboxVModel.value,
+            'Selected account record type should match record type to check.'
+        );
+        System.assertEquals(
+            3,
+            accountRTComboboxVModel.options.size(),
+            'Account record type options list should consist only of existing values.'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAccountRecordTypeComboboxVModel()
+     * returns a ComboboxVModel representing a selected account record type that is not an
+     * existing value.
+     ****************************************************************************************/
+    @isTest
+    private static void getAccountRecordTypeComboboxVModelInValid() {
+        RecordTypeService.instance = new STUB_RecordTypeService();
+
+        PrimaryAffiliationsSettingsVMapper primaryAffiliationsSettingsVMapperInstance = PrimaryAffiliationsSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel accountRTComboboxVModel = primaryAffiliationsSettingsVMapperInstance.getAccountRecordTypeComboboxVModel(
+            'New Record Type'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'New Record Type',
+            accountRTComboboxVModel.value,
+            'Selected account record type should match record type to check.'
+        );
+        System.assertEquals(
+            4,
+            accountRTComboboxVModel.options.size(),
+            'Account record type options list should include new value with existing values.'
+        );
+    }
+
+    /***********************************************************************************************************************************
+     ****************************************************** STUBS ***********************************************************************
+     ***********************************************************************************************************************************/
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from LookupFieldService to return valid maps for Account Lookup fields on Contact
+     **************************************************************************************************************************************/
+    private class STUB_LookupFieldService extends LookupFieldService {
+        public override Map<String, LookupFieldModel> getModelByNameMapForSObjectType(
+            SObjectType sObjectType,
+            SObjectType lookupToSObjectType
+        ) {
+            return new Map<String, LookupFieldModel>{
+                'Contact Account Lookup Name 1' => new LookupFieldModel(
+                    'Contact Account Lookup Name 1',
+                    'Contact Account Lookup Label 1'
+                ),
+                'Contact Account Lookup Name 2' => new LookupFieldModel(
+                    'Contact Account Lookup Name 2',
+                    'Contact Account Lookup Label 2'
+                )
+            };
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from RecordTypeService to return valid maps for Account Lookup fields on Contact
+     **************************************************************************************************************************************/
+    private class STUB_RecordTypeService extends RecordTypeService {
+        public override Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+            return new Map<Id, RecordTypeModel>{
+                '000000000000000001' => new RecordTypeModel(
+                    '000000000000000001',
+                    'Record Type 1',
+                    'Record_Type_1',
+                    true
+                ),
+                '000000000000000002' => new RecordTypeModel(
+                    '000000000000000002',
+                    'Record Type 2',
+                    'Record_Type_2',
+                    true
+                ),
+                '000000000000000003' => new RecordTypeModel(
+                    '000000000000000003',
+                    'Record Type 3',
+                    'Record_Type_3',
+                    false
+                )
+            };
+        }
+    }
 }
