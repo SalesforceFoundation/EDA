@@ -661,6 +661,14 @@
         <name>stgErrorNotifRecipientsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation section title for Errors --></label>
+        <name>stgErrorSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Error Settings --></label>
+        <name>stgErrorSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Yhteyshenkilöiden etnisyyden ja rodun täyttö</label>
         <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
@@ -1361,6 +1369,14 @@
         <label>Kotitaloustilin nimeämisen päivityksen asettaminen jonoon onnistui.
          Erän valmistuttua siitä lähetetään sähköposti.</label>
         <name>stgSuccessHHAccountNameRefresh</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation section title for System Tools --></label>
+        <name>stgSystemSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for System Tools Settings --></label>
+        <name>stgSystemSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Tilit ja yhteyshenkilöt</label>
