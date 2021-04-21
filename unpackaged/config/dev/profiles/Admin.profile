@@ -120,6 +120,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Education_Cloud_Settings</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>%%%NAMESPACE%%%Facility__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
