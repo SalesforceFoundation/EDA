@@ -377,7 +377,7 @@
         <name>stgAdminAccountCustomNameHelp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Administrative Account Names Setting --></label>
+        <label><!-- Section title for Administrative Account Naming --></label>
         <name>stgAdminAccountNamingTitle</name>
     </customLabels>
     <customLabels>
