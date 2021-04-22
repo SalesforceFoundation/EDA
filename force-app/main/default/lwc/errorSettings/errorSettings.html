@@ -1,0 +1,22 @@
+<template>
+    <c-settings-save-canvas
+        component-title={labelReference.errorSettingsTitle}
+        onsettingseditmodechange={handleSettingsEditModeChange}
+        onsettingssaving={handleSettingsSaving}
+        onsettingssavecompleted={handleSettingsSaveCompleted}
+    >
+        <!-- Body of Contact Information Model Settings page (populates Slot in child component) -->
+        <!-- Error Settings -->
+        <!-- <c-settings-row-input
+            class="slds-size_3-of-3"
+            title={labelReference.systemSettingsTitle}
+            description=""
+            type="toggle"
+            input-id={inputAttributeReference.requirePreferredEmailToggleId}
+            value={preferredContactInfoSettingsVModel.requirePreferredEmail}
+            checked={preferredContactInfoSettingsVModel.requirePreferredEmail}
+            onsettingsinputchange={handleRequirePreferredEmailChange}
+            disabled={affordancesDisabled}
+        ></c-settings-row-input> -->
+    </c-settings-save-canvas>
+</template>
