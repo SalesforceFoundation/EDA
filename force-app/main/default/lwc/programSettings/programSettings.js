@@ -1,8 +1,6 @@
 import { LightningElement } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
-import { ShowToastEvent } from "lightning/platformShowToastEvent";
-
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
 
 export default class programSettings extends LightningElement {
