@@ -5,7 +5,10 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 import getAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getAffiliationsSettingsVModel";
 import getPrimaryAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getPrimaryAffiliationsSettingsVModel";
+import getAccountRecordTypeComboboxVModel from "@salesforce/apex/AffiliationsSettingsController.getAccountRecordTypeComboboxVModel";
+import getContactAccountLookupFieldComboboxVModel from "@salesforce/apex/AffiliationsSettingsController.getContactAccountLookupFieldComboboxVModel";
 import updateAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.updateAffiliationMappings";
+import deleteAffiliationMapping from "@salesforce/apex/AffiliationsSettingsController.deleteAffiliationMapping";
 import insertAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.insertAffiliationMappings";
 
 import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsTitle";
@@ -19,13 +22,16 @@ import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 import stgAffiliationsEditSuccess from "@salesforce/label/c.stgAffiliationsEditSuccess";
 import stgAffiliationsNewSuccess from "@salesforce/label/c.stgAffiliationsNewSuccess";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+import stgAfflDeleteWithAutoEnrollment from "@salesforce/label/c.stgAfflDeleteWithAutoEnrollment";
+import stgAffiliationsDeleteSuccess from "@salesforce/label/c.stgAffiliationsDeleteSuccess";
+import stgBtnDelete from "@salesforce/label/c.stgBtnDelete";
 import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
 
 export default class affiliationSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
-    @track affiliationsSettingsViewModel;
+    @track affiliationsSettingsVModel;
     @track affiliationsSettingsWireResult;
 
     @track primaryAffiliationsSettingsVModel;
@@ -39,10 +45,12 @@ export default class affiliationSettings extends LightningElement {
             accountRecordTypeColumn: stgColAccountRecordType,
             contactFieldColumn: stgColContactPrimaryAfflField,
             editAction: stgBtnEdit,
+            deleteAction: stgBtnDelete,
             primaryAffiliationsDescription: AfflMappingsDescription,
             primaryAffiliationsTitle: stgTabAfflMappings,
         },
-        successMessage: stgAffiliationsEditSuccess,
+        editSuccessMessage: stgAffiliationsEditSuccess,
+        deleteSuccessMessage: stgAffiliationsDeleteSuccess,
         tellMeMoreLink: stgTellMeMoreLink,
         newButton: stgBtnAddMapping,
         successMessageForCreate: stgAffiliationsNewSuccess,
@@ -80,6 +88,7 @@ export default class affiliationSettings extends LightningElement {
                 typeAttributes: {
                     rowActions: [
                         { label: this.labelReference.primaryAffiliationMappingsTable.editAction, name: "edit" },
+                        { label: this.labelReference.primaryAffiliationMappingsTable.deleteAction, name: "delete" },
                     ],
                 },
             },
@@ -87,10 +96,10 @@ export default class affiliationSettings extends LightningElement {
     }
 
     @wire(getAffiliationsSettingsVModel)
-    affiliationsSettingsViewModelWire(result) {
+    affiliationsSettingsVModelWire(result) {
         this.affiliationsSettingsWireResult = result;
         if (result.data) {
-            this.affiliationsSettingsViewModel = result.data;
+            this.affiliationsSettingsVModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving accountmodelsettingsvmodel");
         }
@@ -128,6 +137,7 @@ export default class affiliationSettings extends LightningElement {
             mappingName: primaryAffiliation.mappingName,
             accountRecordType: primaryAffiliation.accountRecordTypeName,
             contactField: primaryAffiliation.contactFieldName,
+            autoProgramEnrollment: primaryAffiliation.autoProgramEnrollment,
         };
 
         const primaryAffiliationsModalRequestEvent = new CustomEvent("primaryaffiliationmodalrequest", {
@@ -183,11 +193,14 @@ export default class affiliationSettings extends LightningElement {
 
     @api modalSave(saveModel) {
         switch (saveModel.action) {
+            case "create":
+                this.insertAffiliations(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
+                break;
             case "edit":
                 this.updateAffiliation(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
                 break;
-            case "create":
-                this.insertAffiliations(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
+            case "delete":
+                this.deleteAffiliation(saveModel.mappingName);
                 break;
         }
     }
@@ -219,7 +232,33 @@ export default class affiliationSettings extends LightningElement {
             conPrimaryAfflField: contactField,
         })
             .then((result) => {
-                this.showToast("success", "Save Complete", this.labelReference.successMessage.replace("{0}", result));
+                this.showToast(
+                    "success",
+                    "Update Complete",
+                    this.labelReference.editSuccessMessage.replace("{0}", result)
+                );
+            })
+
+            .catch((error) => {
+                // console.log('Inside error');
+            });
+        this.refreshAllApex();
+    }
+
+    deleteAffiliation(mappingName) {
+        deleteAffiliationMapping({
+            mappingName: mappingName,
+        })
+            .then((result) => {
+                if (result) {
+                    this.showToast(
+                        "success",
+                        "Delete Complete",
+                        this.labelReference.deleteSuccessMessage.replace("{0}", result)
+                    );
+                } else {
+                    //console.log("error finding or deleting mapping");
+                }
             })
 
             .catch((error) => {

@@ -101,6 +101,33 @@ public virtual with sharing class AffiliationMappingsService {
         this.locateAffiliationMappingsMapper().updateAffiliationMappings(afflMappingModel);
     }
 
+    /*****************************************************************************************
+     * @description Delete an affiliation mapping record.
+     * @param  mappingName A string representing the name of the affiliation mapping to delete
+     * @return A string representing the record type name associated with the deleted affiliation mapping
+     *****************************************************************************************/
+    public virtual String deleteAffiliationMapping(String mappingName) {
+        if (this.locateUserPermissionService().checkViewSetupForCurrentUser() != true) {
+            return null;
+        }
+
+        Affl_Mappings__c affiliationMappingsToDelete = Affl_Mappings__c.getInstance(mappingName);
+
+        if (affiliationMappingsToDelete == null) {
+            // no affiliation mapping matching specified name
+            return null;
+        }
+
+        return this.locateAffiliationMappingsMapper()
+            .deleteAffiliationMappingModel(
+                new AffiliationMappingsModel(
+                    affiliationMappingsToDelete.name,
+                    affiliationMappingsToDelete.Account_Record_Type__c,
+                    affiliationMappingsToDelete.Primary_Affl_Field__c
+                )
+            );
+    }
+
     /*****************************************************************************
      * @description Retrieves an instance of the AffiliationMappingsMapper.
      * @return The instance of AffiliationMappingsMapper.

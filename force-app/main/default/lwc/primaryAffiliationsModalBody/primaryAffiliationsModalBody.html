@@ -41,5 +41,11 @@
                 </div>
             </template>
         </template>
+
+        <template if:true={deleteRecords}>
+            <div class="slds-col slds-size-1-of-1 slds-p-bottom_large">
+                <lightning-formatted-rich-text value={deleteWarning}> </lightning-formatted-rich-text>
+            </div>
+        </template>
     </div>
 </template>
