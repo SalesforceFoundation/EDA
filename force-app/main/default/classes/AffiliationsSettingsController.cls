@@ -73,7 +73,22 @@ public with sharing class AffiliationsSettingsController {
     }
 
     /************************************************************************************
-     * @description Updates Affiliaions mapping custom settings
+     * @description Retrieve a PrimaryAffiliationSettingsVModel representing the current values
+     * specified for Affiliations Mappings.
+     * @return A PrimaryAffiliationSettingsVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static PrimaryAffiliationSettingsVModel getPrimaryAffiliationsSettingsVModel() {
+        try {
+            return AffiliationsSettingsController.locatePrimaryAffiliationsSettingsVMapper()
+                .getPrimaryAffiliationsSettingsVModel();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************
+     * @description Updates Affiliation mapping custom settings
      * @param mappingName
      * @param accRecordType
      * @param conPrimaryAfflField
@@ -102,16 +117,16 @@ public with sharing class AffiliationsSettingsController {
         }
     }
 
-    /************************************************************************************
-     * @description Retrieve a PrimaryAffiliationSettingsVModel representing the current values
-     * specified for Affiliations Mappings.
-     * @return A PrimaryAffiliationSettingsVModel
-     ************************************************************************************/
-    @AuraEnabled(cacheable=true)
-    public static PrimaryAffiliationSettingsVModel getPrimaryAffiliationsSettingsVModel() {
+    /********************************************************************************************************************************************
+     * @description Overloaded method to insert a new Affiliation Mapping custom setting with auto-enrollment settings specified.
+     * @param  mappingName A string representing the name of the new affiliation mapping
+     * @return A string representing the Account Record Name associated with the deleted affiliation mapping.
+     ********************************************************************************************************************************************/
+    @AuraEnabled
+    public static String deleteAffiliationMapping(String mappingName) {
         try {
-            return AffiliationsSettingsController.locatePrimaryAffiliationsSettingsVMapper()
-                .getPrimaryAffiliationsSettingsVModel();
+            return AffiliationsSettingsController.locateAffiliationMappingsService()
+                .deleteAffiliationMapping(mappingName);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
