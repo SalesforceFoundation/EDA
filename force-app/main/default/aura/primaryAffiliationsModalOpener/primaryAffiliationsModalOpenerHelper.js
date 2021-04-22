@@ -4,11 +4,13 @@
         const mappingName = eventParameters.mappingName;
         const accountRecordType = eventParameters.accountRecordType;
         const contactField = eventParameters.contactField;
+        const autoProgramEnrollment = eventParameters.autoProgramEnrollment;
 
         component.set("v.affiliationsAction", affiliationsAction);
         component.set("v.mappingName", mappingName);
         component.set("v.accountRecordType", accountRecordType);
         component.set("v.contactField", contactField);
+        component.set("v.autoProgramEnrollment", autoProgramEnrollment);
 
         let modalBody;
         let modalFooter;
@@ -18,15 +20,20 @@
         let cancelButton;
 
         switch (component.get("v.affiliationsAction")) {
+            case "create":
+                modalHeaderLabel = $A.get("$Label.c.stgNewAfflMapping");
+                confirmButton = $A.get("$Label.c.stgBtnSave");
+                cancelButton = $A.get("$Label.c.stgBtnCancel");
+                break;
             case "edit":
                 modalHeaderLabel = $A.get("$Label.c.stgAffiliationsEditModalTitle");
                 confirmButton = $A.get("$Label.c.stgBtnSave");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 break;
-            case "create":
-                modalHeaderLabel = $A.get("$Label.c.stgNewAfflMapping");
-                confirmButton = $A.get("$Label.c.stgBtnSave");
+            case "delete":
+                modalHeaderLabel = $A.get("$Label.c.stgAffiliationsDeleteModalTitle");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
+                confirmButton = $A.get("$Label.c.stgBtnDelete");
                 break;
         }
 
@@ -38,6 +45,7 @@
                         affiliationsAction: component.get("v.affiliationsAction"),
                         accountRecordType: component.get("v.accountRecordType"),
                         contactField: component.get("v.contactField"),
+                        autoProgramEnrollment: component.get("v.autoProgramEnrollment"),
                         modalDataChangeEvent: component.getReference("c.handleModalDataChangeEvent")
                     }
                 ],
@@ -90,14 +98,18 @@
     },
     handleModalFooterConfirm: function (component) {
         switch (component.get("v.affiliationsAction")) {
-            case "edit":
-                this.handleModalEditConfirm(component);
-                break;
             case "create":
                 this.handleModalCreateConfirm(component);
                 break;
+            case "edit":
+                this.handleModalEditConfirm(component);
+                break;
+            case "delete":
+                this.handleModalDeleteConfirm(component);
+                break;
         }
     },
+
     handleModalEditConfirm: function (component) {
         let modalSaveEvent = component.getEvent("modalSaveEvent");
 
@@ -114,6 +126,30 @@
             contactField: contactField
         };
 
+        modalSaveEvent.setParams({
+            saveModel: saveModel
+        });
+        modalSaveEvent.fire();
+    },
+
+    handleModalDeleteConfirm: function(component) {
+        let modalSaveEvent = component.getEvent("modalSaveEvent");
+
+        const mappingName = component.get("v.mappingName");
+        const affiliationsAction = component.get("v.affiliationsAction");
+        const accountRecordType = component.get("v.accountRecordType");
+        const contactField = component.get("v.contactField");
+        const autoProgramEnrollment = component.get("v.autoProgramEnrollment");
+
+        const saveModel = {
+            modalType: "affiliations",
+            action: affiliationsAction,
+            mappingName: mappingName,
+            accountRecordType: accountRecordType,
+            contactField: contactField,
+            autoEnrollmentEnabled: autoProgramEnrollment
+        };
+        
         modalSaveEvent.setParams({
             saveModel: saveModel
         });
