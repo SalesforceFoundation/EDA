@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Converted_Account_RTypes__c</fullName>
+    <description>The Account record types to use EDA&apos;s account naming format when converting Leads.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Account record types to use EDA&apos;s account naming format when converting Leads.</inlineHelpText>
+    <label>Lead-Converted Account Record Types</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>
