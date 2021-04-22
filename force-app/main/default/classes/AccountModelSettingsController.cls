@@ -64,6 +64,22 @@ public with sharing class AccountModelSettingsController {
         }
     }
 
+    /************************************************************************************
+     * @description Retrieve a DualListboxVModel representing the current Account Record Types
+     * specified for account renaming in Hierarchy Settings and
+     * the remaining active Account Record Types available for selection.
+     * @return A DualListboxVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static DualListboxVModel getLeadConversionAccountNamingViewModel() {
+        try {
+            return AccountModelSettingsController.locateLeadConversionAccountNamingVMapper()
+                .getLeadConversionAccountNamingViewModel();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /**********************************************************************************
      * @description Locates and returns an instance of AccountModelSettingsVMapper.
      **********************************************************************************/
@@ -78,5 +94,13 @@ public with sharing class AccountModelSettingsController {
     @TestVisible
     private static AccountAutoDeletionSettingsVMapper locateAccountAutoDeletionSettingsVMapper() {
         return AccountAutoDeletionSettingsVMapper.getInstance();
+    }
+
+    /**********************************************************************************
+     * @description Locates and returns an instance of LeadConversionAccountNamingVMapper.
+     **********************************************************************************/
+    @TestVisible
+    private static LeadConversionAccountNamingVMapper locateLeadConversionAccountNamingVMapper() {
+        return LeadConversionAccountNamingVMapper.getInstance();
     }
 }
