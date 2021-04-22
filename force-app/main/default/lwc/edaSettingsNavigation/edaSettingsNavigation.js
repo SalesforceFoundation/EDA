@@ -6,6 +6,7 @@ import stgAccModelTitle from "@salesforce/label/c.stgAccModelTitle";
 import stgAdminAccountRecordType from "@salesforce/label/c.stgAdminAccountRecordType";
 import stgAccountRecordTypeSupportsHHAddress from "@salesforce/label/c.stgAccountRecordTypeSupportsHHAddress";
 import stgAccoutTypesWithoutContactsDelete from "@salesforce/label/c.stgAccoutTypesWithoutContactsDelete";
+import stgLeadConversionAccountNaming from "@salesforce/label/c.stgLeadConversionAccountNaming";
 //Contact Information Settings Labels
 import stgContactInformationSettingsTitle from "@salesforce/label/c.stgContactInformationSettingsTitle";
 import stgDefaultContactLanguageFluency from "@salesforce/label/c.stgDefaultContactLanguageFluency";
@@ -45,6 +46,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             adminAccountNaming: "Administrative Account Name Format",
             hhAccountNaming: "Household Account Name Format",
             autoHHAccountNaming: "Automatically Rename Household Accounts",
+            leadConversionAutoAccountNaming: stgLeadConversionAccountNaming,
         },
         addressSettings: {
             addressAccountRecordTypes: stgAccountTypesMultiAddressesEnabled,
@@ -130,6 +132,10 @@ export default class EdaSettingsNavigation extends LightningElement {
                             { label: this.labelReference.accountModel.adminAccountNaming, id: "adminAccountNaming" },
                             { label: this.labelReference.accountModel.hhAccountNaming, id: "hhAccountNaming" },
                             { label: this.labelReference.accountModel.autoHHAccountNaming, id: "autoHHAccountNaming" },
+                            {
+                                label: this.labelReference.accountModel.leadConversionAutoAccountNaming,
+                                id: "leadConversionAutoAccountNaming",
+                            },
                         ],
                         isActive: true,
                     },
