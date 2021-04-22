@@ -10,11 +10,14 @@ import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgAffiliationsEditModalBody from "@salesforce/label/c.stgAffiliationsEditModalBody";
 import stgAffiliationsNewModalBody from "@salesforce/label/c.stgAffiliationsNewModalBody";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+import stgAffiliationsDeleteModalBody from "@salesforce/label/c.stgAffiliationsDeleteModalBody";
+import stgAfflDeleteWithAutoEnrollment from "@salesforce/label/c.stgAfflDeleteWithAutoEnrollment";
 
 export default class PrimaryAffiliationsModalBody extends LightningElement {
     @api affiliationsAction;
     @api accountRecordType;
     @api contactField;
+    @api autoEnrollmentEnabled;
 
     @track accountRecordTypeComboboxVModel;
     @track accountRecordTypeComboboxWireResult;
@@ -28,6 +31,8 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
         comboboxPlaceholderText: stgOptSelect,
         contactFieldCombobox: stgColContactPrimaryAfflField,
         modalBodyEditSave: stgAffiliationsEditModalBody,
+        modalBodyDelete: stgAffiliationsDeleteModalBody,
+        modalBodyDeleteWithAutoEnrollment: stgAfflDeleteWithAutoEnrollment,
         tellMeMoreLink: stgTellMeMoreLink,
         modalBodyCreate: stgAffiliationsNewModalBody,
     };
@@ -51,7 +56,7 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
         if (result.data) {
             this.accountRecordTypeComboboxVModel = result.data;
         } else if (result.error) {
-            //console.log("error retrieving preferredContactInfoSettingsVModel");
+            //console.log("error retrieving accountRecordTypeComboboxVModel");
         }
     }
 
@@ -70,6 +75,10 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
 
     get modifyRecords() {
         return this.affiliationsAction === "edit" || this.affiliationsAction === "create";
+    }
+
+    get deleteRecords() {
+        return this.affiliationsAction === "delete";
     }
 
     get accountRecordTypeApiNameLabel() {
@@ -124,5 +133,20 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
             case "create":
                 return this.labelReference.modalBodyCreate + " " + this.affiliationsHyperLink;
         }
+    }
+
+    get deleteWarning() {
+        let deleteWarningText = this.labelReference.modalBodyDelete
+            .replace("{0}", this.accountRecordType)
+            .replace("{1}", this.contactField);
+
+        if (!this.autoEnrollmentEnabled) {
+            return deleteWarningText;
+        }
+
+        let autoEnrollmentDeleteWarningText =
+            this.labelReference.modalBodyDeleteWithAutoEnrollment.replace("{0}", this.accountRecordType) + " ";
+
+        return autoEnrollmentDeleteWarningText.concat(deleteWarningText);
     }
 }

@@ -8,10 +8,17 @@
         const affiliationsAction = eventParameters.affiliationsAction;
         const accountRecordType = eventParameters.accountRecordType;
         const contactField = eventParameters.contactField;
+        const autoProgramEnrollment = eventParameters.autoProgramEnrollment;
 
         component
             .find("primaryAffiliationsModal")
-            .openPrimaryAffiliationsModal(affiliationsAction, mappingName, accountRecordType, contactField);
+            .openPrimaryAffiliationsModal(
+                affiliationsAction,
+                mappingName,
+                accountRecordType,
+                contactField,
+                autoProgramEnrollment
+            );
     },
     openSettingsBatchJobModal: function (component, eventParameters) {
         const batchJobToRun = eventParameters.batchJobToRun;
