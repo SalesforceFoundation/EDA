@@ -43,6 +43,8 @@ public with sharing class PrimaryAffiliationMappingVModel {
     public String contactFieldName { get; private set; }
     @AuraEnabled
     public String contactFieldLabel { get; private set; }
+    @AuraEnabled
+    public Boolean autoProgramEnrollment { get; private set; }
 
     /*****************************************************************************************************************
      * @description five argument constructor
@@ -51,18 +53,21 @@ public with sharing class PrimaryAffiliationMappingVModel {
      * @param accountRecordTypeLabel The Account Record Type's label for the mapping
      * @param contactFieldName The Contact Field's label for the mappings
      * @param contactFieldLabel The Contact Field's label for the mapping
+     * @param autoProgamrEnrollment A boolean indicating whether auto-enrollment functionality is enabled
      *****************************************************************************************************************/
     public PrimaryAffiliationMappingVModel(
         String mappingName,
         String accountRecordTypeName,
         String accountRecordTypeLabel,
         String contactFieldName,
-        String contactFieldLabel
+        String contactFieldLabel,
+        Boolean autoProgramEnrollment
     ) {
         this.mappingName = mappingName;
         this.accountRecordTypeName = accountRecordTypeName;
         this.accountRecordTypeLabel = accountRecordTypeLabel;
         this.contactFieldName = contactFieldName;
         this.contactFieldLabel = contactFieldLabel;
+        this.autoProgramEnrollment = autoProgramEnrollment;
     }
 }

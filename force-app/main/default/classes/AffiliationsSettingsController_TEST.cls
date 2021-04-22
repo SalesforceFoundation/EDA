@@ -175,6 +175,12 @@ private with sharing class AffiliationsSettingsController_TEST {
             primaryAffiliationSettingsVModel.primaryAffiliationMappings[0].contactFieldLabel,
             'Affiliation recordtype should be enforced.'
         );
+
+        System.assertEquals(
+            false,
+            primaryAffiliationSettingsVModel.primaryAffiliationMappings[0].autoProgramEnrollment,
+            'Affiliation auto-enrollment should not be enabled.'
+        );
     }
 
     /****************************************************************************************************************************
@@ -501,6 +507,72 @@ private with sharing class AffiliationsSettingsController_TEST {
         }
     }
 
+    /****************************************************************************************************************************
+     * @description Test method to verify that the deleteAffiliationMapping method deletes an affiliation mapping when it exists.
+     ****************************************************************************************************************************/
+    @isTest
+    private static void deleteAffiliationMapping() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+
+        Affl_Mappings__c afflMapping = new Affl_Mappings__c(
+            Name = 'Test Affiliation Mapping',
+            Account_Record_Type__c = 'Test_Account_Record',
+            Primary_Affl_Field__c = 'Test Contact Field'
+        );
+
+        Test.startTest();
+        String accountRecordTypeNameAfterDelete = AffiliationsSettingsController.deleteAffiliationMapping(
+            'Test Affiliation Mapping'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Test_Account_Record',
+            accountRecordTypeNameAfterDelete,
+            'Should return name of account record associated with deleted affiliation mapping.'
+        );
+    }
+
+    /****************************************************************************************************************************
+     * @description Test method to verify that the deleteAffiliationMapping method returns null when attempting to delete an
+     * affiliation mapping that does not exist.
+     ****************************************************************************************************************************/
+    @isTest
+    private static void deleteAffiliationMappingInvalid() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsServiceNull();
+
+        Test.startTest();
+        String accountRecordTypeNameAfterDelete = AffiliationsSettingsController.deleteAffiliationMapping(
+            'Non-Existent Affiliation Mapping'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            accountRecordTypeNameAfterDelete,
+            'Should return null when attempting to delete an affiliation mapping that does not exist.'
+        );
+    }
+
+    /****************************************************************************************************************************
+     * @description Test method to verify that the deleteAffiliationMapping method fails gracefully when an exception is
+     * encountered.
+     ****************************************************************************************************************************/
+    @isTest
+    private static void deleteAffiliationMappingException() {
+        AffiliationMappingsService.instance = new STUB_ExceptionAffiliationMappingsService();
+
+        try {
+            Test.startTest();
+            String accountRecordTypeNameAfterDelete = AffiliationsSettingsController.deleteAffiliationMapping(
+                'Non-Existent Affiliation Mapping'
+            );
+            Test.stopTest();
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
     /**************************************************************************************************************************
      ****************************************************** STUBS **************************************************************
      **************************************************************************************************************************/
@@ -533,7 +605,8 @@ private with sharing class AffiliationsSettingsController_TEST {
                 'Primary_Academic_Program__c',
                 'Primary Academic Program',
                 'Academic_Program',
-                'Academic Program'
+                'Academic Program',
+                false
             );
             List<PrimaryAffiliationMappingVModel> primaryAfflSettingsVModel = new List<PrimaryAffiliationMappingVModel>();
             primaryAfflSettingsVModel.add(primaryAfflMappVModel);
@@ -607,6 +680,33 @@ private with sharing class AffiliationsSettingsController_TEST {
     private class STUB_RecordTypeMapperNull extends RecordTypeMapper {
         public override RecordTypeModel getRecordTypeModelFromRecTypeDevName(String objectAPI, String recTypeDevName) {
             return null;
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from AffiliationMappingsService to return a valid response
+     **************************************************************************************************************************************/
+    private class STUB_AffiliationMappingsService extends AffiliationMappingsService {
+        public override String deleteAffiliationMapping(String mappingName) {
+            return 'Test_Account_Record';
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from AffiliationMappingsService to return a null response
+     **************************************************************************************************************************************/
+    private class STUB_AffiliationMappingsServiceNull extends AffiliationMappingsService {
+        public override String deleteAffiliationMapping(String mappingName) {
+            return null;
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from AffiliationMappingsService to throw an error
+     **************************************************************************************************************************************/
+    private class STUB_ExceptionAffiliationMappingsService extends AffiliationMappingsService {
+        public override String deleteAffiliationMapping(String mappingName) {
+            throw new TestException('Exception encountered!');
         }
     }
 
