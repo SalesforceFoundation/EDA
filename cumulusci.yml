@@ -109,6 +109,24 @@ tasks:
             path: unpackaged/config/translations/
             unmanaged: True
 
+    deploy_post:
+        ui_options:
+            course_connection_record_types:
+                name: EDA - Course Connection Record Types
+            facility_display_name:
+                name: EDA - Facility Display Name Formula Field
+            case_behavior_record_types:
+                name: EDA - Case Behavior Record Types
+            health_check_tab:
+                name: Health Check
+
+    deploy_pre:
+        ui_options:
+            acc_record_types:
+                name: EDA - Account Record Types
+            contact_key_affl_fields:
+                name: EDA - Contact Key Affiliation Fields
+
     deploy_preferred_email_config:
         description: Deploys Preferred Email configuration(custom email fields, translations, apex unit tests and sets Admin profile access to Email fields) for testing.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -647,6 +665,19 @@ flows:
             0.1:
                 flow: translations
 
+    customer_org:
+        steps:
+            1:
+                flow: dependencies
+            2:
+                task: install_managed
+            3:
+                task: deploy_post
+                options:
+                    unmanaged: False
+            4:
+                flow: deploy_health_check_localization
+
 services:
     mockaroo:
         description: Configure connection for Mockaroo tasks
@@ -677,30 +708,7 @@ plans:
         tier: primary
         steps:
             1:
-                flow: dependencies
-                ui_options:
-                    deploy_pre:
-                        acc_record_types:
-                            name: EDA - Account Record Types
-                        contact_key_affl_fields:
-                            name: EDA - Contact Key Affiliation Fields
-            2:
-                task: install_managed
-            3:
-                task: deploy_post
-                ui_options:
-                    course_connection_record_types:
-                        name: EDA - Course Connection Record Types
-                    facility_display_name:
-                        name: EDA - Facility Display Name Formula Field
-                    case_behavior_record_types:
-                        name: EDA - Case Behavior Record Types
-                    health_check_tab:
-                        name: Health Check
-                options:
-                    unmanaged: False
-            4:
-                flow: deploy_health_check_localization
+                flow: customer_org
 
     ra_einstein_template:
         slug: ra_template
