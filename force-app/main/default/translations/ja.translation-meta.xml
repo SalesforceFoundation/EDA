@@ -385,6 +385,18 @@
         <name>stgAdminAccountRecordType</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Delete Affiliation mapping window --></label>
+        <name>stgAffiliationsDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for warning about deleting an Affiliation mapping --></label>
+        <name>stgAffiliationsDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an Affiliation mapping is deleted --></label>
+        <name>stgAffiliationsDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of the Edit Affiliation Mapping window --></label>
         <name>stgAffiliationsEditModalBody</name>
     </customLabels>
@@ -423,6 +435,10 @@
     <customLabels>
         <label>削除されていない所属の状況</label>
         <name>stgAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Message before deleting Affiliation mapping with an auto-enrollment --></label>
+        <name>stgAfflDeleteWithAutoEnrollment</name>
     </customLabels>
     <customLabels>
         <label>この所属は、別の所属対応付けによりすでに参照されているレコードタイプを参照しているため、対応付けることができません。所属が翻訳されるようにこの対応付けを追加する必要がある場合は、[編集] をクリックして既存の対応付けを変更します。次に、[取引先責任者の主所属項目] の下で項目の API 参照名を指定します。[取引先レコードタイプ] で指定された名前を変更しないでください。</label>
@@ -499,6 +515,10 @@
     <customLabels>
         <label>キャンセル</label>
         <name>stgBtnCancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for delete Affiliation mapping warning --></label>
+        <name>stgBtnDelete</name>
     </customLabels>
     <customLabels>
         <label>編集</label>

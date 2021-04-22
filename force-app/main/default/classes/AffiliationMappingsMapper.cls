@@ -106,4 +106,17 @@ public virtual with sharing class AffiliationMappingsMapper {
         afflSettings.Primary_Affl_Field__c = afflMappingModel.primaryAffiliationField;
         update afflSettings;
     }
+
+    /*****************************************************************************
+     * @description deletes an affiliation mapping record
+     * @param affiliationMappingModel Model of an affiliation mappingto be deleted
+     * @return A string representing the record type name associated with the deleted affiliation mapping
+     *****************************************************************************/
+    public String deleteAffiliationMappingModel(AffiliationMappingsModel affiliationMappingModel) {
+        Affl_Mappings__c affiliationMappingsToDelete = Affl_Mappings__c.getInstance(affiliationMappingModel.name);
+        String deletedPrimaryAffiliationRecordTypeName = affiliationMappingsToDelete.Account_Record_Type__c;
+
+        delete affiliationMappingsToDelete;
+        return deletedPrimaryAffiliationRecordTypeName;
+    }
 }
