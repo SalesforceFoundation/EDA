@@ -1,9 +1,6 @@
-import { LightningElement, api, track, wire } from "lwc";
-
-import stgRefreshHouseholdNamesModalBody from "@salesforce/label/c.stgRefreshHouseholdNamesModalBody";
+import { LightningElement, api } from "lwc";
 
 export default class batchJobModalBody extends LightningElement {
-    labelReference = {
-        stgRefreshHouseholdNamesModalBody: stgRefreshHouseholdNamesModalBody,
-    };
+    @api
+    modalAction;
 }

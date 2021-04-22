@@ -8,12 +8,20 @@
         let modalFooter;
 
         let modalHeaderLabel;
+        let modalDesc;
         let confirmButton;
         let cancelButton;
 
         switch (component.get("v.batchJobToRun")) {
+            case "ACCT_AdministrativeNameRefresh_BATCH":
+                modalHeaderLabel = $A.get("$Label.c.stgRefreshAdminAcctNameTitle");
+                modalDesc = $A.get("$Label.c.stgRefreshAdminNamesModalBody");
+                confirmButton = $A.get("$Label.c.stgBtnUpdate");
+                cancelButton = $A.get("$Label.c.stgBtnCancel");
+                break;
             case "ACCT_HouseholdNameRefresh_BATCH":
                 modalHeaderLabel = $A.get("$Label.c.stgRefreshHHAcctNameTitle");
+                modalDesc = $A.get("$Label.c.stgRefreshHouseholdNamesModalBody");
                 confirmButton = $A.get("$Label.c.stgBtnUpdate");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 break;
@@ -24,7 +32,7 @@
                 [
                     "c:batchJobModal",
                     {
-                        batchJobToRun: component.get("v.batchJobToRun")
+                        modalAction: modalDesc
                     }
                 ],
                 [

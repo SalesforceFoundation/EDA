@@ -1411,10 +1411,6 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgSystemSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for System Tools Settings --></label>
-        <name>stgSystemSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label>Accounts und Kontakte</label>
         <name>stgTabAccCont</name>
     </customLabels>

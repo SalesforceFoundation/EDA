@@ -1,5 +1,4 @@
 <aura:component>
-    <aura:attribute name="batchJobToRun" type="String" />
-
-    <c:batchJobModalBody batchJobToRun="{!v.batchJobToRun}"></c:batchJobModalBody>
+    <aura:attribute name="modalAction" type="String" />
+    <c:batchJobModalBody modalAction="{!v.modalAction}"></c:batchJobModalBody>
 </aura:component>

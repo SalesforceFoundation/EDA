@@ -1411,10 +1411,6 @@
         <name>stgSystemSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for System Tools Settings --></label>
-        <name>stgSystemSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label>Accounts en contactpersonen</label>
         <name>stgTabAccCont</name>
     </customLabels>
