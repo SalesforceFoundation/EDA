@@ -967,6 +967,22 @@
         <value>Auto-Enrollment</value>
     </labels>
     <labels>
+        <fullName>stgAutoEnrollmentProgramDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Auto-Enrollment Mappings setting</shortDescription>
+        <value>Define how Program Enrollments are automatically created using Account record types mapped to the Primary Affiliation fields on the Contact object and Auto-Enrollment Status and Auto-Enrollment Role.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentProgramTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Auto-Enrollment Mappings setting</shortDescription>
+        <value>Auto-Enrollment Program Mappings</value>
+    </labels>
+    <labels>
         <fullName>stgAutoEnrollmentRole</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1101,6 +1117,22 @@
         <protected>true</protected>
         <shortDescription>Col header for Reciprocal Relationship Settings</shortDescription>
         <value>Active</value>
+    </labels>
+    <labels>
+        <fullName>stgColAutoEnrollmentRole</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header label for the list of Affiliation Roles</shortDescription>
+        <value>Auto-Enrollment Role</value>
+    </labels>
+    <labels>
+        <fullName>stgColAutoEnrollmentStatus</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Header label for the list of Affiliation Statuses</shortDescription>
+        <value>Auto-Enrollment Status</value>
     </labels>
     <labels>
         <fullName>stgColCampTypes</fullName>

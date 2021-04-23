@@ -489,6 +489,14 @@
         <name>stgAutoEnrollment</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Auto-Enrollment Mappings setting --></label>
+        <name>stgAutoEnrollmentProgramDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Auto-Enrollment Mappings setting --></label>
+        <name>stgAutoEnrollmentProgramTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Funció d&apos;inscripció automàtica</label>
         <name>stgAutoEnrollmentRole</name>
     </customLabels>
@@ -555,6 +563,14 @@
     <customLabels>
         <label>Actiu</label>
         <name>stgColActive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Header label for the list of Affiliation Roles --></label>
+        <name>stgColAutoEnrollmentRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Header label for the list of Affiliation Statuses --></label>
+        <name>stgColAutoEnrollmentStatus</name>
     </customLabels>
     <customLabels>
         <label>Tipus de campanya</label>
