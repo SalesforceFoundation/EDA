@@ -6,6 +6,8 @@ import getErrorSettingsViewModel from "@salesforce/apex/ErrorSettingsController.
 import stgErrorSettingsTitle from "@salesforce/label/c.stgErrorSettingsTitle";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 import stgHelpStoreErrorsOn from "@salesforce/label/c.stgHelpStoreErrorsOn";
+import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
+import stgEnableDebugHelp from "@salesforce/label/c.stgEnableDebugHelp";
 import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
 import stgHelpErrorDisable from "@salesforce/label/c.stgHelpErrorDisable";
 
@@ -20,12 +22,15 @@ export default class ErrorSettings extends LightningElement {
         errorSettingsTitle: stgErrorSettingsTitle,
         storeErrorsSettingTitle: stgStoreErrorsTitle,
         storeErrorsSettingDescription: stgHelpStoreErrorsOn,
+        enableDebugSettingsTitle: stgEnableDebugTitle,
+        enableDebugSettingsDescription: stgEnableDebugHelp,
         errorHandlingSettingTitle: stgDisableErrorHandlingTitle,
         errorHandlingSettingDescription: stgHelpErrorDisable,
     };
 
     inputAttributeReference = {
         storeErrorsToggleId: "storeErrors",
+        enableDebugToggleId: "enableDebug",
         errorHandlingToggleId: "errorHandling",
     };
 
@@ -53,6 +58,18 @@ export default class ErrorSettings extends LightningElement {
         let hierarchySettingsChange = {
             settingsType: "boolean",
             settingsName: "Store_Errors_On__c",
+            settingsValue: eventDetail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleEnableDebugChange(event) {
+        const eventDetail = event.detail;
+
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Enable_Debug__c",
             settingsValue: eventDetail.value,
         };
 

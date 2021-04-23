@@ -62,7 +62,11 @@ public virtual with sharing class ErrorSettingsVMapper {
      *********************************************************************************************/
     public virtual ErrorSettingsVModel getErrorSettingsViewModel() {
         ErrorSettingsModel errorSettingsModel = this.locateErrorSettingsService().getErrorSettingsModel();
-        return new ErrorSettingsVModel(errorSettingsModel.storeErrors, errorSettingsModel.errorHandling);
+        return new ErrorSettingsVModel(
+            errorSettingsModel.storeErrors,
+            errorSettingsModel.enableDebug,
+            errorSettingsModel.errorHandling
+        );
     }
 
     /******************************************************************************
