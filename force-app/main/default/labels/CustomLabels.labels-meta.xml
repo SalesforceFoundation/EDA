@@ -1275,8 +1275,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for System Settings</shortDescription>
-        <value>Disable Error Handling</value>
+        <shortDescription>Field label for the Error Handling setting</shortDescription>
+        <value>Error Handling</value>
     </labels>
     <labels>
         <fullName>stgDisablePreferredEmailEnforcement</fullName>
@@ -2435,8 +2435,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>Select to disable the product&apos;s error handling framework.</value>
+        <shortDescription>Description of the Error Handling setting</shortDescription>
+        <value>Allow error handling for asynchronous jobs to make it easier to see when scheduled jobs fail.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyOn</fullName>
@@ -2539,8 +2539,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for System Settings</shortDescription>
-        <value>When selected, errors are stored in a custom Error object. You can create a tab for the Errors object to view a list of all stored errors.</value>
+        <shortDescription>Description of the Store Errors setting</shortDescription>
+        <value>Log and store errors on the Error object. After this setting is enabled, create a tab for the Error object to view error records.</value>
     </labels>
     <labels>
         <fullName>stgHelpUpdateReportIfDependenciesEthnicity</fullName>
@@ -2787,7 +2787,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for error storage setting</shortDescription>
+        <shortDescription>Label for the Store Errors setting</shortDescription>
         <value>Store Errors</value>
     </labels>
     <labels>
