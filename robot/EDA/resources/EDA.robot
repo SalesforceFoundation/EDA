@@ -47,7 +47,7 @@ API create language
     ${language_id} =        Salesforce Insert       ${ns}Language__c
     ...                         Name=${language_name}
     &{language} =           Salesforce Get          ${ns}Language__c   ${language_id}
-    [return]                ${language}[Id]
+    [return]                &{language}
 
 API Get ID
     [Documentation]         Returns the ID of a record identified by the given field_name and
@@ -68,7 +68,7 @@ API Create Contact
     ...                         LastName=${faker.last_name()}
     ...                         &{fields}
     &{contact} =            Salesforce Get  Contact  ${contact_id}
-    [return]                ${contact}[Id]
+    [return]                &{contact}
 
 API Create Collaboration Group
     [Documentation]
