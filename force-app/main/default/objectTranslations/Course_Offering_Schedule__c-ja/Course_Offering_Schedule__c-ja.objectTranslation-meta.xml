@@ -18,6 +18,6 @@
     </standardFields>
     <caseValues>
         <plural>false</plural>
-        <value>提供科目スケジュール</value>
+        <value>開講科目スケジュール</value>
     </caseValues>
 </CustomObjectTranslation>
