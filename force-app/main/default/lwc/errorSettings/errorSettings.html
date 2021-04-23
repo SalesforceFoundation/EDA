@@ -3,20 +3,36 @@
         component-title={labelReference.errorSettingsTitle}
         onsettingseditmodechange={handleSettingsEditModeChange}
         onsettingssaving={handleSettingsSaving}
+        onsettingssavecancel={handleSettingsSaveCancel}
         onsettingssavecompleted={handleSettingsSaveCompleted}
     >
         <!-- Body of Contact Information Model Settings page (populates Slot in child component) -->
-        <!-- Error Settings -->
-        <!-- <c-settings-row-input
-            class="slds-size_3-of-3"
-            title={labelReference.systemSettingsTitle}
-            description=""
-            type="toggle"
-            input-id={inputAttributeReference.requirePreferredEmailToggleId}
-            value={preferredContactInfoSettingsVModel.requirePreferredEmail}
-            checked={preferredContactInfoSettingsVModel.requirePreferredEmail}
-            onsettingsinputchange={handleRequirePreferredEmailChange}
-            disabled={affordancesDisabled}
-        ></c-settings-row-input> -->
+        <template if:true={errorSettingsVModel}>
+            <!-- Store Errors Setting -->
+            <c-settings-row-input
+                class="slds-size_3-of-3"
+                title={labelReference.storeErrorsSettingTitle}
+                description={labelReference.storeErrorsSettingDescription}
+                type="toggle"
+                input-id={inputAttributeReference.storeErrorsToggleId}
+                value={errorSettingsVModel.storeErrors}
+                checked={errorSettingsVModel.storeErrors}
+                onsettingsinputchange={handleStoreErrorsChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+
+            <!-- Enable Error Handling Setting -->
+            <c-settings-row-input
+                class="slds-size_3-of-3"
+                title={labelReference.errorHandlingSettingTitle}
+                description={labelReference.errorHandlingSettingDescription}
+                type="toggle"
+                input-id={inputAttributeReference.errorHandlingToggleId}
+                value={errorSettingsVModel.errorHandling}
+                checked={errorSettingsVModel.errorHandling}
+                onsettingsinputchange={handleErrorHandlingChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+        </template>
     </c-settings-save-canvas>
 </template>
