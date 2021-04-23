@@ -1347,7 +1347,7 @@
     <customLabels>
         <label><!-- Description of the Update all Administrative Account names confirmation window --></label>
         <name>stgRefreshAdminNamesModalBody</name>
-    </customLabels>
+    </customLabels> 
     <customLabels>
         <label><!-- Title for the Update All Administrative Account Names confirmation window  --></label>
         <name>stgRefreshAdminNamesModalTitle</name>
