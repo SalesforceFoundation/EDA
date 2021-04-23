@@ -223,4 +223,51 @@ public with sharing class AffiliationMappingsMapper_TEST {
             'Primary Affiliation Field should change to Primary Department'
         );
     }
+
+    /*******************************************************************************************************
+     * @description Test to verify deleteAffiliationMappingModel() deletes a specified affiliation mapping.
+     *******************************************************************************************************/
+    @isTest
+    private static void deleteAffiliationMappingModelValid() {
+        Affl_Mappings__c affiliationMappingToDelete = new Affl_Mappings__c(
+            Name = 'Test Affiliation Mapping',
+            Account_Record_Type__c = 'Test_Record_Type',
+            Primary_Affl_Field__c = 'Test Contact Primary Affl Field',
+            Auto_Program_Enrollment__c = true,
+            Auto_Program_Enrollment_Status__c = 'Test Auto Enrollment Status',
+            Auto_Program_Enrollment_Role__c = 'Test Auto Enrollment Role'
+        );
+
+        insert affiliationMappingToDelete;
+
+        AffiliationMappingsModel affiliationMappingsModelToDelete = new AffiliationMappingsModel(
+            affiliationMappingToDelete.name,
+            affiliationMappingToDelete.Account_Record_Type__c,
+            affiliationMappingToDelete.Primary_Affl_Field__c,
+            affiliationMappingToDelete.Auto_Program_Enrollment__c,
+            affiliationMappingToDelete.Auto_Program_Enrollment_Status__c,
+            affiliationMappingToDelete.Auto_Program_Enrollment_Role__c
+        );
+
+        AffiliationMappingsMapper affiliationMappingsMapperInstance = AffiliationMappingsMapper.getInstance();
+
+        Test.startTest();
+        String primaryAffiliationRecordTypeName = affiliationMappingsMapperInstance.deleteAffiliationMappingModel(
+            affiliationMappingsModelToDelete
+        );
+        Test.stopTest();
+
+        List<Affl_Mappings__c> affiliationMappingsResultsList = [
+            SELECT Name
+            FROM Affl_Mappings__c
+            WHERE Name = :affiliationMappingsModelToDelete.name
+        ];
+
+        System.assertEquals(0, affiliationMappingsResultsList.size(), 'New affiliation mapping should be deleted.');
+        System.assertEquals(
+            'Test_Record_Type',
+            primaryAffiliationRecordTypeName,
+            'Should return name of account record type associated with deleted primary affiliation.'
+        );
+    }
 }

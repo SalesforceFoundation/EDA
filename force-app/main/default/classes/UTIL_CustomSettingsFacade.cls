@@ -139,6 +139,7 @@ public without sharing class UTIL_CustomSettingsFacade {
                 configSettings(orgSettings);
                 orgSettings.Setupownerid = UserInfo.getOrganizationId();
                 orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getDefaultAdminAccRecTypeIdForNewInstall();
+                orgSettings.Lead_Converted_Account_RTypes__c = UTIL_Describe.getAdminAccRecTypeID()+';'+UTIL_Describe.getHhAccRecTypeID();
                 orgSettings.Account_Processor__c = orgSettings.Administrative_Account_Record_Type__c;
 
                 if (Test.isRunningTest() == false) {
@@ -223,6 +224,7 @@ public without sharing class UTIL_CustomSettingsFacade {
 
         settings.Accounts_Addresses_Enabled__c = mySettings.Accounts_Addresses_Enabled__c;
         settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
+        settings.Lead_Converted_Account_RTypes__c =  mySettings.Lead_Converted_Account_RTypes__c;        
         settings.Admin_Account_Naming_Format__c = mySettings.Admin_Account_Naming_Format__c;
         settings.Admin_Other_Name_Setting__c = mySettings.Admin_Other_Name_Setting__c;
         settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
