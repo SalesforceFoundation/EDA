@@ -1,4 +1,4 @@
-import { LightningElement, wire, track } from "lwc";
+import { LightningElement, wire, track, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
 import getContactLanguageSettingsVModel from "@salesforce/apex/ContactInfoSettingsController.getContactLanguageSettingsVModel";
@@ -56,6 +56,11 @@ export default class ContactInformationSettings extends LightningElement {
             return true;
         }
         return undefined;
+    }
+
+    @api
+    handleSaveCanvasRender() {
+        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
     }
 
     @wire(getContactLanguageSettingsVModel)

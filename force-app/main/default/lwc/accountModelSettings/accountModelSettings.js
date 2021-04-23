@@ -116,6 +116,11 @@ export default class AccountModelSettings extends LightningElement {
         return undefined;
     }
 
+    @api
+    handleSaveCanvasRender() {
+        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
+    }
+
     @wire(getAccountModelSettingsViewModel)
     accountModelSettingsViewModelWire(result) {
         this.accountModelSettingsWireResult = result;

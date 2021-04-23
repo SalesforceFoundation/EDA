@@ -24,19 +24,31 @@
                     data-qa-locator="edaSettingsPage"
                 >
                     <template if:true={settingsPageToDisplay.accountModelSettings}>
-                        <c-account-model-settings></c-account-model-settings>
+                        <c-account-model-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-account-model-settings>
                     </template>
 
                     <template if:true={settingsPageToDisplay.addressSettings}>
-                        <c-address-settings></c-address-settings>
+                        <c-address-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-address-settings>
                     </template>
 
                     <template if:true={settingsPageToDisplay.affiliationSettings}>
-                        <c-affiliation-settings></c-affiliation-settings>
+                        <c-affiliation-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-affiliation-settings>
                     </template>
 
                     <template if:true={settingsPageToDisplay.contactInformationSettings}>
-                        <c-contact-information-settings></c-contact-information-settings>
+                        <c-contact-information-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-contact-information-settings>
                     </template>
 
                     <template if:true={settingsPageToDisplay.errorSettings}>
