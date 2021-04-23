@@ -128,7 +128,7 @@ export default class AccountModelSettings extends LightningElement {
         if (result.data) {
             this.accountModelSettingsVModel = result.data;
         } else if (result.error) {
-            //console.log("error retrieving accountmodelsettingsvmodel");
+            //console.log("error retrieving accountModelSettingsVModel");
         }
     }
 
@@ -139,7 +139,7 @@ export default class AccountModelSettings extends LightningElement {
         if (result.data) {
             this.accountAutoDeletionSettingsVModel = result.data;
         } else if (result.error) {
-            //console.log("error retrieving accountAutoDeletionSettingsViewModel");
+            //console.log("error retrieving accountAutoDeletionSettingsVModel");
         }
     }
 
