@@ -385,6 +385,18 @@
         <name>stgAdminAccountRecordType</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Delete Affiliation mapping window --></label>
+        <name>stgAffiliationsDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for warning about deleting an Affiliation mapping --></label>
+        <name>stgAffiliationsDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an Affiliation mapping is deleted --></label>
+        <name>stgAffiliationsDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of the Edit Affiliation Mapping window --></label>
         <name>stgAffiliationsEditModalBody</name>
     </customLabels>
@@ -423,6 +435,10 @@
     <customLabels>
         <label>Jäsenyyksien tilaa ei poistettu</label>
         <name>stgAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Message before deleting Affiliation mapping with an auto-enrollment --></label>
+        <name>stgAfflDeleteWithAutoEnrollment</name>
     </customLabels>
     <customLabels>
         <label>Emme voi kartoittaa tätä jäsenyyttä, koska se viittaa tietuetyyppiin, johon toinen jäsenyyskartoitus jo viittaa. Jos haluat lisätä tämän kartoituksen siten, että jäsenyys käännetään, muokkaa olemassa olevaa kartoitusta napsauttamalla Muokkaa. Määritä sitten kentän API-nimi yhteyshenkilön ensisijaiseen jäsenyyskenttään. Älä muuta tilintietueen tyypille määritettyä nimeä.</label>
@@ -499,6 +515,10 @@
     <customLabels>
         <label>Peruuta</label>
         <name>stgBtnCancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for delete Affiliation mapping warning --></label>
+        <name>stgBtnDelete</name>
     </customLabels>
     <customLabels>
         <label>Muokkaa</label>
@@ -659,6 +679,14 @@
     <customLabels>
         <label>Virheilmoituksen vastaanottajat</label>
         <name>stgErrorNotifRecipientsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation section title for Errors --></label>
+        <name>stgErrorSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Error Settings --></label>
+        <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Yhteyshenkilöiden etnisyyden ja rodun täyttö</label>
@@ -1361,6 +1389,14 @@
         <label>Kotitaloustilin nimeämisen päivityksen asettaminen jonoon onnistui.
          Erän valmistuttua siitä lähetetään sähköposti.</label>
         <name>stgSuccessHHAccountNameRefresh</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation section title for System Tools --></label>
+        <name>stgSystemSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for System Tools Settings --></label>
+        <name>stgSystemSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Tilit ja yhteyshenkilöt</label>

@@ -385,6 +385,18 @@
         <name>stgAdminAccountRecordType</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Delete Affiliation mapping window --></label>
+        <name>stgAffiliationsDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for warning about deleting an Affiliation mapping --></label>
+        <name>stgAffiliationsDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an Affiliation mapping is deleted --></label>
+        <name>stgAffiliationsDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of the Edit Affiliation Mapping window --></label>
         <name>stgAffiliationsEditModalBody</name>
     </customLabels>
@@ -423,6 +435,10 @@
     <customLabels>
         <label>Estat per a afiliacions no suprimides</label>
         <name>stgAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Message before deleting Affiliation mapping with an auto-enrollment --></label>
+        <name>stgAfflDeleteWithAutoEnrollment</name>
     </customLabels>
     <customLabels>
         <label>No podem assignar aquesta afiliació perquè fa referència a un tipus de registre al qual ja fa referència una altra assignació d’afiliació. Si voleu afegir aquesta assignació perquè es tradueixi l&apos;afiliació, feu clic a Edita per modificar l&apos;assignació existent. A continuació, especifiqueu el nom de l&apos;API del camp al camp d&apos;afiliació primària de contacte. No canvieu el nom especificat per al tipus de registre de compte.</label>
@@ -499,6 +515,10 @@
     <customLabels>
         <label>Cancel·la</label>
         <name>stgBtnCancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for delete Affiliation mapping warning --></label>
+        <name>stgBtnDelete</name>
     </customLabels>
     <customLabels>
         <label>Edita</label>
@@ -659,6 +679,14 @@
     <customLabels>
         <label>Destinataris notificacions d&apos;errors</label>
         <name>stgErrorNotifRecipientsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation section title for Errors --></label>
+        <name>stgErrorSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Error Settings --></label>
+        <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Origen ètnic i racial per als contactes</label>
@@ -1361,6 +1389,14 @@
         <label>L&apos;actualització de noms de comptes domèstics s&apos;ha posat a la cua correctament.
         S&apos;enviarà un correu electrònic en finalitzar el lot.</label>
         <name>stgSuccessHHAccountNameRefresh</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation section title for System Tools --></label>
+        <name>stgSystemSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for System Tools Settings --></label>
+        <name>stgSystemSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Comptes i contactes</label>
