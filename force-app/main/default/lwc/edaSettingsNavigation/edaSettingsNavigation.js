@@ -29,6 +29,7 @@ import stgProgramsSettingsNav from "@salesforce/label/c.stgProgramsSettingsNav";
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //Errors Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
+import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 //System Tools SettingsLabels
 import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
 
@@ -75,7 +76,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             enableErrorHandling: "Enable Error Handling",
             errorSettings: stgErrorSettingsNav,
             sendErrorNotifications: "Send Error Notifications",
-            storeErrors: "Store Errors",
+            storeErrors: stgStoreErrorsTitle,
         },
         programSettings: {
             programSettings: stgProgramsSettingsNav,
