@@ -657,7 +657,7 @@
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label>Foutafhandeling uitschakelen</label>
+        <label><!-- Field label for the Error Handling setting --></label>
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
@@ -1225,7 +1225,7 @@
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label>Selecteer dit om het foutafhandelingsraamwerk van het product uit te schakelen.</label>
+        <label><!-- Description of the Error Handling setting --></label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
@@ -1277,7 +1277,7 @@
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
-        <label>Indien geselecteerd, worden fouten bewaard in een aangepast foutenobject. U kunt een tabblad voor het foutenobject maken om een lijst van alle bewaarde fouten te bekijken.</label>
+        <label><!-- Description of the Store Errors setting --></label>
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
@@ -1401,7 +1401,7 @@
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>
-        <label>Fouten bewaren</label>
+        <label><!-- Label for the Store Errors setting --></label>
         <name>stgStoreErrorsTitle</name>
     </customLabels>
     <customLabels>
