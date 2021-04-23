@@ -90,7 +90,11 @@ private with sharing class ErrorSettingsMapper_TEST {
     @isTest
     private static void getErrorSettingsModelValid() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(Store_Errors_On__c = true, Enable_Debug__c = false)
+            new Hierarchy_Settings__c(
+                Store_Errors_On__c = true,
+                Enable_Debug__c = false,
+                Disable_Error_Handling__c = false
+            )
         );
 
         ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
@@ -109,6 +113,12 @@ private with sharing class ErrorSettingsMapper_TEST {
             false,
             errorSettingsModel.enableDebug,
             'Enable Debug on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsModel.errorHandling,
+            'Error handling on resulting model should be inverse of value set in hierarchy settings.'
         );
     }
 }

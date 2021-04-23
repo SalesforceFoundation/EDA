@@ -38,14 +38,19 @@ public with sharing class ErrorSettingsVModel {
     @AuraEnabled
     public Boolean enableDebug { get; private set; }
 
-    /***********************************************************************************************
+    @AuraEnabled
+    public Boolean errorHandling { get; private set; }
+
+    /*********************************************************************
      * @description Single argument constructor
      * @param  storeErrors A boolen indicating whether error storing functionality is enabled
      * @param  enableDebug A boolen indicating whether debug functionality is enabled
+     * @param  errorHandling A boolen indicating whether error handling functionality is enabled
      * @return An ErrorSettingsVModel
      ***********************************************************************************************/
-    public ErrorSettingsVModel(Boolean storeErrors, Boolean enableDebug) {
+    public ErrorSettingsVModel(Boolean storeErrors, Boolean enableDebug, Boolean errorHandling) {
         this.storeErrors = storeErrors;
         this.enableDebug = enableDebug;
+        this.errorHandling = errorHandling;
     }
 }

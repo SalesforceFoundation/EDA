@@ -114,7 +114,11 @@ private with sharing class ErrorSettingsService_TEST {
         ErrorSettingsMapper.instance = new STUB_ErrorSettingsMapper();
 
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(Store_Errors_On__c = true, Enable_Debug__c = false)
+            new Hierarchy_Settings__c(
+                Store_Errors_On__c = true,
+                Enable_Debug__c = false,
+                Disable_Error_Handling__c = false
+            )
         );
 
         ErrorSettingsService errorSettingsServiceInstance = ErrorSettingsService.getInstance();
@@ -134,6 +138,12 @@ private with sharing class ErrorSettingsService_TEST {
             errorSettingsModel.enableDebug,
             'Enable debug model property should match value set in hierarchy settings.'
         );
+
+        System.assertEquals(
+            true,
+            errorSettingsModel.errorHandling,
+            'Error handling model property should be inverse of value set in hierarchy settings.'
+        );
     }
 
     /**************************************************************************************************************************
@@ -145,7 +155,7 @@ private with sharing class ErrorSettingsService_TEST {
      **************************************************************************************************************************************/
     private class STUB_ErrorSettingsMapper extends ErrorSettingsMapper {
         public override ErrorSettingsModel getErrorSettingsModel() {
-            return new ErrorSettingsModel(true, false);
+            return new ErrorSettingsModel(true, false, true);
         }
     }
 }

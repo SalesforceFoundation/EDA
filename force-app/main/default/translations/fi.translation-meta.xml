@@ -637,7 +637,7 @@
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label>Poista virheiden käsittely käytöstä</label>
+        <label><!-- Field label for the Error Handling setting --></label>
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
@@ -1213,7 +1213,7 @@
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label>Valinnalla poistat tuotteen virhekäsittelykehyksen käytöstä.</label>
+        <label><!-- Description of the Error Handling setting --></label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>

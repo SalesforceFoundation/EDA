@@ -24,11 +24,13 @@ import stgAffiliationsSettingsNav from "@salesforce/label/c.stgAffiliationsSetti
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
+//System Tools SettingsLabels
 import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
 //Error Settings Labels
+import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
-import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
+import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
@@ -70,7 +72,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         },
         errorSettings: {
             enableDebug: stgEnableDebugTitle,
-            enableErrorHandling: "Enable Error Handling",
+            enableErrorHandling: stgDisableErrorHandlingTitle,
             errorSettings: stgErrorSettingsNav,
             sendErrorNotifications: "Send Error Notifications",
             storeErrors: stgStoreErrorsTitle,
