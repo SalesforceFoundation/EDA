@@ -6,40 +6,5 @@
         onsettingssavecancel={handleSettingsSaveCancel}
         onsettingssavecompleted={handleSettingsSaveCompleted}
     >
-        <!-- Body of Course Enrollment Settings page (populates Slot in child component) Placeholder
-        <template if:true={affiliationsSettingsViewModel}>
-            <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
-                <c-settings-row-input
-                    class="slds-size_3-of-3"
-                    title={labelReference.afflTypeEnforced}
-                    description={labelReference.afflTypeEnforcedDescription}
-                    type="toggle"
-                    input-id={inputAttributeReference.recordTypeValidation}
-                    value={affiliationsSettingsViewModel.accountRecordTypesEnforced}
-                    onsettingsinputchange={handleRecordtypeValidationChange}
-                    disabled={affordancesDisabled}
-                ></c-settings-row-input>
-            </div>
-        </template>
-        
-        <template if:true={primaryAffiliationsSettingsVModel}>
-            <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
-                <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
-                    {labelReference.primaryAffiliationMappingsTable.primaryAffiliationsTitle}
-                </div>
-                <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
-                    <lightning-formatted-rich-text value={affiliationsDesc}> </lightning-formatted-rich-text>
-                </div>
-            </div>
-
-            <div class="slds-col slds-size_3-of-3 slds-col_bump-right slds-p-right_x-large">
-                <lightning-datatable
-                    key-field="mappingName"
-                    data={primaryAffiliationsSettingsVModel.primaryAffiliationMappings}
-                    columns={primaryAffiliationMappingsTableColumns}
-                    onrowaction={handlePrimaryAffiliationsRowAction}
-                ></lightning-datatable>
-            </div>
-        </template>-->
     </c-settings-save-canvas>
 </template>

@@ -1,4 +1,4 @@
-import { LightningElement } from "lwc";
+import { LightningElement, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
@@ -54,5 +54,10 @@ export default class programSettings extends LightningElement {
                 input.resetValue();
             });
         });*/
+    }
+
+    @api
+    handleSaveCanvasRender() {
+        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
     }
 }
