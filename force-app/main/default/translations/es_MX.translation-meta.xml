@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message when a batch job can't run. --></label>
+        <label><!-- Message when an Apex job can't run --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
@@ -529,7 +529,7 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for Update All Household Account Names --></label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
@@ -545,7 +545,7 @@
         <name>stgBtnSave</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for updating Household Account Names --></label>
+        <label><!-- Button label for updatingthe selected Apex job --></label>
         <name>stgBtnUpdate</name>
     </customLabels>
     <customLabels>
@@ -1357,23 +1357,23 @@
         <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Household Account Names setting --></label>
+        <label><!-- Description of the Update All Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Household Account Names Settings --></label>
+        <label><!-- Label for the Update All Household Account Names Settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update all Household Account names window --></label>
+        <label><!-- Description of the Update all Household Account names confirmation window --></label>
         <name>stgRefreshHouseholdNamesModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update all Household Account names window modal --></label>
+        <label><!-- Title for the Update all Household Account names confirmation window  --></label>
         <name>stgRefreshHouseholdNamesModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when Account names are queued for update --></label>
+        <label><!-- Toast message when Household Account names are queued for update--></label>
         <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>
@@ -1485,7 +1485,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA Documentation --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
