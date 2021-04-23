@@ -657,6 +657,14 @@
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Debug Logging setting --></label>
+        <name>stgEnableDebugHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Debug Logging setting --></label>
+        <name>stgEnableDebugTitle</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Field label for the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>

@@ -24,11 +24,13 @@ import stgAffiliationsSettingsNav from "@salesforce/label/c.stgAffiliationsSetti
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
-//Errors Settings Labels
-import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
-import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 //System Tools SettingsLabels
 import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
+//Error Settings Labels
+import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
+import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
+import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
+import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
@@ -69,8 +71,8 @@ export default class EdaSettingsNavigation extends LightningElement {
             coursesAndEnrollmentsSettings: "Courses and Enrollments",
         },
         errorSettings: {
-            enableDebug: "Enable Debug",
-            enableErrorHandling: "Enable Error Handling",
+            enableDebug: stgEnableDebugTitle,
+            enableErrorHandling: stgDisableErrorHandlingTitle,
             errorSettings: stgErrorSettingsNav,
             sendErrorNotifications: "Send Error Notifications",
             storeErrors: stgStoreErrorsTitle,
