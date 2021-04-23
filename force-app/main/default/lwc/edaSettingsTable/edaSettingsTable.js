@@ -3,8 +3,10 @@ import { LightningElement, api } from "lwc";
 import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
 
 export default class EdaSettingsTable extends LightningElement {
-    @api tableTitle;
-    @api tableDescription;
+    @api tabletitle;
+    @api tabledescription;
+    @api tabledata;
+    @api tablecolumns;
 
     labelReference = {
         newButtonLabel: stgBtnAddMapping,

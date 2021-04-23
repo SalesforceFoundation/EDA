@@ -1,16 +1,34 @@
 import { LightningElement, track, wire } from "lwc";
 import { refreshApex } from "@salesforce/apex";
-
+import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramSettingsVModel";
+//custom labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
+import stgBtnEdit from "@salesforce/label/c.stgBtnEdit";
+import stgBtnDelete from "@salesforce/label/c.stgBtnDelete";
+import autoEnrollmentMappingsTitle from "@salesforce/label/c.stgAutoEnrollmentProgramTitle";
+import autoEnrollmentMappingsDescription from "@salesforce/label/c.stgAutoEnrollmentProgramDesc";
+import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType";
+import stgColAutoEnrollmentStatus from "@salesforce/label/c.stgColAutoEnrollmentStatus";
+import stgColAutoEnrollmentRole from "@salesforce/label/c.stgColAutoEnrollmentRole";
 
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
     @track programSettingsVModel;
+    @track programSettingsVModelWireResult;
 
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
+        autoEnrollmentMappingsTable: {
+            autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
+            autoEnrollmentMappingsDescription: autoEnrollmentMappingsDescription,
+            accountRecordTypeColumn: stgColAccountRecordType,
+            autoEnrollmentStatusColumn: stgColAutoEnrollmentStatus,
+            autoEnrollmentRoleColumn: stgColAutoEnrollmentRole,
+            editAction: stgBtnEdit,
+            deleteAction: stgBtnDelete,
+        },
     };
 
     inputAttributeReference = {};
@@ -20,6 +38,43 @@ export default class programSettings extends LightningElement {
             return true;
         }
         return undefined;
+    }
+
+    @wire(getProgramSettingsVModel)
+    programSettingsVModelWire(result) {
+        this.programSettingsVModelWireResult = result;
+
+        if (result.data) {
+            this.programSettingsVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving preferredContactInfoSettingsVModel");
+        }
+    }
+
+    get autoEnrollmentMappingsTableColumns() {
+        return [
+            {
+                label: this.labelReference.autoEnrollmentMappingsTable.accountRecordTypeColumn,
+                fieldName: "accountRecordTypeLabel",
+            },
+            {
+                label: this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentStatusColumn,
+                fieldName: "autoProgramEnrollmentStatus",
+            },
+            {
+                label: this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentRoleColumn,
+                fieldName: "autoProgramEnrollmentRole",
+            },
+            {
+                type: "action",
+                typeAttributes: {
+                    rowActions: [
+                        { label: this.labelReference.autoEnrollmentMappingsTable.editAction, name: "edit" },
+                        { label: this.labelReference.autoEnrollmentMappingsTable.deleteAction, name: "delete" },
+                    ],
+                },
+            },
+        ];
     }
 
     handleSettingsEditModeChange(event) {
@@ -56,5 +111,9 @@ export default class programSettings extends LightningElement {
                 input.resetValue();
             });
         });*/
+    }
+
+    get autoEnrollmentMappingsDescriptionRichText() {
+        return this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription;
     }
 }
