@@ -1,4 +1,4 @@
-import { LightningElement } from "lwc";
+import { LightningElement, track, wire } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
@@ -6,6 +6,8 @@ import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTit
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
+
+    @track programSettingsVModel;
 
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
