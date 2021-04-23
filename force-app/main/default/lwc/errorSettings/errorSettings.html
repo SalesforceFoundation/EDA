@@ -21,19 +21,6 @@
                 disabled={affordancesDisabled}
             ></c-settings-row-input>
 
-            <!-- Enable Debug Setting -->
-            <c-settings-row-input
-                class="slds-size_3-of-3"
-                title={labelReference.enableDebugSettingsTitle}
-                description={labelReference.enableDebugSettingsDescription}
-                type="toggle"
-                input-id={inputAttributeReference.enableDebugToggleId}
-                value={errorSettingsVModel.enableDebug}
-                checked={errorSettingsVModel.enableDebug}
-                onsettingsinputchange={handleEnableDebugChange}
-                disabled={affordancesDisabled}
-            ></c-settings-row-input>
-
             <!-- Enable Error Handling Setting -->
             <c-settings-row-input
                 class="slds-size_3-of-3"
@@ -44,6 +31,19 @@
                 value={errorSettingsVModel.errorHandling}
                 checked={errorSettingsVModel.errorHandling}
                 onsettingsinputchange={handleErrorHandlingChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+
+            <!-- Enable Debug Setting -->
+            <c-settings-row-input
+                class="slds-size_3-of-3"
+                title={labelReference.enableDebugSettingsTitle}
+                description={labelReference.enableDebugSettingsDescription}
+                type="toggle"
+                input-id={inputAttributeReference.enableDebugToggleId}
+                value={errorSettingsVModel.enableDebug}
+                checked={errorSettingsVModel.enableDebug}
+                onsettingsinputchange={handleEnableDebugChange}
                 disabled={affordancesDisabled}
             ></c-settings-row-input>
         </template>
