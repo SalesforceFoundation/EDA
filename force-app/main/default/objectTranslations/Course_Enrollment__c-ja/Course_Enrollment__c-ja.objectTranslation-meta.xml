@@ -14,6 +14,6 @@
     </standardFields>
     <caseValues>
         <plural>false</plural>
-        <value>科目接続</value>
+        <value>履修科目</value>
     </caseValues>
 </CustomObjectTranslation>
