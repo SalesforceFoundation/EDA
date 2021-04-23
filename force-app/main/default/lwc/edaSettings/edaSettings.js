@@ -7,6 +7,7 @@ import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLo
 
 export default class EDASettings extends LightningElement {
     @api pageReference;
+    @api navigationClicked;
 
     currentUserHasAccessWireResult;
     currentUserHasAccess;
@@ -42,16 +43,43 @@ export default class EDASettings extends LightningElement {
     };
 
     handleSettingsNavigation(event) {
-        this.changePageToDisplay(event.detail.pageName);
         event.stopPropagation();
+        this.navigationClicked = true;
+
+        const isCurrentPage = this.changePageToDisplay(event.detail.pageName);
+
+        if (isCurrentPage) {
+            this.navigateToCurrentPage();
+        }
+    }
+
+    navigateToCurrentPage() {
+        const settingsPage = this.template.querySelector(".eda-settings-page");
+        settingsPage.handleSaveCanvasRender();
+    }
+
+    handleSaveCanvasRendered(event) {
+        event.stopPropagation();
+
+        if (!this.navigationClicked || !this.activePage) {
+            return;
+        }
+
+        this.navigationClicked = false;
+        const settingsPage = this.template.querySelector(event.target.tagName);
+        settingsPage.handleSaveCanvasRender();
     }
 
     changePageToDisplay(pageName) {
+        let isCurrentPage = this.settingsPageToDisplay[pageName];
+
         let settingsPageDisplay = {};
         settingsPageDisplay[pageName] = true;
 
         this.settingsPageToDisplay = settingsPageDisplay;
         this.activePage = pageName;
+
+        return isCurrentPage;
     }
 
     @api modalSave(saveModel) {

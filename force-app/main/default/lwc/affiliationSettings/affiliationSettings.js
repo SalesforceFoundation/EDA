@@ -95,6 +95,11 @@ export default class affiliationSettings extends LightningElement {
         ];
     }
 
+    @api
+    handleSaveCanvasRender() {
+        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
+    }
+
     @wire(getAffiliationsSettingsVModel)
     affiliationsSettingsVModelWire(result) {
         this.affiliationsSettingsWireResult = result;
