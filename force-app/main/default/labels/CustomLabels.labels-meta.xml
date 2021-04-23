@@ -2724,7 +2724,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Toast message when Administrative Account names are queued for update</shortDescription>
-        <value>Administrative Account names will be updated during your next scheduled batch job run. We&apos;ll send you an email when the job is done.</value>
+        <value>We&apos;re updating Administrative Account names. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgRefreshHHAcctNameDesc</fullName>
@@ -2763,7 +2763,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Toast message when Account names are queued for update</shortDescription>
-        <value>We&apos;re updating Administrative Account names. Look for an email when the job is done.</value>
+        <value>We&apos;re updating Household Account names. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUp</fullName>
