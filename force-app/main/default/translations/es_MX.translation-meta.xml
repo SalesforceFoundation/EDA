@@ -545,7 +545,7 @@
         <name>stgBtnSave</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for updatingthe selected Apex job --></label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnUpdate</name>
     </customLabels>
     <customLabels>
@@ -1313,12 +1313,24 @@
         <name>stgPreferredEmailBatchEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>Limpieza de datos de email/teléfono preferido:</label>
+        <label><!-- Label for the Preferred Email and Preferred Phone setting --></label>
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
         <label><!-- Field label for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Preferred Email and Phone fields are queued for update --></label>
+        <name>stgPreferredPhoneEmailSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Seleccione un campo para Teléfono preferido desde el que copiar el valor cuando el campo Teléfono estándar no tenga un valor, o se defina más de un campo &quot;Teléfono&quot;.</label>
@@ -1369,11 +1381,11 @@
         <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label>Ejecutar limpieza</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label>Ejecute este proceso de limpieza de datos tras activar el requisito Email preferido o Teléfono preferido por primera vez o tras un periodo sin aplicar el requisito.</label>
+        <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
