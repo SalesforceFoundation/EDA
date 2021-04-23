@@ -61,9 +61,6 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
      * @return  A PrimaryffiliationsSettingsVModel
      *********************************************************************************************************/
     public virtual PrimaryAffiliationSettingsVModel getPrimaryAffiliationsSettingsVModel() {
-        List<AffiliationMappingsModel> affiliationsMappings = this.locateAffiliationMappingsService()
-            .getAffiliationMappingsModels();
-
         List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService()
             .getAffiliationMappingsModels();
 
@@ -82,7 +79,7 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
 
         List<PrimaryAffiliationMappingVModel> primaryAffiliationMappingVModelList = new List<PrimaryAffiliationMappingVModel>();
 
-        for (AffiliationMappingsModel affiliationMappingsModel : affiliationsMappings) {
+        for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
             primaryAffiliationMappingVModelList.add(
                 this.getPrimaryAffiliationsMappingVModel(
                     affiliationMappingsModel,
@@ -97,6 +94,15 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
         return new PrimaryAffiliationSettingsVModel(primaryAffiliationMappingVModelList);
     }
 
+    /**********************************************************************************************************
+     * @description Generate a view model representing the settings specified for an affiliation mapping.
+     * @param  affiliationMappingsModel A model representing the affililation mapping
+     * @param  accountRecordTypeModelsByName A Map of Account Record Type models by developer name
+     * @param  accountRecordTypeModelsByLabel A Map of Account Record Type models by label
+     * @param  accountLookupsOnContactFieldModelsByName A Map of Lookup fields of type Account on the Contact object by name
+     * @param  accountLookupsOnContactFieldModelsByLabel A Map of Lookup fields of type Account on the Contact object by label
+     * @return A PrimaryAffiliationMappingVModel
+     **********************************************************************************************************/
     @TestVisible
     protected PrimaryAffiliationMappingVModel getPrimaryAffiliationsMappingVModel(
         AffiliationMappingsModel affiliationMappingsModel,
@@ -110,6 +116,7 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
         String contactFieldName = affiliationMappingsModel.primaryAffiliationField;
         String contactFieldLabel = affiliationMappingsModel.primaryAffiliationField;
 
+        // get RecordType model matching Account Record Type specified in Affiliation mapping
         RecordTypeModel recordTypeModel = this.locateRecordTypeService()
             .getRecordTypeModelFromNameAndLabelMaps(
                 affiliationMappingsModel.accountRecordTypeFieldValue,
@@ -122,6 +129,7 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
             accountRecordTypeLabel = recordTypeModel.name;
         }
 
+        // get LookupField model matching Primary Affiliation Field specified in Affiliation mapping
         LookupFieldModel lookupFieldModel = this.locateLookupFieldService()
             .getLookupFieldModelFromNameAndLabelMaps(
                 affiliationMappingsModel.primaryAffiliationField,
@@ -139,7 +147,8 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
             accountRecordTypeName,
             accountRecordTypeLabel,
             contactFieldName,
-            contactFieldLabel
+            contactFieldLabel,
+            affiliationMappingsModel.autoProgramEnrollment
         );
     }
 

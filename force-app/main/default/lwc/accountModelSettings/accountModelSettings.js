@@ -3,6 +3,7 @@ import { refreshApex } from "@salesforce/apex";
 
 import getAccountModelSettingsViewModel from "@salesforce/apex/AccountModelSettingsController.getAccountModelSettingsViewModel";
 import getAccountAutoDeletionSettingsViewModel from "@salesforce/apex/AccountModelSettingsController.getAccountAutoDeletionSettingsViewModel";
+import getLeadConversionAccountNamingSettingsViewModel from "@salesforce/apex/AccountModelSettingsController.getLeadConversionAccountNamingViewModel";
 import getAccountNamingSettingsViewModel from "@salesforce/apex/AccountNamingSettingsController.getAccountNamingSettingsViewModel";
 
 import stgAccountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
@@ -14,6 +15,9 @@ import stgAccountRecordTypeSupportsHHAddress from "@salesforce/label/c.stgAccoun
 import stgHelpHouseholdRecType from "@salesforce/label/c.stgHelpHouseholdRecType";
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgAccoutTypesWithoutContactsDelete from "@salesforce/label/c.stgAccoutTypesWithoutContactsDelete";
+import stgLeadConversionAccountNaming from "@salesforce/label/c.stgLeadConversionAccountNaming";
+import stgLeadConversionAccountNamingDesc from "@salesforce/label/c.stgLeadConversionAccountNamingDesc";
+import stgLeadConversionAccountNamingTitle from "@salesforce/label/c.stgLeadConversionAccountNamingTitle";
 import stgHelpAccoutsDeletedIfChildContactsDeleted from "@salesforce/label/c.stgHelpAccoutsDeletedIfChildContactsDeleted";
 import stgAccountRecordTypeGroupLabelTitle from "@salesforce/label/c.stgAccountRecordTypeGroupLabelTitle";
 import stgAccountRecordTypeAvailableListTitle from "@salesforce/label/c.stgAccountRecordTypeAvailableListTitle";
@@ -46,6 +50,9 @@ export default class AccountModelSettings extends LightningElement {
     @track accountAutoDeletionSettingsWireResult;
     @track accountAutoDeletionSettingsVModel;
 
+    @track leadConversionAccountNamingSettingsWireResult;
+    @track leadConversionAccountNamingSettingsVModel;
+
     @track accountNamingSettingsWireResult;
     @track accountNamingSettingsVModel;
     @track showCustomAdministrativeAccountNaming;
@@ -65,6 +72,9 @@ export default class AccountModelSettings extends LightningElement {
         accountAutoDeletionLisboxGroupHeading: stgAccountRecordTypeGroupLabelTitle,
         accountAutoDeletionSelectedValuesHeading: stgAccountRecordTypeSelectedListTitle,
         accountAutoDeletionAvailableValuesHeading: stgAccountRecordTypeAvailableListTitle,
+        leadConversionAccountNaming: stgLeadConversionAccountNaming,
+        leadConversionAccountNamingDescription: stgLeadConversionAccountNamingDesc,
+        leadConversionAccountNamingTitle: stgLeadConversionAccountNamingTitle,
         adminAccountNamingTitle: stgAdminAccountNamingTitle,
         adminAccountNameFormatHeading: adminAccNameFormat,
         adminAccountNameFormatDescription: adminAccNameFormatHelpText,
@@ -91,6 +101,7 @@ export default class AccountModelSettings extends LightningElement {
         adminAccountModelComboboxId: "adminAccountModel",
         hhAccountModelComboboxId: "hhAccountModel",
         accountAutoDeletionDualListboxId: "accountAutoDeletionModel",
+        leadAccountNamingDualListboxId: "leadConversionAccountNaming",
         adminAccountNamingFormatComboboxId: "adminAccountNaming",
         adminAccountCustomNamingFormatTextBoxId: "adminAccountCustomNaming",
         hhAccountNamingFormatComboboxId: "hhAccountNaming",
@@ -122,6 +133,17 @@ export default class AccountModelSettings extends LightningElement {
 
         if (result.data) {
             this.accountAutoDeletionSettingsVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving accountAutoDeletionSettingsViewModel");
+        }
+    }
+
+    @wire(getLeadConversionAccountNamingSettingsViewModel)
+    leadConversionAccountNamingSettingsViewModelWire(result) {
+        this.leadConversionAccountNamingSettingsWireResult = result;
+
+        if (result.data) {
+            this.leadConversionAccountNamingSettingsVModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving accountAutoDeletionSettingsViewModel");
         }
@@ -201,6 +223,17 @@ export default class AccountModelSettings extends LightningElement {
         let hierarchySettingsChange = {
             settingsType: "string",
             settingsName: "Admin_Account_Naming_Format__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleLeadNamingAccountChange(event) {
+        // add selected values to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "array",
+            settingsName: "Lead_Converted_Account_RTypes__c",
             settingsValue: event.detail.value,
         };
 
@@ -314,6 +347,7 @@ export default class AccountModelSettings extends LightningElement {
         Promise.all([
             refreshApex(this.accountModelSettingsWireResult),
             refreshApex(this.accountAutoDeletionSettingsWireResult),
+            refreshApex(this.leadConversionAccountNamingSettingsWireResult),
             refreshApex(this.accountNamingSettingsWireResult),
         ]).then(() => {
             // hide/show custom Admin Account naming input field

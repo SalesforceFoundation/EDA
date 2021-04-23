@@ -759,6 +759,30 @@
         <value>Administrative Account Record Type</value>
     </labels>
     <labels>
+        <fullName>stgAffiliationsDeleteModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Delete Affiliation mapping window</shortDescription>
+        <value>This Affiliation mapping maps the {0} Account record type to the {1} field on Contact records. We're just making sure that you want to delete it.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsDeleteModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Delete Affiliation mapping window</shortDescription>
+        <value>Delete Affiliation mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsDeleteSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when an Affiliation mapping is deleted</shortDescription>
+        <value>{0} primary Affiliation was deleted.</value>
+    </labels>
+    <labels>
         <fullName>stgAffiliationsEditModalBody</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -837,6 +861,14 @@
         <protected>true</protected>
         <shortDescription>Field label for Affiliation Settings</shortDescription>
         <value>Status for Affiliations Not Deleted</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflDeleteWithAutoEnrollment</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message before deleting Affiliation mapping with an auto-enrollment</shortDescription>
+        <value>If you delete this Affiliation mapping, when an Affiliation with the {0} Account record type is created for a Contact, a Program Enrollment record is no longer automatically created.</value>
     </labels>
     <labels>
         <fullName>stgAfflNotInserted</fullName>
@@ -989,6 +1021,14 @@
         <protected>true</protected>
         <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnDelete</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button label for delete Affiliation mapping warning</shortDescription>
+        <value>Delete</value>
     </labels>
     <labels>
         <fullName>stgBtnEdit</fullName>
@@ -2141,7 +2181,31 @@
         <protected>true</protected>
         <shortDescription>Description of the Accounts Without Contacts setting</shortDescription>
         <value>Delete Accounts with these record types if they have no Contacts.</value>
-    </labels>
+    </labels>  
+    <labels>
+        <fullName>stgLeadConversionAccountNamingDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Automatically Rename Lead-Converted Accounts setting</shortDescription>
+        <value>When Leads are converted, automatically rename Accounts to use the account naming format associated with these selected record types.</value>
+    </labels>    
+    <labels>
+        <fullName>stgLeadConversionAccountNaming</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Automatically Rename Lead-Converted Accounts setting</shortDescription>
+        <value>Automatically Rename Lead-Converted Accounts</value>
+    </labels>    
+        <labels>
+        <fullName>stgLeadConversionAccountNamingTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Lead Conversion Account Naming</shortDescription>
+        <value>Lead Conversion Account Naming</value>
+    </labels>   
     <labels>
         <fullName>stgHelpAddressAccRecType</fullName>
         <categories>Settings</categories>
