@@ -40,9 +40,14 @@ private with sharing class ErrorSettingsModel_TEST {
     @isTest
     private static void singleArgumentConstructorValid() {
         Test.startTest();
-        ErrorSettingsModel errorSettingsModel = new ErrorSettingsModel(true);
+        ErrorSettingsModel errorSettingsModel = new ErrorSettingsModel(true, false);
         Test.stopTest();
 
         System.assertEquals(true, errorSettingsModel.storeErrors, 'Store errors functionality should be enabled.');
+        System.assertEquals(
+            false,
+            errorSettingsModel.errorHandling,
+            'Error handling functionality should not be enabled.'
+        );
     }
 }

@@ -35,12 +35,16 @@ public with sharing class ErrorSettingsVModel {
     @AuraEnabled
     public Boolean storeErrors { get; private set; }
 
+    @AuraEnabled
+    public Boolean errorHandling { get; private set; }
+
     /*********************************************************************
      * @description Single argument constructor
      * @param  storeErrors A boolen indicating errors should be stored
      * @return An ErrorSettingsVModel
      *********************************************************************/
-    public ErrorSettingsVModel(Boolean storeErrors) {
+    public ErrorSettingsVModel(Boolean storeErrors, Boolean errorHandling) {
         this.storeErrors = storeErrors;
+        this.errorHandling = errorHandling;
     }
 }

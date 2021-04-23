@@ -40,9 +40,10 @@ private with sharing class ErrorSettingsVModel_TEST {
     @isTest
     private static void singleArugumentConstructorValid() {
         Test.startTest();
-        ErrorSettingsVModel errorSettingsVModel = new ErrorSettingsVModel(false);
+        ErrorSettingsVModel errorSettingsVModel = new ErrorSettingsVModel(false, true);
         Test.stopTest();
 
         System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');
+        System.assertEquals(true, errorSettingsVModel.errorHandling, 'Error handling functionality should be enabled.');
     }
 }

@@ -1267,8 +1267,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for System Settings</shortDescription>
-        <value>Disable Error Handling</value>
+        <shortDescription>Field label for the Error Handling setting</shortDescription>
+        <value>Error Handling</value>
     </labels>
     <labels>
         <fullName>stgDisablePreferredEmailEnforcement</fullName>
@@ -2427,8 +2427,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>Select to disable the product&apos;s error handling framework.</value>
+        <shortDescription>Description of the Error Handling setting</shortDescription>
+        <value>Allow error handling for asynchronous jobs to make it easier to see when scheduled jobs fail.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyOn</fullName>

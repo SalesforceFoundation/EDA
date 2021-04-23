@@ -58,7 +58,7 @@ private with sharing class ErrorSettingsController_TEST {
         ErrorSettingsVMapper.instance = new STUB_ErrorSettingsVMapper();
 
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(Store_Errors_On__c = true)
+            new Hierarchy_Settings__c(Store_Errors_On__c = true, Disable_Error_Handling__c = true)
         );
 
         Test.startTest();
@@ -69,6 +69,12 @@ private with sharing class ErrorSettingsController_TEST {
             true,
             errorSettingsVModel.storeErrors,
             'Store errors functionality should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            false,
+            errorSettingsVModel.errorHandling,
+            'Error handling model property should be inverse of value set in hierarchy settings.'
         );
     }
 
@@ -99,7 +105,7 @@ private with sharing class ErrorSettingsController_TEST {
      *********************************************************************************************************************/
     private class STUB_ErrorSettingsVMapper extends ErrorSettingsVMapper {
         public override ErrorSettingsVModel getErrorSettingsViewModel() {
-            return new ErrorSettingsVModel(true);
+            return new ErrorSettingsVModel(true, false);
         }
     }
 
