@@ -1303,6 +1303,22 @@
         <value>Enable Course Connections</value>
     </labels>
     <labels>
+        <fullName>stgEnableDebugHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>True</protected>
+        <shortDescription>Description of the Debug Logging setting</shortDescription>
+        <value>Enable debugging so that Salesforce support can view debug statements for managed packages.</value>
+    </labels>
+    <labels>
+        <fullName>stgEnableDebugTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>True</protected>
+        <shortDescription>Label for the Debug Logging setting</shortDescription>
+        <value>Debug Logging</value>
+    </labels>
+    <labels>
         <fullName>stgEnablePreferredPhoneSync</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
