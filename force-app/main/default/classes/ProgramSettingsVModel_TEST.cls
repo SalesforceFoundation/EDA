@@ -29,10 +29,10 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Test class for AutoEnrollmentMappingVModel class.
+ * @description Test class for ProgramSettingsVModel class.
  */
 @isTest
-private with sharing class AutoEnrollmentMappingVModel_TEST {
+private with sharing class ProgramSettingsVModel_TEST {
     /*****************************************************************************
      * @description Test to verify constructor instantiates a
      * model with the appropriate data.
@@ -40,33 +40,43 @@ private with sharing class AutoEnrollmentMappingVModel_TEST {
     @isTest
     private static void affiliationMappingsModelValid() {
         Test.startTest();
-        AutoEnrollmentMappingVModel autoEnrollmentMappingVModel = new AutoEnrollmentMappingVModel(
-            'Test Account Record Type Name',
-            'Test Account Record Type Label',
-            'Test Status',
-            'Test Role'
-        );
+        List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModels = new List<AutoEnrollmentMappingVModel>();
+        for (Integer i = 0; i < 5; i++) {
+            AutoEnrollmentMappingVModel autoEnrollmentMappingVModel = new AutoEnrollmentMappingVModel(
+                'Test Account Record Type Name' + i,
+                'Test Account Record Type Label' + i,
+                'Test Status' + i,
+                'Test Role' + i
+            );
+            autoEnrollmentMappingVModels.add(autoEnrollmentMappingVModel);
+        }
+        ProgramSettingsVModel programSettingsVModel = new ProgramSettingsVModel(autoEnrollmentMappingVModels);
         Test.stopTest();
 
         System.assertEquals(
-            'Test Account Record Type Name',
-            autoEnrollmentMappingVModel.accountRecordTypeName,
-            'Record Type name should be \'Test Account Record Type Name\'.'
+            5,
+            programSettingsVModel.autoEnrollmentMappingVModels.size(),
+            'The size of autoEnrollmentMappingVModels under programSettingsVModel should be 5'
         );
         System.assertEquals(
-            'Test Account Record Type Label',
-            autoEnrollmentMappingVModel.accountRecordTypeLabel,
-            'Record Type label should be \'Test Account Record Type Label\'.'
+            'Test Account Record Type Name0',
+            programSettingsVModel.autoEnrollmentMappingVModels[0].accountRecordTypeName,
+            'Record Type name should be \'Test Account Record Type Name0\'.'
         );
         System.assertEquals(
-            'Test Status',
-            autoEnrollmentMappingVModel.autoProgramEnrollmentStatus,
-            'Enrollment Status should be \'Test Status\'.'
+            'Test Account Record Type Label0',
+            programSettingsVModel.autoEnrollmentMappingVModels[0].accountRecordTypeLabel,
+            'Record Type label should be \'Test Account Record Type Label0\'.'
         );
         System.assertEquals(
-            'Test Role',
-            autoEnrollmentMappingVModel.autoProgramEnrollmentRole,
-            'Enrollment Role should be \'Test Rolel\'.'
+            'Test Status0',
+            programSettingsVModel.autoEnrollmentMappingVModels[0].autoProgramEnrollmentStatus,
+            'Enrollment Status should be \'Test Status0\'.'
+        );
+        System.assertEquals(
+            'Test Role0',
+            programSettingsVModel.autoEnrollmentMappingVModels[0].autoProgramEnrollmentRole,
+            'Enrollment Role should be \'Test Role0\'.'
         );
     }
 }
