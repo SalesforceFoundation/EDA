@@ -637,7 +637,7 @@
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Error Handling setting --></label>
+        <label><!-- Label for the Error Handling setting --></label>
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
@@ -1407,7 +1407,7 @@
         <name>stgSystemSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for System Tools Settings --></label>
+        <label><!-- Section title for System --></label>
         <name>stgSystemSettingsTitle</name>
     </customLabels>
     <customLabels>
