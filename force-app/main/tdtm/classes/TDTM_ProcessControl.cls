@@ -42,6 +42,7 @@ public class TDTM_ProcessControl {
         ACCT_IndividualAccounts_TDTM_After_Delete,
         ACCT_IndividualAccounts_TDTM_After_Insert,
         ACCT_IndividualAccounts_TDTM_After_Update,
+        ACCT_RenameLeadConvertedAccounts_TDTM_After_Update,
         ADDR_Account_TDTM_After_Insert,
         ADDR_Account_TDTM_After_Update,
         ADDR_Addresses_TDTM_Before_Insert,
