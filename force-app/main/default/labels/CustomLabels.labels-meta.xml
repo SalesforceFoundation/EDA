@@ -652,7 +652,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Section title for Addresses</shortDescription>
-        <value>Addresses</value>
+        <value>Address Settings</value>
     </labels>
     <labels>
         <fullName>stgAccountRecordTypeGroupLabelTitle</fullName>
@@ -668,7 +668,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Section title for Account Model Settings</shortDescription>
-        <value>Account Model</value>
+        <value>Account Model Settings</value>
     </labels>
     <labels>
         <fullName>stgAccountRecordTypeAvailableListTitle</fullName>
@@ -731,7 +731,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Custom Name Format for Administrative Accounts</shortDescription>
+        <shortDescription>Label for Custom Name Format for Administrative Accounts</shortDescription>
         <value>Custom Name Format</value>
     </labels>
     <labels>
@@ -755,7 +755,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for the Administrative Account Record Type setting</shortDescription>
+        <shortDescription>Label for the Administrative Account Record Type setting</shortDescription>
         <value>Administrative Account Record Type</value>
     </labels>
     <labels>
@@ -1195,15 +1195,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Section title for Contact Information</shortDescription>
-        <value>Contact Information</value>
+        <shortDescription>Section title for Contact Information Settings</shortDescription>
+        <value>Contact Information Settings</value>
     </labels>
     <labels>
         <fullName>stgContactMultiAddressesEnabled</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for Accounts and Contacts Settings</shortDescription>
+        <shortDescription>Label for the Allow Multiple Contact Addresses setting</shortDescription>
         <value>Allow Multiple Contact Addresses</value>
     </labels>
     <labels>
@@ -1275,7 +1275,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for the Require Preferred Email setting</shortDescription>
+        <shortDescription>Label for the Require Preferred Email setting</shortDescription>
         <value>Require Preferred Email</value>
     </labels>
     <labels>
@@ -1283,7 +1283,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for the Require Preferred Phone setting</shortDescription>
+        <shortDescription>Label for the Require Preferred Phone setting</shortDescription>
         <value>Require Preferred Phone</value>
     </labels>
     <labels>
@@ -1323,7 +1323,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for the Enhanced Preferred Phone Functionality setting</shortDescription>
+        <shortDescription>Label for the Enhanced Preferred Phone Functionality setting</shortDescription>
         <value>Enhanced Preferred Phone Functionality</value>
     </labels>
     <labels>
@@ -2308,7 +2308,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Description of the Allow Multiple Contact Addresses setting</shortDescription>
-        <value>Allow Contacts to have multiple address records.</value>
+        <value>Allow Contacts to have multiple Address records.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactPreferredEmail</fullName>
@@ -2563,7 +2563,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Custom Name Format for Household Accounts</shortDescription>
+        <shortDescription>Label for Custom Name Format for Household Accounts</shortDescription>
         <value>Custom Name Format</value>
     </labels>
     <labels>
@@ -2659,7 +2659,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for the Default Preferred Phone setting</shortDescription>
+        <shortDescription>Label for the Default Preferred Phone setting</shortDescription>
         <value>Default Preferred Phone</value>
     </labels>
     <labels>
