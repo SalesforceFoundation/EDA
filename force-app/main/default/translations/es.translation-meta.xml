@@ -5,7 +5,7 @@
         <name>HEDA</name>
     </customApplications>
     <customLabels>
-        <label>Las afiliaciones principales asignadas aparecen en una sección especial Afiliaciones principales en el registro Contacto. El valor establecido como Principal para un tipo de registro de cuenta aparece en los campos correspondientes en el registro Contacto, como se define a continuación. Para más información, consulte</label>
+        <label><!-- Description of the Affiliation Mappings setting --></label>
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
@@ -305,7 +305,7 @@
         <name>noAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>No se crearon asignaciones de afiliación. Utilice el formulario que encontrará a continuación para crear una nueva asignación de afiliación.</label>
+        <label><!-- Empty state message for Affiliation Mappings --></label>
         <name>noAfflMappings</name>
     </customLabels>
     <customLabels>
@@ -1461,7 +1461,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>

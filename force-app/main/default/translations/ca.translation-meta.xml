@@ -5,7 +5,7 @@
         <name>HEDA</name>
     </customApplications>
     <customLabels>
-        <label>Les afiliacions primàries assignades apareixen en una secció especial d&apos;afiliacions primàries al registre de contactes. El valor establert com a principal per a un tipus de registre del compte apareix als camps corresponents del registre de contacte, tal com es defineix a continuació. Per obtenir més informació, consulteu la documentació d&apos;EDA. OR Per obtenir més informació, consulteu EDA documentation.</label>
+        <label><!-- Description of the Affiliation Mappings setting --></label>
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
@@ -305,7 +305,7 @@
         <name>noAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>No s’han creat assignacions d&apos;afiliació. Utilitzeu el formulari següent per crear una nova assignació d’afiliació.</label>
+        <label><!-- Empty state message for Affiliation Mappings --></label>
         <name>noAfflMappings</name>
     </customLabels>
     <customLabels>
@@ -1463,7 +1463,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>

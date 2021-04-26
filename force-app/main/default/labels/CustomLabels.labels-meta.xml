@@ -5,7 +5,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Mapped Primary Affiliations</shortDescription>
+        <shortDescription>Description of the Affiliation Mappings setting</shortDescription>
         <value>Map Account record types to the Primary Affiliation fields on Contacts to define how updates to those fields impact Affiliation records and how updates to Affiliation records impact Contact records.</value>
     </labels>
     <labels>
@@ -388,7 +388,7 @@
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription> Description of the Record Type Validation setting</shortDescription>
+        <shortDescription>Description of the Record Type Validation setting</shortDescription>
         <value>Require Accounts specified as a Contact’s Primary Affiliation use a record type. Also ensure that all Account record types are mapped to Primary Affiliation fields on the Contact object. If validation fails, the Affiliation isn’t saved.</value>
     </labels>
     <labels>
@@ -604,7 +604,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Empty state message for Affiliation Mappings</shortDescription>
-        <value>No Affiliation Mappings have been created. Use the form below to create a new Affiliation Mapping.</value>
+        <value>No Affiliation mappings yet. Click New to create one.</value>
     </labels>
     <labels>
         <fullName>noAutoCreateSettings</fullName>
@@ -796,7 +796,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Title for the Edit Affiliation Mapping window</shortDescription>
-        <value>Edit Affiliation Mapping</value>
+        <value>Edit Affiliation Mapping?</value>
     </labels>
     <labels>
         <fullName>stgAffiliationsEditSuccess</fullName>
@@ -924,7 +924,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>The API name associated with the selected Account Record Type</shortDescription>
-        <value>Api Name: {0}</value>
+        <value>API Name: {0}</value>
     </labels>
     <labels>
         <fullName>stgAutoCompleteEnterChatterGroupName</fullName>
@@ -2941,7 +2941,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Link label to EDA Documentation</shortDescription>
+        <shortDescription>Hyperlinked text to EDA documentation about Affiliation mappings</shortDescription>
         <value>Tell Me More</value>
     </labels>
     <labels>

@@ -5,7 +5,7 @@
         <name>HEDA</name>
     </customApplications>
     <customLabels>
-        <label>Mapped Primary Affiliations appear in a special Primary Affiliations section on the Contact record. The value set as Primary for an Account Record Type appears in the corresponding fields on the Contact record, as defined below. For more information, see the</label>
+        <label><!-- Description of the Affiliation Mappings setting --></label>
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
@@ -305,7 +305,7 @@
         <name>noAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>No Affiliation Mappings have been created. Use the form below to create a new Affiliation Mapping.</label>
+        <label><!-- Empty state message for Affiliation Mappings --></label>
         <name>noAfflMappings</name>
     </customLabels>
     <customLabels>
@@ -1463,7 +1463,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>

@@ -5,7 +5,7 @@
         <name>HEDA</name>
     </customApplications>
     <customLabels>
-        <label>対応付けられた主所属は取引先責任者レコードの特別な [主所属] セクションに表示されます。取引先レコードタイプで [主] として設定された値は、以下で定義されているとおりに取引先責任者レコードの対応する項目に表示されます。詳細は、次を参照してください。</label>
+        <label><!-- Description of the Affiliation Mappings setting --></label>
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
@@ -305,7 +305,7 @@
         <name>noAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>作成された所属対応付けがありません。以下のフォームを使用して、新しい所属対応付けを作成してください。</label>
+        <label><!-- Empty state message for Affiliation Mappings --></label>
         <name>noAfflMappings</name>
     </customLabels>
     <customLabels>
@@ -1463,7 +1463,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>

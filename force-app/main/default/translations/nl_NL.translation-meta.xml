@@ -5,7 +5,7 @@
         <name>HEDA</name>
     </customApplications>
     <customLabels>
-        <label>Toegewezen primaire affiliaties worden weergegeven in een speciaal gedeelte voor primaire affiliaties op de contactpersoonrecord. De waarde die voor een accountrecordtype als primair is ingesteld, verschijnt in de overeenkomende velden op de contactpersoonrecord, zoals hieronder gedefinieerd. Bekijk voor meer informatie</label>
+        <label><!-- Description of the Affiliation Mappings setting --></label>
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
@@ -305,7 +305,7 @@
         <name>noAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>Er zijn geen affiliatietoewijzingen gemaakt. Gebruik het formulier hieronder om een nieuwe affiliatietoewijzing te maken.</label>
+        <label><!-- Empty state message for Affiliation Mappings --></label>
         <name>noAfflMappings</name>
     </customLabels>
     <customLabels>
@@ -1463,7 +1463,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>

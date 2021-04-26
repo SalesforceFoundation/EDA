@@ -5,7 +5,7 @@
         <name>HEDA</name>
     </customApplications>
     <customLabels>
-        <label>Kartoitetut ensisijaiset jäsenyydet näkyvät yhteystiedot-tietueen erityisessä ensisijaiset jäsenyydet -osiossa. Tilitietueen tyypin ensisijaiseksi asetettu arvo näkyy yhteystietue-kentän vastaavissa kentissä, kuten alla on määritelty. Lisätietoja on</label>
+        <label><!-- Description of the Affiliation Mappings setting --></label>
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
@@ -305,7 +305,7 @@
         <name>noAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>Jäsenyyskartoituksia ei ole luotu. Käytä alla olevaa lomaketta uuden jäsenyyskartoituksen luomiseen.</label>
+        <label><!-- Empty state message for Affiliation Mappings --></label>
         <name>noAfflMappings</name>
     </customLabels>
     <customLabels>
@@ -1463,7 +1463,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>

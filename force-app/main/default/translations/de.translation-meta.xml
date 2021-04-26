@@ -5,7 +5,7 @@
         <name>HEDA</name>
     </customApplications>
     <customLabels>
-        <label>Zugeordnete primäre Zugehörigkeiten sind im speziellen Abschnitt &quot;Primäre Zugehörigkeiten&quot; im Kontaktdatensatz aufgeführt. Der als &quot;Primär&quot; für einen Account-Datensatztyp festgelegte Wert wird in den entsprechenden Feldern des Account-Datensatzes angezeigt, wie nachstehend definiert. Weitere Informationen finden Sie im Abschnitt</label>
+        <label><!-- Description of the Affiliation Mappings setting --></label>
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
@@ -305,7 +305,7 @@
         <name>noAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>Es wurden keine Zugehörigkeitszuordnungen erstellt. Erstellen Sie im nachstehenden Formular eine neue Zugehörigkeitszuordnung.</label>
+        <label><!-- Empty state message for Affiliation Mappings --></label>
         <name>noAfflMappings</name>
     </customLabels>
     <customLabels>
@@ -1463,7 +1463,7 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>

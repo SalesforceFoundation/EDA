@@ -5,7 +5,7 @@
         <name>HEDA</name>
     </customApplications>
     <customLabels>
-        <label>Les affiliations principales mappées sont affichées dans une section spéciale Affiliations principales de l&apos;enregistrement Contact. La valeur définie en tant que Principal pour le Type d&apos;enregistrement du compte est affichée dans les champs correspondants de l&apos;enregistrement Contact, comme suit. Pour plus d&apos;informations, reportez-vous à</label>
+        <label><!-- Description of the Affiliation Mappings setting --></label>
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
@@ -305,7 +305,7 @@
         <name>noAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>Aucun mappage d&apos;affiliations n&apos;a été créé. Utilisez le formulaire ci-dessous pour créer un mappage d&apos;affiliations.</label>
+        <label><!-- Empty state message for Affiliation Mappings --></label>
         <name>noAfflMappings</name>
     </customLabels>
     <customLabels>
@@ -1461,7 +1461,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
