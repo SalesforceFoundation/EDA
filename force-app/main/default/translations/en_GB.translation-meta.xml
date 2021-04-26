@@ -669,7 +669,7 @@
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message for when you don&apos;t have the permissions to view a page. --></label>
+        <label><!-- Error when the user doesn't have the permissions to view a page --></label>
         <name>stgErrorInsufficientAccess</name>
     </customLabels>
     <customLabels>
@@ -1369,7 +1369,7 @@
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
-        <label>Settings successfully saved.</label>
+        <label><!-- Confirmation messsage that updated settings were saved --></label>
         <name>stgSaveSettings</name>
     </customLabels>
     <customLabels>
