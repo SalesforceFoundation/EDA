@@ -369,7 +369,7 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Custom Name Format for Administrative Accounts --></label>
+        <label><!-- Label for Custom Name Format for Administrative Accounts --></label>
         <name>stgAdminAccountCustomName</name>
     </customLabels>
     <customLabels>
@@ -381,7 +381,7 @@
         <name>stgAdminAccountNamingTitle</name>
     </customLabels>
     <customLabels>
-        <label>Tipo de registro de cuenta administrativa</label>
+        <label><!-- Label for the Administrative Account Record Type setting --></label>
         <name>stgAdminAccountRecordType</name>
     </customLabels>
     <customLabels>
@@ -601,7 +601,7 @@
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Contact Information --></label>
+        <label><!-- Section title for Contact Information Settings --></label>
         <name>stgContactInformationSettingsTitle</name>
     </customLabels>
     <customLabels>
@@ -641,11 +641,11 @@
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Require Preferred Email setting --></label>
+        <label><!-- Label for the Require Preferred Email setting --></label>
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Require Preferred Phone setting --></label>
+        <label><!-- Label for the Require Preferred Phone setting --></label>
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
@@ -665,7 +665,7 @@
         <name>stgEnableDebugTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Enhanced Preferred Phone Functionality setting --></label>
+        <label><!-- Label for the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
@@ -1273,7 +1273,7 @@
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Custom Name Format for Household Accounts --></label>
+        <label><!-- Label for Custom Name Format for Household Accounts --></label>
         <name>stgHHAccountCustomName</name>
     </customLabels>
     <customLabels>
@@ -1321,7 +1321,7 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Default Preferred Phone setting --></label>
+        <label><!-- Label for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneDefault</name>
     </customLabels>
     <customLabels>
