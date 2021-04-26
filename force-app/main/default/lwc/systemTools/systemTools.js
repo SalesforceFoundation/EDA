@@ -97,7 +97,7 @@ export default class systemTools extends LightningElement {
     runHouseHoldNamingRefreshBatch() {
         runRefreshHouseholdAccountNamingJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.stgPreferredPhoneEmailSuccessToast);
+                this.showToast("success", "Success", this.labelReference.stgRefreshHouseholdNamesSuccessToast);
             })
 
             .catch((error) => {
