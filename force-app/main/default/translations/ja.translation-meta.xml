@@ -1309,6 +1309,10 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation section title for People and Groups --></label>
+        <name>stgPeopleAndGroupsNav</name>
+    </customLabels>
+    <customLabels>
         <label>バッチ Apex ジョブで {0} 件のレコードが処理され、{1} 件が失敗しました。</label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>

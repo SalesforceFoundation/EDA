@@ -1,5 +1,7 @@
 import { LightningElement, api, track } from "lwc";
 import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
+//People and Group Settings Labels
+import stgPeopleAndGroupsNav from "@salesforce/label/c.stgPeopleAndGroupsNav";
 //Account Model Settings Labels
 import stgAccountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
 import stgAccModelTitle from "@salesforce/label/c.stgAccModelTitle";
@@ -34,7 +36,7 @@ import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHan
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
-        peopleAndGroups: "People and Groups",
+        peopleAndGroups: stgPeopleAndGroupsNav,
         setupHome: "Setup Home",
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
         systemSettings: stgSystemSettingsNav,

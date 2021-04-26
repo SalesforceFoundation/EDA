@@ -1309,6 +1309,10 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation section title for People and Groups --></label>
+        <name>stgPeopleAndGroupsNav</name>
+    </customLabels>
+    <customLabels>
         <label>El treball Apex per lots ha processat {0} registres amb {1} errors.</label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>

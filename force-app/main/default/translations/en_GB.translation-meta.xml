@@ -1309,6 +1309,10 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation section title for People and Groups --></label>
+        <name>stgPeopleAndGroupsNav</name>
+    </customLabels>
+    <customLabels>
         <label>The batch Apex job processed {0} records with {1} failures.</label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>

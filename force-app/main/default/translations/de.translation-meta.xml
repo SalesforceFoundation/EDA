@@ -1309,6 +1309,10 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation section title for People and Groups --></label>
+        <name>stgPeopleAndGroupsNav</name>
+    </customLabels>
+    <customLabels>
         <label>Der Batch-Apex-Auftrag hat {0} Datensätze mit {1} Fehler(n) verarbeitet.</label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>

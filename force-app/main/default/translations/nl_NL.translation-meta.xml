@@ -1309,6 +1309,10 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation section title for People and Groups --></label>
+        <name>stgPeopleAndGroupsNav</name>
+    </customLabels>
+    <customLabels>
         <label>De Apex-batchtaak heeft {0} records verwerkt met {1} fouten.</label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>

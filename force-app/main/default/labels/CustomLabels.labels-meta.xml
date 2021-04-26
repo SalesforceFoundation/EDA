@@ -2631,6 +2631,14 @@
         <value>User</value>
     </labels>
     <labels>
+        <fullName>stgPeopleAndGroupsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation section title for People and Groups</shortDescription>
+        <value>People and Groups</value>
+    </labels>
+    <labels>
         <fullName>stgPreferredEmailBatchEmailBody</fullName>
         <categories>Contacts</categories>
         <language>en_US</language>

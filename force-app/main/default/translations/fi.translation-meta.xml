@@ -1309,6 +1309,10 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation section title for People and Groups --></label>
+        <name>stgPeopleAndGroupsNav</name>
+    </customLabels>
+    <customLabels>
         <label>Apex-erätyö käsitteli {0} tietuetta, joista {1} epäonnistui.</label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>
