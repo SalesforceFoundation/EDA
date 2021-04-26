@@ -53,20 +53,4 @@ public with sharing class ProgramSettingsController {
     private static ProgramSettingsVMapper locateProgramSettingsVMapper() {
         return ProgramSettingsVMapper.getInstance();
     }
-
-    /**********************************************************************************
-     * @description Locates and returns an instance of AffiliationMappingsService.
-     **********************************************************************************/
-    @TestVisible
-    private static AffiliationMappingsService locateAffiliationMappingsService() {
-        return AffiliationMappingsService.getInstance();
-    }
-
-    /**********************************************************************************
-     * @description Locates and returns an instance of RecordTypeService.
-     **********************************************************************************/
-    @TestVisible
-    private static RecordTypeService locateRecordTypeService() {
-        return RecordTypeService.getInstance();
-    }
 }
