@@ -1,4 +1,4 @@
-import { LightningElement, wire, track } from "lwc";
+import { LightningElement, wire, track, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
 import getAddressSettingsVModel from "@salesforce/apex/AddressSettingsController.getAddressSettingsVModel";
@@ -45,6 +45,11 @@ export default class addressSettings extends LightningElement {
             return true;
         }
         return undefined;
+    }
+
+    @api
+    handleSaveCanvasRender() {
+        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
     }
 
     @wire(getAddressSettingsVModel)
