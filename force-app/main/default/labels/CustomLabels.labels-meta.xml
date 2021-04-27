@@ -2779,8 +2779,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Confirmation msg for Settings Save action</shortDescription>
-        <value>Settings successfully saved.</value>
+        <shortDescription>Confirmation messsage that updated settings were saved</shortDescription>
+        <value>EDA Settings were saved.</value>
     </labels>
     <labels>
         <fullName>stgSelectReciType</fullName>
