@@ -1,4 +1,4 @@
-import { LightningElement, wire, track, api } from "lwc";
+import { LightningElement, api } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 import stgSystemToolsTitle from "@salesforce/label/c.stgSystemToolsTitle";
@@ -55,6 +55,26 @@ export default class systemTools extends LightningElement {
 
     get prefEmailPhoneDesc() {
         return this.labelReference.stgRunCleanUpEnableFirstTime + " " + this.prefEmailPhoneHyperLink;
+    }
+
+    hasRendered;
+
+    renderedCallback() {
+        if (this.hasRendered) {
+            return;
+        }
+
+        this.hasRendered = true;
+        this.setPageFocus();
+    }
+
+    setPageFocus() {
+        this.template.querySelector(".eda-system-tools-title").focus();
+    }
+
+    @api
+    handleSaveCanvasRender() {
+        this.setPageFocus();
     }
 
     handleRefreshHHNamesBtnClick(event) {
