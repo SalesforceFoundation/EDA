@@ -9,6 +9,7 @@ const COMBOBOX_FORM_ELEMENT_CLASS = "slds-combobox__form-element slds-input-has-
 const DATA_QA_LOCATOR = "combobox ";
 
 const KEY_ENTER = 13;
+const KEY_ESCAPE = 27;
 const KEY_UP = 38;
 const KEY_DOWN = 40;
 export default class SingleLookup extends LightningElement {
@@ -18,6 +19,7 @@ export default class SingleLookup extends LightningElement {
     optionIndex = -1;
     blurLock = false;
 
+    @api disabled;
     @api required;
     @api label;
     @api removeLabel;
@@ -141,6 +143,12 @@ export default class SingleLookup extends LightningElement {
                 event.preventDefault();
                 this.confirmSelection(this.optionIndex);
                 break;
+            case KEY_ESCAPE:
+                event.preventDefault();
+                this.clearOptions();
+                this.clearValues();
+                this.resetFocus();
+                break;
             case KEY_UP:
                 event.preventDefault();
                 this.selectOptionUp();
@@ -179,7 +187,7 @@ export default class SingleLookup extends LightningElement {
 
     resetFocus() {
         //reset focus back to the input field for better accessibility
-        let inputField  = this.template.querySelector('input');
+        let inputField = this.template.querySelector("input");
         if (inputField) {
             inputField.focus();
         }
@@ -252,14 +260,14 @@ export default class SingleLookup extends LightningElement {
 
     dispatchSearchEvent(inputValue) {
         const searchEvent = new CustomEvent("search", {
-            detail: { inputValue }
+            detail: { inputValue },
         });
         this.dispatchEvent(searchEvent);
     }
 
     dispatchChangeEvent() {
         const changeEvent = new CustomEvent("inputchange", {
-            detail: { value: (this.value ? this.value : '') },
+            detail: { value: this.value ? this.value : "" },
         });
         this.dispatchEvent(changeEvent);
     }
