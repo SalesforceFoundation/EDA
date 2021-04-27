@@ -49,56 +49,74 @@ public class ACCT_RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction,
         Schema.DescribeSObjectResult objResult
     ) {
-        List<lead> newleads = (List<lead>) newlist;
-        this.triggerAction = triggerAction;
-        List<Id> contactIdsToUpdate = new List<Id>();
-        List<Account> accountsToUpdate = new List<Account>();
         DmlWrapper dmlWrapper = new DmlWrapper();
-
+        List<lead> newleads = (List<lead>) newlist;
+        List<lead> oldLeads = (List<lead>) oldlist;
+        this.triggerAction = triggerAction;
         Boolean recursionAfterUpdateCheck = triggerActionAfterUpdate();
 
-        //Requery leads to include Account information
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate && !recursionAfterUpdateCheck) {
-            for (Lead aLead : newLeads) {
-                if (aLead.IsConverted) {
-                    contactIdsToUpdate.add(aLead.ConvertedContactId);
-                }
-
-                for (Contact aContact : [
-                    SELECT
-                        Account.Id,
-                        Account.Phone,
-                        Account.Fax,
-                        Account.OwnerId,
-                        Account.RecordTypeId,
-                        FirstName,
-                        LastName
-                    FROM Contact
-                    WHERE Id IN :contactIdsToUpdate
-                ]) {
-                    Account anAccount = new Account(
-                        Phone = aContact.Account.Phone,
-                        Fax = aContact.Account.Fax,
-                        OwnerId = aContact.Account.OwnerId,
-                        Id = aContact.Account.Id,
-                        RecordTypeId = aContact.Account.RecordTypeId
-                    );
-
-                    anAccount.Name = UTIL_ACCT_Naming.updateNameFromContact(new List<Contact>{ aContact }, anAccount);
-                    accountsToUpdate.add(anAccount);
-                }
-
-                update accountsToUpdate;
-            }
-            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-                TDTM_ProcessControl.setRecursionFlag(
-                    TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update,
-                    true
-                );
-            }
+            handlesAfterUpdate(newLeads, oldLeads, triggerAction, dmlWrapper);
         }
 
         return dmlWrapper;
+    }
+
+    /*******************************************************************************************************
+     * @description Calls correct methods to process after update
+     * logic and sets recursion flag.
+     * @param newContacts a list of Leads from trigger new.
+     * @param oldContacts a list of Leads from trigger old.
+     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
+     * @param dmlWrapper wrapper for dml transactions
+     * Account that are not marked deceased or Excluded_from_Household_Naming__c.
+     */
+    private void handlesAfterUpdate(
+        List<Lead> newLeads,
+        List<Lead> oldLeads,
+        TDTM_Runnable.Action triggerAction,
+        DmlWrapper dmlWrapper
+    ) {
+        List<Id> contactIdsToUpdate = new List<Id>();
+        List<Account> accountsToUpdate = new List<Account>();
+
+        for (Lead aLead : newLeads) {
+            if (aLead.IsConverted) {
+                contactIdsToUpdate.add(aLead.ConvertedContactId);
+            }
+        }
+
+        for (Contact aContact : [
+            SELECT Account.Id, Account.Phone, Account.Fax, Account.OwnerId, Account.RecordTypeId, FirstName, LastName
+            FROM Contact
+            WHERE Id IN :contactIdsToUpdate
+        ]) {
+            if (
+                UTIL_CustomSettingsFacade.getSettings().Lead_Converted_Account_RTypes__c != null &&
+                aContact.Account.RecordTypeId != null &&
+                UTIL_CustomSettingsFacade.getSettings()
+                    .Lead_Converted_Account_RTypes__c.contains(aContact.Account.RecordTypeId)
+            ) {
+                Account anAccount = new Account(
+                    Phone = aContact.Account.Phone,
+                    Fax = aContact.Account.Fax,
+                    OwnerId = aContact.Account.OwnerId,
+                    Id = aContact.Account.Id,
+                    RecordTypeId = aContact.Account.RecordTypeId
+                );
+
+                anAccount.Name = UTIL_ACCT_Naming.updateNameFromContact(new List<Contact>{ aContact }, anAccount);
+                accountsToUpdate.add(anAccount);
+            }
+
+            dmlWrapper.objectsToUpdate.addAll((List<SObject>) accountsToUpdate);
+        }
+        if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+            TDTM_ProcessControl.setRecursionFlag(
+                TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update,
+                true
+            );
+        }
     }
 
     /*******************************************************************************************************
