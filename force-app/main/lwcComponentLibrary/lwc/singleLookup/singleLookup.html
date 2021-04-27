@@ -1,6 +1,6 @@
 <template>
     <div class="slds-form-element">
-        <label class="slds-form-element__label" if:true={label} for="lookupInput">
+        <label id="lookupLabel" class="slds-form-element__label" if:true={label} for="lookupInput">
             <abbr class="slds-required" if:true={required}>*</abbr>{label}
         </label>
         <div class="slds-form-element__control">
@@ -33,8 +33,8 @@
                             id="lookupInput"
                             aria-autocomplete="list"
                             aria-controls="lookupListbox"
+                            aria-labelledby="lookupLabel"
                             autocomplete="off"
-                            aria-activedescendant={activeDescendant}
                             role="textbox"
                             placeholder={placeholder}
                             value={inputValue}
@@ -42,10 +42,12 @@
                             onfocus={handleFocus}
                             oninput={handleInput}
                             onkeydown={handleKeydown}
+                            data-qa-locator={qaLocator}
                         />
+                        <!--aria-activedescendant={activeDescendant}-->
                         <lightning-icon
                             if:false={value}
-                            class="slds-input__icon slds-input__icon_right"
+                            class="slds-input__icon slds-input__icon_right searchIcon"
                             icon-name="utility:search"
                             size="x-small"
                         >
@@ -60,7 +62,7 @@
                             <lightning-icon
                                 class="slds-button__icon"
                                 icon-name="utility:close"
-                                alternative-text={handleRemoveButtonClick}
+                                alternative-text={removeLabel}
                                 size="x-small"
                             >
                             </lightning-icon>
@@ -73,6 +75,7 @@
                         role="listbox"
                         onmousedown={handleMouseDown}
                         onmouseup={handleMouseUp}
+                        aria-labelledby="lookupLabel"
                     >
                         <ul class="slds-listbox slds-listbox_vertical" role="presentation">
                             <template if:true={showSearchLine}
@@ -85,9 +88,9 @@
                                             <lightning-icon icon-name="utility:search" size="small"> </lightning-icon>
                                         </span>
                                         <span class="slds-media__body">
-                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity"
-                                                >{inputValue}</span
-                                            >
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                                {inputValue}
+                                            </span>
                                         </span>
                                     </div>
                                 </li>
@@ -99,7 +102,7 @@
                                     onblur={handleBlur}
                                     onfocus={handleFocus}
                                     onoptionconfirm={handleOptionConfirm}
-                                    onoptionselection={handleOptionSelection}
+                                    onoptionview={handleOptionSelection}
                                 ></c-single-lookup-option>
                             </template>
                         </ul>

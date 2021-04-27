@@ -6,6 +6,7 @@ const INPUT_CLASS = "slds-input slds-combobox__input";
 const COMBOBOX_CLASS = "slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click";
 const CONTAINER_CLASS = "slds-combobox_container";
 const COMBOBOX_FORM_ELEMENT_CLASS = "slds-combobox__form-element slds-input-has-icon";
+const DATA_QA_LOCATOR = "combobox ";
 
 const KEY_ENTER = 13;
 const KEY_UP = 38;
@@ -22,7 +23,8 @@ export default class SingleLookup extends LightningElement {
     @api removeLabel;
     @api placeholder;
     @api value;
-    @track options;
+    @track options = [];
+    @track inputDelayTimeout = 0;
 
     @api setOptions(optionsToSet) {
         this.options = optionsToSet;
@@ -46,13 +48,22 @@ export default class SingleLookup extends LightningElement {
         return true;
     }
 
+    get qaLocator() {
+        if (this.label) {
+            return DATA_QA_LOCATOR + this.label;
+        } else {
+            return DATA_QA_LOCATOR;
+        }
+    }
+
+    /*on hold due to activeDescendant having a bug, but required for accessibility: https://www.powermapper.com/products/sortsite/rules/w3chtml5ariaactivedescendant/
     get activeDescendant() {
         if (!this.options || this.optionIndex === -1) {
             return undefined;
         }
 
         return this.options[this.optionIndex].label;
-    }
+    }*/
 
     get showSearchLine() {
         return !!this.inputValue && !this.value;
@@ -101,11 +112,11 @@ export default class SingleLookup extends LightningElement {
     }
 
     handleInput(event) {
-        window.clearTimeout(this.delayTimeout);
+        window.clearTimeout(this.inputDelayTimeout);
         this.inputValue = event.target.value;
 
         if (!this.inputValue) {
-            this.inputValue = undefined;
+            this.inputValue = "";
         }
 
         // eslint-disable-next-line @lwc/lwc/no-async-operation
@@ -162,6 +173,16 @@ export default class SingleLookup extends LightningElement {
         this.clearOptions();
         this.clearValues();
         this.clearCurrentOption();
+        this.dispatchChangeEvent();
+        this.resetFocus();
+    }
+
+    resetFocus() {
+        //reset focus back to the input field for better accessibility
+        let inputField  = this.template.querySelector('input');
+        if (inputField) {
+            inputField.focus();
+        }
     }
 
     selectOptionDown() {
@@ -189,7 +210,7 @@ export default class SingleLookup extends LightningElement {
     }
 
     confirmSelection(confirmOption) {
-        if (this.confirmOption < 0) {
+        if (confirmOption < 0) {
             return;
         }
 
@@ -204,7 +225,7 @@ export default class SingleLookup extends LightningElement {
     }
 
     clearOptions() {
-        this.options = undefined;
+        this.options = [];
     }
 
     clearCurrentOption() {
@@ -231,14 +252,14 @@ export default class SingleLookup extends LightningElement {
 
     dispatchSearchEvent(inputValue) {
         const searchEvent = new CustomEvent("search", {
-            detail: inputValue,
+            detail: { inputValue }
         });
         this.dispatchEvent(searchEvent);
     }
 
     dispatchChangeEvent() {
         const changeEvent = new CustomEvent("inputchange", {
-            detail: this.value,
+            detail: { value: (this.value ? this.value : '') },
         });
         this.dispatchEvent(changeEvent);
     }

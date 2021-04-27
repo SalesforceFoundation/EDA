@@ -1,5 +1,6 @@
 import { LightningElement, api } from "lwc";
 const LOOKUP_OPTION_CLASS = "slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta";
+const DATA_QA_LOCATOR = "combobox option ";
 export default class SingleLookupOption extends LightningElement {
     @api viewModel = {};
 
@@ -11,8 +12,16 @@ export default class SingleLookupOption extends LightningElement {
         return LOOKUP_OPTION_CLASS + " slds-has-focus";
     }
 
+    get qaLocator() {
+        if (this.viewModel && this.viewModel.label) {
+            return DATA_QA_LOCATOR + this.viewModel.label;
+        } else {
+            return DATA_QA_LOCATOR;
+        }
+    }
+
     handleMouseOver(event) {
-        this.dispatchOptionViewEvent();
+        this.dispatchOptionSelectionEvent();
     }
 
     handleClick(event) {
