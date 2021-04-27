@@ -39,7 +39,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         peopleAndGroups: stgPeopleAndGroupsNav,
         setupHome: "Setup Home",
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
-        systemSettings: stgSystemSettingsNav,
+        systemSettings: stgSystemSettingsTitle,
         accountModel: {
             accountAutoDeletionModel: stgAccoutTypesWithoutContactsDelete,
             accountModelSettings: stgAccountModelSettingsTitle,
@@ -97,7 +97,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             courseDescriptionMigration: "Course Description Migration",
             ethnicityAndRaceBackfill: "Ethnicity and Race Backfill",
             preferredEmailCleanup: "Preferred Email and Phone Cleanup",
-            systemTools: stgSystemSettingsTitle,
+            systemTools: stgSystemSettingsNav,
             refreshAdministrativeAccountNames: "Refresh Administrative Account Names",
             refreshHouseholdAccountNames: "Refresh Household Account Names",
         },
