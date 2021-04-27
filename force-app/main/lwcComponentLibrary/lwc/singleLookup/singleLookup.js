@@ -124,6 +124,8 @@ export default class SingleLookup extends LightningElement {
         // eslint-disable-next-line @lwc/lwc/no-async-operation
         this.inputDelayTimeout = setTimeout(() => {
             if (!this.inputValue) {
+                this.clearOptions();
+                this.clearCurrentOption();
                 return;
             }
 
@@ -145,6 +147,7 @@ export default class SingleLookup extends LightningElement {
                 break;
             case KEY_ESCAPE:
                 event.preventDefault();
+                this.blurLock = false;
                 this.clearOptions();
                 this.clearValues();
                 this.resetFocus();
