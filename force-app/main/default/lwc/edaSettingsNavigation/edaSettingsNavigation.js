@@ -25,6 +25,7 @@ import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 //Course Enrollment Labels
 import stgCoursesAndEnrollmentsNav from "@salesforce/label/c.stgCoursesAndEnrollmentsNav";
 import stgProgramsSettingsNav from "@salesforce/label/c.stgProgramsSettingsNav";
+import stgAutoEnrollmentMappingsNav from "@salesforce/label/c.stgAutoEnrollmentMappingsNav";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools SettingsLabels
