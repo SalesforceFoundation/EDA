@@ -758,4 +758,5 @@ INSERT INTO "hed__Trigger_Handler__c" VALUES('a0S17000004jpoFEAQ','a0S17000004jp
 INSERT INTO "hed__Trigger_Handler__c" VALUES('a0S17000004jpoGEAQ','a0S17000004jpoG','true','false','AFFL_MultiRecordType_TDTM','','','3.0','Affiliation__c','hed','BeforeInsert;AfterInsert;AfterUpdate;AfterDelete','false','');
 INSERT INTO "hed__Trigger_Handler__c" VALUES('a0S17000004jpoHEAQ','a0S17000004jpoH','true','false','AFFL_AccRecordType_TDTM','','','1.0','Account','hed','AfterUpdate','false','');
 INSERT INTO "hed__Trigger_Handler__c" VALUES('a0S17000004jpoIEAQ','a0S17000004jpoI','true','false','REL_Relationships_Cm_TDTM','','','1.0','CampaignMember','hed','AfterInsert;AfterUpdate','false','');
+INSERT INTO "hed__Trigger_Handler__c" VALUES('a0S17000004jpoIEAQ','a0S17000004jpoJ','true','false','ACCT_RenameLeadConvertedAccounts_TDTM','','','1.0','Lead','hed','AfterInsert;AfterUpdate','false','');
 COMMIT;

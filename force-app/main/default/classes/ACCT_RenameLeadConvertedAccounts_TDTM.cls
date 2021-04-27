@@ -49,34 +49,35 @@ public class ACCT_RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction,
         Schema.DescribeSObjectResult objResult
     ) {
-        DmlWrapper dmlWrapper = new DmlWrapper();
-        List<lead> newleads = (List<lead>) newlist;
-        List<lead> oldLeads = (List<lead>) oldlist;
-        this.triggerAction = triggerAction;
-        Boolean recursionAfterUpdateCheck = triggerActionAfterUpdate();
-
-        if (triggerAction == TDTM_Runnable.Action.AfterUpdate && !recursionAfterUpdateCheck) {
-            handlesAfterUpdate(newLeads, oldLeads, triggerAction, dmlWrapper);
+        if (newList == null || newList.isEmpty() == true) {
+            return new DmlWrapper();
         }
 
-        return dmlWrapper;
+        if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+            this.handleAfterUpdate(newList, oldList);
+        }
+
+        return new DmlWrapper();
     }
 
     /*******************************************************************************************************
      * @description Calls correct methods to process after update
      * logic and sets recursion flag.
-     * @param newContacts a list of Leads from trigger new.
-     * @param oldContacts a list of Leads from trigger old.
-     * @param triggerAction which trigger event (BeforeInsert, AfterInsert, etc.).
-     * @param dmlWrapper wrapper for dml transactions
-     * Account that are not marked deceased or Excluded_from_Household_Naming__c.
+     * @param newList a list of SObjects with updates
+     * @param oldList a list of SObjects prior to update
      */
-    private void handlesAfterUpdate(
-        List<Lead> newLeads,
-        List<Lead> oldLeads,
-        TDTM_Runnable.Action triggerAction,
-        DmlWrapper dmlWrapper
-    ) {
+    private void handleAfterUpdate(List<SObject> newList, List<SObject> oldList) {
+
+        if (this.isUpdateRecursion() == true) {
+            return;
+        }
+        this.setUpdateRecursion();
+
+
+        DmlWrapper dmlWrapper = new DmlWrapper();
+        List<lead> newleads = (List<lead>) newlist;
+        List<lead> oldLeads = (List<lead>) oldlist;
+
         List<Id> contactIdsToUpdate = new List<Id>();
         List<Account> accountsToUpdate = new List<Account>();
 
@@ -110,10 +111,11 @@ public class ACCT_RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
             }
 
             dmlWrapper.objectsToUpdate.addAll((List<SObject>) accountsToUpdate);
+            TDTM_TriggerHandler.processDML(dmlWrapper, true);
         }
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             TDTM_ProcessControl.setRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update,
+                TDTM_ProcessControl.registeredTrigger.ACCT_RenameLeadConvertedAccounts_TDTM_After_Update,
                 true
             );
         }
@@ -126,6 +128,27 @@ public class ACCT_RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
     private Boolean triggerActionAfterUpdate() {
         return TDTM_ProcessControl.getRecursionFlag(
             TDTM_ProcessControl.registeredTrigger.ACCT_RenameLeadConvertedAccounts_TDTM_After_Update
+        );
+    }
+
+    /************************************************************************************************************************************
+     * @description Returns the value of operation (ACCT_RenameLeadConvertedAccounts_TDTM OR ACCT_RenameLeadConvertedAccounts_TDTM_After_Update)
+     **************************************************************************************************************************************/
+    @TestVisible
+    private boolean isUpdateRecursion() {
+        return TDTM_ProcessControl.getRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.ACCT_RenameLeadConvertedAccounts_TDTM_After_Update
+        );
+    }
+
+    /************************************************************************************************************************************
+     * @description Sets the recursion flag ACCT_RenameLeadConvertedAccounts_TDTM_After_Update) to true
+     **************************************************************************************************************************************/
+    @TestVisible
+    private void setUpdateRecursion() {
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.ACCT_RenameLeadConvertedAccounts_TDTM_After_Update,
+            true
         );
     }
 }

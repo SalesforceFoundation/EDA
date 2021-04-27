@@ -191,7 +191,7 @@ public class UTIL_ACCT_Naming {
             NameSpec ns = new NameSpec(accountNamingFormat);
             finalAccountName = buildAccountName(returnSortedContacts, ns);
         } else {
-            finalAccountName = defaultAccountName(returnSortedContacts, accountNamingFormat);
+            finalAccountName = defaultAccountName(returnSortedContacts, accountNamingFormat, acc);
         }
 
         return finalAccountName;
@@ -246,7 +246,7 @@ public class UTIL_ACCT_Naming {
     * @param accountNamingFormat is a string of the Account name format currently set in the org.
     * @return String.
     */
-    private static String defaultAccountName(List<Contact> cons, String accountNamingFormat) {
+    private static String defaultAccountName(List<Contact> cons, String accountNamingFormat, Account theAccount) {
         Set<String> householdLastNames = new Set<String>();
         String finalAccountName;
         String name = '';
@@ -254,9 +254,9 @@ public class UTIL_ACCT_Naming {
         Integer counter = 0;
 
         for (Contact con : cons) {
-            if (defaultRecTypeId == hhAccountRecordTypeId) {
+            if (theAccount.RecordTypeId == hhAccountRecordTypeId) {
                 householdLastNames.add(con.LastName);
-            } else if (defaultRecTypeId == userDefinedAdminRecordTypeId) {
+            } else if (theAccount.RecordTypeId == userDefinedAdminRecordTypeId) {
                 finalAccountName = con.LastName + ' ' + System.label.DefaultAdminName;
                 break;
             } else {
