@@ -14,7 +14,7 @@
 
         switch (component.get("v.batchJobToRun")) {
             case "ACCT_AdministrativeNameRefresh_BATCH":
-                modalHeaderLabel = $A.get("$Label.c.stgRefreshAdminAcctNameTitle");
+                modalHeaderLabel = $A.get("$Label.c.stgRefreshAdminNamesModalTitle");
                 modalDesc = $A.get("$Label.c.stgRefreshAdminNamesModalBody");
                 confirmButton = $A.get("$Label.c.stgBtnUpdate");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
