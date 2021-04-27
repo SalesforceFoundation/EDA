@@ -56,6 +56,26 @@ export default class systemTools extends LightningElement {
         return this.labelReference.stgRefreshAdminAcctNameDesc + " " + this.adminAndHouseholdNamesHyperLink;
     }
 
+    hasRendered;
+
+    renderedCallback() {
+        if (this.hasRendered) {
+            return;
+        }
+
+        this.hasRendered = true;
+        this.setPageFocus();
+    }
+
+    setPageFocus() {
+        this.template.querySelector(".eda-system-tools-title").focus();
+    }
+
+    @api
+    handleSaveCanvasRender() {
+        this.setPageFocus();
+    }
+
     handleRefreshAdminNamesBtnClick(event) {
         const eventDetail = event.detail;
         const batchJobToRun = "ACCT_AdministrativeNameRefresh_BATCH";
