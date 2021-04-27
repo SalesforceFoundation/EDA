@@ -1385,7 +1385,7 @@
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
-        <label>Paramètres enregistrés avec succès.</label>
+        <label><!-- Confirmation messsage that updated settings were saved --></label>
         <name>stgSaveSettings</name>
     </customLabels>
     <customLabels>
