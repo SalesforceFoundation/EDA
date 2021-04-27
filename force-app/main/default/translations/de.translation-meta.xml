@@ -489,6 +489,10 @@
         <name>stgAutoEnrollment</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation section title for Auto Enrollment Mappings --></label>
+        <name>stgAutoEnrollmentMappingsNav</name>
+    </customLabels>
+    <customLabels>
         <label>Rolle &quot;Automatische Registrierung&quot;</label>
         <name>stgAutoEnrollmentRole</name>
     </customLabels>
