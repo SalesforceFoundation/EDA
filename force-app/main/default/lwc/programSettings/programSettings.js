@@ -104,14 +104,11 @@ export default class programSettings extends LightningElement {
     }
 
     refreshAllApex() {
-        /*Promise.all([
-            refreshApex(this.affiliationsSettingsWireResult),
-            refreshApex(this.primaryAffiliationsSettingsWireResult),
-        ]).then(() => {
+        Promise.all([refreshApex(this.programSettingsVModelWireResult)]).then(() => {
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });
-        });*/
+        });
     }
 
     get autoEnrollmentMappingsDescriptionRichText() {
