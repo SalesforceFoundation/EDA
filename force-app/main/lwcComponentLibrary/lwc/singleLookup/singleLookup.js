@@ -254,11 +254,13 @@ export default class SingleLookup extends LightningElement {
         const lookupOptionId = lookupOptions[this.optionIndex].getLookupId();
 
         const inputElement = this.template.querySelector("input");
+        //Workaround for LWC changing the id dynamically. See https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.create_components_accessibility_attributes
         inputElement.setAttribute("aria-activedescendant", lookupOptionId);
     }
 
     removeActiveDescendant() {
         const inputElement = this.template.querySelector("input");
+        //Workaround for LWC changing the id dynamically. See https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.create_components_accessibility_attributes
         inputElement.removeAttribute("aria-activedescendant");
     }
 
