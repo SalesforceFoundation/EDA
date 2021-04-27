@@ -1393,7 +1393,7 @@
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
-        <label>La configuració s&apos;ha desat correctament.</label>
+        <label><!-- Confirmation messsage that updated settings were saved --></label>
         <name>stgSaveSettings</name>
     </customLabels>
     <customLabels>
