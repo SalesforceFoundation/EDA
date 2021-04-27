@@ -10,7 +10,7 @@ import autoEnrollmentMappingsDescription from "@salesforce/label/c.stgAutoEnroll
 import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType";
 import stgColAutoEnrollmentStatus from "@salesforce/label/c.stgColAutoEnrollmentStatus";
 import stgColAutoEnrollmentRole from "@salesforce/label/c.stgColAutoEnrollmentRole";
-
+import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -20,6 +20,7 @@ export default class programSettings extends LightningElement {
 
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
+        newButton: stgBtnAddMapping,
         autoEnrollmentMappingsTable: {
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
             autoEnrollmentMappingsDescription: autoEnrollmentMappingsDescription,
