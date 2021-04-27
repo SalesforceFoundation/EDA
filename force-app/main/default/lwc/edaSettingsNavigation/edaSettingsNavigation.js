@@ -82,7 +82,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         },
         programSettings: {
             programSettings: stgProgramsSettingsNav,
-            programAutoEnrollmentMappings: "Program Auto-Enrollment Mappings",
+            programAutoEnrollmentMappings: stgAutoEnrollmentMappingsNav,
             programEnrollmentDeletions: "Program Enrollment Deletions",
         },
         relationshipSettings: {
