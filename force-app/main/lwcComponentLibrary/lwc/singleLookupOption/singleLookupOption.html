@@ -1,6 +1,6 @@
 <template>
     <li role="presentation" class="slds-listbox__item" onmouseover={handleMouseOver}>
-        <div class={lookupOptionClass} role="option" onclick={handleClick}>
+        <div class={lookupOptionClass} id="lookup-option" role="option" onclick={handleClick}>
             <span class="slds-media__figure">
                 <lightning-icon
                     if:false={viewModel.imageUrl}
@@ -20,8 +20,8 @@
                 </lightning-avatar>
             </span>
             <span class="slds-media__body">
-                <span class="slds-listbox__option-text slds-listbox__option-text_entity"
-                        data-qa-locator={qaLocator}>{viewModel.label}
+                <span class="slds-listbox__option-text slds-listbox__option-text_entity" data-qa-locator={qaLocator}
+                    >{viewModel.label}
                 </span>
                 <template if:true={viewModel.meta}>
                     <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">{viewModel.meta}</span>

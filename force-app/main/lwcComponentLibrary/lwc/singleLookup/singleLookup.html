@@ -33,6 +33,7 @@
                             id="lookupInput"
                             aria-autocomplete="list"
                             aria-controls="lookupListbox"
+                            aria-owns="lookupListbox"
                             aria-labelledby="lookupLabel"
                             autocomplete="off"
                             role="textbox"
@@ -44,7 +45,6 @@
                             onkeydown={handleKeydown}
                             data-qa-locator={qaLocator}
                         />
-                        <!--aria-activedescendant={activeDescendant}-->
                         <lightning-icon
                             if:false={value}
                             class="slds-input__icon slds-input__icon_right searchIcon"
@@ -75,7 +75,6 @@
                         role="listbox"
                         onmousedown={handleMouseDown}
                         onmouseup={handleMouseUp}
-                        aria-labelledby="lookupLabel"
                     >
                         <ul class="slds-listbox slds-listbox_vertical" role="presentation">
                             <li role="presentation" class="slds-listbox__item">

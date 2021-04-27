@@ -58,15 +58,6 @@ export default class SingleLookup extends LightningElement {
         }
     }
 
-    /*on hold due to activeDescendant having a bug, but required for accessibility: https://www.powermapper.com/products/sortsite/rules/w3chtml5ariaactivedescendant/
-    get activeDescendant() {
-        if (!this.options || this.optionIndex === -1) {
-            return undefined;
-        }
-
-        return this.options[this.optionIndex].label;
-    }*/
-
     get showOptions() {
         return !!this.inputValue && !this.value;
     }
@@ -157,6 +148,7 @@ export default class SingleLookup extends LightningElement {
                 this.selectOptionUp();
                 break;
             case KEY_DOWN:
+                console.log("attempting down");
                 event.preventDefault();
                 this.selectOptionDown();
                 break;
@@ -197,27 +189,21 @@ export default class SingleLookup extends LightningElement {
     }
 
     selectOptionDown() {
-        this.deactivateCurrentOption();
-
         if (this.optionIndex >= this.options.length - 1) {
-            this.optionIndex = 0;
-        } else {
-            this.optionIndex++;
+            this.setCurrentOption(0);
+            return;
         }
 
-        this.activateCurrentOption();
+        this.setCurrentOption(this.optionIndex + 1);
     }
 
     selectOptionUp() {
-        this.deactivateCurrentOption();
-
         if (this.optionIndex <= 0) {
-            this.optionIndex = this.options.length - 1;
-        } else {
-            this.optionIndex--;
+            this.setCurrentOption(this.options.length - 1);
+            return;
         }
 
-        this.activateCurrentOption();
+        this.setCurrentOption(this.optionIndex - 1);
     }
 
     confirmSelection(confirmOption) {
@@ -241,6 +227,7 @@ export default class SingleLookup extends LightningElement {
 
     clearCurrentOption() {
         this.optionIndex = -1;
+        this.removeActiveDescendant();
     }
 
     setCurrentOption(optionIndex) {
@@ -252,6 +239,7 @@ export default class SingleLookup extends LightningElement {
     activateCurrentOption() {
         if (this.optionIndex >= 0) {
             this.options[this.optionIndex].active = true;
+            this.setActiveDescendent();
         }
     }
 
@@ -259,6 +247,19 @@ export default class SingleLookup extends LightningElement {
         if (this.optionIndex >= 0) {
             this.options[this.optionIndex].active = undefined;
         }
+    }
+
+    setActiveDescendent() {
+        const lookupOptions = this.template.querySelectorAll("c-single-lookup-option");
+        const lookupOptionId = lookupOptions[this.optionIndex].getLookupId();
+
+        const inputElement = this.template.querySelector("input");
+        inputElement.setAttribute("aria-activedescendant", lookupOptionId);
+    }
+
+    removeActiveDescendant() {
+        const inputElement = this.template.querySelector("input");
+        inputElement.removeAttribute("aria-activedescendant");
     }
 
     dispatchSearchEvent(inputValue) {

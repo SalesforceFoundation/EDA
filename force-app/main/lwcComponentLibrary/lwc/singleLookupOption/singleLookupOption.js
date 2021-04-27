@@ -20,6 +20,11 @@ export default class SingleLookupOption extends LightningElement {
         }
     }
 
+    @api getLookupId() {
+        const listElement = this.template.querySelector("div");
+        return listElement.getAttribute("id");
+    }
+
     handleMouseOver(event) {
         this.dispatchOptionSelectionEvent();
     }
