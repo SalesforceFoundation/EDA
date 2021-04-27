@@ -3,6 +3,7 @@ import { LightningElement, api } from "lwc";
 import settingsButtonEdit from "@salesforce/label/c.stgBtnEdit";
 import settingsButtonCancel from "@salesforce/label/c.stgBtnCancel";
 import settingsButtonSave from "@salesforce/label/c.stgBtnSave";
+import stgSaveSettings from "@salesforce/label/c.stgSaveSettings";
 
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
@@ -40,7 +41,7 @@ export default class SettingsSaveCanvas extends LightningElement {
         settingsButtonEdit,
         settingsButtonCancel,
         settingsButtonSave,
-        successMessage: "Your updates have been successfully applied.",
+        successMessage: stgSaveSettings,
     };
 
     @api
