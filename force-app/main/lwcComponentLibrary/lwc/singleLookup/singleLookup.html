@@ -71,30 +71,28 @@
                     <div
                         id="lookupListbox"
                         class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid"
-                        if:false={value}
+                        if:true={showOptions}
                         role="listbox"
                         onmousedown={handleMouseDown}
                         onmouseup={handleMouseUp}
                         aria-labelledby="lookupLabel"
                     >
                         <ul class="slds-listbox slds-listbox_vertical" role="presentation">
-                            <template if:true={showSearchLine}
-                                ><li role="presentation" class="slds-listbox__item">
-                                    <div
-                                        class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_term slds-has-focus"
-                                        role="option"
-                                    >
-                                        <span class="slds-media__figure slds-listbox__option-icon">
-                                            <lightning-icon icon-name="utility:search" size="small"> </lightning-icon>
+                            <li role="presentation" class="slds-listbox__item">
+                                <div
+                                    class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_term slds-has-focus"
+                                    role="option"
+                                >
+                                    <span class="slds-media__figure slds-listbox__option-icon">
+                                        <lightning-icon icon-name="utility:search" size="small"> </lightning-icon>
+                                    </span>
+                                    <span class="slds-media__body">
+                                        <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                            {inputValue}
                                         </span>
-                                        <span class="slds-media__body">
-                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">
-                                                {inputValue}
-                                            </span>
-                                        </span>
-                                    </div>
-                                </li>
-                            </template>
+                                    </span>
+                                </div>
+                            </li>
                             <template for:each={options} for:item="inputOption">
                                 <c-single-lookup-option
                                     key={inputOption.index}

@@ -67,7 +67,7 @@ export default class SingleLookup extends LightningElement {
         return this.options[this.optionIndex].label;
     }*/
 
-    get showSearchLine() {
+    get showOptions() {
         return !!this.inputValue && !this.value;
     }
 
