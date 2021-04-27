@@ -2619,7 +2619,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
+        <shortDescription>Picklist value for EDA Settings</shortDescription>
         <value>Select...</value>
     </labels>
     <labels>
