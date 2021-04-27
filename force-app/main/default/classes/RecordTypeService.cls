@@ -25,29 +25,29 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2020
-* @group
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Service class for Record Type
-*/
+ * @author Salesforce.org
+ * @date 2020
+ * @group
+ * @group-content ../../ApexDocContent/HealthCheck.htm
+ * @description Service class for Record Type
+ */
 public virtual with sharing class RecordTypeService {
-
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static RecordTypeService instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected RecordTypeService() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected RecordTypeService() {
+    }
 
     /******************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of RecordTypeService.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of RecordTypeService.
+     ******************************************************************************/
     public static RecordTypeService getInstance() {
         if (instance == null) {
             instance = new RecordTypeService();
@@ -57,24 +57,81 @@ public virtual with sharing class RecordTypeService {
     }
 
     /******************************************************************************
-    * @description Get a map of Record Type Model By Id for specified SObjectType
-    * @param SObjectype An SObject from which to retrieve associated record types
-    * @return A map of Record Type Models By Id
-    ******************************************************************************/
+     * @description Get a map of Record Type Model By Id for specified SObjectType
+     * @param SObjectype An SObject from which to retrieve associated record types
+     * @return A map of Record Type Models By Id
+     ******************************************************************************/
     public virtual Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
         return this.locateRecordTypeMapper().getModelByIdMapForSObjectType(sObjectType);
     }
 
     /******************************************************************************
-    * @description Get the Record Type Model from the map of record type model by id
-    * @param recordTypeId string of Record Type Id 
-    * @param recordTypeModelById map of Record Type Model By Id
-    * @return An instance of Record Type Model
-    ******************************************************************************/
+     * @description Returns a recordtype model for an Object and it's recordtype
+     * @param objectAPI The API name for object to get the record type model for
+     * @param recTypeDevName The record type dev name to get the record typpe model for
+     * for the given object
+     * @return A recordtype model
+     ******************************************************************************/
+    public virtual RecordTypeModel getRecordTypeModelFromRecTypeDevName(String objectAPI, String recTypeDevName) {
+        return this.locateRecordTypeMapper().getRecordTypeModelFromRecTypeDevName(objectAPI, recTypeDevName);
+    }
+
+    /***********************************************************************************************************************
+     * @description Retrieve a map of active record types by Id from a list of all record types associated with an SObject.
+     * @param allRecordTypeModelsList A list containing all record type models in an org.
+     * @return A map of Active Record Type Models By Id.
+     ***********************************************************************************************************************/
+    public virtual Map<Id, RecordTypeModel> getActiveRecordTypeModelsById(
+        List<RecordTypeModel> allRecordTypeModelsList
+    ) {
+        Map<Id, RecordTypeModel> activeRecordTypeModelsById = new Map<Id, RecordTypeModel>();
+
+        for (RecordTypeModel recordTypeModel : allRecordTypeModelsList) {
+            if (recordTypeModel.isActive == false) {
+                continue;
+            }
+
+            activeRecordTypeModelsById.put(recordTypeModel.id, recordTypeModel);
+        }
+
+        return activeRecordTypeModelsById;
+    }
+
+    /***********************************************************************************************************************
+     * @description Filter through a map of valid Record Type models to retrieve a list of Ids corresponding to values in a specified list.
+     * @param  idsToFindList A list of Id strings corresponding to Record Types
+     * @param  validRecordTypeIdsSet A set of Ids associated with valid Record Types
+     * @return A List<Id> containing Ids that correspond to valid Record Types and match a value in the specified list of Ids to find.
+     ***********************************************************************************************************************/
+    public virtual List<Id> filterListForValidIds(List<String> idsToFindList, Set<Id> validRecordTypeIdsSet) {
+        List<String> validIdsList = new List<String>();
+
+        for (String idToFind : idsToFindList) {
+            if ((idToFind instanceof Id) == false) {
+                // Id to find is not a valid Id string => omit
+                continue;
+            }
+            if (validRecordTypeIdsSet.contains((Id) idToFind) == false) {
+                // Id to find has no match to a valid record type model => omit
+                continue;
+            }
+
+            validIdsList.add(idToFind);
+        }
+
+        return validIdsList;
+    }
+
+    /******************************************************************************
+     * @description Get the Record Type Model from the map of record type model by id
+     * @param recordTypeId string of Record Type Id
+     * @param recordTypeModelById map of Record Type Model By Id
+     * @return An instance of Record Type Model
+     ******************************************************************************/
     public virtual RecordTypeModel getRecordTypeModelFromMap(
-        String recordTypeId, 
+        String recordTypeId,
         Map<Id, RecordTypeModel> recordTypeModelById
-    ) { 
+    ) {
         try {
             return recordTypeModelById.get(Id.valueOf(recordTypeId));
         } catch (System.StringException ex) {
@@ -83,20 +140,20 @@ public virtual with sharing class RecordTypeService {
     }
 
     /******************************************************************************
-    * @description Retrieve a record type model for a specified record type name or label.
-    * @param recordTypeNameOrLabel A string representing the name or label for a record type
-    * @param recordTypeModelByName A map of record type models by name
-    * @param recordTypeModelByLabel A map of record type models by label
-    * @return A Record Type Model corresponding to the specified record type label or name
-    ******************************************************************************/
+     * @description Retrieve a record type model for a specified record type name or label.
+     * @param recordTypeNameOrLabel A string representing the name or label for a record type
+     * @param recordTypeModelByName A map of record type models by name
+     * @param recordTypeModelByLabel A map of record type models by label
+     * @return A Record Type Model corresponding to the specified record type label or name
+     ******************************************************************************/
     public virtual RecordTypeModel getRecordTypeModelFromNameAndLabelMaps(
-        String recordTypeNameOrLabel, 
+        String recordTypeNameOrLabel,
         Map<String, RecordTypeModel> recordTypeModelByName,
         Map<String, RecordTypeModel> recordTypeModelByLabel
-    ) { 
+    ) {
         RecordTypeModel recordTypeModel = recordTypeModelByName.get(recordTypeNameOrLabel);
 
-        if (recordTypeModel== null) {
+        if (recordTypeModel == null) {
             recordTypeModel = recordTypeModelByLabel.get(recordTypeNameOrLabel);
         }
 
@@ -104,10 +161,10 @@ public virtual with sharing class RecordTypeService {
     }
 
     /******************************************************************************
-    * @description Generate a map of Record Type Models By developer name.
-    * @param recordTypeModelById A map of recordTypeModels by Id
-    * @return A map of Record Type Model By Name
-    ******************************************************************************/
+     * @description Generate a map of Record Type Models By developer name.
+     * @param recordTypeModelById A map of recordTypeModels by Id
+     * @return A map of Record Type Model By Name
+     ******************************************************************************/
     public Map<String, RecordTypeModel> getRecordTypeModelByName(Map<Id, RecordTypeModel> recordTypeModelById) {
         Map<String, RecordTypeModel> recordTypeModelsByName = new Map<String, RecordTypeModel>();
 
@@ -119,10 +176,10 @@ public virtual with sharing class RecordTypeService {
     }
 
     /******************************************************************************
-    * @description Generate a map of Record Type Models By developer label.
-    * @param recordTypeModelById A map of recordTypeModels by Id
-    * @return A map of Record Type Model By Label
-    ******************************************************************************/
+     * @description Generate a map of Record Type Models By developer label.
+     * @param recordTypeModelById A map of recordTypeModels by Id
+     * @return A map of Record Type Model By Label
+     ******************************************************************************/
     public Map<String, RecordTypeModel> getRecordTypeModelByLabel(Map<Id, RecordTypeModel> recordTypeModelById) {
         Map<String, RecordTypeModel> recordTypeModelsByLabel = new Map<String, RecordTypeModel>();
 
@@ -134,9 +191,9 @@ public virtual with sharing class RecordTypeService {
     }
 
     /******************************************************************************
-    * @description Retrieves an instance of the RecordTypeMapper class.
-    * @return An instance of RecordTypeMapper.
-    ******************************************************************************/
+     * @description Retrieves an instance of the RecordTypeMapper class.
+     * @return An instance of RecordTypeMapper.
+     ******************************************************************************/
     @TestVisible
     private RecordTypeMapper locateRecordTypeMapper() {
         return RecordTypeMapper.getInstance();

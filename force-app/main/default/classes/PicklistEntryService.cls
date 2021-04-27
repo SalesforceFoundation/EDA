@@ -25,31 +25,30 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group
-* @group-content ../../ApexDocContent/
-* @description Returns a list of PicklistEntry models
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group
+ * @group-content ../../ApexDocContent/
+ * @description Returns a list of PicklistEntry models
+ */
 public virtual with sharing class PicklistEntryService {
-
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static PicklistEntryService instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected PicklistEntryService() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected PicklistEntryService() {
+    }
 
     /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of PicklistEntryService.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of PicklistEntryService.
+     ******************************************************************************/
     public static PicklistEntryService getInstance() {
-
         if (instance == null) {
             instance = new PicklistEntryService();
         }
@@ -58,23 +57,38 @@ public virtual with sharing class PicklistEntryService {
     }
 
     /*******************************************************************************************************
-    * @description Returns a List of PicklistEntry Models
-    * @return Map<String,PicklistEntryModel> The list of PicklistEntry Models
-    ********************************************************************************************************/
-    public virtual Map<String,PicklistEntryModel> getModelsByNameForSObjectField(
+     * @description Returns a map of PicklistEntry Models by name
+     * @return Map<String,PicklistEntryModel> The list of PicklistEntry Models
+     ********************************************************************************************************/
+    public virtual Map<String, PicklistEntryModel> getModelsByNameForSObjectField(
         SObjectType sObjectTypeName,
         SObjectField SObjectFieldName
     ) {
-        return locatePicklistEntryMapper().getModelsByNameForSObjectField(
-            sObjectTypeName,
-            SObjectFieldName
-        );
+        return locatePicklistEntryMapper().getModelsByNameForSObjectField(sObjectTypeName, SObjectFieldName);
     }
 
     /*******************************************************************************************************
-    * @description Returns the instance of PicklistEntryMapper class
-    * @return The instance of PicklistEntryMapper class
-    ********************************************************************************************************/
+     * @description Returns a map of active PicklistEntry Models by name
+     * @return Map<String,PicklistEntryModel> The list of PicklistEntry Models
+     ********************************************************************************************************/
+    public virtual Map<String, PicklistEntryModel> getActivePicklistEntryModelsByName(
+        Map<String, PicklistEntryModel> picklistEntryModelsByName
+    ) {
+        Map<String, PicklistEntryModel> activePicklistEntryModelsByName = new Map<String, PicklistEntryModel>();
+
+        for (PicklistEntryModel picklistEntryModel : picklistEntryModelsByName.values()) {
+            if (picklistEntryModel.isActive == true) {
+                activePicklistEntryModelsByName.put(picklistEntryModel.name, picklistEntryModel);
+            }
+        }
+
+        return activePicklistEntryModelsByName;
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the instance of PicklistEntryMapper class
+     * @return The instance of PicklistEntryMapper class
+     ********************************************************************************************************/
     @TestVisible
     private PicklistEntryMapper locatePicklistEntryMapper() {
         return PicklistEntryMapper.getInstance();

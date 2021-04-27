@@ -1,0 +1,51 @@
+<template>
+    <div
+        class="slds-grid slds-grid--vertical slds-grid_vertical-align-start slds-wrap slds-p-left_large slds-p-right_large slds-p-bottom_xx-large"
+    >
+        <template if:true={modifyRecords}>
+            <div class="slds-col slds-size-1-of-1 slds-p-bottom_large">
+                <lightning-formatted-rich-text value={affiliationsDesc}> </lightning-formatted-rich-text>
+            </div>
+            <template if:true={accountRecordTypeComboboxVModel}>
+                <div class="slds-col slds-size_2-of-3">
+                    <lightning-combobox
+                        id={inputAttributeReference.accountRecordType}
+                        name={inputAttributeReference.accountRecordType}
+                        label={labelReference.accountRecordTypeCombobox}
+                        value={accountRecordTypeComboboxVModel.value}
+                        placeholder={labelReference.comboboxPlaceholderText}
+                        options={accountRecordTypeComboboxVModel.options}
+                        onchange={handleAccountRecordTypeChange}
+                        data-qa-locator={inputAttributeReference.accountRecordType}
+                    ></lightning-combobox>
+                </div>
+                <div class="slds-p-bottom_xx-large">
+                    <div class="slds-col slds-size-1-of-1 slds-p-bottom_xx-large">{accountRecordTypeApiNameLabel}</div>
+                </div>
+            </template>
+            <template if:true={contactAccountLookupFieldComboboxVModel}>
+                <div class="slds-col slds-size_2-of-3">
+                    <lightning-combobox
+                        id={inputAttributeReference.contactField}
+                        name={inputAttributeReference.contactField}
+                        label={labelReference.contactFieldCombobox}
+                        value={contactAccountLookupFieldComboboxVModel.value}
+                        placeholder={labelReference.comboboxPlaceholderText}
+                        options={contactAccountLookupFieldComboboxVModel.options}
+                        onchange={handleContactFieldChange}
+                        data-qa-locator={inputAttributeReference.contactField}
+                    ></lightning-combobox>
+                </div>
+                <div class="slds-p-bottom_xx-large">
+                    <div class="slds-col slds-size-1-of-1 slds-p-bottom_xx-large">{contactFieldApiNameLabel}</div>
+                </div>
+            </template>
+        </template>
+
+        <template if:true={deleteRecords}>
+            <div class="slds-col slds-size-1-of-1 slds-p-bottom_large">
+                <lightning-formatted-rich-text value={deleteWarning}> </lightning-formatted-rich-text>
+            </div>
+        </template>
+    </div>
+</template>

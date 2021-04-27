@@ -1,0 +1,11 @@
+<aura:component implements="lightning:isUrlAddressable" access="global">
+    <aura:attribute name="pageReference" type="Object" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <c:primaryAffiliationsModalOpener aura:id="primaryAffiliationsModal"></c:primaryAffiliationsModalOpener>
+    <aura:handler name="modalSaveEvent" event="c:modalSaveEvent" action="{!c.handleModalSaveEvent}" />
+    <c:edaSettings
+        aura:id="edaSettings"
+        pageReference="{!v.pageReference}"
+        onprimaryaffiliationmodalrequest="{!c.primaryAffiliationModalRequestHandler}"
+    />
+</aura:component>

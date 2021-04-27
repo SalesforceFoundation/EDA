@@ -39,6 +39,16 @@ API create plan requirement
     &{plan_requirement} =   Salesforce Get          ${ns}Plan_Requirement__c   ${prog_req_id}
     [return]                &{plan_requirement}
 
+API create language
+    [Documentation]         Creating a language record through API
+    [Arguments]             ${language_name}
+
+    ${ns} =                 Get EDA namespace prefix
+    ${language_id} =        Salesforce Insert       ${ns}Language__c
+    ...                         Name=${language_name}
+    &{language} =           Salesforce Get          ${ns}Language__c   ${language_id}
+    [return]                &{language}
+
 API Get ID
     [Documentation]         Returns the ID of a record identified by the given field_name and
     ...                     field_value input for a specific object
@@ -50,14 +60,15 @@ API Get ID
     [return]                ${Id}[Id]
 
 API Create Contact
-    [Documentation]         Creating a contact through API
-    ${first_name} =  Generate Random String
-    ${last_name} =   Generate Random String
-    ${contact_id} =  Salesforce Insert  Contact
-    ...                  FirstName=${first_name}
-    ...                  LastName=${last_name}
-    &{contact} =     Salesforce Get  Contact  ${contact_id}
-    [return]         &{contact}
+    [Documentation]         Creates a contact using the arguments passed from the tests and returns
+    ...                     the ID of a contact record after inserting it
+    [Arguments]             &{fields}
+    ${contact_id} =         Salesforce Insert  Contact
+    ...                         FirstName=${faker.first_name()}
+    ...                         LastName=${faker.last_name()}
+    ...                         &{fields}
+    &{contact} =            Salesforce Get  Contact  ${contact_id}
+    [return]                &{contact}
 
 API Create Collaboration Group
     [Documentation]
@@ -107,6 +118,26 @@ Get Records Count
     ...                     SELECT COUNT(Name) FROM ${NS}${obj_name} where ${NS}${field_name}=${field_value}
     &{Id} =                 Get From List  ${result['records']}  0
     [return]                ${Id}[expr0]
+
+Get Language Field Value
+    [Documentation]         Returns the value of a field in language object by accepting the field
+    ...                     name , record ID and object name
+    ${NS} =                 Get EDA namespace prefix
+    [Arguments]             ${obj_name}             ${record_id}       ${field_name}
+    ${result} =             SOQL Query
+    ...                     SELECT Name FROM ${NS}Language__c where Id IN (SELECT ${NS}${field_name} FROM ${obj_name} WHERE Id = '${record_id}')
+    &{Id} =                 Get From List           ${result['records']}      0
+    [return]                ${Id}[Name]
+
+Get Contact Language Value
+    [Documentation]         Returns language fluency, language name and status of primary language
+    ...                     by accepting object name and contact record id
+    ${NS} =                 Get EDA namespace prefix
+    [Arguments]             ${obj_name}             ${contact_id}
+    &{result} =             SOQL Query
+    ...                     SELECT ${NS}Fluency__c,${NS}Language__r.Name,${NS}Primary_Language__c FROM ${NS}${obj_name} WHERE hed__Contact__r.Id = '${contact_id}'
+    &{contact_language} =                 Get From List           ${result['records']}      0
+    [return]                &{contact_language}
 
 Run health check settings
     [Documentation]             Validates the health check settings row by row

@@ -74,4 +74,22 @@ public virtual with sharing class RecordTypeMapper {
         return recordTypeModelById;
     }
 
+    /****************************************************************************************
+     * @description Creates and returns a recordtype model for an Object and it's recordtype
+     * @param objectAPI The API name for object to get the record type model for
+     * @param recTypeDevName The record type dev name to get the record typpe model for
+     * for the given object
+     * @return A recordtype model
+     ****************************************************************************************/
+    public virtual RecordTypeModel getRecordTypeModelFromRecTypeDevName(String objectAPI, String recTypeDevName) {
+        Schema.RecordTypeInfo recTypeInfo = UTIL_Describe.getRecordTypeInfoByDeveloperName(objectAPI, recTypeDevName);
+        if (recTypeInfo == null) {
+            return null;
+        }
+        return new RecordTypeModel(recTypeInfo.getRecordTypeId(),
+                                    recTypeInfo.getName(),
+                                    recTypeInfo.getDeveloperName(),
+                                    recTypeInfo.isActive());
+    }
+
 }

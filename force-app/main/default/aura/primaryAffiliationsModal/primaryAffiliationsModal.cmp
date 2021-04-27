@@ -1,0 +1,17 @@
+<aura:component>
+    <aura:registerEvent name="modalDataChangeEvent" type="c:modalDataChangeEvent" />
+
+    <aura:attribute name="affiliationsAction" type="String" />
+    <aura:attribute name="accountRecordType" type="String" />
+    <aura:attribute name="contactField" type="String" />
+    <aura:attribute name="autoProgramEnrollment" type="Boolean" />
+
+    <c:primaryAffiliationsModalBody
+        affiliationsAction="{!v.affiliationsAction}"
+        accountRecordType="{!v.accountRecordType}"
+        contactField="{!v.contactField}"
+        autoEnrollmentEnabled="{!v.autoProgramEnrollment}"
+        onaccountrecordtypechange="{!c.handleAccountRecordTypeChange}"
+        oncontactfieldchange="{!c.handleContactFieldChange}"
+    ></c:primaryAffiliationsModalBody>
+</aura:component>

@@ -1,0 +1,61 @@
+<template>
+    <div class="slds-grid slds-theme_default eda-height_full">
+        <template if:false={currentUserHasAccessWireResult}>
+            <lightning-spinner
+                alternative-text={labelReference.spinnerLoadingAltText}
+                variant="brand"
+                size="large"
+            ></lightning-spinner>
+        </template>
+        <template if:true={currentUserHasAccessWireResult}>
+            <template if:true={currentUserDoesNotHaveAccess}> {labelReference.insufficientAccessError} </template>
+            <template if:true={currentUserHasAccess}>
+                <div
+                    class="slds-col slds-no-flex slds-size_4-of-12 slds-scrollable_y slds-p-top_x-small eda-height_full"
+                    data-qa-locator="edaSettingsNavigation"
+                >
+                    <c-eda-settings-navigation
+                        onsettingsnavigation={handleSettingsNavigation}
+                        active-page={activePage}
+                    ></c-eda-settings-navigation>
+                </div>
+                <div
+                    class="slds-col slds-no-flex slds-size_8-of-12 slds-scrollable_y slds-p-top_large slds-p-left_small eda-height_full"
+                    data-qa-locator="edaSettingsPage"
+                >
+                    <template if:true={settingsPageToDisplay.accountModelSettings}>
+                        <c-account-model-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-account-model-settings>
+                    </template>
+
+                    <template if:true={settingsPageToDisplay.addressSettings}>
+                        <c-address-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-address-settings>
+                    </template>
+
+                    <template if:true={settingsPageToDisplay.affiliationSettings}>
+                        <c-affiliation-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-affiliation-settings>
+                    </template>
+
+                    <template if:true={settingsPageToDisplay.contactInformationSettings}>
+                        <c-contact-information-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-contact-information-settings>
+                    </template>
+
+                    <template if:true={settingsPageToDisplay.errorSettings}>
+                        <c-error-settings></c-error-settings>
+                    </template>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>

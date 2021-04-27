@@ -1,0 +1,21 @@
+<template>
+    <nav class="slds-nav-vertical slds-nav-vertical_compact" data-active-page={activePage}>
+        <div class="slds-grid slds-grid_vertical nav-height_full" data-qa-locator="settingsNavigationMenu">
+            <template if:false={parsedViewModel}>
+                <lightning-spinner alternative-text={spinnerLoadingAltText} variant="brand" size="medium">
+                </lightning-spinner>
+            </template>
+            <template if:true={parsedViewModel}>
+                <ul>
+                    <template for:each={parsedViewModel.navigationSections} for:item="navigationSection">
+                        <li key={navigationSection.id}>
+                            <c-settings-navigation-section
+                                view-model={navigationSection}
+                            ></c-settings-navigation-section>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+        </div>
+    </nav>
+</template>
