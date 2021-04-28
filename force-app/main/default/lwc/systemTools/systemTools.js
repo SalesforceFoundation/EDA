@@ -14,6 +14,7 @@ import stgRefreshHouseholdNamesSuccessToast from "@salesforce/label/c.stgRefresh
 import stgRefreshAdminAcctNameTitle from "@salesforce/label/c.stgRefreshAdminAcctNameTitle";
 import stgRefreshAdminAcctNameDesc from "@salesforce/label/c.stgRefreshAdminAcctNameDesc";
 import stgBtnRefreshAdminNames from "@salesforce/label/c.stgBtnRefreshAdminNames";
+import stgBtnRefreshAdminNamesA11y from "@salesforce/label/c.stgBtnRefreshAdminNamesA11y";
 import stgRefreshAdminNamesSuccessToast from "@salesforce/label/c.stgRefreshAdminNamesSuccessToast";
 
 // BatchJob Naming custom labels
@@ -35,6 +36,7 @@ export default class systemTools extends LightningElement {
         stgRefreshAdminAcctNameTitle: stgRefreshAdminAcctNameTitle,
         stgRefreshAdminAcctNameDesc: stgRefreshAdminAcctNameDesc,
         stgBtnRefreshAdminNames: stgBtnRefreshAdminNames,
+        stgBtnRefreshAdminNamesA11y: stgBtnRefreshAdminNamesA11y,
         stgRefreshAdminNamesSuccessToast: stgRefreshAdminNamesSuccessToast,
         BatchJobRunningProblem: BatchJobRunningProblem,
         tellMeMoreLink: stgTellMeMoreLink,

@@ -1047,6 +1047,14 @@
         <value>Update</value>
     </labels>
     <labels>
+        <fullName>stgBtnRefreshAdminNamesA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates all Administrative Account names</shortDescription>
+        <value>Update all Administrative Account names.</value>
+    </labels>
+    <labels>
         <fullName>stgBtnRefreshHouseholdNames</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
