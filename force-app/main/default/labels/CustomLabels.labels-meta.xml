@@ -2596,7 +2596,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Title for the New Affiliation Mapping window</shortDescription>
-        <value>New Affiliation Mapping</value>
+        <value>New Affiliation Mapping?</value>
     </labels>
     <labels>
         <fullName>stgOptAllSysAdmins</fullName>
