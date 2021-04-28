@@ -549,7 +549,7 @@
         <name>stgBtnSave</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for updatingthe selected Apex job --></label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnUpdate</name>
     </customLabels>
     <customLabels>
@@ -1365,7 +1365,7 @@
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Update All Household Account Names Settings --></label>
+        <label><!-- Label for the Update All Household Account Names settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>
