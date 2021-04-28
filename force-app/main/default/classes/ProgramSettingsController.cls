@@ -62,6 +62,20 @@ public with sharing class ProgramSettingsController {
     }
 
     /************************************************************************************
+     * @description Retrieve a ComoboxVModel for auto enrollment status.
+     * @return A ComboboxVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(String autoEnrollmentMappingStatus) {
+        try {
+            return ProgramSettingsController.locateProgramSettingsVMapper()
+                .getAutoEnrollmentMappingStatusComboboxVModel(autoEnrollmentMappingStatus);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************
      * @description Update the affiliation mappping which owns the auto enrollment mapping.
      * @param mappingName
      * @param accRecordType
@@ -69,7 +83,6 @@ public with sharing class ProgramSettingsController {
      ************************************************************************************/
     @AuraEnabled
     public static String updateAutoEnrollmentMapping(String mappingName, String accountRecordType) {
-        system.debug(mappingName);
         try {
             AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel(mappingName, accountRecordType);
 

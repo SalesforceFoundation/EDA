@@ -162,6 +162,24 @@ public virtual with sharing class ProgramSettingsVMapper {
 
         return new ComboboxVModel(comboboxValue, comboboxValues);
     }
+    /**********************************************************************************************************
+     * @description Retrieve a ComboBoxVModel for auto enrollment mapping status
+     * @return  A ComboBoxVModel
+     *********************************************************************************************************/
+    public virtual ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(String autoEnrollmentMappingStatus) {
+        String comboboxValue = autoEnrollmentMappingStatus;
+
+        List<ComboboxValueVModel> comboboxOptions = new List<ComboboxValueVModel>();
+
+        Map<String, PicklistEntryModel> statusPicklistEntryModelByName = this.locatePicklistEntryService()
+            .getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Status__c);
+
+        for (PicklistEntryModel picklistEntryModel : statusPicklistEntryModelByName.values()) {
+            comboboxOptions.add(new ComboboxValueVModel(picklistEntryModel.label, picklistEntryModel.name));
+        }
+
+        return new ComboboxVModel(comboboxValue, comboboxOptions);
+    }
 
     /**********************************************************************************************************************
      * @description Helper method to generate a list of comboboxValueVModels for all active Account record types.
@@ -199,5 +217,14 @@ public virtual with sharing class ProgramSettingsVMapper {
     @TestVisible
     private RecordTypeService locateRecordTypeService() {
         return RecordTypeService.getInstance();
+    }
+
+    /*****************************************************************************
+     * @description Retrieve an instance of the PicklistEntryService class.
+     * @return An instance of PicklistEntryService.
+     *****************************************************************************/
+    @TestVisible
+    private PicklistEntryService locatePicklistEntryService() {
+        return PicklistEntryService.getInstance();
     }
 }

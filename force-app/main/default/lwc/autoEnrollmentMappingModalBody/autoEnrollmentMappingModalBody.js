@@ -5,15 +5,19 @@ import stgAffiliationsEditModalBody from "@salesforce/label/c.stgAffiliationsEdi
 import stgApiNameLabel from "@salesforce/label/c.stgApiNameLabel";
 
 import getAccountRecordTypeComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAccountRecordTypeComboboxVModel";
+import getAutoEnrollmentMappingStatusComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel";
 
 export default class autoEnrollmentMappingModalBody extends LightningElement {
     @api actionName;
     @api accountRecordType;
-    @api autoEnrollmentEnabledStatus;
-    @api autoEnrollmentEnabledRole;
+    @api autoEnrollmentMappingStatus;
+    @api autoEnrollmentMappingRole;
 
     @track accountRecordTypeComboboxVModel;
     @track accountRecordTypeComboboxWireResult;
+
+    @track autoEnrollmentMappingStatusComboboxVModel;
+    @track autoEnrollmentMappingStatusComboboxVModelWireResult;
 
     labelReference = {
         accountRecordTypeCombobox: stgColAccountRecordType,
@@ -23,7 +27,8 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     };
 
     inputAttributeReference = {
-        accountRecordType: "primaryAffiliationsAccountRecordType",
+        accountRecordType: "autoEnrollmentMappingAccountRecordType",
+        autoEnrollmentMappingStatus: "autoEnrollmentMappingStatus",
     };
 
     @wire(getAccountRecordTypeComboboxVModel, {
@@ -39,30 +44,41 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         }
     }
 
+    @wire(getAutoEnrollmentMappingStatusComboboxVModel, {
+        autoEnrollmentMappingStatus: "$autoProgramEnrollmentStatus",
+    })
+    autoEnrollmentMappingStatusComboboxVModelWire(result) {
+        console.log("hello");
+
+        this.autoEnrollmentMappingStatusComboboxVModelWireResult = result;
+
+        if (result.data) {
+            this.autoEnrollmentMappingStatusComboboxVModel = result.data;
+        } else if (result.error) {
+            console.log("error retrieving autoEnrollmentMappingStatusComboboxVModel");
+        }
+    }
+
     get modifyRecords() {
         return this.actionName === "edit" || this.actionName === "create";
     }
 
-    get accountRecordTypeApiNameLabel() {
-        return this.labelReference.apiNameDisplay.replace("{0}", this.accountRecordTypeComboboxVModel.value);
+    handleAutoEnrollmentMappingStatusChange(event) {
+        //this.dispatchAutoEnrollmentMappingStatusChangeEvent(event.detail.value);
     }
 
-    handleAccountRecordTypeChange(event) {
-        this.dispatchAccountRecordTypeChangeEvent(event.detail.value);
-    }
-
-    dispatchAccountRecordTypeChangeEvent(accountRecordType) {
-        const accountRecordTypeDetails = {
-            accountRecordType: accountRecordType,
+    dispatchAutoEnrollmentMappingStatusChangeEvent(autoEnrollmentMappingStatus) {
+        const autoEnrollmentMappingStatusDetails = {
+            autoEnrollmentMappingStatus: autoEnrollmentMappingStatus,
         };
 
-        const accountRecordTypeChangeEvent = new CustomEvent("accountrecordtypechange", {
-            detail: accountRecordTypeDetails,
+        const autoEnrollmentMappingStatusChangeEvent = new CustomEvent("autoenrollmentmappingstatuschange", {
+            detail: autoEnrollmentMappingStatusDetails,
             bubbles: true,
             composed: true,
         });
 
-        this.dispatchEvent(accountRecordTypeChangeEvent);
+        this.dispatchEvent(autoEnrollmentMappingStatusChangeEvent);
     }
 
     get autoEnrollmentMappingModalDesc() {

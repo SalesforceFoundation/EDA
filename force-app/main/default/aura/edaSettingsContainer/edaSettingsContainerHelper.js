@@ -22,11 +22,12 @@
     },
     openAutoEnrollmentMappingModal: function (component, eventParameters) {
         const actionName = eventParameters.actionName;
+        const mappingName = eventParameters.mappingName;
         const accountRecordType = eventParameters.accountRecordType;
         const autoProgramEnrollmentStatus = eventParameters.autoProgramEnrollmentStatus;
         const autoProgramEnrollmentRole = eventParameters.autoProgramEnrollmentRole;
-        const mappingName = eventParameters.mappingName;
-        console.log("container savemodal" + mappingName);
+
+        console.log("container" + autoProgramEnrollmentStatus);
         component
             .find("autoEnrollmentMappingModal")
             .openAutoEnrollmentMappingModal(

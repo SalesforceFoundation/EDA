@@ -6,21 +6,18 @@
             <div class="slds-col slds-size-1-of-1 slds-p-bottom_large">
                 <lightning-formatted-rich-text value={autoEnrollmentMappingModalDesc}> </lightning-formatted-rich-text>
             </div>
-            <template if:true={accountRecordTypeComboboxVModel}>
+            <template if:true={autoEnrollmentMappingStatusComboboxVModel}>
                 <div class="slds-col slds-size_2-of-3">
                     <lightning-combobox
-                        id={inputAttributeReference.accountRecordType}
-                        name={inputAttributeReference.accountRecordType}
+                        id={inputAttributeReference.autoEnrollmentMappingStatus}
+                        name={inputAttributeReference.autoEnrollmentMappingStatus}
                         label={labelReference.accountRecordTypeCombobox}
-                        value={accountRecordTypeComboboxVModel.value}
+                        value={autoEnrollmentMappingStatusComboboxVModel.value}
                         placeholder={labelReference.comboboxPlaceholderText}
-                        options={accountRecordTypeComboboxVModel.options}
-                        onchange={handleAccountRecordTypeChange}
-                        data-qa-locator={inputAttributeReference.accountRecordType}
+                        options={autoEnrollmentMappingStatusComboboxVModel.options}
+                        onchange={handleAutoEnrollmentMappingStatusChange}
+                        data-qa-locator={inputAttributeReference.autoEnrollmentMappingStatus}
                     ></lightning-combobox>
-                </div>
-                <div class="slds-p-bottom_xx-large">
-                    <div class="slds-col slds-size-1-of-1 slds-p-bottom_xx-large">{accountRecordTypeApiNameLabel}</div>
                 </div>
             </template>
         </template>

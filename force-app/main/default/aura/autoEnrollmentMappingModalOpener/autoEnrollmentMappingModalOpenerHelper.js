@@ -3,10 +3,10 @@
         const actionName = eventParameters.actionName;
         const mappingName = eventParameters.mappingName;
         const accountRecordType = eventParameters.accountRecordType;
-        const autoProgramEnrollmentStatus = eventParameters.autoProgramEnrollment;
-        const autoProgramEnrollmentRole = eventParameters.autoProgramEnrollment;
+        const autoProgramEnrollmentStatus = eventParameters.autoProgramEnrollmentStatus;
+        const autoProgramEnrollmentRole = eventParameters.autoProgramEnrollmentRole;
 
-        console.log("opener " + mappingName);
+        console.log("opener " + autoProgramEnrollmentStatus);
 
         component.set("v.actionName", actionName);
         component.set("v.mappingName", mappingName);
@@ -84,6 +84,9 @@
         switch (field) {
             case "accountRecordType":
                 component.set("v.accountRecordType", fieldValue);
+                break;
+            case "autoProgramEnrollmentStatus":
+                component.set("v.autoProgramEnrollmentStatus", fieldValue);
                 break;
         }
     },

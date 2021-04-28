@@ -145,7 +145,6 @@ export default class programSettings extends LightningElement {
     }
 
     @api modalSave(saveModel) {
-        console.log(saveModel.mappingName);
         switch (saveModel.action) {
             /*case "create":
                 this.insertAffiliations(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
@@ -160,7 +159,6 @@ export default class programSettings extends LightningElement {
     }
 
     updateAutoEnrollmentMapping(mappingName, accountRecordType) {
-        console.log("helllo" + mappingName);
         updateAutoEnrollmentMapping({
             mappingName: mappingName,
             accountRecordType: accountRecordType,
