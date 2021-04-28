@@ -772,7 +772,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Title for the Delete Affiliation mapping window</shortDescription>
-        <value>Delete Affiliation mapping?</value>
+        <value>Delete Affiliation Mapping?</value>
     </labels>
     <labels>
         <fullName>stgAffiliationsDeleteSuccess</fullName>
