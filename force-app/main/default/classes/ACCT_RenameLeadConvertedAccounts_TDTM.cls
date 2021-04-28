@@ -67,12 +67,10 @@ public class ACCT_RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
      * @param oldList a list of SObjects prior to update
      */
     private void handleAfterUpdate(List<SObject> newList, List<SObject> oldList) {
-
         if (this.isUpdateRecursion() == true) {
             return;
         }
         this.setUpdateRecursion();
-
 
         DmlWrapper dmlWrapper = new DmlWrapper();
         List<lead> newleads = (List<lead>) newlist;

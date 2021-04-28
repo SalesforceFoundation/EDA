@@ -63,14 +63,13 @@ private class ACCT_RenameLeadConvertedAccounts_TEST {
 
     /*********************************************************************************************************
      * @description Insert and convert a new lead with the Administrative Record Type selected
-     * Make sure the Account's name is set based on account naming setting.
+     * Make sure the Account's name is set based on account administrative naming setting.
      */
     @isTest
     private static void convertLeadAdminRecordType() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                Household_Account_Naming_Format__c = '{!LastName} Administrative Account',
                 Automatic_Household_Naming__c = true,
                 Lead_Converted_Account_RTypes__c = UTIL_Describe_API.getAdminAccRecTypeID()
             )
@@ -93,6 +92,84 @@ private class ACCT_RenameLeadConvertedAccounts_TEST {
         Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account LIMIT 1];
 
         System.assertEquals(testLead.LastName + ' Administrative Account', assertAccount.Name);
+    }
+
+    /*********************************************************************************************************
+     * @description Insert and convert a new lead with the Household Record Type selected
+     * Make sure the Account's name is set based on account default naming setting.
+     */
+    @isTest
+    private static void convertLeadHHRecordType() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Household_Account_Naming_Format__c = '{!LastName} Household Account',
+                Automatic_Household_Naming__c = true,
+                Lead_Converted_Account_RTypes__c = UTIL_Describe_API.getHhAccRecTypeID()
+            )
+        );
+
+        Lead testLead = new Lead(FirstName = 'First', LastName = 'Last', company = 'Company');
+        insert testLead;
+
+        Account testAccount = new Account(
+            Name = 'Test Account Name',
+            RecordTypeId = UTIL_Describe_API.getHhAccRecTypeID()
+        );
+        insert testAccount;
+
+        Test.startTest();
+        Database.LeadConvert lc = new database.LeadConvert();
+        lc.setLeadId(testLead.Id);
+        lc.setAccountId(testAccount.Id);
+        LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted = TRUE LIMIT 1];
+        lc.setConvertedStatus(convertStatus.MasterLabel);
+        Database.LeadConvertResult lcr = Database.convertLead(lc);
+
+        Test.stopTest();
+
+        System.assert(lcr.isSuccess());
+
+        Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account LIMIT 1];
+
+        System.assertEquals(testLead.LastName + ' Household Account', assertAccount.Name);
+    }
+
+    @isTest
+    private static void convertLeadDefaultRecordType() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Household_Account_Naming_Format__c = '{!LastName} Household Account',
+                Automatic_Household_Naming__c = true,
+                Lead_Converted_Account_RTypes__c = UTIL_Describe_API.getAcademicAccRecTypeID()
+            )
+        );
+
+        Lead testLead = new Lead(FirstName = 'First', LastName = 'Last', company = 'Company');
+        insert testLead;
+
+        Account testAccount = new Account(
+            Name = 'Test Account Name',
+            RecordTypeId = UTIL_Describe_API.getAcademicAccRecTypeID()
+        );
+        insert testAccount;
+
+        Test.startTest();
+        Database.LeadConvert lc = new database.LeadConvert();
+        lc.setLeadId(testLead.Id);
+        lc.setAccountId(testAccount.Id);
+        LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted = TRUE LIMIT 1];
+        lc.setConvertedStatus(convertStatus.MasterLabel);
+        Database.LeadConvertResult lcr = Database.convertLead(lc);
+
+        Test.stopTest();
+
+        System.assert(lcr.isSuccess());
+
+        Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account LIMIT 1];
+
+        System.assertEquals(testLead.LastName + ' Account', assertAccount.Name);
     }
 
     // bulk test todo static variable to generate methods
