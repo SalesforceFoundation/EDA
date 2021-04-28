@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label>Er is een probleem opgetreden bij het starten van de batch.</label>
+        <label><!-- Message when an Apex job can't run --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
@@ -529,8 +529,12 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Alle huishoudennamen opnieuw laden</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshHouseholdNames</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates all Household Account names --></label>
+        <name>stgBtnRefreshHouseholdNamesA11y</name>
     </customLabels>
     <customLabels>
         <label>Backfill uitvoeren</label>
@@ -543,6 +547,10 @@
     <customLabels>
         <label>Opslaan</label>
         <name>stgBtnSave</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for updating the selected Apex job --></label>
+        <name>stgBtnUpdate</name>
     </customLabels>
     <customLabels>
         <label>De opschoning is in de wachtrij geplaatst. Er wordt een e-mail verzonden bij voltooiing van de batch.</label>
@@ -1345,16 +1353,32 @@
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
+        <label><!--Toast message when Account names are queued for update --></label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
         <label>Alle administratieve accountnamen opnieuw laden</label>
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Waarschuwing: Als u op deze knop klikt, worden ALLE bestaande huishoudenaccountrecords hernoemd volgens de indeling die is opgegeven in Naamindeling huishoudenaccount. Met deze actie schakelt u de instelling Huishoudenaccounts automatisch hernoemen in, ook als deze eerder niet geselecteerd was. Lees de productdocumentatie om er zeker van te zijn dat u de gevolgen van deze onomkeerbare wijziging begrijpt. Schakel voordat u verdergaat alle automatisering en processen die naar huishoudenaccounts verwijzen uit (zoals workflowregels). Nadat het opnieuw laden is voltooid, kunt u deze weer inschakelen.</label>
+        <label><!-- Description of the Update All Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Alle huishoudenaccountnamen opnieuw laden</label>
+        <label><!-- Label for the Update All Household Account Names settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update all Household Account names confirmation window --></label>
+        <name>stgRefreshHouseholdNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update all Household Account names confirmation window  --></label>
+        <name>stgRefreshHouseholdNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Household Account names are queued for update --></label>
+        <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Opschoning uitvoeren</label>
@@ -1471,7 +1495,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA Documentation --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
