@@ -1099,7 +1099,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for updatingthe selected Apex job</shortDescription>
+        <shortDescription>Button label for updating the selected Apex job</shortDescription>
         <value>Update</value>
     </labels>
     <labels>
@@ -2771,7 +2771,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Update All Household Account Names Settings</shortDescription>
+        <shortDescription>Label for the Update All Household Account Names settings</shortDescription>
         <value>Update All Household Account Names</value>
     </labels>
     <labels>
