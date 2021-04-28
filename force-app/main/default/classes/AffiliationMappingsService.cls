@@ -101,6 +101,15 @@ public virtual with sharing class AffiliationMappingsService {
         this.locateAffiliationMappingsMapper().updateAffiliationMappings(afflMappingModel);
     }
 
+    /*****************************************************************************
+     * @description Checks user permissions and passes AffiliationMappingsModel to
+     * updateAffiliationMappings.
+     *****************************************************************************/
+    public void updateAutoEnrolllmentMapping(AffiliationMappingsModel affiliationMappingsModel) {
+        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+        this.locateAffiliationMappingsMapper().updateAutoEnrollmentMapping(affiliationMappingsModel);
+    }
+
     /*****************************************************************************************
      * @description Delete an affiliation mapping record.
      * @param  mappingName A string representing the name of the affiliation mapping to delete

@@ -20,6 +20,23 @@
                 autoProgramEnrollment
             );
     },
+    openAutoEnrollmentMappingModal: function (component, eventParameters) {
+        const actionName = eventParameters.actionName;
+        const accountRecordType = eventParameters.accountRecordType;
+        const autoProgramEnrollmentStatus = eventParameters.autoProgramEnrollmentStatus;
+        const autoProgramEnrollmentRole = eventParameters.autoProgramEnrollmentRole;
+        const mappingName = eventParameters.mappingName;
+        console.log("container savemodal" + mappingName);
+        component
+            .find("autoEnrollmentMappingModal")
+            .openAutoEnrollmentMappingModal(
+                actionName,
+                mappingName,
+                accountRecordType,
+                autoProgramEnrollmentStatus,
+                autoProgramEnrollmentRole
+            );
+    },
     handleModalSaveEvent: function (component, saveModel) {
         const edaSettings = component.find("edaSettings");
         const edaSettingsElement = edaSettings.getElement();

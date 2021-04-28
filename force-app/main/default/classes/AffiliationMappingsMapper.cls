@@ -108,6 +108,18 @@ public virtual with sharing class AffiliationMappingsMapper {
     }
 
     /*****************************************************************************
+     * @description Updates the auto enrollment mapping on affiliation mapping record
+     * @param afflMappingModel Model to update affiliation mapping record from
+     *****************************************************************************/
+    public void updateAutoEnrollmentMapping(AffiliationMappingsModel afflMappingModel) {
+        system.debug(afflMappingModel);
+        Affl_Mappings__c afflSettings = Affl_Mappings__c.getInstance(afflMappingModel.name);
+        system.debug(afflSettings);
+        afflSettings.Account_Record_Type__c = afflMappingModel.accountRecordTypeFieldValue;
+        update afflSettings;
+    }
+
+    /*****************************************************************************
      * @description deletes an affiliation mapping record
      * @param affiliationMappingModel Model of an affiliation mappingto be deleted
      * @return A string representing the record type name associated with the deleted affiliation mapping

@@ -46,11 +46,70 @@ public with sharing class ProgramSettingsController {
         }
     }
 
+    /************************************************************************************
+     * @description Retrieve a ComoboxVModel representing the list of active Account
+     * Record Types
+     * @return A ComboboxVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static ComboBoxVModel getAccountRecordTypeComboboxVModel(String recordTypeToCheck) {
+        try {
+            return ProgramSettingsController.locateProgramSettingsVMapper()
+                .getAccountRecordTypeComboboxVModel(recordTypeToCheck);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************
+     * @description Update the affiliation mappping which owns the auto enrollment mapping.
+     * @param mappingName
+     * @param accRecordType
+     * @return The name of the account record type.
+     ************************************************************************************/
+    @AuraEnabled
+    public static String updateAutoEnrollmentMapping(String mappingName, String accountRecordType) {
+        system.debug(mappingName);
+        try {
+            AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel(mappingName, accountRecordType);
+
+            ProgramSettingsController.locateAffiliationMappingsService().updateAutoEnrolllmentMapping(afflMappingModel);
+
+            RecordTypeModel accRecTypeModel = ProgramSettingsController.locateRecordTypeService()
+                .getRecordTypeModelFromRecTypeDevName('Account', accountRecordType);
+
+            if (accRecTypeModel == null) {
+                return accountRecordType;
+            }
+
+            return accRecTypeModel.name;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /**********************************************************************************
      * @description Locates and returns an instance of AffiliationsSettingsVMapper.
      **********************************************************************************/
     @TestVisible
     private static ProgramSettingsVMapper locateProgramSettingsVMapper() {
         return ProgramSettingsVMapper.getInstance();
+    }
+
+    /*****************************************************************************
+     * @description Retrieve an instance of the AffiliationMappingsService class.
+     * @return An instance of AffiliationMappingsService.
+     *****************************************************************************/
+    @TestVisible
+    private static AffiliationMappingsService locateAffiliationMappingsService() {
+        return AffiliationMappingsService.getInstance();
+    }
+
+    /**********************************************************************************
+     * @description Locates and returns an instance of RecordTypeService.
+     **********************************************************************************/
+    @TestVisible
+    private static RecordTypeService locateRecordTypeService() {
+        return RecordTypeService.getInstance();
     }
 }

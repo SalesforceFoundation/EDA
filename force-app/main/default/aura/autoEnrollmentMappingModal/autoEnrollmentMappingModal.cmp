@@ -1,0 +1,16 @@
+<aura:component>
+    <aura:registerEvent name="modalDataChangeEvent" type="c:modalDataChangeEvent" />
+
+    <aura:attribute name="actionName" type="String" />
+    <aura:attribute name="accountRecordType" type="String" />
+    <aura:attribute name="autoProgramEnrollmentStatus" type="String" />
+    <aura:attribute name="autoProgramEnrollmentRole" type="String" />
+
+    <c:autoEnrollmentMappingModalBody
+        actionName="{!v.actionName}"
+        accountRecordType="{!v.accountRecordType}"
+        autoProgramEnrollmentStatus="{!v.autoProgramEnrollmentStatus}"
+        autoProgramEnrollmentRole="{!v.autoProgramEnrollmentRole}"
+        onaccountrecordtypechange="{!c.handleAccountRecordTypeChange}"
+    ></c:autoEnrollmentMappingModalBody>
+</aura:component>

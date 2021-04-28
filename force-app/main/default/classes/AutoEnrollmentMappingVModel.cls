@@ -34,6 +34,9 @@
 
 public with sharing class AutoEnrollmentMappingVModel {
     @AuraEnabled
+    public String mappingName { get; private set; }
+
+    @AuraEnabled
     public String accountRecordTypeName { get; private set; }
 
     @AuraEnabled
@@ -46,11 +49,13 @@ public with sharing class AutoEnrollmentMappingVModel {
     public String autoProgramEnrollmentRole { get; private set; }
 
     public AutoEnrollmentMappingVModel(
+        String mappingName,
         String accountRecordTypeName,
         String accountRecordTypeLabel,
         String autoProgramEnrollmentStatus,
         String autoProgramEnrollmentRole
     ) {
+        this.mappingName = mappingName;
         this.accountRecordTypeName = accountRecordTypeName;
         this.accountRecordTypeLabel = accountRecordTypeLabel;
         this.autoProgramEnrollmentStatus = autoProgramEnrollmentStatus;

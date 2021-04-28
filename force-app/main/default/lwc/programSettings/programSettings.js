@@ -1,6 +1,7 @@
-import { LightningElement, track, wire } from "lwc";
+import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramSettingsVModel";
+import updateAutoEnrollmentMapping from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMapping";
 //custom labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
 import stgBtnEdit from "@salesforce/label/c.stgBtnEdit";
@@ -10,7 +11,8 @@ import autoEnrollmentMappingsDescription from "@salesforce/label/c.stgAutoEnroll
 import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType";
 import stgColAutoEnrollmentStatus from "@salesforce/label/c.stgColAutoEnrollmentStatus";
 import stgColAutoEnrollmentRole from "@salesforce/label/c.stgColAutoEnrollmentRole";
-
+import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
+import stgAffiliationsEditSuccess from "@salesforce/label/c.stgAffiliationsEditSuccess";
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -20,6 +22,7 @@ export default class programSettings extends LightningElement {
 
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
+        newButton: stgBtnAddMapping,
         autoEnrollmentMappingsTable: {
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
             autoEnrollmentMappingsDescription: autoEnrollmentMappingsDescription,
@@ -29,6 +32,7 @@ export default class programSettings extends LightningElement {
             editAction: stgBtnEdit,
             deleteAction: stgBtnDelete,
         },
+        editSuccessMessage: stgAffiliationsEditSuccess,
     };
 
     inputAttributeReference = {};
@@ -103,17 +107,85 @@ export default class programSettings extends LightningElement {
     }
 
     refreshAllApex() {
-        /*Promise.all([
-            refreshApex(this.affiliationsSettingsWireResult),
-            refreshApex(this.primaryAffiliationsSettingsWireResult),
-        ]).then(() => {
+        Promise.all([refreshApex(this.programSettingsVModelWireResult)]).then(() => {
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });
-        });*/
+        });
     }
 
     get autoEnrollmentMappingsDescriptionRichText() {
         return this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription;
+    }
+
+    handleNewAutoEnrollmentMappingClick(event) {}
+
+    handleAutoEnrollmentMappingRowAction(event) {
+        const actionName = event.detail.action.name;
+        const actionRow = event.detail.row;
+        this.dispatchAutoEnrollmentEditModalRequestEvent(actionName, actionRow);
+    }
+
+    dispatchAutoEnrollmentEditModalRequestEvent(actionName, actionRow) {
+        const autoEnrollmentEditDetail = {
+            actionName: actionName,
+            mappingName: actionRow.mappingName,
+            accountRecordType: actionRow.accountRecordTypeName,
+            autoProgramEnrollmentStatus: actionRow.autoProgramEnrollmentStatus,
+            autoProgramEnrollmentRole: actionRow.autoProgramEnrollmentRole,
+        };
+
+        const autoEnrollmentEditModalRequestEvent = new CustomEvent("autoenrollmenteditmodalrequest", {
+            detail: autoEnrollmentEditDetail,
+            bubbles: true,
+            composed: true,
+        });
+
+        this.dispatchEvent(autoEnrollmentEditModalRequestEvent);
+    }
+
+    @api modalSave(saveModel) {
+        console.log(saveModel.mappingName);
+        switch (saveModel.action) {
+            /*case "create":
+                this.insertAffiliations(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
+                break;*/
+            case "edit":
+                this.updateAutoEnrollmentMapping(saveModel.mappingName, saveModel.accountRecordType);
+                break;
+            /*case "delete":
+                this.deleteAffiliation(saveModel.mappingName);
+                break;*/
+        }
+    }
+
+    updateAutoEnrollmentMapping(mappingName, accountRecordType) {
+        console.log("helllo" + mappingName);
+        updateAutoEnrollmentMapping({
+            mappingName: mappingName,
+            accountRecordType: accountRecordType,
+        })
+            .then((result) => {
+                this.showToast(
+                    "success",
+                    "Update Complete",
+                    this.labelReference.editSuccessMessage.replace("{0}", result)
+                );
+            })
+
+            .catch((error) => {
+                // console.log('Inside error');
+            });
+        this.refreshAllApex();
+    }
+
+    showToast(toastType, toastTitle, toastMessage) {
+        const showToastEvent = new ShowToastEvent({
+            title: toastTitle,
+            message: toastMessage,
+            variant: toastType,
+            mode: "dismissable",
+        });
+        this.dispatchEvent(showToastEvent);
     }
 }
