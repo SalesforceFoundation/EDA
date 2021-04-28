@@ -1055,6 +1055,14 @@
         <value>Update</value>
     </labels>
     <labels>
+        <fullName>stgBtnRefreshHouseholdNamesA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates all Household Account names</shortDescription>
+        <value>Update all Household Account names.</value>
+    </labels>
+    <labels>
         <fullName>stgBtnRunBackfill</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

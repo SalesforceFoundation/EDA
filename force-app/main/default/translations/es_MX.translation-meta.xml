@@ -533,6 +533,10 @@
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that updates all Household Account names --></label>
+        <name>stgBtnRefreshHouseholdNamesA11y</name>
+    </customLabels>
+    <customLabels>
         <label>Ejecutar Relleno</label>
         <name>stgBtnRunBackfill</name>
     </customLabels>
