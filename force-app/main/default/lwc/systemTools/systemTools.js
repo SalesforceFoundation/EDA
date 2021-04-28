@@ -3,6 +3,7 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 import stgSystemToolsTitle from "@salesforce/label/c.stgSystemToolsTitle";
 import stgBtnRefreshHouseholdNames from "@salesforce/label/c.stgBtnRefreshHouseholdNames";
+import stgBtnRefreshHouseholdNamesA11y from "@salesforce/label/c.stgBtnRefreshHouseholdNamesA11y";
 import stgRefreshHHAcctNameTitle from "@salesforce/label/c.stgRefreshHHAcctNameTitle";
 import stgRefreshHHAcctNameDesc from "@salesforce/label/c.stgRefreshHHAcctNameDesc";
 import stgRefreshHouseholdNamesSuccessToast from "@salesforce/label/c.stgRefreshHouseholdNamesSuccessToast";
@@ -22,6 +23,7 @@ export default class systemTools extends LightningElement {
     labelReference = {
         stgSystemToolsTitle: stgSystemToolsTitle,
         stgBtnRefreshHouseholdNames: stgBtnRefreshHouseholdNames,
+        stgBtnRefreshHouseholdNamesA11y: stgBtnRefreshHouseholdNamesA11y,
         stgRefreshHHAcctNameTitle: stgRefreshHHAcctNameTitle,
         stgRefreshHHAcctNameDesc: stgRefreshHHAcctNameDesc,
         stgRefreshHouseholdNamesSuccessToast: stgRefreshHouseholdNamesSuccessToast,
