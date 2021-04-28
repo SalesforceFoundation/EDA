@@ -533,6 +533,10 @@
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that updates all Household Account names --></label>
+        <name>stgBtnRefreshHouseholdNamesA11y</name>
+    </customLabels>
+    <customLabels>
         <label>バックフィルを実行</label>
         <name>stgBtnRunBackfill</name>
     </customLabels>
@@ -1373,7 +1377,7 @@
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Update All Household Account Names Settings --></label>
+        <label><!-- Label for the Update All Household Account Names settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>
