@@ -5,9 +5,10 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import stgSystemToolsTitle from "@salesforce/label/c.stgSystemToolsTitle";
 
 // Household Naming custom labels
+import stgBtnRefreshHouseholdNames from "@salesforce/label/c.stgBtnRefreshHouseholdNames";
+import stgBtnRefreshHouseholdNamesA11y from "@salesforce/label/c.stgBtnRefreshHouseholdNamesA11y";
 import stgRefreshHHAcctNameTitle from "@salesforce/label/c.stgRefreshHHAcctNameTitle";
 import stgRefreshHHAcctNameDesc from "@salesforce/label/c.stgRefreshHHAcctNameDesc";
-import stgBtnRefreshHouseholdNames from "@salesforce/label/c.stgBtnRefreshHouseholdNames";
 import stgRefreshHouseholdNamesSuccessToast from "@salesforce/label/c.stgRefreshHouseholdNamesSuccessToast";
 
 // Administrative Naming custom labels
@@ -30,6 +31,7 @@ export default class systemTools extends LightningElement {
     labelReference = {
         stgSystemToolsTitle: stgSystemToolsTitle,
         stgBtnRefreshHouseholdNames: stgBtnRefreshHouseholdNames,
+        stgBtnRefreshHouseholdNamesA11y: stgBtnRefreshHouseholdNamesA11y,
         stgRefreshHHAcctNameTitle: stgRefreshHHAcctNameTitle,
         stgRefreshHHAcctNameDesc: stgRefreshHHAcctNameDesc,
         stgRefreshHouseholdNamesSuccessToast: stgRefreshHouseholdNamesSuccessToast,
