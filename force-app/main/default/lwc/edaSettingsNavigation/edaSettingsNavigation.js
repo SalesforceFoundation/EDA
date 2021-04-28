@@ -30,7 +30,6 @@ import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools SettingsLabels
-import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
 //Error Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
@@ -42,7 +41,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         peopleAndGroups: stgPeopleAndGroupsNav,
         setupHome: "Setup Home",
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
-        systemSettings: stgSystemSettingsTitle,
+        systemSettings: stgSystemSettingsNav,
         accountModel: {
             accountAutoDeletionModel: stgAccoutTypesWithoutContactsDelete,
             accountModelSettings: stgAccountModelSettingsTitle,
@@ -100,7 +99,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             courseDescriptionMigration: "Course Description Migration",
             ethnicityAndRaceBackfill: "Ethnicity and Race Backfill",
             preferredEmailCleanup: "Preferred Email and Phone Cleanup",
-            systemTools: stgSystemSettingsNav,
+            systemTools: "System Tools",
             refreshAdministrativeAccountNames: "Refresh Administrative Account Names",
             refreshHouseholdAccountNames: "Refresh Household Account Names",
         },

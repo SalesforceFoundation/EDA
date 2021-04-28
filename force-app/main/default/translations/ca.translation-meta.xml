@@ -1407,10 +1407,6 @@
         <name>stgSystemSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for System --></label>
-        <name>stgSystemSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label>Comptes i contactes</label>
         <name>stgTabAccCont</name>
     </customLabels>

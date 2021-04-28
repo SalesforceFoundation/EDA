@@ -2821,15 +2821,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Navigation section title for System Tools</shortDescription>
-        <value>System Tools</value>
-    </labels>
-    <labels>
-        <fullName>stgSystemSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for System</shortDescription>
+        <shortDescription>Navigation section title for System</shortDescription>
         <value>System</value>
     </labels>
     <labels>

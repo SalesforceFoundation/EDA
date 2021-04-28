@@ -1403,12 +1403,8 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgSuccessHHAccountNameRefresh</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for System Tools --></label>
+        <label><!-- Navigation section title for System --></label>
         <name>stgSystemSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for System --></label>
-        <name>stgSystemSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Accounts und Kontakte</label>
