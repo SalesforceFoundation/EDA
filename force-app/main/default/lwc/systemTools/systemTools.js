@@ -1,7 +1,7 @@
 import { LightningElement, api } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
-import stgSystemToolsTitle from "@salesforce/label/c.stgSystemToolsTitle";
+import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
 import stgBtnRefreshHouseholdNames from "@salesforce/label/c.stgBtnRefreshHouseholdNames";
 import stgRefreshHHAcctNameTitle from "@salesforce/label/c.stgRefreshHHAcctNameTitle";
 import stgRefreshHHAcctNameDesc from "@salesforce/label/c.stgRefreshHHAcctNameDesc";
@@ -20,7 +20,7 @@ import runPreferredPhoneAndEmailCleanupJob from "@salesforce/apex/PreferredPhone
 
 export default class systemTools extends LightningElement {
     labelReference = {
-        stgSystemToolsTitle: stgSystemToolsTitle,
+        stgSystemToolsTitle: stgSystemToolsNav,
         stgBtnRefreshHouseholdNames: stgBtnRefreshHouseholdNames,
         stgRefreshHHAcctNameTitle: stgRefreshHHAcctNameTitle,
         stgRefreshHHAcctNameDesc: stgRefreshHHAcctNameDesc,

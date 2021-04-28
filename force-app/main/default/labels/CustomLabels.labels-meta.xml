@@ -2880,28 +2880,12 @@
         <value>System Tools</value>
     </labels>
     <labels>
-        <fullName>stgSystemToolsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for System Tools</shortDescription>
-        <value>System Tools</value>
-    </labels>
-    <labels>
         <fullName>stgSystemSettingsNav</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Navigation section title for System Tools</shortDescription>
-        <value>System Tools</value>
-    </labels>
-    <labels>
-        <fullName>stgSystemSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for System Tools Settings</shortDescription>
-        <value>System Tools</value>
+        <value>System</value>
     </labels>
     <labels>
         <fullName>stgTabAccCont</fullName>
