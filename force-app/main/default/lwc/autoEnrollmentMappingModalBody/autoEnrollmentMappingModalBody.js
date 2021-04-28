@@ -10,8 +10,8 @@ import getAutoEnrollmentMappingStatusComboboxVModel from "@salesforce/apex/Progr
 export default class autoEnrollmentMappingModalBody extends LightningElement {
     @api actionName;
     @api accountRecordType;
-    @api autoEnrollmentMappingStatus;
-    @api autoEnrollmentMappingRole;
+    @api autoProgramEnrollmentStatus;
+    @api autoProgramEnrollmentRole;
 
     @track accountRecordTypeComboboxVModel;
     @track accountRecordTypeComboboxWireResult;
@@ -48,9 +48,9 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         autoEnrollmentMappingStatus: "$autoProgramEnrollmentStatus",
     })
     autoEnrollmentMappingStatusComboboxVModelWire(result) {
-        console.log("hello");
-
         this.autoEnrollmentMappingStatusComboboxVModelWireResult = result;
+
+        console.log(result.data);
 
         if (result.data) {
             this.autoEnrollmentMappingStatusComboboxVModel = result.data;
