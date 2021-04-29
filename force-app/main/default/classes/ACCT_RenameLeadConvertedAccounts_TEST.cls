@@ -36,6 +36,7 @@
  */
 @isTest
 private class ACCT_RenameLeadConvertedAccounts_TEST {
+    private static Integer leadCount = 5; // used to determine number of test contact records to create
     /*********************************************************************************************************
      * @description Insert and convert a new Lead with no Lead Conversion record types selected
      * Make sure the Account's name is the Lead Company Name
@@ -172,6 +173,43 @@ private class ACCT_RenameLeadConvertedAccounts_TEST {
         System.assertEquals(testLead.LastName + ' Account', assertAccount.Name);
     }
 
-    // bulk test todo static variable to generate methods
-    // do this in an unmaged context for the 200
+    /*********************************************************************************************************
+     * @description Insert and convert a specified number of leads to test for bulk, the number
+     * to insert can be overriden for unpackaged
+     */
+    @isTest
+    private static void bulkConvertLeadAdminRecordType() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Automatic_Household_Naming__c = true,
+                Lead_Converted_Account_RTypes__c = UTIL_Describe_API.getAdminAccRecTypeID()
+            )
+        );
+
+        List<Lead> leadsToInsert = new List<Lead>();
+        for (integer i = 0; i < leadCount; i++) {
+            leadsToInsert.add(new Lead(Company = 'Company' + i, lastname = 'Last' + i));
+        }
+
+        insert leadsToInsert;
+
+        Test.startTest();
+        LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted = TRUE LIMIT 1];
+        list<Database.LeadConvert> leadConverts = new List<Database.LeadConvert>();
+        for (Lead theLead : leadsToInsert) {
+            Database.LeadConvert lc = new database.LeadConvert();
+            lc.setLeadId(theLead.Id);
+            lc.convertedStatus = convertStatus.MasterLabel;
+            leadConverts.add(lc);
+        }
+
+        Database.LeadConvertResult[] leadConvertResults = Database.convertLead(leadConverts);
+
+        for (Database.LeadConvertResult lcr : leadConvertResults) {
+            System.assert(lcr.isSuccess());
+        }
+
+        Test.stopTest();
+    }
 }
