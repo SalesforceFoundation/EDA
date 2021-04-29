@@ -2292,7 +2292,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Affiliation End Date setting</shortDescription>
-        <value>ICopy the End Date from Program Enrollment records to new Affiliation records. Otherwise, leave the field blank.</value>
+        <value>Copy the End Date from Program Enrollment records to new Affiliation records. Otherwise, leave the field blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCopyProgramEnrollmentStartDate</fullName>

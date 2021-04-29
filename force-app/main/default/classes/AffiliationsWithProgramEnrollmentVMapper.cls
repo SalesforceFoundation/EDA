@@ -103,7 +103,7 @@ public virtual with sharing class AffiliationsWithProgramEnrollmentVMapper {
 
         ComboboxVModel affiliationStatusComboboxVModel = new ComboboxVModel(
             currentAffiliationsWithProgramEnrollmentModel.status,
-            affiliationRoleComboboxValueVModelsList
+            affiliationStatusComboboxValueVModelsList
         );
 
         return new AffiliationsWithProgramEnrollmentVModel(

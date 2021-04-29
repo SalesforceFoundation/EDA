@@ -39,17 +39,17 @@ export default class programSettings extends LightningElement {
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
         newButton: stgBtnAddMapping,
+        afflProgramEnrollmentSettingsTitle: stgAfflProgramEnrollmentSettingsTitle,
+        afflProgEnrollSetRoleValue: stgAfflProgEnrollSetRoleValue,
+        helpAfflProgEnrollSetRoleValue: stgHelpAfflProgEnrollSetRoleValue,
+        afflProgEnrollSetStatusValue: stgAfflProgEnrollSetStatusValue,
+        helpAfflProgEnrollSetStatusValue: stgHelpAfflProgEnrollSetStatusValue,
+        afflCopyProgramEnrollmentEndDate: stgAfflCopyProgramEnrollmentEndDate,
+        helpAfflCopyProgramEnrollmentEndDate: stgHelpAfflCopyProgramEnrollmentEndDate,
+        afflCopyProgramEnrollmentStartDate: stgAfflCopyProgramEnrollmentStartDate,
+        helpAfflCopyProgramEnrollmentStartDate: stgHelpAfflCopyProgramEnrollmentStartDate,
+        placeHolderText: stgOptSelect,
         autoEnrollmentMappingsTable: {
-            afflProgramEnrollmentSettingsTitle: stgAfflProgramEnrollmentSettingsTitle,
-            afflProgEnrollSetRoleValue: stgAfflProgEnrollSetRoleValue,
-            helpAfflProgEnrollSetRoleValue: stgHelpAfflProgEnrollSetRoleValue,
-            afflProgEnrollSetStatusValue: stgAfflProgEnrollSetStatusValue,
-            helpAfflProgEnrollSetStatusValue: stgHelpAfflProgEnrollSetStatusValue,
-            afflCopyProgramEnrollmentEndDate: stgAfflCopyProgramEnrollmentEndDate,
-            helpAfflCopyProgramEnrollmentEndDate: stgHelpAfflCopyProgramEnrollmentEndDate,
-            afflCopyProgramEnrollmentStartDate: stgAfflCopyProgramEnrollmentStartDate,
-            helpAfflCopyProgramEnrollmentStartDate: stgHelpAfflCopyProgramEnrollmentStartDate,
-            placeHolderText: stgOptSelect,
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
             autoEnrollmentMappingsDescription: autoEnrollmentMappingsDescription,
             accountRecordTypeColumn: stgColAccountRecordType,
@@ -62,8 +62,9 @@ export default class programSettings extends LightningElement {
 
     inputAttributeReference = {
         createdAfflRoleComboboxId: "createdAfflRole",
-        adminAccountModelComboboxId: "adminAccountModel",
-        hhAccountModelComboboxId: "hhAccountModel",
+        createdAfflStatusComboboxId: "createdAfflStatus",
+        copyEndDateComboboxId: "copyEndDate",
+        copyStartDateComboboxId: "copyStartDate",
     };
 
     get affordancesDisabled() {
@@ -100,6 +101,39 @@ export default class programSettings extends LightningElement {
         let hierarchySettingsChange = {
             settingsType: "string",
             settingsName: "Affl_ProgEnroll_Role_Map__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleStatusForCreatedAfflChange(event) {
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Affl_ProgEnroll_Status_Map__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleCopyEndDateChange(event) {
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Affl_ProgEnroll_Copy_End_Date__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleCopyStartDateChange(event) {
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Affl_ProgEnroll_Start_End_Date__c",
             settingsValue: event.detail.value,
         };
 
