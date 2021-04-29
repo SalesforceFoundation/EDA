@@ -20,6 +20,10 @@
                 autoProgramEnrollment
             );
     },
+    openSettingsBatchJobModal: function (component, eventParameters) {
+        const batchJobToRun = eventParameters.batchJobToRun;
+        component.find("settingBatchJobModal").openSettingsBatchJobModal(batchJobToRun);
+    },
     handleModalSaveEvent: function (component, saveModel) {
         const edaSettings = component.find("edaSettings");
         const edaSettingsElement = edaSettings.getElement();
