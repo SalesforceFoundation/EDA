@@ -1107,7 +1107,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Header label for the list of Account Record Types</shortDescription>
+        <shortDescription>Column header for Account Record Types</shortDescription>
         <value>Account Record Type</value>
     </labels>
     <labels>
@@ -1131,7 +1131,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Header label for the list of Primary Affiliation Fields on Contact</shortDescription>
+        <shortDescription>Column header for Primary Affiliation Fields on Contact</shortDescription>
         <value>Primary Affiliation Field on Contact</value>
     </labels>
     <labels>

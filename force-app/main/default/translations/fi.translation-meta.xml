@@ -569,7 +569,7 @@
         <name>stgColCampTypes</name>
     </customLabels>
     <customLabels>
-        <label><!-- Header label for the list of Primary Affiliation Fields on Contact --></label>
+        <label><!-- Column header for Primary Affiliation Fields on Contact --></label>
         <name>stgColContactPrimaryAfflField</name>
     </customLabels>
     <customLabels>
