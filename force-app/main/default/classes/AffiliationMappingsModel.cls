@@ -86,18 +86,4 @@ public with sharing class AffiliationMappingsModel {
 
         this.primaryAffiliationField = String.isBlank(primaryAffiliationField) ? '""' : primaryAffiliationField;
     }
-
-    /*****************************************************************************************************************
-     * @description Three argument constructor
-     * @param name The name of the affiliation mappings in Affl_Mappings__c custom settings
-     * @param accountRecordTypeFieldValue The value in Account_Record_Type__c field in Affl_Mappings__c custom settings
-     *****************************************************************************************************************/
-
-    public AffiliationMappingsModel(String name, String autoProgramEnrollmentStatus) {
-        this.name = name;
-
-        this.autoProgramEnrollmentStatus = String.isBlank(autoProgramEnrollmentStatus)
-            ? '""'
-            : autoProgramEnrollmentStatus;
-    }
 }

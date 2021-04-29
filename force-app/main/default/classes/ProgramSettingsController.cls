@@ -47,29 +47,28 @@ public with sharing class ProgramSettingsController {
     }
 
     /************************************************************************************
-     * @description Retrieve a ComoboxVModel representing the list of active Account
-     * Record Types
+     * @description Retrieve a ComoboxVModel for auto enrollment status.
      * @return A ComboboxVModel
      ************************************************************************************/
     @AuraEnabled(cacheable=true)
-    public static ComboBoxVModel getAccountRecordTypeComboboxVModel(String recordTypeToCheck) {
+    public static ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(String autoProgramEnrollmentStatus) {
         try {
             return ProgramSettingsController.locateProgramSettingsVMapper()
-                .getAccountRecordTypeComboboxVModel(recordTypeToCheck);
+                .getAutoEnrollmentMappingStatusComboboxVModel(autoProgramEnrollmentStatus);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
 
     /************************************************************************************
-     * @description Retrieve a ComoboxVModel for auto enrollment status.
+     * @description Retrieve a ComoboxVModel for auto enrollment role.
      * @return A ComboboxVModel
      ************************************************************************************/
     @AuraEnabled(cacheable=true)
-    public static ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(String autoEnrollmentMappingStatus) {
+    public static ComboBoxVModel getAutoEnrollmentMappingRoleComboboxVModel(String autoProgramEnrollmentRole) {
         try {
             return ProgramSettingsController.locateProgramSettingsVMapper()
-                .getAutoEnrollmentMappingStatusComboboxVModel(autoEnrollmentMappingStatus);
+                .getAutoEnrollmentMappingRoleComboboxVModel(autoProgramEnrollmentRole);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -82,17 +81,24 @@ public with sharing class ProgramSettingsController {
      * @return The name of the account record type.
      ************************************************************************************/
     @AuraEnabled
-    public static String updateAutoEnrollmentMapping(String mappingName, String autoProgramEnrollmentStatus) {
+    public static String updateAutoEnrollmentMapping(
+        String mappingName,
+        String autoProgramEnrollmentStatus,
+        String autoProgramEnrollmentRole
+    ) {
         try {
-            system.debug(autoProgramEnrollmentStatus);
             AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel(
                 mappingName,
-                autoProgramEnrollmentStatus
+                null,
+                null,
+                null,
+                autoProgramEnrollmentStatus,
+                autoProgramEnrollmentRole
             );
-
+            system.debug(afflMappingModel);
             ProgramSettingsController.locateAffiliationMappingsService().updateAutoEnrolllmentMapping(afflMappingModel);
 
-            return autoProgramEnrollmentStatus;
+            return mappingName;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

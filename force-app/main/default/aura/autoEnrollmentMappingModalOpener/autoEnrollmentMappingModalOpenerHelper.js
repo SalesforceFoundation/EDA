@@ -80,11 +80,11 @@
         const field = event.getParam("field");
         const fieldValue = event.getParam("fieldValue");
         switch (field) {
-            case "accountRecordType":
-                component.set("v.accountRecordType", fieldValue);
-                break;
             case "autoProgramEnrollmentStatus":
                 component.set("v.autoProgramEnrollmentStatus", fieldValue);
+                break;
+            case "autoProgramEnrollmentRole":
+                component.set("v.autoProgramEnrollmentRole", fieldValue);
                 break;
         }
     },
@@ -115,7 +115,6 @@
 
         const actionName = component.get("v.actionName");
         const mappingName = component.get("v.mappingName");
-        const accountRecordType = component.get("v.accountRecordType");
         const autoProgramEnrollmentStatus = component.get("v.autoProgramEnrollmentStatus");
         const autoProgramEnrollmentRole = component.get("v.autoProgramEnrollmentRole");
 
@@ -123,10 +122,10 @@
             modalType: "autoenrollmentmapping",
             action: actionName,
             mappingName: mappingName,
-            accountRecordType: accountRecordType,
             autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
             autoProgramEnrollmentRole: autoProgramEnrollmentRole
         };
+        console.log(saveModel);
         modalSaveEvent.setParams({
             saveModel: saveModel
         });

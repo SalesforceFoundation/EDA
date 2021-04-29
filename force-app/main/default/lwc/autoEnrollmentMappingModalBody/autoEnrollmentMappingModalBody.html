@@ -20,6 +20,20 @@
                     ></lightning-combobox>
                 </div>
             </template>
+            <template if:true={autoEnrollmentMappingRoleComboboxVModel}>
+                <div class="slds-col slds-size_2-of-3">
+                    <lightning-combobox
+                        id={inputAttributeReference.autoProgramEnrollmentRole}
+                        name={inputAttributeReference.autoProgramEnrollmentRole}
+                        label={labelReference.accountRecordTypeCombobox}
+                        value={autoEnrollmentMappingRoleComboboxVModel.value}
+                        placeholder={labelReference.comboboxPlaceholderText}
+                        options={autoEnrollmentMappingRoleComboboxVModel.options}
+                        onchange={handleAutoEnrollmentMappingRoleChange}
+                        data-qa-locator={inputAttributeReference.autoProgramEnrollmentRole}
+                    ></lightning-combobox>
+                </div>
+            </template>
         </template>
     </div>
 </template>

@@ -114,6 +114,8 @@ public virtual with sharing class AffiliationMappingsMapper {
     public void updateAutoEnrollmentMapping(AffiliationMappingsModel afflMappingModel) {
         Affl_Mappings__c afflSetting = Affl_Mappings__c.getInstance(afflMappingModel.name);
         afflSetting.Auto_Program_Enrollment_Status__c = afflMappingModel.autoProgramEnrollmentStatus;
+        afflSetting.Auto_Program_Enrollment_Role__c = afflMappingModel.autoProgramEnrollmentRole;
+        system.debug(afflSetting);
         update afflSetting;
     }
 

@@ -1,11 +1,11 @@
 ({
-    handleAccountRecordTypeChange: function (component, accountRecordType) {
-        component.set("v.accountRecordType", accountRecordType);
-        this.dispatchDataChangeEvent(component, "accountRecordType", accountRecordType);
-    },
-    handleAutoEnrollmentMappingStatusChange: function (component, autoProgramEnrollmentStatus) {
+    handleAutoEnrollmentMappingStatusChange: function (component, accountRecordType) {
         component.set("v.autoProgramEnrollmentStatus", autoProgramEnrollmentStatus);
         this.dispatchDataChangeEvent(component, "autoProgramEnrollmentStatus", autoProgramEnrollmentStatus);
+    },
+    handleAutoEnrollmentMappingRoleChange: function (component, autoProgramEnrollmentRole) {
+        component.set("v.autoProgramEnrollmentRole", autoProgramEnrollmentRole);
+        this.dispatchDataChangeEvent(component, "autoProgramEnrollmentRole", autoProgramEnrollmentRole);
     },
     dispatchDataChangeEvent: function (component, field, fieldValue) {
         let modalDataChangeEvent = component.getEvent("modalDataChangeEvent");

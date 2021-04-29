@@ -128,46 +128,11 @@ public virtual with sharing class ProgramSettingsVMapper {
     }
 
     /**********************************************************************************************************
-     * @description Retrieve a ComboBoxVModel for all active account record types
-     * @return  A ComboBoxVModel
-     *********************************************************************************************************/
-    public virtual ComboBoxVModel getAccountRecordTypeComboboxVModel(String recordTypeToCheck) {
-        String comboboxValue = recordTypeToCheck;
-        Map<Id, RecordTypeModel> accRecordTypeModelsById = this.locateRecordTypeService()
-            .getModelByIdMapForSObjectType(Account.SObjectType);
-
-        Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
-            .getRecordTypeModelByName(accRecordTypeModelsById);
-        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
-            .getRecordTypeModelByLabel(accRecordTypeModelsById);
-
-        List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
-
-        RecordTypeModel recordTypeModel = this.locateRecordTypeService()
-            .getRecordTypeModelFromNameAndLabelMaps(
-                recordTypeToCheck,
-                accountRecordTypeModelsByName,
-                accountRecordTypeModelsByLabel
-            );
-
-        if (recordTypeModel == null) {
-            comboboxValues.add(new ComboboxValueVModel(recordTypeToCheck, recordTypeToCheck));
-        } else {
-            comboboxValue = recordTypeModel.developerName;
-        }
-
-        comboboxValues.addAll(
-            this.getComboboxVModelOptionsForActiveAccountRecordTypes(accRecordTypeModelsById.values())
-        );
-
-        return new ComboboxVModel(comboboxValue, comboboxValues);
-    }
-    /**********************************************************************************************************
      * @description Retrieve a ComboBoxVModel for auto enrollment mapping status
      * @return  A ComboBoxVModel
      *********************************************************************************************************/
-    public virtual ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(String autoEnrollmentMappingStatus) {
-        String comboboxValue = autoEnrollmentMappingStatus;
+    public virtual ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(String autoProgramEnrollmentStatus) {
+        String comboboxValue = autoProgramEnrollmentStatus;
 
         List<ComboboxValueVModel> comboboxOptions = new List<ComboboxValueVModel>();
 
@@ -181,24 +146,23 @@ public virtual with sharing class ProgramSettingsVMapper {
         return new ComboboxVModel(comboboxValue, comboboxOptions);
     }
 
-    /**********************************************************************************************************************
-     * @description Helper method to generate a list of comboboxValueVModels for all active Account record types.
-     * @param  activeAccountRecordTypeModelsList A list of RecordType models corresponding to active Account record types.
-     * @return A List<ComboboxValueVModel> containing comboboxValueVModels for all active Account record types.
-     **********************************************************************************************************************/
-    @TestVisible
-    private List<ComboboxValueVModel> getComboboxVModelOptionsForActiveAccountRecordTypes(
-        List<RecordTypeModel> activeAccountRecordTypeModelsList
-    ) {
-        List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = new List<ComboboxValueVModel>();
+    /**********************************************************************************************************
+     * @description Retrieve a ComboBoxVModel for auto enrollment mapping status
+     * @return  A ComboBoxVModel
+     *********************************************************************************************************/
+    public virtual ComboBoxVModel getAutoEnrollmentMappingRoleComboboxVModel(String autoProgramEnrollmentRole) {
+        String comboboxValue = autoProgramEnrollmentRole;
 
-        for (RecordTypeModel activeAccountRecordTypeModel : activeAccountRecordTypeModelsList) {
-            activeRecordTypeComboboxValueVModelsList.add(
-                new ComboboxValueVModel(activeAccountRecordTypeModel.name, activeAccountRecordTypeModel.developerName)
-            );
+        List<ComboboxValueVModel> comboboxOptions = new List<ComboboxValueVModel>();
+
+        Map<String, PicklistEntryModel> rolePicklistEntryModelByName = this.locatePicklistEntryService()
+            .getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Role__c);
+
+        for (PicklistEntryModel picklistEntryModel : rolePicklistEntryModelByName.values()) {
+            comboboxOptions.add(new ComboboxValueVModel(picklistEntryModel.label, picklistEntryModel.name));
         }
 
-        return activeRecordTypeComboboxValueVModelsList;
+        return new ComboboxVModel(comboboxValue, comboboxOptions);
     }
 
     /*****************************************************************************

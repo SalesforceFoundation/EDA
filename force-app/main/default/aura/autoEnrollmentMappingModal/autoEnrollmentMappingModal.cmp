@@ -5,12 +5,12 @@
     <aura:attribute name="accountRecordType" type="String" />
     <aura:attribute name="autoProgramEnrollmentStatus" type="String" />
     <aura:attribute name="autoProgramEnrollmentRole" type="String" />
-    abc{!v.autoProgramEnrollmentStatus}
     <c:autoEnrollmentMappingModalBody
         actionName="{!v.actionName}"
         accountRecordType="{!v.accountRecordType}"
         autoProgramEnrollmentStatus="{!v.autoProgramEnrollmentStatus}"
         autoProgramEnrollmentRole="{!v.autoProgramEnrollmentRole}"
         onautoenrollmentmappingstatuschange="{!c.handleAutoEnrollmentMappingStatusChange}"
+        onautoenrollmentmappingrolechange="{!c.handleAutoEnrollmentMappingRoleChange}"
     ></c:autoEnrollmentMappingModalBody>
 </aura:component>
