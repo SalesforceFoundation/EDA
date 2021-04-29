@@ -1,5 +1,6 @@
 import { LightningElement, api, track } from "lwc";
 import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
+
 //Account Model Settings Labels
 import stgAccountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
 import stgAccModelTitle from "@salesforce/label/c.stgAccModelTitle";
@@ -25,9 +26,11 @@ import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 //Course Enrollment Labels
 import stgCoursesAndEnrollmentsNav from "@salesforce/label/c.stgCoursesAndEnrollmentsNav";
 import stgProgramsSettingsNav from "@salesforce/label/c.stgProgramsSettingsNav";
+import stgAutoEnrollmentProgramTitle from "@salesforce/label/c.stgAutoEnrollmentProgramTitle";
+import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollDeleteTitle";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
-//System Tools SettingsLabels
+//System Tools Settings Labels
 import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
 //Error Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
@@ -82,8 +85,8 @@ export default class EdaSettingsNavigation extends LightningElement {
         },
         programSettings: {
             programSettings: stgProgramsSettingsNav,
-            programAutoEnrollmentMappings: "Program Auto-Enrollment Mappings",
-            programEnrollmentDeletions: "Program Enrollment Deletions",
+            programAutoEnrollmentMappings: stgAutoEnrollmentProgramTitle,
+            programEnrollmentDeletions: stgAfflProgEnrollDeleteTitle,
         },
         relationshipSettings: {
             preventAutoCreatedDuplicateRelationships: "Prevent Auto-Created Duplicate Relations",

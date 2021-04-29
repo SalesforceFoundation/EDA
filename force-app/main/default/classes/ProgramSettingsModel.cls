@@ -1,8 +1,10 @@
 /*
     Copyright (c) 2021, Salesforce.org
     All rights reserved.
+
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
+
     * Redistributions of source code must retain the above copyright
       notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
@@ -11,6 +13,7 @@
     * Neither the name of Salesforce.org nor the names of
       its contributors may be used to endorse or promote products derived
       from this software without specific prior written permission.
+
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -29,30 +32,17 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Model to represent data required for Program Settings.
+ * @description Model to abstract data in hierarchy settings related to
+ * courses and enrollments functionality.
  */
+public with sharing class ProgramSettingsModel {
+    public Boolean programEnrollmentDeletion;
+    public String programEnrollmentDeletionStatus;
 
-public with sharing class ProgramSettingsVModel {
-    @AuraEnabled
-    public List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModels { get; private set; }
-
-    @AuraEnabled
-    public Boolean programEnrollmentDeletion { get; private set; }
-
-    @AuraEnabled
-    public ComboboxVModel programEnrollmentDeletionStatus { get; private set; }
-
-    /*****************************************************************************************************************
-     * @description Constructor
-     * @param  autoEnrollmentMappingVModels A list of auto enrollment mapping VModels
-     *****************************************************************************************************************/
-    public ProgramSettingsVModel(
-        List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModels,
-        Boolean programEnrollmentDeletion,
-        ComboboxVModel programEnrollmentDeletionStatus
-    ) {
-        this.autoEnrollmentMappingVModels = autoEnrollmentMappingVModels;
+    public ProgramSettingsModel(Boolean programEnrollmentDeletion, String programEnrollmentDeletionStatus) {
         this.programEnrollmentDeletion = programEnrollmentDeletion;
-        this.programEnrollmentDeletionStatus = programEnrollmentDeletionStatus;
+        this.programEnrollmentDeletionStatus = String.isBlank(programEnrollmentDeletionStatus)
+            ? '""'
+            : programEnrollmentDeletionStatus;
     }
 }

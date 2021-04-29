@@ -1,6 +1,7 @@
 import { LightningElement, track, wire } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramSettingsVModel";
+
 //custom labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
 import stgBtnEdit from "@salesforce/label/c.stgBtnEdit";
@@ -11,6 +12,11 @@ import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType
 import stgColAutoEnrollmentStatus from "@salesforce/label/c.stgColAutoEnrollmentStatus";
 import stgColAutoEnrollmentRole from "@salesforce/label/c.stgColAutoEnrollmentRole";
 import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
+import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollDeleteTitle";
+import stgAfflProgEnrollDeleteRelated from "@salesforce/label/c.stgAfflProgEnrollDeleteRelated";
+import AfflProgEnrollDeleted from "@salesforce/label/c.AfflProgEnrollDeleted";
+import stgAfflDeleteProgramEnrollment from "@salesforce/label/c.stgAfflDeleteProgramEnrollment";
+
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -21,6 +27,11 @@ export default class programSettings extends LightningElement {
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
         newButton: stgBtnAddMapping,
+        programEnrollmentDeletionHeading: stgAfflProgEnrollDeleteTitle,
+        relatedAffiliationToDeletedEnrollmentSettingTitle: stgAfflProgEnrollDeleteRelated,
+        relatedAffiliationToDeletedEnrollmentSettingDescription: AfflProgEnrollDeleted,
+        affiliationsNotDeletedStatusSettingTitle: stgAfflDeleteProgramEnrollment,
+
         autoEnrollmentMappingsTable: {
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
             autoEnrollmentMappingsDescription: autoEnrollmentMappingsDescription,
@@ -32,7 +43,9 @@ export default class programSettings extends LightningElement {
         },
     };
 
-    inputAttributeReference = {};
+    inputAttributeReference = {
+        deleteRelatedAffiliationsWithProgramEnrollmentToggleId: "programEnrollmentDeletions",
+    };
 
     get affordancesDisabled() {
         if (!this.isEditMode || this.affordancesDisabledToggle === true) {
