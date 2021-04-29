@@ -57,4 +57,27 @@
             </div>
         </div>
     </div>
+    <!-- Preferred Email and Phone clean up-->
+    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
+        <div class="slds-col slds-size_2-of-3">
+            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+                {labelReference.stgPreferredEmailDataCleanup}
+            </div>
+            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                <lightning-formatted-rich-text value={prefEmailPhoneDesc}></lightning-formatted-rich-text>
+            </div>
+        </div>
+
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+                <lightning-button
+                    variant="brand"
+                    label={labelReference.stgRunCleanUp}
+                    title={labelReference.stgRunCleanUp}
+                    onclick={handlePrefEmailPhoneCleanUp}
+                    class="slds-m-left_x-small"
+                ></lightning-button>
+            </div>
+        </div>
+    </div>
 </template>

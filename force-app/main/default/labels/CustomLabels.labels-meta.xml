@@ -2675,8 +2675,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Preferred Email/Phone Data Cleanup:</value>
+        <shortDescription>Label for the Preferred Email and Preferred Phone setting</shortDescription>
+        <value>Preferred Email and Preferred Phone</value>
     </labels>
     <labels>
         <fullName>stgPreferredPhoneDefault</fullName>
@@ -2685,6 +2685,30 @@
         <protected>true</protected>
         <shortDescription>Field label for the Default Preferred Phone setting</shortDescription>
         <value>Default Preferred Phone</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneEmailModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update Preferred Email and Phone fields confirmation window</shortDescription>
+        <value>Updating refreshes Preferred Email and Preferred Phone fields for all Contacts as specified by your org's related settings.Before proceeding, make sure you've disabled any processes that reference Preferred Email and Preferred Phone fields.</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneEmailModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update Preferred Email and Phone fields confirmation window</shortDescription>
+        <value>Update Preferred Email and Phone fields?</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneEmailSuccessToast</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when Preferred Email and Phone fields are queued for update</shortDescription>
+        <value>We&apos;re updating the Preferred Email and Preferred Phone fields. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgPreferredPhoneSelection</fullName>
@@ -2802,16 +2826,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for button on Settings UI</shortDescription>
-        <value>Run Cleanup</value>
+        <shortDescription>Button label for updating the selected Apex job</shortDescription>
+        <value>Update</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUpEnableFirstTime</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</value>
+        <shortDescription>Description of the Preferred Email and Preferred Phone setting</shortDescription>
+        <value>Updates Preferred Email and Preferred Phone for all Contacts based on your org&apos;s related settings. It's a good idea to run this job when you enable Require Preferred Email or Require Preferred Phone for the first time or if you haven&apos;t enforced them for a while.</value>
     </labels>
     <labels>
         <fullName>stgSaveSettings</fullName>
@@ -2888,20 +2912,12 @@
         <value>System Tools</value>
     </labels>
     <labels>
-        <fullName>stgSystemToolsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for System Tools</shortDescription>
-        <value>System Tools</value>
-    </labels>
-    <labels>
         <fullName>stgSystemSettingsNav</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Navigation section title for System Tools</shortDescription>
-        <value>System Settings</value>
+        <value>System</value>
     </labels>
     <labels>
         <fullName>stgTabAccCont</fullName>
