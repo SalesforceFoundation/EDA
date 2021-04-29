@@ -95,7 +95,6 @@ public with sharing class ProgramSettingsController {
                 autoProgramEnrollmentStatus,
                 autoProgramEnrollmentRole
             );
-            system.debug(afflMappingModel);
             ProgramSettingsController.locateAffiliationMappingsService().updateAutoEnrolllmentMapping(afflMappingModel);
 
             return mappingName;
@@ -119,13 +118,5 @@ public with sharing class ProgramSettingsController {
     @TestVisible
     private static AffiliationMappingsService locateAffiliationMappingsService() {
         return AffiliationMappingsService.getInstance();
-    }
-
-    /**********************************************************************************
-     * @description Locates and returns an instance of RecordTypeService.
-     **********************************************************************************/
-    @TestVisible
-    private static RecordTypeService locateRecordTypeService() {
-        return RecordTypeService.getInstance();
     }
 }

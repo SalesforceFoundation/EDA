@@ -41,6 +41,7 @@ private with sharing class AutoEnrollmentMappingVModel_TEST {
     private static void affiliationMappingsModelValid() {
         Test.startTest();
         AutoEnrollmentMappingVModel autoEnrollmentMappingVModel = new AutoEnrollmentMappingVModel(
+            'Test Mapping Name',
             'Test Account Record Type Name',
             'Test Account Record Type Label',
             'Test Status',
@@ -48,6 +49,11 @@ private with sharing class AutoEnrollmentMappingVModel_TEST {
         );
         Test.stopTest();
 
+        System.assertEquals(
+            'Test Mapping Name',
+            autoEnrollmentMappingVModel.mappingName,
+            'Mapping name should be \'Test Mapping Name\'.'
+        );
         System.assertEquals(
             'Test Account Record Type Name',
             autoEnrollmentMappingVModel.accountRecordTypeName,

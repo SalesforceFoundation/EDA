@@ -51,6 +51,23 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /****************************************************************************************
+     * @description Test method to verify locateAffiliationMappingsService() returns an instance of
+     * the AffiliationMappingsService class.
+     ****************************************************************************************/
+    @isTest
+    private static void locateAffiliationMappingsService() {
+        Test.startTest();
+        AffiliationMappingsService affiliationMappingsServiceInstance = ProgramSettingsController.locateAffiliationMappingsService();
+        Test.stopTest();
+
+        System.assertEquals(
+            AffiliationMappingsService.getInstance(),
+            affiliationMappingsServiceInstance,
+            'Should return instance of AffiliationMappingsService class.'
+        );
+    }
+
+    /****************************************************************************************
      * @description Test method to verify getProgramSettingsVModel()
      * returns an instance of ProgramSettingsVModel with valid values from valid stub.
      ****************************************************************************************/
@@ -113,6 +130,19 @@ private with sharing class ProgramSettingsController_TEST {
         }
     }
 
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingStatusComboboxVModel()
+     * returns an instance of ComboBoxVModel with valid values from valid stub.
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingStatusComboboxVModelValid() {
+        ProgramSettingsVMapper.instance = new STUB_ProgramSettingsVMapperValid();
+
+        Test.startTest();
+        ComboBoxVModel autoEnrollmentMappingStatusComboboxVModel = ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel();
+        Test.stopTest();
+    }
+
     /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
@@ -125,6 +155,7 @@ private with sharing class ProgramSettingsController_TEST {
             List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModelsList = new List<AutoEnrollmentMappingVModel>();
             autoEnrollmentMappingVModelsList.add(
                 new AutoEnrollmentMappingVModel(
+                    'Mapping 1',
                     'Record_Type_1',
                     'Record Type 1',
                     'autoProgramEnrollmentStatus1',
@@ -133,6 +164,7 @@ private with sharing class ProgramSettingsController_TEST {
             );
             autoEnrollmentMappingVModelsList.add(
                 new AutoEnrollmentMappingVModel(
+                    'Mapping 2',
                     'Record_Type_2',
                     'Record Type 2',
                     'autoProgramEnrollmentStatus2',
