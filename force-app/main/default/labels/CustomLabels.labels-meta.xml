@@ -820,7 +820,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Toast message when an Affiliation Mapping is created</shortDescription>
-        <value>{0} Primary Affiliation was created</value>
+        <value>{0} primary Affiliation was created</value>
     </labels>
     <labels>
         <fullName>stgAffiliationsSettingsNav</fullName>
