@@ -37,8 +37,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Batch message when there&apos;s a problem starting</shortDescription>
-        <value>There was a problem starting the Batch.</value>
+        <shortDescription>Message when an Apex job can't run</shortDescription>
+        <value>We couldn&apos;t run the Apex job.</value>
     </labels>
     <labels>
         <fullName>BothFieldAndValue</fullName>
@@ -1059,8 +1059,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for refreshing Household Account Names</shortDescription>
-        <value>Refresh All Household Names</value>
+        <shortDescription>Button label for updating the selected Apex job</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRefreshHouseholdNamesA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates all Household Account names</shortDescription>
+        <value>Update all Household Account names.</value>
     </labels>
     <labels>
         <fullName>stgBtnRunBackfill</fullName>
@@ -1085,6 +1093,14 @@
         <protected>true</protected>
         <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnUpdate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button label for updating the selected Apex job</shortDescription>
+        <value>Update</value>
     </labels>
     <labels>
         <fullName>stgCleanupQueuedEmailSent</fullName>
@@ -2667,8 +2683,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Preferred Email/Phone Data Cleanup:</value>
+        <shortDescription>Label for the Preferred Email and Preferred Phone setting</shortDescription>
+        <value>Preferred Email and Preferred Phone</value>
     </labels>
     <labels>
         <fullName>stgPreferredPhoneDefault</fullName>
@@ -2677,6 +2693,30 @@
         <protected>true</protected>
         <shortDescription>Field label for the Default Preferred Phone setting</shortDescription>
         <value>Default Preferred Phone</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneEmailModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update Preferred Email and Phone fields confirmation window</shortDescription>
+        <value>Updating refreshes Preferred Email and Preferred Phone fields for all Contacts as specified by your org's related settings.Before proceeding, make sure you've disabled any processes that reference Preferred Email and Preferred Phone fields.</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneEmailModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update Preferred Email and Phone fields confirmation window</shortDescription>
+        <value>Update Preferred Email and Phone fields?</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneEmailSuccessToast</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when Preferred Email and Phone fields are queued for update</shortDescription>
+        <value>We&apos;re updating the Preferred Email and Preferred Phone fields. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgPreferredPhoneSelection</fullName>
@@ -2735,6 +2775,14 @@
         <value>Warning: Clicking this button renames ALL existing Administrative Account records to the format specified in Administrative Account Name Format. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Administrative Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
     </labels>
     <labels>
+        <fullName>stgRefreshAdminNamesSuccessToast</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when Account names are queued for update</shortDescription>
+        <value>Administrative Account names will be updated during your next scheduled batch job run. We'll send you an email when the job is done.</value>
+    </labels>
+    <labels>
         <fullName>stgRefreshAdminAcctNameTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -2747,32 +2795,55 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Warning for Refresh Household Account Names</shortDescription>
-        <value>Warning: Clicking this button renames ALL existing Household Account records to the format specified in Household Account Name Format. This action enables the Automatically Rename Household Accounts setting, even if previously unselected. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Household Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
+        <shortDescription>Description of the Update All Household Account Names setting</shortDescription>
+        <value>Updates all Household Account records to use the format in Household Account Name Format. Also enables Automatically Rename Household Accounts, even if previously disabled.  &lt;/br&gt;&lt;/br&gt; Warning: Before proceeding, learn about the impact of this setting. Also disable processes that reference Household Accounts.</value>
     </labels>
     <labels>
         <fullName>stgRefreshHHAcctNameTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for System Settings</shortDescription>
-        <value>Refresh All Household Account Names</value>
+        <shortDescription>Label for the Update All Household Account Names settings</shortDescription>
+        <value>Update All Household Account Names</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHouseholdNamesModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update all Household Account names confirmation window</shortDescription>
+        <value>Updating refreshes all Household Account records to use the format in Household Account Name Format. Before proceeding, make sure you've disabled any processes that reference Household Accounts.</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHouseholdNamesModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update all Household Account names confirmation window </shortDescription>
+        <value>Update all Household Account names?</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHouseholdNamesSuccessToast</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when Household Account names are queued for update</shortDescription>
+        <value>We&apos;re updating Household Account names. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for button on Settings UI</shortDescription>
-        <value>Run Cleanup</value>
+        <shortDescription>Button label for updating the selected Apex job</shortDescription>
+        <value>Update</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUpEnableFirstTime</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</value>
+        <shortDescription>Description of the Preferred Email and Preferred Phone setting</shortDescription>
+        <value>Updates Preferred Email and Preferred Phone for all Contacts based on your org&apos;s related settings. It's a good idea to run this job when you enable Require Preferred Email or Require Preferred Phone for the first time or if you haven&apos;t enforced them for a while.</value>
     </labels>
     <labels>
         <fullName>stgSaveSettings</fullName>
@@ -2841,20 +2912,20 @@
         An email will be sent at the completion of the batch.</value>
     </labels>
     <labels>
+        <fullName>stgSystemToolsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for System Tools</shortDescription>
+        <value>System Tools</value>
+    </labels>
+    <labels>
         <fullName>stgSystemSettingsNav</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Navigation section title for System Tools</shortDescription>
-        <value>System Tools</value>
-    </labels>
-    <labels>
-        <fullName>stgSystemSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for System Tools Settings</shortDescription>
-        <value>System Tools</value>
+        <value>System</value>
     </labels>
     <labels>
         <fullName>stgTabAccCont</fullName>
@@ -2973,7 +3044,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Link label to EDA Documentation</shortDescription>
+        <shortDescription>Hyperlinked text to EDA Documentation</shortDescription>
         <value>Tell Me More</value>
     </labels>
     <labels>

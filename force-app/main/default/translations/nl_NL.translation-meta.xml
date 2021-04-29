@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label>Er is een probleem opgetreden bij het starten van de batch.</label>
+        <label><!-- Message when an Apex job can't run --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
@@ -533,8 +533,12 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Alle huishoudennamen opnieuw laden</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshHouseholdNames</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates all Household Account names --></label>
+        <name>stgBtnRefreshHouseholdNamesA11y</name>
     </customLabels>
     <customLabels>
         <label>Backfill uitvoeren</label>
@@ -547,6 +551,10 @@
     <customLabels>
         <label>Opslaan</label>
         <name>stgBtnSave</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for updating the selected Apex job --></label>
+        <name>stgBtnUpdate</name>
     </customLabels>
     <customLabels>
         <label>De opschoning is in de wachtrij geplaatst. Er wordt een e-mail verzonden bij voltooiing van de batch.</label>
@@ -1325,12 +1333,24 @@
         <name>stgPreferredEmailBatchEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>Gegevensopschoning van voorkeurs-e-mail/telefoonnummer:</label>
+        <label><!-- Label for the Preferred Email and Preferred Phone setting --></label>
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
         <label><!-- Field label for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Preferred Email and Phone fields are queued for update --></label>
+        <name>stgPreferredPhoneEmailSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Selecteer een veld voor het voorkeurstelefoonnummer van waaruit de waarde moet worden gekopieerd in het geval dat het standaard telefoonnummerveld geen waarde heeft of er meer dan één telefoonnummerveld is gedefinieerd.</label>
@@ -1361,23 +1381,39 @@
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
+        <label><!--Toast message when Account names are queued for update --></label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
         <label>Alle administratieve accountnamen opnieuw laden</label>
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Waarschuwing: Als u op deze knop klikt, worden ALLE bestaande huishoudenaccountrecords hernoemd volgens de indeling die is opgegeven in Naamindeling huishoudenaccount. Met deze actie schakelt u de instelling Huishoudenaccounts automatisch hernoemen in, ook als deze eerder niet geselecteerd was. Lees de productdocumentatie om er zeker van te zijn dat u de gevolgen van deze onomkeerbare wijziging begrijpt. Schakel voordat u verdergaat alle automatisering en processen die naar huishoudenaccounts verwijzen uit (zoals workflowregels). Nadat het opnieuw laden is voltooid, kunt u deze weer inschakelen.</label>
+        <label><!-- Description of the Update All Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Alle huishoudenaccountnamen opnieuw laden</label>
+        <label><!-- Label for the Update All Household Account Names settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Opschoning uitvoeren</label>
+        <label><!-- Description of the Update all Household Account names confirmation window --></label>
+        <name>stgRefreshHouseholdNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update all Household Account names confirmation window  --></label>
+        <name>stgRefreshHouseholdNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Household Account names are queued for update --></label>
+        <name>stgRefreshHouseholdNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label>Voer dit gegevensopschoningsproces uit nadat u de vereiste voor voorkeurs-e-mail of voorkeurstelefoonnummer voor de eerste keer hebt ingeschakeld of na een periode waarin deze vereiste niet is afgedwongen.</label>
+        <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
@@ -1415,12 +1451,12 @@
         <name>stgSuccessHHAccountNameRefresh</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for System Tools --></label>
-        <name>stgSystemSettingsNav</name>
+        <label><!-- Navigation title for System Tools --></label>
+        <name>stgSystemToolsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for System Tools Settings --></label>
-        <name>stgSystemSettingsTitle</name>
+        <label><!-- Navigation section title for System Tools --></label>
+        <name>stgSystemSettingsNav</name>
     </customLabels>
     <customLabels>
         <label>Accounts en contactpersonen</label>
@@ -1479,7 +1515,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA Documentation --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>

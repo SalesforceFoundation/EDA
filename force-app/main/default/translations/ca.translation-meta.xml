@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label>S&apos;ha produït un problema en iniciar el lot.</label>
+        <label><!-- Message when an Apex job can't run --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
@@ -533,8 +533,12 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Actualitza tots els noms domèstics</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshHouseholdNames</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates all Household Account names --></label>
+        <name>stgBtnRefreshHouseholdNamesA11y</name>
     </customLabels>
     <customLabels>
         <label>Executa el reenviament</label>
@@ -547,6 +551,10 @@
     <customLabels>
         <label>Desa</label>
         <name>stgBtnSave</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for updating the selected Apex job --></label>
+        <name>stgBtnUpdate</name>
     </customLabels>
     <customLabels>
         <label>La neteja s&apos;ha posat en cua correctament. S&apos;enviarà un correu electrònic quan el lot s&apos;hagi completat.</label>
@@ -1325,12 +1333,24 @@
         <name>stgPreferredEmailBatchEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>Neteja de dades de correu electrònic/telèfon preferit:</label>
+        <label><!-- Label for the Preferred Email and Preferred Phone setting --></label>
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
         <label><!-- Field label for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Preferred Email and Phone fields are queued for update --></label>
+        <name>stgPreferredPhoneEmailSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Seleccioneu un camp del telèfon preferent per copiar el valor quan el camp del telèfon estàndard no tingui valor o es defineixi més d&apos;un camp &quot;telèfon&quot;.</label>
@@ -1361,23 +1381,39 @@
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
+        <label><!--Toast message when Account names are queued for update --></label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
         <label>Actualitza tots els noms de compte administratiu</label>
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Advertiment: en fer clic en aquest botó, es canviarà el nom de TOTS els registres de comptes domèstics existents al format especificat al Format de noms de compte domèstic. Aquesta acció habilita el paràmetre Canvia automàticament el nom dels comptes domèstics, encara que prèviament no estigués seleccionat. Llegiu la documentació del producte per assegurar-vos que enteneu les conseqüències d’aquest canvi irreversible. Abans de continuar, desactiveu qualsevol procés o automatització que facin referència a comptes domèstics (per exemple, regles de flux de treball). Un cop s&apos;hagi completat l&apos;actualització, podeu tornar-los a activar.</label>
+        <label><!-- Description of the Update All Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Actualitza tots els noms de compte domèstics</label>
+        <label><!-- Label for the Update All Household Account Names settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Executa la neteja</label>
+        <label><!-- Description of the Update all Household Account names confirmation window --></label>
+        <name>stgRefreshHouseholdNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update all Household Account names confirmation window  --></label>
+        <name>stgRefreshHouseholdNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Household Account names are queued for update --></label>
+        <name>stgRefreshHouseholdNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label>Executeu aquest procés de neteja de dades després d&apos;haver activat el requisit de correu electrònic preferit o el telèfon preferit per primera vegada o després d&apos;un període de no compliment del requisit.</label>
+        <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
@@ -1415,12 +1451,12 @@
         <name>stgSuccessHHAccountNameRefresh</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for System Tools --></label>
-        <name>stgSystemSettingsNav</name>
+        <label><!-- Navigation title for System Tools --></label>
+        <name>stgSystemToolsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for System Tools Settings --></label>
-        <name>stgSystemSettingsTitle</name>
+        <label><!-- Navigation section title for System Tools --></label>
+        <name>stgSystemSettingsNav</name>
     </customLabels>
     <customLabels>
         <label>Comptes i contactes</label>
@@ -1479,7 +1515,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA Documentation --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
