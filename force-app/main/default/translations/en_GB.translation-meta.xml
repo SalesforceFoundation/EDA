@@ -1409,7 +1409,7 @@
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that updates Preferred Email and Phone fields for all Contacts --></label>
+        <label><!-- Alt text for button that updates Preferred Email/Phone fields for all Contacts --></label>
         <name>stgRunCleanUpA11y</name>
     </customLabels>
     <customLabels>

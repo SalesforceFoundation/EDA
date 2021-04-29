@@ -2834,7 +2834,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Alt text for button that updates Preferred Email and Phone fields for all Contacts</shortDescription>
+        <shortDescription>Alt text for button that updates Preferred Email/Phone fields for all Contacts</shortDescription>
         <value>Update Preferred Email and Phone fields for all Contacts.</value>
     </labels>
     <labels>
