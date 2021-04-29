@@ -2748,7 +2748,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Update All Administrative Account Names setting</shortDescription>
-        <value>Updates all Administrative Account records to use the format in Administrative Account Name Format.&lt;/br&gt;&lt;/br&gt;Warning: Before proceeding, read the documentation so you understand the consequences of this setting. Also disable processes that reference Administrative Accounts.</value>
+        <value>Updates all Administrative Account records to use the format in Administrative Account Name Format.&lt;/br&gt;&lt;/br&gt;Warning: Before proceeding, learn about the impact of this setting. Also disable processes that reference Administrative Accounts.</value>
     </labels>
     <labels>
         <fullName>stgRefreshAdminAcctNameTitle</fullName>
@@ -2764,7 +2764,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Update all Administrative Account names confirmation window</shortDescription>
-        <value>Updating refreshed all Administrative Account records to use the format specified in Administrative Account Name Format. If that&apos;s what you want, be sure to disable any processes that reference those Accounts before continuing.</value>
+        <value>Refreshes all Administrative Account records to use the format in Administrative Account Name Format. Before proceeding, make sure you&apos;ve disabled any processes that reference Administrative Accounts.</value>
     </labels>
     <labels>
         <fullName>stgRefreshAdminNamesModalTitle</fullName>
