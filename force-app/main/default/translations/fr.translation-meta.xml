@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label>Un problème est survenu lors du démarrage du lot.</label>
+        <label><!-- Message when an Apex job can't run --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
@@ -529,8 +529,12 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Actualiser tous les noms de foyer</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshHouseholdNames</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates all Household Account names --></label>
+        <name>stgBtnRefreshHouseholdNamesA11y</name>
     </customLabels>
     <customLabels>
         <label>Exécuter le remplissage</label>
@@ -543,6 +547,10 @@
     <customLabels>
         <label>Enregistrer</label>
         <name>stgBtnSave</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for updating the selected Apex job --></label>
+        <name>stgBtnUpdate</name>
     </customLabels>
     <customLabels>
         <label>Le nettoyage a été mis en file d&apos;attente avec succès. Un e-mail sera envoyé une fois le lot terminé.</label>
@@ -1317,12 +1325,24 @@
         <name>stgPreferredEmailBatchEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>Nettoyage des données d&apos;adresse e-mail/téléphone préféré :</label>
+        <label><!-- Label for the Preferred Email and Preferred Phone setting --></label>
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
         <label><!-- Field label for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Preferred Email and Phone fields are queued for update --></label>
+        <name>stgPreferredPhoneEmailSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Sélectionnez un champ pour le téléphone préféré afin de copier la valeur lorsque le champ Téléphone standard n’a pas de valeur, ou lorsque plusieurs champs Téléphone sont définis.</label>
@@ -1345,23 +1365,39 @@
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
+        <label><!--Toast message when Account names are queued for update --></label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
         <label>Actualiser tous les noms de compte administratifs</label>
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Avertissement : Lorsque vous cliquez sur ce bouton, TOUS les enregistrements Comptes de foyer existants sont renommés vers le format spécifié dans Format de nom du compte de foyer. Cette action active le paramètre Renommer automatiquement les comptes de foyer, même si vous l&apos;aviez désélectionné. Lisez la documentation produit pour vous assurer de comprendre les conséquences de cette modification irréversible. Avant de continuer, désactivez toutes les automatisations ou tous les processus qui référencent des Comptes de foyer (par exemple des règles de workflow). Une fois l&apos;actualisation effectuée, vous ne pouvez pas les réactiver.</label>
+        <label><!-- Description of the Update All Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Actualiser tous les noms de compte de foyer</label>
+        <label><!-- Label for the Update All Household Account Names settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Exécuter le nettoyage</label>
+        <label><!-- Description of the Update all Household Account names confirmation window --></label>
+        <name>stgRefreshHouseholdNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update all Household Account names confirmation window  --></label>
+        <name>stgRefreshHouseholdNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Household Account names are queued for update --></label>
+        <name>stgRefreshHouseholdNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label>Exécutez ce processus de nettoyage de données après l&apos;activation initiale de l&apos;exigence Adresse e-mail préférée ou Téléphone préféré après une période de non application de l&apos;exigence.</label>
+        <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
@@ -1397,12 +1433,12 @@
         <name>stgSuccessHHAccountNameRefresh</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for System Tools --></label>
-        <name>stgSystemSettingsNav</name>
+        <label><!-- Navigation title for System Tools --></label>
+        <name>stgSystemToolsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for System Tools Settings --></label>
-        <name>stgSystemSettingsTitle</name>
+        <label><!-- Navigation section title for System Tools --></label>
+        <name>stgSystemSettingsNav</name>
     </customLabels>
     <customLabels>
         <label>Comptes et contacts</label>
@@ -1461,7 +1497,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Link label to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA Documentation --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
