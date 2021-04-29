@@ -9,7 +9,7 @@
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
-        <label>選択した場合、プログラム登録が削除されると、その関連所属が削除されます。選択しない場合、所属は維持され、その状況は、[削除されていない所属の状況] で定義された値に設定されます。</label>
+        <label><!-- Description of the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
@@ -433,7 +433,7 @@
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <label>削除されていない所属の状況</label>
+        <label><!-- Label for the Status for Affiliations Not Deleted setting --></label>
         <name>stgAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
@@ -445,8 +445,12 @@
         <name>stgAfflNotInserted</name>
     </customLabels>
     <customLabels>
-        <label>プログラム登録の削除時に関連所属を削除</label>
+        <label><!-- Label for the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Program Enrollment Deletions --></label>
+        <name>stgAfflProgEnrollDeleteTitle</name>
     </customLabels>
     <customLabels>
         <label>作成された所属の役割を指定</label>

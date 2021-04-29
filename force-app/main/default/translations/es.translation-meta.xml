@@ -9,7 +9,7 @@
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
-        <label>Si se selecciona, al eliminar una Inscripción del programa, elimine su afiliación relacionada. De lo contrario, mantenga la afiliación y establezca su estado como el valor definido en Estado para afiliaciones no eliminadas.</label>
+        <label><!-- Description of the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
@@ -433,7 +433,7 @@
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <label>Estado para afiliaciones no eliminadas</label>
+        <label><!-- Label for the Status for Affiliations Not Deleted setting --></label>
         <name>stgAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
@@ -445,8 +445,12 @@
         <name>stgAfflNotInserted</name>
     </customLabels>
     <customLabels>
-        <label>Eliminar afiliación relacionada al eliminar inscripción del programa</label>
+        <label><!-- Label for the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Program Enrollment Deletions --></label>
+        <name>stgAfflProgEnrollDeleteTitle</name>
     </customLabels>
     <customLabels>
         <label>Especificar función para afiliaciones creadas</label>
