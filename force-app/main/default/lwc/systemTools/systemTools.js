@@ -25,6 +25,7 @@ import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 import stgPreferredEmailDataCleanup from "@salesforce/label/c.stgPreferredEmailDataCleanup";
 import stgRunCleanUpEnableFirstTime from "@salesforce/label/c.stgRunCleanUpEnableFirstTime";
 import stgRunCleanUp from "@salesforce/label/c.stgRunCleanUp";
+import stgRunCleanUpA11y from "@salesforce/label/c.stgRunCleanUpA11y";
 import stgPreferredPhoneEmailSuccessToast from "@salesforce/label/c.stgPreferredPhoneEmailSuccessToast";
 
 import runRefreshHouseholdAccountNamingJob from "@salesforce/apex/AccountNamingBatchController.runRefreshHouseholdAccountNamingJob";
@@ -49,6 +50,7 @@ export default class systemTools extends LightningElement {
         stgPreferredEmailDataCleanup: stgPreferredEmailDataCleanup,
         stgRunCleanUpEnableFirstTime: stgRunCleanUpEnableFirstTime,
         stgRunCleanUp: stgRunCleanUp,
+        stgRunCleanUpA11y: stgRunCleanUpA11y,
         stgPreferredPhoneEmailSuccessToast: stgPreferredPhoneEmailSuccessToast,
     };
 

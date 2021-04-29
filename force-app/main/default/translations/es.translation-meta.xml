@@ -1409,6 +1409,10 @@
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that updates Preferred Email and Phone fields for all Contacts --></label>
+        <name>stgRunCleanUpA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
