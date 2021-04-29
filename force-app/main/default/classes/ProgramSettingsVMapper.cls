@@ -86,41 +86,7 @@ public virtual with sharing class ProgramSettingsVMapper {
             }
         }
 
-        ProgramSettingsModel programSettingsModel = this.locateProgramSettingsService().getProgramSettingsModel();
-        ComboboxVModel programEnrollmentDeletionStatusComboboxVModel = this.getProgramEnrollmentDeletionStatusComboboxVModel(
-            programSettingsModel
-        );
-
-        return new ProgramSettingsVModel(
-            autoEnrollmentMappingVModelsList,
-            programSettingsModel.programEnrollmentDeletion,
-            programEnrollmentDeletionStatusComboboxVModel
-        );
-    }
-
-    @TestVisible
-    private ComboboxVModel getProgramEnrollmentDeletionStatusComboboxVModel(ProgramSettingsModel programSettingsModel) {
-        List<ComboboxValueVModel> programEnrollmentDeletionStatusOptions = new List<ComboboxValueVModel>();
-        Map<String, PicklistEntryModel> affiliationStatusPicklistEntryModelsByName = this.locatePicklistEntryService()
-            .getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Status__c);
-        Map<String, PicklistEntryModel> activeAffiliationStatusPicklistEntryModelsByName = this.locatePicklistEntryService()
-            .getActivePicklistEntryModelsByName(affiliationStatusPicklistEntryModelsByName);
-
-        for (
-            PicklistEntryModel activeAffiliationStatusPicklistEntryModel : activeAffiliationStatusPicklistEntryModelsByName.values()
-        ) {
-            programEnrollmentDeletionStatusOptions.add(
-                new ComboboxValueVModel(
-                    activeAffiliationStatusPicklistEntryModel.label,
-                    activeAffiliationStatusPicklistEntryModel.name
-                )
-            );
-        }
-
-        return new ComboboxVModel(
-            programSettingsModel.programEnrollmentDeletionStatus,
-            programEnrollmentDeletionStatusOptions
-        );
+        return new ProgramSettingsVModel(autoEnrollmentMappingVModelsList);
     }
 
     /**********************************************************************************************************
@@ -161,15 +127,6 @@ public virtual with sharing class ProgramSettingsVMapper {
     }
 
     /*****************************************************************************
-     * @description Retrieve an instance of the ProgramSettingsService class.
-     * @return An instance of ProgramSettingsService.
-     *****************************************************************************/
-    @TestVisible
-    private ProgramSettingsService locateProgramSettingsService() {
-        return ProgramSettingsService.getInstance();
-    }
-
-    /*****************************************************************************
      * @description Retrieve an instance of the AffiliationMappingsService class.
      * @return An instance of AffiliationMappingsService.
      *****************************************************************************/
@@ -185,14 +142,5 @@ public virtual with sharing class ProgramSettingsVMapper {
     @TestVisible
     private RecordTypeService locateRecordTypeService() {
         return RecordTypeService.getInstance();
-    }
-
-    /*****************************************************************************
-     * @description Retrieve an instance of the PicklistEntryService class.
-     * @return An instance of PicklistEntryService.
-     *****************************************************************************/
-    @TestVisible
-    private PicklistEntryService locatePicklistEntryService() {
-        return PicklistEntryService.getInstance();
     }
 }

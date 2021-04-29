@@ -1,23 +1,23 @@
-public virtual with sharing class ProgramSettingsService {
+public virtual with sharing class ProgramEnrollmentDeletionSettingsService {
     /*********************************************
      * @description Instance for Singleton Pattern
      **********************************************/
     @TestVisible
-    private static ProgramSettingsService instance;
+    private static ProgramEnrollmentDeletionSettingsService instance;
 
     /*********************************************************************
      * @description Empty constructor is not public for Singleton Pattern
      **********************************************************************/
-    protected ProgramSettingsService() {
+    protected ProgramEnrollmentDeletionSettingsService() {
     }
 
     /*****************************************************************************
      * @description Static method to get the current instance for Singleton pattern
-     * @return The instance of ProgramSettingsService.
+     * @return The instance of ProgramEnrollmentDeletionSettingsService.
      ******************************************************************************/
-    public static ProgramSettingsService getInstance() {
+    public static ProgramEnrollmentDeletionSettingsService getInstance() {
         if (instance == null) {
-            instance = new ProgramSettingsService();
+            instance = new ProgramEnrollmentDeletionSettingsService();
         }
 
         return instance;
@@ -26,18 +26,18 @@ public virtual with sharing class ProgramSettingsService {
     /****************************************************************************
      * @description Retrieve model representing program settings specified in
      * hierarchy settings.
-     * @return A ProgramSettingsModel
+     * @return A ProgramEnrollmentDeletionSettingsModel
      ****************************************************************************/
-    public ProgramSettingsModel getProgramSettingsModel() {
-        return this.locateProgramSettingsMapper().getProgramSettingsModel();
+    public ProgramEnrollmentDeletionSettingsModel getProgramEnrollmentDeletionSettingsModel() {
+        return this.locateProgramEnrollmentDeletionSettingsMapper().getProgramEnrollmentDeletionSettingsModel();
     }
 
     /****************************************************************************
-     * @description Retrieve an instance of ProgramSettingsMapper
-     * @return An instance of the ProgramSettingsMapper class
+     * @description Retrieve an instance of ProgramEnrollmentDeletionSettingsMapper
+     * @return An instance of the ProgramEnrollmentDeletionSettingsMapper class
      ****************************************************************************/
     @TestVisible
-    private ProgramSettingsMapper locateProgramSettingsMapper() {
-        return ProgramSettingsMapper.getInstance();
+    private ProgramEnrollmentDeletionSettingsMapper locateProgramEnrollmentDeletionSettingsMapper() {
+        return ProgramEnrollmentDeletionSettingsMapper.getInstance();
     }
 }

@@ -1,6 +1,7 @@
 import { LightningElement, track, wire } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramSettingsVModel";
+import getProgramEnrollmentDeletionSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramEnrollmentDeletionSettingsVModel";
 
 //custom labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
@@ -24,13 +25,16 @@ export default class programSettings extends LightningElement {
     @track programSettingsVModel;
     @track programSettingsVModelWireResult;
 
+    @track programEnrollmentDeletionSettingsVModel;
+    @track programEnrollmentDeletionSettingsVModelWireResult;
+
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
         newButton: stgBtnAddMapping,
         programEnrollmentDeletionHeading: stgAfflProgEnrollDeleteTitle,
-        relatedAffiliationToDeletedEnrollmentSettingTitle: stgAfflProgEnrollDeleteRelated,
-        relatedAffiliationToDeletedEnrollmentSettingDescription: AfflProgEnrollDeleted,
-        affiliationsNotDeletedStatusSettingTitle: stgAfflDeleteProgramEnrollment,
+        programEnrollmentDeletionSettingTitle: stgAfflProgEnrollDeleteRelated,
+        programEnrollmentDeletionSettingDescription: AfflProgEnrollDeleted,
+        programEnrollmentDeletionStatusSettingTitle: stgAfflDeleteProgramEnrollment,
 
         autoEnrollmentMappingsTable: {
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
@@ -62,6 +66,17 @@ export default class programSettings extends LightningElement {
             this.programSettingsVModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving preferredContactInfoSettingsVModel");
+        }
+    }
+
+    @wire(getProgramEnrollmentDeletionSettingsVModel)
+    programEnrollmentDeletionSettingsVModelWire(result) {
+        this.programEnrollmentDeletionSettingsVModelWireResult = result;
+
+        if (result.data) {
+            this.programEnrollmentDeletionSettingsVModel = result.data;
+        } else if (result.error) {
+            console.log("error retrieving ProgramEnrollmentDeletionSettingsVModel");
         }
     }
 
@@ -114,6 +129,10 @@ export default class programSettings extends LightningElement {
 
     handleSettingsSaveCancel(event) {
         this.refreshAllApex();
+    }
+
+    handleProgramEnrollmentDeletionChange(event) {
+        console.log("programEnrollmentDeletions toggle selected!");
     }
 
     refreshAllApex() {

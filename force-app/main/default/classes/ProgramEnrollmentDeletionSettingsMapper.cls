@@ -35,40 +35,40 @@
  * @description Mapper class to retrieve data needed for Courses and Enrollments
  * functionality.
  */
-public virtual with sharing class ProgramSettingsMapper {
+public virtual with sharing class ProgramEnrollmentDeletionSettingsMapper {
     /*********************************************
      * @description Instance for Singleton Pattern
      **********************************************/
     @TestVisible
-    private static ProgramSettingsMapper instance;
+    private static ProgramEnrollmentDeletionSettingsMapper instance;
 
     /*********************************************************************
      * @description Empty constructor is not public for Singleton Pattern
      **********************************************************************/
-    protected ProgramSettingsMapper() {
+    protected ProgramEnrollmentDeletionSettingsMapper() {
     }
 
     /*****************************************************************************
      * @description Static method to get the current instance for Singleton pattern
-     * @return The instance of ProgramSettingsMapper.
+     * @return The instance of ProgramEnrollmentDeletionSettingsMapper.
      ******************************************************************************/
-    public static ProgramSettingsMapper getInstance() {
+    public static ProgramEnrollmentDeletionSettingsMapper getInstance() {
         if (instance == null) {
-            instance = new ProgramSettingsMapper();
+            instance = new ProgramEnrollmentDeletionSettingsMapper();
         }
 
         return instance;
     }
 
     /************************************************************************************************************
-     * @description Retrieve a ProgramSettingsModel representing the program settings Information
+     * @description Retrieve a ProgramEnrollmentDeletionSettingsModel representing the program settings Information
      * settings specified in Hierarchy Settings.
-     * @return A ProgramSettingsModel
+     * @return A ProgramEnrollmentDeletionSettingsModel
      ************************************************************************************************************/
-    public virtual ProgramSettingsModel getProgramSettingsModel() {
+    public virtual ProgramEnrollmentDeletionSettingsModel getProgramEnrollmentDeletionSettingsModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
-        return new ProgramSettingsModel(
+        return new ProgramEnrollmentDeletionSettingsModel(
             hierarchySettings.Affl_ProgEnroll_Del__c,
             hierarchySettings.Affl_ProgEnroll_Del_Status__c
         );

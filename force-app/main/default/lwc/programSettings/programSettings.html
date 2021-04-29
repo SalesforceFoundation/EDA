@@ -37,17 +37,19 @@
                     onrowaction={handleAutoEnrollmentMappingRowAction}
                 ></lightning-datatable>
             </div>
+        </template>
 
+        <template if:true={programEnrollmentDeletionSettingsVModel}>
             <!-- Program Enrollment Deletion -->
             <c-settings-row-input
-                class="slds-size_3-of-3"
-                title={labelReference.relatedAffiliationToDeletedEnrollmentSettingTitle}
-                description={labelReference.relatedAffiliationToDeletedEnrollmentSettingDescription}
+                class="slds-size_3-of-3 slds-p-top_x-large"
+                title={labelReference.programEnrollmentDeletionSettingTitle}
+                description={labelReference.programEnrollmentDeletionSettingDescription}
                 type="toggle"
                 input-id={inputAttributeReference.programEnrollmentDeletionToggleId}
-                value={programSettingsVModel.programEnrollmentDeletion}
-                checked={programSettingsVModel.programEnrollmentDeletion}
-                onsettingsinputchange={handleStoreErrorsChange}
+                value={programEnrollmentDeletionSettingsVModel.programEnrollmentDeletion}
+                checked={programEnrollmentDeletionSettingsVModel.programEnrollmentDeletion}
+                onsettingsinputchange={handleProgramEnrollmentDeletionChange}
                 disabled={affordancesDisabled}
             ></c-settings-row-input>
         </template>
