@@ -150,7 +150,7 @@ export default class programSettings extends LightningElement {
                 this.insertAffiliations(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
                 break;*/
             case "edit":
-                this.updateAutoEnrollmentMapping(saveModel.mappingName, saveModel.accountRecordType);
+                this.updateAutoEnrollmentMapping(saveModel.mappingName, saveModel.autoProgramEnrollmentStatus);
                 break;
             /*case "delete":
                 this.deleteAffiliation(saveModel.mappingName);
@@ -158,10 +158,10 @@ export default class programSettings extends LightningElement {
         }
     }
 
-    updateAutoEnrollmentMapping(mappingName, accountRecordType) {
+    updateAutoEnrollmentMapping(mappingName, autoProgramEnrollmentStatus) {
         updateAutoEnrollmentMapping({
             mappingName: mappingName,
-            accountRecordType: accountRecordType,
+            autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
         })
             .then((result) => {
                 this.showToast(

@@ -27,7 +27,6 @@
         const autoProgramEnrollmentStatus = eventParameters.autoProgramEnrollmentStatus;
         const autoProgramEnrollmentRole = eventParameters.autoProgramEnrollmentRole;
 
-        console.log("container" + autoProgramEnrollmentStatus);
         component
             .find("autoEnrollmentMappingModal")
             .openAutoEnrollmentMappingModal(

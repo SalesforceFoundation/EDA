@@ -112,11 +112,9 @@ public virtual with sharing class AffiliationMappingsMapper {
      * @param afflMappingModel Model to update affiliation mapping record from
      *****************************************************************************/
     public void updateAutoEnrollmentMapping(AffiliationMappingsModel afflMappingModel) {
-        system.debug(afflMappingModel);
-        Affl_Mappings__c afflSettings = Affl_Mappings__c.getInstance(afflMappingModel.name);
-        system.debug(afflSettings);
-        afflSettings.Account_Record_Type__c = afflMappingModel.accountRecordTypeFieldValue;
-        update afflSettings;
+        Affl_Mappings__c afflSetting = Affl_Mappings__c.getInstance(afflMappingModel.name);
+        afflSetting.Auto_Program_Enrollment_Status__c = afflMappingModel.autoProgramEnrollmentStatus;
+        update afflSetting;
     }
 
     /*****************************************************************************

@@ -6,8 +6,6 @@
         const autoProgramEnrollmentStatus = eventParameters.autoProgramEnrollmentStatus;
         const autoProgramEnrollmentRole = eventParameters.autoProgramEnrollmentRole;
 
-        console.log("opener " + autoProgramEnrollmentStatus);
-
         component.set("v.actionName", actionName);
         component.set("v.mappingName", mappingName);
         component.set("v.accountRecordType", accountRecordType);

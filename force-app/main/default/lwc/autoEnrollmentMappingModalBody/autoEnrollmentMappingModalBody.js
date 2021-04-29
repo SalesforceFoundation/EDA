@@ -28,7 +28,7 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
 
     inputAttributeReference = {
         accountRecordType: "autoEnrollmentMappingAccountRecordType",
-        autoEnrollmentMappingStatus: "autoEnrollmentMappingStatus",
+        autoProgramEnrollmentStatus: "autoProgramEnrollmentStatus",
     };
 
     @wire(getAccountRecordTypeComboboxVModel, {
@@ -45,17 +45,15 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     }
 
     @wire(getAutoEnrollmentMappingStatusComboboxVModel, {
-        autoEnrollmentMappingStatus: "$autoProgramEnrollmentStatus",
+        autoProgramEnrollmentStatus: "$autoProgramEnrollmentStatus",
     })
     autoEnrollmentMappingStatusComboboxVModelWire(result) {
         this.autoEnrollmentMappingStatusComboboxVModelWireResult = result;
 
-        console.log(result.data);
-
         if (result.data) {
             this.autoEnrollmentMappingStatusComboboxVModel = result.data;
         } else if (result.error) {
-            console.log("error retrieving autoEnrollmentMappingStatusComboboxVModel");
+            //console.log("error retrieving autoEnrollmentMappingStatusComboboxVModel");
         }
     }
 
@@ -64,12 +62,14 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     }
 
     handleAutoEnrollmentMappingStatusChange(event) {
-        //this.dispatchAutoEnrollmentMappingStatusChangeEvent(event.detail.value);
+        console.log("body " + event.detail.value);
+        this.dispatchAutoEnrollmentMappingStatusChangeEvent(event.detail.value);
     }
 
-    dispatchAutoEnrollmentMappingStatusChangeEvent(autoEnrollmentMappingStatus) {
+    dispatchAutoEnrollmentMappingStatusChangeEvent(autoProgramEnrollmentStatus) {
+        console.log("body dispatch " + autoProgramEnrollmentStatus);
         const autoEnrollmentMappingStatusDetails = {
-            autoEnrollmentMappingStatus: autoEnrollmentMappingStatus,
+            autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
         };
 
         const autoEnrollmentMappingStatusChangeEvent = new CustomEvent("autoenrollmentmappingstatuschange", {

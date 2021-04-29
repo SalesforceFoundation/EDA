@@ -82,20 +82,17 @@ public with sharing class ProgramSettingsController {
      * @return The name of the account record type.
      ************************************************************************************/
     @AuraEnabled
-    public static String updateAutoEnrollmentMapping(String mappingName, String accountRecordType) {
+    public static String updateAutoEnrollmentMapping(String mappingName, String autoProgramEnrollmentStatus) {
         try {
-            AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel(mappingName, accountRecordType);
+            system.debug(autoProgramEnrollmentStatus);
+            AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel(
+                mappingName,
+                autoProgramEnrollmentStatus
+            );
 
             ProgramSettingsController.locateAffiliationMappingsService().updateAutoEnrolllmentMapping(afflMappingModel);
 
-            RecordTypeModel accRecTypeModel = ProgramSettingsController.locateRecordTypeService()
-                .getRecordTypeModelFromRecTypeDevName('Account', accountRecordType);
-
-            if (accRecTypeModel == null) {
-                return accountRecordType;
-            }
-
-            return accRecTypeModel.name;
+            return autoProgramEnrollmentStatus;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

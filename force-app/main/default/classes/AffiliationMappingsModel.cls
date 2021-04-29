@@ -93,11 +93,11 @@ public with sharing class AffiliationMappingsModel {
      * @param accountRecordTypeFieldValue The value in Account_Record_Type__c field in Affl_Mappings__c custom settings
      *****************************************************************************************************************/
 
-    public AffiliationMappingsModel(String name, String accountRecordTypeFieldValue) {
+    public AffiliationMappingsModel(String name, String autoProgramEnrollmentStatus) {
         this.name = name;
 
-        this.accountRecordTypeFieldValue = String.isBlank(accountRecordTypeFieldValue)
+        this.autoProgramEnrollmentStatus = String.isBlank(autoProgramEnrollmentStatus)
             ? '""'
-            : accountRecordTypeFieldValue;
+            : autoProgramEnrollmentStatus;
     }
 }
