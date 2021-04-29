@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label>Es gab ein Problem beim Start des Batches.</label>
+        <label><!-- Message when an Apex job can't run --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
@@ -529,8 +529,12 @@
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Alle Haushaltsnamen aktualisieren</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshHouseholdNames</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates all Household Account names --></label>
+        <name>stgBtnRefreshHouseholdNamesA11y</name>
     </customLabels>
     <customLabels>
         <label>Abgleich ausführen</label>
@@ -543,6 +547,10 @@
     <customLabels>
         <label>Speichern</label>
         <name>stgBtnSave</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for updating the selected Apex job --></label>
+        <name>stgBtnUpdate</name>
     </customLabels>
     <customLabels>
         <label>Die Bereinigung wurde erfolgreich in die Warteschlange gestellt. Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
@@ -1321,12 +1329,24 @@
         <name>stgPreferredEmailBatchEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>Datenbereinigung für &quot;Bevorzugte E-Mail-Adresse/Telefonnummer&quot;:</label>
+        <label><!-- Label for the Preferred Email and Preferred Phone setting --></label>
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
         <label><!-- Label for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Preferred Email and Phone fields are queued for update --></label>
+        <name>stgPreferredPhoneEmailSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Wählen Sie ein Feld für &quot;Bevorzugte Telefonnummer&quot; aus, aus dem der Wert kopiert werden soll, wenn das Standardfeld &quot;Telefonnummer&quot; keinen Wert hat oder mehr als ein Feld &quot;Telefonnummer&quot; definiert ist.</label>
@@ -1349,23 +1369,39 @@
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
+        <label><!--Toast message when Account names are queued for update --></label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
         <label>Alle Namen von Verwaltungs-Accounts aktualisieren</label>
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Achtung: Wenn Sie auf diese Schaltfläche klicken, werden ALLE vorhandenen Haushalt-Accountdatensätze in das in &quot;Haushalt-Account – Namensformat&quot; angegebene Format umbenannt. Diese Aktion aktiviert die Einstellung &quot;Haushalt-Accounts automatisch umbenennen&quot;, auch wenn sie zuvor nicht aktiviert war. Lesen Sie die Produktdokumentation, um sicher zu sein, dass Sie die Folgen dieser unumkehrbaren Änderung verstehen. Bevor Sie fortfahren, deaktivieren Sie jegliche Automatisierung oder Prozesse, die auf Haushalt-Accounts verweisen (z. B. Workflow-Regeln). Nach der Aktualisierung können Sie sie wieder aktivieren.</label>
+        <label><!-- Description of the Update All Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Alle Namen von Haushalt-Accounts aktualisieren</label>
+        <label><!-- Label for the Update All Household Account Names settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Bereinigung ausführen</label>
+        <label><!-- Description of the Update all Household Account names confirmation window --></label>
+        <name>stgRefreshHouseholdNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update all Household Account names confirmation window  --></label>
+        <name>stgRefreshHouseholdNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Household Account names are queued for update --></label>
+        <name>stgRefreshHouseholdNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label>Führen Sie diesen Datenbereinigungsprozess aus, nachdem Sie die Anforderung &quot;Bevorzugte E-Mail&quot; oder &quot;Bevorzugte Telefonnummer&quot; zum ersten Mal aktiviert oder eine Zeit lang nicht erzwungen haben.</label>
+        <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
@@ -1405,6 +1441,10 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
     <customLabels>
         <label><!-- Navigation section title for System --></label>
         <name>stgSystemSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation title for System Tools --></label>
+        <name>stgSystemToolsNav</name>
     </customLabels>
     <customLabels>
         <label>Accounts und Kontakte</label>

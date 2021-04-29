@@ -53,6 +53,9 @@
             ],
             "c/settingsRowDualListbox": [
                 "../../settingsComponentLibrary/lwc/settingsRowDualListbox/settingsRowDualListbox.js"
+            ],
+            "c/systemTools": [
+                "systemTools/systemTools.js"
             ]
         }
     },
