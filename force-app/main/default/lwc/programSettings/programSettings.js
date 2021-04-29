@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from "lwc";
+import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramSettingsVModel";
 import getProgramEnrollmentDeletionSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramEnrollmentDeletionSettingsVModel";
@@ -27,6 +27,7 @@ export default class programSettings extends LightningElement {
 
     @track programEnrollmentDeletionSettingsVModel;
     @track programEnrollmentDeletionSettingsVModelWireResult;
+    @track showProgramEnrollmentDeletionStatus;
 
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
@@ -35,6 +36,7 @@ export default class programSettings extends LightningElement {
         programEnrollmentDeletionSettingTitle: stgAfflProgEnrollDeleteRelated,
         programEnrollmentDeletionSettingDescription: AfflProgEnrollDeleted,
         programEnrollmentDeletionStatusSettingTitle: stgAfflDeleteProgramEnrollment,
+        comboboxPlaceholderText: "Select",
 
         autoEnrollmentMappingsTable: {
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
@@ -48,7 +50,8 @@ export default class programSettings extends LightningElement {
     };
 
     inputAttributeReference = {
-        deleteRelatedAffiliationsWithProgramEnrollmentToggleId: "programEnrollmentDeletions",
+        programEnrollmentDeletionToggleId: "programEnrollmentDeletions",
+        programEnrollmentDeletionStatusComboboxId: "programEnrollmentDeletionStatus",
     };
 
     get affordancesDisabled() {
@@ -56,6 +59,11 @@ export default class programSettings extends LightningElement {
             return true;
         }
         return undefined;
+    }
+
+    @api
+    handleSaveCanvasRender() {
+        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
     }
 
     @wire(getProgramSettingsVModel)
@@ -75,6 +83,10 @@ export default class programSettings extends LightningElement {
 
         if (result.data) {
             this.programEnrollmentDeletionSettingsVModel = result.data;
+
+            // program enrollment deletion status visibility dependent on program enrollment deletion setting
+            this.showProgramEnrollmentDeletionStatus = !this.programEnrollmentDeletionSettingsVModel
+                .programEnrollmentDeletion;
         } else if (result.error) {
             console.log("error retrieving ProgramEnrollmentDeletionSettingsVModel");
         }
@@ -132,11 +144,38 @@ export default class programSettings extends LightningElement {
     }
 
     handleProgramEnrollmentDeletionChange(event) {
-        console.log("programEnrollmentDeletions toggle selected!");
+        const eventDetail = event.detail;
+
+        // display program enrollment deletion status setting if program enrollment deletion disabled
+        this.showProgramEnrollmentDeletionStatus = !eventDetail.value;
+
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Affl_ProgEnroll_Del__c",
+            settingsValue: eventDetail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleProgramEnrollmentDeletionStatusChange(event) {
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Affl_ProgEnroll_Del_Status__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
     refreshAllApex() {
-        Promise.all([refreshApex(this.programSettingsVModelWireResult)]).then(() => {
+        Promise.all([
+            refreshApex(this.programSettingsVModelWireResult),
+            refreshApex(this.programEnrollmentDeletionSettingsVModelWireResult),
+        ]).then(() => {
+            this.showProgramEnrollmentDeletionStatus = !this.programEnrollmentDeletionSettingsVModel
+                .programEnrollmentDeletion;
+
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });

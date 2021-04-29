@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from "lwc";
+import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
 import getErrorSettingsViewModel from "@salesforce/apex/ErrorSettingsController.getErrorSettingsViewModel";
@@ -39,6 +39,11 @@ export default class ErrorSettings extends LightningElement {
             return true;
         }
         return undefined;
+    }
+
+    @api
+    handleSaveCanvasRender() {
+        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
     }
 
     @wire(getErrorSettingsViewModel)

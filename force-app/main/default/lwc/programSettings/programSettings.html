@@ -52,6 +52,22 @@
                 onsettingsinputchange={handleProgramEnrollmentDeletionChange}
                 disabled={affordancesDisabled}
             ></c-settings-row-input>
+
+            <template if:true={showProgramEnrollmentDeletionStatus}>
+                <!-- Program Enrollment Deletion Status -->
+                <c-settings-row-input
+                    class="slds-size_3-of-3 slds-p-left_x-large"
+                    title={labelReference.programEnrollmentDeletionStatusSettingTitle}
+                    description=""
+                    type="combobox"
+                    input-id={inputAttributeReference.programEnrollmentDeletionStatusComboboxId}
+                    value={programEnrollmentDeletionSettingsVModel.programEnrollmentDeletionStatus.value}
+                    placeholder={labelReference.comboboxPlaceholderText}
+                    options={programEnrollmentDeletionSettingsVModel.programEnrollmentDeletionStatus.options}
+                    onsettingsinputchange={handleProgramEnrollmentDeletionStatusChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+            </template>
         </template>
     </c-settings-save-canvas>
 </template>

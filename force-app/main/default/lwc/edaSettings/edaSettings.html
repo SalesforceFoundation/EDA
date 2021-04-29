@@ -52,11 +52,17 @@
                     </template>
 
                     <template if:true={settingsPageToDisplay.errorSettings}>
-                        <c-error-settings></c-error-settings>
+                        <c-error-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-error-settings>
                     </template>
 
                     <template if:true={settingsPageToDisplay.programSettings}>
-                        <c-program-settings></c-program-settings>
+                        <c-program-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-program-settings>
                     </template>
                 </div>
             </template>
