@@ -25,10 +25,11 @@ import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 //Course Enrollment Labels
 import stgCoursesAndEnrollmentsNav from "@salesforce/label/c.stgCoursesAndEnrollmentsNav";
 import stgProgramsSettingsNav from "@salesforce/label/c.stgProgramsSettingsNav";
+//System Tools Labels
+import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
-//System Tools SettingsLabels
-import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
+
 //Error Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
@@ -98,7 +99,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             courseDescriptionMigration: "Course Description Migration",
             ethnicityAndRaceBackfill: "Ethnicity and Race Backfill",
             preferredEmailCleanup: "Preferred Email and Phone Cleanup",
-            systemTools: stgSystemSettingsTitle,
+            systemToolsNav: stgSystemToolsNav,
             refreshAdministrativeAccountNames: "Refresh Administrative Account Names",
             refreshHouseholdAccountNames: "Refresh Household Account Names",
         },
@@ -275,7 +276,7 @@ export default class EdaSettingsNavigation extends LightningElement {
                         ],
                     },
                     {
-                        label: this.labelReference.systemTools.systemTools,
+                        label: this.labelReference.systemTools.systemToolsNav,
                         page: "systemTools",
                         id: "systemTools",
                         menuItems: [
