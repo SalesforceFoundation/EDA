@@ -6,6 +6,25 @@
         onsettingssavecancel={handleSettingsSaveCancel}
         onsettingssavecompleted={handleSettingsSaveCompleted}
     >
+        <template if:true={affiliationsWithProgramEnrollmentVModel}>
+            <!-- Affiliations created with Program Enrollment -->
+            <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                <!-- Default Account Record Type Setting -->
+                {labelReference.afflProgEnrollSetRoleValue}
+                <c-settings-row-input
+                    class="slds-size_3-of-3 slds-p-top_x-large"
+                    title={labelReference.afflProgEnrollSetRoleValue}
+                    description={labelReference.helpAfflProgEnrollSetRoleValue}
+                    type="combobox"
+                    input-id={inputAttributeReference.createdAfflRoleComboboxId}
+                    value={affiliationsWithProgramEnrollmentVModel.role.value}
+                    placeholder={labelReference.placeHolderText}
+                    options={affiliationsWithProgramEnrollmentVModel.role.options}
+                    onsettingsinputchange={handleRoleForCreatedAfflChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+            </div>
+        </template>
         <!-- Auto Enrollment Mappings -->
         <template if:true={programSettingsVModel}>
             <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">

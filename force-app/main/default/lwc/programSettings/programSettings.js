@@ -1,6 +1,22 @@
 import { LightningElement, track, wire } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramSettingsVModel";
+
+// Controller for Affiliations created with Program Enrollment
+import getAffiliationsWithProgramEnrollmentVModel from "@salesforce/apex/AffiliationsWithProgramEnrollController.getAffiliationsWithProgramEnrollmentVModel";
+
+//Custom labels for Affiliations created with Program Enrollment
+import stgAfflProgramEnrollmentSettingsTitle from "@salesforce/label/c.stgAfflProgramEnrollmentSettingsTitle";
+import stgAfflProgEnrollSetRoleValue from "@salesforce/label/c.stgAfflProgEnrollSetRoleValue";
+import stgHelpAfflProgEnrollSetRoleValue from "@salesforce/label/c.stgHelpAfflProgEnrollSetRoleValue";
+import stgAfflProgEnrollSetStatusValue from "@salesforce/label/c.stgAfflProgEnrollSetStatusValue";
+import stgHelpAfflProgEnrollSetStatusValue from "@salesforce/label/c.stgHelpAfflProgEnrollSetStatusValue";
+import stgAfflCopyProgramEnrollmentEndDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentEndDate";
+import stgHelpAfflCopyProgramEnrollmentEndDate from "@salesforce/label/c.stgHelpAfflCopyProgramEnrollmentEndDate";
+import stgAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentStartDate";
+import stgHelpAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgHelpAfflCopyProgramEnrollmentStartDate";
+import stgOptSelect from "@salesforce/label/c.stgOptSelect";
+
 //custom labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
 import stgBtnEdit from "@salesforce/label/c.stgBtnEdit";
@@ -15,6 +31,8 @@ export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
+    @track affiliationsWithProgramEnrollmentVModel;
+    @track affiliationsWithProgramEnrollmentWireResult;
     @track programSettingsVModel;
     @track programSettingsVModelWireResult;
 
@@ -22,6 +40,16 @@ export default class programSettings extends LightningElement {
         programsSettingsTitle: stgProgramsSettingsTitle,
         newButton: stgBtnAddMapping,
         autoEnrollmentMappingsTable: {
+            afflProgramEnrollmentSettingsTitle: stgAfflProgramEnrollmentSettingsTitle,
+            afflProgEnrollSetRoleValue: stgAfflProgEnrollSetRoleValue,
+            helpAfflProgEnrollSetRoleValue: stgHelpAfflProgEnrollSetRoleValue,
+            afflProgEnrollSetStatusValue: stgAfflProgEnrollSetStatusValue,
+            helpAfflProgEnrollSetStatusValue: stgHelpAfflProgEnrollSetStatusValue,
+            afflCopyProgramEnrollmentEndDate: stgAfflCopyProgramEnrollmentEndDate,
+            helpAfflCopyProgramEnrollmentEndDate: stgHelpAfflCopyProgramEnrollmentEndDate,
+            afflCopyProgramEnrollmentStartDate: stgAfflCopyProgramEnrollmentStartDate,
+            helpAfflCopyProgramEnrollmentStartDate: stgHelpAfflCopyProgramEnrollmentStartDate,
+            placeHolderText: stgOptSelect,
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
             autoEnrollmentMappingsDescription: autoEnrollmentMappingsDescription,
             accountRecordTypeColumn: stgColAccountRecordType,
@@ -32,7 +60,11 @@ export default class programSettings extends LightningElement {
         },
     };
 
-    inputAttributeReference = {};
+    inputAttributeReference = {
+        createdAfflRoleComboboxId: "createdAfflRole",
+        adminAccountModelComboboxId: "adminAccountModel",
+        hhAccountModelComboboxId: "hhAccountModel",
+    };
 
     get affordancesDisabled() {
         if (!this.isEditMode || this.affordancesDisabledToggle === true) {
@@ -50,6 +82,28 @@ export default class programSettings extends LightningElement {
         } else if (result.error) {
             //console.log("error retrieving preferredContactInfoSettingsVModel");
         }
+    }
+
+    @wire(getAffiliationsWithProgramEnrollmentVModel)
+    affiliationsWithProgramEnrollmentVModelWire(result) {
+        this.affiliationsWithProgramEnrollmentWireResult = result;
+
+        if (result.data) {
+            this.affiliationsWithProgramEnrollmentVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving preferredContactInfoSettingsVModel");
+        }
+    }
+
+    handleRoleForCreatedAfflChange(event) {
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Affl_ProgEnroll_Role_Map__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
     get autoEnrollmentMappingsTableColumns() {
