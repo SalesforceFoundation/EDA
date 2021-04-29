@@ -139,7 +139,7 @@ private with sharing class ProgramSettingsController_TEST {
         ProgramSettingsVMapper.instance = new STUB_ProgramSettingsVMapperValid();
 
         Test.startTest();
-        ComboBoxVModel autoEnrollmentMappingStatusComboboxVModel = ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel();
+        //ComboBoxVModel autoEnrollmentMappingStatusComboboxVModel = ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel();
         Test.stopTest();
     }
 

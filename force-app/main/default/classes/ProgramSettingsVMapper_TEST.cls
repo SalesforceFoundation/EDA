@@ -124,6 +124,25 @@ private with sharing class ProgramSettingsVMapper_TEST {
     }
 
     /****************************************************************************************
+     * @description Test method to verify locatePicklistEntryService() returns an instance of
+     * the PicklistEntryService class.
+     ****************************************************************************************/
+    @isTest
+    private static void locatePicklistEntryServiceValid() {
+        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+
+        Test.startTest();
+        PicklistEntryService picklistEntryServiceInstance = programSettingsVMapperInstance.locatePicklistEntryService();
+        Test.stopTest();
+
+        System.assertEquals(
+            PicklistEntryService.getInstance(),
+            picklistEntryServiceInstance,
+            'Should return instance of PicklistEntryService class.'
+        );
+    }
+
+    /****************************************************************************************
      * @description Test method to verify getAutoEnrollmentMappingVModel()
      * returns an instance of AutoEnrollmentMappingVModel with account record type
      * corresponding to the matching model properties when matching models exists.
