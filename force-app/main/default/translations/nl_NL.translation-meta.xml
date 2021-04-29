@@ -1325,12 +1325,24 @@
         <name>stgPreferredEmailBatchEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>Gegevensopschoning van voorkeurs-e-mail/telefoonnummer:</label>
+        <label><!-- Label for the Preferred Email and Preferred Phone setting --></label>
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
         <label><!-- Field label for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Preferred Email and Phone fields are queued for update --></label>
+        <name>stgPreferredPhoneEmailSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Selecteer een veld voor het voorkeurstelefoonnummer van waaruit de waarde moet worden gekopieerd in het geval dat het standaard telefoonnummerveld geen waarde heeft of er meer dan één telefoonnummerveld is gedefinieerd.</label>
@@ -1381,11 +1393,11 @@
         <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label>Opschoning uitvoeren</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label>Voer dit gegevensopschoningsproces uit nadat u de vereiste voor voorkeurs-e-mail of voorkeurstelefoonnummer voor de eerste keer hebt ingeschakeld of na een periode waarin deze vereiste niet is afgedwongen.</label>
+        <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
@@ -1427,16 +1439,8 @@
         <name>stgSystemToolsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for System Tools --></label>
-        <name>stgSystemToolsTitle</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Navigation section title for System Tools --></label>
         <name>stgSystemSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for System Tools Settings --></label>
-        <name>stgSystemSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Accounts en contactpersonen</label>

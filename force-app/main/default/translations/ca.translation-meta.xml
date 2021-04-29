@@ -1325,12 +1325,24 @@
         <name>stgPreferredEmailBatchEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>Neteja de dades de correu electrònic/telèfon preferit:</label>
+        <label><!-- Label for the Preferred Email and Preferred Phone setting --></label>
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
         <label><!-- Field label for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Preferred Email and Phone fields confirmation window --></label>
+        <name>stgPreferredPhoneEmailModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Preferred Email and Phone fields are queued for update --></label>
+        <name>stgPreferredPhoneEmailSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Seleccioneu un camp del telèfon preferent per copiar el valor quan el camp del telèfon estàndard no tingui valor o es defineixi més d&apos;un camp &quot;telèfon&quot;.</label>
@@ -1381,11 +1393,11 @@
         <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label>Executa la neteja</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label>Executeu aquest procés de neteja de dades després d&apos;haver activat el requisit de correu electrònic preferit o el telèfon preferit per primera vegada o després d&apos;un període de no compliment del requisit.</label>
+        <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
@@ -1427,16 +1439,8 @@
         <name>stgSystemToolsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for System Tools --></label>
-        <name>stgSystemToolsTitle</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Navigation section title for System Tools --></label>
         <name>stgSystemSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for System Tools Settings --></label>
-        <name>stgSystemSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Comptes i contactes</label>

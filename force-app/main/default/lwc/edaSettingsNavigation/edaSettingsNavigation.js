@@ -26,8 +26,7 @@ import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
-//System Tools SettingsLabels
-import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
+
 //Error Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
@@ -98,7 +97,6 @@ export default class EdaSettingsNavigation extends LightningElement {
             ethnicityAndRaceBackfill: "Ethnicity and Race Backfill",
             preferredEmailCleanup: "Preferred Email and Phone Cleanup",
             systemToolsNav: stgSystemToolsNav,
-            systemTools: stgSystemSettingsTitle,
             refreshAdministrativeAccountNames: "Refresh Administrative Account Names",
             refreshHouseholdAccountNames: "Refresh Household Account Names",
         },

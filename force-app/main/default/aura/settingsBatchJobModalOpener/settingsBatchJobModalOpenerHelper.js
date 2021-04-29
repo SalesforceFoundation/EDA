@@ -19,6 +19,12 @@
                 confirmButton = $A.get("$Label.c.stgBtnUpdate");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 break;
+            case "CON_EMAIL_BATCH":
+                modalHeaderLabel = $A.get("$Label.c.stgPreferredPhoneEmailModalTitle");
+                modalDesc = $A.get("$Label.c.stgPreferredPhoneEmailModalBody");
+                confirmButton = $A.get("$Label.c.stgBtnUpdate");
+                cancelButton = $A.get("$Label.c.stgBtnCancel");
+                break;
         }
 
         $A.createComponents(
