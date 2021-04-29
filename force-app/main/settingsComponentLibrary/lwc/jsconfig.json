@@ -52,6 +52,9 @@
             ],
             "c/settingsRowDualListbox": [
                 "settingsRowDualListbox/settingsRowDualListbox.js"
+            ],
+            "c/systemTools": [
+                "../../default/lwc/systemTools/systemTools.js"
             ]
         },
         "experimentalDecorators": true
