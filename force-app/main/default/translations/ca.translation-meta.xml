@@ -537,8 +537,12 @@
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
-        <label>Actualitza tots els noms administratius</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshAdminNames</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates all Administrative Account names --></label>
+        <name>stgBtnRefreshAdminNamesA11y</name>
     </customLabels>
     <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
@@ -1393,16 +1397,24 @@
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>
-        <label>Advertiment: en fer clic en aquest botó, es canviarà el nom de TOTS els registres de comptes administratius existents al format especificat al Format de noms de compte administratiu. Llegiu la documentació del producte per assegurar-vos que enteneu les conseqüències d’aquest canvi irreversible. Abans de continuar, desactiveu qualsevol procés o automatització que facin referència a comptes administratius (per exemple, regles de flux de treball). Un cop s&apos;hagi completat l&apos;actualització, podeu tornar-los a activar.</label>
+        <label><!-- Description of the Update All Administrative Account Names setting --></label>
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label><!--Toast message when Account names are queued for update --></label>
-        <name>stgRefreshAdminNamesSuccessToast</name>
+        <label><!-- Label for the Update All Administrative Account Names setting --></label>
+        <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Actualitza tots els noms de compte administratiu</label>
-        <name>stgRefreshAdminAcctNameTitle</name>
+        <label><!-- Description of the Update all Administrative Account names confirmation window --></label>
+        <name>stgRefreshAdminNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update All Administrative Account Names confirmation window  --></label>
+        <name>stgRefreshAdminNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Administrative Account names are queued for update --></label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Update All Household Account Names setting --></label>
@@ -1427,6 +1439,10 @@
     <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgRunCleanUp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Preferred Email/Phone fields for all Contacts --></label>
+        <name>stgRunCleanUpA11y</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
