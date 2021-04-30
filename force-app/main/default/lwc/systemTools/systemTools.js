@@ -7,16 +7,29 @@ import stgBtnRefreshHouseholdNamesA11y from "@salesforce/label/c.stgBtnRefreshHo
 import stgRefreshHHAcctNameTitle from "@salesforce/label/c.stgRefreshHHAcctNameTitle";
 import stgRefreshHHAcctNameDesc from "@salesforce/label/c.stgRefreshHHAcctNameDesc";
 import stgRefreshHouseholdNamesSuccessToast from "@salesforce/label/c.stgRefreshHouseholdNamesSuccessToast";
+
+// Administrative Naming custom labels
+import stgRefreshAdminAcctNameTitle from "@salesforce/label/c.stgRefreshAdminAcctNameTitle";
+import stgRefreshAdminAcctNameDesc from "@salesforce/label/c.stgRefreshAdminAcctNameDesc";
+import stgBtnRefreshAdminNames from "@salesforce/label/c.stgBtnRefreshAdminNames";
+import stgBtnRefreshAdminNamesA11y from "@salesforce/label/c.stgBtnRefreshAdminNamesA11y";
+import stgRefreshAdminNamesSuccessToast from "@salesforce/label/c.stgRefreshAdminNamesSuccessToast";
+
+// BatchJob Naming custom labels
 import BatchJobRunningProblem from "@salesforce/label/c.BatchJobRunningProblem";
+
+// TellMeMore custom labels
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 
 // Preferred Email and Phone clean up Lables
 import stgPreferredEmailDataCleanup from "@salesforce/label/c.stgPreferredEmailDataCleanup";
 import stgRunCleanUpEnableFirstTime from "@salesforce/label/c.stgRunCleanUpEnableFirstTime";
 import stgRunCleanUp from "@salesforce/label/c.stgRunCleanUp";
+import stgRunCleanUpA11y from "@salesforce/label/c.stgRunCleanUpA11y";
 import stgPreferredPhoneEmailSuccessToast from "@salesforce/label/c.stgPreferredPhoneEmailSuccessToast";
 
 import runRefreshHouseholdAccountNamingJob from "@salesforce/apex/AccountNamingBatchController.runRefreshHouseholdAccountNamingJob";
+import runRefreshAdministrativeAccountNamingJob from "@salesforce/apex/AccountNamingBatchController.runRefreshAdministrativeAccountNamingJob";
 import runPreferredPhoneAndEmailCleanupJob from "@salesforce/apex/PreferredPhoneEmailBatchController.runPreferredPhoneAndEmailCleanupJob";
 
 export default class systemTools extends LightningElement {
@@ -27,15 +40,21 @@ export default class systemTools extends LightningElement {
         stgRefreshHHAcctNameTitle: stgRefreshHHAcctNameTitle,
         stgRefreshHHAcctNameDesc: stgRefreshHHAcctNameDesc,
         stgRefreshHouseholdNamesSuccessToast: stgRefreshHouseholdNamesSuccessToast,
+        stgRefreshAdminAcctNameTitle: stgRefreshAdminAcctNameTitle,
+        stgRefreshAdminAcctNameDesc: stgRefreshAdminAcctNameDesc,
+        stgBtnRefreshAdminNames: stgBtnRefreshAdminNames,
+        stgBtnRefreshAdminNamesA11y: stgBtnRefreshAdminNamesA11y,
+        stgRefreshAdminNamesSuccessToast: stgRefreshAdminNamesSuccessToast,
         BatchJobRunningProblem: BatchJobRunningProblem,
         tellMeMoreLink: stgTellMeMoreLink,
         stgPreferredEmailDataCleanup: stgPreferredEmailDataCleanup,
         stgRunCleanUpEnableFirstTime: stgRunCleanUpEnableFirstTime,
         stgRunCleanUp: stgRunCleanUp,
+        stgRunCleanUpA11y: stgRunCleanUpA11y,
         stgPreferredPhoneEmailSuccessToast: stgPreferredPhoneEmailSuccessToast,
     };
 
-    get houseHoldNamesHyperLink() {
+    get adminAndHouseholdNamesHyperLink() {
         return (
             '<a href="https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names">' +
             this.labelReference.tellMeMoreLink +
@@ -44,7 +63,11 @@ export default class systemTools extends LightningElement {
     }
 
     get houseHoldNamesRefreshDesc() {
-        return this.labelReference.stgRefreshHHAcctNameDesc + " " + this.houseHoldNamesHyperLink;
+        return this.labelReference.stgRefreshHHAcctNameDesc + " " + this.adminAndHouseholdNamesHyperLink;
+    }
+
+    get adminNamesRefreshDesc() {
+        return this.labelReference.stgRefreshAdminAcctNameDesc + " " + this.adminAndHouseholdNamesHyperLink;
     }
 
     get prefEmailPhoneHyperLink() {
@@ -79,6 +102,12 @@ export default class systemTools extends LightningElement {
         this.setPageFocus();
     }
 
+    handleRefreshAdminNamesBtnClick(event) {
+        const eventDetail = event.detail;
+        const batchJobToRun = "ACCT_AdministrativeNameRefresh_BATCH";
+        this.dispatchSettingsBatchJobModalEvent(eventDetail, batchJobToRun);
+    }
+
     handleRefreshHHNamesBtnClick(event) {
         const eventDetail = event.detail;
         const batchJobToRun = "ACCT_HouseholdNameRefresh_BATCH";
@@ -107,6 +136,9 @@ export default class systemTools extends LightningElement {
 
     @api modalConfirm(saveModel) {
         switch (saveModel.batchJobToRun) {
+            case "ACCT_AdministrativeNameRefresh_BATCH":
+                this.runAdministrativeNamingRefreshBatch();
+                break;
             case "ACCT_HouseholdNameRefresh_BATCH":
                 this.runHouseHoldNamingRefreshBatch();
                 break;
@@ -114,6 +146,17 @@ export default class systemTools extends LightningElement {
                 this.runPreferredEmailPhoneCleanUpBatch();
                 break;
         }
+    }
+
+    runAdministrativeNamingRefreshBatch() {
+        runRefreshAdministrativeAccountNamingJob()
+            .then((result) => {
+                this.showToast("success", "Success", this.labelReference.stgRefreshAdminNamesSuccessToast);
+            })
+
+            .catch((error) => {
+                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+            });
     }
 
     runHouseHoldNamingRefreshBatch() {

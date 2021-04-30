@@ -1043,8 +1043,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for refreshing Administrative Account Names</shortDescription>
-        <value>Refresh All Administrative Names</value>
+        <shortDescription>Button label for updating the selected Apex job</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRefreshAdminNamesA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates all Administrative Account names</shortDescription>
+        <value>Update all Administrative Account names.</value>
     </labels>
     <labels>
         <fullName>stgBtnRefreshHouseholdNames</fullName>
@@ -2739,24 +2747,40 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Warning for Refresh Admin Account Names</shortDescription>
-        <value>Warning: Clicking this button renames ALL existing Administrative Account records to the format specified in Administrative Account Name Format. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Administrative Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
-    </labels>
-    <labels>
-        <fullName>stgRefreshAdminNamesSuccessToast</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Toast message when Account names are queued for update</shortDescription>
-        <value>Administrative Account names will be updated during your next scheduled batch job run. We'll send you an email when the job is done.</value>
+        <shortDescription>Description of the Update All Administrative Account Names setting</shortDescription>
+        <value>Updates all Administrative Account records to use the format in Administrative Account Name Format.&lt;/br&gt;&lt;/br&gt;Warning: Before proceeding, learn about the impact of this setting. Also disable processes that reference Administrative Accounts.</value>
     </labels>
     <labels>
         <fullName>stgRefreshAdminAcctNameTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for System Settings</shortDescription>
-        <value>Refresh All Administrative Account Names</value>
+        <shortDescription>Label for the Update All Administrative Account Names setting</shortDescription>
+        <value>Update All Administrative Account Names</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshAdminNamesModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update all Administrative Account names confirmation window</shortDescription>
+        <value>Refreshes all Administrative Account records to use the format in Administrative Account Name Format. Before proceeding, make sure you&apos;ve disabled any processes that reference Administrative Accounts.</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshAdminNamesModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update All Administrative Account Names confirmation window </shortDescription>
+        <value>Update all Administrative Account names?</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshAdminNamesSuccessToast</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when Administrative Account names are queued for update</shortDescription>
+        <value>We&apos;re updating Administrative Account names. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgRefreshHHAcctNameDesc</fullName>
@@ -2804,6 +2828,14 @@
         <protected>true</protected>
         <shortDescription>Button label for updating the selected Apex job</shortDescription>
         <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>stgRunCleanUpA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates Preferred Email/Phone fields for all Contacts</shortDescription>
+        <value>Update Preferred Email and Phone fields for all Contacts.</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUpEnableFirstTime</fullName>
