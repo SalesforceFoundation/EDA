@@ -33,8 +33,24 @@
  */
 public with sharing class AccountNamingBatchController {
     /************************************************************************************
-     * @description Runs AccountNamingBatchController and returns true if the batch job
-     * runs successfully else throws an error
+     * @description Runs AccountNamingBatchController and returns true if the Administrative
+     * Account Name Refresh batch job runs successfully else throws an error
+     * @return Boolean True if the batch job runs successfully
+     ************************************************************************************/
+    @AuraEnabled
+    public static Boolean runRefreshAdministrativeAccountNamingJob() {
+        try {
+            Boolean batchJobSuccessful = AccountNamingBatchController.locateAccountNamingService()
+                .runRefreshAdministrativeAccountNamingJob();
+            return batchJobSuccessful;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************
+     * @description Runs AccountNamingBatchController and returns true if the Household
+     * Account Name Refresh batch job runs successfully else throws an error
      * @return Boolean True if the batch job runs successfully
      ************************************************************************************/
     @AuraEnabled
