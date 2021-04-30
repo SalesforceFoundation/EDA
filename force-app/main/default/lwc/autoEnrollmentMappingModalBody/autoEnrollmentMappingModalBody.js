@@ -1,9 +1,12 @@
 import { LightningElement, api, track, wire } from "lwc";
-import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType";
+//labels
+import stgColAutoEnrollmentStatus from "@salesforce/label/c.stgColAutoEnrollmentStatus";
+import stgColAutoEnrollmentRole from "@salesforce/label/c.stgColAutoEnrollmentRole";
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
-import stgAffiliationsEditModalBody from "@salesforce/label/c.stgAffiliationsEditModalBody";
+import stgAutoEnrollmentEditModalBody from "@salesforce/label/c.stgAutoEnrollmentEditModalBody";
 import stgApiNameLabel from "@salesforce/label/c.stgApiNameLabel";
-
+import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+//apex
 import getAutoEnrollmentMappingStatusComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel";
 import getAutoEnrollmentMappingRoleComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingRoleComboboxVModel";
 
@@ -20,10 +23,12 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     @track autoEnrollmentMappingStatusComboboxVModelWireResult;
 
     labelReference = {
-        accountRecordTypeCombobox: stgColAccountRecordType,
+        statusCombobox: stgColAutoEnrollmentStatus,
+        roleCombobox: stgColAutoEnrollmentRole,
         comboboxPlaceholderText: stgOptSelect,
-        modalBodyEdit: stgAffiliationsEditModalBody,
+        modalBodyEdit: stgAutoEnrollmentEditModalBody,
         apiNameDisplay: stgApiNameLabel,
+        tellMeMoreLink: stgTellMeMoreLink,
     };
 
     inputAttributeReference = {
@@ -55,10 +60,6 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         } else if (result.error) {
             //console.log("error retrieving autoEnrollmentMappingStatusComboboxVModel");
         }
-    }
-
-    get modifyRecords() {
-        return this.actionName === "edit" || this.actionName === "create";
     }
 
     handleAutoEnrollmentMappingStatusChange(event) {
@@ -100,10 +101,19 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     get autoEnrollmentMappingModalDesc() {
         switch (this.actionName) {
             case "edit":
-                return this.labelReference.modalBodyEdit;
+                return this.labelReference.modalBodyEdit + " " + this.autoEnrollmentHyperLink;
 
-            case "create":
-                return this.labelReference.modalBodyCreate;
+            /*case "create":
+                return this.labelReference.modalBodyCreate;*/
         }
     }
+
+    get modifyRecords() {
+        return this.actionName === "edit" || this.actionName === "create";
+    }
+
+    autoEnrollmentHyperLink =
+        '<a href="https://powerofus.force.com/EDA-Configure-Affiliations-Settings">' +
+        this.labelReference.tellMeMoreLink +
+        "</a>";
 }

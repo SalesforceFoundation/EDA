@@ -26,7 +26,7 @@
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 break;*/
             case "edit":
-                modalHeaderLabel = $A.get("$Label.c.stgAffiliationsEditModalTitle");
+                modalHeaderLabel = $A.get("$Label.c.stgAutoEnrollmentEditModalTitle");
                 confirmButton = $A.get("$Label.c.stgBtnSave");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 break;

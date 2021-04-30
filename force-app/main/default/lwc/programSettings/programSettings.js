@@ -13,7 +13,7 @@ import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType
 import stgColAutoEnrollmentStatus from "@salesforce/label/c.stgColAutoEnrollmentStatus";
 import stgColAutoEnrollmentRole from "@salesforce/label/c.stgColAutoEnrollmentRole";
 import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
-import stgAffiliationsEditSuccess from "@salesforce/label/c.stgAffiliationsEditSuccess";
+import stgAutoEnrollmentEditSuccess from "@salesforce/label/c.stgAutoEnrollmentEditSuccess";
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -33,7 +33,7 @@ export default class programSettings extends LightningElement {
             editAction: stgBtnEdit,
             deleteAction: stgBtnDelete,
         },
-        editSuccessMessage: stgAffiliationsEditSuccess,
+        editSuccessMessage: stgAutoEnrollmentEditSuccess,
     };
 
     inputAttributeReference = {};
