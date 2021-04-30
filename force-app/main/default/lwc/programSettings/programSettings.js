@@ -32,7 +32,7 @@ export default class programSettings extends LightningElement {
     affordancesDisabledToggle = false;
 
     @track affiliationsWithProgramEnrollmentVModel;
-    @track affiliationsWithProgramEnrollmentWireResult;
+    @track affiliationsWithProgramEnrollVModelWireResult;
     @track programSettingsVModel;
     @track programSettingsVModelWireResult;
 
@@ -87,7 +87,7 @@ export default class programSettings extends LightningElement {
 
     @wire(getAffiliationsWithProgramEnrollmentVModel)
     affiliationsWithProgramEnrollmentVModelWire(result) {
-        this.affiliationsWithProgramEnrollmentWireResult = result;
+        this.affiliationsWithProgramEnrollVModelWireResult = result;
 
         if (result.data) {
             this.affiliationsWithProgramEnrollmentVModel = result.data;
@@ -97,22 +97,51 @@ export default class programSettings extends LightningElement {
     }
 
     handleRoleForCreatedAfflChange(event) {
+        this.handleSpecifyRoleForCreatedAffiliaitons(event);
+        var affiliationRole = event.detail.value;
+        if (event.detail.value === '""') {
+            // set Hierarchy Settings field to a blank value (not "")
+            affiliationRole = "";
+        }
         // add updated setting to hierarchySettingsChanges object
         let hierarchySettingsChange = {
             settingsType: "string",
             settingsName: "Affl_ProgEnroll_Role_Map__c",
-            settingsValue: event.detail.value,
+            settingsValue: affiliationRole,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleSpecifyRoleForCreatedAffiliaitons(event) {
+        var specifyRoleForCreatedAffl = event.detail.value;
+        if (event.detail.value === '""') {
+            // set Hierarchy Settings field to a blank value (not "")
+            specifyRoleForCreatedAffl = false;
+        } else {
+            specifyRoleForCreatedAffl = true;
+        }
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Affl_ProgEnroll_Set_Role__c",
+            settingsValue: specifyRoleForCreatedAffl,
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
     handleStatusForCreatedAfflChange(event) {
+        var affiliationStatus = event.detail.value;
+        if (event.detail.value === '""') {
+            // set Hierarchy Settings field to a blank value (not "")
+            affiliationStatus = "";
+        }
         // add updated setting to hierarchySettingsChanges object
         let hierarchySettingsChange = {
             settingsType: "string",
             settingsName: "Affl_ProgEnroll_Status_Map__c",
-            settingsValue: event.detail.value,
+            settingsValue: affiliationStatus,
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
@@ -133,7 +162,7 @@ export default class programSettings extends LightningElement {
         // add updated setting to hierarchySettingsChanges object
         let hierarchySettingsChange = {
             settingsType: "boolean",
-            settingsName: "Affl_ProgEnroll_Start_End_Date__c",
+            settingsName: "Affl_ProgEnroll_Copy_Start_Date__c",
             settingsValue: event.detail.value,
         };
 
@@ -192,7 +221,10 @@ export default class programSettings extends LightningElement {
     }
 
     refreshAllApex() {
-        Promise.all([refreshApex(this.programSettingsVModelWireResult)]).then(() => {
+        Promise.all([
+            refreshApex(this.programSettingsVModelWireResult),
+            refreshApex(this.affiliationsWithProgramEnrollVModelWireResult),
+        ]).then(() => {
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });

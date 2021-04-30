@@ -55,8 +55,8 @@ public with sharing class AffiliationsWithProgramEnrollmentModel {
         Boolean copyStartDate
     ) {
         this.specifyRole = specifyRole;
-        this.role = role;
-        this.status = status;
+        this.role = (String.isBlank(role)) ? '""' : role;
+        this.status = (String.isBlank(status)) ? '""' : status;
         this.copyEndDate = copyEndDate;
         this.copyStartDate = copyStartDate;
     }
