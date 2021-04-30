@@ -26,13 +26,15 @@
 */
 /**
  * @author Salesforce.org
- * @date 2011 (1.x) 
+ * @date 2011 (1.x)
  * @group Accounts
  * @group-content ../../ApexDocContent/Accounts.htm
  * @description Names Accounts involved in a Lead Conversion based on EDA Settings
  */
 public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
     private TDTM_Runnable.Action triggerAction;
+    LeadConversionAccountNamingModel leadConversionNamingModel = LeadConversionAccountNamingService.getInstance()
+        .getLeadConversionAccountNamingModel();
 
     /*******************************************************************************************************
      * @description Trigger Handler on lead that handles account management. Depending on the Account
@@ -70,9 +72,12 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
         if (this.isUpdateRecursion() == true) {
             return;
         }
+        if (leadConversionNamingModel.accountRecordTypeIdsForLeadConversionWhenOrphanedList.isEmpty()) {
+            return;
+        }
+
         this.setUpdateRecursion();
 
-        DmlWrapper dmlWrapper = new DmlWrapper();
         List<lead> newLeadList = (List<lead>) newlist;
 
         List<Id> contactIdsToUpdate = new List<Id>();
@@ -95,7 +100,6 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
                 UTIL_CustomSettingsFacade.getSettings()
                     .Lead_Converted_Account_RTypes__c.contains(aContact.Account.RecordTypeId)
             ) {
-                
                 Account anAccount = new Account(
                     Phone = aContact.Account.Phone,
                     Fax = aContact.Account.Fax,
@@ -108,15 +112,17 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
                 accountsToUpdate.add(anAccount);
             }
 
-            dmlWrapper.objectsToUpdate.addAll((List<SObject>) accountsToUpdate);
-            TDTM_TriggerHandler.processDML(dmlWrapper, true);
+            if (accountsToUpdate.size() > 0) {
+                DmlWrapper dmlWrapper = new DmlWrapper();
+                dmlWrapper.objectsToUpdate.addAll((List<SObject>) accountsToUpdate);
+                TDTM_TriggerHandler.processDML(dmlWrapper, true);
+            }
         }
-        if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-            TDTM_ProcessControl.setRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.RenameLeadConvertedAccounts_TDTM_After_Update,
-                true
-            );
-        }
+
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.RenameLeadConvertedAccounts_TDTM_After_Update,
+            false
+        );
     }
 
     /*******************************************************************************************************
