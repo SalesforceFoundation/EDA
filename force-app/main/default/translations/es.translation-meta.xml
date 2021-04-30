@@ -553,7 +553,7 @@
         <name>stgBtnSave</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
+        <label><!-- Button that runs a selected Apex job --></label>
         <name>stgBtnUpdate</name>
     </customLabels>
     <customLabels>
@@ -1349,7 +1349,7 @@
         <name>stgPreferredPhoneEmailModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when Preferred Email and Phone fields are queued for update --></label>
+        <label><!-- Confirmation message when Preferred Email and Phone fields are queued for update --></label>
         <name>stgPreferredPhoneEmailSuccessToast</name>
     </customLabels>
     <customLabels>
@@ -1413,7 +1413,7 @@
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that updates Preferred Email/Phone fields for all Contacts --></label>
+        <label><!-- Alt text for button that updates Contacts' Preferred Email/Phone fields --></label>
         <name>stgRunCleanUpA11y</name>
     </customLabels>
     <customLabels>

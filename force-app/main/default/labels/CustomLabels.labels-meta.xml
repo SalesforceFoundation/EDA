@@ -1099,7 +1099,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for updating the selected Apex job</shortDescription>
+        <shortDescription>Button that runs a selected Apex job</shortDescription>
         <value>Update</value>
     </labels>
     <labels>
@@ -2700,7 +2700,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Update Preferred Email and Phone fields confirmation window</shortDescription>
-        <value>Updating refreshes Preferred Email and Preferred Phone fields for all Contacts as specified by your org's related settings.Before proceeding, make sure you've disabled any processes that reference Preferred Email and Preferred Phone fields.</value>
+        <value>Refreshes Preferred Email and Preferred Phone fields for all Contacts as specified by your org's related settings. Before proceeding, make sure you've disabled any processes that reference Preferred Email and Preferred Phone fields.</value>
     </labels>
     <labels>
         <fullName>stgPreferredPhoneEmailModalTitle</fullName>
@@ -2715,7 +2715,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Toast message when Preferred Email and Phone fields are queued for update</shortDescription>
+        <shortDescription>Confirmation message when Preferred Email and Phone fields are queued for update</shortDescription>
         <value>We&apos;re updating the Preferred Email and Preferred Phone fields. Look for an email when the job is done.</value>
     </labels>
     <labels>
@@ -2842,7 +2842,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Alt text for button that updates Preferred Email/Phone fields for all Contacts</shortDescription>
+        <shortDescription>Alt text for button that updates Contacts' Preferred Email/Phone fields</shortDescription>
         <value>Update Preferred Email and Phone fields for all Contacts.</value>
     </labels>
     <labels>
