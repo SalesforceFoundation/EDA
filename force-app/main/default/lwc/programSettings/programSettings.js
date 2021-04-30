@@ -17,6 +17,8 @@ import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollD
 import stgAfflProgEnrollDeleteRelated from "@salesforce/label/c.stgAfflProgEnrollDeleteRelated";
 import AfflProgEnrollDeleted from "@salesforce/label/c.AfflProgEnrollDeleted";
 import stgAfflDeleteProgramEnrollment from "@salesforce/label/c.stgAfflDeleteProgramEnrollment";
+import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflDeleteProgramEnrollment";
+import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 
 export default class programSettings extends LightningElement {
     isEditMode = false;
@@ -36,7 +38,8 @@ export default class programSettings extends LightningElement {
         programEnrollmentDeletionSettingTitle: stgAfflProgEnrollDeleteRelated,
         programEnrollmentDeletionSettingDescription: AfflProgEnrollDeleted,
         programEnrollmentDeletionStatusSettingTitle: stgAfflDeleteProgramEnrollment,
-        comboboxPlaceholderText: "Select",
+        programEnrollmentDeletionStatusSettingDescription: stgHelpAfflDeleteProgramEnrollment,
+        comboboxPlaceholderText: stgOptSelect,
 
         autoEnrollmentMappingsTable: {
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,

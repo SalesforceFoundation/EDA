@@ -2323,7 +2323,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Affiliations status</shortDescription>
+        <shortDescription>Description of the Status for Affiliations Not Deleted setting</shortDescription>
         <value>The Status set on the Affiliation related to a deleted Program Enrollment.</value>
     </labels>
     <labels>
