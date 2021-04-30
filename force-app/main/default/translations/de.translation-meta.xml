@@ -529,8 +529,12 @@
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
-        <label>Alle Verwaltungsnamen aktualisieren</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshAdminNames</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates all Administrative Account names --></label>
+        <name>stgBtnRefreshAdminNamesA11y</name>
     </customLabels>
     <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
@@ -1377,16 +1381,24 @@
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>
-        <label>Achtung: Wenn Sie auf diese Schaltfläche klicken, werden ALLE vorhandenen Verwaltungs-Accountdatensätze in das in &quot;Verwaltungs-Account – Namensformat&quot; angegebene Format umbenannt. Lesen Sie die Produktdokumentation, um sicher zu sein, dass Sie die Folgen dieser unumkehrbaren Änderung verstehen. Bevor Sie fortfahren, deaktivieren Sie jegliche Automatisierung oder Prozesse, die auf Verwaltungs-Accounts verweisen (z. B. Workflow-Regeln). Nach der Aktualisierung können Sie sie wieder aktivieren.</label>
+        <label><!-- Description of the Update All Administrative Account Names setting --></label>
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label><!--Toast message when Account names are queued for update --></label>
-        <name>stgRefreshAdminNamesSuccessToast</name>
+        <label><!-- Label for the Update All Administrative Account Names setting --></label>
+        <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Alle Namen von Verwaltungs-Accounts aktualisieren</label>
-        <name>stgRefreshAdminAcctNameTitle</name>
+        <label><!-- Description of the Update all Administrative Account names confirmation window --></label>
+        <name>stgRefreshAdminNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update All Administrative Account Names confirmation window  --></label>
+        <name>stgRefreshAdminNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when Administrative Account names are queued for update --></label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Update All Household Account Names setting --></label>
@@ -1411,6 +1423,10 @@
     <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgRunCleanUp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Preferred Email/Phone fields for all Contacts --></label>
+        <name>stgRunCleanUpA11y</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
