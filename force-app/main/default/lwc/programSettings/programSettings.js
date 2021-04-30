@@ -1,7 +1,7 @@
 import { LightningElement, track, wire } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramSettingsVModel";
-//custom labels
+//labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
 import stgBtnEdit from "@salesforce/label/c.stgBtnEdit";
 import stgBtnDelete from "@salesforce/label/c.stgBtnDelete";
@@ -11,6 +11,7 @@ import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType
 import stgColAutoEnrollmentStatus from "@salesforce/label/c.stgColAutoEnrollmentStatus";
 import stgColAutoEnrollmentRole from "@salesforce/label/c.stgColAutoEnrollmentRole";
 import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
+import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -30,6 +31,7 @@ export default class programSettings extends LightningElement {
             editAction: stgBtnEdit,
             deleteAction: stgBtnDelete,
         },
+        tellMeMoreLink: stgTellMeMoreLink,
     };
 
     inputAttributeReference = {};
@@ -112,9 +114,18 @@ export default class programSettings extends LightningElement {
     }
 
     get autoEnrollmentMappingsDescriptionRichText() {
-        return this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription;
+        return (
+            this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription +
+            " " +
+            this.autoEnrollmentHyperLink
+        );
     }
 
     handleNewAutoEnrollmentMappingClick(event) {}
     handleAutoEnrollmentMappingRowAction(event) {}
+
+    autoEnrollmentHyperLink =
+        '<a href="https://powerofus.force.com/s/article/EDA-Configure-Affiliations-Settings">' +
+        this.labelReference.tellMeMoreLink +
+        "</a>";
 }
