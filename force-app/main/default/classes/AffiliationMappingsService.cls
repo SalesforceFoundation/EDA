@@ -105,7 +105,7 @@ public virtual with sharing class AffiliationMappingsService {
      * @description Checks user permissions and passes AffiliationMappingsModel to
      * updateAffiliationMappings.
      *****************************************************************************/
-    public void updateAutoEnrolllmentMapping(AffiliationMappingsModel affiliationMappingsModel) {
+    public void updateAutoEnrollmentMapping(AffiliationMappingsModel affiliationMappingsModel) {
         this.locateUserPermissionService().checkViewSetupForCurrentUser();
         this.locateAffiliationMappingsMapper().updateAutoEnrollmentMapping(affiliationMappingsModel);
     }

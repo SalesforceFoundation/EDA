@@ -95,7 +95,7 @@ public with sharing class ProgramSettingsController {
                 autoProgramEnrollmentStatus,
                 autoProgramEnrollmentRole
             );
-            ProgramSettingsController.locateAffiliationMappingsService().updateAutoEnrolllmentMapping(afflMappingModel);
+            ProgramSettingsController.locateAffiliationMappingsService().updateAutoEnrollmentMapping(afflMappingModel);
 
             return mappingName;
         } catch (Exception e) {
