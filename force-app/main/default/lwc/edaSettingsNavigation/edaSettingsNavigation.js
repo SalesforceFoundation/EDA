@@ -25,11 +25,10 @@ import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 //Course Enrollment Labels
 import stgCoursesAndEnrollmentsNav from "@salesforce/label/c.stgCoursesAndEnrollmentsNav";
 import stgProgramsSettingsNav from "@salesforce/label/c.stgProgramsSettingsNav";
-//System Tools Labels
-import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
-
+//System Tools Labels
+import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
 //Error Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
