@@ -45,7 +45,7 @@ public with sharing class AffiliationsWithProgramEnrollmentModel {
      * @param  role A String representing the Affl_ProgEnroll_Role_Map__c setting in Hierarchy Settings
      * @param  status A String representing the Affl_ProgEnroll_Status_Map__c setting in Hierarchy Settings
      * @param  copyEndDate A boolean value representing the Affl_ProgEnroll_Copy_End_Date__c setting in Hierarchy Settings
-     * @param  copyStartDate A boolean value representing the Affl_ProgEnroll_Start_End_Date__c setting in Hierarchy Settings
+     * @param  copyStartDate A boolean value representing the Affl_ProgEnroll_Copy_Start_Date__c setting in Hierarchy Settings
      *****************************************************************************************************************/
     public AffiliationsWithProgramEnrollmentModel(
         Boolean specifyRole,

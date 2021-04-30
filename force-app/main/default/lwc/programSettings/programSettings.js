@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from "lwc";
+import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramSettingsVModel";
 
@@ -72,6 +72,11 @@ export default class programSettings extends LightningElement {
             return true;
         }
         return undefined;
+    }
+
+    @api
+    handleSaveCanvasRender() {
+        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
     }
 
     @wire(getProgramSettingsVModel)
