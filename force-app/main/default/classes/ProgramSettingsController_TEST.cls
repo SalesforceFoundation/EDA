@@ -33,6 +33,8 @@
  */
 @isTest
 private with sharing class ProgramSettingsController_TEST {
+    private static Integer loopCounter = 5;
+
     /****************************************************************************************
      * @description Test method to verify locateProgramSettingsVMapper() returns an instance of
      * the ProgramSettingsVMapper class.
@@ -113,6 +115,55 @@ private with sharing class ProgramSettingsController_TEST {
         }
     }
 
+    /****************************************************************************************
+     * @description Test method to verify getProgramEnrollmentDeletionSettingsVModel()
+     * returns an instance of ProgramEnrollmentDeletionSettingsVModel with valid values from valid stub.
+     ****************************************************************************************/
+    @isTest
+    private static void getProgramEnrollmentDeletionSettingsVModelValid() {
+        ProgramEnrollmentDeletionSettingsVMapper.instance = new STUB_ProgramEnrollmentDeletionSettingsVMapperValid();
+
+        Test.startTest();
+        ProgramEnrollmentDeletionSettingsVModel programEnrollmentDeletionSettingsVModel = ProgramSettingsController.getProgramEnrollmentDeletionSettingsVModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            false,
+            programEnrollmentDeletionSettingsVModel.programEnrollmentDeletion,
+            'Program Enrollment Deletion should not be enabled.'
+        );
+        System.assertEquals(
+            'Selected Status',
+            programEnrollmentDeletionSettingsVModel.programEnrollmentDeletionStatus.value,
+            'Selected Program Enrollment Deletion status should be \'Selected Status\'.'
+        );
+        System.assertEquals(
+            loopCounter + 1,
+            programEnrollmentDeletionSettingsVModel.programEnrollmentDeletionStatus.options.size(),
+            'Should have ' +
+            (loopCounter + 1) +
+            ' status options.'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getProgramEnrollmentDeletionSettingsVModel()
+     * throws an exception when exception occurs.
+     ****************************************************************************************/
+    @isTest
+    private static void getProgramEnrollmentDeletionSettingsVModelException() {
+        ProgramEnrollmentDeletionSettingsVMapper.instance = new STUB_ExceptionProgramEnrollmentDeletionSettingsVMapper();
+
+        try {
+            Test.startTest();
+            ProgramEnrollmentDeletionSettingsVModel programEnrollmentDeletionSettingsVModel = ProgramSettingsController.getProgramEnrollmentDeletionSettingsVModel();
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
     /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
@@ -144,10 +195,40 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses from ProgramEnrollmentDeletionSettingsVMapper
+     **************************************************************************************************************************************/
+    private class STUB_ProgramEnrollmentDeletionSettingsVMapperValid extends ProgramEnrollmentDeletionSettingsVMapper {
+        public override ProgramEnrollmentDeletionSettingsVModel getProgramEnrollmentDeletionSettingsVModel() {
+            List<ComboboxValueVModel> programEnrollmentDeletionStatusOptions = new List<ComboboxValueVModel>();
+
+            programEnrollmentDeletionStatusOptions.add(new ComboboxValueVModel('Selected Status', 'Selected_Status'));
+
+            for (Integer i = 0; i < loopCounter; i++) {
+                programEnrollmentDeletionStatusOptions.add(new ComboboxValueVModel('Status ' + i, 'Status_' + i));
+            }
+
+            ComboboxVModel programEnrollmentDeletionStatusComboboxVModel = new ComboboxVModel(
+                'Selected Status',
+                programEnrollmentDeletionStatusOptions
+            );
+            return new ProgramEnrollmentDeletionSettingsVModel(false, programEnrollmentDeletionStatusComboboxVModel);
+        }
+    }
+
+    /**************************************************************************************************************************************
      * @description Stub class to simulate exception responses from ProgramSettingsVMapper
      **************************************************************************************************************************************/
     private class STUB_ExceptionProgramSettingsVMapper extends ProgramSettingsVMapper {
         public override ProgramSettingsVModel getProgramSettingsVModel() {
+            throw new TestException('Exception encountered!');
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate exception responses from ProgramEnrollmentDeletionSettingsVMapper
+     **************************************************************************************************************************************/
+    private class STUB_ExceptionProgramEnrollmentDeletionSettingsVMapper extends ProgramEnrollmentDeletionSettingsVMapper {
+        public override ProgramEnrollmentDeletionSettingsVModel getProgramEnrollmentDeletionSettingsVModel() {
             throw new TestException('Exception encountered!');
         }
     }

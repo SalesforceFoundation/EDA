@@ -28,7 +28,7 @@ public virtual with sharing class ProgramEnrollmentDeletionSettingsService {
      * hierarchy settings.
      * @return A ProgramEnrollmentDeletionSettingsModel
      ****************************************************************************/
-    public ProgramEnrollmentDeletionSettingsModel getProgramEnrollmentDeletionSettingsModel() {
+    public virtual ProgramEnrollmentDeletionSettingsModel getProgramEnrollmentDeletionSettingsModel() {
         return this.locateProgramEnrollmentDeletionSettingsMapper().getProgramEnrollmentDeletionSettingsModel();
     }
 
