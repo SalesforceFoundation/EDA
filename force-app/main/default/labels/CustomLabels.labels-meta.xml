@@ -803,7 +803,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Toast message when an Affiliation Mapping is edited</shortDescription>
+        <shortDescription>Confirmation message when an Affiliation mapping is saved</shortDescription>
         <value>Affiliation mapping for {0} was saved.</value>
     </labels>
     <labels>

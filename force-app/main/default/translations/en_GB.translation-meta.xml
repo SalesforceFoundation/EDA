@@ -405,7 +405,7 @@
         <name>stgAffiliationsEditModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when an Affiliation Mapping is edited --></label>
+        <label><!-- Confirmation message when an Affiliation mapping is saved --></label>
         <name>stgAffiliationsEditSuccess</name>
     </customLabels>
     <customLabels>
