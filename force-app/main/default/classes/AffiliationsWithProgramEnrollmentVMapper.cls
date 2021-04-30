@@ -76,6 +76,9 @@ public virtual with sharing class AffiliationsWithProgramEnrollmentVMapper {
 
         List<ComboboxValueVModel> affiliationRoleComboboxValueVModelsList = new List<ComboboxValueVModel>();
 
+        // add --None-- option, maps to a blank value in hierarchy settings field
+        affiliationRoleComboboxValueVModelsList.add(new ComboboxValueVModel(label.NoneOption, '""'));
+
         for (PicklistEntryModel picklistEntryModel : activeAffiliationRolePicklistEntryModelsByName.values()) {
             affiliationRoleComboboxValueVModelsList.add(
                 new ComboboxValueVModel(picklistEntryModel.label, picklistEntryModel.name)
@@ -86,6 +89,7 @@ public virtual with sharing class AffiliationsWithProgramEnrollmentVMapper {
             currentAffiliationsWithProgramEnrollmentModel.role,
             affiliationRoleComboboxValueVModelsList
         );
+
         // Get the comboboxvmodel for status
         Map<String, PicklistEntryModel> allAffiliationStatusPicklistEntryModelsByName = this.locatePicklistEntryService()
             .getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Status__c);
@@ -94,6 +98,8 @@ public virtual with sharing class AffiliationsWithProgramEnrollmentVMapper {
             .getActivePicklistEntryModelsByName(allAffiliationStatusPicklistEntryModelsByName);
 
         List<ComboboxValueVModel> affiliationStatusComboboxValueVModelsList = new List<ComboboxValueVModel>();
+        // add --None-- option, maps to a blank value in hierarchy settings field
+        affiliationStatusComboboxValueVModelsList.add(new ComboboxValueVModel(label.NoneOption, '""'));
 
         for (PicklistEntryModel picklistEntryModel : activeAffiliationStatusPicklistEntryModelsByName.values()) {
             affiliationStatusComboboxValueVModelsList.add(
