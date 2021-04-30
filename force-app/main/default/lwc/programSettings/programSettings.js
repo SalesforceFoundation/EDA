@@ -6,6 +6,8 @@ import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController
 import getAffiliationsWithProgramEnrollmentVModel from "@salesforce/apex/AffiliationsWithProgramEnrollController.getAffiliationsWithProgramEnrollmentVModel";
 
 //Custom labels for Affiliations created with Program Enrollment
+import stgHelpAfflCreateFromProgramEnrollmentHeader from "@salesforce/label/c.stgHelpAfflCreateFromProgramEnrollmentHeader";
+import stgHelpAfflCreateFromProgramEnrollmentInfo from "@salesforce/label/c.stgHelpAfflCreateFromProgramEnrollmentInfo";
 import stgAfflProgramEnrollmentSettingsTitle from "@salesforce/label/c.stgAfflProgramEnrollmentSettingsTitle";
 import stgAfflProgEnrollSetRoleValue from "@salesforce/label/c.stgAfflProgEnrollSetRoleValue";
 import stgHelpAfflProgEnrollSetRoleValue from "@salesforce/label/c.stgHelpAfflProgEnrollSetRoleValue";
@@ -39,6 +41,8 @@ export default class programSettings extends LightningElement {
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
         newButton: stgBtnAddMapping,
+        afflCreateFromPrgrmHeading: stgHelpAfflCreateFromProgramEnrollmentHeader,
+        afflCreateFromPrgrmInfo: stgHelpAfflCreateFromProgramEnrollmentInfo,
         afflProgramEnrollmentSettingsTitle: stgAfflProgramEnrollmentSettingsTitle,
         afflProgEnrollSetRoleValue: stgAfflProgEnrollSetRoleValue,
         helpAfflProgEnrollSetRoleValue: stgHelpAfflProgEnrollSetRoleValue,
