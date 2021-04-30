@@ -126,7 +126,7 @@ private with sharing class AffiliationsWithPrgrmEnrolSrvc_TEST {
             'Affiliations With Program Enrollment Role should match value specified.'
         );
         System.assertEquals(
-            'current',
+            'Current',
             affiliationsWithProgramEnrollmentModel.status,
             'Affiliations With Program Enrollment Status should match value specified.'
         );
