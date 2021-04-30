@@ -139,8 +139,111 @@ private with sharing class ProgramSettingsController_TEST {
         ProgramSettingsVMapper.instance = new STUB_ProgramSettingsVMapperValid();
 
         Test.startTest();
-        //ComboBoxVModel autoEnrollmentMappingStatusComboboxVModel = ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel();
+        ComboBoxVModel autoEnrollmentMappingStatusComboboxVModel = ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel(
+            'Test_Status'
+        );
         Test.stopTest();
+
+        System.assertEquals(
+            'Test_Status',
+            autoEnrollmentMappingStatusComboboxVModel.value,
+            'The value of autoEnrollmentMappingStatusComboboxVModel should be Test_Status'
+        );
+
+        System.assertEquals(
+            1,
+            autoEnrollmentMappingStatusComboboxVModel.options.size(),
+            'The size of autoEnrollmentMappingStatusComboboxVModel options should be 1'
+        );
+
+        System.assertEquals(
+            'Test_Status',
+            autoEnrollmentMappingStatusComboboxVModel.options[0].value,
+            'The value of autoEnrollmentMappingStatusComboboxVModel option 1 should be Test_Status'
+        );
+
+        System.assertEquals(
+            'Test Status',
+            autoEnrollmentMappingStatusComboboxVModel.options[0].label,
+            'The label of autoEnrollmentMappingStatusComboboxVModel option 1 should be Test Status'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingStatusComboboxVModel()
+     * throws an exception when exception occurs.
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingStatusComboboxVModelException() {
+        ProgramSettingsVMapper.instance = new STUB_ExceptionProgramSettingsVMapper();
+        try {
+            Test.startTest();
+            ComboBoxVModel autoEnrollmentMappingStatusComboboxVModel = ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel(
+                'Test_Status'
+            );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingRoleComboboxVModel()
+     * returns an instance of ComboBoxVModel with valid values from valid stub.
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingRoleComboboxVModelValid() {
+        ProgramSettingsVMapper.instance = new STUB_ProgramSettingsVMapperValid();
+
+        Test.startTest();
+        ComboBoxVModel autoEnrollmentMappingRoleComboboxVModel = ProgramSettingsController.getAutoEnrollmentMappingRoleComboboxVModel(
+            'Test_Role'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Test_Role',
+            autoEnrollmentMappingRoleComboboxVModel.value,
+            'The value of autoEnrollmentMappingRoleComboboxVModel should be Test_Role'
+        );
+
+        System.assertEquals(
+            1,
+            autoEnrollmentMappingRoleComboboxVModel.options.size(),
+            'The size of autoEnrollmentMappingRoleComboboxVModel options should be 1'
+        );
+
+        System.assertEquals(
+            'Test_Role',
+            autoEnrollmentMappingRoleComboboxVModel.options[0].value,
+            'The value of autoEnrollmentMappingRoleComboboxVModel option 1 should be Test_Role'
+        );
+
+        System.assertEquals(
+            'Test Role',
+            autoEnrollmentMappingRoleComboboxVModel.options[0].label,
+            'The label of autoEnrollmentMappingRoleComboboxVModel option 1 should be Test Role'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingRoleComboboxVModel()
+     * throws an exception when exception occurs.
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingRoleComboboxVModelException() {
+        ProgramSettingsVMapper.instance = new STUB_ExceptionProgramSettingsVMapper();
+        try {
+            Test.startTest();
+            ComboBoxVModel autoEnrollmentMappingRoleComboboxVModel = ProgramSettingsController.getAutoEnrollmentMappingRoleComboboxVModel(
+                'Test_Role'
+            );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
     }
 
     /***********************************************************************************************************************************
@@ -173,6 +276,20 @@ private with sharing class ProgramSettingsController_TEST {
             );
             return new ProgramSettingsVModel(autoEnrollmentMappingVModelsList);
         }
+
+        public override ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(
+            String autoProgramEnrollmentStatus
+        ) {
+            List<ComboboxValueVModel> comboboxOptions = new List<ComboboxValueVModel>();
+            comboboxOptions.add(new ComboboxValueVModel('Test Status', 'Test_Status'));
+            return new ComboBoxVModel('Test_Status', comboboxOptions);
+        }
+
+        public override ComboBoxVModel getAutoEnrollmentMappingRoleComboboxVModel(String autoProgramEnrollmentRole) {
+            List<ComboboxValueVModel> comboboxOptions = new List<ComboboxValueVModel>();
+            comboboxOptions.add(new ComboboxValueVModel('Test Role', 'Test_Role'));
+            return new ComboBoxVModel('Test_Role', comboboxOptions);
+        }
     }
 
     /**************************************************************************************************************************************
@@ -180,6 +297,16 @@ private with sharing class ProgramSettingsController_TEST {
      **************************************************************************************************************************************/
     private class STUB_ExceptionProgramSettingsVMapper extends ProgramSettingsVMapper {
         public override ProgramSettingsVModel getProgramSettingsVModel() {
+            throw new TestException('Exception encountered!');
+        }
+
+        public override ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(
+            String autoProgramEnrollmentStatus
+        ) {
+            throw new TestException('Exception encountered!');
+        }
+
+        public override ComboBoxVModel getAutoEnrollmentMappingRoleComboboxVModel(String autoProgramEnrollmentRole) {
             throw new TestException('Exception encountered!');
         }
     }

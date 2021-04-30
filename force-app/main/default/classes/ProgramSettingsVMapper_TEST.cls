@@ -356,6 +356,114 @@ private with sharing class ProgramSettingsVMapper_TEST {
         );
     }
 
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingStatusComboboxVModel()
+     * returns an instance of ComboBoxVModel with valid data.
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingStatusComboboxVModelValid() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceStatus();
+        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel autoEnrollmentMappingStatusComboboxVModel = programSettingsVMapperInstance.getAutoEnrollmentMappingStatusComboboxVModel(
+            'Test_Status'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Test_Status',
+            autoEnrollmentMappingStatusComboboxVModel.value,
+            'The value of autoEnrollmentMappingStatusComboboxVModel should be Test_Status'
+        );
+
+        System.assertEquals(
+            1,
+            autoEnrollmentMappingStatusComboboxVModel.options.size(),
+            'The size of autoEnrollmentMappingStatusComboboxVModel options should be 1'
+        );
+
+        System.assertEquals(
+            'Test_Status',
+            autoEnrollmentMappingStatusComboboxVModel.options[0].value,
+            'The value of autoEnrollmentMappingStatusComboboxVModel option 1 should be Test_Status'
+        );
+
+        System.assertEquals(
+            'Test Status',
+            autoEnrollmentMappingStatusComboboxVModel.options[0].label,
+            'The label of autoEnrollmentMappingStatusComboboxVModel option 1 should be Test Status'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingRoleComboboxVModel()
+     * returns an instance of ComboBoxVModel with valid data.
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingRoleComboboxVModelValid() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceRole();
+        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel autoEnrollmentMappingRoleComboboxVModel = programSettingsVMapperInstance.getAutoEnrollmentMappingRoleComboboxVModel(
+            'Test_Role'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Test_Role',
+            autoEnrollmentMappingRoleComboboxVModel.value,
+            'The value of autoEnrollmentMappingRoleComboboxVModel should be Test_Role'
+        );
+
+        System.assertEquals(
+            1,
+            autoEnrollmentMappingRoleComboboxVModel.options.size(),
+            'The size of autoEnrollmentMappingRoleComboboxVModel options should be 1'
+        );
+
+        System.assertEquals(
+            'Test_Role',
+            autoEnrollmentMappingRoleComboboxVModel.options[0].value,
+            'The value of autoEnrollmentMappingRoleComboboxVModel option 1 should be Test_Role'
+        );
+
+        System.assertEquals(
+            'Test Role',
+            autoEnrollmentMappingRoleComboboxVModel.options[0].label,
+            'The label of autoEnrollmentMappingRoleComboboxVModel option 1 should be Test Role'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingRoleComboboxVModel()
+     * returns an instance of ComboBoxVModel with valid combobox value but empty options.
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingRoleComboboxVModelPicklistEntryMapEmpty() {
+        PicklistEntryService.instance = new STUB_PicklistEntryServiceEmptyMap();
+        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel autoEnrollmentMappingRoleComboboxVModel = programSettingsVMapperInstance.getAutoEnrollmentMappingRoleComboboxVModel(
+            'Test_Role'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Test_Role',
+            autoEnrollmentMappingRoleComboboxVModel.value,
+            'The value of autoEnrollmentMappingRoleComboboxVModel should be Test_Role'
+        );
+
+        System.assertEquals(
+            0,
+            autoEnrollmentMappingRoleComboboxVModel.options.size(),
+            'The size of autoEnrollmentMappingRoleComboboxVModel options should be 0'
+        );
+    }
+
     /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
@@ -463,6 +571,46 @@ private with sharing class ProgramSettingsVMapper_TEST {
             Map<String, RecordTypeModel> recordTypeModelByLabel
         ) {
             return null;
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses for Status from PickListEntryService
+     **************************************************************************************************************************************/
+    private class STUB_PicklistEntryServiceStatus extends PickListEntryService {
+        public override Map<String, PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            return new Map<String, PicklistEntryModel>{
+                'Test_Status' => new PicklistEntryModel('Test_Status', 'Test Status', true)
+            };
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses for Role from PickListEntryService
+     **************************************************************************************************************************************/
+    private class STUB_PicklistEntryServiceRole extends PickListEntryService {
+        public override Map<String, PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            return new Map<String, PicklistEntryModel>{
+                'Test_Role' => new PicklistEntryModel('Test_Role', 'Test Role', true)
+            };
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate empty map response from PickListEntryService
+     **************************************************************************************************************************************/
+    private class STUB_PicklistEntryServiceEmptyMap extends PickListEntryService {
+        public override Map<String, PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            return new Map<String, PicklistEntryModel>();
         }
     }
 }

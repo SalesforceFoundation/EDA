@@ -43,6 +43,7 @@ private with sharing class ProgramSettingsVModel_TEST {
         List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModels = new List<AutoEnrollmentMappingVModel>();
         for (Integer i = 0; i < 5; i++) {
             AutoEnrollmentMappingVModel autoEnrollmentMappingVModel = new AutoEnrollmentMappingVModel(
+                'Test Mapping' + i,
                 'Test Account Record Type Name' + i,
                 'Test Account Record Type Label' + i,
                 'Test Status' + i,
