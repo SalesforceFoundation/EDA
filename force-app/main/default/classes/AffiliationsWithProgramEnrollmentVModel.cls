@@ -34,9 +34,6 @@
  */
 public with sharing class AffiliationsWithProgramEnrollmentVModel {
     @AuraEnabled
-    public Boolean specifyRole { get; private set; }
-
-    @AuraEnabled
     public ComboboxVModel role { get; private set; }
 
     @AuraEnabled
@@ -49,21 +46,18 @@ public with sharing class AffiliationsWithProgramEnrollmentVModel {
     public Boolean copyStartDate { get; private set; }
 
     /*****************************************************************************************************************
-     * @description Five argument constructor
-     * @param  specifyRole A boolean value representing the Affl_ProgEnroll_Set_Role__c setting in Hierarchy Settings
+     * @description Four argument constructor
      * @param  role A ComboboxVModel representing the selected and available values for 'Affil Role When Create Prog Enroll'
      * @param  status A ComboboxVModel representing the selected and available values for 'Affil Status When Create Prog Enroll'
      * @param  copyEndDate A boolean value representing the Affil End Date Copy from Prog Enroll setting in Hierarchy Settings
      * @param  copyStartDate A boolean value representing the Affil End Date Copy from Prog Enroll setting in Hierarchy Settings
      *****************************************************************************************************************/
     public AffiliationsWithProgramEnrollmentVModel(
-        Boolean specifyRole,
         ComboboxVModel role,
         ComboboxVModel status,
         Boolean copyEndDate,
         Boolean copyStartDate
     ) {
-        this.specifyRole = specifyRole;
         this.role = role;
         this.status = status;
         this.copyEndDate = copyEndDate;

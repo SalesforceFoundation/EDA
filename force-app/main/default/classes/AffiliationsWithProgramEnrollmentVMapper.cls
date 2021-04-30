@@ -113,7 +113,6 @@ public virtual with sharing class AffiliationsWithProgramEnrollmentVMapper {
         );
 
         return new AffiliationsWithProgramEnrollmentVModel(
-            currentAffiliationsWithProgramEnrollmentModel.specifyRole,
             affiliationRoleComboboxVModel,
             affiliationStatusComboboxVModel,
             currentAffiliationsWithProgramEnrollmentModel.copyEndDate,
