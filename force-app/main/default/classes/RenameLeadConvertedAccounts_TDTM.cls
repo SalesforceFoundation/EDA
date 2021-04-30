@@ -26,12 +26,12 @@
 */
 /**
  * @author Salesforce.org
- * @date 2011 (1.x)
+ * @date 2011 (1.x) 
  * @group Accounts
  * @group-content ../../ApexDocContent/Accounts.htm
  * @description Names Accounts involved in a Lead Conversion based on EDA Settings
  */
-public class ACCT_RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
+public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
     private TDTM_Runnable.Action triggerAction;
 
     /*******************************************************************************************************
@@ -73,13 +73,12 @@ public class ACCT_RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
         this.setUpdateRecursion();
 
         DmlWrapper dmlWrapper = new DmlWrapper();
-        List<lead> newleads = (List<lead>) newlist;
-        List<lead> oldLeads = (List<lead>) oldlist;
+        List<lead> newLeadList = (List<lead>) newlist;
 
         List<Id> contactIdsToUpdate = new List<Id>();
         List<Account> accountsToUpdate = new List<Account>();
 
-        for (Lead aLead : newLeads) {
+        for (Lead aLead : newLeadList) {
             if (aLead.IsConverted) {
                 contactIdsToUpdate.add(aLead.ConvertedContactId);
             }
@@ -96,6 +95,7 @@ public class ACCT_RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
                 UTIL_CustomSettingsFacade.getSettings()
                     .Lead_Converted_Account_RTypes__c.contains(aContact.Account.RecordTypeId)
             ) {
+                
                 Account anAccount = new Account(
                     Phone = aContact.Account.Phone,
                     Fax = aContact.Account.Fax,
@@ -113,7 +113,7 @@ public class ACCT_RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
         }
         if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             TDTM_ProcessControl.setRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.ACCT_RenameLeadConvertedAccounts_TDTM_After_Update,
+                TDTM_ProcessControl.registeredTrigger.RenameLeadConvertedAccounts_TDTM_After_Update,
                 true
             );
         }
@@ -125,27 +125,27 @@ public class ACCT_RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
      */
     private Boolean triggerActionAfterUpdate() {
         return TDTM_ProcessControl.getRecursionFlag(
-            TDTM_ProcessControl.registeredTrigger.ACCT_RenameLeadConvertedAccounts_TDTM_After_Update
+            TDTM_ProcessControl.registeredTrigger.RenameLeadConvertedAccounts_TDTM_After_Update
         );
     }
 
     /************************************************************************************************************************************
-     * @description Returns the value of operation (ACCT_RenameLeadConvertedAccounts_TDTM OR ACCT_RenameLeadConvertedAccounts_TDTM_After_Update)
+     * @description Returns the value of operation (RenameLeadConvertedAccounts_TDTM OR RenameLeadConvertedAccounts_TDTM_After_Update)
      **************************************************************************************************************************************/
     @TestVisible
     private boolean isUpdateRecursion() {
         return TDTM_ProcessControl.getRecursionFlag(
-            TDTM_ProcessControl.registeredTrigger.ACCT_RenameLeadConvertedAccounts_TDTM_After_Update
+            TDTM_ProcessControl.registeredTrigger.RenameLeadConvertedAccounts_TDTM_After_Update
         );
     }
 
     /************************************************************************************************************************************
-     * @description Sets the recursion flag ACCT_RenameLeadConvertedAccounts_TDTM_After_Update) to true
+     * @description Sets the recursion flag RenameLeadConvertedAccounts_TDTM_After_Update) to true
      **************************************************************************************************************************************/
     @TestVisible
     private void setUpdateRecursion() {
         TDTM_ProcessControl.setRecursionFlag(
-            TDTM_ProcessControl.registeredTrigger.ACCT_RenameLeadConvertedAccounts_TDTM_After_Update,
+            TDTM_ProcessControl.registeredTrigger.RenameLeadConvertedAccounts_TDTM_After_Update,
             true
         );
     }

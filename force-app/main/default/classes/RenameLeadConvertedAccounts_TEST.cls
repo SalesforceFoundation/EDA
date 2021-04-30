@@ -32,10 +32,10 @@
  * @date 2011 (1.x)
  * @group Accounts
  * @group-content ../../ApexDocContent/Accounts.htm
- * @description Tests for ACCT_RenameLeadConvertedAccounts_TDTM.
+ * @description Tests for RenameLeadConvertedAccounts_TDTM.
  */
 @isTest
-private class ACCT_RenameLeadConvertedAccounts_TEST {
+private class RenameLeadConvertedAccounts_TEST {
     private static Integer leadCount = 5; // used to determine number of test contact records to create
     /*********************************************************************************************************
      * @description Insert and convert a new Lead with no Lead Conversion record types selected
