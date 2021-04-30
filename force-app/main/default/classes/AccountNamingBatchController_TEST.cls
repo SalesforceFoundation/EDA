@@ -50,11 +50,40 @@ private with sharing class AccountNamingBatchController_TEST {
     }
 
     /***********************************************************************************************************************************
-     * @description Test method to verify that the locateAccountNamingService method returns instance of locateAccountNamingService
+     * @description Test method to verify runRefreshAdministrativeAccountNamingJob method runs successfully
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void runRefreshAdministrativeAccountNamingJobValid() {
+        AccountNamingService.instance = new STUB_AdminAccountNamingServiceValid();
+        Test.startTest();
+        Boolean batchJobSuccessful = AccountNamingBatchController.runRefreshAdministrativeAccountNamingJob();
+        Test.stopTest();
+
+        System.assertEquals(true, batchJobSuccessful, 'Should return true if the batch job has run successfully');
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify runRefreshAdministrativeAccountNamingJob method throws an error
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void runRefreshAdministrativeAccountNamingJobError() {
+        AccountNamingService.instance = new STUB_AdminAccountNamingServiceError();
+        try {
+            Test.startTest();
+            Boolean batchJobSuccessful = AccountNamingBatchController.runRefreshAdministrativeAccountNamingJob();
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify runRefreshHouseholdAccountNamingJob method runs successfully
      ***********************************************************************************************************************************/
     @isTest
     private static void runRefreshHouseholdAccountNamingJobValid() {
-        AccountNamingService.instance = new STUB_AccountNamingServiceValid();
+        AccountNamingService.instance = new STUB_HHAccountNamingServiceValid();
         Test.startTest();
         Boolean batchJobSuccessful = AccountNamingBatchController.runRefreshHouseholdAccountNamingJob();
         Test.stopTest();
@@ -63,11 +92,11 @@ private with sharing class AccountNamingBatchController_TEST {
     }
 
     /***********************************************************************************************************************************
-     * @description Test method to verify that the locateAccountNamingService method returns instance of locateAccountNamingService
+     * @description Test method to verify runRefreshHouseholdAccountNamingJob method throws an error
      ***********************************************************************************************************************************/
     @isTest
     private static void runRefreshHouseholdAccountNamingJobError() {
-        AccountNamingService.instance = new STUB_AccountNamingServiceError();
+        AccountNamingService.instance = new STUB_HHAccountNamingServiceError();
         try {
             Test.startTest();
             Boolean batchJobSuccessful = AccountNamingBatchController.runRefreshHouseholdAccountNamingJob();
@@ -82,19 +111,37 @@ private with sharing class AccountNamingBatchController_TEST {
      ****************************************************** STUBS **************************************************************
      **************************************************************************************************************************/
 
-    /**************************************************************************************************************************************
-     * @description Stub class to simulate the response from AccountNamingService to return a true.
-     **************************************************************************************************************************************/
-    private class STUB_AccountNamingServiceValid extends AccountNamingService {
+    /**************************************************************************************************************************************************
+     * @description Stub class to simulate the response from AccountNamingService to return a true for runRefreshAdministrativeAccountNamingJob method .
+     **************************************************************************************************************************************************/
+    private class STUB_AdminAccountNamingServiceValid extends AccountNamingService {
+        public override Boolean runRefreshAdministrativeAccountNamingJob() {
+            return true;
+        }
+    }
+
+    /***************************************************************************************************************************************************
+     * @description Stub class to simulate the response from AccountNamingService to throw an error for runRefreshAdministrativeAccountNamingJob method
+     ***************************************************************************************************************************************************/
+    private class STUB_AdminAccountNamingServiceError extends AccountNamingService {
+        public override Boolean runRefreshAdministrativeAccountNamingJob() {
+            throw new AuraHandledException(Label.BatchJobRunningProblem);
+        }
+    }
+
+    /******************************************************************************************************************************************
+     * @description Stub class to simulate the response from AccountNamingService to return true for runRefreshHouseHoldAccountNamingJob method.
+     ******************************************************************************************************************************************/
+    private class STUB_HHAccountNamingServiceValid extends AccountNamingService {
         public override Boolean runRefreshHouseHoldAccountNamingJob() {
             return true;
         }
     }
 
-    /**************************************************************************************************************************************
-     * @description Stub class to simulate the response from AccountNamingService to throw an erro
-     **************************************************************************************************************************************/
-    private class STUB_AccountNamingServiceError extends AccountNamingService {
+    /**********************************************************************************************************************************************
+     * @description Stub class to simulate the response from AccountNamingService to throw an error for runRefreshHouseHoldAccountNamingJob method.
+     **********************************************************************************************************************************************/
+    private class STUB_HHAccountNamingServiceError extends AccountNamingService {
         public override Boolean runRefreshHouseHoldAccountNamingJob() {
             throw new AuraHandledException(Label.BatchJobRunningProblem);
         }
