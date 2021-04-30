@@ -57,6 +57,30 @@ public virtual with sharing class AccountNamingService {
     }
 
     /**********************************************************************************
+     * @description Runs the Administrative Account Naming Job
+     * @return Boolean True is success, else throws an error
+     **********************************************************************************/
+    public virtual Boolean runRefreshAdministrativeAccountNamingJob() {
+        ACCT_AdministrativeNameRefresh_BATCH accountRefresh = new ACCT_AdministrativeNameRefresh_BATCH();
+        Id jobId = this.runAdministrativeRefreshBatch(accountRefresh);
+        if (jobId == null) {
+            throw new AuraHandledException(Label.BatchJobRunningProblem);
+        } else {
+            return true;
+        }
+    }
+
+    /**********************************************************************************
+     * @description Runs the Administrative Account Naming Job
+     * @return Id The batch job id for the ACCT_AdministrativeNameRefresh_BATCH
+     **********************************************************************************/
+    @TestVisible
+    private virtual Id runAdministrativeRefreshBatch(ACCT_AdministrativeNameRefresh_BATCH accountRefresh) {
+        Id jobId = Database.executeBatch(accountRefresh, 200);
+        return jobId;
+    }
+
+    /**********************************************************************************
      * @description Runs the Household Account Naming Job
      * @return Boolean True is success, else throws an error
      **********************************************************************************/
