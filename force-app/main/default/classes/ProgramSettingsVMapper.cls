@@ -121,8 +121,12 @@ public virtual with sharing class ProgramSettingsVMapper {
         return new AutoEnrollmentMappingVModel(
             accountRecordTypeName,
             accountRecordTypeLabel,
-            affiliationMappingsModel.autoProgramEnrollmentStatus,
-            affiliationMappingsModel.autoProgramEnrollmentRole
+            affiliationMappingsModel.autoProgramEnrollmentStatus == '""'
+                ? ''
+                : affiliationMappingsModel.autoProgramEnrollmentStatus,
+            affiliationMappingsModel.autoProgramEnrollmentRole == '""'
+                ? ''
+                : affiliationMappingsModel.autoProgramEnrollmentRole
         );
     }
 

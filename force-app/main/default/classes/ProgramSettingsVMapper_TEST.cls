@@ -195,6 +195,76 @@ private with sharing class ProgramSettingsVMapper_TEST {
 
     /****************************************************************************************
      * @description Test method to verify getAutoEnrollmentMappingVModel()
+     * returns an instance of AutoEnrollmentMappingVModel with valid values
+     * when auto enrollment status and role are empty
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingVModelEmpty() {
+        RecordTypeService.instance = new STUB_RecordTypeServiceValid();
+
+        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
+            'Affliation Name',
+            'Account Record Type',
+            'Primary Affiliation Field',
+            true,
+            '',
+            ''
+        );
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = new Map<String, RecordTypeModel>{
+            'Account_Record_Type' => new RecordTypeModel(
+                '000000000000000009',
+                'Account Record Type',
+                'Account_Record_Type',
+                true
+            )
+        };
+
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = new Map<String, RecordTypeModel>{
+            'Account Record Type' => new RecordTypeModel(
+                '000000000000000009',
+                'Account Record Type',
+                'Account_Record_Type',
+                true
+            )
+        };
+
+        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+
+        Test.startTest();
+        AutoEnrollmentMappingVModel autoEnrollmentMappingVModel = programSettingsVMapperInstance.getAutoEnrollmentMappingVModel(
+            affiliationMappingsModel,
+            accountRecordTypeModelsByName,
+            accountRecordTypeModelsByLabel
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Account_Record_Type',
+            autoEnrollmentMappingVModel.accountRecordTypeName,
+            'Account Record Type name should match developer name of Record Type model corresponding to record type specified for the affiliation mapping.'
+        );
+
+        System.assertEquals(
+            'Account Record Type',
+            autoEnrollmentMappingVModel.accountRecordTypeLabel,
+            'Account Record Type label should match label of Record Type model corresponding to record type specified for the affiliation mapping.'
+        );
+
+        System.assertEquals(
+            '',
+            autoEnrollmentMappingVModel.autoProgramEnrollmentStatus,
+            'Auto enrollment status should be empty.'
+        );
+
+        System.assertEquals(
+            '',
+            autoEnrollmentMappingVModel.autoProgramEnrollmentRole,
+            'Auto enrollment role should be empty.'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingVModel()
      * returns a AutoEnrollmentMappingVModel with account record type and lookup field names
      * and labels corresponding to the properties specified for the affiliation mapping
      * when matching models do not exist.
@@ -317,6 +387,55 @@ private with sharing class ProgramSettingsVMapper_TEST {
     /****************************************************************************************
      * @description Test method to verify getProgramSettingsVModel()
      * returns a ProgramSettingsVModel with proper values
+     * when active auto enrollment exists but empty.
+     ****************************************************************************************/
+    @isTest
+    private static void getProgramSettingsVModelActiveAutoEnrollmentEmpty() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsServiceEmptyAutoEnrollment();
+        RecordTypeService.instance = new STUB_RecordTypeService();
+
+        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ProgramSettingsVModel programSettingsVModel = programSettingsVMapperInstance.getProgramSettingsVModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            2,
+            programSettingsVModel.autoEnrollmentMappingVModels.size(),
+            'Should return 2 autoEnrollmentMappingVModels.'
+        );
+
+        for (Integer i = 0; i < programSettingsVModel.autoEnrollmentMappingVModels.size(); i++) {
+            System.assertEquals(
+                'Record_Type_' + (i + 1),
+                programSettingsVModel.autoEnrollmentMappingVModels[i].accountRecordTypeName,
+                'Account record type name should match developer name of corresponding record type model.'
+            );
+
+            System.assertEquals(
+                'Record Type ' + (i + 1),
+                programSettingsVModel.autoEnrollmentMappingVModels[i].accountRecordTypeLabel,
+                'Account record type label should match label of corresponding record type model.'
+            );
+
+            System.assertEquals(
+                '',
+                programSettingsVModel.autoEnrollmentMappingVModels[i].autoProgramEnrollmentStatus,
+                'Auto-Enrollment status should be empty.'
+            );
+
+            System.assertEquals(
+                '',
+                programSettingsVModel.autoEnrollmentMappingVModels[i].autoProgramEnrollmentRole,
+                'Auto-Enrollment role should be empty.'
+            );
+        }
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getProgramSettingsVModel()
+     * returns a ProgramSettingsVModel with proper values
      * when no active auto enrollment exists.
      ****************************************************************************************/
     @isTest
@@ -368,7 +487,7 @@ private with sharing class ProgramSettingsVMapper_TEST {
     }
 
     /**************************************************************************************************************************************
-     * @description Stub class to simulate valid responses from AffiliationMappingsService
+     * @description Stub class to simulate valid responses from AffiliationMappingsService with inactive auto enrollment
      **************************************************************************************************************************************/
     private class STUB_AffiliationMappingsServiceInactiveAutoEnrollment extends AffiliationMappingsService {
         public override List<AffiliationMappingsModel> getAffiliationMappingsModels() {
@@ -388,6 +507,32 @@ private with sharing class ProgramSettingsVMapper_TEST {
                     false,
                     'autoProgramEnrollmentStatus2',
                     'autoProgramEnrollmentRole2'
+                )
+            };
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses from AffiliationMappingsService with empty auto enrollment
+     **************************************************************************************************************************************/
+    private class STUB_AffiliationMappingsServiceEmptyAutoEnrollment extends AffiliationMappingsService {
+        public override List<AffiliationMappingsModel> getAffiliationMappingsModels() {
+            return new List<AffiliationMappingsModel>{
+                new AffiliationMappingsModel(
+                    'Affiliation Name 1',
+                    'Record Type 1',
+                    'Contact Account Lookup Label 1',
+                    true,
+                    '',
+                    ''
+                ),
+                new AffiliationMappingsModel(
+                    'Affiliation Name 2',
+                    'Record Type 2',
+                    'Contact Account Lookup Label 2',
+                    true,
+                    '',
+                    ''
                 )
             };
         }

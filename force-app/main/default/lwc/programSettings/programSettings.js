@@ -19,6 +19,7 @@ import AfflProgEnrollDeleted from "@salesforce/label/c.AfflProgEnrollDeleted";
 import stgAfflDeleteProgramEnrollment from "@salesforce/label/c.stgAfflDeleteProgramEnrollment";
 import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflDeleteProgramEnrollment";
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
+import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 
 export default class programSettings extends LightningElement {
     isEditMode = false;
@@ -50,6 +51,7 @@ export default class programSettings extends LightningElement {
             editAction: stgBtnEdit,
             deleteAction: stgBtnDelete,
         },
+        tellMeMoreLink: stgTellMeMoreLink,
     };
 
     inputAttributeReference = {
@@ -186,9 +188,18 @@ export default class programSettings extends LightningElement {
     }
 
     get autoEnrollmentMappingsDescriptionRichText() {
-        return this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription;
+        return (
+            this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription +
+            " " +
+            this.autoEnrollmentHyperLink
+        );
     }
 
     handleNewAutoEnrollmentMappingClick(event) {}
     handleAutoEnrollmentMappingRowAction(event) {}
+
+    autoEnrollmentHyperLink =
+        '<a href="https://powerofus.force.com/s/article/EDA-Configure-Affiliations-Settings">' +
+        this.labelReference.tellMeMoreLink +
+        "</a>";
 }
