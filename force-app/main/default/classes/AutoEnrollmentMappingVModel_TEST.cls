@@ -38,7 +38,7 @@ private with sharing class AutoEnrollmentMappingVModel_TEST {
      * model with the appropriate data.
      *****************************************************************************/
     @isTest
-    private static void affiliationMappingsModelValid() {
+    private static void autoEnrollmentMappingVModelValid() {
         Test.startTest();
         AutoEnrollmentMappingVModel autoEnrollmentMappingVModel = new AutoEnrollmentMappingVModel(
             'Test Mapping Name',
