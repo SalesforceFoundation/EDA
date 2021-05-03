@@ -25,6 +25,12 @@ import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 //Course Enrollment Labels
 import stgCoursesAndEnrollmentsNav from "@salesforce/label/c.stgCoursesAndEnrollmentsNav";
 import stgProgramsSettingsNav from "@salesforce/label/c.stgProgramsSettingsNav";
+import stgAutoEnrollmentProgramTitle from "@salesforce/label/c.stgAutoEnrollmentProgramTitle";
+import stgAfflProgEnrollSetRoleValue from "@salesforce/label/c.stgAfflProgEnrollSetRoleValue";
+import stgAfflProgEnrollSetStatusValue from "@salesforce/label/c.stgAfflProgEnrollSetStatusValue";
+import stgAfflCopyProgramEnrollmentEndDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentEndDate";
+import stgAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentStartDate";
+
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
@@ -82,8 +88,12 @@ export default class EdaSettingsNavigation extends LightningElement {
         },
         programSettings: {
             programSettings: stgProgramsSettingsNav,
-            programAutoEnrollmentMappings: "Program Auto-Enrollment Mappings",
+            programAutoEnrollmentMappings: stgAutoEnrollmentProgramTitle,
             programEnrollmentDeletions: "Program Enrollment Deletions",
+            roleForCreatedAffl: stgAfflProgEnrollSetRoleValue,
+            statusForCreatedAffl: stgAfflProgEnrollSetStatusValue,
+            afflEndDate: stgAfflCopyProgramEnrollmentEndDate,
+            afflStartDate: stgAfflCopyProgramEnrollmentStartDate,
         },
         relationshipSettings: {
             preventAutoCreatedDuplicateRelationships: "Prevent Auto-Created Duplicate Relations",
@@ -242,12 +252,28 @@ export default class EdaSettingsNavigation extends LightningElement {
                         id: "programSettings",
                         menuItems: [
                             {
-                                label: this.labelReference.programSettings.programAutoEnrollmentMappings,
-                                id: "programAutoEnrollmentMappings",
-                            },
-                            {
                                 label: this.labelReference.programSettings.programEnrollmentDeletions,
                                 id: "programEnrollmentDeletions",
+                            },
+                            {
+                                label: this.labelReference.programSettings.roleForCreatedAffl,
+                                id: "roleForCreatedAffiliations",
+                            },
+                            {
+                                label: this.labelReference.programSettings.statusForCreatedAffl,
+                                id: "statusForCreatedAffiliations",
+                            },
+                            {
+                                label: this.labelReference.programSettings.afflEndDate,
+                                id: "copyEndDate",
+                            },
+                            {
+                                label: this.labelReference.programSettings.afflStartDate,
+                                id: "copyStartDate",
+                            },
+                            {
+                                label: this.labelReference.programSettings.programAutoEnrollmentMappings,
+                                id: "programAutoEnrollmentMappings",
                             },
                         ],
                     },
