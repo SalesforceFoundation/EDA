@@ -4,6 +4,11 @@ const DATA_QA_LOCATOR = "combobox option ";
 export default class SingleLookupOption extends LightningElement {
     @api viewModel = {};
 
+    @api getLookupId() {
+        const listElement = this.template.querySelector("div");
+        return listElement.getAttribute("id");
+    }
+
     get lookupOptionClass() {
         if (!this.viewModel.active) {
             return LOOKUP_OPTION_CLASS;
@@ -18,11 +23,6 @@ export default class SingleLookupOption extends LightningElement {
         } else {
             return DATA_QA_LOCATOR;
         }
-    }
-
-    @api getLookupId() {
-        const listElement = this.template.querySelector("div");
-        return listElement.getAttribute("id");
     }
 
     handleMouseOver(event) {

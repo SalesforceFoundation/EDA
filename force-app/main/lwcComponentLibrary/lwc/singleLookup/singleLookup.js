@@ -19,7 +19,6 @@ export default class SingleLookup extends LightningElement {
     optionIndex = -1;
     blurLock = false;
 
-    @api disabled;
     @api required;
     @api label;
     @api removeLabel;
@@ -62,6 +61,10 @@ export default class SingleLookup extends LightningElement {
         return !!this.inputValue && !this.value;
     }
 
+    get showResults() {
+        return this.inputValue && !this.value;
+    }
+
     get comboboxClass() {
         if (!this.focused) {
             return COMBOBOX_CLASS;
@@ -71,18 +74,22 @@ export default class SingleLookup extends LightningElement {
     }
 
     get inputClass() {
-        if (!this.focused) {
-            return INPUT_CLASS;
+        if (this.focused && this.value) {
+            return INPUT_CLASS + " slds-has-focus slds-combobox__input-value ";
+        } else if (this.focused) {
+            return INPUT_CLASS + " slds-has-focus";
+        } else if (this.value) {
+            return INPUT_CLASS + " slds-combobox__input-value";
         }
 
-        return INPUT_CLASS + " slds-has-focus";
+        return INPUT_CLASS;
     }
 
     get containerClass() {
         if (!this.value) {
             return CONTAINER_CLASS;
         }
-        return CONTAINER_CLASS + " slds-combobox_container";
+        return CONTAINER_CLASS + " slds-has-selection";
     }
 
     get comboboxFormElementClass() {
@@ -148,7 +155,6 @@ export default class SingleLookup extends LightningElement {
                 this.selectOptionUp();
                 break;
             case KEY_DOWN:
-                console.log("attempting down");
                 event.preventDefault();
                 this.selectOptionDown();
                 break;
@@ -177,12 +183,13 @@ export default class SingleLookup extends LightningElement {
         this.clearValues();
         this.clearCurrentOption();
         this.dispatchChangeEvent();
+        this.removeInputReadOnly();
         this.resetFocus();
     }
 
     resetFocus() {
         //reset focus back to the input field for better accessibility
-        let inputField = this.template.querySelector("input");
+        let inputField  = this.template.querySelector('input');
         if (inputField) {
             inputField.focus();
         }
@@ -213,6 +220,7 @@ export default class SingleLookup extends LightningElement {
 
         this.value = this.options[confirmOption];
         this.inputValue = this.options[confirmOption].label;
+        this.setInputReadOnly();
         this.dispatchChangeEvent();
     }
 
@@ -254,15 +262,24 @@ export default class SingleLookup extends LightningElement {
         const lookupOptionId = lookupOptions[this.optionIndex].getLookupId();
 
         const inputElement = this.template.querySelector("input");
-        //Workaround for LWC changing the id dynamically. See https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.create_components_accessibility_attributes
         inputElement.setAttribute("aria-activedescendant", lookupOptionId);
     }
 
     removeActiveDescendant() {
         const inputElement = this.template.querySelector("input");
-        //Workaround for LWC changing the id dynamically. See https://developer.salesforce.com/docs/component-library/documentation/en/lwc/lwc.create_components_accessibility_attributes
         inputElement.removeAttribute("aria-activedescendant");
     }
+
+    setInputReadOnly() {
+        const inputElement = this.template.querySelector("input");
+        inputElement.setAttribute("readonly", "");
+    }
+
+    removeInputReadOnly() {
+        const inputElement = this.template.querySelector("input");
+        inputElement.removeAttribute("readonly", "");
+    }
+
 
     dispatchSearchEvent(inputValue) {
         const searchEvent = new CustomEvent("search", {

@@ -68,7 +68,7 @@ describe('c-single-lookup', () => {
                 expect(lookupIcon).not.toBeNull();
 
                 const listbox = element.shadowRoot.querySelector('.slds-dropdown');
-                expect(listbox).not.toBeNull();
+                expect(listbox).toBeNull();
 
                 //not rendered: avatar, close button, search line
                 const avatar = element.shadowRoot.querySelector('lightning-avatar');
@@ -156,12 +156,17 @@ describe('c-single-lookup', () => {
 
         return Promise.resolve()
             .then(() => {
+                const input = element.shadowRoot.querySelector('input');
+                input.value = 'abcd';
+                input.dispatchEvent(new CustomEvent('input'));
+            }).then(() => {
                 const options = element.shadowRoot.querySelectorAll('c-single-lookup-option');
                 expect(options).toHaveLength(2);
                 input.focus();
                 input.dispatchEvent(new KeyboardEvent('keydown', {keyCode: 40}));
             }).then(() => {
                 //expect the first element to be selected
+                expect(element).toBeAccessible();
                 input.dispatchEvent(new KeyboardEvent('keydown', {keyCode: 40}));
             }).then(() => {
                 //expect the second element to be selected
@@ -174,6 +179,7 @@ describe('c-single-lookup', () => {
                 input.dispatchEvent(new KeyboardEvent('keydown', {keyCode: 13}));
             }).then(() => {
                 //options are no longer visible - value has been selected
+                expect(element).toBeAccessible();
                 const options = element.shadowRoot.querySelectorAll('c-single-lookup-option');
                 expect(options).toHaveLength(0);
                 const avatar = element.shadowRoot.querySelector('lightning-avatar');
@@ -294,10 +300,11 @@ describe('c-single-lookup', () => {
                 expect(options).toHaveLength(2);
                 options[1].dispatchEvent(new CustomEvent('optionconfirm', {detail: 1}));
             }).then(() => {
-                //options are no longer visible
+                //options are no longer visible and input is not editable
                 const options = element.shadowRoot.querySelectorAll('c-single-lookup-option');
                 expect(options).toHaveLength(0);
-            }).then(() => {
+                const input = element.shadowRoot.querySelector('input');
+                expect(input.readOnly).toBeTruthy();
                 expect(handler).toHaveBeenCalledTimes(1);
                 expect(handler.mock.calls[0][0].detail.value).toEqual(OPTIONS_TWO[1]);
             });
