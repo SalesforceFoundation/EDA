@@ -1,7 +1,7 @@
 import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
-import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramSettingsVModel";
+import getAutoEnrollmentMappingsVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingsVModel";
 import updateAutoEnrollmentMapping from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMapping";
 //custom labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
@@ -18,8 +18,8 @@ export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
-    @track programSettingsVModel;
-    @track programSettingsVModelWireResult;
+    @track autoEnrollmentMappingsVModel;
+    @track autoEnrollmentMappingsVModelWireResult;
 
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
@@ -45,12 +45,12 @@ export default class programSettings extends LightningElement {
         return undefined;
     }
 
-    @wire(getProgramSettingsVModel)
-    programSettingsVModelWire(result) {
-        this.programSettingsVModelWireResult = result;
+    @wire(getAutoEnrollmentMappingsVModel)
+    autoEnrollmentMappingsVModelWire(result) {
+        this.autoEnrollmentMappingsVModelWireResult = result;
 
         if (result.data) {
-            this.programSettingsVModel = result.data;
+            this.autoEnrollmentMappingsVModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving preferredContactInfoSettingsVModel");
         }
@@ -108,7 +108,7 @@ export default class programSettings extends LightningElement {
     }
 
     refreshAllApex() {
-        Promise.all([refreshApex(this.programSettingsVModelWireResult)]).then(() => {
+        Promise.all([refreshApex(this.autoEnrollmentMappingsVModelWireResult)]).then(() => {
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });

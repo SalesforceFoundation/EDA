@@ -34,19 +34,19 @@
 @isTest
 private with sharing class ProgramSettingsController_TEST {
     /****************************************************************************************
-     * @description Test method to verify locateProgramSettingsVMapper() returns an instance of
-     * the ProgramSettingsVMapper class.
+     * @description Test method to verify locateAutoEnrollmentMappingsVMapper() returns an instance of
+     * the AutoEnrollmentMappingsVMapper class.
      ****************************************************************************************/
     @isTest
-    private static void locateProgramSettingsVMapperValid() {
+    private static void locateAutoEnrollmentMappingsVMapperValid() {
         Test.startTest();
-        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsController.locateProgramSettingsVMapper();
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = ProgramSettingsController.locateAutoEnrollmentMappingsVMapper();
         Test.stopTest();
 
         System.assertEquals(
-            ProgramSettingsVMapper.getInstance(),
-            programSettingsVMapperInstance,
-            'Should return instance of ProgramSettingsVMapper class.'
+            AutoEnrollmentMappingsVMapper.getInstance(),
+            autoEnrollmentMappingsVMapperInstance,
+            'Should return instance of AutoEnrollmentMappingsVMapper class.'
         );
     }
 
@@ -68,61 +68,61 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /****************************************************************************************
-     * @description Test method to verify getProgramSettingsVModel()
-     * returns an instance of ProgramSettingsVModel with valid values from valid stub.
+     * @description Test method to verify getAutoEnrollmentMappingsVModel()
+     * returns an instance of AutoEnrollmentMappingsVModel with valid values from valid stub.
      ****************************************************************************************/
     @isTest
-    private static void getProgramSettingsVModelValid() {
-        ProgramSettingsVMapper.instance = new STUB_ProgramSettingsVMapperValid();
+    private static void getAutoEnrollmentMappingsVModelValid() {
+        AutoEnrollmentMappingsVMapper.instance = new STUB_AutoEnrollmentMappingsVMapperValid();
 
         Test.startTest();
-        ProgramSettingsVModel programSettingsVModel = ProgramSettingsController.getProgramSettingsVModel();
+        AutoEnrollmentMappingsVModel autoEnrollmentMappingsVModel = ProgramSettingsController.getAutoEnrollmentMappingsVModel();
         Test.stopTest();
 
         System.assertEquals(
             2,
-            programSettingsVModel.autoEnrollmentMappingVModels.size(),
+            autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels.size(),
             'Should return 2 autoEnrollmentMappingVModels.'
         );
 
-        for (Integer i = 0; i < programSettingsVModel.autoEnrollmentMappingVModels.size(); i++) {
+        for (Integer i = 0; i < autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels.size(); i++) {
             System.assertEquals(
                 'Record_Type_' + (i + 1),
-                programSettingsVModel.autoEnrollmentMappingVModels[i].accountRecordTypeName,
+                autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels[i].accountRecordTypeName,
                 'Account record type name should match developer name of corresponding record type model.'
             );
 
             System.assertEquals(
                 'Record Type ' + (i + 1),
-                programSettingsVModel.autoEnrollmentMappingVModels[i].accountRecordTypeLabel,
+                autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels[i].accountRecordTypeLabel,
                 'Account record type label should match label of corresponding record type model.'
             );
 
             System.assertEquals(
                 'autoProgramEnrollmentStatus' + (i + 1),
-                programSettingsVModel.autoEnrollmentMappingVModels[i].autoProgramEnrollmentStatus,
+                autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels[i].autoProgramEnrollmentStatus,
                 'Auto-Enrollment status should match.'
             );
 
             System.assertEquals(
                 'autoProgramEnrollmentRole' + (i + 1),
-                programSettingsVModel.autoEnrollmentMappingVModels[i].autoProgramEnrollmentRole,
+                autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels[i].autoProgramEnrollmentRole,
                 'Auto-Enrollment role should match.'
             );
         }
     }
 
     /****************************************************************************************
-     * @description Test method to verify getProgramSettingsVModel()
+     * @description Test method to verify getAutoEnrollmentMappingsVModel()
      * throws an exception when exception occurs.
      ****************************************************************************************/
     @isTest
-    private static void getProgramSettingsVModelException() {
-        ProgramSettingsVMapper.instance = new STUB_ExceptionProgramSettingsVMapper();
+    private static void getAutoEnrollmentMappingsVModelException() {
+        AutoEnrollmentMappingsVMapper.instance = new STUB_ExceptionAutoEnrollmentMappingsVMapper();
 
         try {
             Test.startTest();
-            ProgramSettingsVModel programSettingsVModel = ProgramSettingsController.getProgramSettingsVModel();
+            AutoEnrollmentMappingsVModel autoEnrollmentMappingsVModel = ProgramSettingsController.getAutoEnrollmentMappingsVModel();
             Test.stopTest();
             System.assert(false, 'should always throw an exception');
         } catch (AuraHandledException e) {
@@ -136,7 +136,7 @@ private with sharing class ProgramSettingsController_TEST {
      ****************************************************************************************/
     @isTest
     private static void getAutoEnrollmentMappingStatusComboboxVModelValid() {
-        ProgramSettingsVMapper.instance = new STUB_ProgramSettingsVMapperValid();
+        AutoEnrollmentMappingsVMapper.instance = new STUB_AutoEnrollmentMappingsVMapperValid();
 
         Test.startTest();
         ComboBoxVModel autoEnrollmentMappingStatusComboboxVModel = ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel(
@@ -175,7 +175,7 @@ private with sharing class ProgramSettingsController_TEST {
      ****************************************************************************************/
     @isTest
     private static void getAutoEnrollmentMappingStatusComboboxVModelException() {
-        ProgramSettingsVMapper.instance = new STUB_ExceptionProgramSettingsVMapper();
+        AutoEnrollmentMappingsVMapper.instance = new STUB_ExceptionAutoEnrollmentMappingsVMapper();
         try {
             Test.startTest();
             ComboBoxVModel autoEnrollmentMappingStatusComboboxVModel = ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel(
@@ -194,7 +194,7 @@ private with sharing class ProgramSettingsController_TEST {
      ****************************************************************************************/
     @isTest
     private static void getAutoEnrollmentMappingRoleComboboxVModelValid() {
-        ProgramSettingsVMapper.instance = new STUB_ProgramSettingsVMapperValid();
+        AutoEnrollmentMappingsVMapper.instance = new STUB_AutoEnrollmentMappingsVMapperValid();
 
         Test.startTest();
         ComboBoxVModel autoEnrollmentMappingRoleComboboxVModel = ProgramSettingsController.getAutoEnrollmentMappingRoleComboboxVModel(
@@ -233,7 +233,7 @@ private with sharing class ProgramSettingsController_TEST {
      ****************************************************************************************/
     @isTest
     private static void getAutoEnrollmentMappingRoleComboboxVModelException() {
-        ProgramSettingsVMapper.instance = new STUB_ExceptionProgramSettingsVMapper();
+        AutoEnrollmentMappingsVMapper.instance = new STUB_ExceptionAutoEnrollmentMappingsVMapper();
         try {
             Test.startTest();
             ComboBoxVModel autoEnrollmentMappingRoleComboboxVModel = ProgramSettingsController.getAutoEnrollmentMappingRoleComboboxVModel(
@@ -251,10 +251,10 @@ private with sharing class ProgramSettingsController_TEST {
      ***********************************************************************************************************************************/
 
     /**************************************************************************************************************************************
-     * @description Stub class to simulate valid responses from ProgramSettingsVMapper
+     * @description Stub class to simulate valid responses from AutoEnrollmentMappingsVMapper
      **************************************************************************************************************************************/
-    private class STUB_ProgramSettingsVMapperValid extends ProgramSettingsVMapper {
-        public override ProgramSettingsVModel getProgramSettingsVModel() {
+    private class STUB_AutoEnrollmentMappingsVMapperValid extends AutoEnrollmentMappingsVMapper {
+        public override AutoEnrollmentMappingsVModel getAutoEnrollmentMappingsVModel() {
             List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModelsList = new List<AutoEnrollmentMappingVModel>();
             autoEnrollmentMappingVModelsList.add(
                 new AutoEnrollmentMappingVModel(
@@ -274,7 +274,7 @@ private with sharing class ProgramSettingsController_TEST {
                     'autoProgramEnrollmentRole2'
                 )
             );
-            return new ProgramSettingsVModel(autoEnrollmentMappingVModelsList);
+            return new AutoEnrollmentMappingsVModel(autoEnrollmentMappingVModelsList);
         }
 
         public override ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(
@@ -293,10 +293,10 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /**************************************************************************************************************************************
-     * @description Stub class to simulate exception responses from ProgramSettingsVMapper
+     * @description Stub class to simulate exception responses from AutoEnrollmentMappingsVMapper
      **************************************************************************************************************************************/
-    private class STUB_ExceptionProgramSettingsVMapper extends ProgramSettingsVMapper {
-        public override ProgramSettingsVModel getProgramSettingsVModel() {
+    private class STUB_ExceptionAutoEnrollmentMappingsVMapper extends AutoEnrollmentMappingsVMapper {
+        public override AutoEnrollmentMappingsVModel getAutoEnrollmentMappingsVModel() {
             throw new TestException('Exception encountered!');
         }
 

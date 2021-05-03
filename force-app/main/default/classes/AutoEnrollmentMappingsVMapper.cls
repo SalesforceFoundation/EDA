@@ -31,36 +31,36 @@
  * @group-content ../../ApexDocContent/EdaSettings.htm
  * @description View mapper to generate view models associated with Primary Affiliations Settings funtionality.
  */
-public virtual with sharing class ProgramSettingsVMapper {
+public virtual with sharing class AutoEnrollmentMappingsVMapper {
     /**********************************************************************************
      * @description Instance for Singleton Pattern
      **********************************************************************************/
     @TestVisible
-    private static ProgramSettingsVMapper instance;
+    private static AutoEnrollmentMappingsVMapper instance;
 
     /**********************************************************************************
      * @description Empty constructor is not public for Singleton Pattern
      **********************************************************************************/
-    protected ProgramSettingsVMapper() {
+    protected AutoEnrollmentMappingsVMapper() {
     }
 
     /**********************************************************************************
      * @description Static method to get the current instance for Singleton pattern
      * @return The instance of AffiliationsSettingsVMapper.
      **********************************************************************************/
-    public static ProgramSettingsVMapper getInstance() {
+    public static AutoEnrollmentMappingsVMapper getInstance() {
         if (instance == null) {
-            instance = new ProgramSettingsVMapper();
+            instance = new AutoEnrollmentMappingsVMapper();
         }
 
         return instance;
     }
 
     /**********************************************************************************************************
-     * @description Retrieve an instance of ProgramSettingsVModel
-     * @return An instance of ProgramSettingsVModel
+     * @description Retrieve an instance of AutoEnrollmentMappingsVModel
+     * @return An instance of AutoEnrollmentMappingsVModel
      *********************************************************************************************************/
-    public virtual ProgramSettingsVModel getProgramSettingsVModel() {
+    public virtual AutoEnrollmentMappingsVModel getAutoEnrollmentMappingsVModel() {
         List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService()
             .getAffiliationMappingsModels();
 
@@ -86,7 +86,7 @@ public virtual with sharing class ProgramSettingsVMapper {
             }
         }
 
-        return new ProgramSettingsVModel(autoEnrollmentMappingVModelsList);
+        return new AutoEnrollmentMappingsVModel(autoEnrollmentMappingVModelsList);
     }
 
     /**********************************************************************************************************
@@ -117,7 +117,6 @@ public virtual with sharing class ProgramSettingsVMapper {
             accountRecordTypeName = recordTypeModel.developerName;
             accountRecordTypeLabel = recordTypeModel.name;
         }
-        system.debug(affiliationMappingsModel.Name);
         return new AutoEnrollmentMappingVModel(
             affiliationMappingsModel.Name,
             accountRecordTypeName,

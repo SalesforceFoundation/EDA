@@ -29,58 +29,56 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/Tests.htm
- * @description Test class for ProgramSettingsVMapper class.
+ * @description Test class for AutoEnrollmentMappingsVMapper class.
  */
 @isTest
-private with sharing class ProgramSettingsVMapper_TEST {
-    private static Integer loopCounter = 5;
-
+private with sharing class AutoEnrollmentMappingsVMapper_TEST {
     /**************************************************************************************************
      * @description Test method to verify that the getInstance method returns a new instance of the
-     * ProgramSettingsVMapper class when one does not already exist.
+     * AutoEnrollmentMappingsVMapper class when one does not already exist.
      **************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
         Test.startTest();
-        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
         Test.stopTest();
 
         System.assertEquals(
-            ProgramSettingsVMapper.instance,
-            programSettingsVMapperInstance,
+            AutoEnrollmentMappingsVMapper.instance,
+            autoEnrollmentMappingsVMapperInstance,
             'Instance of mapper class returned should match static instance variable.'
         );
         System.assertEquals(
             true,
-            programSettingsVMapperInstance != null,
+            autoEnrollmentMappingsVMapperInstance != null,
             'Instance of mapper class should not be null.'
         );
     }
 
     /**************************************************************************************************
      * @description Test method to verify that the getInstance method returns the existing instance of the
-     * ProgramSettingsVMapper class when one already exists.
+     * AutoEnrollmentMappingsVMapper class when one already exists.
      **************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
         Test.startTest();
-        ProgramSettingsVMapper programSettingsVMapperInstance1 = ProgramSettingsVMapper.getInstance();
-        ProgramSettingsVMapper programSettingsVMapperInstance2 = ProgramSettingsVMapper.getInstance();
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance1 = AutoEnrollmentMappingsVMapper.getInstance();
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance2 = AutoEnrollmentMappingsVMapper.getInstance();
         Test.stopTest();
 
         System.assertEquals(
-            ProgramSettingsVMapper.instance,
-            programSettingsVMapperInstance1,
+            AutoEnrollmentMappingsVMapper.instance,
+            autoEnrollmentMappingsVMapperInstance1,
             'Instance of mapper class returned should match static instance variable.'
         );
         System.assertEquals(
-            programSettingsVMapperInstance1,
-            programSettingsVMapperInstance2,
+            autoEnrollmentMappingsVMapperInstance1,
+            autoEnrollmentMappingsVMapperInstance2,
             'Subsequent retrievals of mapper class instance should return existing instance.'
         );
         System.assertEquals(
             true,
-            programSettingsVMapperInstance1 != null,
+            autoEnrollmentMappingsVMapperInstance1 != null,
             'Instance of mapper class should not be null.'
         );
     }
@@ -91,10 +89,10 @@ private with sharing class ProgramSettingsVMapper_TEST {
      ****************************************************************************************/
     @isTest
     private static void locateRecordTypeServiceValid() {
-        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
 
         Test.startTest();
-        RecordTypeService recordTypeServiceInstance = programSettingsVMapperInstance.locateRecordTypeService();
+        RecordTypeService recordTypeServiceInstance = autoEnrollmentMappingsVMapperInstance.locateRecordTypeService();
         Test.stopTest();
 
         System.assertEquals(
@@ -110,35 +108,16 @@ private with sharing class ProgramSettingsVMapper_TEST {
      ****************************************************************************************/
     @isTest
     private static void locateAffiliationMappingsServiceValid() {
-        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
 
         Test.startTest();
-        AffiliationMappingsService affiliationMappingsServiceInstance = programSettingsVMapperInstance.locateAffiliationMappingsService();
+        AffiliationMappingsService affiliationMappingsServiceInstance = autoEnrollmentMappingsVMapperInstance.locateAffiliationMappingsService();
         Test.stopTest();
 
         System.assertEquals(
             AffiliationMappingsService.getInstance(),
             affiliationMappingsServiceInstance,
             'Should return instance of AffiliationMappingsService class.'
-        );
-    }
-
-    /****************************************************************************************
-     * @description Test method to verify locatePicklistEntryService() returns an instance of
-     * the PicklistEntryService class.
-     ****************************************************************************************/
-    @isTest
-    private static void locatePicklistEntryServiceValid() {
-        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
-
-        Test.startTest();
-        PicklistEntryService picklistEntryServiceInstance = programSettingsVMapperInstance.locatePicklistEntryService();
-        Test.stopTest();
-
-        System.assertEquals(
-            PicklistEntryService.getInstance(),
-            picklistEntryServiceInstance,
-            'Should return instance of PicklistEntryService class.'
         );
     }
 
@@ -177,15 +156,21 @@ private with sharing class ProgramSettingsVMapper_TEST {
             )
         };
 
-        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
 
         Test.startTest();
-        AutoEnrollmentMappingVModel autoEnrollmentMappingVModel = programSettingsVMapperInstance.getAutoEnrollmentMappingVModel(
+        AutoEnrollmentMappingVModel autoEnrollmentMappingVModel = autoEnrollmentMappingsVMapperInstance.getAutoEnrollmentMappingVModel(
             affiliationMappingsModel,
             accountRecordTypeModelsByName,
             accountRecordTypeModelsByLabel
         );
         Test.stopTest();
+
+        System.assertEquals(
+            'Affliation Name',
+            autoEnrollmentMappingVModel.mappingName,
+            'Mapping name should be Affliation Name.'
+        );
 
         System.assertEquals(
             'Account_Record_Type',
@@ -209,6 +194,82 @@ private with sharing class ProgramSettingsVMapper_TEST {
             'autoProgramEnrollmentRole',
             autoEnrollmentMappingVModel.autoProgramEnrollmentRole,
             'Auto enrollment role should match the auto enrollment role of the affiliation mapping.'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingVModel()
+     * returns an instance of AutoEnrollmentMappingVModel with valid values
+     * when auto enrollment status and role are empty
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingVModelEmpty() {
+        RecordTypeService.instance = new STUB_RecordTypeServiceValid();
+
+        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
+            'Affliation Name',
+            'Account Record Type',
+            'Primary Affiliation Field',
+            true,
+            '',
+            ''
+        );
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = new Map<String, RecordTypeModel>{
+            'Account_Record_Type' => new RecordTypeModel(
+                '000000000000000009',
+                'Account Record Type',
+                'Account_Record_Type',
+                true
+            )
+        };
+
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = new Map<String, RecordTypeModel>{
+            'Account Record Type' => new RecordTypeModel(
+                '000000000000000009',
+                'Account Record Type',
+                'Account_Record_Type',
+                true
+            )
+        };
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        AutoEnrollmentMappingVModel autoEnrollmentMappingVModel = autoEnrollmentMappingsVMapperInstance.getAutoEnrollmentMappingVModel(
+            affiliationMappingsModel,
+            accountRecordTypeModelsByName,
+            accountRecordTypeModelsByLabel
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Affliation Name',
+            autoEnrollmentMappingVModel.mappingName,
+            'Mapping name should be Affliation Name.'
+        );
+
+        System.assertEquals(
+            'Account_Record_Type',
+            autoEnrollmentMappingVModel.accountRecordTypeName,
+            'Account Record Type name should match developer name of Record Type model corresponding to record type specified for the affiliation mapping.'
+        );
+
+        System.assertEquals(
+            'Account Record Type',
+            autoEnrollmentMappingVModel.accountRecordTypeLabel,
+            'Account Record Type label should match label of Record Type model corresponding to record type specified for the affiliation mapping.'
+        );
+
+        System.assertEquals(
+            '',
+            autoEnrollmentMappingVModel.autoProgramEnrollmentStatus,
+            'Auto enrollment status should be empty.'
+        );
+
+        System.assertEquals(
+            '',
+            autoEnrollmentMappingVModel.autoProgramEnrollmentRole,
+            'Auto enrollment role should be empty.'
         );
     }
 
@@ -249,15 +310,21 @@ private with sharing class ProgramSettingsVMapper_TEST {
             )
         };
 
-        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
 
         Test.startTest();
-        AutoEnrollmentMappingVModel autoEnrollmentMappingVModel = programSettingsVMapperInstance.getAutoEnrollmentMappingVModel(
+        AutoEnrollmentMappingVModel autoEnrollmentMappingVModel = autoEnrollmentMappingsVMapperInstance.getAutoEnrollmentMappingVModel(
             affiliationMappingsModel,
             accountRecordTypeModelsByName,
             accountRecordTypeModelsByLabel
         );
         Test.stopTest();
+
+        System.assertEquals(
+            'Affliation Name',
+            autoEnrollmentMappingVModel.mappingName,
+            'Mapping name should be Affliation Name.'
+        );
 
         System.assertEquals(
             'Invalid Account Record Type',
@@ -285,182 +352,123 @@ private with sharing class ProgramSettingsVMapper_TEST {
     }
 
     /****************************************************************************************
-     * @description Test method to verify getProgramSettingsVModel()
-     * returns a ProgramSettingsVModel with proper values
+     * @description Test method to verify getAutoEnrollmentMappingsVModel()
+     * returns a AutoEnrollmentMappingsVModel with proper values
      * when active auto enrollment exists.
      ****************************************************************************************/
     @isTest
-    private static void getProgramSettingsVModelActiveAutoEnrollmentExists() {
+    private static void getAutoEnrollmentMappingsVModelActiveAutoEnrollmentExists() {
         AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
         RecordTypeService.instance = new STUB_RecordTypeService();
 
-        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
 
         Test.startTest();
-        ProgramSettingsVModel programSettingsVModel = programSettingsVMapperInstance.getProgramSettingsVModel();
+        AutoEnrollmentMappingsVModel autoEnrollmentMappingsVModel = autoEnrollmentMappingsVMapperInstance.getAutoEnrollmentMappingsVModel();
         Test.stopTest();
 
         System.assertEquals(
             2,
-            programSettingsVModel.autoEnrollmentMappingVModels.size(),
+            autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels.size(),
             'Should return 2 autoEnrollmentMappingVModels.'
         );
 
-        for (Integer i = 0; i < programSettingsVModel.autoEnrollmentMappingVModels.size(); i++) {
+        for (Integer i = 0; i < autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels.size(); i++) {
             System.assertEquals(
                 'Record_Type_' + (i + 1),
-                programSettingsVModel.autoEnrollmentMappingVModels[i].accountRecordTypeName,
+                autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels[i].accountRecordTypeName,
                 'Account record type name should match developer name of corresponding record type model.'
             );
 
             System.assertEquals(
                 'Record Type ' + (i + 1),
-                programSettingsVModel.autoEnrollmentMappingVModels[i].accountRecordTypeLabel,
+                autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels[i].accountRecordTypeLabel,
                 'Account record type label should match label of corresponding record type model.'
             );
 
             System.assertEquals(
                 'autoProgramEnrollmentStatus' + (i + 1),
-                programSettingsVModel.autoEnrollmentMappingVModels[i].autoProgramEnrollmentStatus,
+                autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels[i].autoProgramEnrollmentStatus,
                 'Auto-Enrollment status should match.'
             );
 
             System.assertEquals(
                 'autoProgramEnrollmentRole' + (i + 1),
-                programSettingsVModel.autoEnrollmentMappingVModels[i].autoProgramEnrollmentRole,
+                autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels[i].autoProgramEnrollmentRole,
                 'Auto-Enrollment role should match.'
             );
         }
     }
 
     /****************************************************************************************
-     * @description Test method to verify getProgramSettingsVModel()
-     * returns a ProgramSettingsVModel with proper values
+     * @description Test method to verify getAutoEnrollmentMappingsVModel()
+     * returns a AutoEnrollmentMappingsVModel with proper values
+     * when active auto enrollment exists but empty.
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingsVModelActiveAutoEnrollmentEmpty() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsServiceEmptyAutoEnrollment();
+        RecordTypeService.instance = new STUB_RecordTypeService();
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        AutoEnrollmentMappingsVModel autoEnrollmentMappingsVModel = autoEnrollmentMappingsVMapperInstance.getAutoEnrollmentMappingsVModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            2,
+            autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels.size(),
+            'Should return 2 autoEnrollmentMappingVModels.'
+        );
+
+        for (Integer i = 0; i < autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels.size(); i++) {
+            System.assertEquals(
+                'Record_Type_' + (i + 1),
+                autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels[i].accountRecordTypeName,
+                'Account record type name should match developer name of corresponding record type model.'
+            );
+
+            System.assertEquals(
+                'Record Type ' + (i + 1),
+                autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels[i].accountRecordTypeLabel,
+                'Account record type label should match label of corresponding record type model.'
+            );
+
+            System.assertEquals(
+                '',
+                autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels[i].autoProgramEnrollmentStatus,
+                'Auto-Enrollment status should be empty.'
+            );
+
+            System.assertEquals(
+                '',
+                autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels[i].autoProgramEnrollmentRole,
+                'Auto-Enrollment role should be empty.'
+            );
+        }
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingsVModel()
+     * returns a AutoEnrollmentMappingsVModel with proper values
      * when no active auto enrollment exists.
      ****************************************************************************************/
     @isTest
-    private static void getProgramSettingsVModelActiveAutoEnrollmentNotExists() {
+    private static void getAutoEnrollmentMappingsVModelActiveAutoEnrollmentNotExists() {
         AffiliationMappingsService.instance = new STUB_AffiliationMappingsServiceInactiveAutoEnrollment();
         RecordTypeService.instance = new STUB_RecordTypeService();
 
-        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
 
         Test.startTest();
-        ProgramSettingsVModel programSettingsVModel = programSettingsVMapperInstance.getProgramSettingsVModel();
+        AutoEnrollmentMappingsVModel autoEnrollmentMappingsVModel = autoEnrollmentMappingsVMapperInstance.getAutoEnrollmentMappingsVModel();
         Test.stopTest();
 
         System.assertEquals(
             0,
-            programSettingsVModel.autoEnrollmentMappingVModels.size(),
+            autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels.size(),
             'Should return 0 autoEnrollmentMappingVModels.'
-        );
-    }
-
-    /****************************************************************************************
-     * @description Test method to verify getAutoEnrollmentMappingStatusComboboxVModel()
-     * returns an instance of ComboBoxVModel with valid data.
-     ****************************************************************************************/
-    @isTest
-    private static void getAutoEnrollmentMappingStatusComboboxVModelValid() {
-        PicklistEntryService.instance = new STUB_PicklistEntryServiceStatus();
-        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
-
-        Test.startTest();
-        ComboBoxVModel autoEnrollmentMappingStatusComboboxVModel = programSettingsVMapperInstance.getAutoEnrollmentMappingStatusComboboxVModel(
-            'Test_Status'
-        );
-        Test.stopTest();
-
-        System.assertEquals(
-            'Test_Status',
-            autoEnrollmentMappingStatusComboboxVModel.value,
-            'The value of autoEnrollmentMappingStatusComboboxVModel should be Test_Status'
-        );
-
-        System.assertEquals(
-            1,
-            autoEnrollmentMappingStatusComboboxVModel.options.size(),
-            'The size of autoEnrollmentMappingStatusComboboxVModel options should be 1'
-        );
-
-        System.assertEquals(
-            'Test_Status',
-            autoEnrollmentMappingStatusComboboxVModel.options[0].value,
-            'The value of autoEnrollmentMappingStatusComboboxVModel option 1 should be Test_Status'
-        );
-
-        System.assertEquals(
-            'Test Status',
-            autoEnrollmentMappingStatusComboboxVModel.options[0].label,
-            'The label of autoEnrollmentMappingStatusComboboxVModel option 1 should be Test Status'
-        );
-    }
-
-    /****************************************************************************************
-     * @description Test method to verify getAutoEnrollmentMappingRoleComboboxVModel()
-     * returns an instance of ComboBoxVModel with valid data.
-     ****************************************************************************************/
-    @isTest
-    private static void getAutoEnrollmentMappingRoleComboboxVModelValid() {
-        PicklistEntryService.instance = new STUB_PicklistEntryServiceRole();
-        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
-
-        Test.startTest();
-        ComboBoxVModel autoEnrollmentMappingRoleComboboxVModel = programSettingsVMapperInstance.getAutoEnrollmentMappingRoleComboboxVModel(
-            'Test_Role'
-        );
-        Test.stopTest();
-
-        System.assertEquals(
-            'Test_Role',
-            autoEnrollmentMappingRoleComboboxVModel.value,
-            'The value of autoEnrollmentMappingRoleComboboxVModel should be Test_Role'
-        );
-
-        System.assertEquals(
-            1,
-            autoEnrollmentMappingRoleComboboxVModel.options.size(),
-            'The size of autoEnrollmentMappingRoleComboboxVModel options should be 1'
-        );
-
-        System.assertEquals(
-            'Test_Role',
-            autoEnrollmentMappingRoleComboboxVModel.options[0].value,
-            'The value of autoEnrollmentMappingRoleComboboxVModel option 1 should be Test_Role'
-        );
-
-        System.assertEquals(
-            'Test Role',
-            autoEnrollmentMappingRoleComboboxVModel.options[0].label,
-            'The label of autoEnrollmentMappingRoleComboboxVModel option 1 should be Test Role'
-        );
-    }
-
-    /****************************************************************************************
-     * @description Test method to verify getAutoEnrollmentMappingRoleComboboxVModel()
-     * returns an instance of ComboBoxVModel with valid combobox value but empty options.
-     ****************************************************************************************/
-    @isTest
-    private static void getAutoEnrollmentMappingRoleComboboxVModelPicklistEntryMapEmpty() {
-        PicklistEntryService.instance = new STUB_PicklistEntryServiceEmptyMap();
-        ProgramSettingsVMapper programSettingsVMapperInstance = ProgramSettingsVMapper.getInstance();
-
-        Test.startTest();
-        ComboBoxVModel autoEnrollmentMappingRoleComboboxVModel = programSettingsVMapperInstance.getAutoEnrollmentMappingRoleComboboxVModel(
-            'Test_Role'
-        );
-        Test.stopTest();
-
-        System.assertEquals(
-            'Test_Role',
-            autoEnrollmentMappingRoleComboboxVModel.value,
-            'The value of autoEnrollmentMappingRoleComboboxVModel should be Test_Role'
-        );
-
-        System.assertEquals(
-            0,
-            autoEnrollmentMappingRoleComboboxVModel.options.size(),
-            'The size of autoEnrollmentMappingRoleComboboxVModel options should be 0'
         );
     }
 
@@ -495,7 +503,7 @@ private with sharing class ProgramSettingsVMapper_TEST {
     }
 
     /**************************************************************************************************************************************
-     * @description Stub class to simulate valid responses from AffiliationMappingsService
+     * @description Stub class to simulate valid responses from AffiliationMappingsService with inactive auto enrollment
      **************************************************************************************************************************************/
     private class STUB_AffiliationMappingsServiceInactiveAutoEnrollment extends AffiliationMappingsService {
         public override List<AffiliationMappingsModel> getAffiliationMappingsModels() {
@@ -515,6 +523,32 @@ private with sharing class ProgramSettingsVMapper_TEST {
                     false,
                     'autoProgramEnrollmentStatus2',
                     'autoProgramEnrollmentRole2'
+                )
+            };
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses from AffiliationMappingsService with empty auto enrollment
+     **************************************************************************************************************************************/
+    private class STUB_AffiliationMappingsServiceEmptyAutoEnrollment extends AffiliationMappingsService {
+        public override List<AffiliationMappingsModel> getAffiliationMappingsModels() {
+            return new List<AffiliationMappingsModel>{
+                new AffiliationMappingsModel(
+                    'Affiliation Name 1',
+                    'Record Type 1',
+                    'Contact Account Lookup Label 1',
+                    true,
+                    '',
+                    ''
+                ),
+                new AffiliationMappingsModel(
+                    'Affiliation Name 2',
+                    'Record Type 2',
+                    'Contact Account Lookup Label 2',
+                    true,
+                    '',
+                    ''
                 )
             };
         }
@@ -571,46 +605,6 @@ private with sharing class ProgramSettingsVMapper_TEST {
             Map<String, RecordTypeModel> recordTypeModelByLabel
         ) {
             return null;
-        }
-    }
-
-    /**************************************************************************************************************************************
-     * @description Stub class to simulate valid responses for Status from PickListEntryService
-     **************************************************************************************************************************************/
-    private class STUB_PicklistEntryServiceStatus extends PickListEntryService {
-        public override Map<String, PicklistEntryModel> getModelsByNameForSObjectField(
-            SObjectType sObjectTypeName,
-            SObjectField SObjectFieldName
-        ) {
-            return new Map<String, PicklistEntryModel>{
-                'Test_Status' => new PicklistEntryModel('Test_Status', 'Test Status', true)
-            };
-        }
-    }
-
-    /**************************************************************************************************************************************
-     * @description Stub class to simulate valid responses for Role from PickListEntryService
-     **************************************************************************************************************************************/
-    private class STUB_PicklistEntryServiceRole extends PickListEntryService {
-        public override Map<String, PicklistEntryModel> getModelsByNameForSObjectField(
-            SObjectType sObjectTypeName,
-            SObjectField SObjectFieldName
-        ) {
-            return new Map<String, PicklistEntryModel>{
-                'Test_Role' => new PicklistEntryModel('Test_Role', 'Test Role', true)
-            };
-        }
-    }
-
-    /**************************************************************************************************************************************
-     * @description Stub class to simulate empty map response from PickListEntryService
-     **************************************************************************************************************************************/
-    private class STUB_PicklistEntryServiceEmptyMap extends PickListEntryService {
-        public override Map<String, PicklistEntryModel> getModelsByNameForSObjectField(
-            SObjectType sObjectTypeName,
-            SObjectField SObjectFieldName
-        ) {
-            return new Map<String, PicklistEntryModel>();
         }
     }
 }

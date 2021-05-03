@@ -33,14 +33,14 @@
  */
 public with sharing class ProgramSettingsController {
     /************************************************************************************
-     * @description Retrieve an instance of ProgramSettingsVModel representing the current values
+     * @description Retrieve an instance of AutoEnrollmentMappingsVModel representing the current values
      * specified for Settings fields in Hierarchy Settings.
-     * @return An instance of ProgramSettingsVModel
+     * @return An instance of AutoEnrollmentMappingsVModel
      ************************************************************************************/
     @AuraEnabled(cacheable=true)
-    public static ProgramSettingsVModel getProgramSettingsVModel() {
+    public static AutoEnrollmentMappingsVModel getAutoEnrollmentMappingsVModel() {
         try {
-            return ProgramSettingsController.locateProgramSettingsVMapper().getProgramSettingsVModel();
+            return ProgramSettingsController.locateAutoEnrollmentMappingsVMapper().getAutoEnrollmentMappingsVModel();
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -53,7 +53,7 @@ public with sharing class ProgramSettingsController {
     @AuraEnabled(cacheable=true)
     public static ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(String autoProgramEnrollmentStatus) {
         try {
-            return ProgramSettingsController.locateProgramSettingsVMapper()
+            return ProgramSettingsController.locateAutoEnrollmentMappingsVMapper()
                 .getAutoEnrollmentMappingStatusComboboxVModel(autoProgramEnrollmentStatus);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
@@ -67,7 +67,7 @@ public with sharing class ProgramSettingsController {
     @AuraEnabled(cacheable=true)
     public static ComboBoxVModel getAutoEnrollmentMappingRoleComboboxVModel(String autoProgramEnrollmentRole) {
         try {
-            return ProgramSettingsController.locateProgramSettingsVMapper()
+            return ProgramSettingsController.locateAutoEnrollmentMappingsVMapper()
                 .getAutoEnrollmentMappingRoleComboboxVModel(autoProgramEnrollmentRole);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
@@ -107,8 +107,8 @@ public with sharing class ProgramSettingsController {
      * @description Locates and returns an instance of AffiliationsSettingsVMapper.
      **********************************************************************************/
     @TestVisible
-    private static ProgramSettingsVMapper locateProgramSettingsVMapper() {
-        return ProgramSettingsVMapper.getInstance();
+    private static AutoEnrollmentMappingsVMapper locateAutoEnrollmentMappingsVMapper() {
+        return AutoEnrollmentMappingsVMapper.getInstance();
     }
 
     /*****************************************************************************
