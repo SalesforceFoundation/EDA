@@ -27,6 +27,9 @@ import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressCh
 import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 import stgAffiliationsSettingsNav from "@salesforce/label/c.stgAffiliationsSettingsNav";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
+//Course Enrollment Labels
+import stgCoursesAndEnrollmentsNav from "@salesforce/label/c.stgCoursesAndEnrollmentsNav";
+import stgProgramsSettingsNav from "@salesforce/label/c.stgProgramsSettingsNav";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
@@ -73,7 +76,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             requirePreferredEmail: stgDisablePreferredEmailEnforcement,
         },
         coursesAndEnrollmentsSettings: {
-            coursesAndEnrollmentsSettings: "Courses and Enrollments",
+            coursesAndEnrollmentsSettings: stgCoursesAndEnrollmentsNav,
         },
         errorSettings: {
             enableDebug: stgEnableDebugTitle,
@@ -83,7 +86,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             storeErrors: stgStoreErrorsTitle,
         },
         programSettings: {
-            programSettings: "Programs",
+            programSettings: stgProgramsSettingsNav,
             programAutoEnrollmentMappings: "Program Auto-Enrollment Mappings",
             programEnrollmentDeletions: "Program Enrollment Deletions",
         },

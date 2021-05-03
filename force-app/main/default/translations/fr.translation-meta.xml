@@ -489,6 +489,14 @@
         <name>stgAutoEnrollment</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Auto-Enrollment Mappings setting --></label>
+        <name>stgAutoEnrollmentProgramDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Auto-Enrollment Mappings setting --></label>
+        <name>stgAutoEnrollmentProgramTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Rôle d&apos;inscription automatique</label>
         <name>stgAutoEnrollmentRole</name>
     </customLabels>
@@ -569,6 +577,14 @@
         <name>stgColActive</name>
     </customLabels>
     <customLabels>
+        <label><!-- Header label for the list of Affiliation Roles --></label>
+        <name>stgColAutoEnrollmentRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Header label for the list of Affiliation Statuses --></label>
+        <name>stgColAutoEnrollmentStatus</name>
+    </customLabels>
+    <customLabels>
         <label>Types de campagne</label>
         <name>stgColCampTypes</name>
     </customLabels>
@@ -635,6 +651,10 @@
     <customLabels>
         <label>Tâche de copie de la description du cours terminée avec le statut :</label>
         <name>stgCourseDescriptionCopyEmailSubject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation section title for Courses and Enrollments --></label>
+        <name>stgCoursesAndEnrollmentsNav</name>
     </customLabels>
     <customLabels>
         <label><!-- Label for the Contact Language Fluency setting --></label>
@@ -1359,6 +1379,14 @@
     <customLabels>
         <label><!-- Description for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneSelectionDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Subsection navigation title for Programs --></label>
+        <name>stgProgramsSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Programs Settings --></label>
+        <name>stgProgramsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Paramètre de la liste</label>
