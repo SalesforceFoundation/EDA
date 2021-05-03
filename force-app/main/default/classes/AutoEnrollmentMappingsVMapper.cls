@@ -131,6 +131,62 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
     }
 
     /**********************************************************************************************************
+     * @description Retrieve a ComboBoxVModel for all active account record types
+     * @return  A ComboBoxVModel
+     *********************************************************************************************************/
+    public virtual ComboBoxVModel getAccountRecordTypeComboboxVModel(String accountRecordType) {
+        String comboboxValue = accountRecordType;
+        Map<Id, RecordTypeModel> accRecordTypeModelsById = this.locateRecordTypeService()
+            .getModelByIdMapForSObjectType(Account.SObjectType);
+
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
+            .getRecordTypeModelByName(accRecordTypeModelsById);
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
+            .getRecordTypeModelByLabel(accRecordTypeModelsById);
+
+        List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
+
+        RecordTypeModel recordTypeModel = this.locateRecordTypeService()
+            .getRecordTypeModelFromNameAndLabelMaps(
+                accountRecordType,
+                accountRecordTypeModelsByName,
+                accountRecordTypeModelsByLabel
+            );
+
+        if (recordTypeModel == null) {
+            comboboxValues.add(new ComboboxValueVModel(accountRecordType, accountRecordType));
+        } else {
+            comboboxValue = recordTypeModel.developerName;
+        }
+
+        comboboxValues.addAll(
+            this.getComboboxVModelOptionsForActiveAccountRecordTypes(accRecordTypeModelsById.values())
+        );
+
+        return new ComboboxVModel(comboboxValue, comboboxValues);
+    }
+
+    /**********************************************************************************************************************
+     * @description Helper method to generate a list of comboboxValueVModels for all active Account record types.
+     * @param  activeAccountRecordTypeModelsList A list of RecordType models corresponding to active Account record types.
+     * @return A List<ComboboxValueVModel> containing comboboxValueVModels for all active Account record types.
+     **********************************************************************************************************************/
+    @TestVisible
+    private List<ComboboxValueVModel> getComboboxVModelOptionsForActiveAccountRecordTypes(
+        List<RecordTypeModel> activeAccountRecordTypeModelsList
+    ) {
+        List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = new List<ComboboxValueVModel>();
+
+        for (RecordTypeModel activeAccountRecordTypeModel : activeAccountRecordTypeModelsList) {
+            activeRecordTypeComboboxValueVModelsList.add(
+                new ComboboxValueVModel(activeAccountRecordTypeModel.name, activeAccountRecordTypeModel.developerName)
+            );
+        }
+
+        return activeRecordTypeComboboxValueVModelsList;
+    }
+
+    /**********************************************************************************************************
      * @description Retrieve a ComboBoxVModel for auto enrollment mapping status
      * @return  A ComboBoxVModel
      *********************************************************************************************************/

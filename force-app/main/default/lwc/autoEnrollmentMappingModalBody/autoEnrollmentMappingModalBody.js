@@ -1,5 +1,6 @@
 import { LightningElement, api, track, wire } from "lwc";
 //labels
+import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType";
 import stgColAutoEnrollmentStatus from "@salesforce/label/c.stgColAutoEnrollmentStatus";
 import stgColAutoEnrollmentRole from "@salesforce/label/c.stgColAutoEnrollmentRole";
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
@@ -7,6 +8,7 @@ import stgAutoEnrollmentEditModalBody from "@salesforce/label/c.stgAutoEnrollmen
 import stgApiNameLabel from "@salesforce/label/c.stgApiNameLabel";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 //apex
+import getAccountRecordTypeComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAccountRecordTypeComboboxVModel";
 import getAutoEnrollmentMappingStatusComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel";
 import getAutoEnrollmentMappingRoleComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingRoleComboboxVModel";
 
@@ -22,7 +24,11 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     @track autoEnrollmentMappingStatusComboboxVModel;
     @track autoEnrollmentMappingStatusComboboxVModelWireResult;
 
+    @track autoEnrollmentMappingRoleComboboxVModel;
+    @track autoEnrollmentMappingRoleComboboxVModelWireResult;
+
     labelReference = {
+        accountRecordTypeCombobox: stgColAccountRecordType,
         statusCombobox: stgColAutoEnrollmentStatus,
         roleCombobox: stgColAutoEnrollmentRole,
         comboboxPlaceholderText: stgOptSelect,
@@ -32,9 +38,23 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     };
 
     inputAttributeReference = {
+        accountRecordType: "primaryAffiliationsAccountRecordType",
         autoProgramEnrollmentStatus: "autoProgramEnrollmentStatus",
         autoProgramEnrollmentRole: "autoProgramEnrollmentRole",
     };
+
+    @wire(getAccountRecordTypeComboboxVModel, {
+        accountRecordType: "$accountRecordType",
+    })
+    accountRecordTypeComboboxVModelWire(result) {
+        this.accountRecordTypeComboboxWireResult = result;
+
+        if (result.data) {
+            this.accountRecordTypeComboboxVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving accountRecordTypeComboboxVModel");
+        }
+    }
 
     @wire(getAutoEnrollmentMappingStatusComboboxVModel, {
         autoProgramEnrollmentStatus: "$autoProgramEnrollmentStatus",
@@ -60,6 +80,24 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         } else if (result.error) {
             //console.log("error retrieving autoEnrollmentMappingStatusComboboxVModel");
         }
+    }
+
+    handleAccountRecordTypeChange(event) {
+        this.dispatchAccountRecordTypeChangeEvent(event.detail.value);
+    }
+
+    dispatchAccountRecordTypeChangeEvent(accountRecordType) {
+        const accountRecordTypeDetails = {
+            accountRecordType: accountRecordType,
+        };
+
+        const accountRecordTypeChangeEvent = new CustomEvent("accountrecordtypechange", {
+            detail: accountRecordTypeDetails,
+            bubbles: true,
+            composed: true,
+        });
+
+        this.dispatchEvent(accountRecordTypeChangeEvent);
     }
 
     handleAutoEnrollmentMappingStatusChange(event) {

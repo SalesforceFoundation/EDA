@@ -6,6 +6,23 @@
             <div class="slds-col slds-size-1-of-1 slds-p-bottom_large">
                 <lightning-formatted-rich-text value={autoEnrollmentMappingModalDesc}> </lightning-formatted-rich-text>
             </div>
+            <template if:true={accountRecordTypeComboboxVModel}>
+                <div class="slds-col slds-size_2-of-3">
+                    <lightning-combobox
+                        id={inputAttributeReference.accountRecordType}
+                        name={inputAttributeReference.accountRecordType}
+                        label={labelReference.accountRecordTypeCombobox}
+                        value={accountRecordTypeComboboxVModel.value}
+                        placeholder={labelReference.comboboxPlaceholderText}
+                        options={accountRecordTypeComboboxVModel.options}
+                        onchange={handleAccountRecordTypeChange}
+                        data-qa-locator={inputAttributeReference.accountRecordType}
+                    ></lightning-combobox>
+                </div>
+                <div class="slds-p-bottom_xx-large">
+                    <div class="slds-col slds-size-1-of-1 slds-p-bottom_xx-large">{accountRecordTypeApiNameLabel}</div>
+                </div>
+            </template>
             <template if:true={autoEnrollmentMappingStatusComboboxVModel}>
                 <div class="slds-col slds-size_2-of-3">
                     <lightning-combobox

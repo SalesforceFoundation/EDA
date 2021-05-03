@@ -47,6 +47,21 @@ public with sharing class ProgramSettingsController {
     }
 
     /************************************************************************************
+     * @description Retrieve a ComoboxVModel representing the list of active Account
+     * Record Types
+     * @return A ComboboxVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static ComboBoxVModel getAccountRecordTypeComboboxVModel(String accountRecordType) {
+        try {
+            return ProgramSettingsController.locateAutoEnrollmentMappingsVMapper()
+                .getAccountRecordTypeComboboxVModel(accountRecordType);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************
      * @description Retrieve a ComoboxVModel for auto enrollment status.
      * @return A ComboboxVModel
      ************************************************************************************/
