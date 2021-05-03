@@ -116,7 +116,11 @@ export default class programSettings extends LightningElement {
     }
 
     get autoEnrollmentMappingsDescriptionRichText() {
-        return this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription;
+        return (
+            this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription +
+            " " +
+            this.autoEnrollmentHyperLink
+        );
     }
 
     handleNewAutoEnrollmentMappingClick(event) {}

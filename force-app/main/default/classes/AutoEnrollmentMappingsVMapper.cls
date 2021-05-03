@@ -121,8 +121,12 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
             affiliationMappingsModel.Name,
             accountRecordTypeName,
             accountRecordTypeLabel,
-            affiliationMappingsModel.autoProgramEnrollmentStatus,
-            affiliationMappingsModel.autoProgramEnrollmentRole
+            affiliationMappingsModel.autoProgramEnrollmentStatus == '""'
+                ? ''
+                : affiliationMappingsModel.autoProgramEnrollmentStatus,
+            affiliationMappingsModel.autoProgramEnrollmentRole == '""'
+                ? ''
+                : affiliationMappingsModel.autoProgramEnrollmentRole
         );
     }
 
