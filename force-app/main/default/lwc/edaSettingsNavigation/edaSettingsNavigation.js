@@ -30,7 +30,7 @@ import stgAfflProgEnrollSetRoleValue from "@salesforce/label/c.stgAfflProgEnroll
 import stgAfflProgEnrollSetStatusValue from "@salesforce/label/c.stgAfflProgEnrollSetStatusValue";
 import stgAfflCopyProgramEnrollmentEndDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentEndDate";
 import stgAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentStartDate";
-
+import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollDeleteTitle";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
@@ -89,7 +89,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         programSettings: {
             programSettings: stgProgramsSettingsNav,
             programAutoEnrollmentMappings: stgAutoEnrollmentProgramTitle,
-            programEnrollmentDeletions: "Program Enrollment Deletions",
+            programEnrollmentDeletions: stgAfflProgEnrollDeleteTitle,
             roleForCreatedAffl: stgAfflProgEnrollSetRoleValue,
             statusForCreatedAffl: stgAfflProgEnrollSetStatusValue,
             afflEndDate: stgAfflCopyProgramEnrollmentEndDate,
