@@ -64,6 +64,10 @@
                             onsavecanvasrendered={handleSaveCanvasRendered}
                         ></c-system-tools>
                     </template>
+
+                    <template if:true={settingsPageToDisplay.programSettings}>
+                        <c-program-settings></c-program-settings>
+                    </template>
                 </div>
             </template>
         </template>
