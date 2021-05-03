@@ -6,5 +6,37 @@
         onsettingssavecancel={handleSettingsSaveCancel}
         onsettingssavecompleted={handleSettingsSaveCompleted}
     >
+        <!-- Auto Enrollment Mappings -->
+        <template if:true={programSettingsVModel}>
+            <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
+                <div class="slds-col slds-size_2-of-3">
+                    <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+                        {labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsTitle}
+                    </div>
+                    <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                        <lightning-formatted-rich-text value={autoEnrollmentMappingsDescriptionRichText}>
+                        </lightning-formatted-rich-text>
+                    </div>
+                </div>
+                <div
+                    class="slds-grid slds-grid_align-end slds-p-right_large slds-p-top_large slds-col slds-col_bump-right"
+                >
+                    <lightning-button
+                        label={labelReference.newButton}
+                        title={labelReference.newButton}
+                        onclick={handleNewAutoEnrollmentMappingClick}
+                    ></lightning-button>
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_3-of-3 slds-col_bump-right slds-p-right_x-large">
+                <lightning-datatable
+                    key-field="mappingName"
+                    data={programSettingsVModel.autoEnrollmentMappingVModels}
+                    columns={autoEnrollmentMappingsTableColumns}
+                    onrowaction={handleAutoEnrollmentMappingRowAction}
+                ></lightning-datatable>
+            </div>
+        </template>
     </c-settings-save-canvas>
 </template>
