@@ -967,14 +967,6 @@
         <value>Auto-Enrollment</value>
     </labels>
     <labels>
-        <fullName>stgAutoEnrollmentMappingsNav</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Navigation section title for Auto Enrollment Mappings</shortDescription>
-        <value>Auto-Enrollment Mappings</value>
-    </labels>
-    <labels>
         <fullName>stgAutoEnrollmentProgramDesc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

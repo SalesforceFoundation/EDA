@@ -489,10 +489,6 @@
         <name>stgAutoEnrollment</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for Auto Enrollment Mappings --></label>
-        <name>stgAutoEnrollmentMappingsNav</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Description of the Auto-Enrollment Mappings setting --></label>
         <name>stgAutoEnrollmentProgramDesc</name>
     </customLabels>
