@@ -22,10 +22,13 @@ import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressCh
 import stgTabAfflMappings from "@salesforce/label/c.stgTabAfflMappings";
 import stgAffiliationsSettingsNav from "@salesforce/label/c.stgAffiliationsSettingsNav";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
+//Course Enrollment Labels
+import stgCoursesAndEnrollmentsNav from "@salesforce/label/c.stgCoursesAndEnrollmentsNav";
+import stgProgramsSettingsNav from "@salesforce/label/c.stgProgramsSettingsNav";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
-//System Tools SettingsLabels
-import stgSystemSettingsTitle from "@salesforce/label/c.stgSystemSettingsTitle";
+//System Tools Labels
+import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
 //Error Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
@@ -68,7 +71,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             requirePreferredEmail: stgDisablePreferredEmailEnforcement,
         },
         coursesAndEnrollmentsSettings: {
-            coursesAndEnrollmentsSettings: "Courses and Enrollments",
+            coursesAndEnrollmentsSettings: stgCoursesAndEnrollmentsNav,
         },
         errorSettings: {
             enableDebug: stgEnableDebugTitle,
@@ -78,7 +81,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             storeErrors: stgStoreErrorsTitle,
         },
         programSettings: {
-            programSettings: "Programs",
+            programSettings: stgProgramsSettingsNav,
             programAutoEnrollmentMappings: "Program Auto-Enrollment Mappings",
             programEnrollmentDeletions: "Program Enrollment Deletions",
         },
@@ -95,7 +98,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             courseDescriptionMigration: "Course Description Migration",
             ethnicityAndRaceBackfill: "Ethnicity and Race Backfill",
             preferredEmailCleanup: "Preferred Email and Phone Cleanup",
-            systemTools: stgSystemSettingsTitle,
+            systemToolsNav: stgSystemToolsNav,
             refreshAdministrativeAccountNames: "Refresh Administrative Account Names",
             refreshHouseholdAccountNames: "Refresh Household Account Names",
         },
@@ -272,7 +275,7 @@ export default class EdaSettingsNavigation extends LightningElement {
                         ],
                     },
                     {
-                        label: this.labelReference.systemTools.systemTools,
+                        label: this.labelReference.systemTools.systemToolsNav,
                         page: "systemTools",
                         id: "systemTools",
                         menuItems: [
