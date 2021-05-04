@@ -155,7 +155,6 @@ export default class programSettings extends LightningElement {
                 this.insertAffiliations(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
                 break;*/
             case "edit":
-                console.log(saveModel.mappingName);
                 this.updateAutoEnrollmentMappings(
                     saveModel.mappingName,
                     saveModel.oldAccountRecordType,
