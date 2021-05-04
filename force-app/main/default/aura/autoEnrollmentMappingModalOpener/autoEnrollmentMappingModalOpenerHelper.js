@@ -9,6 +9,7 @@
         component.set("v.actionName", actionName);
         component.set("v.mappingName", mappingName);
         component.set("v.oldAccountRecordType", oldAccountRecordType);
+        component.set("v.newAccountRecordType", oldAccountRecordType);
         component.set("v.autoProgramEnrollmentStatus", autoProgramEnrollmentStatus);
         component.set("v.autoProgramEnrollmentRole", autoProgramEnrollmentRole);
 
@@ -43,7 +44,7 @@
                     "c:autoEnrollmentMappingModal",
                     {
                         actionName: component.get("v.actionName"),
-                        oldAccountRecordType: component.get("v.oldAccountRecordType"),
+                        accountRecordType: component.get("v.oldAccountRecordType"),
                         autoProgramEnrollmentStatus: component.get("v.autoProgramEnrollmentStatus"),
                         autoProgramEnrollmentRole: component.get("v.autoProgramEnrollmentRole"),
                         modalDataChangeEvent: component.getReference("c.handleModalDataChangeEvent")
@@ -132,6 +133,7 @@
             autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
             autoProgramEnrollmentRole: autoProgramEnrollmentRole
         };
+        console.log(saveModel);
         modalSaveEvent.setParams({
             saveModel: saveModel
         });

@@ -112,16 +112,25 @@ public virtual with sharing class AffiliationMappingsService {
         String autoProgramEnrollmentRole
     ) {
         this.locateUserPermissionService().checkViewSetupForCurrentUser();
-        List<AffiliationMappingsModel> afflMappingModels = this.locateAffiliationMappingsMapper()
-            .getAffiliationMappingsModel();
-        for (AffiliationMappingsModel afflMappingModel : afflMappingModels) {
-            if (
-                afflMappingModel.accountRecordTypeFieldValue == oldAffiliationMappingsModel.accountRecordTypeFieldValue
-            ) {
-                AffiliationMappingsModel newAffiliationMappingsModel = new AffiliationMappingsModel();
+        if (oldAccountRecordType != newAccountRecordType) {
+            List<AffiliationMappingsModel> afflMappingModels = this.locateAffiliationMappingsMapper()
+                .getAffiliationMappingsModel();
+            for (AffiliationMappingsModel afflMappingModel : afflMappingModels) {
+                if (afflMappingModel.accountRecordTypeFieldValue == newAccountRecordType) {
+                    this.locateAffiliationMappingsMapper()
+                        .copyStatusAndRoleAutoEnrollmentMapping(
+                            mappingName,
+                            afflMappingModel.name,
+                            autoProgramEnrollmentStatus,
+                            autoProgramEnrollmentRole
+                        );
+                    break;
+                }
             }
+        } else {
+            this.locateAffiliationMappingsMapper()
+                .updateAutoEnrollmentMappings(mappingName, autoProgramEnrollmentStatus, autoProgramEnrollmentRole);
         }
-        this.locateAffiliationMappingsMapper().updateNewAutoEnrollmentMapping(affiliationMappingsModel);
     }
 
     /*****************************************************************************************

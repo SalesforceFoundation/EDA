@@ -157,8 +157,8 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
             comboboxValues.add(new ComboboxValueVModel(accountRecordType, accountRecordType));
         } else {
             comboboxValue = recordTypeModel.developerName;
+            comboboxValues.add(new ComboboxValueVModel(recordTypeModel.name, recordTypeModel.developerName));
         }
-
         comboboxValues.addAll(
             this.getComboboxVModelOptionsForActiveAccountRecordTypes(accRecordTypeModelsById.values())
         );
@@ -176,11 +176,23 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
         List<RecordTypeModel> activeAccountRecordTypeModelsList
     ) {
         List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = new List<ComboboxValueVModel>();
-
+        List<AffiliationMappingsModel> affiliationMappingsModels = this.locateAffiliationMappingsService()
+            .getAffiliationMappingsModels();
+        Set<String> accountRecordTypesWithAffiliationMapping = new Set<String>();
+        for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModels) {
+            if (affiliationMappingsModel.autoProgramEnrollment == false) {
+                accountRecordTypesWithAffiliationMapping.add(affiliationMappingsModel.accountRecordTypeFieldValue);
+            }
+        }
         for (RecordTypeModel activeAccountRecordTypeModel : activeAccountRecordTypeModelsList) {
-            activeRecordTypeComboboxValueVModelsList.add(
-                new ComboboxValueVModel(activeAccountRecordTypeModel.name, activeAccountRecordTypeModel.developerName)
-            );
+            if (accountRecordTypesWithAffiliationMapping.contains(activeAccountRecordTypeModel.developerName)) {
+                activeRecordTypeComboboxValueVModelsList.add(
+                    new ComboboxValueVModel(
+                        activeAccountRecordTypeModel.name,
+                        activeAccountRecordTypeModel.developerName
+                    )
+                );
+            }
         }
 
         return activeRecordTypeComboboxValueVModelsList;

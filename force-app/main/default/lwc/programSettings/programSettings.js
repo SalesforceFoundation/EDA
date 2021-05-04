@@ -2,7 +2,7 @@ import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import getAutoEnrollmentMappingsVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingsVModel";
-import updateAutoEnrollmentMapping from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMapping";
+import updateAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMappings";
 //custom labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
 import stgBtnEdit from "@salesforce/label/c.stgBtnEdit";
@@ -155,7 +155,8 @@ export default class programSettings extends LightningElement {
                 this.insertAffiliations(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
                 break;*/
             case "edit":
-                this.updateAutoEnrollmentMapping(
+                console.log(saveModel.mappingName);
+                this.updateAutoEnrollmentMappings(
                     saveModel.mappingName,
                     saveModel.oldAccountRecordType,
                     saveModel.newAccountRecordType,
@@ -169,14 +170,14 @@ export default class programSettings extends LightningElement {
         }
     }
 
-    updateAutoEnrollmentMapping(
+    updateAutoEnrollmentMappings(
         mappingName,
         oldAccountRecordType,
         newAccountRecordType,
         autoProgramEnrollmentStatus,
         autoProgramEnrollmentRole
     ) {
-        updateAutoEnrollmentMapping({
+        updateAutoEnrollmentMappings({
             mappingName: mappingName,
             oldAccountRecordType: oldAccountRecordType,
             newAccountRecordType: newAccountRecordType,
