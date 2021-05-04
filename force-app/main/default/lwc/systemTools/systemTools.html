@@ -57,6 +57,7 @@
             </div>
         </div>
     </div>
+
     <!-- Preferred Email and Phone clean up -->
     <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
         <div class="slds-col slds-size_2-of-3">
@@ -80,6 +81,7 @@
             </div>
         </div>
     </div>
+
     <!-- Ethnicity and Racebackfill batch job -->
     <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
         <div class="slds-col slds-size_2-of-3">
@@ -87,9 +89,7 @@
                 {labelReference.ethnicityAndRaceBackfillTitle}
             </div>
             <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
-                <lightning-formatted-rich-text
-                    value={labelReference.ethnicityAndRaceBackfillDescription}
-                ></lightning-formatted-rich-text>
+                <lightning-formatted-rich-text value={ethnicityAndBackFillDesc}></lightning-formatted-rich-text>
             </div>
         </div>
 
@@ -98,7 +98,7 @@
                 <lightning-button
                     variant="brand"
                     label={labelReference.stgBtnUpdate}
-                    title={labelReference.stgBtnUpdate}
+                    title={labelReference.ethnicityAndRaceBackTitleA11y}
                     onclick={handleEthnicityAndRaceBackfill}
                     class="slds-m-left_x-small"
                 ></lightning-button>

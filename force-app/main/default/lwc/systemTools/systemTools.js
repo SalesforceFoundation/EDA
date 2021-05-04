@@ -42,6 +42,7 @@ import stgEthnicityRaceBackfillContacts from "@salesforce/label/c.stgEthnicityRa
 import stgHelpEthnicityRaceBackfill from "@salesforce/label/c.stgHelpEthnicityRaceBackfill";
 import stgBtnUpdate from "@salesforce/label/c.stgBtnUpdate";
 import stgEthnicityRaceBackfillSuccessToast from "@salesforce/label/c.stgEthnicityRaceBackfillSuccessToast";
+import stgBtnRefreshEthnicityDataA11y from "@salesforce/label/c.stgBtnRefreshEthnicityDataA11y";
 export default class systemTools extends LightningElement {
     labelReference = {
         stgSystemToolsTitle: stgSystemToolsNav,
@@ -66,6 +67,7 @@ export default class systemTools extends LightningElement {
         ethnicityAndRaceBackfillDescription: stgHelpEthnicityRaceBackfill,
         stgBtnUpdate: stgBtnUpdate,
         ethnicityAndRaceBackfillToast: stgEthnicityRaceBackfillSuccessToast,
+        ethnicityAndRaceBackTitleA11y: stgBtnRefreshEthnicityDataA11y,
     };
 
     get adminAndHouseholdNamesHyperLink() {
@@ -94,6 +96,16 @@ export default class systemTools extends LightningElement {
 
     get prefEmailPhoneDesc() {
         return this.labelReference.stgRunCleanUpEnableFirstTime + " " + this.prefEmailPhoneHyperLink;
+    }
+
+    get ethnicityAndBackFillHyperLink() {
+        return (
+            '<a href="https://powerofus.force.com/s/article/EDA-Contact">' + this.labelReference.tellMeMoreLink + "</a>"
+        );
+    }
+
+    get ethnicityAndBackFillDesc() {
+        return this.labelReference.ethnicityAndRaceBackfillDescription + " " + this.ethnicityAndBackFillHyperLink;
     }
 
     hasRendered;

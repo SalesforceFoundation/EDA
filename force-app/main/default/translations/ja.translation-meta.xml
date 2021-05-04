@@ -541,6 +541,10 @@
         <name>stgBtnRefreshAdminNamesA11y</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that updates Race field on Contacts from Ethnicity field --></label>
+        <name>stgBtnRefreshEthnicityDataA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>

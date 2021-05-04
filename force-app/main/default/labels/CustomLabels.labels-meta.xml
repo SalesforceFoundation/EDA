@@ -1071,6 +1071,14 @@
         <value>Update all Administrative Account names.</value>
     </labels>
     <labels>
+        <fullName>stgBtnRefreshEthnicityDataA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates Race field on Contacts from Ethnicity field</shortDescription>
+        <value>Update the Race field on Contacts with values from the Ethnicity field. The values Not Hispanic or Latino and Hispanic or Latino aren&apos;t copied.</value>
+    </labels>
+    <labels>
         <fullName>stgBtnRefreshHouseholdNames</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
