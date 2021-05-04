@@ -34,16 +34,16 @@ Verify system settings can retain value on save
     Update checkbox value
     ...                       Store Errors=false
     ...                       Send Error Notifications=true
-    ...                       Disable Error Handling=true
+    ...                       Error Handling=true
     ...                       Automatically Rename Household Accounts=true
     Click action button on EDA settings page    Edit
     Update system dropdown value
     ...                       Default Account Model=Household Account
-    ...                       Administrative Account Name Format=Other
-    ...                       Household Account Name Format=Other
+    ...                       Administrative Account Name Format=Custom Format
+    ...                       Household Account Name Format=Custom Format
     Enter account name format
-    ...     The name format used for auto-created Administrative Accounts.={!LastName} Admin Account
-    ...     The format used for naming Household Accounts.={!LastName} House Account
+    ...     The format for naming Administrative Accounts when they are automatically created.={!LastName} Admin Account
+    ...     The format for naming Household Accounts when they are automatically created.={!LastName} House Account
     Click action button on EDA settings page    Save
     # Below step is necessary as sometimes the dropdown field is not loading to verify its value
     Go to EDA settings tab    System
@@ -51,13 +51,13 @@ Verify system settings can retain value on save
     Verify checkbox value
     ...                       Store Errors=false
     ...                       Send Error Notifications=true
-    ...                       Disable Error Handling=true
+    ...                       Error Handling=true
     ...                       Automatically Rename Household Accounts=true
     Verify dropdown value
     ...                       Default Account Model=Household Account
     Verify system dropdown value
-    ...     The name format used for auto-created Administrative Accounts.={!LastName} Admin Account
-    ...     The format used for naming Household Accounts.={!LastName} House Account
+    ...     The format for naming Administrative Accounts when they are automatically created.={!LastName} Admin Account
+    ...     The format for naming Household Accounts when they are automatically created.={!LastName} House Account
     Click action button on EDA settings page    Edit
     Update system dropdown value
     ...                       Administrative Account Name Format={!LastName} Administrative Account
@@ -104,6 +104,7 @@ Verify refresh all administrative names and refresh all household names are acti
     Click run action button                     Refresh All Administrative Names
     Verify admin toast message
     ...     The Administrative Account naming refresh was queued successfully. An email will be sent at the completion of the batch.
-    Click run action button                     Refresh All Household Names
-    Verify household toast message
-    ...     The Household Account naming refresh was queued successfully. An email will be sent at the completion of the batch.
+    #Commenting the below steps due to refactoring and delete this test after creating a new test
+    #Click run action button                     Update
+    #Verify household toast message
+    #...     The Household Account naming refresh was queued successfully. An email will be sent at the completion of the batch.
