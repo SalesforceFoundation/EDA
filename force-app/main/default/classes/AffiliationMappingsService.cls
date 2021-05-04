@@ -115,21 +115,30 @@ public virtual with sharing class AffiliationMappingsService {
         if (oldAccountRecordType != newAccountRecordType) {
             List<AffiliationMappingsModel> afflMappingModels = this.locateAffiliationMappingsMapper()
                 .getAffiliationMappingsModel();
+            List<Affl_Mappings__c> affliliaitonMappingsToUpdateList = new List<Affl_Mappings__c>();
+
+            Affl_Mappings__c oldAfflSetting = Affl_Mappings__c.getInstance(mappingName);
+            oldAfflSetting.Auto_Program_Enrollment_Status__c = '';
+            oldAfflSetting.Auto_Program_Enrollment_Role__c = '';
+            oldAfflSetting.Auto_Program_Enrollment__c = false;
+            affliliaitonMappingsToUpdateList.add(oldAfflSetting);
+
             for (AffiliationMappingsModel afflMappingModel : afflMappingModels) {
                 if (afflMappingModel.accountRecordTypeFieldValue == newAccountRecordType) {
-                    this.locateAffiliationMappingsMapper()
-                        .copyStatusAndRoleAutoEnrollmentMapping(
-                            mappingName,
-                            afflMappingModel.name,
-                            autoProgramEnrollmentStatus,
-                            autoProgramEnrollmentRole
-                        );
+                    Affl_Mappings__c newAfflSetting = Affl_Mappings__c.getInstance(afflMappingModel.name);
+                    newAfflSetting.Auto_Program_Enrollment_Status__c = autoProgramEnrollmentStatus;
+                    newAfflSetting.Auto_Program_Enrollment_Role__c = autoProgramEnrollmentRole;
+                    newAfflSetting.Auto_Program_Enrollment__c = true;
+                    affliliaitonMappingsToUpdateList.add(newAfflSetting);
                     break;
                 }
             }
+            update affliliaitonMappingsToUpdateList;
         } else {
-            this.locateAffiliationMappingsMapper()
-                .updateAutoEnrollmentMappings(mappingName, autoProgramEnrollmentStatus, autoProgramEnrollmentRole);
+            Affl_Mappings__c afflSetting = Affl_Mappings__c.getInstance(mappingName);
+            afflSetting.Auto_Program_Enrollment_Status__c = autoProgramEnrollmentStatus;
+            afflSetting.Auto_Program_Enrollment_Role__c = autoProgramEnrollmentRole;
+            update afflSetting;
         }
     }
 
