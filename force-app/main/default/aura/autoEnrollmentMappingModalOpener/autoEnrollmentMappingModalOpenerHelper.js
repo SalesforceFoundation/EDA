@@ -2,13 +2,13 @@
     openAutoEnrollmentMappingModal: function (component, eventParameters) {
         const actionName = eventParameters.actionName;
         const mappingName = eventParameters.mappingName;
-        const accountRecordType = eventParameters.accountRecordType;
+        const oldAccountRecordType = eventParameters.oldAccountRecordType;
         const autoProgramEnrollmentStatus = eventParameters.autoProgramEnrollmentStatus;
         const autoProgramEnrollmentRole = eventParameters.autoProgramEnrollmentRole;
 
         component.set("v.actionName", actionName);
         component.set("v.mappingName", mappingName);
-        component.set("v.accountRecordType", accountRecordType);
+        component.set("v.oldAccountRecordType", oldAccountRecordType);
         component.set("v.autoProgramEnrollmentStatus", autoProgramEnrollmentStatus);
         component.set("v.autoProgramEnrollmentRole", autoProgramEnrollmentRole);
 
@@ -43,7 +43,7 @@
                     "c:autoEnrollmentMappingModal",
                     {
                         actionName: component.get("v.actionName"),
-                        accountRecordType: component.get("v.accountRecordType"),
+                        oldAccountRecordType: component.get("v.oldAccountRecordType"),
                         autoProgramEnrollmentStatus: component.get("v.autoProgramEnrollmentStatus"),
                         autoProgramEnrollmentRole: component.get("v.autoProgramEnrollmentRole"),
                         modalDataChangeEvent: component.getReference("c.handleModalDataChangeEvent")
@@ -80,8 +80,8 @@
         const field = event.getParam("field");
         const fieldValue = event.getParam("fieldValue");
         switch (field) {
-            case "accountRecordType":
-                component.set("v.accountRecordType", fieldValue);
+            case "newAccountRecordType":
+                component.set("v.newAccountRecordType", fieldValue);
                 break;
             case "autoProgramEnrollmentStatus":
                 component.set("v.autoProgramEnrollmentStatus", fieldValue);
@@ -118,7 +118,8 @@
 
         const actionName = component.get("v.actionName");
         const mappingName = component.get("v.mappingName");
-        const accountRecordType = component.get("v.accountRecordType");
+        const oldAccountRecordType = component.get("v.oldAccountRecordType");
+        const newAccountRecordType = component.get("v.newAccountRecordType");
         const autoProgramEnrollmentStatus = component.get("v.autoProgramEnrollmentStatus");
         const autoProgramEnrollmentRole = component.get("v.autoProgramEnrollmentRole");
 
@@ -126,11 +127,11 @@
             modalType: "autoenrollmentmapping",
             action: actionName,
             mappingName: mappingName,
-            accountRecordType: accountRecordType,
+            oldAccountRecordType: oldAccountRecordType,
+            newAccountRecordType: newAccountRecordType,
             autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
             autoProgramEnrollmentRole: autoProgramEnrollmentRole
         };
-        console.log(saveModel);
         modalSaveEvent.setParams({
             saveModel: saveModel
         });

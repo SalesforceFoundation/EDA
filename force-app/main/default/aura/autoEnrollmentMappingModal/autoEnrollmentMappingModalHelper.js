@@ -1,4 +1,8 @@
 ({
+    handleAutoEnrollmentMappingAccountRecordTypeChange: function (component, newAccountRecordType) {
+        component.set("v.newAccountRecordType", newAccountRecordType);
+        this.dispatchDataChangeEvent(component, "newAccountRecordType", newAccountRecordType);
+    },
     handleAutoEnrollmentMappingStatusChange: function (component, autoProgramEnrollmentStatus) {
         component.set("v.autoProgramEnrollmentStatus", autoProgramEnrollmentStatus);
         this.dispatchDataChangeEvent(component, "autoProgramEnrollmentStatus", autoProgramEnrollmentStatus);

@@ -102,12 +102,26 @@ public virtual with sharing class AffiliationMappingsService {
     }
 
     /*****************************************************************************
-     * @description Checks user permissions and passes AffiliationMappingsModel to
-     * updateAffiliationMappings.
+     * @description Checks user permissions and update the auto enrollment mapppings.
      *****************************************************************************/
-    public void updateAutoEnrollmentMapping(AffiliationMappingsModel affiliationMappingsModel) {
+    public void updateAutoEnrollmentMappings(
+        String mappingName,
+        String oldAccountRecordType,
+        String newAccountRecordType,
+        String autoProgramEnrollmentStatus,
+        String autoProgramEnrollmentRole
+    ) {
         this.locateUserPermissionService().checkViewSetupForCurrentUser();
-        this.locateAffiliationMappingsMapper().updateAutoEnrollmentMapping(affiliationMappingsModel);
+        List<AffiliationMappingsModel> afflMappingModels = this.locateAffiliationMappingsMapper()
+            .getAffiliationMappingsModel();
+        for (AffiliationMappingsModel afflMappingModel : afflMappingModels) {
+            if (
+                afflMappingModel.accountRecordTypeFieldValue == oldAffiliationMappingsModel.accountRecordTypeFieldValue
+            ) {
+                AffiliationMappingsModel newAffiliationMappingsModel = new AffiliationMappingsModel();
+            }
+        }
+        this.locateAffiliationMappingsMapper().updateNewAutoEnrollmentMapping(affiliationMappingsModel);
     }
 
     /*****************************************************************************************

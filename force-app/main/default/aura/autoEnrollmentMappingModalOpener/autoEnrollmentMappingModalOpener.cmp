@@ -1,7 +1,8 @@
 <aura:component>
     <aura:attribute name="actionName" type="String" />
     <aura:attribute name="mappingName" type="String" />
-    <aura:attribute name="accountRecordType" type="String" />
+    <aura:attribute name="newAccountRecordType" type="String" />
+    <aura:attribute name="oldAccountRecordType" type="String" />
     <aura:attribute name="autoProgramEnrollmentStatus" type="String" />
     <aura:attribute name="autoProgramEnrollmentRole" type="String" />
 
@@ -21,7 +22,7 @@
     <aura:method name="openAutoEnrollmentMappingModal" action="{!c.openAutoEnrollmentMappingModal}">
         <aura:attribute name="actionName" type="String" />
         <aura:attribute name="mappingName" type="String" />
-        <aura:attribute name="accountRecordType" type="String" />
+        <aura:attribute name="oldAccountRecordType" type="String" />
         <aura:attribute name="autoProgramEnrollmentStatus" type="String" />
         <aura:attribute name="autoProgramEnrollmentRole" type="String" />
     </aura:method>

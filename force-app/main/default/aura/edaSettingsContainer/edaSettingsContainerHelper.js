@@ -23,7 +23,7 @@
     openAutoEnrollmentMappingModal: function (component, eventParameters) {
         const actionName = eventParameters.actionName;
         const mappingName = eventParameters.mappingName;
-        const accountRecordType = eventParameters.accountRecordType;
+        const oldAccountRecordType = eventParameters.accountRecordType;
         const autoProgramEnrollmentStatus = eventParameters.autoProgramEnrollmentStatus;
         const autoProgramEnrollmentRole = eventParameters.autoProgramEnrollmentRole;
 
@@ -32,7 +32,7 @@
             .openAutoEnrollmentMappingModal(
                 actionName,
                 mappingName,
-                accountRecordType,
+                oldAccountRecordType,
                 autoProgramEnrollmentStatus,
                 autoProgramEnrollmentRole
             );

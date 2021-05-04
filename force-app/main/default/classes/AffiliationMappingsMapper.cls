@@ -111,8 +111,9 @@ public virtual with sharing class AffiliationMappingsMapper {
      * @description Updates the auto enrollment mapping on affiliation mapping record
      * @param afflMappingModel Model to update affiliation mapping record from
      *****************************************************************************/
-    public void updateAutoEnrollmentMapping(AffiliationMappingsModel afflMappingModel) {
+    public void updateAutoEnrollmentMappings(AffiliationMappingsModel newafflMappingModel) {
         Affl_Mappings__c afflSetting = Affl_Mappings__c.getInstance(afflMappingModel.name);
+        afflSetting.Auto_Program_Enrollment__c = true;
         afflSetting.Auto_Program_Enrollment_Status__c = afflMappingModel.autoProgramEnrollmentStatus;
         afflSetting.Auto_Program_Enrollment_Role__c = afflMappingModel.autoProgramEnrollmentRole;
         update afflSetting;

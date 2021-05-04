@@ -157,6 +157,8 @@ export default class programSettings extends LightningElement {
             case "edit":
                 this.updateAutoEnrollmentMapping(
                     saveModel.mappingName,
+                    saveModel.oldAccountRecordType,
+                    saveModel.newAccountRecordType,
                     saveModel.autoProgramEnrollmentStatus,
                     saveModel.autoProgramEnrollmentRole
                 );
@@ -167,9 +169,17 @@ export default class programSettings extends LightningElement {
         }
     }
 
-    updateAutoEnrollmentMapping(mappingName, autoProgramEnrollmentStatus, autoProgramEnrollmentRole) {
+    updateAutoEnrollmentMapping(
+        mappingName,
+        oldAccountRecordType,
+        newAccountRecordType,
+        autoProgramEnrollmentStatus,
+        autoProgramEnrollmentRole
+    ) {
         updateAutoEnrollmentMapping({
             mappingName: mappingName,
+            oldAccountRecordType: oldAccountRecordType,
+            newAccountRecordType: newAccountRecordType,
             autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
             autoProgramEnrollmentRole: autoProgramEnrollmentRole,
         })
