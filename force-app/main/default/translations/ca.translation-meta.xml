@@ -729,8 +729,20 @@
         <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Origen ètnic i racial per als contactes</label>
+        <label><!-- Label for the Legacy Ethnicity Data setting --></label>
         <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when the Race field is queued for update --></label>
+        <name>stgEthnicityRaceBackfillSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Fluent</label>
@@ -1257,7 +1269,7 @@
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label>Utilitzeu la reposició d&apos;Ètnia i de Raça només si la vostra organització utilitzava el camp Ètnia abans que s&apos;afegís el camp Raça i s&apos;eliminessin els valors del camp Ètnia a partir de la versió 1.28 d’EDA. Si el valor del camp Ètnia del contacte no és igual a &quot;No hispà ni llatí&quot; o &quot;Hispà o llatí&quot;, la reposició copia el valor al camp Raça. Es poden copiar tant els valors de la llista de selecció estàndard com els valors personalitzats que hàgiu afegit com a aptes per a copiar.</label>
+        <label><!-- Description of the Legacy Ethnicity Data setting --></label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>

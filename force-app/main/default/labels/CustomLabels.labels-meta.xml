@@ -1451,8 +1451,32 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Section title for Accounts and Contacts Settings</shortDescription>
-        <value>Ethnicity and Race Backfill for Contacts</value>
+        <shortDescription>Label for the Legacy Ethnicity Data setting</shortDescription>
+        <value>Legacy Ethnicity Data</value>
+    </labels>
+    <labels>
+        <fullName>stgEthnicityRaceBackfillModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update the Race field on Contacts confirmation window</shortDescription>
+        <value>Copies standard and custom picklist values, except Not Hispanic or Latino and Hispanic or Latino, from the Ethnicity field to the Race field on Contacts. Before proceeding, make sure you've disabled any processes that reference Ethnicity and Race fields.</value>
+    </labels>
+    <labels>
+        <fullName>stgEthnicityRaceBackfillModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update the Race field on Contacts confirmation window</shortDescription>
+        <value>Update the Race field on Contacts?</value>
+    </labels>
+    <labels>
+        <fullName>stgEthnicityRaceBackfillSuccessToast</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when the Race field is queued for update</shortDescription>
+        <value>We&apos;re updating the Race field on Contacts. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgFluent</fullName>
@@ -2531,8 +2555,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before the Race field was added and values were removed from the Ethnicity field as of EDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</value>
+        <shortDescription>Description of the Legacy Ethnicity Data setting</shortDescription>
+        <value>If you used the Ethnicity field before EDA version 1.28, this Apex job updates the Race field on Contacts with a copy of standard and custom values from the Ethnicity field. The values Not Hispanic or Latino and Hispanic or Latino aren't copied.</value>
     </labels>
     <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>

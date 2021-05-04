@@ -729,8 +729,20 @@
         <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>取引先責任者の民族および人種のバックフィル</label>
+        <label><!-- Label for the Legacy Ethnicity Data setting --></label>
         <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when the Race field is queued for update --></label>
+        <name>stgEthnicityRaceBackfillSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Fluent</label>
@@ -1257,7 +1269,7 @@
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label>[人種] 項目が追加される前に組織で [民族] 項目が使用され、EDA バージョン 1.28 の時点で [民族] 項目から値が削除された場合のみ、民族および人種のバックフィルを使用します。取引先責任者の [民族] 項目の値が [ヒスパニックまたはラテン系ではない] または [ヒスパニックまたはラテン系] に一致しない場合、バックフィルにより値が [人種] 項目にコピーされます。標準選択リスト値と、追加された可能性があるカスタム値の両方がコピーの対象になります。</label>
+        <label><!-- Description of the Legacy Ethnicity Data setting --></label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>

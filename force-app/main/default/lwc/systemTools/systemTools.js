@@ -1,7 +1,21 @@
 import { LightningElement, api } from "lwc";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
+// Controllers
+import runRefreshHouseholdAccountNamingJob from "@salesforce/apex/AccountNamingBatchController.runRefreshHouseholdAccountNamingJob";
+import runRefreshAdministrativeAccountNamingJob from "@salesforce/apex/AccountNamingBatchController.runRefreshAdministrativeAccountNamingJob";
+import runEthnicityAndRaceBackfillJob from "@salesforce/apex/VersionCleanupBatchJobController.runEthnicityAndRaceBackfillJob";
+
+// System Settings Labels
 import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
+
+// TellMeMore custom labels
+import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+
+// BatchJob custom labels
+import BatchJobRunningProblem from "@salesforce/label/c.BatchJobRunningProblem";
+
+// Household Naming custom labels
 import stgBtnRefreshHouseholdNames from "@salesforce/label/c.stgBtnRefreshHouseholdNames";
 import stgBtnRefreshHouseholdNamesA11y from "@salesforce/label/c.stgBtnRefreshHouseholdNamesA11y";
 import stgRefreshHHAcctNameTitle from "@salesforce/label/c.stgRefreshHHAcctNameTitle";
@@ -15,26 +29,24 @@ import stgBtnRefreshAdminNames from "@salesforce/label/c.stgBtnRefreshAdminNames
 import stgBtnRefreshAdminNamesA11y from "@salesforce/label/c.stgBtnRefreshAdminNamesA11y";
 import stgRefreshAdminNamesSuccessToast from "@salesforce/label/c.stgRefreshAdminNamesSuccessToast";
 
-// BatchJob Naming custom labels
-import BatchJobRunningProblem from "@salesforce/label/c.BatchJobRunningProblem";
-
-// TellMeMore custom labels
-import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
-
 // Preferred Email and Phone clean up Lables
 import stgPreferredEmailDataCleanup from "@salesforce/label/c.stgPreferredEmailDataCleanup";
 import stgRunCleanUpEnableFirstTime from "@salesforce/label/c.stgRunCleanUpEnableFirstTime";
 import stgRunCleanUp from "@salesforce/label/c.stgRunCleanUp";
 import stgRunCleanUpA11y from "@salesforce/label/c.stgRunCleanUpA11y";
 import stgPreferredPhoneEmailSuccessToast from "@salesforce/label/c.stgPreferredPhoneEmailSuccessToast";
-
-import runRefreshHouseholdAccountNamingJob from "@salesforce/apex/AccountNamingBatchController.runRefreshHouseholdAccountNamingJob";
-import runRefreshAdministrativeAccountNamingJob from "@salesforce/apex/AccountNamingBatchController.runRefreshAdministrativeAccountNamingJob";
 import runPreferredPhoneAndEmailCleanupJob from "@salesforce/apex/PreferredPhoneEmailBatchController.runPreferredPhoneAndEmailCleanupJob";
 
+// Ethnicitity and RaceBackfill labels
+import stgEthnicityRaceBackfillContacts from "@salesforce/label/c.stgEthnicityRaceBackfillContacts";
+import stgHelpEthnicityRaceBackfill from "@salesforce/label/c.stgHelpEthnicityRaceBackfill";
+import stgBtnUpdate from "@salesforce/label/c.stgBtnUpdate";
+import stgEthnicityRaceBackfillSuccessToast from "@salesforce/label/c.stgEthnicityRaceBackfillSuccessToast";
 export default class systemTools extends LightningElement {
     labelReference = {
         stgSystemToolsTitle: stgSystemToolsNav,
+        BatchJobRunningProblem: BatchJobRunningProblem,
+        tellMeMoreLink: stgTellMeMoreLink,
         stgBtnRefreshHouseholdNames: stgBtnRefreshHouseholdNames,
         stgBtnRefreshHouseholdNamesA11y: stgBtnRefreshHouseholdNamesA11y,
         stgRefreshHHAcctNameTitle: stgRefreshHHAcctNameTitle,
@@ -45,13 +57,15 @@ export default class systemTools extends LightningElement {
         stgBtnRefreshAdminNames: stgBtnRefreshAdminNames,
         stgBtnRefreshAdminNamesA11y: stgBtnRefreshAdminNamesA11y,
         stgRefreshAdminNamesSuccessToast: stgRefreshAdminNamesSuccessToast,
-        BatchJobRunningProblem: BatchJobRunningProblem,
-        tellMeMoreLink: stgTellMeMoreLink,
         stgPreferredEmailDataCleanup: stgPreferredEmailDataCleanup,
         stgRunCleanUpEnableFirstTime: stgRunCleanUpEnableFirstTime,
         stgRunCleanUp: stgRunCleanUp,
         stgRunCleanUpA11y: stgRunCleanUpA11y,
         stgPreferredPhoneEmailSuccessToast: stgPreferredPhoneEmailSuccessToast,
+        ethnicityAndRaceBackfillTitle: stgEthnicityRaceBackfillContacts,
+        ethnicityAndRaceBackfillDescription: stgHelpEthnicityRaceBackfill,
+        stgBtnUpdate: stgBtnUpdate,
+        ethnicityAndRaceBackfillToast: stgEthnicityRaceBackfillSuccessToast,
     };
 
     get adminAndHouseholdNamesHyperLink() {
@@ -120,6 +134,12 @@ export default class systemTools extends LightningElement {
         this.dispatchSettingsBatchJobModalEvent(eventDetail, batchJobToRun);
     }
 
+    handleEthnicityAndRaceBackfill(event) {
+        const eventDetail = event.detail;
+        const batchJobToRun = "CON_EthnicityRace_BATCH";
+        this.dispatchSettingsBatchJobModalEvent(eventDetail, batchJobToRun);
+    }
+
     dispatchSettingsBatchJobModalEvent(eventDetail, batchJobToRun) {
         const settingsBatchJobDetail = {
             eventDetail: eventDetail,
@@ -144,6 +164,9 @@ export default class systemTools extends LightningElement {
                 break;
             case "CON_EMAIL_BATCH":
                 this.runPreferredEmailPhoneCleanUpBatch();
+                break;
+            case "CON_EthnicityRace_BATCH":
+                this.runEthnicityAndRaceBackfillBatch();
                 break;
         }
     }
@@ -174,6 +197,17 @@ export default class systemTools extends LightningElement {
         runPreferredPhoneAndEmailCleanupJob()
             .then((result) => {
                 this.showToast("success", "Success", this.labelReference.stgPreferredPhoneEmailSuccessToast);
+            })
+
+            .catch((error) => {
+                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+            });
+    }
+
+    runEthnicityAndRaceBackfillBatch() {
+        runEthnicityAndRaceBackfillJob()
+            .then((result) => {
+                this.showToast("success", "Success", this.labelReference.ethnicityAndRaceBackfillToast);
             })
 
             .catch((error) => {
