@@ -108,54 +108,6 @@ public virtual with sharing class AffiliationMappingsMapper {
     }
 
     /*****************************************************************************
-     * @description Updates the auto enrollment mapping on affiliation mapping record
-     * @param mappingName
-     * @param autoProgramEnrollmentStatus
-     * @param autoProgramEnrollmentRole
-     *****************************************************************************/
-    public void updateAutoEnrollmentMappings(
-        String mappingName,
-        String autoProgramEnrollmentStatus,
-        String autoProgramEnrollmentRole
-    ) {
-        Affl_Mappings__c afflSetting = Affl_Mappings__c.getInstance(mappingName);
-        afflSetting.Auto_Program_Enrollment_Status__c = autoProgramEnrollmentStatus;
-        afflSetting.Auto_Program_Enrollment_Role__c = autoProgramEnrollmentRole;
-        update afflSetting;
-    }
-
-    /*****************************************************************************
-     * @description Copies the status and role from old auto enrollment mapping to
-     * new auto ernollment mapping.
-     * Also, disables auto enrollment for the old auto enrollment mapping
-     * @param mappingName
-     * @param autoProgramEnrollmentStatus
-     * @param autoProgramEnrollmentRole
-     *****************************************************************************/
-    public void copyStatusAndRoleAutoEnrollmentMapping(
-        String oldMappingName,
-        String newMappingName,
-        String autoProgramEnrollmentStatus,
-        String autoProgramEnrollmentRole
-    ) {
-        List<Affl_Mappings__c> affliliaitonMappingsToUpdateList = new List<Affl_Mappings__c>();
-
-        Affl_Mappings__c oldAfflSetting = Affl_Mappings__c.getInstance(oldMappingName);
-        oldAfflSetting.Auto_Program_Enrollment_Status__c = '';
-        oldAfflSetting.Auto_Program_Enrollment_Role__c = '';
-        oldAfflSetting.Auto_Program_Enrollment__c = false;
-        affliliaitonMappingsToUpdateList.add(oldAfflSetting);
-
-        Affl_Mappings__c newAfflSetting = Affl_Mappings__c.getInstance(newMappingName);
-        newAfflSetting.Auto_Program_Enrollment_Status__c = autoProgramEnrollmentStatus;
-        newAfflSetting.Auto_Program_Enrollment_Role__c = autoProgramEnrollmentRole;
-        newAfflSetting.Auto_Program_Enrollment__c = true;
-        affliliaitonMappingsToUpdateList.add(newAfflSetting);
-
-        update affliliaitonMappingsToUpdateList;
-    }
-
-    /*****************************************************************************
      * @description deletes an affiliation mapping record
      * @param affiliationMappingModel Model of an affiliation mappingto be deleted
      * @return A string representing the record type name associated with the deleted affiliation mapping
