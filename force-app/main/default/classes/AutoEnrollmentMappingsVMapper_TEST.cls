@@ -122,6 +122,25 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
     }
 
     /****************************************************************************************
+     * @description Test method to verify locatePicklistEntryService() returns an instance of
+     * the PicklistEntryService class.
+     ****************************************************************************************/
+    @isTest
+    private static void locatePicklistEntryServiceValid() {
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        PicklistEntryService picklistEntryServiceInstance = autoEnrollmentMappingsVMapperInstance.locatePicklistEntryService();
+        Test.stopTest();
+
+        System.assertEquals(
+            PicklistEntryService.getInstance(),
+            picklistEntryServiceInstance,
+            'Should return instance of PicklistEntryService class.'
+        );
+    }
+
+    /****************************************************************************************
      * @description Test method to verify getAutoEnrollmentMappingVModel()
      * returns an instance of AutoEnrollmentMappingVModel with account record type
      * corresponding to the matching model properties when matching models exists.
@@ -472,6 +491,204 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
         );
     }
 
+    /****************************************************************************************
+     * @description Test method to verify getComboboxVModelOptionsForActiveAccountRecordTypes()
+     * returns a list of ComboboxValueVModel with proper values
+     * when no record type is mapped to active auto enrollment.
+     ****************************************************************************************/
+    @isTest
+    private static void getComboboxVModelOptionsForActiveAccountRecordTypesAllUnmapped() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsServiceInactiveAutoEnrollment();
+        List<RecordTypeModel> activeAccountRecordTypeModelsList = new List<RecordTypeModel>{
+            new RecordTypeModel('000000000000000001', 'Record Type 1', 'Record_Type_1', true),
+            new RecordTypeModel('000000000000000002', 'Record Type 2', 'Record_Type_2', true)
+        };
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        List<ComboboxValueVModel> comboboxVModelOptionsForActiveAccountRecordTypes = autoEnrollmentMappingsVMapperInstance.getComboboxVModelOptionsForActiveAccountRecordTypes(
+            activeAccountRecordTypeModelsList
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            2,
+            comboboxVModelOptionsForActiveAccountRecordTypes.size(),
+            'The size of comboboxVModelOptionsForActiveAccountRecordTypes should be 2'
+        );
+        System.assertEquals(
+            'Record Type 1',
+            comboboxVModelOptionsForActiveAccountRecordTypes[0].label,
+            'The label of comboboxVModelOptionsForActiveAccountRecordTypes[0] should be Record Type 1'
+        );
+        System.assertEquals(
+            'Record_Type_1',
+            comboboxVModelOptionsForActiveAccountRecordTypes[0].value,
+            'The value of comboboxVModelOptionsForActiveAccountRecordTypes[0] should be Record_Type_1'
+        );
+        System.assertEquals(
+            'Record Type 2',
+            comboboxVModelOptionsForActiveAccountRecordTypes[1].label,
+            'The label of comboboxVModelOptionsForActiveAccountRecordTypes[1] should be Record Type 2'
+        );
+        System.assertEquals(
+            'Record_Type_2',
+            comboboxVModelOptionsForActiveAccountRecordTypes[1].value,
+            'The value of comboboxVModelOptionsForActiveAccountRecordTypes[1] should be Record_Type_2'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getComboboxVModelOptionsForActiveAccountRecordTypes()
+     * returns a empty list of ComboboxValueVModel with proper values
+     * when all record types are mapped to active auto enrollment.
+     ****************************************************************************************/
+    @isTest
+    private static void getComboboxVModelOptionsForActiveAccountRecordTypesAllMapped() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+        List<RecordTypeModel> activeAccountRecordTypeModelsList = new List<RecordTypeModel>{
+            new RecordTypeModel('000000000000000001', 'Record Type 1', 'Record_Type_1', true),
+            new RecordTypeModel('000000000000000002', 'Record Type 2', 'Record_Type_2', true)
+        };
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        List<ComboboxValueVModel> comboboxVModelOptionsForActiveAccountRecordTypes = autoEnrollmentMappingsVMapperInstance.getComboboxVModelOptionsForActiveAccountRecordTypes(
+            activeAccountRecordTypeModelsList
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            0,
+            comboboxVModelOptionsForActiveAccountRecordTypes.size(),
+            'The size of comboboxVModelOptionsForActiveAccountRecordTypes should be 0'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingStatusComboboxVModel()
+     * returns a ComboBoxVModel with proper values of picklist entries.
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingStatusComboboxVModelValid() {
+        PicklistEntryService.instance = new STUB_StatusPicklistEntryServiceValid();
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel autoEnrollmentMappingStatusCombobox = autoEnrollmentMappingsVMapperInstance.getAutoEnrollmentMappingStatusComboboxVModel(
+            'Status'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Status',
+            autoEnrollmentMappingStatusCombobox.value,
+            'The value of autoEnrollmentMappingStatusCombobox should be Status'
+        );
+        System.assertEquals(
+            'Test Status',
+            autoEnrollmentMappingStatusCombobox.options[0].label,
+            'The label of autoEnrollmentMappingStatusCombobox.options[0] should be Test Status'
+        );
+        System.assertEquals(
+            'Test_Status',
+            autoEnrollmentMappingStatusCombobox.options[0].value,
+            'The value of autoEnrollmentMappingStatusCombobox.options[0] should be Test_Status'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingStatusComboboxVModel()
+     * returns a ComboBoxVModel with no options when no valid picklist value entry is found.
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingStatusComboboxVModelInvalid() {
+        PicklistEntryService.instance = new STUB_StatusPicklistEntryServiceInvalid();
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel autoEnrollmentMappingStatusCombobox = autoEnrollmentMappingsVMapperInstance.getAutoEnrollmentMappingStatusComboboxVModel(
+            'Status'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Status',
+            autoEnrollmentMappingStatusCombobox.value,
+            'The value of autoEnrollmentMappingStatusCombobox should be Status'
+        );
+        System.assertEquals(
+            0,
+            autoEnrollmentMappingStatusCombobox.options.size(),
+            'The size of autoEnrollmentMappingStatusCombobox.options should be 0'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingRoleComboboxVModel()
+     * returns a ComboBoxVModel with proper values of picklist entries.
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingRoleComboboxVModelValid() {
+        PicklistEntryService.instance = new STUB_RolePicklistEntryServiceValid();
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel autoEnrollmentMappingRoleCombobox = autoEnrollmentMappingsVMapperInstance.getAutoEnrollmentMappingRoleComboboxVModel(
+            'Role'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Role',
+            autoEnrollmentMappingRoleCombobox.value,
+            'The value of autoEnrollmentMappingRoleCombobox should be Role'
+        );
+        System.assertEquals(
+            'Test Role',
+            autoEnrollmentMappingRoleCombobox.options[0].label,
+            'The label of autoEnrollmentMappingRoleCombobox.options[0] should be Test Role'
+        );
+        System.assertEquals(
+            'Test_Role',
+            autoEnrollmentMappingRoleCombobox.options[0].value,
+            'The value of autoEnrollmentMappingRoleCombobox.options[0] should be Test_Role'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingRoleComboboxVModel()
+     * returns a ComboBoxVModel with no options when no valid picklist value entry is found.
+     ****************************************************************************************/
+    @isTest
+    private static void getAutoEnrollmentMappingRoleComboboxVModelInvalid() {
+        PicklistEntryService.instance = new STUB_RolePicklistEntryServiceInvalid();
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel autoEnrollmentMappingRoleCombobox = autoEnrollmentMappingsVMapperInstance.getAutoEnrollmentMappingRoleComboboxVModel(
+            'Role'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Role',
+            autoEnrollmentMappingRoleCombobox.value,
+            'The value of autoEnrollmentMappingRoleCombobox should be Role'
+        );
+        System.assertEquals(
+            0,
+            autoEnrollmentMappingRoleCombobox.options.size(),
+            'The size of autoEnrollmentMappingRoleCombobox.options should be 0'
+        );
+    }
+
     /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
@@ -484,16 +701,16 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
             return new List<AffiliationMappingsModel>{
                 new AffiliationMappingsModel(
                     'Affiliation Name 1',
-                    'Record Type 1',
-                    'Contact Account Lookup Label 1',
+                    'Record_Type_1',
+                    'Contact_Account_Lookup_1',
                     true,
                     'autoProgramEnrollmentStatus1',
                     'autoProgramEnrollmentRole1'
                 ),
                 new AffiliationMappingsModel(
                     'Affiliation Name 2',
-                    'Record Type 2',
-                    'Contact Account Lookup Label 2',
+                    'Record_Type_2',
+                    'Contact_Account_Lookup_2',
                     true,
                     'autoProgramEnrollmentStatus2',
                     'autoProgramEnrollmentRole2'
@@ -510,16 +727,16 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
             return new List<AffiliationMappingsModel>{
                 new AffiliationMappingsModel(
                     'Affiliation Name 1',
-                    'Record Type 1',
-                    'Contact Account Lookup Label 1',
+                    'Record_Type_1',
+                    'Contact_Account_Lookup_1',
                     false,
                     'autoProgramEnrollmentStatus1',
                     'autoProgramEnrollmentRole1'
                 ),
                 new AffiliationMappingsModel(
                     'Affiliation Name 2',
-                    'Record Type 2',
-                    'Contact Account Lookup Label 2',
+                    'Record_Type_2',
+                    'Contact_Account_Lookup_2',
                     false,
                     'autoProgramEnrollmentStatus2',
                     'autoProgramEnrollmentRole2'
@@ -605,6 +822,62 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
             Map<String, RecordTypeModel> recordTypeModelByLabel
         ) {
             return null;
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses from PicklistEntryService
+     **************************************************************************************************************************************/
+    private class STUB_StatusPicklistEntryServiceValid extends PicklistEntryService {
+        public override Map<String, PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            return new Map<String, PicklistEntryModel>{
+                'Status' => new PicklistEntryModel('Test_Status', 'Test Status', true)
+            };
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate invalid responses from PicklistEntryService
+     **************************************************************************************************************************************/
+    private class STUB_StatusPicklistEntryServiceInvalid extends PicklistEntryService {
+        public override Map<String, PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            return new Map<String, PicklistEntryModel>{
+                'Status' => new PicklistEntryModel('Test_Status', 'Test Status', false)
+            };
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses from PicklistEntryService
+     **************************************************************************************************************************************/
+    private class STUB_RolePicklistEntryServiceValid extends PicklistEntryService {
+        public override Map<String, PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            return new Map<String, PicklistEntryModel>{
+                'Role' => new PicklistEntryModel('Test_Role', 'Test Role', true)
+            };
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate invalid responses from PicklistEntryService
+     **************************************************************************************************************************************/
+    private class STUB_RolePicklistEntryServiceInvalid extends PicklistEntryService {
+        public override Map<String, PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField SObjectFieldName
+        ) {
+            return new Map<String, PicklistEntryModel>{
+                'Role' => new PicklistEntryModel('Test_Role', 'Test Role', false)
+            };
         }
     }
 }

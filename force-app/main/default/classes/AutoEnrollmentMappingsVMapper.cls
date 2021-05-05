@@ -210,7 +210,10 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
         Map<String, PicklistEntryModel> statusPicklistEntryModelByName = this.locatePicklistEntryService()
             .getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Status__c);
 
-        for (PicklistEntryModel picklistEntryModel : statusPicklistEntryModelByName.values()) {
+        Map<String, PicklistEntryModel> activeStatusPicklistEntryModelByName = this.locatePicklistEntryService()
+            .getActivePicklistEntryModelsByName(statusPicklistEntryModelByName);
+
+        for (PicklistEntryModel picklistEntryModel : activeStatusPicklistEntryModelByName.values()) {
             comboboxOptions.add(new ComboboxValueVModel(picklistEntryModel.label, picklistEntryModel.name));
         }
 
@@ -229,7 +232,10 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
         Map<String, PicklistEntryModel> rolePicklistEntryModelByName = this.locatePicklistEntryService()
             .getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Role__c);
 
-        for (PicklistEntryModel picklistEntryModel : rolePicklistEntryModelByName.values()) {
+        Map<String, PicklistEntryModel> activeRolePicklistEntryModelByName = this.locatePicklistEntryService()
+            .getActivePicklistEntryModelsByName(rolePicklistEntryModelByName);
+
+        for (PicklistEntryModel picklistEntryModel : activeRolePicklistEntryModelByName.values()) {
             comboboxOptions.add(new ComboboxValueVModel(picklistEntryModel.label, picklistEntryModel.name));
         }
 
