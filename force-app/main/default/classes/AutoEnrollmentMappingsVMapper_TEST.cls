@@ -492,6 +492,96 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
     }
 
     /****************************************************************************************
+     * @description Test method to verify getAccountRecordTypeComboboxVModel()
+     * returns a ComboBoxVModel with proper values
+     * when no record type except the current one is mapped to active auto enrollment.
+     ****************************************************************************************/
+    @isTest
+    private static void getAccountRecordTypeComboboxVModelUnmapped() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsServiceMixAutoEnrollment();
+        RecordTypeService.instance = new STUB_RecordTypeServiceAccountRecordTypeCombobox();
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel accountRecordTypeComboboxVModel = autoEnrollmentMappingsVMapperInstance.getAccountRecordTypeComboboxVModel(
+            'Record_Type_1'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Record_Type_1',
+            accountRecordTypeComboboxVModel.value,
+            'The size of comboboxVModelOptionsForActiveAccountRecordTypes should be 2'
+        );
+        System.assertEquals(
+            2,
+            accountRecordTypeComboboxVModel.options.size(),
+            'The size of accountRecordTypeComboboxVModel.options should be 2'
+        );
+        System.assertEquals(
+            'Record Type 1',
+            accountRecordTypeComboboxVModel.options[0].label,
+            'The label of accountRecordTypeComboboxVModel.options[0] should be Record Type 1'
+        );
+        System.assertEquals(
+            'Record_Type_1',
+            accountRecordTypeComboboxVModel.options[0].value,
+            'The value of accountRecordTypeComboboxVModel.options[0] should be Record_Type_1'
+        );
+        System.assertEquals(
+            'Record Type 2',
+            accountRecordTypeComboboxVModel.options[1].label,
+            'The label of accountRecordTypeComboboxVModel.options[1] should be Record Type 2'
+        );
+        System.assertEquals(
+            'Record_Type_2',
+            accountRecordTypeComboboxVModel.options[1].value,
+            'The value of accountRecordTypeComboboxVModel.options[1] should be Record_Type_2'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAccountRecordTypeComboboxVModel()
+     * returns a ComboBoxVModel with proper values
+     * when all record types are mapped to active auto enrollment.
+     ****************************************************************************************/
+    @isTest
+    private static void getAccountRecordTypeComboboxVModelMapped() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+        RecordTypeService.instance = new STUB_RecordTypeServiceAccountRecordTypeCombobox();
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel accountRecordTypeComboboxVModel = autoEnrollmentMappingsVMapperInstance.getAccountRecordTypeComboboxVModel(
+            'Record_Type_1'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Record_Type_1',
+            accountRecordTypeComboboxVModel.value,
+            'The value of comboboxVModelOptionsForActiveAccountRecordTypes should be Record_Type_1'
+        );
+        System.assertEquals(
+            1,
+            accountRecordTypeComboboxVModel.options.size(),
+            'The size of accountRecordTypeComboboxVModel.options should be 1'
+        );
+        System.assertEquals(
+            'Record Type 1',
+            accountRecordTypeComboboxVModel.options[0].label,
+            'The label of accountRecordTypeComboboxVModel.options[0] should be Record Type 1'
+        );
+        System.assertEquals(
+            'Record_Type_1',
+            accountRecordTypeComboboxVModel.options[0].value,
+            'The value of accountRecordTypeComboboxVModel.options[0] should be Record_Type_1'
+        );
+    }
+
+    /****************************************************************************************
      * @description Test method to verify getComboboxVModelOptionsForActiveAccountRecordTypes()
      * returns a list of ComboboxValueVModel with proper values
      * when no record type is mapped to active auto enrollment.
@@ -746,6 +836,32 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
     }
 
     /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses from AffiliationMappingsService with inactive auto enrollment
+     **************************************************************************************************************************************/
+    private class STUB_AffiliationMappingsServiceMixAutoEnrollment extends AffiliationMappingsService {
+        public override List<AffiliationMappingsModel> getAffiliationMappingsModels() {
+            return new List<AffiliationMappingsModel>{
+                new AffiliationMappingsModel(
+                    'Affiliation Name 1',
+                    'Record_Type_1',
+                    'Contact_Account_Lookup_1',
+                    true,
+                    'autoProgramEnrollmentStatus1',
+                    'autoProgramEnrollmentRole1'
+                ),
+                new AffiliationMappingsModel(
+                    'Affiliation Name 2',
+                    'Record_Type_2',
+                    'Contact_Account_Lookup_2',
+                    false,
+                    'autoProgramEnrollmentStatus2',
+                    'autoProgramEnrollmentRole2'
+                )
+            };
+        }
+    }
+
+    /**************************************************************************************************************************************
      * @description Stub class to simulate valid responses from AffiliationMappingsService with empty auto enrollment
      **************************************************************************************************************************************/
     private class STUB_AffiliationMappingsServiceEmptyAutoEnrollment extends AffiliationMappingsService {
@@ -753,7 +869,7 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
             return new List<AffiliationMappingsModel>{
                 new AffiliationMappingsModel(
                     'Affiliation Name 1',
-                    'Record Type 1',
+                    'Record_Type_1',
                     'Contact Account Lookup Label 1',
                     true,
                     '',
@@ -761,7 +877,7 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
                 ),
                 new AffiliationMappingsModel(
                     'Affiliation Name 2',
-                    'Record Type 2',
+                    'Record_Type_2',
                     'Contact Account Lookup Label 2',
                     true,
                     '',
@@ -822,6 +938,36 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
             Map<String, RecordTypeModel> recordTypeModelByLabel
         ) {
             return null;
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses for account record type combobox
+     **************************************************************************************************************************************/
+    private class STUB_RecordTypeServiceAccountRecordTypeCombobox extends RecordTypeService {
+        public override Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
+            return new Map<Id, RecordTypeModel>{
+                '000000000000000001' => new RecordTypeModel(
+                    '000000000000000001',
+                    'Record Type 1',
+                    'Record_Type_1',
+                    true
+                ),
+                '000000000000000002' => new RecordTypeModel(
+                    '000000000000000002',
+                    'Record Type 2',
+                    'Record_Type_2',
+                    true
+                )
+            };
+        }
+
+        public override RecordTypeModel getRecordTypeModelFromNameAndLabelMaps(
+            String recordTypeNameOrLabel,
+            Map<String, RecordTypeModel> recordTypeModelByName,
+            Map<String, RecordTypeModel> recordTypeModelByLabel
+        ) {
+            return new RecordTypeModel('000000000000000001', 'Record Type 1', 'Record_Type_1', true);
         }
     }
 
