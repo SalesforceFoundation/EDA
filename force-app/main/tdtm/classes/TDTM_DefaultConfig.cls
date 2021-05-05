@@ -51,6 +51,11 @@ public without sharing class TDTM_DefaultConfig {
               Class__c = 'ACCT_IndividualAccounts_TDTM', Load_Order__c = 1.00, Object__c = 'Contact',
               Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate;AfterDelete'));
 
+        // Account Naming on Lead
+        handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
+              Class__c = 'RenameLeadConvertedAccounts_TDTM', Load_Order__c = 1.00, Object__c = 'Lead',
+              Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterUpdate'));
+
         //Supports changing or deleting Account in existing Affiliation
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
               Class__c = 'AFFL_AccChange_TDTM', Load_Order__c = 2, Object__c = 'Affiliation__c',
