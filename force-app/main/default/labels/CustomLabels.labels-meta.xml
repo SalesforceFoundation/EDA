@@ -1299,7 +1299,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Navigation section title for Courses and Enrollments</shortDescription>
+        <shortDescription>Navigation title for Courses and Enrollments</shortDescription>
         <value>Courses and Enrollments</value>
     </labels>
     <labels>
@@ -2779,16 +2779,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Subsection navigation title for Programs</shortDescription>
-        <value>Programs</value>
+        <shortDescription>Navigation title for Program Enrollments</shortDescription>
+        <value>Program Enrollments</value>
     </labels>
     <labels>
         <fullName>stgProgramsSettingsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Section title for Programs Settings</shortDescription>
-        <value>Programs Settings</value>
+        <shortDescription>Section title for Program Enrollment Settings</shortDescription>
+        <value>Program Enrollment Settings</value>
     </labels>
     <labels>
         <fullName>stgReciprocalMethodListSetting</fullName>
