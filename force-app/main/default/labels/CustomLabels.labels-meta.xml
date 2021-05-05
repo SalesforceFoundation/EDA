@@ -13,8 +13,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for deleting Affiliations related to deleted Program Enrollments</shortDescription>
-        <value>If selected, when deleting a Program Enrollment, delete its related Affiliation. Otherwise, keep the Affiliation and set its Status to the value defined in Status for Affiliations Not Deleted.</value>
+        <shortDescription>Description of the Affiliations Related to Deleted Program Enrollments setting</shortDescription>
+        <value>If an Affiliation is related to only one Program Enrollment and that Program Enrollment is deleted, also delete the Affiliation. If you don't enable this setting, select a Status for Affiliations Not Deleted.</value>
     </labels>
     <labels>
         <fullName>AttendanceCourseConnectionContactMismatch</fullName>
@@ -859,7 +859,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <shortDescription>Label for the Status for Affiliations Not Deleted setting</shortDescription>
         <value>Status for Affiliations Not Deleted</value>
     </labels>
     <labels>
@@ -883,8 +883,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliation Settings</shortDescription>
-        <value>Delete Related Affiliation When Deleting Program Enrollment</value>
+        <shortDescription>Label for the Affiliations Related to Deleted Program Enrollments setting</shortDescription>
+        <value>Affiliations Related to Deleted Program Enrollments</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflProgEnrollDeleteTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Program Enrollment Deletions</shortDescription>
+        <value>Program Enrollment Deletions</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollSetRole</fullName>
@@ -2355,8 +2363,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Affiliations status</shortDescription>
-        <value>The Status set on the Affiliation related to a deleted Program Enrollment.</value>
+        <shortDescription>Description of the Status for Affiliations Not Deleted setting</shortDescription>
+        <value>If you choose not to delete Affiliations when deleting their related Program Enrollments, select a status for the Affiliations. To leave the status of these Affiliations as is, select None.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflDeleteProgramEnrollmentHeader</fullName>
