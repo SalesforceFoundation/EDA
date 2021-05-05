@@ -653,7 +653,7 @@
         <name>stgCourseDescriptionCopyEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for Courses and Enrollments --></label>
+        <label><!-- Navigation title for Courses and Enrollments --></label>
         <name>stgCoursesAndEnrollmentsNav</name>
     </customLabels>
     <customLabels>
@@ -1377,11 +1377,11 @@
         <name>stgPreferredPhoneSelectionDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Subsection navigation title for Programs --></label>
+        <label><!-- Navigation title for Program Enrollments --></label>
         <name>stgProgramsSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Programs Settings --></label>
+        <label><!-- Section title for Program Enrollment Settings --></label>
         <name>stgProgramsSettingsTitle</name>
     </customLabels>
     <customLabels>
