@@ -2772,7 +2772,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Navigation title for Program Enrollments</shortDescription>
-        <value>Programs</value>
+        <value>Program Enrollments</value>
     </labels>
     <labels>
         <fullName>stgProgramsSettingsTitle</fullName>
@@ -2780,7 +2780,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Section title for Program Enrollment Settings</shortDescription>
-        <value>Programs Settings</value>
+        <value>Program Enrollment Settings</value>
     </labels>
     <labels>
         <fullName>stgReciprocalMethodListSetting</fullName>
