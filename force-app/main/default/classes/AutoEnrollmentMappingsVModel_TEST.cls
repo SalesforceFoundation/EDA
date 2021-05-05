@@ -63,8 +63,8 @@ private with sharing class AutoEnrollmentMappingsVModel_TEST {
         );
         System.assertEquals(
             'Test Mapping0',
-            programSettingsVModel.autoEnrollmentMappingVModels[0].accountRecordTypeName,
-            'Record Type name should be \'Test Mapping Name0\'.'
+            programSettingsVModel.autoEnrollmentMappingVModels[0].mappingName,
+            'Mapping name should be \'Test Mapping Name0\'.'
         );
         System.assertEquals(
             'Test Account Record Type Name0',
