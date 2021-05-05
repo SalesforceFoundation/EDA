@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from "lwc";
+import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramSettingsVModel";
 //labels
@@ -121,6 +121,10 @@ export default class programSettings extends LightningElement {
         );
     }
 
+    @api
+    handleSaveCanvasRender() {
+        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
+    }
     handleNewAutoEnrollmentMappingClick(event) {}
     handleAutoEnrollmentMappingRowAction(event) {}
 
