@@ -195,10 +195,6 @@ export default class programSettings extends LightningElement {
         );
     }
 
-    @api
-    handleSaveCanvasRender() {
-        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
-    }
     handleNewAutoEnrollmentMappingClick(event) {}
     handleAutoEnrollmentMappingRowAction(event) {}
 
