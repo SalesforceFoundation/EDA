@@ -46,11 +46,36 @@ public with sharing class ProgramSettingsController {
         }
     }
 
+    /********************************************************************************
+     * @description Retrieve a view model representing the Program Enrollment Deletion
+     * settings specified in Hierarchy Settings.
+     * @return A ProgramEnrollmentDeletionSettingsVModel.
+     ********************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static ProgramEnrollmentDeletionSettingsVModel getProgramEnrollmentDeletionSettingsVModel() {
+        try {
+            return ProgramSettingsController.locateProgramEnrollmentDeletionSettingsVMapper()
+                .getProgramEnrollmentDeletionSettingsVModel();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /**********************************************************************************
-     * @description Locates and returns an instance of AffiliationsSettingsVMapper.
+     * @description Locates and returns an instance of ProgramSettingsVMapper.
+     * @return An instance of ProgramSettingsVMapper
      **********************************************************************************/
     @TestVisible
     private static ProgramSettingsVMapper locateProgramSettingsVMapper() {
         return ProgramSettingsVMapper.getInstance();
+    }
+
+    /**********************************************************************************
+     * @description Locates and returns an instance of ProgramEnrollmentDeletionSettingsVMapper.
+     * @return An instance of ProgramEnrollmentDeletionSettingsVMapper
+     **********************************************************************************/
+    @TestVisible
+    private static ProgramEnrollmentDeletionSettingsVMapper locateProgramEnrollmentDeletionSettingsVMapper() {
+        return ProgramEnrollmentDeletionSettingsVMapper.getInstance();
     }
 }
