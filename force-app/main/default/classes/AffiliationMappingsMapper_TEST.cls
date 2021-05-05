@@ -224,52 +224,6 @@ public with sharing class AffiliationMappingsMapper_TEST {
         );
     }
 
-    /**************************************************************************************************************************
-     * @description Test method to verify that the updateAutoEnrollmentMapping method updates the auto enrollment on affiliation Mappings
-     ***************************************************************************************************************************/
-    @isTest
-    public static void updateAutoEnrollmentMappingValid() {
-        Affl_Mappings__c afflMapping = new Affl_Mappings__c(
-            Name = 'Household Account',
-            Account_Record_Type__c = 'HH_Account',
-            Primary_Affl_Field__c = 'Primary_Household__c',
-            Auto_Program_Enrollment__c = true,
-            Auto_Program_Enrollment_Status__c = 'Test_Status',
-            Auto_Program_Enrollment_Role__c = 'Test_Role'
-        );
-        insert afflMapping;
-
-        AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel(
-            'Household Account',
-            null,
-            null,
-            null,
-            'Test_Status2',
-            'Test_Role2'
-        );
-
-        Test.startTest();
-        AffiliationMappingsMapper.getInstance().updateAutoEnrollmentMapping(afflMappingModel);
-        Test.stopTest();
-
-        Affl_Mappings__c assertAfflMapping = Affl_Mappings__c.getInstance(afflMappingModel.name);
-        System.assertEquals(
-            'Household Account',
-            assertAfflMapping.name,
-            'Household account mapping should be retrieved'
-        );
-        System.assertEquals(
-            'Test_Status2',
-            assertAfflMapping.Auto_Program_Enrollment_Status__c,
-            'Auto_Program_Enrollment_Status__c should be changed to Test_Status2'
-        );
-        System.assertEquals(
-            'Test_Role2',
-            assertAfflMapping.Auto_Program_Enrollment_Role__c,
-            'Auto_Program_Enrollment_Role__c should be changed to Test_Role2'
-        );
-    }
-
     /*******************************************************************************************************
      * @description Test to verify deleteAffiliationMappingModel() deletes a specified affiliation mapping.
      *******************************************************************************************************/
