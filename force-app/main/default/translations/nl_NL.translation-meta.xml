@@ -9,7 +9,7 @@
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
-        <label>Indien geselecteerd, wordt bij het verwijderen van een programma-inschrijving ook de gerelateerde affiliatie verwijderd. In andere gevallen wordt de affiliatie behouden en wordt de status ervan ingesteld op de waarde die is gedefinieerd in Status voor niet-verwijderde affiliaties.</label>
+        <label><!-- Description of the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
@@ -433,7 +433,7 @@
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <label>Status voor niet-verwijderde affiliaties</label>
+        <label><!-- Label for the Status for Affiliations Not Deleted setting --></label>
         <name>stgAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
@@ -445,8 +445,12 @@
         <name>stgAfflNotInserted</name>
     </customLabels>
     <customLabels>
-        <label>Gerelateerde affiliatie verwijderen bij verwijderen programma-inschrijving</label>
+        <label><!-- Label for the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Program Enrollment Deletions --></label>
+        <name>stgAfflProgEnrollDeleteTitle</name>
     </customLabels>
     <customLabels>
         <label>Rol opgeven voor gemaakte affiliaties</label>
@@ -1165,7 +1169,7 @@
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label>De status die wordt ingesteld op de affiliatie die aan een verwijderde programma-inschrijving is gerelateerd.</label>
+        <label><!-- Description of the Status for Affiliations Not Deleted setting --></label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>

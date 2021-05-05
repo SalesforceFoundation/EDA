@@ -3,6 +3,8 @@ import { refreshApex } from "@salesforce/apex";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import getAutoEnrollmentMappingsVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingsVModel";
 import updateAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMappings";
+import getProgramEnrollmentDeletionSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramEnrollmentDeletionSettingsVModel";
+
 //custom labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
 import stgBtnEdit from "@salesforce/label/c.stgBtnEdit";
@@ -14,6 +16,12 @@ import stgColAutoEnrollmentStatus from "@salesforce/label/c.stgColAutoEnrollment
 import stgColAutoEnrollmentRole from "@salesforce/label/c.stgColAutoEnrollmentRole";
 import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
 import stgAutoEnrollmentEditSuccess from "@salesforce/label/c.stgAutoEnrollmentEditSuccess";
+import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollDeleteTitle";
+import stgAfflProgEnrollDeleteRelated from "@salesforce/label/c.stgAfflProgEnrollDeleteRelated";
+import AfflProgEnrollDeleted from "@salesforce/label/c.AfflProgEnrollDeleted";
+import stgAfflDeleteProgramEnrollment from "@salesforce/label/c.stgAfflDeleteProgramEnrollment";
+import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflDeleteProgramEnrollment";
+import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -21,9 +29,20 @@ export default class programSettings extends LightningElement {
     @track autoEnrollmentMappingsVModel;
     @track autoEnrollmentMappingsVModelWireResult;
 
+    @track programEnrollmentDeletionSettingsVModel;
+    @track programEnrollmentDeletionSettingsVModelWireResult;
+    @track showProgramEnrollmentDeletionStatus;
+
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
         newButton: stgBtnAddMapping,
+        programEnrollmentDeletionHeading: stgAfflProgEnrollDeleteTitle,
+        programEnrollmentDeletionSettingTitle: stgAfflProgEnrollDeleteRelated,
+        programEnrollmentDeletionSettingDescription: AfflProgEnrollDeleted,
+        programEnrollmentDeletionStatusSettingTitle: stgAfflDeleteProgramEnrollment,
+        programEnrollmentDeletionStatusSettingDescription: stgHelpAfflDeleteProgramEnrollment,
+        comboboxPlaceholderText: stgOptSelect,
+
         autoEnrollmentMappingsTable: {
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
             autoEnrollmentMappingsDescription: autoEnrollmentMappingsDescription,
@@ -36,7 +55,10 @@ export default class programSettings extends LightningElement {
         editSuccessMessage: stgAutoEnrollmentEditSuccess,
     };
 
-    inputAttributeReference = {};
+    inputAttributeReference = {
+        programEnrollmentDeletionToggleId: "programEnrollmentDeletions",
+        programEnrollmentDeletionStatusComboboxId: "programEnrollmentDeletionStatus",
+    };
 
     get affordancesDisabled() {
         if (!this.isEditMode || this.affordancesDisabledToggle === true) {
@@ -53,6 +75,26 @@ export default class programSettings extends LightningElement {
             this.autoEnrollmentMappingsVModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving preferredContactInfoSettingsVModel");
+        }
+    }
+
+    @api
+    handleSaveCanvasRender() {
+        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
+    }
+
+    @wire(getProgramEnrollmentDeletionSettingsVModel)
+    programEnrollmentDeletionSettingsVModelWire(result) {
+        this.programEnrollmentDeletionSettingsVModelWireResult = result;
+
+        if (result.data) {
+            this.programEnrollmentDeletionSettingsVModel = result.data;
+
+            // program enrollment deletion status visibility dependent on program enrollment deletion setting
+            this.showProgramEnrollmentDeletionStatus = !this.programEnrollmentDeletionSettingsVModel
+                .programEnrollmentDeletion;
+        } else if (result.error) {
+            console.log("error retrieving ProgramEnrollmentDeletionSettingsVModel");
         }
     }
 
@@ -107,8 +149,40 @@ export default class programSettings extends LightningElement {
         this.refreshAllApex();
     }
 
+    handleProgramEnrollmentDeletionChange(event) {
+        const eventDetail = event.detail;
+
+        // display program enrollment deletion status setting if program enrollment deletion disabled
+        this.showProgramEnrollmentDeletionStatus = !eventDetail.value;
+
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Affl_ProgEnroll_Del__c",
+            settingsValue: eventDetail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleProgramEnrollmentDeletionStatusChange(event) {
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Affl_ProgEnroll_Del_Status__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
     refreshAllApex() {
-        Promise.all([refreshApex(this.autoEnrollmentMappingsVModelWireResult)]).then(() => {
+        Promise.all([
+            refreshApex(this.autoEnrollmentMappingsVModelWireResult),
+            refreshApex(this.programSettingsVModelWireResult),
+            refreshApex(this.programEnrollmentDeletionSettingsVModelWireResult),
+        ]).then(() => {
+            this.showProgramEnrollmentDeletionStatus = !this.programEnrollmentDeletionSettingsVModel
+                .programEnrollmentDeletion;
+
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });
@@ -123,10 +197,6 @@ export default class programSettings extends LightningElement {
         );
     }
 
-    @api
-    handleSaveCanvasRender() {
-        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
-    }
     handleNewAutoEnrollmentMappingClick(event) {}
 
     handleAutoEnrollmentMappingRowAction(event) {
