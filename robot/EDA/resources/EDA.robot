@@ -119,6 +119,26 @@ Get Records Count
     &{Id} =                 Get From List  ${result['records']}  0
     [return]                ${Id}[expr0]
 
+Get Custom Settings Value
+    [Documentation]         Returns the value of the field in hierarch settings by accepting the
+    ...                     name of the value as a parameter
+    ${NS} =                 Get EDA namespace prefix
+    [Arguments]             ${field_name}
+    ${result} =             SOQL Query
+    ...                     SELECT ${NS}${field_name} FROM ${NS}Hierarchy_Settings__c
+    &{Id} =                 Get From List  ${result['records']}  0
+    [return]                ${Id}[${NS}${field_name}]
+
+Get Record Type Id
+    [Documentation]         Returns the Id of the record type by accepting the name of the record
+    ...                     type and sObject type
+    ${NS} =                 Get EDA namespace prefix
+    [Arguments]             ${sObject_name}             ${record_type_name}
+    ${result} =             SOQL Query
+    ...                     SELECT Id FROM RecordType WHERE SobjectType = '${sObject_name}' AND Name = '${record_type_name}'
+    &{Id} =                 Get From List  ${result['records']}  0
+    [return]                ${Id}[Id]
+
 Get Language Field Value
     [Documentation]         Returns the value of a field in language object by accepting the field
     ...                     name , record ID and object name
