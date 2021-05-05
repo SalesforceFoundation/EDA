@@ -1157,7 +1157,7 @@
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label>Der für eine Zugehörigkeit festgelegte Status in Bezug zu einer gelöschten Programmregistrierung.</label>
+        <label><!-- Description of the Status for Affiliations Not Deleted setting --></label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>

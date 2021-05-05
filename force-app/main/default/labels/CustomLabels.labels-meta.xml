@@ -2332,7 +2332,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Status for Affiliations Not Deleted setting</shortDescription>
-        <value>The Status set on the Affiliation related to a deleted Program Enrollment.</value>
+        <value>If you choose not to delete Affiliations when deleting their related Program Enrollments, select a status for the Affiliations. To leave the status of these Affiliations as is, select None.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflDeleteProgramEnrollmentHeader</fullName>

@@ -1157,7 +1157,7 @@
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label>削除されたプログラム登録に関連する所属に対して設定される状況。</label>
+        <label><!-- Description of the Status for Affiliations Not Deleted setting --></label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>

@@ -1157,7 +1157,7 @@
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label>El Estado establecido en la afiliación relacionada con una inscripción de programa eliminada.</label>
+        <label><!-- Description of the Status for Affiliations Not Deleted setting --></label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
