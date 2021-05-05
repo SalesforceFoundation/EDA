@@ -131,6 +131,64 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /****************************************************************************************
+     * @description Test method to verify getAccountRecordTypeComboboxVModelValid()
+     * returns an instance of ComboBoxVModel with valid values from valid stub.
+     ****************************************************************************************/
+    @isTest
+    private static void getAccountRecordTypeComboboxVModelValid() {
+        AutoEnrollmentMappingsVMapper.instance = new STUB_AutoEnrollmentMappingsVMapperValid();
+
+        Test.startTest();
+        ComboBoxVModel accountRecordTypeComboboxVModel = ProgramSettingsController.getAccountRecordTypeComboboxVModel(
+            'Record_Type_1'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Record_Type_1',
+            accountRecordTypeComboboxVModel.value,
+            'The value of accountRecordTypeComboboxVModel should be Record_Type_1'
+        );
+
+        System.assertEquals(
+            1,
+            accountRecordTypeComboboxVModel.options.size(),
+            'The size of accountRecordTypeComboboxVModel options should be 1'
+        );
+
+        System.assertEquals(
+            'Record_Type_1',
+            accountRecordTypeComboboxVModel.options[0].value,
+            'The value of accountRecordTypeComboboxVModel option 1 should be Record_Type_1'
+        );
+
+        System.assertEquals(
+            'Record Type 1',
+            accountRecordTypeComboboxVModel.options[0].label,
+            'The label of accountRecordTypeComboboxVModel option 1 should be Record Type 1'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAccountRecordTypeComboboxVModel()
+     * throws an exception when exception occurs.
+     ****************************************************************************************/
+    @isTest
+    private static void getAccountRecordTypeComboboxVModelException() {
+        AutoEnrollmentMappingsVMapper.instance = new STUB_ExceptionAutoEnrollmentMappingsVMapper();
+        try {
+            Test.startTest();
+            ComboBoxVModel accountRecordTypeComboboxVModel = ProgramSettingsController.getAccountRecordTypeComboboxVModel(
+                'Record_Type_1'
+            );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /****************************************************************************************
      * @description Test method to verify getAutoEnrollmentMappingStatusComboboxVModel()
      * returns an instance of ComboBoxVModel with valid values from valid stub.
      ****************************************************************************************/
@@ -275,6 +333,12 @@ private with sharing class ProgramSettingsController_TEST {
                 )
             );
             return new AutoEnrollmentMappingsVModel(autoEnrollmentMappingVModelsList);
+        }
+
+        public override ComboBoxVModel getAccountRecordTypeComboboxVModel(String accountRecordType) {
+            List<ComboboxValueVModel> comboboxOptions = new List<ComboboxValueVModel>();
+            comboboxOptions.add(new ComboboxValueVModel('Record Type 1', 'Record_Type_1'));
+            return new ComboBoxVModel('Record_Type_1', comboboxOptions);
         }
 
         public override ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(
