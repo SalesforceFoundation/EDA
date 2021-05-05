@@ -364,6 +364,10 @@ private with sharing class ProgramSettingsController_TEST {
             throw new TestException('Exception encountered!');
         }
 
+        public override ComboBoxVModel getAccountRecordTypeComboboxVModel(String accountRecordType) {
+            throw new TestException('Exception encountered!');
+        }
+
         public override ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(
             String autoProgramEnrollmentStatus
         ) {

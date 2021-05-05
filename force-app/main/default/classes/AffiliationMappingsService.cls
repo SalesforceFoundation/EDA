@@ -118,8 +118,8 @@ public virtual with sharing class AffiliationMappingsService {
             List<Affl_Mappings__c> affliliaitonMappingsToUpdateList = new List<Affl_Mappings__c>();
 
             Affl_Mappings__c oldAfflSetting = Affl_Mappings__c.getInstance(mappingName);
-            oldAfflSetting.Auto_Program_Enrollment_Status__c = '';
-            oldAfflSetting.Auto_Program_Enrollment_Role__c = '';
+            oldAfflSetting.Auto_Program_Enrollment_Status__c = null;
+            oldAfflSetting.Auto_Program_Enrollment_Role__c = null;
             oldAfflSetting.Auto_Program_Enrollment__c = false;
             affliliaitonMappingsToUpdateList.add(oldAfflSetting);
 
