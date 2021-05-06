@@ -48,6 +48,22 @@ public with sharing class VersionCleanupBatchJobController {
         }
     }
 
+    /************************************************************************************
+     * @description Calls VersionCleanupBatchJobService and returns true if the Copy Course
+     * Description batch job runs successfully else throws an error
+     * @return Boolean True if the batch job runs successfully
+     ************************************************************************************/
+    @AuraEnabled
+    public static Boolean runCourseDescriptionCopyBatchJob() {
+        try {
+            Boolean batchJobSuccessful = VersionCleanupBatchJobController.locateVersionCleanUpBatchJobService()
+                .runCourseDescriptionCopyBatchJob();
+            return batchJobSuccessful;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /**********************************************************************************
      * @description Locates and returns an instance of VersionCleanupBatchJobService.
      **********************************************************************************/

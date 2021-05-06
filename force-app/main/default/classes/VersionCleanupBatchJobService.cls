@@ -82,4 +82,28 @@ public virtual with sharing class VersionCleanupBatchJobService {
         Id jobId = Database.executeBatch(ethnicityAndRaceBatch, 200);
         return jobId;
     }
+
+    /**********************************************************************************
+     * @description Runs the Administrative Account Naming Job
+     * @return Boolean True is success, else throws an error
+     **********************************************************************************/
+    public virtual Boolean runCourseDescriptionCopyBatchJob() {
+        COUR_DescriptionCopy_BATCH copyCourseDescription = new COUR_DescriptionCopy_BATCH();
+        Id jobId = this.runCourseDescriptionCopyBatch(copyCourseDescription);
+        if (jobId == null) {
+            throw new AuraHandledException(Label.BatchJobRunningProblem);
+        } else {
+            return true;
+        }
+    }
+
+    /**********************************************************************************
+     * @description Runs the CourseDescriptionBatch Job
+     * @return Id The batch job id for the COUR_DescriptionCopy_BATCH
+     **********************************************************************************/
+    @TestVisible
+    private virtual Id runCourseDescriptionCopyBatch(COUR_DescriptionCopy_BATCH copyCourseDescriptionBatch) {
+        Id jobId = Database.executeBatch(copyCourseDescriptionBatch, 200);
+        return jobId;
+    }
 }

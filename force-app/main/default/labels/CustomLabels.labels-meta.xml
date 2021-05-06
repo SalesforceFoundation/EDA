@@ -1115,8 +1115,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for Courses Settings</shortDescription>
-        <value>Run Copy</value>
+        <shortDescription>Button label for updating the selected Apex job</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRunCopyA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates Course Descriptions</shortDescription>
+        <value>Update the Extended Description field on Course records to use text from the Description field.</value>
     </labels>
     <labels>
         <fullName>stgBtnSave</fullName>
@@ -1293,6 +1301,22 @@
         <protected>true</protected>
         <shortDescription>Success message for Course Connection backfill</shortDescription>
         <value>The backfill was queued successfully.</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseDataMigrationModalTitle</fullName>
+        <categories>Courses</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update Extended Description field confirmation window</shortDescription>
+        <value>Update the Extended Description field?</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseDataMigrationModalBody</fullName>
+        <categories>Courses</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update Extended Description field confirmation window</shortDescription>
+        <value>Copies text from the Description field to the Extended Description field on Course records. Existing Extended Description values won't be overwritten. Update page layouts and other references to the Description field after this update.</value>
     </labels>
     <labels>
         <fullName>stgCourseDescriptionCopyEmailBody</fullName>
@@ -2443,8 +2467,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Confirmation msg for Run Copy button on Courses</shortDescription>
-        <value>The process was queued successfully. An email will be sent at the completion of the job.</value>
+        <shortDescription>Confirmation message when the Extended Description field is queued for update</shortDescription>
+        <value>We&apos;re updating the Extended Description field. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgHelpCourseConnBackfillDescription</fullName>
@@ -2459,8 +2483,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Courses description field data migration</shortDescription>
-        <value>In EDA 1.30, the Extended Description field was added to accommodate longer course descriptions.</value>
+        <shortDescription>Description of the Extended Course Descriptions setting</shortDescription>
+        <value>Copies text from the Description field on Course records to the Extended Description field to accommodate longer course descriptions.</value>
     </labels>
     <labels>
         <fullName>stgHelpCoursesDataMigrationCopiesValues</fullName>
@@ -3172,8 +3196,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Title of info text for Course description data migration</shortDescription>
-        <value>Courses: Description Data Migration</value>
+        <shortDescription>Label for the Extended Course Descriptions setting</shortDescription>
+        <value>Extended Course Descriptions</value>
     </labels>
     <labels>
         <fullName>stgTitleHEDAConfig</fullName>
