@@ -1,22 +1,7 @@
 <template>
         <ul class="slds-grid">
             <li class="slds-grid slds-grid_vertical slds-size_4-of-12">
-                    <template for:each={newEDCSettingsModels} for:item="edcSettingsModel">
-                        <div class="slds-col slds-p-left_large slds-p-top_large" key={edcSettingsModel.Id}>
-                            <lightning-card title={edcSettingsModel.masterLabel}>
-                                <div class="slds-grid slds-grid_vertical slds-wrap">
-                                    <div class="slds-col">{edcSettingsModel.description}</div>
-                                    <div class="slds-col slds-align_absolute-center">
-                                        <lightning-button
-                                            label="Manage Settings"
-                                            title="Manage Settings"
-                                            data-component-name={edcSettingsModel.componentName}
-                                            onclick={handleNavigationClick}
-                                        ></lightning-button>
-                                    </div>
-                                </div>
-                            </lightning-card>
-                        </div>
+                    <template for:each={edcSettingsModels} for:item="edcSettingsModel">
                     </template>
                 </div>
 

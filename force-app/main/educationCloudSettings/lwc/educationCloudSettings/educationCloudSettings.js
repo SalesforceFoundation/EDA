@@ -1,7 +1,6 @@
 import { LightningElement, track } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
-//import getEDCSettingsModels from "@salesforce/apex/EDCSettingsController.getEDCSettingsModels";
-export default class EdcSettings extends NavigationMixin(LightningElement) {
+export default class EducationCloudSettings extends NavigationMixin(LightningElement) {
     @track edcSettingsModels = [
         {
             title: "Education Data Architecture",
