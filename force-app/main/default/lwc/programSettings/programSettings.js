@@ -197,7 +197,23 @@ export default class programSettings extends LightningElement {
         );
     }
 
-    handleNewAutoEnrollmentMappingClick(event) {}
+    handleNewAutoEnrollmentMappingClick(event) {
+        const autoEnrollmentNewDetail = {
+            actionName: "create",
+            mappingName: "",
+            accountRecordType: "",
+            autoProgramEnrollmentStatus: "",
+            autoProgramEnrollmentRole: "",
+        };
+
+        const autoEnrollmentModalRequestEvent = new CustomEvent("autoenrollmentmodalrequest", {
+            detail: autoEnrollmentNewDetail,
+            bubbles: true,
+            composed: true,
+        });
+
+        this.dispatchEvent(autoEnrollmentModalRequestEvent);
+    }
 
     handleAutoEnrollmentMappingRowAction(event) {
         const actionName = event.detail.action.name;
@@ -214,20 +230,18 @@ export default class programSettings extends LightningElement {
             autoProgramEnrollmentRole: actionRow.autoProgramEnrollmentRole,
         };
 
-        const autoEnrollmentEditModalRequestEvent = new CustomEvent("autoenrollmenteditmodalrequest", {
+        const autoEnrollmentModalRequestEvent = new CustomEvent("autoenrollmentmodalrequest", {
             detail: autoEnrollmentEditDetail,
             bubbles: true,
             composed: true,
         });
 
-        this.dispatchEvent(autoEnrollmentEditModalRequestEvent);
+        this.dispatchEvent(autoEnrollmentModalRequestEvent);
     }
 
     @api modalSave(saveModel) {
         switch (saveModel.action) {
-            /*case "create":
-                this.insertAffiliations(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
-                break;*/
+            case "create":
             case "edit":
                 this.updateAutoEnrollmentMappings(
                     saveModel.mappingName,
