@@ -40,7 +40,6 @@ import stgAfflProgEnrollDeleteRelated from "@salesforce/label/c.stgAfflProgEnrol
 import AfflProgEnrollDeleted from "@salesforce/label/c.AfflProgEnrollDeleted";
 import stgAfflDeleteProgramEnrollment from "@salesforce/label/c.stgAfflDeleteProgramEnrollment";
 import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflDeleteProgramEnrollment";
-import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
