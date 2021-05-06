@@ -60,7 +60,8 @@ public virtual with sharing class VersionCleanupBatchJobService {
     }
 
     /**********************************************************************************
-     * @description Runs the Administrative Account Naming Job
+     * @description Calls the runEthnicityAndRaceBackfillBatch method which inturn runs
+     * CON_EthnicityRace_BATCH job
      * @return Boolean True is success, else throws an error
      **********************************************************************************/
     public virtual Boolean runEthnicityAndRaceBackfillJob() {
@@ -74,7 +75,8 @@ public virtual with sharing class VersionCleanupBatchJobService {
     }
 
     /**********************************************************************************
-     * @description Runs the EthnicityAndRaceBackfill Job
+     * @description Calls the runCourseDescriptionCopyBatchJob which inturn runs
+     * COUR_DescriptionCopy_BATCH job.
      * @return Id The batch job id for the CON_EthnicityRace_BATCH
      **********************************************************************************/
     @TestVisible
@@ -84,7 +86,7 @@ public virtual with sharing class VersionCleanupBatchJobService {
     }
 
     /**********************************************************************************
-     * @description Runs the Administrative Account Naming Job
+     * @description Runs the COUR_DescriptionCopy_BATCH Job
      * @return Boolean True is success, else throws an error
      **********************************************************************************/
     public virtual Boolean runCourseDescriptionCopyBatchJob() {

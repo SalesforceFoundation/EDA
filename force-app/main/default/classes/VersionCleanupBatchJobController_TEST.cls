@@ -130,7 +130,7 @@ private with sharing class VersionCleanupBatchJobController_TEST {
     }
 
     /**************************************************************************************************************************************************
-     * @description Stub class to simulate the response from VersionCleanupBatchJobService to return a true for runEthnicityAndRaceBackfillJob method .
+     * @description Stub class to simulate the response from VersionCleanupBatchJobService to return a true for runCourseDescriptionCopyBatchJob method .
      **************************************************************************************************************************************************/
     private class STUB_CopyCourseDescriptionJobServiceValid extends VersionCleanupBatchJobService {
         public override Boolean runCourseDescriptionCopyBatchJob() {
@@ -139,7 +139,7 @@ private with sharing class VersionCleanupBatchJobController_TEST {
     }
 
     /***************************************************************************************************************************************************
-     * @description Stub class to simulate the response from VersionCleanupBatchJobService to throw an error for runEthnicityAndRaceBackfillJob method
+     * @description Stub class to simulate the response from VersionCleanupBatchJobService to throw an error for runCourseDescriptionCopyBatchJob method
      ***************************************************************************************************************************************************/
     private class STUB_CopyCourseDescriptionJobServiceInvalid extends VersionCleanupBatchJobService {
         public override Boolean runCourseDescriptionCopyBatchJob() {
