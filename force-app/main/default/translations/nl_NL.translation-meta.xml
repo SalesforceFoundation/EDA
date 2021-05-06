@@ -425,11 +425,11 @@
         <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Einddatum affiliatie uit programma-inschrijving kopiëren</label>
+        <label><!-- Label for the Affiliation End Date setting --></label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>Begindatum affiliatie uit programma-inschrijving kopiëren</label>
+        <label><!-- Label for the Affiliation Start Date setting --></label>
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -447,6 +447,10 @@
     <customLabels>
         <label><!-- Label for the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Affiliations Created with Program Enrollments --></label>
+        <name>stgAfflProgramEnrollmentSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Section title for Program Enrollment Deletions --></label>
@@ -1141,11 +1145,11 @@
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label>Indien geselecteerd, wordt de einddatum voor de programma-inschrijving gekopieerd naar de einddatum op nieuwe affiliatierecords. In andere gevallen blijft de einddatum voor de affiliatie leeg.</label>
+        <label><!-- Description of the Affiliation End Date setting --></label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>Indien geselecteerd, wordt de begindatum voor de programma-inschrijving gekopieerd naar de begindatum op nieuwe affiliatierecords. In andere gevallen blijft de begindatum voor de affiliatie leeg.</label>
+        <label><!-- Description of the Affiliation Start Date setting --></label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -1173,11 +1177,11 @@
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label>De rol die wordt ingesteld op de affiliatie die bij een programma-inschrijving wordt gemaakt.</label>
+        <label><!-- Select a role for Affiliations created with Program Enrollments. --></label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label>De status die wordt ingesteld op de affiliatie die bij een programma-inschrijving wordt gemaakt.</label>
+        <label><!-- Description of the Status for Created Affiliations setting --></label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>

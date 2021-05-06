@@ -843,16 +843,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliation Settings</shortDescription>
-        <value>Copy Affiliation End Date from Program Enrollment</value>
+        <shortDescription>Label for the Affiliation End Date setting</shortDescription>
+        <value>Affiliation End Date</value>
     </labels>
     <labels>
         <fullName>stgAfflCopyProgramEnrollmentStartDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliation Settings</shortDescription>
-        <value>Copy Affiliation Start Date from Program Enrollment</value>
+        <shortDescription>Label for the Affiliation Start Date setting</shortDescription>
+        <value>Affiliation Start Date</value>
     </labels>
     <labels>
         <fullName>stgAfflDeleteProgramEnrollment</fullName>
@@ -887,6 +887,14 @@
         <value>Affiliations Related to Deleted Program Enrollments</value>
     </labels>
     <labels>
+        <fullName>stgAfflProgramEnrollmentSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Affiliations Created with Program Enrollments</shortDescription>
+        <value>Affiliations Created with Program Enrollments</value>
+    </labels>
+    <labels>
         <fullName>stgAfflProgEnrollDeleteTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -907,7 +915,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <shortDescription>Label for the Role for Created Affiliations setting</shortDescription>
         <value>Role for Created Affiliations</value>
     </labels>
     <labels>
@@ -915,7 +923,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <shortDescription>Label for the Status for Created Affiliations setting</shortDescription>
         <value>Status for Created Affiliations</value>
     </labels>
     <labels>
@@ -2299,16 +2307,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Affiliations Settings</shortDescription>
-        <value>If selected, the Program Enrollment End Date is copied to the End Date on new Affiliation records. Otherwise, the Affiliation End Date is left blank.</value>
+        <shortDescription>Description of the Affiliation End Date setting</shortDescription>
+        <value>Copy the End Date from Program Enrollment records to new Affiliation records. Otherwise, leave the field blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCopyProgramEnrollmentStartDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Affiliations Settings</shortDescription>
-        <value>If selected, the Program Enrollment Start Date is copied to the Start Date on new Affiliation records. Otherwise, the Affiliation Start Date is left blank.</value>
+        <shortDescription>Description of the Affiliation Start Date setting</shortDescription>
+        <value>Copy the Start Date from Program Enrollment records to new Affiliation records. Otherwise, leave the field blank. </value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCreateFromProgramEnrollmentHeader</fullName>
@@ -2363,16 +2371,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Affiliations role</shortDescription>
-        <value>The role set on the Affiliation created with a Program Enrollment.</value>
+        <shortDescription>Description of the Role for Created Affiliations setting</shortDescription>
+        <value>Select a role for Affiliations created with Program Enrollments.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflProgEnrollSetStatusValue</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Affiliations status</shortDescription>
-        <value>The status set on the Affiliation created with a Program Enrollment.</value>
+        <shortDescription>Description of the Status for Created Affiliations setting</shortDescription>
+        <value>Select a status for Affiliations created with Program Enrollments.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactAddrs</fullName>

@@ -417,7 +417,7 @@
         <name>stgAffiliationsNewSuccess</name>
     </customLabels>
     <customLabels>
-        <label>所属の終了日をプログラム登録からコピー</label>
+        <label><!-- Label for the Affiliation End Date setting --></label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
@@ -429,7 +429,7 @@
         <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>所属の開始日をプログラム登録からコピー</label>
+        <label><!-- Label for the Affiliation Start Date setting --></label>
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -447,6 +447,10 @@
     <customLabels>
         <label><!-- Label for the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Affiliations Created with Program Enrollments --></label>
+        <name>stgAfflProgramEnrollmentSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Section title for Program Enrollment Deletions --></label>
@@ -1141,11 +1145,11 @@
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label>選択した場合、プログラム登録の終了日が新しい所属レコードの終了日にコピーされます。選択しない場合、所属の終了日は空白のままになります。</label>
+        <label><!-- Description of the Affiliation End Date setting --></label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>選択した場合、プログラム登録の開始日が新しい所属レコードの開始日にコピーされます。選択しない場合、所属の開始日は空白のままになります。</label>
+        <label><!-- Description of the Affiliation Start Date setting --></label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -1173,11 +1177,11 @@
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label>プログラム登録で作成された所属に対して設定される役割。</label>
+        <label><!-- Select a role for Affiliations created with Program Enrollments. --></label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label>プログラム登録で作成された所属に対して設定される状況。</label>
+        <label><!-- Description of the Status for Created Affiliations setting --></label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>

@@ -425,11 +425,11 @@
         <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Copia la data de finalització de l’afiliació a la inscripció al programa</label>
+        <label><!-- Label for the Affiliation End Date setting --></label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>Copia la data d&apos;inici de l’afiliació a la inscripció al programa</label>
+        <label><!--Label for the Affiliation Start Date setting --></label>
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -455,6 +455,10 @@
     <customLabels>
         <label>Especifica la funció per a afiliacions creades</label>
         <name>stgAfflProgEnrollSetRole</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Affiliations Created with Program Enrollments --></label>
+        <name>stgAfflProgramEnrollmentSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Funció per a afiliacions creades</label>
@@ -1141,11 +1145,11 @@
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label>Si se selecciona, la data de finalització de la inscripció al programa es copia a la data de finalització en els nous registres d’afiliació. En cas contrari, la data de finalització de l’afiliació es deixa en blanc.</label>
+        <label><!-- Description of the Affiliation End Date setting --></label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>Si se selecciona, la data d&apos;inici de la inscripció al programa es copia a la data d&apos;inici en els nous registres d’afiliació. En cas contrari, la data d&apos;inici de l’afiliació es deixa en blanc.</label>
+        <label><!-- Description of the Affiliation Start Date setting --></label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -1173,11 +1177,11 @@
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label>La funció establerta a l’afiliació creada amb una inscripció de programa.</label>
+        <label><!-- Select a role for Affiliations created with Program Enrollments. --></label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label>L&apos;estat establert a l’afiliació creada amb una inscripció de programa.</label>
+        <label><!-- Description of the Status for Created Affiliations setting --></label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>

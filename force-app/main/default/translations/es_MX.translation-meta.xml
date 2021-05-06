@@ -425,11 +425,11 @@
         <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Copiar fecha de finalización de afiliación desde Inscripción de programa</label>
+        <label><!-- Label for the Affiliation End Date setting --></label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>Copiar fecha de inicio de afiliación desde Inscripción de programa</label>
+        <label><!-- Label for the Affiliation Start Date setting --></label>
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -447,6 +447,10 @@
     <customLabels>
         <label><!-- Label for the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Affiliations Created with Program Enrollments --></label>
+        <name>stgAfflProgramEnrollmentSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Section title for Program Enrollment Deletions --></label>
@@ -1141,11 +1145,11 @@
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label>Si se selecciona, la Fecha de finalización de Inscripción de programa se copia en la Fecha de finalización de nuevos registros Afiliación. En caso contrario, la Fecha de finalización de Afiliación se deja en blanco.</label>
+        <label><!-- Description of the Affiliation End Date setting --></label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>Si se selecciona, la Fecha de inicio de Inscripción de programa se copia en la Fecha de inicio de nuevos registros Afiliación. En caso contrario, la Fecha de inicio de Afiliación se deja en blanco.</label>
+        <label><!-- Description of the Affiliation Start Date setting --></label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -1173,11 +1177,11 @@
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label>La función establecida en la afiliación creada con una inscripción de programa.</label>
+        <label><!-- Select a role for Affiliations created with Program Enrollments. --></label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label>El estado establecido en la afiliación creada con una inscripción de programa.</label>
+        <label><!-- Description of the Status for Created Affiliations setting --></label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>

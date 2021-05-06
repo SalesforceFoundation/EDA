@@ -35,12 +35,72 @@
                     type="combobox"
                     input-id={inputAttributeReference.programEnrollmentDeletionStatusComboboxId}
                     value={programEnrollmentDeletionSettingsVModel.programEnrollmentDeletionStatus.value}
-                    placeholder={labelReference.comboboxPlaceholderText}
+                    placeholder={labelReference.placeholderText}
                     options={programEnrollmentDeletionSettingsVModel.programEnrollmentDeletionStatus.options}
                     onsettingsinputchange={handleProgramEnrollmentDeletionStatusChange}
                     disabled={affordancesDisabled}
                 ></c-settings-row-input>
             </template>
+        </template>
+        <template if:true={affiliationsWithProgramEnrollmentVModel}>
+            <!-- Affiliations created with Program Enrollment -->
+            <div class="slds-p-right_x-large slds-text-heading_small slds-p-top_x-large">
+                {labelReference.afflCreateFromPrgrmHeading}
+                <lightning-helptext content={labelReference.afflCreateFromPrgrmInfo}></lightning-helptext>
+            </div>
+            <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                <!-- Default Account Record Type Setting -->
+                <c-settings-row-input
+                    class="slds-size_3-of-3 slds-p-top_x-large"
+                    title={labelReference.afflProgEnrollSetRoleValue}
+                    description={labelReference.helpAfflProgEnrollSetRoleValue}
+                    type="combobox"
+                    input-id={inputAttributeReference.createdAfflRoleComboboxId}
+                    value={affiliationsWithProgramEnrollmentVModel.role.value}
+                    placeholder={labelReference.placeHolderText}
+                    options={affiliationsWithProgramEnrollmentVModel.role.options}
+                    onsettingsinputchange={handleRoleForCreatedAfflChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+
+                <c-settings-row-input
+                    class="slds-size_3-of-3"
+                    title={labelReference.afflProgEnrollSetStatusValue}
+                    description={labelReference.helpAfflProgEnrollSetStatusValue}
+                    type="combobox"
+                    input-id={inputAttributeReference.createdAfflStatusComboboxId}
+                    value={affiliationsWithProgramEnrollmentVModel.status.value}
+                    placeholder={labelReference.placeHolderText}
+                    options={affiliationsWithProgramEnrollmentVModel.status.options}
+                    onsettingsinputchange={handleStatusForCreatedAfflChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+                <c-settings-row-input
+                    class="slds-size_3-of-3"
+                    title={labelReference.afflCopyProgramEnrollmentEndDate}
+                    label={labelReference.afflCopyProgramEnrollmentEndDate}
+                    description={labelReference.helpAfflCopyProgramEnrollmentEndDate}
+                    type="toggle"
+                    input-id={inputAttributeReference.copyEndDateComboboxId}
+                    value={affiliationsWithProgramEnrollmentVModel.copyEndDate}
+                    checked={affiliationsWithProgramEnrollmentVModel.copyEndDate}
+                    onsettingsinputchange={handleCopyEndDateChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+
+                <c-settings-row-input
+                    class="slds-size_3-of-3"
+                    title={labelReference.afflCopyProgramEnrollmentStartDate}
+                    label={labelReference.afflCopyProgramEnrollmentStartDate}
+                    description={labelReference.helpAfflCopyProgramEnrollmentStartDate}
+                    type="toggle"
+                    input-id={inputAttributeReference.copyStartDateComboboxId}
+                    value={affiliationsWithProgramEnrollmentVModel.copyStartDate}
+                    checked={affiliationsWithProgramEnrollmentVModel.copyStartDate}
+                    onsettingsinputchange={handleCopyStartDateChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+            </div>
         </template>
 
         <!-- Auto Enrollment Mappings -->
