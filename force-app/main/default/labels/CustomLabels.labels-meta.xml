@@ -999,6 +999,14 @@
         <value>{0} auto-enrollment mapping was saved.</value>
     </labels>
     <labels>
+        <fullName>stgAutoEnrollmentModalAccountRecordTypeHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Info text for Account Record Type picklist</shortDescription>
+        <value>Only unmapped Account record types are available.</value>
+    </labels>
+    <labels>
         <fullName>stgAutoEnrollmentProgramDesc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
