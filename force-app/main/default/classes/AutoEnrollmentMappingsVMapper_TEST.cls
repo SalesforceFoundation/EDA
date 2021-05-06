@@ -598,7 +598,8 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
 
         Test.startTest();
         List<ComboboxValueVModel> comboboxVModelOptionsForActiveAccountRecordTypes = autoEnrollmentMappingsVMapperInstance.getComboboxVModelOptionsForActiveAccountRecordTypes(
-            activeAccountRecordTypeModelsList
+            activeAccountRecordTypeModelsList,
+            'Record_Type_1'
         );
         Test.stopTest();
 
@@ -646,12 +647,13 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
 
         Test.startTest();
         List<ComboboxValueVModel> comboboxVModelOptionsForActiveAccountRecordTypes = autoEnrollmentMappingsVMapperInstance.getComboboxVModelOptionsForActiveAccountRecordTypes(
-            activeAccountRecordTypeModelsList
+            activeAccountRecordTypeModelsList,
+            'Record_Type_1'
         );
         Test.stopTest();
 
         System.assertEquals(
-            0,
+            1,
             comboboxVModelOptionsForActiveAccountRecordTypes.size(),
             'The size of comboboxVModelOptionsForActiveAccountRecordTypes should be 0'
         );
