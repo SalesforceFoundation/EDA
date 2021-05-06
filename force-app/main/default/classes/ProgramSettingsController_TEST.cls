@@ -355,6 +355,155 @@ private with sharing class ProgramSettingsController_TEST {
         }
     }
 
+    /****************************************************************************************
+     * @description Test method to verify updateAutoEnrollmentMappings()
+     * updates auto enrollment on affiliation mappings when account record type passed are the same
+     ****************************************************************************************/
+    @isTest
+    private static void updateAutoEnrollmentMappingsSameAccountRecordType() {
+        List<Affl_Mappings__c> afflMappings = new List<Affl_Mappings__c>();
+        Affl_Mappings__c afflMapping1 = new Affl_Mappings__c(
+            Name = 'Test Affl Mapping 1',
+            Account_Record_Type__c = 'Record_Type_1',
+            Primary_Affl_Field__c = 'Primary_Field_1',
+            Auto_Program_Enrollment__c = true,
+            Auto_Program_Enrollment_Status__c = 'Test_Status_1',
+            Auto_Program_Enrollment_Role__c = 'Test_Role_1'
+        );
+        afflMappings.add(afflMapping1);
+        Affl_Mappings__c afflMapping2 = new Affl_Mappings__c(
+            Name = 'Test Affl Mapping 2',
+            Account_Record_Type__c = 'Record_Type_2',
+            Primary_Affl_Field__c = 'Primary_Field_2',
+            Auto_Program_Enrollment__c = true,
+            Auto_Program_Enrollment_Status__c = 'Test_Status_2',
+            Auto_Program_Enrollment_Role__c = 'Test_Role_2'
+        );
+        afflMappings.add(afflMapping2);
+        insert afflMappings;
+
+        Test.startTest();
+        String mappingName = ProgramSettingsController.updateAutoEnrollmentMappings(
+            'Test Affl Mapping 1',
+            'Record_Type_1',
+            'Record_Type_1',
+            'Test_Status_3',
+            'Test_Role_3'
+        );
+        Test.stopTest();
+
+        Affl_Mappings__c assertAfflMapping = Affl_Mappings__c.getInstance('Test Affl Mapping 1');
+        System.assertEquals('Test Affl Mapping 1', assertAfflMapping.name, 'Test Affl Mapping 1 should be retrieved');
+        System.assertEquals(
+            'Test_Status_3',
+            assertAfflMapping.Auto_Program_Enrollment_Status__c,
+            'Auto_Program_Enrollment_Status__c should be changed to Test_Status_3'
+        );
+        System.assertEquals(
+            'Test_Role_3',
+            assertAfflMapping.Auto_Program_Enrollment_Role__c,
+            'Auto_Program_Enrollment_Role__c should be changed to Test_Role_3'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify updateAutoEnrollmentMappings()
+     * updates auto enrollment on affiliation mappings when account record type passed are different
+     ****************************************************************************************/
+    @isTest
+    private static void updateAutoEnrollmentMappingsDifferentAccountRecordType() {
+        List<Affl_Mappings__c> afflMappings = new List<Affl_Mappings__c>();
+        Affl_Mappings__c afflMapping1 = new Affl_Mappings__c(
+            Name = 'Test Affl Mapping 1',
+            Account_Record_Type__c = 'Record_Type_1',
+            Primary_Affl_Field__c = 'Primary_Field_1',
+            Auto_Program_Enrollment__c = true,
+            Auto_Program_Enrollment_Status__c = 'Test_Status_1',
+            Auto_Program_Enrollment_Role__c = 'Test_Role_1'
+        );
+        afflMappings.add(afflMapping1);
+        Affl_Mappings__c afflMapping2 = new Affl_Mappings__c(
+            Name = 'Test Affl Mapping 2',
+            Account_Record_Type__c = 'Record_Type_2',
+            Primary_Affl_Field__c = 'Primary_Field_2',
+            Auto_Program_Enrollment__c = true,
+            Auto_Program_Enrollment_Status__c = 'Test_Status_2',
+            Auto_Program_Enrollment_Role__c = 'Test_Role_2'
+        );
+        afflMappings.add(afflMapping2);
+        insert afflMappings;
+
+        Test.startTest();
+        String mappingName = ProgramSettingsController.updateAutoEnrollmentMappings(
+            'Test Affl Mapping 1',
+            'Record_Type_1',
+            'Record_Type_2',
+            'Test_Status_3',
+            'Test_Role_3'
+        );
+        Test.stopTest();
+
+        Affl_Mappings__c assertAfflMapping1 = Affl_Mappings__c.getInstance('Test Affl Mapping 1');
+        System.assertEquals('Test Affl Mapping 1', assertAfflMapping1.name, 'Test Affl Mapping 1 should be retrieved');
+        System.assertEquals(
+            false,
+            assertAfflMapping1.Auto_Program_Enrollment__c,
+            'Auto_Program_Enrollment__c should be false'
+        );
+        System.assertEquals(
+            null,
+            assertAfflMapping1.Auto_Program_Enrollment_Status__c,
+            'Auto_Program_Enrollment_Status__c should be empty'
+        );
+        System.assertEquals(
+            null,
+            assertAfflMapping1.Auto_Program_Enrollment_Role__c,
+            'Auto_Program_Enrollment_Role__c should be empty'
+        );
+
+        Affl_Mappings__c assertAfflMapping2 = Affl_Mappings__c.getInstance('Test Affl Mapping 2');
+        System.assertEquals('Test Affl Mapping 2', assertAfflMapping2.name, 'Test Affl Mapping 2 should be retrieved');
+        System.assertEquals(
+            true,
+            assertAfflMapping2.Auto_Program_Enrollment__c,
+            'Auto_Program_Enrollment__c should be true'
+        );
+        System.assertEquals(
+            'Test_Status_3',
+            assertAfflMapping2.Auto_Program_Enrollment_Status__c,
+            'Auto_Program_Enrollment_Status__c should be changed to Test_Status_3'
+        );
+        System.assertEquals(
+            'Test_Role_3',
+            assertAfflMapping2.Auto_Program_Enrollment_Role__c,
+            'Auto_Program_Enrollment_Role__c should be changed to Test_Role_3'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify updateAutoEnrollmentMappings()
+     * when exception occurs
+     ****************************************************************************************/
+    @isTest
+    private static void updateAutoEnrollmentMappingsException() {
+        AffiliationMappingsService.instance = new STUB_ExceptionAffiliationMappingsService();
+
+        try {
+            Test.startTest();
+            String mappingName = ProgramSettingsController.updateAutoEnrollmentMappings(
+                'Test Affl Mapping 1',
+                'Record_Type_1',
+                'Record_Type_2',
+                'Test_Status_3',
+                'Test_Role_3'
+            );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
     /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
@@ -451,6 +600,20 @@ private with sharing class ProgramSettingsController_TEST {
         }
     }
 
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate exception responses from AffiliationMappingsService
+     **************************************************************************************************************************************/
+    private class STUB_ExceptionAffiliationMappingsService extends AffiliationMappingsService {
+        public override void updateAutoEnrollmentMappings(
+            String mappingName,
+            String oldAccountRecordType,
+            String newAccountRecordType,
+            String autoProgramEnrollmentStatus,
+            String autoProgramEnrollmentRole
+        ) {
+            throw new TestException('Exception encountered!');
+        }
+    }
     /**************************************************************************************************************************************
      * @description Stub class to simulate exception responses from ProgramEnrollmentDeletionSettingsVMapper
      **************************************************************************************************************************************/

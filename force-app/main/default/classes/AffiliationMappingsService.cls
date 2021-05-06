@@ -104,7 +104,7 @@ public virtual with sharing class AffiliationMappingsService {
     /*****************************************************************************
      * @description Checks user permissions and update the auto enrollment mapppings.
      *****************************************************************************/
-    public void updateAutoEnrollmentMappings(
+    public virtual void updateAutoEnrollmentMappings(
         String mappingName,
         String oldAccountRecordType,
         String newAccountRecordType,
