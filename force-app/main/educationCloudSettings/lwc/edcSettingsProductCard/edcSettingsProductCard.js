@@ -2,11 +2,12 @@ import { LightningElement, api } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 
 export default class EdcSettingsCard extends NavigationMixin(LightningElement) {
+    iconSize = "medium";
+
     //Avatar
-    @api iconSrc = "/bad/image/url.jpg";
-    @api iconSize = "medium";
-    @api iconInitials = "EDA";
-    @api iconFallbackName = "standard:avatar";
+    @api iconSrc;
+    @api iconInitials;
+    @api iconFallbackName;
 
     //Body
     @api title;

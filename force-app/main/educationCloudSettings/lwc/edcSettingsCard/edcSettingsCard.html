@@ -1,0 +1,21 @@
+<template>
+    <lightning-card>
+        <!-- Card Header -->
+        <h3 slot="title" id="cardTitle">
+            <div class="slds-grid">
+                <div class="slds-col slds-align-bottom slds-var-p-left_small slds-text-body_large">{title}</div>
+            </div>
+        </h3>
+        <div class="slds-grid slds-grid_vertical">
+            <div class="slds-col slds-var-p-left_small" if:true={description}><p>{description}</p></div>
+            <div class="slds-col slds-var-p-left_small">
+                <lightning-button
+                    label={buttonLabel}
+                    title={buttonTitle}
+                    aria-described-by="cardTitle"
+                    onclick={handleNavigationClick}
+                ></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>
