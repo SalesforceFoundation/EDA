@@ -1,3 +1,3 @@
 <aura:component implements="force:appHostable" access="global" controller="EDCSettingsController">
-    <c:edcSettings />
+    <c:educationCloudSettings />
 </aura:component>
