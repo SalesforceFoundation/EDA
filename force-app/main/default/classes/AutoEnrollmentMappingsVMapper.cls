@@ -157,10 +157,12 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
             comboboxValues.add(new ComboboxValueVModel(accountRecordType, accountRecordType));
         } else {
             comboboxValue = recordTypeModel.developerName;
-            comboboxValues.add(new ComboboxValueVModel(recordTypeModel.name, recordTypeModel.developerName));
         }
         comboboxValues.addAll(
-            this.getComboboxVModelOptionsForActiveAccountRecordTypes(accRecordTypeModelsById.values())
+            this.getComboboxVModelOptionsForActiveAccountRecordTypes(
+                accRecordTypeModelsById.values(),
+                accountRecordType
+            )
         );
 
         return new ComboboxVModel(comboboxValue, comboboxValues);
@@ -173,14 +175,18 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
      **********************************************************************************************************************/
     @TestVisible
     private List<ComboboxValueVModel> getComboboxVModelOptionsForActiveAccountRecordTypes(
-        List<RecordTypeModel> activeAccountRecordTypeModelsList
+        List<RecordTypeModel> activeAccountRecordTypeModelsList,
+        String accountRecordType
     ) {
         List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = new List<ComboboxValueVModel>();
         List<AffiliationMappingsModel> affiliationMappingsModels = this.locateAffiliationMappingsService()
             .getAffiliationMappingsModels();
         Set<String> accountRecordTypesWithAffiliationMapping = new Set<String>();
         for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModels) {
-            if (affiliationMappingsModel.autoProgramEnrollment == false) {
+            if (
+                affiliationMappingsModel.autoProgramEnrollment == false ||
+                affiliationMappingsModel.accountRecordTypeFieldValue == accountRecordType
+            ) {
                 accountRecordTypesWithAffiliationMapping.add(affiliationMappingsModel.accountRecordTypeFieldValue);
             }
         }

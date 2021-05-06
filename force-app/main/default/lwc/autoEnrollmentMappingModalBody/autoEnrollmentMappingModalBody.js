@@ -14,7 +14,8 @@ import getAutoEnrollmentMappingRoleComboboxVModel from "@salesforce/apex/Program
 
 export default class autoEnrollmentMappingModalBody extends LightningElement {
     @api actionName;
-    @api accountRecordType;
+    @api oldAccountRecordType;
+    @api newAccountRecordType;
     @api autoProgramEnrollmentStatus;
     @api autoProgramEnrollmentRole;
 
@@ -44,7 +45,7 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     };
 
     @wire(getAccountRecordTypeComboboxVModel, {
-        accountRecordType: "$accountRecordType",
+        accountRecordType: "$oldAccountRecordType",
     })
     accountRecordTypeComboboxVModelWire(result) {
         this.accountRecordTypeComboboxWireResult = result;
