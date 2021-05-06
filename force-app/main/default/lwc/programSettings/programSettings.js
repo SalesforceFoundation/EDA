@@ -2,8 +2,9 @@ import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import getAutoEnrollmentMappingsVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingsVModel";
-import updateAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMappings";
 import getProgramEnrollmentDeletionSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramEnrollmentDeletionSettingsVModel";
+import updateAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMappings";
+import createAutoEnrollmentMapping from "@salesforce/apex/ProgramSettingsController.createAutoEnrollmentMapping";
 
 //custom labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
@@ -242,6 +243,12 @@ export default class programSettings extends LightningElement {
     @api modalSave(saveModel) {
         switch (saveModel.action) {
             case "create":
+                this.createAutoEnrollmentMapping(
+                    saveModel.accountRecordType,
+                    saveModel.autoProgramEnrollmentStatus,
+                    saveModel.autoProgramEnrollmentRole
+                );
+                break;
             case "edit":
                 this.updateAutoEnrollmentMappings(
                     saveModel.mappingName,
@@ -268,6 +275,26 @@ export default class programSettings extends LightningElement {
             mappingName: mappingName,
             oldAccountRecordType: oldAccountRecordType,
             newAccountRecordType: newAccountRecordType,
+            autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
+            autoProgramEnrollmentRole: autoProgramEnrollmentRole,
+        })
+            .then((result) => {
+                this.showToast(
+                    "success",
+                    "Update Complete",
+                    this.labelReference.editSuccessMessage.replace("{0}", result)
+                );
+            })
+
+            .catch((error) => {
+                // console.log('Inside error');
+            });
+        this.refreshAllApex();
+    }
+
+    createAutoEnrollmentMapping(accountRecordType, autoProgramEnrollmentStatus, autoProgramEnrollmentRole) {
+        createAutoEnrollmentMapping({
+            accountRecordType: accountRecordType,
             autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
             autoProgramEnrollmentRole: autoProgramEnrollmentRole,
         })

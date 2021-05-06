@@ -102,6 +102,36 @@ public virtual with sharing class AffiliationMappingsService {
     }
 
     /*****************************************************************************
+     * @description Checks user permissions and create the auto enrollment mappping.
+     *****************************************************************************/
+    public String createAutoEnrollmentMapping(
+        String accountRecordType,
+        String autoProgramEnrollmentStatus,
+        String autoProgramEnrollmentRole
+    ) {
+        String updatedMappingName = '';
+
+        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+
+        List<AffiliationMappingsModel> afflMappingModels = this.locateAffiliationMappingsMapper()
+            .getAffiliationMappingsModel();
+
+        for (AffiliationMappingsModel afflMappingModel : afflMappingModels) {
+            if (afflMappingModel.accountRecordTypeFieldValue == accountRecordType) {
+                Affl_Mappings__c newAfflSetting = Affl_Mappings__c.getInstance(afflMappingModel.name);
+                newAfflSetting.Auto_Program_Enrollment_Status__c = autoProgramEnrollmentStatus;
+                newAfflSetting.Auto_Program_Enrollment_Role__c = autoProgramEnrollmentRole;
+                newAfflSetting.Auto_Program_Enrollment__c = true;
+                update newAfflSetting;
+                updatedMappingName = afflMappingModel.name;
+                break;
+            }
+        }
+
+        return updatedMappingName;
+    }
+
+    /*****************************************************************************
      * @description Checks user permissions and update the auto enrollment mapppings.
      *****************************************************************************/
     public void updateAutoEnrollmentMappings(
