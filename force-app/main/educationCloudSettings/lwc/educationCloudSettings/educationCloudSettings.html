@@ -1,12 +1,11 @@
 <template>
-        <ul class="slds-grid">
-            <li class="slds-col slds-size_4-of-12">
-                <h2>Products</h2>
-                <ul class="slds-grid slds-grid_vertical">
-                    <template for:each={edcSettingsModels} for:item="edcSettingsModel">
-                        <li key={edcSettingsModel.title}
-                        class="slds-col">
-                            <c-edc-settings-product-card
+    <ul class="slds-grid">
+        <li class="slds-col slds-size_4-of-12">
+            <h2>Products</h2>
+            <ul class="slds-grid slds-grid_vertical">
+                <template for:each={edcSettingsModels} for:item="edcSettingsModel">
+                    <li key={edcSettingsModel.title} class="slds-col">
+                        <c-edc-settings-product-card
                             title={edcSettingsModel.title}
                             description={edcSettingsModel.description}
                             icon-src={edcSettingsModel.iconSrc}
@@ -16,25 +15,24 @@
                             settings-component={edcSettingsModel.settingsComponent}
                             documentation-url={edcSettingsModel.documentationUrl}
                             trailhead-url={edcSettingsModel.trailheadUrl}
-                            ></c-edc-settings-product-card>
-                        </li>
-                    </template>
-                </ul>
-            </li>
-            <li class="slds-col slds-size_4-of-12">
-                <h2>Services</h2>
-                <ul class="slds-grid slds-grid_vertical">
-                    <li class="slds-col">Health Check</li>
-                </ul>
-            </li>
-            <li class="slds-col slds-size_4-of-12">
-                Resources
-                <ul class="slds-grid slds-grid_vertical">
-                    <li class="slds-col">Trailhead</li>
-                    <li class="slds-col">Trailblazer Community</li>
-                    <li class="slds-col">Youtube</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+                        ></c-edc-settings-product-card>
+                    </li>
+                </template>
+            </ul>
+        </li>
+        <li class="slds-col slds-size_4-of-12">
+            <h2>Services</h2>
+            <ul class="slds-grid slds-grid_vertical">
+                <li class="slds-col">Health Check</li>
+            </ul>
+        </li>
+        <li class="slds-col slds-size_4-of-12">
+            Resources
+            <ul class="slds-grid slds-grid_vertical">
+                <li class="slds-col">Trailhead</li>
+                <li class="slds-col">Trailblazer Community</li>
+                <li class="slds-col">Youtube</li>
+            </ul>
+        </li>
+    </ul>
 </template>

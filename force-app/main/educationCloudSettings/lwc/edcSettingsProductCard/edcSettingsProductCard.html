@@ -12,7 +12,7 @@
                         aria-hidden="true"
                     ></lightning-avatar>
                 </div>
-                <div class="slds-col slds-align-bottom slds-var-p-left_small slds-text-body_large">{description}</div>
+                <div class="slds-col slds-align-bottom slds-var-p-left_small slds-text-body_large">{title}</div>
             </div>
         </h3>
         <div class="slds-grid slds-grid_vertical">
@@ -20,18 +20,21 @@
             <div class="slds-col slds-var-p-left_small">
                 <lightning-button-group>
                     <lightning-button
-                        label={settingsButton}
-                        title={settingsButtonA11y}
+                        if:true={settingsComponent}
+                        label={labelReference.settingsButton}
+                        title={labelReference.settingsButtonA11y}
                         onclick={handleSettingsClick}
                     ></lightning-button>
                     <lightning-button
-                        label={documentationButton}
-                        title={documentationButtonA11y}
+                        if:true={documentationUrl}
+                        label={labelReference.documentationButton}
+                        title={labelReference.documentationButtonA11y}
                         onclick={handleDocumentationClick}
                     ></lightning-button>
                     <lightning-button
-                        label={trailheadButton}
-                        title={trailheadButtonA11y}
+                        if:true={trailheadUrl}
+                        label={labelReference.trailheadButton}
+                        title={labelReference.trailheadButtonA11y}
                         onclick={handleTrailheadClick}
                     ></lightning-button>
                 </lightning-button-group>
