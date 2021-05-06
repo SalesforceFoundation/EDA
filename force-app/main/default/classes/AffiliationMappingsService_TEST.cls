@@ -420,6 +420,58 @@ public with sharing class AffiliationMappingsService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify that the createAutoEnrollmentMapping method updates the auto enrollment on affiliation Mappings
+     ***************************************************************************************************************************/
+    @isTest
+    public static void createAutoEnrollmentMappingValid() {
+        List<Affl_Mappings__c> afflMappings = new List<Affl_Mappings__c>();
+        Affl_Mappings__c afflMapping1 = new Affl_Mappings__c(
+            Name = 'Test Affl Mapping 1',
+            Account_Record_Type__c = 'Record_Type_1',
+            Primary_Affl_Field__c = 'Primary_Field_1',
+            Auto_Program_Enrollment__c = false,
+            Auto_Program_Enrollment_Status__c = null,
+            Auto_Program_Enrollment_Role__c = null
+        );
+        afflMappings.add(afflMapping1);
+        Affl_Mappings__c afflMapping2 = new Affl_Mappings__c(
+            Name = 'Test Affl Mapping 2',
+            Account_Record_Type__c = 'Record_Type_2',
+            Primary_Affl_Field__c = 'Primary_Field_2',
+            Auto_Program_Enrollment__c = false,
+            Auto_Program_Enrollment_Status__c = null,
+            Auto_Program_Enrollment_Role__c = null
+        );
+        afflMappings.add(afflMapping2);
+        insert afflMappings;
+
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+
+        Test.startTest();
+        AffiliationMappingsService.getInstance()
+            .createAutoEnrollmentMapping('Record_Type_1', 'Test_Status_3', 'Test_Role_3');
+        Test.stopTest();
+
+        Affl_Mappings__c assertAfflMapping = Affl_Mappings__c.getInstance('Test Affl Mapping 1');
+        System.assertEquals('Test Affl Mapping 1', assertAfflMapping.name, 'Test Affl Mapping 1 should be retrieved');
+        System.assertEquals(
+            true,
+            assertAfflMapping.Auto_Program_Enrollment__c,
+            'Auto_Program_Enrollment__c should be true'
+        );
+        System.assertEquals(
+            'Test_Status_3',
+            assertAfflMapping.Auto_Program_Enrollment_Status__c,
+            'Auto_Program_Enrollment_Status__c should be changed to Test_Status_3'
+        );
+        System.assertEquals(
+            'Test_Role_3',
+            assertAfflMapping.Auto_Program_Enrollment_Role__c,
+            'Auto_Program_Enrollment_Role__c should be changed to Test_Role_3'
+        );
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify deleteAffiliationMapping deletes a specified affiliation mapping when it exists.
      **************************************************************************************************************************/
     @isTest

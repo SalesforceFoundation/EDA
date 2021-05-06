@@ -355,6 +355,42 @@ private with sharing class ProgramSettingsController_TEST {
         }
     }
 
+    /****************************************************************************************
+     * @description Test method to verify createAutoEnrollmentMapping()
+     * updates the auto enrollment on affiliation Mappings
+     ****************************************************************************************/
+    @isTest
+    private static void createAutoEnrollmentMappingValid() {
+        AutoEnrollmentMappingsVMapper.instance = new STUB_AutoEnrollmentMappingsVMapperValid();
+
+        Test.startTest();
+        String mappingName = ProgramSettingsController.createAutoEnrollmentMapping(
+            'Record_Type_1',
+            'autoProgramEnrollmentStatus3',
+            'autoProgramEnrollmentRole3'
+        );
+        Test.stopTest();
+
+        Affl_Mappings__c assertAfflMapping = Affl_Mappings__c.getInstance('Mapping 1');
+        System.assertEquals('Mapping 1', mappingNamee, 'mappingName should be Mapping 1');
+        System.assertEquals('Mapping 1', assertAfflMapping.name, 'Mapping 1 should be retrieved');
+        System.assertEquals(
+            true,
+            assertAfflMapping.Auto_Program_Enrollment__c,
+            'Auto_Program_Enrollment__c should be true'
+        );
+        System.assertEquals(
+            'Test_Status_3',
+            assertAfflMapping.Auto_Program_Enrollment_Status__c,
+            'Auto_Program_Enrollment_Status__c should be changed to Test_Status_3'
+        );
+        System.assertEquals(
+            'Test_Role_3',
+            assertAfflMapping.Auto_Program_Enrollment_Role__c,
+            'Auto_Program_Enrollment_Role__c should be changed to Test_Role_3'
+        );
+    }
+
     /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
