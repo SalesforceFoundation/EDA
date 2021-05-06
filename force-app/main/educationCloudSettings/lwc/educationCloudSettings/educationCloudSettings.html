@@ -1,14 +1,39 @@
 <template>
         <ul class="slds-grid">
-            <li class="slds-grid slds-grid_vertical slds-size_4-of-12">
+            <li class="slds-col slds-size_4-of-12">
+                <h2>Products</h2>
+                <ul class="slds-grid slds-grid_vertical">
                     <template for:each={edcSettingsModels} for:item="edcSettingsModel">
+                        <li key={edcSettingsModel.title}
+                        class="slds-col">
+                            <c-edc-settings-product-card
+                            title={edcSettingsModel.title}
+                            description={edcSettingsModel.description}
+                            icon-src={edcSettingsModel.iconSrc}
+                            icon-size={edcSettingsModel.iconSize}
+                            icon-initials={edcSettingsModel.iconInitials}
+                            icon-fallback-name={edcSettingsModel.iconFallbackName}
+                            settings-component={edcSettingsModel.settingsComponent}
+                            documentation-url={edcSettingsModel.documentationUrl}
+                            trailhead-url={edcSettingsModel.trailheadUrl}
+                            ></c-edc-settings-product-card>
+                        </li>
                     </template>
-                </div>
-
-                <!-- giant box for landing, todo: component-->
-                <div class="slds-grid slds-grid_vertical slds-size_8-of-12 slds-m-left_large slds-theme_default">
-                    <div class="slds-box_large">box</div>
-                </div>
+                </ul>
+            </li>
+            <li class="slds-col slds-size_4-of-12">
+                <h2>Services</h2>
+                <ul class="slds-grid slds-grid_vertical">
+                    <li class="slds-col">Health Check</li>
+                </ul>
+            </li>
+            <li class="slds-col slds-size_4-of-12">
+                Resources
+                <ul class="slds-grid slds-grid_vertical">
+                    <li class="slds-col">Trailhead</li>
+                    <li class="slds-col">Trailblazer Community</li>
+                    <li class="slds-col">Youtube</li>
+                </ul>
             </li>
         </ul>
     </div>

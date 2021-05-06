@@ -1,4 +1,4 @@
-import { LightningElement } from "lwc";
+import { LightningElement, api } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 
 export default class EdcSettingsCard extends LightningElement {
