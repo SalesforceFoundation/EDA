@@ -67,7 +67,7 @@ public virtual with sharing class AffiliationsWithProgramEnrollmentVMapper {
         AffiliationsWithProgramEnrollmentModel currentAffiliationsWithProgramEnrollmentModel = this.locateAffiliationsWithProgramEnrollmentService()
             .getAffiliationsWithProgramEnrollmentModel();
 
-        // Get the comboboxvmodel for role
+        /***** Get the comboboxvmodel for role *****/
         Map<String, PicklistEntryModel> allAffiliationRolePicklistEntryModelsByName = this.locatePicklistEntryService()
             .getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Role__c);
 
@@ -85,12 +85,17 @@ public virtual with sharing class AffiliationsWithProgramEnrollmentVMapper {
             );
         }
 
+        String roleToDispaly = currentAffiliationsWithProgramEnrollmentModel.role;
+        if (currentAffiliationsWithProgramEnrollmentModel.specifyRole == false) {
+            roleToDispaly = '""';
+        }
+
         ComboboxVModel affiliationRoleComboboxVModel = new ComboboxVModel(
-            currentAffiliationsWithProgramEnrollmentModel.role,
+            roleToDispaly,
             affiliationRoleComboboxValueVModelsList
         );
 
-        // Get the comboboxvmodel for status
+        /***** Get the comboboxvmodel for status *****/
         Map<String, PicklistEntryModel> allAffiliationStatusPicklistEntryModelsByName = this.locatePicklistEntryService()
             .getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Status__c);
 

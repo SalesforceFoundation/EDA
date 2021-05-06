@@ -1,5 +1,6 @@
 import { LightningElement, api, track } from "lwc";
 import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
+
 //Account Model Settings Labels
 import stgAccountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
 import stgAccModelTitle from "@salesforce/label/c.stgAccModelTitle";
@@ -35,6 +36,9 @@ import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollD
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
 import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
+import stgRefreshAdminAcctNameTitle from "@salesforce/label/c.stgRefreshAdminAcctNameTitle";
+import stgRefreshHHAcctNameTitle from "@salesforce/label/c.stgRefreshHHAcctNameTitle";
+import stgPreferredEmailDataCleanup from "@salesforce/label/c.stgPreferredEmailDataCleanup";
 //Error Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
@@ -107,10 +111,10 @@ export default class EdaSettingsNavigation extends LightningElement {
             courseConnectionBackfill: "Course Connection Backfill",
             courseDescriptionMigration: "Course Description Migration",
             ethnicityAndRaceBackfill: "Ethnicity and Race Backfill",
-            preferredEmailCleanup: "Preferred Email and Phone Cleanup",
+            preferredEmailCleanup: stgPreferredEmailDataCleanup,
             systemToolsNav: stgSystemToolsNav,
-            refreshAdministrativeAccountNames: "Refresh Administrative Account Names",
-            refreshHouseholdAccountNames: "Refresh Household Account Names",
+            refreshAdministrativeAccountNames: stgRefreshAdminAcctNameTitle,
+            refreshHouseholdAccountNames: stgRefreshHHAcctNameTitle,
         },
     };
 

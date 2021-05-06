@@ -140,9 +140,62 @@ private with sharing class AffiliationsWithPrgrmEnrolVMapr_TEST {
         Test.stopTest();
 
         System.assertEquals(
+            '""',
+            affiliationsWithProgramEnrollmentVModel.role.value,
+            'Role should be null in vmodel since secify role is false.'
+        );
+
+        System.assertEquals(
+            3,
+            affiliationsWithProgramEnrollmentVModel.role.options.size(),
+            'Should only include active Statuses and None as Affiliations With Program Enrollment Role options.'
+        );
+
+        System.assertEquals(
+            'Test Active Status 2',
+            affiliationsWithProgramEnrollmentVModel.status.value,
+            'Selected Affiliations With Program Enrollment Status should match value in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            3,
+            affiliationsWithProgramEnrollmentVModel.status.options.size(),
+            'Should only include active Statuses and None as Affiliations With Program Enrollment Status options.'
+        );
+
+        System.assertEquals(
+            false,
+            affiliationsWithProgramEnrollmentVModel.copyEndDate,
+            'Affiliations With Program Enrollment end date should not be enabled.'
+        );
+
+        System.assertEquals(
+            false,
+            affiliationsWithProgramEnrollmentVModel.copyStartDate,
+            'Affiliations With Program Enrollment start date should not be enabled.'
+        );
+    }
+
+    /************************************************************************************************************************************
+     * @description Test method to verify getAffiliationsWithProgramEnrollmentVModel returns a AffiliationsWithProgramEnrollmentVModel
+     * corresponding to the Program Enrollment Deletion settings specified in Hierarchy Settings and active Status picklist options for
+     * Affiliations.
+     ************************************************************************************************************************************/
+    @isTest
+    private static void getAffiliationsWithProgramEnrollmentVModelValidWithSpecifyRoleTrue() {
+        PicklistEntryService.instance = new STUB_PicklistEntryService();
+        AffiliationsWithProgramEnrollmentService.instance = new STUB_AffiliationsWithProgramEnrollmentServiceSpecifyRole();
+
+        AffiliationsWithProgramEnrollmentVMapper affiliationsWithProgramEnrollmentVMapperInstance = AffiliationsWithProgramEnrollmentVMapper.getInstance();
+
+        Test.startTest();
+        AffiliationsWithProgramEnrollmentVModel affiliationsWithProgramEnrollmentVModel = affiliationsWithProgramEnrollmentVMapperInstance.getAffiliationsWithProgramEnrollmentVModel();
+        Test.stopTest();
+
+        System.assertEquals(
             'Test Active Status 1',
             affiliationsWithProgramEnrollmentVModel.role.value,
-            'Selected Affiliations With Program Enrollment role should match value in hierarchy settings.'
+            'Role should be null in vmodel since secify role is false.'
         );
 
         System.assertEquals(
@@ -207,6 +260,21 @@ private with sharing class AffiliationsWithPrgrmEnrolVMapr_TEST {
         public override AffiliationsWithProgramEnrollmentModel getAffiliationsWithProgramEnrollmentModel() {
             return new AffiliationsWithProgramEnrollmentModel(
                 false,
+                'Test Active Status 1',
+                'Test Active Status 2',
+                false,
+                false
+            );
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from AffiliationsWithProgramEnrollmentService to return a valid respose
+     **************************************************************************************************************************************/
+    private class STUB_AffiliationsWithProgramEnrollmentServiceSpecifyRole extends AffiliationsWithProgramEnrollmentService {
+        public override AffiliationsWithProgramEnrollmentModel getAffiliationsWithProgramEnrollmentModel() {
+            return new AffiliationsWithProgramEnrollmentModel(
+                true,
                 'Test Active Status 1',
                 'Test Active Status 2',
                 false,

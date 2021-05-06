@@ -6,6 +6,42 @@
         onsettingssavecancel={handleSettingsSaveCancel}
         onsettingssavecompleted={handleSettingsSaveCompleted}
     >
+        <template if:true={programEnrollmentDeletionSettingsVModel}>
+            <!-- Program Enrollment Deletion -->
+            <div class="slds-p-right_x-large slds-text-heading_small slds-p-bottom_medium">
+                {labelReference.programEnrollmentDeletionHeading}
+                <lightning-helptext
+                    content={labelReference.programEnrollmentDeletionStatusSettingDescription}
+                ></lightning-helptext>
+            </div>
+            <c-settings-row-input
+                class="slds-size_3-of-3"
+                title={labelReference.programEnrollmentDeletionSettingTitle}
+                description={labelReference.programEnrollmentDeletionSettingDescription}
+                type="toggle"
+                input-id={inputAttributeReference.programEnrollmentDeletionToggleId}
+                value={programEnrollmentDeletionSettingsVModel.programEnrollmentDeletion}
+                checked={programEnrollmentDeletionSettingsVModel.programEnrollmentDeletion}
+                onsettingsinputchange={handleProgramEnrollmentDeletionChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+
+            <template if:true={showProgramEnrollmentDeletionStatus}>
+                <!-- Program Enrollment Deletion Status -->
+                <c-settings-row-input
+                    class="slds-size_3-of-3 slds-p-left_x-large"
+                    title={labelReference.programEnrollmentDeletionStatusSettingTitle}
+                    description={labelReference.programEnrollmentDeletionStatusSettingDescription}
+                    type="combobox"
+                    input-id={inputAttributeReference.programEnrollmentDeletionStatusComboboxId}
+                    value={programEnrollmentDeletionSettingsVModel.programEnrollmentDeletionStatus.value}
+                    placeholder={labelReference.placeholderText}
+                    options={programEnrollmentDeletionSettingsVModel.programEnrollmentDeletionStatus.options}
+                    onsettingsinputchange={handleProgramEnrollmentDeletionStatusChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+            </template>
+        </template>
         <template if:true={affiliationsWithProgramEnrollmentVModel}>
             <!-- Affiliations created with Program Enrollment -->
             <div class="slds-p-right_x-large slds-text-heading_small slds-p-top_x-large">
@@ -66,6 +102,7 @@
                 ></c-settings-row-input>
             </div>
         </template>
+
         <!-- Auto Enrollment Mappings -->
         <template if:true={programSettingsVModel}>
             <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">

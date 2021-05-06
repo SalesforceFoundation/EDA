@@ -9,7 +9,7 @@
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
-        <label>Jos tämä on valittuna, kun poistat ohjelmaan liittymisen, poista siihen liittyvä jäsenyys. Muussa tapauksessa pidä jäsenyys ja aseta sen tilaksi arvo, joka on määritetty kohdassa Jäsenyyksien tilaa ei poistettu.</label>
+        <label><!-- Description of the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
@@ -433,7 +433,7 @@
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <label>Jäsenyyksien tilaa ei poistettu</label>
+        <label><!-- Label for the Status for Affiliations Not Deleted setting --></label>
         <name>stgAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
@@ -445,12 +445,16 @@
         <name>stgAfflNotInserted</name>
     </customLabels>
     <customLabels>
-        <label>Poista liittyvä jäsenyys, kun poistat ohjelmaan ilmoittautumisen</label>
+        <label><!-- Label for the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>stgAfflProgEnrollDeleteRelated</name>
     </customLabels>
     <customLabels>
         <label><!-- Section title for Affiliations Created with Program Enrollments --></label>
         <name>stgAfflProgramEnrollmentSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Program Enrollment Deletions --></label>
+        <name>stgAfflProgEnrollDeleteTitle</name>
     </customLabels>
     <customLabels>
         <label>Määritä luotujen jäsenyyksien rooli</label>
@@ -1157,7 +1161,7 @@
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label>Jäsenyyteen asetettu tila, joka liittyy poistettuun ohjelmaan ilmoittautumiseen.</label>
+        <label><!-- Description of the Status for Affiliations Not Deleted setting --></label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>

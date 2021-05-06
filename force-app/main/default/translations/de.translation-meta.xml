@@ -9,7 +9,7 @@
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, wird beim Löschen einer Programmregistrierung die entsprechende Zugehörigkeit gelöscht. Behalten Sie andernfalls die Zugehörigkeit bei und legen Sie Ihren Wert auf den in &quot;Status für nicht gelöschte Zugehörigkeiten&quot; angegebenen Wert fest.</label>
+        <label><!-- Description of the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
@@ -433,7 +433,7 @@
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <label>Status für nicht gelöschte Zugehörigkeiten</label>
+        <label><!-- Label for the Status for Affiliations Not Deleted setting --></label>
         <name>stgAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
@@ -445,12 +445,16 @@
         <name>stgAfflNotInserted</name>
     </customLabels>
     <customLabels>
-        <label>Beim Löschen der Programmregistrierung die entsprechende Zugehörigkeit löschen</label>
+        <label><!-- Label for the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>stgAfflProgEnrollDeleteRelated</name>
     </customLabels>
     <customLabels>
         <label><!-- Section title for Affiliations Created with Program Enrollments --></label>
         <name>stgAfflProgramEnrollmentSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Program Enrollment Deletions --></label>
+        <name>stgAfflProgEnrollDeleteTitle</name>
     </customLabels>
     <customLabels>
         <label>Rolle für erstellte Zugehörigkeiten angeben</label>
@@ -1157,7 +1161,7 @@
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label>Der für eine Zugehörigkeit festgelegte Status in Bezug zu einer gelöschten Programmregistrierung.</label>
+        <label><!-- Description of the Status for Affiliations Not Deleted setting --></label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
