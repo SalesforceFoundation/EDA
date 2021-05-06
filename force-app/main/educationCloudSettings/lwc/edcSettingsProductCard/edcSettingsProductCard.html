@@ -1,0 +1,41 @@
+<template>
+    <lightning-card>
+        <!-- Card Header -->
+        <h3 slot="title" id="cardTitle">
+            <div class="slds-grid">
+                <div class="slds-col">
+                    <lightning-avatar
+                        src={iconSrc}
+                        size={iconSize}
+                        initials={iconInitials}
+                        fallback-icon-name={iconFallbackName}
+                        aria-hidden="true"
+                    ></lightning-avatar>
+                </div>
+                <div class="slds-col slds-align-bottom slds-var-p-left_small slds-text-body_large">{description}</div>
+            </div>
+        </h3>
+        <div class="slds-grid slds-grid_vertical">
+            <div class="slds-col slds-var-p-left_small"><p>{description}</p></div>
+            <div class="slds-col slds-var-p-left_small">
+                <lightning-button-group>
+                    <lightning-button
+                        label={settingsButton}
+                        title={settingsButtonA11y}
+                        onclick="handleSettingsClick"
+                    ></lightning-button>
+                    <lightning-button
+                        label={documentationButton}
+                        title={documentationButtonA11y}
+                        onclick="handleDocumentationClick"
+                    ></lightning-button>
+                    <lightning-button
+                        label={trailheadButton}
+                        title={trailheadButtonA11y}
+                        onclick="handleTrailheadClick"
+                    ></lightning-button>
+                </lightning-button-group>
+            </div>
+        </div>
+    </lightning-card>
+</template>
