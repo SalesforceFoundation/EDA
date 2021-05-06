@@ -44,7 +44,6 @@ import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHan
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
         peopleAndGroups: "People and Groups",
-        setupHome: "Setup Home",
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
         systemSettings: stgSystemSettingsNav,
         accountModel: {
@@ -114,11 +113,6 @@ export default class EdaSettingsNavigation extends LightningElement {
 
     @track viewModel = {
         navigationSections: [
-            {
-                label: this.labelReference.setupHome,
-                page: "setupHome",
-                id: "setupHome",
-            },
             {
                 label: this.labelReference.peopleAndGroups,
                 id: "peopleAndGroups",
