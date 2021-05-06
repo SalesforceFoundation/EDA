@@ -425,11 +425,11 @@
         <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Enddatum der Zugehörigkeit aus der Programmregistrierung kopieren</label>
+        <label><!-- Label for the Affiliation End Date setting --></label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>Startdatum der Zugehörigkeit aus der Programmregistrierung kopieren</label>
+        <label><!-- Label for the Affiliation Start Date setting --></label>
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -447,6 +447,10 @@
     <customLabels>
         <label><!-- Label for the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Affiliations Created with Program Enrollments --></label>
+        <name>stgAfflProgramEnrollmentSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Section title for Program Enrollment Deletions --></label>
@@ -1141,11 +1145,11 @@
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, wird das Enddatum der Programmregistrierung in neuen Zugehörigkeitsdatensätzen in das Enddatum kopiert. Andernfalls wird das Enddatum der Zugehörigkeit leer gelassen.</label>
+        <label><!-- Description of the Affiliation End Date setting --></label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, wird das Startdatum der Programmregistrierung in neuen Zugehörigkeitsdatensätzen in das Startdatum kopiert. Andernfalls wird das Startdatum der Zugehörigkeit leer gelassen.</label>
+        <label><!-- Description of the Affiliation Start Date setting --></label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -1173,11 +1177,11 @@
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label>Die für die Zugehörigkeit festgelegte Rolle, die mit einer Programmregistrierung erstellt wurde.</label>
+        <label><!-- Select a role for Affiliations created with Program Enrollments. --></label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label>Der für die Zugehörigkeit festgelegte Status, die mit einer Programmregistrierung erstellt wurde.</label>
+        <label><!-- Description of the Status for Created Affiliations setting --></label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
