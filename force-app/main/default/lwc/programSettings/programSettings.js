@@ -1,6 +1,27 @@
 import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
+
+// Controller for Auto Enrollment Mappings
 import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramSettingsVModel";
+
+// Controller for Affiliations created with Program Enrollment
+import getAffiliationsWithProgramEnrollmentVModel from "@salesforce/apex/AffiliationsWithProgramEnrollController.getAffiliationsWithProgramEnrollmentVModel";
+
+//Custom labels for Affiliations created with Program Enrollment
+import stgHelpAfflCreateFromProgramEnrollmentHeader from "@salesforce/label/c.stgHelpAfflCreateFromProgramEnrollmentHeader";
+import stgHelpAfflCreateFromProgramEnrollmentInfo from "@salesforce/label/c.stgHelpAfflCreateFromProgramEnrollmentInfo";
+import stgAfflProgramEnrollmentSettingsTitle from "@salesforce/label/c.stgAfflProgramEnrollmentSettingsTitle";
+import stgAfflProgEnrollSetRoleValue from "@salesforce/label/c.stgAfflProgEnrollSetRoleValue";
+import stgHelpAfflProgEnrollSetRoleValue from "@salesforce/label/c.stgHelpAfflProgEnrollSetRoleValue";
+import stgAfflProgEnrollSetStatusValue from "@salesforce/label/c.stgAfflProgEnrollSetStatusValue";
+import stgHelpAfflProgEnrollSetStatusValue from "@salesforce/label/c.stgHelpAfflProgEnrollSetStatusValue";
+import stgAfflCopyProgramEnrollmentEndDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentEndDate";
+import stgHelpAfflCopyProgramEnrollmentEndDate from "@salesforce/label/c.stgHelpAfflCopyProgramEnrollmentEndDate";
+import stgAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentStartDate";
+import stgHelpAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgHelpAfflCopyProgramEnrollmentStartDate";
+import stgOptSelect from "@salesforce/label/c.stgOptSelect";
+
+//custom labels for Auto Enrollment Mappings
 import getProgramEnrollmentDeletionSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramEnrollmentDeletionSettingsVModel";
 
 //custom labels
@@ -18,13 +39,14 @@ import stgAfflProgEnrollDeleteRelated from "@salesforce/label/c.stgAfflProgEnrol
 import AfflProgEnrollDeleted from "@salesforce/label/c.AfflProgEnrollDeleted";
 import stgAfflDeleteProgramEnrollment from "@salesforce/label/c.stgAfflDeleteProgramEnrollment";
 import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflDeleteProgramEnrollment";
-import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
+    @track affiliationsWithProgramEnrollmentVModel;
+    @track affiliationsWithProgramEnrollVModelWireResult;
     @track programSettingsVModel;
     @track programSettingsVModelWireResult;
 
@@ -35,12 +57,23 @@ export default class programSettings extends LightningElement {
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
         newButton: stgBtnAddMapping,
+        afflCreateFromPrgrmHeading: stgHelpAfflCreateFromProgramEnrollmentHeader,
+        afflCreateFromPrgrmInfo: stgHelpAfflCreateFromProgramEnrollmentInfo,
+        afflProgramEnrollmentSettingsTitle: stgAfflProgramEnrollmentSettingsTitle,
+        afflProgEnrollSetRoleValue: stgAfflProgEnrollSetRoleValue,
+        helpAfflProgEnrollSetRoleValue: stgHelpAfflProgEnrollSetRoleValue,
+        afflProgEnrollSetStatusValue: stgAfflProgEnrollSetStatusValue,
+        helpAfflProgEnrollSetStatusValue: stgHelpAfflProgEnrollSetStatusValue,
+        afflCopyProgramEnrollmentEndDate: stgAfflCopyProgramEnrollmentEndDate,
+        helpAfflCopyProgramEnrollmentEndDate: stgHelpAfflCopyProgramEnrollmentEndDate,
+        afflCopyProgramEnrollmentStartDate: stgAfflCopyProgramEnrollmentStartDate,
+        helpAfflCopyProgramEnrollmentStartDate: stgHelpAfflCopyProgramEnrollmentStartDate,
+        placeHolderText: stgOptSelect,
         programEnrollmentDeletionHeading: stgAfflProgEnrollDeleteTitle,
         programEnrollmentDeletionSettingTitle: stgAfflProgEnrollDeleteRelated,
         programEnrollmentDeletionSettingDescription: AfflProgEnrollDeleted,
         programEnrollmentDeletionStatusSettingTitle: stgAfflDeleteProgramEnrollment,
         programEnrollmentDeletionStatusSettingDescription: stgHelpAfflDeleteProgramEnrollment,
-        comboboxPlaceholderText: stgOptSelect,
 
         autoEnrollmentMappingsTable: {
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
@@ -55,6 +88,10 @@ export default class programSettings extends LightningElement {
     };
 
     inputAttributeReference = {
+        createdAfflRoleComboboxId: "createdAfflRole",
+        createdAfflStatusComboboxId: "createdAfflStatus",
+        copyEndDateComboboxId: "copyEndDate",
+        copyStartDateComboboxId: "copyStartDate",
         programEnrollmentDeletionToggleId: "programEnrollmentDeletions",
         programEnrollmentDeletionStatusComboboxId: "programEnrollmentDeletionStatus",
     };
@@ -80,6 +117,90 @@ export default class programSettings extends LightningElement {
         } else if (result.error) {
             //console.log("error retrieving preferredContactInfoSettingsVModel");
         }
+    }
+
+    @wire(getAffiliationsWithProgramEnrollmentVModel)
+    affiliationsWithProgramEnrollmentVModelWire(result) {
+        this.affiliationsWithProgramEnrollVModelWireResult = result;
+
+        if (result.data) {
+            this.affiliationsWithProgramEnrollmentVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving preferredContactInfoSettingsVModel");
+        }
+    }
+
+    handleRoleForCreatedAfflChange(event) {
+        this.handleSpecifyRoleForCreatedAffiliaitons(event);
+        var affiliationRole = event.detail.value;
+        if (event.detail.value === '""') {
+            // set Hierarchy Settings field to a blank value (not "")
+            affiliationRole = "";
+        }
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Affl_ProgEnroll_Role_Map__c",
+            settingsValue: affiliationRole,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleSpecifyRoleForCreatedAffiliaitons(event) {
+        var specifyRoleForCreatedAffl = event.detail.value;
+        if (event.detail.value === '""') {
+            // set Hierarchy Settings field to a blank value (not "")
+            specifyRoleForCreatedAffl = false;
+        } else {
+            specifyRoleForCreatedAffl = true;
+        }
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Affl_ProgEnroll_Set_Role__c",
+            settingsValue: specifyRoleForCreatedAffl,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleStatusForCreatedAfflChange(event) {
+        var affiliationStatus = event.detail.value;
+        if (event.detail.value === '""') {
+            // set Hierarchy Settings field to a blank value (not "")
+            affiliationStatus = "";
+        }
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Affl_ProgEnroll_Status_Map__c",
+            settingsValue: affiliationStatus,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleCopyEndDateChange(event) {
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Affl_ProgEnroll_Copy_End_Date__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleCopyStartDateChange(event) {
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Affl_ProgEnroll_Copy_Start_Date__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
     @wire(getProgramEnrollmentDeletionSettingsVModel)
@@ -176,6 +297,7 @@ export default class programSettings extends LightningElement {
     refreshAllApex() {
         Promise.all([
             refreshApex(this.programSettingsVModelWireResult),
+            refreshApex(this.affiliationsWithProgramEnrollVModelWireResult),
             refreshApex(this.programEnrollmentDeletionSettingsVModelWireResult),
         ]).then(() => {
             this.showProgramEnrollmentDeletionStatus = !this.programEnrollmentDeletionSettingsVModel
