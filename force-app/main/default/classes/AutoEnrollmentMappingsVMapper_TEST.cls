@@ -657,6 +657,16 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
             comboboxVModelOptionsForActiveAccountRecordTypes.size(),
             'The size of comboboxVModelOptionsForActiveAccountRecordTypes should be 0'
         );
+        System.assertEquals(
+            'Record Type 1',
+            comboboxVModelOptionsForActiveAccountRecordTypes[0].label,
+            'The label of comboboxVModelOptionsForActiveAccountRecordTypes[0] should be Record Type 1'
+        );
+        System.assertEquals(
+            'Record_Type_1',
+            comboboxVModelOptionsForActiveAccountRecordTypes[0].value,
+            'The value of comboboxVModelOptionsForActiveAccountRecordTypes[0] should be Record_Type_1'
+        );
     }
 
     /****************************************************************************************
