@@ -61,7 +61,7 @@ export default class programSettings extends LightningElement {
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
         newButton: stgBtnAddMapping,
-        newButtonAlly: stgBtnNewAutoEnrollA11y,
+        newButtonA11y: stgBtnNewAutoEnrollA11y,
         afflCreateFromPrgrmHeading: stgHelpAfflCreateFromProgramEnrollmentHeader,
         afflCreateFromPrgrmInfo: stgHelpAfflCreateFromProgramEnrollmentInfo,
         afflProgramEnrollmentSettingsTitle: stgAfflProgramEnrollmentSettingsTitle,
