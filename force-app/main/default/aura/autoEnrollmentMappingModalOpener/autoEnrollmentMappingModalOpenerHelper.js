@@ -22,7 +22,7 @@
 
         switch (component.get("v.actionName")) {
             case "create":
-                modalHeaderLabel = $A.get("$Label.c.stgNewAfflMapping");
+                modalHeaderLabel = $A.get("$Label.c.stgAutoEnrollmentNewModalTitle");
                 confirmButton = $A.get("$Label.c.stgBtnSave");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 break;

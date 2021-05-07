@@ -7,6 +7,7 @@ import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgAutoEnrollmentEditModalBody from "@salesforce/label/c.stgAutoEnrollmentEditModalBody";
 import stgApiNameLabel from "@salesforce/label/c.stgApiNameLabel";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+import stgAutoEnrollmentNewModalBody from "@salesforce/label/c.stgAutoEnrollmentNewModalBody";
 //apex
 import getAccountRecordTypeComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAccountRecordTypeComboboxVModel";
 import getAutoEnrollmentMappingStatusComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel";
@@ -33,6 +34,7 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         roleCombobox: stgColAutoEnrollmentRole,
         comboboxPlaceholderText: stgOptSelect,
         modalBodyEdit: stgAutoEnrollmentEditModalBody,
+        modalBodyCreate: stgAutoEnrollmentNewModalBody,
         apiNameDisplay: stgApiNameLabel,
         tellMeMoreLink: stgTellMeMoreLink,
     };
@@ -141,8 +143,8 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
             case "edit":
                 return this.labelReference.modalBodyEdit + " " + this.autoEnrollmentHyperLink;
 
-            /*case "create":
-                return this.labelReference.modalBodyCreate;*/
+            case "create":
+                return this.labelReference.modalBodyCreate + " " + this.autoEnrollmentHyperLink;
         }
     }
 

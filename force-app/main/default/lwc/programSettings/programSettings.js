@@ -41,6 +41,7 @@ import stgAfflProgEnrollDeleteRelated from "@salesforce/label/c.stgAfflProgEnrol
 import AfflProgEnrollDeleted from "@salesforce/label/c.AfflProgEnrollDeleted";
 import stgAfflDeleteProgramEnrollment from "@salesforce/label/c.stgAfflDeleteProgramEnrollment";
 import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflDeleteProgramEnrollment";
+import stgAutoEnrollmentNewSuccess from "@salesforce/label/c.stgAutoEnrollmentNewSuccess";
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -76,7 +77,6 @@ export default class programSettings extends LightningElement {
         programEnrollmentDeletionSettingDescription: AfflProgEnrollDeleted,
         programEnrollmentDeletionStatusSettingTitle: stgAfflDeleteProgramEnrollment,
         programEnrollmentDeletionStatusSettingDescription: stgHelpAfflDeleteProgramEnrollment,
-
         autoEnrollmentMappingsTable: {
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
             autoEnrollmentMappingsDescription: autoEnrollmentMappingsDescription,
@@ -87,6 +87,7 @@ export default class programSettings extends LightningElement {
             deleteAction: stgBtnDelete,
         },
         editSuccessMessage: stgAutoEnrollmentEditSuccess,
+        createSuccessMessage: stgAutoEnrollmentNewSuccess,
     };
 
     inputAttributeReference = {
@@ -424,7 +425,7 @@ export default class programSettings extends LightningElement {
                 this.showToast(
                     "success",
                     "Update Complete",
-                    this.labelReference.editSuccessMessage.replace("{0}", result)
+                    this.labelReference.createSuccessMessage.replace("{0}", result)
                 );
             })
 
