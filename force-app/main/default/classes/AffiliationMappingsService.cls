@@ -104,7 +104,7 @@ public virtual with sharing class AffiliationMappingsService {
     /*****************************************************************************
      * @description Checks user permissions and create the auto enrollment mappping.
      *****************************************************************************/
-    public String createAutoEnrollmentMapping(
+    public virtual String createAutoEnrollmentMapping(
         String accountRecordType,
         String autoProgramEnrollmentStatus,
         String autoProgramEnrollmentRole

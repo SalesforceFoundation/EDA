@@ -355,25 +355,42 @@ private with sharing class ProgramSettingsController_TEST {
         }
     }
 
-    /****************************************************************************************
-     * @description Test method to verify createAutoEnrollmentMapping()
-     * updates the auto enrollment on affiliation Mappings
-     ****************************************************************************************/
+    /**************************************************************************************************************************
+     * @description Test method to verify that the createAutoEnrollmentMapping method updates the auto enrollment on affiliation Mappings
+     ***************************************************************************************************************************/
     @isTest
-    private static void createAutoEnrollmentMappingValid() {
-        AutoEnrollmentMappingsVMapper.instance = new STUB_AutoEnrollmentMappingsVMapperValid();
+    public static void createAutoEnrollmentMappingValid() {
+        List<Affl_Mappings__c> afflMappings = new List<Affl_Mappings__c>();
+        Affl_Mappings__c afflMapping1 = new Affl_Mappings__c(
+            Name = 'Test Affl Mapping 1',
+            Account_Record_Type__c = 'Record_Type_1',
+            Primary_Affl_Field__c = 'Primary_Field_1',
+            Auto_Program_Enrollment__c = false,
+            Auto_Program_Enrollment_Status__c = null,
+            Auto_Program_Enrollment_Role__c = null
+        );
+        afflMappings.add(afflMapping1);
+        Affl_Mappings__c afflMapping2 = new Affl_Mappings__c(
+            Name = 'Test Affl Mapping 2',
+            Account_Record_Type__c = 'Record_Type_2',
+            Primary_Affl_Field__c = 'Primary_Field_2',
+            Auto_Program_Enrollment__c = false,
+            Auto_Program_Enrollment_Status__c = null,
+            Auto_Program_Enrollment_Role__c = null
+        );
+        afflMappings.add(afflMapping2);
+        insert afflMappings;
 
         Test.startTest();
         String mappingName = ProgramSettingsController.createAutoEnrollmentMapping(
             'Record_Type_1',
-            'autoProgramEnrollmentStatus3',
-            'autoProgramEnrollmentRole3'
+            'Test_Status_3',
+            'Test_Role_3'
         );
         Test.stopTest();
 
-        Affl_Mappings__c assertAfflMapping = Affl_Mappings__c.getInstance('Mapping 1');
-        System.assertEquals('Mapping 1', mappingNamee, 'mappingName should be Mapping 1');
-        System.assertEquals('Mapping 1', assertAfflMapping.name, 'Mapping 1 should be retrieved');
+        Affl_Mappings__c assertAfflMapping = Affl_Mappings__c.getInstance('Test Affl Mapping 1');
+        System.assertEquals('Test Affl Mapping 1', assertAfflMapping.name, 'Test Affl Mapping 1 should be retrieved');
         System.assertEquals(
             true,
             assertAfflMapping.Auto_Program_Enrollment__c,
@@ -389,6 +406,28 @@ private with sharing class ProgramSettingsController_TEST {
             assertAfflMapping.Auto_Program_Enrollment_Role__c,
             'Auto_Program_Enrollment_Role__c should be changed to Test_Role_3'
         );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify createAutoEnrollmentMapping()
+     * throws an exception when exception occurs.
+     ****************************************************************************************/
+    @isTest
+    private static void createAutoEnrollmentMappingException() {
+        AffiliationMappingsService.instance = new STUB_ExceptionAffiliationMappingsService();
+
+        try {
+            Test.startTest();
+            String mappingName = ProgramSettingsController.createAutoEnrollmentMapping(
+                'Record_Type_1',
+                'Test_Status_3',
+                'Test_Role_3'
+            );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
     }
 
     /***********************************************************************************************************************************
@@ -497,5 +536,18 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     private class TestException extends Exception {
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate exception responses from AffiliationMappingsService
+     **************************************************************************************************************************************/
+    private class STUB_ExceptionAffiliationMappingsService extends AffiliationMappingsService {
+        public override String createAutoEnrollmentMapping(
+            String accountRecordType,
+            String autoProgramEnrollmentStatus,
+            String autoProgramEnrollmentRole
+        ) {
+            throw new TestException('Exception encountered!');
+        }
     }
 }
