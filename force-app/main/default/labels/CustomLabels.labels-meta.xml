@@ -1006,6 +1006,7 @@
         <shortDescription>Toast message when an auto-enrollment mapping is saved</shortDescription>
         <value>{0} auto-enrollment mapping was saved.</value>
     </labels>
+    <labels>
         <fullName>stgAutoEnrollmentNewModalBody</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
