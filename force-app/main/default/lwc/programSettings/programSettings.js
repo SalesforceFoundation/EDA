@@ -42,6 +42,7 @@ import AfflProgEnrollDeleted from "@salesforce/label/c.AfflProgEnrollDeleted";
 import stgAfflDeleteProgramEnrollment from "@salesforce/label/c.stgAfflDeleteProgramEnrollment";
 import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflDeleteProgramEnrollment";
 import stgAutoEnrollmentNewSuccess from "@salesforce/label/c.stgAutoEnrollmentNewSuccess";
+import stgBtnNewAutoEnrollA11y from "@salesforce/label/c.stgBtnNewAutoEnrollA11y";
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -60,6 +61,7 @@ export default class programSettings extends LightningElement {
     labelReference = {
         programsSettingsTitle: stgProgramsSettingsTitle,
         newButton: stgBtnAddMapping,
+        newButtonAlly: stgBtnNewAutoEnrollA11y,
         afflCreateFromPrgrmHeading: stgHelpAfflCreateFromProgramEnrollmentHeader,
         afflCreateFromPrgrmInfo: stgHelpAfflCreateFromProgramEnrollmentInfo,
         afflProgramEnrollmentSettingsTitle: stgAfflProgramEnrollmentSettingsTitle,
