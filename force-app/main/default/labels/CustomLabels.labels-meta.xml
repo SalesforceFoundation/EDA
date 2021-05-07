@@ -1119,6 +1119,14 @@
         <value>Edit</value>
     </labels>
     <labels>
+        <fullName>stgBtnNewAutoEnrollA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that creates an auto-enrollment mapping</shortDescription>
+        <value>Create an auto-enrollment mapping.</value>
+    </labels>
+    <labels>
         <fullName>stgBtnRefreshAdminNames</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

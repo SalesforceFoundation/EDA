@@ -565,6 +565,10 @@
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that creates an auto-enrollment mapping --></label>
+        <name>stgBtnNewAutoEnrollA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
