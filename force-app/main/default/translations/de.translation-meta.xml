@@ -509,6 +509,18 @@
         <name>stgAutoEnrollmentEditSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Edit Auto Enrollment mapping window --></label>
+        <name>stgAutoEnrollmentNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the New auto-enrollment mapping confirmation window --></label>
+        <name>stgAutoEnrollmentNewModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an Affiliation mapping is edited --></label>
+        <name>stgAutoEnrollmentNewSuccess</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of the Auto-Enrollment Mappings setting --></label>
         <name>stgAutoEnrollmentProgramDesc</name>
     </customLabels>

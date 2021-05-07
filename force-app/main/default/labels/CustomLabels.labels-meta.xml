@@ -1006,6 +1006,29 @@
         <shortDescription>Toast message when an auto-enrollment mapping is saved</shortDescription>
         <value>{0} auto-enrollment mapping was saved.</value>
     </labels>
+        <fullName>stgAutoEnrollmentNewModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Edit Auto Enrollment mapping window</shortDescription>
+        <value>Select the Account Record Type, Status, and Role used to determine when a Program Enrollment will automatically be created when an Affiliation for the Account Record Type is Created.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentNewModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the New auto-enrollment mapping confirmation window</shortDescription>
+        <value>New auto-enrollment mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentNewSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when an Affiliation mapping is edited</shortDescription>
+        <value>{0} Program Auto-Enrollment was created.</value>
+    </labels>
     <labels>
         <fullName>stgAutoEnrollmentProgramDesc</fullName>
         <categories>Settings</categories>
