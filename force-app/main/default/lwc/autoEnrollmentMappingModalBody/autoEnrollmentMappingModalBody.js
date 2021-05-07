@@ -7,7 +7,7 @@ import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgAutoEnrollmentEditModalBody from "@salesforce/label/c.stgAutoEnrollmentEditModalBody";
 import stgApiNameLabel from "@salesforce/label/c.stgApiNameLabel";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
-import stgAutoEnrollmentModalAccountRecordTypeHelp from "@salesforce/label/c.stgAutoEnrollmentModalAccountRecordTypeHelp";
+import stgAccountRecordTypeHelp from "@salesforce/label/c.stgAccountRecordTypeHelp";
 //apex
 import getAccountRecordTypeComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAccountRecordTypeComboboxVModel";
 import getAutoEnrollmentMappingStatusComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel";
@@ -37,7 +37,7 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         modalBodyEdit: stgAutoEnrollmentEditModalBody,
         apiNameDisplay: stgApiNameLabel,
         tellMeMoreLink: stgTellMeMoreLink,
-        stgAutoEnrollmentModalAccountRecordTypeHelp: stgAutoEnrollmentModalAccountRecordTypeHelp,
+        stgAccountRecordTypeHelp: stgAccountRecordTypeHelp,
     };
 
     inputAttributeReference = {

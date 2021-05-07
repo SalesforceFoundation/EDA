@@ -1007,7 +1007,7 @@
         <value>{0} auto-enrollment mapping was saved.</value>
     </labels>
     <labels>
-        <fullName>stgAutoEnrollmentModalAccountRecordTypeHelp</fullName>
+        <fullName>stgAccountRecordTypeHelp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
