@@ -70,7 +70,7 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
         Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
             .getRecordTypeModelMapByName(accRecordTypeModelsById);
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
-            .getRecordTypeModelByLabel(accRecordTypeModelsById);
+            .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
 
         Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = this.locateLookupFieldService()
             .getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
@@ -164,7 +164,7 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
         Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
             .getRecordTypeModelMapByName(accRecordTypeModelsById);
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
-            .getRecordTypeModelByLabel(accRecordTypeModelsById);
+            .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
 
         List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
 

@@ -328,10 +328,10 @@ private class RecordTypeService_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that getRecordTypeModelByLabelPositive returns a map of record type models by label.
+     * @description Test method to verify that getRecordTypeModelMapByLabelPositive returns a map of record type models by label.
      ***************************************************************************************************************************/
     @isTest
-    private static void getRecordTypeModelByLabelPositive() {
+    private static void getRecordTypeModelMapByLabelPositive() {
         Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{
             '000000000000000001' => new RecordTypeModel('000000000000000001', 'Record Type 1', 'Record_Type_1', true),
             '000000000000000002' => new RecordTypeModel('000000000000000002', 'Record Type 2', 'Record_Type_2', false)
@@ -340,7 +340,7 @@ private class RecordTypeService_TEST {
         RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
 
         Test.startTest();
-        Map<String, RecordTypeModel> recordTypeModelsByLabelResult = recordTypeServiceInstance.getRecordTypeModelByLabel(
+        Map<String, RecordTypeModel> recordTypeModelsByLabelResult = recordTypeServiceInstance.getRecordTypeModelMapByLabel(
             recordTypeModelsById
         );
         Test.stopTest();
@@ -358,7 +358,7 @@ private class RecordTypeService_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that getRecordTypeModelByLabelPositive returns a map of record type models by name.
+     * @description Test method to verify that getRecordTypeModelMapByLabelPositive returns a map of record type models by name.
      ***************************************************************************************************************************/
     @isTest
     private static void getRecordTypeModelMapByNamePositive() {

@@ -74,7 +74,7 @@ public virtual with sharing class AffiliationMappingsHealthCheckVMapper {
         Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
             .getRecordTypeModelMapByName(accRecordTypeModelsById);
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
-            .getRecordTypeModelByLabel(accRecordTypeModelsById);
+            .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
         Set<Id> duplicateAccountRecordTypeIds = this.getDuplicateAccountRecordTypeIds(
             affiliationMappingsModelsList,
             accountRecordTypeModelsByName,

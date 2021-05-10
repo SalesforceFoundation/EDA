@@ -70,7 +70,7 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
         Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
             .getRecordTypeModelMapByName(accRecordTypeModelsById);
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
-            .getRecordTypeModelByLabel(accRecordTypeModelsById);
+            .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
 
         List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModelsList = new List<AutoEnrollmentMappingVModel>();
 
@@ -142,7 +142,7 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
         Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
             .getRecordTypeModelMapByName(accRecordTypeModelsById);
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
-            .getRecordTypeModelByLabel(accRecordTypeModelsById);
+            .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
 
         List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
 

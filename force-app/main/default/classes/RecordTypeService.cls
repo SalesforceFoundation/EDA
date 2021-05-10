@@ -180,7 +180,7 @@ public virtual with sharing class RecordTypeService {
      * @param recordTypeModelById A map of recordTypeModels by Id
      * @return A map of Record Type Model By Label
      ******************************************************************************/
-    public Map<String, RecordTypeModel> getRecordTypeModelByLabel(Map<Id, RecordTypeModel> recordTypeModelById) {
+    public Map<String, RecordTypeModel> getRecordTypeModelMapByLabel(Map<Id, RecordTypeModel> recordTypeModelById) {
         Map<String, RecordTypeModel> recordTypeModelsByLabel = new Map<String, RecordTypeModel>();
 
         for (RecordTypeModel recordTypeModel : recordTypeModelById.values()) {
