@@ -45,6 +45,7 @@ private with sharing class AutoEnrollmentMappingModel_TEST {
         String status = 'Current';
         Boolean active = true;
 
+        Test.startTest();
         AutoEnrollmentMappingModel autoEnrollmentMappingModel = new AutoEnrollmentMappingModel(
             name,
             accountRecordTypeFieldValue,
@@ -52,6 +53,7 @@ private with sharing class AutoEnrollmentMappingModel_TEST {
             status,
             active
         );
+        Test.stopTest();
 
         System.assertEquals(name, autoEnrollmentMappingModel.name, 'The \'name\' field should be the expected value.');
         System.assertEquals(

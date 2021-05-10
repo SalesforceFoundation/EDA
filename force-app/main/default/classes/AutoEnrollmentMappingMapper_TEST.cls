@@ -85,10 +85,10 @@ private with sharing class AutoEnrollmentMappingMapper_TEST {
     }
 
     /**
-     * @description Test method to verify that the updateAffiliationMappings method updates the affiliation Mappings
+     * @description Test method to verify that the updateAffiliationMappingsFromModelList method updates the affiliation Mappings
      */
     @isTest
-    private static void updateAffiliationMappingFromModel() {
+    private static void updateAffiliationMappingsFromModelList() {
         Affl_Mappings__c afflMapping = new Affl_Mappings__c(
             Name = 'Academic_Program',
             Account_Record_Type__c = 'Academic_Program',
@@ -109,7 +109,7 @@ private with sharing class AutoEnrollmentMappingMapper_TEST {
 
         AutoEnrollmentMappingMapper autoEnrollmentMappingMapperInstance = AutoEnrollmentMappingMapper.getInstance();
         Test.startTest();
-        autoEnrollmentMappingMapperInstance.updateAffiliationMappingFromModel(
+        autoEnrollmentMappingMapperInstance.updateAffiliationMappingsFromModelList(
             new List<AutoEnrollmentMappingModel>{ autoEnrollmentMappingModel }
         );
         Test.stopTest();
@@ -117,7 +117,7 @@ private with sharing class AutoEnrollmentMappingMapper_TEST {
         Affl_Mappings__c updatedAfflMapping = Affl_Mappings__c.getInstance(afflMapping.name);
         System.assertEquals(
             false,
-            updatedAfflMapping.Auto_Program_Enrollment_Role__c,
+            updatedAfflMapping.Auto_Program_Enrollment__c,
             'Auto Program Enrollment should be false.'
         );
         System.assertEquals(

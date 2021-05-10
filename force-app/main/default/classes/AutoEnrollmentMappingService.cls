@@ -84,9 +84,9 @@ public virtual with sharing class AutoEnrollmentMappingService {
         RecordTypeModel accountRecordTypeModel = this.locateRecordTypeService()
             .getRecordTypeModelFromRecTypeDevName(Account.SObjectType, newAccountRecordType);
 
-        List<AutoEnrollmentModel> autoEnrollmentModelListToUpdate = new List<AutoEnrollmentModel>();
+        List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelListToUpdate = new List<AutoEnrollmentMappingModel>();
 
-        autoEnrollmentModelListToUpdate.add(
+        autoEnrollmentMappingModelListToUpdate.add(
             this.locateAutoEnrollmentMappingMapper()
                 .getModelByRecordTypeDeveloperNameOrName(
                     accountRecordTypeModel.developerName,
@@ -94,15 +94,15 @@ public virtual with sharing class AutoEnrollmentMappingService {
                 )
         );
 
-        autoEnrollmentModelListToUpdate[0].active = true;
-        autoEnrollmentModelListToUpdate[0].status = status;
-        autoEnrollmentModelListToUpdate[0].role = role;
+        autoEnrollmentMappingModelListToUpdate[0].active = true;
+        autoEnrollmentMappingModelListToUpdate[0].status = status;
+        autoEnrollmentMappingModelListToUpdate[0].role = role;
 
-        autoEnrollmentModelListToUpdate.add(
-            new AutoEnrollmentModel(mappingName, oldAccountRecordType, false, null, null)
+        autoEnrollmentMappingModelListToUpdate.add(
+            new AutoEnrollmentMappingModel(mappingName, oldAccountRecordType, false, null, null)
         );
 
-        this.updateAffiliationMappingsFromModelList(autoEnrollmentModelListToUpdate);
+        this.locateAutoEnrollmentMappingMapper().updateAffiliationMappingsFromModelList(autoEnrollmentModelListToUpdate);
     }
 
     /*****************************************************************************
