@@ -5,7 +5,7 @@
         <name>HEDA</name>
     </customApplications>
     <customLabels>
-        <label>Les afiliacions primàries assignades apareixen en una secció especial d&apos;afiliacions primàries al registre de contactes. El valor establert com a principal per a un tipus de registre del compte apareix als camps corresponents del registre de contacte, tal com es defineix a continuació. Per obtenir més informació, consulteu la documentació d&apos;EDA. OR Per obtenir més informació, consulteu EDA documentation.</label>
+        <label><!-- Description of the Affiliation Mappings setting --></label>
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
@@ -305,7 +305,7 @@
         <name>noAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>No s’han creat assignacions d&apos;afiliació. Utilitzeu el formulari següent per crear una nova assignació d’afiliació.</label>
+        <label><!-- Empty state message for Affiliation Mappings --></label>
         <name>noAfflMappings</name>
     </customLabels>
     <customLabels>
@@ -369,7 +369,7 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Custom Name Format for Administrative Accounts --></label>
+        <label><!-- Label for Custom Name Format for Administrative Accounts --></label>
         <name>stgAdminAccountCustomName</name>
     </customLabels>
     <customLabels>
@@ -381,7 +381,7 @@
         <name>stgAdminAccountNamingTitle</name>
     </customLabels>
     <customLabels>
-        <label>Tipus de registre del compte administratiu</label>
+        <label><!-- Label for the Administrative Account Record Type setting --></label>
         <name>stgAdminAccountRecordType</name>
     </customLabels>
     <customLabels>
@@ -405,7 +405,7 @@
         <name>stgAffiliationsEditModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when an Affiliation Mapping is edited --></label>
+        <label><!-- Confirmation message when an Affiliation mapping is saved --></label>
         <name>stgAffiliationsEditSuccess</name>
     </customLabels>
     <customLabels>
@@ -569,7 +569,7 @@
         <name>stgBtnSave</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
+        <label><!-- Button that runs a selected Apex job --></label>
         <name>stgBtnUpdate</name>
     </customLabels>
     <customLabels>
@@ -597,7 +597,7 @@
         <name>stgColCampTypes</name>
     </customLabels>
     <customLabels>
-        <label><!-- Header label for the list of Primary Affiliation Fields on Contact --></label>
+        <label><!-- Column header for Primary Affiliation Fields on Contact --></label>
         <name>stgColContactPrimaryAfflField</name>
     </customLabels>
     <customLabels>
@@ -637,7 +637,7 @@
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Contact Information --></label>
+        <label><!-- Section title for Contact Information Settings --></label>
         <name>stgContactInformationSettingsTitle</name>
     </customLabels>
     <customLabels>
@@ -677,7 +677,7 @@
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Error Handling setting --></label>
+        <label><!-- Label for the Error Handling setting --></label>
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
@@ -685,7 +685,7 @@
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Require Preferred Phone setting --></label>
+        <label><!-- Label for the Require Preferred Phone setting --></label>
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
@@ -705,11 +705,11 @@
         <name>stgEnableDebugTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Enhanced Preferred Phone Functionality setting --></label>
+        <label><!-- Label for the Require Preferred Email setting --></label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message for when you don&apos;t have the permissions to view a page. --></label>
+        <label><!-- Error when the user doesn't have the permissions to view a page --></label>
         <name>stgErrorInsufficientAccess</name>
     </customLabels>
     <customLabels>
@@ -1313,7 +1313,7 @@
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for Custom Name Format for Household Accounts --></label>
+        <label><!-- Label for Custom Name Format for Household Accounts --></label>
         <name>stgHHAccountCustomName</name>
     </customLabels>
     <customLabels>
@@ -1349,6 +1349,10 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation section title for People and Groups --></label>
+        <name>stgPeopleAndGroupsNav</name>
+    </customLabels>
+    <customLabels>
         <label>El treball Apex per lots ha processat {0} registres amb {1} errors.</label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>
@@ -1361,7 +1365,7 @@
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Default Preferred Phone setting --></label>
+        <label><!-- Label for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneDefault</name>
     </customLabels>
     <customLabels>
@@ -1373,7 +1377,7 @@
         <name>stgPreferredPhoneEmailModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when Preferred Email and Phone fields are queued for update --></label>
+        <label><!-- Confirmation message when Preferred Email and Phone fields are queued for update --></label>
         <name>stgPreferredPhoneEmailSuccessToast</name>
     </customLabels>
     <customLabels>
@@ -1445,7 +1449,7 @@
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that updates Preferred Email/Phone fields for all Contacts --></label>
+        <label><!-- Alt text for button that updates Contacts' Preferred Email/Phone fields --></label>
         <name>stgRunCleanUpA11y</name>
     </customLabels>
     <customLabels>
@@ -1487,12 +1491,12 @@
         <name>stgSuccessHHAccountNameRefresh</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for System Tools --></label>
-        <name>stgSystemToolsNav</name>
+        <label><!-- Navigation section title for System --></label>
+        <name>stgSystemSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for System Tools --></label>
-        <name>stgSystemSettingsNav</name>
+        <label><!-- Navigation title for System Tools --></label>
+        <name>stgSystemToolsNav</name>
     </customLabels>
     <customLabels>
         <label>Comptes i contactes</label>
@@ -1551,7 +1555,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Hyperlinked text to EDA Documentation --></label>
+        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
