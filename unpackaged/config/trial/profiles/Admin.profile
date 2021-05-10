@@ -115,7 +115,7 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>%%%NAMESPACE%%%HEDA_Settings</tab>
+        <tab>%%%NAMESPACE%%%Education_Cloud_Settings</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -164,10 +164,6 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>standard-Contact</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>Settings_Health_Check</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <classAccesses>
