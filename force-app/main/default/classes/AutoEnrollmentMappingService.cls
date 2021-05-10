@@ -84,7 +84,7 @@ public virtual with sharing class AutoEnrollmentMappingService {
         Map<Id, RecordTypeModel> accRecordTypeModelsById = this.locateRecordTypeService()
             .getModelByIdMapForSObjectType(Account.SObjectType);
         Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
-            .getRecordTypeModelByName(accRecordTypeModelsById);
+            .getRecordTypeModelMapByName(accRecordTypeModelsById);
 
         //Assume a pre-validated account record type api name
         RecordTypeModel accountRecordTypeModel = accountRecordTypeModelsByName.get(newAccountRecordType);

@@ -68,7 +68,7 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
             .getModelByIdMapForSObjectType(Account.SObjectType);
 
         Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
-            .getRecordTypeModelByName(accRecordTypeModelsById);
+            .getRecordTypeModelMapByName(accRecordTypeModelsById);
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
             .getRecordTypeModelByLabel(accRecordTypeModelsById);
 
@@ -162,7 +162,7 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
             .getModelByIdMapForSObjectType(Account.SObjectType);
 
         Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
-            .getRecordTypeModelByName(accRecordTypeModelsById);
+            .getRecordTypeModelMapByName(accRecordTypeModelsById);
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
             .getRecordTypeModelByLabel(accRecordTypeModelsById);
 
