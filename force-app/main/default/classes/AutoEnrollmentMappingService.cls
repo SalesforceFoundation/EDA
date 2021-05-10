@@ -63,8 +63,8 @@ public virtual with sharing class AutoEnrollmentMappingService {
         String mappingName,
         String oldAccountRecordType,
         String newAccountRecordType,
-        String autoProgramEnrollmentStatus,
-        String autoProgramEnrollmentRole
+        String status,
+        String role
     ) {
         this.locateUserPermissionService().checkViewSetupForCurrentUser();
 
@@ -72,8 +72,8 @@ public virtual with sharing class AutoEnrollmentMappingService {
             AutoEnrollmentModel autoEnrollmentModel = new AutoEnrollmentModel(
                 mappingName,
                 oldAccountRecordType,
-                autoProgramEnrollmentRole,
-                autoProgramEnrollmentStatus,
+                role,
+                status,
                 active
             );
             this.locateAutoEnrollmentMappingMapper().updateAffiliationMappingFromModel(autoEnrollmentModel);
@@ -81,19 +81,28 @@ public virtual with sharing class AutoEnrollmentMappingService {
         }
 
         //Get the appropriate Record Type Model for entries with labels in the field
-        Map<Id, RecordTypeModel> accRecordTypeModelsById = this.locateRecordTypeService()
-            .getModelByIdMapForSObjectType(Account.SObjectType);
-        Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
-            .getRecordTypeModelMapByName(accRecordTypeModelsById);
+        RecordTypeModel accountRecordTypeModel = this.locateRecordTypeService()
+            .getRecordTypeModelFromRecTypeDevName(Account.SObjectType, newAccountRecordType);
 
-        //Assume a pre-validated account record type api name
-        RecordTypeModel accountRecordTypeModel = accountRecordTypeModelsByName.get(newAccountRecordType);
+        List<AutoEnrollmentModel> autoEnrollmentModelListToUpdate = new List<AutoEnrollmentModel>();
 
-        AutoEnrollmentModel autoEnrollmentModel = this.locateAutoEnrollmentMappingMapper().getModelByRecordTypeNameOrLabel(
-            accountRecordTypeModel.developerName;
+        autoEnrollmentModelListToUpdate.add(
+            this.locateAutoEnrollmentMappingMapper()
+                .getModelByRecordTypeDeveloperNameOrName(
+                    accountRecordTypeModel.developerName,
+                    accountRecordTypeModel.name
+                )
         );
-        this.locateAutoEnrollmentMapper.deleteAutoEnrollmentMappingByName(mappingName);
-        this.locateAutoEnrollmentMapper.
+
+        autoEnrollmentModelListToUpdate[0].active = true;
+        autoEnrollmentModelListToUpdate[0].status = status;
+        autoEnrollmentModelListToUpdate[0].role = role;
+
+        autoEnrollmentModelListToUpdate.add(
+            new AutoEnrollmentModel(mappingName, oldAccountRecordType, false, null, null)
+        );
+
+        this.updateAffiliationMappingsFromModelList(autoEnrollmentModelListToUpdate);
     }
 
     /*****************************************************************************

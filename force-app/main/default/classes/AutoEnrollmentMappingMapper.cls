@@ -57,14 +57,20 @@ public virtual with sharing class AutoEnrollmentMappingMapper {
     }
 
     /**
-     * @description Update an Affiliations Mapping Model from an auto enrollment model
-     * @param autoEnrollmentModelList The list of Auto Enrollment Models to update
+     * @description Update Affiliations Mappings from a list of auto enrollment models
+     * @param autoEnrollmentModelList The auto enrollment model to update
      */
-    public virtual void updateAffiliationMappingsFromModels(AutoEnrollmentModel autoEnrollmentModel) {
-        Affl_Mappings__c affiliationMapping = Affl_Mappings__c.getInstance(autoEnrollmentModel.name);
-        affiliationMapping.Auto_Program_Enrollment__c = autoEnrollmentModel.active;
-        affiliationMapping.Auto_Program_Enrollment_Status__c = autoEnrollmentModel.status;
-        affiliationMapping.Auto_Program_Enrollment_Role__c = autoEnrollmentModel.role;
-        update affiliationMapping;
+    public virtual void updateAffiliationMappingsFromModelList(List<AutoEnrollmentModel> autoEnrollmentModelList) {
+        List<Affl_Mappings__c> affiliationMappingList = new List<Affl_Mappings__c>();
+
+        for (AutoEnrollmentModel autoEnrollmentModel : autoEnrollmentModelList) {
+            Affl_Mappings__c affiliationMapping = Affl_Mappings__c.getInstance(autoEnrollmentModel.name);
+            affiliationMapping.Auto_Program_Enrollment__c = autoEnrollmentModel.active;
+            affiliationMapping.Auto_Program_Enrollment_Status__c = autoEnrollmentModel.status;
+            affiliationMapping.Auto_Program_Enrollment_Role__c = autoEnrollmentModel.role;
+            affiliationMappingList.add(affiliationMapping);
+        }
+
+        update affiliationMappingList;
     }
 }

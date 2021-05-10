@@ -107,7 +107,7 @@ public with sharing class ProgramSettingsController {
         String autoProgramEnrollmentRole
     ) {
         try {
-            ProgramSettingsController.locateAffiliationMappingsService()
+            ProgramSettingsController.locateAutoEnrollmentMappingService()
                 .updateAutoEnrollmentMappings(
                     mappingName,
                     oldAccountRecordType,
@@ -146,12 +146,12 @@ public with sharing class ProgramSettingsController {
     }
 
     /*****************************************************************************
-     * @description Retrieve an instance of the AffiliationMappingsService class.
-     * @return An instance of AffiliationMappingsService.
+     * @description Retrieve an instance of the AutoEnrollmentMappingService class.
+     * @return An instance of AutoEnrollmentMappingService.
      *****************************************************************************/
     @TestVisible
-    private static AffiliationMappingsService locateAffiliationMappingsService() {
-        return AffiliationMappingsService.getInstance();
+    private static AutoEnrollmentMappingService locateAutoEnrollmentMappingsService() {
+        return AutoEnrollmentMappingService.getInstance();
     }
 
     /**********************************************************************************

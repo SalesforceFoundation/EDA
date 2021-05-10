@@ -109,11 +109,17 @@ private with sharing class AutoEnrollmentMappingMapper_TEST {
 
         AutoEnrollmentMappingMapper autoEnrollmentMappingMapperInstance = AutoEnrollmentMappingMapper.getInstance();
         Test.startTest();
-            autoEnrollmentMappingMapperInstance.updateAffiliationMappingFromModel(autoEnrollmentMappingModel);
+        autoEnrollmentMappingMapperInstance.updateAffiliationMappingFromModel(
+            new List<AutoEnrollmentMappingModel>{ autoEnrollmentMappingModel }
+        );
         Test.stopTest();
 
         Affl_Mappings__c updatedAfflMapping = Affl_Mappings__c.getInstance(afflMapping.name);
-        System.assertEquals(false, updatedAfflMapping.Auto_Program_Enrollment_Role__c, 'Auto Program Enrollment should be false.');
+        System.assertEquals(
+            false,
+            updatedAfflMapping.Auto_Program_Enrollment_Role__c,
+            'Auto Program Enrollment should be false.'
+        );
         System.assertEquals(
             'DifferentRole',
             updatedAfflMapping.Auto_Program_Enrollment_Role__c,
