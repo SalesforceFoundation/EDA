@@ -5,8 +5,6 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 import getAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getAffiliationsSettingsVModel";
 import getPrimaryAffiliationsSettingsVModel from "@salesforce/apex/AffiliationsSettingsController.getPrimaryAffiliationsSettingsVModel";
-import getAccountRecordTypeComboboxVModel from "@salesforce/apex/AffiliationsSettingsController.getAccountRecordTypeComboboxVModel";
-import getContactAccountLookupFieldComboboxVModel from "@salesforce/apex/AffiliationsSettingsController.getContactAccountLookupFieldComboboxVModel";
 import updateAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.updateAffiliationMappings";
 import deleteAffiliationMapping from "@salesforce/apex/AffiliationsSettingsController.deleteAffiliationMapping";
 import insertAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.insertAffiliationMappings";
