@@ -60,7 +60,29 @@ public virtual with sharing class AutoEnrollmentMappingMapper {
      * @description Update Affiliations Mappings from a list of auto enrollment mapping models
      * @param autoEnrollmentMappingModelList The auto enrollment mapping models to update
      */
-    public virtual void updateAffiliationMappingsFromModelList(List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelList) {
+    public virtual void getModelByRecordTypeDeveloperNameOrName(
+        List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelList
+    ) {
+        List<Affl_Mappings__c> affiliationMappingList = new List<Affl_Mappings__c>();
+
+        for (AutoEnrollmentMappingModel autoEnrollmentMappingModel : autoEnrollmentMappingModelList) {
+            Affl_Mappings__c affiliationMapping = Affl_Mappings__c.getInstance(autoEnrollmentMappingModel.name);
+            affiliationMapping.Auto_Program_Enrollment__c = autoEnrollmentMappingModel.active;
+            affiliationMapping.Auto_Program_Enrollment_Status__c = autoEnrollmentMappingModel.status;
+            affiliationMapping.Auto_Program_Enrollment_Role__c = autoEnrollmentMappingModel.role;
+            affiliationMappingList.add(affiliationMapping);
+        }
+
+        update affiliationMappingList;
+    }
+
+    /**
+     * @description Update Affiliations Mappings from a list of auto enrollment mapping models
+     * @param autoEnrollmentMappingModelList The auto enrollment mapping models to update
+     */
+    public virtual void updateAffiliationMappingsFromModelList(
+        List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelList
+    ) {
         List<Affl_Mappings__c> affiliationMappingList = new List<Affl_Mappings__c>();
 
         for (AutoEnrollmentMappingModel autoEnrollmentMappingModel : autoEnrollmentMappingModelList) {

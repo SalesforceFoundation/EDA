@@ -84,25 +84,53 @@ public virtual with sharing class AutoEnrollmentMappingService {
         RecordTypeModel accountRecordTypeModel = this.locateRecordTypeService()
             .getRecordTypeModelFromRecTypeDevName(Account.SObjectType, newAccountRecordType);
 
+        String newMappingName = this.getMappingNameByRecordTypeDeveloperNameOrName(
+            accountRecordTypeModel.developerName,
+            accountRecordTypeModel.name
+        );
+
         List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelListToUpdate = new List<AutoEnrollmentMappingModel>();
 
         autoEnrollmentMappingModelListToUpdate.add(
-            this.locateAutoEnrollmentMappingMapper()
-                .getModelByRecordTypeDeveloperNameOrName(
-                    accountRecordTypeModel.developerName,
-                    accountRecordTypeModel.name
-                )
+            new AutoEnrollmentMappingModel(newMappingName, newAccountRecordType, true, role, status)
         );
-
-        autoEnrollmentMappingModelListToUpdate[0].active = true;
-        autoEnrollmentMappingModelListToUpdate[0].status = status;
-        autoEnrollmentMappingModelListToUpdate[0].role = role;
-
         autoEnrollmentMappingModelListToUpdate.add(
             new AutoEnrollmentMappingModel(mappingName, oldAccountRecordType, false, null, null)
         );
 
-        this.locateAutoEnrollmentMappingMapper().updateAffiliationMappingsFromModelList(autoEnrollmentModelListToUpdate);
+        this.locateAutoEnrollmentMappingMapper()
+            .updateAffiliationMappingsFromModelList(autoEnrollmentModelListToUpdate);
+    }
+
+    //TODO: Write test
+    @TestVisible
+    private String getMappingNameByRecordTypeDeveloperNameOrName(
+        String accountRecordTypeDeveloperName,
+        String accountRecordTypeName
+    ) {
+        //We need to preserve the load order to account for the current state
+        List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService()
+            .getAffiliationMappingsModels();
+
+        for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
+            if (
+                affiliationMappingsModel.accountRecordTypeFieldValue == accountRecordTypeDeveloperName ||
+                affiliationMappingsModel.accountRecordTypeFieldValue == accountRecordTypeName
+            ) {
+                return affiliationMappingsModel.name;
+            }
+        }
+
+        return null;
+    }
+
+    /*****************************************************************************
+     * @description Retrieves an instance of the AutoEnrollmentMappingMapper.
+     * @return The instance of AutoEnrollmentMappingMapper.
+     ******************************************************************************/
+    @TestVisible
+    private AutoEnrollmentMappingMapper locateAffiliationsMappingService() {
+        return AutoEnrollmentMappingMapper.getInstance();
     }
 
     /*****************************************************************************
