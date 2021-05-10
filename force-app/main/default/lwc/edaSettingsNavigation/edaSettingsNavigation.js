@@ -1,6 +1,7 @@
 import { LightningElement, api, track } from "lwc";
 import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
-
+//People and Group Settings Labels
+import stgPeopleAndGroupsNav from "@salesforce/label/c.stgPeopleAndGroupsNav";
 //Account Model Settings Labels
 import stgAccountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
 import stgAccModelTitle from "@salesforce/label/c.stgAccModelTitle";
@@ -8,6 +9,9 @@ import stgAdminAccountRecordType from "@salesforce/label/c.stgAdminAccountRecord
 import stgAccountRecordTypeSupportsHHAddress from "@salesforce/label/c.stgAccountRecordTypeSupportsHHAddress";
 import stgAccoutTypesWithoutContactsDelete from "@salesforce/label/c.stgAccoutTypesWithoutContactsDelete";
 import stgLeadConversionAccountNaming from "@salesforce/label/c.stgLeadConversionAccountNaming";
+import adminAccNameFormat from "@salesforce/label/c.adminAccNameFormat";
+import hhAccNameFormat from "@salesforce/label/c.hhAccNameFormat";
+import automaticHHNaming from "@salesforce/label/c.automaticHHNaming";
 //Contact Information Settings Labels
 import stgContactInformationSettingsTitle from "@salesforce/label/c.stgContactInformationSettingsTitle";
 import stgDefaultContactLanguageFluency from "@salesforce/label/c.stgDefaultContactLanguageFluency";
@@ -47,7 +51,7 @@ import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHan
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
-        peopleAndGroups: "People and Groups",
+        peopleAndGroups: stgPeopleAndGroupsNav,
         setupHome: "Setup Home",
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
         systemSettings: stgSystemSettingsNav,
@@ -57,9 +61,9 @@ export default class EdaSettingsNavigation extends LightningElement {
             adminAccountModel: stgAdminAccountRecordType,
             defaultAccountModel: stgAccModelTitle,
             hhAccountModel: stgAccountRecordTypeSupportsHHAddress,
-            adminAccountNaming: "Administrative Account Name Format",
-            hhAccountNaming: "Household Account Name Format",
-            autoHHAccountNaming: "Automatically Rename Household Accounts",
+            adminAccountNaming: adminAccNameFormat,
+            hhAccountNaming: hhAccNameFormat,
+            autoHHAccountNaming: automaticHHNaming,
             leadConversionAutoAccountNaming: stgLeadConversionAccountNaming,
         },
         addressSettings: {
