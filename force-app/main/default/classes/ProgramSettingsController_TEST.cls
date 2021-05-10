@@ -361,7 +361,22 @@ private with sharing class ProgramSettingsController_TEST {
      ****************************************************************************************/
     @isTest
     private static void updateAutoEnrollmentMappingsSameAccountRecordType() {
-        //TODO
+        AutoEnrollmentMappingService.instance = new STUB_AutoEnrollmentMappingService();
+        Test.startTest();
+        String accountRecordTypeDeveloperName = ProgramSettingsController.updateAutoEnrollmentMappings(
+            'Test Affl Mapping 1',
+            'Record_Type_1',
+            'Record_Type_1',
+            'Test_Status_3',
+            'Test_Role_3'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            accountRecordTypeDeveloperName,
+            'Record_Type_1',
+            'The affected mapping should be that of the same account record type'
+        );
     }
 
     /****************************************************************************************
@@ -370,7 +385,22 @@ private with sharing class ProgramSettingsController_TEST {
      ****************************************************************************************/
     @isTest
     private static void updateAutoEnrollmentMappingsDifferentAccountRecordType() {
-        //TODO
+        AutoEnrollmentMappingService.instance = new STUB_AutoEnrollmentMappingService();
+        Test.startTest();
+        String accountRecordTypeDeveloperName = ProgramSettingsController.updateAutoEnrollmentMappings(
+            'Test Affl Mapping 1',
+            'Record_Type_1',
+            'Record_Type_2',
+            'Test_Status_3',
+            'Test_Role_3'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            accountRecordTypeDeveloperName,
+            'Record_Type_2',
+            'The affected mapping should be that of the new account record type'
+        );
     }
 
     /****************************************************************************************
@@ -379,7 +409,7 @@ private with sharing class ProgramSettingsController_TEST {
      ****************************************************************************************/
     @isTest
     private static void updateAutoEnrollmentMappingsException() {
-        AffiliationMappingsService.instance = new STUB_ExceptionAffiliationMappingsService();
+        AutoEnrollmentMappingService.instance = new STUB_ExceptionAutoEnrollmentMappingService();
 
         try {
             Test.startTest();
@@ -471,6 +501,25 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /**************************************************************************************************************************************
+     * @description Stub class to simulate valid responses from AutoEnrollmentMappingService
+     **************************************************************************************************************************************/
+    private class STUB_AutoEnrollmentMappingService extends AutoEnrollmentMappingService {
+        public override AutoEnrollmentMappingModel updateAutoEnrollmentMappings(
+            String mappingName,
+            String accountRecordType,
+            String newAccountRecordType,
+            String status,
+            String role
+        ) {
+            if (accountRecordType != newAccountRecordType) {
+                return new AutoEnrollmentMappingModel(accountRecordType, newAccountRecordType, status, role, true);
+            }
+
+            return new AutoEnrollmentMappingModel(mappingName, accountRecordType, status, role, true);
+        }
+    }
+
+    /**************************************************************************************************************************************
      * @description Stub class to simulate exception responses from ProgramSettingsVMapper
      **************************************************************************************************************************************/
     private class STUB_ExceptionAutoEnrollmentMappingsVMapper extends AutoEnrollmentMappingsVMapper {
@@ -494,19 +543,20 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /**************************************************************************************************************************************
-     * @description Stub class to simulate exception responses from AffiliationMappingsService
+     * @description Stub class to simulate exception responses from AutoEnrollmentMappingService
      **************************************************************************************************************************************/
-    private class STUB_ExceptionAffiliationMappingsService extends AffiliationMappingsService {
-        public override void updateAutoEnrollmentMappings(
+    private class STUB_ExceptionAutoEnrollmentMappingService extends AutoEnrollmentMappingService {
+        public override AutoEnrollmentMappingModel updateAutoEnrollmentMappings(
             String mappingName,
-            String oldAccountRecordType,
+            String accountRecordType,
             String newAccountRecordType,
-            String autoProgramEnrollmentStatus,
-            String autoProgramEnrollmentRole
+            String status,
+            String role
         ) {
             throw new TestException('Exception encountered!');
         }
     }
+
     /**************************************************************************************************************************************
      * @description Stub class to simulate exception responses from ProgramEnrollmentDeletionSettingsVMapper
      **************************************************************************************************************************************/

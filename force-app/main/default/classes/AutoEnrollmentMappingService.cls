@@ -57,32 +57,39 @@ public virtual with sharing class AutoEnrollmentMappingService {
     }
 
     /**
-     * @description Checks user permissions and update the auto enrollment mapppings.
+     * @description Updates auto enrollment mappings
+     * @param mappingName The name of the original auto enrollment mapping
+     * @param accountRecordType The account record type for the original auto enrollment mapping
+     * @param newAccountRecordType The account record type for the updated auto enrollment mapping
+     * @param status The status for the auto enrollment mapping
+     * @param role The role for the auto enrollment mapping
      */
-    public virtual void updateAutoEnrollmentMappings(
+    public virtual AutoEnrollmentMappingModel updateAutoEnrollmentMappings(
         String mappingName,
-        String oldAccountRecordType,
+        String accountRecordType,
         String newAccountRecordType,
         String status,
         String role
     ) {
+        //TODO: Write test
         this.locateUserPermissionService().checkViewSetupForCurrentUser();
 
-        if (oldAccountRecordType == newAccountRecordType) {
-            AutoEnrollmentModel autoEnrollmentModel = new AutoEnrollmentModel(
+        if (accountRecordType == newAccountRecordType) {
+            AutoEnrollmentMappingModel autoEnrollmentModel = new AutoEnrollmentMappingModel(
                 mappingName,
-                oldAccountRecordType,
+                accountRecordType,
                 role,
                 status,
-                active
+                true
             );
-            this.locateAutoEnrollmentMappingMapper().updateAffiliationMappingFromModel(autoEnrollmentModel);
-            return;
+            this.locateAutoEnrollmentMappingMapper()
+                .updateAffiliationMappingsFromModelList(new List<AutoEnrollmentMappingModel>{ autoEnrollmentModel });
+            return autoEnrollmentModel;
         }
 
         //Get the appropriate Record Type Model for entries with labels in the field
         RecordTypeModel accountRecordTypeModel = this.locateRecordTypeService()
-            .getRecordTypeModelFromRecTypeDevName(Account.SObjectType, newAccountRecordType);
+            .getRecordTypeModelFromRecTypeDevName('Account', newAccountRecordType);
 
         String newMappingName = this.getMappingNameByRecordTypeDeveloperNameOrName(
             accountRecordTypeModel.developerName,
@@ -92,22 +99,23 @@ public virtual with sharing class AutoEnrollmentMappingService {
         List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelListToUpdate = new List<AutoEnrollmentMappingModel>();
 
         autoEnrollmentMappingModelListToUpdate.add(
-            new AutoEnrollmentMappingModel(newMappingName, newAccountRecordType, true, role, status)
+            new AutoEnrollmentMappingModel(newMappingName, newAccountRecordType, role, status, true)
         );
         autoEnrollmentMappingModelListToUpdate.add(
-            new AutoEnrollmentMappingModel(mappingName, oldAccountRecordType, false, null, null)
+            new AutoEnrollmentMappingModel(mappingName, accountRecordType, null, null, false)
         );
 
         this.locateAutoEnrollmentMappingMapper()
-            .updateAffiliationMappingsFromModelList(autoEnrollmentModelListToUpdate);
+            .updateAffiliationMappingsFromModelList(autoEnrollmentMappingModelListToUpdate);
+        return autoEnrollmentMappingModelListToUpdate[2];
     }
 
-    //TODO: Write test
     @TestVisible
-    private String getMappingNameByRecordTypeDeveloperNameOrName(
+    private virtual String getMappingNameByRecordTypeDeveloperNameOrName(
         String accountRecordTypeDeveloperName,
         String accountRecordTypeName
     ) {
+        //TODO: Write test
         //We need to preserve the load order to account for the current state
         List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService()
             .getAffiliationMappingsModels();
@@ -125,12 +133,12 @@ public virtual with sharing class AutoEnrollmentMappingService {
     }
 
     /*****************************************************************************
-     * @description Retrieves an instance of the AutoEnrollmentMappingMapper.
-     * @return The instance of AutoEnrollmentMappingMapper.
+     * @description Retrieves an instance of the AffiliationMappingsService.
+     * @return The instance of AffiliationMappingsService.
      ******************************************************************************/
     @TestVisible
-    private AutoEnrollmentMappingMapper locateAffiliationsMappingService() {
-        return AutoEnrollmentMappingMapper.getInstance();
+    private AffiliationMappingsService locateAffiliationMappingsService() {
+        return AffiliationMappingsService.getInstance();
     }
 
     /*****************************************************************************

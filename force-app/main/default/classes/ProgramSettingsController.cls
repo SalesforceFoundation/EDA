@@ -89,33 +89,32 @@ public with sharing class ProgramSettingsController {
         }
     }
 
-    /************************************************************************************
-     * @description Update the affiliation mappping who owns the auto enrollment mapping.
-     * @param mappingName
-     * @param oldAccountRecordType
-     * @param newAccountRecordType
-     * @param autoProgramEnrollmentStatus
-     * @param autoProgramEnrollmentRole
-     * @return The name of the mapping.
-     ************************************************************************************/
+    /**
+     * @description Updates auto enrollment mappings
+     * @param mappingName The name of the original auto enrollment mapping
+     * @param accountRecordType The account record type for the original auto enrollment mapping
+     * @param newAccountRecordType The account record type for the updated auto enrollment mapping
+     * @param status The status for the auto enrollment mapping
+     * @param role The role for the auto enrollment mapping
+     */
     @AuraEnabled
     public static String updateAutoEnrollmentMappings(
         String mappingName,
-        String oldAccountRecordType,
+        String accountRecordType,
         String newAccountRecordType,
-        String autoProgramEnrollmentStatus,
-        String autoProgramEnrollmentRole
+        String status,
+        String role
     ) {
         try {
-            ProgramSettingsController.locateAutoEnrollmentMappingService()
+            return ProgramSettingsController.locateAutoEnrollmentMappingService()
                 .updateAutoEnrollmentMappings(
                     mappingName,
                     oldAccountRecordType,
                     newAccountRecordType,
                     autoProgramEnrollmentStatus,
                     autoProgramEnrollmentRole
-                );
-            return mappingName;
+                )
+                .accountRecordTypeFieldValue;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -150,7 +149,7 @@ public with sharing class ProgramSettingsController {
      * @return An instance of AutoEnrollmentMappingService.
      *****************************************************************************/
     @TestVisible
-    private static AutoEnrollmentMappingService locateAutoEnrollmentMappingsService() {
+    private static AutoEnrollmentMappingService locateAutoEnrollmentMappingService() {
         return AutoEnrollmentMappingService.getInstance();
     }
 
