@@ -1,7 +1,14 @@
 import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
+
 import getAutoEnrollmentMappingsVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingsVModel";
+import getProgramEnrollmentDeletionSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramEnrollmentDeletionSettingsVModel";
+import updateAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMappings";
+import createAutoEnrollmentMapping from "@salesforce/apex/ProgramSettingsController.createAutoEnrollmentMapping";
+
+//Page Custom Labels
+import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
 
 // Controller for Affiliations created with Program Enrollment
 import getAffiliationsWithProgramEnrollmentVModel from "@salesforce/apex/AffiliationsWithProgramEnrollController.getAffiliationsWithProgramEnrollmentVModel";
@@ -21,12 +28,8 @@ import stgHelpAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgHe
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 
 //custom labels for Auto Enrollment Mappings
-import getProgramEnrollmentDeletionSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramEnrollmentDeletionSettingsVModel";
-import updateAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMappings";
-import createAutoEnrollmentMapping from "@salesforce/apex/ProgramSettingsController.createAutoEnrollmentMapping";
 
 //custom labels
-import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
 import stgBtnEdit from "@salesforce/label/c.stgBtnEdit";
 import stgBtnDelete from "@salesforce/label/c.stgBtnDelete";
 import autoEnrollmentMappingsTitle from "@salesforce/label/c.stgAutoEnrollmentProgramTitle";
@@ -219,7 +222,7 @@ export default class programSettings extends LightningElement {
             this.showProgramEnrollmentDeletionStatus = !this.programEnrollmentDeletionSettingsVModel
                 .programEnrollmentDeletion;
         } else if (result.error) {
-            console.log("error retrieving ProgramEnrollmentDeletionSettingsVModel");
+            //console.log("error retrieving ProgramEnrollmentDeletionSettingsVModel");
         }
     }
 
@@ -375,7 +378,7 @@ export default class programSettings extends LightningElement {
                 );
                 break;
             case "edit":
-                this.updateAutoEnrollmentMappings(
+                this.executeUpdateAutoEnrollmentMappings(
                     saveModel.mappingName,
                     saveModel.oldAccountRecordType,
                     saveModel.newAccountRecordType,
@@ -389,7 +392,7 @@ export default class programSettings extends LightningElement {
         }
     }
 
-    updateAutoEnrollmentMappings(
+    executeUpdateAutoEnrollmentMappings(
         mappingName,
         oldAccountRecordType,
         newAccountRecordType,
@@ -398,10 +401,10 @@ export default class programSettings extends LightningElement {
     ) {
         updateAutoEnrollmentMappings({
             mappingName: mappingName,
-            oldAccountRecordType: oldAccountRecordType,
+            accountRecordType: oldAccountRecordType,
             newAccountRecordType: newAccountRecordType,
-            autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
-            autoProgramEnrollmentRole: autoProgramEnrollmentRole,
+            status: autoProgramEnrollmentStatus,
+            role: autoProgramEnrollmentRole,
         })
             .then((result) => {
                 this.showToast(
@@ -412,7 +415,7 @@ export default class programSettings extends LightningElement {
             })
 
             .catch((error) => {
-                // console.log('Inside error');
+                //console.log("Inside error");
             });
         this.refreshAllApex();
     }

@@ -1031,6 +1031,14 @@
         <value>{0} Program Auto-Enrollment was created.</value>
     </labels>
     <labels>
+        <fullName>stgAccountRecordTypeHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Info text for Account Record Type picklist</shortDescription>
+        <value>Only unmapped Account record types are available.</value>
+    </labels>
+    <labels>
         <fullName>stgAutoEnrollmentProgramDesc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

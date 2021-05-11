@@ -521,6 +521,10 @@
         <name>stgAutoEnrollmentNewSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Info text for Account Record Type picklist --></label>
+        <name>stgAccountRecordTypeHelp</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of the Auto-Enrollment Mappings setting --></label>
         <name>stgAutoEnrollmentProgramDesc</name>
     </customLabels>

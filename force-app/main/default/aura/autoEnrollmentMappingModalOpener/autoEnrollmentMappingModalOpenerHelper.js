@@ -44,7 +44,8 @@
                     "c:autoEnrollmentMappingModal",
                     {
                         actionName: component.get("v.actionName"),
-                        accountRecordType: component.get("v.oldAccountRecordType"),
+                        oldAccountRecordType: component.get("v.oldAccountRecordType"),
+                        newAccountRecordType: component.get("v.newAccountRecordType"),
                         autoProgramEnrollmentStatus: component.get("v.autoProgramEnrollmentStatus"),
                         autoProgramEnrollmentRole: component.get("v.autoProgramEnrollmentRole"),
                         modalDataChangeEvent: component.getReference("c.handleModalDataChangeEvent")

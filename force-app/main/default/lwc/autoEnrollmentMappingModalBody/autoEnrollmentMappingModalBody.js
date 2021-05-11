@@ -8,6 +8,7 @@ import stgAutoEnrollmentEditModalBody from "@salesforce/label/c.stgAutoEnrollmen
 import stgApiNameLabel from "@salesforce/label/c.stgApiNameLabel";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 import stgAutoEnrollmentNewModalBody from "@salesforce/label/c.stgAutoEnrollmentNewModalBody";
+import stgAccountRecordTypeHelp from "@salesforce/label/c.stgAccountRecordTypeHelp";
 //apex
 import getAccountRecordTypeComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAccountRecordTypeComboboxVModel";
 import getAutoEnrollmentMappingStatusComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel";
@@ -15,7 +16,8 @@ import getAutoEnrollmentMappingRoleComboboxVModel from "@salesforce/apex/Program
 
 export default class autoEnrollmentMappingModalBody extends LightningElement {
     @api actionName;
-    @api accountRecordType;
+    @api oldAccountRecordType;
+    @api newAccountRecordType;
     @api autoProgramEnrollmentStatus;
     @api autoProgramEnrollmentRole;
 
@@ -37,6 +39,7 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         modalBodyCreate: stgAutoEnrollmentNewModalBody,
         apiNameDisplay: stgApiNameLabel,
         tellMeMoreLink: stgTellMeMoreLink,
+        stgAccountRecordTypeHelp: stgAccountRecordTypeHelp,
     };
 
     inputAttributeReference = {
@@ -46,7 +49,7 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     };
 
     @wire(getAccountRecordTypeComboboxVModel, {
-        accountRecordType: "$accountRecordType",
+        accountRecordType: "$oldAccountRecordType",
     })
     accountRecordTypeComboboxVModelWire(result) {
         this.accountRecordTypeComboboxWireResult = result;

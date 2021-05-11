@@ -499,7 +499,7 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
     @isTest
     private static void getAccountRecordTypeComboboxVModelUnmapped() {
         AffiliationMappingsService.instance = new STUB_AffiliationMappingsServiceMixAutoEnrollment();
-        RecordTypeService.instance = new STUB_RecordTypeServiceAccountRecordTypeCombobox();
+        RecordTypeService.instance = new STUB_RecordTypeServiceAccountRecordTypeCombobox(false);
 
         AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
 
@@ -549,7 +549,7 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
     @isTest
     private static void getAccountRecordTypeComboboxVModelMapped() {
         AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
-        RecordTypeService.instance = new STUB_RecordTypeServiceAccountRecordTypeCombobox();
+        RecordTypeService.instance = new STUB_RecordTypeServiceAccountRecordTypeCombobox(false);
 
         AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
 
@@ -582,6 +582,45 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
     }
 
     /****************************************************************************************
+     * @description Test method to verify getAccountRecordTypeComboboxVModel() returns a
+     * ComboBoxVModel with proper values when the record type does not exist
+     ****************************************************************************************/
+    @isTest
+    private static void getAccountRecordTypeComboboxVModelMappedNull() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+        RecordTypeService.instance = new STUB_RecordTypeServiceAccountRecordTypeCombobox(true);
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel accountRecordTypeComboboxVModel = autoEnrollmentMappingsVMapperInstance.getAccountRecordTypeComboboxVModel(
+            'Invalid'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'Invalid',
+            accountRecordTypeComboboxVModel.value,
+            'The value of comboboxVModelOptionsForActiveAccountRecordTypes should be Invalid'
+        );
+        System.assertEquals(
+            1,
+            accountRecordTypeComboboxVModel.options.size(),
+            'The size of accountRecordTypeComboboxVModel.options should be 1'
+        );
+        System.assertEquals(
+            'Invalid',
+            accountRecordTypeComboboxVModel.options[0].label,
+            'The label of accountRecordTypeComboboxVModel.options[0] should be Invalid'
+        );
+        System.assertEquals(
+            'Invalid',
+            accountRecordTypeComboboxVModel.options[0].value,
+            'The value of accountRecordTypeComboboxVModel.options[0] should be Invalid'
+        );
+    }
+
+    /****************************************************************************************
      * @description Test method to verify getComboboxVModelOptionsForActiveAccountRecordTypes()
      * returns a list of ComboboxValueVModel with proper values
      * when no record type is mapped to active auto enrollment.
@@ -598,7 +637,8 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
 
         Test.startTest();
         List<ComboboxValueVModel> comboboxVModelOptionsForActiveAccountRecordTypes = autoEnrollmentMappingsVMapperInstance.getComboboxVModelOptionsForActiveAccountRecordTypes(
-            activeAccountRecordTypeModelsList
+            activeAccountRecordTypeModelsList,
+            'Record_Type_1'
         );
         Test.stopTest();
 
@@ -646,14 +686,25 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
 
         Test.startTest();
         List<ComboboxValueVModel> comboboxVModelOptionsForActiveAccountRecordTypes = autoEnrollmentMappingsVMapperInstance.getComboboxVModelOptionsForActiveAccountRecordTypes(
-            activeAccountRecordTypeModelsList
+            activeAccountRecordTypeModelsList,
+            'Record_Type_1'
         );
         Test.stopTest();
 
         System.assertEquals(
-            0,
+            1,
             comboboxVModelOptionsForActiveAccountRecordTypes.size(),
             'The size of comboboxVModelOptionsForActiveAccountRecordTypes should be 0'
+        );
+        System.assertEquals(
+            'Record Type 1',
+            comboboxVModelOptionsForActiveAccountRecordTypes[0].label,
+            'The label of comboboxVModelOptionsForActiveAccountRecordTypes[0] should be Record Type 1'
+        );
+        System.assertEquals(
+            'Record_Type_1',
+            comboboxVModelOptionsForActiveAccountRecordTypes[0].value,
+            'The value of comboboxVModelOptionsForActiveAccountRecordTypes[0] should be Record_Type_1'
         );
     }
 
@@ -945,6 +996,12 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
      * @description Stub class to simulate valid responses for account record type combobox
      **************************************************************************************************************************************/
     private class STUB_RecordTypeServiceAccountRecordTypeCombobox extends RecordTypeService {
+        private Boolean neverFindRecordType = false;
+
+        public STUB_RecordTypeServiceAccountRecordTypeCombobox(Boolean neverFindRecordType) {
+            this.neverFindRecordType = neverFindRecordType;
+        }
+
         public override Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
             return new Map<Id, RecordTypeModel>{
                 '000000000000000001' => new RecordTypeModel(
@@ -967,6 +1024,10 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
             Map<String, RecordTypeModel> recordTypeModelByName,
             Map<String, RecordTypeModel> recordTypeModelByLabel
         ) {
+            if (this.neverFindRecordType) {
+                return null;
+            }
+
             return new RecordTypeModel('000000000000000001', 'Record Type 1', 'Record_Type_1', true);
         }
     }
