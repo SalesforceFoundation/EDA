@@ -85,6 +85,6 @@ public virtual with sharing class AutoEnrollmentMappingMapper {
         }
 
         update affiliationMappingList;
-        return autoEnrollmentMappingModelList;
+        return returnList;
     }
 }

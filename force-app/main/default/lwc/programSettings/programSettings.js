@@ -215,7 +215,7 @@ export default class programSettings extends LightningElement {
             this.showProgramEnrollmentDeletionStatus = !this.programEnrollmentDeletionSettingsVModel
                 .programEnrollmentDeletion;
         } else if (result.error) {
-            console.log("error retrieving ProgramEnrollmentDeletionSettingsVModel");
+            //console.log("error retrieving ProgramEnrollmentDeletionSettingsVModel");
         }
     }
 
@@ -351,7 +351,7 @@ export default class programSettings extends LightningElement {
                 this.insertAffiliations(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
                 break;*/
             case "edit":
-                this.updateAutoEnrollmentMappings(
+                this.executeUpdateAutoEnrollmentMappings(
                     saveModel.mappingName,
                     saveModel.oldAccountRecordType,
                     saveModel.newAccountRecordType,
@@ -365,7 +365,7 @@ export default class programSettings extends LightningElement {
         }
     }
 
-    updateAutoEnrollmentMappings(
+    executeUpdateAutoEnrollmentMappings(
         mappingName,
         oldAccountRecordType,
         newAccountRecordType,
@@ -374,10 +374,10 @@ export default class programSettings extends LightningElement {
     ) {
         updateAutoEnrollmentMappings({
             mappingName: mappingName,
-            oldAccountRecordType: oldAccountRecordType,
+            accountRecordType: oldAccountRecordType,
             newAccountRecordType: newAccountRecordType,
-            autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
-            autoProgramEnrollmentRole: autoProgramEnrollmentRole,
+            status: autoProgramEnrollmentStatus,
+            role: autoProgramEnrollmentRole,
         })
             .then((result) => {
                 this.showToast(
@@ -388,7 +388,7 @@ export default class programSettings extends LightningElement {
             })
 
             .catch((error) => {
-                // console.log('Inside error');
+                //console.log("Inside error");
             });
         this.refreshAllApex();
     }
