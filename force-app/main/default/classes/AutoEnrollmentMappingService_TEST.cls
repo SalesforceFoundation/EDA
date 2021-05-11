@@ -168,6 +168,7 @@ public with sharing class AutoEnrollmentMappingService_TEST {
         AutoEnrollmentMappingMapper.instance = new STUB_AutoEnrollmentMappingMapper();
         AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
 
+        String mappingName = 'mapping';
         String accountRecordType = 'Academic_Program';
         String status = 'Status';
         String role = 'Role';
@@ -181,9 +182,9 @@ public with sharing class AutoEnrollmentMappingService_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            accountRecordType,
+            mappingName,
             autoEnrollmentMappingModel.name,
-            'Auto Enrollment Name should be ' + accountRecordType
+            'Auto Enrollment Name should be ' + mappingName
         );
         System.assertEquals(
             accountRecordType,
@@ -445,6 +446,28 @@ public with sharing class AutoEnrollmentMappingService_TEST {
      * @description Stub class to simulate the valid response from AutoEnrollmentMappingMapper
      **************************************************************************************************************************************/
     private class STUB_AutoEnrollmentMappingMapper extends AutoEnrollmentMappingMapper {
+        public override List<AutoEnrollmentMappingModel> updateAffiliationMappingsFromModelList(
+            List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelList
+        ) {
+            List<AutoEnrollmentMappingModel> returnList = new List<AutoEnrollmentMappingModel>();
+
+            for (AutoEnrollmentMappingModel autoEnrollmentMappingModel : autoEnrollmentMappingModelList) {
+                returnList.add(
+                    new AutoEnrollmentMappingModel(
+                        (autoEnrollmentMappingModelList.size() == 1
+                            ? autoEnrollmentMappingModel.name
+                            : autoEnrollmentMappingModel.accountRecordTypeFieldValue),
+                        autoEnrollmentMappingModel.accountRecordTypeFieldValue,
+                        autoEnrollmentMappingModel.role,
+                        autoEnrollmentMappingModel.status,
+                        autoEnrollmentMappingModel.active
+                    )
+                );
+            }
+
+            return returnList;
+        }
+
         public override List<AutoEnrollmentMappingModel> updateAffiliationMappingsFromModelList(
             List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelList
         ) {
