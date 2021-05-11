@@ -423,8 +423,8 @@ export default class programSettings extends LightningElement {
     createAutoEnrollmentMapping(accountRecordType, autoProgramEnrollmentStatus, autoProgramEnrollmentRole) {
         createAutoEnrollmentMapping({
             accountRecordType: accountRecordType,
-            autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
-            autoProgramEnrollmentRole: autoProgramEnrollmentRole,
+            status: autoProgramEnrollmentStatus,
+            role: autoProgramEnrollmentRole,
         })
             .then((result) => {
                 this.showToast(
