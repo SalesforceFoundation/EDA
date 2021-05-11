@@ -356,8 +356,30 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /****************************************************************************************
-     * @description Test method to verify updateAutoEnrollmentMappings()
-     * updates auto enrollment on affiliation mappings when account record type passed are the same
+     * @description Test method to verify createAutoEnrollmentMapping() updates auto
+     * enrollment on affiliation mappings
+     ****************************************************************************************/
+    @isTest
+    private static void createAutoEnrollmentMapping() {
+        AutoEnrollmentMappingService.instance = new STUB_AutoEnrollmentMappingService();
+        Test.startTest();
+        String accountRecordTypeDeveloperName = ProgramSettingsController.createAutoEnrollmentMapping(
+            'Record_Type_1',
+            'Test_Status_1',
+            'Test_Role_1'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            accountRecordTypeDeveloperName,
+            'Record_Type_1',
+            'The affected mapping should be that of the same account record type'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify updateAutoEnrollmentMappings() updates auto
+     * enrollment on affiliation mappings when account record type passed are the same
      ****************************************************************************************/
     @isTest
     private static void updateAutoEnrollmentMappingsSameAccountRecordType() {
@@ -380,8 +402,8 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /****************************************************************************************
-     * @description Test method to verify updateAutoEnrollmentMappings()
-     * updates auto enrollment on affiliation mappings when account record type passed are different
+     * @description Test method to verify updateAutoEnrollmentMappings() updates
+     * auto enrollment on affiliation mappings when account record type passed are different
      ****************************************************************************************/
     @isTest
     private static void updateAutoEnrollmentMappingsDifferentAccountRecordType() {
@@ -504,6 +526,14 @@ private with sharing class ProgramSettingsController_TEST {
      * @description Stub class to simulate valid responses from AutoEnrollmentMappingService
      **************************************************************************************************************************************/
     private class STUB_AutoEnrollmentMappingService extends AutoEnrollmentMappingService {
+        public override AutoEnrollmentMappingModel createAutoEnrollmentMapping(
+            String accountRecordType,
+            String status,
+            String role
+        ) {
+            return new AutoEnrollmentMappingModel(accountRecordType, accountRecordType, status, role, true);
+        }
+
         public override AutoEnrollmentMappingModel updateAutoEnrollmentMappings(
             String mappingName,
             String accountRecordType,
@@ -546,6 +576,14 @@ private with sharing class ProgramSettingsController_TEST {
      * @description Stub class to simulate exception responses from AutoEnrollmentMappingService
      **************************************************************************************************************************************/
     private class STUB_ExceptionAutoEnrollmentMappingService extends AutoEnrollmentMappingService {
+        public override AutoEnrollmentMappingModel createAutoEnrollmentMapping(
+            String accountRecordType,
+            String status,
+            String role
+        ) {
+            throw new TestException('Exception encountered!');
+        }
+
         public override AutoEnrollmentMappingModel updateAutoEnrollmentMappings(
             String mappingName,
             String accountRecordType,

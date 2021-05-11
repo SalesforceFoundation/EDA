@@ -89,18 +89,19 @@ public with sharing class ProgramSettingsController {
         }
     }
 
-    /************************************************************************************
+    /***
      * @description Update the affiliation mappping with new auto enrollment mapping.
-     * @param newAccountRecordType
-     * @param autoProgramEnrollmentStatus
-     * @param autoProgramEnrollmentRole
-     * @return The name of the mapping updated.
-     ************************************************************************************/
+     * @param accountRecordType The account record type for the auto enrollment mapping
+     * @param status The status for the auto enrollment mapping
+     * @param role The role for the auto enrollment mapping
+     * @return The account record type of the mapping updated.
+     */
     @AuraEnabled
     public static String createAutoEnrollmentMapping(String accountRecordType, String status, String role) {
         try {
             return ProgramSettingsController.locateAutoEnrollmentMappingService()
-                .createAutoEnrollmentMapping(accountRecordType, status, role);
+                .createAutoEnrollmentMapping(accountRecordType, status, role)
+                .accountRecordType;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -113,6 +114,7 @@ public with sharing class ProgramSettingsController {
      * @param newAccountRecordType The account record type for the updated auto enrollment mapping
      * @param status The status for the auto enrollment mapping
      * @param role The role for the auto enrollment mapping
+     * @return The account record type of the mapping updated.
      */
     @AuraEnabled
     public static String updateAutoEnrollmentMappings(
