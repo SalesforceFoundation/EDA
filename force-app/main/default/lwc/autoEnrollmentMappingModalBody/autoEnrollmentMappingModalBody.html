@@ -15,6 +15,7 @@
                         value={accountRecordTypeComboboxVModel.value}
                         placeholder={labelReference.comboboxPlaceholderText}
                         options={accountRecordTypeComboboxVModel.options}
+                        required="true"
                         onchange={handleAccountRecordTypeChange}
                         data-qa-locator={inputAttributeReference.accountRecordType}
                         field-level-help={labelReference.stgAccountRecordTypeHelp}
@@ -23,7 +24,7 @@
                 <div class="slds-col slds-size-1-of-1 slds-p-bottom_medium">{accountRecordTypeApiNameLabel}</div>
             </template>
             <template if:true={autoEnrollmentMappingStatusComboboxVModel}>
-                <div class="slds-col slds-size_2-of-3 slds-p-bottom_xx-large">
+                <div class="slds-col slds-size_2-of-3 slds-p-bottom_medium">
                     <lightning-combobox
                         id={inputAttributeReference.autoEnrollmentMappingStatus}
                         name={inputAttributeReference.autoEnrollmentMappingStatus}
@@ -31,6 +32,7 @@
                         value={autoEnrollmentMappingStatusComboboxVModel.value}
                         placeholder={labelReference.comboboxPlaceholderText}
                         options={autoEnrollmentMappingStatusComboboxVModel.options}
+                        required="true"
                         onchange={handleAutoEnrollmentMappingStatusChange}
                         data-qa-locator={inputAttributeReference.autoEnrollmentMappingStatus}
                     ></lightning-combobox>
@@ -45,6 +47,7 @@
                         value={autoEnrollmentMappingRoleComboboxVModel.value}
                         placeholder={labelReference.comboboxPlaceholderText}
                         options={autoEnrollmentMappingRoleComboboxVModel.options}
+                        required="true"
                         onchange={handleAutoEnrollmentMappingRoleChange}
                         data-qa-locator={inputAttributeReference.autoProgramEnrollmentRole}
                     ></lightning-combobox>
