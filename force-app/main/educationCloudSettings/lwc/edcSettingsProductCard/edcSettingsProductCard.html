@@ -15,9 +15,10 @@
                 <div class="slds-col slds-align-bottom slds-var-p-left_small slds-text-body_large">{title}</div>
             </div>
         </h3>
+        <!-- Card Body -->
         <div class="slds-grid slds-grid_vertical">
             <div class="slds-col slds-var-p-left_small"><p>{description}</p></div>
-            <div class="slds-col slds-var-p-left_small">
+            <div class="slds-col slds-var-p-left_small slds-scrollable_x">
                 <lightning-button-group>
                     <lightning-button
                         if:true={settingsComponent}
