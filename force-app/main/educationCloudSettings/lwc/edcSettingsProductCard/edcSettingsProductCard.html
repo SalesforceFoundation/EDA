@@ -2,17 +2,15 @@
     <lightning-card>
         <!-- Card Header -->
         <h3 slot="title" id="cardTitle">
-            <div class="slds-grid">
-                <div class="slds-col">
-                    <lightning-avatar
-                        src={iconSrc}
-                        size={iconSize}
-                        initials={iconInitials}
-                        fallback-icon-name={iconFallbackName}
-                        aria-hidden="true"
-                    ></lightning-avatar>
-                </div>
-                <div class="slds-col slds-align-bottom slds-var-p-left_small slds-text-body_large">{title}</div>
+            <div class="slds-align-bottom">
+                <lightning-avatar
+                    src={iconSrc}
+                    size={iconSize}
+                    initials={iconInitials}
+                    fallback-icon-name={iconFallbackName}
+                    aria-hidden="true"
+                ></lightning-avatar>
+                <span class="slds-text-body_large slds-p-left_small">{title}</span>
             </div>
         </h3>
         <!-- Card Body -->
