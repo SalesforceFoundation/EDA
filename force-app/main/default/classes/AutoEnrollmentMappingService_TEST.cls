@@ -166,10 +166,12 @@ public with sharing class AutoEnrollmentMappingService_TEST {
     public static void createAutoEnrollmentMapping() {
         UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
         AutoEnrollmentMappingMapper.instance = new STUB_AutoEnrollmentMappingMapper();
+        RecordTypeService.instance = new STUB_RecordTypeService('Record_Type1', 'Record Type1');
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+
         AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
 
-        String mappingName = 'mapping';
-        String accountRecordType = 'Academic_Program';
+        String accountRecordType = 'Record_Type1';
         String status = 'Status';
         String role = 'Role';
 
@@ -182,9 +184,9 @@ public with sharing class AutoEnrollmentMappingService_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            mappingName,
+            accountRecordType,
             autoEnrollmentMappingModel.name,
-            'Auto Enrollment Name should be ' + mappingName
+            'Auto Enrollment Name should be ' + accountRecordType
         );
         System.assertEquals(
             accountRecordType,
@@ -446,28 +448,6 @@ public with sharing class AutoEnrollmentMappingService_TEST {
      * @description Stub class to simulate the valid response from AutoEnrollmentMappingMapper
      **************************************************************************************************************************************/
     private class STUB_AutoEnrollmentMappingMapper extends AutoEnrollmentMappingMapper {
-        public override List<AutoEnrollmentMappingModel> updateAffiliationMappingsFromModelList(
-            List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelList
-        ) {
-            List<AutoEnrollmentMappingModel> returnList = new List<AutoEnrollmentMappingModel>();
-
-            for (AutoEnrollmentMappingModel autoEnrollmentMappingModel : autoEnrollmentMappingModelList) {
-                returnList.add(
-                    new AutoEnrollmentMappingModel(
-                        (autoEnrollmentMappingModelList.size() == 1
-                            ? autoEnrollmentMappingModel.name
-                            : autoEnrollmentMappingModel.accountRecordTypeFieldValue),
-                        autoEnrollmentMappingModel.accountRecordTypeFieldValue,
-                        autoEnrollmentMappingModel.role,
-                        autoEnrollmentMappingModel.status,
-                        autoEnrollmentMappingModel.active
-                    )
-                );
-            }
-
-            return returnList;
-        }
-
         public override List<AutoEnrollmentMappingModel> updateAffiliationMappingsFromModelList(
             List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelList
         ) {
