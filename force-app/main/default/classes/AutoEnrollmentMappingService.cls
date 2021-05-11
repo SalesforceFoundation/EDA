@@ -63,6 +63,7 @@ public virtual with sharing class AutoEnrollmentMappingService {
      * @param newAccountRecordType The account record type for the updated auto enrollment mapping
      * @param status The status for the auto enrollment mapping
      * @param role The role for the auto enrollment mapping
+     * @return the newly updated Auto Enrollment Mapping Model
      */
     public virtual AutoEnrollmentMappingModel updateAutoEnrollmentMappings(
         String mappingName,
@@ -71,22 +72,59 @@ public virtual with sharing class AutoEnrollmentMappingService {
         String status,
         String role
     ) {
-        //TODO: Write test
         this.locateUserPermissionService().checkViewSetupForCurrentUser();
-
         if (accountRecordType == newAccountRecordType) {
-            AutoEnrollmentMappingModel autoEnrollmentModel = new AutoEnrollmentMappingModel(
-                mappingName,
-                accountRecordType,
-                role,
-                status,
-                true
-            );
-            this.locateAutoEnrollmentMappingMapper()
-                .updateAffiliationMappingsFromModelList(new List<AutoEnrollmentMappingModel>{ autoEnrollmentModel });
-            return autoEnrollmentModel;
+            return this.updateAutoEnrollmentMapping(mappingName, accountRecordType, status, role);
         }
 
+        return this.shiftAutoEnrollmentMapping(mappingName, accountRecordType, newAccountRecordType, status, role);
+    }
+
+    /**
+     * @description Updates a single auto enrollment mapping
+     * @param mappingName The name of the auto enrollment mapping
+     * @param accountRecordType The account record type for the auto enrollment mapping
+     * @param status The status for the auto enrollment mapping
+     * @param role The role for the auto enrollment mapping
+     * @return the newly updated Auto Enrollment Mapping Model
+     */
+    @TestVisible
+    private AutoEnrollmentMappingModel updateAutoEnrollmentMapping(
+        String mappingName,
+        String accountRecordType,
+        String status,
+        String role
+    ) {
+        AutoEnrollmentMappingModel autoEnrollmentModel = new AutoEnrollmentMappingModel(
+            mappingName,
+            accountRecordType,
+            role,
+            status,
+            true
+        );
+        List<AutoEnrollmentMappingModel> returnModelList = this.locateAutoEnrollmentMappingMapper()
+            .updateAffiliationMappingsFromModelList(new List<AutoEnrollmentMappingModel>{ autoEnrollmentModel });
+        return returnModelList[0];
+    }
+
+    /**
+     * @description Updates two auto enrollment mappings, deactivating it for the record type and
+     * activating it for the new one with the new values
+     * @param mappingName The name of the auto enrollment mapping
+     * @param accountRecordType The account record type for the original auto enrollment mapping
+     * @param newAccountRecordType The account record type for the new auto enrollment mapping
+     * @param status The status for the auto enrollment mapping
+     * @param role The role for the auto enrollment mapping
+     * @return the newly updated Auto Enrollment Mapping Model
+     */
+    @TestVisible
+    private AutoEnrollmentMappingModel shiftAutoEnrollmentMapping(
+        String mappingName,
+        String accountRecordType,
+        String newAccountRecordType,
+        String status,
+        String role
+    ) {
         //Get the appropriate Record Type Model for entries with labels in the field
         RecordTypeModel accountRecordTypeModel = this.locateRecordTypeService()
             .getRecordTypeModelFromRecTypeDevName('Account', newAccountRecordType);
@@ -99,34 +137,48 @@ public virtual with sharing class AutoEnrollmentMappingService {
         List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelListToUpdate = new List<AutoEnrollmentMappingModel>();
 
         autoEnrollmentMappingModelListToUpdate.add(
-            new AutoEnrollmentMappingModel(newMappingName, newAccountRecordType, role, status, true)
-        );
-        autoEnrollmentMappingModelListToUpdate.add(
             new AutoEnrollmentMappingModel(mappingName, accountRecordType, null, null, false)
         );
+        autoEnrollmentMappingModelListToUpdate.add(
+            new AutoEnrollmentMappingModel(newMappingName, newAccountRecordType, role, status, true)
+        );
 
-        this.locateAutoEnrollmentMappingMapper()
+        List<AutoEnrollmentMappingModel> returnModelList = this.locateAutoEnrollmentMappingMapper()
             .updateAffiliationMappingsFromModelList(autoEnrollmentMappingModelListToUpdate);
-        return autoEnrollmentMappingModelListToUpdate[2];
+        return returnModelList[1];
     }
 
+    /**
+     * @description Gets a mapping name for an affiliation mapping matching the account record type's developer name or name
+     * @param accountRecordTypeDeveloperName The developer name of the record type
+     * @param accountRecordTypeName The name of the record type
+     * @return the name of the first affiliation mapping to matching the account record type
+     */
     @TestVisible
     private virtual String getMappingNameByRecordTypeDeveloperNameOrName(
         String accountRecordTypeDeveloperName,
         String accountRecordTypeName
     ) {
-        //TODO: Write test
         //We need to preserve the load order to account for the current state
         List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService()
             .getAffiliationMappingsModels();
 
+        List<AffiliationMappingsModel> labelMatches = new List<AffiliationMappingsModel>();
+
         for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
-            if (
-                affiliationMappingsModel.accountRecordTypeFieldValue == accountRecordTypeDeveloperName ||
-                affiliationMappingsModel.accountRecordTypeFieldValue == accountRecordTypeName
-            ) {
+            //Prioritize api name matches.
+            if (affiliationMappingsModel.accountRecordTypeFieldValue == accountRecordTypeDeveloperName) {
                 return affiliationMappingsModel.name;
             }
+
+            //Fall back to label matches
+            if (affiliationMappingsModel.accountRecordTypeFieldValue == accountRecordTypeName) {
+                labelMatches.add(affiliationMappingsModel);
+            }
+        }
+
+        if (labelMatches.isEmpty() == false) {
+            return labelMatches[0].name;
         }
 
         return null;

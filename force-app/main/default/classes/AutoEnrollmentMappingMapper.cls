@@ -60,10 +60,11 @@ public virtual with sharing class AutoEnrollmentMappingMapper {
      * @description Update Affiliations Mappings from a list of auto enrollment mapping models
      * @param autoEnrollmentMappingModelList The auto enrollment mapping models to update
      */
-    public virtual void getModelByRecordTypeDeveloperNameOrName(
+    public virtual List<AutoEnrollmentMappingModel> updateAffiliationMappingsFromModelList(
         List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelList
     ) {
         List<Affl_Mappings__c> affiliationMappingList = new List<Affl_Mappings__c>();
+        List<AutoEnrollmentMappingModel> returnList = new List<AutoEnrollmentMappingModel>();
 
         for (AutoEnrollmentMappingModel autoEnrollmentMappingModel : autoEnrollmentMappingModelList) {
             Affl_Mappings__c affiliationMapping = Affl_Mappings__c.getInstance(autoEnrollmentMappingModel.name);
@@ -71,28 +72,19 @@ public virtual with sharing class AutoEnrollmentMappingMapper {
             affiliationMapping.Auto_Program_Enrollment_Status__c = autoEnrollmentMappingModel.status;
             affiliationMapping.Auto_Program_Enrollment_Role__c = autoEnrollmentMappingModel.role;
             affiliationMappingList.add(affiliationMapping);
+
+            returnList.add(
+                new AutoEnrollmentMappingModel(
+                    affiliationMapping.name,
+                    affiliationMapping.Account_Record_Type__c,
+                    affiliationMapping.Auto_Program_Enrollment_Role__c,
+                    affiliationMapping.Auto_Program_Enrollment_Status__c,
+                    affiliationMapping.Auto_Program_Enrollment__c
+                )
+            );
         }
 
         update affiliationMappingList;
-    }
-
-    /**
-     * @description Update Affiliations Mappings from a list of auto enrollment mapping models
-     * @param autoEnrollmentMappingModelList The auto enrollment mapping models to update
-     */
-    public virtual void updateAffiliationMappingsFromModelList(
-        List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelList
-    ) {
-        List<Affl_Mappings__c> affiliationMappingList = new List<Affl_Mappings__c>();
-
-        for (AutoEnrollmentMappingModel autoEnrollmentMappingModel : autoEnrollmentMappingModelList) {
-            Affl_Mappings__c affiliationMapping = Affl_Mappings__c.getInstance(autoEnrollmentMappingModel.name);
-            affiliationMapping.Auto_Program_Enrollment__c = autoEnrollmentMappingModel.active;
-            affiliationMapping.Auto_Program_Enrollment_Status__c = autoEnrollmentMappingModel.status;
-            affiliationMapping.Auto_Program_Enrollment_Role__c = autoEnrollmentMappingModel.role;
-            affiliationMappingList.add(affiliationMapping);
-        }
-
-        update affiliationMappingList;
+        return autoEnrollmentMappingModelList;
     }
 }

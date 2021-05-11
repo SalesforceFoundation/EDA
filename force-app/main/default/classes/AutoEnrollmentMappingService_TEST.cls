@@ -83,8 +83,27 @@ public with sharing class AutoEnrollmentMappingService_TEST {
         );
     }
 
+    /**************************************************************************************************************************
+     * @description Test method to verify that the locateAffiliationMappingsService method returns a valid instance of
+     * AffiliationMappingsService.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void locateAffiliationMappingsServiceValid() {
+        AutoEnrollmentMappingService autoEnrollmentMappingServiceInstance = AutoEnrollmentMappingService.getInstance();
+
+        Test.startTest();
+        AffiliationMappingsService affiliationMappingsServiceInstance = autoEnrollmentMappingServiceInstance.locateAffiliationMappingsService();
+        Test.stopTest();
+
+        System.assertEquals(
+            AffiliationMappingsService.getInstance(),
+            affiliationMappingsServiceInstance,
+            'Should return instance of AffiliationMappingsService.'
+        );
+    }
+
     /***********************************************************************************************************************************
-     * @description Test method to verify that the locateAffiliationMappingsMapper method returns instance of AffiliationMappingsMapper
+     * @description Test method to verify that the locateAutoEnrollmentMapper method returns instance of AutoEnrollmentMappingMapper
      ***********************************************************************************************************************************/
     @isTest
     private static void locateAutoEnrollmentMappingMapper() {
@@ -143,131 +162,243 @@ public with sharing class AutoEnrollmentMappingService_TEST {
      * @description Test method to verify that the updateAutoEnrollmentMappings method updates the auto enrollment on affiliation Mappings
      * when passed account record type are the same
      ***************************************************************************************************************************/
-    /*@isTest
-    public static void updateAutoEnrollmentMappingSameAccountRecordType() {
-        List<Affl_Mappings__c> afflMappings = new List<Affl_Mappings__c>();
-        Affl_Mappings__c afflMapping1 = new Affl_Mappings__c(
-            Name = 'Test Affl Mapping 1',
-            Account_Record_Type__c = 'Record_Type_1',
-            Primary_Affl_Field__c = 'Primary_Field_1',
-            Auto_Program_Enrollment__c = true,
-            Auto_Program_Enrollment_Status__c = 'Test_Status_1',
-            Auto_Program_Enrollment_Role__c = 'Test_Role_1'
-        );
-        afflMappings.add(afflMapping1);
-        Affl_Mappings__c afflMapping2 = new Affl_Mappings__c(
-            Name = 'Test Affl Mapping 2',
-            Account_Record_Type__c = 'Record_Type_2',
-            Primary_Affl_Field__c = 'Primary_Field_2',
-            Auto_Program_Enrollment__c = true,
-            Auto_Program_Enrollment_Status__c = 'Test_Status_2',
-            Auto_Program_Enrollment_Role__c = 'Test_Role_2'
-        );
-        afflMappings.add(afflMapping2);
-        insert afflMappings;
-
+    @isTest
+    public static void updateAutoEnrollmentMappingsSameAccountRecordType() {
         UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        AutoEnrollmentMappingMapper.instance = new STUB_AutoEnrollmentMappingMapper();
+        AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
+
+        String mappingName = 'mapping';
+        String accountRecordType = 'Academic_Program';
+        String status = 'Status';
+        String role = 'Role';
 
         Test.startTest();
-        AutoEnrollmentMappingService.getInstance()
-            .updateAutoEnrollmentMappings(
-                'Test Affl Mapping 1',
-                'Record_Type_1',
-                'Record_Type_1',
-                'Test_Status_3',
-                'Test_Role_3'
-            );
+        AutoEnrollmentMappingModel autoEnrollmentMappingModel = autoEnrollmentMappingService.updateAutoEnrollmentMappings(
+            mappingName,
+            accountRecordType,
+            accountRecordType,
+            status,
+            role
+        );
         Test.stopTest();
 
-        Affl_Mappings__c assertAfflMapping = Affl_Mappings__c.getInstance('Test Affl Mapping 1');
-        System.assertEquals('Test Affl Mapping 1', assertAfflMapping.name, 'Test Affl Mapping 1 should be retrieved');
         System.assertEquals(
-            'Test_Status_3',
-            assertAfflMapping.Auto_Program_Enrollment_Status__c,
-            'Auto_Program_Enrollment_Status__c should be changed to Test_Status_3'
+            mappingName,
+            autoEnrollmentMappingModel.name,
+            'Auto Enrollment Name should be ' + mappingName
         );
         System.assertEquals(
-            'Test_Role_3',
-            assertAfflMapping.Auto_Program_Enrollment_Role__c,
-            'Auto_Program_Enrollment_Role__c should be changed to Test_Role_3'
+            accountRecordType,
+            autoEnrollmentMappingModel.accountRecordTypeFieldValue,
+            'Auto Enrollment Account Record Type should be ' + accountRecordType
         );
+        System.assertEquals(status, autoEnrollmentMappingModel.status, 'Auto Enrollment Status should be ' + status);
+        System.assertEquals(role, autoEnrollmentMappingModel.role, 'Auto Enrollment Role should be ' + role);
     }
 
     /**************************************************************************************************************************
      * @description Test method to verify that the updateAutoEnrollmentMappings method updates the auto enrollment on affiliation Mappings
-     * when passed account record type are the same
+     * when passed account record type are note the same
      ***************************************************************************************************************************/
-    /*@isTest
+    @isTest
     public static void updateAutoEnrollmentMappingDifferentAccountRecordType() {
-        List<Affl_Mappings__c> afflMappings = new List<Affl_Mappings__c>();
-        Affl_Mappings__c afflMapping1 = new Affl_Mappings__c(
-            Name = 'Test Affl Mapping 1',
-            Account_Record_Type__c = 'Record_Type_1',
-            Primary_Affl_Field__c = 'Primary_Field_1',
-            Auto_Program_Enrollment__c = true,
-            Auto_Program_Enrollment_Status__c = 'Test_Status_1',
-            Auto_Program_Enrollment_Role__c = 'Test_Role_1'
-        );
-        afflMappings.add(afflMapping1);
-        Affl_Mappings__c afflMapping2 = new Affl_Mappings__c(
-            Name = 'Test Affl Mapping 2',
-            Account_Record_Type__c = 'Record_Type_2',
-            Primary_Affl_Field__c = 'Primary_Field_2',
-            Auto_Program_Enrollment__c = true,
-            Auto_Program_Enrollment_Status__c = 'Test_Status_2',
-            Auto_Program_Enrollment_Role__c = 'Test_Role_2'
-        );
-        afflMappings.add(afflMapping2);
-        insert afflMappings;
-
         UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        AutoEnrollmentMappingMapper.instance = new STUB_AutoEnrollmentMappingMapper();
+        RecordTypeService.instance = new STUB_RecordTypeService('Record_Type1', 'Record Type1');
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+
+        AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
+
+        String mappingName = 'mapping';
+        String accountRecordType = 'Record_Type';
+        String newAccountRecordType = 'Record_Type1';
+        String status = 'Status';
+        String role = 'Role';
 
         Test.startTest();
-        AutoEnrollmentMappingService.getInstance()
-            .updateAutoEnrollmentMappings(
-                'Test Affl Mapping 1',
-                'Record_Type_1',
-                'Record_Type_2',
-                'Test_Status_3',
-                'Test_Role_3'
-            );
+        AutoEnrollmentMappingModel autoEnrollmentMappingModel = autoEnrollmentMappingService.updateAutoEnrollmentMappings(
+            mappingName,
+            accountRecordType,
+            newAccountRecordType,
+            status,
+            role
+        );
         Test.stopTest();
 
-        Affl_Mappings__c assertAfflMapping1 = Affl_Mappings__c.getInstance('Test Affl Mapping 1');
-        System.assertEquals('Test Affl Mapping 1', assertAfflMapping1.name, 'Test Affl Mapping 1 should be retrieved');
         System.assertEquals(
-            false,
-            assertAfflMapping1.Auto_Program_Enrollment__c,
-            'Auto_Program_Enrollment__c should be false'
+            newAccountRecordType,
+            autoEnrollmentMappingModel.name,
+            'Auto Enrollment Name should be ' + newAccountRecordType
         );
         System.assertEquals(
-            null,
-            assertAfflMapping1.Auto_Program_Enrollment_Status__c,
-            'Auto_Program_Enrollment_Status__c should be empty'
+            newAccountRecordType,
+            autoEnrollmentMappingModel.accountRecordTypeFieldValue,
+            'Auto Enrollment Account Record Type should be ' + newAccountRecordType
         );
-        System.assertEquals(
-            null,
-            assertAfflMapping1.Auto_Program_Enrollment_Role__c,
-            'Auto_Program_Enrollment_Role__c should be empty'
-        );
+        System.assertEquals(status, autoEnrollmentMappingModel.status, 'Auto Enrollment Status should be ' + status);
+        System.assertEquals(role, autoEnrollmentMappingModel.role, 'Auto Enrollment Role should be ' + role);
+    }
 
-        Affl_Mappings__c assertAfflMapping2 = Affl_Mappings__c.getInstance('Test Affl Mapping 2');
-        System.assertEquals('Test Affl Mapping 2', assertAfflMapping2.name, 'Test Affl Mapping 2 should be retrieved');
+    /**************************************************************************************************************************
+     * @description Test method to verify that the updateAutoEnrollmentMapping method updates the auto enrollment mapping
+     ***************************************************************************************************************************/
+    @isTest
+    public static void updateAutoEnrollmentMapping() {
+        AutoEnrollmentMappingMapper.instance = new STUB_AutoEnrollmentMappingMapper();
+        AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
+
+        String mappingName = 'mapping';
+        String accountRecordType = 'Academic_Program';
+        String status = 'Status';
+        String role = 'Role';
+
+        Test.startTest();
+        AutoEnrollmentMappingModel autoEnrollmentMappingModel = autoEnrollmentMappingService.updateAutoEnrollmentMapping(
+            mappingName,
+            accountRecordType,
+            status,
+            role
+        );
+        Test.stopTest();
+
         System.assertEquals(
-            true,
-            assertAfflMapping2.Auto_Program_Enrollment__c,
-            'Auto_Program_Enrollment__c should be true'
+            mappingName,
+            autoEnrollmentMappingModel.name,
+            'Auto Enrollment Name should be ' + mappingName
         );
         System.assertEquals(
-            'Test_Status_3',
-            assertAfflMapping2.Auto_Program_Enrollment_Status__c,
-            'Auto_Program_Enrollment_Status__c should be changed to Test_Status_3'
+            accountRecordType,
+            autoEnrollmentMappingModel.accountRecordTypeFieldValue,
+            'Auto Enrollment Account Record Type should be ' + accountRecordType
+        );
+        System.assertEquals(status, autoEnrollmentMappingModel.status, 'Auto Enrollment Status should be ' + status);
+        System.assertEquals(role, autoEnrollmentMappingModel.role, 'Auto Enrollment Role should be ' + role);
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the shiftAutoEnrollmentMapping method updates two auto enrollment mappings
+     ***************************************************************************************************************************/
+    @isTest
+    public static void shiftAutoEnrollmentMapping() {
+        AutoEnrollmentMappingMapper.instance = new STUB_AutoEnrollmentMappingMapper();
+        RecordTypeService.instance = new STUB_RecordTypeService('Record_Type1', 'Record Type1');
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+
+        AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
+
+        String mappingName = 'mapping';
+        String accountRecordType = 'Record_Type';
+        String newAccountRecordType = 'Record_Type1';
+        String status = 'Status';
+        String role = 'Role';
+
+        Test.startTest();
+        AutoEnrollmentMappingModel autoEnrollmentMappingModel = autoEnrollmentMappingService.shiftAutoEnrollmentMapping(
+            mappingName,
+            accountRecordType,
+            newAccountRecordType,
+            status,
+            role
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            newAccountRecordType,
+            autoEnrollmentMappingModel.name,
+            'Auto Enrollment Name should be ' + newAccountRecordType
         );
         System.assertEquals(
-            'Test_Role_3',
-            assertAfflMapping2.Auto_Program_Enrollment_Role__c,
-            'Auto_Program_Enrollment_Role__c should be changed to Test_Role_3'
+            newAccountRecordType,
+            autoEnrollmentMappingModel.accountRecordTypeFieldValue,
+            'Auto Enrollment Account Record Type should be ' + newAccountRecordType
         );
+        System.assertEquals(status, autoEnrollmentMappingModel.status, 'Auto Enrollment Status should be ' + status);
+        System.assertEquals(role, autoEnrollmentMappingModel.role, 'Auto Enrollment Role should be ' + role);
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getMappingNameByRecordTypeDeveloperNameOrName method retrieves the mapping
+     * name when the record type matches on developer name
+     ***************************************************************************************************************************/
+    @isTest
+    public static void getMappingNameByRecordTypeDeveloperNameOrNameDN() {
+        String expectedMappingName = 'Record_Type1';
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+
+        AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
+
+        Test.startTest();
+        String mappingName = autoEnrollmentMappingService.getMappingNameByRecordTypeDeveloperNameOrName(
+            expectedMappingName,
+            'Invalid'
+        );
+        Test.stopTest();
+
+        System.assertEquals(expectedMappingName, mappingName, 'Mapping name should be ' + expectedMappingName);
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getMappingNameByRecordTypeDeveloperNameOrName method retrieves the mapping
+     * name when the record type matches on name
+     ***************************************************************************************************************************/
+    @isTest
+    public static void getMappingNameByRecordTypeDeveloperNameOrNameN() {
+        String expectedMappingName = 'Record_Type1';
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+
+        AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
+
+        Test.startTest();
+        String mappingName = autoEnrollmentMappingService.getMappingNameByRecordTypeDeveloperNameOrName(
+            'Invalid',
+            expectedMappingName
+        );
+        Test.stopTest();
+
+        System.assertEquals(expectedMappingName, mappingName, 'Mapping name should be ' + expectedMappingName);
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getMappingNameByRecordTypeDeveloperNameOrName method retrieves the mapping
+     * name when the record type matches on developer name after matching on name
+     ***************************************************************************************************************************/
+    @isTest
+    public static void getMappingNameByRecordTypeDeveloperNameOrNameDN1st() {
+        String expectedMappingName = 'Record_Type1';
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+
+        AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
+
+        Test.startTest();
+        String mappingName = autoEnrollmentMappingService.getMappingNameByRecordTypeDeveloperNameOrName(
+            expectedMappingName,
+            'Record_Type'
+        );
+        Test.stopTest();
+
+        System.assertEquals(expectedMappingName, mappingName, 'Mapping name should be ' + expectedMappingName);
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getMappingNameByRecordTypeDeveloperNameOrName method retrieves null when
+     * the record type does not match
+     ***************************************************************************************************************************/
+    @isTest
+    public static void getMappingNameByRecordTypeDeveloperNameOrNameNone() {
+        String expectedMappingName = null;
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+
+        AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
+
+        Test.startTest();
+        String mappingName = autoEnrollmentMappingService.getMappingNameByRecordTypeDeveloperNameOrName(
+            'Invalid',
+            'Invalid'
+        );
+        Test.stopTest();
+
+        System.assertEquals(expectedMappingName, mappingName, 'Mapping name should be null');
     }
 
     /***********************************************************************************************************************************
@@ -275,36 +406,72 @@ public with sharing class AutoEnrollmentMappingService_TEST {
      ***********************************************************************************************************************************/
 
     /**************************************************************************************************************************************
-     * @description Stub class to simulate the response from AutoEnrollmentMappingMapper to return models representing Primary
-     * Affiliation Mappings.
+     * @description Stub class to simulate the valid response from AutoEnrollmentMappingMapper
      **************************************************************************************************************************************/
-    /*private class STUB_AutoEnrollmentMappingMapper extends AutoEnrollmentMappingMapper {
-        public override List<AffiliationMappingsModel> getAffiliationMappingsModel() {
-            List<AffiliationMappingsModel> afflMappingsModelsList = new List<AffiliationMappingsModel>();
+    private class STUB_AutoEnrollmentMappingMapper extends AutoEnrollmentMappingMapper {
+        public override List<AutoEnrollmentMappingModel> updateAffiliationMappingsFromModelList(
+            List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelList
+        ) {
+            List<AutoEnrollmentMappingModel> returnList = new List<AutoEnrollmentMappingModel>();
 
-            afflMappingsModelsList.add(
+            for (AutoEnrollmentMappingModel autoEnrollmentMappingModel : autoEnrollmentMappingModelList) {
+                returnList.add(
+                    new AutoEnrollmentMappingModel(
+                        (autoEnrollmentMappingModelList.size() == 1
+                            ? autoEnrollmentMappingModel.name
+                            : autoEnrollmentMappingModel.accountRecordTypeFieldValue),
+                        autoEnrollmentMappingModel.accountRecordTypeFieldValue,
+                        autoEnrollmentMappingModel.role,
+                        autoEnrollmentMappingModel.status,
+                        autoEnrollmentMappingModel.active
+                    )
+                );
+            }
+
+            return returnList;
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from AffiliationMappingsService to return Affiliation Mapping Models
+     **************************************************************************************************************************************/
+    private class STUB_AffiliationMappingsService extends AffiliationMappingsService {
+        public override List<AffiliationMappingsModel> getAffiliationMappingsModels() {
+            return new List<AffiliationMappingsModel>{
                 new AffiliationMappingsModel(
-                    'Test Academic Program',
-                    'Test_Academic_Program',
-                    'Test Primary Academic Program',
+                    'Record_Type',
+                    'Record_Type',
+                    'Primary_Affiliation_Field__c',
                     true,
-                    'Test Current',
-                    'Test Student'
-                )
-            );
-
-            afflMappingsModelsList.add(
+                    'Status',
+                    'Role'
+                ),
                 new AffiliationMappingsModel(
-                    'Test Household Account',
-                    'Test_HH_Account',
-                    'Test Primary Household',
-                    false,
-                    '',
-                    ''
+                    'Record_Type1',
+                    'Record_Type1',
+                    'Primary_Affiliation_Field1__c',
+                    true,
+                    'Status',
+                    'Role'
                 )
-            );
+            };
+        }
+    }
 
-            return afflMappingsModelsList;
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from RecordTypeService to return an arbitrary Record Type Model
+     **************************************************************************************************************************************/
+    private class STUB_RecordTypeService extends RecordTypeService {
+        private String recordTypeDeveloperName;
+        private String recordTypeName;
+
+        STUB_RecordTypeService(String recordTypeDeveloperName, String recordTypeName) {
+            this.recordTypeDeveloperName = recordTypeDeveloperName;
+            this.recordTypeName = recordTypeName;
+        }
+
+        public override RecordTypeModel getRecordTypeModelFromRecTypeDevName(String objectAPI, String recTypeDevName) {
+            return new RecordTypeModel('000000000000000000', recordTypeName, recordTypeDeveloperName, true);
         }
     }
 
@@ -314,15 +481,6 @@ public with sharing class AutoEnrollmentMappingService_TEST {
     private class STUB_UserPermissionServiceTrue extends UserPermissionService {
         public override Boolean checkViewSetupForCurrentUser() {
             return true;
-        }
-    }
-
-    /**************************************************************************************************************************************
-     * @description Stub class to simulate the response from UserPermissionService to return false
-     **************************************************************************************************************************************/
-    private class STUB_UserPermissionServiceFalse extends UserPermissionService {
-        public override Boolean checkViewSetupForCurrentUser() {
-            return false;
         }
     }
 }

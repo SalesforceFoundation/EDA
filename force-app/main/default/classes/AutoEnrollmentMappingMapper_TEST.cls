@@ -33,6 +33,9 @@
  */
 @isTest
 private with sharing class AutoEnrollmentMappingMapper_TEST {
+    @testVisible
+    private static Integer numberOfRecords = 5;
+
     /**
      * @description Test method to verify that the getInstance method returns a new instance of the
      * AutoEnrollmentMappingMapper class when one does not already exist.
@@ -89,46 +92,77 @@ private with sharing class AutoEnrollmentMappingMapper_TEST {
      */
     @isTest
     private static void updateAffiliationMappingsFromModelList() {
-        Affl_Mappings__c afflMapping = new Affl_Mappings__c(
-            Name = 'Academic_Program',
-            Account_Record_Type__c = 'Academic_Program',
-            Primary_Affl_Field__c = 'Primary_Household__c',
-            Auto_Program_Enrollment__c = true,
-            Auto_Program_Enrollment_Role__c = 'Student',
-            Auto_Program_Enrollment_Status__c = 'Current'
-        );
-        insert afflMapping;
-
-        AutoEnrollmentMappingModel autoEnrollmentMappingModel = new AutoEnrollmentMappingModel(
-            afflMapping.Name,
-            afflMapping.Account_Record_Type__c,
-            'DifferentRole',
-            'DifferentStatus',
-            false
-        );
-
         AutoEnrollmentMappingMapper autoEnrollmentMappingMapperInstance = AutoEnrollmentMappingMapper.getInstance();
+
+        Map<String, Affl_Mappings__c> affiliationMappingsByName = new Map<String, Affl_Mappings__c>();
+        Map<String, AutoEnrollmentMappingModel> autoEnrollmentMappingModelsByNameToUpdate = new Map<String, AutoEnrollmentMappingModel>();
+
+        for (Integer i = 0; i < AutoEnrollmentMappingMapper_TEST.numberOfRecords; i++) {
+            Affl_Mappings__c affiliationMapping = new Affl_Mappings__c(
+                Name = 'Academic_Program' + i,
+                Account_Record_Type__c = 'Academic_Program' + i,
+                Primary_Affl_Field__c = 'Primary_Household__c' + i,
+                Auto_Program_Enrollment__c = false,
+                Auto_Program_Enrollment_Role__c = null,
+                Auto_Program_Enrollment_Status__c = null
+            );
+            affiliationMappingsByName.put(affiliationMapping.Name, affiliationMapping);
+        }
+
+        insert affiliationMappingsByName.values();
+
+        for (String mappingName : affiliationMappingsByName.keySet()) {
+            Affl_Mappings__c affiliationMapping = affiliationMappingsByName.get(mappingName);
+            AutoEnrollmentMappingModel autoEnrollmentMappingModel = new AutoEnrollmentMappingModel(
+                affiliationMapping.Name,
+                affiliationMapping.Account_Record_Type__c,
+                'New Role',
+                'New Status',
+                true
+            );
+            autoEnrollmentMappingModelsByNameToUpdate.put(autoEnrollmentMappingModel.name, autoEnrollmentMappingModel);
+        }
+
         Test.startTest();
-        autoEnrollmentMappingMapperInstance.updateAffiliationMappingsFromModelList(
-            new List<AutoEnrollmentMappingModel>{ autoEnrollmentMappingModel }
+        List<AutoEnrollmentMappingModel> updatedAutoEnrollmentMappingModels = autoEnrollmentMappingMapperInstance.updateAffiliationMappingsFromModelList(
+            autoEnrollmentMappingModelsByNameToUpdate.values()
         );
         Test.stopTest();
 
-        Affl_Mappings__c updatedAfflMapping = Affl_Mappings__c.getInstance(afflMapping.name);
-        System.assertEquals(
-            false,
-            updatedAfflMapping.Auto_Program_Enrollment__c,
-            'Auto Program Enrollment should be false.'
-        );
-        System.assertEquals(
-            'DifferentRole',
-            updatedAfflMapping.Auto_Program_Enrollment_Role__c,
-            'Auto Program Enrollment Role should be set to DifferentRole.'
-        );
-        System.assertEquals(
-            'DifferentStatus',
-            updatedAfflMapping.Auto_Program_Enrollment_Status__c,
-            'Auto Program Enrollment Status should be set to DifferentStatus.'
-        );
+        for (AutoEnrollmentMappingModel autoEnrollmentMappingModel : updatedAutoEnrollmentMappingModels) {
+            System.assertEquals(
+                true,
+                autoEnrollmentMappingModel.active,
+                'Auto Program Enrollment Model should be active.'
+            );
+            System.assertEquals(
+                'New Role',
+                autoEnrollmentMappingModel.role,
+                'Auto Program Enrollment Model Role should be set to New Role.'
+            );
+            System.assertEquals(
+                'New Status',
+                autoEnrollmentMappingModel.status,
+                'Auto Program Enrollment Status should be set to New Status.'
+            );
+
+            Affl_Mappings__c affiliationMapping = Affl_Mappings__c.getInstance(autoEnrollmentMappingModel.name);
+
+            System.assertEquals(
+                true,
+                affiliationMapping.Auto_Program_Enrollment__c,
+                'Auto Program Enrollment should be true.'
+            );
+            System.assertEquals(
+                'New Role',
+                affiliationMapping.Auto_Program_Enrollment_Role__c,
+                'Auto Program Enrollment Role should be set to New Role.'
+            );
+            System.assertEquals(
+                'New Status',
+                affiliationMapping.Auto_Program_Enrollment_Status__c,
+                'Auto Program Enrollment Status should be set to New Status.'
+            );
+        }
     }
 }
