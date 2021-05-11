@@ -28,6 +28,3 @@ README.md
 *.py
 *.robot
 *.pdf
-
-#Modals
-force-app/main/default/aura/primaryAffiliationsModalOpener/*
