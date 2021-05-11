@@ -1,13 +1,13 @@
 <template>
     <div class="slds-theme_default eda-height_full">
-        <ul class="slds-grid slds-gutters">
+        <ul class="slds-grid">
             <li class="slds-col slds-size_4-of-12">
-                <h2 class="slds-text-heading_medium eda-text_heading_bold slds-p-left_small">
+                <h2 class="slds-text-heading_medium eda-text_heading_bold slds-m-left_small slds-m-top_small">
                     {labelReference.productsTitle}
                 </h2>
                 <ul class="slds-grid slds-grid_vertical">
                     <template for:each={edcProductModels} for:item="edcProductModel">
-                        <li key={edcProductModel.title} class="slds-col slds-p-bottom_small">
+                        <li key={edcProductModel.title} class="slds-col slds-m-horizontal_small slds-m-vertical_small">
                             <c-edc-settings-product-card
                                 title={edcProductModel.title}
                                 description={edcProductModel.description}
@@ -23,12 +23,12 @@
                 </ul>
             </li>
             <li class="slds-col slds-size_4-of-12">
-                <h2 class="slds-text-heading_medium eda-text_heading_bold slds-p-left_small">
+                <h2 class="slds-text-heading_medium eda-text_heading_bold slds-m-left_small slds-m-top_small">
                     {labelReference.servicesTitle}
                 </h2>
                 <ul class="slds-grid slds-grid_vertical">
                     <template for:each={edcServiceModels} for:item="edcServiceModel">
-                        <li key={edcServiceModel.title} class="slds-col slds-p-bottom_small">
+                        <li key={edcServiceModel.title} class="slds-col slds-m-horizontal_small slds-m-vertical_small">
                             <c-edc-settings-card
                                 title={edcServiceModel.title}
                                 description={edcServiceModel.description}
@@ -42,12 +42,12 @@
                 </ul>
             </li>
             <li class="slds-col slds-size_4-of-12">
-                <h2 class="slds-text-heading_medium eda-text_heading_bold slds-p-left_small">
+                <h2 class="slds-text-heading_medium eda-text_heading_bold slds-m-left_small slds-m-top_small">
                     {labelReference.resourcesTitle}
                 </h2>
                 <ul class="slds-grid slds-grid_vertical">
                     <template for:each={edcResourceModels} for:item="edcResourceModel">
-                        <li key={edcResourceModel.title} class="slds-col">
+                        <li key={edcResourceModel.title} class="slds-col slds-m-horizontal_small slds-m-vertical_small">
                             <c-edc-settings-card
                                 title={edcResourceModel.title}
                                 description={edcResourceModel.description}
