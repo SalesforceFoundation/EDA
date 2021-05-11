@@ -155,10 +155,13 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         return this.actionName === "edit" || this.actionName === "create";
     }
 
-    autoEnrollmentHyperLink =
-        '<a href="https://powerofus.force.com/EDA-Configure-Affiliations-Settings">' +
-        this.labelReference.tellMeMoreLink +
-        "</a>";
+     get autoEnrollmentHyperLink() {
+        return (
+            '<a href="https://powerofus.force.com/EDA-Configure-Affiliations-Settings">' +
+            this.labelReference.tellMeMoreLink +
+            "</a>"
+        );
+    }
 
     get accountRecordTypeApiNameLabel() {
         return this.labelReference.apiNameDisplay.replace("{0}", this.accountRecordTypeComboboxVModel.value);

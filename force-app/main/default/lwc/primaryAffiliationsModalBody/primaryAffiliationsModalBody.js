@@ -82,7 +82,6 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
     }
 
     get accountRecordTypeApiNameLabel() {
-        console.log(this.accountRecordTypeComboboxVModel.value);
         return this.labelReference.apiNameDisplay.replace("{0}", this.accountRecordTypeComboboxVModel.value);
     }
 
