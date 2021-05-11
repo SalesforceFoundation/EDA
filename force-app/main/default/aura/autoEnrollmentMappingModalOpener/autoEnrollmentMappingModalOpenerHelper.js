@@ -180,7 +180,6 @@
             autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
             autoProgramEnrollmentRole: autoProgramEnrollmentRole
         };
-        console.log(saveModel);
         modalSaveEvent.setParams({
             saveModel: saveModel
         });

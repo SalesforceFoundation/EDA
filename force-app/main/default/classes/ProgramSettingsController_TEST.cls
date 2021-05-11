@@ -606,17 +606,4 @@ private with sharing class ProgramSettingsController_TEST {
 
     private class TestException extends Exception {
     }
-
-    /**************************************************************************************************************************************
-     * @description Stub class to simulate exception responses from AffiliationMappingsService
-     **************************************************************************************************************************************/
-    private class STUB_ExceptionAffiliationMappingsService extends AffiliationMappingsService {
-        public override String createAutoEnrollmentMapping(
-            String accountRecordType,
-            String autoProgramEnrollmentStatus,
-            String autoProgramEnrollmentRole
-        ) {
-            throw new TestException('Exception encountered!');
-        }
-    }
 }

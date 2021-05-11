@@ -101,7 +101,7 @@ public with sharing class ProgramSettingsController {
         try {
             return ProgramSettingsController.locateAutoEnrollmentMappingService()
                 .createAutoEnrollmentMapping(accountRecordType, status, role)
-                .accountRecordType;
+                .accountRecordTypeFieldValue;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
