@@ -1055,6 +1055,14 @@
         <value>Cancel</value>
     </labels>
     <labels>
+        <fullName>stgBtnCommunityAction</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Visit community action</shortDescription>
+        <value>Visit Trailblazer Community</value>
+    </labels>
+    <labels>
         <fullName>stgBtnDelete</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1181,6 +1189,14 @@
         <protected>true</protected>
         <shortDescription>Button that runs a selected Apex job</shortDescription>
         <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnVideosAction</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Visit videos action</shortDescription>
+        <value>Visit Salesforce.org on YouTube</value>
     </labels>
     <labels>
         <fullName>stgCleanupQueuedEmailSent</fullName>
@@ -1325,6 +1341,14 @@
         <protected>true</protected>
         <shortDescription>Field label for Affiliation Mappings Settings</shortDescription>
         <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>stgCommunityTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Trailblazer Community Button</shortDescription>
+        <value>Trailblazer Community</value>
     </labels>
     <labels>
         <fullName>stgConfirmReadyRunBackfill</fullName>
@@ -2173,6 +2197,14 @@
         <protected>true</protected>
         <shortDescription>Account Model group title in Settings Health Check results</shortDescription>
         <value>Account Model</value>
+    </labels>
+    <labels>
+        <fullName>stgHealthCheckAction</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Launch Health Check action</shortDescription>
+        <value>Launch Health Check</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckAffiliationMappings</fullName>
@@ -3302,6 +3334,14 @@
         <protected>true</protected>
         <shortDescription>Error msg used throughout Settings</shortDescription>
         <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>stgVideosTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the videos Tile</shortDescription>
+        <value>Youtube</value>
     </labels>
     <labels>
         <fullName>timeBlockEndTimeMismatch</fullName>

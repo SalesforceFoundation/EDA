@@ -10,6 +10,19 @@ import stgColServices from "@salesforce/label/c.stgColServices";
 import stgEDAAppDesc from "@salesforce/label/c.stgEDAAppDesc";
 import stgEDAAppTitle from "@salesforce/label/c.stgEDAAppTitle";
 import stgEDAAppInitials from "@salesforce/label/c.stgEDAAppInitials";
+
+//EDA Services Labels
+import stgHealthCheckTitle from "@salesforce/label/c.stgHealthCheckTitle";
+import stgHealthCheckDescription from "@salesforce/label/c.stgHealthCheckDescription";
+import stgHealthCheckAction from "@salesforce/label/c.stgHealthCheckAction";
+
+//EDA Resources Labels
+import stgBtnTrailhead from "@salesforce/label/c.stgBtnTrailhead";
+import stgBtnTrailheadAction from "@salesforce/label/c.stgBtnTrailheadAction";
+import stgCommunityTitle from "@salesforce/label/c.stgCommunityTitle";
+import stgBtnCommunityAction from "@salesforce/label/c.stgBtnCommunityAction";
+import stgVideosTitle from "@salesforce/label/c.stgVideosTitle";
+import stgBtnVideosAction from "@salesforce/label/c.stgBtnVideosAction";
 export default class EducationCloudSettings extends NavigationMixin(LightningElement) {
     labelReference = {
         productsTitle: stgColProducts,
@@ -32,10 +45,9 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
 
     @track edcServiceModels = [
         {
-            title: "Settings Health Check",
-            description:
-                "Settings Health Check checks your org Education Settings for invalid configurations. When complete, use the results to identify and fix any invalid settings. Launch Settings Health Check from here.",
-            buttonLabel: "Launch Health Check",
+            title: stgHealthCheckTitle,
+            description: stgHealthCheckDescription,
+            buttonLabel: stgHealthCheckAction,
             navigationType: "standard__component",
             navigationTarget: "c__HealthCheckContainer",
         },
@@ -43,21 +55,21 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
 
     @track edcResourceModels = [
         {
-            title: "Trailhead",
-            buttonLabel: "Visit Trailhead",
+            title: stgBtnTrailhead,
+            buttonLabel: stgBtnTrailheadAction,
             navigationType: "standard__webPage",
             navigationTarget:
                 "https://trailhead.salesforce.com/en/users/sfdo/trailmixes/get-started-with-education-cloud",
         },
         {
-            title: "Trailblazer Community",
-            buttonLabel: "Visit Trailblazer Community",
+            title: stgCommunityTitle,
+            buttonLabel: stgBtnCommunityAction,
             navigationType: "standard__webPage",
             navigationTarget: "https://trailblazers.salesforce.com/successHome",
         },
         {
-            title: "Youtube",
-            buttonLabel: "Visit Salesforce.org on YouTube",
+            title: stgVideosTitle,
+            buttonLabel: stgBtnVideosAction,
             navigationType: "standard__webPage",
             navigationTarget: "https://www.youtube.com/user/SalesforceFoundation",
         },
