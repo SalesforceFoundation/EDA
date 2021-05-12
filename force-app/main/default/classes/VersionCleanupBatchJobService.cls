@@ -82,4 +82,28 @@ public virtual with sharing class VersionCleanupBatchJobService {
         Id jobId = Database.executeBatch(ethnicityAndRaceBatch, 200);
         return jobId;
     }
+
+    /**********************************************************************************
+     * @description Runs the CCON_ConnectionBackfill_BATCH Job
+     * @return Boolean True is success, else throws an error
+     **********************************************************************************/
+    public virtual Boolean runCourseConnectionBackfillJob() {
+        CCON_ConnectionBackfill_BATCH courseConnBackfill = new CCON_ConnectionBackfill_BATCH();
+        Id jobId = this.runCourseConnectionBackfillBatch(courseConnBackfill);
+        if (jobId == null) {
+            throw new AuraHandledException(Label.BatchJobRunningProblem);
+        } else {
+            return true;
+        }
+    }
+
+    /**********************************************************************************
+     * @description Runs the CourseDescriptionBatch Job
+     * @return Id The batch job id for the CCON_ConnectionBackfill_BATCH
+     **********************************************************************************/
+    @TestVisible
+    private virtual Id runCourseConnectionBackfillBatch(CCON_ConnectionBackfill_BATCH courseConnBackfill) {
+        Id jobId = Database.executeBatch(courseConnBackfill, 200);
+        return jobId;
+    }
 }

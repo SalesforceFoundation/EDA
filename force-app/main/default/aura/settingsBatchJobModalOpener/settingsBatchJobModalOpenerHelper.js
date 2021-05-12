@@ -37,6 +37,12 @@
                 confirmButton = $A.get("$Label.c.stgBtnUpdate");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 break;
+            case "CCON_ConnectionBackfill_BATCH":
+                modalHeaderLabel = $A.get("$Label.c.stgCourseConnectionBackfillModalTitle");
+                modalDesc = $A.get("$Label.c.stgHelpCourseConnBackfillDescription");
+                confirmButton = $A.get("$Label.c.stgBtnUpdate");
+                cancelButton = $A.get("$Label.c.stgBtnCancel");
+                break;
         }
 
         $A.createComponents(

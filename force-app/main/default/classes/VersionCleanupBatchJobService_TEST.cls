@@ -129,6 +129,48 @@ private with sharing class VersionCleanupBatchJobService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify runCourseConnectionBackfillJob runs succesfully
+     ***************************************************************************************************************************/
+    @isTest
+    private static void runCourseConnectionBackfillJobValid() {
+        VersionCleanupBatchJobService.instance = new STUB_runCourseConnectionBackfillBatchNotNull();
+
+        Test.startTest();
+        Boolean apexJobSuccess = VersionCleanupBatchJobService.getInstance().runCourseConnectionBackfillJob();
+        Test.stopTest();
+        System.assertEquals(true, apexJobSuccess, 'Ensure apex batch job has run successfully');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify runCourseConnectionBackfillJob thorws an error if batch job fails to run
+     ***************************************************************************************************************************/
+    @isTest
+    private static void runCourseConnectionBackfillJobInvalid() {
+        VersionCleanupBatchJobService.instance = new STUB_runCourseConnectionBackfillBatchNull();
+        try {
+            Test.startTest();
+            Boolean apexJobSuccess = VersionCleanupBatchJobService.getInstance().runCourseConnectionBackfillJob();
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify runCourseConnectionBackfillBatch runs successfully
+     ***************************************************************************************************************************/
+    @isTest
+    private static void runCourseConnectionBackfillBatch() {
+        CCON_ConnectionBackfill_BATCH courseConnBackfillJob = new CCON_ConnectionBackfill_BATCH();
+        Test.startTest();
+        Id batchJobId = VersionCleanupBatchJobService.getInstance()
+            .runCourseConnectionBackfillBatch(courseConnBackfillJob);
+        Test.stopTest();
+        System.assertNotEquals(null, batchJobId, 'Ensure apex batch job has run successfully');
+    }
+
+    /**************************************************************************************************************************
      ****************************************************** STUB CLASS *********************************************************
      **************************************************************************************************************************/
 
@@ -148,6 +190,26 @@ private with sharing class VersionCleanupBatchJobService_TEST {
      */
     private class STUB_AdminVersionCleanupBatchJobServiceBatchNotNull extends VersionCleanupBatchJobService {
         private override Id runEthnicityAndRaceBackfillBatch(CON_EthnicityRace_BATCH ethnicityAndRaceBatch) {
+            return '01217000002Zs0pAAC';
+        }
+    }
+
+    /*************************************************************************************************************
+     * @description Stub class to simulate the response from VersionCleanupBatchJobService to null for the Course
+     * Connection Backfill batch job Id
+     */
+    private class STUB_runCourseConnectionBackfillBatchNull extends VersionCleanupBatchJobService {
+        private override Id runCourseConnectionBackfillBatch(CCON_ConnectionBackfill_BATCH courseConnBackfill) {
+            return null;
+        }
+    }
+
+    /*******************************************************************************************************************
+     * @description Stub class to simulate the response from VersionCleanupBatchJobService to an Id for the Course
+     * Connection Backfill batch job Id
+     */
+    private class STUB_runCourseConnectionBackfillBatchNotNull extends VersionCleanupBatchJobService {
+        private override Id runCourseConnectionBackfillBatch(CCON_ConnectionBackfill_BATCH courseConnBackfill) {
             return '01217000002Zs0pAAC';
         }
     }
