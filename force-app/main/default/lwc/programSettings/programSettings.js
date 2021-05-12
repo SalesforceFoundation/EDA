@@ -429,7 +429,7 @@ export default class programSettings extends LightningElement {
             .then((result) => {
                 this.showToast(
                     "success",
-                    "Update Complete",
+                    "Save Complete",
                     this.labelReference.createSuccessMessage.replace("{0}", result)
                 );
             })
