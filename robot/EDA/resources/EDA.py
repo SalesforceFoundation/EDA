@@ -596,6 +596,23 @@ class EDA(BaseEDAPage):
                                                 error= f"{locator} is not displayed for the user")
         self.selenium.click_element(locator)
 
+    def select_and_move_from_list(self, settingName, recordType):
+        """ This method will select and move the record type from available record type list to
+            selected record type list. It accepts the name of the setting and name of the record
+            type as parameters and then selects the record type and click on the move button
+        """
+        locator = eda_lex_locators["eda_settings_new"]["select_from_list"].format(settingName,recordType)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= f"{locator} is not displayed for the user")
+        self.selenium.click_element(locator)
+        locator = eda_lex_locators["eda_settings_new"]["move_to_selected"].format(settingName)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= f"{locator} is not displayed for the user")
+        self.selenium.click_element(locator)
+
+
     def update_settings_dropdown_value(self,**kwargs):
         """ This method will update the drop down field value passed in keyword arguments in new
             EDA settings. Pass the expected value to be set in the drop down field from the tests
