@@ -1063,6 +1063,22 @@
         <value>Delete</value>
     </labels>
     <labels>
+        <fullName>stgBtnDocumentation</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Documentation Button</shortDescription>
+        <value>Documentation</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnDocumentationAction</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the visit documentation action</shortDescription>
+        <value>Visit Documentation</value>
+    </labels>
+    <labels>
         <fullName>stgBtnEdit</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1125,6 +1141,38 @@
         <protected>true</protected>
         <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnSettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Settings Button</shortDescription>
+        <value>Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnSettingsAction</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the manage settings action</shortDescription>
+        <value>Manage Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnTrailhead</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Trailhead Button</shortDescription>
+        <value>Trailhead</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnTrailheadAction</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the visit trailhead action</shortDescription>
+        <value>Visit Trailhead</value>
     </labels>
     <labels>
         <fullName>stgBtnUpdate</fullName>
@@ -1231,6 +1279,14 @@
         <value>Object API Name</value>
     </labels>
     <labels>
+        <fullName>stgColProducts</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Products column</shortDescription>
+        <value>Products</value>
+    </labels>
+    <labels>
         <fullName>stgColRelType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1239,12 +1295,28 @@
         <value>Relationship Type</value>
     </labels>
     <labels>
+        <fullName>stgColResources</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Resources column</shortDescription>
+        <value>Resources</value>
+    </labels>
+    <labels>
         <fullName>stgColRole</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Field label for Affiliation Mappings Settings</shortDescription>
         <value>Role</value>
+    </labels>
+    <labels>
+        <fullName>stgColServices</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Services column</shortDescription>
+        <value>Services</value>
     </labels>
     <labels>
         <fullName>stgColStatus</fullName>
@@ -1367,8 +1439,32 @@
         <value>Require Preferred Phone</value>
     </labels>
     <labels>
+        <fullName>stgEDAAppDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the EDA App</shortDescription>
+        <value>Education Data Architecture (EDA), the foundation of Education Cloud. Developed, is a flexible data architecture designed to configure Salesforce for education. Manage EDA Settings from here.</value>
+    </labels>
+    <labels>
+        <fullName>stgEDAAppInitials</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Initials for the EDA App</shortDescription>
+        <value>EDA</value>
+    </labels>
+    <labels>
+        <fullName>stgEDAAppTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the EDA App</shortDescription>
+        <value>Education Data Architecture</value>
+    </labels>
+    <labels>
         <fullName>stgEDASetupTitle</fullName>
-        <categories>Setup</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>EDA Setup title</shortDescription>

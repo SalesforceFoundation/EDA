@@ -1,18 +1,28 @@
 import { LightningElement, track } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
+
+//Column Header Labels
+import stgColProducts from "@salesforce/label/c.stgColProducts";
+import stgColResources from "@salesforce/label/c.stgColResources";
+import stgColServices from "@salesforce/label/c.stgColServices";
+
+//EDA Labels
+import stgEDAAppDesc from "@salesforce/label/c.stgEDAAppDesc";
+import stgEDAAppTitle from "@salesforce/label/c.stgEDAAppTitle";
+import stgEDAAppInitials from "@salesforce/label/c.stgEDAAppInitials";
 export default class EducationCloudSettings extends NavigationMixin(LightningElement) {
     labelReference = {
-        productsTitle: "Products",
-        resourcesTitle: "Services",
-        servicesTitle: "Resources",
+        productsTitle: stgColProducts,
+        resourcesTitle: stgColResources,
+        servicesTitle: stgColServices,
     };
+
     @track edcProductModels = [
         {
-            title: "Education Data Architecture",
-            description:
-                "Education Data Architecture (EDA), the foundation of Education Cloud. Developed, is a flexible data architecture designed to configure Salesforce for education. Manage EDA Settings from here.",
+            title: stgEDAAppTitle,
+            description: stgEDAAppDesc,
             iconSrc: "/bad/image/url.jpg",
-            iconInitials: "EDA",
+            iconInitials: stgEDAAppInitials,
             iconFallbackName: "standard:avatar",
             settingsComponent: "c__EdaSettingsContainer",
             documentationUrl: "https://powerofus.force.com/s/article/EDA-Documentation",
