@@ -96,6 +96,13 @@
         <value>EDA Settings</value>
     </labels>
     <labels>
+        <fullName>EDCSettingsContainerAuraComponentLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Education Cloud Settings</shortDescription>
+        <value>Education Cloud Settings</value>
+    </labels>
+    <labels>
         <fullName>Female</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>

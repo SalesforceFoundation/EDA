@@ -1,11 +1,13 @@
 import { LightningElement, api, track, wire } from "lwc";
+import { NavigationMixin } from "lightning/navigation";
 
 import checkAccessForCurrentUser from "@salesforce/apex/EDASettingsController.checkAccessForCurrentUser";
 
 import stgErrorInsufficientAccess from "@salesforce/label/c.stgErrorInsufficientAccess";
 import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
-
-export default class EDASettings extends LightningElement {
+import EDASettingsContainerAuraComponentLabel from "@salesforce/label/c.EDASettingsContainerAuraComponentLabel";
+import EDCSettingsContainerAuraComponentLabel from "@salesforce/label/c.EDCSettingsContainerAuraComponentLabel";
+export default class EDASettings extends NavigationMixin(LightningElement) {
     @api pageReference;
     @api navigationClicked;
 
@@ -21,6 +23,8 @@ export default class EDASettings extends LightningElement {
     labelReference = {
         insufficientAccessError: stgErrorInsufficientAccess,
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
+        edaSettings: EDASettingsContainerAuraComponentLabel,
+        edcSettings: EDCSettingsContainerAuraComponentLabel,
     };
 
     @wire(checkAccessForCurrentUser)

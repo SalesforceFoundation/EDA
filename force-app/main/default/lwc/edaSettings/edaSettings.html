@@ -1,4 +1,17 @@
 <template>
+    <lightning-card class="cardBackground">
+        <h3 slot="title">
+            <div class="slds-grid">
+                <div class="slds-col">
+                    <lightning-icon icon-name="custom:custom64" size="medium"></lightning-icon>
+                </div>
+                <div class="slds-col slds-grid slds-wrap slds-text-align_left slds-p-horizontal_small">
+                    <div class="slds-col slds-size_1-of-1 slds-text-body_regular">EDA Settings</div>
+                    <div class="slds-col slds-size_1-of-1 slds-text-title">EDA Settings</div>
+                </div>
+            </div>
+        </h3>
+    </lightning-card>
     <div class="slds-grid slds-theme_default eda-height_full">
         <template if:false={currentUserHasAccessWireResult}>
             <lightning-spinner

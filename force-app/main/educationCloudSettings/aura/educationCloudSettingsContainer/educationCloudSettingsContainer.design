@@ -1,1 +1,1 @@
-<design:component Label="Education Cloud Settings"> </design:component>
+<design:component Label="{!$Label.c.EDCSettingsContainerAuraComponentLabel}"> </design:component>
