@@ -378,6 +378,28 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /****************************************************************************************
+     * @description Test method to verify createAutoEnrollmentMapping()
+     * when exception occurs
+     ****************************************************************************************/
+    @isTest
+    private static void createAutoEnrollmentMappingException() {
+        AutoEnrollmentMappingService.instance = new STUB_ExceptionAutoEnrollmentMappingService();
+
+        try {
+            Test.startTest();
+            String accountRecordTypeDeveloperName = ProgramSettingsController.createAutoEnrollmentMapping(
+                'Record_Type_1',
+                'Test_Status_1',
+                'Test_Role_1'
+            );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /****************************************************************************************
      * @description Test method to verify updateAutoEnrollmentMappings() updates auto
      * enrollment on affiliation mappings when account record type passed are the same
      ****************************************************************************************/
