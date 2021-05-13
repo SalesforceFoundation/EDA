@@ -1300,7 +1300,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Confirmation message when Course Connection record types are queued for update</shortDescription>
-        <value>We&apos;re updating Course Connection record types. Look for an email when the job is done.</value>
+        <value>We&apos;re updating Course Connection record types. Check the status of the job under Apex Jobs in Setup.</value>
     </labels>
     <labels>
         <fullName>stgHelpCourseConnectionBackfill</fullName>
