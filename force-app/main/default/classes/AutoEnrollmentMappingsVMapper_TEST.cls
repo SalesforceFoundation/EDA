@@ -492,6 +492,42 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
     }
 
     /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingsVModel()
+     * returns a AutoEnrollmentMappingsVModel with proper values when active auto enrollment exists.
+     ****************************************************************************************/
+    @isTest
+    private static void unmappedRecordTypesExist() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsServiceInactiveAutoEnrollment();
+        RecordTypeService.instance = new STUB_RecordTypeService();
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        Boolean unmappedRecordTypesExistValue = autoEnrollmentMappingsVMapperInstance.unmappedRecordTypesExist();
+        Test.stopTest();
+
+        System.assertEquals(true, unmappedRecordTypesExistValue, 'Unmapped record types should exist');
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAutoEnrollmentMappingsVModel()
+     * returns a AutoEnrollmentMappingsVModel with proper values when no active auto enrollment exists.
+     ****************************************************************************************/
+    @isTest
+    private static void unmappedRecordTypesExistFalse() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+        RecordTypeService.instance = new STUB_RecordTypeService();
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        Boolean unmappedRecordTypesExistValue = autoEnrollmentMappingsVMapperInstance.unmappedRecordTypesExist();
+        Test.stopTest();
+
+        System.assertEquals(false, unmappedRecordTypesExistValue, 'No unmapped record types should exist');
+    }
+
+    /****************************************************************************************
      * @description Test method to verify getAccountRecordTypeComboboxVModel()
      * returns a ComboBoxVModel with proper values
      * when no record type except the current one is mapped to active auto enrollment.

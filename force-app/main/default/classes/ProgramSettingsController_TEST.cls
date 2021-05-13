@@ -400,6 +400,20 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /****************************************************************************************
+     * @description Test method to verify unmappedRecordTypesExist()
+     ****************************************************************************************/
+    @isTest
+    private static void unmappedRecordTypesExist() {
+        AutoEnrollmentMappingsVMapper.instance = new STUB_AutoEnrollmentMappingsVMapperValid();
+
+        Test.startTest();
+        Boolean unmappedRecordTypesExistValue = ProgramSettingsController.unmappedRecordTypesExist();
+        Test.stopTest();
+
+        System.assertEquals(true, unmappedRecordTypesExistValue, 'Unmapped Record Types');
+    }
+
+    /****************************************************************************************
      * @description Test method to verify updateAutoEnrollmentMappings() updates auto
      * enrollment on affiliation mappings when account record type passed are the same
      ****************************************************************************************/
@@ -479,6 +493,10 @@ private with sharing class ProgramSettingsController_TEST {
      * @description Stub class to simulate valid responses from AutoEnrollmentMappingsVMapper
      **************************************************************************************************************************************/
     private class STUB_AutoEnrollmentMappingsVMapperValid extends AutoEnrollmentMappingsVMapper {
+        public override Boolean unmappedRecordTypesExist() {
+            return true;
+        }
+
         public override AutoEnrollmentMappingsVModel getAutoEnrollmentMappingsVModel() {
             List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModelsList = new List<AutoEnrollmentMappingVModel>();
             autoEnrollmentMappingVModelsList.add(

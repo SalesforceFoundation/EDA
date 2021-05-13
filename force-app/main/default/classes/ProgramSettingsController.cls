@@ -46,6 +46,19 @@ public with sharing class ProgramSettingsController {
         }
     }
 
+    /**********************************************************************************************************
+     * @description Retrieve an integer representing the number of unmapped record types
+     * @return The number of unmapped record types.
+     *********************************************************************************************************/
+    @AuraEnabled
+    public static Boolean unmappedRecordTypesExist() {
+        try {
+            return ProgramSettingsController.locateAutoEnrollmentMappingsVMapper().unmappedRecordTypesExist();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /************************************************************************************
      * @description Retrieve a ComoboxVModel representing the list of active Account
      * Record Types

@@ -1495,6 +1495,14 @@
         <value>We couldn’t save your work. Please refresh the page and try again.</value>
     </labels>
     <labels>
+        <fullName>stgErrorNewAutoEnrollment</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Toast message when no record types for Program Auto Enrollment</shortDescription>
+        <value>No unmapped record types are available for the program auto enrollment. Auto enrollments can only be created for Account Record Types that have been mapped as Primary Affiliations</value>
+    </labels>
+    <labels>
         <fullName>stgErrorNotiTo</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

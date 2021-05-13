@@ -6,6 +6,7 @@ import getAutoEnrollmentMappingsVModel from "@salesforce/apex/ProgramSettingsCon
 import getProgramEnrollmentDeletionSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramEnrollmentDeletionSettingsVModel";
 import updateAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMappings";
 import createAutoEnrollmentMapping from "@salesforce/apex/ProgramSettingsController.createAutoEnrollmentMapping";
+import unmappedRecordTypesExist from "@salesforce/apex/ProgramSettingsController.unmappedRecordTypesExist";
 
 //Page Custom Labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
@@ -46,6 +47,8 @@ import stgAfflDeleteProgramEnrollment from "@salesforce/label/c.stgAfflDeletePro
 import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflDeleteProgramEnrollment";
 import stgAutoEnrollmentNewSuccess from "@salesforce/label/c.stgAutoEnrollmentNewSuccess";
 import stgBtnNewAutoEnrollA11y from "@salesforce/label/c.stgBtnNewAutoEnrollA11y";
+import stgErrorNewAutoEnrollment from "@salesforce/label/c.stgErrorNewAutoEnrollment";
+
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -90,6 +93,7 @@ export default class programSettings extends LightningElement {
             autoEnrollmentRoleColumn: stgColAutoEnrollmentRole,
             editAction: stgBtnEdit,
             deleteAction: stgBtnDelete,
+            cannotMakeNew: stgErrorNewAutoEnrollment,
         },
         editSuccessMessage: stgAutoEnrollmentEditSuccess,
         createSuccessMessage: stgAutoEnrollmentNewSuccess,
@@ -335,13 +339,24 @@ export default class programSettings extends LightningElement {
             autoProgramEnrollmentRole: "",
         };
 
-        const autoEnrollmentModalRequestEvent = new CustomEvent("autoenrollmentmodalrequest", {
-            detail: autoEnrollmentNewDetail,
-            bubbles: true,
-            composed: true,
-        });
+        unmappedRecordTypesExist()
+            .then((result) => {
+                if (result === false) {
+                    this.showToast("error", "Error", this.labelReference.autoEnrollmentMappingsTable.cannotMakeNew);
+                    return;
+                }
 
-        this.dispatchEvent(autoEnrollmentModalRequestEvent);
+                const autoEnrollmentModalRequestEvent = new CustomEvent("autoenrollmentmodalrequest", {
+                    detail: autoEnrollmentNewDetail,
+                    bubbles: true,
+                    composed: true,
+                });
+
+                this.dispatchEvent(autoEnrollmentModalRequestEvent);
+            })
+            .catch((error) => {
+                //console.log("Inside error");
+            });
     }
 
     handleAutoEnrollmentMappingRowAction(event) {

@@ -131,6 +131,33 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
     }
 
     /**********************************************************************************************************
+     * @description Retrieve an integer representing the number of unmapped record types
+     * @return The number of unmapped record types.
+     *********************************************************************************************************/
+    public virtual Boolean unmappedRecordTypesExist() {
+        Map<Id, RecordTypeModel> accRecordTypeModelsById = this.locateRecordTypeService()
+            .getModelByIdMapForSObjectType(Account.SObjectType);
+
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
+            .getRecordTypeModelMapByName(accRecordTypeModelsById);
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
+            .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
+
+        List<AffiliationMappingsModel> affiliationMappingsModels = this.locateAffiliationMappingsService()
+            .getAffiliationMappingsModels();
+
+        Set<String> accountRecordTypesWithAffiliationMapping = new Set<String>();
+
+        for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModels) {
+            if (affiliationMappingsModel.autoProgramEnrollment == false) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**********************************************************************************************************
      * @description Retrieve a ComboBoxVModel for all active account record types
      * @return  A ComboBoxVModel
      *********************************************************************************************************/
