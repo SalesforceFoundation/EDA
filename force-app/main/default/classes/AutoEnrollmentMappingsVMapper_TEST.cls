@@ -543,6 +543,41 @@ private with sharing class AutoEnrollmentMappingsVMapper_TEST {
 
     /****************************************************************************************
      * @description Test method to verify getAccountRecordTypeComboboxVModel()
+     * returns a ComboBoxVModel with proper values when the account record type is empty
+     ****************************************************************************************/
+    @isTest
+    private static void getAccountRecordTypeComboboxVModelEmpty() {
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsServiceMixAutoEnrollment();
+        RecordTypeService.instance = new STUB_RecordTypeServiceAccountRecordTypeCombobox(false);
+
+        AutoEnrollmentMappingsVMapper autoEnrollmentMappingsVMapperInstance = AutoEnrollmentMappingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel accountRecordTypeComboboxVModel = autoEnrollmentMappingsVMapperInstance.getAccountRecordTypeComboboxVModel(
+            null
+        );
+        Test.stopTest();
+
+        System.assertEquals(null, accountRecordTypeComboboxVModel.value, 'The account record type should be null');
+        System.assertEquals(
+            1,
+            accountRecordTypeComboboxVModel.options.size(),
+            'The size of accountRecordTypeComboboxVModel.options should be 1'
+        );
+        System.assertEquals(
+            'Record Type 2',
+            accountRecordTypeComboboxVModel.options[0].label,
+            'The label of accountRecordTypeComboboxVModel.options[0] should be Record Type 2'
+        );
+        System.assertEquals(
+            'Record_Type_2',
+            accountRecordTypeComboboxVModel.options[0].value,
+            'The value of accountRecordTypeComboboxVModel.options[0] should be Record_Type_2'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAccountRecordTypeComboboxVModel()
      * returns a ComboBoxVModel with proper values
      * when all record types are mapped to active auto enrollment.
      ****************************************************************************************/

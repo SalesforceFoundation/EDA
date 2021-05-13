@@ -218,6 +218,35 @@ private with sharing class PrimaryAffiliationsSettingsVMapper_TEST {
 
     /****************************************************************************************
      * @description Test method to verify getContactAccountLookupFieldComboboxVModel()
+     * returns a ComboboxVModel representing a list of options all account lookup fields on contact.
+     ****************************************************************************************/
+    @isTest
+    private static void getContactAccountLookupFieldComboboxVModelEmpty() {
+        LookupFieldService.instance = new STUB_LookupFieldService();
+
+        PrimaryAffiliationsSettingsVMapper primaryAffiliationsSettingsVMapperInstance = PrimaryAffiliationsSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel accountLookupFieldComboBoxVModel = primaryAffiliationsSettingsVMapperInstance.getContactAccountLookupFieldComboboxVModel(
+            null
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            accountLookupFieldComboBoxVModel.value,
+            'Selected value in combobox view model should be null.'
+        );
+
+        System.assertEquals(
+            2,
+            accountLookupFieldComboBoxVModel.options.size(),
+            'Combobox options should include only existing account lookup fields.'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getContactAccountLookupFieldComboboxVModel()
      * returns a ComboboxVModel representing the selected Account lookup field and a list of
      * options that includes the selected lookup field when it is not currently a specified field.
      ****************************************************************************************/
@@ -314,6 +343,30 @@ private with sharing class PrimaryAffiliationsSettingsVMapper_TEST {
             accountRTComboboxVModel.value,
             'Selected account record type should match record type to check.'
         );
+        System.assertEquals(
+            3,
+            accountRTComboboxVModel.options.size(),
+            'Account record type options list should consist only of existing values.'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify getAccountRecordTypeComboboxVModel()
+     * returns a ComboboxVModel representing a list of all active Account Record Types
+     ****************************************************************************************/
+    @isTest
+    private static void getAccountRecordTypeComboboxVModelEmpty() {
+        RecordTypeService.instance = new STUB_RecordTypeService();
+
+        PrimaryAffiliationsSettingsVMapper primaryAffiliationsSettingsVMapperInstance = PrimaryAffiliationsSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ComboBoxVModel accountRTComboboxVModel = primaryAffiliationsSettingsVMapperInstance.getAccountRecordTypeComboboxVModel(
+            null
+        );
+        Test.stopTest();
+
+        System.assertEquals(null, accountRTComboboxVModel.value, 'Selected account record type should be null.');
         System.assertEquals(
             3,
             accountRTComboboxVModel.options.size(),

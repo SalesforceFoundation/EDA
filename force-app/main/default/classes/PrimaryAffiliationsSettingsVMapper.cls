@@ -229,7 +229,7 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
         Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel = this.locateLookupFieldService()
             .getModelByLabelMapForSObjectType(accountLookupsOnContactFieldModelsByName);
 
-        if (String.isNotBlank(contactFieldToCheck)) {
+        if (String.isBlank(contactFieldToCheck)) {
             comboboxValues.addAll(
                 this.getComboboxVModelOptionsForContactAccountLookupFields(
                     accountLookupsOnContactFieldModelsByName.values()
