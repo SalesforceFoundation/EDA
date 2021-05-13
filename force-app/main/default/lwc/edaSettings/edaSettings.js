@@ -46,6 +46,18 @@ export default class EDASettings extends NavigationMixin(LightningElement) {
         accountModelSettings: true,
     };
 
+    handleSettingsClick(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        const pageReference = {
+            type: "standard__component",
+            attributes: {
+                componentName: "c__EducationCloudSettingsContainer",
+            },
+        };
+        this[NavigationMixin.Navigate](pageReference);
+    }
+
     handleSettingsNavigation(event) {
         event.stopPropagation();
         this.navigationClicked = true;
