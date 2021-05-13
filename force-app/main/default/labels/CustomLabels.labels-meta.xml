@@ -1924,7 +1924,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist</shortDescription>
-        <value>The picklist value for Female in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t valid. In EDA Settings | Relationships, edit the Female value for this mapping to a valid, active picklist value.</value>
+        <value>The picklist value for Female in the Reciprocal Relationships mapping for {0} isn&apos;t valid. In EDA Settings | Relationships, edit the Female value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelFemaleTitle</fullName>
@@ -1948,7 +1948,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist</shortDescription>
-        <value>The picklist value for Male in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t valid. In EDA Settings | Relationships, edit the Male value for this mapping to a valid, active picklist value.</value>
+        <value>The picklist value for Male in the Reciprocal Relationships mapping for {0} isn&apos;t valid. In EDA Settings | Relationships, edit the Male value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelMaleTitle</fullName>
@@ -1972,7 +1972,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist</shortDescription>
-        <value>The Reciprocal Relationships mapping for {0} ({1}) isn&apos;t valid. In EDA Settings | Relationships, edit the mapping that specifies this Name to a valid, active picklist value.</value>
+        <value>The Reciprocal Relationships mapping for {0} isn&apos;t valid. In EDA Settings | Relationships, edit the mapping that specifies this Name to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameNotUniqueDesc</fullName>
@@ -2028,7 +2028,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist</shortDescription>
-        <value>The picklist value for Neutral in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t valid. In EDA Settings | Relationships, edit the Neutral value for this mapping to a valid, active picklist value.</value>
+        <value>The picklist value for Neutral in the Reciprocal Relationships mapping for {0} isn&apos;t valid. In EDA Settings | Relationships, edit the Neutral value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNeutralTitle</fullName>
