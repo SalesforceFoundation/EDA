@@ -849,7 +849,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties en controleer de {0} ({1}) die is opgegeven voor de automatische inschrijvingsstatus van een affiliatietoewijzing. Als {0} ({1}) correct is, gaat u naar het statusveld van het affiliatieobject in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de automatische-inschrijvingsstatus in een geldige, actieve keuzelijstwaarde.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>

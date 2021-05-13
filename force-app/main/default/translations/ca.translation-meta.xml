@@ -849,7 +849,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Verifiqueu el {0} ({1}) especificat per a l&apos;Estat d&apos;inscripció automàtica d&apos;una Assignació d&apos;afiliació, a Configuració EDA, a la subpestanya Assignacions d&apos;afiliació de la pestanya Afiliacions. Si {0} ({1}) és correcte, aneu al camp Estat de l&apos;objecte Afiliació a Configuració de Salesforce i establiu el valor de la llista de selecció a Actiu. Si no és correcte, canvieu l&apos;Estat d&apos;inscripció automàtica per un valor de llista de selecció actiu vàlid.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>

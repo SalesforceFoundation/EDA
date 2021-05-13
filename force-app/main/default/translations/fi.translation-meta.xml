@@ -849,7 +849,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista EDA-asetuksissa määritetyt {0} ja ({1}) jäsenyyskartoituksen automaattisen ilmoittautumisen tila Jäsenyydet-välilehden Jäsenyyskartoitukset -alavälilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikon ohjelmaan jäsenyysobjektin tilakenttään ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta automaattisen ilmoittautumisen tila kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>

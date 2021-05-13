@@ -849,7 +849,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0} ({1})&quot; für den Autoregistrierungsstatus. Wenn &quot;{0} ({1})&quot; zutreffend ist, wechseln Sie zum Feld &quot;Status&quot; des Zugehörigkeitsobjekts im Salesforce-Setup, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Autoregistrierungsstatus in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>

@@ -849,7 +849,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Status, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Affiliation object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Status to a valid, active picklist value.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>

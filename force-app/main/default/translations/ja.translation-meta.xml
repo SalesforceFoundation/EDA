@@ -849,7 +849,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで所属対応付けの [自動登録の状況] で指定された {0} ({1}) を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] で所属オブジェクトの [状況] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、[自動登録の状況] を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
