@@ -1580,7 +1580,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Affiliation mapping&apos;s Account record type is inactive</shortDescription>
-        <value>In EDA Settings | Affiliations, verify the Account Record Type for this Affiliation mapping. If {0} ({1}) is correct, go to the Account Record Type foAccount object in Salesforce Setup and set the record type to Active. If it isn't correct, change the Affiliation mapping's record type to a valid, active record type.</value>
+        <value>In EDA Settings | Affiliations, verify the Account Record Type for this Affiliation mapping. If {0} ({1}) is correct, go to the Account Record Type foAccount object in Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Affiliation mapping&apos;s record type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAccRecordTypeNotFoundFix</fullName>
@@ -1588,7 +1588,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist</shortDescription>
-        <value>The Account Record Type for this Affiliation mapping doesn't exist. In EDA Settings | Affiliations, change the Affiliation mapping to use a valid, active record type for the specified Account.</value>
+        <value>The Account Record Type for this Affiliation mapping doesn&apos;t exist. In EDA Settings | Affiliations, change the Affiliation mapping to use a valid, active record type for the specified Account.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAccRecordTypeNotUnique</fullName>
@@ -1732,7 +1732,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid</shortDescription>
-        <value>The Primary Affiliation field {0} isn't valid. In EDA Settings | Affiliations, edit the Affiliation mapping to specify a valid lookup field on the Contact object.</value>
+        <value>The Primary Affiliation field {0} isn&apos;t valid. In EDA Settings | Affiliations, edit the Affiliation mapping to specify a valid lookup field on the Contact object.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapContPrimaryFieldUniqueTitle</fullName>
