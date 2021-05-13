@@ -5,6 +5,61 @@
         <default>true</default>
         <visible>true</visible>
    </applicationVisibilities>
+   <applicationVisibilities>
+        <application>standard__AllTabSet</application>
+        <default>False</default>
+        <visible>False</visible>
+   </applicationVisibilities>
+   <applicationVisibilities>
+        <application>standard__AppLauncher</application>
+        <default>False</default>
+        <visible>False</visible>
+   </applicationVisibilities>
+   <applicationVisibilities>
+        <application>standard__LightningBolt</application>
+        <default>False</default>
+        <visible>False</visible>
+   </applicationVisibilities>
+   <applicationVisibilities>
+        <application>standard__Community</application>
+        <default>False</default>
+        <visible>False</visible>
+   </applicationVisibilities>
+   <applicationVisibilities>
+        <application>standard__Marketing</application>
+        <default>False</default>
+        <visible>False</visible>
+   </applicationVisibilities>
+   <applicationVisibilities>
+        <application>standard__LightningSales</application>
+        <default>False</default>
+        <visible>False</visible>
+   </applicationVisibilities>
+   <applicationVisibilities>
+        <application>standard__Sales</application>
+        <default>False</default>
+        <visible>False</visible>
+   </applicationVisibilities>
+   <applicationVisibilities>
+        <application>standard__Chatter</application>
+        <default>False</default>
+        <visible>False</visible>
+   </applicationVisibilities>
+   <applicationVisibilities>
+        <application>standard__SalesforceCMS</application>
+        <default>False</default>
+        <visible>False</visible>
+   </applicationVisibilities>
+   <applicationVisibilities>
+        <application>standard__ServiceConsole</application>
+        <default>False</default>
+        <visible>False</visible>
+   </applicationVisibilities>
+      <applicationVisibilities>
+        <application>standard__Service</application>
+        <default>False</default>
+        <visible>False</visible>
+   </applicationVisibilities>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
     </layoutAssignments>
