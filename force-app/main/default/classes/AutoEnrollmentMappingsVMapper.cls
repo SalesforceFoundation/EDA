@@ -136,6 +136,8 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
      *********************************************************************************************************/
     public virtual ComboBoxVModel getAccountRecordTypeComboboxVModel(String accountRecordType) {
         String comboboxValue = accountRecordType;
+        List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
+
         Map<Id, RecordTypeModel> accRecordTypeModelsById = this.locateRecordTypeService()
             .getModelByIdMapForSObjectType(Account.SObjectType);
 
@@ -144,7 +146,16 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
             .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
 
-        List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
+        if (String.isBlank(accountRecordType)) {
+            comboboxValues.addAll(
+                this.getComboboxVModelOptionsForActiveAccountRecordTypes(
+                    accRecordTypeModelsById.values(),
+                    accountRecordType
+                )
+            );
+
+            return new ComboboxVModel(null, comboboxValues);
+        }
 
         RecordTypeModel recordTypeModel = this.locateRecordTypeService()
             .getRecordTypeModelFromNameAndLabelMaps(
@@ -210,7 +221,6 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
      *********************************************************************************************************/
     public virtual ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(String autoProgramEnrollmentStatus) {
         String comboboxValue = autoProgramEnrollmentStatus;
-
         List<ComboboxValueVModel> comboboxOptions = new List<ComboboxValueVModel>();
 
         Map<String, PicklistEntryModel> statusPicklistEntryModelByName = this.locatePicklistEntryService()
