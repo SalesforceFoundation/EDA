@@ -1312,7 +1312,7 @@
     </labels>
     <labels>
         <fullName>stgCourseDataMigrationModalTitle</fullName>
-        <categories>Courses</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Title for the Update Extended Description field confirmation window</shortDescription>
@@ -1320,7 +1320,7 @@
     </labels>
     <labels>
         <fullName>stgCourseDataMigrationModalBody</fullName>
-        <categories>Courses</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Update Extended Description field confirmation window</shortDescription>
