@@ -20,6 +20,23 @@
                 autoProgramEnrollment
             );
     },
+    openAutoEnrollmentMappingModal: function (component, eventParameters) {
+        const actionName = eventParameters.actionName;
+        const mappingName = eventParameters.mappingName;
+        const oldAccountRecordType = eventParameters.accountRecordType;
+        const autoProgramEnrollmentStatus = eventParameters.autoProgramEnrollmentStatus;
+        const autoProgramEnrollmentRole = eventParameters.autoProgramEnrollmentRole;
+
+        component
+            .find("autoEnrollmentMappingModal")
+            .openAutoEnrollmentMappingModal(
+                actionName,
+                mappingName,
+                oldAccountRecordType,
+                autoProgramEnrollmentStatus,
+                autoProgramEnrollmentRole
+            );
+    },
     openSettingsBatchJobModal: function (component, eventParameters) {
         const batchJobToRun = eventParameters.batchJobToRun;
         component.find("settingBatchJobModal").openSettingsBatchJobModal(batchJobToRun);

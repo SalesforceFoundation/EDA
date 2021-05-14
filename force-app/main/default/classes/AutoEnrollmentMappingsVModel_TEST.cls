@@ -29,20 +29,21 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Test class for ProgramSettingsVModel class.
+ * @description Test class for AutoEnrollmentMappingsVModel class.
  */
 @isTest
-private with sharing class ProgramSettingsVModel_TEST {
+private with sharing class AutoEnrollmentMappingsVModel_TEST {
     /*****************************************************************************
      * @description Test to verify constructor instantiates a
      * model with the appropriate data.
      *****************************************************************************/
     @isTest
-    private static void affiliationMappingsModelValid() {
+    private static void autoEnrollmentMappingsModelValid() {
         Test.startTest();
         List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModels = new List<AutoEnrollmentMappingVModel>();
         for (Integer i = 0; i < 5; i++) {
             AutoEnrollmentMappingVModel autoEnrollmentMappingVModel = new AutoEnrollmentMappingVModel(
+                'Test Mapping' + i,
                 'Test Account Record Type Name' + i,
                 'Test Account Record Type Label' + i,
                 'Test Status' + i,
@@ -50,13 +51,20 @@ private with sharing class ProgramSettingsVModel_TEST {
             );
             autoEnrollmentMappingVModels.add(autoEnrollmentMappingVModel);
         }
-        ProgramSettingsVModel programSettingsVModel = new ProgramSettingsVModel(autoEnrollmentMappingVModels);
+        AutoEnrollmentMappingsVModel programSettingsVModel = new AutoEnrollmentMappingsVModel(
+            autoEnrollmentMappingVModels
+        );
         Test.stopTest();
 
         System.assertEquals(
             5,
             programSettingsVModel.autoEnrollmentMappingVModels.size(),
             'The size of autoEnrollmentMappingVModels under programSettingsVModel should be 5'
+        );
+        System.assertEquals(
+            'Test Mapping0',
+            programSettingsVModel.autoEnrollmentMappingVModels[0].mappingName,
+            'Mapping name should be \'Test Mapping Name0\'.'
         );
         System.assertEquals(
             'Test Account Record Type Name0',

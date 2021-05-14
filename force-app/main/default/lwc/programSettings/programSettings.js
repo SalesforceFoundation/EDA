@@ -1,8 +1,8 @@
 import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
-
-// Controller for Auto Enrollment Mappings
-import getProgramSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramSettingsVModel";
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
+import getAutoEnrollmentMappingsVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingsVModel";
+import updateAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMappings";
 
 // Controller for Affiliations created with Program Enrollment
 import getAffiliationsWithProgramEnrollmentVModel from "@salesforce/apex/AffiliationsWithProgramEnrollController.getAffiliationsWithProgramEnrollmentVModel";
@@ -34,17 +34,18 @@ import stgColAccountRecordType from "@salesforce/label/c.stgColAccountRecordType
 import stgColAutoEnrollmentStatus from "@salesforce/label/c.stgColAutoEnrollmentStatus";
 import stgColAutoEnrollmentRole from "@salesforce/label/c.stgColAutoEnrollmentRole";
 import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
+import stgAutoEnrollmentEditSuccess from "@salesforce/label/c.stgAutoEnrollmentEditSuccess";
 import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollDeleteTitle";
 import stgAfflProgEnrollDeleteRelated from "@salesforce/label/c.stgAfflProgEnrollDeleteRelated";
 import AfflProgEnrollDeleted from "@salesforce/label/c.AfflProgEnrollDeleted";
 import stgAfflDeleteProgramEnrollment from "@salesforce/label/c.stgAfflDeleteProgramEnrollment";
 import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflDeleteProgramEnrollment";
-import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
-
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
+    @track autoEnrollmentMappingsVModel;
+    @track autoEnrollmentMappingsVModelWireResult;
     @track affiliationsWithProgramEnrollmentVModel;
     @track affiliationsWithProgramEnrollVModelWireResult;
     @track programSettingsVModel;
@@ -84,7 +85,7 @@ export default class programSettings extends LightningElement {
             editAction: stgBtnEdit,
             deleteAction: stgBtnDelete,
         },
-        tellMeMoreLink: stgTellMeMoreLink,
+        editSuccessMessage: stgAutoEnrollmentEditSuccess,
     };
 
     inputAttributeReference = {
@@ -103,20 +104,20 @@ export default class programSettings extends LightningElement {
         return undefined;
     }
 
-    @api
-    handleSaveCanvasRender() {
-        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
-    }
-
-    @wire(getProgramSettingsVModel)
-    programSettingsVModelWire(result) {
-        this.programSettingsVModelWireResult = result;
+    @wire(getAutoEnrollmentMappingsVModel)
+    autoEnrollmentMappingsVModelWire(result) {
+        this.autoEnrollmentMappingsVModelWireResult = result;
 
         if (result.data) {
-            this.programSettingsVModel = result.data;
+            this.autoEnrollmentMappingsVModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving preferredContactInfoSettingsVModel");
         }
+    }
+
+    @api
+    handleSaveCanvasRender() {
+        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
     }
 
     @wire(getAffiliationsWithProgramEnrollmentVModel)
@@ -214,7 +215,7 @@ export default class programSettings extends LightningElement {
             this.showProgramEnrollmentDeletionStatus = !this.programEnrollmentDeletionSettingsVModel
                 .programEnrollmentDeletion;
         } else if (result.error) {
-            console.log("error retrieving ProgramEnrollmentDeletionSettingsVModel");
+            //console.log("error retrieving ProgramEnrollmentDeletionSettingsVModel");
         }
     }
 
@@ -296,6 +297,7 @@ export default class programSettings extends LightningElement {
 
     refreshAllApex() {
         Promise.all([
+            refreshApex(this.autoEnrollmentMappingsVModelWireResult),
             refreshApex(this.programSettingsVModelWireResult),
             refreshApex(this.affiliationsWithProgramEnrollVModelWireResult),
             refreshApex(this.programEnrollmentDeletionSettingsVModelWireResult),
@@ -318,10 +320,86 @@ export default class programSettings extends LightningElement {
     }
 
     handleNewAutoEnrollmentMappingClick(event) {}
-    handleAutoEnrollmentMappingRowAction(event) {}
 
-    autoEnrollmentHyperLink =
-        '<a href="https://powerofus.force.com/s/article/EDA-Configure-Affiliations-Settings">' +
-        this.labelReference.tellMeMoreLink +
-        "</a>";
+    handleAutoEnrollmentMappingRowAction(event) {
+        const actionName = event.detail.action.name;
+        const actionRow = event.detail.row;
+        this.dispatchAutoEnrollmentEditModalRequestEvent(actionName, actionRow);
+    }
+
+    dispatchAutoEnrollmentEditModalRequestEvent(actionName, actionRow) {
+        const autoEnrollmentEditDetail = {
+            actionName: actionName,
+            mappingName: actionRow.mappingName,
+            accountRecordType: actionRow.accountRecordTypeName,
+            autoProgramEnrollmentStatus: actionRow.autoProgramEnrollmentStatus,
+            autoProgramEnrollmentRole: actionRow.autoProgramEnrollmentRole,
+        };
+
+        const autoEnrollmentEditModalRequestEvent = new CustomEvent("autoenrollmenteditmodalrequest", {
+            detail: autoEnrollmentEditDetail,
+            bubbles: true,
+            composed: true,
+        });
+
+        this.dispatchEvent(autoEnrollmentEditModalRequestEvent);
+    }
+
+    @api modalSave(saveModel) {
+        switch (saveModel.action) {
+            /*case "create":
+                this.insertAffiliations(saveModel.mappingName, saveModel.accountRecordType, saveModel.contactField);
+                break;*/
+            case "edit":
+                this.executeUpdateAutoEnrollmentMappings(
+                    saveModel.mappingName,
+                    saveModel.oldAccountRecordType,
+                    saveModel.newAccountRecordType,
+                    saveModel.autoProgramEnrollmentStatus,
+                    saveModel.autoProgramEnrollmentRole
+                );
+                break;
+            /*case "delete":
+                this.deleteAffiliation(saveModel.mappingName);
+                break;*/
+        }
+    }
+
+    executeUpdateAutoEnrollmentMappings(
+        mappingName,
+        oldAccountRecordType,
+        newAccountRecordType,
+        autoProgramEnrollmentStatus,
+        autoProgramEnrollmentRole
+    ) {
+        updateAutoEnrollmentMappings({
+            mappingName: mappingName,
+            accountRecordType: oldAccountRecordType,
+            newAccountRecordType: newAccountRecordType,
+            status: autoProgramEnrollmentStatus,
+            role: autoProgramEnrollmentRole,
+        })
+            .then((result) => {
+                this.showToast(
+                    "success",
+                    "Update Complete",
+                    this.labelReference.editSuccessMessage.replace("{0}", result)
+                );
+            })
+
+            .catch((error) => {
+                //console.log("Inside error");
+            });
+        this.refreshAllApex();
+    }
+
+    showToast(toastType, toastTitle, toastMessage) {
+        const showToastEvent = new ShowToastEvent({
+            title: toastTitle,
+            message: toastMessage,
+            variant: toastType,
+            mode: "dismissable",
+        });
+        this.dispatchEvent(showToastEvent);
+    }
 }

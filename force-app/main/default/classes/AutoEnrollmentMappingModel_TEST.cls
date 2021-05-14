@@ -29,36 +29,48 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Model to represent data required for Auto Enrollment Mapping.
+ * @description Test class for AddressSettingsService class.
  */
+@isTest
+private with sharing class AutoEnrollmentMappingModel_TEST {
+    /**
+     * @description Verifies five argument constructor returns an AutoEnrollmentMappingModel
+     * with all properties populated.
+     */
+    @isTest
+    private static void fiveArgumentConstructorValid() {
+        String name = 'Academic_Program';
+        String accountRecordTypeFieldValue = 'Academic_Program';
+        String role = 'Student';
+        String status = 'Current';
+        Boolean active = true;
 
-public with sharing class AutoEnrollmentMappingVModel {
-    @AuraEnabled
-    public String mappingName { get; private set; }
+        Test.startTest();
+        AutoEnrollmentMappingModel autoEnrollmentMappingModel = new AutoEnrollmentMappingModel(
+            name,
+            accountRecordTypeFieldValue,
+            role,
+            status,
+            active
+        );
+        Test.stopTest();
 
-    @AuraEnabled
-    public String accountRecordTypeName { get; private set; }
-
-    @AuraEnabled
-    public String accountRecordTypeLabel { get; private set; }
-
-    @AuraEnabled
-    public String autoProgramEnrollmentStatus { get; private set; }
-
-    @AuraEnabled
-    public String autoProgramEnrollmentRole { get; private set; }
-
-    public AutoEnrollmentMappingVModel(
-        String mappingName,
-        String accountRecordTypeName,
-        String accountRecordTypeLabel,
-        String autoProgramEnrollmentStatus,
-        String autoProgramEnrollmentRole
-    ) {
-        this.mappingName = mappingName;
-        this.accountRecordTypeName = accountRecordTypeName;
-        this.accountRecordTypeLabel = accountRecordTypeLabel;
-        this.autoProgramEnrollmentStatus = autoProgramEnrollmentStatus;
-        this.autoProgramEnrollmentRole = autoProgramEnrollmentRole;
+        System.assertEquals(name, autoEnrollmentMappingModel.name, 'The \'name\' field should be the expected value.');
+        System.assertEquals(
+            accountRecordTypeFieldValue,
+            autoEnrollmentMappingModel.accountRecordTypeFieldValue,
+            'The \'accountRecordTypeFieldValue\' field should be the expected value.'
+        );
+        System.assertEquals(
+            status,
+            autoEnrollmentMappingModel.status,
+            'The \'status\' field should be the expected value.'
+        );
+        System.assertEquals(role, autoEnrollmentMappingModel.role, 'The \'role\' field should be the expected value.');
+        System.assertEquals(
+            active,
+            autoEnrollmentMappingModel.active,
+            'The \'active\' field should be the expected value.'
+        );
     }
 }
