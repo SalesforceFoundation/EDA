@@ -29,36 +29,34 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Model to represent data required for Auto Enrollment Mapping.
+ * @description Model to represent data required for Auto Enrollment Mappings functionality.
  */
+public with sharing class AutoEnrollmentMappingModel {
+    public String name { get; private set; }
+    public String accountRecordTypeFieldValue { get; private set; }
+    public String role;
+    public String status;
+    public Boolean active;
 
-public with sharing class AutoEnrollmentMappingVModel {
-    @AuraEnabled
-    public String mappingName { get; private set; }
-
-    @AuraEnabled
-    public String accountRecordTypeName { get; private set; }
-
-    @AuraEnabled
-    public String accountRecordTypeLabel { get; private set; }
-
-    @AuraEnabled
-    public String autoProgramEnrollmentStatus { get; private set; }
-
-    @AuraEnabled
-    public String autoProgramEnrollmentRole { get; private set; }
-
-    public AutoEnrollmentMappingVModel(
-        String mappingName,
-        String accountRecordTypeName,
-        String accountRecordTypeLabel,
-        String autoProgramEnrollmentStatus,
-        String autoProgramEnrollmentRole
+    /**
+     * @description Five argument constructor
+     * @param name The name of the Auto Enrollment mapping
+     * @param accountRecordTypeFieldValue The account record type's api name or label
+     * @param role The affiliation role for the Auto Enrollment.
+     * @param status The affiliation value for the Auto Enrollment
+     * @param active Whether or not the Auto Enrollment is active
+     */
+    public AutoEnrollmentMappingModel(
+        String name,
+        String accountRecordTypeFieldValue,
+        String role,
+        String status,
+        Boolean active
     ) {
-        this.mappingName = mappingName;
-        this.accountRecordTypeName = accountRecordTypeName;
-        this.accountRecordTypeLabel = accountRecordTypeLabel;
-        this.autoProgramEnrollmentStatus = autoProgramEnrollmentStatus;
-        this.autoProgramEnrollmentRole = autoProgramEnrollmentRole;
+        this.name = name;
+        this.accountRecordTypeFieldValue = accountRecordTypeFieldValue;
+        this.role = role;
+        this.status = status;
+        this.active = active;
     }
 }
