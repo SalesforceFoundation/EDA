@@ -328,10 +328,10 @@ private class RecordTypeService_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that getRecordTypeModelByLabelPositive returns a map of record type models by label.
+     * @description Test method to verify that getRecordTypeModelMapByLabelPositive returns a map of record type models by label.
      ***************************************************************************************************************************/
     @isTest
-    private static void getRecordTypeModelByLabelPositive() {
+    private static void getRecordTypeModelMapByLabelPositive() {
         Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{
             '000000000000000001' => new RecordTypeModel('000000000000000001', 'Record Type 1', 'Record_Type_1', true),
             '000000000000000002' => new RecordTypeModel('000000000000000002', 'Record Type 2', 'Record_Type_2', false)
@@ -340,7 +340,7 @@ private class RecordTypeService_TEST {
         RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
 
         Test.startTest();
-        Map<String, RecordTypeModel> recordTypeModelsByLabelResult = recordTypeServiceInstance.getRecordTypeModelByLabel(
+        Map<String, RecordTypeModel> recordTypeModelsByLabelResult = recordTypeServiceInstance.getRecordTypeModelMapByLabel(
             recordTypeModelsById
         );
         Test.stopTest();
@@ -358,10 +358,10 @@ private class RecordTypeService_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that getRecordTypeModelByLabelPositive returns a map of record type models by name.
+     * @description Test method to verify that getRecordTypeModelMapByLabelPositive returns a map of record type models by name.
      ***************************************************************************************************************************/
     @isTest
-    private static void getRecordTypeModelByNamePositive() {
+    private static void getRecordTypeModelMapByNamePositive() {
         Map<Id, RecordTypeModel> recordTypeModelsById = new Map<Id, RecordTypeModel>{
             '000000000000000001' => new RecordTypeModel('000000000000000001', 'Record Type 1', 'Record_Type_1', true),
             '000000000000000002' => new RecordTypeModel('000000000000000002', 'Record Type 2', 'Record_Type_2', false)
@@ -370,7 +370,7 @@ private class RecordTypeService_TEST {
         RecordTypeService recordTypeServiceInstance = RecordTypeService.getInstance();
 
         Test.startTest();
-        Map<String, RecordTypeModel> recordTypeModelsByNameResult = recordTypeServiceInstance.getRecordTypeModelByName(
+        Map<String, RecordTypeModel> recordTypeModelsByNameResult = recordTypeServiceInstance.getRecordTypeModelMapByName(
             recordTypeModelsById
         );
         Test.stopTest();
@@ -535,7 +535,7 @@ private class RecordTypeService_TEST {
         );
     }
 
-     /***********************************************************************************************************************************
+    /***********************************************************************************************************************************
      * @description Test method to verify getRecordTypeModelFromRecTypeDevName retrieves a recordtype model for given object and a record
      * type
      ***********************************************************************************************************************************/
@@ -543,12 +543,21 @@ private class RecordTypeService_TEST {
     private static void getRecordTypeModelFromRecTypeDevName() {
         RecordTypeMapper.instance = new STUB_RecordTypeMapperModel();
         Test.startTest();
-        RecordTypeModel recTypeMdl = RecordTypeService.getInstance().getRecordTypeModelFromRecTypeDevName('Account', 'Household_Account');
+        RecordTypeModel recTypeMdl = RecordTypeService.getInstance()
+            .getRecordTypeModelFromRecTypeDevName('Account', 'Household_Account');
         Test.stopTest();
 
         System.assert(recTypeMdl.Id != null, 'The id of the account recordtype in the model should have a value');
-        System.assertEquals('Household', recTypeMdl.name, 'The name of the account recordtype in the model should have a value');
-        System.assertEquals('Household Account', recTypeMdl.developerName, 'The developer name of the account recordtype in the model should have a value');
+        System.assertEquals(
+            'Household',
+            recTypeMdl.name,
+            'The name of the account recordtype in the model should have a value'
+        );
+        System.assertEquals(
+            'Household Account',
+            recTypeMdl.developerName,
+            'The developer name of the account recordtype in the model should have a value'
+        );
         System.assertEquals(true, recTypeMdl.isActive, 'The account record type should be active.');
     }
 
@@ -577,11 +586,10 @@ private class RecordTypeService_TEST {
     }
 
     /*************************************************************************************************************
-    * @description Stub class to simulate the response from RecordTypeMapper to return a recordtype model
-    */
+     * @description Stub class to simulate the response from RecordTypeMapper to return a recordtype model
+     */
     private class STUB_RecordTypeMapperModel extends RecordTypeMapper {
         public override RecordTypeModel getRecordTypeModelFromRecTypeDevName(String objectAPI, String recTypeDevName) {
-           
             RecordTypeModel recordTypeModel = new RecordTypeModel(
                 '000000000000000000',
                 'Household',
