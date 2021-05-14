@@ -326,7 +326,13 @@ export default class programSettings extends LightningElement {
     }
 
     get autoEnrollmentHyperLink() {
-        '<a href="' + autoEnrollmentURL + '">' + this.labelReference.tellMeMoreLink + "</a>";
+        return (
+            '<a href="' +
+            autoEnrollmentURL +
+            '">' +
+            this.labelReference.autoEnrollmentMappingsTable.tellMeMoreLink +
+            "</a>"
+        );
     }
 
     get autoEnrollmentMappingsDescriptionRichText() {
