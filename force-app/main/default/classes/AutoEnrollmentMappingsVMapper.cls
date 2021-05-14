@@ -31,36 +31,36 @@
  * @group-content ../../ApexDocContent/EdaSettings.htm
  * @description View mapper to generate view models associated with Primary Affiliations Settings funtionality.
  */
-public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
+public virtual with sharing class AutoEnrollmentMappingsVMapper {
     /**********************************************************************************
      * @description Instance for Singleton Pattern
      **********************************************************************************/
     @TestVisible
-    private static PrimaryAffiliationsSettingsVMapper instance;
+    private static AutoEnrollmentMappingsVMapper instance;
 
     /**********************************************************************************
      * @description Empty constructor is not public for Singleton Pattern
      **********************************************************************************/
-    protected PrimaryAffiliationsSettingsVMapper() {
+    protected AutoEnrollmentMappingsVMapper() {
     }
 
     /**********************************************************************************
      * @description Static method to get the current instance for Singleton pattern
      * @return The instance of AffiliationsSettingsVMapper.
      **********************************************************************************/
-    public static PrimaryAffiliationsSettingsVMapper getInstance() {
+    public static AutoEnrollmentMappingsVMapper getInstance() {
         if (instance == null) {
-            instance = new PrimaryAffiliationsSettingsVMapper();
+            instance = new AutoEnrollmentMappingsVMapper();
         }
 
         return instance;
     }
 
     /**********************************************************************************************************
-     * @description Retrieve a PrimaryffiliationsSettingsVModel for affiliations mappings
-     * @return  A PrimaryffiliationsSettingsVModel
+     * @description Retrieve an instance of AutoEnrollmentMappingsVModel
+     * @return An instance of AutoEnrollmentMappingsVModel
      *********************************************************************************************************/
-    public virtual PrimaryAffiliationSettingsVModel getPrimaryAffiliationsSettingsVModel() {
+    public virtual AutoEnrollmentMappingsVModel getAutoEnrollmentMappingsVModel() {
         List<AffiliationMappingsModel> affiliationMappingsModelsList = this.locateAffiliationMappingsService()
             .getAffiliationMappingsModels();
 
@@ -72,49 +72,38 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
             .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
 
-        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = this.locateLookupFieldService()
-            .getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
-        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel = this.locateLookupFieldService()
-            .getModelByLabelMapForSObjectType(accountLookupsOnContactFieldModelsByName);
-
-        List<PrimaryAffiliationMappingVModel> primaryAffiliationMappingVModelList = new List<PrimaryAffiliationMappingVModel>();
+        List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModelsList = new List<AutoEnrollmentMappingVModel>();
 
         for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModelsList) {
-            primaryAffiliationMappingVModelList.add(
-                this.getPrimaryAffiliationsMappingVModel(
-                    affiliationMappingsModel,
-                    accountRecordTypeModelsByName,
-                    accountRecordTypeModelsByLabel,
-                    accountLookupsOnContactFieldModelsByName,
-                    accountLookupsOnContactFieldModelsByLabel
-                )
-            );
+            if (affiliationMappingsModel.autoProgramEnrollment != false) {
+                autoEnrollmentMappingVModelsList.add(
+                    this.getAutoEnrollmentMappingVModel(
+                        affiliationMappingsModel,
+                        accountRecordTypeModelsByName,
+                        accountRecordTypeModelsByLabel
+                    )
+                );
+            }
         }
 
-        return new PrimaryAffiliationSettingsVModel(primaryAffiliationMappingVModelList);
+        return new AutoEnrollmentMappingsVModel(autoEnrollmentMappingVModelsList);
     }
 
     /**********************************************************************************************************
-     * @description Generate a view model representing the settings specified for an affiliation mapping.
+     * @description Generate a view model representing the auto enrollment mapping.
      * @param  affiliationMappingsModel A model representing the affililation mapping
      * @param  accountRecordTypeModelsByName A Map of Account Record Type models by developer name
      * @param  accountRecordTypeModelsByLabel A Map of Account Record Type models by label
-     * @param  accountLookupsOnContactFieldModelsByName A Map of Lookup fields of type Account on the Contact object by name
-     * @param  accountLookupsOnContactFieldModelsByLabel A Map of Lookup fields of type Account on the Contact object by label
-     * @return A PrimaryAffiliationMappingVModel
+     * @return An instance of AutoEnrollmentMappingVModel
      **********************************************************************************************************/
     @TestVisible
-    protected PrimaryAffiliationMappingVModel getPrimaryAffiliationsMappingVModel(
+    protected AutoEnrollmentMappingVModel getAutoEnrollmentMappingVModel(
         AffiliationMappingsModel affiliationMappingsModel,
         Map<String, RecordTypeModel> accountRecordTypeModelsByName,
-        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel,
-        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName,
-        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel
     ) {
         String accountRecordTypeName = affiliationMappingsModel.accountRecordTypeFieldValue;
         String accountRecordTypeLabel = affiliationMappingsModel.accountRecordTypeFieldValue;
-        String contactFieldName = affiliationMappingsModel.primaryAffiliationField;
-        String contactFieldLabel = affiliationMappingsModel.primaryAffiliationField;
 
         // get RecordType model matching Account Record Type specified in Affiliation mapping
         RecordTypeModel recordTypeModel = this.locateRecordTypeService()
@@ -128,27 +117,16 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
             accountRecordTypeName = recordTypeModel.developerName;
             accountRecordTypeLabel = recordTypeModel.name;
         }
-
-        // get LookupField model matching Primary Affiliation Field specified in Affiliation mapping
-        LookupFieldModel lookupFieldModel = this.locateLookupFieldService()
-            .getLookupFieldModelFromNameAndLabelMaps(
-                affiliationMappingsModel.primaryAffiliationField,
-                accountLookupsOnContactFieldModelsByName,
-                accountLookupsOnContactFieldModelsByLabel
-            );
-
-        if (lookupFieldModel != null) {
-            contactFieldName = lookupFieldModel.name;
-            contactFieldLabel = lookupFieldModel.label;
-        }
-
-        return new PrimaryAffiliationMappingVModel(
-            affiliationMappingsModel.name,
+        return new AutoEnrollmentMappingVModel(
+            affiliationMappingsModel.Name,
             accountRecordTypeName,
             accountRecordTypeLabel,
-            contactFieldName,
-            contactFieldLabel,
-            affiliationMappingsModel.autoProgramEnrollment
+            affiliationMappingsModel.autoProgramEnrollmentStatus == '""'
+                ? ''
+                : affiliationMappingsModel.autoProgramEnrollmentStatus,
+            affiliationMappingsModel.autoProgramEnrollmentRole == '""'
+                ? ''
+                : affiliationMappingsModel.autoProgramEnrollmentRole
         );
     }
 
@@ -156,8 +134,8 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
      * @description Retrieve a ComboBoxVModel for all active account record types
      * @return  A ComboBoxVModel
      *********************************************************************************************************/
-    public virtual ComboBoxVModel getAccountRecordTypeComboboxVModel(String recordTypeToCheck) {
-        String comboboxValue = recordTypeToCheck;
+    public virtual ComboBoxVModel getAccountRecordTypeComboboxVModel(String accountRecordType) {
+        String comboboxValue = accountRecordType;
         Map<Id, RecordTypeModel> accRecordTypeModelsById = this.locateRecordTypeService()
             .getModelByIdMapForSObjectType(Account.SObjectType);
 
@@ -170,19 +148,21 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
 
         RecordTypeModel recordTypeModel = this.locateRecordTypeService()
             .getRecordTypeModelFromNameAndLabelMaps(
-                recordTypeToCheck,
+                accountRecordType,
                 accountRecordTypeModelsByName,
                 accountRecordTypeModelsByLabel
             );
 
         if (recordTypeModel == null) {
-            comboboxValues.add(new ComboboxValueVModel(recordTypeToCheck, recordTypeToCheck));
+            comboboxValues.add(new ComboboxValueVModel(accountRecordType, accountRecordType));
         } else {
             comboboxValue = recordTypeModel.developerName;
         }
-
         comboboxValues.addAll(
-            this.getComboboxVModelOptionsForActiveAccountRecordTypes(accRecordTypeModelsById.values())
+            this.getComboboxVModelOptionsForActiveAccountRecordTypes(
+                accRecordTypeModelsById.values(),
+                accountRecordType
+            )
         );
 
         return new ComboboxVModel(comboboxValue, comboboxValues);
@@ -195,73 +175,77 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
      **********************************************************************************************************************/
     @TestVisible
     private List<ComboboxValueVModel> getComboboxVModelOptionsForActiveAccountRecordTypes(
-        List<RecordTypeModel> activeAccountRecordTypeModelsList
+        List<RecordTypeModel> activeAccountRecordTypeModelsList,
+        String accountRecordType
     ) {
         List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = new List<ComboboxValueVModel>();
-
+        List<AffiliationMappingsModel> affiliationMappingsModels = this.locateAffiliationMappingsService()
+            .getAffiliationMappingsModels();
+        Set<String> accountRecordTypesWithAffiliationMapping = new Set<String>();
+        for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModels) {
+            if (
+                affiliationMappingsModel.autoProgramEnrollment == false ||
+                affiliationMappingsModel.accountRecordTypeFieldValue == accountRecordType
+            ) {
+                accountRecordTypesWithAffiliationMapping.add(affiliationMappingsModel.accountRecordTypeFieldValue);
+            }
+        }
         for (RecordTypeModel activeAccountRecordTypeModel : activeAccountRecordTypeModelsList) {
-            activeRecordTypeComboboxValueVModelsList.add(
-                new ComboboxValueVModel(activeAccountRecordTypeModel.name, activeAccountRecordTypeModel.developerName)
-            );
+            if (accountRecordTypesWithAffiliationMapping.contains(activeAccountRecordTypeModel.developerName)) {
+                activeRecordTypeComboboxValueVModelsList.add(
+                    new ComboboxValueVModel(
+                        activeAccountRecordTypeModel.name,
+                        activeAccountRecordTypeModel.developerName
+                    )
+                );
+            }
         }
 
         return activeRecordTypeComboboxValueVModelsList;
     }
 
     /**********************************************************************************************************
-     * @description Retrieve a ComboBoxVModel for all Contact Account Lookup Fields
+     * @description Retrieve a ComboBoxVModel for auto enrollment mapping status
      * @return  A ComboBoxVModel
      *********************************************************************************************************/
-    public virtual ComboBoxVModel getContactAccountLookupFieldComboboxVModel(String contactFieldToCheck) {
-        String comboboxValue = contactFieldToCheck;
+    public virtual ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(String autoProgramEnrollmentStatus) {
+        String comboboxValue = autoProgramEnrollmentStatus;
 
-        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = this.locateLookupFieldService()
-            .getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
-        Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel = this.locateLookupFieldService()
-            .getModelByLabelMapForSObjectType(accountLookupsOnContactFieldModelsByName);
+        List<ComboboxValueVModel> comboboxOptions = new List<ComboboxValueVModel>();
 
-        List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
+        Map<String, PicklistEntryModel> statusPicklistEntryModelByName = this.locatePicklistEntryService()
+            .getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Status__c);
 
-        LookupFieldModel lookupFieldModel = this.locateLookupFieldService()
-            .getLookupFieldModelFromNameAndLabelMaps(
-                contactFieldToCheck,
-                accountLookupsOnContactFieldModelsByName,
-                accountLookupsOnContactFieldModelsByLabel
-            );
+        Map<String, PicklistEntryModel> activeStatusPicklistEntryModelByName = this.locatePicklistEntryService()
+            .getActivePicklistEntryModelsByName(statusPicklistEntryModelByName);
 
-        if (lookupFieldModel == null) {
-            comboboxValues.add(new ComboboxValueVModel(contactFieldToCheck, contactFieldToCheck));
-        } else {
-            comboboxValue = lookupFieldModel.name;
+        for (PicklistEntryModel picklistEntryModel : activeStatusPicklistEntryModelByName.values()) {
+            comboboxOptions.add(new ComboboxValueVModel(picklistEntryModel.label, picklistEntryModel.name));
         }
 
-        comboboxValues.addAll(
-            this.getComboboxVModelOptionsForContactAccountLookupFields(
-                accountLookupsOnContactFieldModelsByName.values()
-            )
-        );
-
-        return new ComboboxVModel(comboboxValue, comboboxValues);
+        return new ComboboxVModel(comboboxValue, comboboxOptions);
     }
 
-    /**********************************************************************************************************************
-     * @description Helper method to generate a list of comboboxValueVModels for all Contact Account Lookup Fields.
-     * @param  contactLookupFieldModelList A list of LookupField models corresponding to Contact Account Lookup Fields.
-     * @return A List<ComboboxValueVModel> containing comboboxValueVModels for all Contact Account Lookup Fields.
-     **********************************************************************************************************************/
-    @TestVisible
-    private List<ComboboxValueVModel> getComboboxVModelOptionsForContactAccountLookupFields(
-        List<LookupFieldModel> contactLookupFieldModelList
-    ) {
-        List<ComboboxValueVModel> contactAccountLookupFieldComboboxValueVModelsList = new List<ComboboxValueVModel>();
+    /**********************************************************************************************************
+     * @description Retrieve a ComboBoxVModel for auto enrollment mapping status
+     * @return  A ComboBoxVModel
+     *********************************************************************************************************/
+    public virtual ComboBoxVModel getAutoEnrollmentMappingRoleComboboxVModel(String autoProgramEnrollmentRole) {
+        String comboboxValue = autoProgramEnrollmentRole;
 
-        for (LookupFieldModel contactLookupFieldModel : contactLookupFieldModelList) {
-            contactAccountLookupFieldComboboxValueVModelsList.add(
-                new ComboboxValueVModel(contactLookupFieldModel.label, contactLookupFieldModel.name)
-            );
+        List<ComboboxValueVModel> comboboxOptions = new List<ComboboxValueVModel>();
+
+        Map<String, PicklistEntryModel> rolePicklistEntryModelByName = this.locatePicklistEntryService()
+            .getModelsByNameForSObjectField(Affiliation__c.SObjectType, Affiliation__c.Role__c);
+
+        Map<String, PicklistEntryModel> activeRolePicklistEntryModelByName = this.locatePicklistEntryService()
+            .getActivePicklistEntryModelsByName(rolePicklistEntryModelByName);
+
+        for (PicklistEntryModel picklistEntryModel : activeRolePicklistEntryModelByName.values()) {
+            comboboxOptions.add(new ComboboxValueVModel(picklistEntryModel.label, picklistEntryModel.name));
         }
 
-        return contactAccountLookupFieldComboboxValueVModelsList;
+        return new ComboboxVModel(comboboxValue, comboboxOptions);
     }
 
     /*****************************************************************************
@@ -283,11 +267,11 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
     }
 
     /*****************************************************************************
-     * @description Retrieve an instance of the LookupFieldService class.
-     * @return An instance of LookupFieldService.
+     * @description Retrieve an instance of the PicklistEntryService class.
+     * @return An instance of PicklistEntryService.
      *****************************************************************************/
     @TestVisible
-    private LookupFieldService locateLookupFieldService() {
-        return LookupFieldService.getInstance();
+    private PicklistEntryService locatePicklistEntryService() {
+        return PicklistEntryService.getInstance();
     }
 }

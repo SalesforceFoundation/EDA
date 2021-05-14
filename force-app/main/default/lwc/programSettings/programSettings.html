@@ -104,7 +104,7 @@
         </template>
 
         <!-- Auto Enrollment Mappings -->
-        <template if:true={programSettingsVModel}>
+        <template if:true={autoEnrollmentMappingsVModel}>
             <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
                 <div class="slds-col slds-size_2-of-3">
                     <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
@@ -129,7 +129,7 @@
             <div class="slds-col slds-size_3-of-3 slds-col_bump-right slds-p-right_x-large">
                 <lightning-datatable
                     key-field="mappingName"
-                    data={programSettingsVModel.autoEnrollmentMappingVModels}
+                    data={autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels}
                     columns={autoEnrollmentMappingsTableColumns}
                     onrowaction={handleAutoEnrollmentMappingRowAction}
                 ></lightning-datatable>
