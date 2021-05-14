@@ -497,6 +497,22 @@
         <name>stgAutoEnrollment</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Edit auto-enrollment mapping window --></label>
+        <name>stgAutoEnrollmentEditModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Edit auto-enrollment mapping window --></label>
+        <name>stgAutoEnrollmentEditModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an auto-enrollment mapping is saved --></label>
+        <name>stgAutoEnrollmentEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Account Record Type picklist --></label>
+        <name>stgAccountRecordTypeHelp</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of the Auto-Enrollment Mappings setting --></label>
         <name>stgAutoEnrollmentProgramDesc</name>
     </customLabels>

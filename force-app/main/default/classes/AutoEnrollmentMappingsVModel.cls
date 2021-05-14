@@ -29,18 +29,18 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Model to represent data required for Program Settings.
+ * @description Model to represent data required for Auto Enrollment Mappings.
  */
 
-public with sharing class ProgramSettingsVModel {
+public with sharing class AutoEnrollmentMappingsVModel {
     @AuraEnabled
     public List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModels { get; private set; }
 
     /*****************************************************************************************************************
      * @description Constructor
-     * @param  autoEnrollmentMappingVModels A list of auto enrollment mapping VModels
+     * @param autoEnrollmentMappingVModels A list of auto enrollment mapping VModels
      *****************************************************************************************************************/
-    public ProgramSettingsVModel(List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModels) {
+    public autoEnrollmentMappingsVModel(List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModels) {
         this.autoEnrollmentMappingVModels = autoEnrollmentMappingVModels;
     }
 }

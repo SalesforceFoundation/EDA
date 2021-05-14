@@ -983,6 +983,38 @@
         <value>Auto-Enrollment</value>
     </labels>
     <labels>
+        <fullName>stgAutoEnrollmentEditModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Edit auto-enrollment mapping confirmation window</shortDescription>
+        <value>Select values that create a Program Enrollment record when an Affiliation is created or updated with these values, and the Affiliation is marked as Primary.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentEditModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Edit auto-enrollment mapping confirmation window</shortDescription>
+        <value>Edit auto-enrollment mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentEditSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when an auto-enrollment mapping is saved</shortDescription>
+        <value>{0} auto-enrollment mapping was saved.</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountRecordTypeHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Info text for Account Record Type picklist</shortDescription>
+        <value>Only unmapped Account record types are available.</value>
+    </labels>
+    <labels>
         <fullName>stgAutoEnrollmentProgramDesc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1163,7 +1195,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Header label for the list of Affiliation Roles</shortDescription>
+        <shortDescription>Column header for Auto-Enrollment Role</shortDescription>
         <value>Auto-Enrollment Role</value>
     </labels>
     <labels>
@@ -1171,7 +1203,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Header label for the list of Affiliation Statuses</shortDescription>
+        <shortDescription>Column header for Auto-Enrollment Status</shortDescription>
         <value>Auto-Enrollment Status</value>
     </labels>
     <labels>
