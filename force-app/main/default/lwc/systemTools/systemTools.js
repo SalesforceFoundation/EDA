@@ -5,6 +5,7 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import runRefreshHouseholdAccountNamingJob from "@salesforce/apex/AccountNamingBatchController.runRefreshHouseholdAccountNamingJob";
 import runRefreshAdministrativeAccountNamingJob from "@salesforce/apex/AccountNamingBatchController.runRefreshAdministrativeAccountNamingJob";
 import runEthnicityAndRaceBackfillJob from "@salesforce/apex/VersionCleanupBatchJobController.runEthnicityAndRaceBackfillJob";
+import runCourseDescriptionCopyBatchJob from "@salesforce/apex/VersionCleanupBatchJobController.runCourseDescriptionCopyBatchJob";
 
 // System Settings Labels
 import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
@@ -43,6 +44,15 @@ import stgHelpEthnicityRaceBackfill from "@salesforce/label/c.stgHelpEthnicityRa
 import stgBtnUpdate from "@salesforce/label/c.stgBtnUpdate";
 import stgEthnicityRaceBackfillSuccessToast from "@salesforce/label/c.stgEthnicityRaceBackfillSuccessToast";
 import stgBtnRefreshEthnicityDataA11y from "@salesforce/label/c.stgBtnRefreshEthnicityDataA11y";
+
+// Course Description Data Migration labels
+import stgTitleCoursesDescriptionDataMigration from "@salesforce/label/c.stgTitleCoursesDescriptionDataMigration";
+import stgHelpCoursesDataMigration from "@salesforce/label/c.stgHelpCoursesDataMigration";
+import stgBtnRunCopy from "@salesforce/label/c.stgBtnRunCopy";
+import stgBtnRunCopyA11y from "@salesforce/label/c.stgBtnRunCopyA11y";
+import stgCourseDataMigrationModalTitle from "@salesforce/label/c.stgCourseDataMigrationModalTitle";
+import stgCourseDataMigrationModalBody from "@salesforce/label/c.stgCourseDataMigrationModalBody";
+import stgHelpCopyQueuedEmailSent from "@salesforce/label/c.stgHelpCopyQueuedEmailSent";
 export default class systemTools extends LightningElement {
     labelReference = {
         stgSystemToolsTitle: stgSystemToolsNav,
@@ -68,6 +78,13 @@ export default class systemTools extends LightningElement {
         stgBtnUpdate: stgBtnUpdate,
         ethnicityAndRaceBackfillToast: stgEthnicityRaceBackfillSuccessToast,
         ethnicityAndRaceBackTitleA11y: stgBtnRefreshEthnicityDataA11y,
+        courseDescriptionMigrationTitle: stgTitleCoursesDescriptionDataMigration,
+        courseDescriptionMigrationHelpText: stgHelpCoursesDataMigration,
+        btnLabelForRun: stgBtnRunCopy,
+        btnHelpTextForRunA11y: stgBtnRunCopyA11y,
+        courseDataMigrationModalTitle: stgCourseDataMigrationModalTitle,
+        courseDataMigrationModalBody: stgCourseDataMigrationModalBody,
+        toastMessageForDataMigration: stgHelpCopyQueuedEmailSent,
     };
 
     get adminAndHouseholdNamesHyperLink() {
@@ -152,6 +169,12 @@ export default class systemTools extends LightningElement {
         this.dispatchSettingsBatchJobModalEvent(eventDetail, batchJobToRun);
     }
 
+    handleCourseDataMigration(event) {
+        const eventDetail = event.detail;
+        const batchJobToRun = "COUR_DescriptionCopy_BATCH";
+        this.dispatchSettingsBatchJobModalEvent(eventDetail, batchJobToRun);
+    }
+
     dispatchSettingsBatchJobModalEvent(eventDetail, batchJobToRun) {
         const settingsBatchJobDetail = {
             eventDetail: eventDetail,
@@ -180,6 +203,9 @@ export default class systemTools extends LightningElement {
             case "CON_EthnicityRace_BATCH":
                 this.runEthnicityAndRaceBackfillBatch();
                 break;
+            case "COUR_DescriptionCopy_BATCH":
+                this.runCourseDescriptionCopyBatch();
+                break;
         }
     }
 
@@ -187,6 +213,17 @@ export default class systemTools extends LightningElement {
         runRefreshAdministrativeAccountNamingJob()
             .then((result) => {
                 this.showToast("success", "Success", this.labelReference.stgRefreshAdminNamesSuccessToast);
+            })
+
+            .catch((error) => {
+                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+            });
+    }
+
+    runCourseDescriptionCopyBatch() {
+        runCourseDescriptionCopyBatchJob()
+            .then((result) => {
+                this.showToast("success", "Success", this.labelReference.toastMessageForDataMigration);
             })
 
             .catch((error) => {

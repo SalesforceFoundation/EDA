@@ -60,7 +60,8 @@ public virtual with sharing class VersionCleanupBatchJobService {
     }
 
     /**********************************************************************************
-     * @description Runs the Administrative Account Naming Job
+     * @description Calls the runEthnicityAndRaceBackfillBatch method which inturn runs
+     * CON_EthnicityRace_BATCH job
      * @return Boolean True is success, else throws an error
      **********************************************************************************/
     public virtual Boolean runEthnicityAndRaceBackfillJob() {
@@ -74,12 +75,37 @@ public virtual with sharing class VersionCleanupBatchJobService {
     }
 
     /**********************************************************************************
-     * @description Runs the EthnicityAndRaceBackfill Job
+     * @description Calls the runCourseDescriptionCopyBatchJob which inturn runs
+     * COUR_DescriptionCopy_BATCH job.
      * @return Id The batch job id for the CON_EthnicityRace_BATCH
      **********************************************************************************/
     @TestVisible
     private virtual Id runEthnicityAndRaceBackfillBatch(CON_EthnicityRace_BATCH ethnicityAndRaceBatch) {
         Id jobId = Database.executeBatch(ethnicityAndRaceBatch, 200);
+        return jobId;
+    }
+
+    /**********************************************************************************
+     * @description Runs the COUR_DescriptionCopy_BATCH Job
+     * @return Boolean True is success, else throws an error
+     **********************************************************************************/
+    public virtual Boolean runCourseDescriptionCopyBatchJob() {
+        COUR_DescriptionCopy_BATCH copyCourseDescription = new COUR_DescriptionCopy_BATCH();
+        Id jobId = this.runCourseDescriptionCopyBatch(copyCourseDescription);
+        if (jobId == null) {
+            throw new AuraHandledException(Label.BatchJobRunningProblem);
+        } else {
+            return true;
+        }
+    }
+
+    /**********************************************************************************
+     * @description Runs the CourseDescriptionBatch Job
+     * @return Id The batch job id for the COUR_DescriptionCopy_BATCH
+     **********************************************************************************/
+    @TestVisible
+    private virtual Id runCourseDescriptionCopyBatch(COUR_DescriptionCopy_BATCH copyCourseDescriptionBatch) {
+        Id jobId = Database.executeBatch(copyCourseDescriptionBatch, 200);
         return jobId;
     }
 }
