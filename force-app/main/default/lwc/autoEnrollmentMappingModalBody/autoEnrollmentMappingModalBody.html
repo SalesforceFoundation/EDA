@@ -1,0 +1,58 @@
+<template>
+    <div
+        class="slds-grid slds-grid--vertical slds-grid_vertical-align-start slds-wrap slds-p-left_large slds-p-right_large slds-p-bottom_xx-large"
+    >
+        <template if:true={modifyRecords}>
+            <div class="slds-col slds-size-1-of-1 slds-p-bottom_xx-large">
+                <lightning-formatted-rich-text value={autoEnrollmentMappingModalDesc}> </lightning-formatted-rich-text>
+            </div>
+            <template if:true={accountRecordTypeComboboxVModel}>
+                <div class="slds-col slds-size_2-of-3">
+                    <lightning-combobox
+                        id={inputAttributeReference.accountRecordType}
+                        name={inputAttributeReference.accountRecordType}
+                        label={labelReference.accountRecordTypeCombobox}
+                        value={accountRecordTypeComboboxVModel.value}
+                        placeholder={labelReference.comboboxPlaceholderText}
+                        options={accountRecordTypeComboboxVModel.options}
+                        required="true"
+                        onchange={handleAccountRecordTypeChange}
+                        data-qa-locator={inputAttributeReference.accountRecordType}
+                        field-level-help={labelReference.stgAccountRecordTypeHelp}
+                    ></lightning-combobox>
+                </div>
+                <div class="slds-col slds-size-1-of-1 slds-p-bottom_medium">{accountRecordTypeApiNameLabel}</div>
+            </template>
+            <template if:true={autoEnrollmentMappingStatusComboboxVModel}>
+                <div class="slds-col slds-size_2-of-3 slds-p-bottom_medium">
+                    <lightning-combobox
+                        id={inputAttributeReference.autoEnrollmentMappingStatus}
+                        name={inputAttributeReference.autoEnrollmentMappingStatus}
+                        label={labelReference.statusCombobox}
+                        value={autoEnrollmentMappingStatusComboboxVModel.value}
+                        placeholder={labelReference.comboboxPlaceholderText}
+                        options={autoEnrollmentMappingStatusComboboxVModel.options}
+                        required="true"
+                        onchange={handleAutoEnrollmentMappingStatusChange}
+                        data-qa-locator={inputAttributeReference.autoEnrollmentMappingStatus}
+                    ></lightning-combobox>
+                </div>
+            </template>
+            <template if:true={autoEnrollmentMappingRoleComboboxVModel}>
+                <div class="slds-col slds-size_2-of-3 slds-p-bottom_xx-large">
+                    <lightning-combobox
+                        id={inputAttributeReference.autoProgramEnrollmentRole}
+                        name={inputAttributeReference.autoProgramEnrollmentRole}
+                        label={labelReference.roleCombobox}
+                        value={autoEnrollmentMappingRoleComboboxVModel.value}
+                        placeholder={labelReference.comboboxPlaceholderText}
+                        options={autoEnrollmentMappingRoleComboboxVModel.options}
+                        required="true"
+                        onchange={handleAutoEnrollmentMappingRoleChange}
+                        data-qa-locator={inputAttributeReference.autoProgramEnrollmentRole}
+                    ></lightning-combobox>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>
