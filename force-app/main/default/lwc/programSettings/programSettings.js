@@ -48,7 +48,9 @@ import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflD
 import stgAutoEnrollmentNewSuccess from "@salesforce/label/c.stgAutoEnrollmentNewSuccess";
 import stgBtnNewAutoEnrollA11y from "@salesforce/label/c.stgBtnNewAutoEnrollA11y";
 import stgErrorNewAutoEnrollment from "@salesforce/label/c.stgErrorNewAutoEnrollment";
+import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 
+const autoEnrollmentURL = "https://powerofus.force.com/s/article/EDA-Configure-Affiliations-Settings";
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -86,6 +88,7 @@ export default class programSettings extends LightningElement {
         programEnrollmentDeletionStatusSettingTitle: stgAfflDeleteProgramEnrollment,
         programEnrollmentDeletionStatusSettingDescription: stgHelpAfflDeleteProgramEnrollment,
         autoEnrollmentMappingsTable: {
+            tellMeMoreLink: stgTellMeMoreLink,
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
             autoEnrollmentMappingsDescription: autoEnrollmentMappingsDescription,
             accountRecordTypeColumn: stgColAccountRecordType,
@@ -320,6 +323,10 @@ export default class programSettings extends LightningElement {
                 input.resetValue();
             });
         });
+    }
+
+    get autoEnrollmentHyperLink() {
+        '<a href="' + autoEnrollmentURL + '">' + this.labelReference.tellMeMoreLink + "</a>";
     }
 
     get autoEnrollmentMappingsDescriptionRichText() {
