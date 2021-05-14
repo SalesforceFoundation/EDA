@@ -54,7 +54,7 @@ private with sharing class VersionCleanupBatchJobController_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void runEthnicityAndRaceBackfillJobValid() {
-        VersionCleanupBatchJobService.instance = new STUB_VersionCleanupBatchJobServiceValid();
+        VersionCleanupBatchJobService.instance = new STUB_EthnicityAndRaceBackfillJobServiceValid();
         Test.startTest();
         Boolean batchJobSuccessful = VersionCleanupBatchJobController.runEthnicityAndRaceBackfillJob();
         Test.stopTest();
@@ -67,7 +67,7 @@ private with sharing class VersionCleanupBatchJobController_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void runEthnicityAndRaceBackfillJobError() {
-        VersionCleanupBatchJobService.instance = new STUB_VersionCleanupBatchJobServiceInvalid();
+        VersionCleanupBatchJobService.instance = new STUB_EthnicityAndRaceBackfillJobServiceInvalid();
         try {
             Test.startTest();
             Boolean batchJobSuccessful = VersionCleanupBatchJobController.runEthnicityAndRaceBackfillJob();
@@ -90,6 +90,18 @@ private with sharing class VersionCleanupBatchJobController_TEST {
 
         System.assertEquals(true, batchJobSuccessful, 'Should return true if the batch job has run successfully');
     }
+    /***********************************************************************************************************************************
+     * @description Test method to verify runCourseDescriptionCopyBatchJob method runs successfully
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void runCourseDescriptionCopyBatchJobValid() {
+        VersionCleanupBatchJobService.instance = new STUB_CopyCourseDescriptionJobServiceValid();
+        Test.startTest();
+        Boolean batchJobSuccessful = VersionCleanupBatchJobController.runCourseDescriptionCopyBatchJob();
+        Test.stopTest();
+
+        System.assertEquals(true, batchJobSuccessful, 'Should return true if the batch job has run successfully');
+    }
 
     /***********************************************************************************************************************************
      * @description Test method to verify runCourseConnectionBackfillJob method throws an error
@@ -106,6 +118,21 @@ private with sharing class VersionCleanupBatchJobController_TEST {
             System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
         }
     }
+    /***********************************************************************************************************************************
+     * @description Test method to verify runCourseDescriptionCopyBatchJobJob method throws an error
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void runCourseDescriptionCopyBatchJobError() {
+        VersionCleanupBatchJobService.instance = new STUB_CopyCourseDescriptionJobServiceInvalid();
+        try {
+            Test.startTest();
+            Boolean batchJobSuccessful = VersionCleanupBatchJobController.runCourseDescriptionCopyBatchJob();
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
 
     /**************************************************************************************************************************
      ****************************************************** STUBS **************************************************************
@@ -114,7 +141,7 @@ private with sharing class VersionCleanupBatchJobController_TEST {
     /**************************************************************************************************************************************************
      * @description Stub class to simulate the response from VersionCleanupBatchJobService to return a true for runEthnicityAndRaceBackfillJob method .
      **************************************************************************************************************************************************/
-    private class STUB_VersionCleanupBatchJobServiceValid extends VersionCleanupBatchJobService {
+    private class STUB_EthnicityAndRaceBackfillJobServiceValid extends VersionCleanupBatchJobService {
         public override Boolean runEthnicityAndRaceBackfillJob() {
             return true;
         }
@@ -123,14 +150,14 @@ private with sharing class VersionCleanupBatchJobController_TEST {
     /***************************************************************************************************************************************************
      * @description Stub class to simulate the response from VersionCleanupBatchJobService to throw an error for runEthnicityAndRaceBackfillJob method
      ***************************************************************************************************************************************************/
-    private class STUB_VersionCleanupBatchJobServiceInvalid extends VersionCleanupBatchJobService {
+    private class STUB_EthnicityAndRaceBackfillJobServiceInvalid extends VersionCleanupBatchJobService {
         public override Boolean runEthnicityAndRaceBackfillJob() {
             throw new AuraHandledException(Label.BatchJobRunningProblem);
         }
     }
 
     /**************************************************************************************************************************************************
-     * @description Stub class to simulate the response from VersionCleanupBatchJobService to return a true for runCourseDescriptionCopyBatchJob method .
+     * @description Stub class to simulate the response from VersionCleanupBatchJobService to return a true for runCourseConnectionBackfillJob method .
      **************************************************************************************************************************************************/
     private class STUB_runCourseConnectionBackfillJobServiceValid extends VersionCleanupBatchJobService {
         public override Boolean runCourseConnectionBackfillJob() {
@@ -138,11 +165,31 @@ private with sharing class VersionCleanupBatchJobController_TEST {
         }
     }
 
+    /**************************************************************************************************************************************************
+     * @description Stub class to simulate the response from VersionCleanupBatchJobService to return a true for runCourseDescriptionCopyBatchJob method .
+     **************************************************************************************************************************************************/
+
+    private class STUB_CopyCourseDescriptionJobServiceValid extends VersionCleanupBatchJobService {
+        public override Boolean runCourseDescriptionCopyBatchJob() {
+            return true;
+        }
+    }
+
     /***************************************************************************************************************************************************
-     * @description Stub class to simulate the response from VersionCleanupBatchJobService to throw an error for runCourseDescriptionCopyBatchJob method
+     * @description Stub class to simulate the response from VersionCleanupBatchJobService to throw an error for runCourseConnectionBackfillJob method
      ***************************************************************************************************************************************************/
     private class STUB_runCourseConnectionBackfillJobServiceInvalid extends VersionCleanupBatchJobService {
         public override Boolean runCourseConnectionBackfillJob() {
+            throw new AuraHandledException(Label.BatchJobRunningProblem);
+        }
+    }
+
+    /***************************************************************************************************************************************************
+     * @description Stub class to simulate the response from VersionCleanupBatchJobService to throw an error for runCourseDescriptionCopyBatchJob method
+     ***************************************************************************************************************************************************/
+
+    private class STUB_CopyCourseDescriptionJobServiceInvalid extends VersionCleanupBatchJobService {
+        public override Boolean runCourseDescriptionCopyBatchJob() {
             throw new AuraHandledException(Label.BatchJobRunningProblem);
         }
     }

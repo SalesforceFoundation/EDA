@@ -497,6 +497,22 @@
         <name>stgAutoEnrollment</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Edit auto-enrollment mapping window --></label>
+        <name>stgAutoEnrollmentEditModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Edit auto-enrollment mapping window --></label>
+        <name>stgAutoEnrollmentEditModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an auto-enrollment mapping is saved --></label>
+        <name>stgAutoEnrollmentEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Account Record Type picklist --></label>
+        <name>stgAccountRecordTypeHelp</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of the Auto-Enrollment Mappings setting --></label>
         <name>stgAutoEnrollmentProgramDesc</name>
     </customLabels>
@@ -565,8 +581,12 @@
         <name>stgBtnRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Kopie ausführen</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRunCopy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Descriptions --></label>
+        <name>stgBtnRunCopyA11y</name>
     </customLabels>
     <customLabels>
         <label>Speichern</label>
@@ -667,6 +687,14 @@
     <customLabels>
         <label><!-- Title for the Update Course Connection record types confirmation window --></label>
         <name>stgCourseConnectionBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalBody</name>
     </customLabels>
     <customLabels>
         <label>Der Batch-Apex-Auftrag hat {0} Batches mit {1} Fehler(n) verarbeitet.</label>
@@ -1229,7 +1257,7 @@
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label>Der Prozess wurde erfolgreich in die Warteschlange gestellt. Nach Verarbeitung des Auftrags wird eine E-Mail gesendet.</label>
+        <label><!-- Confirmation message when the Extended Description field is queued for update --></label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
@@ -1237,7 +1265,7 @@
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label>In EDA 1.30 wurde das Feld &quot;Erweiterte Beschreibung&quot; hinzugefügt, um längere Kursbeschreibungen zu ermöglichen.</label>
+        <label><!-- Description of the Extended Course Descriptions setting --></label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
@@ -1599,7 +1627,7 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Kurse: Beschreibung der Datenmigration</label>
+        <label><!-- Label for the Extended Course Descriptions setting --></label>
         <name>stgTitleCoursesDescriptionDataMigration</name>
     </customLabels>
     <customLabels>

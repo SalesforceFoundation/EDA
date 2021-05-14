@@ -142,6 +142,19 @@ private with sharing class VersionCleanupBatchJobService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify runCourseDescriptionCopyBatchJob runs succesfully
+     ***************************************************************************************************************************/
+    @isTest
+    private static void runCourseDescriptionCopyBatchJobValid() {
+        VersionCleanupBatchJobService.instance = new STUB_runCourseDescriptionCopyBatchNotNull();
+
+        Test.startTest();
+        Boolean apexJobSuccess = VersionCleanupBatchJobService.getInstance().runCourseDescriptionCopyBatchJob();
+        Test.stopTest();
+        System.assertEquals(true, apexJobSuccess, 'Ensure apex batch job has run successfully');
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify runCourseConnectionBackfillJob thorws an error if batch job fails to run
      ***************************************************************************************************************************/
     @isTest
@@ -158,6 +171,22 @@ private with sharing class VersionCleanupBatchJobService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify runCourseDescriptionCopyBatchJob thorws an error if batch job fails to run
+     ***************************************************************************************************************************/
+    @isTest
+    private static void runCourseDescriptionCopyBatchJobInvalid() {
+        VersionCleanupBatchJobService.instance = new STUB_runCourseDescriptionCopyBatchNull();
+        try {
+            Test.startTest();
+            Boolean apexJobSuccess = VersionCleanupBatchJobService.getInstance().runCourseDescriptionCopyBatchJob();
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify runCourseConnectionBackfillBatch runs successfully
      ***************************************************************************************************************************/
     @isTest
@@ -166,6 +195,19 @@ private with sharing class VersionCleanupBatchJobService_TEST {
         Test.startTest();
         Id batchJobId = VersionCleanupBatchJobService.getInstance()
             .runCourseConnectionBackfillBatch(courseConnBackfillJob);
+        Test.stopTest();
+        System.assertNotEquals(null, batchJobId, 'Ensure apex batch job has run successfully');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify runCourseDescriptionCopyBatch runs successfully
+     ***************************************************************************************************************************/
+    @isTest
+    private static void runCourseDescriptionCopyBatch() {
+        COUR_DescriptionCopy_BATCH copyCourseDescriptionBatch = new COUR_DescriptionCopy_BATCH();
+        Test.startTest();
+        Id batchJobId = VersionCleanupBatchJobService.getInstance()
+            .runCourseDescriptionCopyBatch(copyCourseDescriptionBatch);
         Test.stopTest();
         System.assertNotEquals(null, batchJobId, 'Ensure apex batch job has run successfully');
     }
@@ -203,6 +245,15 @@ private with sharing class VersionCleanupBatchJobService_TEST {
             return null;
         }
     }
+    /*************************************************************************************************************
+     * @description Stub class to simulate the response from VersionCleanupBatchJobService to null for the Copy
+     * Course batch job Id
+     */
+    private class STUB_runCourseDescriptionCopyBatchNull extends VersionCleanupBatchJobService {
+        private override Id runCourseDescriptionCopyBatch(COUR_DescriptionCopy_BATCH copyCourseDescriptionBatch) {
+            return null;
+        }
+    }
 
     /*******************************************************************************************************************
      * @description Stub class to simulate the response from VersionCleanupBatchJobService to an Id for the Course
@@ -210,6 +261,16 @@ private with sharing class VersionCleanupBatchJobService_TEST {
      */
     private class STUB_runCourseConnectionBackfillBatchNotNull extends VersionCleanupBatchJobService {
         private override Id runCourseConnectionBackfillBatch(CCON_ConnectionBackfill_BATCH courseConnBackfill) {
+            return '01217000002Zs0pAAC';
+        }
+    }
+
+    /*******************************************************************************************************************
+     * @description Stub class to simulate the response from VersionCleanupBatchJobService to an Id for the Copy
+     * Course batch job Id
+     */
+    private class STUB_runCourseDescriptionCopyBatchNotNull extends VersionCleanupBatchJobService {
+        private override Id runCourseDescriptionCopyBatch(COUR_DescriptionCopy_BATCH copyCourseDescriptionBatch) {
             return '01217000002Zs0pAAC';
         }
     }
