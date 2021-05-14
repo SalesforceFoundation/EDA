@@ -2635,8 +2635,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Relationships Settings</shortDescription>
-        <value>The method used to populate the type field when creating a Reciprocal Relationship. &quot;List Setting&quot; uses the custom settings defined on the Reciprocal Relationships tab with male, female, and neutral values. &quot;Value Inversion&quot; inverts the type on the original Relationship record where appropriate. For example, if the originating Relationship is Parent-Child, the Reciprocal Relationship will be Child-Parent.</value>
+        <shortDescription>Description for the Reciprocal Method Settings</shortDescription>
+        <value>The method used to populate the type field when creating a Reciprocal Relationship. &quot;List Setting&quot; uses the custom settings defined on the Reciprocal Relationships Mapping with male, female, and neutral values. &quot;Value Inversion&quot; inverts the type on the original Relationship record where appropriate. For example, if the originating Relationship is Parent-Child, the Reciprocal Relationship will be Child-Parent.</value>
     </labels>
     <labels>
         <fullName>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</fullName>
@@ -2934,6 +2934,20 @@
         <value>We&apos;re updating Household Account names. Look for an email when the job is done.</value>
     </labels>
     <labels>
+        <fullName>stgRelationshipSettingsTitle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Relationship Settings</shortDescription>
+        <value>Relationship Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgRelationshipSettingsNav</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation section title for Relationships</shortDescription>
+        <value>Relationships</value>
+    </labels>
+    <labels>
         <fullName>stgRunCleanUp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -3228,7 +3242,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Title for Reciprocal Relationships info text</shortDescription>
+        <shortDescription>Label for the Reciprocal Method Settings</shortDescription>
         <value>Reciprocal Method</value>
     </labels>
     <labels>

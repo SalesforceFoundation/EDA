@@ -51,6 +51,13 @@
                         ></c-contact-information-settings>
                     </template>
 
+                    <template if:true={settingsPageToDisplay.relationshipSettings}>
+                        <c-relationship-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-relationship-settings>
+                    </template>
+
                     <template if:true={settingsPageToDisplay.errorSettings}>
                         <c-error-settings
                             class="eda-settings-page"

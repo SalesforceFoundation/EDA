@@ -36,6 +36,9 @@ import stgAfflProgEnrollSetStatusValue from "@salesforce/label/c.stgAfflProgEnro
 import stgAfflCopyProgramEnrollmentEndDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentEndDate";
 import stgAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentStartDate";
 import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollDeleteTitle";
+// Relationship Labels
+import stgTitleReciMethod from "@salesforce/label/c.stgTitleReciMethod";
+import stgRelationshipSettingsNav from "@salesforce/label/c.stgRelationshipSettingsNav";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
@@ -43,6 +46,9 @@ import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
 import stgRefreshAdminAcctNameTitle from "@salesforce/label/c.stgRefreshAdminAcctNameTitle";
 import stgRefreshHHAcctNameTitle from "@salesforce/label/c.stgRefreshHHAcctNameTitle";
 import stgPreferredEmailDataCleanup from "@salesforce/label/c.stgPreferredEmailDataCleanup";
+import stgTitleCourseConnectionBackfill from "@salesforce/label/c.stgTitleCourseConnectionBackfill";
+import stgTitleCoursesDescriptionDataMigration from "@salesforce/label/c.stgTitleCoursesDescriptionDataMigration";
+import stgEthnicityRaceBackfillContacts from "@salesforce/label/c.stgEthnicityRaceBackfillContacts";
 //Error Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
@@ -105,16 +111,16 @@ export default class EdaSettingsNavigation extends LightningElement {
         },
         relationshipSettings: {
             preventAutoCreatedDuplicateRelationships: "Prevent Auto-Created Duplicate Relations",
-            reciprocalMethod: "Reciprocal Method",
+            reciprocalMethod: stgTitleReciMethod,
             reciprocalRelationshipMappings: "Reciprocal Relationship mappings",
             relationshipAutocreateCampaignMappings: "Autocreate Campaign Mappings",
             relationshipAutocreateContactMappings: "Autocreate Contact Mappings",
-            relationshipSettings: "Relationships",
+            relationshipSettings: stgRelationshipSettingsNav,
         },
         systemTools: {
-            courseConnectionBackfill: "Course Connection Backfill",
-            courseDescriptionMigration: "Course Description Migration",
-            ethnicityAndRaceBackfill: "Ethnicity and Race Backfill",
+            courseConnectionBackfill: stgTitleCourseConnectionBackfill,
+            courseDescriptionMigration: stgTitleCoursesDescriptionDataMigration,
+            ethnicityAndRaceBackfill: stgEthnicityRaceBackfillContacts,
             preferredEmailCleanup: stgPreferredEmailDataCleanup,
             systemToolsNav: stgSystemToolsNav,
             refreshAdministrativeAccountNames: stgRefreshAdminAcctNameTitle,

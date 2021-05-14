@@ -1309,7 +1309,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>El método utilizado para rellenar el campo de tipo al crear una relación recíproca. &quot;Configuración de lista&quot; utiliza la configuración personalizada definida en la ficha Relaciones recíprocas con valores masculinos, femeninos y neutros. &quot;Inversión de valores&quot; invierte el tipo del registro Relación original cuando sea apropiado. Por ejemplo, si la relación que origina es Padre-Hijo, la Relación reciproca será Hijo-Padre.</label>
+        <label><!-- Description for the Reciprocal Method Settings --></label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
@@ -1459,6 +1459,14 @@
     <customLabels>
         <label><!-- Toast message when Household Account names are queued for update--></label>
         <name>stgRefreshHouseholdNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Relationship Settings --></label>
+        <name>stgRelationshipSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation section title for Relationships --></label>
+        <name>stgRelationshipSettingsNav</name>
     </customLabels>
     <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
