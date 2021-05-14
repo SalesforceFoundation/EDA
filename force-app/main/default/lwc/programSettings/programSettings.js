@@ -6,6 +6,7 @@ import getAutoEnrollmentMappingsVModel from "@salesforce/apex/ProgramSettingsCon
 import getProgramEnrollmentDeletionSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramEnrollmentDeletionSettingsVModel";
 import updateAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMappings";
 import createAutoEnrollmentMapping from "@salesforce/apex/ProgramSettingsController.createAutoEnrollmentMapping";
+import deleteAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.deleteAutoEnrollmentMappings";
 
 //Page Custom Labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
@@ -347,11 +348,11 @@ export default class programSettings extends LightningElement {
     handleAutoEnrollmentMappingRowAction(event) {
         const actionName = event.detail.action.name;
         const actionRow = event.detail.row;
-        this.dispatchAutoEnrollmentEditModalRequestEvent(actionName, actionRow);
+        this.dispatchAutoEnrollmentModalRequestEvent(actionName, actionRow);
     }
 
-    dispatchAutoEnrollmentEditModalRequestEvent(actionName, actionRow) {
-        const autoEnrollmentEditDetail = {
+    dispatchAutoEnrollmentModalRequestEvent(actionName, actionRow) {
+        const autoEnrollmentDetail = {
             actionName: actionName,
             mappingName: actionRow.mappingName,
             accountRecordType: actionRow.accountRecordTypeName,
@@ -360,7 +361,7 @@ export default class programSettings extends LightningElement {
         };
 
         const autoEnrollmentModalRequestEvent = new CustomEvent("autoenrollmentmodalrequest", {
-            detail: autoEnrollmentEditDetail,
+            detail: autoEnrollmentDetail,
             bubbles: true,
             composed: true,
         });
@@ -386,9 +387,9 @@ export default class programSettings extends LightningElement {
                     saveModel.autoProgramEnrollmentRole
                 );
                 break;
-            /*case "delete":
-                this.deleteAffiliation(saveModel.mappingName);
-                break;*/
+            case "delete":
+                this.deleteAutoEnrollmentMappings(saveModel.mappingName);
+                break;
         }
     }
 
@@ -436,6 +437,28 @@ export default class programSettings extends LightningElement {
 
             .catch((error) => {
                 // console.log('Inside error');
+            });
+        this.refreshAllApex();
+    }
+
+    deleteAutoEnrollmentMappings(mappingName) {
+        deleteAutoEnrollmentMappings({
+            mappingName: mappingName,
+        })
+            .then((result) => {
+                if (result) {
+                    this.showToast(
+                        "success",
+                        "Delete Complete",
+                        this.labelReference.editSuccessMessage.replace("{0}", result) //TODO: replace this
+                    );
+                } else {
+                    //console.log("Delete error: the mapping was not found");
+                }
+            })
+
+            .catch((error) => {
+                //console.log("Inside error");
             });
         this.refreshAllApex();
     }

@@ -148,6 +148,9 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
 
             case "create":
                 return this.labelReference.modalBodyCreate + " " + this.autoEnrollmentHyperLink;
+
+            case "delete":
+                return "Delete Program Auto-Enrollment" + " " + this.autoEnrollmentHyperLink + "?"; //TODO: create label
         }
     }
 
@@ -155,7 +158,11 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         return this.actionName === "edit" || this.actionName === "create";
     }
 
-     get autoEnrollmentHyperLink() {
+    get deleteRecords() {
+        return this.actionName === "delete";
+    }
+
+    get autoEnrollmentHyperLink() {
         return (
             '<a href="https://powerofus.force.com/EDA-Configure-Affiliations-Settings">' +
             this.labelReference.tellMeMoreLink +
