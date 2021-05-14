@@ -825,7 +825,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista EDA-asetuksissa määritetyt {0} ja ({1}) jäsenyyskartoituksen automaattisen ilmoittautumisen rooli Jäsenyydet-välilehden Jäsenyyskartoitukset -alavälilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikon ohjelmaan jäsenyysobjektin roolikenttään ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta automaattisen ilmoittautumisen rooli kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Role isn't active --></label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -833,7 +833,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden automaattisen ilmoittautumisen rooli kelvolliseksi, aktiiviseksi valintaluettelon arvoksi jäsenyysobjektin roolikentälle.</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role --></label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -857,7 +857,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden automaattisen ilmoittautumisen tila kelvolliseksi, aktiiviseksi valintaluettelon arvoksi jäsenyysobjektin tilakentälle.</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status --></label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
