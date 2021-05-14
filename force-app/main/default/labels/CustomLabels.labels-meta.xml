@@ -1836,7 +1836,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Course Connections isn&apos;t enabled</shortDescription>
-        <value>Enable Course Connections, which includes configuring Course Connection record types. For details, see Configure Course Connection in the EDA documentation.</value>
+        <value>Enable Course Connections, which includes configuring Course Connection record types. In EDA Settings | Course Connections, turn on Course Connection Record Types. Then configure Default Student Record Type and Default Faculty Record Type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConFacultyInactiveFix</fullName>
@@ -1844,7 +1844,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Faculty Record Type is inactive</shortDescription>
-        <value>Verify the Default Faculty Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Faculty Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Course Connections, verify the the Default Faculty Record Type. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Default Faculty Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConFacultyNotFoundFix</fullName>
@@ -1852,7 +1852,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find Default Faculty Record Type</shortDescription>
-        <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Faculty Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Course Connections, change the Default Faculty Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConRecordTypesNotUnique</fullName>
@@ -1868,7 +1868,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when student and faculty Course Connection record types are same</shortDescription>
-        <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change either the Default Faculty Record Type or the Default Active Student Record Type so that each specifies a unique record type.</value>
+        <value>In EDA Settings | Course Connections, change either the Default Faculty Record Type or the Default Student Record Type so that each specifies a unique record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConRecordTypesUnique</fullName>
@@ -1892,7 +1892,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Active Student Record Type is inactive</shortDescription>
-        <value>Verify the Default Active Student Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Active Student Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Course Connections, verify the Default Student Record Type. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Default Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConStudentNotFoundFix</fullName>
@@ -1900,7 +1900,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find Default Active Student Record Type</shortDescription>
-        <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Active Student Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Course Connections, change the Default Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConnectionsTitle</fullName>
