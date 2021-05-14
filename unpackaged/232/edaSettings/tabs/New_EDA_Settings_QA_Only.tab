@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Unmanaged EDA Settings tab for testing</description>
-    <label>New EDA Settings - QA Only</label>
-    <auraComponent>newEDASettingsQA</auraComponent>
-    <motif>Custom41: Cash</motif>
-</CustomTab>
