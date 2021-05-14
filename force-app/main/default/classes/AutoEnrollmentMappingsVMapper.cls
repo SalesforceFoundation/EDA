@@ -181,7 +181,7 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
                 )
             );
 
-            return new ComboboxVModel(null, comboboxValues);
+            return new ComboboxVModel(comboboxValue, comboboxValues);
         }
 
         RecordTypeModel recordTypeModel = this.locateRecordTypeService()
@@ -220,6 +220,7 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
         List<AffiliationMappingsModel> affiliationMappingsModels = this.locateAffiliationMappingsService()
             .getAffiliationMappingsModels();
         Set<String> accountRecordTypesWithAffiliationMapping = new Set<String>();
+
         for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModels) {
             if (
                 affiliationMappingsModel.autoProgramEnrollment == false ||
@@ -228,6 +229,7 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
                 accountRecordTypesWithAffiliationMapping.add(affiliationMappingsModel.accountRecordTypeFieldValue);
             }
         }
+
         for (RecordTypeModel activeAccountRecordTypeModel : activeAccountRecordTypeModelsList) {
             if (accountRecordTypesWithAffiliationMapping.contains(activeAccountRecordTypeModel.developerName)) {
                 activeRecordTypeComboboxValueVModelsList.add(

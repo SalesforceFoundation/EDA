@@ -49,7 +49,7 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     };
 
     @wire(getAccountRecordTypeComboboxVModel, {
-        accountRecordType: "$oldAccountRecordType",
+        accountRecordType: "$newAccountRecordType",
     })
     accountRecordTypeComboboxVModelWire(result) {
         this.accountRecordTypeComboboxWireResult = result;

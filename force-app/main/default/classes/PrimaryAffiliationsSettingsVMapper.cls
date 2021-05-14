@@ -236,7 +236,7 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
                 )
             );
 
-            return new ComboboxVModel(null, comboboxValues);
+            return new ComboboxVModel(comboboxValue, comboboxValues);
         }
 
         LookupFieldModel lookupFieldModel = this.locateLookupFieldService()
