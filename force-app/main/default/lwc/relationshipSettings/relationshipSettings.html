@@ -9,21 +9,22 @@
                 onsettingssavecompleted={handleSettingsSaveCompleted}
             >
                 <!-- Body of Relationship Settings page (populates Slot in child component) -->
-                <!-- <template if:true={affiliationsSettingsViewModel}>
+                <template if:true={relationshipSettingsVModel}>
                     <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
-                        
                         <c-settings-row-input
                             class="slds-size_3-of-3"
-                            title={labelReference.afflTypeEnforced}
-                            description={labelReference.afflTypeEnforcedDescription}
-                            type="toggle"
-                            input-id={inputAttributeReference.recordTypeValidation}
-                            value={affiliationsSettingsViewModel.accountRecordTypesEnforced}
-                            onsettingsinputchange={handleRecordtypeValidationChange}
+                            title={labelReference.reciprocalMethodSettingsName}
+                            description={labelReference.reciprocalMethodSettingsDesc}
+                            type="combobox"
+                            input-id={inputAttributeReference.defaultReciprocalComboboxId}
+                            value={relationshipSettingsVModel.reciprocalMethodComboboxVModel.value}
+                            placeholder={labelReference.comboboxPlaceholderText}
+                            options={relationshipSettingsVModel.reciprocalMethodComboboxVModel.options}
+                            onsettingsinputchange={handleReciprocalMethodChange}
                             disabled={affordancesDisabled}
                         ></c-settings-row-input>
                     </div>
-                </template> -->
+                </template>
             </c-settings-save-canvas>
         </div>
     </div>

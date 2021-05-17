@@ -1,14 +1,32 @@
 import { LightningElement, wire, track, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
+// Controllers
+import getRelationshipSettingsVModel from "@salesforce/apex/RelationshipSettingsController.getRelationshipSettingsVModel";
+// Custom Labels
 import stgRelationshipSettingsTitle from "@salesforce/label/c.stgRelationshipSettingsTitle";
-
+import stgTitleReciMethod from "@salesforce/label/c.stgTitleReciMethod";
+import stgHelpRelReciprocalMethod from "@salesforce/label/c.stgHelpRelReciprocalMethod";
+import stgOptSelect from "@salesforce/label/c.stgOptSelect";
+import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+// Articles
 export default class relationshipSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
 
+    @track relationshipSettingsVModel;
+    @track relationshipSettingsWireResult;
+
     labelReference = {
         stgRelationshipSettingsTitle: stgRelationshipSettingsTitle,
+        reciprocalMethodSettingsName: stgTitleReciMethod,
+        reciprocalMethodSettingsDesc: stgHelpRelReciprocalMethod,
+        tellMeMore: stgTellMeMoreLink,
+        comboboxPlaceholderText: stgOptSelect,
+    };
+
+    inputAttributeReference = {
+        defaultReciprocalComboboxId: "defaultReciprocalMethod",
     };
 
     get affordancesDisabled() {
@@ -18,9 +36,28 @@ export default class relationshipSettings extends LightningElement {
         return undefined;
     }
 
+    @api
+    handleSaveCanvasRender() {
+        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
+    }
+
+    @wire(getRelationshipSettingsVModel)
+    relationshipSettingsVModelWire(result) {
+        this.relationshipSettingsWireResult = result;
+        if (result.data) {
+            this.relationshipSettingsVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving accountModelSettingsVModel");
+        }
+    }
+
     handleSettingsEditModeChange(event) {
         this.isEditMode = !event.detail;
         this.affordancesDisabledToggle = event.detail;
+    }
+
+    handleSettingsSaveCancel(event) {
+        this.refreshAllApex();
     }
 
     handleSettingsSaving(event) {
@@ -33,14 +70,22 @@ export default class relationshipSettings extends LightningElement {
         this.refreshAllApex();
     }
 
-    handleSettingsSaveCancel(event) {
-        this.refreshAllApex();
+    handleReciprocalMethodChange(event) {
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Reciprocal_Method__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
-    refreshAllApex() {}
-
-    @api
-    handleSaveCanvasRender() {
-        this.template.querySelector("c-settings-save-canvas").focusOnTitle();
+    refreshAllApex() {
+        Promise.all([refreshApex(this.relationshipSettingsWireResult)]).then(() => {
+            this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
+                input.resetValue();
+            });
+        });
     }
 }
