@@ -131,11 +131,10 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
     }
 
     /**********************************************************************************************************
-     * @description Retrieve a ComboBoxVModel for all active account record types
-     * @return  A ComboBoxVModel
+     * @description Retrieve an integer representing the number of unmapped record types
+     * @return The number of unmapped record types.
      *********************************************************************************************************/
-    public virtual ComboBoxVModel getAccountRecordTypeComboboxVModel(String accountRecordType) {
-        String comboboxValue = accountRecordType;
+    public virtual Boolean unmappedRecordTypesExist() {
         Map<Id, RecordTypeModel> accRecordTypeModelsById = this.locateRecordTypeService()
             .getModelByIdMapForSObjectType(Account.SObjectType);
 
@@ -144,7 +143,46 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
             .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
 
+        List<AffiliationMappingsModel> affiliationMappingsModels = this.locateAffiliationMappingsService()
+            .getAffiliationMappingsModels();
+
+        Set<String> accountRecordTypesWithAffiliationMapping = new Set<String>();
+
+        for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModels) {
+            if (affiliationMappingsModel.autoProgramEnrollment == false) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**********************************************************************************************************
+     * @description Retrieve a ComboBoxVModel for all active account record types
+     * @return  A ComboBoxVModel
+     *********************************************************************************************************/
+    public virtual ComboBoxVModel getAccountRecordTypeComboboxVModel(String accountRecordType) {
+        String comboboxValue = accountRecordType;
         List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
+
+        Map<Id, RecordTypeModel> accRecordTypeModelsById = this.locateRecordTypeService()
+            .getModelByIdMapForSObjectType(Account.SObjectType);
+
+        Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
+            .getRecordTypeModelMapByName(accRecordTypeModelsById);
+        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
+            .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
+
+        if (String.isBlank(accountRecordType)) {
+            comboboxValues.addAll(
+                this.getComboboxVModelOptionsForActiveAccountRecordTypes(
+                    accRecordTypeModelsById.values(),
+                    accountRecordType
+                )
+            );
+
+            return new ComboboxVModel(comboboxValue, comboboxValues);
+        }
 
         RecordTypeModel recordTypeModel = this.locateRecordTypeService()
             .getRecordTypeModelFromNameAndLabelMaps(
@@ -182,6 +220,7 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
         List<AffiliationMappingsModel> affiliationMappingsModels = this.locateAffiliationMappingsService()
             .getAffiliationMappingsModels();
         Set<String> accountRecordTypesWithAffiliationMapping = new Set<String>();
+
         for (AffiliationMappingsModel affiliationMappingsModel : affiliationMappingsModels) {
             if (
                 affiliationMappingsModel.autoProgramEnrollment == false ||
@@ -190,6 +229,7 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
                 accountRecordTypesWithAffiliationMapping.add(affiliationMappingsModel.accountRecordTypeFieldValue);
             }
         }
+
         for (RecordTypeModel activeAccountRecordTypeModel : activeAccountRecordTypeModelsList) {
             if (accountRecordTypesWithAffiliationMapping.contains(activeAccountRecordTypeModel.developerName)) {
                 activeRecordTypeComboboxValueVModelsList.add(
@@ -210,7 +250,6 @@ public virtual with sharing class AutoEnrollmentMappingsVMapper {
      *********************************************************************************************************/
     public virtual ComboBoxVModel getAutoEnrollmentMappingStatusComboboxVModel(String autoProgramEnrollmentStatus) {
         String comboboxValue = autoProgramEnrollmentStatus;
-
         List<ComboboxValueVModel> comboboxOptions = new List<ComboboxValueVModel>();
 
         Map<String, PicklistEntryModel> statusPicklistEntryModelByName = this.locatePicklistEntryService()
