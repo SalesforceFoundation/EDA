@@ -68,9 +68,9 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
             .getModelByIdMapForSObjectType(Account.SObjectType);
 
         Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
-            .getRecordTypeModelByName(accRecordTypeModelsById);
+            .getRecordTypeModelMapByName(accRecordTypeModelsById);
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
-            .getRecordTypeModelByLabel(accRecordTypeModelsById);
+            .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
 
         Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = this.locateLookupFieldService()
             .getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
@@ -158,15 +158,23 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
      *********************************************************************************************************/
     public virtual ComboBoxVModel getAccountRecordTypeComboboxVModel(String recordTypeToCheck) {
         String comboboxValue = recordTypeToCheck;
+        List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
+
         Map<Id, RecordTypeModel> accRecordTypeModelsById = this.locateRecordTypeService()
             .getModelByIdMapForSObjectType(Account.SObjectType);
 
         Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
-            .getRecordTypeModelByName(accRecordTypeModelsById);
+            .getRecordTypeModelMapByName(accRecordTypeModelsById);
         Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
-            .getRecordTypeModelByLabel(accRecordTypeModelsById);
+            .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
 
-        List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
+        if (String.isBlank(recordTypeToCheck)) {
+            comboboxValues.addAll(
+                this.getComboboxVModelOptionsForActiveAccountRecordTypes(accRecordTypeModelsById.values())
+            );
+
+            return new ComboboxVModel(comboboxValue, comboboxValues);
+        }
 
         RecordTypeModel recordTypeModel = this.locateRecordTypeService()
             .getRecordTypeModelFromNameAndLabelMaps(
@@ -214,13 +222,22 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
      *********************************************************************************************************/
     public virtual ComboBoxVModel getContactAccountLookupFieldComboboxVModel(String contactFieldToCheck) {
         String comboboxValue = contactFieldToCheck;
+        List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
 
         Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByName = this.locateLookupFieldService()
             .getModelByNameMapForSObjectType(Contact.SObjectType, Account.SObjectType);
         Map<String, LookupFieldModel> accountLookupsOnContactFieldModelsByLabel = this.locateLookupFieldService()
             .getModelByLabelMapForSObjectType(accountLookupsOnContactFieldModelsByName);
 
-        List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
+        if (String.isBlank(contactFieldToCheck)) {
+            comboboxValues.addAll(
+                this.getComboboxVModelOptionsForContactAccountLookupFields(
+                    accountLookupsOnContactFieldModelsByName.values()
+                )
+            );
+
+            return new ComboboxVModel(comboboxValue, comboboxValues);
+        }
 
         LookupFieldModel lookupFieldModel = this.locateLookupFieldService()
             .getLookupFieldModelFromNameAndLabelMaps(
