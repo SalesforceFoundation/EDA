@@ -1031,6 +1031,30 @@
         <value>{0} Program Auto-Enrollment was created.</value>
     </labels>
     <labels>
+        <fullName>stgAutoEnrollmentDeleteModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Delete Affiliation mapping window</shortDescription>
+        <value>Are you sure you want  to delete this Program Auto-Enrollment?</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentDeleteModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Delete Affiliation mapping window</shortDescription>
+        <value>Delete Program Auto-Enrollment?</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentDeleteSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Toast message when an Affiliation mapping is deleted</shortDescription>
+        <value>{0} Program Auto-Enrollment was deleted.</value>
+    </labels>
+    <labels>
         <fullName>stgAccountRecordTypeHelp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

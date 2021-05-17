@@ -32,7 +32,7 @@
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 break;
             case "delete":
-                modalHeaderLabel = $A.get("$Label.c.stgAffiliationsDeleteModalTitle"); //TODO: labels
+                modalHeaderLabel = $A.get("$Label.c.stgAutoEnrollmentDeleteModalTitle");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 confirmButton = $A.get("$Label.c.stgBtnDelete");
                 break;

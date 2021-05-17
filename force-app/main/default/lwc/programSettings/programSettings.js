@@ -46,6 +46,7 @@ import AfflProgEnrollDeleted from "@salesforce/label/c.AfflProgEnrollDeleted";
 import stgAfflDeleteProgramEnrollment from "@salesforce/label/c.stgAfflDeleteProgramEnrollment";
 import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflDeleteProgramEnrollment";
 import stgAutoEnrollmentNewSuccess from "@salesforce/label/c.stgAutoEnrollmentNewSuccess";
+import stgAutoEnrollmentDeleteSuccess from "@salesforce/label/c.stgAutoEnrollmentDeleteSuccess";
 import stgBtnNewAutoEnrollA11y from "@salesforce/label/c.stgBtnNewAutoEnrollA11y";
 export default class programSettings extends LightningElement {
     isEditMode = false;
@@ -94,6 +95,7 @@ export default class programSettings extends LightningElement {
         },
         editSuccessMessage: stgAutoEnrollmentEditSuccess,
         createSuccessMessage: stgAutoEnrollmentNewSuccess,
+        deleteSuccessMessage: stgAutoEnrollmentDeleteSuccess,
     };
 
     inputAttributeReference = {
@@ -450,7 +452,7 @@ export default class programSettings extends LightningElement {
                     this.showToast(
                         "success",
                         "Delete Complete",
-                        this.labelReference.editSuccessMessage.replace("{0}", result) //TODO: replace this
+                        this.labelReference.deleteSuccessMessage.replace("{0}", result)
                     );
                 } else {
                     //console.log("Delete error: the mapping was not found");
