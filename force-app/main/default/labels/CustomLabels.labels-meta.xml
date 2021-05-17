@@ -2059,7 +2059,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended Fix when Name isn&apos;t unique in reciprocal settings</shortDescription>
+        <shortDescription>Recommended fix when the reciprocal setting's Name value isn&apos;t unique</shortDescription>
         <value>In EDA Settings | Relationships, look in the Reciprocal Relationships table for multiple mappings with the Name {0} ({1}). Edit those mappings so that only one mapping uses this Name.</value>
     </labels>
     <labels>
