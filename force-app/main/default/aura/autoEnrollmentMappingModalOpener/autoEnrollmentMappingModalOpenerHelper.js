@@ -21,11 +21,11 @@
         let cancelButton;
 
         switch (component.get("v.actionName")) {
-            /*case "create":
-                modalHeaderLabel = $A.get("$Label.c.stgNewAfflMapping");
+            case "create":
+                modalHeaderLabel = $A.get("$Label.c.stgAutoEnrollmentNewModalTitle");
                 confirmButton = $A.get("$Label.c.stgBtnSave");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
-                break;*/
+                break;
             case "edit":
                 modalHeaderLabel = $A.get("$Label.c.stgAutoEnrollmentEditModalTitle");
                 confirmButton = $A.get("$Label.c.stgBtnSave");
@@ -103,9 +103,9 @@
     },
     handleModalFooterConfirm: function (component) {
         switch (component.get("v.actionName")) {
-            /*case "create":
+            case "create":
                 this.handleModalCreateConfirm(component);
-                break;*/
+                break;
             case "edit":
                 this.handleModalEditConfirm(component);
                 break;
@@ -138,7 +138,7 @@
             saveModel: saveModel
         });
         modalSaveEvent.fire();
-    }
+    },
     /*
     handleModalDeleteConfirm: function (component) {
         let modalSaveEvent = component.getEvent("modalSaveEvent");
@@ -162,26 +162,27 @@
             saveModel: saveModel
         });
         modalSaveEvent.fire();
-    },
+    },*/
     handleModalCreateConfirm: function (component) {
         let modalSaveEvent = component.getEvent("modalSaveEvent");
 
-        const mappingName = component.get("v.accountRecordType");
-        const affiliationsAction = component.get("v.affiliationsAction");
-        const accountRecordType = component.get("v.accountRecordType");
-        const contactField = component.get("v.contactField");
+        const actionName = component.get("v.actionName");
+        const mappingName = component.get("v.mappingName");
+        const newAccountRecordType = component.get("v.newAccountRecordType");
+        const autoProgramEnrollmentStatus = component.get("v.autoProgramEnrollmentStatus");
+        const autoProgramEnrollmentRole = component.get("v.autoProgramEnrollmentRole");
 
         const saveModel = {
-            modalType: "affiliations",
-            action: affiliationsAction,
+            modalType: "autoenrollmentmapping",
+            action: actionName,
             mappingName: mappingName,
-            accountRecordType: accountRecordType,
-            contactField: contactField
+            accountRecordType: newAccountRecordType,
+            autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
+            autoProgramEnrollmentRole: autoProgramEnrollmentRole
         };
-
         modalSaveEvent.setParams({
             saveModel: saveModel
         });
         modalSaveEvent.fire();
-    }*/
+    }
 });

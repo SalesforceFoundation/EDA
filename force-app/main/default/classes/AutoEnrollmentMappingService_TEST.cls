@@ -159,8 +159,47 @@ public with sharing class AutoEnrollmentMappingService_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that the updateAutoEnrollmentMappings method updates the auto enrollment on affiliation Mappings
-     * when passed account record type are the same
+     * @description Test method to verify that the createAutoEnrollmentMapping method updates the auto enrollment on affiliation
+     * Mappings
+     ***************************************************************************************************************************/
+    @isTest
+    public static void createAutoEnrollmentMapping() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        AutoEnrollmentMappingMapper.instance = new STUB_AutoEnrollmentMappingMapper();
+        RecordTypeService.instance = new STUB_RecordTypeService('Record_Type1', 'Record Type1');
+        AffiliationMappingsService.instance = new STUB_AffiliationMappingsService();
+
+        AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
+
+        String accountRecordType = 'Record_Type1';
+        String status = 'Status';
+        String role = 'Role';
+
+        Test.startTest();
+        AutoEnrollmentMappingModel autoEnrollmentMappingModel = autoEnrollmentMappingService.createAutoEnrollmentMapping(
+            accountRecordType,
+            status,
+            role
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            accountRecordType,
+            autoEnrollmentMappingModel.name,
+            'Auto Enrollment Name should be ' + accountRecordType
+        );
+        System.assertEquals(
+            accountRecordType,
+            autoEnrollmentMappingModel.accountRecordTypeFieldValue,
+            'Auto Enrollment Account Record Type should be ' + accountRecordType
+        );
+        System.assertEquals(status, autoEnrollmentMappingModel.status, 'Auto Enrollment Status should be ' + status);
+        System.assertEquals(role, autoEnrollmentMappingModel.role, 'Auto Enrollment Role should be ' + role);
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the updateAutoEnrollmentMappings method updates the auto enrollment on affiliation
+     * Mappings when passed account record type are the same
      ***************************************************************************************************************************/
     @isTest
     public static void updateAutoEnrollmentMappingsSameAccountRecordType() {
@@ -198,8 +237,8 @@ public with sharing class AutoEnrollmentMappingService_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that the updateAutoEnrollmentMappings method updates the auto enrollment on affiliation Mappings
-     * when passed account record type are note the same
+     * @description Test method to verify that the updateAutoEnrollmentMappings method updates the auto enrollment on affiliation
+     * Mappings when passed account record type are note the same
      ***************************************************************************************************************************/
     @isTest
     public static void updateAutoEnrollmentMappingDifferentAccountRecordType() {
