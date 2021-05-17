@@ -356,8 +356,66 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /****************************************************************************************
-     * @description Test method to verify updateAutoEnrollmentMappings()
-     * updates auto enrollment on affiliation mappings when account record type passed are the same
+     * @description Test method to verify createAutoEnrollmentMapping() updates auto
+     * enrollment on affiliation mappings
+     ****************************************************************************************/
+    @isTest
+    private static void createAutoEnrollmentMapping() {
+        AutoEnrollmentMappingService.instance = new STUB_AutoEnrollmentMappingService();
+        Test.startTest();
+        String accountRecordTypeDeveloperName = ProgramSettingsController.createAutoEnrollmentMapping(
+            'Record_Type_1',
+            'Test_Status_1',
+            'Test_Role_1'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            accountRecordTypeDeveloperName,
+            'Record_Type_1',
+            'The affected mapping should be that of the same account record type'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify createAutoEnrollmentMapping()
+     * when exception occurs
+     ****************************************************************************************/
+    @isTest
+    private static void createAutoEnrollmentMappingException() {
+        AutoEnrollmentMappingService.instance = new STUB_ExceptionAutoEnrollmentMappingService();
+
+        try {
+            Test.startTest();
+            String accountRecordTypeDeveloperName = ProgramSettingsController.createAutoEnrollmentMapping(
+                'Record_Type_1',
+                'Test_Status_1',
+                'Test_Role_1'
+            );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify unmappedRecordTypesExist()
+     ****************************************************************************************/
+    @isTest
+    private static void unmappedRecordTypesExist() {
+        AutoEnrollmentMappingsVMapper.instance = new STUB_AutoEnrollmentMappingsVMapperValid();
+
+        Test.startTest();
+        Boolean unmappedRecordTypesExistValue = ProgramSettingsController.unmappedRecordTypesExist();
+        Test.stopTest();
+
+        System.assertEquals(true, unmappedRecordTypesExistValue, 'Unmapped Record Types');
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify updateAutoEnrollmentMappings() updates auto
+     * enrollment on affiliation mappings when account record type passed are the same
      ****************************************************************************************/
     @isTest
     private static void updateAutoEnrollmentMappingsSameAccountRecordType() {
@@ -380,8 +438,8 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /****************************************************************************************
-     * @description Test method to verify updateAutoEnrollmentMappings()
-     * updates auto enrollment on affiliation mappings when account record type passed are different
+     * @description Test method to verify updateAutoEnrollmentMappings() updates
+     * auto enrollment on affiliation mappings when account record type passed are different
      ****************************************************************************************/
     @isTest
     private static void updateAutoEnrollmentMappingsDifferentAccountRecordType() {
@@ -435,6 +493,10 @@ private with sharing class ProgramSettingsController_TEST {
      * @description Stub class to simulate valid responses from AutoEnrollmentMappingsVMapper
      **************************************************************************************************************************************/
     private class STUB_AutoEnrollmentMappingsVMapperValid extends AutoEnrollmentMappingsVMapper {
+        public override Boolean unmappedRecordTypesExist() {
+            return true;
+        }
+
         public override AutoEnrollmentMappingsVModel getAutoEnrollmentMappingsVModel() {
             List<AutoEnrollmentMappingVModel> autoEnrollmentMappingVModelsList = new List<AutoEnrollmentMappingVModel>();
             autoEnrollmentMappingVModelsList.add(
@@ -504,6 +566,14 @@ private with sharing class ProgramSettingsController_TEST {
      * @description Stub class to simulate valid responses from AutoEnrollmentMappingService
      **************************************************************************************************************************************/
     private class STUB_AutoEnrollmentMappingService extends AutoEnrollmentMappingService {
+        public override AutoEnrollmentMappingModel createAutoEnrollmentMapping(
+            String accountRecordType,
+            String status,
+            String role
+        ) {
+            return new AutoEnrollmentMappingModel(accountRecordType, accountRecordType, status, role, true);
+        }
+
         public override AutoEnrollmentMappingModel updateAutoEnrollmentMappings(
             String mappingName,
             String accountRecordType,
@@ -546,6 +616,14 @@ private with sharing class ProgramSettingsController_TEST {
      * @description Stub class to simulate exception responses from AutoEnrollmentMappingService
      **************************************************************************************************************************************/
     private class STUB_ExceptionAutoEnrollmentMappingService extends AutoEnrollmentMappingService {
+        public override AutoEnrollmentMappingModel createAutoEnrollmentMapping(
+            String accountRecordType,
+            String status,
+            String role
+        ) {
+            throw new TestException('Exception encountered!');
+        }
+
         public override AutoEnrollmentMappingModel updateAutoEnrollmentMappings(
             String mappingName,
             String accountRecordType,

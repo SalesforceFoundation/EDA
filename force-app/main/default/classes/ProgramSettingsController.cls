@@ -46,6 +46,19 @@ public with sharing class ProgramSettingsController {
         }
     }
 
+    /**********************************************************************************************************
+     * @description Retrieve an integer representing the number of unmapped record types
+     * @return The number of unmapped record types.
+     *********************************************************************************************************/
+    @AuraEnabled
+    public static Boolean unmappedRecordTypesExist() {
+        try {
+            return ProgramSettingsController.locateAutoEnrollmentMappingsVMapper().unmappedRecordTypesExist();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /************************************************************************************
      * @description Retrieve a ComoboxVModel representing the list of active Account
      * Record Types
@@ -89,6 +102,24 @@ public with sharing class ProgramSettingsController {
         }
     }
 
+    /***
+     * @description Update the affiliation mappping with new auto enrollment mapping.
+     * @param accountRecordType The account record type for the auto enrollment mapping
+     * @param status The status for the auto enrollment mapping
+     * @param role The role for the auto enrollment mapping
+     * @return The account record type of the mapping updated.
+     */
+    @AuraEnabled
+    public static String createAutoEnrollmentMapping(String accountRecordType, String status, String role) {
+        try {
+            return ProgramSettingsController.locateAutoEnrollmentMappingService()
+                .createAutoEnrollmentMapping(accountRecordType, status, role)
+                .accountRecordTypeFieldValue;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /**
      * @description Updates auto enrollment mappings
      * @param mappingName The name of the original auto enrollment mapping
@@ -96,6 +127,7 @@ public with sharing class ProgramSettingsController {
      * @param newAccountRecordType The account record type for the updated auto enrollment mapping
      * @param status The status for the auto enrollment mapping
      * @param role The role for the auto enrollment mapping
+     * @return The account record type of the mapping updated.
      */
     @AuraEnabled
     public static String updateAutoEnrollmentMappings(
