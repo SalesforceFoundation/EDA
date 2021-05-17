@@ -56,6 +56,36 @@ public virtual with sharing class AutoEnrollmentMappingService {
         return instance;
     }
 
+    /*****************************************************************************
+     * @description Checks user permissions and create the auto enrollment mappping.
+     *****************************************************************************/
+    public virtual AutoEnrollmentMappingModel createAutoEnrollmentMapping(
+        String accountRecordType,
+        String status,
+        String role
+    ) {
+        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+
+        //Get the appropriate Record Type Model for entries with labels in the field
+        RecordTypeModel accountRecordTypeModel = this.locateRecordTypeService()
+            .getRecordTypeModelFromRecTypeDevName('Account', accountRecordType);
+
+        String mappingName = this.getMappingNameByRecordTypeDeveloperNameOrName(
+            accountRecordTypeModel.developerName,
+            accountRecordTypeModel.name
+        );
+
+        List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelListToUpdate = new List<AutoEnrollmentMappingModel>();
+
+        autoEnrollmentMappingModelListToUpdate.add(
+            new AutoEnrollmentMappingModel(mappingName, accountRecordType, role, status, true)
+        );
+
+        List<AutoEnrollmentMappingModel> returnModelList = this.locateAutoEnrollmentMappingMapper()
+            .updateAffiliationMappingsFromModelList(autoEnrollmentMappingModelListToUpdate);
+        return returnModelList[0];
+    }
+
     /**
      * @description Updates auto enrollment mappings
      * @param mappingName The name of the original auto enrollment mapping
