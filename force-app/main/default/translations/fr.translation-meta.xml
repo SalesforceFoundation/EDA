@@ -509,6 +509,18 @@
         <name>stgAutoEnrollmentEditSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Edit Auto Enrollment mapping window --></label>
+        <name>stgAutoEnrollmentNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the New auto-enrollment mapping confirmation window --></label>
+        <name>stgAutoEnrollmentNewModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an Affiliation mapping is edited --></label>
+        <name>stgAutoEnrollmentNewSuccess</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Info text for Account Record Type picklist --></label>
         <name>stgAccountRecordTypeHelp</name>
     </customLabels>
@@ -555,6 +567,10 @@
     <customLabels>
         <label>Modifier</label>
         <name>stgBtnEdit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that creates an auto-enrollment mapping --></label>
+        <name>stgBtnNewAutoEnrollA11y</name>
     </customLabels>
     <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
