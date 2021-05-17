@@ -7,6 +7,7 @@ import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgAutoEnrollmentEditModalBody from "@salesforce/label/c.stgAutoEnrollmentEditModalBody";
 import stgApiNameLabel from "@salesforce/label/c.stgApiNameLabel";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+import stgAutoEnrollmentNewModalBody from "@salesforce/label/c.stgAutoEnrollmentNewModalBody";
 import stgAccountRecordTypeHelp from "@salesforce/label/c.stgAccountRecordTypeHelp";
 //apex
 import getAccountRecordTypeComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAccountRecordTypeComboboxVModel";
@@ -35,6 +36,7 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         roleCombobox: stgColAutoEnrollmentRole,
         comboboxPlaceholderText: stgOptSelect,
         modalBodyEdit: stgAutoEnrollmentEditModalBody,
+        modalBodyCreate: stgAutoEnrollmentNewModalBody,
         apiNameDisplay: stgApiNameLabel,
         tellMeMoreLink: stgTellMeMoreLink,
         stgAccountRecordTypeHelp: stgAccountRecordTypeHelp,
@@ -47,7 +49,7 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     };
 
     @wire(getAccountRecordTypeComboboxVModel, {
-        accountRecordType: "$oldAccountRecordType",
+        accountRecordType: "$newAccountRecordType",
     })
     accountRecordTypeComboboxVModelWire(result) {
         this.accountRecordTypeComboboxWireResult = result;
@@ -144,8 +146,8 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
             case "edit":
                 return this.labelReference.modalBodyEdit + " " + this.autoEnrollmentHyperLink;
 
-            /*case "create":
-                return this.labelReference.modalBodyCreate;*/
+            case "create":
+                return this.labelReference.modalBodyCreate + " " + this.autoEnrollmentHyperLink;
         }
     }
 
@@ -153,7 +155,7 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         return this.actionName === "edit" || this.actionName === "create";
     }
 
-     get autoEnrollmentHyperLink() {
+    get autoEnrollmentHyperLink() {
         return (
             '<a href="https://powerofus.force.com/EDA-Configure-Affiliations-Settings">' +
             this.labelReference.tellMeMoreLink +

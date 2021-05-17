@@ -1007,6 +1007,30 @@
         <value>{0} auto-enrollment mapping was saved.</value>
     </labels>
     <labels>
+        <fullName>stgAutoEnrollmentNewModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the New auto-enrollment mapping confirmation window</shortDescription>
+        <value>Select values that create a Program Enrollment record when an Affiliation is created or updated with these values, and the Affiliation is marked as Primary.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentNewModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the New auto-enrollment mapping confirmation window</shortDescription>
+        <value>New auto-enrollment mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentNewSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when an auto-enrollment mapping is created</shortDescription>
+        <value>{0} auto-enrollment mapping was created.</value>
+    </labels>
+    <labels>
         <fullName>stgAccountRecordTypeHelp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1101,6 +1125,14 @@
         <protected>true</protected>
         <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnNewAutoEnrollA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that creates an auto-enrollment mapping</shortDescription>
+        <value>Create an auto-enrollment mapping.</value>
     </labels>
     <labels>
         <fullName>stgBtnRefreshAdminNames</fullName>
@@ -1461,6 +1493,14 @@
         <protected>true</protected>
         <shortDescription>Error when a generic error occurs</shortDescription>
         <value>We couldn’t save your work. Please refresh the page and try again.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorNewAutoEnrollment</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Toast message when no record types for Program Auto Enrollment</shortDescription>
+        <value>No unmapped record types are available for the program auto enrollment. Auto enrollments can only be created for Account Record Types that have been mapped as Primary Affiliations</value>
     </labels>
     <labels>
         <fullName>stgErrorNotiTo</fullName>
