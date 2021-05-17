@@ -9,7 +9,7 @@
         aura:id="edaSettings"
         pageReference="{!v.pageReference}"
         onprimaryaffiliationmodalrequest="{!c.primaryAffiliationModalRequestHandler}"
-        onautoenrollmenteditmodalrequest="{!c.handleAutoEnrollmentEditModalRequest}"
+        onautoenrollmentmodalrequest="{!c.handleAutoEnrollmentModalRequest}"
         onsettingsbatchjobmodalrequest="{!c.settingsBatchJobModalRequestHandler}"
     />
 </aura:component>
