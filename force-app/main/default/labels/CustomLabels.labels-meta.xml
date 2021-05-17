@@ -1764,7 +1764,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active</shortDescription>
-        <value>The Auto-Enrollment Status {0} {(1)} isn&apos;t active. In EDA Settings | Program Enrollments, verify the Auto-Enrollment Program Mapping that specifies this Status. If the mapping is correct, go to the Affiliation object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
+        <value>The Auto-Enrollment Status {0} ({1}) isn&apos;t active. In EDA Settings | Program Enrollments, verify the Auto-Enrollment Program Mapping that specifies this Status. If the mapping is correct, go to the Affiliation object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollStatusNotFound</fullName>
