@@ -7,7 +7,7 @@
         const eventParameters = event.getParams();
         helper.openPrimaryAffiliationModal(component, eventParameters);
     },
-    handleAutoEnrollmentEditModalRequest: function (component, event, helper) {
+    handleAutoEnrollmentModalRequest: function (component, event, helper) {
         event.stopPropagation();
         const eventParameters = event.getParams();
         helper.openAutoEnrollmentMappingModal(component, eventParameters);
