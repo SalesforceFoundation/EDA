@@ -993,7 +993,7 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie die wechselseitige Einstellung für {0} ({1}), die in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; angegeben ist. Wenn {0} ({1}) für &quot;Weiblich&quot; zutreffend ist, wechseln Sie im Salesforce-Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Wert für &quot;Weiblich&quot; in den Einstellungen für wechselseitige Beziehungen in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>

@@ -993,7 +993,7 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>Verifique la configuración recíproca para {0} ({1}) especificada en Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones. Si {0} ({1}) es correcto para Femenino, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Femenino de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>

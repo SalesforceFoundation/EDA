@@ -993,7 +993,7 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct for Female, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>

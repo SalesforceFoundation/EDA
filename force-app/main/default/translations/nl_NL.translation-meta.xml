@@ -993,7 +993,7 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en controleer de opgegeven wederzijdse instelling voor {0} ({1}). Als {0} ({1}) correct is voor Vrouw, gaat u naar het typeveld van het relatie-object in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de waarde Vrouw van de wederzijdse instelling in een geldige, actieve keuzelijstwaarde.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>

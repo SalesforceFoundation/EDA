@@ -993,7 +993,7 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista vastavuoroiset asetukset kohteelle {0} ({1}), jotka on määritetty EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdellä. Jos {0} ({1}) on oikein Nainen-arvolle, siirry suhdeobjektin tyypin kenttään Salesforcen Määritykset-valikossa ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Nainen-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>

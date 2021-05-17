@@ -993,7 +993,7 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が女性の正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
