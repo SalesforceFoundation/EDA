@@ -1803,7 +1803,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid</shortDescription>
+        <shortDescription>Recommended fix when a mapping&apos;s Primary Affiliation field isn&apos;t valid</shortDescription>
         <value>The Primary Affiliation field {0} isn&apos;t valid. In EDA Settings | Affiliations, edit the Affiliation mapping to specify a valid lookup field on the Contact object.</value>
     </labels>
     <labels>
@@ -1851,7 +1851,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique</shortDescription>
+        <shortDescription>Recommended fix when mappings&apos; Primary Affiliation fields aren&apos;t unique</shortDescription>
         <value>In EDA Settings | Affiliations, look in the Primary Affiliation Field on Contact column for multiple mappings specifying {0} ({1}). Edit those mappings so that this field is mapped in only one Affiliation mapping.</value>
     </labels>
     <labels>
