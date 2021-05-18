@@ -36,6 +36,7 @@ import stgAfflProgEnrollSetStatusValue from "@salesforce/label/c.stgAfflProgEnro
 import stgAfflCopyProgramEnrollmentEndDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentEndDate";
 import stgAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentStartDate";
 import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollDeleteTitle";
+import stgCourseConnectionsNav from "@salesforce/label/c.stgCourseConnectionsNav";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
@@ -86,6 +87,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         },
         coursesAndEnrollmentsSettings: {
             coursesAndEnrollmentsSettings: stgCoursesAndEnrollmentsNav,
+            courseConnectionSettings: stgCourseConnectionsNav,
         },
         errorSettings: {
             enableDebug: stgEnableDebugTitle,
@@ -282,6 +284,17 @@ export default class EdaSettingsNavigation extends LightningElement {
                             {
                                 label: this.labelReference.programSettings.programAutoEnrollmentMappings,
                                 id: "programAutoEnrollmentMappings",
+                            },
+                        ],
+                    },
+                    {
+                        label: this.labelReference.coursesAndEnrollmentsSettings.courseConnectionSettings,
+                        page: "courseConnectionSettings",
+                        id: "courseConnectionSettings",
+                        menuItems: [
+                            {
+                                label: "Course Connection Record Types",
+                                id: "programEnrollmentDeletions",
                             },
                         ],
                     },
