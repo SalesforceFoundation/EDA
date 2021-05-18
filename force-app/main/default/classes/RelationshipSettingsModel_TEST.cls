@@ -40,13 +40,19 @@ private with sharing class RelationshipSettingsModel_TEST {
     @isTest
     private static void RelationshipSettingsModel() {
         Test.startTest();
-        RelationshipSettingsModel relationshipSettingsModel = new RelationshipSettingsModel('List Setting');
+        RelationshipSettingsModel relationshipSettingsModel = new RelationshipSettingsModel('List Setting', true);
         Test.stopTest();
 
         System.assertEquals(
             'List Setting',
             relationshipSettingsModel.reciprocalMethod,
-            'The value \'List Setting\' should be set'
+            'The value \'List Setting\' should be set to the reciprocalMethod property'
+        );
+
+        System.assertEquals(
+            true,
+            relationshipSettingsModel.allowAutoCreatedDuplicates,
+            'The value true should be set to the allowAutoCreatedDuplicates property'
         );
     }
 }

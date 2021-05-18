@@ -76,7 +76,10 @@ public virtual with sharing class RelationshipSettingsVMapper {
             relationshipTypeComboboxValueVModelsList
         );
 
-        return new RelationshipSettingsVModel(defaultRelationshipComboboxVModel);
+        return new RelationshipSettingsVModel(
+            defaultRelationshipComboboxVModel,
+            !currentRelationshipSettingsModel.allowAutoCreatedDuplicates
+        );
     }
 
     /*****************************************************************************

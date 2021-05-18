@@ -3,12 +3,15 @@ import { refreshApex } from "@salesforce/apex";
 
 // Controllers
 import getRelationshipSettingsVModel from "@salesforce/apex/RelationshipSettingsController.getRelationshipSettingsVModel";
-// Custom Labels
+// Reciprocal Method Custom Labels
 import stgRelationshipSettingsTitle from "@salesforce/label/c.stgRelationshipSettingsTitle";
 import stgTitleReciMethod from "@salesforce/label/c.stgTitleReciMethod";
 import stgHelpRelReciprocalMethod from "@salesforce/label/c.stgHelpRelReciprocalMethod";
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+// Allow Duplicates Custom Labels
+import stgTitleAllowAutocreatedDuplicateRel from "@salesforce/label/c.stgTitleAllowAutocreatedDuplicateRel";
+import stgHelpRelAutoCreatedDup from "@salesforce/label/c.stgHelpRelAutoCreatedDup";
 // Articles
 const relationshipsArtcile = '<a href="https://powerofus.force.com/s/article/EDA-Config-Relationships-Settings">';
 export default class relationshipSettings extends LightningElement {
@@ -24,10 +27,13 @@ export default class relationshipSettings extends LightningElement {
         reciprocalMethodSettingsDesc: stgHelpRelReciprocalMethod,
         tellMeMore: stgTellMeMoreLink,
         comboboxPlaceholderText: stgOptSelect,
+        stgHelpRelAutoCreatedDup: stgHelpRelAutoCreatedDup,
+        stgTitleAllowAutocreatedDuplicateRel: stgTitleAllowAutocreatedDuplicateRel,
     };
 
     inputAttributeReference = {
         defaultReciprocalComboboxId: "defaultReciprocalMethod",
+        allowAutoCreatedDuplicatesId: "allowAutoCreatedDuplicates",
     };
 
     get relationshipSettingsHyperLink() {
@@ -60,25 +66,6 @@ export default class relationshipSettings extends LightningElement {
         }
     }
 
-    handleSettingsEditModeChange(event) {
-        this.isEditMode = !event.detail;
-        this.affordancesDisabledToggle = event.detail;
-    }
-
-    handleSettingsSaveCancel(event) {
-        this.refreshAllApex();
-    }
-
-    handleSettingsSaving(event) {
-        this.affordancesDisabledToggle = true;
-        this.template.querySelector("c-settings-save-canvas").updateHierarchySettings();
-    }
-
-    handleSettingsSaveCompleted(event) {
-        this.affordancesDisabledToggle = false;
-        this.refreshAllApex();
-    }
-
     handleReciprocalMethodChange(event) {
         // add updated setting to hierarchySettingsChanges object
         let hierarchySettingsChange = {
@@ -88,6 +75,36 @@ export default class relationshipSettings extends LightningElement {
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleAuoCreatedDuplicatesChange(event) {
+        const eventDetail = event.detail;
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Allow_AutoCreated_Duplicates__c",
+            settingsValue: !eventDetail.value, // Save the inverse as UI display the inverse value of the settings
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleSettingsEditModeChange(event) {
+        this.isEditMode = !event.detail;
+        this.affordancesDisabledToggle = event.detail;
+    }
+
+    handleSettingsSaving(event) {
+        this.affordancesDisabledToggle = true;
+        this.template.querySelector("c-settings-save-canvas").updateHierarchySettings();
+    }
+
+    handleSettingsSaveCancel(event) {
+        this.refreshAllApex();
+    }
+
+    handleSettingsSaveCompleted(event) {
+        this.affordancesDisabledToggle = false;
+        this.refreshAllApex();
     }
 
     refreshAllApex() {

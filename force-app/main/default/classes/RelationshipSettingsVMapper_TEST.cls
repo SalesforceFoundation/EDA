@@ -186,6 +186,12 @@ private with sharing class RelationshipSettingsVMapper_TEST {
             RelationshipSettingsVModel.reciprocalMethodComboboxVModel.options[1].value,
             'Value for the reciprocal method options shoule be retreived'
         );
+
+        System.assertEquals(
+            false,
+            RelationshipSettingsVModel.allowAutoCreatedDuplicates,
+            'Inverted value for Allow Auto Created Duplicates should be retreived.'
+        );
     }
 
     /**************************************************************************************************************************
@@ -197,7 +203,7 @@ private with sharing class RelationshipSettingsVMapper_TEST {
      **************************************************************************************************************************************/
     private class STUB_RelationshipSettingsService extends RelationshipSettingsService {
         public override RelationshipSettingsModel getRelationshipSettingsModel() {
-            return new RelationshipSettingsModel('List Setting');
+            return new RelationshipSettingsModel('List Setting', true);
         }
     }
 }
