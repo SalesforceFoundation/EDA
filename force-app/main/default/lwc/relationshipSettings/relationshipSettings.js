@@ -10,8 +10,8 @@ import stgHelpRelReciprocalMethod from "@salesforce/label/c.stgHelpRelReciprocal
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 // Allow Duplicates Custom Labels
-import stgTitleAllowAutocreatedDuplicateRel from "@salesforce/label/c.stgTitleAllowAutocreatedDuplicateRel";
-import stgHelpRelAutoCreatedDup from "@salesforce/label/c.stgHelpRelAutoCreatedDup";
+import stgDuplicateRelationships from "@salesforce/label/c.stgDuplicateRelationships";
+import stgDuplicateRelationshipsHelp from "@salesforce/label/c.stgDuplicateRelationshipsHelp";
 // Articles
 const relationshipsArtcile = '<a href="https://powerofus.force.com/s/article/EDA-Config-Relationships-Settings">';
 export default class relationshipSettings extends LightningElement {
@@ -27,8 +27,8 @@ export default class relationshipSettings extends LightningElement {
         reciprocalMethodSettingsDesc: stgHelpRelReciprocalMethod,
         tellMeMore: stgTellMeMoreLink,
         comboboxPlaceholderText: stgOptSelect,
-        stgHelpRelAutoCreatedDup: stgHelpRelAutoCreatedDup,
-        stgTitleAllowAutocreatedDuplicateRel: stgTitleAllowAutocreatedDuplicateRel,
+        duplicateRelationshipTitle: stgDuplicateRelationships,
+        duplicateRelationshipDesc: stgDuplicateRelationshipsHelp,
     };
 
     inputAttributeReference = {
@@ -42,6 +42,10 @@ export default class relationshipSettings extends LightningElement {
 
     get relationshipSettingsDesc() {
         return this.labelReference.reciprocalMethodSettingsDesc + " " + this.relationshipSettingsHyperLink;
+    }
+
+    get duplicateRelationshipDesc() {
+        return this.labelReference.duplicateRelationshipDesc + " " + this.relationshipSettingsHyperLink;
     }
 
     get affordancesDisabled() {

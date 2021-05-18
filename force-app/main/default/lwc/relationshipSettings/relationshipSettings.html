@@ -24,13 +24,12 @@
                             onsettingsinputchange={handleReciprocalMethodChange}
                             disabled={affordancesDisabled}
                         ></c-settings-row-input>
-                    </div>
-                    <!-- Relationship Auto Create Mark Up-->
-                    <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+
+                        <!-- Relationship Auto Create Mark Up-->
                         <c-settings-row-input
                             class="slds-col"
-                            title={labelReference.stgTitleAllowAutocreatedDuplicateRel}
-                            description={labelReference.stgHelpRelAutoCreatedDup}
+                            title={labelReference.duplicateRelationshipTitle}
+                            description={duplicateRelationshipDesc}
                             type="toggle"
                             input-id={inputAttributeReference.allowAutoCreatedDuplicatesId}
                             value={relationshipSettingsVModel.preventAutoCreatedDuplicates}

@@ -721,6 +721,14 @@
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
+        <label><!-- Label for the Relationship Duplicates Settings --></label>
+        <name>stgDuplicateRelationships</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description for the Relationship Duplicates Settings --></label>
+        <name>stgDuplicateRelationshipsHelp</name>
+    </customLabels>
+    <customLabels>
         <label>Configuració EDA</label>
         <name>stgEDASetupTitle</name>
     </customLabels>

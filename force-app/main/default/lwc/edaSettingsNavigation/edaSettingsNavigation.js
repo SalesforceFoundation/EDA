@@ -39,6 +39,7 @@ import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollD
 // Relationship Labels
 import stgTitleReciMethod from "@salesforce/label/c.stgTitleReciMethod";
 import stgRelationshipSettingsNav from "@salesforce/label/c.stgRelationshipSettingsNav";
+import stgDuplicateRelationships from "@salesforce/label/c.stgDuplicateRelationships";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
@@ -110,7 +111,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             afflStartDate: stgAfflCopyProgramEnrollmentStartDate,
         },
         relationshipSettings: {
-            preventAutoCreatedDuplicateRelationships: "Prevent Auto-Created Duplicate Relations",
+            preventAutoCreatedDuplicateRelationships: stgDuplicateRelationships,
             reciprocalMethod: stgTitleReciMethod,
             reciprocalRelationshipMappings: "Reciprocal Relationship mappings",
             relationshipAutocreateCampaignMappings: "Autocreate Campaign Mappings",
@@ -233,10 +234,6 @@ export default class EdaSettingsNavigation extends LightningElement {
                     {
                         label: this.labelReference.relationshipSettings.reciprocalMethod,
                         id: "reciprocalMethod",
-                    },
-                    {
-                        label: this.labelReference.relationshipSettings.preventAutoCreatedDuplicateRelationships,
-                        id: "preventAutoCreatedDuplicateRelationships",
                     },
                     {
                         label: this.labelReference.relationshipSettings.preventAutoCreatedDuplicateRelationships,

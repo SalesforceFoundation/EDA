@@ -1431,6 +1431,22 @@
         <value>Require Preferred Phone</value>
     </labels>
     <labels>
+        <fullName>stgDuplicateRelationships</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Relationship Duplicates Settings</shortDescription>
+        <value>Duplicate Relationships</value>
+    </labels>
+    <labels>
+        <fullName>stgDuplicateRelationshipsHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Relationship Duplicates Settings</shortDescription>
+        <value>Specify whether to prevent more than one Relationship record of the same type between two Contacts.</value>
+    </labels>
+    <labels>
         <fullName>stgEDASetupTitle</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
