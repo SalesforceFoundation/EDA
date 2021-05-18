@@ -93,7 +93,7 @@ private with sharing class RelationshipSettingsController_TEST {
 
         System.assertEquals(
             true,
-            relationshipSettingsVModel.allowAutoCreatedDuplicates,
+            relationshipSettingsVModel.preventAutoCreatedDuplicates,
             'Selected value should be retrieved for allow auto created duplicates'
         );
     }
