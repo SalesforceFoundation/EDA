@@ -10,6 +10,7 @@ import stgHelpRelReciprocalMethod from "@salesforce/label/c.stgHelpRelReciprocal
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 // Articles
+const relationshipsArtcile = '<a href="https://powerofus.force.com/s/article/EDA-Config-Relationships-Settings">';
 export default class relationshipSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -28,6 +29,14 @@ export default class relationshipSettings extends LightningElement {
     inputAttributeReference = {
         defaultReciprocalComboboxId: "defaultReciprocalMethod",
     };
+
+    get relationshipSettingsHyperLink() {
+        return relationshipsArtcile + this.labelReference.tellMeMore + "</a>";
+    }
+
+    get relationshipSettingsDesc() {
+        return this.labelReference.reciprocalMethodSettingsDesc + " " + this.relationshipSettingsHyperLink;
+    }
 
     get affordancesDisabled() {
         if (!this.isEditMode || this.affordancesDisabledToggle === true) {
