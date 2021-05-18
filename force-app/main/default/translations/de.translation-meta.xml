@@ -733,7 +733,7 @@
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
-        <label>Kursverbindungen aktivieren</label>
+        <label><!-- Label for the Course Connection Record Types setting --></label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
@@ -1285,7 +1285,7 @@
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>Kursverbindungs-Datensätze verbinden einen Kontakt mit einem Kursangebot. Das Aktivieren dieser Funktion ermöglicht Benutzern die Wahl des Typs von Kontakt (Lehrpersonal oder Student), für den die Kursverbindung erstellt werden soll. Falls aktiviert, müssen Sie unten auch die Standard-Datensatztypen für aktive Studenten und Lehrpersonal festlegen. Bei erstmaliger Aktivierung dieser Funktion sollten Sie unbedingt den Abgleich für Kursverbindungen ausführen.</label>
+        <label><!-- Description of the Course Connections setting --></label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>

@@ -733,7 +733,7 @@
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
-        <label>Activer les inscriptions au module</label>
+        <label><!-- Label for the Course Connection Record Types setting --></label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
@@ -1285,7 +1285,7 @@
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>Les enregistrements Inscription au module connectent un contact à un choix de modules. L&apos;activation de cette fonctionnalité permet aux utilisateurs de choisir le type de contact (Professeur ou Étudiant) à créer pour l’inscription au module. Lorsque vous activez cette fonctionnalité, vous devez également définir ci-dessous le type d&apos;enregistrement d&apos;étudiant actif par défaut et type d&apos;enregistrement de professeur par défaut. Si vous activez cette fonctionnalité pour la première fois, nous recommandons vivement d&apos;exécuter le Remplissage des inscriptions au module.</label>
+        <label><!-- Description of the Course Connections setting --></label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
