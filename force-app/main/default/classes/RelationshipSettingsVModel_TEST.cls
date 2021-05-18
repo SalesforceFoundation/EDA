@@ -83,7 +83,7 @@ private with sharing class RelationshipSettingsVModel_TEST {
 
         System.assertEquals(
             true,
-            relationshipSettingsVModel.allowAutoCreatedDuplicates,
+            relationshipSettingsVModel.preventAutoCreatedDuplicates,
             'Value property should be retrieved for Allow Auto created duplicates.'
         );
     }
