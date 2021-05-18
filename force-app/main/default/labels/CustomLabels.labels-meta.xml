@@ -987,7 +987,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description of the Edit auto-enrollment mapping window</shortDescription>
+        <shortDescription>Description of the Edit auto-enrollment mapping confirmation window</shortDescription>
         <value>Select values that create a Program Enrollment record when an Affiliation is created or updated with these values, and the Affiliation is marked as Primary.</value>
     </labels>
     <labels>
@@ -995,7 +995,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Title for the Edit auto-enrollment mapping window</shortDescription>
+        <shortDescription>Title for the Edit auto-enrollment mapping confirmation window</shortDescription>
         <value>Edit auto-enrollment mapping?</value>
     </labels>
     <labels>
@@ -1003,7 +1003,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Toast message when an auto-enrollment mapping is saved</shortDescription>
+        <shortDescription>Confirmation message when an auto-enrollment mapping is saved</shortDescription>
         <value>{0} auto-enrollment mapping was saved.</value>
     </labels>
     <labels>
@@ -1011,8 +1011,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description of the Edit Auto Enrollment mapping window</shortDescription>
-        <value>Select the Account Record Type, Status, and Role used to determine when a Program Enrollment will automatically be created when an Affiliation for the Account Record Type is Created.</value>
+        <shortDescription>Description of the New auto-enrollment mapping confirmation window</shortDescription>
+        <value>Select values that create a Program Enrollment record when an Affiliation is created or updated with these values, and the Affiliation is marked as Primary.</value>
     </labels>
     <labels>
         <fullName>stgAutoEnrollmentNewModalTitle</fullName>
@@ -1027,8 +1027,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Toast message when an Affiliation mapping is edited</shortDescription>
-        <value>{0} Program Auto-Enrollment was created.</value>
+        <shortDescription>Confirmation message when an auto-enrollment mapping is created</shortDescription>
+        <value>{0} auto-enrollment mapping was created.</value>
     </labels>
     <labels>
         <fullName>stgAutoEnrollmentDeleteModalBody</fullName>
@@ -1251,7 +1251,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Header label for the list of Affiliation Roles</shortDescription>
+        <shortDescription>Column header for Auto-Enrollment Role</shortDescription>
         <value>Auto-Enrollment Role</value>
     </labels>
     <labels>
@@ -1259,7 +1259,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Header label for the list of Affiliation Statuses</shortDescription>
+        <shortDescription>Column header for Auto-Enrollment Status</shortDescription>
         <value>Auto-Enrollment Status</value>
     </labels>
     <labels>
@@ -1517,6 +1517,14 @@
         <protected>true</protected>
         <shortDescription>Error when a generic error occurs</shortDescription>
         <value>We couldn’t save your work. Please refresh the page and try again.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorNewAutoEnrollment</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Toast message when no record types for Program Auto Enrollment</shortDescription>
+        <value>No unmapped record types are available for the program auto enrollment. Auto enrollments can only be created for Account Record Types that have been mapped as Primary Affiliations</value>
     </labels>
     <labels>
         <fullName>stgErrorNotiTo</fullName>

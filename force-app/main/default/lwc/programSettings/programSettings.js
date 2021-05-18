@@ -7,6 +7,7 @@ import getProgramEnrollmentDeletionSettingsVModel from "@salesforce/apex/Program
 import updateAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMappings";
 import createAutoEnrollmentMapping from "@salesforce/apex/ProgramSettingsController.createAutoEnrollmentMapping";
 import deleteAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.deleteAutoEnrollmentMappings";
+import unmappedRecordTypesExist from "@salesforce/apex/ProgramSettingsController.unmappedRecordTypesExist";
 
 //Page Custom Labels
 import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
@@ -48,6 +49,10 @@ import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflD
 import stgAutoEnrollmentNewSuccess from "@salesforce/label/c.stgAutoEnrollmentNewSuccess";
 import stgAutoEnrollmentDeleteSuccess from "@salesforce/label/c.stgAutoEnrollmentDeleteSuccess";
 import stgBtnNewAutoEnrollA11y from "@salesforce/label/c.stgBtnNewAutoEnrollA11y";
+import stgErrorNewAutoEnrollment from "@salesforce/label/c.stgErrorNewAutoEnrollment";
+import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+
+const autoEnrollmentURL = "https://powerofus.force.com/s/article/EDA-Configure-Affiliations-Settings";
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -85,6 +90,7 @@ export default class programSettings extends LightningElement {
         programEnrollmentDeletionStatusSettingTitle: stgAfflDeleteProgramEnrollment,
         programEnrollmentDeletionStatusSettingDescription: stgHelpAfflDeleteProgramEnrollment,
         autoEnrollmentMappingsTable: {
+            tellMeMoreLink: stgTellMeMoreLink,
             autoEnrollmentMappingsTitle: autoEnrollmentMappingsTitle,
             autoEnrollmentMappingsDescription: autoEnrollmentMappingsDescription,
             accountRecordTypeColumn: stgColAccountRecordType,
@@ -92,6 +98,7 @@ export default class programSettings extends LightningElement {
             autoEnrollmentRoleColumn: stgColAutoEnrollmentRole,
             editAction: stgBtnEdit,
             deleteAction: stgBtnDelete,
+            cannotMakeNew: stgErrorNewAutoEnrollment,
         },
         editSuccessMessage: stgAutoEnrollmentEditSuccess,
         createSuccessMessage: stgAutoEnrollmentNewSuccess,
@@ -321,6 +328,16 @@ export default class programSettings extends LightningElement {
         });
     }
 
+    get autoEnrollmentHyperLink() {
+        return (
+            '<a href="' +
+            autoEnrollmentURL +
+            '">' +
+            this.labelReference.autoEnrollmentMappingsTable.tellMeMoreLink +
+            "</a>"
+        );
+    }
+
     get autoEnrollmentMappingsDescriptionRichText() {
         return (
             this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription +
@@ -338,13 +355,24 @@ export default class programSettings extends LightningElement {
             autoProgramEnrollmentRole: "",
         };
 
-        const autoEnrollmentModalRequestEvent = new CustomEvent("autoenrollmentmodalrequest", {
-            detail: autoEnrollmentNewDetail,
-            bubbles: true,
-            composed: true,
-        });
+        unmappedRecordTypesExist()
+            .then((result) => {
+                if (result === false) {
+                    this.showToast("error", "Error", this.labelReference.autoEnrollmentMappingsTable.cannotMakeNew);
+                    return;
+                }
 
-        this.dispatchEvent(autoEnrollmentModalRequestEvent);
+                const autoEnrollmentModalRequestEvent = new CustomEvent("autoenrollmentmodalrequest", {
+                    detail: autoEnrollmentNewDetail,
+                    bubbles: true,
+                    composed: true,
+                });
+
+                this.dispatchEvent(autoEnrollmentModalRequestEvent);
+            })
+            .catch((error) => {
+                //console.log("Inside error");
+            });
     }
 
     handleAutoEnrollmentMappingRowAction(event) {
