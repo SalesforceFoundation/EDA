@@ -685,6 +685,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Course Connections --></label>
+        <name>stgCourseConnectionsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Course Connection Settings --></label>
+        <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Apex-erätyö käsitteli {0} erää, joista {1} epäonnistui.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>

@@ -1359,6 +1359,22 @@
         <value>The backfill was queued successfully.</value>
     </labels>
     <labels>
+        <fullName>stgCourseConnectionsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Course Connections</shortDescription>
+        <value>Course Connections</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseConnectionsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Course Connection Settings</shortDescription>
+        <value>Course Connection Settings</value>
+    </labels>
+    <labels>
         <fullName>stgCourseDescriptionCopyEmailBody</fullName>
         <categories>Courses</categories>
         <language>en_US</language>

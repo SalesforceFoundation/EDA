@@ -685,6 +685,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Course Connections --></label>
+        <name>stgCourseConnectionsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Course Connection Settings --></label>
+        <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Der Batch-Apex-Auftrag hat {0} Batches mit {1} Fehler(n) verarbeitet.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>

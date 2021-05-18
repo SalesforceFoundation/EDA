@@ -685,6 +685,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Course Connections --></label>
+        <name>stgCourseConnectionsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Course Connection Settings --></label>
+        <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>バッチ Apex ジョブで {0} 件のバッチが処理され、{1} 件が失敗しました。</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>

@@ -685,6 +685,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Course Connections --></label>
+        <name>stgCourseConnectionsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Course Connection Settings --></label>
+        <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>El trabajo de Apex por lotes procesó {0} lotes con {1} fallos.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>
