@@ -965,15 +965,15 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Aktivieren Sie Kursverbindungen, was das Konfigurieren von Kursverbindungs-Datensatztypen beinhaltet. Details finden Sie unter &quot;Konfigurieren der Kursverbindung&quot; in der EDA-Dokumentation.</label>
+        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie den Datensatz für die Standardfakultät, der in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; angegeben ist. Wenn &quot;{1} ({0})&quot; zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatz für die Standardfakultät in einen gültigen, aktiven Datensatztyp.</label>
+        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; den Datensatztyp &quot;Standardfakultät&quot; in einen gültigen, aktiven Datensatztyp.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -981,7 +981,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; entweder den Datensatztyp für die Standardfakultät oder den Datensatztyp für den aktiven Standardstudierenden so, dass für jeden ein eindeutiger Datensatztyp angegeben wird.</label>
+        <label><!-- Recommended fix when student and faculty Course Connection record types match  --></label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -993,11 +993,11 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie den Datensatz für den aktiven Standardstudierenden, der in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; angegeben ist. Wenn &quot;{1} ({0})&quot; zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatz für den Standardstudierenden in einen gültigen, aktiven Datensatztyp.</label>
+        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; den Datensatztyp &quot;Aktiver Standardstudierender&quot; in einen gültigen, aktiven Datensatztyp.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Student Record Type --></label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
