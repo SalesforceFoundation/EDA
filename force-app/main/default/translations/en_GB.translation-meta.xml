@@ -581,6 +581,10 @@
         <name>stgBtnRefreshAdminNamesA11y</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that updates Race field on Contacts from Ethnicity field --></label>
+        <name>stgBtnRefreshEthnicityDataA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
@@ -593,8 +597,12 @@
         <name>stgBtnRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Run Copy</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRunCopy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Descriptions --></label>
+        <name>stgBtnRunCopyA11y</name>
     </customLabels>
     <customLabels>
         <label>Save</label>
@@ -685,6 +693,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Title for the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalBody</name>
+    </customLabels>
+    <customLabels>
         <label>The batch Apex job processed {0} batches with {1} failures.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>
@@ -769,8 +785,20 @@
         <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Ethnicity and Race Backfill for Contacts</label>
+        <label><!-- Label for the Legacy Ethnicity Data setting --></label>
         <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when the Race field is queued for update --></label>
+        <name>stgEthnicityRaceBackfillSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Fluent</label>
@@ -1233,7 +1261,7 @@
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label>The process was queued successfully. An email will be sent at the completion of the job.</label>
+        <label><!-- Confirmation message when the Extended Description field is queued for update --></label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
@@ -1241,7 +1269,7 @@
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label>In EDA 1.30, the Extended Description field was added to accommodate longer course descriptions.</label>
+        <label><!-- Description of the Extended Course Descriptions setting --></label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
@@ -1297,7 +1325,7 @@
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before the Race field was added and values were removed from the Ethnicity field as of EDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</label>
+        <label><!-- Description of the Legacy Ethnicity Data setting --></label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
@@ -1603,7 +1631,7 @@
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Courses: Description Data Migration</label>
+        <label><!-- Label for the Extended Course Descriptions setting --></label>
         <name>stgTitleCoursesDescriptionDataMigration</name>
     </customLabels>
     <customLabels>
