@@ -965,15 +965,15 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Active Enlaces de cursos, que incluye la configuración de los tipos de registro Enlace de curso. Para obtener detalles, consulte Configurar enlace de cursos en la documentación de EDA.</label>
+        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el Tipo de registro de facultad predeterminado especificado en Configuración de EDA, en la subficha Configuración de la ficha Enlaces de cursos. Si {1} ({0}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el Tipo de registro de facultad predeterminado a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración de la ficha Enlaces de cursos, cambie el Tipo de registro de facultad predeterminado a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -981,7 +981,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración de la ficha Enlaces de cursos, cambie el Tipo de registro de facultad predeterminado o el Tipo de registro de estudiante activo predeterminado de modo que cada uno especifique un tipo de registro exclusivo.</label>
+        <label><!-- Recommended fix when student and faculty Course Connection record types match  --></label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -993,11 +993,11 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el Tipo de registro de estudiante activo predeterminado especificado en Configuración de EDA, en la subficha Configuración de la ficha Enlaces de cursos. Si {1} ({0}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el Tipo de registro de estudiante activo predeterminado a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración de la ficha Enlaces de cursos, cambie el Tipo de registro de estudiante activo predeterminado a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Student Record Type --></label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
