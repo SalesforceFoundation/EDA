@@ -1021,11 +1021,11 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が女性の正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value doesn't exist --></label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1033,11 +1033,11 @@
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が男性の正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value is inactive --></label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [男性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value doesn't exist --></label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1045,11 +1045,11 @@
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [名前] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value is inactive --></label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [名前] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value doesn't exist --></label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1057,7 +1057,7 @@
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、[名前] 列に {0} ({1}) が指定されている複数の行を探します。その相互関係設定を編集し、この [名前] の値が 1 つの相互関係設定行にのみ表示されるようにします。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value isn't unique --></label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1073,11 +1073,11 @@
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [どちらでもない] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value is inactive --></label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [どちらでもない] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value doesn't exist --></label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>

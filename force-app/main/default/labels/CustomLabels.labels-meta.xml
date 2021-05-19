@@ -2044,7 +2044,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Female value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct for Female, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+        <value>The picklist value for Female in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelFemaleNotFoundFix</fullName>
@@ -2052,7 +2052,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+        <value>The picklist value for Female in the Reciprocal Relationships mapping isn&apos;t valid. In EDA Settings | Relationships, edit the Female value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelFemaleTitle</fullName>
@@ -2068,7 +2068,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Male value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct for Male, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+        <value>The picklist value for Male in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Male value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelMaleNotFoundFix</fullName>
@@ -2076,7 +2076,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Male value to a valid, active picklist value.</value>
+        <value>The picklist value for Male in the Reciprocal Relationships mapping isn&apos;t valid. In EDA Settings | Relationships, edit the Male value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelMaleTitle</fullName>
@@ -2092,7 +2092,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Name value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
+        <value>The Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping that specifies this Name. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameNotFoundFix</fullName>
@@ -2100,7 +2100,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
+        <value>The Reciprocal Relationships mapping for {0} isn&apos;t valid. In EDA Settings | Relationships, edit the mapping that specifies this Name to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameNotUniqueDesc</fullName>
@@ -2115,8 +2115,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended Fix when Name isn&apos;t unique in reciprocal settings</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, look for multiple rows specifying {0} ({1}) in the Name column. Edit those reciprocal settings so that this Name value appears in only one reciprocal setting row.</value>
+        <shortDescription>Recommended fix when the reciprocal setting's Name value isn&apos;t unique</shortDescription>
+        <value>In EDA Settings | Relationships, look in the Reciprocal Relationships table for multiple mappings with the Name {0} ({1}). Edit those mappings so that only one mapping uses this Name.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameTitle</fullName>
@@ -2148,7 +2148,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Neutral value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
+        <value>The picklist value for Neutral in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNeutralNotFoundFix</fullName>
@@ -2156,7 +2156,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
+        <value>The picklist value for Neutral in the Reciprocal Relationships mapping isn&apos;t valid. In EDA Settings | Relationships, edit the Neutral value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNeutralTitle</fullName>

@@ -1021,11 +1021,11 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le paramètre de réciprocité de la liste de sélection {0} ({1}) indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations. Si {0} ({1}) est correct pour Féminin, accédez au champ Type de l’objet Relation dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez la valeur Féminin du paramètre de réciprocité en une valeur de liste de sélection valide et active.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relation, modifiez la valeur Féminin du paramètre de réciprocité correspondant en une valeur de liste de sélection valide et active.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value doesn't exist --></label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1033,11 +1033,11 @@
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le paramètre de réciprocité de la liste de sélection {0} ({1}) indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations. Si {0} ({1}) est correct pour Masculin, accédez au champ Type de l’objet Relation dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez la valeur Masculin du paramètre de réciprocité en une valeur de liste de sélection valide et active.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value is inactive --></label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relation, modifiez la valeur Masculin du paramètre de réciprocité correspondant en une valeur de liste de sélection valide et active.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value doesn't exist --></label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1045,11 +1045,11 @@
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le paramètre de réciprocité de la liste de sélection {0} ({1}) indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations. Si {0} ({1}) est correct, accédez au champ Type de l’objet Relation dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez la valeur Nom du paramètre de réciprocité en une valeur de liste de sélection valide et active.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value is inactive --></label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations, modifiez la valeur Nom du paramètre de réciprocité correspondant en une valeur de liste de sélection valide et active.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value doesn't exist --></label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1057,7 +1057,7 @@
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations, recherchez plusieurs lignes en indiquant {0} ({1}) dans la colonne Nom. Modifiez ces paramètres de réciprocité pour que la valeur Nom s’affiche dans une seule ligne de paramètres de réciprocité.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value isn't unique --></label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1073,11 +1073,11 @@
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le paramètre de réciprocité de la liste de sélection {0} ({1}) indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relations. Si {0} ({1}) est correct, accédez au champ Type de l’objet Relation dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez la valeur Neutre du paramètre de réciprocité en une valeur de liste de sélection valide et active.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value is inactive --></label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de réciprocité de l’onglet Relation, modifiez la valeur Neutre du paramètre de réciprocité correspondant en une valeur de liste de sélection valide et active.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value doesn't exist --></label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
