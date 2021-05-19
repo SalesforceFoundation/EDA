@@ -825,11 +825,11 @@
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label>Verifique la asignación de Afiliación para {0} ({1}) especificada en Configuración de EDA, en la ficha Afiliaciones. Si {0} ({1}) es correcto, vaya al objeto Cuenta en Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el tipo de registro de la asignación de Afiliación a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type is inactive --></label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, cambie la asignación de Afiliación a un tipo de registro activo y válido para el objeto Cuenta.</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type doesn't exist --></label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -845,7 +845,7 @@
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, busque en la columna Tipo de registro de cuenta múltiples asignaciones que especifiquen {0} ({1}). Modifique esas asignaciones de Afiliación de modo que este tipo de registro solo esté asignado a un campo Afiliación principal de Contacto.</label>
+        <label><!-- Recommended fix when Account record types in Affiliation mappings aren't unique --></label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -901,7 +901,7 @@
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el {0} especificado en Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones. Debe ser un campo de búsqueda válido del objeto Contacto.</label>
+        <label><!-- Recommended fix when a mapping's Primary Affiliation field isn't valid --></label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
@@ -925,7 +925,7 @@
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, busque en la columna Campo Afiliación principal de Contacto múltiples asignaciones que especifiquen {0} ({1}). Modifique esas asignaciones de modo que este campo solo esté asignado a una asignación de Afiliación.</label>
+        <label><!-- Recommended fix when mappings' Primary Affiliation fields aren't unique --></label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
