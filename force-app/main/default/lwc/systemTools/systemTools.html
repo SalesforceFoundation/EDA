@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <!-- Administrative account name refresh-->
+    <!-- Administrative account name refresh -->
     <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
         <div class="slds-col slds-size_2-of-3">
             <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <!-- Household account name refresh-->
+    <!-- Household account name refresh -->
     <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
         <div class="slds-col slds-size_2-of-3">
             <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
@@ -57,7 +57,8 @@
             </div>
         </div>
     </div>
-    <!-- Preferred Email and Phone clean up-->
+
+    <!-- Preferred Email and Phone clean up -->
     <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
         <div class="slds-col slds-size_2-of-3">
             <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
@@ -75,6 +76,56 @@
                     label={labelReference.stgRunCleanUp}
                     title={labelReference.stgRunCleanUpA11y}
                     onclick={handlePrefEmailPhoneCleanUp}
+                    class="slds-m-left_x-small"
+                ></lightning-button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ethnicity and Racebackfill batch job -->
+    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
+        <div class="slds-col slds-size_2-of-3">
+            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+                {labelReference.ethnicityAndRaceBackfillTitle}
+            </div>
+            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                <lightning-formatted-rich-text value={ethnicityAndBackFillDesc}></lightning-formatted-rich-text>
+            </div>
+        </div>
+
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+                <lightning-button
+                    variant="brand"
+                    label={labelReference.stgBtnUpdate}
+                    title={labelReference.ethnicityAndRaceBackTitleA11y}
+                    onclick={handleEthnicityAndRaceBackfill}
+                    class="slds-m-left_x-small"
+                ></lightning-button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Description Data Migration batch job -->
+    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
+        <div class="slds-col slds-size_2-of-3">
+            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+                {labelReference.courseDescriptionMigrationTitle}
+            </div>
+            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                <lightning-formatted-rich-text
+                    value={labelReference.courseDescriptionMigrationHelpText}
+                ></lightning-formatted-rich-text>
+            </div>
+        </div>
+
+        <div class="slds-col slds-size_1-of-3">
+            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+                <lightning-button
+                    variant="brand"
+                    label={labelReference.btnLabelForRun}
+                    title={labelReference.btnHelpTextForRunA11y}
+                    onclick={handleCourseDataMigration}
                     class="slds-m-left_x-small"
                 ></lightning-button>
             </div>
