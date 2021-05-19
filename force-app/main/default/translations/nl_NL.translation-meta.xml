@@ -581,6 +581,10 @@
         <name>stgBtnRefreshAdminNamesA11y</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that updates Race field on Contacts from Ethnicity field --></label>
+        <name>stgBtnRefreshEthnicityDataA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
@@ -593,8 +597,12 @@
         <name>stgBtnRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Kopie uitvoeren</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRunCopy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Descriptions --></label>
+        <name>stgBtnRunCopyA11y</name>
     </customLabels>
     <customLabels>
         <label>Opslaan</label>
@@ -685,6 +693,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Title for the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalBody</name>
+    </customLabels>
+    <customLabels>
         <label>De Apex-batchtaak heeft {0} batches verwerkt met {1} fouten.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>
@@ -769,8 +785,20 @@
         <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Backfill van etniciteit en ras voor contactpersonen</label>
+        <label><!-- Label for the Legacy Ethnicity Data setting --></label>
         <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when the Race field is queued for update --></label>
+        <name>stgEthnicityRaceBackfillSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Fluent</label>
@@ -825,11 +853,11 @@
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label>Controleer de affiliatietoewijzing voor {0} ({1}) die is opgegeven in de EDA-instellingen, op het tabblad Affiliaties. Als {0} ({1}) correct is, gaat u naar het accountobject in Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u het recordtype van de affiliatietoewijzing in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type is inactive --></label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en wijzig de affiliatietoewijzing voor het accountobject in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type doesn't exist --></label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -845,7 +873,7 @@
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en zoek in de kolom voor het accountrecordtype naar meerdere toewijzingen waarin {0} ({1}) wordt opgegeven. Bewerk deze affiliatietoewijzingen zodat dit recordtype is toegewezen aan slechts één primair affiliatieveld voor contactpersonen.</label>
+        <label><!-- Recommended fix when Account record types in Affiliation mappings aren't unique --></label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -857,7 +885,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties en controleer de {0} ({1}) die is opgegeven voor de automatische inschrijvingsrol van een affiliatietoewijzing. Als {0} ({1}) correct is, gaat u naar het rolveld van het affiliatieobject in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de automatische inschrijvingsrol in een geldige, actieve keuzelijstwaarde.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Role isn't active --></label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -865,7 +893,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en wijzig de automatische inschrijvingsrol in een geldige, actieve keuzelijstwaarde voor het rolveld van het affiliatieobject.</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role --></label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -881,7 +909,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties en controleer de {0} ({1}) die is opgegeven voor de automatische inschrijvingsstatus van een affiliatietoewijzing. Als {0} ({1}) correct is, gaat u naar het statusveld van het affiliatieobject in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de automatische-inschrijvingsstatus in een geldige, actieve keuzelijstwaarde.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -889,7 +917,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en wijzig de automatische inschrijvingsstatus in een geldige, actieve keuzelijstwaarde voor het statusveld van het affiliatieobject.</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status --></label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -901,7 +929,7 @@
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties en controleer de {0} die is opgegeven. Dit moet een geldig opzoekveld zijn in het contactpersoonobject.</label>
+        <label><!-- Recommended fix when a mapping's Primary Affiliation field isn't valid --></label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
@@ -925,7 +953,7 @@
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Affiliatietoewijzingen van het tabblad Affiliaties, en zoek in de kolom voor Primair affiliatieveld contactpersoon naar meerdere toewijzingen waarin {0} ({1}) wordt opgegeven. Bewerk deze toewijzingen zodat dit veld in slechts één affiliatietoewijzing is toegewezen.</label>
+        <label><!-- Recommended fix when mappings' Primary Affiliation fields aren't unique --></label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -937,15 +965,15 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Schakel Cursusverbindingen in; hierbij hoort ook het configureren van de recordtypes Cursusverbindingen. Voor meer informatie ziet u &apos;Cursusverbinding configureren&apos; in de EDA-documentatie.</label>
+        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>Controleer Standaard recordtype voor staflid dat is opgegeven in EDA-instellingen, op het subtabblad Instellingen van het tabblad Cursusverbindingen. Als {1} ({0}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u Standaard recordtype voor staflid in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Instellingen van het tabblad Cursusverbindingen en wijzig Standaard recordtype voor staflid in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -953,7 +981,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>In de EDA-instellingen, op het subtabblad Instellingen van het tabblad Cursusverbindingen, kunt u Standaard recordtype voor staflid of Standaard recordtype voor actieve student wijzigen zodat elk recordtype uniek is.</label>
+        <label><!-- Recommended fix when student and faculty Course Connection record types match  --></label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -965,11 +993,11 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Controleer Standaard recordtype voor actieve student dat is opgegeven in EDA-instellingen, op het subtabblad Instellingen van het tabblad Cursusverbindingen. Als {1} ({0}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u Standaard recordtype voor actieve student in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Instellingen van het tabblad Cursusverbindingen en wijzig Standaard recordtype voor actieve student in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Student Record Type --></label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1233,7 +1261,7 @@
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label>Het proces is in de wachtrij geplaatst. Er wordt een e-mail verzonden bij voltooiing van de taak.</label>
+        <label><!-- Confirmation message when the Extended Description field is queued for update --></label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
@@ -1241,7 +1269,7 @@
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label>In EDA 1.30 is het veld Uitgebreide beschrijving toegevoegd om ruimte te bieden voor langere cursusbeschrijvingen.</label>
+        <label><!-- Description of the Extended Course Descriptions setting --></label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
@@ -1297,7 +1325,7 @@
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label>Gebruik de backfill voor etniciteit en ras alleen als uw organisatie het veld Etniciteit al gebruikte voordat het veld Ras werd toegevoegd en er in EDA-versie 1.28 waarden uit het veld Etniciteit zijn verwijderd. Als de waarde in het veld Etniciteit van de contactpersoon niet gelijk is aan &apos;Niet Spaans of Latino&apos; of &apos;Spaans of Latino&apos;, kopieert de backfill de waarde naar het veld Ras. Zowel standaard keuzelijstwaarden als alle toegevoegde aangepaste waarden kunnen worden gekopieerd.</label>
+        <label><!-- Description of the Legacy Ethnicity Data setting --></label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
@@ -1603,7 +1631,7 @@
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Cursussen: migratie van beschrijvingsgegevens</label>
+        <label><!-- Label for the Extended Course Descriptions setting --></label>
         <name>stgTitleCoursesDescriptionDataMigration</name>
     </customLabels>
     <customLabels>

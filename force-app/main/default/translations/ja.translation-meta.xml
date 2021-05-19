@@ -581,6 +581,10 @@
         <name>stgBtnRefreshAdminNamesA11y</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that updates Race field on Contacts from Ethnicity field --></label>
+        <name>stgBtnRefreshEthnicityDataA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
@@ -593,8 +597,12 @@
         <name>stgBtnRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>コピーを実行</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRunCopy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Descriptions --></label>
+        <name>stgBtnRunCopyA11y</name>
     </customLabels>
     <customLabels>
         <label>保存</label>
@@ -685,6 +693,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Title for the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalBody</name>
+    </customLabels>
+    <customLabels>
         <label>バッチ Apex ジョブで {0} 件のバッチが処理され、{1} 件が失敗しました。</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>
@@ -769,8 +785,20 @@
         <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>取引先責任者の民族および人種のバックフィル</label>
+        <label><!-- Label for the Legacy Ethnicity Data setting --></label>
         <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when the Race field is queued for update --></label>
+        <name>stgEthnicityRaceBackfillSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Fluent</label>
@@ -825,11 +853,11 @@
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブで指定された {0} ({1}) の所属対応付けを確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] で取引先オブジェクトに移動してレコードタイプを [有効] に設定し、正しくない場合は、所属対応付けのレコードタイプを有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type is inactive --></label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで所属対応付けを取引先オブジェクトの有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type doesn't exist --></label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -845,7 +873,7 @@
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで [取引先レコードタイプ] 列を調べて、{0} ({1}) が指定されている複数の対応付けを探します。その所属対応付けを編集し、このレコードタイプが取引先責任者の 1 つの主所属項目にのみ対応付けられるようにします。</label>
+        <label><!-- Recommended fix when Account record types in Affiliation mappings aren't unique --></label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -857,7 +885,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで所属対応付けの [自動登録の役割] で指定された {0} ({1}) を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] で所属オブジェクトの [役割] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、[自動登録の役割] を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Role isn't active --></label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -865,7 +893,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで [自動登録の役割] を所属オブジェクトの [役割] 項目の有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role --></label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -881,7 +909,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで所属対応付けの [自動登録の状況] で指定された {0} ({1}) を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] で所属オブジェクトの [状況] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、[自動登録の状況] を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -889,7 +917,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで [自動登録の状況] を所属オブジェクトの [状況] 項目の有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status --></label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -901,7 +929,7 @@
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで指定された {0} を確認します。これは取引先責任者オブジェクトの有効な参照項目である必要があります。</label>
+        <label><!-- Recommended fix when a mapping's Primary Affiliation field isn't valid --></label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
@@ -925,7 +953,7 @@
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで [取引先責任者の主所属項目] 列を調べて、{0} ({1}) が指定されている複数の対応付けを探します。その対応付けを編集し、この項目が 1 つの所属対応付けでのみ対応付けられるようにします。</label>
+        <label><!-- Recommended fix when mappings' Primary Affiliation fields aren't unique --></label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -937,15 +965,15 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>履修科目レコードタイプの設定を含め、履修科目を有効化します。詳細は、EDA ドキュメントの「履修科目を有効化」を参照してください。</label>
+        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで指定された [デフォルトの教職員レコードタイプ] を確認します。{1} ({0}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルトの教職員レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで [デフォルトの教職員レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -953,7 +981,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで [デフォルトの教職員レコードタイプ] または [デフォルトの有効な学生レコードタイプ] のいずれかを変更し、それぞれの設定で一意のレコードタイプが指定されるようにします。</label>
+        <label><!-- Recommended fix when student and faculty Course Connection record types match  --></label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -965,11 +993,11 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで指定された [デフォルトの有効な学生レコードタイプ] を確認します。{1} ({0}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルトの有効な学生レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで [デフォルトの有効な学生レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find Default Student Record Type --></label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1233,7 +1261,7 @@
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label>プロセスがキューに正常に登録されました。ジョブの完了時にメールが送信されます。</label>
+        <label><!-- Confirmation message when the Extended Description field is queued for update --></label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
@@ -1241,7 +1269,7 @@
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label>EDA 1.30 では、より長い科目説明に対応するように [拡張説明] 項目が追加されました。</label>
+        <label><!-- Description of the Extended Course Descriptions setting --></label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
@@ -1297,7 +1325,7 @@
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label>[人種] 項目が追加される前に組織で [民族] 項目が使用され、EDA バージョン 1.28 の時点で [民族] 項目から値が削除された場合のみ、民族および人種のバックフィルを使用します。取引先責任者の [民族] 項目の値が [ヒスパニックまたはラテン系ではない] または [ヒスパニックまたはラテン系] に一致しない場合、バックフィルにより値が [人種] 項目にコピーされます。標準選択リスト値と、追加された可能性があるカスタム値の両方がコピーの対象になります。</label>
+        <label><!-- Description of the Legacy Ethnicity Data setting --></label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
@@ -1603,7 +1631,7 @@
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <label>科目: 説明データの移行</label>
+        <label><!-- Label for the Extended Course Descriptions setting --></label>
         <name>stgTitleCoursesDescriptionDataMigration</name>
     </customLabels>
     <customLabels>
