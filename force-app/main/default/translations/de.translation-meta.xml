@@ -825,11 +825,11 @@
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie die Zugehörigkeitszuordnung für {0} ({1}), die in den EDA-Einstellungen auf der Registerkarte &quot;Zugehörigkeiten&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie zum Account-Objekt im Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatztyp der Zugehörigkeitszuordnung in einen gültigen, aktiven Datensatztyp.</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type is inactive --></label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Zugehörigkeitszuordnung für das Account-Objekt in einen gültigen, aktiven Datensatztyp.</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type doesn't exist --></label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -845,7 +845,7 @@
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label>Suchen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; in der Spalte &quot;Account-Datensatztyp&quot; nach mehreren Zuordnungen mit der Angabe &quot;{0} ({1})&quot;. Bearbeiten Sie diese Zugehörigkeitszuordnungen so, dass dieser Datensatztyp nur einem Feld &quot;Primäre Kontaktzugehörigkeit&quot; zugeordnet ist.</label>
+        <label><!-- Recommended fix when Account record types in Affiliation mappings aren't unique --></label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -901,7 +901,7 @@
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnungen&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0}&quot;. Es muss sich um ein gültiges Nachschlagefeld für das Objekt &quot;Kontakt&quot; handeln.</label>
+        <label><!-- Recommended fix when a mapping's Primary Affiliation field isn't valid --></label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
@@ -925,7 +925,7 @@
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label>Suchen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; in der Spalte des Felds &quot;Primäre Kontaktzugehörigkeit&quot; nach mehreren Zuordnungen mit der Angabe &quot;{0} ({1})&quot;. Bearbeiten Sie diese Zuordnungen so, dass dieses Feld nur einer Zugehörigkeitszuordnung zugeordnet ist.</label>
+        <label><!-- Recommended fix when mappings' Primary Affiliation fields aren't unique --></label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
