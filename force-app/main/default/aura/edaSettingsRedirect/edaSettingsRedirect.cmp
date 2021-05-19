@@ -1,0 +1,19 @@
+<aura:component implements="force:appHostable">
+    <div class="slds-theme_default eda-height_full">
+        <div class="slds-text-heading_large slds-p-bottom_medium slds-p-top_medium slds-align_absolute-center">
+            {!$Label.c.stgEDASettingsHasMovedTitle}
+        </div>
+        <div class="slds-text-heading_small slds-align_absolute-center slds-p-bottom_medium">
+            {!$Label.c.stgEDASettingsHasMovedDesc}
+        </div>
+        <div class="slds-align_absolute-center">
+            <lightning:button
+                variant="brand"
+                label="{!$Label.c.stgBtnNewSettingsExperience}"
+                title="{!$Label.c.stgBtnNewSettingsExperienceA11y}"
+                onclick="{!c.handleEdaSettingsRedirect}"
+                class="slds-m-left_x-small"
+            ></lightning:button>
+        </div>
+    </div>
+</aura:component>

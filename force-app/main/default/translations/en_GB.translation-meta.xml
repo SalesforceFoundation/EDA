@@ -573,6 +573,14 @@
         <name>stgBtnNewAutoEnrollA11y</name>
     </customLabels>
     <customLabels>
+        <label><!-- Button of the new Settings Experience redirect --></label>
+        <name>stgBtnNewSettingsExperience</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assistive Text of the button of the new Settings Experience redirect --></label>
+        <name>stgBtnNewSettingsExperienceA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
@@ -735,6 +743,14 @@
     <customLabels>
         <label><!-- Label for the Require Preferred Phone setting --></label>
         <name>stgDisablePreferredPhoneEnforcement</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title of EDA Settings has moved --></label>
+        <name>stgEDASettingsHasMovedTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of EDA Settings has moved --></label>
+        <name>stgEDASettingsHasMovedDesc</name>
     </customLabels>
     <customLabels>
         <label>EDA Setup</label>
