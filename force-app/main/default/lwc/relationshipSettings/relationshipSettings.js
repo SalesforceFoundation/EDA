@@ -10,7 +10,7 @@ import stgHelpRelReciprocalMethod from "@salesforce/label/c.stgHelpRelReciprocal
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 // Articles
-const relationshipsArtcile = '<a href="https://powerofus.force.com/s/article/EDA-Config-Relationships-Settings">';
+const relationshipsArtcile = '<a href="https://powerofus.force.com/EDA-Config-Relationships-Settings">';
 export default class relationshipSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
