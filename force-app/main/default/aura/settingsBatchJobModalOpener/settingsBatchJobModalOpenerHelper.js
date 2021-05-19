@@ -31,6 +31,18 @@
                 confirmButton = $A.get("$Label.c.stgBtnUpdate");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 break;
+            case "CON_EthnicityRace_BATCH":
+                modalHeaderLabel = $A.get("$Label.c.stgEthnicityRaceBackfillModalTitle");
+                modalDesc = $A.get("$Label.c.stgEthnicityRaceBackfillModalBody");
+                confirmButton = $A.get("$Label.c.stgBtnUpdate");
+                cancelButton = $A.get("$Label.c.stgBtnCancel");
+                break;
+            case "COUR_DescriptionCopy_BATCH":
+                modalHeaderLabel = $A.get("$Label.c.stgCourseDataMigrationModalTitle");
+                modalDesc = $A.get("$Label.c.stgCourseDataMigrationModalBody");
+                confirmButton = $A.get("$Label.c.stgBtnUpdate");
+                cancelButton = $A.get("$Label.c.stgBtnCancel");
+                break;
         }
 
         $A.createComponents(
