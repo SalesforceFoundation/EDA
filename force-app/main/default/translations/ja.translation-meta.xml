@@ -825,11 +825,11 @@
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブで指定された {0} ({1}) の所属対応付けを確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] で取引先オブジェクトに移動してレコードタイプを [有効] に設定し、正しくない場合は、所属対応付けのレコードタイプを有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type is inactive --></label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで所属対応付けを取引先オブジェクトの有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type doesn't exist --></label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -845,7 +845,7 @@
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで [取引先レコードタイプ] 列を調べて、{0} ({1}) が指定されている複数の対応付けを探します。その所属対応付けを編集し、このレコードタイプが取引先責任者の 1 つの主所属項目にのみ対応付けられるようにします。</label>
+        <label><!-- Recommended fix when Account record types in Affiliation mappings aren't unique --></label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -901,7 +901,7 @@
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで指定された {0} を確認します。これは取引先責任者オブジェクトの有効な参照項目である必要があります。</label>
+        <label><!-- Recommended fix when a mapping's Primary Affiliation field isn't valid --></label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
@@ -925,7 +925,7 @@
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで [取引先責任者の主所属項目] 列を調べて、{0} ({1}) が指定されている複数の対応付けを探します。その対応付けを編集し、この項目が 1 つの所属対応付けでのみ対応付けられるようにします。</label>
+        <label><!-- Recommended fix when mappings' Primary Affiliation fields aren't unique --></label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
