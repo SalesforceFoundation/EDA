@@ -1867,7 +1867,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when student and faculty Course Connection record types are same</shortDescription>
+        <shortDescription>Recommended fix when student and faculty Course Connection record types are the same</shortDescription>
         <value>In EDA Settings | Course Connections, change either the Default Faculty Record Type or the Default Student Record Type so that each specifies a unique record type.</value>
     </labels>
     <labels>
@@ -1891,7 +1891,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when the Default Active Student Record Type is inactive</shortDescription>
+        <shortDescription>Recommended fix when the Default Student Record Type is inactive</shortDescription>
         <value>In EDA Settings | Course Connections, verify the Default Student Record Type. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Default Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
@@ -1899,7 +1899,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can&apos;t find Default Active Student Record Type</shortDescription>
+        <shortDescription>Recommended fix when Health Check can&apos;t find Default Student Record Type</shortDescription>
         <value>In EDA Settings | Course Connections, change the Default Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
