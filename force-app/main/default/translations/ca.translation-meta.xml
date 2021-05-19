@@ -965,15 +965,15 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Activeu les connexions del curs i configureu també els Tipus de registres de connexions del curs. Per obtenir més informació, consulteu Configura les connexions del curs a la documentació d&apos;EDA.</label>
+        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>Verifiqueu el Tipus predeterminat de registre de la facultat especificat a Configuració EDA, a la subpestanya Configuració de la pestanya Connexions del curs. Si {1} ({0}) és correcte, aneu a Configuració de Salesforce i establiu el tipus de registre a Actiu. Si no és correcte, canvieu el Tipus predeterminat de registre de la facultat per un tipus de registre actiu vàlid.</label>
+        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la subpestanya Configuració de la pestanya Connexions del curs, canvieu el Tipus predeterminat de registre de la facultat per un tipus de registre actiu vàlid.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -981,7 +981,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la subpestanya Configuració de la pestanya Connexions del curs, canvieu el Tipus predeterminat de registre de la facultat o el Tipus predeterminat de registre d&apos;estudiant actiu perquè cadascun especifiqui un tipus de registre únic.</label>
+        <label><!-- Recommended fix when student and faculty Course Connection record types match  --></label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -993,11 +993,11 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Verifiqueu el Tipus predeterminat de registre d&apos;estudiant actiu especificat a Configuració EDA, a la subpestanya Configuració de la pestanya Connexions del curs. Si {1} ({0}) és correcte, aneu a Configuració de Salesforce i establiu el tipus de registre a Actiu. Si no és correcte, canvieu el Tipus predeterminat de registre d&apos;estudiant actiu per un tipus de registre actiu vàlid.</label>
+        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la subpestanya Configuració de la pestanya Connexions del curs, canvieu el Tipus predeterminat de registre d&apos;estudiant actiu per un tipus de registre actiu vàlid.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Student Record Type --></label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>

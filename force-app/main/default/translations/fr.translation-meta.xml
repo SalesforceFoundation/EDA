@@ -965,15 +965,15 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Activez les inscriptions au module, qui incluent la configuration des types d&apos;enregistrement inscription au module. Pour plus d’informations, consultez la documentation Configuration de l’inscription au module.</label>
+        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le type d’enregistrement Professeur par défaut indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module. Si {1} ({0}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement Professeur par défaut en un type d’enregistrement valide et actif.</label>
+        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module, modifiez le type d’enregistrement Professeur par défaut en un type d’enregistrement valide et actif.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -981,7 +981,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module, modifiez le type d’enregistrement Professeur par défaut ou le type d&apos;enregistrement Étudiant actif par défaut pour que chacun indique un type d’enregistrement unique.</label>
+        <label><!-- Recommended fix when student and faculty Course Connection record types match  --></label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -993,11 +993,11 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le type d’enregistrement Étudiant actif par défaut indiqué dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module. Si {1} ({0}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement Étudiant actif par défaut en un type d’enregistrement valide et actif.</label>
+        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Paramètres de l’onglet Inscriptions au module, modifiez le type d’enregistrement Étudiant actif par défaut en un type d’enregistrement valide et actif.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Student Record Type --></label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>

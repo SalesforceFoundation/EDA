@@ -965,15 +965,15 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>履修科目レコードタイプの設定を含め、履修科目を有効化します。詳細は、EDA ドキュメントの「履修科目を有効化」を参照してください。</label>
+        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで指定された [デフォルトの教職員レコードタイプ] を確認します。{1} ({0}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルトの教職員レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで [デフォルトの教職員レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -981,7 +981,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで [デフォルトの教職員レコードタイプ] または [デフォルトの有効な学生レコードタイプ] のいずれかを変更し、それぞれの設定で一意のレコードタイプが指定されるようにします。</label>
+        <label><!-- Recommended fix when student and faculty Course Connection record types match  --></label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -993,11 +993,11 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで指定された [デフォルトの有効な学生レコードタイプ] を確認します。{1} ({0}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルトの有効な学生レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで [デフォルトの有効な学生レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find Default Student Record Type --></label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
