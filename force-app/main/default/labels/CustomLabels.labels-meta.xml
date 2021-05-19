@@ -1652,7 +1652,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Affiliation mapping&apos;s Account record type is inactive</shortDescription>
-        <value>Verify the Affiliation mapping for  {0} ({1}) specified in EDA Settings, on the Affiliations tab. If {0} ({1}) is correct, go to the Account object in Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Affiliation mapping&apos;s record type to a valid, active record type.</value>
+        <value>In EDA Settings | Affiliations, verify the Account Record Type for this Affiliation mapping. If {0} ({1}) is correct, go to the Account Record Type for the Account object in Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Affiliation mapping&apos;s record type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAccRecordTypeNotFoundFix</fullName>
@@ -1660,7 +1660,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Affiliation mapping to a valid, active record type for the Account object.</value>
+        <value>The Account Record Type for this Affiliation mapping doesn&apos;t exist. In EDA Settings | Affiliations, change the Affiliation mapping to use a valid, active record type for the specified Account.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAccRecordTypeNotUnique</fullName>
@@ -1692,7 +1692,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Account record types in Affiliation mappings aren&apos;t unique</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, look in the Account Record Type column for multiple mappings specifying {0} ({1}). Edit those Affiliation mappings so that this record type is mapped to only one Contact Primary Affiliation field.</value>
+        <value>In EDA Settings | Affiliations, look in the Account Record Type column for multiple mappings specifying {0} ({1}). Edit those Affiliation mappings so that this record type is mapped to only one Contact Primary Affiliation field.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAccRecordTypeUniqueTitle</fullName>
@@ -1803,8 +1803,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid</shortDescription>
-        <value>Verify the {0} specified in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. It must be a valid lookup field on the Contact object.</value>
+        <shortDescription>Recommended fix when a mapping&apos;s Primary Affiliation field isn&apos;t valid</shortDescription>
+        <value>The Primary Affiliation field {0} isn&apos;t valid. In EDA Settings | Affiliations, edit the Affiliation mapping to specify a valid lookup field on the Contact object.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapContPrimaryFieldUniqueTitle</fullName>
@@ -1851,8 +1851,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, look in the Contact Primary Affl Field column for multiple mappings specifying {0} ({1}). Edit those mappings so that this field is mapped in only one Affiliation mapping.</value>
+        <shortDescription>Recommended fix when mappings&apos; Primary Affiliation fields aren&apos;t unique</shortDescription>
+        <value>In EDA Settings | Affiliations, look in the Primary Affiliation Field on Contact column for multiple mappings specifying {0} ({1}). Edit those mappings so that this field is mapped in only one Affiliation mapping.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapContactPrimaryFieldValid</fullName>
