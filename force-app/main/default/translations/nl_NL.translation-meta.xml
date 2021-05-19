@@ -965,15 +965,15 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Schakel Cursusverbindingen in; hierbij hoort ook het configureren van de recordtypes Cursusverbindingen. Voor meer informatie ziet u &apos;Cursusverbinding configureren&apos; in de EDA-documentatie.</label>
+        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>Controleer Standaard recordtype voor staflid dat is opgegeven in EDA-instellingen, op het subtabblad Instellingen van het tabblad Cursusverbindingen. Als {1} ({0}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u Standaard recordtype voor staflid in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Instellingen van het tabblad Cursusverbindingen en wijzig Standaard recordtype voor staflid in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -981,7 +981,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>In de EDA-instellingen, op het subtabblad Instellingen van het tabblad Cursusverbindingen, kunt u Standaard recordtype voor staflid of Standaard recordtype voor actieve student wijzigen zodat elk recordtype uniek is.</label>
+        <label><!-- Recommended fix when student and faculty Course Connection record types match  --></label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -993,11 +993,11 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Controleer Standaard recordtype voor actieve student dat is opgegeven in EDA-instellingen, op het subtabblad Instellingen van het tabblad Cursusverbindingen. Als {1} ({0}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u Standaard recordtype voor actieve student in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Instellingen van het tabblad Cursusverbindingen en wijzig Standaard recordtype voor actieve student in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Student Record Type --></label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
