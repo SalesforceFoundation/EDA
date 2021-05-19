@@ -13,7 +13,7 @@ import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 import stgDuplicateRelationships from "@salesforce/label/c.stgDuplicateRelationships";
 import stgDuplicateRelationshipsHelp from "@salesforce/label/c.stgDuplicateRelationshipsHelp";
 // Articles
-const relationshipsArtcile = '<a href="https://powerofus.force.com/s/article/EDA-Config-Relationships-Settings">';
+const relationshipsArtcile = '<a href="https://powerofus.force.com/EDA-Config-Relationships-Settings">';
 export default class relationshipSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;

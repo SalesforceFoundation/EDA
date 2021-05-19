@@ -105,7 +105,7 @@ export default class systemTools extends LightningElement {
 
     get prefEmailPhoneHyperLink() {
         return (
-            '<a href="https://powerofus.force.com/s/article/EDA-Configure-Email-Addresses-for-Contacts">' +
+            '<a href="https://powerofus.force.com/EDA-Configure-Email-Addresses-for-Contacts">' +
             this.labelReference.tellMeMoreLink +
             "</a>"
         );
@@ -116,9 +116,7 @@ export default class systemTools extends LightningElement {
     }
 
     get ethnicityAndBackFillHyperLink() {
-        return (
-            '<a href="https://powerofus.force.com/s/article/EDA-Contact">' + this.labelReference.tellMeMoreLink + "</a>"
-        );
+        return '<a href="https://powerofus.force.com/EDA-Contact">' + this.labelReference.tellMeMoreLink + "</a>";
     }
 
     get ethnicityAndBackFillDesc() {
