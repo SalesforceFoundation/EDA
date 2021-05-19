@@ -1963,7 +1963,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when student and faculty Course Connection record types are the same</shortDescription>
+        <shortDescription>Recommended fix when student and faculty Course Connection record types are same</shortDescription>
         <value>In EDA Settings | Course Connections, change either the Default Faculty Record Type or the Default Student Record Type so that each specifies a unique record type.</value>
     </labels>
     <labels>
