@@ -33,8 +33,6 @@
  */
 @isTest
 private with sharing class CourseConnectionSettingsController_TEST {
-    private static Integer loopCounter = 5;
-
     /**************************************************************************************************************************************************
      * @description Test method to verify that the locateCourseConnectionSettingsVMapper method returns instance of CourseConnectionSettingsVMapper.
      *************************************************************************************************************************************************/
