@@ -1021,11 +1021,11 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>Verifiqueu la configuració recíproca per al {0} ({1}) especificat a Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions. Si {0} ({1}) és correcte per a Dona, aneu al camp Tipus de l&apos;objecte Relació a Configuració de Salesforce i establiu el valor de la llista de selecció a Actiu. Si no és correcte, canvieu el valor Dona de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions, canvieu el valor Dona de la configuració recíproca corresponent per un valor de llista de selecció actiu vàlid</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value doesn't exist --></label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1033,11 +1033,11 @@
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Verifiqueu la configuració recíproca per al {0} ({1}) especificat a Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions. Si {0} ({1}) és correcte per a Home, aneu al camp Tipus de l&apos;objecte Relació a Configuració de Salesforce i establiu el valor de la llista de selecció a Actiu. Si no és correcte, canvieu el valor Dona de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value is inactive --></label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions, canvieu el valor Home de la configuració recíproca corresponent per un valor de llista de selecció actiu vàlid</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value doesn't exist --></label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1045,11 +1045,11 @@
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Verifiqueu la configuració recíproca per al {0} ({1}) especificat a Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions. Si {0} ({1}) és correcte, aneu al camp Tipus de l&apos;objecte Relació a Configuració de Salesforce i establiu el valor de la llista de selecció a Actiu. Si no és correcte, canvieu el valor Nom de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value is inactive --></label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions, canvieu el valor Nom de la configuració recíproca corresponent per un valor de llista de selecció actiu vàlid</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value doesn't exist --></label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1057,7 +1057,7 @@
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions, cerqueu diverses files que especifiquin {0} ({1}) a la columna Nom. Editeu aquesta configuració recíproca perquè aquest valor Nom només es mostri en una fila de configuració recíproca.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value isn't unique --></label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1073,11 +1073,11 @@
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label>Verifiqueu la configuració recíproca per al {0} ({1}) especificat a Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions. Si {0} ({1}) és correcte, aneu al camp Tipus de l&apos;objecte Relació a Configuració de Salesforce i establiu el valor de la llista de selecció a Actiu. Si no és correcte, canvieu el valor Neutre de la configuració recíproca per un valor de llista de selecció actiu vàlid.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value is inactive --></label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la subpestanya Configuració recíproca de la pestanya Relacions, canvieu el valor Neutre de la configuració recíproca corresponent per un valor de llista de selecció actiu vàlid</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value doesn't exist --></label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
