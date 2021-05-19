@@ -1772,7 +1772,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active</shortDescription>
-        <value>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Role, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Affiliation object&apos;s Role field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Role to a valid, active picklist value.</value>
+        <value>The Auto-Enrollment Role {0} ({1}) isn&apos;t active. In EDA Settings | Program Enrollments, verify the Auto-Enrollment Program Mapping that specifies this Role. If the mapping is correct, go to the Affiliation object&apos;s Role field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Role to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollRoleNotFound</fullName>
@@ -1788,7 +1788,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Role to a valid, active picklist value for the Role field on the Affiliation object.</value>
+        <value>The Auto-Enrollment Role isn&apos;t valid. In EDA Settings | Program Enrollments, edit the Auto-Enrollment Program Mapping that specifies this Role to a valid, active picklist value for the Role field on the Affiliation object.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollRoleTitle</fullName>
@@ -1820,7 +1820,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active</shortDescription>
-        <value>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Status, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Affiliation object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
+        <value>The Auto-Enrollment Status {0} ({1}) isn&apos;t active. In EDA Settings | Program Enrollments, verify the Auto-Enrollment Program Mapping that specifies this Status. If the mapping is correct, go to the Affiliation object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollStatusNotFound</fullName>
@@ -1836,7 +1836,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Status to a valid, active picklist value for the Status field on the Affiliation object.</value>
+        <value>The Auto-Enrollment Status isn&apos;t valid. In EDA Settings | Program Enrollments, edit the Auto-Enrollment Program Mapping that specifies this Status to a valid, active picklist value for the Status field on the Affiliation object.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollStatusTitle</fullName>
