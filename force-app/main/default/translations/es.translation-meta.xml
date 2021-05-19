@@ -509,6 +509,18 @@
         <name>stgAutoEnrollmentEditSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Edit Auto Enrollment mapping window --></label>
+        <name>stgAutoEnrollmentNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the New auto-enrollment mapping confirmation window --></label>
+        <name>stgAutoEnrollmentNewModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an Affiliation mapping is edited --></label>
+        <name>stgAutoEnrollmentNewSuccess</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Info text for Account Record Type picklist --></label>
         <name>stgAccountRecordTypeHelp</name>
     </customLabels>
@@ -557,12 +569,20 @@
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that creates an auto-enrollment mapping --></label>
+        <name>stgBtnNewAutoEnrollA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
         <label><!-- Alt text for button that updates all Administrative Account names --></label>
         <name>stgBtnRefreshAdminNamesA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Race field on Contacts from Ethnicity field --></label>
+        <name>stgBtnRefreshEthnicityDataA11y</name>
     </customLabels>
     <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
@@ -577,8 +597,12 @@
         <name>stgBtnRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Ejecutar Copia</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRunCopy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Descriptions --></label>
+        <name>stgBtnRunCopyA11y</name>
     </customLabels>
     <customLabels>
         <label>Guardar</label>
@@ -669,6 +693,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Title for the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalBody</name>
+    </customLabels>
+    <customLabels>
         <label>El trabajo de Apex por lotes procesó {0} lotes con {1} fallos.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>
@@ -753,8 +785,20 @@
         <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Relleno de Etnia y Raza para Contactos</label>
+        <label><!-- Label for the Legacy Ethnicity Data setting --></label>
         <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when the Race field is queued for update --></label>
+        <name>stgEthnicityRaceBackfillSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Fluent</label>
@@ -809,11 +853,11 @@
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label>Verifique la asignación de Afiliación para {0} ({1}) especificada en Configuración de EDA, en la ficha Afiliaciones. Si {0} ({1}) es correcto, vaya al objeto Cuenta en Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el tipo de registro de la asignación de Afiliación a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type is inactive --></label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, cambie la asignación de Afiliación a un tipo de registro activo y válido para el objeto Cuenta.</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type doesn't exist --></label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -829,7 +873,7 @@
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, busque en la columna Tipo de registro de cuenta múltiples asignaciones que especifiquen {0} ({1}). Modifique esas asignaciones de Afiliación de modo que este tipo de registro solo esté asignado a un campo Afiliación principal de Contacto.</label>
+        <label><!-- Recommended fix when Account record types in Affiliation mappings aren't unique --></label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -885,7 +929,7 @@
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el {0} especificado en Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones. Debe ser un campo de búsqueda válido del objeto Contacto.</label>
+        <label><!-- Recommended fix when a mapping's Primary Affiliation field isn't valid --></label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
@@ -909,7 +953,7 @@
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, busque en la columna Campo Afiliación principal de Contacto múltiples asignaciones que especifiquen {0} ({1}). Modifique esas asignaciones de modo que este campo solo esté asignado a una asignación de Afiliación.</label>
+        <label><!-- Recommended fix when mappings' Primary Affiliation fields aren't unique --></label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1217,7 +1261,7 @@
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label>El proceso se colocó en cola correctamente. Se enviará un correo electrónico al finalizar el trabajo.</label>
+        <label><!-- Confirmation message when the Extended Description field is queued for update --></label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
@@ -1225,7 +1269,7 @@
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label>En EDA 1.30, se agregó el campo Descripción ampliada para adaptarse a descripciones de curso más largas.</label>
+        <label><!-- Description of the Extended Course Descriptions setting --></label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
@@ -1281,7 +1325,7 @@
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label>Utilice el relleno Etnia y Raza solo si su organización utilizó el campo Etnia antes de que se agregara el campo Raza y se eliminaran valores del campo Etnia a partir de la versión 1.28 de EDA. Si el valor en le campo Etnia del Contacto no es igual a “No Hispano o Latino” o “Hispano o Latino”, el Relleno copia el valor en el campo Raza. Ambos valores de lista de selección estándar y cualquier valor personalizado que pudo agregar se pueden copiar.</label>
+        <label><!-- Description of the Legacy Ethnicity Data setting --></label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
@@ -1585,7 +1629,7 @@
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Cursos: Migración de datos de descripción</label>
+        <label><!-- Label for the Extended Course Descriptions setting --></label>
         <name>stgTitleCoursesDescriptionDataMigration</name>
     </customLabels>
     <customLabels>

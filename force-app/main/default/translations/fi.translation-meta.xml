@@ -509,6 +509,18 @@
         <name>stgAutoEnrollmentEditSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the Edit Auto Enrollment mapping window --></label>
+        <name>stgAutoEnrollmentNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the New auto-enrollment mapping confirmation window --></label>
+        <name>stgAutoEnrollmentNewModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an Affiliation mapping is edited --></label>
+        <name>stgAutoEnrollmentNewSuccess</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Info text for Account Record Type picklist --></label>
         <name>stgAccountRecordTypeHelp</name>
     </customLabels>
@@ -557,12 +569,20 @@
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that creates an auto-enrollment mapping --></label>
+        <name>stgBtnNewAutoEnrollA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
         <label><!-- Alt text for button that updates all Administrative Account names --></label>
         <name>stgBtnRefreshAdminNamesA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Race field on Contacts from Ethnicity field --></label>
+        <name>stgBtnRefreshEthnicityDataA11y</name>
     </customLabels>
     <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
@@ -577,8 +597,12 @@
         <name>stgBtnRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Suorita kopiointi</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRunCopy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Descriptions --></label>
+        <name>stgBtnRunCopyA11y</name>
     </customLabels>
     <customLabels>
         <label>Tallenna</label>
@@ -669,6 +693,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Title for the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalBody</name>
+    </customLabels>
+    <customLabels>
         <label>Apex-erätyö käsitteli {0} erää, joista {1} epäonnistui.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>
@@ -753,8 +785,20 @@
         <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Yhteyshenkilöiden etnisyyden ja rodun täyttö</label>
+        <label><!-- Label for the Legacy Ethnicity Data setting --></label>
         <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when the Race field is queued for update --></label>
+        <name>stgEthnicityRaceBackfillSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Fluent</label>
@@ -809,11 +853,11 @@
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista EDA-asetuksissa määritetty jäsenyyskartoitus kohteille {0} ja ({1})  Jäsenyydet-välilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikon Tiliobjektiin ja aseta tietuetyyppi aktiiviseksi. Jos se ei ole oikein, muuta Jäsenyyskartoitustietueen tyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type is inactive --></label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden jäsenyyskartoitus tiliobjektille kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
+        <label><!-- Recommended fix when the Affiliation mapping's Account record type doesn't exist --></label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -829,7 +873,7 @@
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label>Tarkastele EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden Tilitietueen tyyppi -sarakkeesta useita kartoituksia, jotka määrittävät {0} ({1}). Muokkaa kyseisiä jäsenyyskartoituksia, jotta tämä tietuetyyppi kartoitetaan vain yhteen yhteyshenkilön ensisijaiseen jäsenyyskenttään.</label>
+        <label><!-- Recommended fix when Account record types in Affiliation mappings aren't unique --></label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -885,7 +929,7 @@
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista EDA-asetuksista määritetty {0} Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehdestä. Sen täytyy olla kelvollinen hakukenttä Yhteyshenkilö-objektissa.</label>
+        <label><!-- Recommended fix when a mapping's Primary Affiliation field isn't valid --></label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
@@ -909,7 +953,7 @@
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label>Tarkastele EDA-asetuksista Jäsenyydet-välilehden Jäsenyyskartoitukset-alavälilehden Yhteyshenkilön ensisijainen jäsenyyskenttä -sarakkeesta useita kartoituksia, jotka määrittävät {0} ({1}). Muokkaa kyseisiä kartoituksia, jotta tämä kenttä kartoitetaan vain yhteen jäsenyyskenttään.</label>
+        <label><!-- Recommended fix when mappings' Primary Affiliation fields aren't unique --></label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1217,7 +1261,7 @@
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label>Prosessi asettaminen jonoon onnistui. Työn valmistuttua siitä lähetetään sähköposti.</label>
+        <label><!-- Confirmation message when the Extended Description field is queued for update --></label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
@@ -1225,7 +1269,7 @@
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label>Kohdassa EDA 1.30 lisättiin laajennettu kuvaus -kenttä pidempien kurssikuvausten varalta.</label>
+        <label><!-- Description of the Extended Course Descriptions setting --></label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
@@ -1281,7 +1325,7 @@
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label>Käytä etnistä alkuperää ja rodun täyttöä vain, jos organisaatio käytti etnisyyskenttää ennen rotukentän lisäämistä ja arvot poistettiin etnisyyskentästä EDA-versiosta 1.28 lähtien. Jos yhteyshenkilön etnisyyskentän arvo ei ole yhtä suuri kuin ”ei latinalaisamerikkalainen tai latino” tai “latinalaisamerikkalainen tai latino”, täyttö kopioi arvon rotukenttään. Sekä tavalliset valintaluettelon arvot että mahdollisesti lisätyt mukautetut arvot voidaan kopioida.</label>
+        <label><!-- Description of the Legacy Ethnicity Data setting --></label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
@@ -1587,7 +1631,7 @@
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Kurssit: kuvaustietojen siirto</label>
+        <label><!-- Label for the Extended Course Descriptions setting --></label>
         <name>stgTitleCoursesDescriptionDataMigration</name>
     </customLabels>
     <customLabels>

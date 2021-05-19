@@ -1007,6 +1007,30 @@
         <value>{0} auto-enrollment mapping was saved.</value>
     </labels>
     <labels>
+        <fullName>stgAutoEnrollmentNewModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the New auto-enrollment mapping confirmation window</shortDescription>
+        <value>Select values that create a Program Enrollment record when an Affiliation is created or updated with these values, and the Affiliation is marked as Primary.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentNewModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the New auto-enrollment mapping confirmation window</shortDescription>
+        <value>New auto-enrollment mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentNewSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when an auto-enrollment mapping is created</shortDescription>
+        <value>{0} auto-enrollment mapping was created.</value>
+    </labels>
+    <labels>
         <fullName>stgAccountRecordTypeHelp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1103,6 +1127,14 @@
         <value>Edit</value>
     </labels>
     <labels>
+        <fullName>stgBtnNewAutoEnrollA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that creates an auto-enrollment mapping</shortDescription>
+        <value>Create an auto-enrollment mapping.</value>
+    </labels>
+    <labels>
         <fullName>stgBtnRefreshAdminNames</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1117,6 +1149,14 @@
         <protected>true</protected>
         <shortDescription>Alt text for button that updates all Administrative Account names</shortDescription>
         <value>Update all Administrative Account names.</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRefreshEthnicityDataA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates Race field on Contacts from Ethnicity field</shortDescription>
+        <value>Update the Race field on Contacts with values from the Ethnicity field. The values Not Hispanic or Latino and Hispanic or Latino aren&apos;t copied.</value>
     </labels>
     <labels>
         <fullName>stgBtnRefreshHouseholdNames</fullName>
@@ -1147,8 +1187,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for Courses Settings</shortDescription>
-        <value>Run Copy</value>
+        <shortDescription>Button label for updating the selected Apex job</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRunCopyA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates Course Descriptions</shortDescription>
+        <value>Update the Extended Description field on Course records to use text from the Description field.</value>
     </labels>
     <labels>
         <fullName>stgBtnSave</fullName>
@@ -1327,6 +1375,22 @@
         <value>The backfill was queued successfully.</value>
     </labels>
     <labels>
+        <fullName>stgCourseDataMigrationModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update Extended Description field confirmation window</shortDescription>
+        <value>Update the Extended Description field?</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseDataMigrationModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update Extended Description field confirmation window</shortDescription>
+        <value>Copies text from the Description field to the Extended Description field on Course records. Existing Extended Description values won't be overwritten. Update page layouts and other references to the Description field after this update.</value>
+    </labels>
+    <labels>
         <fullName>stgCourseDescriptionCopyEmailBody</fullName>
         <categories>Courses</categories>
         <language>en_US</language>
@@ -1463,6 +1527,14 @@
         <value>We couldn’t save your work. Please refresh the page and try again.</value>
     </labels>
     <labels>
+        <fullName>stgErrorNewAutoEnrollment</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error Toast message when no record types for Program Auto Enrollment</shortDescription>
+        <value>No unmapped record types are available for the program auto enrollment. Auto enrollments can only be created for Account Record Types that have been mapped as Primary Affiliations</value>
+    </labels>
+    <labels>
         <fullName>stgErrorNotiTo</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1499,8 +1571,32 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Section title for Accounts and Contacts Settings</shortDescription>
-        <value>Ethnicity and Race Backfill for Contacts</value>
+        <shortDescription>Label for the Legacy Ethnicity Data setting</shortDescription>
+        <value>Legacy Ethnicity Data</value>
+    </labels>
+    <labels>
+        <fullName>stgEthnicityRaceBackfillModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update the Race field on Contacts confirmation window</shortDescription>
+        <value>Copies standard and custom picklist values, except Not Hispanic or Latino and Hispanic or Latino, from the Ethnicity field to the Race field on Contacts. Before proceeding, make sure you've disabled any processes that reference Ethnicity and Race fields.</value>
+    </labels>
+    <labels>
+        <fullName>stgEthnicityRaceBackfillModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update the Race field on Contacts confirmation window</shortDescription>
+        <value>Update the Race field on Contacts?</value>
+    </labels>
+    <labels>
+        <fullName>stgEthnicityRaceBackfillSuccessToast</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when the Race field is queued for update</shortDescription>
+        <value>We&apos;re updating the Race field on Contacts. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgFluent</fullName>
@@ -1612,7 +1708,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Affiliation mapping&apos;s Account record type is inactive</shortDescription>
-        <value>Verify the Affiliation mapping for  {0} ({1}) specified in EDA Settings, on the Affiliations tab. If {0} ({1}) is correct, go to the Account object in Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Affiliation mapping&apos;s record type to a valid, active record type.</value>
+        <value>In EDA Settings | Affiliations, verify the Account Record Type for this Affiliation mapping. If {0} ({1}) is correct, go to the Account Record Type for the Account object in Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Affiliation mapping&apos;s record type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAccRecordTypeNotFoundFix</fullName>
@@ -1620,7 +1716,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Affiliation mapping to a valid, active record type for the Account object.</value>
+        <value>The Account Record Type for this Affiliation mapping doesn&apos;t exist. In EDA Settings | Affiliations, change the Affiliation mapping to use a valid, active record type for the specified Account.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAccRecordTypeNotUnique</fullName>
@@ -1652,7 +1748,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Account record types in Affiliation mappings aren&apos;t unique</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, look in the Account Record Type column for multiple mappings specifying {0} ({1}). Edit those Affiliation mappings so that this record type is mapped to only one Contact Primary Affiliation field.</value>
+        <value>In EDA Settings | Affiliations, look in the Account Record Type column for multiple mappings specifying {0} ({1}). Edit those Affiliation mappings so that this record type is mapped to only one Contact Primary Affiliation field.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAccRecordTypeUniqueTitle</fullName>
@@ -1763,8 +1859,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid</shortDescription>
-        <value>Verify the {0} specified in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. It must be a valid lookup field on the Contact object.</value>
+        <shortDescription>Recommended fix when a mapping&apos;s Primary Affiliation field isn&apos;t valid</shortDescription>
+        <value>The Primary Affiliation field {0} isn&apos;t valid. In EDA Settings | Affiliations, edit the Affiliation mapping to specify a valid lookup field on the Contact object.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapContPrimaryFieldUniqueTitle</fullName>
@@ -1811,8 +1907,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, look in the Contact Primary Affl Field column for multiple mappings specifying {0} ({1}). Edit those mappings so that this field is mapped in only one Affiliation mapping.</value>
+        <shortDescription>Recommended fix when mappings&apos; Primary Affiliation fields aren&apos;t unique</shortDescription>
+        <value>In EDA Settings | Affiliations, look in the Primary Affiliation Field on Contact column for multiple mappings specifying {0} ({1}). Edit those mappings so that this field is mapped in only one Affiliation mapping.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapContactPrimaryFieldValid</fullName>
@@ -2451,8 +2547,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Confirmation msg for Run Copy button on Courses</shortDescription>
-        <value>The process was queued successfully. An email will be sent at the completion of the job.</value>
+        <shortDescription>Confirmation message when the Extended Description field is queued for update</shortDescription>
+        <value>We&apos;re updating the Extended Description field. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgHelpCourseConnBackfillDescription</fullName>
@@ -2467,8 +2563,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Courses description field data migration</shortDescription>
-        <value>In EDA 1.30, the Extended Description field was added to accommodate longer course descriptions.</value>
+        <shortDescription>Description of the Extended Course Descriptions setting</shortDescription>
+        <value>Copies text from the Description field on Course records to the Extended Description field to accommodate longer course descriptions.</value>
     </labels>
     <labels>
         <fullName>stgHelpCoursesDataMigrationCopiesValues</fullName>
@@ -2579,8 +2675,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before the Race field was added and values were removed from the Ethnicity field as of EDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</value>
+        <shortDescription>Description of the Legacy Ethnicity Data setting</shortDescription>
+        <value>If you used the Ethnicity field before EDA version 1.28, this Apex job updates the Race field on Contacts with a copy of standard and custom values from the Ethnicity field. The values Not Hispanic or Latino and Hispanic or Latino aren't copied.</value>
     </labels>
     <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
@@ -3188,8 +3284,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Title of info text for Course description data migration</shortDescription>
-        <value>Courses: Description Data Migration</value>
+        <shortDescription>Label for the Extended Course Descriptions setting</shortDescription>
+        <value>Extended Course Descriptions</value>
     </labels>
     <labels>
         <fullName>stgTitleHEDAConfig</fullName>
