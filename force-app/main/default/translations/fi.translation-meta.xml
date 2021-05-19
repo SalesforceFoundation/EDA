@@ -581,6 +581,10 @@
         <name>stgBtnRefreshAdminNamesA11y</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that updates Race field on Contacts from Ethnicity field --></label>
+        <name>stgBtnRefreshEthnicityDataA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
@@ -593,8 +597,12 @@
         <name>stgBtnRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Suorita kopiointi</label>
+        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRunCopy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Descriptions --></label>
+        <name>stgBtnRunCopyA11y</name>
     </customLabels>
     <customLabels>
         <label>Tallenna</label>
@@ -685,6 +693,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Title for the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalBody</name>
+    </customLabels>
+    <customLabels>
         <label>Apex-erätyö käsitteli {0} erää, joista {1} epäonnistui.</label>
         <name>stgCourseDescriptionCopyEmailBody</name>
     </customLabels>
@@ -769,8 +785,20 @@
         <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Yhteyshenkilöiden etnisyyden ja rodun täyttö</label>
+        <label><!-- Label for the Legacy Ethnicity Data setting --></label>
         <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update the Race field on Contacts confirmation window --></label>
+        <name>stgEthnicityRaceBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when the Race field is queued for update --></label>
+        <name>stgEthnicityRaceBackfillSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Fluent</label>
@@ -1233,7 +1261,7 @@
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label>Prosessi asettaminen jonoon onnistui. Työn valmistuttua siitä lähetetään sähköposti.</label>
+        <label><!-- Confirmation message when the Extended Description field is queued for update --></label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
@@ -1241,7 +1269,7 @@
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label>Kohdassa EDA 1.30 lisättiin laajennettu kuvaus -kenttä pidempien kurssikuvausten varalta.</label>
+        <label><!-- Description of the Extended Course Descriptions setting --></label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
@@ -1297,7 +1325,7 @@
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label>Käytä etnistä alkuperää ja rodun täyttöä vain, jos organisaatio käytti etnisyyskenttää ennen rotukentän lisäämistä ja arvot poistettiin etnisyyskentästä EDA-versiosta 1.28 lähtien. Jos yhteyshenkilön etnisyyskentän arvo ei ole yhtä suuri kuin ”ei latinalaisamerikkalainen tai latino” tai “latinalaisamerikkalainen tai latino”, täyttö kopioi arvon rotukenttään. Sekä tavalliset valintaluettelon arvot että mahdollisesti lisätyt mukautetut arvot voidaan kopioida.</label>
+        <label><!-- Description of the Legacy Ethnicity Data setting --></label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
@@ -1603,7 +1631,7 @@
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Kurssit: kuvaustietojen siirto</label>
+        <label><!-- Label for the Extended Course Descriptions setting --></label>
         <name>stgTitleCoursesDescriptionDataMigration</name>
     </customLabels>
     <customLabels>
