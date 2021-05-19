@@ -981,7 +981,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when student and faculty Course Connection record types are same --></label>
+        <label><!-- Recommended fix when student and faculty Course Connection record types match  --></label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
