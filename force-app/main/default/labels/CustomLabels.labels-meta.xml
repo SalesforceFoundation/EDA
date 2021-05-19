@@ -1166,6 +1166,22 @@
         <value>Create an auto-enrollment mapping.</value>
     </labels>
     <labels>
+        <fullName>stgBtnNewSettingsExperience</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button of the new Settings Experience redirect</shortDescription>
+        <value>Take Me to the New Settings Experience</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnNewSettingsExperienceA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Assistive Text of the button of the new Settings Experience redirect</shortDescription>
+        <value>Navigate to the New Settings Experience</value>
+    </labels>
+    <labels>
         <fullName>stgBtnRefreshAdminNames</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1588,6 +1604,22 @@
         <protected>true</protected>
         <shortDescription>Label for the EDA App</shortDescription>
         <value>Education Data Architecture</value>
+    </labels>
+    <labels>
+        <fullName>stgEDASettingsHasMovedTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title of EDA Settings has moved</shortDescription>
+        <value>We&apos;ve moved!</value>
+    </labels>
+    <labels>
+        <fullName>stgEDASettingsHasMovedDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of EDA Settings has moved</shortDescription>
+        <value>We&apos;ve improved the settings experience for you, our most fantabulous users. We hope you find the new settings streamlined and more accessible. You&apos;ll need to add the settings as a new tab to your top navigation.</value>
     </labels>
     <labels>
         <fullName>stgEDASetupTitle</fullName>
