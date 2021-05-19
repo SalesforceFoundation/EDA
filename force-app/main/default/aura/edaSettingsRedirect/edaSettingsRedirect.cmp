@@ -1,4 +1,5 @@
 <aura:component implements="force:appHostable">
+    <lightning:navigation aura:id="navService" />
     <div class="slds-theme_default eda-height_full">
         <div class="slds-text-heading_large slds-p-bottom_medium slds-p-top_medium slds-align_absolute-center">
             {!$Label.c.stgEDASettingsHasMovedTitle}

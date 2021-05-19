@@ -1,5 +1,5 @@
 ({
     handleEdaSettingsRedirect: function (component, event, helper) {
-        helper.handleEdaSettingsRedirect(component);
+        helper.handleEdaSettingsRedirect(event, component);
     }
 });
