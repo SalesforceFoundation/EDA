@@ -1619,7 +1619,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Administrative and Household Account Record Types are same</shortDescription>
+        <shortDescription>Recommended fix when Administrative and Household Account Record Types match</shortDescription>
         <value>In EDA Settings | Account Model, change the Administrative Account Record Type or the Household Account Record Type so that they specify a unique record type.</value>
     </labels>
     <labels>
