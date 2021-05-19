@@ -1,18 +1,29 @@
 import { LightningElement, wire, track, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
+//Apex
+import getCourseConnectionSettingsVModel from "@salesforce/apex/CourseConnectionSettingsController.getCourseConnectionSettingsVModel";
+
 //Custom Labels
 import stgCourseConnectionsTitle from "@salesforce/label/c.stgCourseConnectionsTitle";
+import stgEnableCourseConnectionsTitle from "@salesforce/label/c.stgEnableCourseConnectionsTitle";
+import stgHelpEnableCourseConnections from "@salesforce/label/c.stgHelpEnableCourseConnections";
 
 export default class CourseConnectionSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
+    @track courseConnectionSettingsVModel;
+    @track courseConnectionSettingsWireResult;
 
     labelReference = {
         stgCourseConnectionsTitle: stgCourseConnectionsTitle,
+        stgEnableCourseConnectionsTitle: stgEnableCourseConnectionsTitle,
+        stgHelpEnableCourseConnections: stgHelpEnableCourseConnections,
     };
 
-    inputAttributeReference = {};
+    inputAttributeReference = {
+        courseConnectionRecordTypesToggleId: "courseConnectionRecordTypes",
+    };
 
     get affordancesDisabled() {
         if (!this.isEditMode || this.affordancesDisabledToggle === true) {
@@ -52,7 +63,7 @@ export default class CourseConnectionSettings extends LightningElement {
     }
 
     refreshAllApex() {
-        refreshApex(this.addressSettingsWireResult).then(() => {
+        refreshApex(this.courseConnectionSettingsWireResult).then(() => {
             this.template.querySelectorAll("c-settings-row-dual-listbox").forEach((dualListBox) => {
                 dualListBox.resetValue();
             });
@@ -60,5 +71,25 @@ export default class CourseConnectionSettings extends LightningElement {
                 input.resetValue();
             });
         });
+    }
+
+    @wire(getCourseConnectionSettingsVModel)
+    courseConnectionSettingsWire(result) {
+        this.courseConnectionSettingsWireResult = result;
+        if (result.data) {
+            console.log(result.data);
+            this.courseConnectionSettingsVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving accountmodelsettingsvmodel");
+        }
+    }
+
+    handleCourseConnectionRecordTypesChange(event) {
+        let hierarchySettingsChange = {
+            settingsType: "boolean",
+            settingsName: "Enable_Course_Connections__c",
+            settingsValue: event.detail.value,
+        };
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 }
