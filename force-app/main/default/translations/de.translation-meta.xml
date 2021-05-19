@@ -885,7 +885,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0} ({1})&quot; für die Autoregistrierungsrolle. Wenn &quot;{0} ({1})&quot; zutreffend ist, wechseln Sie zum Feld &quot;Rolle&quot; des Zugehörigkeitsobjekts im Salesforce-Setup, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie die Autoregistrierungsrolle in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Role isn't active --></label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -893,7 +893,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zuordnungen&quot; die Autoregistrierungsrolle in einen für das Feld &quot;Rolle&quot; des Zugehörigkeitsobjekts gültigen, aktiven Auswahllistenwert.</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role --></label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -909,7 +909,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0} ({1})&quot; für den Autoregistrierungsstatus. Wenn &quot;{0} ({1})&quot; zutreffend ist, wechseln Sie zum Feld &quot;Status&quot; des Zugehörigkeitsobjekts im Salesforce-Setup, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Autoregistrierungsstatus in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -917,7 +917,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zuordnungen&quot; den Status der Autoregistrierung in einen für das Feld &quot;Status&quot; des Zugehörigkeitsobjekts gültigen, aktiven Auswahllistenwert.</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status --></label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>

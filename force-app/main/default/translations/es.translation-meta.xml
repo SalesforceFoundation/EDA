@@ -885,7 +885,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el {0} ({1}) especificado para una Función de Inscripción automática de la asignación de Afiliación, en Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones. Si {0} ({1}) es correcto, vaya al campo Función del objeto Afiliación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie Función de Inscripción automática a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Role isn't active --></label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -893,7 +893,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, cambie la Función de Inscripción automática a un valor de lista de selección activo y válido para el campo Función del objeto Afiliación.</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role --></label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -909,7 +909,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el {0} ({1}) especificado para un Estado de Inscripción automática de la asignación de Afiliación, en Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones. Si {0} ({1}) es correcto, vaya al campo Estado del objeto Afiliación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie Estado de Inscripción automática a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -917,7 +917,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, cambie el Estado de Inscripción automática a un valor de lista de selección activo y válido para el campo Estado del objeto Afiliación.</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status --></label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>

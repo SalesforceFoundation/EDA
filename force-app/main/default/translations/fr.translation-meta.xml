@@ -885,7 +885,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le {0} ({1}) indiqué pour le Rôle d&apos;inscription automatique dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations. Si {0} ({1}) est correct, accédez au Rôle de l’objet Affiliation dans la configuration de Salesforce et définissez la valeur de la liste de sélection sur Actif. Sinon, modifiez le Rôle d&apos;inscription automatique en une valeur de liste de sélection valide et active.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Role isn't active --></label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -893,7 +893,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations, modifiez le Rôle d&apos;inscription automatique en une valeur de liste de sélection valide et active pour l’objet Affiliation.</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role --></label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -909,7 +909,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le {0} ({1}) indiqué pour le Statut d&apos;inscription automatique d’un mappage d&apos;affiliation dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations. Si {0} ({1}) est correct, accédez au champ Statut de l’objet Affiliation dans la configuration de Salesforce et définissez la valeur de liste de sélection sur Actif. Sinon, modifiez le Statut d&apos;inscription automatique en une valeur de liste de sélection valide et active.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -917,7 +917,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, dans le sous-onglet Mappages d&apos;affiliation de l’onglet Affiliations, modifiez le Statut d&apos;inscription automatique en une valeur de liste de sélection valide et active pour le champ Statut de l’objet Affiliation.</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status --></label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
