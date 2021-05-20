@@ -1612,7 +1612,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Administrative Account Record Type is inactive</shortDescription>
-        <value>Verify the Administrative Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Administrative Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, verify the Administrative Account Record Type. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Administrative Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelAdminNotFoundFix</fullName>
@@ -1620,7 +1620,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find Administrative Account Record Type</shortDescription>
-        <value>In EDA Settings, on the Accounts and Contacts tab, change the Administrative Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, change the Administrative Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelDefaultInactiveFix</fullName>
@@ -1628,7 +1628,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Account Model record type is inactive</shortDescription>
-        <value>Verify the Default Account Model record type specified in EDA Settings, on the System tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Account Model to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, verify the Default Account Model record type. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Account Model to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelDefaultNotFoundFix</fullName>
@@ -1636,7 +1636,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find Default Account Model record type</shortDescription>
-        <value>In EDA Settings, on the System tab, change the Default Account Model to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, change the Default Account Model to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelHHInactiveFix</fullName>
@@ -1644,7 +1644,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Household Account Record Type is inactive</shortDescription>
-        <value>Verify the Household Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Household Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, verify the Household Account Record Type. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Household Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelHHNotFoundFix</fullName>
@@ -1652,7 +1652,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find the Household Account Record Type</shortDescription>
-        <value>In EDA Settings, on the Accounts and Contacts tab, change the Household Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, change the Household Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountRecordTypeSettingsUnique</fullName>
@@ -1675,8 +1675,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Administrative and Household Account Record Types are same</shortDescription>
-        <value>In EDA Settings, in the Accounts and Contacts tab, change either the Administrative Account Record Type or the Household Account Record Type so that each specifies a unique record type.</value>
+        <shortDescription>Recommended fix when Administrative and Household Account Record Types match</shortDescription>
+        <value>In EDA Settings | Account Model, change the Administrative Account Record Type or the Household Account Record Type so that they specify a unique record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountRecordTypesUnique</fullName>

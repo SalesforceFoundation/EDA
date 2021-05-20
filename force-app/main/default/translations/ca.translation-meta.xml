@@ -805,27 +805,27 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label>Verifiqueu el Tipus de registre del compte administratiu especificat a Configuració EDA, a la pestanya Comptes i contactes. Si {0} ({1}) és correcte, aneu a Configuració de Salesforce i establiu el tipus de registre a Actiu. Si no és correcte, canvieu el Tipus de registre del compte administratiu per un tipus de registre actiu vàlid.</label>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la pestanya Comptes i Contactes, canvieu el Tipus de registre del compte administratiu per un tipus de registre actiu vàlid.</label>
+        <label><!-- Recommended fix when Health Check can't find Administrative Account Record Type --></label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Verifiqueu el tipus de registre de Model de compte predeterminat especificat a Configuració EDA, a la pestanya Sistema. Si {0} ({1}) és correcte, aneu a Configuració de Salesforce i establiu el tipus de registre a Actiu. Si no és correcte, canvieu el Model de compte predeterminat per un tipus de registre actiu vàlid.</label>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la pestanya Sistema, canvieu el Model de compte predeterminat per un tipus de registre actiu vàlid.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Verifiqueu el Tipus de registre del compte domèstic especificat a Configuració EDA, a la pestanya Comptes i contactes. Si {0} ({1}) és correcte, aneu a Configuració de Salesforce i establiu el tipus de registre a Actiu. Si no és correcte, canvieu el Tipus de registre del compte domèstic per un tipus de registre actiu vàlid.</label>
+        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la pestanya Comptes i Contactes, canvieu el Tipus de registre del compte domèstic per un tipus de registre actiu vàlid.</label>
+        <label><!-- Recommended fix when Health Check can't find the Household Account Record Type --></label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -837,7 +837,7 @@
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>A Configuració EDA, a la pestanya Comptes i contactes, canvieu el Tipus de registre del compte administratiu o el Tipus de registre del compte domèstic perquè cadascun especifiqui un tipus de registre únic.</label>
+        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
