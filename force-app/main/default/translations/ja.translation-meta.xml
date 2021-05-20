@@ -805,27 +805,27 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで指定された [管理取引先レコードタイプ] を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[管理取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで [管理取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find Administrative Account Record Type --></label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [システム] タブで指定された [デフォルト取引先モデル] レコードタイプを確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルト取引先モデル] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [システム] タブで [デフォルト取引先モデル] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで指定された [世帯取引先レコードタイプ] を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[世帯取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで [世帯取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find the Household Account Record Type --></label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -837,7 +837,7 @@
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで [管理取引先レコードタイプ] または [世帯取引先レコードタイプ] のいずれかを変更し、それぞれの設定で一意のレコードタイプが指定されるようにします。</label>
+        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>

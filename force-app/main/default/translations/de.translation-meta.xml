@@ -805,27 +805,27 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie den Datensatztyp &quot;Verwaltungs-Account&quot;, der in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatztyp des Verwaltungs-Accounts in einen gültigen, aktiven Datensatztyp.</label>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; den Datensatztyp des Verwaltungs-Accounts in einen gültigen, aktiven Datensatztyp.</label>
+        <label><!-- Recommended fix when Health Check can't find Administrative Account Record Type --></label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie den Datensatztyp des Standard-Accountmodells, der in den EDA-Einstellungen auf der Registerkarte &quot;System&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie das Standard-Accountmodell in einen gültigen, aktiven Datensatztyp.</label>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Registerkarte &quot;System&quot; das Standard-Accountmodell in einen gültigen, aktiven Datensatztyp.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie den Datensatztyp &quot;Haushalt-Account&quot;, der in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatztyp des Haushalt-Accounts in einen gültigen, aktiven Datensatztyp.</label>
+        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; den Datensatztyp des Haushalt-Accounts in einen gültigen, aktiven Datensatztyp.</label>
+        <label><!-- Recommended fix when Health Check can't find the Household Account Record Type --></label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -837,7 +837,7 @@
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; entweder den Datensatztyp des Verwaltungs-Accounts oder den des Haushalt-Accounts, so dass für jeden ein eindeutiger Datensatztyp angegeben ist.</label>
+        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>

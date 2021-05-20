@@ -805,27 +805,27 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label>Controleer het recordtype Administratief account dat is opgegeven in de EDA-instellingen, op het tabblad Accounts en contactpersonen. Als {0} ({1}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u het recordtype Administratief account in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het tabblad Accounts en contactpersonen en wijzig het recordtype Administratief account in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when Health Check can't find Administrative Account Record Type --></label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Controleer het recordtype Standaard accountmodel dat is opgegeven in de EDA-instellingen, op het tabblad Systeem. Als {0} ({1}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u het recordtype Standaard accountmodel in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het tabblad Systeem, en wijzig het recordtype Standaard accountmodel in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Controleer het recordtype Account voor huishouden dat is opgegeven in de EDA-instellingen, op het tabblad Accounts en contactpersonen. Als {0} ({1}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Als het niet correct is, wijzigt u het recordtype Account voor huishouden in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ga naar de EDA-instellingen, naar het tabblad Accounts en contactpersonen en wijzig het recordtype Account voor huishouden in een geldig, actief recordtype.</label>
+        <label><!-- Recommended fix when Health Check can't find the Household Account Record Type --></label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -837,7 +837,7 @@
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>In de EDA-instellingen, op het tabblad Accounts en contactpersonen, kunt u het recordtype Administratief account of het recordtype Account voor huishouden wijzigen zodat elk recordtype uniek is.</label>
+        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
