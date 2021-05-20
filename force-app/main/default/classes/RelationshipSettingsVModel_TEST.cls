@@ -29,18 +29,18 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Test class for RelationshipSettingsModel class.
+ * @description Test class for RelationshipSettingsVModel class.
  */
 @isTest
 private with sharing class RelationshipSettingsVModel_TEST {
     private static Integer loopCounter = 5;
 
     /********************************************************************************
-     * @description Test to verify one argument constructor creates a RelationshipSettingsVModel
+     * @description Test to verify the constructor creates a RelationshipSettingsVModel
      * with all properties populated.
      ********************************************************************************/
     @isTest
-    private static void oneArgumentConstructorValid() {
+    private static void constructorValid() {
         List<ComboboxValueVModel> relationshipComboboxValueVModelsList = new List<ComboboxValueVModel>();
 
         for (Integer i = 0; i < loopCounter; i++) {

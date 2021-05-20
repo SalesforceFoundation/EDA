@@ -38,7 +38,7 @@ private with sharing class RelationshipSettingsModel_TEST {
      * with all properties populated
      ****************************************************************************/
     @isTest
-    private static void RelationshipSettingsModel() {
+    private static void relationshipSettingsModelValid() {
         Test.startTest();
         RelationshipSettingsModel relationshipSettingsModel = new RelationshipSettingsModel('List Setting');
         Test.stopTest();

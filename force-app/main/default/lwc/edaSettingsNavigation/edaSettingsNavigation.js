@@ -239,10 +239,6 @@ export default class EdaSettingsNavigation extends LightningElement {
                         id: "preventAutoCreatedDuplicateRelationships",
                     },
                     {
-                        label: this.labelReference.relationshipSettings.preventAutoCreatedDuplicateRelationships,
-                        id: "preventAutoCreatedDuplicateRelationships",
-                    },
-                    {
                         label: this.labelReference.relationshipSettings.reciprocalRelationshipMappings,
                         id: "reciprocalRelationshipMappings",
                     },
