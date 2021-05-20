@@ -1170,16 +1170,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button of the new Settings Experience redirect</shortDescription>
-        <value>Take Me to the New Settings Experience</value>
+        <shortDescription>Button that launches Education Cloud Settings</shortDescription>
+        <value>Go to Education Cloud Settings</value>
     </labels>
     <labels>
         <fullName>stgBtnNewSettingsExperienceA11y</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Assistive Text of the button of the new Settings Experience redirect</shortDescription>
-        <value>Navigate to the New Settings Experience</value>
+        <shortDescription>Alt text for button that launches Education Cloud Settings</shortDescription>
+        <value>Go to Education Cloud Settings.</value>
     </labels>
     <labels>
         <fullName>stgBtnRefreshAdminNames</fullName>
@@ -1619,7 +1619,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of EDA Settings has moved</shortDescription>
-        <value>We&apos;ve improved the settings experience for you, our most fantabulous users. We hope you find the new settings streamlined and more accessible. You&apos;ll need to add the settings as a new tab to your top navigation.</value>
+        <value>We created a new Education Cloud Settings experience that provides access to EDA Settings, along with many other great resources. Setup steps vary based on your EDA version. Review the documentation for details.</value>
     </labels>
     <labels>
         <fullName>stgEDASetupTitle</fullName>
