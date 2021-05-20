@@ -2652,9 +2652,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Description of the Course Connections setting</shortDescription>
-        <value>Require that Course Connection records specify whether they&apos;re for faculty or students. If you turn on this setting, also set the Default Student Record Type and Default Faculty Record Type.
-
-Before enabling this setting for the first time, run the Legacy Course Enrollment Data Apex job in System Tools.</value>
+        <value>Require that Course Connection records specify whether they&apos;re for faculty or students. If you turn on this setting, also set the Default Student Record Type and Default Faculty Record Type.&lt;/br&gt;&lt;/br&gt;Before enabling this setting for the first time, run the Legacy Course Enrollment Data Apex job in System Tools.</value>
     </labels>
     <labels>
         <fullName>stgHelpEnsureExistContactPreferEmail</fullName>
