@@ -1,11 +1,10 @@
 <aura:component implements="force:appHostable,lightning:isUrlAddressable">
-    <div class="slds-theme_default eda-height_full">
-        <div class="slds-text-heading_large slds-p-bottom_medium slds-p-top_medium slds-align_absolute-center">
-            {!$Label.c.stgEDASettingsHasMovedTitle}
-        </div>
-        <div class="slds-text-heading_small slds-align_absolute-center slds-p-bottom_medium">
-            {!$Label.c.stgEDASettingsHasMovedDesc}
-        </div>
+    <lightning:card class="slds-theme_default eda-height_full">
+        <c:illustrationGoingCamping
+            title="{!$Label.c.stgEDASettingsHasMovedTitle}"
+            description="{!$Label.c.stgEDASettingsHasMovedDesc}"
+        ></c:illustrationGoingCamping>
+
         <div class="slds-align_absolute-center">
             <lightning:navigation aura:id="navService" />
             <lightning:button
@@ -16,5 +15,5 @@
                 class="slds-m-left_x-small"
             ></lightning:button>
         </div>
-    </div>
+    </lightning:card>
 </aura:component>
