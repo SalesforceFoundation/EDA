@@ -64,7 +64,6 @@ export default class CourseConnectionSettings extends LightningElement {
 
     refreshAllApex() {
         refreshApex(this.courseConnectionSettingsWireResult).then(() => {
-           
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });
