@@ -66,7 +66,7 @@ const accountNamingArtcile = '<a href="https://powerofus.force.com/s/article/EDA
 const prefEmailPhoneArticle =
     '<a href="https://powerofus.force.com/s/article/EDA-Configure-Email-Addresses-for-Contacts">';
 const ethinicityAndRaceBackFillArticle = '<a href="https://powerofus.force.com/s/article/EDA-Contact">';
-const courseConnArtcile = '<a href="https://powerofus.force.com/s/article/EDA-Course-Connection">';
+const courseConnArticle = '<a href="https://powerofus.force.com/s/article/EDA-Course-Connection">';
 
 export default class systemTools extends LightningElement {
     labelReference = {
@@ -135,7 +135,7 @@ export default class systemTools extends LightningElement {
     }
 
     get courseConnBackfillHyperLink() {
-        return courseConnArtcile + this.labelReference.tellMeMoreLink + "</a>";
+        return courseConnArticle + this.labelReference.tellMeMoreLink + "</a>";
     }
 
     get courseConnBackfillDesc() {
