@@ -805,27 +805,27 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le type d’enregistrement Compte administratif indiqué dans les paramètres EDA, sous l’onglet Comptes et contacts. Si {0} ({1}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement Compte administratif en un type d’enregistrement valide et actif.</label>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, sous l’onglet Comptes et contacts, modifiez le type d’enregistrement Compte administratif en un type d’enregistrement valide et actif.</label>
+        <label><!-- Recommended fix when Health Check can't find Administrative Account Record Type --></label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le type d’enregistrement Modèle de compte par défaut indiqué dans les paramètres EDA, sous l’onglet Système. Si {0} ({1}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le Modèle de compte par défaut en un type d’enregistrement valide et actif.</label>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, sous l’onglet Système, modifiez le Modèle de compte par défaut en un type d’enregistrement valide et actif.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Vérifiez le type d’enregistrement Compte de foyer indiqué dans les paramètres EDA, sous l’onglet Comptes et contacts. Si {0} ({1}) est correct, accédez à la configuration de Salesforce et définissez le type d’enregistrement sur Actif. Sinon, modifiez le type d’enregistrement Compte de foyer en un type d’enregistrement valide et actif.</label>
+        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, sous l’onglet Comptes et contacts, modifiez le type d’enregistrement Compte de foyer en un type d’enregistrement valide et actif.</label>
+        <label><!-- Recommended fix when Health Check can't find the Household Account Record Type --></label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -837,7 +837,7 @@
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>Dans les paramètres EDA, sous l&apos;onglet Comptes et contacts, modifiez le type d’enregistrement Compte administratif ou le type d&apos;enregistrement Compte de foyer pour que chacun indique un type d’enregistrement unique.</label>
+        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
