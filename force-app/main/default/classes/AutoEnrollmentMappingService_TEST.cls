@@ -251,14 +251,9 @@ public with sharing class AutoEnrollmentMappingService_TEST {
         AutoEnrollmentMappingMapper.instance = new STUB_AutoEnrollmentMappingMapper();
         AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
 
-        String mappingName = 'mapping';
-        String accountRecordType = 'Academic_Program';
-        String status = 'Status';
-        String role = 'Role';
-
         Test.startTest();
         AutoEnrollmentMappingModel autoEnrollmentMappingModel = autoEnrollmentMappingService.deleteAutoEnrollmentMappings(
-            mappingName
+            'mapping'
         );
         Test.stopTest();
 

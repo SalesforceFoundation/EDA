@@ -152,7 +152,10 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
                 return this.labelReference.modalBodyCreate + " " + this.autoEnrollmentHyperLink;
 
             case "delete":
-                return this.labelReference.modalBodyDelete;
+                return this.labelReference.modalBodyDelete
+                    .replace("{0}", this.oldAccountRecordType)
+                    .replace("{1}", this.autoProgramEnrollmentStatus)
+                    .replace("{2}", this.autoProgramEnrollmentRole);
         }
     }
 
