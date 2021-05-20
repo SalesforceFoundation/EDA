@@ -209,16 +209,14 @@ public with sharing class AutoEnrollmentMappingService_TEST {
 
         String mappingName = 'mapping';
         String accountRecordType = 'Academic_Program';
-        String status = 'Status';
-        String role = 'Role';
 
         Affl_Mappings__c affiliationMappingToDelete = new Affl_Mappings__c(
             Name = mappingName,
             Account_Record_Type__c = accountRecordType,
             Primary_Affl_Field__c = 'Test Contact Primary Affl Field',
             Auto_Program_Enrollment__c = true,
-            Auto_Program_Enrollment_Status__c = status,
-            Auto_Program_Enrollment_Role__c = role
+            Auto_Program_Enrollment_Status__c = 'Status',
+            Auto_Program_Enrollment_Role__c = 'Role'
         );
         insert affiliationMappingToDelete;
 

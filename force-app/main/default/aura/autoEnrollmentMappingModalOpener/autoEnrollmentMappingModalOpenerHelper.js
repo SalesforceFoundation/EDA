@@ -145,17 +145,11 @@
 
         const actionName = component.get("v.actionName");
         const mappingName = component.get("v.mappingName");
-        const accountRecordType = component.get("v.oldAccountRecordType");
-        const autoProgramEnrollmentStatus = component.get("v.autoProgramEnrollmentStatus");
-        const autoProgramEnrollmentRole = component.get("v.autoProgramEnrollmentRole");
 
         const deleteModel = {
             modalType: "autoenrollmentmapping",
             action: actionName,
-            mappingName: mappingName,
-            oldAccountRecordType: accountRecordType,
-            autoProgramEnrollmentStatus: autoProgramEnrollmentStatus,
-            autoProgramEnrollmentRole: autoProgramEnrollmentRole
+            mappingName: mappingName
         };
 
         modalSaveEvent.setParams({
