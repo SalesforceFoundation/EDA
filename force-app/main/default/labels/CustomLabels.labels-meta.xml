@@ -1031,6 +1031,30 @@
         <value>{0} auto-enrollment mapping was created.</value>
     </labels>
     <labels>
+        <fullName>stgAutoEnrollmentDeleteModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Delete auto-enrollment mapping confirmation window</shortDescription>
+        <value>This auto-enrollment mapping creates Program Enrollments for Affiliations with the {0} Account record type, {1} Affiliation status, and {2} Affiliation role. If you delete this auto-enrollment mapping, Program Enrollments won't be created for matching Affiliations.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentDeleteModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Delete auto-enrollment mapping confirmation window</shortDescription>
+        <value>Delete auto-enrollment mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentDeleteSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when an auto-enrollment mapping is deleted</shortDescription>
+        <value>{0} auto-enrollment mapping was deleted.</value>
+    </labels>
+    <labels>
         <fullName>stgAccountRecordTypeHelp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

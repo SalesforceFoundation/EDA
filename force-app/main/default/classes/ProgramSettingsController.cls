@@ -146,6 +146,22 @@ public with sharing class ProgramSettingsController {
         }
     }
 
+    /**
+     * @description Deletes auto enrollment mapping
+     * @param mappingName The name of the original auto enrollment mapping
+     * @return The account record type of the mapping deleted or null if no mapping found.
+     */
+    @AuraEnabled
+    public static String deleteAutoEnrollmentMappings(String mappingName) {
+        try {
+            AutoEnrollmentMappingModel deletedMappingModel = ProgramSettingsController.locateAutoEnrollmentMappingService()
+                .deleteAutoEnrollmentMappings(mappingName);
+            return deletedMappingModel == null ? null : deletedMappingModel.accountRecordTypeFieldValue;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /********************************************************************************
      * @description Retrieve a view model representing the Program Enrollment Deletion
      * settings specified in Hierarchy Settings.
