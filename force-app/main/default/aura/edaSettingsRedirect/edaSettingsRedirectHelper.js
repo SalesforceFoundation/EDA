@@ -28,7 +28,6 @@
         };
         var navService = component.find("navService");
         event.preventDefault();
-        window.alert("***** inside helper componentName" + pageReference.attributes.componentName);
         navService.navigate(pageReference);
     }
 });
