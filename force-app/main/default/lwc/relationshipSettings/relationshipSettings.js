@@ -81,12 +81,13 @@ export default class relationshipSettings extends LightningElement {
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 
+    // Save the inverse as UI display the inverse value of the settings
     handleAuoCreatedDuplicatesChange(event) {
         const eventDetail = event.detail;
         let hierarchySettingsChange = {
             settingsType: "boolean",
             settingsName: "Allow_AutoCreated_Duplicates__c",
-            settingsValue: !eventDetail.value, // Save the inverse as UI display the inverse value of the settings
+            settingsValue: !eventDetail.value,
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);

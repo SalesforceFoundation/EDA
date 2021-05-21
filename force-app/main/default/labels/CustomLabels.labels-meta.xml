@@ -1468,7 +1468,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the Relationship Duplicates Settings</shortDescription>
-        <value>Duplicate Relationships</value>
+        <value>Prevent Duplicate Relationships</value>
     </labels>
     <labels>
         <fullName>stgDuplicateRelationshipsHelp</fullName>

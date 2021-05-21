@@ -75,7 +75,7 @@ public virtual with sharing class RelationshipSettingsVMapper {
             currentRelationshipSettingsModel.reciprocalMethod,
             relationshipTypeComboboxValueVModelsList
         );
-
+        //Create a VModel with a combobox and an inverse of boolean for the value in Allow_AutoCreated_Duplicates__c as UI displays inverse
         return new RelationshipSettingsVModel(
             defaultRelationshipComboboxVModel,
             !currentRelationshipSettingsModel.allowAutoCreatedDuplicates
