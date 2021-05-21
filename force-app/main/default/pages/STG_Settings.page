@@ -24,7 +24,7 @@
         var namespace = '';
         var namespacePrefix = '';
         //This should be a class unique to EDA so the namespace comes through correctly
-        var gettingnamespace = sforce.connection.query("SELECT NamespacePrefix FROM ApexClass where Name = 'CCON_Faculty_TDTM' LIMIT 1"); 
+        var gettingnamespace = sforce.connection.query("SELECT NamespacePrefix FROM ApexClass where Name = 'STG_Base_CTRL' LIMIT 1"); 
         var getname = gettingnamespace.getArray("records");
 		if(getname.length > 0) { 
 		    namespace = getname[0].NamespacePrefix;
@@ -36,12 +36,12 @@
             namespace = "c";
         }
         
-        $Lightning.use(namespace + ":STG_App", function() {
+        $Lightning.use(namespace + ":settingsRedirectApp", function() {
             loadComponents(namespacePrefix);
         });
         
         function loadComponents(namespacePrefix) {
-            $Lightning.createComponent(namespace + ":STG_CMP_Container", {namespacePrefix : namespacePrefix} ,stgContainerId);
+            $Lightning.createComponent(namespace + ":edaSettingsRedirect", {namespacePrefix : namespacePrefix} ,stgContainerId);
         }
     </script>
 </apex:page>

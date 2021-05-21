@@ -1,7 +1,7 @@
 <aura:component implements="force:appHostable,lightning:isUrlAddressable">
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:attribute name="settingsMovedDesc" type="String" />
-    <lightning:card class="slds-theme_default eda-height_full">
+    <div class="slds-theme_default eda-height_full">
         <c:illustrationGoingCamping
             title="{!$Label.c.stgEDASettingsHasMovedTitle}"
             description="{!v.settingsMovedDesc}"
@@ -17,5 +17,5 @@
                 class="slds-m-left_x-small"
             ></lightning:button>
         </div>
-    </lightning:card>
+    </div>
 </aura:component>
