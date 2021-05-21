@@ -521,6 +521,18 @@
         <name>stgAutoEnrollmentNewSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Delete auto-enrollment mapping window confirmation text --></label>
+        <name>stgAutoEnrollmentDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title of the Delete Auto Enrollment mapping window --></label>
+        <name>stgAutoEnrollmentDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an auto-enrollment mapping is deleted --></label>
+        <name>stgAutoEnrollmentDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Info text for Account Record Type picklist --></label>
         <name>stgAccountRecordTypeHelp</name>
     </customLabels>
