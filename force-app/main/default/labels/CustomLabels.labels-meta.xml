@@ -1182,6 +1182,14 @@
         <value>Edit</value>
     </labels>
     <labels>
+        <fullName>stgBtnHealthCheck</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches Settings Health Check</shortDescription>
+        <value>Go to Settings Health Check</value>
+    </labels>
+    <labels>
         <fullName>stgBtnNewAutoEnrollA11y</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1310,7 +1318,7 @@
         <value>Update</value>
     </labels>
     <labels>
-        <fullName>stgBtnVideosAction</fullName>
+        <fullName>stgBtnVideos</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
