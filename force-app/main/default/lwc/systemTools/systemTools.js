@@ -14,6 +14,7 @@ import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 
 // BatchJob custom labels
+import stgSuccess from "@salesforce/label/c.stgSuccess";
 import BatchJobRunningProblem from "@salesforce/label/c.BatchJobRunningProblem";
 
 // Household Naming custom labels
@@ -85,6 +86,7 @@ export default class systemTools extends LightningElement {
         courseDataMigrationModalTitle: stgCourseDataMigrationModalTitle,
         courseDataMigrationModalBody: stgCourseDataMigrationModalBody,
         toastMessageForDataMigration: stgHelpCopyQueuedEmailSent,
+        toastSuccessMessage: stgSuccess,
     };
 
     get adminAndHouseholdNamesHyperLink() {
@@ -212,7 +214,11 @@ export default class systemTools extends LightningElement {
     runAdministrativeNamingRefreshBatch() {
         runRefreshAdministrativeAccountNamingJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.stgRefreshAdminNamesSuccessToast);
+                this.showToast(
+                    "success",
+                    this.labelReference.toastSuccessMessage,
+                    this.labelReference.stgRefreshAdminNamesSuccessToast
+                );
             })
 
             .catch((error) => {
