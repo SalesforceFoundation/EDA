@@ -29,7 +29,7 @@
  * @date 2021
  * @group EDA Settings
  * @group-content ../../ApexDocContent/EdaSettings.htm
- * @description Apex controller for Relationship LWC component.
+ * @description Apex controller for Relationship settings LWC component.
  */
 public with sharing class RelationshipSettingsController {
     /************************************************************************************

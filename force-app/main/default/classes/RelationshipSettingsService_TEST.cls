@@ -108,10 +108,6 @@ private with sharing class RelationshipSettingsService_TEST {
     private static void getRelationshipSettingsModelValid() {
         RelationshipSettingsMapper.instance = new STUB_RelationshipSettingsMapper();
 
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting', Allow_AutoCreated_Duplicates__c = true)
-        );
-
         RelationshipSettingsService relationshipSettingsServiceInstance = RelationshipSettingsService.getInstance();
 
         Test.startTest();

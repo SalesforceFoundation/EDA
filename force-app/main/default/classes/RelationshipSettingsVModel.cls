@@ -39,7 +39,7 @@ public with sharing class RelationshipSettingsVModel {
     public Boolean preventAutoCreatedDuplicates { get; private set; }
 
     /*****************************************************************************************************************
-     * @description One argument constructor
+     * @description Constructor to assign values to the properties
      * @param  reciprocalMethodComboboxVModel A ComboboxVModel value representing the Reciprocal_Method__c setting in
       Hierarchy Settings and all the available values for selection
      *  @param  preventAutoCreatedDuplicates A Boolean value representing the inverse of Allow_AutoCreated_Duplicates__c setting in

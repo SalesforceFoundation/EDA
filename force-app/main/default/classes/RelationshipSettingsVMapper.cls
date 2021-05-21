@@ -29,8 +29,8 @@
  * @date 2021
  * @group EDA Settings
  * @group-content ../../ApexDocContent/edaSettings.htm
- * @description View model mapper class used to retrieve hierarchy setting mappings
- * related to Relationship model settings.
+ * @description View Mapper class used to retrieve hierarchy setting mappings
+ * related to Relationship settings.
  */
 public virtual with sharing class RelationshipSettingsVMapper {
     /*********************************************
