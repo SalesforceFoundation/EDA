@@ -521,6 +521,18 @@
         <name>stgAutoEnrollmentNewSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Delete auto-enrollment mapping window confirmation text --></label>
+        <name>stgAutoEnrollmentDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title of the Delete Auto Enrollment mapping window --></label>
+        <name>stgAutoEnrollmentDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an auto-enrollment mapping is deleted --></label>
+        <name>stgAutoEnrollmentDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Info text for Account Record Type picklist --></label>
         <name>stgAccountRecordTypeHelp</name>
     </customLabels>
@@ -821,27 +833,27 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで指定された [管理取引先レコードタイプ] を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[管理取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで [管理取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find Administrative Account Record Type --></label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [システム] タブで指定された [デフォルト取引先モデル] レコードタイプを確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルト取引先モデル] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [システム] タブで [デフォルト取引先モデル] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで指定された [世帯取引先レコードタイプ] を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[世帯取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで [世帯取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find the Household Account Record Type --></label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -853,7 +865,7 @@
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで [管理取引先レコードタイプ] または [世帯取引先レコードタイプ] のいずれかを変更し、それぞれの設定で一意のレコードタイプが指定されるようにします。</label>
+        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1037,11 +1049,11 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が女性の正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value doesn't exist --></label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1049,11 +1061,11 @@
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が男性の正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value is inactive --></label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [男性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value doesn't exist --></label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1061,11 +1073,11 @@
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [名前] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value is inactive --></label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [名前] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value doesn't exist --></label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1073,7 +1085,7 @@
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、[名前] 列に {0} ({1}) が指定されている複数の行を探します。その相互関係設定を編集し、この [名前] の値が 1 つの相互関係設定行にのみ表示されるようにします。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value isn't unique --></label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1089,11 +1101,11 @@
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [どちらでもない] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value is inactive --></label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [どちらでもない] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value doesn't exist --></label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>

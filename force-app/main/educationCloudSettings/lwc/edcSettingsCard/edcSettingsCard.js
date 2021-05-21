@@ -5,6 +5,11 @@ export default class EdcSettingsCard extends NavigationMixin(LightningElement) {
     //Body
     @api title;
     @api description;
+
+    //Icon
+    iconSize = "medium";
+    @api iconName;
+
     //Links
     @api buttonLabel;
     @api buttonTitle;

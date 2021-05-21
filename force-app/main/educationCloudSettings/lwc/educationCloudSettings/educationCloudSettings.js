@@ -4,7 +4,7 @@ import { NavigationMixin } from "lightning/navigation";
 //Column Header Labels
 import stgColProducts from "@salesforce/label/c.stgColProducts";
 import stgColResources from "@salesforce/label/c.stgColResources";
-import stgColServices from "@salesforce/label/c.stgColServices";
+import stgColTools from "@salesforce/label/c.stgColTools";
 
 //EDA Labels
 import stgEDAAppDesc from "@salesforce/label/c.stgEDAAppDesc";
@@ -13,65 +13,103 @@ import stgEDAAppInitials from "@salesforce/label/c.stgEDAAppInitials";
 
 //EDA Services Labels
 import stgHealthCheckTitle from "@salesforce/label/c.stgHealthCheckTitle";
-import stgHealthCheckDescription from "@salesforce/label/c.stgHealthCheckDescription";
-import stgHealthCheckAction from "@salesforce/label/c.stgHealthCheckAction";
+import stgEDCSettingsHealthCheckDescription from "@salesforce/label/c.stgEDCSettingsHealthCheckDescription";
+import stgBtnHealthCheck from "@salesforce/label/c.stgBtnHealthCheck";
+import stgHealthCheckA11y from "@salesforce/label/c.stgHealthCheckA11y";
 
 //EDA Resources Labels
-import stgBtnTrailhead from "@salesforce/label/c.stgBtnTrailhead";
-import stgBtnTrailheadAction from "@salesforce/label/c.stgBtnTrailheadAction";
+import stgTrailheadTitle from "@salesforce/label/c.stgTrailheadTitle";
+import stgBtnEDCTrailhead from "@salesforce/label/c.stgBtnEDCTrailhead";
+import stgBtnEDCTrailheadActionA11y from "@salesforce/label/c.stgBtnEDCTrailheadActionA11y";
 import stgCommunityTitle from "@salesforce/label/c.stgCommunityTitle";
-import stgBtnCommunityAction from "@salesforce/label/c.stgBtnCommunityAction";
+import stgBtnCommunity from "@salesforce/label/c.stgBtnCommunity";
+import stgBtnCommunityActionA11y from "@salesforce/label/c.stgBtnCommunityActionA11y";
 import stgVideosTitle from "@salesforce/label/c.stgVideosTitle";
-import stgBtnVideosAction from "@salesforce/label/c.stgBtnVideosAction";
+import stgBtnVideos from "@salesforce/label/c.stgBtnVideos";
+import stgBtnVideosActionA11y from "@salesforce/label/c.stgBtnVideosActionA11y";
+
+import namespacedEDAField from "@salesforce/schema/Course_Offering_Schedule__c.Course_Offering__c";
+const EDASettingsContainerComponentName = "EdaSettingsContainer";
+const HealthCheckContainerComponentName = "HealthCheckContainer";
+
+const EDADocumentationUrl = "https://powerofus.force.com/s/article/EDA-Documentation";
+const EDATrailheadUrl = "https://trailhead.salesforce.com/en/content/learn/trails/highered_heda";
+
+const EDCTrailheadUrl = "https://trailhead.salesforce.com/en/users/sfdo/trailmixes/get-started-with-education-cloud";
+const TrailblazerCommunityUrl = "https://trailblazers.salesforce.com/successHome";
+const YoutubeUrl = "https://www.youtube.com/user/SalesforceFoundation";
+
 export default class EducationCloudSettings extends NavigationMixin(LightningElement) {
     labelReference = {
         productsTitle: stgColProducts,
         resourcesTitle: stgColResources,
-        servicesTitle: stgColServices,
+        toolsTitle: stgColTools,
     };
+
+    get edaComponentNavigationPrefix() {
+        const apiName = namespacedEDAField.fieldApiName;
+        const navigationPrefix = apiName.replace("Course_Offering__c", "");
+
+        if (navigationPrefix === "") {
+            return "c__";
+        }
+
+        return navigationPrefix;
+    }
+
+    get edaSettingsContainerComponentNavigation() {
+        return this.edaComponentNavigationPrefix + EDASettingsContainerComponentName;
+    }
+
+    get healthCheckContainerComponentNavigation() {
+        return this.edaComponentNavigationPrefix + HealthCheckContainerComponentName;
+    }
 
     @track edcProductModels = [
         {
             title: stgEDAAppTitle,
             description: stgEDAAppDesc,
-            iconSrc: "/bad/image/url.jpg",
             iconInitials: stgEDAAppInitials,
             iconFallbackName: "standard:avatar",
-            settingsComponent: "c__EdaSettingsContainer",
-            documentationUrl: "https://powerofus.force.com/s/article/EDA-Documentation",
-            trailheadUrl: "https://trailhead.salesforce.com/en/content/learn/trails/highered_heda",
+            settingsComponent: this.edaSettingsContainerComponentNavigation,
+            documentationUrl: EDADocumentationUrl,
+            trailheadUrl: EDATrailheadUrl,
         },
     ];
 
-    @track edcServiceModels = [
+    @track edcToolModels = [
         {
             title: stgHealthCheckTitle,
-            description: stgHealthCheckDescription,
-            buttonLabel: stgHealthCheckAction,
+            description: stgEDCSettingsHealthCheckDescription,
+            iconName: "custom:custom94",
+            buttonLabel: stgBtnHealthCheck,
+            buttonTitle: stgHealthCheckA11y,
             navigationType: "standard__component",
-            navigationTarget: "c__HealthCheckContainer",
+            navigationTarget: this.healthCheckContainerComponentNavigation,
         },
     ];
 
     @track edcResourceModels = [
         {
-            title: stgBtnTrailhead,
-            buttonLabel: stgBtnTrailheadAction,
+            title: stgTrailheadTitle,
+            buttonLabel: stgBtnEDCTrailhead,
+            buttonTitle: stgBtnEDCTrailheadActionA11y,
             navigationType: "standard__webPage",
-            navigationTarget:
-                "https://trailhead.salesforce.com/en/users/sfdo/trailmixes/get-started-with-education-cloud",
+            navigationTarget: EDCTrailheadUrl,
         },
         {
             title: stgCommunityTitle,
-            buttonLabel: stgBtnCommunityAction,
+            buttonLabel: stgBtnCommunity,
+            buttonTitle: stgBtnCommunityActionA11y,
             navigationType: "standard__webPage",
-            navigationTarget: "https://trailblazers.salesforce.com/successHome",
+            navigationTarget: TrailblazerCommunityUrl,
         },
         {
             title: stgVideosTitle,
-            buttonLabel: stgBtnVideosAction,
+            buttonLabel: stgBtnVideos,
+            buttonTitle: stgBtnVideosActionA11y,
             navigationType: "standard__webPage",
-            navigationTarget: "https://www.youtube.com/user/SalesforceFoundation",
+            navigationTarget: YoutubeUrl,
         },
     ];
 }
