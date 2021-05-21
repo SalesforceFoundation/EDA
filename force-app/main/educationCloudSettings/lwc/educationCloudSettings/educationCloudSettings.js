@@ -81,6 +81,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         {
             title: stgHealthCheckTitle,
             description: stgEDCSettingsHealthCheckDescription,
+            iconName: "custom:custom94",
             buttonLabel: stgBtnHealthCheck,
             buttonTitle: stgHealthCheckA11y,
             navigationType: "standard__component",

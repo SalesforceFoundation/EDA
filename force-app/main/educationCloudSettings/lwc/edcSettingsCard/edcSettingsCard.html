@@ -2,7 +2,11 @@
     <lightning-card>
         <!-- Card Header -->
         <h3 slot="title" id="cardTitle">
-            <div class="slds-align-bottom slds-text-heading_small">{title}</div>
+            <div if:false={iconName} class="slds-align-bottom slds-text-heading_small">{title}</div>
+            <div class="slds-align-bottom" if:true={iconName}>
+                <lightning-icon icon-name={iconName} size={iconSize} aria-hidden="true"></lightning-icon>
+                <span class="slds-text-heading_small slds-var-p-left_small">{title}</span>
+            </div>
         </h3>
         <div class="slds-grid slds-grid_vertical">
             <div class="slds-col slds-var-m-horizontal_small" if:true={description}><p>{description}</p></div>
