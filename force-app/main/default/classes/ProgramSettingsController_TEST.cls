@@ -400,6 +400,46 @@ private with sharing class ProgramSettingsController_TEST {
     }
 
     /****************************************************************************************
+     * @description Test method to verify deleteAutoEnrollmentMapping() deletes auto
+     * enrollment on affiliation mappings
+     ****************************************************************************************/
+    @isTest
+    private static void deleteAutoEnrollmentMapping() {
+        AutoEnrollmentMappingService.instance = new STUB_AutoEnrollmentMappingService();
+        Test.startTest();
+        String accountRecordTypeDeveloperName = ProgramSettingsController.deleteAutoEnrollmentMappings(
+            'Mapping_Name_1'
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            accountRecordTypeDeveloperName,
+            'Record_Type_1',
+            'The affected mapping should be that of the same account record type'
+        );
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify deleteAutoEnrollmentMapping()
+     * when exception occurs
+     ****************************************************************************************/
+    @isTest
+    private static void deleteAutoEnrollmentMappingException() {
+        AutoEnrollmentMappingService.instance = new STUB_ExceptionAutoEnrollmentMappingService();
+
+        try {
+            Test.startTest();
+            String accountRecordTypeDeveloperName = ProgramSettingsController.deleteAutoEnrollmentMappings(
+                'Mapping_Name_1'
+            );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /****************************************************************************************
      * @description Test method to verify unmappedRecordTypesExist()
      ****************************************************************************************/
     @isTest
@@ -587,6 +627,10 @@ private with sharing class ProgramSettingsController_TEST {
 
             return new AutoEnrollmentMappingModel(mappingName, accountRecordType, status, role, true);
         }
+
+        public override AutoEnrollmentMappingModel deleteAutoEnrollmentMappings(String mappingName) {
+            return new AutoEnrollmentMappingModel(mappingName, 'Record_Type_1', null, null, false);
+        }
     }
 
     /**************************************************************************************************************************************
@@ -631,6 +675,10 @@ private with sharing class ProgramSettingsController_TEST {
             String status,
             String role
         ) {
+            throw new TestException('Exception encountered!');
+        }
+
+        public override AutoEnrollmentMappingModel deleteAutoEnrollmentMappings(String mappingName) {
             throw new TestException('Exception encountered!');
         }
     }
