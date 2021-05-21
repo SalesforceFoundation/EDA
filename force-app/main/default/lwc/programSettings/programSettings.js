@@ -6,6 +6,7 @@ import getAutoEnrollmentMappingsVModel from "@salesforce/apex/ProgramSettingsCon
 import getProgramEnrollmentDeletionSettingsVModel from "@salesforce/apex/ProgramSettingsController.getProgramEnrollmentDeletionSettingsVModel";
 import updateAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.updateAutoEnrollmentMappings";
 import createAutoEnrollmentMapping from "@salesforce/apex/ProgramSettingsController.createAutoEnrollmentMapping";
+import deleteAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsController.deleteAutoEnrollmentMappings";
 import unmappedRecordTypesExist from "@salesforce/apex/ProgramSettingsController.unmappedRecordTypesExist";
 
 //Page Custom Labels
@@ -46,6 +47,7 @@ import AfflProgEnrollDeleted from "@salesforce/label/c.AfflProgEnrollDeleted";
 import stgAfflDeleteProgramEnrollment from "@salesforce/label/c.stgAfflDeleteProgramEnrollment";
 import stgHelpAfflDeleteProgramEnrollment from "@salesforce/label/c.stgHelpAfflDeleteProgramEnrollment";
 import stgAutoEnrollmentNewSuccess from "@salesforce/label/c.stgAutoEnrollmentNewSuccess";
+import stgAutoEnrollmentDeleteSuccess from "@salesforce/label/c.stgAutoEnrollmentDeleteSuccess";
 import stgBtnNewAutoEnrollA11y from "@salesforce/label/c.stgBtnNewAutoEnrollA11y";
 import stgErrorNewAutoEnrollment from "@salesforce/label/c.stgErrorNewAutoEnrollment";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
@@ -100,6 +102,7 @@ export default class programSettings extends LightningElement {
         },
         editSuccessMessage: stgAutoEnrollmentEditSuccess,
         createSuccessMessage: stgAutoEnrollmentNewSuccess,
+        deleteSuccessMessage: stgAutoEnrollmentDeleteSuccess,
     };
 
     inputAttributeReference = {
@@ -375,11 +378,11 @@ export default class programSettings extends LightningElement {
     handleAutoEnrollmentMappingRowAction(event) {
         const actionName = event.detail.action.name;
         const actionRow = event.detail.row;
-        this.dispatchAutoEnrollmentEditModalRequestEvent(actionName, actionRow);
+        this.dispatchAutoEnrollmentModalRequestEvent(actionName, actionRow);
     }
 
-    dispatchAutoEnrollmentEditModalRequestEvent(actionName, actionRow) {
-        const autoEnrollmentEditDetail = {
+    dispatchAutoEnrollmentModalRequestEvent(actionName, actionRow) {
+        const autoEnrollmentDetail = {
             actionName: actionName,
             mappingName: actionRow.mappingName,
             accountRecordType: actionRow.accountRecordTypeName,
@@ -388,7 +391,7 @@ export default class programSettings extends LightningElement {
         };
 
         const autoEnrollmentModalRequestEvent = new CustomEvent("autoenrollmentmodalrequest", {
-            detail: autoEnrollmentEditDetail,
+            detail: autoEnrollmentDetail,
             bubbles: true,
             composed: true,
         });
@@ -414,9 +417,9 @@ export default class programSettings extends LightningElement {
                     saveModel.autoProgramEnrollmentRole
                 );
                 break;
-            /*case "delete":
-                this.deleteAffiliation(saveModel.mappingName);
-                break;*/
+            case "delete":
+                this.deleteAutoEnrollmentMappings(saveModel.mappingName);
+                break;
         }
     }
 
@@ -464,6 +467,28 @@ export default class programSettings extends LightningElement {
 
             .catch((error) => {
                 // console.log('Inside error');
+            });
+        this.refreshAllApex();
+    }
+
+    deleteAutoEnrollmentMappings(mappingName) {
+        deleteAutoEnrollmentMappings({
+            mappingName: mappingName,
+        })
+            .then((result) => {
+                if (result) {
+                    this.showToast(
+                        "success",
+                        "Delete Complete",
+                        this.labelReference.deleteSuccessMessage.replace("{0}", result)
+                    );
+                } else {
+                    //console.log("Delete error: the mapping was not found");
+                }
+            })
+
+            .catch((error) => {
+                //console.log("Inside error");
             });
         this.refreshAllApex();
     }
