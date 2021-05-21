@@ -7,6 +7,9 @@ import stgErrorInsufficientAccess from "@salesforce/label/c.stgErrorInsufficient
 import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
 import EDASettingsContainerAuraComponentLabel from "@salesforce/label/c.EDASettingsContainerAuraComponentLabel";
 import EDCSettingsContainerAuraComponentLabel from "@salesforce/label/c.EDCSettingsContainerAuraComponentLabel";
+
+import namespacedEDAField from "@salesforce/schema/Course_Offering_Schedule__c.Course_Offering__c";
+const EducationCloudSettingsContainerComponentName = "EducationCloudSettingsContainer";
 export default class EDASettings extends NavigationMixin(LightningElement) {
     @api pageReference;
     @api navigationClicked;
@@ -42,6 +45,21 @@ export default class EDASettings extends NavigationMixin(LightningElement) {
         return undefined;
     }
 
+    get edaComponentNavigationPrefix() {
+        const apiName = namespacedEDAField.fieldApiName;
+        const navigationPrefix = apiName.replace("Course_Offering__c", "");
+
+        if (navigationPrefix === "") {
+            return "c__";
+        }
+
+        return navigationPrefix;
+    }
+
+    get educationCloudSettingsContainerComponentNavigation() {
+        return this.edaComponentNavigationPrefix + EducationCloudSettingsContainerComponentName;
+    }
+
     settingsPageToDisplay = {
         accountModelSettings: true,
     };
@@ -52,7 +70,7 @@ export default class EDASettings extends NavigationMixin(LightningElement) {
         const pageReference = {
             type: "standard__component",
             attributes: {
-                componentName: "c__EducationCloudSettingsContainer",
+                componentName: this.educationCloudSettingsContainerComponentNavigation,
             },
         };
         this[NavigationMixin.Navigate](pageReference);

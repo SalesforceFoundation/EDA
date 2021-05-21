@@ -821,27 +821,27 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el Tipo de registro de cuenta administrativa especificado en Configuración de EDA, en la ficha Cuentas y Contactos. Si {0} ({1}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el Tipo de registro de cuenta administrativa a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la ficha Cuentas y Contactos, cambie el Tipo de registro de cuenta administrativa a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when Health Check can't find Administrative Account Record Type --></label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el tipo de registro de Modelo de cuenta predeterminado especificado en Configuración de EDA, en la ficha Sistema. Si {0} ({1}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el Modelo de cuenta predeterminado a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la ficha Sistema, cambie el Modelo de cuenta predeterminado a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el Tipo de registro de cuenta doméstica especificado en Configuración de EDA, en la ficha Cuentas y Contactos. Si {0} ({1}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el Tipo de registro de cuenta doméstica a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la ficha Cuentas y Contactos, cambie el Tipo de registro de cuenta doméstica a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when Health Check can't find the Household Account Record Type --></label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -853,7 +853,7 @@
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la ficha Cuentas y Contactos, cambie el Tipo de registro de cuenta administrativa o el Tipo de registro de cuenta administrativa doméstica de modo que cada uno especifique un tipo de registro exclusivo.</label>
+        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1037,11 +1037,11 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>Verifique la configuración recíproca para {0} ({1}) especificada en Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones. Si {0} ({1}) es correcto para Femenino, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Femenino de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Female de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value doesn't exist --></label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1049,11 +1049,11 @@
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Verifique la configuración recíproca para {0} ({1}) especificada en Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones. Si {0} ({1}) es correcto para Masculino, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Masculino de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value is inactive --></label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Male de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value doesn't exist --></label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1061,11 +1061,11 @@
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Verifique la configuración recíproca para {0} ({1}) especificada en Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones. Si {0} ({1}) es correcto, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Nombre de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value is inactive --></label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Nombre de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value doesn't exist --></label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1073,7 +1073,7 @@
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, busque múltiples filas que especifiquen {0} ({1}) en la columna Nombre. Modifique esa configuración recíproca de modo que este valor Nombre aparezca solo en una fila de configuración recíproca.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value isn't unique --></label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1089,11 +1089,11 @@
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label>Verifique la configuración recíproca para {0} ({1}) especificada en Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones. Si {0} ({1}) es correcto, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Neutro de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value is inactive --></label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Neutro de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value doesn't exist --></label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>

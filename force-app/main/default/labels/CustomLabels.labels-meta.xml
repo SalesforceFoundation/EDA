@@ -1118,12 +1118,20 @@
         <value>Cancel</value>
     </labels>
     <labels>
-        <fullName>stgBtnCommunityAction</fullName>
+        <fullName>stgBtnCommunity</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Visit community action</shortDescription>
-        <value>Visit Trailblazer Community</value>
+        <shortDescription>Button that launches the Trailblazer Community site</shortDescription>
+        <value>Go to Trailblazer Community</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnCommunityActionA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches the Trailblazer Community site</shortDescription>
+        <value>Go to the Trailblazer community.</value>
     </labels>
     <labels>
         <fullName>stgBtnDelete</fullName>
@@ -1138,16 +1146,32 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Documentation Button</shortDescription>
+        <shortDescription>Button that launches EDA documentation</shortDescription>
         <value>Documentation</value>
     </labels>
     <labels>
-        <fullName>stgBtnDocumentationAction</fullName>
+        <fullName>stgBtnDocumentationActionA11y</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the visit documentation action</shortDescription>
-        <value>Visit Documentation</value>
+        <shortDescription>Alt text for button that launches EDA documentation</shortDescription>
+        <value>Go to the EDA documentation.</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnEDCTrailhead</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches the Education Cloud trailmix</shortDescription>
+        <value>Go to Trailhead</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnEDCTrailheadActionA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches the Education Cloud trailmix</shortDescription>
+        <value>Go to the Education Cloud trailmix.</value>
     </labels>
     <labels>
         <fullName>stgBtnEdit</fullName>
@@ -1156,6 +1180,14 @@
         <protected>true</protected>
         <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnHealthCheck</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches Settings Health Check</shortDescription>
+        <value>Go to Settings Health Check</value>
     </labels>
     <labels>
         <fullName>stgBtnNewAutoEnrollA11y</fullName>
@@ -1258,32 +1290,40 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Settings Button</shortDescription>
+        <shortDescription>Button that launches EDA Settings</shortDescription>
         <value>Settings</value>
     </labels>
     <labels>
-        <fullName>stgBtnSettingsAction</fullName>
+        <fullName>stgBtnSettingsActionA11y</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the manage settings action</shortDescription>
-        <value>Manage Settings</value>
+        <shortDescription>AltstgBtnDocumentationActionA11y text for button that launches EDA Settings</shortDescription>
+        <value>Go to EDA Settings.</value>
     </labels>
     <labels>
         <fullName>stgBtnTrailhead</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Trailhead Button</shortDescription>
+        <shortDescription>Button that launches EDA Trailhead modules</shortDescription>
         <value>Trailhead</value>
     </labels>
     <labels>
-        <fullName>stgBtnTrailheadAction</fullName>
+        <fullName>stgBtnTrailheadActionA11y</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the visit trailhead action</shortDescription>
-        <value>Visit Trailhead</value>
+        <shortDescription>Alt text for button that launches EDA Trailhead modules</shortDescription>
+        <value>Go to EDA Trailhead modules.</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnTrailheadTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Trailhead card</shortDescription>
+        <value>Trailhead</value>
     </labels>
     <labels>
         <fullName>stgBtnUpdate</fullName>
@@ -1294,12 +1334,20 @@
         <value>Update</value>
     </labels>
     <labels>
-        <fullName>stgBtnVideosAction</fullName>
+        <fullName>stgBtnVideos</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Visit videos action</shortDescription>
-        <value>Visit Salesforce.org on YouTube</value>
+        <shortDescription>Button that launches the Salesforce.org YouTube channel</shortDescription>
+        <value>Go to Salesforce.org on YouTube</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnVideosActionA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches the Salesforce.org YouTube channel</shortDescription>
+        <value>Go to Salesforce.org on YouTube.</value>
     </labels>
     <labels>
         <fullName>stgCleanupQueuedEmailSent</fullName>
@@ -1402,7 +1450,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Products column</shortDescription>
+        <shortDescription>Column header for Products</shortDescription>
         <value>Products</value>
     </labels>
     <labels>
@@ -1418,7 +1466,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Resources column</shortDescription>
+        <shortDescription>Column header for Resources</shortDescription>
         <value>Resources</value>
     </labels>
     <labels>
@@ -1430,14 +1478,6 @@
         <value>Role</value>
     </labels>
     <labels>
-        <fullName>stgColServices</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Label for the Services column</shortDescription>
-        <value>Services</value>
-    </labels>
-    <labels>
         <fullName>stgColStatus</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1446,11 +1486,19 @@
         <value>Status</value>
     </labels>
     <labels>
+        <fullName>stgColTools</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column header for Tools</shortDescription>
+        <value>Tools</value>
+    </labels>
+    <labels>
         <fullName>stgCommunityTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Trailblazer Community Button</shortDescription>
+        <shortDescription>Label for the Trailblazer Community card</shortDescription>
         <value>Trailblazer Community</value>
     </labels>
     <labels>
@@ -1586,8 +1634,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description for the EDA App</shortDescription>
-        <value>Education Data Architecture (EDA), the foundation of Education Cloud. Developed, is a flexible data architecture designed to configure Salesforce for education. Manage EDA Settings from here.</value>
+        <shortDescription>Description of the EDA app</shortDescription>
+        <value>Education Data Architecture (EDA) is the foundation of the Education Cloud. Its flexible data architecture includes preconfigured objects, logic, and automation that are tailored specifically for education. Manage EDA Settings here.</value>
     </labels>
     <labels>
         <fullName>stgEDAAppInitials</fullName>
@@ -1602,7 +1650,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the EDA App</shortDescription>
+        <shortDescription>Label for the EDA app</shortDescription>
         <value>Education Data Architecture</value>
     </labels>
     <labels>
@@ -1628,6 +1676,14 @@
         <protected>true</protected>
         <shortDescription>EDA Setup title</shortDescription>
         <value>EDA Setup</value>
+    </labels>
+    <labels>
+        <fullName>stgEDCSettingsHealthCheckDescription</fullName>
+        <categories>Setup</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of Settings Health Check </shortDescription>
+        <value>Settings Health Check looks for configuration errors in EDA Settings and related settings in Setup. Follow the provided recommendations to fix reported errors. Access Settings Health Check here.</value>
     </labels>
     <labels>
         <fullName>stgEnableCourseConnectionsTitle</fullName>
@@ -1771,7 +1827,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Administrative Account Record Type is inactive</shortDescription>
-        <value>Verify the Administrative Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Administrative Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, verify the Administrative Account Record Type. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Administrative Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelAdminNotFoundFix</fullName>
@@ -1779,7 +1835,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find Administrative Account Record Type</shortDescription>
-        <value>In EDA Settings, on the Accounts and Contacts tab, change the Administrative Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, change the Administrative Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelDefaultInactiveFix</fullName>
@@ -1787,7 +1843,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Account Model record type is inactive</shortDescription>
-        <value>Verify the Default Account Model record type specified in EDA Settings, on the System tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Account Model to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, verify the Default Account Model record type. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Account Model to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelDefaultNotFoundFix</fullName>
@@ -1795,7 +1851,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find Default Account Model record type</shortDescription>
-        <value>In EDA Settings, on the System tab, change the Default Account Model to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, change the Default Account Model to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelHHInactiveFix</fullName>
@@ -1803,7 +1859,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Household Account Record Type is inactive</shortDescription>
-        <value>Verify the Household Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Household Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, verify the Household Account Record Type. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Household Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelHHNotFoundFix</fullName>
@@ -1811,7 +1867,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find the Household Account Record Type</shortDescription>
-        <value>In EDA Settings, on the Accounts and Contacts tab, change the Household Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, change the Household Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountRecordTypeSettingsUnique</fullName>
@@ -1834,8 +1890,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Administrative and Household Account Record Types are same</shortDescription>
-        <value>In EDA Settings, in the Accounts and Contacts tab, change either the Administrative Account Record Type or the Household Account Record Type so that each specifies a unique record type.</value>
+        <shortDescription>Recommended fix when Administrative and Household Account Record Types match</shortDescription>
+        <value>In EDA Settings | Account Model, change the Administrative Account Record Type or the Household Account Record Type so that they specify a unique record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountRecordTypesUnique</fullName>
@@ -2203,7 +2259,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Female value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct for Female, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+        <value>The picklist value for Female in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelFemaleNotFoundFix</fullName>
@@ -2211,7 +2267,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+        <value>The picklist value for Female in the Reciprocal Relationships mapping isn&apos;t valid. In EDA Settings | Relationships, edit the Female value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelFemaleTitle</fullName>
@@ -2227,7 +2283,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Male value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct for Male, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+        <value>The picklist value for Male in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Male value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelMaleNotFoundFix</fullName>
@@ -2235,7 +2291,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Male value to a valid, active picklist value.</value>
+        <value>The picklist value for Male in the Reciprocal Relationships mapping isn&apos;t valid. In EDA Settings | Relationships, edit the Male value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelMaleTitle</fullName>
@@ -2251,7 +2307,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Name value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
+        <value>The Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping that specifies this Name. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameNotFoundFix</fullName>
@@ -2259,7 +2315,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
+        <value>The Reciprocal Relationships mapping for {0} isn&apos;t valid. In EDA Settings | Relationships, edit the mapping that specifies this Name to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameNotUniqueDesc</fullName>
@@ -2274,8 +2330,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended Fix when Name isn&apos;t unique in reciprocal settings</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, look for multiple rows specifying {0} ({1}) in the Name column. Edit those reciprocal settings so that this Name value appears in only one reciprocal setting row.</value>
+        <shortDescription>Recommended fix when the reciprocal setting's Name value isn&apos;t unique</shortDescription>
+        <value>In EDA Settings | Relationships, look in the Reciprocal Relationships table for multiple mappings with the Name {0} ({1}). Edit those mappings so that only one mapping uses this Name.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameTitle</fullName>
@@ -2307,7 +2363,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Neutral value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
+        <value>The picklist value for Neutral in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNeutralNotFoundFix</fullName>
@@ -2315,7 +2371,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
+        <value>The picklist value for Neutral in the Reciprocal Relationships mapping isn&apos;t valid. In EDA Settings | Relationships, edit the Neutral value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNeutralTitle</fullName>
@@ -2366,12 +2422,12 @@
         <value>Account Model</value>
     </labels>
     <labels>
-        <fullName>stgHealthCheckAction</fullName>
+        <fullName>stgHealthCheckA11y</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Launch Health Check action</shortDescription>
-        <value>Launch Health Check</value>
+        <shortDescription>Alt text for button that launches Settings Health Check</shortDescription>
+        <value>Go to Settings Health Check.</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckAffiliationMappings</fullName>
@@ -2522,7 +2578,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Settings Health Check component title</shortDescription>
+        <shortDescription>Label for the Settings Health Check card</shortDescription>
         <value>Settings Health Check</value>
     </labels>
     <labels>
@@ -3502,12 +3558,21 @@
         <shortDescription>Error msg used throughout Settings</shortDescription>
         <value>Error</value>
     </labels>
+
+    <labels>
+        <fullName>stgTrailheadTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Trailhead card</shortDescription>
+        <value>Trailhead</value>
+    </labels>
     <labels>
         <fullName>stgVideosTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the videos Tile</shortDescription>
+        <shortDescription>Label for the YouTube card</shortDescription>
         <value>Youtube</value>
     </labels>
     <labels>

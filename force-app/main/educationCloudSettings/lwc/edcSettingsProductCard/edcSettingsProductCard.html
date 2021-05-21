@@ -10,13 +10,13 @@
                     fallback-icon-name={iconFallbackName}
                     aria-hidden="true"
                 ></lightning-avatar>
-                <span class="slds-text-body_large slds-p-left_small">{title}</span>
+                <span class="slds-text-heading_small slds-var-p-left_small">{title}</span>
             </div>
         </h3>
         <!-- Card Body -->
         <div class="slds-grid slds-grid_vertical">
-            <div class="slds-col slds-m-horizontal_small"><p>{description}</p></div>
-            <div class="slds-col slds-m-horizontal_small slds-m-top_small slds-scrollable_x">
+            <div class="slds-col slds-var-m-horizontal_small"><p>{description}</p></div>
+            <div class="slds-col slds-var-m-horizontal_small slds-var-m-top_small slds-scrollable_x">
                 <lightning-button-group>
                     <lightning-button
                         if:true={settingsComponent}

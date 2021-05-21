@@ -821,27 +821,27 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label>Vahvist EDA-asetuksissa määritetty Hallintatilin tietuetyyppi Tilit ja yhteyshenkilöt -välilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aseta tietuetyyppi aktiiviseksi. Jos se ei ole oikein, muuta Hallintatilin tietuetyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksissa Tilit ja yhteyshenkilöt -välilehden Hallintatilin tietuetyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
+        <label><!-- Recommended fix when Health Check can't find Administrative Account Record Type --></label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista EDA-asetuksissa määritetty Oletustilimalli-tietuetyyppi Järjestelmä-välilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aseta tietuetyyppi aktiiviseksi. Jos se ei ole oikein, muuta Oletustilimalli kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksissa Järjestelmä-välilehden Oletustilimalli kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista EDA-asetuksissa määritetty Kotitaloustilitietueen tyyppi Tilit ja yhteyshenkilöt -välilehdestä. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aseta tietuetyyppi aktiiviseksi. Jos se ei ole oikein, muuta Kotitaloustilitietueen tyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
+        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksissa Tilit ja yhteyshenkilöt -välilehden Kotitaloustilitietueen tyyppi kelvolliseksi, aktiiviseksi tietuetyypiksi.</label>
+        <label><!-- Recommended fix when Health Check can't find the Household Account Record Type --></label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -853,7 +853,7 @@
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksista Tilit ja yhteyshenkilöt -välilehdeltä joko Hallintatilin tietuetyyppi tai Kotitaloustilitietueen tyyppi, jotta kumpikin määrittää yksilöllistä tietuetyyppiä.</label>
+        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1037,11 +1037,11 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista vastavuoroiset asetukset kohteelle {0} ({1}), jotka on määritetty EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdellä. Jos {0} ({1}) on oikein Nainen-arvolle, siirry suhdeobjektin tyypin kenttään Salesforcen Määritykset-valikossa ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Nainen-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisen asetuksen Female-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value doesn't exist --></label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1049,11 +1049,11 @@
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista vastavuoroiset asetukset kohteelle {0} ({1}), jotka on määritetty EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdellä. Jos {0} ({1}) on oikein Mies-arvolle, siirry suhdeobjektin tyypin kenttään Salesforcen Määritykset-valikossa ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Nainen-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value is inactive --></label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisuuden asetuksen Male-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value doesn't exist --></label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1061,11 +1061,11 @@
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista vastavuoroiset asetukset kohteelle {0} ({1}), jotka on määritetty EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdellä. Jos {0} ({1}) on oikein, siirry suhdeobjektin tyypin kenttään Salesforcen Määritykset-valikossa ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Nimi-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value is inactive --></label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisuuden asetuksen Nimi-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value doesn't exist --></label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1073,7 +1073,7 @@
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Hae EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä useita rivejä, jotka määrittävät {0} ({1}) Nimi-sarakkeessa. Muokkaa kyseisiä vastavuoroisia asetuksia siten, että kyseinen Nimi-arvo näkyy ainoastaan yhdellä vastavuoroisen asetuksen rivillä.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value isn't unique --></label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1089,11 +1089,11 @@
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label>Vahvista vastavuoroiset asetukset kohteelle {0} ({1}), jotka on määritetty EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdellä. Jos {0} ({1}) on oikein, siirry suhdeobjektin tyypin kenttään Salesforcen Määritykset-valikossa ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Neutraali-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value is inactive --></label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Muuta EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdeltä vastaavan vastavuoroisuuden asetuksen Neutraali-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value doesn't exist --></label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
