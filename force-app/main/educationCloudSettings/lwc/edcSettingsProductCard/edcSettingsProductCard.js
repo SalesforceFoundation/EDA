@@ -3,11 +3,11 @@ import { NavigationMixin } from "lightning/navigation";
 
 //Settings Card Labels
 import stgBtnSettings from "@salesforce/label/c.stgBtnSettings";
-import stgBtnSettingsAction from "@salesforce/label/c.stgBtnSettingsAction";
+import stgBtnSettingsActionA11y from "@salesforce/label/c.stgBtnSettingsActionA11y";
 import stgBtnDocumentation from "@salesforce/label/c.stgBtnDocumentation";
-import stgBtnDocumentationAction from "@salesforce/label/c.stgBtnDocumentationAction";
+import stgBtnDocumentationActionA11y from "@salesforce/label/c.stgBtnDocumentationActionA11y";
 import stgBtnTrailhead from "@salesforce/label/c.stgBtnTrailhead";
-import stgBtnTrailheadAction from "@salesforce/label/c.stgBtnTrailheadAction";
+import stgBtnTrailheadActionA11y from "@salesforce/label/c.stgBtnTrailheadActionA11y";
 
 export default class EdcSettingsCard extends NavigationMixin(LightningElement) {
     iconSize = "medium";
@@ -27,11 +27,11 @@ export default class EdcSettingsCard extends NavigationMixin(LightningElement) {
 
     labelReference = {
         settingsButton: stgBtnSettings,
-        settingsButtonA11y: stgBtnSettingsAction,
+        settingsButtonA11y: stgBtnSettingsActionA11y,
         documentationButton: stgBtnDocumentation,
-        documentationButtonA11y: stgBtnDocumentationAction,
+        documentationButtonA11y: stgBtnDocumentationActionA11y,
         trailheadButton: stgBtnTrailhead,
-        trailheadButtonA11y: stgBtnTrailheadAction,
+        trailheadButtonA11y: stgBtnTrailheadActionA11y,
     };
 
     handleSettingsClick(event) {
