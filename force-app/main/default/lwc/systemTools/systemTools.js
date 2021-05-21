@@ -229,7 +229,11 @@ export default class systemTools extends LightningElement {
     runCourseDescriptionCopyBatch() {
         runCourseDescriptionCopyBatchJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.toastMessageForDataMigration);
+                this.showToast(
+                    "success",
+                    this.labelReference.toastSuccessMessage,
+                    this.labelReference.toastMessageForDataMigration
+                );
             })
 
             .catch((error) => {
@@ -240,7 +244,11 @@ export default class systemTools extends LightningElement {
     runHouseHoldNamingRefreshBatch() {
         runRefreshHouseholdAccountNamingJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.stgRefreshHouseholdNamesSuccessToast);
+                this.showToast(
+                    "success",
+                    this.labelReference.toastSuccessMessage,
+                    this.labelReference.stgRefreshHouseholdNamesSuccessToast
+                );
             })
 
             .catch((error) => {
@@ -251,7 +259,11 @@ export default class systemTools extends LightningElement {
     runPreferredEmailPhoneCleanUpBatch() {
         runPreferredPhoneAndEmailCleanupJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.stgPreferredPhoneEmailSuccessToast);
+                this.showToast(
+                    "success",
+                    this.labelReference.toastSuccessMessage,
+                    this.labelReference.stgPreferredPhoneEmailSuccessToast
+                );
             })
 
             .catch((error) => {
@@ -262,7 +274,11 @@ export default class systemTools extends LightningElement {
     runEthnicityAndRaceBackfillBatch() {
         runEthnicityAndRaceBackfillJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.ethnicityAndRaceBackfillToast);
+                this.showToast(
+                    "success",
+                    this.labelReference.toastSuccessMessage,
+                    this.labelReference.ethnicityAndRaceBackfillToast
+                );
             })
 
             .catch((error) => {
