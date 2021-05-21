@@ -521,6 +521,18 @@
         <name>stgAutoEnrollmentNewSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Delete auto-enrollment mapping window confirmation text --></label>
+        <name>stgAutoEnrollmentDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title of the Delete Auto Enrollment mapping window --></label>
+        <name>stgAutoEnrollmentDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an auto-enrollment mapping is deleted --></label>
+        <name>stgAutoEnrollmentDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Info text for Account Record Type picklist --></label>
         <name>stgAccountRecordTypeHelp</name>
     </customLabels>
@@ -805,27 +817,27 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el Tipo de registro de cuenta administrativa especificado en Configuración de EDA, en la ficha Cuentas y Contactos. Si {0} ({1}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el Tipo de registro de cuenta administrativa a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la ficha Cuentas y Contactos, cambie el Tipo de registro de cuenta administrativa a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when Health Check can't find Administrative Account Record Type --></label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el tipo de registro de Modelo de cuenta predeterminado especificado en Configuración de EDA, en la ficha Sistema. Si {0} ({1}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el Modelo de cuenta predeterminado a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la ficha Sistema, cambie el Modelo de cuenta predeterminado a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el Tipo de registro de cuenta doméstica especificado en Configuración de EDA, en la ficha Cuentas y Contactos. Si {0} ({1}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el Tipo de registro de cuenta doméstica a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la ficha Cuentas y Contactos, cambie el Tipo de registro de cuenta doméstica a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when Health Check can't find the Household Account Record Type --></label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -837,7 +849,7 @@
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la ficha Cuentas y Contactos, cambie el Tipo de registro de cuenta administrativa o el Tipo de registro de cuenta administrativa doméstica de modo que cada uno especifique un tipo de registro exclusivo.</label>
+        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -885,7 +897,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el {0} ({1}) especificado para una Función de Inscripción automática de la asignación de Afiliación, en Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones. Si {0} ({1}) es correcto, vaya al campo Función del objeto Afiliación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie Función de Inscripción automática a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Role isn't active --></label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -893,7 +905,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, cambie la Función de Inscripción automática a un valor de lista de selección activo y válido para el campo Función del objeto Afiliación.</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role --></label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -909,7 +921,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el {0} ({1}) especificado para un Estado de Inscripción automática de la asignación de Afiliación, en Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones. Si {0} ({1}) es correcto, vaya al campo Estado del objeto Afiliación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie Estado de Inscripción automática a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -917,7 +929,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Asignaciones de afiliaciones de la ficha Afiliaciones, cambie el Estado de Inscripción automática a un valor de lista de selección activo y válido para el campo Estado del objeto Afiliación.</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status --></label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -965,15 +977,15 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Active Enlaces de cursos, que incluye la configuración de los tipos de registro Enlace de curso. Para obtener detalles, consulte Configurar enlace de cursos en la documentación de EDA.</label>
+        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el Tipo de registro de facultad predeterminado especificado en Configuración de EDA, en la subficha Configuración de la ficha Enlaces de cursos. Si {1} ({0}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el Tipo de registro de facultad predeterminado a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración de la ficha Enlaces de cursos, cambie el Tipo de registro de facultad predeterminado a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -981,7 +993,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración de la ficha Enlaces de cursos, cambie el Tipo de registro de facultad predeterminado o el Tipo de registro de estudiante activo predeterminado de modo que cada uno especifique un tipo de registro exclusivo.</label>
+        <label><!-- Recommended fix when student and faculty Course Connection record types match  --></label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -993,11 +1005,11 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Verifique el Tipo de registro de estudiante activo predeterminado especificado en Configuración de EDA, en la subficha Configuración de la ficha Enlaces de cursos. Si {1} ({0}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el Tipo de registro de estudiante activo predeterminado a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración de la ficha Enlaces de cursos, cambie el Tipo de registro de estudiante activo predeterminado a un tipo de registro activo y válido.</label>
+        <label><!-- Recommended fix when Health Check can't find Default Student Record Type --></label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1021,11 +1033,11 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>Verifique la configuración recíproca para {0} ({1}) especificada en Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones. Si {0} ({1}) es correcto para Femenino, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Femenino de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Female de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value doesn't exist --></label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1033,11 +1045,11 @@
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Verifique la configuración recíproca para {0} ({1}) especificada en Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones. Si {0} ({1}) es correcto para Masculino, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Masculino de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value is inactive --></label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Male de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value doesn't exist --></label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1045,11 +1057,11 @@
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Verifique la configuración recíproca para {0} ({1}) especificada en Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones. Si {0} ({1}) es correcto, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Nombre de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value is inactive --></label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Nombre de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value doesn't exist --></label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1057,7 +1069,7 @@
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, busque múltiples filas que especifiquen {0} ({1}) en la columna Nombre. Modifique esa configuración recíproca de modo que este valor Nombre aparezca solo en una fila de configuración recíproca.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value isn't unique --></label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1073,11 +1085,11 @@
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label>Verifique la configuración recíproca para {0} ({1}) especificada en Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones. Si {0} ({1}) es correcto, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Neutro de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value is inactive --></label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>En Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones, cambie el valor de Neutro de la configuración recíproca correspondiente a un valor de lista de selección activo y válido.</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value doesn't exist --></label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
