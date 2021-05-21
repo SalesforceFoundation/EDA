@@ -1,183 +1,177 @@
 <template>
-    <div class="slds-grid--vertical slds-theme_default">
-        <div class="slds-col slds-p-top_large slds-p-left_small">
-            <c-settings-save-canvas
-                component-title={labelReference.accountModelSettingsTitle}
-                onsettingseditmodechange={handleSettingsEditModeChange}
-                onsettingssaving={handleSettingsSaving}
-                onsettingssavecancel={handleSettingsSaveCancel}
-                onsettingssavecompleted={handleSettingsSaveCompleted}
+    <c-settings-save-canvas
+        component-title={labelReference.accountModelSettingsTitle}
+        onsettingseditmodechange={handleSettingsEditModeChange}
+        onsettingssaving={handleSettingsSaving}
+        onsettingssavecancel={handleSettingsSaveCancel}
+        onsettingssavecompleted={handleSettingsSaveCompleted}
+    >
+        <!-- Body of Account Model Settings page (populates Slot in child component) -->
+        <template if:true={accountModelSettingsVModel}>
+            <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                <!-- Default Account Record Type Setting -->
+                <c-settings-row-input
+                    class="slds-size_3-of-3"
+                    title={labelReference.defaultAccountModelTitle}
+                    description={labelReference.defaultAccountModelDescription}
+                    type="combobox"
+                    input-id={inputAttributeReference.defaultAccountModelComboboxId}
+                    value={accountModelSettingsVModel.defaultAccountRecordType.value}
+                    placeholder={labelReference.comboboxPlaceholderText}
+                    options={accountModelSettingsVModel.defaultAccountRecordType.options}
+                    onsettingsinputchange={handleDefaultAccountModelChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+
+                <!-- Administrative Account Record Type Setting -->
+                <c-settings-row-input
+                    class="slds-size_3-of-3"
+                    title={labelReference.adminAccountModelTitle}
+                    description={labelReference.adminAccountModelDescription}
+                    type="combobox"
+                    input-id={inputAttributeReference.adminAccountModelComboboxId}
+                    value={accountModelSettingsVModel.adminAccountRecordType.value}
+                    placeholder={labelReference.comboboxPlaceholderText}
+                    options={accountModelSettingsVModel.adminAccountRecordType.options}
+                    onsettingsinputchange={handleAdministrativeAccountModelChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+
+                <!-- Household Account Record Type Setting -->
+                <c-settings-row-input
+                    class="slds-size_3-of-3"
+                    title={labelReference.hhAccountModelTitle}
+                    description={labelReference.hhAccountModelDescription}
+                    type="combobox"
+                    input-id={inputAttributeReference.hhAccountModelComboboxId}
+                    value={accountModelSettingsVModel.householdAccountRecordType.value}
+                    placeholder={labelReference.comboboxPlaceholderText}
+                    options={accountModelSettingsVModel.householdAccountRecordType.options}
+                    onsettingsinputchange={handleHouseholdAccountModelChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+            </div>
+        </template>
+
+        <!-- Account Auto Deletion Settings -->
+        <template if:true={accountAutoDeletionSettingsVModel}>
+            <c-settings-row-dual-listbox
+                class="slds-size_3-of-3"
+                title={labelReference.accountAutoDeletionTitle}
+                description={labelReference.accountAutoDeletionDescription}
+                label={labelReference.accountAutoDeletionLisboxGroupHeading}
+                dual-listbox-id={inputAttributeReference.accountAutoDeletionDualListboxId}
+                source-label={labelReference.accountAutoDeletionAvailableValuesHeading}
+                selected-label={labelReference.accountAutoDeletionSelectedValuesHeading}
+                options={accountAutoDeletionSettingsVModel.options}
+                value={accountAutoDeletionSettingsVModel.value}
+                onsettingsduallistboxchange={handleAccountAutoDeletionChange}
+                disabled={affordancesDisabled}
             >
-                <!-- Body of Account Model Settings page (populates Slot in child component) -->
-                <template if:true={accountModelSettingsVModel}>
-                    <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
-                        <!-- Default Account Record Type Setting -->
-                        <c-settings-row-input
-                            class="slds-size_3-of-3"
-                            title={labelReference.defaultAccountModelTitle}
-                            description={labelReference.defaultAccountModelDescription}
-                            type="combobox"
-                            input-id={inputAttributeReference.defaultAccountModelComboboxId}
-                            value={accountModelSettingsVModel.defaultAccountRecordType.value}
-                            placeholder={labelReference.comboboxPlaceholderText}
-                            options={accountModelSettingsVModel.defaultAccountRecordType.options}
-                            onsettingsinputchange={handleDefaultAccountModelChange}
-                            disabled={affordancesDisabled}
-                        ></c-settings-row-input>
+            </c-settings-row-dual-listbox>
+        </template>
 
-                        <!-- Administrative Account Record Type Setting -->
-                        <c-settings-row-input
-                            class="slds-size_3-of-3"
-                            title={labelReference.adminAccountModelTitle}
-                            description={labelReference.adminAccountModelDescription}
-                            type="combobox"
-                            input-id={inputAttributeReference.adminAccountModelComboboxId}
-                            value={accountModelSettingsVModel.adminAccountRecordType.value}
-                            placeholder={labelReference.comboboxPlaceholderText}
-                            options={accountModelSettingsVModel.adminAccountRecordType.options}
-                            onsettingsinputchange={handleAdministrativeAccountModelChange}
-                            disabled={affordancesDisabled}
-                        ></c-settings-row-input>
+        <template if:true={accountNamingSettingsVModel}>
+            <!-- Administrative Account Naming -->
+            <div class="slds-size_3-of-3 slds-p-right_x-large">
+                <c-settings-sub-heading sub-heading={labelReference.adminAccountNamingTitle}> </c-settings-sub-heading>
+            </div>
+            <c-settings-row-input
+                class="slds-size_3-of-3"
+                title={labelReference.adminAccountNameFormatHeading}
+                description={adminAccDesc}
+                type="combobox"
+                input-id={inputAttributeReference.adminAccountNamingFormatComboboxId}
+                value={accountNamingSettingsVModel.administrativeAccountNameFormat.value}
+                placeholder={labelReference.comboboxPlaceholderText}
+                options={accountNamingSettingsVModel.administrativeAccountNameFormat.options}
+                onsettingsinputchange={handleAdministrativeAccountNamingChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
 
-                        <!-- Household Account Record Type Setting -->
-                        <c-settings-row-input
-                            class="slds-size_3-of-3"
-                            title={labelReference.hhAccountModelTitle}
-                            description={labelReference.hhAccountModelDescription}
-                            type="combobox"
-                            input-id={inputAttributeReference.hhAccountModelComboboxId}
-                            value={accountModelSettingsVModel.householdAccountRecordType.value}
-                            placeholder={labelReference.comboboxPlaceholderText}
-                            options={accountModelSettingsVModel.householdAccountRecordType.options}
-                            onsettingsinputchange={handleHouseholdAccountModelChange}
-                            disabled={affordancesDisabled}
-                        ></c-settings-row-input>
-                    </div>
+            <!-- Admin Account Naming Custom format -->
+            <template if:true={showCustomAdministrativeAccountNaming}>
+                <c-settings-row-input
+                    class="slds-size_3-of-3 slds-p-bottom_x-large"
+                    type="text"
+                    help-text={labelReference.adminAccountCustomNameFormatDescription}
+                    label={labelReference.adminAccountCustomNameFormatHeading}
+                    input-id={inputAttributeReference.adminAccountCustomNamingFormatTextBoxId}
+                    value={accountNamingSettingsVModel.customAdministrativeAccountNameFormat}
+                    onsettingsinputchange={handleAdministrativeAccountCustomNamingChange}
+                    disabled={affordancesDisabled}
+                    variant={inputVariant}
+                ></c-settings-row-input>
+            </template>
+
+            <!-- Household Account Naming -->
+
+            <div class="slds-size_3-of-3 slds-p-right_x-large">
+                <c-settings-sub-heading sub-heading={labelReference.hhAccountNamingTitle}> </c-settings-sub-heading>
+            </div>
+            <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
+                <c-settings-row-input
+                    class="slds-size_3-of-3"
+                    title={labelReference.hhAccountNameFormatHeading}
+                    description={hhAccDesc}
+                    type="combobox"
+                    input-id={inputAttributeReference.hhAccountNamingFormatComboboxId}
+                    value={accountNamingSettingsVModel.householdAccountNameFormat.value}
+                    placeholder={labelReference.comboboxPlaceholderText}
+                    options={accountNamingSettingsVModel.householdAccountNameFormat.options}
+                    onsettingsinputchange={handleHouseholdAccountNamingChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+
+                <!-- HH Account Naming Custom format -->
+                <template if:true={showCustomHouseholdAccountNaming}>
+                    <c-settings-row-input
+                        class="slds-size_3-of-3 slds-p-bottom_x-large"
+                        type="text"
+                        help-text={labelReference.hhAccountCustomNameFormatDescription}
+                        label={labelReference.hhAccountCustomNameFormatHeading}
+                        input-id={inputAttributeReference.hhAccountCustomNamingFormatTextBoxId}
+                        value={accountNamingSettingsVModel.customHouseholdAccountNameFormat}
+                        onsettingsinputchange={handleHouseholdAccountCustomNamingChange}
+                        disabled={affordancesDisabled}
+                        variant={inputVariant}
+                    ></c-settings-row-input>
                 </template>
 
-                <!-- Account Auto Deletion Settings -->
-                <template if:true={accountAutoDeletionSettingsVModel}>
+                <c-settings-row-input
+                    class="slds-size_3-of-3"
+                    title={labelReference.hhAutomaticAccountNamingTitle}
+                    label={labelReference.hhAutomaticAccountNamingTitle}
+                    description={labelReference.hhAutomaticAccountNamingDescription}
+                    type="toggle"
+                    input-id={inputAttributeReference.autoHHAccountNamingToggleId}
+                    value={accountNamingSettingsVModel.autoHouseholdAccountNamingEnabled}
+                    onsettingsinputchange={handleHouseholdAccountAutoNamingChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+
+                <!-- Lead Conversion Account Naming Settings -->
+                <div class="slds-size_3-of-3 slds-p-right_x-large">
+                    <c-settings-sub-heading sub-heading={labelReference.leadConversionAccountNamingTitle}>
+                    </c-settings-sub-heading>
+                </div>
+                <template if:true={leadConversionAccountNamingSettingsVModel}>
                     <c-settings-row-dual-listbox
                         class="slds-size_3-of-3"
-                        title={labelReference.accountAutoDeletionTitle}
-                        description={labelReference.accountAutoDeletionDescription}
+                        title={labelReference.leadConversionAccountNaming}
+                        description={labelReference.leadConversionAccountNamingDescription}
                         label={labelReference.accountAutoDeletionLisboxGroupHeading}
-                        dual-listbox-id={inputAttributeReference.accountAutoDeletionDualListboxId}
+                        dual-listbox-id={inputAttributeReference.leadAccountNamingDualListboxId}
                         source-label={labelReference.accountAutoDeletionAvailableValuesHeading}
                         selected-label={labelReference.accountAutoDeletionSelectedValuesHeading}
-                        options={accountAutoDeletionSettingsVModel.options}
-                        value={accountAutoDeletionSettingsVModel.value}
-                        onsettingsduallistboxchange={handleAccountAutoDeletionChange}
+                        options={leadConversionAccountNamingSettingsVModel.options}
+                        value={leadConversionAccountNamingSettingsVModel.value}
+                        onsettingsduallistboxchange={handleLeadNamingAccountChange}
                         disabled={affordancesDisabled}
                     >
                     </c-settings-row-dual-listbox>
                 </template>
-
-                <template if:true={accountNamingSettingsVModel}>
-                    <!-- Administrative Account Naming -->
-                    <div class="slds-size_3-of-3 slds-p-right_x-large">
-                        <c-settings-sub-heading sub-heading={labelReference.adminAccountNamingTitle}>
-                        </c-settings-sub-heading>
-                    </div>
-                    <c-settings-row-input
-                        class="slds-size_3-of-3"
-                        title={labelReference.adminAccountNameFormatHeading}
-                        description={adminAccDesc}
-                        type="combobox"
-                        input-id={inputAttributeReference.adminAccountNamingFormatComboboxId}
-                        value={accountNamingSettingsVModel.administrativeAccountNameFormat.value}
-                        placeholder={labelReference.comboboxPlaceholderText}
-                        options={accountNamingSettingsVModel.administrativeAccountNameFormat.options}
-                        onsettingsinputchange={handleAdministrativeAccountNamingChange}
-                        disabled={affordancesDisabled}
-                    ></c-settings-row-input>
-
-                    <!-- Admin Account Naming Custom format -->
-                    <template if:true={showCustomAdministrativeAccountNaming}>
-                        <c-settings-row-input
-                            class="slds-size_3-of-3 slds-p-bottom_x-large"
-                            type="text"
-                            help-text={labelReference.adminAccountCustomNameFormatDescription}
-                            label={labelReference.adminAccountCustomNameFormatHeading}
-                            input-id={inputAttributeReference.adminAccountCustomNamingFormatTextBoxId}
-                            value={accountNamingSettingsVModel.customAdministrativeAccountNameFormat}
-                            onsettingsinputchange={handleAdministrativeAccountCustomNamingChange}
-                            disabled={affordancesDisabled}
-                            variant={inputVariant}
-                        ></c-settings-row-input>
-                    </template>
-
-                    <!-- Household Account Naming -->
-
-                    <div class="slds-size_3-of-3 slds-p-right_x-large">
-                        <c-settings-sub-heading sub-heading={labelReference.hhAccountNamingTitle}>
-                        </c-settings-sub-heading>
-                    </div>
-                    <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
-                        <c-settings-row-input
-                            class="slds-size_3-of-3"
-                            title={labelReference.hhAccountNameFormatHeading}
-                            description={hhAccDesc}
-                            type="combobox"
-                            input-id={inputAttributeReference.hhAccountNamingFormatComboboxId}
-                            value={accountNamingSettingsVModel.householdAccountNameFormat.value}
-                            placeholder={labelReference.comboboxPlaceholderText}
-                            options={accountNamingSettingsVModel.householdAccountNameFormat.options}
-                            onsettingsinputchange={handleHouseholdAccountNamingChange}
-                            disabled={affordancesDisabled}
-                        ></c-settings-row-input>
-
-                        <!-- HH Account Naming Custom format -->
-                        <template if:true={showCustomHouseholdAccountNaming}>
-                            <c-settings-row-input
-                                class="slds-size_3-of-3 slds-p-bottom_x-large"
-                                type="text"
-                                help-text={labelReference.hhAccountCustomNameFormatDescription}
-                                label={labelReference.hhAccountCustomNameFormatHeading}
-                                input-id={inputAttributeReference.hhAccountCustomNamingFormatTextBoxId}
-                                value={accountNamingSettingsVModel.customHouseholdAccountNameFormat}
-                                onsettingsinputchange={handleHouseholdAccountCustomNamingChange}
-                                disabled={affordancesDisabled}
-                                variant={inputVariant}
-                            ></c-settings-row-input>
-                        </template>
-
-                        <c-settings-row-input
-                            class="slds-size_3-of-3"
-                            title={labelReference.hhAutomaticAccountNamingTitle}
-                            label={labelReference.hhAutomaticAccountNamingTitle}
-                            description={labelReference.hhAutomaticAccountNamingDescription}
-                            type="toggle"
-                            input-id={inputAttributeReference.autoHHAccountNamingToggleId}
-                            value={accountNamingSettingsVModel.autoHouseholdAccountNamingEnabled}
-                            onsettingsinputchange={handleHouseholdAccountAutoNamingChange}
-                            disabled={affordancesDisabled}
-                        ></c-settings-row-input>
-
-                        <!-- Lead Conversion Account Naming Settings -->
-                        <div class="slds-size_3-of-3 slds-p-right_x-large">
-                            <c-settings-sub-heading sub-heading={labelReference.leadConversionAccountNamingTitle}>
-                            </c-settings-sub-heading>
-                        </div>
-                        <template if:true={leadConversionAccountNamingSettingsVModel}>
-                            <c-settings-row-dual-listbox
-                                class="slds-size_3-of-3"
-                                title={labelReference.leadConversionAccountNaming}
-                                description={labelReference.leadConversionAccountNamingDescription}
-                                label={labelReference.accountAutoDeletionLisboxGroupHeading}
-                                dual-listbox-id={inputAttributeReference.leadAccountNamingDualListboxId}
-                                source-label={labelReference.accountAutoDeletionAvailableValuesHeading}
-                                selected-label={labelReference.accountAutoDeletionSelectedValuesHeading}
-                                options={leadConversionAccountNamingSettingsVModel.options}
-                                value={leadConversionAccountNamingSettingsVModel.value}
-                                onsettingsduallistboxchange={handleLeadNamingAccountChange}
-                                disabled={affordancesDisabled}
-                            >
-                            </c-settings-row-dual-listbox>
-                        </template>
-                    </div>
-                </template>
-            </c-settings-save-canvas>
-        </div>
-    </div>
+            </div>
+        </template>
+    </c-settings-save-canvas>
 </template>

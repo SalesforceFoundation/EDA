@@ -14,6 +14,10 @@ export default class HealthCheckHighlightsPanel extends NavigationMixin(Lightnin
         educationCloudSettings: EDCSettingsContainerAuraComponentLabel,
     };
 
+    iconReference = {
+        highlightsIcon: "custom:custom94",
+    };
+
     get edaComponentNavigationPrefix() {
         const apiName = namespacedEDAField.fieldApiName;
         const navigationPrefix = apiName.replace("Course_Offering__c", "");
