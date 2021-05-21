@@ -1,13 +1,13 @@
 <template>
     <div class="slds-grid slds-wrap eda-height_full">
-        <div class="slds-col slds-size_12-of-12 slds-m-bottom_small">
+        <div class="slds-col slds-size_12-of-12 slds-var-m-bottom_small">
             <lightning-card>
                 <h3 slot="title">
                     <div class="slds-grid">
                         <div class="slds-col">
                             <lightning-icon icon-name="custom:custom64" size="medium"></lightning-icon>
                         </div>
-                        <div class="slds-col slds-grid slds-wrap slds-text-align_left slds-p-horizontal_small">
+                        <div class="slds-col slds-grid slds-wrap slds-text-align_left slds-var-p-horizontal_small">
                             <div class="slds-col slds-size_1-of-1 slds-text-body_regular">
                                 <a href="javascript:void(0);" onclick={handleSettingsClick}
                                     >{labelReference.edcSettings}</a
@@ -36,7 +36,7 @@
             </template>
             <template if:true={currentUserHasAccess}>
                 <div
-                    class="slds-col slds-size_4-of-12 slds-no-flex slds-scrollable_y slds-p-top_x-small slds-theme_default eda-height_full"
+                    class="slds-col slds-size_4-of-12 slds-no-flex slds-scrollable_y slds-var-p-top_x-small slds-theme_default eda-height_full"
                     data-qa-locator="edaSettingsNavigation"
                 >
                     <c-eda-settings-navigation
@@ -45,7 +45,7 @@
                     ></c-eda-settings-navigation>
                 </div>
                 <div
-                    class="slds-col slds-size_8-of-12 slds-no-flex slds-scrollable_y slds-p-top_large slds-p-left_small slds-theme_default eda-height_full"
+                    class="slds-col slds-size_8-of-12 slds-no-flex slds-scrollable_y slds-var-p-top_large slds-var-p-left_small slds-theme_default eda-height_full"
                     data-qa-locator="edaSettingsPage"
                 >
                     <template if:true={settingsPageToDisplay.accountModelSettings}>

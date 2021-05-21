@@ -28,6 +28,10 @@ import stgVideosTitle from "@salesforce/label/c.stgVideosTitle";
 import stgBtnVideos from "@salesforce/label/c.stgBtnVideos";
 import stgBtnVideosActionA11y from "@salesforce/label/c.stgBtnVideosActionA11y";
 
+import namespacedEDAField from "@salesforce/schema/Course_Offering_Schedule__c.Course_Offering__c";
+const EDASettingsContainerComponentName = "EdaSettingsContainer";
+const HealthCheckContainerComponentName = "HealthCheckContainer";
+
 const EDADocumentationUrl = "https://powerofus.force.com/s/article/EDA-Documentation";
 const EDATrailheadUrl = "https://trailhead.salesforce.com/en/content/learn/trails/highered_heda";
 
@@ -42,14 +46,32 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         toolsTitle: stgColTools,
     };
 
+    get edaComponentNavigationPrefix() {
+        const apiName = namespacedEDAField.fieldApiName;
+        const navigationPrefix = apiName.replace("Course_Offering__c", "");
+
+        if (navigationPrefix === "") {
+            return "c__";
+        }
+
+        return navigationPrefix;
+    }
+
+    get edaSettingsContainerComponentNavigation() {
+        return this.edaComponentNavigationPrefix + EDASettingsContainerComponentName;
+    }
+
+    get healthCheckContainerComponentNavigation() {
+        return this.edaComponentNavigationPrefix + HealthCheckContainerComponentName;
+    }
+
     @track edcProductModels = [
         {
             title: stgEDAAppTitle,
             description: stgEDAAppDesc,
-            //            iconSrc: "/bad/image/url.jpg",
             iconInitials: stgEDAAppInitials,
             iconFallbackName: "standard:avatar",
-            settingsComponent: "c__EdaSettingsContainer",
+            settingsComponent: this.edaSettingsContainerComponentNavigation,
             documentationUrl: EDADocumentationUrl,
             trailheadUrl: EDATrailheadUrl,
         },
@@ -62,7 +84,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
             buttonLabel: stgBtnHealthCheck,
             buttonTitle: stgHealthCheckA11y,
             navigationType: "standard__component",
-            navigationTarget: "c__HealthCheckContainer",
+            navigationTarget: this.healthCheckContainerComponentNavigation,
         },
     ];
 

@@ -8,7 +8,6 @@ import stgBtnDocumentation from "@salesforce/label/c.stgBtnDocumentation";
 import stgBtnDocumentationActionA11y from "@salesforce/label/c.stgBtnDocumentationActionA11y";
 import stgBtnTrailhead from "@salesforce/label/c.stgBtnTrailhead";
 import stgBtnTrailheadActionA11y from "@salesforce/label/c.stgBtnTrailheadActionA11y";
-
 export default class EdcSettingsCard extends NavigationMixin(LightningElement) {
     iconSize = "medium";
 
