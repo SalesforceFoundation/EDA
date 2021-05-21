@@ -9,6 +9,7 @@ import stgApiNameLabel from "@salesforce/label/c.stgApiNameLabel";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 import stgAutoEnrollmentNewModalBody from "@salesforce/label/c.stgAutoEnrollmentNewModalBody";
 import stgAccountRecordTypeHelp from "@salesforce/label/c.stgAccountRecordTypeHelp";
+import stgAutoEnrollmentDeleteModalBody from "@salesforce/label/c.stgAutoEnrollmentDeleteModalBody";
 //apex
 import getAccountRecordTypeComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAccountRecordTypeComboboxVModel";
 import getAutoEnrollmentMappingStatusComboboxVModel from "@salesforce/apex/ProgramSettingsController.getAutoEnrollmentMappingStatusComboboxVModel";
@@ -37,6 +38,7 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         comboboxPlaceholderText: stgOptSelect,
         modalBodyEdit: stgAutoEnrollmentEditModalBody,
         modalBodyCreate: stgAutoEnrollmentNewModalBody,
+        modalBodyDelete: stgAutoEnrollmentDeleteModalBody,
         apiNameDisplay: stgApiNameLabel,
         tellMeMoreLink: stgTellMeMoreLink,
         stgAccountRecordTypeHelp: stgAccountRecordTypeHelp,
@@ -148,11 +150,21 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
 
             case "create":
                 return this.labelReference.modalBodyCreate + " " + this.autoEnrollmentHyperLink;
+
+            case "delete":
+                return this.labelReference.modalBodyDelete
+                    .replace("{0}", this.oldAccountRecordType)
+                    .replace("{1}", this.autoProgramEnrollmentStatus)
+                    .replace("{2}", this.autoProgramEnrollmentRole);
         }
     }
 
     get modifyRecords() {
         return this.actionName === "edit" || this.actionName === "create";
+    }
+
+    get deleteRecords() {
+        return this.actionName === "delete";
     }
 
     get autoEnrollmentHyperLink() {
