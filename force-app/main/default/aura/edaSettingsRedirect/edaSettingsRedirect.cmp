@@ -5,10 +5,10 @@
     <lightning:navigation aura:id="navService" />
 
     <div class="slds-theme_default eda-height_full">
-        <c:illustrationGoingCamping
+        <c:lakeMountain
             title="{!$Label.c.stgEDASettingsHasMovedTitle}"
             description="{!v.settingsMovedDesc}"
-        ></c:illustrationGoingCamping>
+        ></c:lakeMountain>
 
         <div class="slds-align_absolute-center">
             <lightning:button
