@@ -712,6 +712,7 @@
         <label><!-- Section title for Course Connection Settings --></label>
         <name>stgCourseConnectionsTitle</name>
     </customLabels>
+    <customLabels>
         <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
         <name>stgHelpCourseConnectionBackfill</name>
     </customLabels>
