@@ -32,23 +32,46 @@
  * @date 2011 (1.x)
  * @group Utilities
  * @group-content ../../ApexDocContent/Utilities.htm
- * @description Controller class for EDA Settings redirect
+ * @description Class to act as a service layer for NamespaceController.
  */
-public virtual with sharing class NamespaceController {
+public virtual with sharing class NamespaceService {
     /**********************************************************************************
-     * @description Returns the namespace from STG_Base_CTRL.cls
+     * @description Instance for Singleton Pattern
      **********************************************************************************/
-    @AuraEnabled
-    public static String getNamespaceName() {
-        ApexClass classNameSpace = [SELECT NamespacePrefix FROM ApexClass WHERE Name = 'STG_Base_CTRL'];
-        return NamespaceController.locateNameSpaceService().getNamespacePrefix(classNameSpace.NamespacePrefix);
+    @TestVisible
+    private static NameSpaceService instance;
+
+    /**********************************************************************************
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************************/
+    protected NameSpaceService() {
     }
 
     /**********************************************************************************
-     * @description Locates and returns an instance of NameSpaceService
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of NameSpaceService.
      **********************************************************************************/
-    @TestVisible
-    private static NameSpaceService locateNameSpaceService() {
-        return NameSpaceService.getInstance();
+    public static NameSpaceService getInstance() {
+        if (instance == null) {
+            instance = new NameSpaceService();
+        }
+
+        return instance;
+    }
+
+    /**********************************************************************************
+     * @description Returns the namespace based on the input string
+     * *param classNameSpace The classNamespace to return namespace from
+     * @return Returns the namespace
+     **********************************************************************************/
+    public virtual String getNamespacePrefix(String classNameSpace) {
+        String nameSpacePrefix;
+        if (classNameSpace != null) {
+            nameSpacePrefix = classNameSpace + '__';
+        } else {
+            nameSpacePrefix = 'c__';
+        }
+
+        return nameSpacePrefix;
     }
 }

@@ -24,6 +24,7 @@
             type: "standard__component",
             attributes: {
                 componentName: namespace + "EducationCloudSettingsContainer"
+                //componentName: component.getType().split(":")[0] + "__" + "EducationCloudSettingsContainer"
             }
         };
         var navService = component.find("navService");
