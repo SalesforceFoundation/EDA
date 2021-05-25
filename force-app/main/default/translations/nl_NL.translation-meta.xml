@@ -709,8 +709,20 @@
         <name>stgCourseConnBackFillError</name>
     </customLabels>
     <customLabels>
-        <label>De backfill is in de wachtrij geplaatst.</label>
+        <label><!-- Confirmation message when Course Connection record types are queued for update --></label>
         <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
+        <name>stgHelpCourseConnectionBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Connection record types --></label>
+        <name>stgBtnRunCourseConnBackfillA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
+        <name>stgCourseConnectionBackfillModalTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Title for the Update Extended Description field confirmation window --></label>
@@ -1293,7 +1305,7 @@
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label>Gebruik de backfill voor cursusverbindingen alleen als u cursusverbindingen voor het eerst inschakelt voor organisaties waarin al voor het inschakelen van de cursusverbindingsfunctie een cursusaanbod en cursusverbindingen (inschrijvingen) bestonden. De backfill zet alle contactpersonen die op een cursusverbinding (inschrijving) of cursusaanbod als staflid stonden vermeld om naar het standaard recordtype voor stafleden. De backfill zet dan de contactpersonen op de resterende cursusverbindingen (inschrijvingen) om naar het standaard recordtype voor actieve studenten.</label>
+        <label><!-- Description of the Update Course Connection record types confirmation window --></label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
@@ -1643,7 +1655,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
+        <label><!-- Hyperlinked text to EDA documentation --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
@@ -1655,7 +1667,7 @@
         <name>stgTitleAppwideSettings</name>
     </customLabels>
     <customLabels>
-        <label>Backfill van cursusverbindingen</label>
+        <label><!-- Label for the Legacy Course Enrollment Data setting --></label>
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>

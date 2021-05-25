@@ -709,8 +709,20 @@
         <name>stgCourseConnBackFillError</name>
     </customLabels>
     <customLabels>
-        <label>Der Abgleich wurde erfolgreich in die Warteschlange gestellt.</label>
+        <label><!-- Confirmation message when Course Connection record types are queued for update --></label>
         <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
+        <name>stgHelpCourseConnectionBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Connection record types --></label>
+        <name>stgBtnRunCourseConnBackfillA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
+        <name>stgCourseConnectionBackfillModalTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Title for the Update Extended Description field confirmation window --></label>
@@ -1293,7 +1305,7 @@
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label>Der Abgleich für Kursverbindungen darf nur bei der erstmaligen Aktivierung von Kursverbindungen und nur in Organisationen zum Einsatz kommen, in denen Kursangebote und Kursverbindungen (Registrierungen) vor Aktivierung der Funktion &quot;Kursverbindungen&quot; vorhanden waren. Beim Abgleich werden alle Kontakte, die für eine Kursverbindung (Registrierung) oder ein Kursangebot als Lehrpersonal aufgeführt waren, in den Standard-Datensatztyp für Lehrpersonal konvertiert. Anschließend werden beim Abgleich die Kontakte in den verbleibenden Kursverbindungen (Registrierungen) in den Standard-Datensatztyp für aktive Studenten konvertiert.</label>
+        <label><!-- Description of the Update Course Connection record types confirmation window --></label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
@@ -1643,7 +1655,7 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
+        <label><!-- Hyperlinked text to EDA documentation --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
@@ -1655,7 +1667,7 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgTitleAppwideSettings</name>
     </customLabels>
     <customLabels>
-        <label>Abgleich für Kursverbindungen</label>
+        <label><!-- Label for the Legacy Course Enrollment Data setting --></label>
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
