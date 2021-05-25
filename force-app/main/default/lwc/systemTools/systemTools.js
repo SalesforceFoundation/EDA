@@ -5,6 +5,7 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import runRefreshHouseholdAccountNamingJob from "@salesforce/apex/AccountNamingBatchController.runRefreshHouseholdAccountNamingJob";
 import runRefreshAdministrativeAccountNamingJob from "@salesforce/apex/AccountNamingBatchController.runRefreshAdministrativeAccountNamingJob";
 import runEthnicityAndRaceBackfillJob from "@salesforce/apex/VersionCleanupBatchJobController.runEthnicityAndRaceBackfillJob";
+import runCourseConnectionBackfillJob from "@salesforce/apex/VersionCleanupBatchJobController.runCourseConnectionBackfillJob";
 import runCourseDescriptionCopyBatchJob from "@salesforce/apex/VersionCleanupBatchJobController.runCourseDescriptionCopyBatchJob";
 
 // System Settings Labels
@@ -45,6 +46,12 @@ import stgBtnUpdate from "@salesforce/label/c.stgBtnUpdate";
 import stgEthnicityRaceBackfillSuccessToast from "@salesforce/label/c.stgEthnicityRaceBackfillSuccessToast";
 import stgBtnRefreshEthnicityDataA11y from "@salesforce/label/c.stgBtnRefreshEthnicityDataA11y";
 
+// Course Connection backfill labels
+import stgTitleCourseConnectionBackfill from "@salesforce/label/c.stgTitleCourseConnectionBackfill";
+import stgHelpCourseConnectionBackfill from "@salesforce/label/c.stgHelpCourseConnectionBackfill";
+import stgBtnRunCourseConnBackfillA11y from "@salesforce/label/c.stgBtnRunCourseConnBackfillA11y";
+import stgCourseConnBackFillSuccess from "@salesforce/label/c.stgCourseConnBackFillSuccess";
+
 // Course Description Data Migration labels
 import stgTitleCoursesDescriptionDataMigration from "@salesforce/label/c.stgTitleCoursesDescriptionDataMigration";
 import stgHelpCoursesDataMigration from "@salesforce/label/c.stgHelpCoursesDataMigration";
@@ -53,6 +60,14 @@ import stgBtnRunCopyA11y from "@salesforce/label/c.stgBtnRunCopyA11y";
 import stgCourseDataMigrationModalTitle from "@salesforce/label/c.stgCourseDataMigrationModalTitle";
 import stgCourseDataMigrationModalBody from "@salesforce/label/c.stgCourseDataMigrationModalBody";
 import stgHelpCopyQueuedEmailSent from "@salesforce/label/c.stgHelpCopyQueuedEmailSent";
+
+// Links to the articles
+const accountNamingArtcile = '<a href="https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names">';
+const prefEmailPhoneArticle =
+    '<a href="https://powerofus.force.com/s/article/EDA-Configure-Email-Addresses-for-Contacts">';
+const ethinicityAndRaceBackFillArticle = '<a href="https://powerofus.force.com/s/article/EDA-Contact">';
+const courseConnArticle = '<a href="https://powerofus.force.com/s/article/EDA-Course-Connection">';
+
 export default class systemTools extends LightningElement {
     labelReference = {
         stgSystemToolsTitle: stgSystemToolsNav,
@@ -78,6 +93,10 @@ export default class systemTools extends LightningElement {
         stgBtnUpdate: stgBtnUpdate,
         ethnicityAndRaceBackfillToast: stgEthnicityRaceBackfillSuccessToast,
         ethnicityAndRaceBackTitleA11y: stgBtnRefreshEthnicityDataA11y,
+        courseConnectionBackfillTitle: stgTitleCourseConnectionBackfill,
+        courseConnectionBackfillDesc: stgHelpCourseConnectionBackfill,
+        courseConnBtnHelpTextForRunA11y: stgBtnRunCourseConnBackfillA11y,
+        toastMessageForCourseConnBackFill: stgCourseConnBackFillSuccess,
         courseDescriptionMigrationTitle: stgTitleCoursesDescriptionDataMigration,
         courseDescriptionMigrationHelpText: stgHelpCoursesDataMigration,
         btnLabelForRun: stgBtnRunCopy,
@@ -88,11 +107,7 @@ export default class systemTools extends LightningElement {
     };
 
     get adminAndHouseholdNamesHyperLink() {
-        return (
-            '<a href="https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names">' +
-            this.labelReference.tellMeMoreLink +
-            "</a>"
-        );
+        return accountNamingArtcile + this.labelReference.tellMeMoreLink + "</a>";
     }
 
     get houseHoldNamesRefreshDesc() {
@@ -104,11 +119,7 @@ export default class systemTools extends LightningElement {
     }
 
     get prefEmailPhoneHyperLink() {
-        return (
-            '<a href="https://powerofus.force.com/s/article/EDA-Configure-Email-Addresses-for-Contacts">' +
-            this.labelReference.tellMeMoreLink +
-            "</a>"
-        );
+        return prefEmailPhoneArticle + this.labelReference.tellMeMoreLink + "</a>";
     }
 
     get prefEmailPhoneDesc() {
@@ -116,13 +127,19 @@ export default class systemTools extends LightningElement {
     }
 
     get ethnicityAndBackFillHyperLink() {
-        return (
-            '<a href="https://powerofus.force.com/s/article/EDA-Contact">' + this.labelReference.tellMeMoreLink + "</a>"
-        );
+        return ethinicityAndRaceBackFillArticle + this.labelReference.tellMeMoreLink + "</a>";
     }
 
     get ethnicityAndBackFillDesc() {
         return this.labelReference.ethnicityAndRaceBackfillDescription + " " + this.ethnicityAndBackFillHyperLink;
+    }
+
+    get courseConnBackfillHyperLink() {
+        return courseConnArticle + this.labelReference.tellMeMoreLink + "</a>";
+    }
+
+    get courseConnBackfillDesc() {
+        return this.labelReference.courseConnectionBackfillDesc + " " + this.courseConnBackfillHyperLink;
     }
 
     hasRendered;
@@ -169,6 +186,12 @@ export default class systemTools extends LightningElement {
         this.dispatchSettingsBatchJobModalEvent(eventDetail, batchJobToRun);
     }
 
+    handleCourseConnectionBackFill(event) {
+        const eventDetail = event.detail;
+        const batchJobToRun = "CCON_ConnectionBackfill_BATCH";
+        this.dispatchSettingsBatchJobModalEvent(eventDetail, batchJobToRun);
+    }
+
     handleCourseDataMigration(event) {
         const eventDetail = event.detail;
         const batchJobToRun = "COUR_DescriptionCopy_BATCH";
@@ -202,6 +225,9 @@ export default class systemTools extends LightningElement {
                 break;
             case "CON_EthnicityRace_BATCH":
                 this.runEthnicityAndRaceBackfillBatch();
+                break;
+            case "CCON_ConnectionBackfill_BATCH":
+                this.runCourseConnectionBackFillBatch();
                 break;
             case "COUR_DescriptionCopy_BATCH":
                 this.runCourseDescriptionCopyBatch();
@@ -257,6 +283,17 @@ export default class systemTools extends LightningElement {
         runEthnicityAndRaceBackfillJob()
             .then((result) => {
                 this.showToast("success", "Success", this.labelReference.ethnicityAndRaceBackfillToast);
+            })
+
+            .catch((error) => {
+                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+            });
+    }
+
+    runCourseConnectionBackFillBatch() {
+        runCourseConnectionBackfillJob()
+            .then((result) => {
+                this.showToast("success", "Success", this.labelReference.toastMessageForCourseConnBackFill);
             })
 
             .catch((error) => {
