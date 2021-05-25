@@ -9,7 +9,7 @@ Suite Setup     Run keywords
 ...             Setup Test Data
 Suite Teardown  Capture screenshot and delete records and close browser
 
-Test Setup      Go to new eda settings
+Test Setup      Go to education cloud settings
 
 *** Keywords ***
 
@@ -27,7 +27,7 @@ Validate default account model settings is updated in hierarchy settings
     ...                     Settings page and the same record type is updated in hierarchy settings
     ...                     under custom settings.
     [tags]                                      unstable        W-9159697       rbt:high
-    Select settings from navigation pane        Account Model
+    Select settings from navigation pane        Account Model Settings
     Click action button on new EDA settings     Edit
     Update settings dropdown value              Default Account Model=Household Account
     Click action button on new EDA settings     Save

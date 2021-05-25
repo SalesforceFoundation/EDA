@@ -5,7 +5,7 @@ Library         cumulusci.robotframework.PageObjects
 Suite Setup     Open Test Browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
-Test Setup      Go to new eda settings
+Test Setup      Go to education cloud settings
 
 *** Variables ***
 ${fluency}                  Intermediate
@@ -17,7 +17,7 @@ Validate contact language fluency and default phone settings are updated in hier
     ...                     updated in EDA Settings page and the same record types are updated in
     ...                     hierarchy settings under custom settings.
     [tags]                                      unstable        W-9225304       rbt:high
-    Select settings from navigation pane        Contact Information
+    Select settings from navigation pane        Contact Information Settings
     Click action button on new EDA settings     Edit
     Update settings dropdown value
     ...                                         Contact Language Fluency=${fluency}

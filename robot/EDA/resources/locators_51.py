@@ -118,6 +118,9 @@ eda_lex_locators = {
         "settings_dropdown": "//label[text()='{}']/../descendant::span[text()='{}']",
         "select_from_list": "//div[text()='{}']/../following-sibling::div/descendant::div[contains(@class, 'list__options')]/descendant::span[text()='{}']",
         "move_to_selected": "//div[text()='{}']/../following-sibling::div/descendant::button[@type='button' and @title='Move selection to Selected Account Record Types']",
+        "tell_me_more": "//div[text()='{}']/../descendant::a[text()='{}']",
+        "toggle_status": "//span[text()='{}']/../ancestor::lightning-input",
+        "toggle_input": "//span[text()='{}']/../descendant::span[contains(@id, 'toggle')]",
     },
      "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
