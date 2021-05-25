@@ -37,7 +37,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Message when an Apex job can't run</shortDescription>
+        <shortDescription>Message when an Apex job can&apos;t run</shortDescription>
         <value>We couldn&apos;t run the Apex job.</value>
     </labels>
     <labels>
@@ -2580,7 +2580,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Description of the Update Course Connection record types confirmation window</shortDescription>
-        <value>Changes Faculty Course Connection records to the Default Faculty Record Type value, and all other Course Connection records to the Default Student Record Type value. </value>
+        <value>Changes Faculty Course Connection records to the Default Faculty Record Type value, and all other Course Connection records to the Default Student Record Type value.</value>
     </labels>
     <labels>
         <fullName>stgHelpCoursesDataMigration</fullName>
@@ -3276,7 +3276,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Hyperlinked text to EDA documentation about Affiliation mappings</shortDescription>
+        <shortDescription>Hyperlinked text to EDA documentation</shortDescription>
         <value>Tell Me More</value>
     </labels>
     <labels>
