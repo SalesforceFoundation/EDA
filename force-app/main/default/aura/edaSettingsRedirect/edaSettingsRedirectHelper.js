@@ -28,6 +28,17 @@
             }
         };
         var navService = component.find("navService");
+        // component.set("v.pageReference", pageReference);
+        // // Set the URL on the link or use the default if there's an error
+        // var defaultUrl = "#";
+        // navService.generateUrl(pageReference).then(
+        //     $A.getCallback(function (url) {
+        //         component.set("v.url", url ? url : defaultUrl);
+        //     }),
+        //     $A.getCallback(function (error) {
+        //         component.set("v.url", defaultUrl);
+        //     })
+        // );
         event.preventDefault();
         navService.navigate(pageReference);
     }
