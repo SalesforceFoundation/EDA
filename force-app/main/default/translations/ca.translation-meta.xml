@@ -37,7 +37,7 @@
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
-        <label>Aquest registre no es pot suprimir perquè té associat un o més registres relacionats. Suprimeix primer els registres associats i, a continuació, suprimeix aquest registre. Per determinar quins registres s’han de suprimir primer, fes clic a la pestanya Relacionats. Si no veus cap registre relacionat o no pots eliminar-los, posa&apos;t en contacte amb l&apos;administrador del sistema per obtenir ajuda.</label>
+        <label><!-- Error when deleting a record with child records --></label>
         <name>CannotDelete</name>
     </customLabels>
     <customLabels>
@@ -137,7 +137,7 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>Aquesta configuració us permet configurar relacions recíproques o la relació &quot;coincident&quot; entre dos contactes. Per exemple, si un pare està relacionat amb el seu fill, hi hauria d&apos;haver un registre addicional que mostri també el fill  relacionar amb el pare. Podeu especificar el valor Tipus de nom i especificar en quin valor recíproc s&apos;ha de basar en el sexe del contacte de connexió. Podeu definir els valors masculí,  femení o neutre per a cada configuració recíproca.</label>
+        <label><!-- Description of the Reciprocal Relationships setting --></label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
@@ -405,15 +405,15 @@
         <name>stgAffiliationsDeleteModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when an Affiliation mapping is deleted --></label>
+        <label><!-- Confirmation message when an Affiliation mapping is deleted --></label>
         <name>stgAffiliationsDeleteSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Edit Affiliation Mapping window --></label>
+        <label><!-- Description of the Edit Affiliation mapping window --></label>
         <name>stgAffiliationsEditModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Edit Affiliation Mapping window --></label>
+        <label><!-- Title for the Edit Affiliation mapping window --></label>
         <name>stgAffiliationsEditModalTitle</name>
     </customLabels>
     <customLabels>
@@ -421,15 +421,15 @@
         <name>stgAffiliationsEditSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the New Affiliation Mapping window --></label>
+        <label><!-- Description of the New Affiliation mapping window --></label>
         <name>stgAffiliationsNewModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when an Affiliation Mapping is created --></label>
+        <label><!-- Confirmation message when an Affiliation mapping is created --></label>
         <name>stgAffiliationsNewSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation Section title for Affiliations --></label>
+        <label><!-- Navigation title for Affiliations --></label>
         <name>stgAffiliationsSettingsNav</name>
     </customLabels>
     <customLabels>
@@ -569,7 +569,7 @@
         <name>stgBeforeRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for New Affiliation Mapping modal --></label>
+        <label><!-- Button label for New Affiliation mapping window --></label>
         <name>stgBtnAddMapping</name>
     </customLabels>
     <customLabels>
@@ -901,7 +901,7 @@
         <name>stgErrorInvalidSettings</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error Toast message when no record types for Program Auto Enrollment --></label>
+        <label><!-- Error message when no record types for Program Auto Enrollment --></label>
         <name>stgErrorNewAutoEnrollment</name>
     </customLabels>
     <customLabels>
@@ -1509,7 +1509,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>El mètode utilitzat per omplir el camp de tipus quan es crea una relació recíproca. &quot;Configuració de la llista&quot; utilitza la configuració personalitzada definida a la pestanya Relacions recíproques amb valors masculins, femenins i neutres. &quot;Inversió de valor&quot; inverteix el tipus del registre de relació original, si escau. Per exemple, si la relació originària és pare-fill, la relació recíproca serà fill-pare.</label>
+        <label><!-- Description for the Reciprocal Method setting --></label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
@@ -1565,11 +1565,11 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for People and Groups --></label>
+        <label><!-- Navigation title for People and Groups --></label>
         <name>stgPeopleAndGroupsNav</name>
     </customLabels>
     <customLabels>
-        <label>El treball Apex per lots ha processat {0} registres amb {1} errors.</label>
+        <label><!-- Body of email after Run Cleanup for preferred email/phone --></label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>
     <customLabels>
@@ -1657,7 +1657,7 @@
         <name>stgRefreshHouseholdNamesModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when Household Account names are queued for update --></label>
+        <label><!-- Confirmation message when Household Account names are queued for update --></label>
         <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>
