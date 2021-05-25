@@ -1674,7 +1674,7 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description of Settings Health Check </shortDescription>
+        <shortDescription>Description of Settings Health Check</shortDescription>
         <value>Settings Health Check looks for configuration errors in EDA Settings and related settings in Setup. Follow the provided recommendations to fix reported errors. Access Settings Health Check here.</value>
     </labels>
     <labels>
