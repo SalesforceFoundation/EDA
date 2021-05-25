@@ -701,7 +701,7 @@
         <name>stgCourseConnBackFillError</name>
     </customLabels>
     <customLabels>
-        <label>El reenviament s’ha afegit a la cua correctament.</label>
+        <label><!-- Confirmation message when Course Connection record types are queued for update --></label>
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
@@ -711,6 +711,17 @@
     <customLabels>
         <label><!-- Section title for Course Connection Settings --></label>
         <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
+        <name>stgHelpCourseConnectionBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Connection record types --></label>
+        <name>stgBtnRunCourseConnBackfillA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
+        <name>stgCourseConnectionBackfillModalTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Title for the Update Extended Description field confirmation window --></label>
@@ -1285,7 +1296,7 @@
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label>El reenviament de connexions del curs s&apos;ha d&apos;utilitzar només quan s&apos;activen les connexions del curs per primera vegada i només a les organitzacions on hi ha hagut ofertes per a cursos i connexions per a cursos (inscripcions) abans d&apos;activar la funció Connexions del curs. El reenviament converteix tots els contactes que es van incloure com a professors en una connexió de curs (inscripció) o oferta de cursos en el tipus de registre predeterminat del professorat. El reenviament converteix els contactes de les connexions restants del curs (inscripcions) en el tipus predeterminat de registre d&apos;estudiant actiu.</label>
+        <label><!-- Description of the Update Course Connection record types confirmation window --></label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
@@ -1635,7 +1646,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
+        <label><!-- Hyperlinked text to EDA documentation --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
@@ -1647,7 +1658,7 @@
         <name>stgTitleAppwideSettings</name>
     </customLabels>
     <customLabels>
-        <label>Reenviament de connexió del curs</label>
+        <label><!-- Label for the Legacy Course Enrollment Data setting --></label>
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
