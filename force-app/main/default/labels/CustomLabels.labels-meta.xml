@@ -1643,7 +1643,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the EDA app</shortDescription>
-        <value>Education Data Architecture (EDA) is the foundation of the Education Cloud. Its flexible data architecture includes preconfigured objects, logic, and automation that are tailored specifically for education. Manage EDA Settings here.</value>
+        <value>Education Data Architecture (EDA) is the foundation of the Education Cloud. Its flexible data architecture is designed to configure Salesforce for education.</value>
     </labels>
     <labels>
         <fullName>stgEDAAppInitials</fullName>
@@ -1675,7 +1675,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of Settings Health Check </shortDescription>
-        <value>Settings Health Check looks for configuration errors in EDA Settings and related settings in Setup. Follow the provided recommendations to fix reported errors. Access Settings Health Check here.</value>
+        <value>Settings Health Check looks for configuration errors in EDA Settings and Setup. Follow the provided recommendations to fix reported errors.</value>
     </labels>
     <labels>
         <fullName>stgEnableCourseConnectionsTitle</fullName>
