@@ -37,7 +37,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Message when an Apex job can't run</shortDescription>
+        <shortDescription>Message when an Apex job can&apos;t run</shortDescription>
         <value>We couldn&apos;t run the Apex job.</value>
     </labels>
     <labels>
@@ -1306,7 +1306,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>AltstgBtnDocumentationActionA11y text for button that launches EDA Settings</shortDescription>
+        <shortDescription>Alt text for button that launches EDA Settings</shortDescription>
         <value>Go to EDA Settings.</value>
     </labels>
     <labels>
@@ -1546,8 +1546,32 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Success message for Course Connection backfill</shortDescription>
-        <value>The backfill was queued successfully.</value>
+        <shortDescription>Confirmation message when Course Connection record types are queued for update</shortDescription>
+        <value>We&apos;re updating Course Connection record types. Check the status of the job under Apex Jobs in Setup.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpCourseConnectionBackfill</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Legacy Course Enrollment Data setting</shortDescription>
+        <value>Before enabling Course Connections for the first time, run this Apex job to update Faculty Course Connection records to the Default Faculty Record Type value. Also updates remaining Course Connections to the Default Student Record Type value.</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRunCourseConnBackfillA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates Course Connection record types</shortDescription>
+        <value>Update Faculty Course Connections to the Default Faculty Record Type value and remaining Course Connections to the Default Student Record Type value.</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseConnectionBackfillModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update Course Connection record types confirmation window</shortDescription>
+        <value>Update Course Connection record types?</value>
     </labels>
     <labels>
         <fullName>stgCourseDataMigrationModalTitle</fullName>
@@ -2770,8 +2794,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Course Connections backfill</shortDescription>
-        <value>The Course Connections Backfill should be used only when enabling Course Connections for the first time and only in orgs where Course Offerings and Course Connections (Enrollments) existed prior to enabling the Course Connections feature. The Backfill converts all Contacts that were listed as faculty on a Course Connection (Enrollment) or Course Offering to the Default Faculty Record Type. The Backfill then converts the Contacts on the remaining Course Connections (Enrollments) to the Default Active Student Record Type.</value>
+        <shortDescription>Description of the Update Course Connection record types confirmation window</shortDescription>
+        <value>Changes Faculty Course Connection records to the Default Faculty Record Type value, and all other Course Connection records to the Default Student Record Type value.</value>
     </labels>
     <labels>
         <fullName>stgHelpCoursesDataMigration</fullName>
@@ -3467,7 +3491,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Hyperlinked text to EDA documentation about Affiliation mappings</shortDescription>
+        <shortDescription>Hyperlinked text to EDA documentation</shortDescription>
         <value>Tell Me More</value>
     </labels>
     <labels>
@@ -3491,8 +3515,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Title of info text</shortDescription>
-        <value>Course Connection Backfill</value>
+        <shortDescription>Label for the Legacy Course Enrollment Data setting</shortDescription>
+        <value>Legacy Course Enrollment Data</value>
     </labels>
     <labels>
         <fullName>stgTitleCoursesDescriptionDataMigration</fullName>
