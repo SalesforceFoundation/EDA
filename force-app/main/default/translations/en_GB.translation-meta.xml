@@ -701,8 +701,20 @@
         <name>stgCourseConnBackFillError</name>
     </customLabels>
     <customLabels>
-        <label>The backfill was queued successfully.</label>
+        <label><!-- Confirmation message when Course Connection record types are queued for update --></label>
         <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
+        <name>stgHelpCourseConnectionBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Connection record types --></label>
+        <name>stgBtnRunCourseConnBackfillA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
+        <name>stgCourseConnectionBackfillModalTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Title for the Update Extended Description field confirmation window --></label>
@@ -1277,7 +1289,7 @@
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label>The Course Connections Backfill should be used only when enabling Course Connections for the first time and only in orgs where Course Offerings and Course Connections (Enrolments) existed prior to enabling the Course Connections feature. The Backfill converts all Contacts that were listed as faculty on a Course Connection (Enrolment) or Course Offering to the Default Faculty Record Type. The Backfill then converts the Contacts on the remaining Course Connections (Enrolments) to the Default Active Student Record Type.</label>
+        <label><!-- Description of the Update Course Connection record types confirmation window --></label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
@@ -1627,7 +1639,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
+        <label><!-- Hyperlinked text to EDA documentation --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
@@ -1639,7 +1651,7 @@
         <name>stgTitleAppwideSettings</name>
     </customLabels>
     <customLabels>
-        <label>Course Connection Backfill</label>
+        <label><!-- Label for the Legacy Course Enrollment Data setting --></label>
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
