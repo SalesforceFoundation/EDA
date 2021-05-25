@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customApplications>
+        <label><!-- Education Data Architecture --></label>
+        <name>Education_Data_Architecture</name>
+    </customApplications>
+    <customApplications>
         <label>EDA</label>
         <name>HEDA</name>
     </customApplications>
@@ -21,7 +25,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message when an Apex job can't run --></label>
+        <label><!-- Message when an Apex job can&apos;t run --></label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
@@ -51,6 +55,10 @@
     <customLabels>
         <label><!-- EDA Settings --></label>
         <name>EDASettingsContainerAuraComponentLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Education Cloud Settings --></label>
+        <name>EDCSettingsContainerAuraComponentLabel</name>
     </customLabels>
     <customLabels>
         <label>Female</label>
@@ -197,7 +205,7 @@
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Enable Record Type Validation setting --></label>
+        <label><!-- Description of the Record Type Validation setting --></label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -341,6 +349,10 @@
         <name>stgAccountRecordTypeGroupLabelTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Info text for Account Record Type picklist --></label>
+        <name>stgAccountRecordTypeHelp</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Title for the list of Selected Account Record Types --></label>
         <name>stgAccountRecordTypeSelectedListTitle</name>
     </customLabels>
@@ -361,12 +373,12 @@
         <name>stgAddHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Addresses --></label>
-        <name>stgAddressSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label>Agregue “No Hispano o Latino” como un valor de lista de selección al campo Etnia si es necesario.</label>
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Addresses --></label>
+        <name>stgAddressSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Label for Custom Name Format for Administrative Accounts --></label>
@@ -389,7 +401,7 @@
         <name>stgAffiliationsDeleteModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for warning about deleting an Affiliation mapping --></label>
+        <label><!-- Title for the Delete Affiliation mapping window --></label>
         <name>stgAffiliationsDeleteModalTitle</name>
     </customLabels>
     <customLabels>
@@ -417,11 +429,11 @@
         <name>stgAffiliationsNewSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!--Navigation Section title for Affiliations --></label>
+        <label><!-- Navigation Section title for Affiliations --></label>
         <name>stgAffiliationsSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!--Section title for Affiliation Settings --></label>
+        <label><!-- Section title for Affiliation Settings --></label>
         <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
@@ -449,10 +461,6 @@
         <name>stgAfflProgEnrollDeleteRelated</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Affiliations Created with Program Enrollments --></label>
-        <name>stgAfflProgramEnrollmentSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Section title for Program Enrollment Deletions --></label>
         <name>stgAfflProgEnrollDeleteTitle</name>
     </customLabels>
@@ -467,6 +475,10 @@
     <customLabels>
         <label>Estado para afiliaciones creadas</label>
         <name>stgAfflProgEnrollSetStatusValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Affiliations Created with Program Enrollments --></label>
+        <name>stgAfflProgramEnrollmentSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Después de ejecutar el relleno</label>
@@ -497,19 +509,31 @@
         <name>stgAutoEnrollment</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Edit auto-enrollment mapping window --></label>
+        <label><!-- Description of the Delete auto-enrollment mapping confirmation window --></label>
+        <name>stgAutoEnrollmentDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Delete auto-enrollment mapping confirmation window --></label>
+        <name>stgAutoEnrollmentDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when an auto-enrollment mapping is deleted --></label>
+        <name>stgAutoEnrollmentDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Edit auto-enrollment mapping confirmation window --></label>
         <name>stgAutoEnrollmentEditModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Edit auto-enrollment mapping window --></label>
+        <label><!-- Title for the Edit auto-enrollment mapping confirmation window --></label>
         <name>stgAutoEnrollmentEditModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when an auto-enrollment mapping is saved --></label>
+        <label><!-- Confirmation message when an auto-enrollment mapping is saved --></label>
         <name>stgAutoEnrollmentEditSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Edit Auto Enrollment mapping window --></label>
+        <label><!-- Description of the New auto-enrollment mapping confirmation window --></label>
         <name>stgAutoEnrollmentNewModalBody</name>
     </customLabels>
     <customLabels>
@@ -517,24 +541,8 @@
         <name>stgAutoEnrollmentNewModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when an Affiliation mapping is edited --></label>
+        <label><!-- Confirmation message when an auto-enrollment mapping is created --></label>
         <name>stgAutoEnrollmentNewSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Delete auto-enrollment mapping window confirmation text --></label>
-        <name>stgAutoEnrollmentDeleteModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title of the Delete Auto Enrollment mapping window --></label>
-        <name>stgAutoEnrollmentDeleteModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Toast message when an auto-enrollment mapping is deleted --></label>
-        <name>stgAutoEnrollmentDeleteSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Info text for Account Record Type picklist --></label>
-        <name>stgAccountRecordTypeHelp</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Auto-Enrollment Mappings setting --></label>
@@ -573,12 +581,40 @@
         <name>stgBtnCancel</name>
     </customLabels>
     <customLabels>
+        <label><!-- Button that launches the Trailblazer Community site --></label>
+        <name>stgBtnCommunity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches the Trailblazer Community site --></label>
+        <name>stgBtnCommunityActionA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button label for delete Affiliation mapping warning --></label>
         <name>stgBtnDelete</name>
     </customLabels>
     <customLabels>
+        <label><!-- Button that launches EDA documentation --></label>
+        <name>stgBtnDocumentation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches EDA documentation --></label>
+        <name>stgBtnDocumentationActionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button that launches the Education Cloud trailmix --></label>
+        <name>stgBtnEDCTrailhead</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches the Education Cloud trailmix --></label>
+        <name>stgBtnEDCTrailheadActionA11y</name>
+    </customLabels>
+    <customLabels>
         <label>Modificar</label>
         <name>stgBtnEdit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button that launches Settings Health Check --></label>
+        <name>stgBtnHealthCheck</name>
     </customLabels>
     <customLabels>
         <label><!-- Alt text for button that creates an auto-enrollment mapping --></label>
@@ -617,12 +653,44 @@
         <name>stgBtnRunCopyA11y</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that updates Course Connection record types --></label>
+        <name>stgBtnRunCourseConnBackfillA11y</name>
+    </customLabels>
+    <customLabels>
         <label>Guardar</label>
         <name>stgBtnSave</name>
     </customLabels>
     <customLabels>
+        <label><!-- Button that launches EDA Settings --></label>
+        <name>stgBtnSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches EDA Settings --></label>
+        <name>stgBtnSettingsActionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button that launches EDA Trailhead modules --></label>
+        <name>stgBtnTrailhead</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches EDA Trailhead modules --></label>
+        <name>stgBtnTrailheadActionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Trailhead card --></label>
+        <name>stgBtnTrailheadTitle</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button that runs a selected Apex job --></label>
         <name>stgBtnUpdate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button that launches the Salesforce.org YouTube channel --></label>
+        <name>stgBtnVideos</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches the Salesforce.org YouTube channel --></label>
+        <name>stgBtnVideosActionA11y</name>
     </customLabels>
     <customLabels>
         <label>La limpieza se colocó en cola correctamente. Se enviará un email cuando se complete el lote.</label>
@@ -637,11 +705,11 @@
         <name>stgColActive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Header label for the list of Affiliation Roles --></label>
+        <label><!-- Column header for Auto-Enrollment Role --></label>
         <name>stgColAutoEnrollmentRole</name>
     </customLabels>
     <customLabels>
-        <label><!-- Header label for the list of Affiliation Statuses --></label>
+        <label><!-- Column header for Auto-Enrollment Status --></label>
         <name>stgColAutoEnrollmentStatus</name>
     </customLabels>
     <customLabels>
@@ -673,8 +741,16 @@
         <name>stgColObject</name>
     </customLabels>
     <customLabels>
+        <label><!-- Column header for Products --></label>
+        <name>stgColProducts</name>
+    </customLabels>
+    <customLabels>
         <label>Tipo de relación</label>
         <name>stgColRelType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Column header for Resources --></label>
+        <name>stgColResources</name>
     </customLabels>
     <customLabels>
         <label>Función</label>
@@ -683,6 +759,14 @@
     <customLabels>
         <label>Estado</label>
         <name>stgColStatus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Column header for Tools --></label>
+        <name>stgColTools</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Trailblazer Community card --></label>
+        <name>stgCommunityTitle</name>
     </customLabels>
     <customLabels>
         <label>Lo entiendo y estoy listo para ejecutar el relleno.</label>
@@ -705,24 +789,16 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
-        <name>stgHelpCourseConnectionBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates Course Connection record types --></label>
-        <name>stgBtnRunCourseConnBackfillA11y</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Title for the Update Course Connection record types confirmation window --></label>
         <name>stgCourseConnectionBackfillModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update Extended Description field confirmation window --></label>
-        <name>stgCourseDataMigrationModalTitle</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Description of the Update Extended Description field confirmation window --></label>
         <name>stgCourseDataMigrationModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Extended Description field confirmation window --></label>
+        <name>stgCourseDataMigrationModalTitle</name>
     </customLabels>
     <customLabels>
         <label>El trabajo de Apex por lotes procesó {0} lotes con {1} fallos.</label>
@@ -761,8 +837,24 @@
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the EDA app --></label>
+        <name>stgEDAAppDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Initials for the EDA App --></label>
+        <name>stgEDAAppInitials</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the EDA app --></label>
+        <name>stgEDAAppTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Instalación de EDA</label>
         <name>stgEDASetupTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of Settings Health Check --></label>
+        <name>stgEDCSettingsHealthCheckDescription</name>
     </customLabels>
     <customLabels>
         <label>Activar enlaces de cursos</label>
@@ -781,7 +873,7 @@
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when the user doesn't have the permissions to view a page --></label>
+        <label><!-- Error when the user doesn&apos;t have the permissions to view a page --></label>
         <name>stgErrorInsufficientAccess</name>
     </customLabels>
     <customLabels>
@@ -793,6 +885,10 @@
         <name>stgErrorInvalidSettings</name>
     </customLabels>
     <customLabels>
+        <label><!-- Error Toast message when no record types for Program Auto Enrollment --></label>
+        <name>stgErrorNewAutoEnrollment</name>
+    </customLabels>
+    <customLabels>
         <label>Notificaciones de error en:</label>
         <name>stgErrorNotiTo</name>
     </customLabels>
@@ -801,7 +897,7 @@
         <name>stgErrorNotifRecipientsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for Errors --></label>
+        <label><!-- Navigation title for Errors --></label>
         <name>stgErrorSettingsNav</name>
     </customLabels>
     <customLabels>
@@ -833,7 +929,7 @@
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can't find Administrative Account Record Type --></label>
+        <label><!-- Recommended fix when Health Check can&apos;t find Administrative Account Record Type --></label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -841,7 +937,7 @@
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
+        <label><!-- Recommended fix when Health Check can&apos;t find Default Account Model record type --></label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -849,7 +945,7 @@
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can't find the Household Account Record Type --></label>
+        <label><!-- Recommended fix when Health Check can&apos;t find the Household Account Record Type --></label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -877,11 +973,11 @@
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping's Account record type is inactive --></label>
+        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type is inactive --></label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping's Account record type doesn't exist --></label>
+        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist --></label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -897,7 +993,7 @@
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Account record types in Affiliation mappings aren't unique --></label>
+        <label><!-- Recommended fix when Account record types in Affiliation mappings aren&apos;t unique --></label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -909,7 +1005,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping's Auto-Enrollment Role isn't active --></label>
+        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -917,7 +1013,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role --></label>
+        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -933,7 +1029,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
+        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -941,7 +1037,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status --></label>
+        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status --></label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -953,7 +1049,7 @@
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping's Primary Affiliation field isn't valid --></label>
+        <label><!-- Recommended fix when a mapping&apos;s Primary Affiliation field isn&apos;t valid --></label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
@@ -977,7 +1073,7 @@
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when mappings' Primary Affiliation fields aren't unique --></label>
+        <label><!-- Recommended fix when mappings&apos; Primary Affiliation fields aren&apos;t unique --></label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -989,7 +1085,7 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
+        <label><!-- Recommended fix when Course Connections isn&apos;t enabled --></label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
@@ -997,7 +1093,7 @@
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
+        <label><!-- Recommended fix when Health Check can&apos;t find Default Faculty Record Type --></label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1005,7 +1101,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when student and faculty Course Connection record types match  --></label>
+        <label><!-- Recommended fix when student and faculty Course Connection record types match --></label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1021,7 +1117,7 @@
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can't find Default Student Record Type --></label>
+        <label><!-- Recommended fix when Health Check can&apos;t find Default Student Record Type --></label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1045,11 +1141,11 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting's Female value doesn't exist --></label>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist --></label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1057,11 +1153,11 @@
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting's Male value is inactive --></label>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value is inactive --></label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting's Male value doesn't exist --></label>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist --></label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1069,11 +1165,11 @@
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting's Name value is inactive --></label>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value is inactive --></label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting's Name value doesn't exist --></label>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist --></label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1081,7 +1177,7 @@
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting's Name value isn't unique --></label>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value isn&apos;t unique --></label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1097,11 +1193,11 @@
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting's Neutral value is inactive --></label>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value is inactive --></label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting's Neutral value doesn't exist --></label>
+        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist --></label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1123,6 +1219,22 @@
     <customLabels>
         <label>El tipo de registro {0} ({1}) es válido.</label>
         <name>stgHCRecordTypeValid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for Custom Name Format for Household Accounts --></label>
+        <name>stgHHAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info text for Custom Name Format --></label>
+        <name>stgHHAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Household Account Naming --></label>
+        <name>stgHHAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches Settings Health Check --></label>
+        <name>stgHealthCheckA11y</name>
     </customLabels>
     <customLabels>
         <label>Modelo de cuenta</label>
@@ -1261,7 +1373,7 @@
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label><!-- Select a role for Affiliations created with Program Enrollments. --></label>
+        <label><!-- Description of the Role for Created Affiliations setting --></label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
@@ -1291,6 +1403,10 @@
     <customLabels>
         <label><!-- Description of the Update Course Connection record types confirmation window --></label>
         <name>stgHelpCourseConnBackfillDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
+        <name>stgHelpCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Extended Course Descriptions setting --></label>
@@ -1397,16 +1513,16 @@
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for Custom Name Format for Household Accounts --></label>
-        <name>stgHHAccountCustomName</name>
+        <label><!-- Label for the Automatically Rename Lead-Converted Accounts setting --></label>
+        <name>stgLeadConversionAccountNaming</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Custom Name Format --></label>
-        <name>stgHHAccountCustomNameHelp</name>
+        <label><!-- Description of the Automatically Rename Lead-Converted Accounts setting --></label>
+        <name>stgLeadConversionAccountNamingDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Household Account Naming --></label>
-        <name>stgHHAccountNamingTitle</name>
+        <label><!-- Section title for Lead Conversion Account Naming --></label>
+        <name>stgLeadConversionAccountNamingTitle</name>
     </customLabels>
     <customLabels>
         <label>Validar plan programa para Requisitos de planes anidados</label>
@@ -1499,9 +1615,9 @@
     <customLabels>
         <label><!-- Description of the Update all Administrative Account names confirmation window --></label>
         <name>stgRefreshAdminNamesModalBody</name>
-    </customLabels> 
+    </customLabels>
     <customLabels>
-        <label><!-- Title for the Update All Administrative Account Names confirmation window  --></label>
+        <label><!-- Title for the Update All Administrative Account Names confirmation window --></label>
         <name>stgRefreshAdminNamesModalTitle</name>
     </customLabels>
     <customLabels>
@@ -1521,11 +1637,11 @@
         <name>stgRefreshHouseholdNamesModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update all Household Account names confirmation window  --></label>
+        <label><!-- Title for the Update all Household Account names confirmation window --></label>
         <name>stgRefreshHouseholdNamesModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when Household Account names are queued for update--></label>
+        <label><!-- Toast message when Household Account names are queued for update --></label>
         <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>
@@ -1533,7 +1649,7 @@
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that updates Contacts' Preferred Email/Phone fields --></label>
+        <label><!-- Alt text for button that updates Contacts&apos; Preferred Email/Phone fields --></label>
         <name>stgRunCleanUpA11y</name>
     </customLabels>
     <customLabels>
@@ -1681,6 +1797,14 @@
         <name>stgToastError</name>
     </customLabels>
     <customLabels>
+        <label><!-- Label for the Trailhead card --></label>
+        <name>stgTrailheadTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the YouTube card --></label>
+        <name>stgVideosTitle</name>
+    </customLabels>
+    <customLabels>
         <label>No podemos guardar la Programación de ofertas de cursos porque su hora de finalización no coincide con la hora de finalización de su bloque de tiempo asociado. Modifique la hora de finalización, especifique un bloque de tiempo diferente o no especifique un bloque de tiempo.</label>
         <name>timeBlockEndTimeMismatch</name>
     </customLabels>
@@ -1688,6 +1812,10 @@
         <label>No podemos guardar la Programación de ofertas de cursos porque su hora de inicio no coincide con la hora de inicio de su bloque de tiempo asociado. Modifique la hora de inicio, especifique un bloque de tiempo diferente o no especifique un bloque de tiempo.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
+    <customTabs>
+        <label><!-- Education Cloud Settings --></label>
+        <name>Education_Cloud_Settings</name>
+    </customTabs>
     <customTabs>
         <label>Configuración de EDA</label>
         <name>HEDA_Settings</name>
