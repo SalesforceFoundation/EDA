@@ -521,6 +521,18 @@
         <name>stgAutoEnrollmentNewSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Delete auto-enrollment mapping window confirmation text --></label>
+        <name>stgAutoEnrollmentDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title of the Delete Auto Enrollment mapping window --></label>
+        <name>stgAutoEnrollmentDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Toast message when an auto-enrollment mapping is deleted --></label>
+        <name>stgAutoEnrollmentDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Info text for Account Record Type picklist --></label>
         <name>stgAccountRecordTypeHelp</name>
     </customLabels>
@@ -689,8 +701,20 @@
         <name>stgCourseConnBackFillError</name>
     </customLabels>
     <customLabels>
-        <label>バックフィルがキューに正常に登録されました。</label>
+        <label><!-- Confirmation message when Course Connection record types are queued for update --></label>
         <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
+        <name>stgHelpCourseConnectionBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Connection record types --></label>
+        <name>stgBtnRunCourseConnBackfillA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
+        <name>stgCourseConnectionBackfillModalTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Title for the Update Extended Description field confirmation window --></label>
@@ -805,27 +829,27 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで指定された [管理取引先レコードタイプ] を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[管理取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで [管理取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find Administrative Account Record Type --></label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [システム] タブで指定された [デフォルト取引先モデル] レコードタイプを確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルト取引先モデル] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [システム] タブで [デフォルト取引先モデル] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find Default Account Model record type --></label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで指定された [世帯取引先レコードタイプ] を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[世帯取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで [世帯取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find the Household Account Record Type --></label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -837,7 +861,7 @@
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [取引先および取引先責任者] タブで [管理取引先レコードタイプ] または [世帯取引先レコードタイプ] のいずれかを変更し、それぞれの設定で一意のレコードタイプが指定されるようにします。</label>
+        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -885,7 +909,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで所属対応付けの [自動登録の役割] で指定された {0} ({1}) を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] で所属オブジェクトの [役割] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、[自動登録の役割] を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Role isn't active --></label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -893,7 +917,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで [自動登録の役割] を所属オブジェクトの [役割] 項目の有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Role --></label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -909,7 +933,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで所属対応付けの [自動登録の状況] で指定された {0} ({1}) を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] で所属オブジェクトの [状況] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、[自動登録の状況] を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when a mapping's Auto-Enrollment Status isn't active --></label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -917,7 +941,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [所属] タブの [所属対応付け] サブタブで [自動登録の状況] を所属オブジェクトの [状況] 項目の有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find a mapping's Auto-Enrollment Status --></label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -965,15 +989,15 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>履修科目レコードタイプの設定を含め、履修科目を有効化します。詳細は、EDA ドキュメントの「履修科目を有効化」を参照してください。</label>
+        <label><!-- Recommended fix when Course Connections isn't enabled --></label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで指定された [デフォルトの教職員レコードタイプ] を確認します。{1} ({0}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルトの教職員レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで [デフォルトの教職員レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find Default Faculty Record Type --></label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -981,7 +1005,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで [デフォルトの教職員レコードタイプ] または [デフォルトの有効な学生レコードタイプ] のいずれかを変更し、それぞれの設定で一意のレコードタイプが指定されるようにします。</label>
+        <label><!-- Recommended fix when student and faculty Course Connection record types match  --></label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -993,11 +1017,11 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで指定された [デフォルトの有効な学生レコードタイプ] を確認します。{1} ({0}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルトの有効な学生レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [履修科目] タブの [設定] サブタブで [デフォルトの有効な学生レコードタイプ] を有効なレコードタイプに変更します。</label>
+        <label><!-- Recommended fix when Health Check can't find Default Student Record Type --></label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1021,11 +1045,11 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が女性の正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value is inactive --></label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Female value doesn't exist --></label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1033,11 +1057,11 @@
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が男性の正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value is inactive --></label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [男性] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Male value doesn't exist --></label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1045,11 +1069,11 @@
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [名前] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value is inactive --></label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [名前] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value doesn't exist --></label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1057,7 +1081,7 @@
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、[名前] 列に {0} ({1}) が指定されている複数の行を探します。その相互関係設定を編集し、この [名前] の値が 1 つの相互関係設定行にのみ表示されるようにします。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Name value isn't unique --></label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1073,11 +1097,11 @@
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで指定された {0} ({1}) の相互関係設定を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [どちらでもない] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value is inactive --></label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>[EDA 設定] の [リレーション] タブの [相互関係設定] サブタブで、対応する相互関係設定の [どちらでもない] の値を有効な選択リスト値に変更します。</label>
+        <label><!-- Recommended fix when the reciprocal setting's Neutral value doesn't exist --></label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1265,7 +1289,7 @@
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label>履修科目のバックフィルは、履修科目を初めて有効化する場合にのみ、かつ、履修科目機能の有効化前に開講科目と履修科目 (登録) が存在していた組織でのみ、使用する必要があります。バックフィルでは、履修科目 (登録) または開講科目で教職員としてリストされていたすべての取引先責任者が [デフォルトの教職員レコードタイプ] に変換された後、残りの履修科目 (登録) に存在する取引先責任者が [デフォルトの有効な学生レコードタイプ] に変換されます。</label>
+        <label><!-- Description of the Update Course Connection record types confirmation window --></label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
@@ -1615,7 +1639,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
+        <label><!-- Hyperlinked text to EDA documentation --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
@@ -1627,7 +1651,7 @@
         <name>stgTitleAppwideSettings</name>
     </customLabels>
     <customLabels>
-        <label>履修科目のバックフィル</label>
+        <label><!-- Label for the Legacy Course Enrollment Data setting --></label>
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>

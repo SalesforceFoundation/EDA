@@ -37,7 +37,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Message when an Apex job can't run</shortDescription>
+        <shortDescription>Message when an Apex job can&apos;t run</shortDescription>
         <value>We couldn&apos;t run the Apex job.</value>
     </labels>
     <labels>
@@ -1031,6 +1031,30 @@
         <value>{0} auto-enrollment mapping was created.</value>
     </labels>
     <labels>
+        <fullName>stgAutoEnrollmentDeleteModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Delete auto-enrollment mapping confirmation window</shortDescription>
+        <value>This auto-enrollment mapping creates Program Enrollments for Affiliations with the {0} Account record type, {1} Affiliation status, and {2} Affiliation role. If you delete this auto-enrollment mapping, Program Enrollments won't be created for matching Affiliations.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentDeleteModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Delete auto-enrollment mapping confirmation window</shortDescription>
+        <value>Delete auto-enrollment mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentDeleteSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when an auto-enrollment mapping is deleted</shortDescription>
+        <value>{0} auto-enrollment mapping was deleted.</value>
+    </labels>
+    <labels>
         <fullName>stgAccountRecordTypeHelp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1371,8 +1395,32 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Success message for Course Connection backfill</shortDescription>
-        <value>The backfill was queued successfully.</value>
+        <shortDescription>Confirmation message when Course Connection record types are queued for update</shortDescription>
+        <value>We&apos;re updating Course Connection record types. Check the status of the job under Apex Jobs in Setup.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpCourseConnectionBackfill</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Legacy Course Enrollment Data setting</shortDescription>
+        <value>Before enabling Course Connections for the first time, run this Apex job to update Faculty Course Connection records to the Default Faculty Record Type value. Also updates remaining Course Connections to the Default Student Record Type value.</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRunCourseConnBackfillA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates Course Connection record types</shortDescription>
+        <value>Update Faculty Course Connections to the Default Faculty Record Type value and remaining Course Connections to the Default Student Record Type value.</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseConnectionBackfillModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update Course Connection record types confirmation window</shortDescription>
+        <value>Update Course Connection record types?</value>
     </labels>
     <labels>
         <fullName>stgCourseDataMigrationModalTitle</fullName>
@@ -1612,7 +1660,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Administrative Account Record Type is inactive</shortDescription>
-        <value>Verify the Administrative Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Administrative Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, verify the Administrative Account Record Type. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Administrative Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelAdminNotFoundFix</fullName>
@@ -1620,7 +1668,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find Administrative Account Record Type</shortDescription>
-        <value>In EDA Settings, on the Accounts and Contacts tab, change the Administrative Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, change the Administrative Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelDefaultInactiveFix</fullName>
@@ -1628,7 +1676,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Account Model record type is inactive</shortDescription>
-        <value>Verify the Default Account Model record type specified in EDA Settings, on the System tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Account Model to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, verify the Default Account Model record type. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Account Model to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelDefaultNotFoundFix</fullName>
@@ -1636,7 +1684,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find Default Account Model record type</shortDescription>
-        <value>In EDA Settings, on the System tab, change the Default Account Model to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, change the Default Account Model to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelHHInactiveFix</fullName>
@@ -1644,7 +1692,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Household Account Record Type is inactive</shortDescription>
-        <value>Verify the Household Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Household Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, verify the Household Account Record Type. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Household Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelHHNotFoundFix</fullName>
@@ -1652,7 +1700,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find the Household Account Record Type</shortDescription>
-        <value>In EDA Settings, on the Accounts and Contacts tab, change the Household Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, change the Household Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountRecordTypeSettingsUnique</fullName>
@@ -1675,8 +1723,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Administrative and Household Account Record Types are same</shortDescription>
-        <value>In EDA Settings, in the Accounts and Contacts tab, change either the Administrative Account Record Type or the Household Account Record Type so that each specifies a unique record type.</value>
+        <shortDescription>Recommended fix when Administrative and Household Account Record Types match</shortDescription>
+        <value>In EDA Settings | Account Model, change the Administrative Account Record Type or the Household Account Record Type so that they specify a unique record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountRecordTypesUnique</fullName>
@@ -1772,7 +1820,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active</shortDescription>
-        <value>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Role, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Affiliation object&apos;s Role field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Role to a valid, active picklist value.</value>
+        <value>The Auto-Enrollment Role {0} ({1}) isn&apos;t active. In EDA Settings | Program Enrollments, verify the Auto-Enrollment Program Mapping that specifies this Role. If the mapping is correct, go to the Affiliation object&apos;s Role field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Role to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollRoleNotFound</fullName>
@@ -1788,7 +1836,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Role to a valid, active picklist value for the Role field on the Affiliation object.</value>
+        <value>The Auto-Enrollment Role isn&apos;t valid. In EDA Settings | Program Enrollments, edit the Auto-Enrollment Program Mapping that specifies this Role to a valid, active picklist value for the Role field on the Affiliation object.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollRoleTitle</fullName>
@@ -1820,7 +1868,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active</shortDescription>
-        <value>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Status, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Affiliation object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
+        <value>The Auto-Enrollment Status {0} ({1}) isn&apos;t active. In EDA Settings | Program Enrollments, verify the Auto-Enrollment Program Mapping that specifies this Status. If the mapping is correct, go to the Affiliation object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollStatusNotFound</fullName>
@@ -1836,7 +1884,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Status to a valid, active picklist value for the Status field on the Affiliation object.</value>
+        <value>The Auto-Enrollment Status isn&apos;t valid. In EDA Settings | Program Enrollments, edit the Auto-Enrollment Program Mapping that specifies this Status to a valid, active picklist value for the Status field on the Affiliation object.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollStatusTitle</fullName>
@@ -1932,7 +1980,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Course Connections isn&apos;t enabled</shortDescription>
-        <value>Enable Course Connections, which includes configuring Course Connection record types. For details, see Configure Course Connection in the EDA documentation.</value>
+        <value>Enable Course Connections, which includes configuring Course Connection record types. In EDA Settings | Course Connections, turn on Course Connection Record Types. Then configure Default Student Record Type and Default Faculty Record Type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConFacultyInactiveFix</fullName>
@@ -1940,7 +1988,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Faculty Record Type is inactive</shortDescription>
-        <value>Verify the Default Faculty Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Faculty Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Course Connections, verify the the Default Faculty Record Type. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Default Faculty Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConFacultyNotFoundFix</fullName>
@@ -1948,7 +1996,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find Default Faculty Record Type</shortDescription>
-        <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Faculty Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Course Connections, change the Default Faculty Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConRecordTypesNotUnique</fullName>
@@ -1963,8 +2011,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when student and faculty Course Connection record types are same</shortDescription>
-        <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change either the Default Faculty Record Type or the Default Active Student Record Type so that each specifies a unique record type.</value>
+        <shortDescription>Recommended fix when student and faculty Course Connection record types match </shortDescription>
+        <value>In EDA Settings | Course Connections, change either the Default Faculty Record Type or the Default Student Record Type so that each specifies a unique record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConRecordTypesUnique</fullName>
@@ -1987,16 +2035,16 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when the Default Active Student Record Type is inactive</shortDescription>
-        <value>Verify the Default Active Student Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Active Student Record Type to a valid, active record type.</value>
+        <shortDescription>Recommended fix when the Default Student Record Type is inactive</shortDescription>
+        <value>In EDA Settings | Course Connections, verify the Default Student Record Type. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Default Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConStudentNotFoundFix</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can&apos;t find Default Active Student Record Type</shortDescription>
-        <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Active Student Record Type to a valid, active record type.</value>
+        <shortDescription>Recommended fix when Health Check can&apos;t find Default Student Record Type</shortDescription>
+        <value>In EDA Settings | Course Connections, change the Default Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConnectionsTitle</fullName>
@@ -2044,7 +2092,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Female value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct for Female, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+        <value>The picklist value for Female in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelFemaleNotFoundFix</fullName>
@@ -2052,7 +2100,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+        <value>The picklist value for Female in the Reciprocal Relationships mapping isn&apos;t valid. In EDA Settings | Relationships, edit the Female value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelFemaleTitle</fullName>
@@ -2068,7 +2116,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Male value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct for Male, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+        <value>The picklist value for Male in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Male value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelMaleNotFoundFix</fullName>
@@ -2076,7 +2124,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Male value to a valid, active picklist value.</value>
+        <value>The picklist value for Male in the Reciprocal Relationships mapping isn&apos;t valid. In EDA Settings | Relationships, edit the Male value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelMaleTitle</fullName>
@@ -2092,7 +2140,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Name value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
+        <value>The Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping that specifies this Name. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameNotFoundFix</fullName>
@@ -2100,7 +2148,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
+        <value>The Reciprocal Relationships mapping for {0} isn&apos;t valid. In EDA Settings | Relationships, edit the mapping that specifies this Name to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameNotUniqueDesc</fullName>
@@ -2115,8 +2163,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended Fix when Name isn&apos;t unique in reciprocal settings</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, look for multiple rows specifying {0} ({1}) in the Name column. Edit those reciprocal settings so that this Name value appears in only one reciprocal setting row.</value>
+        <shortDescription>Recommended fix when the reciprocal setting's Name value isn&apos;t unique</shortDescription>
+        <value>In EDA Settings | Relationships, look in the Reciprocal Relationships table for multiple mappings with the Name {0} ({1}). Edit those mappings so that only one mapping uses this Name.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameTitle</fullName>
@@ -2148,7 +2196,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Neutral value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
+        <value>The picklist value for Neutral in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNeutralNotFoundFix</fullName>
@@ -2156,7 +2204,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
+        <value>The picklist value for Neutral in the Reciprocal Relationships mapping isn&apos;t valid. In EDA Settings | Relationships, edit the Neutral value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNeutralTitle</fullName>
@@ -2555,8 +2603,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Course Connections backfill</shortDescription>
-        <value>The Course Connections Backfill should be used only when enabling Course Connections for the first time and only in orgs where Course Offerings and Course Connections (Enrollments) existed prior to enabling the Course Connections feature. The Backfill converts all Contacts that were listed as faculty on a Course Connection (Enrollment) or Course Offering to the Default Faculty Record Type. The Backfill then converts the Contacts on the remaining Course Connections (Enrollments) to the Default Active Student Record Type.</value>
+        <shortDescription>Description of the Update Course Connection record types confirmation window</shortDescription>
+        <value>Changes Faculty Course Connection records to the Default Faculty Record Type value, and all other Course Connection records to the Default Student Record Type value.</value>
     </labels>
     <labels>
         <fullName>stgHelpCoursesDataMigration</fullName>
@@ -3252,7 +3300,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Hyperlinked text to EDA documentation about Affiliation mappings</shortDescription>
+        <shortDescription>Hyperlinked text to EDA documentation</shortDescription>
         <value>Tell Me More</value>
     </labels>
     <labels>
@@ -3276,8 +3324,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Title of info text</shortDescription>
-        <value>Course Connection Backfill</value>
+        <shortDescription>Label for the Legacy Course Enrollment Data setting</shortDescription>
+        <value>Legacy Course Enrollment Data</value>
     </labels>
     <labels>
         <fullName>stgTitleCoursesDescriptionDataMigration</fullName>

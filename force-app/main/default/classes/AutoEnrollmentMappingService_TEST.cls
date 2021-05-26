@@ -198,6 +198,69 @@ public with sharing class AutoEnrollmentMappingService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify that the deleteAutoEnrollmentMapping method deletes the auto enrollment on affiliation
+     * Mappings
+     ***************************************************************************************************************************/
+    @isTest
+    public static void deleteAutoEnrollmentMapping() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        AutoEnrollmentMappingMapper.instance = new STUB_AutoEnrollmentMappingMapper();
+        AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
+
+        String mappingName = 'mapping';
+        String accountRecordType = 'Academic_Program';
+
+        Affl_Mappings__c affiliationMappingToDelete = new Affl_Mappings__c(
+            Name = mappingName,
+            Account_Record_Type__c = accountRecordType,
+            Primary_Affl_Field__c = 'Test Contact Primary Affl Field',
+            Auto_Program_Enrollment__c = true,
+            Auto_Program_Enrollment_Status__c = 'Status',
+            Auto_Program_Enrollment_Role__c = 'Role'
+        );
+        insert affiliationMappingToDelete;
+
+        Test.startTest();
+        AutoEnrollmentMappingModel deleteAutoEnrollmentMappingModel = autoEnrollmentMappingService.deleteAutoEnrollmentMappings(
+            mappingName
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            mappingName,
+            deleteAutoEnrollmentMappingModel.name,
+            'Auto Enrollment Name should be ' + mappingName
+        );
+        System.assertEquals(
+            accountRecordType,
+            deleteAutoEnrollmentMappingModel.accountRecordTypeFieldValue,
+            'Auto Enrollment Account Record Type should be ' + accountRecordType
+        );
+        System.assertEquals(null, deleteAutoEnrollmentMappingModel.status, 'Auto Enrollment Status should be null');
+        System.assertEquals(null, deleteAutoEnrollmentMappingModel.role, 'Auto Enrollment Role should be null');
+        System.assertEquals(false, deleteAutoEnrollmentMappingModel.active, 'Auto Enrollment Active should be false');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the deleteAutoEnrollmentMapping method does not delete missing mappings
+     * Mappings
+     ***************************************************************************************************************************/
+    @isTest
+    public static void deleteMissingAutoEnrollmentMapping() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        AutoEnrollmentMappingMapper.instance = new STUB_AutoEnrollmentMappingMapper();
+        AutoEnrollmentMappingService autoEnrollmentMappingService = AutoEnrollmentMappingService.getInstance();
+
+        Test.startTest();
+        AutoEnrollmentMappingModel autoEnrollmentMappingModel = autoEnrollmentMappingService.deleteAutoEnrollmentMappings(
+            'mapping'
+        );
+        Test.stopTest();
+
+        System.assertEquals(null, autoEnrollmentMappingModel, 'Auto Enrollment Name should be null');
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify that the updateAutoEnrollmentMappings method updates the auto enrollment on affiliation
      * Mappings when passed account record type are the same
      ***************************************************************************************************************************/

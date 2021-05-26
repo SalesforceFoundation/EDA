@@ -86,6 +86,38 @@ public virtual with sharing class AutoEnrollmentMappingService {
         return returnModelList[0];
     }
 
+    /*****************************************************************************
+     * @description Checks user permissions and delete the auto enrollment mappping.
+     * @param mappingName The name of the original auto enrollment mapping
+     * @return the deleted Auto Enrollment Mapping Model or null if mapping not found
+     *****************************************************************************/
+    public virtual AutoEnrollmentMappingModel deleteAutoEnrollmentMappings(String mappingName) {
+        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+
+        //Get the affiliate mapping record by mappingName
+        Affl_Mappings__c autoEnrollmentMappingsToDelete = Affl_Mappings__c.getInstance(mappingName);
+        if (autoEnrollmentMappingsToDelete == null) {
+            return null;
+        }
+
+        List<AutoEnrollmentMappingModel> autoEnrollmentMappingModelListToDelete = new List<AutoEnrollmentMappingModel>();
+
+        autoEnrollmentMappingModelListToDelete.add(
+            //Set role: null, status: null, active: false
+            new AutoEnrollmentMappingModel(
+                mappingName,
+                autoEnrollmentMappingsToDelete.Account_Record_Type__c,
+                null,
+                null,
+                false
+            )
+        );
+
+        List<AutoEnrollmentMappingModel> returnModelList = this.locateAutoEnrollmentMappingMapper()
+            .updateAffiliationMappingsFromModelList(autoEnrollmentMappingModelListToDelete);
+        return returnModelList[0];
+    }
+
     /**
      * @description Updates auto enrollment mappings
      * @param mappingName The name of the original auto enrollment mapping
