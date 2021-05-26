@@ -92,7 +92,7 @@ public virtual with sharing class AutoEnrollmentMappingService {
      * @return the deleted Auto Enrollment Mapping Model or null if mapping not found
      *****************************************************************************/
     public virtual AutoEnrollmentMappingModel deleteAutoEnrollmentMappings(String mappingName) {
-        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
 
         //Get the affiliate mapping record by mappingName
         Affl_Mappings__c autoEnrollmentMappingsToDelete = Affl_Mappings__c.getInstance(mappingName);
