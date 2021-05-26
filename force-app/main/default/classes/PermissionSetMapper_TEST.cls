@@ -90,7 +90,7 @@ public with sharing class PermissionSetMapper_TEST {
             );
             permissionSets.add(permissionSet);
         }
-        permissionSets[0].PermissionsViewRoles = true;
+        permissionSets[0].PermissionsManageCustomPermissions = true;
         permissionSets[0].PermissionsCustomizeApplication = true;
         insert permissionSets;
 
