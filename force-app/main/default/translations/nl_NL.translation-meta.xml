@@ -753,7 +753,7 @@
         <name>stgDefaultFacultyTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label>Standaard recordtype voor actieve student</label>
+        <label><!-- Label for the Default Student Record Type setting --></label>
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
@@ -1321,11 +1321,11 @@
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label>Het standaard recordtype bij het maken van cursusverbindingen voor een staflid.</label>
+        <label><!-- Description of the Default Faculty Record Type setting --></label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label>Het standaard recordtype bij het maken van cursusverbindingen voor actieve studenten.</label>
+        <label><!-- Description of the Default Student Record Type setting --></label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>

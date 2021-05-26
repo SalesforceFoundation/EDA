@@ -1491,7 +1491,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Course Connections Settings</shortDescription>
+        <shortDescription>Label for the Default Faculty Record Type setting</shortDescription>
         <value>Default Faculty Record Type</value>
     </labels>
     <labels>
@@ -1499,8 +1499,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Course Connections Settings</shortDescription>
-        <value>Default Active Student Record Type</value>
+        <shortDescription>Label for the Default Student Record Type setting</shortDescription>
+        <value>Default Student Record Type</value>
     </labels>
     <labels>
         <fullName>stgDisableErrorHandlingTitle</fullName>
@@ -2667,16 +2667,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Course Connections Settings</shortDescription>
-        <value>The default record type when creating Course Connections for a faculty member.</value>
+        <shortDescription>Description of the Default Faculty Record Type setting</shortDescription>
+        <value>Select the record type for faculty Course Connections.</value>
     </labels>
     <labels>
         <fullName>stgHelpDefaultStudentType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Course Connections Settings</shortDescription>
-        <value>The default record type when creating Course Connections for active students.</value>
+        <shortDescription>Description of the Default Student Record Type setting</shortDescription>
+        <value>Select the record type for student Course Connections.</value>
     </labels>
     <labels>
         <fullName>stgHelpEnableCourseConnBeforeBackfill</fullName>

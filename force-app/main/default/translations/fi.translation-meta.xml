@@ -753,7 +753,7 @@
         <name>stgDefaultFacultyTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label>Oletusarvoinen aktiivisen opiskelijatietueen tyyppi</label>
+        <label><!-- Label for the Default Student Record Type setting --></label>
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
@@ -1321,11 +1321,11 @@
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label>Oletusarvoinen tietuetyyppi, kun luodaan kurssiyhteyksiä opetushenkilöstön jäsenelle.</label>
+        <label><!-- Description of the Default Faculty Record Type setting --></label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label>Oletusarvoinen tietuetyyppi, kun luodaan kurssiyhteyksiä aktiivisille opiskelijoille.</label>
+        <label><!-- Description of the Default Student Record Type setting --></label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
