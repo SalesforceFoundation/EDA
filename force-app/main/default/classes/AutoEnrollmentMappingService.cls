@@ -64,7 +64,7 @@ public virtual with sharing class AutoEnrollmentMappingService {
         String status,
         String role
     ) {
-        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
 
         //Get the appropriate Record Type Model for entries with labels in the field
         RecordTypeModel accountRecordTypeModel = this.locateRecordTypeService()
@@ -102,7 +102,7 @@ public virtual with sharing class AutoEnrollmentMappingService {
         String status,
         String role
     ) {
-        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         if (accountRecordType == newAccountRecordType) {
             return this.updateAutoEnrollmentMapping(mappingName, accountRecordType, status, role);
         }

@@ -25,123 +25,150 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group Test
-* @group-content ../../ApexDocContent/Test.htm
-* @description Test class for UserPermissionService.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group Test
+ * @group-content ../../ApexDocContent/Test.htm
+ * @description Test class for UserPermissionService.
+ */
 @isTest
 public with sharing class UserPermissionService_TEST {
-
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns a new instance of the 
-    * UserPermissionService class when one does not already exist.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getInstance method returns a new instance of the
+     * UserPermissionService class when one does not already exist.
+     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
-
         Test.startTest();
-            UserPermissionService userPermissionServiceInstance = UserPermissionService.getInstance();
+        UserPermissionService userPermissionServiceInstance = UserPermissionService.getInstance();
         Test.stopTest();
 
-        System.assertEquals(UserPermissionService.instance, userPermissionServiceInstance, 'Instance of mapper class returned should match static instance variable.');
-        System.assertEquals(true, userPermissionServiceInstance != null, 'Instance of mapper class should not be null.');
+        System.assertEquals(
+            UserPermissionService.instance,
+            userPermissionServiceInstance,
+            'Instance of mapper class returned should match static instance variable.'
+        );
+        System.assertEquals(
+            true,
+            userPermissionServiceInstance != null,
+            'Instance of mapper class should not be null.'
+        );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * UserPermissionService class when one already exists.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getInstance method returns the existing instance of the
+     * UserPermissionService class when one already exists.
+     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
-
         Test.startTest();
-            UserPermissionService UserPermissionServiceInstance1 = UserPermissionService.getInstance();
-            UserPermissionService UserPermissionServiceInstance2 = UserPermissionService.getInstance();
+        UserPermissionService UserPermissionServiceInstance1 = UserPermissionService.getInstance();
+        UserPermissionService UserPermissionServiceInstance2 = UserPermissionService.getInstance();
         Test.stopTest();
 
-        System.assertEquals(UserPermissionService.instance, UserPermissionServiceInstance1, 'Instance of mapper class returned should match static instance variable.');
-        System.assertEquals(UserPermissionServiceInstance1, UserPermissionServiceInstance2, 'Subsequent retrievals of mapper class instance should return existing instance.');
-        System.assertEquals(true, UserPermissionServiceInstance1 != null, 'Instance of mapper class should not be null.');
+        System.assertEquals(
+            UserPermissionService.instance,
+            UserPermissionServiceInstance1,
+            'Instance of mapper class returned should match static instance variable.'
+        );
+        System.assertEquals(
+            UserPermissionServiceInstance1,
+            UserPermissionServiceInstance2,
+            'Subsequent retrievals of mapper class instance should return existing instance.'
+        );
+        System.assertEquals(
+            true,
+            UserPermissionServiceInstance1 != null,
+            'Instance of mapper class should not be null.'
+        );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the locatePermissionSetAssignmentMapper method 
-    * returns an instance of PermissionSetAssignmentMapper
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the locatePermissionSetAssignmentMapper method
+     * returns an instance of PermissionSetAssignmentMapper
+     ***************************************************************************************************************************/
     @isTest
     private static void locatePermissionSetAssignmentMapperTest() {
         Test.startTest();
-            PermissionSetAssignmentMapper permissionSetAssignmentMapperInstance = PermissionSetAssignmentMapper.getInstance();
+        PermissionSetAssignmentMapper permissionSetAssignmentMapperInstance = PermissionSetAssignmentMapper.getInstance();
         Test.stopTest();
 
         System.assertEquals(PermissionSetAssignmentMapper.instance, permissionSetAssignmentMapperInstance);
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the locatePermissionSetMapper method 
-    * returns an instance of PermissionSetMapper
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the locatePermissionSetMapper method
+     * returns an instance of PermissionSetMapper
+     ***************************************************************************************************************************/
     @isTest
     private static void locatePermissionSetMapperTest() {
         Test.startTest();
-            PermissionSetMapper permissionSetMapperInstance = PermissionSetMapper.getInstance();
+        PermissionSetMapper permissionSetMapperInstance = PermissionSetMapper.getInstance();
         Test.stopTest();
 
         System.assertEquals(PermissionSetMapper.instance, PermissionSetMapperInstance);
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the checkViewSetupForCurrentUser returns true when current user has access.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the checkCustomizeApplicationForCurrentUser returns true when current user has access.
+     ***************************************************************************************************************************/
     @isTest
-    private static void checkViewSetupForCurrentUserHasAccess() {
+    private static void checkCustomizeApplicationForCurrentUserHasAccess() {
         PermissionSetMapper.instance = new STUB_PermissionSetMapperHasAccess();
-        
+
         Test.startTest();
-            Boolean viewSetupForCurrentUser = UserPermissionService.getInstance().checkViewSetupForCurrentUser();
+        Boolean customizeApplicationForCurrentUser = UserPermissionService.getInstance()
+            .checkCustomizeApplicationForCurrentUser();
         Test.stopTest();
 
-        System.assertEquals(true, viewSetupForCurrentUser);
+        System.assertEquals(true, customizeApplicationForCurrentUser);
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the checkViewSetupForCurrentUser returns false when current user has no access.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the checkCustomizeApplicationForCurrentUser returns false when current user has no access.
+     ***************************************************************************************************************************/
     @isTest
-    private static void checkViewSetupForCurrentUserNoAccess() {
+    private static void checkCustomizeApplicationForCurrentUserNoAccess() {
         PermissionSetMapper.instance = new STUB_PermissionSetMapperNoAccess();
-        
+
         try {
             Test.startTest();
-                Boolean viewSetupForCurrentUser = UserPermissionService.getInstance().checkViewSetupForCurrentUser();
+            Boolean customizeApplicationForCurrentUser = UserPermissionService.getInstance()
+                .checkCustomizeApplicationForCurrentUser();
             Test.stopTest();
-        } catch (System.NoAccessException ex){
-            System.assertEquals('System.NoAccessException', ex.getTypeName(), 'NoAccessException should be thrown when exception occurs.');
-            System.assertEquals('Script-thrown exception', ex.getMessage(), 'NoAccessException text should be associated with message when exception occurs.');
+        } catch (System.NoAccessException ex) {
+            System.assertEquals(
+                'System.NoAccessException',
+                ex.getTypeName(),
+                'NoAccessException should be thrown when exception occurs.'
+            );
+            System.assertEquals(
+                'Script-thrown exception',
+                ex.getMessage(),
+                'NoAccessException text should be associated with message when exception occurs.'
+            );
         }
     }
 
     /**************************************************************************************************************************
-    ****************************************************** STUB CLASS *********************************************************
-    **************************************************************************************************************************/
+     ****************************************************** STUB CLASS *********************************************************
+     **************************************************************************************************************************/
 
     /*************************************************************************************************************
-    * @description Stub class to simulate the response from PermissionSetMapper to return true
-    */
+     * @description Stub class to simulate the response from PermissionSetMapper to return true
+     */
     private class STUB_PermissionSetMapperHasAccess extends PermissionSetMapper {
-        public override Boolean checkPermissionSetsWithViewSetupFromIds(Set<Id> permissionSetIdsSet) {
-            return true;     
+        public override Boolean checkPermissionSetsWithCustomizeApplicationFromIds(Set<Id> permissionSetIdsSet) {
+            return true;
         }
     }
 
     /*************************************************************************************************************
-    * @description Stub class to simulate the response from PermissionSetMapper to return false
-    */
+     * @description Stub class to simulate the response from PermissionSetMapper to return false
+     */
     private class STUB_PermissionSetMapperNoAccess extends PermissionSetMapper {
-        public override Boolean checkPermissionSetsWithViewSetupFromIds(Set<Id> permissionSetIdsSet) {
-            return false;     
+        public override Boolean checkPermissionSetsWithCustomizeApplicationFromIds(Set<Id> permissionSetIdsSet) {
+            return false;
         }
     }
 }

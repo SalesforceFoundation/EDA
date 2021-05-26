@@ -518,7 +518,7 @@ public with sharing class AutoEnrollmentMappingService_TEST {
      * @description Stub class to simulate the response from UserPermissionService to return true
      **************************************************************************************************************************************/
     private class STUB_UserPermissionServiceTrue extends UserPermissionService {
-        public override Boolean checkViewSetupForCurrentUser() {
+        public override Boolean checkCustomizeApplicationForCurrentUser() {
             return true;
         }
     }
