@@ -1222,22 +1222,6 @@
         <value>Create an auto-enrollment mapping.</value>
     </labels>
     <labels>
-        <fullName>stgBtnNewSettingsExperience</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Button that launches Education Cloud Settings</shortDescription>
-        <value>Go to Education Cloud Settings</value>
-    </labels>
-    <labels>
-        <fullName>stgBtnNewSettingsExperienceA11y</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Alt text for button that launches Education Cloud Settings</shortDescription>
-        <value>Go to Education Cloud Settings.</value>
-    </labels>
-    <labels>
         <fullName>stgBtnRefreshAdminNames</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

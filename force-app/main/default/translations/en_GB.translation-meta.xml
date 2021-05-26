@@ -621,14 +621,6 @@
         <name>stgBtnNewAutoEnrollA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button that launches Education Cloud Settings --></label>
-        <name>stgBtnNewSettingsExperience</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches Education Cloud Settings --></label>
-        <name>stgBtnNewSettingsExperienceA11y</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>

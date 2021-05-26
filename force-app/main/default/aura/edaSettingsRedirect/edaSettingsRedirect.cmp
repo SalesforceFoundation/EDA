@@ -1,9 +1,7 @@
-<aura:component implements="force:appHostable,lightning:isUrlAddressable" controller="NamespaceController">
+<aura:component implements="lightning:isUrlAddressable">
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:attribute name="namespace" type="String" />
     <aura:attribute name="settingsMovedDesc" type="String" />
-    <!-- <aura:attribute name="url" type="String" />
-    <aura:attribute name="pageReference" type="Object" /> -->
     <lightning:navigation aura:id="navService" />
 
     <div class="slds-theme_default eda-height_full">
@@ -11,16 +9,5 @@
             title="{!$Label.c.stgEDASettingsHasMovedTitle}"
             description="{!v.settingsMovedDesc}"
         ></c:lakeMountain>
-
-        <div class="slds-align_absolute-center">
-            <lightning:button
-                variant="brand"
-                label="{!$Label.c.stgBtnNewSettingsExperience}"
-                title="{!$Label.c.stgBtnNewSettingsExperienceA11y}"
-                onclick="{!c.handleEdaSettingsRedirect}"
-                class="slds-m-left_x-small"
-            ></lightning:button>
-            <!-- {!v.url} -->
-        </div>
     </div>
 </aura:component>
