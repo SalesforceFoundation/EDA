@@ -25,55 +25,65 @@ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2020
-* @group
-* @group-content ../../ApexDocContent/Contacts.htm
-* @description Test class for SRVC_Contact_PreferredEmail.cls
-*/
+ * @author Salesforce.org
+ * @date 2020
+ * @group
+ * @group-content ../../ApexDocContent/Contacts.htm
+ * @description Test class for SRVC_Contact_PreferredEmail.cls
+ */
 @isTest
 private class SRVC_Contact_PreferredEmail_TEST {
+    /**************************************************************************************************************************
+     *********************************************** TESTS FOR getInstance() ***************************************************
+     **************************************************************************************************************************/
 
     /**************************************************************************************************************************
-    *********************************************** TESTS FOR getInstance() ***************************************************
-    **************************************************************************************************************************/
-
-    /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns a new instance of the 
-    * SRVC_Contact_PreferredEmail class when one does not already exist.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getInstance method returns a new instance of the
+     * SRVC_Contact_PreferredEmail class when one does not already exist.
+     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
         SRVC_Contact_PreferredEmail preferredEmailSRVCInstance = SRVC_Contact_PreferredEmail.getInstance();
-        System.assertEquals(SRVC_Contact_PreferredEmail.instance, preferredEmailSRVCInstance, 'Instance of service class returned should match static instance variable.');
+        System.assertEquals(
+            SRVC_Contact_PreferredEmail.instance,
+            preferredEmailSRVCInstance,
+            'Instance of service class returned should match static instance variable.'
+        );
         System.assertEquals(true, preferredEmailSRVCInstance != null, 'Instance of service class should not be null.');
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * SRVC_Contact_PreferredEmail class when one already exists.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getInstance method returns the existing instance of the
+     * SRVC_Contact_PreferredEmail class when one already exists.
+     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
         SRVC_Contact_PreferredEmail preferredEmailSRVCInstance1 = SRVC_Contact_PreferredEmail.getInstance();
         SRVC_Contact_PreferredEmail preferredEmailSRVCInstance2 = SRVC_Contact_PreferredEmail.getInstance();
 
-        System.assertEquals(SRVC_Contact_PreferredEmail.instance, preferredEmailSRVCInstance1, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(preferredEmailSRVCInstance1, preferredEmailSRVCInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
+        System.assertEquals(
+            SRVC_Contact_PreferredEmail.instance,
+            preferredEmailSRVCInstance1,
+            'Instance of service class returned should match static instance variable.'
+        );
+        System.assertEquals(
+            preferredEmailSRVCInstance1,
+            preferredEmailSRVCInstance2,
+            'Subsequent retrievals of service class instance should return existing instance.'
+        );
         System.assertEquals(true, preferredEmailSRVCInstance1 != null, 'Instance of service class should not be null.');
     }
 
     /**************************************************************************************************************************
-    *********************************************** TESTS FOR processPreferredEmailForInsert() ********************************
-    **************************************************************************************************************************/
+     *********************************************** TESTS FOR processPreferredEmailForInsert() ********************************
+     **************************************************************************************************************************/
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the processPreferredEmailForInsert returns null when the Contact has Email fields
-    * no values.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the processPreferredEmailForInsert returns null when the Contact has Email fields
+     * no values.
+     ***************************************************************************************************************************/
     @isTest
     private static void processPreferredEmailForInsertWithEmptyEmailFields() {
-
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
@@ -82,19 +92,22 @@ private class SRVC_Contact_PreferredEmail_TEST {
         testContact.Email = '';
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().processPreferredEmailForInsert(testContact, MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel());
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .processPreferredEmailForInsert(
+                testContact,
+                MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel()
+            );
         Test.stopTest();
 
         System.assertEquals(null, returnedContact);
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the processPreferredEmailForInsert adds error to the Contact when there are
-    * more than 1 email fields with values and when preferred email is not set.
-    **************************************************************************************************************************/
+     * @description Test method to verify that the processPreferredEmailForInsert adds error to the Contact when there are
+     * more than 1 email fields with values and when preferred email is not set.
+     **************************************************************************************************************************/
     @isTest
     private static void processPreferredEmailForInsertWithErrors() {
-
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
@@ -106,22 +119,24 @@ private class SRVC_Contact_PreferredEmail_TEST {
         Contact returnedContact;
 
         Test.startTest();
-            returnedContact = SRVC_Contact_PreferredEmail.getInstance().processPreferredEmailForInsert(testContact, MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel());
+        returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .processPreferredEmailForInsert(
+                testContact,
+                MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel()
+            );
         Test.stopTest();
 
         System.assertNotEquals(null, returnedContact);
         System.assertEquals(true, returnedContact.hasErrors());
         System.assertEquals(Label.PreferredEmailRequiredError, returnedContact.getErrors()[0].getMessage());
-
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the processPreferredEmailForInsert updates Preferred_Email__c to the label that
-    * has a value and sets Email to the value containing in the Custom Email field 
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the processPreferredEmailForInsert updates Preferred_Email__c to the label that
+     * has a value and sets Email to the value containing in the Custom Email field
+     ***************************************************************************************************************************/
     @isTest
     private static void processPreferredEmailForInsertWithNonEmptyEmailFields() {
-
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
@@ -131,7 +146,11 @@ private class SRVC_Contact_PreferredEmail_TEST {
         testContact.AlternateEmail__c = 'test@sf.org';
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().processPreferredEmailForInsert(testContact, MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel());
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .processPreferredEmailForInsert(
+                testContact,
+                MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel()
+            );
         Test.stopTest();
 
         System.assertNotEquals(null, returnedContact);
@@ -140,16 +159,15 @@ private class SRVC_Contact_PreferredEmail_TEST {
     }
 
     /**************************************************************************************************************************
-    ******************************************** TESTS FOR processPreferredEmailForUpdate() ***********************************
-    **************************************************************************************************************************/
+     ******************************************** TESTS FOR processPreferredEmailForUpdate() ***********************************
+     **************************************************************************************************************************/
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the processPreferredEmailForUpdate adds error to the Contact when Preferred Email
-    * is set and corresponding Email field is not set
-    **************************************************************************************************************************/
+     * @description Test method to verify that the processPreferredEmailForUpdate adds error to the Contact when Preferred Email
+     * is set and corresponding Email field is not set
+     **************************************************************************************************************************/
     @isTest
     private static void processPreferredEmailForUpdateWithEmptyEmailFieldsAndErrors() {
-
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
@@ -161,22 +179,25 @@ private class SRVC_Contact_PreferredEmail_TEST {
         newContact.Preferred_Email__c = 'Alternate Email';
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().processPreferredEmailForUpdate(newContact, oldContact, MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel());
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .processPreferredEmailForUpdate(
+                newContact,
+                oldContact,
+                MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel()
+            );
         Test.stopTest();
 
         System.assertNotEquals(null, returnedContact);
         System.assertEquals(true, returnedContact.hasErrors());
         System.assertEquals(Label.PreferredEmailMatchNotNull, returnedContact.getErrors()[0].getMessage());
-
     }
-    
+
     /****************************************************************************************************************************
-    * @description Test method to verify that the processPreferredEmailForUpdate, updates Preferred_Email__c to 'Alternate Email'
-    * and sets AlternateEmail__c to the value in 'Email' when only Email is set
-    *****************************************************************************************************************************/
+     * @description Test method to verify that the processPreferredEmailForUpdate, updates Preferred_Email__c to 'Alternate Email'
+     * and sets AlternateEmail__c to the value in 'Email' when only Email is set
+     *****************************************************************************************************************************/
     @isTest
     private static void processPreferredEmailForUpdateWithNonEmptyEmailFields() {
-
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
@@ -186,51 +207,55 @@ private class SRVC_Contact_PreferredEmail_TEST {
 
         Contact newContact = oldContact.clone(false);
         newContact.Email = 'test@sf.org';
-        
+
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().processPreferredEmailForUpdate(newContact, oldContact, MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel());
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .processPreferredEmailForUpdate(
+                newContact,
+                oldContact,
+                MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel()
+            );
         Test.stopTest();
 
         System.assertEquals('Alternate Email', returnedContact.Preferred_Email__c);
         System.assertEquals(returnedContact.AlternateEmail__c, newContact.Email);
-
     }
 
     /**************************************************************************************************************************
-    *************************************** TESTS FOR handleEmptyContactEmailFieldsForInsert() ********************************
-    **************************************************************************************************************************/
+     *************************************** TESTS FOR handleEmptyContactEmailFieldsForInsert() ********************************
+     **************************************************************************************************************************/
 
     /***************************************************************************************************************************************
-    * @description Test method to verify that the handleEmptyContactEmailFieldsForInsert, returns a Contact with PreferredEmailMatchNotNull
-    * error when Preferred Email is set, and corresponding Email field is not set.
-    ***************************************************************************************************************************************/
+     * @description Test method to verify that the handleEmptyContactEmailFieldsForInsert, returns a Contact with PreferredEmailMatchNotNull
+     * error when Preferred Email is set, and corresponding Email field is not set.
+     ***************************************************************************************************************************************/
     @isTest
     private static void handleEmptyContactEmailFieldsForInsertPrefEmailNotBlank() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Email = '';
         testContact.Preferred_Email__c = 'TestEmail@sf.org';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleEmptyContactEmailFieldsForInsert(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleEmptyContactEmailFieldsForInsert(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertNotEquals(null, returnedContact);
         System.assertEquals(true, returnedContact.hasErrors());
         System.assertEquals(Label.PreferredEmailMatchNotNull, returnedContact.getErrors()[0].getMessage());
-
     }
 
     /***************************************************************************************************************************************
-    * @description Test method to verify that the handleEmptyContactEmailFieldsForInsert, returns null when Preferred Email is and all other
-    * Email fields are not set when Preferred Email Enforcement is disabled
-    ***************************************************************************************************************************************/
+     * @description Test method to verify that the handleEmptyContactEmailFieldsForInsert, returns null when Preferred Email is and all other
+     * Email fields are not set when Preferred Email Enforcement is disabled
+     ***************************************************************************************************************************************/
     @isTest
     private static void handleEmptyContactEmailFieldsForInsertWithValidationDisabled() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Email = '';
         testContact.Preferred_Email__c = '';
@@ -239,24 +264,26 @@ private class SRVC_Contact_PreferredEmail_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleEmptyContactEmailFieldsForInsert(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleEmptyContactEmailFieldsForInsert(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertEquals(null, returnedContact);
     }
 
     /***************************************************************************************************************************************
-    * @description Test method to verify that the handleEmptyContactEmailFieldsForInsert, returns null when Preferred Email is and all other
-    * Email fields are not set when Preferred Email Enforcement is enabled
-    ***************************************************************************************************************************************/
+     * @description Test method to verify that the handleEmptyContactEmailFieldsForInsert, returns null when Preferred Email is and all other
+     * Email fields are not set when Preferred Email Enforcement is enabled
+     ***************************************************************************************************************************************/
 
     @isTest
     private static void handleEmptyContactEmailFieldsForInsertWithEmailBlank() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Email = '';
         testContact.Preferred_Email__c = '';
@@ -265,23 +292,25 @@ private class SRVC_Contact_PreferredEmail_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleEmptyContactEmailFieldsForInsert(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleEmptyContactEmailFieldsForInsert(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertEquals(null, returnedContact);
     }
 
     /*****************************************************************************************************************************************
-    * @description Test method to verify that the handleEmptyContactEmailFieldsForInsert, returns a Contact with Alternate Email and Preferred
-    * Email fields populated when only standard Email field had a value set
-    ******************************************************************************************************************************************/
+     * @description Test method to verify that the handleEmptyContactEmailFieldsForInsert, returns a Contact with Alternate Email and Preferred
+     * Email fields populated when only standard Email field had a value set
+     ******************************************************************************************************************************************/
     @isTest
     private static void handleEmptyContactEmailFieldsForInsertWithPopulateAlternateEmail() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Email = 'test@sf.org';
         testContact.Preferred_Email__c = '';
@@ -290,11 +319,14 @@ private class SRVC_Contact_PreferredEmail_TEST {
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = false)
         );
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleEmptyContactEmailFieldsForInsert(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleEmptyContactEmailFieldsForInsert(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertEquals(testContact.Email, returnedContact.AlternateEmail__c);
@@ -302,42 +334,42 @@ private class SRVC_Contact_PreferredEmail_TEST {
     }
 
     /**************************************************************************************************************************
-    *************************************** TESTS FOR handleEmptyContactEmailFieldsForUpdate() ********************************
-    **************************************************************************************************************************/
+     *************************************** TESTS FOR handleEmptyContactEmailFieldsForUpdate() ********************************
+     **************************************************************************************************************************/
 
     /*****************************************************************************************************************************************
-    * @description Test method to verify that the handleEmptyContactEmailFieldsForUpdate, returns a Contact with PreferredEmailMatchNotNull
-    * error when Preferred Email is set and its corresponding Email field is not set.
-    ******************************************************************************************************************************************/
+     * @description Test method to verify that the handleEmptyContactEmailFieldsForUpdate, returns a Contact with PreferredEmailMatchNotNull
+     * error when Preferred Email is set and its corresponding Email field is not set.
+     ******************************************************************************************************************************************/
     @isTest
     private static void handleEmptyContactEmailFieldsForUpdatePrefEmailNotBlank() {
-
         Contact oldContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         oldContact.Email = '';
 
         Contact newContact = oldContact.clone(false);
         newContact.Preferred_Email__c = 'TestEmail@sf.org';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(newContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(newContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleEmptyContactEmailFieldsForUpdate(contactModel, oldContact, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleEmptyContactEmailFieldsForUpdate(contactModel, oldContact, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertNotEquals(null, returnedContact);
         System.assertEquals(true, returnedContact.hasErrors());
         System.assertEquals(Label.PreferredEmailMatchNotNull, returnedContact.getErrors()[0].getMessage());
-
     }
 
     /*****************************************************************************************************************************************
-    * @description Test method to verify that the handleEmptyContactEmailFieldsForUpdate, returns null when Preferred Email and no other Email
-    * type fields have a value when Preferred Email Enforcement is disabled
-    ******************************************************************************************************************************************/
+     * @description Test method to verify that the handleEmptyContactEmailFieldsForUpdate, returns null when Preferred Email and no other Email
+     * type fields have a value when Preferred Email Enforcement is disabled
+     ******************************************************************************************************************************************/
     @isTest
     private static void handleEmptyContactEmailFieldsForUpdateWithValidationDisabled() {
-
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
@@ -348,48 +380,50 @@ private class SRVC_Contact_PreferredEmail_TEST {
         Contact newContact = oldContact.clone(false);
         newContact.Preferred_Email__c = '';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(newContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(newContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleEmptyContactEmailFieldsForUpdate(contactModel, oldContact, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleEmptyContactEmailFieldsForUpdate(contactModel, oldContact, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertEquals(null, returnedContact);
-
     }
 
     /*****************************************************************************************************************************************
-    * @description Test method to verify that the handleEmptyContactEmailFieldsForUpdate, returns null when Preferred Email and no other Email
-    * type fields have a value
-    ******************************************************************************************************************************************/  
+     * @description Test method to verify that the handleEmptyContactEmailFieldsForUpdate, returns null when Preferred Email and no other Email
+     * type fields have a value
+     ******************************************************************************************************************************************/
     @isTest
     private static void handleEmptyContactEmailFieldsForUpdateWithStandardEmailBlank() {
-
         Contact oldContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         oldContact.Email = '';
 
         Contact newContact = oldContact.clone(false);
         newContact.Preferred_Email__c = '';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(newContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(newContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleEmptyContactEmailFieldsForUpdate(contactModel, oldContact, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleEmptyContactEmailFieldsForUpdate(contactModel, oldContact, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertEquals(null, returnedContact);
-
     }
 
     /*****************************************************************************************************************************************
-    * @description Test method to verify that the handleEmptyContactEmailFieldsForUpdate, handleEmptyContactEmailFieldsForUpdate returns
-    * null when Email fields and Preferred Email is cleared
-    ******************************************************************************************************************************************/
+     * @description Test method to verify that the handleEmptyContactEmailFieldsForUpdate, handleEmptyContactEmailFieldsForUpdate returns
+     * null when Email fields and Preferred Email is cleared
+     ******************************************************************************************************************************************/
     @isTest
     private static void handleEmptyContactEmailFieldsForUpdateWithEmptyModel() {
-
         Contact oldContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         oldContact.Email = 'Test@sf.org';
         oldContact.AlternateEmail__c = 'Test@sf.org';
@@ -399,24 +433,25 @@ private class SRVC_Contact_PreferredEmail_TEST {
         newContact.Preferred_Email__c = '';
         newContact.AlternateEmail__c = '';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(newContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(newContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleEmptyContactEmailFieldsForUpdate(contactModel, oldContact, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleEmptyContactEmailFieldsForUpdate(contactModel, oldContact, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertEquals(null, returnedContact.Email);
-
     }
 
     /*******************************************************************************************************************************************
-    * @description Test method to verify that the handleEmptyContactEmailFieldsForUpdate, sets Preferred Email and Alternate Email to the value
-    * in the Email field
-    ********************************************************************************************************************************************/
+     * @description Test method to verify that the handleEmptyContactEmailFieldsForUpdate, sets Preferred Email and Alternate Email to the value
+     * in the Email field
+     ********************************************************************************************************************************************/
     @isTest
     private static void handleEmptyContactEmailFieldsForUpdateWithPopulateAlternateEmail() {
-
         Contact oldContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         oldContact.Email = '';
         oldContact.Preferred_Email__c = '';
@@ -424,29 +459,30 @@ private class SRVC_Contact_PreferredEmail_TEST {
         Contact newContact = oldContact.clone(false);
         newContact.Email = 'Test@sf.org';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(newContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(newContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleEmptyContactEmailFieldsForUpdate(contactModel, oldContact, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleEmptyContactEmailFieldsForUpdate(contactModel, oldContact, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertEquals('Alternate Email', returnedContact.preferred_Email__c);
         System.assertEquals(newContact.Email, returnedContact.AlternateEmail__c);
-
     }
 
     /**************************************************************************************************************************
-    *************************************** TESTS FOR handleContactEmailFields() **********************************************
-    **************************************************************************************************************************/
- 
+     *************************************** TESTS FOR handleContactEmailFields() **********************************************
+     **************************************************************************************************************************/
+
     /*******************************************************************************************************************************************
-    * @description Test method to verify that the handleContactEmailFields, returns null when Preferred Email Enforcement is Disabled and 
-    * when only Preferred Email is set
-    ********************************************************************************************************************************************/
+     * @description Test method to verify that the handleContactEmailFields, returns null when Preferred Email Enforcement is Disabled and
+     * when only Preferred Email is set
+     ********************************************************************************************************************************************/
     @isTest
     private static void handleContactEmailFieldsWithValidationDisabled() {
-
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(Disable_Preferred_Email_Enforcement__c = true)
         );
@@ -454,169 +490,179 @@ private class SRVC_Contact_PreferredEmail_TEST {
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Preferred_Email__c = 'Email';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
-         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleContactEmailFields(contactModel, preferredEmailSettingsModel);
+        Test.startTest();
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleContactEmailFields(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
-        System.assertEquals(null, returnedContact); 
-
+        System.assertEquals(null, returnedContact);
     }
-    
+
     /*******************************************************************************************************************************************
-    * @description Test method to verify that the handleContactEmailFields, returns a Contact with PreferredEmailRequiredError when more than
-    * 1 Email fields are set and Preferred Email is not set 
-    ********************************************************************************************************************************************/
+     * @description Test method to verify that the handleContactEmailFields, returns a Contact with PreferredEmailRequiredError when more than
+     * 1 Email fields are set and Preferred Email is not set
+     ********************************************************************************************************************************************/
     @isTest
     private static void handleContactEmailFieldsWithMultipleEmailError() {
- 
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Preferred_Email__c = '';
         testContact.UniversityEmail__c = 'test@sf.org';
         testContact.WorkEmail__c = 'test@sf.org';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleContactEmailFields(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleContactEmailFields(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertNotEquals(null, returnedContact);
         System.assertEquals(true, returnedContact.hasErrors());
         System.assertEquals(Label.PreferredEmailRequiredError, returnedContact.getErrors()[0].getMessage());
-
     }
 
     /*******************************************************************************************************************************************
-    * @description Test method to verify that the handleContactEmailFields, returns a Contact with PreferredEmailMatchMustExist Error when 
-    * Preferred Email is set and no other Email fields are set
-    ********************************************************************************************************************************************/
+     * @description Test method to verify that the handleContactEmailFields, returns a Contact with PreferredEmailMatchMustExist Error when
+     * Preferred Email is set and no other Email fields are set
+     ********************************************************************************************************************************************/
     @isTest
     private static void handleContactEmailFieldsWithPreferredEmailNotFoundError() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Preferred_Email__c = 'Test Email';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleContactEmailFields(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleContactEmailFields(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertNotEquals(null, returnedContact);
         System.assertEquals(true, returnedContact.hasErrors());
         System.assertEquals(Label.PreferredEmailMatchMustExist, returnedContact.getErrors()[0].getMessage());
-
     }
 
     /*******************************************************************************************************************************************
-    * @description Test method to verify that the handleContactEmailFields, returns a Contact with Preferred Email and  Email set when only
-    * one other Custom Email field is set
-    ********************************************************************************************************************************************/
+     * @description Test method to verify that the handleContactEmailFields, returns a Contact with Preferred Email and  Email set when only
+     * one other Custom Email field is set
+     ********************************************************************************************************************************************/
     @isTest
     private static void handleContactEmailFieldsWithSetPreferredEmail() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.UniversityEmail__c = 'Test Email';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleContactEmailFields(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleContactEmailFields(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
-		System.assertEquals('University Email', testContact.Preferred_Email__c);
+        System.assertEquals('University Email', testContact.Preferred_Email__c);
         System.assertEquals(testContact.UniversityEmail__c, testContact.Email);
-
     }
 
     /**************************************************************************************************************************
-    *************************************** TESTS FOR handleContactEmailFieldsForInsertAndUpdate() ***********************************
-    **************************************************************************************************************************/
+     *************************************** TESTS FOR handleContactEmailFieldsForInsertAndUpdate() ***********************************
+     **************************************************************************************************************************/
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the handleContactEmailFieldsForInsertAndUpdate method returns null when Preferred Email 
-    * and all other Email type fields are not set
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the handleContactEmailFieldsForInsertAndUpdate method returns null when Preferred Email
+     * and all other Email type fields are not set
+     ***************************************************************************************************************************/
     @isTest
     private static void handleContactEmailFieldsForInsertAndUpdateWithPrefEmailBlank() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Email = '';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleContactEmailFieldsForInsertAndUpdate(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleContactEmailFieldsForInsertAndUpdate(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertEquals(null, returnedContact);
-
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the handleContactEmailFieldsForInsertAndUpdate method returns null when Preferred Email 
-    * is set to preferredBatchDefaultEmail and all other Email type fields are not set
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the handleContactEmailFieldsForInsertAndUpdate method returns null when Preferred Email
+     * is set to preferredBatchDefaultEmail and all other Email type fields are not set
+     ***************************************************************************************************************************/
     @isTest
     private static void handleContactEmailFieldsForInsertAndUpdateWithDefaultBatch() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Preferred_Email__c = Label.preferredBatchDefaultEmail;
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleContactEmailFieldsForInsertAndUpdate(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleContactEmailFieldsForInsertAndUpdate(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertEquals(null, returnedContact);
-
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the handleContactEmailFieldsForInsertAndUpdate method returns null when Preferred Email 
-    * is set to 'Email' and all other Email type fields are not set
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the handleContactEmailFieldsForInsertAndUpdate method returns null when Preferred Email
+     * is set to 'Email' and all other Email type fields are not set
+     ***************************************************************************************************************************/
     @isTest
     private static void handleContactEmailFieldsForInsertAndUpdateWithStandardEmail() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Preferred_Email__c = 'Email';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleContactEmailFieldsForInsertAndUpdate(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleContactEmailFieldsForInsertAndUpdate(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertEquals(null, returnedContact);
-
     }
-    
+
     /********************************************************************************************************************************************
-    * @description Test method to verify that the handleContactEmailFieldsForInsertAndUpdate method returns a Contact with PreferredEmailMatchMustExist
-    * error when the value in Preferred Email doesn't match with any of the Email type fields
-    *********************************************************************************************************************************************/
+     * @description Test method to verify that the handleContactEmailFieldsForInsertAndUpdate method returns a Contact with PreferredEmailMatchMustExist
+     * error when the value in Preferred Email doesn't match with any of the Email type fields
+     *********************************************************************************************************************************************/
     @isTest
     private static void handleContactEmailFieldsForInsertAndUpdateWithNonExistingField() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Preferred_Email__c = 'Testing Email';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleContactEmailFieldsForInsertAndUpdate(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleContactEmailFieldsForInsertAndUpdate(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertNotEquals(null, returnedContact);
@@ -625,69 +671,73 @@ private class SRVC_Contact_PreferredEmail_TEST {
     }
 
     /********************************************************************************************************************************************
-    * @description Test method to verify that the handleContactEmailFieldsForInsertAndUpdate method returns a Contact with PreferredEmailMatchNotNull
-    * error when there is a value in Preferred Email, and the corresponding email type field is blank
-    *********************************************************************************************************************************************/
+     * @description Test method to verify that the handleContactEmailFieldsForInsertAndUpdate method returns a Contact with PreferredEmailMatchNotNull
+     * error when there is a value in Preferred Email, and the corresponding email type field is blank
+     *********************************************************************************************************************************************/
     @isTest
     private static void handleContactEmailFieldsForInsertAndUpdateWithValueCorrespondingToPrefEmailBlank() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Preferred_Email__c = 'University Email';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleContactEmailFieldsForInsertAndUpdate(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleContactEmailFieldsForInsertAndUpdate(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertNotEquals(null, returnedContact);
         System.assertEquals(true, returnedContact.hasErrors());
         System.assertEquals(Label.PreferredEmailMatchNotNull, returnedContact.getErrors()[0].getMessage());
-
     }
 
     /********************************************************************************************************************************************
-    * @description Test method to verify that the handleContactEmailFieldsForInsertAndUpdate method copies the value from email type field corresponding
-    * to Preferred Email
-    *********************************************************************************************************************************************/
+     * @description Test method to verify that the handleContactEmailFieldsForInsertAndUpdate method copies the value from email type field corresponding
+     * to Preferred Email
+     *********************************************************************************************************************************************/
     @isTest
     private static void handleContactEmailFieldsForInsertAndUpdateWCopyValueToStandardEmail() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Preferred_Email__c = 'University Email';
         testContact.UniversityEmail__c = 'University Email';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().handleContactEmailFieldsForInsertAndUpdate(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .handleContactEmailFieldsForInsertAndUpdate(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
-        System.assertEquals(testContact.UniversityEmail__c, returnedContact.Email); 
-
+        System.assertEquals(testContact.UniversityEmail__c, returnedContact.Email);
     }
 
     /**************************************************************************************************************************
-    *************************************** TESTS FOR populateAlternateEmailAndSetAsPreferred() *******************************
-    **************************************************************************************************************************/
+     *************************************** TESTS FOR populateAlternateEmailAndSetAsPreferred() *******************************
+     **************************************************************************************************************************/
 
     /**************************************************************************************************************************
-    * @description Test method to verify populateAlternateEmailAndSetAsPreffered sets Preferred Email to 'Alternate Email'
-    * and Alternate Email to the value in the standard email field
-    ***************************************************************************************************************************/
+     * @description Test method to verify populateAlternateEmailAndSetAsPreffered sets Preferred Email to 'Alternate Email'
+     * and Alternate Email to the value in the standard email field
+     ***************************************************************************************************************************/
     @isTest
     private static void populateAlternateEmailAndSetAsPreferred() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Email = 'test@sf.org';
 
-        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel();
-        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, preferredEmailSettingsModel);
+        MODL_PreferredEmailSettings preferredEmailSettingsModel = MAPR_CON_PreferredEmailFields.getInstance()
+            .getPreferredEmailSettingsModel();
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(testContact, preferredEmailSettingsModel);
 
         Test.startTest();
-            Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance().populateAlternateEmailAndSetAsPreffered(contactModel, preferredEmailSettingsModel);
+        Contact returnedContact = SRVC_Contact_PreferredEmail.getInstance()
+            .populateAlternateEmailAndSetAsPreffered(contactModel, preferredEmailSettingsModel);
         Test.stopTest();
 
         System.assertEquals('Alternate Email', returnedContact.Preferred_Email__c);
@@ -695,70 +745,142 @@ private class SRVC_Contact_PreferredEmail_TEST {
     }
 
     /**************************************************************************************************************************
-    ******************************** TESTS FOR getModelFromContactWithNoPreferredEmailAndNoEmailFields() **********************
-    **************************************************************************************************************************/
+     ******************************** TESTS FOR getModelFromContactWithNoPreferredEmailAndNoEmailFields() **********************
+     **************************************************************************************************************************/
 
     /**************************************************************************************************************************
-    * @description Test method to verify getModelFromContact returns a Contact model with No Email field models when Preferred
-    * Email is not set and all other custom email field types are null
-    ***************************************************************************************************************************/
+     * @description Test method to verify getModelFromContact returns a Contact model with No Email field models when Preferred
+     * Email is not set and all other custom email field types are null
+     ***************************************************************************************************************************/
     @isTest
     private static void getModelFromContactWithNoPreferredEmailAndNoEmailFields() {
- 
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Preferred_Email__c = null;
 
         Test.startTest();
-            SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel());
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(
+                testContact,
+                MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel()
+            );
         Test.stopTest();
 
         System.assertEquals(false, contactModel.hasPrefEmailField);
         System.assertEquals(null, contactModel.prefEmailFieldValue);
         System.assertEquals(0, contactModel.contactEmailFieldModels.size());
         System.assertEquals(null, contactModel.currentEmailModel);
-
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify getModelFromContact returns a Contact model with 1 Email field models, prefEmailFieldValue
-    * set when Preferred Email is set and all other custom email field types are null
-    ***************************************************************************************************************************/
+     * @description Test method to verify getModelFromContact returns a Contact model with 1 Email field models, prefEmailFieldValue
+     * set when Preferred Email is set and all other custom email field types are null
+     ***************************************************************************************************************************/
     @isTest
     private static void getModelFromContactWithPreferredEmail() {
-
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.Preferred_Email__c = 'Alternate Email';
         testContact.AlternateEmail__c = 'test@sf.org';
 
         Test.startTest();
-            SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel());
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(
+                testContact,
+                MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel()
+            );
         Test.stopTest();
 
         System.assertEquals(true, contactModel.hasPrefEmailField);
         System.assertEquals(testContact.AlternateEmail__c, contactModel.prefEmailFieldValue);
         System.assertEquals(1, contactModel.contactEmailFieldModels.size());
         System.assertEquals(null, contactModel.currentEmailModel);
-
     }
 
     /******************************************************************************************************************************
-    * @description Test method to verify getModelFromContact returns a Contact model with 1 Email field models
-    * when Preferred Email is not set and only 1 custom email field types is set
-    ******************************************************************************************************************************/
+     * @description Test method to verify getModelFromContact returns a Contact model with 1 Email field models
+     * when Preferred Email is not set and only 1 custom email field types is set
+     ******************************************************************************************************************************/
     @isTest
     private static void getModelFromContactWithNoPreferredEmail() {
- 
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         testContact.AlternateEmail__c = 'test@sf.org';
 
         Test.startTest();
-            SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance().getModelFromContact(testContact, MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel());
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel = SRVC_Contact_PreferredEmail.getInstance()
+            .getModelFromContact(
+                testContact,
+                MAPR_CON_PreferredEmailFields.getInstance().getPreferredEmailSettingsModel()
+            );
         Test.stopTest();
 
         System.assertEquals(false, contactModel.hasPrefEmailField);
         System.assertEquals(null, contactModel.prefEmailFieldValue);
         System.assertEquals(1, contactModel.contactEmailFieldModels.size());
         System.assertEquals(null, contactModel.currentEmailModel);
+    }
 
+    /**************************************************************************************************************************
+     * @description Test method to verify runPreferredPhoneAndEmailCleanupJob runs succesfully
+     ***************************************************************************************************************************/
+    @isTest
+    private static void runPreferredPhoneAndEmailCleanupJobValid() {
+        SRVC_Contact_PreferredEmail.instance = new STUB_RunPreferredPhoneAndEmailCleanupBatchNotNull();
+
+        Test.startTest();
+        Boolean apexJobSuccess = SRVC_Contact_PreferredEmail.getInstance().runPreferredPhoneAndEmailCleanupJob();
+        Test.stopTest();
+        System.assertEquals(true, apexJobSuccess, 'Ensure apex batch job has run successfully');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify runPreferredPhoneAndEmailCleanupJob thorws an error if batch job fails to run
+     ***************************************************************************************************************************/
+    @isTest
+    private static void runPreferredPhoneAndEmailCleanupJobInValid() {
+        SRVC_Contact_PreferredEmail.instance = new STUB_RunPreferredPhoneAndEmailCleanupBatchNull();
+        try {
+            Test.startTest();
+            Boolean apexJobSuccess = SRVC_Contact_PreferredEmail.getInstance().runPreferredPhoneAndEmailCleanupJob();
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify runPreferredPhoneAndEmailCleanupBatch runs successfully
+     ***************************************************************************************************************************/
+    @isTest
+    private static void runPreferredPhoneAndEmailCleanupBatch() {
+        CON_Email_BATCH prefEmailPhonebatch = new CON_Email_BATCH(null);
+        Test.startTest();
+        Id batchJobId = SRVC_Contact_PreferredEmail.getInstance()
+            .runPreferredPhoneAndEmailCleanupBatch(prefEmailPhonebatch);
+        Test.stopTest();
+        System.assertNotEquals(null, batchJobId, 'Ensure apex batch job has run successfully');
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** STUB CLASS *********************************************************
+     **************************************************************************************************************************/
+
+    /*************************************************************************************************************
+     * @description Stub class to simulate the response from SRVC_Contact_PreferredEmail to null for the Household Account
+     * naming batch job Id
+     */
+    private class STUB_RunPreferredPhoneAndEmailCleanupBatchNull extends SRVC_Contact_PreferredEmail {
+        private override Id runPreferredPhoneAndEmailCleanupBatch(CON_Email_BATCH prefEmailPhonebatch) {
+            return null;
+        }
+    }
+
+    /***********************************************************************************************************************
+     * @description Stub class to simulate the response from SRVC_Contact_PreferredEmail to return an Id for the Household Account
+     * naming batch job Id
+     */
+    private class STUB_RunPreferredPhoneAndEmailCleanupBatchNotNull extends SRVC_Contact_PreferredEmail {
+        private override Id runPreferredPhoneAndEmailCleanupBatch(CON_Email_BATCH prefEmailPhonebatch) {
+            return '01217000002Zs0pAAC';
+        }
     }
 }

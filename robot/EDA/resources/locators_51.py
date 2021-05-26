@@ -110,6 +110,15 @@ eda_lex_locators = {
         "update_checkbox": "//span[text()='{}']/../following-sibling::div[1]/descendant::span[contains(@class, 'checkbox')]",
         "add_setting_button": "//span[text()='{}']/../following-sibling::button/span[text()='{}']",
     },
+    "eda_settings_new": {
+        "global_action": "//button[@title='{}']",
+        "toast_message": "//div[contains(@class, 'slds-theme--success slds-notify--toast slds-notify slds-notify--toast forceToastMessage')]/descendant::span[text()='{}']",
+        "settings_nav_title": "//div[@data-qa-locator='edaSettingsNavigation']/descendant::h3/a[text()='{}']",
+        "dropdown_input": "//label[text()='{}']/../descendant::input[@role='combobox']",
+        "settings_dropdown": "//label[text()='{}']/../descendant::span[text()='{}']",
+        "select_from_list": "//div[text()='{}']/../following-sibling::div/descendant::div[contains(@class, 'list__options')]/descendant::span[text()='{}']",
+        "move_to_selected": "//div[text()='{}']/../following-sibling::div/descendant::button[@type='button' and @title='Move selection to Selected Account Record Types']",
+    },
      "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
         "dropdown_values": "//div[text()='{}']/following-sibling::div/select/option[text()='{}']",

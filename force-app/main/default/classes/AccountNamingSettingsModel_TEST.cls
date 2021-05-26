@@ -25,54 +25,104 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group EDA Settings
-* @group-content ../../ApexDocContent/EdaSettings.htm
-* @description Test class for AccountNamingSettingsModel.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group EDA Settings
+ * @group-content ../../ApexDocContent/EdaSettings.htm
+ * @description Test class for AccountNamingSettingsModel.
+ */
 @isTest
 private class AccountNamingSettingsModel_TEST {
-    @isTest 
-    private  static void fiveParameterConstructor() {
+    /***********************************************************************************************
+     * @description Test to verify five parameter constructor returns an AccountNamingSettingsModel
+     * with all properties populated.
+     ***********************************************************************************************/
+    @isTest
+    private static void fiveParameterConstructor() {
         Test.startTest();
-        AccountNamingSettingsModel accountNamingSettingsModel = 
-            new AccountNamingSettingsModel(
-                'admin format',
-                'hh format',
-                'custom admin format',
-                'custom hh format',
-                true
-            );
+        AccountNamingSettingsModel accountNamingSettingsModel = new AccountNamingSettingsModel(
+            'admin format',
+            'hh format',
+            'custom admin format',
+            'custom hh format',
+            true
+        );
         Test.stopTest();
 
         System.assertEquals(
-            'admin format', 
-            accountNamingSettingsModel.administrativeAccountNameFormat, 
+            'admin format',
+            accountNamingSettingsModel.administrativeAccountNameFormat,
             'Administrative Account name format should be set to specified value.'
         );
 
         System.assertEquals(
-            'hh format', 
-            accountNamingSettingsModel.householdAccountNamingFormat, 
+            'hh format',
+            accountNamingSettingsModel.householdAccountNamingFormat,
             'Household Account name format should be set to specified value.'
         );
 
         System.assertEquals(
-            'custom admin format', 
-            accountNamingSettingsModel.customAdministrativeAccountNameFormat, 
+            'custom admin format',
+            accountNamingSettingsModel.customAdministrativeAccountNameFormat,
             'Custom Administrative Account name format should be set to specified value.'
         );
 
         System.assertEquals(
-            'custom hh format', 
-            accountNamingSettingsModel.customHouseholdAccountNamingFormat, 
+            'custom hh format',
+            accountNamingSettingsModel.customHouseholdAccountNameFormat,
             'Custom Household Account name format should be set to specified value.'
         );
 
         System.assertEquals(
-            true, 
-            accountNamingSettingsModel.autoHouseholdAccountNamingEnabled, 
+            true,
+            accountNamingSettingsModel.autoHouseholdAccountNamingEnabled,
+            'Auto household account naming should be enabled.'
+        );
+    }
+
+    /***********************************************************************************************
+     * @description Test to verify five parameter constructor returns an AccountNamingSettingsModel
+     * with all properties populated and blanks when appropriate.
+     ***********************************************************************************************/
+    @isTest
+    private static void fiveParameterConstructorWithBlanks() {
+        Test.startTest();
+        AccountNamingSettingsModel accountNamingSettingsModel = new AccountNamingSettingsModel(
+            'admin format',
+            'hh format',
+            '',
+            null,
+            true
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'admin format',
+            accountNamingSettingsModel.administrativeAccountNameFormat,
+            'Administrative Account name format should be set to specified value.'
+        );
+
+        System.assertEquals(
+            'hh format',
+            accountNamingSettingsModel.householdAccountNamingFormat,
+            'Household Account name format should be set to specified value.'
+        );
+
+        System.assertEquals(
+            '',
+            accountNamingSettingsModel.customAdministrativeAccountNameFormat,
+            'Custom Administrative Account name format should be blank.'
+        );
+
+        System.assertEquals(
+            '',
+            accountNamingSettingsModel.customHouseholdAccountNameFormat,
+            'Custom Household Account name format should be blank.'
+        );
+
+        System.assertEquals(
+            true,
+            accountNamingSettingsModel.autoHouseholdAccountNamingEnabled,
             'Auto household account naming should be enabled.'
         );
     }

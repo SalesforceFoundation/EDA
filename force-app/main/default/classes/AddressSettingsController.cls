@@ -33,7 +33,7 @@
  */
 public with sharing class AddressSettingsController {
     /************************************************************************************
-     * @description Retrieve an AddressSettingsVModel represeting the current values
+     * @description Retrieve an AddressSettingsVModel representing the current values
      * specified for Address Settings fields in Hierarchy Settings and a list of models
      * representing the available active Account Record Types.
      * @return An AddressSettingsVModel

@@ -65,6 +65,17 @@ public virtual with sharing class RecordTypeService {
         return this.locateRecordTypeMapper().getModelByIdMapForSObjectType(sObjectType);
     }
 
+    /******************************************************************************
+     * @description Returns a recordtype model for an Object and it's recordtype
+     * @param objectAPI The API name for object to get the record type model for
+     * @param recTypeDevName The record type dev name to get the record typpe model for
+     * for the given object
+     * @return A recordtype model
+     ******************************************************************************/
+    public virtual RecordTypeModel getRecordTypeModelFromRecTypeDevName(String objectAPI, String recTypeDevName) {
+        return this.locateRecordTypeMapper().getRecordTypeModelFromRecTypeDevName(objectAPI, recTypeDevName);
+    }
+
     /***********************************************************************************************************************
      * @description Retrieve a map of active record types by Id from a list of all record types associated with an SObject.
      * @param allRecordTypeModelsList A list containing all record type models in an org.
@@ -154,7 +165,7 @@ public virtual with sharing class RecordTypeService {
      * @param recordTypeModelById A map of recordTypeModels by Id
      * @return A map of Record Type Model By Name
      ******************************************************************************/
-    public Map<String, RecordTypeModel> getRecordTypeModelByName(Map<Id, RecordTypeModel> recordTypeModelById) {
+    public Map<String, RecordTypeModel> getRecordTypeModelMapByName(Map<Id, RecordTypeModel> recordTypeModelById) {
         Map<String, RecordTypeModel> recordTypeModelsByName = new Map<String, RecordTypeModel>();
 
         for (RecordTypeModel recordTypeModel : recordTypeModelById.values()) {
@@ -169,7 +180,7 @@ public virtual with sharing class RecordTypeService {
      * @param recordTypeModelById A map of recordTypeModels by Id
      * @return A map of Record Type Model By Label
      ******************************************************************************/
-    public Map<String, RecordTypeModel> getRecordTypeModelByLabel(Map<Id, RecordTypeModel> recordTypeModelById) {
+    public Map<String, RecordTypeModel> getRecordTypeModelMapByLabel(Map<Id, RecordTypeModel> recordTypeModelById) {
         Map<String, RecordTypeModel> recordTypeModelsByLabel = new Map<String, RecordTypeModel>();
 
         for (RecordTypeModel recordTypeModel : recordTypeModelById.values()) {

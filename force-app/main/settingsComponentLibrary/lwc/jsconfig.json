@@ -52,7 +52,25 @@
             ],
             "c/settingsRowDualListbox": [
                 "settingsRowDualListbox/settingsRowDualListbox.js"
+            ],
+            "c/systemTools": [
+                "../../default/lwc/systemTools/systemTools.js"
             ]
-        }
+        },
+        "experimentalDecorators": true
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "paths": {
+        "c/*": [
+            "*"
+        ]
+    },
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
     }
 }

@@ -16,6 +16,8 @@ project:
         banner: ApexDocContent/projectheader.htm
         branch: gh-pages
         repo_dir: ApexDocumentation
+    dependency_resolutions:
+        preproduction: include_beta
 
 sources:
     latest_release:
@@ -113,6 +115,24 @@ tasks:
             namespace_inject: $project_config.project__package__namespace
             path: unpackaged/config/translations/
             unmanaged: True
+
+    deploy_post:
+        ui_options:
+            course_connection_record_types:
+                name: EDA - Course Connection Record Types
+            facility_display_name:
+                name: EDA - Facility Display Name Formula Field
+            case_behavior_record_types:
+                name: EDA - Case Behavior Record Types
+            health_check_tab:
+                name: Health Check
+
+    deploy_pre:
+        ui_options:
+            acc_record_types:
+                name: EDA - Account Record Types
+            contact_key_affl_fields:
+                name: EDA - Contact Key Affiliation Fields
 
     deploy_preferred_email_config:
         description: Deploys Preferred Email configuration(custom email fields, translations, apex unit tests and sets Admin profile access to Email fields) for testing.
@@ -301,12 +321,13 @@ tasks:
             path: unpackaged/config/trial
             namespace_tokenize: $project_config.project__package__namespace
 
-    deploy_Summer_21QA:
-        group: "EDA Metadata"
-        description: Deploys QA and Dev Only Config for Summer ‘21
-        class_path: cumulusci.tasks.salesforce.DeployBundles
+    retrieve_custom_labels_and_translations:
+        description: "Retrieve custom labels and translations from the default scratch org"
+        class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
-            path: unpackaged/232
+            command: "force:source:retrieve"
+            extra: "-m CustomLabels,Translations"
+        group: "EDA: Metadata"
 
     robot:
         # description: Runs a Robot Framework test from a .robot file.
@@ -385,8 +406,6 @@ flows:
                 task: deploy_dev_config
             7:
                 flow: eda_settings
-            8:
-                task: deploy_Summer_21QA
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -453,8 +472,6 @@ flows:
                 task: deploy_qa_config
             8:
                 flow: eda_settings
-            9:
-                task: deploy_Summer_21QA
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.
@@ -633,13 +650,18 @@ flows:
             0.1:
                 flow: translations
 
-    retrieve_custom_labels_and_translations:
-        description: "Retrieve custom labels and translations from the default scratch org"
-        class_path: cumulusci.tasks.sfdx.SFDXOrgTask
-        options:
-            command: "force:source:retrieve"
-            extra: "-m CustomLabels,Translations"
-        group: "EDA: Metadata"
+    customer_org:
+        steps:
+            1:
+                flow: dependencies
+            2:
+                task: install_managed
+            3:
+                task: deploy_post
+                options:
+                    unmanaged: False
+            4:
+                flow: deploy_health_check_localization
 
 services:
     mockaroo:
@@ -671,30 +693,7 @@ plans:
         tier: primary
         steps:
             1:
-                flow: dependencies
-                ui_options:
-                    deploy_pre:
-                        acc_record_types:
-                            name: EDA - Account Record Types
-                        contact_key_affl_fields:
-                            name: EDA - Contact Key Affiliation Fields
-            2:
-                task: install_managed
-            3:
-                task: deploy_post
-                ui_options:
-                    course_connection_record_types:
-                        name: EDA - Course Connection Record Types
-                    facility_display_name:
-                        name: EDA - Facility Display Name Formula Field
-                    case_behavior_record_types:
-                        name: EDA - Case Behavior Record Types
-                    health_check_tab:
-                        name: Health Check
-                options:
-                    unmanaged: False
-            4:
-                flow: deploy_health_check_localization
+                flow: customer_org
 
     ra_einstein_template:
         slug: ra_template
@@ -708,3 +707,20 @@ plans:
             - when: "not tasks.has_einstein_licenses()"
               action: error
               message: Einstein Analytics permission sets are not available.
+    upgrade:
+        slug: upgrade
+        title: Product Upgrade
+        tier: additional
+        is_listed: False
+        preflight_message: "This installer upgrades this package and any required dependencies to the latest version in your org. This installer isn't supported and has risks. Please don't run this installer unless you're aware of its specific use cases and considerations."
+        post_install_message: "Installation complete and package is on the latest version."
+        steps:
+            1:
+                task: update_dependencies
+                options:
+                    security_type: PUSH
+                    packages_only: True
+            2:
+                task: install_managed
+                options:
+                    security_type: PUSH

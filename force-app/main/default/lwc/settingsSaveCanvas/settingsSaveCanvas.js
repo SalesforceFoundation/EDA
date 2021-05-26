@@ -3,14 +3,32 @@ import { LightningElement, api } from "lwc";
 import settingsButtonEdit from "@salesforce/label/c.stgBtnEdit";
 import settingsButtonCancel from "@salesforce/label/c.stgBtnCancel";
 import settingsButtonSave from "@salesforce/label/c.stgBtnSave";
+import stgSaveSettings from "@salesforce/label/c.stgSaveSettings";
 
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 import updateHierarchySettings from "@salesforce/apex/HierarchySettingsChangesController.updateHierarchySettings";
 
 export default class SettingsSaveCanvas extends LightningElement {
+    // initialize component
+    renderedCallback() {
+        if (this.hasRendered) {
+            return;
+        }
+
+        this.hasRendered = true;
+
+        this.dispatchEvent(
+            new CustomEvent("savecanvasrendered", {
+                bubbles: true,
+                composed: true,
+            })
+        );
+    }
+
     @api componentTitle;
 
+    hasRendered;
     editButtonShown = true;
     saveCancelDisabled = undefined;
 
@@ -23,8 +41,13 @@ export default class SettingsSaveCanvas extends LightningElement {
         settingsButtonEdit,
         settingsButtonCancel,
         settingsButtonSave,
-        successMessage: "Your updates have been successfully applied.",
+        successMessage: stgSaveSettings,
     };
+
+    @api
+    focusOnTitle() {
+        this.template.querySelector(".eda-settings-page-title").focus();
+    }
 
     @api
     handleValidationFailure() {

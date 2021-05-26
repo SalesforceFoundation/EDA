@@ -29,11 +29,11 @@
  * @date 2021
  * @group EDA Settings
  * @group-content ../../ApexDocContent/EdaSettings.htm
- * @description Apex controller for accountModelSettings LWC component.
+ * @description Apex controller for Account model settings in accountModelSettings LWC component.
  */
 public with sharing class AccountModelSettingsController {
     /************************************************************************************
-     * @description Retrieve an AccountModelSettingsVModel represeting the current values
+     * @description Retrieve an AccountModelSettingsVModel representing the current values
      * specified for Account Settings fields in Hierarchy Settings and a list of models
      * representing the available active Account Record Types.
      * @return An AccountModelSettingsVModel
@@ -49,7 +49,7 @@ public with sharing class AccountModelSettingsController {
     }
 
     /************************************************************************************
-     * @description Retrieve a DualListboxVModel represeting the current Account Record Types
+     * @description Retrieve a DualListboxVModel representing the current Account Record Types
      * specified for deletion when not associated with Contacts in Hierarchy Settings and
      * the remaining active Account Record Types available for selection.
      * @return A DualListboxVModel
@@ -59,6 +59,22 @@ public with sharing class AccountModelSettingsController {
         try {
             return AccountModelSettingsController.locateAccountAutoDeletionSettingsVMapper()
                 .getAccountAutoDeletionSettingsViewModel();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************
+     * @description Retrieve a DualListboxVModel representing the current Account Record Types
+     * specified for account renaming in Hierarchy Settings and
+     * the remaining active Account Record Types available for selection.
+     * @return A DualListboxVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static DualListboxVModel getLeadConversionAccountNamingViewModel() {
+        try {
+            return AccountModelSettingsController.locateLeadConversionAccountNamingVMapper()
+                .getLeadConversionAccountNamingViewModel();
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -78,5 +94,13 @@ public with sharing class AccountModelSettingsController {
     @TestVisible
     private static AccountAutoDeletionSettingsVMapper locateAccountAutoDeletionSettingsVMapper() {
         return AccountAutoDeletionSettingsVMapper.getInstance();
+    }
+
+    /**********************************************************************************
+     * @description Locates and returns an instance of LeadConversionAccountNamingVMapper.
+     **********************************************************************************/
+    @TestVisible
+    private static LeadConversionAccountNamingVMapper locateLeadConversionAccountNamingVMapper() {
+        return LeadConversionAccountNamingVMapper.getInstance();
     }
 }
