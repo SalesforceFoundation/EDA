@@ -705,6 +705,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Course Connections --></label>
+        <name>stgCourseConnectionsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Course Connection Settings --></label>
+        <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
         <name>stgHelpCourseConnectionBackfill</name>
     </customLabels>
@@ -765,7 +773,7 @@
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
-        <label>履修科目を有効化</label>
+        <label><!-- Label for the Course Connection Record Types setting --></label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
@@ -1329,7 +1337,7 @@
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>履修科目レコードでは取引先責任者を開講科目に接続します。この機能を有効化すると、ユーザは取引先責任者の種別 (教職員または学生) を選択して、その履修科目を作成できます。この機能を有効化する場合、以下の [デフォルトの有効な学生レコードタイプ] と [デフォルトの教職員レコードタイプ] も設定する必要があります。この機能を初めて有効化する場合、履修科目のバックフィルを実行することを強くお勧めします。</label>
+        <label><!-- Description of the Course Connections setting --></label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
