@@ -701,8 +701,28 @@
         <name>stgCourseConnBackFillError</name>
     </customLabels>
     <customLabels>
-        <label>Le remplissage a été mis en file d&apos;attente avec succès.</label>
+        <label><!-- Confirmation message when Course Connection record types are queued for update --></label>
         <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation title for Course Connections --></label>
+        <name>stgCourseConnectionsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Course Connection Settings --></label>
+        <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
+        <name>stgHelpCourseConnectionBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Connection record types --></label>
+        <name>stgBtnRunCourseConnBackfillA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
+        <name>stgCourseConnectionBackfillModalTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Title for the Update Extended Description field confirmation window --></label>
@@ -753,7 +773,7 @@
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
-        <label>Activer les inscriptions au module</label>
+        <label><!-- Label for the Course Connection Record Types setting --></label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
@@ -1277,7 +1297,7 @@
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label>Le Remplissage des inscriptions au module doit être utilisé uniquement lors de l&apos;activation initiale des inscriptions au module, et seulement dans les organisations dans lesquelles des choix de modules et des inscriptions au module (inscriptions) existaient avant l&apos;activation de la fonctionnalité Inscription au module. Le Remplissage convertit tous les contacts répertoriés en tant que professeurs dans une inscription au module (inscription) ou un choix de modules en type d&apos;enregistrement de professeur par défaut. Le Remplissage convertit ensuite les contacts des inscriptions au module (inscriptions) restantes en type d&apos;enregistrement d&apos;étudiant actif par défaut.</label>
+        <label><!-- Description of the Update Course Connection record types confirmation window --></label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
@@ -1317,7 +1337,7 @@
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>Les enregistrements Inscription au module connectent un contact à un choix de modules. L&apos;activation de cette fonctionnalité permet aux utilisateurs de choisir le type de contact (Professeur ou Étudiant) à créer pour l’inscription au module. Lorsque vous activez cette fonctionnalité, vous devez également définir ci-dessous le type d&apos;enregistrement d&apos;étudiant actif par défaut et type d&apos;enregistrement de professeur par défaut. Si vous activez cette fonctionnalité pour la première fois, nous recommandons vivement d&apos;exécuter le Remplissage des inscriptions au module.</label>
+        <label><!-- Description of the Course Connections setting --></label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
@@ -1625,7 +1645,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Hyperlinked text to EDA documentation about Affiliation mappings --></label>
+        <label><!-- Hyperlinked text to EDA documentation --></label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
@@ -1637,7 +1657,7 @@
         <name>stgTitleAppwideSettings</name>
     </customLabels>
     <customLabels>
-        <label>Remplissage de l’inscription au module</label>
+        <label><!-- Label for the Legacy Course Enrollment Data setting --></label>
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
