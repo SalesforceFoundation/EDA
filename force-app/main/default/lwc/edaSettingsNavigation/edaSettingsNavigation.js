@@ -38,6 +38,8 @@ import stgAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgAfflCo
 import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollDeleteTitle";
 import stgCourseConnectionsNav from "@salesforce/label/c.stgCourseConnectionsNav";
 import stgEnableCourseConnectionsTitle from "@salesforce/label/c.stgEnableCourseConnectionsTitle";
+import stgDefaultStudentTypeTitle from "@salesforce/label/c.stgDefaultStudentTypeTitle";
+import stgDefaultFacultyTypeTitle from "@salesforce/label/c.stgDefaultFacultyTypeTitle";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
@@ -90,6 +92,8 @@ export default class EdaSettingsNavigation extends LightningElement {
             coursesAndEnrollmentsSettings: stgCoursesAndEnrollmentsNav,
             courseConnectionSettings: stgCourseConnectionsNav,
             stgEnableCourseConnectionsTitle: stgEnableCourseConnectionsTitle,
+            stgDefaultStudentTypeTitle: stgDefaultStudentTypeTitle,
+            stgDefaultFacultyTypeTitle: stgDefaultFacultyTypeTitle,
         },
         errorSettings: {
             enableDebug: stgEnableDebugTitle,
@@ -298,6 +302,14 @@ export default class EdaSettingsNavigation extends LightningElement {
                                 label: this.labelReference.coursesAndEnrollmentsSettings
                                     .stgEnableCourseConnectionsTitle,
                                 id: "programEnrollmentDeletions",
+                            },
+                            {
+                                label: this.labelReference.coursesAndEnrollmentsSettings.stgDefaultStudentTypeTitle,
+                                id: "defaultStudentRecType",
+                            },
+                            {
+                                label: this.labelReference.coursesAndEnrollmentsSettings.stgDefaultFacultyTypeTitle,
+                                id: "defaultFacultyRecType",
                             },
                         ],
                     },
