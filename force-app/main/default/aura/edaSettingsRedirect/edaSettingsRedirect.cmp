@@ -2,7 +2,6 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:attribute name="namespace" type="String" />
     <aura:attribute name="settingsMovedDesc" type="String" />
-    <lightning:navigation aura:id="navService" />
 
     <div class="slds-theme_default eda-height_full">
         <c:lakeMountain
