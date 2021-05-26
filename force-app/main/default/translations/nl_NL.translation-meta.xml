@@ -705,6 +705,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Course Connections --></label>
+        <name>stgCourseConnectionsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Course Connection Settings --></label>
+        <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
         <name>stgHelpCourseConnectionBackfill</name>
     </customLabels>
@@ -773,7 +781,7 @@
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
-        <label>Cursusverbindingen inschakelen</label>
+        <label><!-- Label for the Course Connection Record Types setting --></label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
@@ -1337,7 +1345,7 @@
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>Cursusverbindingsrecords verbinden een contactpersoon met een cursusaanbod. Als u deze functie inschakelt, kunnen gebruikers het type contactpersoon (staflid of student) kiezen waarvoor ze de cursusverbinding willen maken. Als u deze functie inschakelt, moet u ook het standaard recordtype voor actieve student en het standaard recordtype voor staflid hieronder instellen. Als u deze functie voor het eerst inschakelt, raden we u ten zeerste aan om de backfill voor cursusverbindingen uit te voeren.</label>
+        <label><!-- Description of the Course Connections setting --></label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>

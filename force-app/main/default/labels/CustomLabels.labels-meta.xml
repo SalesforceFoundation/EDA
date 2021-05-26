@@ -1423,6 +1423,22 @@
         <value>Update Course Connection record types?</value>
     </labels>
     <labels>
+        <fullName>stgCourseConnectionsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Course Connections</shortDescription>
+        <value>Course Connections</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseConnectionsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Course Connection Settings</shortDescription>
+        <value>Course Connection Settings</value>
+    </labels>
+    <labels>
         <fullName>stgCourseDataMigrationModalTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1539,14 +1555,14 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Course Connections Settings</shortDescription>
-        <value>Enable Course Connections</value>
+        <shortDescription>Label for the Course Connection Record Types setting</shortDescription>
+        <value>Course Connection Record Types</value>
     </labels>
     <labels>
         <fullName>stgEnableDebugHelp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
-        <protected>True</protected>
+        <protected>true</protected>
         <shortDescription>Description of the Debug Logging setting</shortDescription>
         <value>Enable debugging so that Salesforce support can view debug statements for managed packages.</value>
     </labels>
@@ -2699,8 +2715,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Course Connections Settings</shortDescription>
-        <value>Course Connection records connect a Contact with a Course Offering. Enabling this feature allows users to choose the type of Contact (Faculty or Student) to create the Course Connection for. When you enable this feature, you also need to set the Default Active Student Record Type and Default Faculty Record Type, below. If you&apos;re enabling this feature for the first time, we highly recommend you run the Course Connections Backfill.</value>
+        <shortDescription>Description of the Course Connections setting</shortDescription>
+        <value>Require that Course Connection records specify whether they&apos;re for faculty or students. If you turn on this setting, also set the Default Student Record Type and Default Faculty Record Type.&lt;/br&gt;&lt;/br&gt;Before enabling this setting for the first time, run the Legacy Course Enrollment Data Apex job in System Tools.</value>
     </labels>
     <labels>
         <fullName>stgHelpEnsureExistContactPreferEmail</fullName>

@@ -705,6 +705,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Course Connections --></label>
+        <name>stgCourseConnectionsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Course Connection Settings --></label>
+        <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
         <name>stgHelpCourseConnectionBackfill</name>
     </customLabels>
@@ -773,7 +781,7 @@
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
-        <label>Ota kurssiyhteydet käyttöön</label>
+        <label><!-- Label for the Course Connection Record Types setting --></label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
@@ -1337,7 +1345,7 @@
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>Kurssiyhteyksien tietueet yhdistävät yhteyshenkilön kurssitarjontaan. Tämän ominaisuuden ottaminen käyttöön antaa käyttäjien valita yhteyshenkilötyypin (opetushenkilöstö tai opiskelija), jolle kurssiyhteys luodaan. Kun otat tämän ominaisuuden käyttöön, sinun on myös asetettava alla oletusarvoinen aktiivinen opiskelijatietueen tyyppi ja oopetushenkilöstön oletustietuetyyppi. Jos otat tämän ominaisuuden käyttöön ensimmäistä kertaa, suosittelemme, että suoritat kurssiyhteyksien täyttö -ominaisuuden.</label>
+        <label><!-- Description of the Course Connections setting --></label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
