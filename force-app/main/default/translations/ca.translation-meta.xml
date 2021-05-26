@@ -705,6 +705,14 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Course Connections --></label>
+        <name>stgCourseConnectionsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Course Connection Settings --></label>
+        <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
         <name>stgHelpCourseConnectionBackfill</name>
     </customLabels>
@@ -765,7 +773,7 @@
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
-        <label>Activa les connexions del curs</label>
+        <label><!-- Label for the Course Connection Record Types setting --></label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
@@ -1329,7 +1337,7 @@
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>Els registres de connexió del curs connecten un contacte amb una oferta de curs. L&apos;activació d&apos;aquesta funció permet als usuaris triar el tipus de contacte (professorat o estudiant) per crear la connexió del curs. Quan activeu aquesta funció, també haureu d’establir el tipus de registre actiu predeterminat de l’alumne i el tipus de registre predeterminat de professorat, a continuació. Si activeu aquesta funció per primera vegada, us recomanem que executeu el reenviament de les connexions del curs.</label>
+        <label><!-- Description of the Course Connections setting --></label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
