@@ -1789,10 +1789,11 @@
         <name>HEDA_Settings</name>
     </customTabs>
     <customTabs>
-        <customTabs>
             <label><!-- New EDA Settings - QA Only --></label>
             <name>New_EDA_Settings_QA_Only</name>
-        </customTabs>        <label><!-- Settings Health Check --></label>
+    </customTabs>        
+    <customTabs>
+        <label><!-- Settings Health Check --></label>
         <name>Settings_Health_Check</name>
     </customTabs>
 </Translations>
