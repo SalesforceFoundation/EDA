@@ -2795,8 +2795,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Description for the Reciprocal Method Settings</shortDescription>
-        <value>The method used to populate the type field when creating a Reciprocal Relationship. &quot;List Setting&quot; uses the custom settings defined on the Reciprocal Relationships Mapping with male, female, and neutral values. &quot;Value Inversion&quot; inverts the type on the original Relationship record where appropriate. For example, if the originating Relationship is Parent-Child, the Reciprocal Relationship will be Child-Parent.</value>
+        <shortDescription>Description for the Reciprocal Method settings</shortDescription>
+        <value>Specify how to populate the Type field on automatically created Reciprocal Relationships. Select List Setting to use the values from the Reciprocal Relationships. Select Value Inversion to invert the Type on the original Relationship record.</value>
     </labels>
     <labels>
         <fullName>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</fullName>
@@ -3003,7 +3003,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for Reciprocal Method in EDA Settings</shortDescription>
+        <shortDescription>Picklist value for the method used for Reciprocal Method</shortDescription>
         <value>List Setting</value>
     </labels>
     <labels>
@@ -3011,7 +3011,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for Reciprocal Method in EDA Settings</shortDescription>
+        <shortDescription>Picklist value for the method used for Reciprocal Method</shortDescription>
         <value>Value Inversion</value>
     </labels>
     <labels>
@@ -3104,7 +3104,7 @@
         <fullName>stgRelationshipSettingsNav</fullName>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Navigation section title for Relationships</shortDescription>
+        <shortDescription>Navigation title for Relationships</shortDescription>
         <value>Relationships</value>
     </labels>
     <labels>
@@ -3402,7 +3402,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the Reciprocal Method Settings</shortDescription>
+        <shortDescription>Label for the Reciprocal Method settings</shortDescription>
         <value>Reciprocal Method</value>
     </labels>
     <labels>
