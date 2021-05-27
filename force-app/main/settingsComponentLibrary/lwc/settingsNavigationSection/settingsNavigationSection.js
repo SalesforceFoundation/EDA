@@ -34,7 +34,7 @@ export default class SettingsNavigationSection extends LightningElement {
         const menuItemsViewModel = {
             page: this.viewModel.page,
             isActive: this.viewModel.isActive,
-            paddingLeft: "slds-p-left_xx-large",
+            paddingLeft: "slds-var-p-left_xx-large",
             menuItems: formattedMenuItems,
         };
 

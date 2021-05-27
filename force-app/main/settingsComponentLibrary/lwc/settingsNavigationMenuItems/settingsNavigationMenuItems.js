@@ -26,7 +26,7 @@ export default class SettingsNavigationMenuItems extends LightningElement {
     }
 
     get menuItemClass() {
-        let menuItemClass = this.viewModel.paddingLeft + " slds-p-bottom_xxx-small slds-truncate";
+        let menuItemClass = this.viewModel.paddingLeft + " slds-var-p-bottom_xxx-small slds-truncate";
 
         if (this.viewModel.isActive) {
             menuItemClass += " nav-is-active";
