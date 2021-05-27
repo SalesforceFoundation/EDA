@@ -113,7 +113,7 @@ private with sharing class ErrorSettingsController_TEST {
      *********************************************************************************************************************/
     private class STUB_ErrorSettingsVMapper extends ErrorSettingsVMapper {
         public override ErrorSettingsVModel getErrorSettingsViewModel() {
-            return new ErrorSettingsVModel(true, false, false);
+            return new ErrorSettingsVModel(true, true, false, false);
         }
     }
 
