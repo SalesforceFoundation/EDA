@@ -61,6 +61,10 @@ import stgCourseDataMigrationModalTitle from "@salesforce/label/c.stgCourseDataM
 import stgCourseDataMigrationModalBody from "@salesforce/label/c.stgCourseDataMigrationModalBody";
 import stgHelpCopyQueuedEmailSent from "@salesforce/label/c.stgHelpCopyQueuedEmailSent";
 
+// Toast labels
+import stgSuccess from "@salesforce/label/c.stgSuccess";
+import stgError from "@salesforce/label/c.stgError";
+
 // Links to the articles
 const accountNamingArtcile = '<a href="https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names">';
 const prefEmailPhoneArticle =
@@ -104,6 +108,8 @@ export default class systemTools extends LightningElement {
         courseDataMigrationModalTitle: stgCourseDataMigrationModalTitle,
         courseDataMigrationModalBody: stgCourseDataMigrationModalBody,
         toastMessageForDataMigration: stgHelpCopyQueuedEmailSent,
+        successToastMesage: stgSuccess,
+        errorToastMessge: stgError,
     };
 
     get adminAndHouseholdNamesHyperLink() {
@@ -238,66 +244,114 @@ export default class systemTools extends LightningElement {
     runAdministrativeNamingRefreshBatch() {
         runRefreshAdministrativeAccountNamingJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.stgRefreshAdminNamesSuccessToast);
+                this.showToast(
+                    "success",
+                    this.labelReference.successToastMesage,
+                    this.labelReference.stgRefreshAdminNamesSuccessToast
+                );
             })
 
             .catch((error) => {
-                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+                this.showToast(
+                    "error",
+                    this.labelReference.errorToastMessge,
+                    this.labelReference.BatchJobRunningProblem
+                );
             });
     }
 
     runCourseDescriptionCopyBatch() {
         runCourseDescriptionCopyBatchJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.toastMessageForDataMigration);
+                this.showToast(
+                    "success",
+                    this.labelReference.successToastMesage,
+                    this.labelReference.toastMessageForDataMigration
+                );
             })
 
             .catch((error) => {
-                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+                this.showToast(
+                    "error",
+                    this.labelReference.errorToastMessge,
+                    this.labelReference.BatchJobRunningProblem
+                );
             });
     }
 
     runHouseHoldNamingRefreshBatch() {
         runRefreshHouseholdAccountNamingJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.stgRefreshHouseholdNamesSuccessToast);
+                this.showToast(
+                    "success",
+                    this.labelReference.successToastMesage,
+                    this.labelReference.stgRefreshHouseholdNamesSuccessToast
+                );
             })
 
             .catch((error) => {
-                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+                this.showToast(
+                    "error",
+                    this.labelReference.errorToastMessge,
+                    this.labelReference.BatchJobRunningProblem
+                );
             });
     }
 
     runPreferredEmailPhoneCleanUpBatch() {
         runPreferredPhoneAndEmailCleanupJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.stgPreferredPhoneEmailSuccessToast);
+                this.showToast(
+                    "success",
+                    this.labelReference.successToastMesage,
+                    this.labelReference.stgPreferredPhoneEmailSuccessToast
+                );
             })
 
             .catch((error) => {
-                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+                this.showToast(
+                    "error",
+                    this.labelReference.errorToastMessge,
+                    this.labelReference.BatchJobRunningProblem
+                );
             });
     }
 
     runEthnicityAndRaceBackfillBatch() {
         runEthnicityAndRaceBackfillJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.ethnicityAndRaceBackfillToast);
+                this.showToast(
+                    "success",
+                    this.labelReference.successToastMesage,
+                    this.labelReference.ethnicityAndRaceBackfillToast
+                );
             })
 
             .catch((error) => {
-                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+                this.showToast(
+                    "error",
+                    this.labelReference.errorToastMessge,
+                    this.labelReference.BatchJobRunningProblem
+                );
             });
     }
 
     runCourseConnectionBackFillBatch() {
         runCourseConnectionBackfillJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.toastMessageForCourseConnBackFill);
+                this.showToast(
+                    "success",
+                    this.labelReference.successToastMesage,
+                    this.labelReference.toastMessageForCourseConnBackFill
+                );
             })
 
             .catch((error) => {
-                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+                this.showToast(
+                    "error",
+                    this.labelReference.errorToastMessge,
+                    this.labelReference.BatchJobRunningProblem
+                );
             });
     }
 
