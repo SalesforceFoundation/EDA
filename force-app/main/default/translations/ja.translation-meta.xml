@@ -1385,7 +1385,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>相互関係の作成時に種別項目を入力するために使用する方法。「リスト設定」では、[相互関係] タブで [男性]、[女性]、または [どちらでもない] の値で定義されたカスタム設定が使用されます。「値反転」では、元のリレーションレコードの種別が必要に応じて反転します。たとえば、元のリレーションが親-子の場合、相互関係は子-親になります。</label>
+        <label><!-- Description for the Reciprocal Method setting --></label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>

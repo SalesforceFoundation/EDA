@@ -1385,7 +1385,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>El método utilizado para rellenar el campo de tipo al crear una relación recíproca. &quot;Configuración de lista&quot; utiliza la configuración personalizada definida en la ficha Relaciones recíprocas con valores masculinos, femeninos y neutros. &quot;Inversión de valores&quot; invierte el tipo del registro Relación original cuando sea apropiado. Por ejemplo, si la relación que origina es Padre-Hijo, la Relación reciproca será Hijo-Padre.</label>
+        <label><!-- Description for the Reciprocal Method setting --></label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>

@@ -1385,7 +1385,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>El mètode utilitzat per omplir el camp de tipus quan es crea una relació recíproca. &quot;Configuració de la llista&quot; utilitza la configuració personalitzada definida a la pestanya Relacions recíproques amb valors masculins, femenins i neutres. &quot;Inversió de valor&quot; inverteix el tipus del registre de relació original, si escau. Per exemple, si la relació originària és pare-fill, la relació recíproca serà fill-pare.</label>
+        <label><!-- Description for the Reciprocal Method setting --></label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>

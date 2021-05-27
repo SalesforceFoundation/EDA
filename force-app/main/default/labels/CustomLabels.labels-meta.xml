@@ -2791,14 +2791,6 @@
         <value>Auto-created Relationships are deduplicated by default to prevent duplicate Relationship records from being created between two Contacts. Select &quot;Allow Auto-Created Duplicate Relations&quot; to disable this behavior and allow multiple Relationships of the same type between two Contacts.</value>
     </labels>
     <labels>
-        <fullName>stgHelpRelReciprocalMethod</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Info text for Relationships Settings</shortDescription>
-        <value>The method used to populate the type field when creating a Reciprocal Relationship. &quot;List Setting&quot; uses the custom settings defined on the Reciprocal Relationships tab with male, female, and neutral values. &quot;Value Inversion&quot; inverts the type on the original Relationship record where appropriate. For example, if the originating Relationship is Parent-Child, the Reciprocal Relationship will be Child-Parent.</value>
-    </labels>
-    <labels>
         <fullName>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

@@ -1385,7 +1385,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>Menetelmä, jota käytetään tyyppikentän täyttämiseen, kun luodaan vastavuoroista suhdetta. Luetteloasetus käyttää Vastavuoroiset suhteet -välilehdessä määritettyjä mukautettuja asetuksia miesten, naisten ja neutraalien arvojen kanssa. Arvonkääntö kääntää tyypin alkuperäiseen suhdetietueeseen tarvittaessa. Esimerkiksi, jos alkuperäinen suhde on Vanhempi-Lapsi, vastavuoroinen suhde on Lapsi-Vanhempi.</label>
+        <label><!-- Description for the Reciprocal Method setting --></label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>

@@ -1385,7 +1385,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>De methode die wordt gebruikt om het typeveld in te vullen bij het maken van een wederzijdse relatie. &apos;Instellingen lijst&apos; gebruikt de aangepaste instellingen die op het tabblad Wederzijdse relaties zijn gedefinieerd met de waarden Man, Vrouw en Neutraal. &apos;Waarde-inversie&apos; keert waar van toepassing het type op de oorspronkelijke relatierecord om. Als de oorspronkelijke relatie bijvoorbeeld ouder-kind is, wordt de wederzijdse relatie kind-ouder.</label>
+        <label><!-- Description for the Reciprocal Method setting --></label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
