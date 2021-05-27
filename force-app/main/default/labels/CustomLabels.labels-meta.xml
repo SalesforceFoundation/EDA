@@ -1543,6 +1543,22 @@
         <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
     </labels>
     <labels>
+        <fullName>stgEDASettingsHasMovedDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of EDA Settings has moved</shortDescription>
+        <value>We created a new Education Cloud Settings experience that provides access to EDA Settings, along with many other great resources. Setup steps vary based on your EDA version. Review the documentation for details.</value>
+    </labels>
+    <labels>
+        <fullName>stgEDASettingsHasMovedTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title of EDA Settings has moved</shortDescription>
+        <value>We&apos;ve moved!</value>
+    </labels>
+    <labels>
         <fullName>stgEDASetupTitle</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -2791,6 +2807,14 @@
         <value>If your org previously added custom picklist values to the Ethnicity field that you want to be available in the Race field, copy those custom picklist values to the Race field.</value>
     </labels>
     <labels>
+        <fullName>stgHelpNestedPlanRequirementPP</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Plan Requirement Hierarchy setting</shortDescription>
+        <value>If you have a hierarchy for nested Plan Requirements, specifying that they can have only a Program Plan or only a parent Plan Requirement can help maintain your structure.</value>
+    </labels>
+    <labels>
         <fullName>stgHelpOrgAccountAddressMgmt</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -2997,6 +3021,22 @@
         <protected>true</protected>
         <shortDescription>Description for the Default Preferred Phone setting</shortDescription>
         <value>The field to use for Preferred Phone when the Phone field is blank, or more than one phone value is defined.</value>
+    </labels>
+    <labels>
+        <fullName>stgProgramPlanSettingsNav</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Program Plans</shortDescription>
+        <value>Program Plans</value>
+    </labels>
+    <labels>
+        <fullName>stgProgramPlanSettingsTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Program Plan Settings</shortDescription>
+        <value>Program Plan Settings</value>
     </labels>
     <labels>
         <fullName>stgProgramsSettingsNav</fullName>
@@ -3230,12 +3270,44 @@
         <value>EDA Settings were saved.</value>
     </labels>
     <labels>
+        <fullName>stgSelectChatterGroupDesc</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Select Chatter Group setting</shortDescription>
+        <value>Enter a Chatter group...</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectChatterGroupTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for Select Chatter Group</shortDescription>
+        <value>Chatter Group</value>
+    </labels>
+    <labels>
         <fullName>stgSelectReciType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Field label for error notification recipients</shortDescription>
         <value>Select recipient type:</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectUserDesc</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Select User setting</shortDescription>
+        <value>Enter a username...</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectUserTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for Select User</shortDescription>
+        <value>User</value>
     </labels>
     <labels>
         <fullName>stgSendErrorsTitle</fullName>
@@ -3518,77 +3590,5 @@
         <protected>true</protected>
         <shortDescription>Error when Start Time and Time Block are mismatched</shortDescription>
         <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
-    </labels>
-    <labels>
-        <fullName>stgSelectChatterGroupTitle</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Label for Select Chatter Group</shortDescription>
-        <value>Chatter Group</value>
-    </labels>
-    <labels>
-        <fullName>stgSelectChatterGroupDesc</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Description for the Select Chatter Group setting</shortDescription>
-        <value>Enter a Chatter group...</value>
-    </labels>
-    <labels>
-        <fullName>stgSelectUserTitle</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Label for Select User</shortDescription>
-        <value>User</value>
-    </labels>
-    <labels>
-        <fullName>stgSelectUserDesc</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Description for the Select User setting</shortDescription>
-        <value>Enter a username...</value>
-    </labels>
-    <labels>
-        <fullName>stgProgramPlanSettingsNav</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Navigation title for Program Plans</shortDescription>
-        <value>Program Plans</value>
-    </labels>
-    <labels>
-        <fullName>stgProgramPlanSettingsTitle</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for Program Plan Settings</shortDescription>
-        <value>Program Plan Settings</value>
-    </labels>
-    <labels>
-        <fullName>stgHelpNestedPlanRequirementPP</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Description of the Plan Requirement Hierarchy setting</shortDescription>
-        <value>If you have a hierarchy for nested Plan Requirements, specifying that they can have only a Program Plan or only a parent Plan Requirement can help maintain your structure.</value>
-    </labels>
-    <labels>
-        <fullName>stgEDASettingsHasMovedTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Title of EDA Settings has moved</shortDescription>
-        <value>We&apos;ve moved!</value>
-    </labels>
-    <labels>
-        <fullName>stgEDASettingsHasMovedDesc</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Description of EDA Settings has moved</shortDescription>
-        <value>We created a new Education Cloud Settings experience that provides access to EDA Settings, along with many other great resources. Setup steps vary based on your EDA version. Review the documentation for details.</value>
     </labels>
 </CustomLabels>
