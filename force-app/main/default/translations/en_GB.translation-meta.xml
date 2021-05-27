@@ -57,6 +57,10 @@
         <name>EDASettingsContainerAuraComponentLabel</name>
     </customLabels>
     <customLabels>
+        <label><!-- Education Cloud Settings --></label>
+        <name>EDCSettingsContainerAuraComponentLabel</name>
+    </customLabels>
+    <customLabels>
         <label>Female</label>
         <name>Female</name>
     </customLabels>
@@ -577,12 +581,40 @@
         <name>stgBtnCancel</name>
     </customLabels>
     <customLabels>
+        <label><!-- Button that launches the Trailblazer Community site --></label>
+        <name>stgBtnCommunity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches the Trailblazer Community site --></label>
+        <name>stgBtnCommunityActionA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button label for delete Affiliation mapping warning --></label>
         <name>stgBtnDelete</name>
     </customLabels>
     <customLabels>
+        <label><!-- Button that launches EDA documentation --></label>
+        <name>stgBtnDocumentation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches EDA documentation --></label>
+        <name>stgBtnDocumentationActionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button that launches the Education Cloud trailmix --></label>
+        <name>stgBtnEDCTrailhead</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches the Education Cloud trailmix --></label>
+        <name>stgBtnEDCTrailheadActionA11y</name>
+    </customLabels>
+    <customLabels>
         <label>Edit</label>
         <name>stgBtnEdit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button that launches Settings Health Check --></label>
+        <name>stgBtnHealthCheck</name>
     </customLabels>
     <customLabels>
         <label><!-- Alt text for button that creates an auto-enrollment mapping --></label>
@@ -629,8 +661,32 @@
         <name>stgBtnSave</name>
     </customLabels>
     <customLabels>
+        <label><!-- Button that launches EDA Settings --></label>
+        <name>stgBtnSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches EDA Settings --></label>
+        <name>stgBtnSettingsActionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button that launches EDA Trailhead modules --></label>
+        <name>stgBtnTrailhead</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches EDA Trailhead modules --></label>
+        <name>stgBtnTrailheadActionA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button that runs a selected Apex job --></label>
         <name>stgBtnUpdate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button that launches the Salesforce.org YouTube channel --></label>
+        <name>stgBtnVideos</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches the Salesforce.org YouTube channel --></label>
+        <name>stgBtnVideosActionA11y</name>
     </customLabels>
     <customLabels>
         <label>The Cleanup was queued successfully. An email will be sent when the batch is completed.</label>
@@ -681,6 +737,10 @@
         <name>stgColObject</name>
     </customLabels>
     <customLabels>
+        <label><!-- Column header for Products --></label>
+        <name>stgColProducts</name>
+    </customLabels>
+    <customLabels>
         <label>Relationship Type</label>
         <name>stgColRelType</name>
     </customLabels>
@@ -689,12 +749,24 @@
         <name>stgColRelationshipName</name>
     </customLabels>
     <customLabels>
+        <label><!-- Column header for Resources --></label>
+        <name>stgColResources</name>
+    </customLabels>
+    <customLabels>
         <label>Role</label>
         <name>stgColRole</name>
     </customLabels>
     <customLabels>
         <label>Status</label>
         <name>stgColStatus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Column header for Tools --></label>
+        <name>stgColTools</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Trailblazer Community card --></label>
+        <name>stgCommunityTitle</name>
     </customLabels>
     <customLabels>
         <label>I understand and am ready to run Backfill.</label>
@@ -781,6 +853,14 @@
         <name>stgDuplicateRelationshipsHelp</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description of the EDA Aapp --></label>
+        <name>stgEDAAppDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Initials for the EDA App --></label>
+        <name>stgEDAAppInitials</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Description of EDA Settings has moved --></label>
         <name>stgEDASettingsHasMovedDesc</name>
     </customLabels>
@@ -791,6 +871,10 @@
     <customLabels>
         <label>EDA Setup</label>
         <name>stgEDASetupTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of Settings Health Check --></label>
+        <name>stgEDCSettingsHealthCheckDescription</name>
     </customLabels>
     <customLabels>
         <label><!-- Label for the Course Connection Record Types setting --></label>
@@ -1167,6 +1251,10 @@
     <customLabels>
         <label><!-- Section title for Household Account Naming --></label>
         <name>stgHHAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches Settings Health Check --></label>
+        <name>stgHealthCheckA11y</name>
     </customLabels>
     <customLabels>
         <label>Account Model</label>
@@ -1797,6 +1885,14 @@
     <customLabels>
         <label>Error</label>
         <name>stgToastError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Trailhead card --></label>
+        <name>stgTrailheadTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the YouTube card --></label>
+        <name>stgVideosTitle</name>
     </customLabels>
     <customLabels>
         <label>We can&apos;t save the Course Offering Schedule because its End Time doesn&apos;t match the End Time of its associated Time Block. Either edit the End Time, specify a different Time Block, or don&apos;t specify a Time Block.</label>
