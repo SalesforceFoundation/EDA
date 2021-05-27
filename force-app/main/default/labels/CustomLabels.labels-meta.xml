@@ -3615,4 +3615,76 @@
         <shortDescription>Alt text for button that launches Settings Health Check</shortDescription>
         <value>Go to Settings Health Check.</value>
     </labels>
+    <labels>
+        <fullName>stgTrailheadTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Trailhead card</shortDescription>
+        <value>Trailhead</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnEDCTrailhead</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches the Education Cloud trailmix</shortDescription>
+        <value>Go to Trailhead</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnEDCTrailheadActionA11y</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches the Education Cloud trailmix</shortDescription>
+        <value>Go to the Education Cloud trailmix.</value>
+    </labels>
+    <labels>
+        <fullName>stgCommunityTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Trailblazer Community card</shortDescription>
+        <value>Trailblazer Community</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnCommunity</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches the Trailblazer Community site</shortDescription>
+        <value>Go to Trailblazer Community</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnCommunityActionA11y</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches the Trailblazer Community site</shortDescription>
+        <value>Go to the Trailblazer community.</value>
+    </labels>
+    <labels>
+        <fullName>stgVideosTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the YouTube card</shortDescription>
+        <value>YouTube</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnVideos</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches the Salesforce.org YouTube channel</shortDescription>
+        <value>YouTube</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnVideosActionA11y</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches the Salesforce.org YouTube channel</shortDescription>
+        <value>YouTube</value>
+    </labels>
 </CustomLabels>
