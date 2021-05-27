@@ -129,7 +129,7 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>Diese Einstellungen ermöglichen Ihnen, wechselseitige Beziehungen oder die &quot;passende&quot; Beziehung zwischen zwei Kontakten zu konfigurieren. Da z. B. ein Vater mit seinem Sohn verwandt ist, sollte es einen zusätzlichen Datensatz geben, der zeigt, dass der Sohn wiederum mit seinem Vater verwandt ist. Sie können den Wert &quot;Typ&quot; für den Namen angeben und bestimmen, welcher wechselseitige Wert auf dem Geschlecht des verbindenden Kontakts basieren soll. Sie können für jede wechselseitige Einstellung männliche, weibliche und neutrale Werte definieren.</label>
+        <label><!-- Description of the Reciprocal Relationships setting --></label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>

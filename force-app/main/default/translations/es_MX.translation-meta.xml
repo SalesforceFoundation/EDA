@@ -129,7 +129,7 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>Estos parámetros le permiten configurar relaciones recíprocas, o la relación &quot;correspondiente&quot; entre dos contactos. Por ejemplo, ya que un padre está relacionado con su hijo, debería haber un registro adicional que muestra que el hijo está relacionado con su padre. Puede especificar el valor Tipo para el nombre y luego el que debería ser el valor recíproco en base al género del contacto que conecta. Puede definir valores masculinos, femeninos y neutros para cada parámetro de reciprocidad.</label>
+        <label><!-- Description of the Reciprocal Relationships setting --></label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>

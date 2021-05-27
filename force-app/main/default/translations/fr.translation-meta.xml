@@ -129,7 +129,7 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>Ces paramètres permettent de configurer des relations réciproques ou la relation « correspondante » entre deux Contacts. Par exemple, si un père est associé à son fils, un enregistrement supplémentaire doit montrer le fils associé à son père. Vous pouvez spécifier la valeur Type pour Nom, et la valeur réciproque doit être basée sur le sexe du Contact à connecter. Vous pouvez définir une valeur Masculin, Féminin ou Neutre pour chaque paramètre réciproque.</label>
+        <label><!-- Description of the Reciprocal Relationships setting --></label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>

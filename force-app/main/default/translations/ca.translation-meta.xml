@@ -129,7 +129,7 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>Aquesta configuració us permet configurar relacions recíproques o la relació &quot;coincident&quot; entre dos contactes. Per exemple, si un pare està relacionat amb el seu fill, hi hauria d&apos;haver un registre addicional que mostri també el fill  relacionar amb el pare. Podeu especificar el valor Tipus de nom i especificar en quin valor recíproc s&apos;ha de basar en el sexe del contacte de connexió. Podeu definir els valors masculí,  femení o neutre per a cada configuració recíproca.</label>
+        <label><!-- Description of the Reciprocal Relationships setting --></label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>

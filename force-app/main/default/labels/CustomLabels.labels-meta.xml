@@ -252,8 +252,8 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Reciprocal Relationships Settings</shortDescription>
-        <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, since a father is related to his son, there should be an additional record showing the son related back to his father. You can specify the Type value for the Name, and what the reciprocal value should be based on the gender of the connecting Contact. You can define male, female, and neutral values for each reciprocal setting..</value>
+        <shortDescription>Description of the Reciprocal Relationships setting</shortDescription>
+        <value>Configure matching relationships so you can understand how a Contact is related to another from either Contact record.</value>
     </labels>
     <labels>
         <fullName>acctNamingOther</fullName>
@@ -1259,7 +1259,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Reciprocal Relationship Settings</shortDescription>
+        <shortDescription>Column header for Active or Inactive Relationship Type status</shortDescription>
         <value>Active</value>
     </labels>
     <labels>
@@ -1299,7 +1299,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Reciprocal Relationship Settings</shortDescription>
+        <shortDescription>Column header for Female Relationship Types</shortDescription>
         <value>Female</value>
     </labels>
     <labels>
@@ -1315,7 +1315,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Reciprocal Relationships Settings</shortDescription>
+        <shortDescription>Column header for Male Relationship Types</shortDescription>
         <value>Male</value>
     </labels>
     <labels>
@@ -1323,7 +1323,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Reciprocal Relationships Settings</shortDescription>
+        <shortDescription>Column header for Neutral Relationship Types</shortDescription>
         <value>Neutral</value>
     </labels>
     <labels>
@@ -3003,7 +3003,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for Reciprocal Method in EDA Settings</shortDescription>
+        <shortDescription>Picklist value for the method used for Reciprocal Method</shortDescription>
         <value>List Setting</value>
     </labels>
     <labels>
@@ -3011,7 +3011,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for Reciprocal Method in EDA Settings</shortDescription>
+        <shortDescription>Picklist value for the method used for Reciprocal Method</shortDescription>
         <value>Value Inversion</value>
     </labels>
     <labels>
@@ -3284,7 +3284,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Settings tab name</shortDescription>
+        <shortDescription>Label for the Reciprocal Relationships setting</shortDescription>
         <value>Reciprocal Settings</value>
     </labels>
     <labels>
@@ -3388,7 +3388,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Title for Reciprocal Relationships info text</shortDescription>
+        <shortDescription>Label for the Reciprocal Method setting</shortDescription>
         <value>Reciprocal Method</value>
     </labels>
     <labels>
@@ -3430,5 +3430,109 @@
         <protected>true</protected>
         <shortDescription>Error when Start Time and Time Block are mismatched</shortDescription>
         <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
+    </labels>
+    <labels>
+        <fullName>stgRelationshipSettingsNav</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Relationships</shortDescription>
+        <value>Relationships</value>
+    </labels>
+    <labels>
+        <fullName>stgRelationshipSettingsTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Relationship Settings</shortDescription>
+        <value>Relationship Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpRelReciprocalMethod</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Reciprocal Method setting</shortDescription>
+        <value>Specify how to populate the Type field on automatically created Reciprocal Relationships. Select List Setting to use the values from the Reciprocal Relationships. Select Value Inversion to invert the Type on the original Relationship record.</value>
+    </labels>
+    <labels>
+        <fullName>stgColRelationshipName</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column header for Settings names</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelEditModalTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Edit Reciprocal Relationship window</shortDescription>
+        <value>Edit Reciprocal Relationship?</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelEditModalBody</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Edit Reciprocal Relationship window</shortDescription>
+        <value>Select the Reciprocal Relationship to edit.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelEditSuccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when a Reciprocal Relationship is saved</shortDescription>
+        <value>Reciprocal Relationship for {0} was saved.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelNewModalTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the New Reciprocal Relationship window</shortDescription>
+        <value>New Reciprocal Relationship?</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelNewModalBody</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the New Reciprocal Relationship window</shortDescription>
+        <value>Select the Reciprocal Relationship type to create.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelNewSuccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when a Reciprocal Relationship is created</shortDescription>
+        <value>Reciprocal Relationship for {0} was created.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelDeleteModalTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Delete Reciprocal Relationship window</shortDescription>
+        <value>Delete Reciprocal Relationship?</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelDeleteModalBody</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Delete Reciprocal Relationship window</shortDescription>
+        <value>This Reciprocal Relationship maps the {0} reciprocal value to the {1} {2}, and {3} reciprocal values. We're just making sure that you want to delete it.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelDeleteSuccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when a Reciprocal Relationship is created</shortDescription>
+        <value>Reciprocal Relationship for {0} was deleted.</value>
     </labels>
 </CustomLabels>

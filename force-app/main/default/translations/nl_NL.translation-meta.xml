@@ -129,7 +129,7 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>Met deze instellingen kunt u wederzijdse relaties, ofwel de &apos;overeenkomende&apos; relatie tussen twee contactpersonen configureren. Bijvoorbeeld: als een vader aan zijn zoon is gerelateerd, moet er een aanvullende record zijn die toont dat de zoon op zijn beurt aan zijn vader is gerelateerd. U kunt de typewaarde voor de naam opgeven, evenals wat de wederzijdse waarde moet zijn op basis van het geslacht van de verbonden contactpersoon. Voor elke wederzijdse instelling kunt u de waarden Man, Vrouw of Neutraal opgeven.</label>
+        <label><!-- Description of the Reciprocal Relationships setting --></label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>

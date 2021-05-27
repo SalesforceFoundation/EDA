@@ -129,7 +129,7 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>Näiden asetusten avulla voit määrittää vastavuoroiset suhteet tai kahden yhteyshenkilön välisen vastavuoroisen suhteen. Esimerkiksi, koska isä on sukulainen poikansa kanssa, on oltava lisätietue, joka osoittaa, että poika on myös sukua isänsä kanssa. Voit määrittää nimi-kentän tyypin arvon ja sen, minkä vastavuoroisen arvon tulisi perustua yhdistävän yhteyshenkilön sukupuoleen. Voit määrittää mies-, nainen- ja neutraaliarvot kullekin vastavuoroiselle asetukselle.</label>
+        <label><!-- Description of the Reciprocal Relationships setting --></label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>

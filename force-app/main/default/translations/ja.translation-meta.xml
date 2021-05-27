@@ -129,7 +129,7 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>これらの設定により、相互関係 (2 人の取引先責任者間の「一致する」関係) を設定できます。たとえば、父親はその息子に関連するため、その息子が父親に関連することを示す追加のレコードも存在します。[名前] の [種別] の値と、リンクする取引先責任者の性別に基づく相互関係の値を指定できます。相互関係設定ごとに、[男性]、[女性]、または [どちらでもない] の値を定義できます。</label>
+        <label><!-- Description of the Reciprocal Relationships setting --></label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
