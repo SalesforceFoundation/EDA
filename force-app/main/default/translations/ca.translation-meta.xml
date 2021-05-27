@@ -757,7 +757,7 @@
         <name>stgDefaultFacultyTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label>Tipus predeterminat de registre d&apos;estudiant actiu</label>
+        <label><!-- Label for the Default Student Record Type setting --></label>
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
@@ -1353,11 +1353,11 @@
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label>El tipus de gravació predeterminat quan es creen connexions de curs per a un membre de la facultat.</label>
+        <label><!-- Description of the Default Faculty Record Type setting --></label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label>El tipus de gravació predeterminat quan es creen connexions de curs per a estudiants actius.</label>
+        <label><!-- Description of the Default Student Record Type setting --></label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
