@@ -1627,7 +1627,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for System Settings</shortDescription>
+        <shortDescription>Label for the Error Notification Recipients setting</shortDescription>
         <value>Error Notification Recipients</value>
     </labels>
     <labels>
@@ -2747,16 +2747,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>If selected, notifications are posted for product-generated errors.</value>
+        <shortDescription>Description of the Error Notifications setting</shortDescription>
+        <value>Send error notifications to selected recipients. If you choose Chatter Group or User, also specify a value in Error Notification Recipients.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyTo</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>Specify who should receive email error notifications. Valid values are &apos;All Sys Admins&apos;, the ID of a user in your org, or the ID of a Chatter group. You can enter only one value.</value>
+        <shortDescription>Description of the Error Notification Recipients setting</shortDescription>
+        <value>Enter a single user name or Chatter group. Users are notified of errors by email, Chatter groups are notified with a post to the feed.</value>
     </labels>
     <labels>
         <fullName>stgHelpEthnicityRaceBackfill</fullName>
@@ -2899,7 +2899,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
+        <shortDescription>Picklist value for Error Notifications</shortDescription>
         <value>All Sys Admins</value>
     </labels>
     <labels>
@@ -2907,7 +2907,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
+        <shortDescription>Picklist value for Error Notifications</shortDescription>
         <value>Chatter Group</value>
     </labels>
     <labels>
@@ -2923,7 +2923,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
+        <shortDescription>Picklist value for Error Notifications</shortDescription>
         <value>User</value>
     </labels>
     <labels>
@@ -3250,8 +3250,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for error notifications</shortDescription>
-        <value>Send Error Notifications</value>
+        <shortDescription>Label for the Error Notifications setting</shortDescription>
+        <value>Error Notifications</value>
     </labels>
     <labels>
         <fullName>stgSimpleAddressChangeUpdate</fullName>
@@ -3526,5 +3526,37 @@
         <protected>true</protected>
         <shortDescription>Error when Start Time and Time Block are mismatched</shortDescription>
         <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectChatterGroupTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for Select Chatter Group</shortDescription>
+        <value>Chatter Group</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectChatterGroupDesc</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Select Chatter Group setting</shortDescription>
+        <value>Enter a Chatter group...</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectUserTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for Select User</shortDescription>
+        <value>User</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectUserDesc</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Select User setting</shortDescription>
+        <value>Enter a username...</value>
     </labels>
 </CustomLabels>

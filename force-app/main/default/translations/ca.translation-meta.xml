@@ -1381,11 +1381,11 @@
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label>Si se selecciona, es publicaran notificacions per detectar errors generats pel producte.</label>
+        <label><!-- Description of the Error Notifications setting --></label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label>Especifiqueu qui ha de rebre notificacions d&apos;errors per correu electrònic. Els valors vàlids són &quot;Tots els administradors de sistemes&quot;, l&apos;identificador d&apos;un usuari de la vostra organització o l&apos;identificador d&apos;un grup de Chatter. Només podeu introduir un valor.</label>
+        <label><!-- Description of the Error Notification Recipients setting --></label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
@@ -1633,7 +1633,23 @@
         <name>stgSelectReciType</name>
     </customLabels>
     <customLabels>
-        <label>Envia notificacions d&apos;errors</label>
+        <label><!-- Label for Select Chatter Group --></label>
+        <name>stgSelectChatterGroupTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Description for the Select Chatter Group setting --></label>
+        <name>stgSelectChatterGroupDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for Select User --></label>
+        <name>stgSelectUserTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description for the Select User setting --></label>
+        <name>stgSelectUserDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Error Notifications setting --></label>
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>

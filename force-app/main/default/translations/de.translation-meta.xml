@@ -1377,11 +1377,11 @@
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, werden Benachrichtigungen für vom Produkt generierte Fehler gesendet.</label>
+        <label><!-- Description of the Error Notifications setting --></label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label>Geben Sie an, wer E-Mail-Fehlerbenachrichtigungen empfangen soll. Gültige Werte sind &quot;Alle Systemadministratoren&quot;, die ID eines Benutzers in Ihrer Organisation oder die ID einer Chatter-Gruppe. Sie können nur einen Wert eingeben.</label>
+        <label><!-- Description of the Error Notification Recipients setting --></label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
@@ -1629,7 +1629,23 @@
         <name>stgSelectReciType</name>
     </customLabels>
     <customLabels>
-        <label>Fehlerbenachrichtigungen senden</label>
+        <label><!-- Label for Select Chatter Group --></label>
+        <name>stgSelectChatterGroupTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Description for the Select Chatter Group setting --></label>
+        <name>stgSelectChatterGroupDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for Select User --></label>
+        <name>stgSelectUserTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description for the Select User setting --></label>
+        <name>stgSelectUserDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Error Notifications setting --></label>
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>

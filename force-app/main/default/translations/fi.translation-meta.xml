@@ -1377,11 +1377,11 @@
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label>Jos tämä on valittuna, lähetetään ilmoitukset tuotteen luomista virheistä.</label>
+        <label><!-- Description of the Error Notifications setting --></label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label>Määritä kenelle virheilmoitukset lähetetään sähköpostilla. Kelvolliset arvot ovat kaikki pääkäyttäjät, organisaation käyttäjän tunnus tai Chatter-ryhmän tunnus. Voit syöttää vain yhden arvon.</label>
+        <label><!-- Description of the Error Notification Recipients setting --></label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
@@ -1629,7 +1629,23 @@
         <name>stgSelectReciType</name>
     </customLabels>
     <customLabels>
-        <label>Lähetä virheilmoitukset</label>
+        <label><!-- Label for Select Chatter Group --></label>
+        <name>stgSelectChatterGroupTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!--Description for the Select Chatter Group setting --></label>
+        <name>stgSelectChatterGroupDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for Select User --></label>
+        <name>stgSelectUserTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description for the Select User setting --></label>
+        <name>stgSelectUserDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Error Notifications setting --></label>
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
