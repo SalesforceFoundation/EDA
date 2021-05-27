@@ -112,16 +112,7 @@ private with sharing class ErrorSettingsVMapper_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void getErrorSettingsViewModelValid() {
-        ErrorSettingsMapper.instance = new STUB_ErrorSettingsMapper();
-
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(
-                Store_Errors_On__c = true,
-                Enable_Debug__c = false,
-                Disable_Error_Handling__c = false
-            )
-        );
-
+        ErrorSettingsService.instance = new STUB_ErrorSettingsService();
         ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
 
         Test.startTest();
@@ -132,6 +123,12 @@ private with sharing class ErrorSettingsVMapper_TEST {
             true,
             errorSettingsVModel.storeErrors,
             'Store errors functionality should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsVModel.sendErrorNotifications,
+            'Send error notifications functionality should match value set in hierarchy settings.'
         );
 
         System.assertEquals(
@@ -152,11 +149,11 @@ private with sharing class ErrorSettingsVMapper_TEST {
      **************************************************************************************************************************/
 
     /*********************************************************************************************************************
-     * @description Stub class to simulate the response from ErrorSettingsMapper to return a valid ErrorSettingsModel
+     * @description Stub class to simulate the response from ErrorSettingsService to return a valid ErrorSettingsModel
      *********************************************************************************************************************/
-    private class STUB_ErrorSettingsMapper extends ErrorSettingsMapper {
+    private class STUB_ErrorSettingsService extends ErrorSettingsService {
         public override ErrorSettingsModel getErrorSettingsModel() {
-            return new ErrorSettingsModel(true, false, true);
+            return new ErrorSettingsModel(true, true, false, true);
         }
     }
 }

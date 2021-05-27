@@ -60,7 +60,7 @@ public virtual with sharing class ErrorSettingsService {
      * @description Retrieve a model representing error settings set in hierarchy settings.
      * @return An ErrorSettingsModel
      ******************************************************************************/
-    public ErrorSettingsModel getErrorSettingsModel() {
+    public virtual ErrorSettingsModel getErrorSettingsModel() {
         return this.locateErrorSettingsMapper().getErrorSettingsModel();
     }
 
