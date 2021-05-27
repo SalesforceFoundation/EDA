@@ -41,7 +41,7 @@ export default class SettingsNavigationSection extends LightningElement {
         return menuItemsViewModel;
     }
 
-    handleNavigationClick() {
+    handleNavigationClick(event) {
         event.preventDefault();
         this.dispatchSettingsNavigationEvent();
     }
