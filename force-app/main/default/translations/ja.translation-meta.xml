@@ -1445,7 +1445,7 @@
         <name>stgLeadConversionAccountNamingTitle</name>
     </customLabels>
     <customLabels>
-        <label>ネストされたプラン要件のプログラムプランを検証</label>
+        <label><!-- Label for the Plan Requirement Hierarchy setting --></label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
