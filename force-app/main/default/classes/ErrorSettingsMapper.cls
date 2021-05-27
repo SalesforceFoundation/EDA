@@ -65,6 +65,7 @@ public virtual with sharing class ErrorSettingsMapper {
 
         return new ErrorSettingsModel(
             hierarchySettings.Store_Errors_On__c,
+            hierarchySettings.Error_Notifications_On__c,
             hierarchySettings.Enable_Debug__c,
             !hierarchySettings.Disable_Error_Handling__c
         );

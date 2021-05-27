@@ -92,6 +92,7 @@ private with sharing class ErrorSettingsMapper_TEST {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Store_Errors_On__c = true,
+                Error_Notifications_On__c = true,
                 Enable_Debug__c = false,
                 Disable_Error_Handling__c = false
             )
@@ -107,6 +108,12 @@ private with sharing class ErrorSettingsMapper_TEST {
             true,
             errorSettingsModel.storeErrors,
             'Store Errors on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsModel.sendErrorNotifications,
+            'Send Error Notifications on resulting model should match value set in hierarchy settings.'
         );
 
         System.assertEquals(
