@@ -2883,8 +2883,8 @@
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Program Plans Settings</shortDescription>
-        <value>Validate Program Plan for Nested Plan Requirements</value>
+        <shortDescription>Label for the Plan Requirement Hierarchy setting</shortDescription>
+        <value>Plan Requirement Hierarchy</value>
     </labels>
     <labels>
         <fullName>stgNewAfflMapping</fullName>
@@ -3558,5 +3558,29 @@
         <protected>true</protected>
         <shortDescription>Description for the Select User setting</shortDescription>
         <value>Enter a username...</value>
+    </labels>
+    <labels>
+        <fullName>stgProgramPlanSettingsNav</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Program Plans</shortDescription>
+        <value>Program Plans</value>
+    </labels>
+    <labels>
+        <fullName>stgProgramPlanSettingsTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Program Plan Settings</shortDescription>
+        <value>Program Plan Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpNestedPlanRequirementPP</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Plan Requirement Hierarchy setting</shortDescription>
+        <value>If you have a hierarchy for nested Plan Requirements, specifying that they can have only a Program Plan or only a parent Plan Requirement can help maintain your structure.</value>
     </labels>
 </CustomLabels>
