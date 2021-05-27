@@ -7,7 +7,8 @@ export default class SettingsNavigationMenuItems extends LightningElement {
         return "settingsNav" + this.viewModel.id;
     }
 
-    handleNavigationClick() {
+    handleNavigationClick(event) {
+        event.preventDefault();
         this.dispatchSettingsNavigationEvent();
     }
 

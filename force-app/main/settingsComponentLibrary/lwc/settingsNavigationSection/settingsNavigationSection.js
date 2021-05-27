@@ -42,6 +42,7 @@ export default class SettingsNavigationSection extends LightningElement {
     }
 
     handleNavigationClick() {
+        event.preventDefault();
         this.dispatchSettingsNavigationEvent();
     }
 
