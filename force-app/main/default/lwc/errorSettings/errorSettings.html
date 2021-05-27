@@ -21,6 +21,19 @@
                 disabled={affordancesDisabled}
             ></c-settings-row-input>
 
+            <!-- Send Error Notigication Setting -->
+            <c-settings-row-input
+                class="slds-size_3-of-3"
+                title={labelReference.sendErrorsSettingTitle}
+                description={labelReference.stgHelpErrorNotifyOn}
+                type="toggle"
+                input-id={inputAttributeReference.sendErrorNotificationsToggleId}
+                value={errorSettingsVModel.sendErrorNotifications}
+                checked={errorSettingsVModel.sendErrorNotifications}
+                onsettingsinputchange={handleSendErrorNotificationsChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+
             <!-- Enable Error Handling Setting -->
             <c-settings-row-input
                 class="slds-size_3-of-3"

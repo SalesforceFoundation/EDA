@@ -6,6 +6,8 @@ import getErrorSettingsViewModel from "@salesforce/apex/ErrorSettingsController.
 import stgErrorSettingsTitle from "@salesforce/label/c.stgErrorSettingsTitle";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 import stgHelpStoreErrorsOn from "@salesforce/label/c.stgHelpStoreErrorsOn";
+import stgSendErrorsTitle from "@salesforce/label/c.stgSendErrorsTitle";
+import stgHelpErrorNotifyOn from "@salesforce/label/c.stgHelpErrorNotifyOn";
 import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
 import stgEnableDebugHelp from "@salesforce/label/c.stgEnableDebugHelp";
 import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
@@ -22,6 +24,8 @@ export default class ErrorSettings extends LightningElement {
         errorSettingsTitle: stgErrorSettingsTitle,
         storeErrorsSettingTitle: stgStoreErrorsTitle,
         storeErrorsSettingDescription: stgHelpStoreErrorsOn,
+        sendErrorsSettingTitle: stgSendErrorsTitle,
+        sendErrorsSettingDescription: stgHelpErrorNotifyOn,
         enableDebugSettingsTitle: stgEnableDebugTitle,
         enableDebugSettingsDescription: stgEnableDebugHelp,
         errorHandlingSettingTitle: stgDisableErrorHandlingTitle,
@@ -30,6 +34,7 @@ export default class ErrorSettings extends LightningElement {
 
     inputAttributeReference = {
         storeErrorsToggleId: "storeErrors",
+        sendErrorNotificationsToggleId: "sendErrorNotifications",
         enableDebugToggleId: "enableDebug",
         errorHandlingToggleId: "errorHandling",
     };

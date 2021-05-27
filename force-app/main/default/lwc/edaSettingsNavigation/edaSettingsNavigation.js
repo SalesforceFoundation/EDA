@@ -47,6 +47,7 @@ import stgRefreshHHAcctNameTitle from "@salesforce/label/c.stgRefreshHHAcctNameT
 import stgPreferredEmailDataCleanup from "@salesforce/label/c.stgPreferredEmailDataCleanup";
 //Error Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
+import stgSendErrorsTitle from "@salesforce/label/c.stgSendErrorsTitle";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
 import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
@@ -95,7 +96,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             enableDebug: stgEnableDebugTitle,
             enableErrorHandling: stgDisableErrorHandlingTitle,
             errorSettings: stgErrorSettingsNav,
-            sendErrorNotifications: "Send Error Notifications",
+            sendErrorNotifications: stgSendErrorsTitle,
             storeErrors: stgStoreErrorsTitle,
         },
         programSettings: {
