@@ -1393,7 +1393,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Reciprocal Method Settings --></label>
+        <label><!-- Description for the Reciprocal Method settings --></label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
@@ -1549,7 +1549,7 @@
         <name>stgRelationshipSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for Relationships --></label>
+        <label><!-- Navigation title for Relationships --></label>
         <name>stgRelationshipSettingsNav</name>
     </customLabels>
     <customLabels>
