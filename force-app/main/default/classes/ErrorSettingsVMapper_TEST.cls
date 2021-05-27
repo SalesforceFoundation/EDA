@@ -122,25 +122,25 @@ private with sharing class ErrorSettingsVMapper_TEST {
         System.assertEquals(
             true,
             errorSettingsVModel.storeErrors,
-            'Store errors functionality should match value set in hierarchy settings.'
+            'Store errors functionality should match expected value.'
         );
 
         System.assertEquals(
             true,
             errorSettingsVModel.sendErrorNotifications,
-            'Send error notifications functionality should match value set in hierarchy settings.'
+            'Send error notifications functionality should match expected value.'
         );
 
         System.assertEquals(
             false,
             errorSettingsVModel.enableDebug,
-            'Enable debug functionality should match value set in hierarchy settings.'
+            'Enable debug functionality should match expected value.'
         );
 
         System.assertEquals(
             true,
             errorSettingsVModel.errorHandling,
-            'Error handling model property should be inverse of value set in hierarchy settings.'
+            'Error handling model property should match expected value.'
         );
     }
 
