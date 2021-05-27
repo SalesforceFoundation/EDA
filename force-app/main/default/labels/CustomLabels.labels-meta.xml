@@ -3823,12 +3823,4 @@
         <shortDescription>Navigation title for Addresses</shortDescription>
         <value>Addresses</value>
     </labels>
-    <labels>
-        <fullName>stgAddressSettingsNav</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Navigation title for Addresses</shortDescription>
-        <value>Addresses</value>
-    </labels>
 </CustomLabels>
