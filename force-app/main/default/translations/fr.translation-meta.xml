@@ -341,6 +341,10 @@
         <name>stgAccountModelSettingsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Account Model --></label>
+        <name>stgAccountModelNav</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Title for the list of Available Account Record Types --></label>
         <name>stgAccountRecordTypeAvailableListTitle</name>
     </customLabels>
@@ -379,6 +383,10 @@
     <customLabels>
         <label><!-- Section title for Addresses --></label>
         <name>stgAddressSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation title for Addresses --></label>
+        <name>stgAddressSettingsNav</name>
     </customLabels>
     <customLabels>
         <label><!-- Label for Custom Name Format for Administrative Accounts --></label>
@@ -585,6 +593,10 @@
         <name>stgBtnCommunity</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that clears a field --></label>
+        <name>stgBtnClearSelectionA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Alt text for button that launches the Trailblazer Community site --></label>
         <name>stgBtnCommunityActionA11y</name>
     </customLabels>
@@ -777,6 +789,10 @@
         <name>stgContactInformationSettingsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Contact Information --></label>
+        <name>stgContactInformationSettingsNav</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Label for the Allow Multiple Contact Addresses setting --></label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
@@ -893,6 +909,10 @@
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
+        <label><!-- Error message when no record types for Program Auto Enrollment --></label>
+        <name>stgError</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Error when the user doesn&apos;t have the permissions to view a page --></label>
         <name>stgErrorInsufficientAccess</name>
     </customLabels>
@@ -905,7 +925,7 @@
         <name>stgErrorInvalidSettings</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error Toast message when no record types for Program Auto Enrollment --></label>
+        <label><!-- Message when no record types for auto-enrollment mappings exist --></label>
         <name>stgErrorNewAutoEnrollment</name>
     </customLabels>
     <customLabels>

@@ -1004,7 +1004,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Delete auto-enrollment mapping confirmation window</shortDescription>
-        <value>This auto-enrollment mapping creates Program Enrollments for Affiliations with the {0} Account record type, {1} Affiliation status, and {2} Affiliation role. If you delete this auto-enrollment mapping, Program Enrollments won&apos;t be created for matching Affiliations.</value>
+        <value>This auto-enrollment mapping creates Program Enrollments for Affiliations with the {0} Account record type, {1} Affiliation status, and {2} Affiliation role. If you delete this auto-enrollment mapping, Program Enrollments won't be created for matching Affiliations.</value>
     </labels>
     <labels>
         <fullName>stgAutoEnrollmentDeleteModalTitle</fullName>
@@ -1076,7 +1076,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Auto-Enrollment Mappings setting</shortDescription>
-        <value>Define how Program Enrollments are automatically created using Account record types mapped to the Primary Affiliation fields on the Contact object and Auto-Enrollment Status and Auto-Enrollment Role.</value>
+        <value>When Primary Affiliations are created with the values in these mappings, automatically create Program Enrollments.</value>
     </labels>
     <labels>
         <fullName>stgAutoEnrollmentProgramTitle</fullName>
@@ -1084,7 +1084,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the Auto-Enrollment Mappings setting</shortDescription>
-        <value>Auto-Enrollment Program Mappings</value>
+        <value>Auto-Enrollment Mappings</value>
     </labels>
     <labels>
         <fullName>stgAutoEnrollmentRole</fullName>
@@ -1767,6 +1767,14 @@
         <value>Enhanced Preferred Phone Functionality</value>
     </labels>
     <labels>
+        <fullName>stgError</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error message when no record types for Program Auto Enrollment</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
         <fullName>stgErrorInsufficientAccess</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1795,8 +1803,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error Toast message when no record types for Program Auto Enrollment</shortDescription>
-        <value>No unmapped record types are available for the program auto enrollment. Auto enrollments can only be created for Account Record Types that have been mapped as Primary Affiliations</value>
+        <shortDescription>Message when no record types for auto-enrollment mappings exist</shortDescription>
+        <value>All Account record types that have primary Affiliations already have an auto-enrollment mapping. Go to EDA Settings | Affiliations to first create an Affiliation mapping with the record type you want.</value>
     </labels>
     <labels>
         <fullName>stgErrorNotiTo</fullName>
@@ -3782,5 +3790,45 @@
         <protected>true</protected>
         <shortDescription>Error when Start Time and Time Block are mismatched</shortDescription>
         <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnClearSelectionA11y</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that clears a field</shortDescription>
+        <value>Clear Selection</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountModelNav</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Account Model</shortDescription>
+        <value>Account Model</value>
+    </labels>
+    <labels>
+        <fullName>stgContactInformationSettingsNav</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Contact Information</shortDescription>
+        <value>Contact Information</value>
+    </labels>
+    <labels>
+        <fullName>stgAddressSettingsNav</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Addresses</shortDescription>
+        <value>Addresses</value>
+    </labels>
+    <labels>
+        <fullName>stgAddressSettingsNav</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Addresses</shortDescription>
+        <value>Addresses</value>
     </labels>
 </CustomLabels>
