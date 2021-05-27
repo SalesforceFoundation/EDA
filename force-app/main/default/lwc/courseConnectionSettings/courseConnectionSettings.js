@@ -86,7 +86,6 @@ export default class CourseConnectionSettings extends LightningElement {
     courseConnectionSettingsWire(result) {
         this.courseConnectionSettingsWireResult = result;
         if (result.data) {
-            console.log(result.data);
             this.courseConnectionSettingsVModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving accountmodelsettingsvmodel");
