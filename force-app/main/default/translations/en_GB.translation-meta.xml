@@ -457,6 +457,14 @@
         <name>stgAfflProgEnrollDeleteTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Program Plans --></label>
+        <name>stgProgramPlanSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Program Plan Settings --></label>
+        <name>stgProgramPlanSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Specify Role for Created Affiliations</label>
         <name>stgAfflProgEnrollSetRole</name>
     </customLabels>

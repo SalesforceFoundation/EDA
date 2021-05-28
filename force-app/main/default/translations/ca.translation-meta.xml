@@ -461,6 +461,14 @@
         <name>stgAfflProgramEnrollmentSettingsTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Program Plans --></label>
+        <name>stgProgramPlanSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Program Plan Settings --></label>
+        <name>stgProgramPlanSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Funció per a afiliacions creades</label>
         <name>stgAfflProgEnrollSetRoleValue</name>
     </customLabels>

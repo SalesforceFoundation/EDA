@@ -2755,8 +2755,8 @@
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Program Plans Settings</shortDescription>
-        <value>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message will prevent you from saving until only one is selected.</value>
+        <shortDescription>Description of the Plan Requirement Hierarchy setting</shortDescription>
+        <value>If you have a hierarchy for nested Plan Requirements, specifying that they can have only a Program Plan or only a parent Plan Requirement can help maintain your structure.</value>
     </labels>
     <labels>
         <fullName>stgHelpOrgAccountAddressMgmt</fullName>
@@ -2981,6 +2981,22 @@
         <protected>true</protected>
         <shortDescription>Section title for Program Enrollment Settings</shortDescription>
         <value>Program Enrollment Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgProgramPlanSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Program Plans</shortDescription>
+        <value>Program Plans</value>
+    </labels>
+    <labels>
+        <fullName>stgProgramPlanSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Program Plan Settings</shortDescription>
+        <value>Program Plan Settings</value>
     </labels>
     <labels>
         <fullName>stgReciprocalMethodListSetting</fullName>

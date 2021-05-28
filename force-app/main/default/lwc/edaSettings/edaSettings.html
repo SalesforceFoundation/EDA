@@ -71,6 +71,13 @@
                             onsavecanvasrendered={handleSaveCanvasRendered}
                         ></c-program-settings>
                     </template>
+
+                    <template if:true={settingsPageToDisplay.programPlanSettings}>
+                        <c-program-plan-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-program-plan-settings>
+                    </template>
                 </div>
             </template>
         </template>

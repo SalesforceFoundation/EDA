@@ -36,6 +36,9 @@ import stgAfflProgEnrollSetStatusValue from "@salesforce/label/c.stgAfflProgEnro
 import stgAfflCopyProgramEnrollmentEndDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentEndDate";
 import stgAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentStartDate";
 import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollDeleteTitle";
+//Program Plan Settings Labels
+import stgProgramPlanSettingsNav from "@salesforce/label/c.stgProgramPlanSettingsNav";
+import stgProgramPlanSettingsTitle from "@salesforce/label/c.stgProgramPlanSettingsTitle";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
@@ -102,6 +105,10 @@ export default class EdaSettingsNavigation extends LightningElement {
             statusForCreatedAffl: stgAfflProgEnrollSetStatusValue,
             afflEndDate: stgAfflCopyProgramEnrollmentEndDate,
             afflStartDate: stgAfflCopyProgramEnrollmentStartDate,
+        },
+        programPlanSettings: {
+            programPlans: stgProgramPlanSettingsNav,
+            programPlanSettings: stgProgramPlanSettingsTitle,
         },
         relationshipSettings: {
             preventAutoCreatedDuplicateRelationships: "Prevent Auto-Created Duplicate Relations",
@@ -282,6 +289,17 @@ export default class EdaSettingsNavigation extends LightningElement {
                             {
                                 label: this.labelReference.programSettings.programAutoEnrollmentMappings,
                                 id: "programAutoEnrollmentMappings",
+                            },
+                        ],
+                    },
+                    {
+                        label: this.labelReference.programPlanSettings.programPlans,
+                        page: "programPlanSettings",
+                        id: "programPlans",
+                        menuItems: [
+                            {
+                                label: this.labelReference.programPlanSettings.programPlanSettings,
+                                id: "programPlanSettingss",
                             },
                         ],
                     },
