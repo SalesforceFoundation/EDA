@@ -1385,7 +1385,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>Die Methode zum Auffüllen des Felds &quot;Typ&quot; beim Erstellen einer wechselseitigen Beziehung. Unter &quot;Listeneinstellung&quot; werden die auf der Registerkarte &quot;Wechselseitige Beziehungen&quot; definierten benutzerdefinierten Einstellungen mit den Werten &quot;Männlich&quot;, &quot;Weiblich&quot; und &quot;Neutral&quot; verwendet. Mit &quot;Wertumkehrung&quot; wird der Typ im Datensatz der ursprünglichen Beziehung ggf. umgekehrt. Wenn die ursprüngliche Beziehung z. B. Elternteil-Kind ist, ist die wechselseitige Beziehung Kind-Elternteil.</label>
+        <label><!-- Description for the Reciprocal Method settings --></label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
@@ -1535,6 +1535,14 @@
     <customLabels>
         <label><!-- Toast message when Household Account names are queued for update --></label>
         <name>stgRefreshHouseholdNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Relationship Settings --></label>
+        <name>stgRelationshipSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation title for Relationships --></label>
+        <name>stgRelationshipSettingsNav</name>
     </customLabels>
     <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
