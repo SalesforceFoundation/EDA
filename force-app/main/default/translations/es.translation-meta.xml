@@ -1912,4 +1912,12 @@
         <label>No podemos guardar la Programación de ofertas de cursos porque su hora de inicio no coincide con la hora de inicio de su bloque de tiempo asociado. Modifique la hora de inicio, especifique un bloque de tiempo diferente o no especifique un bloque de tiempo.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
+    <customTabs>
+        <label><!-- Education Cloud Settings --></label>
+        <name>Education_Cloud_Settings</name>
+    </customTabs>
+    <customTabs>
+        <label>Configuración de EDA</label>
+        <name>HEDA_Settings</name>
+    </customTabs>
 </Translations>
