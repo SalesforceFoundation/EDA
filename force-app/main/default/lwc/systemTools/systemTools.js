@@ -63,7 +63,7 @@ import stgHelpCopyQueuedEmailSent from "@salesforce/label/c.stgHelpCopyQueuedEma
 
 // Toast labels
 import stgSuccess from "@salesforce/label/c.stgSuccess";
-import stgError from "@salesforce/label/c.stgError";
+import stgToastError from "@salesforce/label/c.stgToastError";
 
 // Links to the articles
 const accountNamingArtcile = '<a href="https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names">';
@@ -109,7 +109,7 @@ export default class systemTools extends LightningElement {
         courseDataMigrationModalBody: stgCourseDataMigrationModalBody,
         toastMessageForDataMigration: stgHelpCopyQueuedEmailSent,
         successToastMesage: stgSuccess,
-        errorToastMessge: stgError,
+        errorToastMessge: stgToastError,
     };
 
     get adminAndHouseholdNamesHyperLink() {

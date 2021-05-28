@@ -42,6 +42,7 @@ import stgEnableCourseConnectionsTitle from "@salesforce/label/c.stgEnableCourse
 import stgDuplicateRelationships from "@salesforce/label/c.stgDuplicateRelationships";
 import stgTitleReciMethod from "@salesforce/label/c.stgTitleReciMethod";
 import stgRelationshipSettingsNav from "@salesforce/label/c.stgRelationshipSettingsNav";
+import stgTitleNewReciSetting from "@salesforce/label/c.stgTitleNewReciSetting";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
@@ -57,12 +58,11 @@ import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
 import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
-import stgHelpErrorNotifyOn from "@salesforce/label/c.stgHelpErrorNotifyOn";
+import stgSendErrorsTitle from "@salesforce/label/c.stgSendErrorsTitle";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
         peopleAndGroups: stgPeopleAndGroupsNav,
-        setupHome: "Setup Home",
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
         systemSettings: stgSystemSettingsNav,
         accountModel: {
@@ -103,7 +103,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             enableDebug: stgEnableDebugTitle,
             enableErrorHandling: stgDisableErrorHandlingTitle,
             errorSettings: stgErrorSettingsNav,
-            sendErrorNotifications: stgHelpErrorNotifyOn,
+            sendErrorNotifications: stgSendErrorsTitle,
             storeErrors: stgStoreErrorsTitle,
         },
         programSettings: {
@@ -118,7 +118,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         relationshipSettings: {
             preventAutoCreatedDuplicateRelationships: stgDuplicateRelationships,
             reciprocalMethod: stgTitleReciMethod,
-            reciprocalRelationshipMappings: "Reciprocal Relationship mappings",
+            reciprocalRelationshipMappings: stgTitleNewReciSetting,
             relationshipAutocreateCampaignMappings: "Autocreate Campaign Mappings",
             relationshipAutocreateContactMappings: "Autocreate Contact Mappings",
             relationshipSettings: stgRelationshipSettingsNav,
@@ -138,11 +138,6 @@ export default class EdaSettingsNavigation extends LightningElement {
 
     @track viewModel = {
         navigationSections: [
-            {
-                label: this.labelReference.setupHome,
-                page: "setupHome",
-                id: "setupHome",
-            },
             {
                 label: this.labelReference.peopleAndGroups,
                 id: "peopleAndGroups",

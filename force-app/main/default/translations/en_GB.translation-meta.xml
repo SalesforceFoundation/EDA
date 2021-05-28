@@ -905,10 +905,6 @@
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error message when no record types for Program Auto Enrollment --></label>
-        <name>stgError</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Error when the user doesn&apos;t have the permissions to view a page --></label>
         <name>stgErrorInsufficientAccess</name>
     </customLabels>
