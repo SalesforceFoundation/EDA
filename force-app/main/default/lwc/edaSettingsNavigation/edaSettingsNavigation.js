@@ -3,7 +3,7 @@ import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLo
 //People and Group Settings Labels
 import stgPeopleAndGroupsNav from "@salesforce/label/c.stgPeopleAndGroupsNav";
 //Account Model Settings Labels
-import stgAccountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
+import stgAccountModelNav from "@salesforce/label/c.stgAccountModelNav";
 import stgAccModelTitle from "@salesforce/label/c.stgAccModelTitle";
 import stgAdminAccountRecordType from "@salesforce/label/c.stgAdminAccountRecordType";
 import stgAccountRecordTypeSupportsHHAddress from "@salesforce/label/c.stgAccountRecordTypeSupportsHHAddress";
@@ -13,14 +13,14 @@ import adminAccNameFormat from "@salesforce/label/c.adminAccNameFormat";
 import hhAccNameFormat from "@salesforce/label/c.hhAccNameFormat";
 import automaticHHNaming from "@salesforce/label/c.automaticHHNaming";
 //Contact Information Settings Labels
-import stgContactInformationSettingsTitle from "@salesforce/label/c.stgContactInformationSettingsTitle";
+import stgContactInformationSettingsNav from "@salesforce/label/c.stgContactInformationSettingsNav";
 import stgDefaultContactLanguageFluency from "@salesforce/label/c.stgDefaultContactLanguageFluency";
 import stgDisablePreferredEmailEnforcement from "@salesforce/label/c.stgDisablePreferredEmailEnforcement";
 import stgEnablePreferredPhoneSync from "@salesforce/label/c.stgEnablePreferredPhoneSync";
 import stgPreferredPhoneDefault from "@salesforce/label/c.stgPreferredPhoneDefault";
 //Address Settings Labels
 import stgAccountTypesMultiAddressesEnabled from "@salesforce/label/c.stgAccountTypesMultiAddressesEnabled";
-import stgAddressSettingsTitle from "@salesforce/label/c.stgAddressSettingsTitle";
+import stgAddressSettingsNav from "@salesforce/label/c.stgAddressSettingsNav";
 import stgContactMultiAddressesEnabled from "@salesforce/label/c.stgContactMultiAddressesEnabled";
 import stgSimpleAddressChangeUpdate from "@salesforce/label/c.stgSimpleAddressChangeUpdate";
 //Affiliation Settings Labels
@@ -39,8 +39,10 @@ import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollD
 import stgCourseConnectionsNav from "@salesforce/label/c.stgCourseConnectionsNav";
 import stgEnableCourseConnectionsTitle from "@salesforce/label/c.stgEnableCourseConnectionsTitle";
 // Relationship Labels
+import stgDuplicateRelationships from "@salesforce/label/c.stgDuplicateRelationships";
 import stgTitleReciMethod from "@salesforce/label/c.stgTitleReciMethod";
 import stgRelationshipSettingsNav from "@salesforce/label/c.stgRelationshipSettingsNav";
+import stgTitleNewReciSetting from "@salesforce/label/c.stgTitleNewReciSetting";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
@@ -56,6 +58,7 @@ import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
 import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
+import stgSendErrorsTitle from "@salesforce/label/c.stgSendErrorsTitle";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
@@ -64,7 +67,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         systemSettings: stgSystemSettingsNav,
         accountModel: {
             accountAutoDeletionModel: stgAccoutTypesWithoutContactsDelete,
-            accountModelSettings: stgAccountModelSettingsTitle,
+            accountModelSettings: stgAccountModelNav,
             adminAccountModel: stgAdminAccountRecordType,
             defaultAccountModel: stgAccModelTitle,
             hhAccountModel: stgAccountRecordTypeSupportsHHAddress,
@@ -75,7 +78,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         },
         addressSettings: {
             addressAccountRecordTypes: stgAccountTypesMultiAddressesEnabled,
-            addressSettings: stgAddressSettingsTitle,
+            addressSettings: stgAddressSettingsNav,
             contactMultipleAddresses: stgContactMultiAddressesEnabled,
             simpleAddressChangeIsUpdate: stgSimpleAddressChangeUpdate,
         },
@@ -85,7 +88,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             enforceRecordTypeValidation: afflTypeEnforced,
         },
         contactInformation: {
-            contactInformation: stgContactInformationSettingsTitle,
+            contactInformation: stgContactInformationSettingsNav,
             defaultContactLanguageFluency: stgDefaultContactLanguageFluency,
             defaultPreferredPhone: stgPreferredPhoneDefault,
             enhancedPhoneFunctionality: stgEnablePreferredPhoneSync,
@@ -100,7 +103,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             enableDebug: stgEnableDebugTitle,
             enableErrorHandling: stgDisableErrorHandlingTitle,
             errorSettings: stgErrorSettingsNav,
-            sendErrorNotifications: "Send Error Notifications",
+            sendErrorNotifications: stgSendErrorsTitle,
             storeErrors: stgStoreErrorsTitle,
         },
         programSettings: {
@@ -113,11 +116,9 @@ export default class EdaSettingsNavigation extends LightningElement {
             afflStartDate: stgAfflCopyProgramEnrollmentStartDate,
         },
         relationshipSettings: {
-            preventAutoCreatedDuplicateRelationships: "Prevent Auto-Created Duplicate Relations",
+            preventAutoCreatedDuplicateRelationships: stgDuplicateRelationships,
             reciprocalMethod: stgTitleReciMethod,
-            reciprocalRelationshipMappings: "Reciprocal Relationship mappings",
-            relationshipAutocreateCampaignMappings: "Autocreate Campaign Mappings",
-            relationshipAutocreateContactMappings: "Autocreate Contact Mappings",
+            reciprocalRelationshipMappings: stgTitleNewReciSetting,
             relationshipSettings: stgRelationshipSettingsNav,
         },
         systemTools: {
@@ -239,14 +240,6 @@ export default class EdaSettingsNavigation extends LightningElement {
                     {
                         label: this.labelReference.relationshipSettings.reciprocalRelationshipMappings,
                         id: "reciprocalRelationshipMappings",
-                    },
-                    {
-                        label: this.labelReference.relationshipSettings.relationshipAutocreateCampaignMappings,
-                        id: "relationshipAutocreateCampaignMappings",
-                    },
-                    {
-                        label: this.labelReference.relationshipSettings.relationshipAutocreateContactMappings,
-                        id: "relationshipAutocreateContactMappings",
                     },
                 ],
             },

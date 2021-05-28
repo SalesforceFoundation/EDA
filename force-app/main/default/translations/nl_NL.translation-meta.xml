@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customApplications>
-        <label><!-- Education Data Architecture --></label>
-        <name>Education_Data_Architecture</name>
-    </customApplications>
-    <customApplications>
         <label>EDA</label>
         <name>HEDA</name>
     </customApplications>
@@ -137,7 +133,7 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>Met deze instellingen kunt u wederzijdse relaties, ofwel de &apos;overeenkomende&apos; relatie tussen twee contactpersonen configureren. Bijvoorbeeld: als een vader aan zijn zoon is gerelateerd, moet er een aanvullende record zijn die toont dat de zoon op zijn beurt aan zijn vader is gerelateerd. U kunt de typewaarde voor de naam opgeven, evenals wat de wederzijdse waarde moet zijn op basis van het geslacht van de verbonden contactpersoon. Voor elke wederzijdse instelling kunt u de waarden Man, Vrouw of Neutraal opgeven.</label>
+        <label><!-- Description of the Reciprocal Relationships setting --></label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
@@ -337,6 +333,10 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Account Model --></label>
+        <name>stgAccountModelNav</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Section title for Account Model Settings --></label>
         <name>stgAccountModelSettingsTitle</name>
     </customLabels>
@@ -375,6 +375,10 @@
     <customLabels>
         <label>Voeg indien nodig &apos;Niet Spaans of Latino&apos; als keuzelijstwaarde toe aan het veld Etniciteit.</label>
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation title for Addresses --></label>
+        <name>stgAddressSettingsNav</name>
     </customLabels>
     <customLabels>
         <label><!-- Section title for Addresses --></label>
@@ -581,6 +585,10 @@
         <name>stgBtnCancel</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that clears a field --></label>
+        <name>stgBtnClearSelectionA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button that launches the Trailblazer Community site --></label>
         <name>stgBtnCommunity</name>
     </customLabels>
@@ -677,10 +685,6 @@
         <name>stgBtnTrailheadActionA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Trailhead card --></label>
-        <name>stgBtnTrailheadTitle</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Button that runs a selected Apex job --></label>
         <name>stgBtnUpdate</name>
     </customLabels>
@@ -749,6 +753,10 @@
         <name>stgColRelType</name>
     </customLabels>
     <customLabels>
+        <label><!-- Column header for Settings names --></label>
+        <name>stgColRelationshipName</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Column header for Resources --></label>
         <name>stgColResources</name>
     </customLabels>
@@ -773,6 +781,10 @@
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Contact Information --></label>
+        <name>stgContactInformationSettingsNav</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Section title for Contact Information Settings --></label>
         <name>stgContactInformationSettingsTitle</name>
     </customLabels>
@@ -789,24 +801,16 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
+        <name>stgCourseConnectionBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Navigation title for Course Connections --></label>
         <name>stgCourseConnectionsNav</name>
     </customLabels>
     <customLabels>
         <label><!-- Section title for Course Connection Settings --></label>
         <name>stgCourseConnectionsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
-        <name>stgHelpCourseConnectionBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates Course Connection record types --></label>
-        <name>stgBtnRunCourseConnBackfillA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
-        <name>stgCourseConnectionBackfillModalTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Update Extended Description field confirmation window --></label>
@@ -837,7 +841,7 @@
         <name>stgDefaultFacultyTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label>Standaard recordtype voor actieve student</label>
+        <label><!-- Label for the Default Student Record Type setting --></label>
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
@@ -853,7 +857,15 @@
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the EDA app --></label>
+        <label><!-- Label for the Prevent Duplicate Relationships Settings --></label>
+        <name>stgDuplicateRelationships</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when Start Time and Time Block are mismatched --></label>
+        <name>stgDuplicateRelationshipsHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the EDA Aapp --></label>
         <name>stgEDAAppDesc</name>
     </customLabels>
     <customLabels>
@@ -861,8 +873,12 @@
         <name>stgEDAAppInitials</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the EDA app --></label>
-        <name>stgEDAAppTitle</name>
+        <label><!-- Description of EDA Settings has moved --></label>
+        <name>stgEDASettingsHasMovedDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title of EDA Settings has moved --></label>
+        <name>stgEDASettingsHasMovedTitle</name>
     </customLabels>
     <customLabels>
         <label>EDA-set-up</label>
@@ -901,7 +917,7 @@
         <name>stgErrorInvalidSettings</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error Toast message when no record types for Program Auto Enrollment --></label>
+        <label><!-- Message when no record types for auto-enrollment mappings exist --></label>
         <name>stgErrorNewAutoEnrollment</name>
     </customLabels>
     <customLabels>
@@ -1445,11 +1461,11 @@
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label>Het standaard recordtype bij het maken van cursusverbindingen voor een staflid.</label>
+        <label><!-- Description of the Default Faculty Record Type setting --></label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label>Het standaard recordtype bij het maken van cursusverbindingen voor actieve studenten.</label>
+        <label><!-- Description of the Default Student Record Type setting --></label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
@@ -1473,11 +1489,11 @@
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label>Als dit is geselecteerd, worden meldingen gepost voor door het product gegenereerde fouten.</label>
+        <label><!-- Description of the Error Notifications setting --></label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label>Specificeer wie e-mails met foutmeldingen moet ontvangen. Geldige waarden zijn &apos;Alle systeembeheerders&apos;, de ID van een gebruiker in uw organisatie of de ID van een Chatter-groep. U kunt slechts één waarde invoeren.</label>
+        <label><!-- Description of the Error Notification Recipients setting --></label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
@@ -1509,7 +1525,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Reciprocal Method settings --></label>
+        <label>De methode die wordt gebruikt om het typeveld in te vullen bij het maken van een wederzijdse relatie. &apos;Instellingen lijst&apos; gebruikt de aangepaste instellingen die op het tabblad Wederzijdse relaties zijn gedefinieerd met de waarden Man, Vrouw en Neutraal. &apos;Waarde-inversie&apos; keert waar van toepassing het type op de oorspronkelijke relatierecord om. Als de oorspronkelijke relatie bijvoorbeeld ouder-kind is, wordt de wederzijdse relatie kind-ouder.</label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
@@ -1541,7 +1557,7 @@
         <name>stgLeadConversionAccountNamingTitle</name>
     </customLabels>
     <customLabels>
-        <label>Programmaplan voor geneste planvereisten valideren</label>
+        <label><!-- Label for the Plan Requirement Hierarchy setting --></label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
@@ -1605,6 +1621,14 @@
         <name>stgPreferredPhoneSelectionDesc</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Program Plans --></label>
+        <name>stgProgramPlanSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Program Plan Settings --></label>
+        <name>stgProgramPlanSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Navigation title for Program Enrollments --></label>
         <name>stgProgramsSettingsNav</name>
     </customLabels>
@@ -1619,6 +1643,42 @@
     <customLabels>
         <label>Waarde-omkering</label>
         <name>stgReciprocalMethodValueInversion</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Delete Reciprocal Relationship window --></label>
+        <name>stgReciprocalRelDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Delete Reciprocal Relationship window --></label>
+        <name>stgReciprocalRelDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when a Reciprocal Relationship is created --></label>
+        <name>stgReciprocalRelDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Edit Reciprocal Relationship window --></label>
+        <name>stgReciprocalRelEditModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Edit Reciprocal Relationship window --></label>
+        <name>stgReciprocalRelEditModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when a Reciprocal Relationship is saved --></label>
+        <name>stgReciprocalRelEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the New Reciprocal Relationship window --></label>
+        <name>stgReciprocalRelNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the New Reciprocal Relationship window --></label>
+        <name>stgReciprocalRelNewModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when a Reciprocal Relationship is created --></label>
+        <name>stgReciprocalRelNewSuccess</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Update All Administrative Account Names setting --></label>
@@ -1661,12 +1721,12 @@
         <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Relationship Settings --></label>
-        <name>stgRelationshipSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Navigation title for Relationships --></label>
         <name>stgRelationshipSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Relationship Settings --></label>
+        <name>stgRelationshipSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
@@ -1685,11 +1745,27 @@
         <name>stgSaveSettings</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description for the Select Chatter Group setting --></label>
+        <name>stgSelectChatterGroupDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for Select Chatter Group --></label>
+        <name>stgSelectChatterGroupTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Type ontvanger selecteren:</label>
         <name>stgSelectReciType</name>
     </customLabels>
     <customLabels>
-        <label>Foutmeldingen verzenden</label>
+        <label><!-- Description for the Select User setting --></label>
+        <name>stgSelectUserDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for Select User --></label>
+        <name>stgSelectUserTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Error Notifications setting --></label>
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>

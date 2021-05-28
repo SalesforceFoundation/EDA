@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customApplications>
-        <label><!-- Education Data Architecture --></label>
-        <name>Education_Data_Architecture</name>
-    </customApplications>
-    <customApplications>
         <label>EDA</label>
         <name>HEDA</name>
     </customApplications>
@@ -137,7 +133,7 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>Diese Einstellungen ermöglichen Ihnen, wechselseitige Beziehungen oder die &quot;passende&quot; Beziehung zwischen zwei Kontakten zu konfigurieren. Da z. B. ein Vater mit seinem Sohn verwandt ist, sollte es einen zusätzlichen Datensatz geben, der zeigt, dass der Sohn wiederum mit seinem Vater verwandt ist. Sie können den Wert &quot;Typ&quot; für den Namen angeben und bestimmen, welcher wechselseitige Wert auf dem Geschlecht des verbindenden Kontakts basieren soll. Sie können für jede wechselseitige Einstellung männliche, weibliche und neutrale Werte definieren.</label>
+        <label><!-- Description of the Reciprocal Relationships setting --></label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
@@ -337,6 +333,10 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Account Model --></label>
+        <name>stgAccountModelNav</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Section title for Account Model Settings --></label>
         <name>stgAccountModelSettingsTitle</name>
     </customLabels>
@@ -375,6 +375,10 @@
     <customLabels>
         <label>Fügen Sie bei Bedarf dem Feld &quot;Ethnische Zugehörigkeit&quot; als Auswahllistenwert &quot;Nicht Hispanic oder Latino&quot; hinzu.</label>
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation title for Addresses --></label>
+        <name>stgAddressSettingsNav</name>
     </customLabels>
     <customLabels>
         <label><!-- Section title for Addresses --></label>
@@ -581,6 +585,10 @@
         <name>stgBtnCancel</name>
     </customLabels>
     <customLabels>
+        <label><!-- Alt text for button that clears a field --></label>
+        <name>stgBtnClearSelectionA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Button that launches the Trailblazer Community site --></label>
         <name>stgBtnCommunity</name>
     </customLabels>
@@ -677,10 +685,6 @@
         <name>stgBtnTrailheadActionA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Trailhead card --></label>
-        <name>stgBtnTrailheadTitle</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Button that runs a selected Apex job --></label>
         <name>stgBtnUpdate</name>
     </customLabels>
@@ -749,6 +753,10 @@
         <name>stgColRelType</name>
     </customLabels>
     <customLabels>
+        <label><!-- Column header for Settings names --></label>
+        <name>stgColRelationshipName</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Column header for Resources --></label>
         <name>stgColResources</name>
     </customLabels>
@@ -773,6 +781,10 @@
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Contact Information --></label>
+        <name>stgContactInformationSettingsNav</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Section title for Contact Information Settings --></label>
         <name>stgContactInformationSettingsTitle</name>
     </customLabels>
@@ -789,24 +801,16 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
+        <name>stgCourseConnectionBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Navigation title for Course Connections --></label>
         <name>stgCourseConnectionsNav</name>
     </customLabels>
     <customLabels>
         <label><!-- Section title for Course Connection Settings --></label>
         <name>stgCourseConnectionsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
-        <name>stgHelpCourseConnectionBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates Course Connection record types --></label>
-        <name>stgBtnRunCourseConnBackfillA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
-        <name>stgCourseConnectionBackfillModalTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Update Extended Description field confirmation window --></label>
@@ -837,7 +841,7 @@
         <name>stgDefaultFacultyTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label>Standard-Datensatztyp für aktive Studenten</label>
+        <label><!-- Label for the Default Student Record Type setting --></label>
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
@@ -853,7 +857,15 @@
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the EDA app --></label>
+        <label><!-- Label for the Prevent Duplicate Relationships Settings --></label>
+        <name>stgDuplicateRelationships</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error when Start Time and Time Block are mismatched --></label>
+        <name>stgDuplicateRelationshipsHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the EDA Aapp --></label>
         <name>stgEDAAppDesc</name>
     </customLabels>
     <customLabels>
@@ -861,8 +873,12 @@
         <name>stgEDAAppInitials</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the EDA app --></label>
-        <name>stgEDAAppTitle</name>
+        <label><!-- Description of EDA Settings has moved --></label>
+        <name>stgEDASettingsHasMovedDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title of EDA Settings has moved --></label>
+        <name>stgEDASettingsHasMovedTitle</name>
     </customLabels>
     <customLabels>
         <label>EDA-Einrichtung</label>
@@ -901,7 +917,7 @@
         <name>stgErrorInvalidSettings</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error Toast message when no record types for Program Auto Enrollment --></label>
+        <label><!-- Message when no record types for auto-enrollment mappings exist --></label>
         <name>stgErrorNewAutoEnrollment</name>
     </customLabels>
     <customLabels>
@@ -1445,11 +1461,11 @@
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label>Der Standard-Datensatztyp beim Erstellen von Kursverbindungen für ein Mitglied des Lehrpersonals.</label>
+        <label><!-- Description of the Default Faculty Record Type setting --></label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label>Der Standard-Datensatztyp beim Erstellen von Kursverbindungen für aktive Studenten.</label>
+        <label><!-- Description of the Default Student Record Type setting --></label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
@@ -1473,11 +1489,11 @@
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, werden Benachrichtigungen für vom Produkt generierte Fehler gesendet.</label>
+        <label><!-- Description of the Error Notifications setting --></label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label>Geben Sie an, wer E-Mail-Fehlerbenachrichtigungen empfangen soll. Gültige Werte sind &quot;Alle Systemadministratoren&quot;, die ID eines Benutzers in Ihrer Organisation oder die ID einer Chatter-Gruppe. Sie können nur einen Wert eingeben.</label>
+        <label><!-- Description of the Error Notification Recipients setting --></label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
@@ -1509,11 +1525,11 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Reciprocal Method settings --></label>
+        <label>Die Methode zum Auffüllen des Felds &quot;Typ&quot; beim Erstellen einer wechselseitigen Beziehung. Unter &quot;Listeneinstellung&quot; werden die auf der Registerkarte &quot;Wechselseitige Beziehungen&quot; definierten benutzerdefinierten Einstellungen mit den Werten &quot;Männlich&quot;, &quot;Weiblich&quot; und &quot;Neutral&quot; verwendet. Mit &quot;Wertumkehrung&quot; wird der Typ im Datensatz der ursprünglichen Beziehung ggf. umgekehrt. Wenn die ursprüngliche Beziehung z. B. Elternteil-Kind ist, ist die wechselseitige Beziehung Kind-Elternteil.</label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
-        <label>Entfernen Sie alle Auswahllistenwerte aus dem Feld &quot;Ethnische Zugehörigkeit&quot; mit Ausnahme von &quot;Hispanic oder Latino&quot; oder &quot;Nicht Hispanic oder Latino&quot;. Es wird empfohlen, jeden entfernten Wert durch einen der restlichen gültigen Werte zu ersetzen, anstatt sie direkt aus den vorhandenen Datensätzen zu löschen. Ab der EDA-Version 1.28 sind die einzigen gültigen Werte für die ethnische Zugehörigkeit &quot;Hispanic oder Latino&quot; oder &quot;Nicht Hispanic oder Latino&quot;.</label>
+        <label>Entfernen Sie alle Auswahllistenwerte aus dem Feld &quot;Ethnische Zugehörigkeit&quot; mit Ausnahme von &quot;Hispanic oder Latino&quot; oder &quot;Nicht Hispanic oder Latino&quot;. Es wird empfohlen, jeden entfernten Wert durch einen der restlichen gültigen Werte zu ersetzen, anstatt sie direkt aus den vorhandenen Datensätzen zu löschen. Ab der EDA-Version 1.28 sind die einzigen gültigen Werte für die ethnische Zugehörigkeit &quot;Hispanic oder Latino&quot; oder &quot;Nicht Hispanic oder Latino&quot;.</label>
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
@@ -1541,7 +1557,7 @@
         <name>stgLeadConversionAccountNamingTitle</name>
     </customLabels>
     <customLabels>
-        <label>Programmplan auf geschachtelte Plananforderungen prüfen</label>
+        <label><!-- Label for the Plan Requirement Hierarchy setting --></label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
@@ -1605,6 +1621,14 @@
         <name>stgPreferredPhoneSelectionDesc</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Program Plans --></label>
+        <name>stgProgramPlanSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Program Plan Settings --></label>
+        <name>stgProgramPlanSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Navigation title for Program Enrollments --></label>
         <name>stgProgramsSettingsNav</name>
     </customLabels>
@@ -1619,6 +1643,42 @@
     <customLabels>
         <label>Wertumkehrung</label>
         <name>stgReciprocalMethodValueInversion</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Delete Reciprocal Relationship window --></label>
+        <name>stgReciprocalRelDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Delete Reciprocal Relationship window --></label>
+        <name>stgReciprocalRelDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when a Reciprocal Relationship is created --></label>
+        <name>stgReciprocalRelDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Edit Reciprocal Relationship window --></label>
+        <name>stgReciprocalRelEditModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the Edit Reciprocal Relationship window --></label>
+        <name>stgReciprocalRelEditModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when a Reciprocal Relationship is saved --></label>
+        <name>stgReciprocalRelEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the New Reciprocal Relationship window --></label>
+        <name>stgReciprocalRelNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the New Reciprocal Relationship window --></label>
+        <name>stgReciprocalRelNewModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Confirmation message when a Reciprocal Relationship is created --></label>
+        <name>stgReciprocalRelNewSuccess</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the Update All Administrative Account Names setting --></label>
@@ -1661,12 +1721,12 @@
         <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Relationship Settings --></label>
-        <name>stgRelationshipSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Navigation title for Relationships --></label>
         <name>stgRelationshipSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Relationship Settings --></label>
+        <name>stgRelationshipSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
@@ -1685,11 +1745,27 @@
         <name>stgSaveSettings</name>
     </customLabels>
     <customLabels>
+        <label><!-- Description for the Select Chatter Group setting --></label>
+        <name>stgSelectChatterGroupDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for Select Chatter Group --></label>
+        <name>stgSelectChatterGroupTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Empfängertyp auswählen:</label>
         <name>stgSelectReciType</name>
     </customLabels>
     <customLabels>
-        <label>Fehlerbenachrichtigungen senden</label>
+        <label><!-- Description for the Select User setting --></label>
+        <name>stgSelectUserDesc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for Select User --></label>
+        <name>stgSelectUserTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Error Notifications setting --></label>
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
