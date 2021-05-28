@@ -248,12 +248,4 @@ private with sharing class CourseConnectionSettingsVMapper_TEST {
             return recordTypeModelsById;
         }
     }
-    /**************************************************************************************************************************************
-     * @description Stub class to simulate the response from RecordTypeMapper to return an empty map of Account Record Types
-     **************************************************************************************************************************************/
-    private class STUB_RecordTypeMapperEmpty extends RecordTypeMapper {
-        public override Map<Id, RecordTypeModel> getModelByIdMapForSObjectType(Schema.SObjectType sObjectType) {
-            return new Map<Id, RecordTypeModel>();
-        }
-    }
 }
