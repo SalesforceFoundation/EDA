@@ -38,6 +38,10 @@ import stgAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgAfflCo
 import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollDeleteTitle";
 import stgCourseConnectionsNav from "@salesforce/label/c.stgCourseConnectionsNav";
 import stgEnableCourseConnectionsTitle from "@salesforce/label/c.stgEnableCourseConnectionsTitle";
+// Relationship Labels
+import stgDuplicateRelationships from "@salesforce/label/c.stgDuplicateRelationships";
+import stgTitleReciMethod from "@salesforce/label/c.stgTitleReciMethod";
+import stgRelationshipSettingsNav from "@salesforce/label/c.stgRelationshipSettingsNav";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
@@ -45,11 +49,15 @@ import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
 import stgRefreshAdminAcctNameTitle from "@salesforce/label/c.stgRefreshAdminAcctNameTitle";
 import stgRefreshHHAcctNameTitle from "@salesforce/label/c.stgRefreshHHAcctNameTitle";
 import stgPreferredEmailDataCleanup from "@salesforce/label/c.stgPreferredEmailDataCleanup";
+import stgEthnicityRaceBackfillContacts from "@salesforce/label/c.stgEthnicityRaceBackfillContacts";
+import stgTitleCoursesDescriptionDataMigration from "@salesforce/label/c.stgTitleCoursesDescriptionDataMigration";
+import stgTitleCourseConnectionBackfill from "@salesforce/label/c.stgTitleCourseConnectionBackfill";
 //Error Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
 import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
+import stgHelpErrorNotifyOn from "@salesforce/label/c.stgHelpErrorNotifyOn";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
@@ -95,7 +103,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             enableDebug: stgEnableDebugTitle,
             enableErrorHandling: stgDisableErrorHandlingTitle,
             errorSettings: stgErrorSettingsNav,
-            sendErrorNotifications: "Send Error Notifications",
+            sendErrorNotifications: stgHelpErrorNotifyOn,
             storeErrors: stgStoreErrorsTitle,
         },
         programSettings: {
@@ -108,17 +116,17 @@ export default class EdaSettingsNavigation extends LightningElement {
             afflStartDate: stgAfflCopyProgramEnrollmentStartDate,
         },
         relationshipSettings: {
-            preventAutoCreatedDuplicateRelationships: "Prevent Auto-Created Duplicate Relations",
-            reciprocalMethod: "Reciprocal Method",
+            preventAutoCreatedDuplicateRelationships: stgDuplicateRelationships,
+            reciprocalMethod: stgTitleReciMethod,
             reciprocalRelationshipMappings: "Reciprocal Relationship mappings",
             relationshipAutocreateCampaignMappings: "Autocreate Campaign Mappings",
             relationshipAutocreateContactMappings: "Autocreate Contact Mappings",
-            relationshipSettings: "Relationships",
+            relationshipSettings: stgRelationshipSettingsNav,
         },
         systemTools: {
-            courseConnectionBackfill: "Course Connection Backfill",
-            courseDescriptionMigration: "Course Description Migration",
-            ethnicityAndRaceBackfill: "Ethnicity and Race Backfill",
+            courseConnectionBackfill: stgTitleCourseConnectionBackfill,
+            courseDescriptionMigration: stgTitleCoursesDescriptionDataMigration,
+            ethnicityAndRaceBackfill: stgEthnicityRaceBackfillContacts,
             preferredEmailCleanup: stgPreferredEmailDataCleanup,
             systemToolsNav: stgSystemToolsNav,
             refreshAdministrativeAccountNames: stgRefreshAdminAcctNameTitle,

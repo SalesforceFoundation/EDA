@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
     <customApplications>
-        <label><!-- Education Data Architecture --></label>
-        <name>Education_Data_Architecture</name>
-    </customApplications>
-    <customApplications>
         <label>EDA</label>
         <name>HEDA</name>
     </customApplications>
@@ -1927,9 +1923,5 @@
     <customTabs>
         <label>Configuración de EDA</label>
         <name>HEDA_Settings</name>
-    </customTabs>
-    <customTabs>
-        <label><!-- Settings Health Check --></label>
-        <name>Settings_Health_Check</name>
     </customTabs>
 </Translations>
