@@ -96,6 +96,13 @@
                             onsavecanvasrendered={handleSaveCanvasRendered}
                         ></c-program-settings>
                     </template>
+
+                    <template if:true={settingsPageToDisplay.courseConnectionSettings}>
+                        <c-course-connection-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-course-connection-settings>
+                    </template>
                 </div>
             </template>
         </template>

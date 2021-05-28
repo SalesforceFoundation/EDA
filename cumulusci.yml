@@ -692,3 +692,20 @@ plans:
             - when: "not tasks.has_einstein_licenses()"
               action: error
               message: Einstein Analytics permission sets are not available.
+    upgrade:
+        slug: upgrade
+        title: Product Upgrade
+        tier: additional
+        is_listed: False
+        preflight_message: "This installer upgrades this package and any required dependencies to the latest version in your org. This installer isn't supported and has risks. Please don't run this installer unless you're aware of its specific use cases and considerations."
+        post_install_message: "Installation complete and package is on the latest version."
+        steps:
+            1:
+                task: update_dependencies
+                options:
+                    security_type: PUSH
+                    packages_only: True
+            2:
+                task: install_managed
+                options:
+                    security_type: PUSH

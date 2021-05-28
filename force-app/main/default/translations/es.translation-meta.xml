@@ -789,6 +789,22 @@
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
+        <label><!-- Navigation title for Course Connections --></label>
+        <name>stgCourseConnectionsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Course Connection Settings --></label>
+        <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
+        <name>stgHelpCourseConnectionBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that updates Course Connection record types --></label>
+        <name>stgBtnRunCourseConnBackfillA11y</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Title for the Update Course Connection record types confirmation window --></label>
         <name>stgCourseConnectionBackfillModalTitle</name>
     </customLabels>
@@ -865,7 +881,7 @@
         <name>stgEDCSettingsHealthCheckDescription</name>
     </customLabels>
     <customLabels>
-        <label>Activar enlaces de cursos</label>
+        <label><!-- Label for the Course Connection Record Types setting --></label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
@@ -1453,7 +1469,7 @@
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>Los registros Conexiones de curso conectan un contacto con una oferta de curso. Al activar esta función se permite a los usuarios elegir el tipo de contacto (Facultad o Estudiante) para crear el Enlace del curso. Cuando activa esta función, también necesita establecer el Tipo de registro de estudiante activo predeterminado y el Tipo de registro de facultad predeterminado a continuación. Si está activando esta función por primera vez, recomendamos encarecidamente que ejecute el Relleno de enlace de curso.</label>
+        <label><!-- Description of the Course Connections setting --></label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
