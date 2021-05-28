@@ -50,9 +50,9 @@ import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
 import stgRefreshAdminAcctNameTitle from "@salesforce/label/c.stgRefreshAdminAcctNameTitle";
 import stgRefreshHHAcctNameTitle from "@salesforce/label/c.stgRefreshHHAcctNameTitle";
 import stgPreferredEmailDataCleanup from "@salesforce/label/c.stgPreferredEmailDataCleanup";
-import stgEthnicityRaceBackfillContacts from "@salesforce/label/c.stgEthnicityRaceBackfillContacts";
-import stgTitleCoursesDescriptionDataMigration from "@salesforce/label/c.stgTitleCoursesDescriptionDataMigration";
 import stgTitleCourseConnectionBackfill from "@salesforce/label/c.stgTitleCourseConnectionBackfill";
+import stgTitleCoursesDescriptionDataMigration from "@salesforce/label/c.stgTitleCoursesDescriptionDataMigration";
+import stgEthnicityRaceBackfillContacts from "@salesforce/label/c.stgEthnicityRaceBackfillContacts";
 //Error Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
@@ -119,8 +119,6 @@ export default class EdaSettingsNavigation extends LightningElement {
             preventAutoCreatedDuplicateRelationships: stgDuplicateRelationships,
             reciprocalMethod: stgTitleReciMethod,
             reciprocalRelationshipMappings: stgTitleNewReciSetting,
-            relationshipAutocreateCampaignMappings: "Autocreate Campaign Mappings",
-            relationshipAutocreateContactMappings: "Autocreate Contact Mappings",
             relationshipSettings: stgRelationshipSettingsNav,
         },
         systemTools: {
@@ -240,20 +238,8 @@ export default class EdaSettingsNavigation extends LightningElement {
                         id: "preventAutoCreatedDuplicateRelationships",
                     },
                     {
-                        label: this.labelReference.relationshipSettings.preventAutoCreatedDuplicateRelationships,
-                        id: "preventAutoCreatedDuplicateRelationships",
-                    },
-                    {
                         label: this.labelReference.relationshipSettings.reciprocalRelationshipMappings,
                         id: "reciprocalRelationshipMappings",
-                    },
-                    {
-                        label: this.labelReference.relationshipSettings.relationshipAutocreateCampaignMappings,
-                        id: "relationshipAutocreateCampaignMappings",
-                    },
-                    {
-                        label: this.labelReference.relationshipSettings.relationshipAutocreateContactMappings,
-                        id: "relationshipAutocreateContactMappings",
                     },
                 ],
             },
