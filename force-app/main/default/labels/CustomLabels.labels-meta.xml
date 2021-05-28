@@ -656,7 +656,7 @@
     </labels>
     <labels>
         <fullName>stgAccountModelNav</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Navigation title for Account Model</shortDescription>
@@ -744,7 +744,7 @@
     </labels>
     <labels>
         <fullName>stgAddressSettingsNav</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Navigation title for Addresses</shortDescription>
@@ -1160,7 +1160,7 @@
     </labels>
     <labels>
         <fullName>stgBtnClearSelectionA11y</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that clears a field</shortDescription>
@@ -1552,7 +1552,7 @@
     </labels>
     <labels>
         <fullName>stgContactInformationSettingsNav</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Navigation title for Contact Information</shortDescription>
