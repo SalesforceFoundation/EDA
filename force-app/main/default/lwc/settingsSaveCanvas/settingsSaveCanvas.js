@@ -4,6 +4,7 @@ import settingsButtonEdit from "@salesforce/label/c.stgBtnEdit";
 import settingsButtonCancel from "@salesforce/label/c.stgBtnCancel";
 import settingsButtonSave from "@salesforce/label/c.stgBtnSave";
 import stgSaveSettings from "@salesforce/label/c.stgSaveSettings";
+import stgSuccess from "@salesforce/label/c.stgSuccess";
 
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
@@ -42,6 +43,7 @@ export default class SettingsSaveCanvas extends LightningElement {
         settingsButtonCancel,
         settingsButtonSave,
         successMessage: stgSaveSettings,
+        successToast: stgSuccess,
     };
 
     @api
@@ -92,7 +94,7 @@ export default class SettingsSaveCanvas extends LightningElement {
                 if (result === true) {
                     // update successful
                     this.switchEditMode(false);
-                    this.showToast("success", "Save Complete", this.labelReference.successMessage);
+                    this.showToast("success", this.labelReference.successToast, this.labelReference.successMessage);
                     this.dispatchSettingsSaveCompletedEvent();
                 }
             })
