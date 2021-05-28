@@ -655,6 +655,14 @@
         <value>Default Account Model</value>
     </labels>
     <labels>
+        <fullName>stgAccountModelNav</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Account Model</shortDescription>
+        <value>Account Model</value>
+    </labels>
+    <labels>
         <fullName>stgAccountModelSettingsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -733,6 +741,14 @@
         <protected>true</protected>
         <shortDescription>Instructions for Ethnicity and Race Backfill</shortDescription>
         <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
+    </labels>
+    <labels>
+        <fullName>stgAddressSettingsNav</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Addresses</shortDescription>
+        <value>Addresses</value>
     </labels>
     <labels>
         <fullName>stgAddressSettingsTitle</fullName>
@@ -1004,7 +1020,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Delete auto-enrollment mapping confirmation window</shortDescription>
-        <value>This auto-enrollment mapping creates Program Enrollments for Affiliations with the {0} Account record type, {1} Affiliation status, and {2} Affiliation role. If you delete this auto-enrollment mapping, Program Enrollments won't be created for matching Affiliations.</value>
+        <value>This auto-enrollment mapping creates Program Enrollments for Affiliations with the {0} Account record type, {1} Affiliation status, and {2} Affiliation role. If you delete this auto-enrollment mapping, Program Enrollments won&apos;t be created for matching Affiliations.</value>
     </labels>
     <labels>
         <fullName>stgAutoEnrollmentDeleteModalTitle</fullName>
@@ -1141,6 +1157,14 @@
         <protected>true</protected>
         <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnClearSelectionA11y</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that clears a field</shortDescription>
+        <value>Clear Selection</value>
     </labels>
     <labels>
         <fullName>stgBtnCommunity</fullName>
@@ -1525,6 +1549,14 @@
         <protected>true</protected>
         <shortDescription>Confirm ready to run Backfill msg</shortDescription>
         <value>I understand and am ready to run Backfill.</value>
+    </labels>
+    <labels>
+        <fullName>stgContactInformationSettingsNav</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Contact Information</shortDescription>
+        <value>Contact Information</value>
     </labels>
     <labels>
         <fullName>stgContactInformationSettingsTitle</fullName>
@@ -3782,37 +3814,5 @@
         <protected>true</protected>
         <shortDescription>Error when Start Time and Time Block are mismatched</shortDescription>
         <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
-    </labels>
-    <labels>
-        <fullName>stgBtnClearSelectionA11y</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Alt text for button that clears a field</shortDescription>
-        <value>Clear Selection</value>
-    </labels>
-    <labels>
-        <fullName>stgAccountModelNav</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Navigation title for Account Model</shortDescription>
-        <value>Account Model</value>
-    </labels>
-    <labels>
-        <fullName>stgContactInformationSettingsNav</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Navigation title for Contact Information</shortDescription>
-        <value>Contact Information</value>
-    </labels>
-    <labels>
-        <fullName>stgAddressSettingsNav</fullName>
-        <categories>Error</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Navigation title for Addresses</shortDescription>
-        <value>Addresses</value>
     </labels>
 </CustomLabels>

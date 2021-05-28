@@ -377,12 +377,12 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Addresses --></label>
-        <name>stgAddressSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Navigation title for Addresses --></label>
         <name>stgAddressSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Addresses --></label>
+        <name>stgAddressSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Label for Custom Name Format for Administrative Accounts --></label>
@@ -585,12 +585,12 @@
         <name>stgBtnCancel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button that launches the Trailblazer Community site --></label>
-        <name>stgBtnCommunity</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Alt text for button that clears a field --></label>
         <name>stgBtnClearSelectionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button that launches the Trailblazer Community site --></label>
+        <name>stgBtnCommunity</name>
     </customLabels>
     <customLabels>
         <label><!-- Alt text for button that launches the Trailblazer Community site --></label>
@@ -781,12 +781,12 @@
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Contact Information Settings --></label>
-        <name>stgContactInformationSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Navigation title for Contact Information --></label>
         <name>stgContactInformationSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Contact Information Settings --></label>
+        <name>stgContactInformationSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Label for the Allow Multiple Contact Addresses setting --></label>
