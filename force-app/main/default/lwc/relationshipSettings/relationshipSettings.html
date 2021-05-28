@@ -1,0 +1,25 @@
+<template>
+    <c-settings-save-canvas
+        component-title={labelReference.stgRelationshipSettingsTitle}
+        onsettingseditmodechange={handleSettingsEditModeChange}
+        onsettingssaving={handleSettingsSaving}
+        onsettingssavecancel={handleSettingsSaveCancel}
+        onsettingssavecompleted={handleSettingsSaveCompleted}
+    >
+        <!-- Body of Relationship Settings page (populates Slot in child component) -->
+        <template if:true={relationshipSettingsVModel}>
+            <c-settings-row-input
+                class="slds-size_3-of-3"
+                title={labelReference.reciprocalMethodSettingsName}
+                description={relationshipSettingsDesc}
+                type="combobox"
+                input-id={inputAttributeReference.defaultReciprocalComboboxId}
+                value={relationshipSettingsVModel.reciprocalMethodComboboxVModel.value}
+                placeholder={labelReference.comboboxPlaceholderText}
+                options={relationshipSettingsVModel.reciprocalMethodComboboxVModel.options}
+                onsettingsinputchange={handleReciprocalMethodChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+        </template>
+    </c-settings-save-canvas>
+</template>

@@ -1509,7 +1509,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>La méthode utilisée pour remplir le champ type lors de la création d&apos;une Relation réciproque. « Paramètre de la liste » utilise les paramètres personnalisés définis sous l&apos;onglet Relations réciproques pour les valeurs Masculin, Féminin et Neutre. « Inversion de valeur » inverse le type dans l&apos;enregistrement Relation d&apos;origine, le cas échéant. Par exemple, si la relation d&apos;origine est Parent-Enfant, la relation réciproque est Enfant-Parent.</label>
+        <label><!-- Description for the Reciprocal Method settings --></label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
@@ -1659,6 +1659,14 @@
     <customLabels>
         <label><!-- Toast message when Household Account names are queued for update --></label>
         <name>stgRefreshHouseholdNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section title for Relationship Settings --></label>
+        <name>stgRelationshipSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation title for Relationships --></label>
+        <name>stgRelationshipSettingsNav</name>
     </customLabels>
     <customLabels>
         <label><!-- Button label for updating the selected Apex job --></label>
