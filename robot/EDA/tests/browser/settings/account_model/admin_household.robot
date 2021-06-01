@@ -21,7 +21,7 @@ Setup Test Data
 
 Update settings to out of the box values
     Go to education cloud settings
-    Select settings from navigation pane        Account Model Settings
+    Select settings from navigation pane        Account Model
     Click action button on new EDA settings     Edit
     Update settings dropdown value
     ...                                         Administrative Account Record Type=Administrative
@@ -45,7 +45,7 @@ Validate admin and household account record type settings are updated in hierarc
     ...                     EDA Settings page and the same record types are updated in hierarchy
     ...                     settings under custom settings.
     [tags]                                      unstable        W-9225268       rbt:high
-    Select settings from navigation pane        Account Model Settings
+    Select settings from navigation pane        Account Model
     Click action button on new EDA settings     Edit
     Update settings dropdown value
     ...                                         Administrative Account Record Type=Household Account
@@ -61,7 +61,7 @@ Validate admin and household account naming format settings are updated in hiera
     ...                     in EDA Settings page and the same are updated in hierarchy
     ...                     settings under custom settings.
     [tags]                                      unstable        W-9294235       rbt:high
-    Select settings from navigation pane        Account Model Settings
+    Select settings from navigation pane        Account Model
     Click action button on new EDA settings     Edit
     Scroll to field                             Administrative Account Name Format
     Click on hub link                           Administrative Account Name Format      Tell Me More
