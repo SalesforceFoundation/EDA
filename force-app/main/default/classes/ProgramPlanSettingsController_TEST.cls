@@ -62,12 +62,12 @@ public with sharing class ProgramPlanSettingsController_TEST {
         ProgramPlanSettingsVMapper.instance = new STUB_ProgramPlanSettingsVMapperValid();
 
         Test.startTest();
-        ProgramPlanSettingsVModel ppSettingsVModel = ProgramPlanSettingsController.getProgramPlanSettingsVModel();
+        ProgramPlanSettingsVModel programPlanSettingsVModelInstance = ProgramPlanSettingsController.getProgramPlanSettingsVModel();
         Test.stopTest();
 
         System.assertEquals(
             true,
-            ppSettingsVModel.validateProgramPlanForNestedPR,
+            programPlanSettingsVModelInstance.validateProgramPlanForNestedPR,
             'validateProgramPlanForNestedPR should return true'
         );
     }
@@ -82,7 +82,7 @@ public with sharing class ProgramPlanSettingsController_TEST {
 
         try {
             Test.startTest();
-            ProgramPlanSettingsVModel ppSettingsVModel = ProgramPlanSettingsController.getProgramPlanSettingsVModel();
+            ProgramPlanSettingsVModel programPlanSettingsVModelInstance = ProgramPlanSettingsController.getProgramPlanSettingsVModel();
             Test.stopTest();
             System.assert(false, 'should always throw an exception');
         } catch (AuraHandledException e) {

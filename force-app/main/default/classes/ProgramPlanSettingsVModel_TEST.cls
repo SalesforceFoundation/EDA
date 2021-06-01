@@ -43,12 +43,12 @@ public with sharing class ProgramPlanSettingsVModel_TEST {
     @isTest
     private static void constructorValid() {
         Test.startTest();
-        ProgramPlanSettingsVModel ppSettingsVModel = new ProgramPlanSettingsVModel(false);
+        ProgramPlanSettingsVModel programPlanSettingsVModelInstance = new ProgramPlanSettingsVModel(false);
         Test.stopTest();
 
         System.assertEquals(
             false,
-            ppSettingsVModel.validateProgramPlanForNestedPR,
+            programPlanSettingsVModelInstance.validateProgramPlanForNestedPR,
             'validateProgramPlanForNestedPR should not be enabled.'
         );
     }

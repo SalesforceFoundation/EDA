@@ -61,9 +61,9 @@ public virtual with sharing class ProgramPlanSettingsVMapper {
      * @return An instance of ProgramPlanSettingsVModel
      *********************************************************************************************************/
     public virtual ProgramPlanSettingsVModel getProgramPlanSettingsVModel() {
-        ProgramPlanSettingsModel ppModel = locateProgramPlanSettingsService().getProgramPlanSettingsModel();
-
-        return new ProgramPlanSettingsVModel(ppModel.validateProgramPlanForNestedPR);
+        ProgramPlanSettingsModel programPlanSettingsModelInstance = locateProgramPlanSettingsService()
+            .getProgramPlanSettingsModel();
+        return new ProgramPlanSettingsVModel(programPlanSettingsModelInstance.validateProgramPlanForNestedPR);
     }
 
     /*****************************************************************************

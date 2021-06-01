@@ -100,13 +100,13 @@ public with sharing class ProgramPlanSettingsMapper_TEST {
         ProgramPlanSettingsMapper programPlanSettingsMapperInstance = ProgramPlanSettingsMapper.getInstance();
 
         Test.startTest();
-        ProgramPlanSettingsModel ppSettingsModel = programPlanSettingsMapperInstance.getProgramPlanSettingsModel();
+        ProgramPlanSettingsModel programPlanSettingsModelInstance = programPlanSettingsMapperInstance.getProgramPlanSettingsModel();
         Test.stopTest();
 
         System.assertEquals(
             true,
-            ppSettingsModel.validateProgramPlanForNestedPR,
-            'validateProgramPlanForNestedPR should not be enabled.'
+            programPlanSettingsModelInstance.validateProgramPlanForNestedPR,
+            'validateProgramPlanForNestedPR should be enabled.'
         );
     }
 }

@@ -116,12 +116,12 @@ public with sharing class ProgramPlanSettingsVMapper_TEST {
         ProgramPlanSettingsVMapper programPlanSettingsVMapperInstance = ProgramPlanSettingsVMapper.getInstance();
 
         Test.startTest();
-        ProgramPlanSettingsVModel ppSettingsVModel = programPlanSettingsVMapperInstance.getProgramPlanSettingsVModel();
+        ProgramPlanSettingsVModel programPlanSettingsVModelInstance = programPlanSettingsVMapperInstance.getProgramPlanSettingsVModel();
         Test.stopTest();
 
         System.assertEquals(
             false,
-            ppSettingsVModel.validateProgramPlanForNestedPR,
+            programPlanSettingsVModelInstance.validateProgramPlanForNestedPR,
             'validateProgramPlanForNestedPR should not be enabled.'
         );
     }
