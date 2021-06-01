@@ -5,7 +5,7 @@ Library         cumulusci.robotframework.PageObjects
 Suite Setup     Open Test Browser
 Suite Teardown  Capture screenshot and delete records and close browser
 
-Test Setup      Go to new eda settings
+Test Setup      Go to education cloud settings
 
 *** Variables ***
 ${fluency}                  Intermediate
