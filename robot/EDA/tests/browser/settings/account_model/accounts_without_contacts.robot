@@ -7,7 +7,7 @@ Suite Setup     Run keywords
 ...             Setup Test Data
 Suite Teardown  Capture screenshot and delete records and close browser
 
-Test Setup      Go to new eda settings
+Test Setup      Go to education cloud settings
 
 *** Keywords ***
 
