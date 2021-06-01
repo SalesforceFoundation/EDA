@@ -1,6 +1,6 @@
 <template>
     <c-settings-save-canvas
-        component-title={labelReference.programPlanSettingsPageTitle}
+        component-title={labelReference.programPlanSettingsNav}
         onsettingseditmodechange={handleSettingsEditModeChange}
         onsettingssaving={handleSettingsSaving}
         onsettingssavecancel={handleSettingsSaveCancel}
@@ -9,7 +9,7 @@
         <template if:true={programPlanSettingsVModel}>
             <!-- Program Enrollment Deletion -->
             <div class="slds-p-right_x-large slds-text-heading_small slds-p-bottom_medium">
-                {labelReference.programPlanSettingsHeading}
+                {labelReference.programPlanSettingsTitle}
             </div>
             <c-settings-row-input
                 class="slds-size_3-of-3"

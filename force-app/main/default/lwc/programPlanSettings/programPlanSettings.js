@@ -21,8 +21,8 @@ export default class ProgramPlanSettings extends LightningElement {
     };
 
     labelReference = {
-        programPlanSettingsPageTitle: stgProgramPlanSettingsNav,
-        programPlanSettingsHeading: stgProgramPlanSettingsTitle,
+        programPlanSettingsNav: stgProgramPlanSettingsNav,
+        programPlanSettingsTitle: stgProgramPlanSettingsTitle,
         validateProgramPlanSettingTitle: stgNestedPlanRequirementPP,
         validateProgramPlanDescription: stgHelpNestedPlanRequirementPP,
     };
