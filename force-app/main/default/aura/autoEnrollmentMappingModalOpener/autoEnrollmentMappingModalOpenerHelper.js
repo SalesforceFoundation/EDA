@@ -31,11 +31,11 @@
                 confirmButton = $A.get("$Label.c.stgBtnSave");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 break;
-            /*case "delete":
-                modalHeaderLabel = $A.get("$Label.c.stgAffiliationsDeleteModalTitle");
+            case "delete":
+                modalHeaderLabel = $A.get("$Label.c.stgAutoEnrollmentDeleteModalTitle");
                 cancelButton = $A.get("$Label.c.stgBtnCancel");
                 confirmButton = $A.get("$Label.c.stgBtnDelete");
-                break;*/
+                break;
         }
 
         $A.createComponents(
@@ -109,9 +109,9 @@
             case "edit":
                 this.handleModalEditConfirm(component);
                 break;
-            /*case "delete":
+            case "delete":
                 this.handleModalDeleteConfirm(component);
-                break;*/
+                break;
         }
     },
 
@@ -139,30 +139,25 @@
         });
         modalSaveEvent.fire();
     },
-    /*
+
     handleModalDeleteConfirm: function (component) {
         let modalSaveEvent = component.getEvent("modalSaveEvent");
 
+        const actionName = component.get("v.actionName");
         const mappingName = component.get("v.mappingName");
-        const affiliationsAction = component.get("v.affiliationsAction");
-        const accountRecordType = component.get("v.accountRecordType");
-        const contactField = component.get("v.contactField");
-        const autoProgramEnrollment = component.get("v.autoProgramEnrollment");
 
-        const saveModel = {
-            modalType: "affiliations",
-            action: affiliationsAction,
-            mappingName: mappingName,
-            accountRecordType: accountRecordType,
-            contactField: contactField,
-            autoEnrollmentEnabled: autoProgramEnrollment
+        const deleteModel = {
+            modalType: "autoenrollmentmapping",
+            action: actionName,
+            mappingName: mappingName
         };
 
         modalSaveEvent.setParams({
-            saveModel: saveModel
+            saveModel: deleteModel
         });
         modalSaveEvent.fire();
-    },*/
+    },
+
     handleModalCreateConfirm: function (component) {
         let modalSaveEvent = component.getEvent("modalSaveEvent");
 

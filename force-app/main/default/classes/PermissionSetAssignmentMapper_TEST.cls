@@ -25,113 +25,179 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group Test
-* @group-content ../../ApexDocContent/Test.htm
-* @description Test class for PermissionSetAssignmentMapper.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group Test
+ * @group-content ../../ApexDocContent/Test.htm
+ * @description Test class for PermissionSetAssignmentMapper.
+ */
 @isTest
 public with sharing class PermissionSetAssignmentMapper_TEST {
-    
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns a new instance of the 
-    * PermissionSetAssignmentMapper class when one does not already exist.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getInstance method returns a new instance of the
+     * PermissionSetAssignmentMapper class when one does not already exist.
+     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
         Test.startTest();
         PermissionSetAssignmentMapper permissionSetAssignmentMapperInstance = PermissionSetAssignmentMapper.getInstance();
         Test.stopTest();
 
-        System.assertEquals(PermissionSetAssignmentMapper.instance, permissionSetAssignmentMapperInstance, 'Instance of mapper class returned should match static instance variable.');
-        System.assertEquals(true, permissionSetAssignmentMapperInstance != null, 'Instance of mapper class should not be null.');
+        System.assertEquals(
+            PermissionSetAssignmentMapper.instance,
+            permissionSetAssignmentMapperInstance,
+            'Instance of mapper class returned should match static instance variable.'
+        );
+        System.assertEquals(
+            true,
+            permissionSetAssignmentMapperInstance != null,
+            'Instance of mapper class should not be null.'
+        );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * PermissionSetAssignmentMapper class when one already exists.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getInstance method returns the existing instance of the
+     * PermissionSetAssignmentMapper class when one already exists.
+     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
         Test.startTest();
-            PermissionSetAssignmentMapper permissionSetAssignmentMapperInstance1 = PermissionSetAssignmentMapper.getInstance();
-            PermissionSetAssignmentMapper permissionSetAssignmentMapperInstance2 = PermissionSetAssignmentMapper.getInstance();
+        PermissionSetAssignmentMapper permissionSetAssignmentMapperInstance1 = PermissionSetAssignmentMapper.getInstance();
+        PermissionSetAssignmentMapper permissionSetAssignmentMapperInstance2 = PermissionSetAssignmentMapper.getInstance();
         Test.stopTest();
 
-        System.assertEquals(PermissionSetAssignmentMapper.instance, permissionSetAssignmentMapperInstance1, 'Instance of mapper class returned should match static instance variable.');
-        System.assertEquals(permissionSetAssignmentMapperInstance1, permissionSetAssignmentMapperInstance2, 'Subsequent retrievals of mapper class instance should return existing instance.');
-        System.assertEquals(true, permissionSetAssignmentMapperInstance1 != null, 'Instance of mapper class should not be null.');
+        System.assertEquals(
+            PermissionSetAssignmentMapper.instance,
+            permissionSetAssignmentMapperInstance1,
+            'Instance of mapper class returned should match static instance variable.'
+        );
+        System.assertEquals(
+            permissionSetAssignmentMapperInstance1,
+            permissionSetAssignmentMapperInstance2,
+            'Subsequent retrievals of mapper class instance should return existing instance.'
+        );
+        System.assertEquals(
+            true,
+            permissionSetAssignmentMapperInstance1 != null,
+            'Instance of mapper class should not be null.'
+        );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getAssignedPermissionSetIdSetForCurrentUser method 
-    * returns a set of permission set ids assigned to the current user when there are some assigned
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getAssignedPermissionSetIdSetForCurrentUser method
+     * returns a set of permission set ids assigned to the current user when there are some assigned
+     ***************************************************************************************************************************/
     @isTest
     private static void getAssignedPermissionSetIdsSetForCurrentUserExisting() {
         User user = UTIL_UnitTestData_TEST.createNewUserForTests('testUser@eda.com');
 
         List<PermissionSet> permissionSets = new List<PermissionSet>();
         for (Integer i = 0; i < 5; i++) {
-            PermissionSet permissionSet = new PermissionSet(PermissionsViewSetup = false,
-                                                            Name = 'testName' + i,
-                                                            Label = 'testLabel' + i);
+            PermissionSet permissionSet = new PermissionSet(
+                PermissionsCustomizeApplication = false,
+                Name = 'testName' + i,
+                Label = 'testLabel' + i
+            );
             permissionSets.add(permissionSet);
         }
         insert permissionSets;
 
         List<PermissionSetAssignment> permissionSetAssignments = new List<PermissionSetAssignment>();
         for (PermissionSet permissionSet : permissionSets) {
-            PermissionSetAssignment permissionSetAssignment = new PermissionSetAssignment(AssigneeId = user.Id,
-                                                                                        PermissionSetId = permissionSet.Id);
+            PermissionSetAssignment permissionSetAssignment = new PermissionSetAssignment(
+                AssigneeId = user.Id,
+                PermissionSetId = permissionSet.Id
+            );
             permissionSetAssignments.add(permissionSetAssignment);
         }
         insert permissionSetAssignments;
 
-        
         Test.startTest();
-            Set<Id> assignedPermissionSetIdsSet = new Set<Id>();
-            System.runAs(user) {
-                assignedPermissionSetIdsSet = PermissionSetAssignmentMapper.getInstance().getAssignedPermissionSetIdsSetForCurrentUser();
-            }
+        Set<Id> assignedPermissionSetIdsSet = new Set<Id>();
+        System.runAs(user) {
+            assignedPermissionSetIdsSet = PermissionSetAssignmentMapper.getInstance()
+                .getAssignedPermissionSetIdsSetForCurrentUser();
+        }
         Test.stopTest();
 
-        System.assertEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[0].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
-        System.assertEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[1].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
-        System.assertEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[2].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
-        System.assertEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[3].Id), 'assignedPermissionSetIdSet should contain every test permission set created');    
-        System.assertEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[4].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
+        System.assertEquals(
+            true,
+            assignedPermissionSetIdsSet.contains(permissionSets[0].Id),
+            'assignedPermissionSetIdSet should contain every test permission set created'
+        );
+        System.assertEquals(
+            true,
+            assignedPermissionSetIdsSet.contains(permissionSets[1].Id),
+            'assignedPermissionSetIdSet should contain every test permission set created'
+        );
+        System.assertEquals(
+            true,
+            assignedPermissionSetIdsSet.contains(permissionSets[2].Id),
+            'assignedPermissionSetIdSet should contain every test permission set created'
+        );
+        System.assertEquals(
+            true,
+            assignedPermissionSetIdsSet.contains(permissionSets[3].Id),
+            'assignedPermissionSetIdSet should contain every test permission set created'
+        );
+        System.assertEquals(
+            true,
+            assignedPermissionSetIdsSet.contains(permissionSets[4].Id),
+            'assignedPermissionSetIdSet should contain every test permission set created'
+        );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getAssignedPermissionSetIdSetForCurrentUser method 
-    * returns a empty set of permission set ids assigned to the current user when there is no assigned
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getAssignedPermissionSetIdSetForCurrentUser method
+     * returns a empty set of permission set ids assigned to the current user when there is no assigned
+     ***************************************************************************************************************************/
     @isTest
     private static void getAssignedPermissionSetIdsSetForCurrentUserNoneAssigned() {
         User user = UTIL_UnitTestData_TEST.createNewUserForTests('testUser@eda.com');
 
         List<PermissionSet> permissionSets = new List<PermissionSet>();
         for (Integer i = 0; i < 5; i++) {
-            PermissionSet permissionSet = new PermissionSet(PermissionsViewSetup = false,
-                                                            Name = 'testName' + i,
-                                                            Label = 'testLabel' + i);
+            PermissionSet permissionSet = new PermissionSet(
+                PermissionsCustomizeApplication = false,
+                Name = 'testName' + i,
+                Label = 'testLabel' + i
+            );
             permissionSets.add(permissionSet);
         }
         insert permissionSets;
-        
+
         Test.startTest();
-            Set<Id> assignedPermissionSetIdsSet = new Set<Id>();
-            System.runAs(user) {
-                assignedPermissionSetIdsSet = PermissionSetAssignmentMapper.getInstance().getAssignedPermissionSetIdsSetForCurrentUser();
-            }
+        Set<Id> assignedPermissionSetIdsSet = new Set<Id>();
+        System.runAs(user) {
+            assignedPermissionSetIdsSet = PermissionSetAssignmentMapper.getInstance()
+                .getAssignedPermissionSetIdsSetForCurrentUser();
+        }
         Test.stopTest();
 
-        System.assertNotEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[0].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
-        System.assertNotEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[1].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
-        System.assertNotEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[2].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
-        System.assertNotEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[3].Id), 'assignedPermissionSetIdSet should contain every test permission set created');    
-        System.assertNotEquals(true, assignedPermissionSetIdsSet.contains(permissionSets[4].Id), 'assignedPermissionSetIdSet should contain every test permission set created');
+        System.assertNotEquals(
+            true,
+            assignedPermissionSetIdsSet.contains(permissionSets[0].Id),
+            'assignedPermissionSetIdSet should contain every test permission set created'
+        );
+        System.assertNotEquals(
+            true,
+            assignedPermissionSetIdsSet.contains(permissionSets[1].Id),
+            'assignedPermissionSetIdSet should contain every test permission set created'
+        );
+        System.assertNotEquals(
+            true,
+            assignedPermissionSetIdsSet.contains(permissionSets[2].Id),
+            'assignedPermissionSetIdSet should contain every test permission set created'
+        );
+        System.assertNotEquals(
+            true,
+            assignedPermissionSetIdsSet.contains(permissionSets[3].Id),
+            'assignedPermissionSetIdSet should contain every test permission set created'
+        );
+        System.assertNotEquals(
+            true,
+            assignedPermissionSetIdsSet.contains(permissionSets[4].Id),
+            'assignedPermissionSetIdSet should contain every test permission set created'
+        );
     }
 }

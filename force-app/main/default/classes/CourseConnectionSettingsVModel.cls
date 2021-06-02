@@ -27,30 +27,20 @@
 /**
  * @author Salesforce.org
  * @date 2021
- * @group Setting
- * @group-content ../../ApexDocContent/Setting.htm
- * @description Controller for EDA Settings LWC component.
+ * @group
+ * @group-content ../../ApexDocContent/EdaSettings.htm
+ * @description Model to abstract data needed for courseConnectionSettings LWC.
  */
-public virtual with sharing class EDASettingsController {
-    /******************************************************************************
-     * @description Check if current user has access.
-     * @return If current user has access.
-     ******************************************************************************/
-    @AuraEnabled(cacheable=true)
-    public static Boolean checkAccessForCurrentUser() {
-        try {
-            return EDASettingsController.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
-        } catch (System.NoAccessException ex) {
-            return false;
-        }
-    }
+public with sharing class CourseConnectionSettingsVModel {
+    @AuraEnabled
+    public Boolean courseConnectionRecordTypes { get; private set; }
 
-    /******************************************************************************
-     * @description Retrieves an instance of the UserPermissionService class.
-     * @return An instance of UserPermissionService.
-     ******************************************************************************/
-    @TestVisible
-    private static UserPermissionService locateUserPermissionService() {
-        return UserPermissionService.getInstance();
+    /****************************************************************************************
+     * @description Constructor for CourseConnectionSettingsVModel
+     * @param courseConnectionRecordTypes Whether or not Course Connection Record Types is enabled
+     * @return A CourseConnectionSettingsVModel with all properties populated.
+     ****************************************************************************************/
+    public CourseConnectionSettingsVModel(Boolean courseConnectionRecordTypes) {
+        this.courseConnectionRecordTypes = courseConnectionRecordTypes;
     }
 }

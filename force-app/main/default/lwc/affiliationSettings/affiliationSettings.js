@@ -24,6 +24,7 @@ import stgAfflDeleteWithAutoEnrollment from "@salesforce/label/c.stgAfflDeleteWi
 import stgAffiliationsDeleteSuccess from "@salesforce/label/c.stgAffiliationsDeleteSuccess";
 import stgBtnDelete from "@salesforce/label/c.stgBtnDelete";
 import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
+import stgSuccess from "@salesforce/label/c.stgSuccess";
 
 export default class affiliationSettings extends LightningElement {
     isEditMode = false;
@@ -52,6 +53,7 @@ export default class affiliationSettings extends LightningElement {
         tellMeMoreLink: stgTellMeMoreLink,
         newButton: stgBtnAddMapping,
         successMessageForCreate: stgAffiliationsNewSuccess,
+        successToast: stgSuccess,
     };
 
     affiliationsHyperLink =
@@ -217,7 +219,7 @@ export default class affiliationSettings extends LightningElement {
             .then((result) => {
                 this.showToast(
                     "success",
-                    "Save Complete",
+                    this.labelReference.successToast,
                     this.labelReference.successMessageForCreate.replace("{0}", result)
                 );
             })
@@ -237,7 +239,7 @@ export default class affiliationSettings extends LightningElement {
             .then((result) => {
                 this.showToast(
                     "success",
-                    "Update Complete",
+                    this.labelReference.successToast,
                     this.labelReference.editSuccessMessage.replace("{0}", result)
                 );
             })
@@ -256,7 +258,7 @@ export default class affiliationSettings extends LightningElement {
                 if (result) {
                     this.showToast(
                         "success",
-                        "Delete Complete",
+                        this.labelReference.successToast,
                         this.labelReference.deleteSuccessMessage.replace("{0}", result)
                     );
                 } else {

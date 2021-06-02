@@ -27,30 +27,26 @@
 /**
  * @author Salesforce.org
  * @date 2021
- * @group Setting
- * @group-content ../../ApexDocContent/Setting.htm
- * @description Controller for EDA Settings LWC component.
+ * @group
+ * @group-content ../../ApexDocContent/Tests.htm
+ * @description Test class for CourseConnectionSettingsVModel.
  */
-public virtual with sharing class EDASettingsController {
-    /******************************************************************************
-     * @description Check if current user has access.
-     * @return If current user has access.
-     ******************************************************************************/
-    @AuraEnabled(cacheable=true)
-    public static Boolean checkAccessForCurrentUser() {
-        try {
-            return EDASettingsController.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
-        } catch (System.NoAccessException ex) {
-            return false;
-        }
-    }
+@isTest
+private with sharing class CourseConnectionSettingsVModel_TEST {
+    /***********************************************************************************
+     * @description Test to verify that the constructor generates a model
+     * with all properties populated as expected.
+     ***********************************************************************************/
+    @isTest
+    private static void testConstructorValid() {
+        Test.startTest();
+        CourseConnectionSettingsVModel courseConnectionSettingsVModel = new CourseConnectionSettingsVModel(true);
+        Test.stopTest();
 
-    /******************************************************************************
-     * @description Retrieves an instance of the UserPermissionService class.
-     * @return An instance of UserPermissionService.
-     ******************************************************************************/
-    @TestVisible
-    private static UserPermissionService locateUserPermissionService() {
-        return UserPermissionService.getInstance();
+        System.assertEquals(
+            true,
+            courseConnectionSettingsVModel.courseConnectionRecordTypes,
+            'courseConnectionRecordTypes should be enabled'
+        );
     }
 }
