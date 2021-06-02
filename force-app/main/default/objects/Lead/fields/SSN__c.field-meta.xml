@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SSN__c</fullName>
+    <description>The Lead&apos;s Social Security Number. Encrypted for confidentiality. Only users with the View Encrypted Data permission can see the unencrypted value.</description>
+    <externalId>false</externalId>
+    <label>Social Security Number</label>
+    <length>12</length>
+    <maskChar>asterisk</maskChar>
+    <maskType>all</maskType>
+    <required>false</required>
+    <type>EncryptedText</type>
+</CustomField>
