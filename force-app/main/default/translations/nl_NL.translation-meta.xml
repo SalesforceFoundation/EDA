@@ -861,7 +861,7 @@
         <name>stgDuplicateRelationships</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when Start Time and Time Block are mismatched --></label>
+        <label><!-- Description for the Prevent Duplicate Relationships setting --></label>
         <name>stgDuplicateRelationshipsHelp</name>
     </customLabels>
     <customLabels>
