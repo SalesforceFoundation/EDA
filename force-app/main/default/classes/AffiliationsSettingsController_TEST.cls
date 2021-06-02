@@ -669,7 +669,7 @@ private with sharing class AffiliationsSettingsController_TEST {
      * @description Stub class to simulate the response from UserPermissionService to return false
      **************************************************************************************************************************************/
     private class STUB_UserPermissionServiceFalse extends UserPermissionService {
-        public override Boolean checkViewSetupForCurrentUser() {
+        public override Boolean checkCustomizeApplicationForCurrentUser() {
             throw new NoAccessException();
         }
     }

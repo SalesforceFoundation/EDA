@@ -443,7 +443,7 @@ public with sharing class AffiliationMappingsService_TEST {
      * @description Stub class to simulate the response from UserPermissionService to return true
      **************************************************************************************************************************************/
     private class STUB_UserPermissionServiceTrue extends UserPermissionService {
-        public override Boolean checkViewSetupForCurrentUser() {
+        public override Boolean checkCustomizeApplicationForCurrentUser() {
             return true;
         }
     }
@@ -452,7 +452,7 @@ public with sharing class AffiliationMappingsService_TEST {
      * @description Stub class to simulate the response from UserPermissionService to return false
      **************************************************************************************************************************************/
     private class STUB_UserPermissionServiceFalse extends UserPermissionService {
-        public override Boolean checkViewSetupForCurrentUser() {
+        public override Boolean checkCustomizeApplicationForCurrentUser() {
             return false;
         }
     }
