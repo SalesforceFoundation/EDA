@@ -15,7 +15,6 @@ import stgSystemToolsNav from "@salesforce/label/c.stgSystemToolsNav";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 
 // BatchJob custom labels
-import stgSuccess from "@salesforce/label/c.stgSuccess";
 import BatchJobRunningProblem from "@salesforce/label/c.BatchJobRunningProblem";
 
 // Household Naming custom labels
@@ -62,6 +61,10 @@ import stgCourseDataMigrationModalTitle from "@salesforce/label/c.stgCourseDataM
 import stgCourseDataMigrationModalBody from "@salesforce/label/c.stgCourseDataMigrationModalBody";
 import stgHelpCopyQueuedEmailSent from "@salesforce/label/c.stgHelpCopyQueuedEmailSent";
 
+// Toast labels
+import stgSuccess from "@salesforce/label/c.stgSuccess";
+import stgToastError from "@salesforce/label/c.stgToastError";
+
 // Links to the articles
 const accountNamingArtcile = '<a href="https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names">';
 const prefEmailPhoneArticle =
@@ -105,7 +108,8 @@ export default class systemTools extends LightningElement {
         courseDataMigrationModalTitle: stgCourseDataMigrationModalTitle,
         courseDataMigrationModalBody: stgCourseDataMigrationModalBody,
         toastMessageForDataMigration: stgHelpCopyQueuedEmailSent,
-        toastSuccessMessage: stgSuccess,
+        successToastMesage: stgSuccess,
+        errorToastMessge: stgToastError,
     };
 
     get adminAndHouseholdNamesHyperLink() {
@@ -242,13 +246,17 @@ export default class systemTools extends LightningElement {
             .then((result) => {
                 this.showToast(
                     "success",
-                    this.labelReference.toastSuccessMessage,
+                    this.labelReference.successToastMesage,
                     this.labelReference.stgRefreshAdminNamesSuccessToast
                 );
             })
 
             .catch((error) => {
-                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+                this.showToast(
+                    "error",
+                    this.labelReference.errorToastMessge,
+                    this.labelReference.BatchJobRunningProblem
+                );
             });
     }
 
@@ -257,13 +265,17 @@ export default class systemTools extends LightningElement {
             .then((result) => {
                 this.showToast(
                     "success",
-                    this.labelReference.toastSuccessMessage,
+                    this.labelReference.successToastMesage,
                     this.labelReference.toastMessageForDataMigration
                 );
             })
 
             .catch((error) => {
-                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+                this.showToast(
+                    "error",
+                    this.labelReference.errorToastMessge,
+                    this.labelReference.BatchJobRunningProblem
+                );
             });
     }
 
@@ -272,13 +284,17 @@ export default class systemTools extends LightningElement {
             .then((result) => {
                 this.showToast(
                     "success",
-                    this.labelReference.toastSuccessMessage,
+                    this.labelReference.successToastMesage,
                     this.labelReference.stgRefreshHouseholdNamesSuccessToast
                 );
             })
 
             .catch((error) => {
-                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+                this.showToast(
+                    "error",
+                    this.labelReference.errorToastMessge,
+                    this.labelReference.BatchJobRunningProblem
+                );
             });
     }
 
@@ -287,13 +303,17 @@ export default class systemTools extends LightningElement {
             .then((result) => {
                 this.showToast(
                     "success",
-                    this.labelReference.toastSuccessMessage,
+                    this.labelReference.successToastMesage,
                     this.labelReference.stgPreferredPhoneEmailSuccessToast
                 );
             })
 
             .catch((error) => {
-                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+                this.showToast(
+                    "error",
+                    this.labelReference.errorToastMessge,
+                    this.labelReference.BatchJobRunningProblem
+                );
             });
     }
 
@@ -302,24 +322,36 @@ export default class systemTools extends LightningElement {
             .then((result) => {
                 this.showToast(
                     "success",
-                    this.labelReference.toastSuccessMessage,
+                    this.labelReference.successToastMesage,
                     this.labelReference.ethnicityAndRaceBackfillToast
                 );
             })
 
             .catch((error) => {
-                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+                this.showToast(
+                    "error",
+                    this.labelReference.errorToastMessge,
+                    this.labelReference.BatchJobRunningProblem
+                );
             });
     }
 
     runCourseConnectionBackFillBatch() {
         runCourseConnectionBackfillJob()
             .then((result) => {
-                this.showToast("success", "Success", this.labelReference.toastMessageForCourseConnBackFill);
+                this.showToast(
+                    "success",
+                    this.labelReference.successToastMesage,
+                    this.labelReference.toastMessageForCourseConnBackFill
+                );
             })
 
             .catch((error) => {
-                this.showToast("error", "Error", this.labelReference.BatchJobRunningProblem);
+                this.showToast(
+                    "error",
+                    this.labelReference.errorToastMessge,
+                    this.labelReference.BatchJobRunningProblem
+                );
             });
     }
 

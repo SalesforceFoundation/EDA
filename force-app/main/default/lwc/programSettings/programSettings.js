@@ -51,6 +51,7 @@ import stgAutoEnrollmentDeleteSuccess from "@salesforce/label/c.stgAutoEnrollmen
 import stgBtnNewAutoEnrollA11y from "@salesforce/label/c.stgBtnNewAutoEnrollA11y";
 import stgErrorNewAutoEnrollment from "@salesforce/label/c.stgErrorNewAutoEnrollment";
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
+import stgSuccess from "@salesforce/label/c.stgSuccess";
 
 const autoEnrollmentURL = "https://powerofus.force.com/s/article/EDA-Configure-Affiliations-Settings";
 export default class programSettings extends LightningElement {
@@ -103,6 +104,7 @@ export default class programSettings extends LightningElement {
         editSuccessMessage: stgAutoEnrollmentEditSuccess,
         createSuccessMessage: stgAutoEnrollmentNewSuccess,
         deleteSuccessMessage: stgAutoEnrollmentDeleteSuccess,
+        successToat: stgSuccess,
     };
 
     inputAttributeReference = {
@@ -460,7 +462,7 @@ export default class programSettings extends LightningElement {
             .then((result) => {
                 this.showToast(
                     "success",
-                    "Save Complete",
+                    this.labelReference.successToast,
                     this.labelReference.createSuccessMessage.replace("{0}", result)
                 );
             })

@@ -97,6 +97,7 @@
     </labels>
     <labels>
         <fullName>EDCSettingsContainerAuraComponentLabel</fullName>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Education Cloud Settings</shortDescription>
@@ -654,7 +655,15 @@
         <value>Default Account Model</value>
     </labels>
     <labels>
-        <fullName>stgAddressSettingsTitle</fullName>
+        <fullName>stgAccountModelNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Account Model</shortDescription>
+        <value>Account Model</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountModelSettingsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
@@ -732,6 +741,22 @@
         <protected>true</protected>
         <shortDescription>Instructions for Ethnicity and Race Backfill</shortDescription>
         <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
+    </labels>
+    <labels>
+        <fullName>stgAddressSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Addresses</shortDescription>
+        <value>Addresses</value>
+    </labels>
+    <labels>
+        <fullName>stgAddressSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Addresses</shortDescription>
+        <value>Address Settings</value>
     </labels>
     <labels>
         <fullName>stgAdminAccountCustomName</fullName>
@@ -1075,7 +1100,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Auto-Enrollment Mappings setting</shortDescription>
-        <value>Define how Program Enrollments are automatically created using Account record types mapped to the Primary Affiliation fields on the Contact object and Auto-Enrollment Status and Auto-Enrollment Role.</value>
+        <value>When Primary Affiliations are created with the values in these mappings, automatically create Program Enrollments.</value>
     </labels>
     <labels>
         <fullName>stgAutoEnrollmentProgramTitle</fullName>
@@ -1083,7 +1108,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the Auto-Enrollment Mappings setting</shortDescription>
-        <value>Auto-Enrollment Program Mappings</value>
+        <value>Auto-Enrollment Mappings</value>
     </labels>
     <labels>
         <fullName>stgAutoEnrollmentRole</fullName>
@@ -1142,8 +1167,16 @@
         <value>Cancel</value>
     </labels>
     <labels>
-        <fullName>stgBtnCommunity</fullName>
+        <fullName>stgBtnClearSelectionA11y</fullName>
         <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that clears a field</shortDescription>
+        <value>Clear Selection</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnCommunity</fullName>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches the Trailblazer Community site</shortDescription>
@@ -1151,7 +1184,7 @@
     </labels>
     <labels>
         <fullName>stgBtnCommunityActionA11y</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches the Trailblazer Community site</shortDescription>
@@ -1167,7 +1200,7 @@
     </labels>
     <labels>
         <fullName>stgBtnDocumentation</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches EDA documentation</shortDescription>
@@ -1175,7 +1208,7 @@
     </labels>
     <labels>
         <fullName>stgBtnDocumentationActionA11y</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches EDA documentation</shortDescription>
@@ -1183,7 +1216,7 @@
     </labels>
     <labels>
         <fullName>stgBtnEDCTrailhead</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches the Education Cloud trailmix</shortDescription>
@@ -1191,7 +1224,7 @@
     </labels>
     <labels>
         <fullName>stgBtnEDCTrailheadActionA11y</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches the Education Cloud trailmix</shortDescription>
@@ -1207,7 +1240,7 @@
     </labels>
     <labels>
         <fullName>stgBtnHealthCheck</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches Settings Health Check</shortDescription>
@@ -1295,7 +1328,7 @@
     </labels>
     <labels>
         <fullName>stgBtnSettings</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches EDA Settings</shortDescription>
@@ -1303,7 +1336,7 @@
     </labels>
     <labels>
         <fullName>stgBtnSettingsActionA11y</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches EDA Settings</shortDescription>
@@ -1311,7 +1344,7 @@
     </labels>
     <labels>
         <fullName>stgBtnTrailhead</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches EDA Trailhead modules</shortDescription>
@@ -1319,19 +1352,11 @@
     </labels>
     <labels>
         <fullName>stgBtnTrailheadActionA11y</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches EDA Trailhead modules</shortDescription>
         <value>Go to EDA Trailhead modules.</value>
-    </labels>
-    <labels>
-        <fullName>stgBtnTrailheadTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Label for the Trailhead card</shortDescription>
-        <value>Trailhead</value>
     </labels>
     <labels>
         <fullName>stgBtnUpdate</fullName>
@@ -1343,19 +1368,19 @@
     </labels>
     <labels>
         <fullName>stgBtnVideos</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches the Salesforce.org YouTube channel</shortDescription>
-        <value>Go to Salesforce.org on YouTube</value>
+        <value>YouTube</value>
     </labels>
     <labels>
         <fullName>stgBtnVideosActionA11y</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches the Salesforce.org YouTube channel</shortDescription>
-        <value>Go to Salesforce.org on YouTube.</value>
+        <value>YouTube</value>
     </labels>
     <labels>
         <fullName>stgCleanupQueuedEmailSent</fullName>
@@ -1378,7 +1403,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Reciprocal Relationship Settings</shortDescription>
+        <shortDescription>Column header for Active or Inactive Relationship Type status</shortDescription>
         <value>Active</value>
     </labels>
     <labels>
@@ -1418,7 +1443,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Reciprocal Relationship Settings</shortDescription>
+        <shortDescription>Column header for Female Relationship Types</shortDescription>
         <value>Female</value>
     </labels>
     <labels>
@@ -1434,7 +1459,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Reciprocal Relationships Settings</shortDescription>
+        <shortDescription>Column header for Male Relationship Types</shortDescription>
         <value>Male</value>
     </labels>
     <labels>
@@ -1442,7 +1467,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Reciprocal Relationships Settings</shortDescription>
+        <shortDescription>Column header for Neutral Relationship Types</shortDescription>
         <value>Neutral</value>
     </labels>
     <labels>
@@ -1455,7 +1480,7 @@
     </labels>
     <labels>
         <fullName>stgColProducts</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Column header for Products</shortDescription>
@@ -1470,8 +1495,16 @@
         <value>Relationship Type</value>
     </labels>
     <labels>
+        <fullName>stgColRelationshipName</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column header for Settings names</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
         <fullName>stgColResources</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Column header for Resources</shortDescription>
@@ -1495,7 +1528,7 @@
     </labels>
     <labels>
         <fullName>stgColTools</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Column header for Tools</shortDescription>
@@ -1503,7 +1536,7 @@
     </labels>
     <labels>
         <fullName>stgCommunityTitle</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the Trailblazer Community card</shortDescription>
@@ -1516,6 +1549,14 @@
         <protected>true</protected>
         <shortDescription>Confirm ready to run Backfill msg</shortDescription>
         <value>I understand and am ready to run Backfill.</value>
+    </labels>
+    <labels>
+        <fullName>stgContactInformationSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Contact Information</shortDescription>
+        <value>Contact Information</value>
     </labels>
     <labels>
         <fullName>stgContactInformationSettingsTitle</fullName>
@@ -1643,7 +1684,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Course Connections Settings</shortDescription>
+        <shortDescription>Label for the Default Faculty Record Type setting</shortDescription>
         <value>Default Faculty Record Type</value>
     </labels>
     <labels>
@@ -1651,8 +1692,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Course Connections Settings</shortDescription>
-        <value>Default Active Student Record Type</value>
+        <shortDescription>Label for the Default Student Record Type setting</shortDescription>
+        <value>Default Student Record Type</value>
     </labels>
     <labels>
         <fullName>stgDisableErrorHandlingTitle</fullName>
@@ -1679,12 +1720,28 @@
         <value>Require Preferred Phone</value>
     </labels>
     <labels>
+        <fullName>stgDuplicateRelationships</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Prevent Duplicate Relationships Settings</shortDescription>
+        <value>Prevent Duplicate Relationships</value>
+    </labels>
+    <labels>
+        <fullName>stgDuplicateRelationshipsHelp</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when Start Time and Time Block are mismatched</shortDescription>
+        <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
+    </labels>
+    <labels>
         <fullName>stgEDAAppDesc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description of the EDA app</shortDescription>
-        <value>Education Data Architecture (EDA) is the foundation of the Education Cloud. Its flexible data architecture includes preconfigured objects, logic, and automation that are tailored specifically for education. Manage EDA Settings here.</value>
+        <shortDescription>Description of the EDA Aapp</shortDescription>
+        <value>Education Data Architecture (EDA) is the foundation of the Education Cloud. Its flexible data architecture is designed to configure Salesforce for education.</value>
     </labels>
     <labels>
         <fullName>stgEDAAppInitials</fullName>
@@ -1699,16 +1756,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for the EDA app</shortDescription>
+        <shortDescription>Title for the EDA App</shortDescription>
         <value>Education Data Architecture</value>
-    </labels>
-    <labels>
-        <fullName>stgEDASettingsHasMovedTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Title of EDA Settings has moved</shortDescription>
-        <value>We&apos;ve moved!</value>
     </labels>
     <labels>
         <fullName>stgEDASettingsHasMovedDesc</fullName>
@@ -1719,8 +1768,16 @@
         <value>We created a new Education Cloud Settings experience that provides access to EDA Settings, along with many other great resources. Setup steps vary based on your EDA version. Review the documentation for details.</value>
     </labels>
     <labels>
-        <fullName>stgEDASetupTitle</fullName>
+        <fullName>stgEDASettingsHasMovedTitle</fullName>
         <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title of EDA Settings has moved</shortDescription>
+        <value>We&apos;ve moved!</value>
+    </labels>
+    <labels>
+        <fullName>stgEDASetupTitle</fullName>
+        <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>EDA Setup title</shortDescription>
@@ -1728,7 +1785,7 @@
     </labels>
     <labels>
         <fullName>stgEDCSettingsHealthCheckDescription</fullName>
-        <categories>Setup</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of Settings Health Check</shortDescription>
@@ -1795,8 +1852,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error message when no record types for Program Auto Enrollment</shortDescription>
-        <value>No unmapped record types are available for the program auto enrollment. Auto enrollments can only be created for Account Record Types that have been mapped as Primary Affiliations</value>
+        <shortDescription>Message when no record types for auto-enrollment mappings exist</shortDescription>
+        <value>All Account record types that have primary Affiliations already have an auto-enrollment mapping. Go to EDA Settings | Affiliations to first create an Affiliation mapping with the record type you want.</value>
     </labels>
     <labels>
         <fullName>stgErrorNotiTo</fullName>
@@ -1811,7 +1868,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for System Settings</shortDescription>
+        <shortDescription>Label for the Error Notification Recipients setting</shortDescription>
         <value>Error Notification Recipients</value>
     </labels>
     <labels>
@@ -2472,7 +2529,7 @@
     </labels>
     <labels>
         <fullName>stgHealthCheckA11y</fullName>
-        <categories>Setup</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches Settings Health Check</shortDescription>
@@ -2875,16 +2932,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Course Connections Settings</shortDescription>
-        <value>The default record type when creating Course Connections for a faculty member.</value>
+        <shortDescription>Description of the Default Faculty Record Type setting</shortDescription>
+        <value>Select the record type for faculty Course Connections.</value>
     </labels>
     <labels>
         <fullName>stgHelpDefaultStudentType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Course Connections Settings</shortDescription>
-        <value>The default record type when creating Course Connections for active students.</value>
+        <shortDescription>Description of the Default Student Record Type setting</shortDescription>
+        <value>Select the record type for student Course Connections.</value>
     </labels>
     <labels>
         <fullName>stgHelpEnableCourseConnBeforeBackfill</fullName>
@@ -2931,16 +2988,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>If selected, notifications are posted for product-generated errors.</value>
+        <shortDescription>Description of the Error Notifications setting</shortDescription>
+        <value>Send error notifications to selected recipients. If you choose Chatter Group or User, also specify a value in Error Notification Recipients.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyTo</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>Specify who should receive email error notifications. Valid values are &apos;All Sys Admins&apos;, the ID of a user in your org, or the ID of a Chatter group. You can enter only one value.</value>
+        <shortDescription>Description of the Error Notification Recipients setting</shortDescription>
+        <value>Enter a single user name or Chatter group. Users are notified of errors by email, Chatter groups are notified with a post to the feed.</value>
     </labels>
     <labels>
         <fullName>stgHelpEthnicityRaceBackfill</fullName>
@@ -2976,11 +3033,11 @@
     </labels>
     <labels>
         <fullName>stgHelpNestedPlanRequirementPP</fullName>
-        <categories>Setting</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Program Plans Settings</shortDescription>
-        <value>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message will prevent you from saving until only one is selected.</value>
+        <shortDescription>Description of the Plan Requirement Hierarchy setting</shortDescription>
+        <value>If you have a hierarchy for nested Plan Requirements, specifying that they can have only a Program Plan or only a parent Plan Requirement can help maintain your structure.</value>
     </labels>
     <labels>
         <fullName>stgHelpOrgAccountAddressMgmt</fullName>
@@ -3000,7 +3057,7 @@
     </labels>
     <labels>
         <fullName>stgHelpRelReciprocalMethod</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Description for the Reciprocal Method setting</shortDescription>
@@ -3067,8 +3124,8 @@
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Program Plans Settings</shortDescription>
-        <value>Validate Program Plan for Nested Plan Requirements</value>
+        <shortDescription>Label for the Plan Requirement Hierarchy setting</shortDescription>
+        <value>Plan Requirement Hierarchy</value>
     </labels>
     <labels>
         <fullName>stgNewAfflMapping</fullName>
@@ -3083,7 +3140,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
+        <shortDescription>Picklist value for Error Notifications</shortDescription>
         <value>All Sys Admins</value>
     </labels>
     <labels>
@@ -3091,7 +3148,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
+        <shortDescription>Picklist value for Error Notifications</shortDescription>
         <value>Chatter Group</value>
     </labels>
     <labels>
@@ -3107,7 +3164,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
+        <shortDescription>Picklist value for Error Notifications</shortDescription>
         <value>User</value>
     </labels>
     <labels>
@@ -3191,6 +3248,22 @@
         <value>The field to use for Preferred Phone when the Phone field is blank, or more than one phone value is defined.</value>
     </labels>
     <labels>
+        <fullName>stgProgramPlanSettingsNav</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Program Plans</shortDescription>
+        <value>Program Plans</value>
+    </labels>
+    <labels>
+        <fullName>stgProgramPlanSettingsTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Program Plan Settings</shortDescription>
+        <value>Program Plan Settings</value>
+    </labels>
+    <labels>
         <fullName>stgProgramsSettingsNav</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -3211,7 +3284,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for Reciprocal Method in EDA Settings</shortDescription>
+        <shortDescription>Picklist value for the method used for Reciprocal Method</shortDescription>
         <value>List Setting</value>
     </labels>
     <labels>
@@ -3219,8 +3292,80 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for Reciprocal Method in EDA Settings</shortDescription>
+        <shortDescription>Picklist value for the method used for Reciprocal Method</shortDescription>
         <value>Value Inversion</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelDeleteModalBody</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Delete Reciprocal Relationship window</shortDescription>
+        <value>This Reciprocal Relationship maps the {0} reciprocal value to the {1} {2}, and {3} reciprocal values. We&apos;re just making sure that you want to delete it.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelDeleteModalTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Delete Reciprocal Relationship window</shortDescription>
+        <value>Delete Reciprocal Relationship?</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelDeleteSuccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when a Reciprocal Relationship is created</shortDescription>
+        <value>Reciprocal Relationship for {0} was deleted.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelEditModalBody</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Edit Reciprocal Relationship window</shortDescription>
+        <value>Select the Reciprocal Relationship to edit.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelEditModalTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Edit Reciprocal Relationship window</shortDescription>
+        <value>Edit Reciprocal Relationship?</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelEditSuccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when a Reciprocal Relationship is saved</shortDescription>
+        <value>Reciprocal Relationship for {0} was saved.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelNewModalBody</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the New Reciprocal Relationship window</shortDescription>
+        <value>Select the Reciprocal Relationship type to create.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelNewModalTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the New Reciprocal Relationship window</shortDescription>
+        <value>New Reciprocal Relationship?</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelNewSuccess</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when a Reciprocal Relationship is created</shortDescription>
+        <value>Reciprocal Relationship for {0} was created.</value>
     </labels>
     <labels>
         <fullName>stgRefreshAdminAcctNameDesc</fullName>
@@ -3302,6 +3447,22 @@
         <value>We&apos;re updating Household Account names. Look for an email when the job is done.</value>
     </labels>
     <labels>
+        <fullName>stgRelationshipSettingsNav</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Relationships</shortDescription>
+        <value>Relationships</value>
+    </labels>
+    <labels>
+        <fullName>stgRelationshipSettingsTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Relationship Settings</shortDescription>
+        <value>Relationship Settings</value>
+    </labels>
+    <labels>
         <fullName>stgRunCleanUp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -3334,6 +3495,22 @@
         <value>EDA Settings were saved.</value>
     </labels>
     <labels>
+        <fullName>stgSelectChatterGroupDesc</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Select Chatter Group setting</shortDescription>
+        <value>Enter a Chatter group...</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectChatterGroupTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for Select Chatter Group</shortDescription>
+        <value>Chatter Group</value>
+    </labels>
+    <labels>
         <fullName>stgSelectReciType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -3342,12 +3519,28 @@
         <value>Select recipient type:</value>
     </labels>
     <labels>
+        <fullName>stgSelectUserDesc</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Select User setting</shortDescription>
+        <value>Enter a username...</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectUserTitle</fullName>
+        <categories>Error</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for Select User</shortDescription>
+        <value>User</value>
+    </labels>
+    <labels>
         <fullName>stgSendErrorsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for error notifications</shortDescription>
-        <value>Send Error Notifications</value>
+        <shortDescription>Label for the Error Notifications setting</shortDescription>
+        <value>Error Notifications</value>
     </labels>
     <labels>
         <fullName>stgSimpleAddressChangeUpdate</fullName>
@@ -3492,7 +3685,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Settings tab name</shortDescription>
+        <shortDescription>Label for the Reciprocal Relationships setting</shortDescription>
         <value>Reciprocal Settings</value>
     </labels>
     <labels>
@@ -3596,7 +3789,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Title for Reciprocal Relationships info text</shortDescription>
+        <shortDescription>Label for the Reciprocal Method setting</shortDescription>
         <value>Reciprocal Method</value>
     </labels>
     <labels>
@@ -3610,7 +3803,7 @@
 
     <labels>
         <fullName>stgTrailheadTitle</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the Trailhead card</shortDescription>
@@ -3618,11 +3811,11 @@
     </labels>
     <labels>
         <fullName>stgVideosTitle</fullName>
-        <categories>Settings</categories>
+        <categories>Error</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the YouTube card</shortDescription>
-        <value>Youtube</value>
+        <value>YouTube</value>
     </labels>
     <labels>
         <fullName>timeBlockEndTimeMismatch</fullName>

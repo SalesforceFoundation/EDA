@@ -29,11 +29,7 @@
             </div>
         </template>
         <template if:true={currentUserHasAccessWireResult}>
-            <template if:true={currentUserDoesNotHaveAccess}>
-                <div class="slds-col slds-size_12-of-12 slds-theme_default">
-                    {labelReference.insufficientAccessError}
-                </div>
-            </template>
+            <template if:false={currentUserHasAccess}> {labelReference.insufficientAccessError} </template>
             <template if:true={currentUserHasAccess}>
                 <div
                     class="slds-col slds-size_4-of-12 slds-no-flex slds-scrollable_y slds-var-p-top_x-small slds-theme_default eda-height_full"
@@ -74,6 +70,13 @@
                             class="eda-settings-page"
                             onsavecanvasrendered={handleSaveCanvasRendered}
                         ></c-contact-information-settings>
+                    </template>
+
+                    <template if:true={settingsPageToDisplay.relationshipSettings}>
+                        <c-relationship-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-relationship-settings>
                     </template>
 
                     <template if:true={settingsPageToDisplay.errorSettings}>

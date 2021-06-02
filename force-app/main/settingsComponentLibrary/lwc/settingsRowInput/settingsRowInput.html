@@ -23,6 +23,7 @@
                         disabled={disabled}
                         variant="label-hidden"
                         data-qa-locator={inputId}
+                        data-qa-value={value}
                     ></lightning-combobox>
                 </template>
                 <template if:true={isInput}>
@@ -42,6 +43,7 @@
                         value={value}
                         variant={variant}
                         data-qa-locator={inputId}
+                        data-qa-value={value}
                     ></lightning-input>
                 </template>
             </div>
