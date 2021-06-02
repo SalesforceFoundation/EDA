@@ -38,13 +38,6 @@ export default class EDASettings extends NavigationMixin(LightningElement) {
         }
     }
 
-    get currentUserDoesNotHaveAccess() {
-        if (this.currentUserHasAccess === false) {
-            return true;
-        }
-        return undefined;
-    }
-
     get edaComponentNavigationPrefix() {
         const apiName = namespacedEDAField.fieldApiName;
         const navigationPrefix = apiName.replace("Course_Offering__c", "");
