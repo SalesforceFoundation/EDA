@@ -1704,7 +1704,7 @@
     </labels>
     <labels>
         <fullName>stgDuplicateRelationships</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the Prevent Duplicate Relationships Settings</shortDescription>
@@ -1712,11 +1712,11 @@
     </labels>
     <labels>
         <fullName>stgDuplicateRelationshipsHelp</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error when Start Time and Time Block are mismatched</shortDescription>
-        <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
+        <shortDescription>Description for the Prevent Duplicate Relationships setting</shortDescription>
+        <value>Specify whether to prevent more than one Relationship record of the same type between two Contacts.</value>
     </labels>
     <labels>
         <fullName>stgEDAAppDesc</fullName>
