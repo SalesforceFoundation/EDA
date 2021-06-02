@@ -33,7 +33,7 @@
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
-        <label>Dieser Datensatz kann nicht gelöscht werden, weil er mit mindestens einem verwandten Datensatz verknüpft ist. Löschen Sie zuerst die verknüpften Datensätze und dann diesen Datensatz. Um zu bestimmen, welche Datensätze zuerst gelöscht werden sollen, klicken Sie auf die Registerkarte &quot;Verwandt&quot;. Wenn Sie keine verwandten Datensätze sehen oder sie nicht löschen können, bitten Sie Ihren Systemadministrator um Hilfe.</label>
+        <label><!-- Error when deleting a record with child records --></label>
         <name>CannotDelete</name>
     </customLabels>
     <customLabels>
@@ -409,15 +409,15 @@
         <name>stgAffiliationsDeleteModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when an Affiliation mapping is deleted --></label>
+        <label><!-- Confirmation message when an Affiliation mapping is deleted --></label>
         <name>stgAffiliationsDeleteSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Edit Affiliation Mapping window --></label>
+        <label><!-- Description of the Edit Affiliation mapping window --></label>
         <name>stgAffiliationsEditModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Edit Affiliation Mapping window --></label>
+        <label><!-- Title for the Edit Affiliation mapping window --></label>
         <name>stgAffiliationsEditModalTitle</name>
     </customLabels>
     <customLabels>
@@ -425,15 +425,15 @@
         <name>stgAffiliationsEditSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the New Affiliation Mapping window --></label>
+        <label><!-- Description of the New Affiliation mapping window --></label>
         <name>stgAffiliationsNewModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when an Affiliation Mapping is created --></label>
+        <label><!-- Confirmation message when an Affiliation mapping is created --></label>
         <name>stgAffiliationsNewSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation Section title for Affiliations --></label>
+        <label><!-- Navigation title for Affiliations --></label>
         <name>stgAffiliationsSettingsNav</name>
     </customLabels>
     <customLabels>
@@ -573,7 +573,7 @@
         <name>stgBeforeRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for New Affiliation Mapping modal --></label>
+        <label><!-- Button label for New Affiliation mapping window --></label>
         <name>stgBtnAddMapping</name>
     </customLabels>
     <customLabels>
@@ -1525,7 +1525,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>Die Methode zum Auffüllen des Felds &quot;Typ&quot; beim Erstellen einer wechselseitigen Beziehung. Unter &quot;Listeneinstellung&quot; werden die auf der Registerkarte &quot;Wechselseitige Beziehungen&quot; definierten benutzerdefinierten Einstellungen mit den Werten &quot;Männlich&quot;, &quot;Weiblich&quot; und &quot;Neutral&quot; verwendet. Mit &quot;Wertumkehrung&quot; wird der Typ im Datensatz der ursprünglichen Beziehung ggf. umgekehrt. Wenn die ursprüngliche Beziehung z. B. Elternteil-Kind ist, ist die wechselseitige Beziehung Kind-Elternteil.</label>
+        <label><!-- Description for the Reciprocal Method setting --></label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
@@ -1581,11 +1581,11 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for People and Groups --></label>
+        <label><!-- Navigation title for People and Groups --></label>
         <name>stgPeopleAndGroupsNav</name>
     </customLabels>
     <customLabels>
-        <label>Der Batch-Apex-Auftrag hat {0} Datensätze mit {1} Fehler(n) verarbeitet.</label>
+        <label><!-- Body of email after Run Cleanup for preferred email/phone --></label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>
     <customLabels>
@@ -1717,7 +1717,7 @@
         <name>stgRefreshHouseholdNamesModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when Household Account names are queued for update --></label>
+        <label><!-- Confirmation message when Household Account names are queued for update --></label>
         <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>

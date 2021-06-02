@@ -33,7 +33,7 @@
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
-        <label>Deze record kan niet worden verwijderd omdat er een of meer gerelateerde records aan zijn gekoppeld. Verwijder eerst de gekoppelde records en dan pas deze record. Om te bepalen welke records eerst moeten worden verwijderd, klikt u op het tabblad Gerelateerd. Als u geen gerelateerde records ziet of als u ze niet kunt verwijderen, vraag dan uw systeembeheerder om hulp.</label>
+        <label><!-- Error when deleting a record with child records --></label>
         <name>CannotDelete</name>
     </customLabels>
     <customLabels>
@@ -409,15 +409,15 @@
         <name>stgAffiliationsDeleteModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when an Affiliation mapping is deleted --></label>
+        <label><!-- Confirmation message when an Affiliation mapping is deleted --></label>
         <name>stgAffiliationsDeleteSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Edit Affiliation Mapping window --></label>
+        <label><!-- Description of the Edit Affiliation mapping window --></label>
         <name>stgAffiliationsEditModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Edit Affiliation Mapping window --></label>
+        <label><!-- Title for the Edit Affiliation mapping window --></label>
         <name>stgAffiliationsEditModalTitle</name>
     </customLabels>
     <customLabels>
@@ -425,15 +425,15 @@
         <name>stgAffiliationsEditSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the New Affiliation Mapping window --></label>
+        <label><!-- Description of the New Affiliation mapping window --></label>
         <name>stgAffiliationsNewModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when an Affiliation Mapping is created --></label>
+        <label><!-- Confirmation message when an Affiliation mapping is created --></label>
         <name>stgAffiliationsNewSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation Section title for Affiliations --></label>
+        <label><!-- Navigation title for Affiliations --></label>
         <name>stgAffiliationsSettingsNav</name>
     </customLabels>
     <customLabels>
@@ -573,7 +573,7 @@
         <name>stgBeforeRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for New Affiliation Mapping modal --></label>
+        <label><!-- Button label for New Affiliation mapping window --></label>
         <name>stgBtnAddMapping</name>
     </customLabels>
     <customLabels>
@@ -1525,7 +1525,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>De methode die wordt gebruikt om het typeveld in te vullen bij het maken van een wederzijdse relatie. &apos;Instellingen lijst&apos; gebruikt de aangepaste instellingen die op het tabblad Wederzijdse relaties zijn gedefinieerd met de waarden Man, Vrouw en Neutraal. &apos;Waarde-inversie&apos; keert waar van toepassing het type op de oorspronkelijke relatierecord om. Als de oorspronkelijke relatie bijvoorbeeld ouder-kind is, wordt de wederzijdse relatie kind-ouder.</label>
+        <label><!-- Description for the Reciprocal Method setting --></label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
@@ -1581,11 +1581,11 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for People and Groups --></label>
+        <label><!-- Navigation title for People and Groups --></label>
         <name>stgPeopleAndGroupsNav</name>
     </customLabels>
     <customLabels>
-        <label>De Apex-batchtaak heeft {0} records verwerkt met {1} fouten.</label>
+        <label><!-- Body of email after Run Cleanup for preferred email/phone --></label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>
     <customLabels>
@@ -1717,7 +1717,7 @@
         <name>stgRefreshHouseholdNamesModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when Household Account names are queued for update --></label>
+        <label><!-- Confirmation message when Household Account names are queued for update --></label>
         <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>
