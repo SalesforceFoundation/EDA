@@ -342,12 +342,6 @@ tasks:
             path: robot/EDA/resources/EDA.py,robot/EDA/resources/EDA.robot,robot/EDA/resources/*PageObject.py
             output: robot/EDA/doc/Keywords.html
 
-    uninstall_packaged_incremental:
-        options:
-            ignore_types:
-                - RecordType
-                - CustomObjectTranslation
-
     update_admin_profile:
         # description: Retrieves, edits, and redeploys the System Administrator profile with full FLS perms for all objects/fields. Also sets record type visibilities.
         options:
