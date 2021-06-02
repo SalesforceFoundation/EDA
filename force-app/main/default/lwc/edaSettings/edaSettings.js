@@ -31,13 +31,6 @@ export default class EDASettings extends LightningElement {
         }
     }
 
-    get currentUserDoesNotHaveAccess() {
-        if (this.currentUserHasAccess === false) {
-            return true;
-        }
-        return undefined;
-    }
-
     settingsPageToDisplay = {
         accountModelSettings: true,
     };

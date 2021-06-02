@@ -79,7 +79,7 @@ public virtual with sharing class AffiliationMappingsService {
         String recordTypeName,
         String contactFieldName
     ) {
-        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
 
         this.locateAffiliationMappingsMapper()
             .insertAffiliationMappingModel(
@@ -92,7 +92,7 @@ public virtual with sharing class AffiliationMappingsService {
      * updateAffiliationMappings.
      *****************************************************************************/
     public void updateAffiliationMappings(String mappingName, String accRecordType, String conPrimaryAfflField) {
-        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel(
             mappingName,
             accRecordType,
@@ -107,7 +107,7 @@ public virtual with sharing class AffiliationMappingsService {
      * @return A string representing the record type name associated with the deleted affiliation mapping
      *****************************************************************************************/
     public virtual String deleteAffiliationMapping(String mappingName) {
-        if (this.locateUserPermissionService().checkViewSetupForCurrentUser() != true) {
+        if (this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser() != true) {
             return null;
         }
 

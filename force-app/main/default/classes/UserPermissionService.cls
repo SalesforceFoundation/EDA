@@ -25,29 +25,29 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group Permission
-* @group-content ../../ApexDocContent/Permission.htm
-* @description Service class for User Permission.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group Permission
+ * @group-content ../../ApexDocContent/Permission.htm
+ * @description Service class for User Permission.
+ */
 public virtual with sharing class UserPermissionService {
-
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static UserPermissionService instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected UserPermissionService() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected UserPermissionService() {
+    }
 
     /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of UserPermissionService.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of UserPermissionService.
+     ******************************************************************************/
     public static UserPermissionService getInstance() {
         if (instance == null) {
             instance = new UserPermissionService();
@@ -57,14 +57,16 @@ public virtual with sharing class UserPermissionService {
     }
 
     /*****************************************************************************
-    * @description Check if current user has access to view setup.
-    * @return If current user has access to view setup
-    ******************************************************************************/
-    public virtual Boolean checkViewSetupForCurrentUser() {
-        Set<Id> assignedPermissionSetIdsSet = this.locatePermissionSetAssignmentMapper().getAssignedPermissionSetIdsSetForCurrentUser();
-        Boolean viewSetupForCurrentUser = this.locatePermissionSetMapper().checkPermissionSetsWithViewSetupFromIds(assignedPermissionSetIdsSet);
+     * @description Check if current user has access to customize application.
+     * @return If current user has access to customize application
+     ******************************************************************************/
+    public virtual Boolean checkCustomizeApplicationForCurrentUser() {
+        Set<Id> assignedPermissionSetIdsSet = this.locatePermissionSetAssignmentMapper()
+            .getAssignedPermissionSetIdsSetForCurrentUser();
+        Boolean customizeApplicationForCurrentUser = this.locatePermissionSetMapper()
+            .checkPermissionSetsWithCustomizeApplicationFromIds(assignedPermissionSetIdsSet);
 
-        if (viewSetupForCurrentUser == false) {
+        if (customizeApplicationForCurrentUser == false) {
             throw new NoAccessException();
         }
 
@@ -72,18 +74,18 @@ public virtual with sharing class UserPermissionService {
     }
 
     /******************************************************************************
-    * @description Retrieves an instance of the PermissionSetAssignmentMapper class.
-    * @return An instance of PermissionSetAssignmentMapper.
-    ******************************************************************************/
+     * @description Retrieves an instance of the PermissionSetAssignmentMapper class.
+     * @return An instance of PermissionSetAssignmentMapper.
+     ******************************************************************************/
     @TestVisible
     private PermissionSetAssignmentMapper locatePermissionSetAssignmentMapper() {
         return PermissionSetAssignmentMapper.getInstance();
     }
 
     /******************************************************************************
-    * @description Retrieves an instance of the PermissionSetMapper class.
-    * @return An instance of PermissionSetMapper.
-    ******************************************************************************/
+     * @description Retrieves an instance of the PermissionSetMapper class.
+     * @return An instance of PermissionSetMapper.
+     ******************************************************************************/
     @TestVisible
     private PermissionSetMapper locatePermissionSetMapper() {
         return PermissionSetMapper.getInstance();
