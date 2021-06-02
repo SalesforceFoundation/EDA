@@ -857,7 +857,7 @@
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Prevent Duplicates Relationship Settings --></label>
+        <label><!-- Description for the Prevent Duplicate Relationships setting --></label>
         <name>stgDuplicateRelationshipsHelp</name>
     </customLabels>
     <customLabels>

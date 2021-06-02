@@ -1715,7 +1715,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description for the Prevent Duplicates Relationship Settings</shortDescription>
+        <shortDescription>Description for the Prevent Duplicates Relationships setting</shortDescription>
         <value>Specify whether to prevent more than one Relationship record of the same type between two Contacts.</value>
     </labels>
     <labels>
