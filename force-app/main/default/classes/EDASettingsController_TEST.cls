@@ -25,77 +25,76 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group Test
-* @group-content ../../ApexDocContent/Test.htm
-* @description Test class for EDASettingsController.
-*/
-@isTest 
+ * @author Salesforce.org
+ * @date 2021
+ * @group Test
+ * @group-content ../../ApexDocContent/Test.htm
+ * @description Test class for EDASettingsController.
+ */
+@isTest
 public with sharing class EDASettingsController_TEST {
-
     /**************************************************************************************************************************
-    * @description Test method to verify that the locateUserPermissionService method 
-    * returns an instance of UserPermissionService
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the locateUserPermissionService method
+     * returns an instance of UserPermissionService
+     ***************************************************************************************************************************/
     @isTest
     private static void locatePermissionSetMapperTest() {
         Test.startTest();
-            UserPermissionService userPermissionServiceInstance = UserPermissionService.getInstance();
+        UserPermissionService userPermissionServiceInstance = UserPermissionService.getInstance();
         Test.stopTest();
 
         System.assertEquals(UserPermissionService.instance, userPermissionServiceInstance);
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the checkAccessForCurrentUser method 
-    * returns true if current user has access.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the checkAccessForCurrentUser method
+     * returns true if current user has access.
+     ***************************************************************************************************************************/
     @isTest
     private static void checkAccessForCurrentUserHasAccess() {
         UserPermissionService.instance = new STUB_UserPermissionServiceHasAccess();
-        
+
         Test.startTest();
-            Boolean accessForCurrentUser = EDASettingsController.checkAccessForCurrentUser();
+        Boolean accessForCurrentUser = EDASettingsController.checkAccessForCurrentUser();
         Test.stopTest();
 
         System.assertEquals(true, accessForCurrentUser);
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the checkAccessForCurrentUser method 
-    * returns false if current user no access.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the checkAccessForCurrentUser method
+     * returns false if current user no access.
+     ***************************************************************************************************************************/
     @isTest
     private static void checkAccessForCurrentUserNoAccess() {
         UserPermissionService.instance = new STUB_UserPermissionServiceNoAccess();
-        
+
         Test.startTest();
-            Boolean accessForCurrentUser = EDASettingsController.checkAccessForCurrentUser();
+        Boolean accessForCurrentUser = EDASettingsController.checkAccessForCurrentUser();
         Test.stopTest();
 
         System.assertEquals(false, accessForCurrentUser);
     }
 
     /**************************************************************************************************************************
-    ****************************************************** STUB CLASS *********************************************************
-    **************************************************************************************************************************/
+     ****************************************************** STUB CLASS *********************************************************
+     **************************************************************************************************************************/
 
     /*************************************************************************************************************
-    * @description Stub class to simulate the response from UserPermissionService to return true
-    */
+     * @description Stub class to simulate the response from UserPermissionService to return true
+     */
     private class STUB_UserPermissionServiceHasAccess extends UserPermissionService {
-        public override Boolean checkViewSetupForCurrentUser() {
-            return true;     
+        public override Boolean checkCustomizeApplicationForCurrentUser() {
+            return true;
         }
     }
 
     /*************************************************************************************************************
-    * @description Stub class to simulate the response from UserPermissionService to return false
-    */
+     * @description Stub class to simulate the response from UserPermissionService to return false
+     */
     private class STUB_UserPermissionServiceNoAccess extends UserPermissionService {
-        public override Boolean checkViewSetupForCurrentUser() {
-            return false;     
+        public override Boolean checkCustomizeApplicationForCurrentUser() {
+            return false;
         }
     }
 }

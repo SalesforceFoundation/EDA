@@ -64,7 +64,7 @@ public virtual with sharing class AutoEnrollmentMappingService {
         String status,
         String role
     ) {
-        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
 
         //Get the appropriate Record Type Model for entries with labels in the field
         RecordTypeModel accountRecordTypeModel = this.locateRecordTypeService()
@@ -92,7 +92,7 @@ public virtual with sharing class AutoEnrollmentMappingService {
      * @return the deleted Auto Enrollment Mapping Model or null if mapping not found
      *****************************************************************************/
     public virtual AutoEnrollmentMappingModel deleteAutoEnrollmentMappings(String mappingName) {
-        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
 
         //Get the affiliate mapping record by mappingName
         Affl_Mappings__c autoEnrollmentMappingsToDelete = Affl_Mappings__c.getInstance(mappingName);
@@ -134,7 +134,7 @@ public virtual with sharing class AutoEnrollmentMappingService {
         String status,
         String role
     ) {
-        this.locateUserPermissionService().checkViewSetupForCurrentUser();
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         if (accountRecordType == newAccountRecordType) {
             return this.updateAutoEnrollmentMapping(mappingName, accountRecordType, status, role);
         }

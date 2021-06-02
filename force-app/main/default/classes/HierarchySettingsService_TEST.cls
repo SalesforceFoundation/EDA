@@ -672,7 +672,7 @@ public with sharing class HierarchySettingsService_TEST {
      * @description Stub class to simulate the response from PermissionSetMapper to return true
      */
     private class STUB_PermissionSetMapperHasAccess extends PermissionSetMapper {
-        public override Boolean checkPermissionSetsWithViewSetupFromIds(Set<Id> permissionSetIdsSet) {
+        public override Boolean checkPermissionSetsWithCustomizeApplicationFromIds(Set<Id> permissionSetIdsSet) {
             return true;
         }
     }
@@ -681,7 +681,7 @@ public with sharing class HierarchySettingsService_TEST {
      * @description Stub class to simulate the response from PermissionSetMapper to return false
      */
     private class STUB_PermissionSetMapperNoAccess extends PermissionSetMapper {
-        public override Boolean checkPermissionSetsWithViewSetupFromIds(Set<Id> permissionSetIdsSet) {
+        public override Boolean checkPermissionSetsWithCustomizeApplicationFromIds(Set<Id> permissionSetIdsSet) {
             return false;
         }
     }
