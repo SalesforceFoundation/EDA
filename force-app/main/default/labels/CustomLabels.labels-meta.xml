@@ -1704,7 +1704,7 @@
     </labels>
     <labels>
         <fullName>stgDuplicateRelationships</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the Prevent Duplicate Relationships Settings</shortDescription>
@@ -1712,7 +1712,7 @@
     </labels>
     <labels>
         <fullName>stgDuplicateRelationshipsHelp</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description for the Prevent Duplicate Relationships setting</shortDescription>
