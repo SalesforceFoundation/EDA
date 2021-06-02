@@ -63,7 +63,7 @@ public virtual with sharing class HierarchySettingsService {
      * @return True if the updates were completed successfully, false otherwise.
      ************************************************************************************************************/
     public virtual Boolean updateHierarchySettings(HierarchySettingsChangesVModel hierarchySettingsChangesVModel) {
-        if (this.locateUserPermissionService().checkViewSetupForCurrentUser() == false) {
+        if (this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser() == false) {
             return false;
         }
 
