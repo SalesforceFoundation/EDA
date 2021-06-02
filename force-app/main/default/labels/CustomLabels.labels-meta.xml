@@ -663,14 +663,6 @@
         <value>Account Model</value>
     </labels>
     <labels>
-        <fullName>stgAccountModelSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for Addresses</shortDescription>
-        <value>Address Settings</value>
-    </labels>
-    <labels>
         <fullName>stgAccountRecordTypeGroupLabelTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
