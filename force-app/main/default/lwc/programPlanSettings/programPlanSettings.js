@@ -4,7 +4,6 @@ import { refreshApex } from "@salesforce/apex";
 import getProgramPlanSettingsVModel from "@salesforce/apex/ProgramPlanSettingsController.getProgramPlanSettingsVModel";
 
 //Program Plan Settings Labels
-import stgProgramPlanSettingsNav from "@salesforce/label/c.stgProgramPlanSettingsNav";
 import stgProgramPlanSettingsTitle from "@salesforce/label/c.stgProgramPlanSettingsTitle";
 import stgNestedPlanRequirementPP from "@salesforce/label/c.stgNestedPlanRequirementPP";
 import stgHelpNestedPlanRequirementPP from "@salesforce/label/c.stgHelpNestedPlanRequirementPP";
@@ -21,7 +20,6 @@ export default class ProgramPlanSettings extends LightningElement {
     };
 
     labelReference = {
-        programPlanSettingsNav: stgProgramPlanSettingsNav,
         programPlanSettingsTitle: stgProgramPlanSettingsTitle,
         validateProgramPlanSettingTitle: stgNestedPlanRequirementPP,
         validateProgramPlanDescription: stgHelpNestedPlanRequirementPP,

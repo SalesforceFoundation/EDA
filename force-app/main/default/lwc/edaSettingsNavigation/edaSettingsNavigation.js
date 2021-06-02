@@ -38,7 +38,7 @@ import stgAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgAfflCo
 import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollDeleteTitle";
 //Program Plan Settings Labels
 import stgProgramPlanSettingsNav from "@salesforce/label/c.stgProgramPlanSettingsNav";
-import stgProgramPlanSettingsTitle from "@salesforce/label/c.stgProgramPlanSettingsTitle";
+import stgNestedPlanRequirementPP from "@salesforce/label/c.stgNestedPlanRequirementPP";
 import stgCourseConnectionsNav from "@salesforce/label/c.stgCourseConnectionsNav";
 import stgEnableCourseConnectionsTitle from "@salesforce/label/c.stgEnableCourseConnectionsTitle";
 // Relationship Labels
@@ -120,7 +120,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         },
         programPlanSettings: {
             programPlans: stgProgramPlanSettingsNav,
-            programPlanSettings: stgProgramPlanSettingsTitle,
+            programPlanRequirementHierarchy: stgNestedPlanRequirementPP,
         },
         relationshipSettings: {
             preventAutoCreatedDuplicateRelationships: stgDuplicateRelationships,
@@ -291,8 +291,8 @@ export default class EdaSettingsNavigation extends LightningElement {
                         id: "programPlans",
                         menuItems: [
                             {
-                                label: this.labelReference.programPlanSettings.programPlanSettings,
-                                id: "programPlanSettings",
+                                label: this.labelReference.programPlanSettings.programPlanRequirementHierarchy,
+                                id: "programPlanRequirementHierarchy",
                             },
                         ],
                     },
