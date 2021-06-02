@@ -1720,7 +1720,7 @@
     </labels>
     <labels>
         <fullName>stgEDAAppDesc</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the EDA Aapp</shortDescription>
@@ -1728,11 +1728,19 @@
     </labels>
     <labels>
         <fullName>stgEDAAppInitials</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Initials for the EDA App</shortDescription>
         <value>EDA</value>
+    </labels>
+    <labels>
+        <fullName>stgEDAAppTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the EDA App</shortDescription>
+        <value>Education Data Architecture</value>
     </labels>
     <labels>
         <fullName>stgEDASettingsHasMovedDesc</fullName>
