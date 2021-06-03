@@ -699,6 +699,8 @@ flows:
             6:
                 task: snapshot_changes
             7:
+                task: execute_install_apex
+            8:
                 task: load_dataset
                 options:
                     mapping: datasets/lqa/lqa_mapping.yml
