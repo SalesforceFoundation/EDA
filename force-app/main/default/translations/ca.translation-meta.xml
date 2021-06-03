@@ -857,12 +857,12 @@
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Prevent Duplicate Relationships Settings --></label>
-        <name>stgDuplicateRelationships</name>
-    </customLabels>
-    <customLabels>
         <label><!-- Description for the Prevent Duplicate Relationships setting --></label>
         <name>stgDuplicateRelationshipsHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Prevent Duplicate Relationships Settings --></label>
+        <name>stgDuplicateRelationships</name>
     </customLabels>
     <customLabels>
         <label><!-- Description of the EDA Aapp --></label>
