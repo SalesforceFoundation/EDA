@@ -90,7 +90,7 @@ private with sharing class RelationshipSettingsMapper_TEST {
     @isTest
     private static void getRelationshipSettingsModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting')
+            new Hierarchy_Settings__c(Reciprocal_Method__c = 'List Setting', Allow_AutoCreated_Duplicates__c = true)
         );
         RelationshipSettingsMapper relationshipSettingsMapperInstance = RelationshipSettingsMapper.getInstance();
 
@@ -101,7 +101,13 @@ private with sharing class RelationshipSettingsMapper_TEST {
         System.assertEquals(
             'List Setting',
             relationshipSettingsModel.reciprocalMethod,
-            'List Setting value for hierarchy setting Reciprocal_Method__c, should set accountRecordTypesEnforced property to true.'
+            'List Setting value for hierarchy setting Reciprocal_Method__c should set in the model'
+        );
+
+        System.assertEquals(
+            true,
+            relationshipSettingsModel.allowAutoCreatedDuplicates,
+            'True value for hierarchy setting Allow_AutoCreated_Duplicates__c should set in the model'
         );
     }
 }

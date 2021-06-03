@@ -88,7 +88,7 @@ private with sharing class RelationshipSettingsService_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void locateRelationshipSettingsMapper() {
-        RelationshipSettingsService RelationshipSettingsServiceInstance = RelationshipSettingsService.getInstance();
+        RelationshipSettingsService relationshipSettingsServiceInstance = RelationshipSettingsService.getInstance();
 
         Test.startTest();
         RelationshipSettingsMapper relationshipSettingsMapperInstance = RelationshipSettingsServiceInstance.locateRelationshipSettingsMapper();
@@ -119,6 +119,12 @@ private with sharing class RelationshipSettingsService_TEST {
             relationshipSettingsModel.reciprocalMethod,
             'Should be set to the value of hierarchy settings.'
         );
+
+        System.assertEquals(
+            true,
+            relationshipSettingsModel.allowAutoCreatedDuplicates,
+            'Should be set to the value of hierarchy settings.'
+        );
     }
 
     /***********************************************************************************************************************************
@@ -130,7 +136,7 @@ private with sharing class RelationshipSettingsService_TEST {
      **************************************************************************************************************************************/
     private class STUB_RelationshipSettingsMapper extends RelationshipSettingsMapper {
         public override RelationshipSettingsModel getRelationshipSettingsModel() {
-            return new RelationshipSettingsModel('List Setting');
+            return new RelationshipSettingsModel('List Setting', true);
         }
     }
 }

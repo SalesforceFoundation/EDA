@@ -56,7 +56,8 @@ private with sharing class RelationshipSettingsVModel_TEST {
 
         Test.startTest();
         RelationshipSettingsVModel relationshipSettingsVModel = new RelationshipSettingsVModel(
-            defaultRelationshipComboboxVModel
+            defaultRelationshipComboboxVModel,
+            true
         );
         Test.stopTest();
 
@@ -79,5 +80,11 @@ private with sharing class RelationshipSettingsVModel_TEST {
                 'Value on comboboxValueVModel for Default Reciprocal model should be set.'
             );
         }
+
+        System.assertEquals(
+            true,
+            relationshipSettingsVModel.preventAutoCreatedDuplicates,
+            'Value property should be retrieved for Allow Auto created duplicates.'
+        );
     }
 }
