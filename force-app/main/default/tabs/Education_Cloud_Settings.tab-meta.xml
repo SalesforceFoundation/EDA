@@ -3,5 +3,5 @@
     <description>Education Cloud Settings</description>
     <label>Education Cloud Settings</label>
     <auraComponent>educationCloudSettingsContainer</auraComponent>
-    <motif>Custom41: Cash</motif>
+    <motif>Custom64: Compass</motif>
 </CustomTab>

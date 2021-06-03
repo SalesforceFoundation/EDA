@@ -96,10 +96,6 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Settings_Health_Check</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>%%%NAMESPACE%%%Contact_Language__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
