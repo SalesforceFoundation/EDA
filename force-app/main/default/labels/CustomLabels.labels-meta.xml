@@ -1168,7 +1168,7 @@
     </labels>
     <labels>
         <fullName>stgBtnCommunity</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches the Trailblazer Community site</shortDescription>
@@ -1176,7 +1176,7 @@
     </labels>
     <labels>
         <fullName>stgBtnCommunityActionA11y</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches the Trailblazer Community site</shortDescription>
@@ -1208,7 +1208,7 @@
     </labels>
     <labels>
         <fullName>stgBtnEDCTrailhead</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches the Education Cloud trailmix</shortDescription>
@@ -1216,7 +1216,7 @@
     </labels>
     <labels>
         <fullName>stgBtnEDCTrailheadActionA11y</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches the Education Cloud trailmix</shortDescription>
@@ -1232,7 +1232,7 @@
     </labels>
     <labels>
         <fullName>stgBtnHealthCheck</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches Settings Health Check</shortDescription>
@@ -1360,7 +1360,7 @@
     </labels>
     <labels>
         <fullName>stgBtnVideos</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches the Salesforce.org YouTube channel</shortDescription>
@@ -1368,7 +1368,7 @@
     </labels>
     <labels>
         <fullName>stgBtnVideosActionA11y</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches the Salesforce.org YouTube channel</shortDescription>
@@ -1488,7 +1488,7 @@
     </labels>
     <labels>
         <fullName>stgColRelationshipName</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Column header for Settings names</shortDescription>
@@ -1528,7 +1528,7 @@
     </labels>
     <labels>
         <fullName>stgCommunityTitle</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the Trailblazer Community card</shortDescription>
@@ -1777,7 +1777,7 @@
     </labels>
     <labels>
         <fullName>stgEDCSettingsHealthCheckDescription</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of Settings Health Check</shortDescription>
@@ -2521,7 +2521,7 @@
     </labels>
     <labels>
         <fullName>stgHealthCheckA11y</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches Settings Health Check</shortDescription>
@@ -3025,7 +3025,7 @@
     </labels>
     <labels>
         <fullName>stgHelpNestedPlanRequirementPP</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Plan Requirement Hierarchy setting</shortDescription>
@@ -3049,7 +3049,7 @@
     </labels>
     <labels>
         <fullName>stgHelpRelReciprocalMethod</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Description for the Reciprocal Method setting</shortDescription>
@@ -3241,7 +3241,7 @@
     </labels>
     <labels>
         <fullName>stgProgramPlanSettingsNav</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Navigation title for Program Plans</shortDescription>
@@ -3249,7 +3249,7 @@
     </labels>
     <labels>
         <fullName>stgProgramPlanSettingsTitle</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Section title for Program Plan Settings</shortDescription>
@@ -3289,7 +3289,7 @@
     </labels>
     <labels>
         <fullName>stgReciprocalRelDeleteModalBody</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Delete Reciprocal Relationship window</shortDescription>
@@ -3297,7 +3297,7 @@
     </labels>
     <labels>
         <fullName>stgReciprocalRelDeleteModalTitle</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Title for the Delete Reciprocal Relationship window</shortDescription>
@@ -3305,7 +3305,7 @@
     </labels>
     <labels>
         <fullName>stgReciprocalRelDeleteSuccess</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Confirmation message when a Reciprocal Relationship is created</shortDescription>
@@ -3313,7 +3313,7 @@
     </labels>
     <labels>
         <fullName>stgReciprocalRelEditModalBody</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the Edit Reciprocal Relationship window</shortDescription>
@@ -3321,7 +3321,7 @@
     </labels>
     <labels>
         <fullName>stgReciprocalRelEditModalTitle</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Title for the Edit Reciprocal Relationship window</shortDescription>
@@ -3329,7 +3329,7 @@
     </labels>
     <labels>
         <fullName>stgReciprocalRelEditSuccess</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Confirmation message when a Reciprocal Relationship is saved</shortDescription>
@@ -3337,7 +3337,7 @@
     </labels>
     <labels>
         <fullName>stgReciprocalRelNewModalBody</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of the New Reciprocal Relationship window</shortDescription>
@@ -3345,7 +3345,7 @@
     </labels>
     <labels>
         <fullName>stgReciprocalRelNewModalTitle</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Title for the New Reciprocal Relationship window</shortDescription>
@@ -3353,7 +3353,7 @@
     </labels>
     <labels>
         <fullName>stgReciprocalRelNewSuccess</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Confirmation message when a Reciprocal Relationship is created</shortDescription>
@@ -3440,7 +3440,7 @@
     </labels>
     <labels>
         <fullName>stgRelationshipSettingsNav</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Navigation title for Relationships</shortDescription>
@@ -3448,7 +3448,7 @@
     </labels>
     <labels>
         <fullName>stgRelationshipSettingsTitle</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Section title for Relationship Settings</shortDescription>
@@ -3488,7 +3488,7 @@
     </labels>
     <labels>
         <fullName>stgSelectChatterGroupDesc</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description for the Select Chatter Group setting</shortDescription>
@@ -3496,7 +3496,7 @@
     </labels>
     <labels>
         <fullName>stgSelectChatterGroupTitle</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for Select Chatter Group</shortDescription>
@@ -3512,7 +3512,7 @@
     </labels>
     <labels>
         <fullName>stgSelectUserDesc</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description for the Select User setting</shortDescription>
@@ -3520,7 +3520,7 @@
     </labels>
     <labels>
         <fullName>stgSelectUserTitle</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for Select User</shortDescription>
@@ -3795,7 +3795,7 @@
 
     <labels>
         <fullName>stgTrailheadTitle</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the Trailhead card</shortDescription>
@@ -3803,7 +3803,7 @@
     </labels>
     <labels>
         <fullName>stgVideosTitle</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the YouTube card</shortDescription>
