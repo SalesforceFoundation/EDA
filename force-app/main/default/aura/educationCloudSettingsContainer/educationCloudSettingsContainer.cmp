@@ -1,1 +1,0 @@
-<aura:component implements="force:appHostable"> <%%%NAMESPACE_OR_C%%%:edaSettingsContainer/> </aura:component>

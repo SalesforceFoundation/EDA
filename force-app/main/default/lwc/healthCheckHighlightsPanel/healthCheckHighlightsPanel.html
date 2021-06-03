@@ -3,13 +3,15 @@
         <h3 slot="title">
             <div class="slds-grid">
                 <div class="slds-col">
-                    <lightning-icon icon-name="standard:home" size="medium"></lightning-icon>
+                    <lightning-icon icon-name={iconReference.highlightsIcon} size="medium"></lightning-icon>
                 </div>
-                <div class="slds-col slds-grid slds-wrap slds-text-align_left slds-p-horizontal_small">
+                <div class="slds-col slds-grid slds-wrap slds-text-align_left slds-var-p-horizontal_small">
                     <div class="slds-col slds-size_1-of-1 slds-text-body_regular">
-                        {labelReference.stgEDASetupTitle}
+                        <a href="javascript:void(0);" onclick={handleSettingsClick}
+                            >{labelReference.educationCloudSettings}</a
+                        >
                     </div>
-                    <div class="slds-col slds-size_1-of-1 slds-text-title">{labelReference.stgHealthCheckTitle}</div>
+                    <div class="slds-col slds-size_1-of-1 slds-text-title">{labelReference.healthCheck}</div>
                 </div>
             </div>
         </h3>
