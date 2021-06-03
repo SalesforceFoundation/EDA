@@ -35,12 +35,16 @@
 public with sharing class RelationshipSettingsModel {
     @AuraEnabled
     public String reciprocalMethod { get; private set; }
+    @AuraEnabled
+    public Boolean allowAutoCreatedDuplicates { get; private set; }
 
     /*****************************************************************************************************************
-     * @description One argument constructor
+     * @description Two argument constructor
      * @param  reciprocalMethod A String value representing the Reciprocal_Method__c setting in Hierarchy Settings
+     * @param allowAutoCreatedDuplicates A Boolean value representing the Allow_AutoCreated_Duplicates__c setting in Hierarchy Settings
      *****************************************************************************************************************/
-    public RelationshipSettingsModel(String reciprocalMethod) {
+    public RelationshipSettingsModel(String reciprocalMethod, Boolean allowAutoCreatedDuplicates) {
         this.reciprocalMethod = reciprocalMethod;
+        this.allowAutoCreatedDuplicates = allowAutoCreatedDuplicates;
     }
 }

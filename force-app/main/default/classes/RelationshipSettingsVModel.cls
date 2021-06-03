@@ -35,13 +35,21 @@
 public with sharing class RelationshipSettingsVModel {
     @AuraEnabled
     public ComboboxVModel reciprocalMethodComboboxVModel { get; private set; }
+    @AuraEnabled
+    public Boolean preventAutoCreatedDuplicates { get; private set; }
 
     /*****************************************************************************************************************
      * @description Constructor to assign values to the properties
      * @param  reciprocalMethodComboboxVModel A ComboboxVModel value representing the Reciprocal_Method__c setting in
-     * Hierarchy Settings and all the available values for selection
+      Hierarchy Settings and all the available values for selection
+     *  @param  preventAutoCreatedDuplicates A Boolean value representing the inverse of Allow_AutoCreated_Duplicates__c setting in
+     Hierarchy Settings
      *****************************************************************************************************************/
-    public RelationshipSettingsVModel(ComboboxVModel reciprocalMethodComboboxVModel) {
+    public RelationshipSettingsVModel(
+        ComboboxVModel reciprocalMethodComboboxVModel,
+        Boolean preventAutoCreatedDuplicates
+    ) {
         this.reciprocalMethodComboboxVModel = reciprocalMethodComboboxVModel;
+        this.preventAutoCreatedDuplicates = preventAutoCreatedDuplicates;
     }
 }
