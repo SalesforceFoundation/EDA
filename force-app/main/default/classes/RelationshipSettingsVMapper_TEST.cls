@@ -159,25 +159,25 @@ private with sharing class RelationshipSettingsVMapper_TEST {
 
         System.assertEquals(
             'List Setting',
-            RelationshipSettingsVModel.reciprocalMethodComboboxVModel.value,
+            relationshipSettingsVModel.reciprocalMethodComboboxVModel.value,
             'Selected value for Reciprocal method should be retreived.'
         );
 
         System.assertEquals(
             Label.stgReciprocalMethodListSetting,
-            RelationshipSettingsVModel.reciprocalMethodComboboxVModel.options[0].label,
+            relationshipSettingsVModel.reciprocalMethodComboboxVModel.options[0].label,
             'Label for the reciprocal method options shoule be retreived'
         );
 
         System.assertEquals(
             'List Setting',
-            RelationshipSettingsVModel.reciprocalMethodComboboxVModel.options[0].value,
+            relationshipSettingsVModel.reciprocalMethodComboboxVModel.options[0].value,
             'Value for the reciprocal method options shoule be retreived'
         );
 
         System.assertEquals(
             Label.stgReciprocalMethodValueInversion,
-            RelationshipSettingsVModel.reciprocalMethodComboboxVModel.options[1].label,
+            relationshipSettingsVModel.reciprocalMethodComboboxVModel.options[1].label,
             'Label for the reciprocal method options shoule be retreived'
         );
 
@@ -185,6 +185,12 @@ private with sharing class RelationshipSettingsVMapper_TEST {
             'Value Inversion',
             RelationshipSettingsVModel.reciprocalMethodComboboxVModel.options[1].value,
             'Value for the reciprocal method options shoule be retreived'
+        );
+
+        System.assertEquals(
+            false,
+            relationshipSettingsVModel.preventAutoCreatedDuplicates,
+            'Inverted value for Allow Auto Created Duplicates should be retreived.'
         );
     }
 
@@ -197,7 +203,7 @@ private with sharing class RelationshipSettingsVMapper_TEST {
      **************************************************************************************************************************************/
     private class STUB_RelationshipSettingsService extends RelationshipSettingsService {
         public override RelationshipSettingsModel getRelationshipSettingsModel() {
-            return new RelationshipSettingsModel('List Setting');
+            return new RelationshipSettingsModel('List Setting', true);
         }
     }
 }
