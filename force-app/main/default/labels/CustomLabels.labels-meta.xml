@@ -2673,7 +2673,7 @@
     </labels>
     <labels>
         <fullName>stgHealthCheckTitle</fullName>
-        <categories>Setup</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the Settings Health Check card</shortDescription>
