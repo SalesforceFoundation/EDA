@@ -97,7 +97,7 @@
     </labels>
     <labels>
         <fullName>EDCSettingsContainerAuraComponentLabel</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Education Cloud Settings</shortDescription>
@@ -1192,7 +1192,7 @@
     </labels>
     <labels>
         <fullName>stgBtnDocumentation</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches EDA documentation</shortDescription>
@@ -1200,7 +1200,7 @@
     </labels>
     <labels>
         <fullName>stgBtnDocumentationActionA11y</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches EDA documentation</shortDescription>
@@ -1320,7 +1320,7 @@
     </labels>
     <labels>
         <fullName>stgBtnSettings</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches EDA Settings</shortDescription>
@@ -1328,7 +1328,7 @@
     </labels>
     <labels>
         <fullName>stgBtnSettingsActionA11y</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches EDA Settings</shortDescription>
@@ -1336,7 +1336,7 @@
     </labels>
     <labels>
         <fullName>stgBtnTrailhead</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches EDA Trailhead modules</shortDescription>
@@ -1344,7 +1344,7 @@
     </labels>
     <labels>
         <fullName>stgBtnTrailheadActionA11y</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches EDA Trailhead modules</shortDescription>
@@ -1364,7 +1364,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Button that launches the Salesforce.org YouTube channel</shortDescription>
-        <value>YouTube</value>
+        <value>Go to Salesforce.org on YouTube</value>
     </labels>
     <labels>
         <fullName>stgBtnVideosActionA11y</fullName>
@@ -1372,7 +1372,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Alt text for button that launches the Salesforce.org YouTube channel</shortDescription>
-        <value>YouTube</value>
+        <value>Go to Salesforce.org on YouTube</value>
     </labels>
     <labels>
         <fullName>stgCleanupQueuedEmailSent</fullName>
@@ -1472,7 +1472,7 @@
     </labels>
     <labels>
         <fullName>stgColProducts</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Column header for Products</shortDescription>
@@ -1496,7 +1496,7 @@
     </labels>
     <labels>
         <fullName>stgColResources</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Column header for Resources</shortDescription>
@@ -1520,7 +1520,7 @@
     </labels>
     <labels>
         <fullName>stgColTools</fullName>
-        <categories>Error</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Column header for Tools</shortDescription>
@@ -1732,7 +1732,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Description of the EDA Aapp</shortDescription>
+        <shortDescription>Description of the EDA app</shortDescription>
         <value>Education Data Architecture (EDA) is the foundation of the Education Cloud. Its flexible data architecture is designed to configure Salesforce for education.</value>
     </labels>
     <labels>
