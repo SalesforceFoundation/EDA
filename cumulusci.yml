@@ -697,10 +697,14 @@ flows:
             5:
                 task: deploy_lqa_config
             6:
-                task: snapshot_changes
+                task: deploy_install_emulator
+                when: "'hed' not in org_config.installed_packages"
             7:
                 task: execute_install_apex
+                when: "'hed' not in org_config.installed_packages"
             8:
+                task: snapshot_changes
+            9:
                 task: load_dataset
                 options:
                     mapping: datasets/lqa/lqa_mapping.yml
