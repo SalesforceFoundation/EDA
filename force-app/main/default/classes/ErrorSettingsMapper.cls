@@ -85,14 +85,14 @@ public virtual with sharing class ErrorSettingsMapper {
     }
 
     private String getUserIdPrefix() {
-        Schema.DescribeSObjectResult userSObjectDescribe = UTIL_Describe.getObjectDescribe('User');
+        Schema.DescribeSObjectResult userSObjectDescribeResult = UTIL_Describe.getObjectDescribe('User');
         return userSObjectDescribeResult.getKeyPrefix();
     }
 
     private String getChatterGroupIdPrefix() {
-        Schema.DescribeSObjectResult chatterGroupSObjectDescribe = UTIL_Describe.getObjectDescribe(
+        Schema.DescribeSObjectResult chatterGroupSObjectDescribeResult = UTIL_Describe.getObjectDescribe(
             'CollaborationGroup'
         );
-        return chatterGroupSObjectDescribe.getKeyPrefix();
+        return chatterGroupSObjectDescribeResult.getKeyPrefix();
     }
 }
