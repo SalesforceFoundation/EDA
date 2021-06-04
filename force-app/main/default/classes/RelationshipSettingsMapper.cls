@@ -64,6 +64,9 @@ public virtual with sharing class RelationshipSettingsMapper {
     public virtual RelationshipSettingsModel getRelationshipSettingsModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
 
-        return new RelationshipSettingsModel(hierarchySettings.Reciprocal_Method__c);
+        return new RelationshipSettingsModel(
+            hierarchySettings.Reciprocal_Method__c,
+            hierarchySettings.Allow_AutoCreated_Duplicates__c
+        );
     }
 }

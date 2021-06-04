@@ -90,6 +90,12 @@ private with sharing class RelationshipSettingsController_TEST {
             relationshipSettingsVModel.reciprocalMethodComboboxVModel.options[1].value,
             'Selected value should be retrieved'
         );
+
+        System.assertEquals(
+            true,
+            relationshipSettingsVModel.preventAutoCreatedDuplicates,
+            'Selected value should be retrieved for allow auto created duplicates'
+        );
     }
 
     /****************************************************************************************************************************
@@ -132,7 +138,8 @@ private with sharing class RelationshipSettingsController_TEST {
             relationshipTypeComboboxValueVModelsList.add(valueInversionComboboxValueVModel);
 
             return new RelationshipSettingsVModel(
-                new comboboxvmodel('List Setting', relationshipTypeComboboxValueVModelsList)
+                new comboboxvmodel('List Setting', relationshipTypeComboboxValueVModelsList),
+                true
             );
         }
     }

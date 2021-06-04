@@ -25,29 +25,29 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group Permission
-* @group-content ../../ApexDocContent/Permission.htm
-* @description Mapper class for Permission Set.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group Permission
+ * @group-content ../../ApexDocContent/Permission.htm
+ * @description Mapper class for Permission Set.
+ */
 public virtual with sharing class PermissionSetMapper {
-    
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static PermissionSetMapper instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected PermissionSetMapper() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected PermissionSetMapper() {
+    }
 
     /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of PermissionSetMapper.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of PermissionSetMapper.
+     ******************************************************************************/
     public static PermissionSetMapper getInstance() {
         if (instance == null) {
             instance = new PermissionSetMapper();
@@ -55,17 +55,18 @@ public virtual with sharing class PermissionSetMapper {
 
         return instance;
     }
-    
+
     /*****************************************************************************
-    * @description Check if provided Permission set has access to view Setup.
-    * @param permissionSetIds A set of Permission set ids.
-    * @return If provided permission set has access to view Setup.
-    ******************************************************************************/
-    public virtual Boolean checkPermissionSetsWithViewSetupFromIds(Set<Id> permissionSetIdsSet) {
-        List<PermissionSet> permissionSets = [SELECT Id 
-                                            FROM PermissionSet
-                                            WHERE Id in :permissionSetIdsSet
-                                                AND PermissionsViewSetup = true];
+     * @description Check if provided Permission set has access to view Setup.
+     * @param permissionSetIds A set of Permission set ids.
+     * @return If provided permission set has access to view Setup.
+     ******************************************************************************/
+    public virtual Boolean checkPermissionSetsWithCustomizeApplicationFromIds(Set<Id> permissionSetIdsSet) {
+        List<PermissionSet> permissionSets = [
+            SELECT Id
+            FROM PermissionSet
+            WHERE Id IN :permissionSetIdsSet AND PermissionsCustomizeApplication = TRUE
+        ];
         if (permissionSets.isEmpty() == false) {
             return true;
         }

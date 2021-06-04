@@ -406,12 +406,23 @@ class EDA(BaseEDAPage):
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
 
-    def go_to_new_eda_settings(self):
-        """ Navigates to the new EDA Settings Page"""
+    def go_to_education_cloud_settings(self):
+        """ Navigates to the Education Cloud Settings Page"""
         url = self.cumulusci.org.lightning_base_url
-        url = "{}/lightning/n/New_EDA_Settings_QA_Only".format(url)
+        url = "{}/lightning/n/Education_Cloud_Settings".format(url)
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
+
+    def click_on_hub_link(self, field, link):
+        """
+        Click the power of us hub link available in Education cloud settings page.
+        Accepts the name of the setting and the name of the link as its parameter
+        """
+        locator = eda_lex_locators["eda_settings_new"]["tell_me_more"].format(field, link)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= f"Element '{locator}' is not displayed for the user")
+        self.selenium.click_element(locator)
 
     def go_to_settings_health_check(self):
         """ Navigates to the Home view of Settings Health Check app"""
@@ -584,6 +595,28 @@ class EDA(BaseEDAPage):
         self.selenium.execute_javascript("window.scrollTo(0, document.body.scrollHeight)")
         time.sleep(0.1)
         self.selenium.execute_javascript("window.scrollTo(document.body.scrollHeight, 0)")
+
+    def scroll_to_field(self, field):
+        """ This method will scroll to the location of the field until it is visible on the page by
+            accepting the name of the field as a parameter
+        """
+        locator = eda_lex_locators["eda_settings_new"]["dropdown_input"].format(field)
+        self.selenium.get_webelement(locator).send_keys(Keys.PAGE_DOWN)
+
+    def set_toggle_input(self, **kwargs):
+        """
+        This method will set the toggle input to true or false based on the value passed
+        """
+        for field,expected_value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_new"]["toggle_status"].format(field)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60)
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error= f"{locator} is not displayed for the user")
+            actual_value = self.selenium.get_webelement(locator).get_attribute("data-qa-value")
+            print(f"The actual value of {locator} is", actual_value)
+            if not str(actual_value).lower() == str(expected_value).lower():
+                locator = eda_lex_locators["eda_settings_new"]["toggle_input"].format(field)
+                self.selenium.click_element(locator)
 
     def select_settings_from_navigation_pane(self, settingName):
         """ This method will click the setting hyperlink present in the navigation section of

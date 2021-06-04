@@ -8,6 +8,7 @@
     >
         <!-- Body of Relationship Settings page (populates Slot in child component) -->
         <template if:true={relationshipSettingsVModel}>
+            <!-- Reciprocal Method Mark Up-->
             <c-settings-row-input
                 class="slds-size_3-of-3"
                 title={labelReference.reciprocalMethodSettingsName}
@@ -18,6 +19,18 @@
                 placeholder={labelReference.comboboxPlaceholderText}
                 options={relationshipSettingsVModel.reciprocalMethodComboboxVModel.options}
                 onsettingsinputchange={handleReciprocalMethodChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+
+            <!-- Relationship Auto Create Mark Up-->
+            <c-settings-row-input
+                class="slds-col"
+                title={labelReference.duplicateRelationshipTitle}
+                description={duplicateRelationshipDesc}
+                type="toggle"
+                input-id={inputAttributeReference.allowAutoCreatedDuplicatesId}
+                value={relationshipSettingsVModel.preventAutoCreatedDuplicates}
+                onsettingsinputchange={handleAuoCreatedDuplicatesChange}
                 disabled={affordancesDisabled}
             ></c-settings-row-input>
         </template>
