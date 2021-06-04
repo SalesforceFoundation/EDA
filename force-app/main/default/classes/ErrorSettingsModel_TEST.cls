@@ -58,12 +58,12 @@ public with sharing class ErrorSettingsModel_TEST {
         System.assertEquals(
             'All Sys Admins',
             errorSettingsModel.sendErrorNotificationsRecipientCategory,
-            'Send error notifications recipient category should be \'All Sys Admins\''.'
+            'Send error notifications recipient category should be \'All Sys Admins\'.'
         );
         System.assertEquals(
             'All Sys Admins',
             errorSettingsModel.sendErrorNotificationsRecipient,
-            'Send error notifications recipient should be \'All Sys Admins\''.'
+            'Send error notifications recipient should be \'All Sys Admins\'.'
         );
         System.assertEquals(true, errorSettingsModel.enableDebug, 'Debug functionality should be enabled.');
         System.assertEquals(

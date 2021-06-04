@@ -34,8 +34,8 @@
 public with sharing class ErrorSettingsModel {
     public Boolean storeErrors { get; private set; }
     public Boolean sendErrorNotifications { get; private set; }
-    public Boolean sendErrorNotificationsRecipientCategory { get; private set; }
-    public Boolean sendErrorNotificationsRecipient { get; private set; }
+    public String sendErrorNotificationsRecipientCategory { get; private set; }
+    public String sendErrorNotificationsRecipient { get; private set; }
     public Boolean enableDebug { get; private set; }
     public Boolean errorHandling { get; private set; }
 

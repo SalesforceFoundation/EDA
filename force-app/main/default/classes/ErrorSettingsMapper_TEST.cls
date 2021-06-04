@@ -200,12 +200,14 @@ private with sharing class ErrorSettingsMapper_TEST {
             errorSettingsModel.errorHandling,
             'Error handling on resulting model should be inverse of value set in hierarchy settings.'
         );
-    }/**************************************************************************************************************************
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify that the getErrorSettingsModel method returns an ErrorSettingsModel with properties
      * set to match those in Hierarchy Settings when the send error notifications recipient is a chatter group
      ***************************************************************************************************************************/
     @isTest
-    private static void getErrorSettingsModelValidUser() {
+    private static void getErrorSettingsModelValidChatterGroup() {
         String fakeChatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
@@ -257,6 +259,42 @@ private with sharing class ErrorSettingsMapper_TEST {
             true,
             errorSettingsModel.errorHandling,
             'Error handling on resulting model should be inverse of value set in hierarchy settings.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the user id prefix retrieves the appropriate prefix for the user SObject
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getUserIdPrefix() {
+        ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        Test.startTest();
+        String userIdPrefix = errorSettingsMapperInstance.getUserIdPrefix();
+        Test.stopTest();
+
+        System.assertEquals(
+            User.SObjectType.getDescribe().getKeyPrefix(),
+            userIdPrefix,
+            'User Id Prefix identified should match the prefix from the schema.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the chatter group id prefix retrieves the appropriate prefix for the user SObject
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getChatterGroupIdPrefix() {
+        ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        Test.startTest();
+        String chatterGroupIdPrefix = errorSettingsMapperInstance.getChatterGroupIdPrefix();
+        Test.stopTest();
+
+        System.assertEquals(
+            CollaborationGroup.SObjectType.getDescribe().getKeyPrefix(),
+            chatterGroupIdPrefix,
+            'Chatter Group Id Prefix identified should match the prefix from the schema.'
         );
     }
 }

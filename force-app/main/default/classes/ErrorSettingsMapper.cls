@@ -70,7 +70,7 @@ public virtual with sharing class ErrorSettingsMapper {
             errorNotificationsCategory = 'All Sys Admins';
         } else if (hierarchySettings.Error_Notifications_To__c.startsWith(this.getUserIdPrefix())) {
             errorNotificationsCategory = 'User';
-        } else if (hierarchySettings.Error_Notifications_To__c.startsWith(this.getUserIdPrefix())) {
+        } else if (hierarchySettings.Error_Notifications_To__c.startsWith(this.getChatterGroupIdPrefix())) {
             errorNotificationsCategory = 'Chatter Group';
         }
 
@@ -84,11 +84,22 @@ public virtual with sharing class ErrorSettingsMapper {
         );
     }
 
+    /*******************************************************************************************
+     * @description Retrieves the Id prefix for the User SObjectType in a chaching-safe method
+     * @return The Id prefix for the User SObjectType
+     ********************************************************************************************/
+    @TestVisible
     private String getUserIdPrefix() {
         Schema.DescribeSObjectResult userSObjectDescribeResult = UTIL_Describe.getObjectDescribe('User');
         return userSObjectDescribeResult.getKeyPrefix();
     }
 
+    /*******************************************************************************************
+     * @description Retrieves the Id prefix for the CollaborationGroup SObjectType, Chatter
+     * Groups, in a chaching-safe method
+     * @return The Id prefix for the CollaborationGroup SObjectType
+     ********************************************************************************************/
+    @TestVisible
     private String getChatterGroupIdPrefix() {
         Schema.DescribeSObjectResult chatterGroupSObjectDescribeResult = UTIL_Describe.getObjectDescribe(
             'CollaborationGroup'

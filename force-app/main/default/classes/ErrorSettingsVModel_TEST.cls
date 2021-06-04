@@ -45,7 +45,7 @@ private with sharing class ErrorSettingsVModel_TEST {
 
         System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');
         System.assertEquals(
-            false,
+            true,
             errorSettingsVModel.sendErrorNotifications,
             'Send error notifications functionality should be enabled.'
         );

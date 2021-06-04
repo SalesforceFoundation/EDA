@@ -80,7 +80,7 @@ private with sharing class ErrorSettingsController_TEST {
         );
 
         System.assertEquals(
-            true,
+            false,
             errorSettingsVModel.errorHandling,
             'Error handling model property should match expected value.'
         );
