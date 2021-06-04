@@ -36,6 +36,9 @@ import stgAfflProgEnrollSetStatusValue from "@salesforce/label/c.stgAfflProgEnro
 import stgAfflCopyProgramEnrollmentEndDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentEndDate";
 import stgAfflCopyProgramEnrollmentStartDate from "@salesforce/label/c.stgAfflCopyProgramEnrollmentStartDate";
 import stgAfflProgEnrollDeleteTitle from "@salesforce/label/c.stgAfflProgEnrollDeleteTitle";
+//Program Plan Settings Labels
+import stgProgramPlanSettingsNav from "@salesforce/label/c.stgProgramPlanSettingsNav";
+import stgNestedPlanRequirementPP from "@salesforce/label/c.stgNestedPlanRequirementPP";
 import stgCourseConnectionsNav from "@salesforce/label/c.stgCourseConnectionsNav";
 import stgEnableCourseConnectionsTitle from "@salesforce/label/c.stgEnableCourseConnectionsTitle";
 import stgDefaultStudentTypeTitle from "@salesforce/label/c.stgDefaultStudentTypeTitle";
@@ -118,6 +121,10 @@ export default class EdaSettingsNavigation extends LightningElement {
             statusForCreatedAffl: stgAfflProgEnrollSetStatusValue,
             afflEndDate: stgAfflCopyProgramEnrollmentEndDate,
             afflStartDate: stgAfflCopyProgramEnrollmentStartDate,
+        },
+        programPlanSettings: {
+            programPlans: stgProgramPlanSettingsNav,
+            programPlanRequirementHierarchy: stgNestedPlanRequirementPP,
         },
         relationshipSettings: {
             preventAutoCreatedDuplicateRelationships: stgDuplicateRelationships,
@@ -279,6 +286,17 @@ export default class EdaSettingsNavigation extends LightningElement {
                             {
                                 label: this.labelReference.programSettings.programAutoEnrollmentMappings,
                                 id: "programAutoEnrollmentMappings",
+                            },
+                        ],
+                    },
+                    {
+                        label: this.labelReference.programPlanSettings.programPlans,
+                        page: "programPlanSettings",
+                        id: "programPlans",
+                        menuItems: [
+                            {
+                                label: this.labelReference.programPlanSettings.programPlanRequirementHierarchy,
+                                id: "programPlanRequirementHierarchy",
                             },
                         ],
                     },
