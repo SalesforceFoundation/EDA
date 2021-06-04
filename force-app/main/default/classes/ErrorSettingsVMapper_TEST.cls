@@ -133,8 +133,23 @@ private with sharing class ErrorSettingsVMapper_TEST {
 
         System.assertEquals(
             'All Sys Admins',
-            errorSettingsVModel.errorNotificationsRecipientCategory,
-            'Send error notifications recipient category should match expected value.'
+            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.value,
+            'Send Error Notificiation recipient category should match expected value.'
+        );
+        System.assertEquals(
+            1,
+            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.options.size(),
+            'Number of Send Error Notificiation recipient category valid options should match expected size.'
+        );
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.options[0].value,
+            'Send Error Notificiation recipient category valid option for All Sys Admins should have expected value.'
+        );
+        System.assertEquals(
+            'All Sys Admins Label',
+            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.options[0].label,
+            'Send Error Notificiation recipient category valid option for All Sys Admins should have expected label.'
         );
 
         System.assertEquals(

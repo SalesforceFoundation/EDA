@@ -75,8 +75,23 @@ private with sharing class ErrorSettingsController_TEST {
 
         System.assertEquals(
             'All Sys Admins',
-            errorSettingsVModel.errorNotificationsRecipientCategory,
-            'Error notifications recipient category should match expected value.'
+            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.value,
+            'Send Error Notificiation recipient category should match expected value.'
+        );
+        System.assertEquals(
+            1,
+            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.options.size(),
+            'Number of Send Error Notificiation recipient category valid options should match expected size.'
+        );
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.options[0].value,
+            'Send Error Notificiation recipient category valid option for All Sys Admins should have expected value.'
+        );
+        System.assertEquals(
+            'All Sys Admins Label',
+            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.options[0].label,
+            'Send Error Notificiation recipient category valid option for All Sys Admins should have expected label.'
         );
 
         System.assertEquals(
@@ -119,7 +134,15 @@ private with sharing class ErrorSettingsController_TEST {
      *********************************************************************************************************************/
     private class STUB_ErrorSettingsVMapper extends ErrorSettingsVMapper {
         public override ErrorSettingsVModel getErrorSettingsViewModel() {
-            return new ErrorSettingsVModel(true, true, 'All Sys Admins', false, false);
+            List<ComboboxValueVModel> errorNotificationsRecipientCategoryComboboxValues = new List<ComboboxValueVModel>{
+                new ComboboxValueVModel('All Sys Admins Label', 'All Sys Admins')
+            };
+            ComboboxVModel errorNotificationsRecipientCategoryCombobox = new ComboboxVModel(
+                'All Sys Admins',
+                errorNotificationsRecipientCategoryComboboxValues
+            );
+
+            return new ErrorSettingsVModel(true, true, errorNotificationsRecipientCategoryCombobox, false, false);
         }
     }
 

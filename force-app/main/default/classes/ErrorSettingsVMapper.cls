@@ -62,12 +62,46 @@ public virtual with sharing class ErrorSettingsVMapper {
      *********************************************************************************************/
     public virtual ErrorSettingsVModel getErrorSettingsViewModel() {
         ErrorSettingsModel errorSettingsModel = this.locateErrorSettingsService().getErrorSettingsModel();
+        ComboboxVModel errorNotificationsRecipientCategoryComboboxVModel = this.getErrorNotificationsRecipientCategoryComboboxVModel(
+            errorSettingsModel
+        );
+
         return new ErrorSettingsVModel(
             errorSettingsModel.storeErrors,
             errorSettingsModel.sendErrorNotifications,
-            errorSettingsModel.errorNotificationsRecipientCategory,
+            errorNotificationsRecipientCategoryComboboxVModel,
             errorSettingsModel.enableDebug,
             errorSettingsModel.errorHandling
+        );
+    }
+
+    /******************************************************************************
+     * @description Retrieve the valid error notification recipient category
+     * combobox view model
+     * @param errorSettingsModel The error settings model to get combobox value
+     * Vmodels from
+     * @return The valid error notification recipient category combobox view model
+     ******************************************************************************/
+    private ComboboxVModel getErrorNotificationsRecipientCategoryComboboxVModel(ErrorSettingsModel errorSettingsModel) {
+        List<ComboboxValueVModel> errorNotificationsRecipientCategoryVModelList = new List<ComboboxValueVModel>();
+
+        List<String> errorNotificationsRecipientCategoryValueList = new List<String>(
+            errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue.keySet()
+        );
+        errorNotificationsRecipientCategoryValueList.sort();
+
+        for (String categoryValue : errorNotificationsRecipientCategoryValueList) {
+            errorNotificationsRecipientCategoryVModelList.add(
+                new ComboboxValueVModel(
+                    errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue.get(categoryValue),
+                    categoryValue
+                )
+            );
+        }
+
+        return new ComboboxVModel(
+            errorSettingsModel.errorNotificationsRecipientCategory,
+            errorNotificationsRecipientCategoryVModelList
         );
     }
 

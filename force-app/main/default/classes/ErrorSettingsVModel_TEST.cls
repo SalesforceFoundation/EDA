@@ -38,16 +38,45 @@ private with sharing class ErrorSettingsVModel_TEST {
      * all properties populated.
      ****************************************************************************/
     @isTest
-    private static void fiveArugumentConstructorValid() {
+    private static void sixArugumentConstructorValid() {
+        List<ComboboxValueVModel> errorNotificationsRecipientCategoryComboboxValues = new List<ComboboxValueVModel>{
+            new ComboboxValueVModel('All Sys Admins Label', 'All Sys Admins')
+        };
+        ComboboxVModel errorNotificationsRecipientCategoryCombobox = new ComboboxVModel(
+            'All Sys Admins',
+            errorNotificationsRecipientCategoryComboboxValues
+        );
+
         Test.startTest();
-        ErrorSettingsVModel errorSettingsVModel = new ErrorSettingsVModel(false, true, 'All Sys Admins', true, true);
+        ErrorSettingsVModel errorSettingsVModel = new ErrorSettingsVModel(
+            false,
+            true,
+            errorNotificationsRecipientCategoryCombobox,
+            true,
+            true
+        );
         Test.stopTest();
 
         System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');
         System.assertEquals(
             'All Sys Admins',
-            errorSettingsVModel.errorNotificationsRecipientCategory,
-            'Send error notifications should be set to a category of \'All Sys Admins\'.'
+            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.value,
+            'Send Error Notificiation recipient category should match expected value.'
+        );
+        System.assertEquals(
+            1,
+            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.options.size(),
+            'Number of Send Error Notificiation recipient category valid options should match expected size.'
+        );
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.options[0].value,
+            'Send Error Notificiation recipient category valid option for All Sys Admins should have expected value.'
+        );
+        System.assertEquals(
+            'All Sys Admins Label',
+            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.options[0].label,
+            'Send Error Notificiation recipient category valid option for All Sys Admins should have expected label.'
         );
         System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');
         System.assertEquals(true, errorSettingsVModel.enableDebug, 'Enable debug functionality should be enabled.');
