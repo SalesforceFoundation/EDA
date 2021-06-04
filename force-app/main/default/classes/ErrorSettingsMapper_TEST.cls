@@ -93,7 +93,7 @@ private with sharing class ErrorSettingsMapper_TEST {
             new Hierarchy_Settings__c(
                 Store_Errors_On__c = true,
                 Error_Notifications_On__c = true,
-                Error_Notifications_To__c = 'All Sys Admins'
+                Error_Notifications_To__c = 'All Sys Admins',
                 Enable_Debug__c = false,
                 Disable_Error_Handling__c = false
             )
