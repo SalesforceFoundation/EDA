@@ -80,8 +80,26 @@ public virtual with sharing class ErrorSettingsMapper {
             errorNotificationsCategory,
             hierarchySettings.Error_Notifications_To__c,
             hierarchySettings.Enable_Debug__c,
-            !hierarchySettings.Disable_Error_Handling__c
+            !hierarchySettings.Disable_Error_Handling__c,
+            this.getValidErrorNotificationRecipientCategoryLabelsByValue()
         );
+    }
+
+    /**********************************************************************************
+     * @description Retrieves the valid error notification recipient categories for
+     * Error Settings
+     * @return A map of strings to labels for valid error notification recipient
+     * categories
+     **********************************************************************************/
+    @TestVisible
+    private Map<String, String> getValidErrorNotificationRecipientCategoryLabelsByValue() {
+        Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>();
+
+        validErrorNotificationRecipientCategoryLabelsByValue.put('All Sys Admins', Label.stgOptAllSysAdmins);
+        validErrorNotificationRecipientCategoryLabelsByValue.put('User', Label.stgOptUser);
+        validErrorNotificationRecipientCategoryLabelsByValue.put('Chatter Group', Label.stgOptChatterGroup);
+
+        return validErrorNotificationRecipientCategoryLabelsByValue;
     }
 
     /*******************************************************************************************

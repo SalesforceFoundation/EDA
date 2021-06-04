@@ -133,7 +133,7 @@ private with sharing class ErrorSettingsVMapper_TEST {
 
         System.assertEquals(
             'All Sys Admins',
-            errorSettingsVModel.sendErrorNotificationsRecipientCategory,
+            errorSettingsVModel.errorNotificationsRecipientCategory,
             'Send error notifications recipient category should match expected value.'
         );
 
@@ -158,8 +158,20 @@ private with sharing class ErrorSettingsVMapper_TEST {
      * @description Stub class to simulate the response from ErrorSettingsService to return a valid ErrorSettingsModel
      *********************************************************************************************************************/
     private class STUB_ErrorSettingsService extends ErrorSettingsService {
+        public Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>{
+            'All Sys Admins' => 'All Sys Admins Label'
+        };
+
         public override ErrorSettingsModel getErrorSettingsModel() {
-            return new ErrorSettingsModel(true, true, 'All Sys Admins', 'All Sys Admins', false, true);
+            return new ErrorSettingsModel(
+                true,
+                true,
+                'All Sys Admins',
+                'All Sys Admins',
+                false,
+                true,
+                this.validErrorNotificationRecipientCategoryLabelsByValue
+            );
         }
     }
 }

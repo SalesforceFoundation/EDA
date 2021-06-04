@@ -105,40 +105,21 @@ private with sharing class ErrorSettingsMapper_TEST {
         ErrorSettingsModel errorSettingsModel = errorSettingsMapperInstance.getErrorSettingsModel();
         Test.stopTest();
 
-        System.assertEquals(
-            true,
-            errorSettingsModel.storeErrors,
-            'Store Errors on resulting model should match value set in hierarchy settings.'
-        );
-
-        System.assertEquals(
-            true,
-            errorSettingsModel.sendErrorNotifications,
-            'Send Error Notifications on resulting model should match value set in hierarchy settings.'
+        ErrorSettingsMapper_TEST.assertSettingBooleans(errorSettingsModel);
+        ErrorSettingsMapper_TEST.assertValidErrorNotificationRecipientCategoryLabelsByValue(
+            errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue
         );
 
         System.assertEquals(
             'All Sys Admins',
-            errorSettingsModel.sendErrorNotificationsRecipientCategory,
+            errorSettingsModel.errorNotificationsRecipientCategory,
             'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
         );
 
         System.assertEquals(
             'All Sys Admins',
-            errorSettingsModel.sendErrorNotificationsRecipient,
+            errorSettingsModel.errorNotificationsRecipient,
             'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
-        );
-
-        System.assertEquals(
-            false,
-            errorSettingsModel.enableDebug,
-            'Enable Debug on resulting model should match value set in hierarchy settings.'
-        );
-
-        System.assertEquals(
-            true,
-            errorSettingsModel.errorHandling,
-            'Error handling on resulting model should be inverse of value set in hierarchy settings.'
         );
     }
 
@@ -165,40 +146,21 @@ private with sharing class ErrorSettingsMapper_TEST {
         ErrorSettingsModel errorSettingsModel = errorSettingsMapperInstance.getErrorSettingsModel();
         Test.stopTest();
 
-        System.assertEquals(
-            true,
-            errorSettingsModel.storeErrors,
-            'Store Errors on resulting model should match value set in hierarchy settings.'
-        );
-
-        System.assertEquals(
-            true,
-            errorSettingsModel.sendErrorNotifications,
-            'Send Error Notifications on resulting model should match value set in hierarchy settings.'
+        ErrorSettingsMapper_TEST.assertSettingBooleans(errorSettingsModel);
+        ErrorSettingsMapper_TEST.assertValidErrorNotificationRecipientCategoryLabelsByValue(
+            errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue
         );
 
         System.assertEquals(
             'User',
-            errorSettingsModel.sendErrorNotificationsRecipientCategory,
+            errorSettingsModel.errorNotificationsRecipientCategory,
             'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
         );
 
         System.assertEquals(
             fakeUserId,
-            errorSettingsModel.sendErrorNotificationsRecipient,
+            errorSettingsModel.errorNotificationsRecipient,
             'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
-        );
-
-        System.assertEquals(
-            false,
-            errorSettingsModel.enableDebug,
-            'Enable Debug on resulting model should match value set in hierarchy settings.'
-        );
-
-        System.assertEquals(
-            true,
-            errorSettingsModel.errorHandling,
-            'Error handling on resulting model should be inverse of value set in hierarchy settings.'
         );
     }
 
@@ -225,6 +187,28 @@ private with sharing class ErrorSettingsMapper_TEST {
         ErrorSettingsModel errorSettingsModel = errorSettingsMapperInstance.getErrorSettingsModel();
         Test.stopTest();
 
+        ErrorSettingsMapper_TEST.assertSettingBooleans(errorSettingsModel);
+        ErrorSettingsMapper_TEST.assertValidErrorNotificationRecipientCategoryLabelsByValue(
+            errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue
+        );
+
+        System.assertEquals(
+            'Chatter Group',
+            errorSettingsModel.errorNotificationsRecipientCategory,
+            'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            fakeChatterGroupId,
+            errorSettingsModel.errorNotificationsRecipient,
+            'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Helper assert method to assert error settings model booleans to make permutations easier to read
+     ***************************************************************************************************************************/
+    private static void assertSettingBooleans(ErrorSettingsModel errorSettingsModel) {
         System.assertEquals(
             true,
             errorSettingsModel.storeErrors,
@@ -238,18 +222,6 @@ private with sharing class ErrorSettingsMapper_TEST {
         );
 
         System.assertEquals(
-            'Chatter Group',
-            errorSettingsModel.sendErrorNotificationsRecipientCategory,
-            'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
-        );
-
-        System.assertEquals(
-            fakeChatterGroupId,
-            errorSettingsModel.sendErrorNotificationsRecipient,
-            'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
-        );
-
-        System.assertEquals(
             false,
             errorSettingsModel.enableDebug,
             'Enable Debug on resulting model should match value set in hierarchy settings.'
@@ -259,6 +231,34 @@ private with sharing class ErrorSettingsMapper_TEST {
             true,
             errorSettingsModel.errorHandling,
             'Error handling on resulting model should be inverse of value set in hierarchy settings.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Helper assert method to make certain that consistency in valid models is used.
+     ***************************************************************************************************************************/
+    private static void assertValidErrorNotificationRecipientCategoryLabelsByValue(
+        Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue
+    ) {
+        System.assertEquals(
+            3,
+            validErrorNotificationRecipientCategoryLabelsByValue.size(),
+            'Only 3 values should be pulled for valid error notification recipient categories.'
+        );
+        System.assertEquals(
+            Label.stgOptAllSysAdmins,
+            validErrorNotificationRecipientCategoryLabelsByValue.get('All Sys Admins'),
+            'The label for \'All Sys Admins\' should be the expected value.'
+        );
+        System.assertEquals(
+            Label.stgOptUser,
+            validErrorNotificationRecipientCategoryLabelsByValue.get('User'),
+            'The label for \'User\' should be the expected value.'
+        );
+        System.assertEquals(
+            Label.stgOptChatterGroup,
+            validErrorNotificationRecipientCategoryLabelsByValue.get('Chatter Group'),
+            'The label for \'Chatter Group\' should be the expected value.'
         );
     }
 
@@ -295,6 +295,22 @@ private with sharing class ErrorSettingsMapper_TEST {
             CollaborationGroup.SObjectType.getDescribe().getKeyPrefix(),
             chatterGroupIdPrefix,
             'Chatter Group Id Prefix identified should match the prefix from the schema.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the expected valid error notification recipient categories are pulled
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getValidErrorNotificationRecipientCategoryLabelsByValue() {
+        ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        Test.startTest();
+        Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = errorSettingsMapperInstance.getValidErrorNotificationRecipientCategoryLabelsByValue();
+        Test.stopTest();
+
+        ErrorSettingsMapper_TEST.assertValidErrorNotificationRecipientCategoryLabelsByValue(
+            validErrorNotificationRecipientCategoryLabelsByValue
         );
     }
 }

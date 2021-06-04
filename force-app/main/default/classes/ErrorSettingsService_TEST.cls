@@ -132,13 +132,13 @@ private with sharing class ErrorSettingsService_TEST {
 
         System.assertEquals(
             'All Sys Admins',
-            errorSettingsModel.sendErrorNotificationsRecipientCategory,
+            errorSettingsModel.errorNotificationsRecipientCategory,
             'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
         );
 
         System.assertEquals(
             'All Sys Admins',
-            errorSettingsModel.sendErrorNotificationsRecipient,
+            errorSettingsModel.errorNotificationsRecipient,
             'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
         );
 
@@ -153,6 +153,18 @@ private with sharing class ErrorSettingsService_TEST {
             errorSettingsModel.errorHandling,
             'Error handling model property should be inverse of value set in hierarchy settings.'
         );
+
+        System.assertEquals(
+            1,
+            errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue.size(),
+            'Error handling model valid error notification recipient categories should have 1 value.'
+        );
+
+        System.assertEquals(
+            'All Sys Admins Label',
+            errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue.get('All Sys Admins'),
+            'Error handling model valid error notification recipient categories label for \'All Sys Admins\' should be \'All Sys Admins Label\'.'
+        );
     }
 
     /**************************************************************************************************************************
@@ -163,8 +175,20 @@ private with sharing class ErrorSettingsService_TEST {
      * @description Stub class to simulate the response from ErrorSettingsMapper to return a valid ErrorSettingsModel.
      **************************************************************************************************************************************/
     private class STUB_ErrorSettingsMapper extends ErrorSettingsMapper {
+        public Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>{
+            'All Sys Admins' => 'All Sys Admins Label'
+        };
+
         public override ErrorSettingsModel getErrorSettingsModel() {
-            return new ErrorSettingsModel(true, true, 'All Sys Admins', 'All Sys Admins', false, true);
+            return new ErrorSettingsModel(
+                true,
+                true,
+                'All Sys Admins',
+                'All Sys Admins',
+                false,
+                true,
+                this.validErrorNotificationRecipientCategoryLabelsByValue
+            );
         }
     }
 }

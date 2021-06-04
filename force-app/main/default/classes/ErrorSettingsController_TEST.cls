@@ -75,8 +75,8 @@ private with sharing class ErrorSettingsController_TEST {
 
         System.assertEquals(
             'All Sys Admins',
-            errorSettingsVModel.sendErrorNotificationsRecipientCategory,
-            'Send error notifications recipient category should match expected value.'
+            errorSettingsVModel.errorNotificationsRecipientCategory,
+            'Error notifications recipient category should match expected value.'
         );
 
         System.assertEquals(

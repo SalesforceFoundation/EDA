@@ -34,37 +34,43 @@
 public with sharing class ErrorSettingsModel {
     public Boolean storeErrors { get; private set; }
     public Boolean sendErrorNotifications { get; private set; }
-    public String sendErrorNotificationsRecipientCategory { get; private set; }
-    public String sendErrorNotificationsRecipient { get; private set; }
+    public String errorNotificationsRecipientCategory { get; private set; }
+    public String errorNotificationsRecipient { get; private set; }
     public Boolean enableDebug { get; private set; }
     public Boolean errorHandling { get; private set; }
+
+    public Map<String, String> validErrorNotificationsRecipientCategoryLabelsByValue;
 
     /******************************************************************************************
      * @description constructor
      * @param  storeErrors A boolen indicating whether error storing functionality is enabled
      * @param  sendErrorNotifications A boolen indicating whether send error notifications
      * functionality is enabled
-     * @param  sendErrorNotificationsRecipientCategory A string indicating the send error
+     * @param  errorNotificationsRecipientCategory A string indicating the send error
      * notifications recipient's category such as User
-     * @param  sendErrorNotificationsRecipient A string indicating the recipient of error
+     * @param  errorNotificationsRecipient A string indicating the recipient of error
      * notifications
      * @param  enableDebug A boolen indicating whether debug functionality is enabled
      * @param  errorHandling A boolen indicating whether error handling functionality is enabled
+     * @param validErrorNotificationsRecipientCategoryLabelsByValue The map of valid error
+     * notificiation category labels by their values
      * @return A ErrorSettingsModel with all properties populated.
      ******************************************************************************************/
     public ErrorSettingsModel(
         Boolean storeErrors,
         Boolean sendErrorNotifications,
-        String sendErrorNotificationsRecipientCategory,
-        String sendErrorNotificationsRecipient,
+        String errorNotificationsRecipientCategory,
+        String errorNotificationsRecipient,
         Boolean enableDebug,
-        Boolean errorHandling
+        Boolean errorHandling,
+        Map<String, String> validErrorNotificationsRecipientCategoryLabelsByValue
     ) {
         this.storeErrors = storeErrors;
         this.sendErrorNotifications = sendErrorNotifications;
-        this.sendErrorNotificationsRecipientCategory = sendErrorNotificationsRecipientCategory;
-        this.sendErrorNotificationsRecipient = sendErrorNotificationsRecipient;
+        this.errorNotificationsRecipientCategory = errorNotificationsRecipientCategory;
+        this.errorNotificationsRecipient = errorNotificationsRecipient;
         this.enableDebug = enableDebug;
         this.errorHandling = errorHandling;
+        this.validErrorNotificationsRecipientCategoryLabelsByValue = validErrorNotificationsRecipientCategoryLabelsByValue;
     }
 }

@@ -46,7 +46,7 @@ private with sharing class ErrorSettingsVModel_TEST {
         System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');
         System.assertEquals(
             'All Sys Admins',
-            errorSettingsVModel.sendErrorNotificationsRecipientCategory,
+            errorSettingsVModel.errorNotificationsRecipientCategory,
             'Send error notifications should be set to a category of \'All Sys Admins\'.'
         );
         System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');

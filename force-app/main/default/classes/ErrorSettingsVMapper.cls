@@ -65,7 +65,7 @@ public virtual with sharing class ErrorSettingsVMapper {
         return new ErrorSettingsVModel(
             errorSettingsModel.storeErrors,
             errorSettingsModel.sendErrorNotifications,
-            errorSettingsModel.sendErrorNotificationsRecipientCategory,
+            errorSettingsModel.errorNotificationsRecipientCategory,
             errorSettingsModel.enableDebug,
             errorSettingsModel.errorHandling
         );
