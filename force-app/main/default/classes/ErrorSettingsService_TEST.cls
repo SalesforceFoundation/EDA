@@ -131,6 +131,18 @@ private with sharing class ErrorSettingsService_TEST {
         );
 
         System.assertEquals(
+            'All Sys Admins',
+            errorSettingsModel.sendErrorNotificationsRecipientCategory,
+            'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsModel.sendErrorNotificationsRecipient,
+            'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
             false,
             errorSettingsModel.enableDebug,
             'Enable debug model property should match value set in hierarchy settings.'
