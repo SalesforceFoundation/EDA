@@ -85,14 +85,15 @@ private with sharing class ErrorSettingsMapper_TEST {
 
     /**************************************************************************************************************************
      * @description Test method to verify that the getErrorSettingsModel method returns an ErrorSettingsModel with properties
-     * set to match those in Hierarchy Settings.
+     * set to match those in Hierarchy Settings when the send error notifications recipient is all sys admins.
      ***************************************************************************************************************************/
     @isTest
-    private static void getErrorSettingsModelValid() {
+    private static void getErrorSettingsModelValidAllSysAdmins() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Store_Errors_On__c = true,
                 Error_Notifications_On__c = true,
+                Error_Notifications_To__c = 'All Sys Admins'
                 Enable_Debug__c = false,
                 Disable_Error_Handling__c = false
             )
@@ -114,6 +115,136 @@ private with sharing class ErrorSettingsMapper_TEST {
             true,
             errorSettingsModel.sendErrorNotifications,
             'Send Error Notifications on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsModel.sendErrorNotificationsRecipientCategory,
+            'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsModel.sendErrorNotificationsRecipient,
+            'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            false,
+            errorSettingsModel.enableDebug,
+            'Enable Debug on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsModel.errorHandling,
+            'Error handling on resulting model should be inverse of value set in hierarchy settings.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getErrorSettingsModel method returns an ErrorSettingsModel with properties
+     * set to match those in Hierarchy Settings when the send error notifications recipient is a user.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getErrorSettingsModelValidUser() {
+        String fakeUserId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Store_Errors_On__c = true,
+                Error_Notifications_On__c = true,
+                Error_Notifications_To__c = fakeUserId,
+                Enable_Debug__c = false,
+                Disable_Error_Handling__c = false
+            )
+        );
+
+        ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        Test.startTest();
+        ErrorSettingsModel errorSettingsModel = errorSettingsMapperInstance.getErrorSettingsModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            errorSettingsModel.storeErrors,
+            'Store Errors on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsModel.sendErrorNotifications,
+            'Send Error Notifications on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            'User',
+            errorSettingsModel.sendErrorNotificationsRecipientCategory,
+            'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            fakeUserId,
+            errorSettingsModel.sendErrorNotificationsRecipient,
+            'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            false,
+            errorSettingsModel.enableDebug,
+            'Enable Debug on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsModel.errorHandling,
+            'Error handling on resulting model should be inverse of value set in hierarchy settings.'
+        );
+    }/**************************************************************************************************************************
+     * @description Test method to verify that the getErrorSettingsModel method returns an ErrorSettingsModel with properties
+     * set to match those in Hierarchy Settings when the send error notifications recipient is a chatter group
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getErrorSettingsModelValidUser() {
+        String fakeChatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Store_Errors_On__c = true,
+                Error_Notifications_On__c = true,
+                Error_Notifications_To__c = fakeChatterGroupId,
+                Enable_Debug__c = false,
+                Disable_Error_Handling__c = false
+            )
+        );
+
+        ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        Test.startTest();
+        ErrorSettingsModel errorSettingsModel = errorSettingsMapperInstance.getErrorSettingsModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            errorSettingsModel.storeErrors,
+            'Store Errors on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsModel.sendErrorNotifications,
+            'Send Error Notifications on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            'Chatter Group',
+            errorSettingsModel.sendErrorNotificationsRecipientCategory,
+            'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            fakeChatterGroupId,
+            errorSettingsModel.sendErrorNotificationsRecipient,
+            'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
         );
 
         System.assertEquals(

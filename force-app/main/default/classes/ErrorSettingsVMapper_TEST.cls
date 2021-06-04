@@ -153,7 +153,7 @@ private with sharing class ErrorSettingsVMapper_TEST {
      *********************************************************************************************************************/
     private class STUB_ErrorSettingsService extends ErrorSettingsService {
         public override ErrorSettingsModel getErrorSettingsModel() {
-            return new ErrorSettingsModel(true, true, false, true);
+            return new ErrorSettingsModel(true, true, 'All Sys Admins', 'All Sys Admins', false, true);
         }
     }
 }

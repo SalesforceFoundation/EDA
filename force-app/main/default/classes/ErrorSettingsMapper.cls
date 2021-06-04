@@ -62,12 +62,37 @@ public virtual with sharing class ErrorSettingsMapper {
      ********************************************************************************************/
     public virtual ErrorSettingsModel getErrorSettingsModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
+        String errorNotificationsCategory;
+
+        if (String.isBlank(hierarchySettings.Error_Notifications_To__c)) {
+            errorNotificationsCategory = '';
+        } else if (hierarchySettings.Error_Notifications_To__c == 'All Sys Admins') {
+            errorNotificationsCategory = 'All Sys Admins';
+        } else if (hierarchySettings.Error_Notifications_To__c.startsWith(this.getUserIdPrefix())) {
+            errorNotificationsCategory = 'User';
+        } else if (hierarchySettings.Error_Notifications_To__c.startsWith(this.getUserIdPrefix())) {
+            errorNotificationsCategory = 'Chatter Group';
+        }
 
         return new ErrorSettingsModel(
             hierarchySettings.Store_Errors_On__c,
             hierarchySettings.Error_Notifications_On__c,
+            errorNotificationsCategory,
+            hierarchySettings.Error_Notifications_To__c,
             hierarchySettings.Enable_Debug__c,
             !hierarchySettings.Disable_Error_Handling__c
         );
+    }
+
+    private String getUserIdPrefix() {
+        Schema.DescribeSObjectResult userSObjectDescribe = UTIL_Describe.getObjectDescribe('User');
+        return userSObjectDescribeResult.getKeyPrefix();
+    }
+
+    private String getChatterGroupIdPrefix() {
+        Schema.DescribeSObjectResult chatterGroupSObjectDescribe = UTIL_Describe.getObjectDescribe(
+            'CollaborationGroup'
+        );
+        return chatterGroupSObjectDescribe.getKeyPrefix();
     }
 }
