@@ -12,10 +12,6 @@
     </applicationVisibilities>
     <custom>false</custom>
     <tabVisibilities>
-        <tab>Settings_Health_Check</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>%%%NAMESPACE%%%Error__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
