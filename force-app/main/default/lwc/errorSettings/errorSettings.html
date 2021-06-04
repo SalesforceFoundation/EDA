@@ -12,7 +12,7 @@
             <c-settings-row-input
                 class="slds-size_3-of-3"
                 title={labelReference.storeErrorsSettingTitle}
-                description={labelReference.storeErrorsSettingDescription}
+                description={labelReference.sendErrorsSettingDescription}
                 type="toggle"
                 input-id={inputAttributeReference.storeErrorsToggleId}
                 value={errorSettingsVModel.storeErrors}
@@ -33,6 +33,8 @@
                 onsettingsinputchange={handleSendErrorNotificationsChange}
                 disabled={affordancesDisabled}
             ></c-settings-row-input>
+
+            <template if:true={errorSettingsVModel.sendErrorNotifications}> </template>
 
             <!-- Enable Error Handling Setting -->
             <c-settings-row-input
