@@ -24,6 +24,7 @@ export default class SingleLookup extends LightningElement {
     @api removeLabel;
     @api placeholder;
     @api value;
+    @api disabled;
     @track options = [];
     @track inputDelayTimeout = 0;
 
@@ -189,7 +190,7 @@ export default class SingleLookup extends LightningElement {
 
     resetFocus() {
         //reset focus back to the input field for better accessibility
-        let inputField  = this.template.querySelector('input');
+        let inputField = this.template.querySelector("input");
         if (inputField) {
             inputField.focus();
         }
@@ -279,7 +280,6 @@ export default class SingleLookup extends LightningElement {
         const inputElement = this.template.querySelector("input");
         inputElement.removeAttribute("readonly", "");
     }
-
 
     dispatchSearchEvent(inputValue) {
         const searchEvent = new CustomEvent("search", {

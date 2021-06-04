@@ -11,6 +11,11 @@ import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgHelpErrorNotifyOn from "@salesforce/label/c.stgHelpErrorNotifyOn";
 import stgErrorNotifRecipientsTitle from "@salesforce/label/c.stgErrorNotifRecipientsTitle";
 import stgHelpErrorNotifyTo from "@salesforce/label/c.stgHelpErrorNotifyTo";
+import stgSelectChatterGroupTitle from "@salesforce/label/c.stgSelectChatterGroupTitle";
+import stgSelectChatterGroupDesc from "@salesforce/label/c.stgSelectChatterGroupDesc";
+import stgSelectUserTitle from "@salesforce/label/c.stgSelectUserTitle";
+import stgSelectUserDesc from "@salesforce/label/c.stgSelectUserDesc";
+import stgBtnClearSelectionA11y from "@salesforce/label/c.stgBtnClearSelectionA11y";
 import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
 import stgEnableDebugHelp from "@salesforce/label/c.stgEnableDebugHelp";
 import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
@@ -33,6 +38,11 @@ export default class ErrorSettings extends LightningElement {
         errorNotificationRecipientsTitle: stgErrorNotifRecipientsTitle,
         errorNotificationRecipientsDescription: stgHelpErrorNotifyTo,
         comboboxPlaceholderText: stgOptSelect,
+        chatterGroupLookupTitle: stgSelectChatterGroupTitle,
+        chatterGroupLookupPlaceholder: stgSelectChatterGroupDesc,
+        userLookupTitle: stgSelectUserTitle,
+        userLookupPlaceholder: stgSelectUserDesc,
+        lookupClearSelection: stgBtnClearSelectionA11y,
         enableDebugSettingsTitle: stgEnableDebugTitle,
         enableDebugSettingsDescription: stgEnableDebugHelp,
         errorHandlingSettingTitle: stgDisableErrorHandlingTitle,
@@ -54,6 +64,19 @@ export default class ErrorSettings extends LightningElement {
         return undefined;
     }
 
+    get errorNotificationRecipientIsChatterGroup() {
+        return (
+            !!this.errorSettingsVModel &&
+            this.errorSettingsVModel.errorNotificationsRecipientCategory.value === "Chatter Group"
+        );
+    }
+
+    get errorNotificationRecipientIsUser() {
+        return (
+            !!this.errorSettingsVModel && this.errorSettingsVModel.errorNotificationsRecipientCategory.value === "User"
+        );
+    }
+
     @api
     handleSaveCanvasRender() {
         this.template.querySelector("c-settings-save-canvas").focusOnTitle();
@@ -64,7 +87,7 @@ export default class ErrorSettings extends LightningElement {
         this.errorSettingsWireResult = result;
 
         if (result.data) {
-            this.errorSettingsVModel = result.data;
+            this.errorSettingsVModel = JSON.parse(JSON.stringify(result.data));
         } else if (result.error) {
             //console.log("error retrieving errorSettingsVModel");
         }
@@ -96,12 +119,19 @@ export default class ErrorSettings extends LightningElement {
 
     handleErrorNotificationRecipientCategoryChange(event) {
         const eventDetail = event.detail;
+        console.log(this.errorSettingsVModel.errorNotificationsRecipientCategory);
+        this.errorSettingsVModel.errorNotificationsRecipientCategory.value = eventDetail.value;
+        let hierarchySettingsChange;
 
         if (event.detail.value !== errorNotificationRecipientCategoryAllSysAdmins) {
-            return;
+            hierarchySettingsChange = {
+                settingsType: "string",
+                settingsName: "Error_Notifications_To__c",
+                settingsValue: "TODO", //TODO: Make reset to current value
+            };
         }
 
-        let hierarchySettingsChange = {
+        hierarchySettingsChange = {
             settingsType: "string",
             settingsName: "Error_Notifications_To__c",
             settingsValue: eventDetail.value,

@@ -39,6 +39,7 @@
                             role="textbox"
                             placeholder={placeholder}
                             value={inputValue}
+                            disabled={disabled}
                             onblur={handleBlur}
                             onfocus={handleFocus}
                             oninput={handleInput}
@@ -79,8 +80,9 @@
                     >
                         <ul class="slds-listbox slds-listbox_vertical" role="presentation">
                             <li role="presentation" class="slds-listbox__item">
-                                <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_term slds-has-focus"
-                                     role="option"
+                                <div
+                                    class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_term slds-has-focus"
+                                    role="option"
                                 >
                                     <span class="slds-media__figure slds-listbox__option-icon">
                                         <lightning-icon icon-name="utility:search" size="small"> </lightning-icon>

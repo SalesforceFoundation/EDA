@@ -48,6 +48,28 @@
                     onsettingsinputchange={handleErrorNotificationRecipientCategoryChange}
                     disabled={affordancesDisabled}
                 ></c-settings-row-input>
+                <template if:true={errorNotificationRecipientIsChatterGroup}>
+                    <c-single-lookup
+                        required="true"
+                        label={labelReference.chatterGroupLookupTitle}
+                        remove-label={labelReference.lookupClearSelection}
+                        placeholder={labelReference.chatterGroupLookupPlaceholder}
+                        value={chatterValue}
+                        options={chatterOptions}
+                        disabled={affordancesDisabled}
+                    ></c-single-lookup>
+                </template>
+                <template if:true={errorNotificationRecipientIsUser}>
+                    <c-single-lookup
+                        required="true"
+                        label={labelReference.userLookupTitle}
+                        remove-label={labelReference.lookupClearSelection}
+                        placeholder={labelReference.userLookupPlaceholder}
+                        value={userValue}
+                        options={userOptions}
+                        disabled={affordancesDisabled}
+                    ></c-single-lookup
+                ></template>
             </template>
 
             <!-- Enable Error Handling Setting -->
