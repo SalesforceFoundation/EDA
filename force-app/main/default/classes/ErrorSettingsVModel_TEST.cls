@@ -39,19 +39,19 @@ private with sharing class ErrorSettingsVModel_TEST {
      ****************************************************************************/
     @isTest
     private static void sixArugumentConstructorValid() {
-        List<ComboboxValueVModel> errorNotificationsRecipientCategoryComboboxValues = new List<ComboboxValueVModel>{
+        List<ComboboxValueVModel> errorNotificationsRecipientCategoryValues = new List<ComboboxValueVModel>{
             new ComboboxValueVModel('All Sys Admins Label', 'All Sys Admins')
         };
-        ComboboxVModel errorNotificationsRecipientCategoryCombobox = new ComboboxVModel(
+        ComboboxVModel errorNotificationsRecipientCategory = new ComboboxVModel(
             'All Sys Admins',
-            errorNotificationsRecipientCategoryComboboxValues
+            errorNotificationsRecipientCategoryValues
         );
 
         Test.startTest();
         ErrorSettingsVModel errorSettingsVModel = new ErrorSettingsVModel(
             false,
             true,
-            errorNotificationsRecipientCategoryCombobox,
+            errorNotificationsRecipientCategory,
             true,
             true
         );
@@ -60,22 +60,22 @@ private with sharing class ErrorSettingsVModel_TEST {
         System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');
         System.assertEquals(
             'All Sys Admins',
-            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.value,
+            errorSettingsVModel.errorNotificationsRecipientCategory.value,
             'Send Error Notificiation recipient category should match expected value.'
         );
         System.assertEquals(
             1,
-            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.options.size(),
+            errorSettingsVModel.errorNotificationsRecipientCategory.options.size(),
             'Number of Send Error Notificiation recipient category valid options should match expected size.'
         );
         System.assertEquals(
             'All Sys Admins',
-            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.options[0].value,
+            errorSettingsVModel.errorNotificationsRecipientCategory.options[0].value,
             'Send Error Notificiation recipient category valid option for All Sys Admins should have expected value.'
         );
         System.assertEquals(
             'All Sys Admins Label',
-            errorSettingsVModel.errorNotificationsRecipientCategoryCombobox.options[0].label,
+            errorSettingsVModel.errorNotificationsRecipientCategory.options[0].label,
             'Send Error Notificiation recipient category valid option for All Sys Admins should have expected label.'
         );
         System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');

@@ -7,12 +7,16 @@ import stgErrorSettingsTitle from "@salesforce/label/c.stgErrorSettingsTitle";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 import stgHelpStoreErrorsOn from "@salesforce/label/c.stgHelpStoreErrorsOn";
 import stgSendErrorsTitle from "@salesforce/label/c.stgSendErrorsTitle";
+import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 import stgHelpErrorNotifyOn from "@salesforce/label/c.stgHelpErrorNotifyOn";
+import stgErrorNotifRecipientsTitle from "@salesforce/label/c.stgErrorNotifRecipientsTitle";
+import stgHelpErrorNotifyTo from "@salesforce/label/c.stgHelpErrorNotifyTo";
 import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
 import stgEnableDebugHelp from "@salesforce/label/c.stgEnableDebugHelp";
 import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
 import stgHelpErrorDisable from "@salesforce/label/c.stgHelpErrorDisable";
 
+const errorNotificationRecipientCategoryAllSysAdmins = "All Sys Admins";
 export default class ErrorSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -26,6 +30,9 @@ export default class ErrorSettings extends LightningElement {
         storeErrorsSettingDescription: stgHelpStoreErrorsOn,
         sendErrorsSettingTitle: stgSendErrorsTitle,
         sendErrorsSettingDescription: stgHelpErrorNotifyOn,
+        errorNotificationRecipientsTitle: stgErrorNotifRecipientsTitle,
+        errorNotificationRecipientsDescription: stgHelpErrorNotifyTo,
+        comboboxPlaceholderText: stgOptSelect,
         enableDebugSettingsTitle: stgEnableDebugTitle,
         enableDebugSettingsDescription: stgEnableDebugHelp,
         errorHandlingSettingTitle: stgDisableErrorHandlingTitle,
@@ -35,6 +42,7 @@ export default class ErrorSettings extends LightningElement {
     inputAttributeReference = {
         storeErrorsToggleId: "storeErrors",
         sendErrorNotificationsToggleId: "sendErrorNotifications",
+        errorNotificationRecipientsComboboxId: "errorNotificationRecipients",
         enableDebugToggleId: "enableDebug",
         errorHandlingToggleId: "errorHandling",
     };
@@ -80,6 +88,22 @@ export default class ErrorSettings extends LightningElement {
         let hierarchySettingsChange = {
             settingsType: "boolean",
             settingsName: "Error_Notifications_On__c",
+            settingsValue: eventDetail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleErrorNotificationRecipientCategoryChange(event) {
+        const eventDetail = event.detail;
+
+        if (event.detail.value !== errorNotificationRecipientCategoryAllSysAdmins) {
+            return;
+        }
+
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Error_Notifications_To__c",
             settingsValue: eventDetail.value,
         };
 

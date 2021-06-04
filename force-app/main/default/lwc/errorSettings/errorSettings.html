@@ -34,7 +34,21 @@
                 disabled={affordancesDisabled}
             ></c-settings-row-input>
 
-            <template if:true={errorSettingsVModel.sendErrorNotifications}> </template>
+            <template if:true={errorSettingsVModel.sendErrorNotifications}>
+                <!-- Send Error Notification Category -->
+                <c-settings-row-input
+                    class="slds-size_3-of-3"
+                    title={labelReference.errorNotificationRecipientsTitle}
+                    description={labelReference.errorNotificationRecipientsDescription}
+                    type="combobox"
+                    input-id={inputAttributeReference.errorNotificationRecipientsComboboxId}
+                    value={errorSettingsVModel.errorNotificationsRecipientCategory.value}
+                    placeholder={labelReference.comboboxPlaceholderText}
+                    options={errorSettingsVModel.errorNotificationsRecipientCategory.options}
+                    onsettingsinputchange={handleErrorNotificationRecipientCategoryChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+            </template>
 
             <!-- Enable Error Handling Setting -->
             <c-settings-row-input

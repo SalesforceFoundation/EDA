@@ -62,14 +62,14 @@ public virtual with sharing class ErrorSettingsVMapper {
      *********************************************************************************************/
     public virtual ErrorSettingsVModel getErrorSettingsViewModel() {
         ErrorSettingsModel errorSettingsModel = this.locateErrorSettingsService().getErrorSettingsModel();
-        ComboboxVModel errorNotificationsRecipientCategoryComboboxVModel = this.getErrorNotificationsRecipientCategoryComboboxVModel(
+        ComboboxVModel errorNotificationsRecipientCategoryVModel = this.geterrorNotificationsRecipientCategoryVModel(
             errorSettingsModel
         );
 
         return new ErrorSettingsVModel(
             errorSettingsModel.storeErrors,
             errorSettingsModel.sendErrorNotifications,
-            errorNotificationsRecipientCategoryComboboxVModel,
+            errorNotificationsRecipientCategoryVModel,
             errorSettingsModel.enableDebug,
             errorSettingsModel.errorHandling
         );
@@ -82,7 +82,7 @@ public virtual with sharing class ErrorSettingsVMapper {
      * Vmodels from
      * @return The valid error notification recipient category combobox view model
      ******************************************************************************/
-    private ComboboxVModel getErrorNotificationsRecipientCategoryComboboxVModel(ErrorSettingsModel errorSettingsModel) {
+    private ComboboxVModel geterrorNotificationsRecipientCategoryVModel(ErrorSettingsModel errorSettingsModel) {
         List<ComboboxValueVModel> errorNotificationsRecipientCategoryVModelList = new List<ComboboxValueVModel>();
 
         List<String> errorNotificationsRecipientCategoryValueList = new List<String>(

@@ -39,7 +39,7 @@ public with sharing class ErrorSettingsVModel {
     public Boolean sendErrorNotifications { get; private set; }
 
     @AuraEnabled
-    public ComboboxVModel errorNotificationsRecipientCategoryCombobox { get; private set; }
+    public ComboboxVModel errorNotificationsRecipientCategory { get; private set; }
 
     @AuraEnabled
     public Boolean enableDebug { get; private set; }
@@ -52,7 +52,7 @@ public with sharing class ErrorSettingsVModel {
      * @param  storeErrors A boolen indicating whether error storing functionality is enabled
      * @param  sendErrorNotifications A boolen indicating whether send error notifications
      * functionality is enabled
-     * @param  errorNotificationsRecipientCategoryCombobox The comobobox view model that represents the
+     * @param  errorNotificationsRecipientCategory The comobobox view model that represents the
      * @param  enableDebug A boolen indicating whether debug functionality is enabled
      * @param  errorHandling A boolen indicating whether error handling functionality is enabled
      * @return An ErrorSettingsVModel
@@ -60,13 +60,13 @@ public with sharing class ErrorSettingsVModel {
     public ErrorSettingsVModel(
         Boolean storeErrors,
         Boolean sendErrorNotifications,
-        ComboboxVModel errorNotificationsRecipientCategoryCombobox,
+        ComboboxVModel errorNotificationsRecipientCategory,
         Boolean enableDebug,
         Boolean errorHandling
     ) {
         this.storeErrors = storeErrors;
         this.sendErrorNotifications = sendErrorNotifications;
-        this.errorNotificationsRecipientCategoryCombobox = errorNotificationsRecipientCategoryCombobox;
+        this.errorNotificationsRecipientCategory = errorNotificationsRecipientCategory;
         this.enableDebug = enableDebug;
         this.errorHandling = errorHandling;
     }
