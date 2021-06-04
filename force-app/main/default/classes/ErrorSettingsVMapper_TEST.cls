@@ -132,6 +132,12 @@ private with sharing class ErrorSettingsVMapper_TEST {
         );
 
         System.assertEquals(
+            'All Sys Admins',
+            errorSettingsVModel.sendErrorNotificationsRecipientCategory,
+            'Send error notifications recipient category should match expected value.'
+        );
+
+        System.assertEquals(
             false,
             errorSettingsVModel.enableDebug,
             'Enable debug functionality should match expected value.'

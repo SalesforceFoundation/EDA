@@ -74,6 +74,12 @@ private with sharing class ErrorSettingsController_TEST {
         );
 
         System.assertEquals(
+            'All Sys Admins',
+            errorSettingsVModel.sendErrorNotificationsRecipientCategory,
+            'Send error notifications recipient category should match expected value.'
+        );
+
+        System.assertEquals(
             false,
             errorSettingsVModel.enableDebug,
             'Enable debug functionality should match expected value.'
@@ -113,7 +119,7 @@ private with sharing class ErrorSettingsController_TEST {
      *********************************************************************************************************************/
     private class STUB_ErrorSettingsVMapper extends ErrorSettingsVMapper {
         public override ErrorSettingsVModel getErrorSettingsViewModel() {
-            return new ErrorSettingsVModel(true, true, false, false);
+            return new ErrorSettingsVModel(true, true, 'All Sys Admins', false, false);
         }
     }
 

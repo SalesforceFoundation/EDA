@@ -38,17 +38,18 @@ private with sharing class ErrorSettingsVModel_TEST {
      * all properties populated.
      ****************************************************************************/
     @isTest
-    private static void fourArugumentConstructorValid() {
+    private static void fiveArugumentConstructorValid() {
         Test.startTest();
-        ErrorSettingsVModel errorSettingsVModel = new ErrorSettingsVModel(false, true, true, true);
+        ErrorSettingsVModel errorSettingsVModel = new ErrorSettingsVModel(false, true, 'All Sys Admins', true, true);
         Test.stopTest();
 
         System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');
         System.assertEquals(
-            true,
-            errorSettingsVModel.sendErrorNotifications,
-            'Send error notifications functionality should be enabled.'
+            'All Sys Admins',
+            errorSettingsVModel.sendErrorNotificationsRecipientCategory,
+            'Send error notifications should be set to a category of \'All Sys Admins\'.'
         );
+        System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');
         System.assertEquals(true, errorSettingsVModel.enableDebug, 'Enable debug functionality should be enabled.');
         System.assertEquals(true, errorSettingsVModel.errorHandling, 'Error handling functionality should be enabled.');
     }
