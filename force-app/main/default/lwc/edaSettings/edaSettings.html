@@ -104,6 +104,13 @@
                         ></c-program-settings>
                     </template>
 
+                    <template if:true={settingsPageToDisplay.programPlanSettings}>
+                        <c-program-plan-settings
+                            class="eda-settings-page"
+                            onsavecanvasrendered={handleSaveCanvasRendered}
+                        ></c-program-plan-settings>
+                    </template>
+
                     <template if:true={settingsPageToDisplay.courseConnectionSettings}>
                         <c-course-connection-settings
                             class="eda-settings-page"
