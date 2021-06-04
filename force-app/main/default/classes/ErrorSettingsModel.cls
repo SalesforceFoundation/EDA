@@ -34,6 +34,8 @@
 public with sharing class ErrorSettingsModel {
     public Boolean storeErrors { get; private set; }
     public Boolean sendErrorNotifications { get; private set; }
+    public Boolean sendErrorNotificationsRecipientCategory { get; private set; }
+    public Boolean sendErrorNotificationsRecipient { get; private set; }
     public Boolean enableDebug { get; private set; }
     public Boolean errorHandling { get; private set; }
 
@@ -42,6 +44,10 @@ public with sharing class ErrorSettingsModel {
      * @param  storeErrors A boolen indicating whether error storing functionality is enabled
      * @param  sendErrorNotifications A boolen indicating whether send error notifications
      * functionality is enabled
+     * @param  sendErrorNotificationsRecipientCategory A string indicating the send error
+     * notifications recipient's category such as User
+     * @param  sendErrorNotificationsRecipient A string indicating the recipient of error
+     * notifications
      * @param  enableDebug A boolen indicating whether debug functionality is enabled
      * @param  errorHandling A boolen indicating whether error handling functionality is enabled
      * @return A ErrorSettingsModel with all properties populated.
@@ -49,11 +55,15 @@ public with sharing class ErrorSettingsModel {
     public ErrorSettingsModel(
         Boolean storeErrors,
         Boolean sendErrorNotifications,
+        String sendErrorNotificationsRecipientCategory,
+        String sendErrorNotificationsRecipient,
         Boolean enableDebug,
         Boolean errorHandling
     ) {
         this.storeErrors = storeErrors;
         this.sendErrorNotifications = sendErrorNotifications;
+        this.sendErrorNotificationsRecipientCategory = sendErrorNotificationsRecipientCategory;
+        this.sendErrorNotificationsRecipient = sendErrorNotificationsRecipient;
         this.enableDebug = enableDebug;
         this.errorHandling = errorHandling;
     }
