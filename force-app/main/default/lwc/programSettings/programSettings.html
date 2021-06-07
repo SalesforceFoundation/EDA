@@ -8,14 +8,14 @@
     >
         <template if:true={programEnrollmentDeletionSettingsVModel}>
             <!-- Program Enrollment Deletion -->
-            <div class="slds-p-right_x-large slds-text-heading_small slds-p-bottom_medium">
+            <div class="slds-col slds-size_3-of-3 slds-p-right_x-large slds-text-heading_small slds-p-bottom_medium">
                 {labelReference.programEnrollmentDeletionHeading}
                 <lightning-helptext
                     content={labelReference.programEnrollmentDeletionStatusSettingDescription}
                 ></lightning-helptext>
             </div>
             <c-settings-row-input
-                class="slds-size_3-of-3"
+                class="slds-col slds-size_3-of-3"
                 title={labelReference.programEnrollmentDeletionSettingTitle}
                 description={labelReference.programEnrollmentDeletionSettingDescription}
                 type="toggle"
@@ -29,7 +29,7 @@
             <template if:true={showProgramEnrollmentDeletionStatus}>
                 <!-- Program Enrollment Deletion Status -->
                 <c-settings-row-input
-                    class="slds-size_3-of-3 slds-p-left_x-large"
+                    class="slds-col slds-size_3-of-3"
                     title={labelReference.programEnrollmentDeletionStatusSettingTitle}
                     description={labelReference.programEnrollmentDeletionStatusSettingDescription}
                     type="combobox"
@@ -42,91 +42,87 @@
                 ></c-settings-row-input>
             </template>
         </template>
+
         <template if:true={affiliationsWithProgramEnrollmentVModel}>
             <!-- Affiliations created with Program Enrollment -->
-            <div class="slds-p-right_x-large slds-text-heading_small slds-p-top_x-large">
+            <div class="slds-col slds-size_3-of-3 slds-p-right_x-large slds-text-heading_small slds-p-bottom_medium">
                 {labelReference.afflCreateFromPrgrmHeading}
                 <lightning-helptext content={labelReference.afflCreateFromPrgrmInfo}></lightning-helptext>
             </div>
-            <div class="slds-grid slds-grid_vertical-align-start slds-wrap">
-                <!-- Default Account Record Type Setting -->
-                <c-settings-row-input
-                    class="slds-size_3-of-3 slds-p-top_x-large"
-                    title={labelReference.afflProgEnrollSetRoleValue}
-                    description={labelReference.helpAfflProgEnrollSetRoleValue}
-                    type="combobox"
-                    input-id={inputAttributeReference.createdAfflRoleComboboxId}
-                    value={affiliationsWithProgramEnrollmentVModel.role.value}
-                    placeholder={labelReference.placeHolderText}
-                    options={affiliationsWithProgramEnrollmentVModel.role.options}
-                    onsettingsinputchange={handleRoleForCreatedAfflChange}
-                    disabled={affordancesDisabled}
-                ></c-settings-row-input>
 
-                <c-settings-row-input
-                    class="slds-size_3-of-3"
-                    title={labelReference.afflProgEnrollSetStatusValue}
-                    description={labelReference.helpAfflProgEnrollSetStatusValue}
-                    type="combobox"
-                    input-id={inputAttributeReference.createdAfflStatusComboboxId}
-                    value={affiliationsWithProgramEnrollmentVModel.status.value}
-                    placeholder={labelReference.placeHolderText}
-                    options={affiliationsWithProgramEnrollmentVModel.status.options}
-                    onsettingsinputchange={handleStatusForCreatedAfflChange}
-                    disabled={affordancesDisabled}
-                ></c-settings-row-input>
-                <c-settings-row-input
-                    class="slds-size_3-of-3"
-                    title={labelReference.afflCopyProgramEnrollmentEndDate}
-                    label={labelReference.afflCopyProgramEnrollmentEndDate}
-                    description={labelReference.helpAfflCopyProgramEnrollmentEndDate}
-                    type="toggle"
-                    input-id={inputAttributeReference.copyEndDateComboboxId}
-                    value={affiliationsWithProgramEnrollmentVModel.copyEndDate}
-                    checked={affiliationsWithProgramEnrollmentVModel.copyEndDate}
-                    onsettingsinputchange={handleCopyEndDateChange}
-                    disabled={affordancesDisabled}
-                ></c-settings-row-input>
+            <c-settings-row-input
+                class="slds-col slds-size_3-of-3"
+                title={labelReference.afflProgEnrollSetRoleValue}
+                description={labelReference.helpAfflProgEnrollSetRoleValue}
+                type="combobox"
+                input-id={inputAttributeReference.createdAfflRoleComboboxId}
+                value={affiliationsWithProgramEnrollmentVModel.role.value}
+                placeholder={labelReference.placeHolderText}
+                options={affiliationsWithProgramEnrollmentVModel.role.options}
+                onsettingsinputchange={handleRoleForCreatedAfflChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
 
-                <c-settings-row-input
-                    class="slds-size_3-of-3"
-                    title={labelReference.afflCopyProgramEnrollmentStartDate}
-                    label={labelReference.afflCopyProgramEnrollmentStartDate}
-                    description={labelReference.helpAfflCopyProgramEnrollmentStartDate}
-                    type="toggle"
-                    input-id={inputAttributeReference.copyStartDateComboboxId}
-                    value={affiliationsWithProgramEnrollmentVModel.copyStartDate}
-                    checked={affiliationsWithProgramEnrollmentVModel.copyStartDate}
-                    onsettingsinputchange={handleCopyStartDateChange}
-                    disabled={affordancesDisabled}
-                ></c-settings-row-input>
-            </div>
+            <c-settings-row-input
+                class="slds-col slds-size_3-of-3"
+                title={labelReference.afflProgEnrollSetStatusValue}
+                description={labelReference.helpAfflProgEnrollSetStatusValue}
+                type="combobox"
+                input-id={inputAttributeReference.createdAfflStatusComboboxId}
+                value={affiliationsWithProgramEnrollmentVModel.status.value}
+                placeholder={labelReference.placeHolderText}
+                options={affiliationsWithProgramEnrollmentVModel.status.options}
+                onsettingsinputchange={handleStatusForCreatedAfflChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+
+            <c-settings-row-input
+                class="slds-col slds-size_3-of-3"
+                title={labelReference.afflCopyProgramEnrollmentEndDate}
+                label={labelReference.afflCopyProgramEnrollmentEndDate}
+                description={labelReference.helpAfflCopyProgramEnrollmentEndDate}
+                type="toggle"
+                input-id={inputAttributeReference.copyEndDateComboboxId}
+                value={affiliationsWithProgramEnrollmentVModel.copyEndDate}
+                checked={affiliationsWithProgramEnrollmentVModel.copyEndDate}
+                onsettingsinputchange={handleCopyEndDateChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+
+            <c-settings-row-input
+                class="slds-col slds-size_3-of-3"
+                title={labelReference.afflCopyProgramEnrollmentStartDate}
+                label={labelReference.afflCopyProgramEnrollmentStartDate}
+                description={labelReference.helpAfflCopyProgramEnrollmentStartDate}
+                type="toggle"
+                input-id={inputAttributeReference.copyStartDateComboboxId}
+                value={affiliationsWithProgramEnrollmentVModel.copyStartDate}
+                checked={affiliationsWithProgramEnrollmentVModel.copyStartDate}
+                onsettingsinputchange={handleCopyStartDateChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
         </template>
 
         <!-- Auto Enrollment Mappings -->
         <template if:true={autoEnrollmentMappingsVModel}>
-            <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
-                <div class="slds-col slds-size_2-of-3">
-                    <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
-                        {labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsTitle}
-                    </div>
-                    <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
-                        <lightning-formatted-rich-text value={autoEnrollmentMappingsDescriptionRichText}>
-                        </lightning-formatted-rich-text>
-                    </div>
+            <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+                    {labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsTitle}
                 </div>
-                <div
-                    class="slds-grid slds-grid_align-end slds-p-right_large slds-p-top_large slds-col slds-col_bump-right"
-                >
-                    <lightning-button
-                        label={labelReference.newButton}
-                        title={labelReference.newButtonA11y}
-                        onclick={handleNewAutoEnrollmentMappingClick}
-                    ></lightning-button>
+                <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                    <lightning-formatted-rich-text value={autoEnrollmentMappingsDescriptionRichText}>
+                    </lightning-formatted-rich-text>
                 </div>
             </div>
+            <div class="slds-col slds-size_1-of-3 slds-p-right_large slds-text-align_right">
+                <lightning-button
+                    label={labelReference.newButton}
+                    title={labelReference.newButtonA11y}
+                    onclick={handleNewAutoEnrollmentMappingClick}
+                ></lightning-button>
+            </div>
 
-            <div class="slds-col slds-size_3-of-3 slds-col_bump-right slds-p-right_x-large">
+            <div class="slds-col slds-size_3-of-3 slds-p-right_x-large">
                 <lightning-datatable
                     key-field="mappingName"
                     data={autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels}
