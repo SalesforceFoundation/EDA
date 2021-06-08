@@ -107,6 +107,24 @@ private with sharing class ErrorSettingsVMapper_TEST {
     }
 
     /***********************************************************************************************************************************
+     * @description Test method to verify that the locateUserService method returns instance of UserService
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void locateUserServiceValid() {
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        UserService userServiceInstance = errorSettingsVMapperInstance.locateUserService();
+        Test.stopTest();
+
+        System.assertEquals(
+            UserService.getInstance(),
+            userServiceInstance,
+            'Should return the instance of UserService'
+        );
+    }
+
+    /***********************************************************************************************************************************
      * @description Test method to verify that the getErrorSettingsViewModel method returns an ErrorSettingsVModel that reflects the
      * error settings set in hierarchy settings
      ***********************************************************************************************************************************/

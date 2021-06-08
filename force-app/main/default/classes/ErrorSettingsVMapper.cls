@@ -113,4 +113,13 @@ public virtual with sharing class ErrorSettingsVMapper {
     private ErrorSettingsService locateErrorSettingsService() {
         return ErrorSettingsService.getInstance();
     }
+
+    /******************************************************************************
+     * @description Retrieve an instance of the UserService class.
+     * @return An instance of UserService
+     ******************************************************************************/
+    @TestVisible
+    private UserService locateUserService() {
+        return UserService.getInstance();
+    }
 }
