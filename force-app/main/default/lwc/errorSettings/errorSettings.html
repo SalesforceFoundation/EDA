@@ -50,7 +50,7 @@
                 ></c-settings-row-input>
                 <template if:true={errorNotificationRecipientIsChatterGroup}>
                     <c-single-lookup
-                        required="true"
+                        required={showRequired}
                         label={labelReference.chatterGroupLookupTitle}
                         remove-label={labelReference.lookupClearSelection}
                         placeholder={labelReference.chatterGroupLookupPlaceholder}
@@ -61,7 +61,7 @@
                 </template>
                 <template if:true={errorNotificationRecipientIsUser}>
                     <c-single-lookup
-                        required="true"
+                        required={showRequired}
                         label={labelReference.userLookupTitle}
                         remove-label={labelReference.lookupClearSelection}
                         placeholder={labelReference.userLookupPlaceholder}

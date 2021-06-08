@@ -22,6 +22,8 @@ import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHan
 import stgHelpErrorDisable from "@salesforce/label/c.stgHelpErrorDisable";
 
 const errorNotificationRecipientCategoryAllSysAdmins = "All Sys Admins";
+const errorNotificationRecipientCategoryChatterGroup = "Chatter Group";
+const errorNotificationRecipientCategoryUser = "User";
 export default class ErrorSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -64,16 +66,23 @@ export default class ErrorSettings extends LightningElement {
         return undefined;
     }
 
+    get showRequired() {
+        return !this.affordancesDisabled;
+    }
+
     get errorNotificationRecipientIsChatterGroup() {
         return (
             !!this.errorSettingsVModel &&
-            this.errorSettingsVModel.errorNotificationsRecipientCategory.value === "Chatter Group"
+            this.errorSettingsVModel.errorNotificationsRecipientCategory.value ===
+                errorNotificationRecipientCategoryChatterGroup
         );
     }
 
     get errorNotificationRecipientIsUser() {
         return (
-            !!this.errorSettingsVModel && this.errorSettingsVModel.errorNotificationsRecipientCategory.value === "User"
+            !!this.errorSettingsVModel &&
+            this.errorSettingsVModel.errorNotificationsRecipientCategory.value ===
+                errorNotificationRecipientCategoryUser
         );
     }
 
