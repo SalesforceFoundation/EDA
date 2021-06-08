@@ -33,6 +33,8 @@
  */
 @isTest
 private with sharing class CourseConnectionSettingsController_TEST {
+    private static Integer loopCounter = 5;
+
     /**************************************************************************************************************************************************
      * @description Test method to verify that the locateCourseConnectionSettingsVMapper method returns instance of CourseConnectionSettingsVMapper.
      *************************************************************************************************************************************************/
@@ -65,6 +67,30 @@ private with sharing class CourseConnectionSettingsController_TEST {
             courseConnectionSettingsVModel.courseConnectionRecordTypes,
             'courseConnectionRecordTypes should be true.'
         );
+
+        System.assertEquals(
+            'Selected Default Student RecType',
+            courseConnectionSettingsVModel.defaultStudentRecType.value,
+            'Default Student Rectype ComboboxVModel selected value should be set.'
+        );
+
+        System.assertEquals(
+            'Selected Default Faculty RecType',
+            courseConnectionSettingsVModel.defaultFacultyRecType.value,
+            'Default Faculty Rectype ComboboxVModel selected value should be set.'
+        );
+
+        System.assertEquals(
+            loopCounter,
+            courseConnectionSettingsVModel.defaultStudentRecType.options.size(),
+            'ComboboxVModel options should be populated.'
+        );
+
+        System.assertEquals(
+            loopCounter,
+            courseConnectionSettingsVModel.defaultFacultyRecType.options.size(),
+            'ComboboxVModel options should be populated.'
+        );
     }
 
     /****************************************************************************************************************************
@@ -93,7 +119,22 @@ private with sharing class CourseConnectionSettingsController_TEST {
      **************************************************************************************************************************************/
     private class STUB_CourseConnectionSettingsVMapper extends CourseConnectionSettingsVMapper {
         public override CourseConnectionSettingsVModel getCourseConnectionSettingsVModel() {
-            return new CourseConnectionSettingsVModel(true);
+            List<ComboboxValueVModel> courseConnRecordTypeOptionsList = new List<ComboboxValueVModel>();
+
+            for (Integer i = 0; i < loopCounter; i++) {
+                courseConnRecordTypeOptionsList.add(new ComboboxValueVModel('Label' + i, 'Value' + i));
+            }
+
+            ComboboxVModel defaultStudentComboboxVModel = new ComboboxVModel(
+                'Selected Default Student RecType',
+                courseConnRecordTypeOptionsList
+            );
+            ComboboxVModel defaultFacultyComboboxVModel = new ComboboxVModel(
+                'Selected Default Faculty RecType',
+                courseConnRecordTypeOptionsList
+            );
+
+            return new CourseConnectionSettingsVModel(true, defaultStudentComboboxVModel, defaultFacultyComboboxVModel);
         }
     }
 

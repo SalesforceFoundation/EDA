@@ -33,14 +33,40 @@
  */
 @isTest
 private with sharing class CourseConnectionSettingsVModel_TEST {
+    private static Integer loopCounter = 5;
     /***********************************************************************************
      * @description Test to verify that the constructor generates a model
      * with all properties populated as expected.
      ***********************************************************************************/
     @isTest
     private static void testConstructorValid() {
+        List<ComboboxValueVModel> courseConnectionRecTypeComboboxValueVModelsList = new List<ComboboxValueVModel>();
+
+        for (Integer i = 0; i < loopCounter; i++) {
+            courseConnectionRecTypeComboboxValueVModelsList.add(
+                new ComboboxValueVModel(
+                    'Course Connection Record Type Label' + i,
+                    'Course Connection Record Type Value' + i
+                )
+            );
+        }
+
+        ComboboxVModel defaultStudentComboboxVModel = new ComboboxVModel(
+            'Default Student',
+            courseConnectionRecTypeComboboxValueVModelsList
+        );
+
+        ComboboxVModel defaultFacultyComboboxVModel = new ComboboxVModel(
+            'Default Faculty',
+            courseConnectionRecTypeComboboxValueVModelsList
+        );
+
         Test.startTest();
-        CourseConnectionSettingsVModel courseConnectionSettingsVModel = new CourseConnectionSettingsVModel(true);
+        CourseConnectionSettingsVModel courseConnectionSettingsVModel = new CourseConnectionSettingsVModel(
+            true,
+            defaultStudentComboboxVModel,
+            defaultFacultyComboboxVModel
+        );
         Test.stopTest();
 
         System.assertEquals(
@@ -48,5 +74,31 @@ private with sharing class CourseConnectionSettingsVModel_TEST {
             courseConnectionSettingsVModel.courseConnectionRecordTypes,
             'courseConnectionRecordTypes should be enabled'
         );
+
+        for (Integer i = 0; i < loopCounter; i++) {
+            System.assertEquals(
+                'Course Connection Record Type Label' + i,
+                courseConnectionSettingsVModel.defaultStudentRecType.options[i].label,
+                'Label on comboboxValueVModel for Default Student Course Connection model should be set.'
+            );
+
+            System.assertEquals(
+                'Course Connection Record Type Label' + i,
+                courseConnectionSettingsVModel.defaultFacultyRecType.options[i].label,
+                'Label on comboboxValueVModel for Default Faculty Course Connection model should be set.'
+            );
+
+            System.assertEquals(
+                'Course Connection Record Type Value' + i,
+                courseConnectionSettingsVModel.defaultStudentRecType.options[i].value,
+                'Value on comboboxValueVModel for Default Student Course Connection model should be set.'
+            );
+
+            System.assertEquals(
+                'Course Connection Record Type Value' + i,
+                courseConnectionSettingsVModel.defaultFacultyRecType.options[i].value,
+                'Value on comboboxValueVModel for Default Faculty Course Connection model should be set.'
+            );
+        }
     }
 }

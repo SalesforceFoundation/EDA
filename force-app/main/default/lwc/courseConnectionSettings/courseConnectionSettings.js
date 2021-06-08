@@ -8,6 +8,11 @@ import getCourseConnectionSettingsVModel from "@salesforce/apex/CourseConnection
 import stgCourseConnectionsTitle from "@salesforce/label/c.stgCourseConnectionsTitle";
 import stgEnableCourseConnectionsTitle from "@salesforce/label/c.stgEnableCourseConnectionsTitle";
 import stgHelpEnableCourseConnections from "@salesforce/label/c.stgHelpEnableCourseConnections";
+import stgDefaultStudentTypeTitle from "@salesforce/label/c.stgDefaultStudentTypeTitle";
+import stgHelpDefaultStudentType from "@salesforce/label/c.stgHelpDefaultStudentType";
+import stgDefaultFacultyTypeTitle from "@salesforce/label/c.stgDefaultFacultyTypeTitle";
+import stgHelpDefaultFacultyType from "@salesforce/label/c.stgHelpDefaultFacultyType";
+import stgOptSelect from "@salesforce/label/c.stgOptSelect";
 
 export default class CourseConnectionSettings extends LightningElement {
     isEditMode = false;
@@ -19,10 +24,17 @@ export default class CourseConnectionSettings extends LightningElement {
         stgCourseConnectionsTitle: stgCourseConnectionsTitle,
         stgEnableCourseConnectionsTitle: stgEnableCourseConnectionsTitle,
         stgHelpEnableCourseConnections: stgHelpEnableCourseConnections,
+        defaultStudentRecTypeLabel: stgDefaultStudentTypeTitle,
+        defaultStudentRecTypeDesc: stgHelpDefaultStudentType,
+        defaultFacultyRecTypeLabel: stgDefaultFacultyTypeTitle,
+        defaultFacultyRecTypeDesc: stgHelpDefaultFacultyType,
+        comboboxPlaceholderText: stgOptSelect,
     };
 
     inputAttributeReference = {
         courseConnectionRecordTypesToggleId: "courseConnectionRecordTypes",
+        studentModelComboboxId: "studentRecordTypes",
+        facultyModelComboboxId: "facultyRecordTypes",
     };
 
     get affordancesDisabled() {
@@ -74,7 +86,6 @@ export default class CourseConnectionSettings extends LightningElement {
     courseConnectionSettingsWire(result) {
         this.courseConnectionSettingsWireResult = result;
         if (result.data) {
-            console.log(result.data);
             this.courseConnectionSettingsVModel = result.data;
         } else if (result.error) {
             //console.log("error retrieving accountmodelsettingsvmodel");
@@ -87,6 +98,28 @@ export default class CourseConnectionSettings extends LightningElement {
             settingsName: "Enable_Course_Connections__c",
             settingsValue: event.detail.value,
         };
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleDefaultStudentRecTypeChange(event) {
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Student_RecType__c",
+            settingsValue: event.detail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleDefaultFacultyRecTypeChange(event) {
+        // add updated setting to hierarchySettingsChanges object
+        let hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Faculty_RecType__c",
+            settingsValue: event.detail.value,
+        };
+
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
     }
 }

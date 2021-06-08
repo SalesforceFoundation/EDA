@@ -17,6 +17,32 @@
                 onsettingsinputchange={handleCourseConnectionRecordTypesChange}
                 disabled={affordancesDisabled}
             ></c-settings-row-input>
+
+            <c-settings-row-input
+                class="slds-size_3-of-3 slds-p-left_xx-large"
+                title={labelReference.defaultStudentRecTypeLabel}
+                description={labelReference.defaultStudentRecTypeDesc}
+                type="combobox"
+                input-id={inputAttributeReference.studentModelComboboxId}
+                value={courseConnectionSettingsVModel.defaultStudentRecType.value}
+                placeholder={labelReference.comboboxPlaceholderText}
+                options={courseConnectionSettingsVModel.defaultStudentRecType.options}
+                onsettingsinputchange={handleDefaultStudentRecTypeChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+
+            <c-settings-row-input
+                class="slds-size_3-of-3 slds-p-left_xx-large"
+                title={labelReference.defaultFacultyRecTypeLabel}
+                description={labelReference.defaultFacultyRecTypeDesc}
+                type="combobox"
+                input-id={inputAttributeReference.facultyModelComboboxId}
+                value={courseConnectionSettingsVModel.defaultFacultyRecType.value}
+                placeholder={labelReference.comboboxPlaceholderText}
+                options={courseConnectionSettingsVModel.defaultFacultyRecType.options}
+                onsettingsinputchange={handleDefaultFacultyRecTypeChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
         </template>
     </c-settings-save-canvas>
 </template>
