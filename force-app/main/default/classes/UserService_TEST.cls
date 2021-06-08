@@ -91,11 +91,7 @@ private with sharing class UserService_TEST {
 
         System.assertEquals(userId, userModel.Id, 'User Model id should match user id.');
         System.assertEquals('User Name', userModel.name, 'User Model name should match user name.');
-        System.assertEquals(
-            true,
-            userModel.isActive,
-            'User Model is active should match user is active.'
-        );
+        System.assertEquals(true, userModel.isActive, 'User Model is active should match user is active.');
         System.assertEquals('user@test.com', userModel.email, 'User Model email should match user email.');
         System.assertEquals(
             'https://example.com/user.png',
@@ -104,12 +100,31 @@ private with sharing class UserService_TEST {
         );
     }
 
+    /**************************************************************************************************************************
+     * @description Test method to verify that getting the model label is functional
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getModelObjectLabel() {
+        UserMapper.instance = new STUB_UserMapper();
+        UserService userServiceInstance = UserService.getInstance();
+
+        Test.startTest();
+        String userObjectLabel = userServiceInstance.getModelObjectLabel();
+        Test.stopTest();
+
+        System.assertEquals('User', userObjectLabel, 'Label retrieved should be that provided by the mapper.');
+    }
+
     /*************************************************************************************************************
      * @description Stub class to simulate the response from PermissionSetMapper to return false
      */
     private class STUB_UserMapper extends UserMapper {
         public override UserModel getUserModelById(Id userId) {
             return new UserModel(userId, 'User Name', true, 'user@test.com', 'https://example.com/user.png');
+        }
+
+        public override String getModelObjectLabel() {
+            return 'User';
         }
     }
 }

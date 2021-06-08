@@ -103,4 +103,22 @@ private with sharing class UserMapper_TEST {
             'User Model small photo url should match user small photo url.'
         );
     }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that getting the model label is functional
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getModelObjectLabel() {
+        UserMapper userMapperInstance = UserMapper.getInstance();
+
+        Test.startTest();
+        String userObjectLabel = userMapperInstance.getModelObjectLabel();
+        Test.stopTest();
+
+        System.assertEquals(
+            UTIL_Describe.getObjectDescribe('User').getLabel(),
+            userObjectLabel,
+            'Label retrieved should be that of the user object label'
+        );
+    }
 }

@@ -146,7 +146,7 @@ public virtual with sharing class ErrorSettingsVMapper {
     private LookupResult getUserLookupResultById(String userIdString) {
         Id userId;
 
-        //TODO: Handle specific exception
+        //TODO: Handle specific exception only
         //try {
         userId = Id.valueOf(userIdString);
         /*} catch (Exception e) {
@@ -159,13 +159,14 @@ public virtual with sharing class ErrorSettingsVMapper {
             return null;
         }
 
-        //TODO: Add User object label
+        String lookupResultLabel = UserService.getInstance().getModelObjectLabel();
+
         return new LookupResult(
             userModel.name,
             userModel.id,
             'standard:avatar',
             userModel.smallPhotoUrl,
-            '',
+            lookupResultLabel,
             userModel.email
         );
     }

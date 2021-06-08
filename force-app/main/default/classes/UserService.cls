@@ -65,6 +65,14 @@ public virtual with sharing class UserService {
         return this.locateUserMapper().getUserModelById(userId);
     }
 
+    /************************************************************************************************************
+     * @Description Retrieve the label for the user object
+     * @return The label for the user object
+     ************************************************************************************************************/
+    public virtual String getModelObjectLabel() {
+        return this.locateUserMapper().getModelObjectLabel();
+    }
+
     /******************************************************************************
      * @description Retrieves an instance of the UserMapper class.
      * @return An instance of UserMapper.

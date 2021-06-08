@@ -77,4 +77,12 @@ public virtual with sharing class UserMapper {
             userRetrieved.SmallPhotoUrl
         );
     }
+
+    /************************************************************************************************************
+     * @description Retrieve the label for the user object
+     * @return The label for the user object
+     ************************************************************************************************************/
+    public virtual String getModelObjectLabel() {
+        return UTIL_Describe.getObjectDescribe('User').getLabel();
+    }
 }

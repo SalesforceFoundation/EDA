@@ -15,9 +15,9 @@ const KEY_DOWN = 40;
 export default class SingleLookup extends LightningElement {
     focused = false;
     inputValue = "";
-    value;
     optionIndex = -1;
     blurLock = false;
+    valueLoaded = false;
 
     @api required;
     @api label;
@@ -56,6 +56,10 @@ export default class SingleLookup extends LightningElement {
         } else {
             return DATA_QA_LOCATOR;
         }
+    }
+
+    get showClearSelection() {
+        return !!this.value && !this.disabled;
     }
 
     get showOptions() {
@@ -293,5 +297,14 @@ export default class SingleLookup extends LightningElement {
             detail: { value: this.value ? this.value : "" },
         });
         this.dispatchEvent(changeEvent);
+    }
+
+    connectedCallback() {
+        if (this.valueLoaded || !this.value) {
+            return;
+        }
+
+        this.inputValue = this.value.label;
+        this.valueLoaded = true;
     }
 }
