@@ -38,7 +38,7 @@ public virtual with sharing class LookupResult implements Comparable {
     }
 
     public LookupResult(SObject obj) {
-        obj.getSObjectType().getDescribe().getLabel();
+        this.label = obj.getSObjectType().getDescribe().getLabel();
         this.value = obj.Id;
     }
 
@@ -64,8 +64,11 @@ public virtual with sharing class LookupResult implements Comparable {
     }
 
     public Boolean equals(LookupResult lookupResult) {
-        return this.label = lookupResult.label && this.value = lookupResult.value &&
-        this.alternativeText = lookupResult.alternativeText && this.icon = lookupResult.icon &&
-        this.imageUrl = lookupResult.imageUrl && this.meta = lookupResult.meta;
+        return this.label == lookupResult.label &&
+            this.value == lookupResult.value &&
+            this.alternativeText == lookupResult.alternativeText &&
+            this.icon == lookupResult.icon &&
+            this.imageUrl == lookupResult.imageUrl &&
+            this.meta == lookupResult.meta;
     }
 }
