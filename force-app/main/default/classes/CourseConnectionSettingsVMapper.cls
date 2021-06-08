@@ -64,7 +64,54 @@ public virtual with sharing class CourseConnectionSettingsVMapper {
         CourseConnectionSettingsModel courseConnectionSettingsModel = this.locateCourseConnectionSettingsService()
             .getCourseConnectionSettingsModel();
 
-        return new CourseConnectionSettingsVModel(courseConnectionSettingsModel.courseConnectionsEnabled);
+        // get all active Course Connection record types in org
+        Map<Id, RecordTypeModel> activeCourseConnRecordTypeModelsById = this.locateRecordTypeService()
+            .getActiveRecordTypeModelsById(
+                this.locateRecordTypeService().getModelByIdMapForSObjectType(Course_Enrollment__c.SObjectType).values()
+            );
+
+        // populate available combobox options with active Course Connection record types
+        List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = this.getComboboxVModelOptionsForActiveCourseConnRecordTypes(
+            activeCourseConnRecordTypeModelsById.values()
+        );
+
+        // generate comboboxVModel for Default Active Student Record Type setting with selected value set as current value in hierarchy settings
+        ComboboxVModel studentRecTypeComboboxVModel = new ComboboxVModel(
+            courseConnectionSettingsModel.studentRecordTypeId,
+            activeRecordTypeComboboxValueVModelsList
+        );
+
+        // generate comboboxVModels for Default Faculty Student Record Type setting with selected value set as current value in hierarchy settings
+        ComboboxVModel facultyRecTypeComboboxVModel = new ComboboxVModel(
+            courseConnectionSettingsModel.facultyRecordTypeId,
+            activeRecordTypeComboboxValueVModelsList
+        );
+
+        return new CourseConnectionSettingsVModel(
+            courseConnectionSettingsModel.courseConnectionsEnabled,
+            studentRecTypeComboboxVModel,
+            facultyRecTypeComboboxVModel
+        );
+    }
+
+    /**********************************************************************************************************************
+     * @description Helper method to generate a list of comboboxValueVModels for all active Course Connection record types.
+     * @param  activeCourseConnRecordTypeModelsList A list of RecordType models corresponding to active Course Connection record types.
+     * @return A List<ComboboxValueVModel> containing comboboxValueVModels for all active Course Connection record types.
+     **********************************************************************************************************************/
+    @TestVisible
+    private List<ComboboxValueVModel> getComboboxVModelOptionsForActiveCourseConnRecordTypes(
+        List<RecordTypeModel> activeCourseConnRecordTypeModelsList
+    ) {
+        List<ComboboxValueVModel> activeRecordTypeComboboxValueVModelsList = new List<ComboboxValueVModel>();
+
+        for (RecordTypeModel activeCourseConnRecordTypeModel : activeCourseConnRecordTypeModelsList) {
+            activeRecordTypeComboboxValueVModelsList.add(
+                new ComboboxValueVModel(activeCourseConnRecordTypeModel.name, activeCourseConnRecordTypeModel.id)
+            );
+        }
+
+        return activeRecordTypeComboboxValueVModelsList;
     }
 
     /*****************************************************************************
@@ -74,5 +121,14 @@ public virtual with sharing class CourseConnectionSettingsVMapper {
     @TestVisible
     private CourseConnectionSettingsService locateCourseConnectionSettingsService() {
         return CourseConnectionSettingsService.getInstance();
+    }
+
+    /*****************************************************************************
+     * @description Retrieve an instance of the RecordTypeService class.
+     * @return An instance of RecordTypeService.
+     *****************************************************************************/
+    @TestVisible
+    private RecordTypeService locateRecordTypeService() {
+        return RecordTypeService.getInstance();
     }
 }
