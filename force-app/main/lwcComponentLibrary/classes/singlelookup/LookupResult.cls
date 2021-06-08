@@ -60,6 +60,12 @@ public virtual with sharing class LookupResult implements Comparable {
 
     public Integer compareTo(Object compareMe) {
         LookupResult compareResult = (LookupResult) compareMe;
-        return getLabelLower().compareTo(compareResult.getLabelLower());
+        return this.getLabelLower().compareTo(compareResult.getLabelLower());
+    }
+
+    public Boolean equals(LookupResult lookupResult) {
+        return this.label = lookupResult.label && this.value = lookupResult.value &&
+        this.alternativeText = lookupResult.alternativeText && this.icon = lookupResult.icon &&
+        this.imageUrl = lookupResult.imageUrl && this.meta = lookupResult.meta;
     }
 }
