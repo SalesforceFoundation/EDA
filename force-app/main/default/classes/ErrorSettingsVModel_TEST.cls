@@ -46,6 +46,14 @@ private with sharing class ErrorSettingsVModel_TEST {
             'All Sys Admins',
             errorNotificationsRecipientCategoryValues
         );
+        LookupResult lookupResult = new LookupResult(
+            'User Name',
+            UTIL_UnitTestData_TEST.getFakeId(User.SObjectType),
+            'standard:avatar',
+            'https://example.com/test.png',
+            'User',
+            'Email'
+        );
 
         Test.startTest();
         ErrorSettingsVModel errorSettingsVModel = new ErrorSettingsVModel(
@@ -53,7 +61,8 @@ private with sharing class ErrorSettingsVModel_TEST {
             true,
             errorNotificationsRecipientCategory,
             true,
-            true
+            true,
+            lookupResult
         );
         Test.stopTest();
 
@@ -81,5 +90,9 @@ private with sharing class ErrorSettingsVModel_TEST {
         System.assertEquals(false, errorSettingsVModel.storeErrors, 'Store errors functionality should be disabled.');
         System.assertEquals(true, errorSettingsVModel.enableDebug, 'Enable debug functionality should be enabled.');
         System.assertEquals(true, errorSettingsVModel.errorHandling, 'Error handling functionality should be enabled.');
+        System.assert(
+            lookupResult.equals(errorSettingsVModel.userOrChatterGroupLookupResult),
+            'Lookup result for error settings should match that specified.'
+        );
     }
 }

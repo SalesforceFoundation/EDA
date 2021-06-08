@@ -47,6 +47,9 @@ public with sharing class ErrorSettingsVModel {
     @AuraEnabled
     public Boolean errorHandling { get; private set; }
 
+    @AuraEnabled
+    public LookupResult userOrChatterGroupLookupResult { get; private set; }
+
     /**
      * @description Single argument constructor
      * @param  storeErrors A boolen indicating whether error storing functionality is enabled
@@ -55,6 +58,7 @@ public with sharing class ErrorSettingsVModel {
      * @param  errorNotificationsRecipientCategory The comobobox view model that represents the
      * @param  enableDebug A boolen indicating whether debug functionality is enabled
      * @param  errorHandling A boolen indicating whether error handling functionality is enabled
+     * @param  userOrChatterGroupLookupResult The lookup result to display for a user or chatter group
      * @return An ErrorSettingsVModel
      */
     public ErrorSettingsVModel(
@@ -62,12 +66,14 @@ public with sharing class ErrorSettingsVModel {
         Boolean sendErrorNotifications,
         ComboboxVModel errorNotificationsRecipientCategory,
         Boolean enableDebug,
-        Boolean errorHandling
+        Boolean errorHandling,
+        LookupResult userOrChatterGroupLookupResult
     ) {
         this.storeErrors = storeErrors;
         this.sendErrorNotifications = sendErrorNotifications;
         this.errorNotificationsRecipientCategory = errorNotificationsRecipientCategory;
         this.enableDebug = enableDebug;
         this.errorHandling = errorHandling;
+        this.userOrChatterGroupLookupResult = userOrChatterGroupLookupResult;
     }
 }

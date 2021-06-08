@@ -65,13 +65,18 @@ public virtual with sharing class ErrorSettingsVMapper {
         ComboboxVModel errorNotificationsRecipientCategoryVModel = this.geterrorNotificationsRecipientCategoryVModel(
             errorSettingsModel
         );
+        LookupResult errorNotificationRecipientVModel = this.getLookupResultForSetting(
+            errorSettingsModel.errorNotificationsRecipientCategory,
+            errorSettingsModel.errorNotificationsRecipient
+        );
 
         return new ErrorSettingsVModel(
             errorSettingsModel.storeErrors,
             errorSettingsModel.sendErrorNotifications,
             errorNotificationsRecipientCategoryVModel,
             errorSettingsModel.enableDebug,
-            errorSettingsModel.errorHandling
+            errorSettingsModel.errorHandling,
+            errorNotificationRecipientVModel
         );
     }
 
@@ -102,6 +107,66 @@ public virtual with sharing class ErrorSettingsVMapper {
         return new ComboboxVModel(
             errorSettingsModel.errorNotificationsRecipientCategory,
             errorNotificationsRecipientCategoryVModelList
+        );
+    }
+
+    /******************************************************************************
+     * @description Retrieve the lookup result for a user based on its id
+     * @param userIdString The string representing a user Id, representing the
+     * possibility that it is not an Id
+     * @return A LookupResult for a user model
+     ******************************************************************************/
+    @TestVisible
+    private LookupResult getLookupResultForSetting(String errorRecipientCategory, String errorRecipient) {
+        switch on errorRecipientCategory {
+            when 'All Sys Admins' {
+                return null;
+            }
+            when 'Chatter Group' {
+                //TODO: Implement chatter group
+                return null;
+            }
+            when 'User' {
+                return this.getUserLookupResultById(errorRecipient);
+            }
+            when else {
+                //Deliberately permit invalid values to be pulled but have it be blank
+                return null;
+            }
+        }
+    }
+
+    /******************************************************************************
+     * @description Retrieve the lookup result for a user based on its id
+     * @param userIdString The string representing a user Id, representing the
+     * possibility that it is not an Id
+     * @return A LookupResult for a user model
+     ******************************************************************************/
+    @TestVisible
+    private LookupResult getUserLookupResultById(String userIdString) {
+        Id userId;
+
+        //TODO: Handle specific exception
+        //try {
+        userId = Id.valueOf(userIdString);
+        /*} catch (Exception e) {
+            return null;
+        }*/
+
+        UserModel userModel = UserService.getInstance().getUserModelById(userId);
+
+        if (userModel == null) {
+            return null;
+        }
+
+        //TODO: Add User object label
+        return new LookupResult(
+            userModel.name,
+            userModel.id,
+            'standard:avatar',
+            userModel.smallPhotoUrl,
+            '',
+            userModel.email
         );
     }
 
