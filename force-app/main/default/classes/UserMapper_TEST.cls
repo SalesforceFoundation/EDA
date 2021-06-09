@@ -105,24 +105,6 @@ private with sharing class UserMapper_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that getting the model label is functional
-     ***************************************************************************************************************************/
-    @isTest
-    private static void getModelObjectLabel() {
-        UserMapper userMapperInstance = UserMapper.getInstance();
-
-        Test.startTest();
-        String userObjectLabel = userMapperInstance.getModelObjectLabel();
-        Test.stopTest();
-
-        System.assertEquals(
-            UTIL_Describe.getObjectDescribe('User').getLabel(),
-            userObjectLabel,
-            'Label retrieved should be that of the user object label'
-        );
-    }
-
-    /**************************************************************************************************************************
      * @description Test method to verify that getting user models like a name is functional
      ***************************************************************************************************************************/
     @isTest
@@ -144,10 +126,54 @@ private with sharing class UserMapper_TEST {
         List<UserModel> userModelList = userMapperInstance.getUserModelsLikeName('Smith', 1);
         Test.stopTest();
 
+        System.assertEquals(1, userModelList.size(), 'Only 1 user model should be retrieved.');
         System.assertNotEquals(
             null,
             usersByIds.get(userModelList[0].id),
-            'The user retrieved should be within the map of those created.'
+            'The user model retrieved should be within the map of those created.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that getting user models like a name is functional
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getUserModelsLikeNameNegative() {
+        UserMapper userMapperInstance = UserMapper.getInstance();
+        List<Id> userToTestIdList = new List<Id>();
+        userToTestIdList.add(
+            UTIL_UnitTestData_TEST.createNewUserForTests(System.now().getTime() + '@testerson.com').id
+        );
+        userToTestIdList.add(
+            UTIL_UnitTestData_TEST.createNewUserForTests(System.now().getTime() + '@testerson.com2').id
+        );
+
+        Map<Id, User> usersByIds = new Map<Id, User>(
+            [SELECT Id, Name, isActive, Email, SmallPhotoUrl FROM User WHERE Id IN :userToTestIdList]
+        );
+
+        Test.startTest();
+        List<UserModel> userModelList = userMapperInstance.getUserModelsLikeName('Not Smith', 1);
+        Test.stopTest();
+
+        System.assert(userModelList.isEmpty(), 'No user models should be retrieved.');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that getting the model label is functional
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getModelObjectLabel() {
+        UserMapper userMapperInstance = UserMapper.getInstance();
+
+        Test.startTest();
+        String userObjectLabel = userMapperInstance.getModelObjectLabel();
+        Test.stopTest();
+
+        System.assertEquals(
+            UTIL_Describe.getObjectDescribe('User').getLabel(),
+            userObjectLabel,
+            'Label retrieved should be that of the user object label'
         );
     }
 }

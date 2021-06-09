@@ -66,6 +66,16 @@ public virtual with sharing class UserService {
     }
 
     /************************************************************************************************************
+     * @description Retrieve a list of UserModel representing a user and their basic fields
+     * @param userNameMatch The string to match user names to
+     * @param recordLimit The number of records to limit the query to
+     * @return A UserModel
+     ************************************************************************************************************/
+    public virtual List<UserModel> getUserModelsLikeName(String userNameMatch, Integer recordLimit) {
+        return this.locateUserMapper().getUserModelsLikeName(userNameMatch, recordLimit);
+    }
+
+    /************************************************************************************************************
      * @Description Retrieve the label for the user object
      * @return The label for the user object
      ************************************************************************************************************/

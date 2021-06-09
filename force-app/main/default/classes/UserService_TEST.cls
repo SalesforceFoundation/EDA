@@ -81,9 +81,9 @@ private with sharing class UserService_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getUserModelById() {
-        UserMapper.instance = new STUB_UserMapper();
-        UserService userServiceInstance = UserService.getInstance();
         Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
+        UserMapper.instance = new STUB_UserMapper(userId);
+        UserService userServiceInstance = UserService.getInstance();
 
         Test.startTest();
         UserModel userModel = userServiceInstance.getUserModelById(userId);
@@ -101,11 +101,48 @@ private with sharing class UserService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify that getting user models like a name is functional
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getUserModelsLikeName() {
+        Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
+        UserMapper.instance = new STUB_UserMapper(userId);
+        UserService userServiceInstance = UserService.getInstance();
+
+        Test.startTest();
+        List<UserModel> userModelList = userServiceInstance.getUserModelsLikeName('User Name', 1);
+        Test.stopTest();
+
+        System.assertEquals(1, userModelList.size(), 'Only 1 user model should be retrieved.');
+        System.assertEquals(
+            userId,
+            userModelList[0].id,
+            'The user model retrieved should be for the id of those specified in the mapper.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that getting user models like a name is functional
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getUserModelsLikeNameNegative() {
+        Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
+        UserMapper.instance = new STUB_UserMapper(userId);
+        UserService userServiceInstance = UserService.getInstance();
+
+        Test.startTest();
+        List<UserModel> userModelList = userServiceInstance.getUserModelsLikeName('Not User Name', 1);
+        Test.stopTest();
+
+        System.assert(userModelList.isEmpty(), 'Only 0 user model should be retrieved.');
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify that getting the model label is functional
      ***************************************************************************************************************************/
     @isTest
     private static void getModelObjectLabel() {
-        UserMapper.instance = new STUB_UserMapper();
+        UserMapper.instance = new STUB_UserMapper(null);
         UserService userServiceInstance = UserService.getInstance();
 
         Test.startTest();
@@ -119,8 +156,26 @@ private with sharing class UserService_TEST {
      * @description Stub class to simulate the response from PermissionSetMapper to return false
      */
     private class STUB_UserMapper extends UserMapper {
+        private Id userId;
+
+        STUB_UserMapper(Id userId) {
+            this.userId = userId;
+        }
+
         public override UserModel getUserModelById(Id userId) {
             return new UserModel(userId, 'User Name', true, 'user@test.com', 'https://example.com/user.png');
+        }
+
+        public override List<UserModel> getUserModelsLikeName(String userNameMatch, Integer recordLimit) {
+            List<UserModel> userModelList = new List<UserModel>();
+
+            if ('User Name'.toLowerCase().contains(userNameMatch.toLowerCase())) {
+                userModelList.add(
+                    new UserModel(this.userId, 'User Name', true, 'user@test.com', 'https://example.com/user.png')
+                );
+            }
+
+            return userModelList;
         }
 
         public override String getModelObjectLabel() {

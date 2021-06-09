@@ -85,10 +85,12 @@ public virtual with sharing class UserMapper {
      * @return A UserModel
      ************************************************************************************************************/
     public virtual List<UserModel> getUserModelsLikeName(String userNameMatch, Integer recordLimit) {
+        String sanitizedUserNameMatchSearch = '%' + String.escapeSingleQuotes(userNameMatch) + '%';
+
         List<User> usersRetrievedList = [
             SELECT Id, Name, Email, IsActive, SmallPhotoUrl
             FROM User
-            WHERE Name LIKE '%userNameMatch%'
+            WHERE Name LIKE :sanitizedUserNameMatchSearch
             WITH SECURITY_ENFORCED
             LIMIT :recordLimit
         ];
