@@ -60,16 +60,23 @@
                     ></c-single-lookup>
                 </template>
                 <template if:true={errorNotificationRecipientIsUser}>
-                    <c-single-lookup
-                        required={showRequired}
-                        label={labelReference.userLookupTitle}
-                        remove-label={labelReference.lookupClearSelection}
-                        placeholder={labelReference.userLookupPlaceholder}
-                        value={errorSettingsVModel.userOrChatterGroupLookupResult}
-                        options={userOptions}
-                        disabled={affordancesDisabled}
-                    ></c-single-lookup
-                ></template>
+                    <div class="slds-col slds-size_2-of-3"></div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-grid slds-grid_align-end slds-var-p-right_x-large slds-var-p-bottom_x-large">
+                            <div class="slds-col">
+                                <c-single-lookup
+                                    required={showRequired}
+                                    label={labelReference.userLookupTitle}
+                                    remove-label={labelReference.lookupClearSelection}
+                                    placeholder={labelReference.userLookupPlaceholder}
+                                    value={errorSettingsVModel.userOrChatterGroupLookupResult}
+                                    options={userOptions}
+                                    disabled={affordancesDisabled}
+                                ></c-single-lookup>
+                            </div>
+                        </div>
+                    </div>
+                </template>
             </template>
 
             <!-- Enable Error Handling Setting -->

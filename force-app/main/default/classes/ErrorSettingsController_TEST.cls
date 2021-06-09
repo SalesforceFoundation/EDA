@@ -142,7 +142,7 @@ private with sharing class ErrorSettingsController_TEST {
                 errorNotificationsRecipientCategoryValues
             );
 
-            return new ErrorSettingsVModel(true, true, errorNotificationsRecipientCategory, false, false);
+            return new ErrorSettingsVModel(true, true, errorNotificationsRecipientCategory, false, false, null);
         }
     }
 
