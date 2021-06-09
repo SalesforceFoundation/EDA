@@ -135,6 +135,7 @@ public with sharing class AffiliationsSettingsController {
     /************************************************************************************
      * @description Retrieve a ComoboxVModel representing the list of active Account
      * Record Types
+     * @param recordTypeToCheck Selected account record type in the modal
      * @return A ComboboxVModel
      ************************************************************************************/
     @AuraEnabled(cacheable=true)

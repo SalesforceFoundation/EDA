@@ -154,23 +154,29 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
 
     /**********************************************************************************************************
      * @description Retrieve a ComboBoxVModel for all active account record types
+     * @param recordTypeToCheck Selected account record type in the modal
      * @return  A ComboBoxVModel
      *********************************************************************************************************/
     public virtual ComboBoxVModel getAccountRecordTypeComboboxVModel(String recordTypeToCheck) {
         String comboboxValue = recordTypeToCheck;
         List<ComboboxValueVModel> comboboxValues = new List<ComboboxValueVModel>();
 
+        // Get all recordtype models for the account
         Map<Id, RecordTypeModel> accRecordTypeModelsById = this.locateRecordTypeService()
             .getModelByIdMapForSObjectType(Account.SObjectType);
 
-        Map<String, RecordTypeModel> accountRecordTypeModelsByName = this.locateRecordTypeService()
-            .getRecordTypeModelMapByName(accRecordTypeModelsById);
-        Map<String, RecordTypeModel> accountRecordTypeModelsByLabel = this.locateRecordTypeService()
-            .getRecordTypeModelMapByLabel(accRecordTypeModelsById);
+        // Filter to get the active recordtypes model map
+        Map<Id, RecordTypeModel> activeAccountRecordTypeModelsById = this.locateRecordTypeService()
+            .getActiveRecordTypeModelsById(accRecordTypeModelsById.values());
+
+        Map<String, RecordTypeModel> activeAccountRecordTypeModelsByName = this.locateRecordTypeService()
+            .getRecordTypeModelMapByName(activeAccountRecordTypeModelsById);
+        Map<String, RecordTypeModel> activeAccountRecordTypeModelsByLabel = this.locateRecordTypeService()
+            .getRecordTypeModelMapByLabel(activeAccountRecordTypeModelsById);
 
         if (String.isBlank(recordTypeToCheck)) {
             comboboxValues.addAll(
-                this.getComboboxVModelOptionsForActiveAccountRecordTypes(accRecordTypeModelsById.values())
+                this.getComboboxVModelOptionsForActiveAccountRecordTypes(activeAccountRecordTypeModelsById.values())
             );
 
             return new ComboboxVModel(comboboxValue, comboboxValues);
@@ -179,8 +185,8 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
         RecordTypeModel recordTypeModel = this.locateRecordTypeService()
             .getRecordTypeModelFromNameAndLabelMaps(
                 recordTypeToCheck,
-                accountRecordTypeModelsByName,
-                accountRecordTypeModelsByLabel
+                activeAccountRecordTypeModelsByName,
+                activeAccountRecordTypeModelsByLabel
             );
 
         if (recordTypeModel == null) {
@@ -190,7 +196,7 @@ public virtual with sharing class PrimaryAffiliationsSettingsVMapper {
         }
 
         comboboxValues.addAll(
-            this.getComboboxVModelOptionsForActiveAccountRecordTypes(accRecordTypeModelsById.values())
+            this.getComboboxVModelOptionsForActiveAccountRecordTypes(activeAccountRecordTypeModelsById.values())
         );
 
         return new ComboboxVModel(comboboxValue, comboboxValues);

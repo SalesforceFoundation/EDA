@@ -344,9 +344,9 @@ private with sharing class PrimaryAffiliationsSettingsVMapper_TEST {
             'Selected account record type should match record type to check.'
         );
         System.assertEquals(
-            3,
+            2,
             accountRTComboboxVModel.options.size(),
-            'Account record type options list should consist only of existing values.'
+            'Account record type options list should consist only of active values.'
         );
     }
 
@@ -368,9 +368,9 @@ private with sharing class PrimaryAffiliationsSettingsVMapper_TEST {
 
         System.assertEquals(null, accountRTComboboxVModel.value, 'Selected account record type should be null.');
         System.assertEquals(
-            3,
+            2,
             accountRTComboboxVModel.options.size(),
-            'Account record type options list should consist only of existing values.'
+            'Account record type options list should consist only of active values.'
         );
     }
 
@@ -397,9 +397,9 @@ private with sharing class PrimaryAffiliationsSettingsVMapper_TEST {
             'Selected account record type should match record type to check.'
         );
         System.assertEquals(
-            4,
+            3,
             accountRTComboboxVModel.options.size(),
-            'Account record type options list should include new value with existing values.'
+            'Account record type options list should include new value with active values.'
         );
     }
 
