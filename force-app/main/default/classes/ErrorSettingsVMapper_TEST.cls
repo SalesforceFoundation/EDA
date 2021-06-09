@@ -169,6 +169,7 @@ private with sharing class ErrorSettingsVMapper_TEST {
             errorSettingsVModel.errorNotificationsRecipientCategory.options[0].label,
             'Send Error Notificiation recipient category valid option for All Sys Admins should have expected label.'
         );
+
         System.assertEquals(
             null,
             errorSettingsVModel.userOrChatterGroupLookupResult,
@@ -236,46 +237,7 @@ private with sharing class ErrorSettingsVMapper_TEST {
             'Send Error Notificiation recipient category valid option for User should have expected label.'
         );
 
-        System.assertNotEquals(
-            null,
-            errorSettingsVModel.userOrChatterGroupLookupResult,
-            'Send Error Notification recipient lookup should not be null.'
-        );
-        System.assertEquals(
-            'User Name',
-            errorSettingsVModel.userOrChatterGroupLookupResult.label,
-            'Send Error Notification recipient lookup label should be the expected label.'
-        );
-        System.assertEquals(
-            userId,
-            errorSettingsVModel.userOrChatterGroupLookupResult.value,
-            'Send Error Notification recipient lookup value should be the expected value.'
-        );
-        System.assertEquals(
-            'standard:avatar',
-            errorSettingsVModel.userOrChatterGroupLookupResult.icon,
-            'Send Error Notification recipient lookup icon should be the expected icon.'
-        );
-        System.assertEquals(
-            'standard:avatar',
-            errorSettingsVModel.userOrChatterGroupLookupResult.icon,
-            'Send Error Notification recipient lookup icon should be the expected icon.'
-        );
-        System.assertEquals(
-            'User SObject Label',
-            errorSettingsVModel.userOrChatterGroupLookupResult.alternativeText,
-            'Send Error Notification recipient lookup alternative text should be the expected value.'
-        );
-        System.assertEquals(
-            'https://example.com/user.png',
-            errorSettingsVModel.userOrChatterGroupLookupResult.imageUrl,
-            'Send Error Notification recipient lookup image url should be the expected value.'
-        );
-        System.assertEquals(
-            'user@test.com',
-            errorSettingsVModel.userOrChatterGroupLookupResult.meta,
-            'Send Error Notification recipient lookup meta should be the expected value.'
-        );
+        ErrorSettingsVMapper_TEST.assertUserLookupResult(errorSettingsVModel.userOrChatterGroupLookupResult, userId);
 
         System.assertEquals(
             false,
@@ -288,6 +250,207 @@ private with sharing class ErrorSettingsVMapper_TEST {
             errorSettingsVModel.errorHandling,
             'Error handling model property should match expected value.'
         );
+    }
+
+    /**
+     * @description Helper method to assert user lookup results for user service stub
+     */
+    private static void assertUserLookupResult(LookupResult lookupResult, String userId) {
+        System.assertNotEquals(null, lookupResult, 'Lookup Result should not be null.');
+        System.assertEquals(
+            'User Name',
+            lookupResult.label,
+            'Send Error Notification recipient lookup label should be the expected label.'
+        );
+        System.assertEquals(
+            userId,
+            lookupResult.value,
+            'Send Error Notification recipient lookup value should be the expected value.'
+        );
+        System.assertEquals(
+            'standard:avatar',
+            lookupResult.icon,
+            'Send Error Notification recipient lookup icon should be the expected icon.'
+        );
+        System.assertEquals(
+            'User SObject Label',
+            lookupResult.alternativeText,
+            'Send Error Notification recipient lookup alternative text should be the expected value.'
+        );
+        System.assertEquals(
+            'https://example.com/user.png',
+            lookupResult.imageUrl,
+            'Send Error Notification recipient lookup image url should be the expected value.'
+        );
+        System.assertEquals(
+            'user@test.com',
+            lookupResult.meta,
+            'Send Error Notification recipient lookup meta should be the expected value.'
+        );
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getErrorSettingsViewModelValid method returns a ComboboxVModel that reflects the
+     * error settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getErrorNotificationsRecipientCategoryVModel() {
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+        ErrorSettingsService.instance = new STUB_ErrorSettingsServiceAllSysAdmins();
+
+        ErrorSettingsModel errorSettingsModel = ErrorSettingsService.getInstance().getErrorSettingsModel();
+
+        Test.startTest();
+        ComboboxVModel comboboxVModel = errorSettingsVMapperInstance.getErrorNotificationsRecipientCategoryVModel(
+            errorSettingsModel
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            'All Sys Admins',
+            comboboxVModel.value,
+            'Combobox View Model value should match expected value.'
+        );
+        System.assertEquals(
+            1,
+            comboboxVModel.options.size(),
+            'Combobox View Model valid options should match expected size.'
+        );
+        System.assertEquals(
+            'All Sys Admins',
+            comboboxVModel.options[0].value,
+            'Combobox View Model valid option for All Sys Admins should have expected value.'
+        );
+        System.assertEquals(
+            'All Sys Admins Label',
+            comboboxVModel.options[0].label,
+            'Combobox View Model valid option for All Sys Admins should have expected label.'
+        );
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultForSetting method returns a LookupResult that reflects the error
+     * settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getLookupResultForSettingAllSysAdmins() {
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        LookupResult lookupResult = errorSettingsVMapperInstance.getLookupResultForSetting(
+            'All Sys Admins',
+            'All Sys Admins'
+        );
+        Test.stopTest();
+
+        System.assertEquals(null, lookupResult, 'Lookup result should be null for \'All Sys Admins\'.');
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultForSetting method returns a LookupResult that reflects the error
+     * settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getLookupResultForSettingInvalid() {
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        LookupResult lookupResult = errorSettingsVMapperInstance.getLookupResultForSetting('Bad Value', 'Bad Value');
+        Test.stopTest();
+
+        System.assertEquals(null, lookupResult, 'Lookup result should be null for invalid values.');
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultForSetting method returns a LookupResult that reflects the error
+     * settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getLookupResultForSettingUserValid() {
+        Id userId = UTIL_UnitTestData_TEST.getFakeId(User.getSObjectType());
+        ErrorSettingsService.instance = new STUB_ErrorSettingsServiceUser(userId);
+        UserService.instance = new STUB_UserService(userId);
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        LookupResult lookupResult = errorSettingsVMapperInstance.getLookupResultForSetting('User', userId);
+        Test.stopTest();
+
+        ErrorSettingsVMapper_TEST.assertUserLookupResult(lookupResult, userId);
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultForSetting method returns a LookupResult that reflects the error
+     * settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getLookupResultForSettingUserInvalidId() {
+        Id userId = UTIL_UnitTestData_TEST.getFakeId(User.getSObjectType());
+        Id unfoundUserId = UTIL_UnitTestData_TEST.getFakeId(User.getSObjectType());
+        ErrorSettingsService.instance = new STUB_ErrorSettingsServiceUser(unfoundUserId);
+        UserService.instance = new STUB_UserService(userId);
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        LookupResult lookupResult = errorSettingsVMapperInstance.getLookupResultForSetting('User', unfoundUserId);
+        Test.stopTest();
+
+        System.assertEquals(null, lookupResult, 'Lookup result should be null for an unfound user id.');
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultForSetting method returns a LookupResult that reflects the error
+     * settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getUserLookupResultByIdValid() {
+        Id userId = UTIL_UnitTestData_TEST.getFakeId(User.getSObjectType());
+        ErrorSettingsService.instance = new STUB_ErrorSettingsServiceUser(userId);
+        UserService.instance = new STUB_UserService(userId);
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        LookupResult lookupResult = errorSettingsVMapperInstance.getUserLookupResultById(userId);
+        Test.stopTest();
+
+        ErrorSettingsVMapper_TEST.assertUserLookupResult(lookupResult, userId);
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultForSetting method returns a LookupResult that reflects the error
+     * settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getUserLookupResultByIdUnfoundUserId() {
+        Id userId = UTIL_UnitTestData_TEST.getFakeId(User.getSObjectType());
+        Id unfoundUserId = UTIL_UnitTestData_TEST.getFakeId(User.getSObjectType());
+        ErrorSettingsService.instance = new STUB_ErrorSettingsServiceUser(unfoundUserId);
+        UserService.instance = new STUB_UserService(userId);
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        LookupResult lookupResult = errorSettingsVMapperInstance.getUserLookupResultById(unfoundUserId);
+        Test.stopTest();
+
+        System.assertEquals(null, lookupResult, 'Lookup result should be null for an unfound user id.');
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultForSetting method returns a LookupResult that reflects the error
+     * settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getUserLookupResultByIdNonId() {
+        Id userId = UTIL_UnitTestData_TEST.getFakeId(User.getSObjectType());
+        ErrorSettingsService.instance = new STUB_ErrorSettingsServiceUser(userId);
+        UserService.instance = new STUB_UserService(userId);
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        LookupResult lookupResult = errorSettingsVMapperInstance.getUserLookupResultById('Not an Id.');
+        Test.stopTest();
+
+        System.assertEquals(null, lookupResult, 'Lookup result should be null for a non-id.');
     }
 
     /**************************************************************************************************************************
@@ -353,6 +516,10 @@ private with sharing class ErrorSettingsVMapper_TEST {
         }
 
         public override UserModel getUserModelById(Id userId) {
+            if (userId != this.userId) {
+                return null;
+            }
+
             return new UserModel(
                 Id.valueOf(this.userId),
                 'User Name',

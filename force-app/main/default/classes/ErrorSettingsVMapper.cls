@@ -62,7 +62,7 @@ public virtual with sharing class ErrorSettingsVMapper {
      *********************************************************************************************/
     public virtual ErrorSettingsVModel getErrorSettingsViewModel() {
         ErrorSettingsModel errorSettingsModel = this.locateErrorSettingsService().getErrorSettingsModel();
-        ComboboxVModel errorNotificationsRecipientCategoryVModel = this.geterrorNotificationsRecipientCategoryVModel(
+        ComboboxVModel errorNotificationsRecipientCategoryVModel = this.getErrorNotificationsRecipientCategoryVModel(
             errorSettingsModel
         );
         LookupResult errorNotificationRecipientVModel = this.getLookupResultForSetting(
@@ -87,7 +87,8 @@ public virtual with sharing class ErrorSettingsVMapper {
      * Vmodels from
      * @return The valid error notification recipient category combobox view model
      ******************************************************************************/
-    private ComboboxVModel geterrorNotificationsRecipientCategoryVModel(ErrorSettingsModel errorSettingsModel) {
+    @TestVisible
+    private ComboboxVModel getErrorNotificationsRecipientCategoryVModel(ErrorSettingsModel errorSettingsModel) {
         List<ComboboxValueVModel> errorNotificationsRecipientCategoryVModelList = new List<ComboboxValueVModel>();
 
         List<String> errorNotificationsRecipientCategoryValueList = new List<String>(
@@ -146,12 +147,12 @@ public virtual with sharing class ErrorSettingsVMapper {
     private LookupResult getUserLookupResultById(String userIdString) {
         Id userId;
 
-        //TODO: Handle specific exception only
-        //try {
-        userId = Id.valueOf(userIdString);
-        /*} catch (Exception e) {
+
+        try {
+            userId = Id.valueOf(userIdString);
+        } catch (System.StringException se) {
             return null;
-        }*/
+        }
 
         UserModel userModel = UserService.getInstance().getUserModelById(userId);
 
