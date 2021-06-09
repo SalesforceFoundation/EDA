@@ -82,7 +82,7 @@ public virtual with sharing class UserMapper {
      * @description Retrieve a list of UserModel representing a user and their basic fields
      * @param userNameMatch The string to match user names to
      * @param recordLimit The number of records to limit the query to
-     * @return A UserModel
+     * @return A list of User Models with names that match the search string
      ************************************************************************************************************/
     public virtual List<UserModel> getUserModelsLikeName(String userNameMatch, Integer recordLimit) {
         String sanitizedUserNameMatchSearch = '%' + String.escapeSingleQuotes(userNameMatch) + '%';

@@ -125,6 +125,24 @@ private with sharing class ErrorSettingsVMapper_TEST {
     }
 
     /***********************************************************************************************************************************
+     * @description Test method to verify that the locateUserLookupResultVMapper method returns instance of UserLookupResultVMapper
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void locateUserLookupResultVMapperValid() {
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        UserLookupResultVMapper userLookupResultVMapperInstance = errorSettingsVMapperInstance.locateUserLookupResultVMapper();
+        Test.stopTest();
+
+        System.assertEquals(
+            UserLookupResultVMapper.getInstance(),
+            userLookupResultVMapperInstance,
+            'Should return the instance of UserLookupResultVMapper'
+        );
+    }
+
+    /***********************************************************************************************************************************
      * @description Test method to verify that the getErrorSettingsViewModel method returns an ErrorSettingsVModel that reflects the
      * error settings set in hierarchy settings
      ***********************************************************************************************************************************/

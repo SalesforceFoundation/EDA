@@ -141,7 +141,7 @@ public virtual with sharing class ErrorSettingsVMapper {
      * @description Retrieve the lookup result for a user based on its id
      * @param userIdString The string representing a user Id, representing the
      * possibility that it is not an Id
-     * @return A LookupResult for a user model
+     * @return A LookupResult for a user id
      ******************************************************************************/
     @TestVisible
     private LookupResult getUserLookupResultById(String userIdString) {
@@ -159,16 +159,7 @@ public virtual with sharing class ErrorSettingsVMapper {
             return null;
         }
 
-        String lookupResultLabel = UserService.getInstance().getModelObjectLabel();
-
-        return new LookupResult(
-            userModel.name,
-            userModel.id,
-            'standard:avatar',
-            userModel.smallPhotoUrl,
-            lookupResultLabel,
-            userModel.email
-        );
+        return this.locateUserLookupResultVMapper().getLookupResultFromUserModel(userModel);
     }
 
     /******************************************************************************
@@ -187,5 +178,14 @@ public virtual with sharing class ErrorSettingsVMapper {
     @TestVisible
     private UserService locateUserService() {
         return UserService.getInstance();
+    }
+
+    /******************************************************************************
+     * @description Retrieve an instance of the UserLookupResultVMapper class.
+     * @return An instance of UserLookupResultVMapper
+     ******************************************************************************/
+    @TestVisible
+    private UserLookupResultVMapper locateUserLookupResultVMapper() {
+        return UserLookupResultVMapper.getInstance();
     }
 }

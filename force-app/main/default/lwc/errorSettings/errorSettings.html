@@ -72,6 +72,8 @@
                                     value={errorSettingsVModel.userOrChatterGroupLookupResult}
                                     options={userOptions}
                                     disabled={affordancesDisabled}
+                                    onsearch={handleUserSearch}
+                                    oninputchange={handleErrorNotificationRecipientChange}
                                 ></c-single-lookup>
                             </div>
                         </div>

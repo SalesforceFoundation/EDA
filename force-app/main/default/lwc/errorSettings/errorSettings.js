@@ -2,6 +2,7 @@ import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
 import getErrorSettingsViewModel from "@salesforce/apex/ErrorSettingsController.getErrorSettingsViewModel";
+import getLookupResultsLikeName from "@salesforce/apex/ErrorSettingsController.getLookupResultsLikeName";
 
 import stgErrorSettingsTitle from "@salesforce/label/c.stgErrorSettingsTitle";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
@@ -128,22 +129,34 @@ export default class ErrorSettings extends LightningElement {
 
     handleErrorNotificationRecipientCategoryChange(event) {
         const eventDetail = event.detail;
-        console.log(this.errorSettingsVModel.errorNotificationsRecipientCategory);
         this.errorSettingsVModel.errorNotificationsRecipientCategory.value = eventDetail.value;
         let hierarchySettingsChange;
-
-        if (event.detail.value !== errorNotificationRecipientCategoryAllSysAdmins) {
-            hierarchySettingsChange = {
-                settingsType: "string",
-                settingsName: "Error_Notifications_To__c",
-                settingsValue: "TODO", //TODO: Make reset to current value
-            };
-        }
 
         hierarchySettingsChange = {
             settingsType: "string",
             settingsName: "Error_Notifications_To__c",
             settingsValue: eventDetail.value,
+        };
+
+        this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
+    }
+
+    handleUserSearch(event) {
+        getLookupResultsLikeName({ userNameMatch: event.detail.inputValue }).then((result) => {
+            this.template.querySelector("c-single-lookup").setOptions(result);
+        });
+    }
+
+    handleErrorNotificationRecipientChange(event) {
+        let settingsValue = event.detail.value;
+        if (!!event.detail.value.value) {
+            settingsValue = event.detail.value.value;
+        }
+
+        const hierarchySettingsChange = {
+            settingsType: "string",
+            settingsName: "Error_Notifications_To__c",
+            settingsValue: settingsValue,
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
@@ -203,6 +216,12 @@ export default class ErrorSettings extends LightningElement {
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });
+
+            const singleLookup = this.template.querySelector("c-single-lookup");
+
+            if (!!singleLookup) {
+                singleLookup.setValue(this.errorSettingsVModel.userOrChatterGroupLookupResult);
+            }
         });
     }
 }

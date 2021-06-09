@@ -42,6 +42,11 @@ export default class SingleLookup extends LightningElement {
         }
     }
 
+    @api setValue(valueToSet) {
+        this.value = valueToSet;
+        this.inputValue = this.value.label;
+    }
+
     get isExpanded() {
         if (!this.focused || !this.options || !!this.value) {
             return false;
