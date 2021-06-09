@@ -79,6 +79,37 @@ public virtual with sharing class UserMapper {
     }
 
     /************************************************************************************************************
+     * @description Retrieve a list of UserModel representing a user and their basic fields
+     * @param userNameMatch The string to match user names to
+     * @param recordLimit The number of records to limit the query to
+     * @return A UserModel
+     ************************************************************************************************************/
+    public virtual List<UserModel> getUserModelsLikeName(String userNameMatch, Integer recordLimit) {
+        List<User> usersRetrievedList = [
+            SELECT Id, Name, Email, IsActive, SmallPhotoUrl
+            FROM User
+            WHERE Name LIKE '%userNameMatch%'
+            WITH SECURITY_ENFORCED
+            LIMIT :recordLimit
+        ];
+
+        List<UserModel> userModelList = new List<UserModel>();
+
+        for (User userRetrieved : usersRetrievedList) {
+            userModelList.add(
+                new UserModel(
+                    userRetrieved.Id,
+                    userRetrieved.Name,
+                    userRetrieved.IsActive,
+                    userRetrieved.Email,
+                    userRetrieved.SmallPhotoUrl
+                )
+            );
+        }
+        return userModelList;
+    }
+
+    /************************************************************************************************************
      * @description Retrieve the label for the user object
      * @return The label for the user object
      ************************************************************************************************************/

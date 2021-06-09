@@ -147,7 +147,6 @@ public virtual with sharing class ErrorSettingsVMapper {
     private LookupResult getUserLookupResultById(String userIdString) {
         Id userId;
 
-
         try {
             userId = Id.valueOf(userIdString);
         } catch (System.StringException se) {

@@ -121,4 +121,33 @@ private with sharing class UserMapper_TEST {
             'Label retrieved should be that of the user object label'
         );
     }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that getting user models like a name is functional
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getUserModelsLikeName() {
+        UserMapper userMapperInstance = UserMapper.getInstance();
+        List<Id> userToTestIdList = new List<Id>();
+        userToTestIdList.add(
+            UTIL_UnitTestData_TEST.createNewUserForTests(System.now().getTime() + '@testerson.com').id
+        );
+        userToTestIdList.add(
+            UTIL_UnitTestData_TEST.createNewUserForTests(System.now().getTime() + '@testerson.com2').id
+        );
+
+        Map<Id, User> usersByIds = new Map<Id, User>(
+            [SELECT Id, Name, isActive, Email, SmallPhotoUrl FROM User WHERE Id IN :userToTestIdList]
+        );
+
+        Test.startTest();
+        List<UserModel> userModelList = userMapperInstance.getUserModelsLikeName('Smith', 1);
+        Test.stopTest();
+
+        System.assertNotEquals(
+            null,
+            usersByIds.get(userModelList[0].id),
+            'The user retrieved should be within the map of those created.'
+        );
+    }
 }
