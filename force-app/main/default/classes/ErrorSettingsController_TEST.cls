@@ -339,7 +339,7 @@ private with sharing class ErrorSettingsController_TEST {
                 new LookupResult(
                     'Chatter Group Name',
                     chatterGroupId,
-                    'standard:avatar',
+                    'standard:groups',
                     'https://fake.url/test.png',
                     Label.stgOptChatterGroup,
                     'Chatter Group Description'
