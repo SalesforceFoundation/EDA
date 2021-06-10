@@ -244,8 +244,8 @@ private with sharing class ErrorSettingsController_TEST {
                     'User Name',
                     userId,
                     'standard:avatar',
-                    'User',
                     'https://example.com/user.png',
+                    'User',
                     'user@test.com'
                 )
             };

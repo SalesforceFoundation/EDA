@@ -308,6 +308,109 @@ private with sharing class ErrorSettingsVMapper_TEST {
     }
 
     /***********************************************************************************************************************************
+     * @description Test method to verify that the getErrorSettingsViewModel method returns an ErrorSettingsVModel that reflects the
+     * error settings set in hierarchy settings for user notification sending
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getErrorSettingsViewModelChatterGroup() {
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        ErrorSettingsService.instance = new STUB_ErrorSettingsServiceChatterGroup(chatterGroupId);
+        ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        ErrorSettingsVModel errorSettingsVModel = errorSettingsVMapperInstance.getErrorSettingsViewModel();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            errorSettingsVModel.storeErrors,
+            'Store errors functionality should match expected value.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsVModel.sendErrorNotifications,
+            'Send error notifications functionality should match expected value.'
+        );
+
+        System.assertEquals(
+            'Chatter Group',
+            errorSettingsVModel.errorNotificationsRecipientCategory.value,
+            'Send Error Notificiation recipient category should match expected value.'
+        );
+        System.assertEquals(
+            1,
+            errorSettingsVModel.errorNotificationsRecipientCategory.options.size(),
+            'Number of Send Error Notificiation recipient category valid options should match expected size.'
+        );
+        System.assertEquals(
+            'Chatter Group',
+            errorSettingsVModel.errorNotificationsRecipientCategory.options[0].value,
+            'Send Error Notificiation recipient category valid option for User should have expected value.'
+        );
+        System.assertEquals(
+            'Chatter Group Label',
+            errorSettingsVModel.errorNotificationsRecipientCategory.options[0].label,
+            'Send Error Notificiation recipient category valid option for User should have expected label.'
+        );
+
+        ErrorSettingsVMapper_TEST.assertChatterGroupLookupResult(
+            errorSettingsVModel.userOrChatterGroupLookupResult,
+            chatterGroupId
+        );
+
+        System.assertEquals(
+            false,
+            errorSettingsVModel.enableDebug,
+            'Enable debug functionality should match expected value.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsVModel.errorHandling,
+            'Error handling model property should match expected value.'
+        );
+    }
+
+    /**
+     * @description Helper method to assert chatter group lookup results for chatter group service stub
+     */
+    private static void assertChatterGroupLookupResult(LookupResult lookupResult, String chatterGroupId) {
+        System.assertNotEquals(null, lookupResult, 'Lookup Result should not be null.');
+        System.assertEquals(
+            'Chatter Group Name',
+            lookupResult.label,
+            'Send Error Notification recipient lookup label should be the expected label.'
+        );
+        System.assertEquals(
+            chatterGroupId,
+            lookupResult.value,
+            'Send Error Notification recipient lookup value should be the expected value.'
+        );
+        System.assertEquals(
+            'standard:groups',
+            lookupResult.icon,
+            'Send Error Notification recipient lookup icon should be the expected icon.'
+        );
+        System.assertEquals(
+            Label.stgOptChatterGroup,
+            lookupResult.alternativeText,
+            'Send Error Notification recipient lookup alternative text should be the expected value.'
+        );
+        System.assertEquals(
+            'https://fake.url/test.png',
+            lookupResult.imageUrl,
+            'Send Error Notification recipient lookup image url should be the expected value.'
+        );
+        System.assertEquals(
+            'Chatter Group Description',
+            lookupResult.meta,
+            'Send Error Notification recipient lookup meta should be the expected value.'
+        );
+    }
+
+    /***********************************************************************************************************************************
      * @description Test method to verify that the getErrorSettingsViewModelValid method returns a ComboboxVModel that reflects the
      * error settings set in hierarchy settings
      ***********************************************************************************************************************************/
@@ -471,6 +574,104 @@ private with sharing class ErrorSettingsVMapper_TEST {
         System.assertEquals(null, lookupResult, 'Lookup result should be null for a non-id.');
     }
 
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultForSetting method returns a LookupResult that reflects the error
+     * settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getLookupResultForSettingChatterGroupValid() {
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        ErrorSettingsService.instance = new STUB_ErrorSettingsServiceChatterGroup(chatterGroupId);
+        ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        LookupResult lookupResult = errorSettingsVMapperInstance.getLookupResultForSetting(
+            'Chatter Group',
+            chatterGroupId
+        );
+        Test.stopTest();
+
+        ErrorSettingsVMapper_TEST.assertChatterGroupLookupResult(lookupResult, chatterGroupId);
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultForSetting method returns a LookupResult that reflects the error
+     * settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getLookupResultForSettingChatterGroupInvalidId() {
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        Id unfoundChatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        ErrorSettingsService.instance = new STUB_ErrorSettingsServiceChatterGroup(chatterGroupId);
+        ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        LookupResult lookupResult = errorSettingsVMapperInstance.getLookupResultForSetting(
+            'Chatter Group',
+            unfoundChatterGroupId
+        );
+        Test.stopTest();
+
+        System.assertEquals(null, lookupResult, 'Lookup result should be null for an unfound chatter group id.');
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getChatterGroupLookupResultById method returns a LookupResult that reflects the error
+     * settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getChatterGroupLookupResultByIdValid() {
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        ErrorSettingsService.instance = new STUB_ErrorSettingsServiceChatterGroup(chatterGroupId);
+        ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        LookupResult lookupResult = errorSettingsVMapperInstance.getChatterGroupLookupResultById(chatterGroupId);
+        Test.stopTest();
+
+        ErrorSettingsVMapper_TEST.assertChatterGroupLookupResult(lookupResult, chatterGroupId);
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultForSetting method returns a LookupResult that reflects the error
+     * settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getChatterGroupLookupResultByIdUnfoundId() {
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        Id unfoundChatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        ErrorSettingsService.instance = new STUB_ErrorSettingsServiceChatterGroup(chatterGroupId);
+        ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        LookupResult lookupResult = errorSettingsVMapperInstance.getChatterGroupLookupResultById(unfoundChatterGroupId);
+        Test.stopTest();
+
+        System.assertEquals(null, lookupResult, 'Lookup result should be null for an unfound user id.');
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getChatterGroupLookupResultById method returns a LookupResult that reflects the error
+     * settings set in hierarchy settings
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getChatterGroupLookupResultByIdNonId() {
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        ErrorSettingsService.instance = new STUB_ErrorSettingsServiceChatterGroup(chatterGroupId);
+        ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
+        ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
+
+        Test.startTest();
+        LookupResult lookupResult = errorSettingsVMapperInstance.getChatterGroupLookupResultById('Not an Id.');
+        Test.stopTest();
+
+        System.assertEquals(null, lookupResult, 'Lookup result should be null for a non-id.');
+    }
+
     /**************************************************************************************************************************
      ****************************************************** STUBS **************************************************************
      **************************************************************************************************************************/
@@ -526,6 +727,33 @@ private with sharing class ErrorSettingsVMapper_TEST {
     /*********************************************************************************************************************
      * @description Stub class to simulate the response from ErrorSettingsService to return a valid ErrorSettingsModel
      *********************************************************************************************************************/
+    private class STUB_ErrorSettingsServiceChatterGroup extends ErrorSettingsService {
+        public String chatterGroupId;
+
+        public STUB_ErrorSettingsServiceChatterGroup(String chatterGroupId) {
+            this.chatterGroupId = chatterGroupId;
+        }
+
+        public Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>{
+            'Chatter Group' => 'Chatter Group Label'
+        };
+
+        public override ErrorSettingsModel getErrorSettingsModel() {
+            return new ErrorSettingsModel(
+                true,
+                true,
+                'Chatter Group',
+                this.chatterGroupId,
+                false,
+                true,
+                this.validErrorNotificationRecipientCategoryLabelsByValue
+            );
+        }
+    }
+
+    /*********************************************************************************************************************
+     * @description Stub class to simulate the response from ErrorSettingsService to return a valid ErrorSettingsModel
+     *********************************************************************************************************************/
     private class STUB_UserService extends UserService {
         public Id userId;
 
@@ -549,6 +777,50 @@ private with sharing class ErrorSettingsVMapper_TEST {
 
         public override String getModelObjectLabel() {
             return 'User SObject Label';
+        }
+    }
+
+    /**
+     * @description Stub class to simulate the response from ChatterGroupService
+     */
+    private class STUB_ChatterGroupService extends ChatterGroupService {
+        private Id chatterGroupId;
+
+        STUB_ChatterGroupService(Id chatterGroupId) {
+            this.chatterGroupId = chatterGroupId;
+        }
+
+        public override ChatterGroupModel getChatterGroupModelById(Id chatterGroupId) {
+            if (chatterGroupId != this.chatterGroupId) {
+                return null;
+            }
+
+            return new ChatterGroupModel(
+                this.chatterGroupId,
+                'Chatter Group Name',
+                'Chatter Group Description',
+                'https://fake.url/test.png'
+            );
+        }
+
+        public override List<ChatterGroupModel> getChatterGroupModelsLikeName(
+            String chatterGroupNameMatch,
+            Integer recordLimit
+        ) {
+            List<ChatterGroupModel> chatterGroupModelModelList = new List<ChatterGroupModel>();
+
+            if ('Chatter Group Name'.toLowerCase().contains(chatterGroupNameMatch.toLowerCase())) {
+                chatterGroupModelModelList.add(
+                    new ChatterGroupModel(
+                        this.chatterGroupId,
+                        'Chatter Group Name',
+                        'Chatter Group Description',
+                        'https://fake.url/test.png'
+                    )
+                );
+            }
+
+            return chatterGroupModelModelList;
         }
     }
 }

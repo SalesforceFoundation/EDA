@@ -124,8 +124,7 @@ public virtual with sharing class ErrorSettingsVMapper {
                 return null;
             }
             when 'Chatter Group' {
-                //TODO: Implement chatter group
-                return null;
+                return this.getChatterGroupLookupResultById(errorRecipient);
             }
             when 'User' {
                 return this.getUserLookupResultById(errorRecipient);
@@ -163,6 +162,32 @@ public virtual with sharing class ErrorSettingsVMapper {
     }
 
     /******************************************************************************
+     * @description Retrieve the lookup result for a chatter group based on its id
+     * @param chatterGroupIdString The string representing a chatter group Id,
+     * representing the possibility that it is not an Id
+     * @return A LookupResult for a chatter group id
+     ******************************************************************************/
+    @TestVisible
+    private LookupResult getChatterGroupLookupResultById(String chatterGroupIdString) {
+        Id chatterGroupId;
+
+        try {
+            chatterGroupId = Id.valueOf(chatterGroupIdString);
+        } catch (System.StringException se) {
+            return null;
+        }
+
+        ChatterGroupModel chatterGroupModel = ChatterGroupService.getInstance()
+            .getChatterGroupModelById(chatterGroupId);
+
+        if (chatterGroupModel == null) {
+            return null;
+        }
+
+        return this.locateChatterGroupLookupResultVMapper().getLookupResultFromChatterGroupModel(chatterGroupModel);
+    }
+
+    /******************************************************************************
      * @description Retrieve an instance of the ErrorSettingsService class.
      * @return An instance of ErrorSettingsService
      ******************************************************************************/
@@ -181,11 +206,29 @@ public virtual with sharing class ErrorSettingsVMapper {
     }
 
     /******************************************************************************
+     * @description Retrieve an instance of the ChatterGroupService class.
+     * @return An instance of ChatterGroupService
+     ******************************************************************************/
+    @TestVisible
+    private ChatterGroupService locateChatterGroupService() {
+        return ChatterGroupService.getInstance();
+    }
+
+    /******************************************************************************
      * @description Retrieve an instance of the UserLookupResultVMapper class.
      * @return An instance of UserLookupResultVMapper
      ******************************************************************************/
     @TestVisible
     private UserLookupResultVMapper locateUserLookupResultVMapper() {
         return UserLookupResultVMapper.getInstance();
+    }
+
+    /******************************************************************************
+     * @description Retrieve an instance of the ChatterGroupLookupResultVMapper class.
+     * @return An instance of ChatterGroupLookupResultVMapper
+     ******************************************************************************/
+    @TestVisible
+    private ChatterGroupLookupResultVMapper locateChatterGroupLookupResultVMapper() {
+        return ChatterGroupLookupResultVMapper.getInstance();
     }
 }
