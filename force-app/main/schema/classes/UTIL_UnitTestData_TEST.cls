@@ -851,4 +851,31 @@ public class UTIL_UnitTestData_TEST {
 
         return rel;
     }
+
+    /*********************************************************************************************************
+     * @description Creates multiple collaboration groups
+     * @return The generated collaboration group records
+     **********************************************************************************************************/
+    public static List<CollaborationGroup> getCollaborationGroupList(String baseName, Integer numberOfRecords) {
+        List<CollaborationGroup> collaborationGroupList = new List<CollaborationGroup>();
+
+        for (Integer i = 0; i < numberOfRecords; i++) {
+            collaborationGroupList.add(UTIL_UnitTestData_TEST.getCollaborationGroup(baseName + i));
+        }
+
+        return collaborationGroupList;
+    }
+
+    /*********************************************************************************************************
+     * @description Creates a single collaboration group record
+     * @return The generated collaboration group records
+     **********************************************************************************************************/
+    public static CollaborationGroup getCollaborationGroup(String name) {
+        CollaborationGroup CollaborationGroup = new CollaborationGroup(
+            Name = name,
+            Description = name + ' description',
+            CollaborationType = 'Public'
+        );
+        return CollaborationGroup;
+    }
 }

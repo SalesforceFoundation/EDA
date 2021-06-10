@@ -29,29 +29,45 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/Tests
- * @description Test class for UserModel
+ * @description Test class for ChatterGroup
  */
 @isTest
-public with sharing class UserModel_TEST {
+public with sharing class ChatterGroupModel_TEST {
     /********************************************************************************************
      * @description Test to verify the constructor returns a model with all properties populated.
      ********************************************************************************************/
     @isTest
-    private static void FiveArgumentConstructorValid() {
-        Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
+    private static void FourArgumentConstructorValid() {
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
 
         Test.startTest();
-        UserModel userModel = new UserModel(userId, 'username', true, 'email@test.com', 'https://fake.url/test.png');
+        ChatterGroupModel chatterGroupModel = new ChatterGroupModel(
+            chatterGroupId,
+            'Chatter Group Name',
+            'Chatter Group Description',
+            'https://fake.url/test.png'
+        );
         Test.stopTest();
 
-        System.assertEquals(userId, userModel.Id, 'User Model id should match expected value.');
-        System.assertEquals('username', userModel.name, 'User Model name should match expected value.');
-        System.assertEquals(true, userModel.isActive, 'User Model active state should match expected value.');
-        System.assertEquals('email@test.com', userModel.email, 'User Model email should match expected value.');
+        System.assertEquals(
+            chatterGroupId,
+            chatterGroupModel.Id,
+            'Chatter Group Model id should match expected value.'
+        );
+        System.assertEquals(
+            'Chatter Group Name',
+            chatterGroupModel.name,
+            'Chatter Group Model name should match expected value.'
+        );
+        System.assertEquals(
+            'Chatter Group Description',
+            chatterGroupModel.description,
+            'Chatter Group Model description should match expected value.'
+        );
         System.assertEquals(
             'https://fake.url/test.png',
-            userModel.smallPhotoUrl,
-            'User Model small photo url should match expected value.'
+            chatterGroupModel.smallPhotoUrl,
+            'Chatter Group Model small photo url should match expected value.'
         );
     }
 }

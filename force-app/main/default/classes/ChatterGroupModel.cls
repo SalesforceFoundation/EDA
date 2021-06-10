@@ -28,30 +28,27 @@
  * @author Salesforce.org
  * @date 2021
  * @group
- * @group-content ../../ApexDocContent/Tests
- * @description Test class for UserModel
+ * @group-content ../../ApexDocContent/
+ * @description Model class for a Chatter Group
  */
-@isTest
-public with sharing class UserModel_TEST {
-    /********************************************************************************************
-     * @description Test to verify the constructor returns a model with all properties populated.
-     ********************************************************************************************/
-    @isTest
-    private static void FiveArgumentConstructorValid() {
-        Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
+public with sharing class ChatterGroupModel {
+    public Id id { get; private set; }
+    public String name { get; private set; }
+    public String description { get; private set; }
+    public String smallPhotoUrl { get; private set; }
 
-        Test.startTest();
-        UserModel userModel = new UserModel(userId, 'username', true, 'email@test.com', 'https://fake.url/test.png');
-        Test.stopTest();
-
-        System.assertEquals(userId, userModel.Id, 'User Model id should match expected value.');
-        System.assertEquals('username', userModel.name, 'User Model name should match expected value.');
-        System.assertEquals(true, userModel.isActive, 'User Model active state should match expected value.');
-        System.assertEquals('email@test.com', userModel.email, 'User Model email should match expected value.');
-        System.assertEquals(
-            'https://fake.url/test.png',
-            userModel.smallPhotoUrl,
-            'User Model small photo url should match expected value.'
-        );
+    /******************************************************************************************
+     * @description constructor
+     * @param  id The id of the chatter group
+     * @param  name The name of the chatter group
+     * @param  description The description of the chatter group
+     * @param  smallPhotoUrl A url string for the small photo url for the chatter group
+     * @return A ChatterGroupModel with all properties populated.
+     ******************************************************************************************/
+    public ChatterGroupModel(Id id, String name, String description, String smallPhotoUrl) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.smallPhotoUrl = smallPhotoUrl;
     }
 }
