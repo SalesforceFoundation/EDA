@@ -48,6 +48,7 @@
                     onsettingsinputchange={handleErrorNotificationRecipientCategoryChange}
                     disabled={affordancesDisabled}
                 ></c-settings-row-input>
+                <!--
                 <template if:true={errorNotificationRecipientIsChatterGroup}>
                     <c-single-lookup
                         required={showRequired}
@@ -57,8 +58,8 @@
                         value={chatterValue}
                         options={chatterOptions}
                         disabled={affordancesDisabled}
-                    ></c-single-lookup>
-                </template>
+                    ></c-single-lookup> </template
+                >-->
                 <template if:true={errorNotificationRecipientIsUser}>
                     <div class="slds-col slds-size_2-of-3"></div>
                     <div class="slds-col slds-size_1-of-3">

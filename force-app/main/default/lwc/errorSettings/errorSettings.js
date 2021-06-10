@@ -2,7 +2,8 @@ import { LightningElement, track, wire, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
 
 import getErrorSettingsViewModel from "@salesforce/apex/ErrorSettingsController.getErrorSettingsViewModel";
-import getLookupResultsLikeName from "@salesforce/apex/ErrorSettingsController.getLookupResultsLikeName";
+import getLookupResultsLikeUserName from "@salesforce/apex/ErrorSettingsController.getLookupResultsLikeUserName";
+import getLookupResultsLikeChatterGroupName from "@salesforce/apex/ErrorSettingsController.getLookupResultsLikeChatterGroupName";
 
 import stgErrorSettingsTitle from "@salesforce/label/c.stgErrorSettingsTitle";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
@@ -31,6 +32,7 @@ export default class ErrorSettings extends LightningElement {
 
     @track errorSettingsWireResult;
     @track errorSettingsVModel;
+    errorNotificationRecipientCategory;
 
     labelReference = {
         errorSettingsTitle: stgErrorSettingsTitle,
@@ -72,19 +74,11 @@ export default class ErrorSettings extends LightningElement {
     }
 
     get errorNotificationRecipientIsChatterGroup() {
-        return (
-            !!this.errorSettingsVModel &&
-            this.errorSettingsVModel.errorNotificationsRecipientCategory.value ===
-                errorNotificationRecipientCategoryChatterGroup
-        );
+        return this.errorNotificationRecipientCategory === errorNotificationRecipientCategoryChatterGroup;
     }
 
     get errorNotificationRecipientIsUser() {
-        return (
-            !!this.errorSettingsVModel &&
-            this.errorSettingsVModel.errorNotificationsRecipientCategory.value ===
-                errorNotificationRecipientCategoryUser
-        );
+        return this.errorNotificationRecipientCategory === errorNotificationRecipientCategoryUser;
     }
 
     @api
@@ -97,7 +91,8 @@ export default class ErrorSettings extends LightningElement {
         this.errorSettingsWireResult = result;
 
         if (result.data) {
-            this.errorSettingsVModel = JSON.parse(JSON.stringify(result.data));
+            this.errorSettingsVModel = result.data;
+            this.errorNotificationRecipientCategory = this.errorSettingsVModel.errorNotificationsRecipientCategory.value;
         } else if (result.error) {
             //console.log("error retrieving errorSettingsVModel");
         }
@@ -129,7 +124,7 @@ export default class ErrorSettings extends LightningElement {
 
     handleErrorNotificationRecipientCategoryChange(event) {
         const eventDetail = event.detail;
-        this.errorSettingsVModel.errorNotificationsRecipientCategory.value = eventDetail.value;
+        this.errorNotificationRecipientCategory = eventDetail.value;
         let hierarchySettingsChange;
 
         hierarchySettingsChange = {
@@ -142,13 +137,20 @@ export default class ErrorSettings extends LightningElement {
     }
 
     handleUserSearch(event) {
-        getLookupResultsLikeName({ userNameMatch: event.detail.inputValue }).then((result) => {
+        getLookupResultsLikeUserName({ userNameMatch: event.detail.inputValue }).then((result) => {
+            this.template.querySelector("c-single-lookup").setOptions(result);
+        });
+    }
+
+    handleChatterGroupSearch(event) {
+        getLookupResultsLikeChatterGroupName({ chatterGroupNameMatch: event.detail.inputValue }).then((result) => {
             this.template.querySelector("c-single-lookup").setOptions(result);
         });
     }
 
     handleErrorNotificationRecipientChange(event) {
         let settingsValue = event.detail.value;
+
         if (!!event.detail.value.value) {
             settingsValue = event.detail.value.value;
         }
@@ -213,6 +215,7 @@ export default class ErrorSettings extends LightningElement {
 
     refreshAllApex() {
         Promise.all([refreshApex(this.errorSettingsWireResult)]).then(() => {
+            this.errorNotificationRecipientCategory = this.errorSettingsVModel.errorNotificationsRecipientCategory.value;
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });

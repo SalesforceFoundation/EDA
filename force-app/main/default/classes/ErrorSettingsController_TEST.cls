@@ -146,12 +146,12 @@ private with sharing class ErrorSettingsController_TEST {
      * search string
      */
     @isTest
-    private static void getLookupResultsLikeNameValid() {
+    private static void getLookupResultsLikeUserNameValid() {
         Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
         UserLookupResultVMapper.instance = new STUB_UserLookupResultVMapper(userId);
 
         Test.startTest();
-        List<LookupResult> lookupResultList = ErrorSettingsController.getLookupResultsLikeName('User');
+        List<LookupResult> lookupResultList = ErrorSettingsController.getLookupResultsLikeUserName('User');
         Test.stopTest();
 
         System.assertEquals(1, lookupResultList.size(), 'Only 1 Lookup result should be retrieved.');
@@ -175,23 +175,90 @@ private with sharing class ErrorSettingsController_TEST {
     }
 
     /**
-     * @description Test method to verify that the getLookupResultsLikeName method fails gracefuly when an exception is encountered.
+     * @description Test method to verify that the getLookupResultsLikeUserName method fails gracefuly when an exception is encountered.
      */
     @isTest
-    private static void getLookupResultsLikeNameException() {
+    private static void getLookupResultsLikeUserNameException() {
         UserLookupResultVMapper.instance = new STUB_UserLookupResultVMapperError();
 
         try {
             Test.startTest();
-            List<LookupResult> lookupResultList = ErrorSettingsController.getLookupResultsLikeName('User');
+            List<LookupResult> lookupResultList = ErrorSettingsController.getLookupResultsLikeUserName('User');
             Test.stopTest();
 
             System.assert(false, 'should throw an exception.');
         } catch (AuraHandledException e) {
             System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
         }
+    }
 
+    /**
+     * @description Test method to verify that the getLookupResultsLikeChatterGroupName method returns a List of LookupResults that reflects the
+     * search string
+     */
+    @isTest
+    private static void getLookupResultsLikeChatterGroupNameValid() {
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
+        ChatterGroupLookupResultVMapper.instance = new STUB_ChatterGroupLookupResultVMapper(chatterGroupId);
+
+        Test.startTest();
+        List<LookupResult> lookupResultList = ErrorSettingsController.getLookupResultsLikeChatterGroupName('Chatter');
         Test.stopTest();
+
+        System.assertEquals(1, lookupResultList.size(), 'Only 1 Lookup result should be retrieved.');
+
+        LookupResult lookupResult = lookupResultList[0];
+
+        System.assertEquals(
+            'Chatter Group Name',
+            lookupResult.label,
+            'Send Error Notification recipient lookup label should be the expected label.'
+        );
+        System.assertEquals(
+            chatterGroupId,
+            lookupResult.value,
+            'Send Error Notification recipient lookup value should be the expected value.'
+        );
+        System.assertEquals(
+            'standard:groups',
+            lookupResult.icon,
+            'Send Error Notification recipient lookup icon should be the expected icon.'
+        );
+        System.assertEquals(
+            Label.stgOptChatterGroup,
+            lookupResult.alternativeText,
+            'Send Error Notification recipient lookup alternative text should be the expected value.'
+        );
+        System.assertEquals(
+            'https://fake.url/test.png',
+            lookupResult.imageUrl,
+            'Send Error Notification recipient lookup image url should be the expected value.'
+        );
+        System.assertEquals(
+            'Chatter Group Description',
+            lookupResult.meta,
+            'Send Error Notification recipient lookup meta should be the expected value.'
+        );
+    }
+
+    /**
+     * @description Test method to verify that the getLookupResultsLikeUserName method fails gracefuly when an exception is encountered.
+     */
+    @isTest
+    private static void getLookupResultsLikeChatterGroupNameException() {
+        ChatterGroupLookupResultVMapper.instance = new STUB_CGLookupResultVMapperError();
+
+        try {
+            Test.startTest();
+            List<LookupResult> lookupResultList = ErrorSettingsController.getLookupResultsLikeChatterGroupName(
+                'Chatter'
+            );
+            Test.stopTest();
+
+            System.assert(false, 'should throw an exception.');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
     }
 
     /**************************************************************************************************************************
@@ -235,10 +302,6 @@ private with sharing class ErrorSettingsController_TEST {
         }
 
         public override List<LookupResult> getLookupResultsLikeName(String userNameMatch, Integer recordLimit) {
-            if (userId != this.userId) {
-                return new List<LookupResult>();
-            }
-
             return new List<LookupResult>{
                 new LookupResult(
                     'User Name',
@@ -257,6 +320,39 @@ private with sharing class ErrorSettingsController_TEST {
      */
     private class STUB_UserLookupResultVMapperError extends UserLookupResultVMapper {
         public override List<LookupResult> getLookupResultsLikeName(String userNameMatch, Integer recordLimit) {
+            throw new TestException('Exception encountered!');
+        }
+    }
+
+    /**
+     * @description Stub class to simulate the response from ChatterGroupLookupResultVMapper for valid information
+     */
+    private class STUB_ChatterGroupLookupResultVMapper extends ChatterGroupLookupResultVMapper {
+        public Id chatterGroupId;
+
+        public STUB_ChatterGroupLookupResultVMapper(Id chatterGroupId) {
+            this.chatterGroupId = chatterGroupId;
+        }
+
+        public override List<LookupResult> getLookupResultsLikeName(String chatterGroupNameMatch, Integer recordLimit) {
+            return new List<LookupResult>{
+                new LookupResult(
+                    'Chatter Group Name',
+                    chatterGroupId,
+                    'standard:avatar',
+                    'https://fake.url/test.png',
+                    Label.stgOptChatterGroup,
+                    'Chatter Group Description'
+                )
+            };
+        }
+    }
+
+    /**
+     * @description Stub class to simulate the response from ChatterGroupLookupResultVMapper to throw an exception
+     */
+    private class STUB_CGLookupResultVMapperError extends ChatterGroupLookupResultVMapper {
+        public override List<LookupResult> getLookupResultsLikeName(String chatterGrupNameMatch, Integer recordLimit) {
             throw new TestException('Exception encountered!');
         }
     }

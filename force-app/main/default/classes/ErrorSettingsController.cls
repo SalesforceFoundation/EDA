@@ -48,13 +48,27 @@ public with sharing class ErrorSettingsController {
     /************************************************************************************************************
      * @description Retrieve a list of sorted LookupResults representing a user
      * @param userNameMatch The string to match user names to
-     * @param recordLimit The number of records to limit the query to
      * @return A list of Lookup Results with a name matching the search string
      ************************************************************************************************************/
     @AuraEnabled
-    public static List<LookupResult> getLookupResultsLikeName(String userNameMatch) {
+    public static List<LookupResult> getLookupResultsLikeUserName(String userNameMatch) {
         try {
             return ErrorSettingsController.locateUserLookupResultVMapper().getLookupResultsLikeName(userNameMatch, 5);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************************************
+     * @description Retrieve a list of sorted LookupResults representing a chatter group
+     * @param chatterGroupNameMatch The string to match chatter groups names to
+     * @return A list of Lookup Results with a name matching the search string
+     ************************************************************************************************************/
+    @AuraEnabled
+    public static List<LookupResult> getLookupResultsLikeChatterGroupName(String chatterGroupNameMatch) {
+        try {
+            return ErrorSettingsController.locateChatterGroupLookupResultVMapper()
+                .getLookupResultsLikeName(chatterGroupNameMatch, 5);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -76,5 +90,14 @@ public with sharing class ErrorSettingsController {
     @TestVisible
     private static UserLookupResultVMapper locateUserLookupResultVMapper() {
         return UserLookupResultVMapper.getInstance();
+    }
+
+    /******************************************************************************
+     * @description Retrieve an instance of the ChatterGroupLookupResultVMapper class.
+     * @return An instance of ChatterGroupLookupResultVMapper
+     ******************************************************************************/
+    @TestVisible
+    private static ChatterGroupLookupResultVMapper locateChatterGroupLookupResultVMapper() {
+        return ChatterGroupLookupResultVMapper.getInstance();
     }
 }
