@@ -34,3 +34,13 @@ class EducationCloudSettingsPage(BaseEDAPage, HomePage):
                 self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
                 self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
+
+    def click_app_in_edc_home(self,value):
+        """ This method will click on the button in a tile to launch a particular app by accepting
+            the name of the button as its parameter
+        """
+        locator = eda_lex_locators["eda_settings_new"]["global_action"].format(value)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
+        self.selenium.click_element(locator)
