@@ -2,7 +2,9 @@
 Documentation   Validates enable course connections and default record type settings
 Resource        robot/EDA/resources/EDA.robot
 Library         cumulusci.robotframework.PageObjects
-Suite Setup     Open Test Browser
+Suite Setup     Run keywords
+...             Open Test Browser
+...             Setup Test Data
 Suite Teardown  Run Keywords
 ...             Update settings to out of the box values        AND
 ...             Capture screenshot and delete records and close browser
