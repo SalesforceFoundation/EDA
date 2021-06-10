@@ -51,7 +51,7 @@ public with sharing class ErrorSettingsController {
      * @param recordLimit The number of records to limit the query to
      * @return A list of Lookup Results with a name matching the search string
      ************************************************************************************************************/
-    @AuraEnabled //TODO: Write tests
+    @AuraEnabled
     public static List<LookupResult> getLookupResultsLikeName(String userNameMatch) {
         try {
             return ErrorSettingsController.locateUserLookupResultVMapper().getLookupResultsLikeName(userNameMatch, 5);
@@ -73,7 +73,7 @@ public with sharing class ErrorSettingsController {
      * @description Retrieve an instance of the UserLookupResultVMapper class.
      * @return An instance of UserLookupResultVMapper
      ******************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private static UserLookupResultVMapper locateUserLookupResultVMapper() {
         return UserLookupResultVMapper.getInstance();
     }

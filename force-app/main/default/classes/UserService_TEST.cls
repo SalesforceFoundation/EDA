@@ -33,10 +33,10 @@
  */
 @isTest
 private with sharing class UserService_TEST {
-    /**************************************************************************************************************************
+    /**
      * @description Test method to verify that the getInstance method returns a new instance of the
      * UserService class when one does not already exist.
-     ***************************************************************************************************************************/
+     */
     @isTest
     private static void getInstanceNew() {
         Test.startTest();
@@ -51,10 +51,10 @@ private with sharing class UserService_TEST {
         System.assertEquals(true, serviceInstance != null, 'Instance of service class should not be null.');
     }
 
-    /**************************************************************************************************************************
+    /**
      * @description Test method to verify that the getInstance method returns the existing instance of the
      * UserService class when one already exists.
-     ***************************************************************************************************************************/
+     */
     @isTest
     private static void getInstanceExisting() {
         UserService serviceInstance1 = UserService.getInstance();
@@ -76,9 +76,9 @@ private with sharing class UserService_TEST {
         System.assertEquals(true, serviceInstance2 != null, 'Instance of service class should not be null.');
     }
 
-    /**************************************************************************************************************************
+    /**
      * @description Test method to verify that a user model is retrieved by an Id
-     ***************************************************************************************************************************/
+     */
     @isTest
     private static void getUserModelById() {
         Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
@@ -100,9 +100,9 @@ private with sharing class UserService_TEST {
         );
     }
 
-    /**************************************************************************************************************************
+    /**
      * @description Test method to verify that getting user models like a name is functional
-     ***************************************************************************************************************************/
+     */
     @isTest
     private static void getUserModelsLikeName() {
         Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
@@ -121,9 +121,9 @@ private with sharing class UserService_TEST {
         );
     }
 
-    /**************************************************************************************************************************
+    /**
      * @description Test method to verify that getting user models like a name is functional
-     ***************************************************************************************************************************/
+     */
     @isTest
     private static void getUserModelsLikeNameNegative() {
         Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
@@ -137,9 +137,9 @@ private with sharing class UserService_TEST {
         System.assert(userModelList.isEmpty(), 'Only 0 user model should be retrieved.');
     }
 
-    /**************************************************************************************************************************
+    /**
      * @description Test method to verify that getting the model label is functional
-     ***************************************************************************************************************************/
+     */
     @isTest
     private static void getModelObjectLabel() {
         UserMapper.instance = new STUB_UserMapper(null);
@@ -152,8 +152,8 @@ private with sharing class UserService_TEST {
         System.assertEquals('User', userObjectLabel, 'Label retrieved should be that provided by the mapper.');
     }
 
-    /*************************************************************************************************************
-     * @description Stub class to simulate the response from PermissionSetMapper to return false
+    /**
+     * @description Stub class to simulate the response from UserMapper
      */
     private class STUB_UserMapper extends UserMapper {
         private Id userId;

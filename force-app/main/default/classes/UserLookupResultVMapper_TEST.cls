@@ -33,10 +33,10 @@
  */
 @isTest
 private with sharing class UserLookupResultVMapper_TEST {
-    /**************************************************************************************************************************
+    /**
      * @description Test method to verify that the getInstance method returns a new instance of the
      * UserLookupResultVMapper class when one does not already exist.
-     ***************************************************************************************************************************/
+     */
     @isTest
     private static void getInstanceNew() {
         Test.startTest();
@@ -56,10 +56,10 @@ private with sharing class UserLookupResultVMapper_TEST {
         );
     }
 
-    /**************************************************************************************************************************
+    /**
      * @description Test method to verify that the getInstance method returns the existing instance of the
      * UserLookupResultVMapper class when one already exists.
-     ***************************************************************************************************************************/
+     */
     @isTest
     private static void getInstanceExisting() {
         Test.startTest();
@@ -86,9 +86,9 @@ private with sharing class UserLookupResultVMapper_TEST {
         );
     }
 
-    /***********************************************************************************************************************************
-     * @description Test method to verify that the locateUserServiceValid method returns instance of ErrorSettingsService
-     ***********************************************************************************************************************************/
+    /**
+     * @description Test method to verify that the locateUserServiceValid method returns instance of UserService
+     */
     @isTest
     private static void locateUserServiceValid() {
         UserLookupResultVMapper userLookupResultVMapperInstance = UserLookupResultVMapper.getInstance();
@@ -104,7 +104,93 @@ private with sharing class UserLookupResultVMapper_TEST {
         );
     }
 
-    //TODO: Add Tests
-    //LookupResult getLookupResultFromUserModel(UserModel userModel)
-    //List<LookupResult> getLookupResultsLikeName(String userNameMatch, Integer recordLimit)
+    /**
+     * @description Test method to verify that the getLookupResultFromUserModel method returns a mapped Lookup Result
+     */
+    @isTest
+    private static void getLookupResultFromUserModel() {
+        Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
+        UserService.instance = new STUB_UserService(userId);
+        UserLookupResultVMapper userLookupResultVMapperInstance = UserLookupResultVMapper.getInstance();
+
+        UserModel userModel = new UserModel(userId, 'User Name', true, 'user@test.com', 'https://example.com/user.png');
+
+        Test.startTest();
+        LookupResult lookupResult = userLookupResultVMapperInstance.getLookupResultFromUserModel(userModel);
+        Test.stopTest();
+
+        System.assertEquals('User Name', lookupResult.label, 'Lookup Result label should be the expected label.');
+        System.assertEquals(userId, lookupResult.value, 'Lookup Result value should be the expected value.');
+        System.assertEquals('standard:avatar', lookupResult.icon, 'Lookup Result icon should be the expected icon.');
+        System.assertEquals(
+            'User',
+            lookupResult.alternativeText,
+            'Lookup Result alternative text should be the expected value.'
+        );
+        System.assertEquals(
+            'https://example.com/user.png',
+            lookupResult.imageUrl,
+            'Lookup Result image url should be the expected value.'
+        );
+        System.assertEquals('user@test.com', lookupResult.meta, 'Lookup Result meta should be the expected value.');
+    }
+    /**
+     * @description Test method to verify that the getLookupResultFromUserModel method returns a mapped Lookup Result
+     */
+    @isTest
+    private static void getLookupResultsLikeName() {
+        Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
+        UserService.instance = new STUB_UserService(userId);
+        UserLookupResultVMapper userLookupResultVMapperInstance = UserLookupResultVMapper.getInstance();
+
+        Test.startTest();
+        List<LookupResult> lookupResultList = userLookupResultVMapperInstance.getLookupResultsLikeName('User', 1);
+        Test.stopTest();
+
+        System.assertEquals(1, lookupResultList.size(), 'Only 1 Lookup result should be retrieved.');
+
+        LookupResult lookupResult = lookupResultList[0];
+
+        System.assertEquals('User Name', lookupResult.label, 'Lookup Result label should be the expected label.');
+        System.assertEquals(userId, lookupResult.value, 'Lookup Result value should be the expected value.');
+        System.assertEquals('standard:avatar', lookupResult.icon, 'Lookup Result icon should be the expected icon.');
+        System.assertEquals(
+            'User',
+            lookupResult.alternativeText,
+            'Lookup Result alternative text should be the expected value.'
+        );
+        System.assertEquals(
+            'https://example.com/user.png',
+            lookupResult.imageUrl,
+            'Lookup Result image url should be the expected value.'
+        );
+        System.assertEquals('user@test.com', lookupResult.meta, 'Lookup Result meta should be the expected value.');
+    }
+
+    /**
+     * @description Stub class to simulate the response from UserMapper
+     */
+    private class STUB_UserService extends UserService {
+        private Id userId;
+
+        STUB_UserService(Id userId) {
+            this.userId = userId;
+        }
+
+        public override List<UserModel> getUserModelsLikeName(String userNameMatch, Integer recordLimit) {
+            List<UserModel> userModelList = new List<UserModel>();
+
+            if ('User Name'.toLowerCase().contains(userNameMatch.toLowerCase())) {
+                userModelList.add(
+                    new UserModel(this.userId, 'User Name', true, 'user@test.com', 'https://example.com/user.png')
+                );
+            }
+
+            return userModelList;
+        }
+
+        public override String getModelObjectLabel() {
+            return 'User';
+        }
+    }
 }
