@@ -40,7 +40,7 @@ Verify affiliation mappings health check settings checks pass
 Verify affiliation mapping health check settings checks fail and display recommended fix message
     [Documentation]         Verifies the failing affiliation mapping health check and its message
     [tags]                  unstable        rbt:high        W-9048429
-    Go to EDA settings tab                      Affiliations
+    Go to education cloud settings
     Go to affiliations sub tab                  Affiliation Mappings
     Click action button on EDA settings page    Edit
     Modify account record type                  Academic_Program        1_Academic_Program
