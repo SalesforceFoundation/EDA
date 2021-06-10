@@ -46,13 +46,13 @@ private with sharing class UserLookupResultVMapper_TEST {
         System.assertEquals(
             UserLookupResultVMapper.instance,
             userLookupResultVMapperInstance,
-            'Instance of service class returned should match static instance variable.'
+            'Instance of mapper class returned should match static instance variable.'
         );
 
         System.assertEquals(
             true,
             userLookupResultVMapperInstance != null,
-            'Instance of service class should not be null.'
+            'Instance of mapper class should not be null.'
         );
     }
 
@@ -62,21 +62,22 @@ private with sharing class UserLookupResultVMapper_TEST {
      */
     @isTest
     private static void getInstanceExisting() {
-        Test.startTest();
         UserLookupResultVMapper userLookupResultVMapperInstance1 = UserLookupResultVMapper.getInstance();
+
+        Test.startTest();
         UserLookupResultVMapper userLookupResultVMapperInstance2 = UserLookupResultVMapper.getInstance();
         Test.stopTest();
 
         System.assertEquals(
             UserLookupResultVMapper.instance,
             userLookupResultVMapperInstance1,
-            'Instance of service class returned should match static instance variable.'
+            'Instance of mapper class returned should match static instance variable.'
         );
 
         System.assertEquals(
             userLookupResultVMapperInstance1,
             userLookupResultVMapperInstance2,
-            'Subsequent retrievals of service class instance should return existing instance.'
+            'Subsequent retrievals of mapper class instance should return existing instance.'
         );
 
         System.assertEquals(
@@ -87,7 +88,7 @@ private with sharing class UserLookupResultVMapper_TEST {
     }
 
     /**
-     * @description Test method to verify that the locateUserServiceValid method returns instance of UserService
+     * @description Test method to verify that the locateUserService method returns instance of UserService
      */
     @isTest
     private static void locateUserServiceValid() {

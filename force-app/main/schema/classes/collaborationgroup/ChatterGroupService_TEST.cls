@@ -155,7 +155,7 @@ private with sharing class ChatterGroupService_TEST {
     }
 
     /**
-     * @description Stub class to simulate the response from UserMapper
+     * @description Stub class to simulate the response from ChatterGroupMapper
      */
     private class STUB_ChatterGroupMapper extends ChatterGroupMapper {
         private Id chatterGroupId;
