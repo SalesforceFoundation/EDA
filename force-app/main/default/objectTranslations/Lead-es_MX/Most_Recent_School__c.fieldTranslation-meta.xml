@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- The school the Lead is currently attending or has most recently attended. --></help>
-    <label><!-- Most Recent School --></label>
     <name>Most_Recent_School__c</name>
+    <help>La escuela a la que está asistiendo el prospecto en estos momentos o que asistió más recientemente.</help>
+    <label>Escuela más reciente</label>
 </CustomFieldTranslation>

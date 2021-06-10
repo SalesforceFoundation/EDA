@@ -2,5 +2,5 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <name>Affl_ProgEnroll_Del_Status__c</name>
     <help>Si se desactiva la configuración relacionada, Elim de afilia al eliminar inscrip de programa, esta configuración especifica el valor a establecer para el estado de afiliación, cuando se elimina su Inscripción de programa relacionada.</help>
-    <label>Estado de afilia al eliminar inscrip de programa</label>
+    <label>Estado afilia al eliminar inscr programa</label>
 </CustomFieldTranslation>

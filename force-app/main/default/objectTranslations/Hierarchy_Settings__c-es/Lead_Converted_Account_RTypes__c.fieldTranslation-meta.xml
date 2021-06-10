@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Lead_Converted_Account_RTypes__c</name>
+    <help>Los tipos de registro de cuentas que utilizan el formato de nomenclatura de cuentas de EDA al convertir candidatos.</help>
+    <label>Tipos registro cuentas candidatos conver</label>
+</CustomFieldTranslation>

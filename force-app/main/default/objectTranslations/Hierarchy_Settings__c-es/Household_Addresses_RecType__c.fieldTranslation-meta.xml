@@ -2,5 +2,5 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <name>Household_Addresses_RecType__c</name>
     <help>El tipo de registro de Cuenta utilizado para Cuentas domésticas. Esta configuración afecta a la gestión de registros Dirección y el formato de nomenclatura de Cuentas domésticas.</help>
-    <label>Tipo de registro de cuenta de direcciones domésticas</label>
+    <label>Tipo registro cuenta direcc domésticas</label>
 </CustomFieldTranslation>

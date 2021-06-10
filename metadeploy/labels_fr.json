@@ -55,6 +55,10 @@
         "Deploy Einstein Analytics Templates": {
             "message": "Déployer les modèles Einstein Analytics",
             "description": "title of installation step"
+        },
+        "Health Check": {
+            "message": "Contrôle d’intégrité",
+            "description": "title of installation step"
         }
     },
     "plan:ra_einstein_template": {

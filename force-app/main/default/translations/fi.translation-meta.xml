@@ -1,1925 +1,1925 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customApplications>
-        <label>EDA</label>
-        <name>HEDA</name>
-    </customApplications>
     <customLabels>
-        <label><!-- Description of the Affiliation Mappings setting --></label>
         <name>AfflMappingsDescription</name>
+        <label>Kartoita tilitietuetyypit Yhteyshenkilöt-objektin ensisijaisiin jäsenyyskenttiin määrittääksesi, miten näiden kenttien päivitykset vaikuttavat jäsenyystietueisiin ja miten jäsenyystietueiden päivitykset vaikuttavat yhteyshenkilötietueisiin.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>AfflProgEnrollDeleted</name>
+        <label>Jos jäsenyys on liitetty vain yhteen ohjelmaan ilmoittautumiseen ja ohjelmaan ilmoittautuminen poistetaan, poista myös jäsenyys. Jos et ota tätä asetusta käyttöön, valitse poistamattomille jäsenyyksille tila.</label>
     </customLabels>
     <customLabels>
-        <label>Määritä kurssiyhteys, jolla on sama yhteyshenkilö kuin jonka määritit tälle läsnäolotapahtumalle.</label>
         <name>AttendanceCourseConnectionContactMismatch</name>
+        <label>Määritä kurssiyhteys, jolla on sama yhteyshenkilö kuin jonka määritit tälle läsnäolotapahtumalle.</label>
     </customLabels>
     <customLabels>
-        <label>EDA-asetuksissa on määritetty virheellinen automaattisesti luotava suhdeasetus kohdassa EDA-asetukset | Suhteet | Automaattinen luominen. Poista tai muokkaa virheellistä asetusta ja yritä sitten uudelleen.</label>
         <name>AutoCreateFieldError</name>
+        <label>EDA-asetuksissa on määritetty virheellinen automaattisesti luotava suhdeasetus kohdassa EDA-asetukset | Suhteet | Automaattinen luominen. Poista tai muokkaa virheellistä asetusta ja yritä sitten uudelleen.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Message when an Apex job can&apos;t run --></label>
         <name>BatchJobRunningProblem</name>
+        <label>Emme voineet suorittaa Apex-työtä.</label>
     </customLabels>
     <customLabels>
-        <label>Aseta suodatinkenttä tai sekä suodatinkenttä että suodatinarvo.</label>
         <name>BothFieldAndValue</name>
+        <label>Aseta suodatinkenttä tai sekä suodatinkenttä että suodatinarvo.</label>
     </customLabels>
     <customLabels>
-        <label>Yhteyshenkilöä tai kurssitarjousta ei voi muuttaa kurssiyhteydessä, johon on liitetty jakson arvosanoja tai läsnäolotapahtumia. Jos haluat kurssiyhteyden eri yhteyshenkilöllä tai kurssitarjonnalla, luo uusi kurssiyhteys.</label>
         <name>CannotChangeContactAndCourseOffering</name>
+        <label>Yhteyshenkilöä tai kurssitarjousta ei voi muuttaa kurssiyhteydessä, johon on liitetty jakson arvosanoja tai läsnäolotapahtumia. Jos haluat kurssiyhteyden eri yhteyshenkilöllä tai kurssitarjonnalla, luo uusi kurssiyhteys.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Error when deleting a record with child records --></label>
         <name>CannotDelete</name>
+        <label>Tätä tietuetta ei voi poistaa, koska siihen on liitetty yksi tai useampi liittyvä tietue. Poista ensin liitetyt tietueet ja poista sitten tämä tietue. Voit määrittää ensin poistettavat tietueet napsauttamalla Liittyvät-välilehteä. Jos et näe aiheeseen liittyviä tietueita tai et pysty poistamaan niitä, ota yhteyttä pääkäyttäjään.</label>
     </customLabels>
     <customLabels>
-        <label>Tili</label>
         <name>DefaultAccountName</name>
+        <label>Tili</label>
     </customLabels>
     <customLabels>
-        <label>Hallintatili</label>
         <name>DefaultAdminName</name>
+        <label>Hallintatili</label>
     </customLabels>
     <customLabels>
-        <label>Kotitalous</label>
         <name>DefaultHouseholdName</name>
+        <label>Kotitalous</label>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings --></label>
         <name>EDASettingsContainerAuraComponentLabel</name>
+        <label>EDA-asetukset</label>
     </customLabels>
     <customLabels>
-        <label><!-- Education Cloud Settings --></label>
         <name>EDCSettingsContainerAuraComponentLabel</name>
+        <label>Education Cloud -asetukset</label>
     </customLabels>
     <customLabels>
-        <label>Female</label>
         <name>Female</name>
-    </customLabels>
-    <customLabels>
-        <label>Suodatinkentäksi syötetty kenttä ei kelpaa. Suodatinkentät voivat olla mitä tahansa vakio- tai mukautettuja kenttiä objektissa, jolle käynnistin on tarkoitettu, samoin kuin kentät liittyvissä tietueissa. Varmista, että käytät kentän API-nimeä ja jätä pois EDA-nimitilan etuliite (&quot;hed__&quot;).</label>
-        <name>InvalidFilter</name>
-    </customLabels>
-    <customLabels>
-        <label>Male</label>
-        <name>Male</name>
-    </customLabels>
-    <customLabels>
-        <label>Tähän yhteyshenkilöön ja tähän kurssitarjontaan on liitetty useampi kuin yksi kurssiyhteys. Määritä kurssiyhteys, joka edustaa opiskelijan ilmoittautumista tähän kurssitarjontaan tälle jakson arvosanalle.</label>
-        <name>MultipleCourseConnection</name>
-    </customLabels>
-    <customLabels>
-        <label>Yhteyshenkilöä ja kurssitarjousta ei ole määritelty tai ne eivät vastaa kurssiyhteyttä. Joko määritä vain kurssiyhteys tai sekä yhteyshenkilö että kurssitarjous, jotta voimme tallentaa tämän tietueen oikeilla tiedoilla.</label>
-        <name>NoContactCOFound</name>
-    </customLabels>
-    <customLabels>
-        <label>Tähän yhteyshenkilöön ja kurssitarjoukseen ei ole liitetty kurssiyhteyttä. Jos tämä opiskelija on ilmoittautunut tähän kurssitarjontaan, luo kurssiyhteys.</label>
-        <name>NoCourseConnection</name>
-    </customLabels>
-    <customLabels>
-        <label>Yhteyshenkilö ja kurssitarjonta eivät täsmää kurssiyhteyden kanssa. Joko määritä vain kurssiyhteys tai sekä yhteyshenkilö että kurssitarjous, jotta voimme tallentaa tämän tietueen oikeilla tiedoilla.</label>
-        <name>NoDataMatch</name>
-    </customLabels>
-    <customLabels>
-        <label>Joko määritä vain kurssiyhteys tai sekä yhteyshenkilö että kurssitarjous.</label>
-        <name>NoFieldsPopulated</name>
-    </customLabels>
-    <customLabels>
-        <label>Ei mitään</label>
-        <name>NoneOption</name>
-    </customLabels>
-    <customLabels>
-        <label>Tähän kurssiyhteyteen ei ole liitetty yhteyshenkilöä tai kurssitarjousta. Valitse kelvollinen kurssiyhteys.</label>
-        <name>OnlyCourseConnectionPopulated</name>
-    </customLabels>
-    <customLabels>
-        <label>Ensisijaisessa sähköpostissa määritettyä sähköpostiosoitetta ei löydy. Varmista, että annat olemassa olevan mukautetun sähköpostikentän kenttäotsakkeen.</label>
-        <name>PreferredEmailMatchMustExist</name>
-    </customLabels>
-    <customLabels>
-        <label>Ensisijaisessa sähköpostissa valitsemasi sähköpostikenttä on tyhjä. Joko valitse toinen ensisijainen sähköpostiosoite tai lisää arvo kyseiselle sähköpostikentälle.</label>
-        <name>PreferredEmailMatchNotNull</name>
-    </customLabels>
-    <customLabels>
-        <label>Valitse arvo ensisijaiselle sähköpostille.</label>
-        <name>PreferredEmailRequiredError</name>
-    </customLabels>
-    <customLabels>
-        <label>Ensisijaisessa puhelimessa määritettyä puhelinta ei löydy. Varmista, että annat olemassa olevan mukautetun puhelin-kentän kenttäotsakkeen.</label>
-        <name>PreferredPhoneMatchMustExist</name>
-    </customLabels>
-    <customLabels>
-        <label>Ensisijaiseksi puhelimeksi valittu puhelin ei voi olla tyhjä.</label>
-        <name>PreferredPhoneMatchNotNull</name>
-    </customLabels>
-    <customLabels>
-        <label>Valitse arvo ensisijaiselle puhelimelle.</label>
-        <name>PreferredPhoneRequiredError</name>
-    </customLabels>
-    <customLabels>
-        <label>on</label>
-        <name>Relationship_Explanation_Connector</name>
-    </customLabels>
-    <customLabels>
-        <label>-</label>
-        <name>Relationship_Split</name>
-    </customLabels>
-    <customLabels>
-        <label>Automaattisen luonnin asetusten avulla voit määrittää, milloin yhteyshenkilötietue luodaan automaattisesti yhteyshenkilön ja kampanjajäsenen välille toisen objektin mukautetun hakukentän perusteella. Esimerkiksi kampanjajäsenestä yhteyshenkilöön viitehaku voi luoda viittaajan ja viitatun suhteen kahden yhteyshenkilön välille. (Huomaa, että tämä ominaisuus ei ole käytettävissä liideille tai kampanjan jäsenobjekteille, jotka viittaavat liideihin.)</label>
-        <name>RelationshipsAutoDescription</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Reciprocal Relationships setting --></label>
-        <name>RelationshipsLookupDescription</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Picklist value for naming format used for Administrative and Household Accounts --></label>
-        <name>acctNamingOther</name>
-    </customLabels>
-    <customLabels>
-        <label>Virheellinen kutsu. Tämä toiminto on varattu Salesforcen käyttöön.</label>
-        <name>adapterException</name>
-    </customLabels>
-    <customLabels>
-        <label>Osoitetietueet voidaan liittää vain tileihin tai yhteyshenkilöihin.</label>
-        <name>addrHhAdmAccountOnly</name>
-    </customLabels>
-    <customLabels>
-        <label>Mahdollisuus lisätä useita osoitteita on poistettu käytöstä tämän tilin tietuetyypille. Ota se käyttöön siirtymällä EDA-asetuksiin, napsauttamalla tilit ja yhteyshenkilöt, ja valitsemalla valintaruutu kohdassa Tilityypit, joissa on käytössä useita osoitteita.</label>
-        <name>addrNotEnabledAccount</name>
-    </customLabels>
-    <customLabels>
-        <label>Useiden osoitteiden lisääminen on poistettu käytöstä yhteyshenkilöistä. Ota se käyttöön siirtymällä EDA-asetuksiin, napsauttamalla tilit ja yhteyshenkilöt, ja valitsemalla Yhteyshenkilöiden monet osoitteet käytössä -valintaruutu.</label>
-        <name>addrNotEnabledContact</name>
-    </customLabels>
-    <customLabels>
-        <label>Tälle tilille tai yhteyshenkilölle on olemassa oleva osoitetietue, jonka kausittaiset aloitus- ja päättymispäivät ovat päällekkäisiä tämän tietueen kausiluonteisten päivämäärien kanssa. Säädä kausipäivät niin, että ne eivät mene päällekkäin toisen osoitetietueen kanssa.</label>
-        <name>addrSeasonalOverlap</name>
-    </customLabels>
-    <customLabels>
-        <label>Osoitteella ei voi olla osittaisia kausittaisia aloitus- ja päättymispäiviä. Joko syötä arvot kaikille kausiluonteisille aloitus- ja päättymispäiville tai jätä ne tyhjiksi.</label>
-        <name>addrSeasonalPartial</name>
-    </customLabels>
-    <customLabels>
-        <label>Osoitteella ei voi olla osittaisia kausittaisia aloitus- ja päättymispäiviä. Joko syötä arvot kaikille kausiluonteisille aloitus- ja päättymispäiville tai jätä ne tyhjiksi.</label>
-        <name>addrSeasonalPartialYear</name>
-    </customLabels>
-    <customLabels>
-        <label>Osoitetietueet voidaan liittää vain tileihin tai yhteyshenkilöihin.</label>
-        <name>addrValidParentObjects</name>
-    </customLabels>
-    <customLabels>
-        <label>Hallintatilin nimen muoto</label>
-        <name>adminAccNameFormat</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Administrative Account Name Format setting --></label>
-        <name>adminAccNameFormatHelpText</name>
-    </customLabels>
-    <customLabels>
-        <label>Tällä yhteyshenkilöllä on jo ensisijainen yhteys määritettyyn tiliin. Joko poista ensisijaisen asetuksen valinta toisesta jäsenyydestä, jotta voit määrittää tämän ensisijaiseksi, tai luo tämä jäsenyys ilman ensisijaista arvoa.</label>
-        <name>affiliationWithSameAccExists</name>
-    </customLabels>
-    <customLabels>
-        <label>Emme voi luoda tätä jäsenyyttä, koska määritetyllä tilillä ei ole tietuetyyppiä.</label>
-        <name>afflAccountNoRecordType</name>
-    </customLabels>
-    <customLabels>
-        <label>Emme voi tallentaa tätä tietuetta tilitietueen tyyppivirheen vuoksi jäsenyyskartoituksissa. Pyydä pääkäyttäjää varmistamaan, että tilitietueen tyypit on kartoitettu oikein yhteyshenkilön ensisijaisiin jäsenyyksiin.</label>
-        <name>afflAccoutMappingError</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} tilitietueen tyyppiä ei ole olemassa. Pyydä pääkäyttäjää tarkastamaan tietuetyypit jäsenyyskartoituksissa.</label>
-        <name>afflNullPointerError</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Record Type Validation setting --></label>
-        <name>afflTypeEnforced</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Record Type Validation setting --></label>
-        <name>afflTypeEnforcedDescription</name>
-    </customLabels>
-    <customLabels>
-        <label>Nimeä kotitaloustilit automaattisesti uudelleen</label>
-        <name>automaticHHNaming</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Automatically Rename Household Accounts setting --></label>
-        <name>automaticHHNamingHelpText</name>
-    </customLabels>
-    <customLabels>
-        <label>Organisaatiosta ei löydy hallintatilin tietuetyyppiä. Asennuksen jälkeen käytä Object Manageria ja luo uusi tietuetyyppi nimeltä ”Hallinnollinen” tili-objektille.</label>
-        <name>defaultAccountRecordTypeMissingError</name>
-    </customLabels>
-    <customLabels>
-        <label>ja</label>
-        <name>defaultNamingConnector</name>
-    </customLabels>
-    <customLabels>
-        <label>(DuplicateAcknowledged)</label>
-        <name>duplicateFieldInFilter</name>
-    </customLabels>
-    <customLabels>
-        <label>Suodatinkenttä-arvo nimeää tuotekentän kaksoiskappaleen. Määritä kenttä, joka ei ole kopio. Muussa tapauksessa suodatus tehdään käyttämällä tuotekentän arvoa. Jos valitset jälkimmäisen vaihtoehdon, vahvista tämä suodatuslogiikka liittämällä {0} kentän nimen perään. Jos esimerkiksi kaksoiskenttä on Kuollut__c, kirjoita suodatinkentän arvoksi Kuollut__c{0}.</label>
-        <name>duplicateWithHEDAField</name>
-    </customLabels>
-    <customLabels>
-        <label>Tyhjä pakollinen kenttä estää tämän tietueen tallentamisen. Pakollinen kenttä voi olla tässä tietueessa tai tietueessa, johon hakuarvo liittyy.</label>
-        <name>exceptionRequiredField</name>
-    </customLabels>
-    <customLabels>
-        <label>Vahvistussääntö estää tämän tietueen käsittelyn. Vahvistussääntö voi olla tässä tietueessa tai siihen liittyvässä tietueessa, jota päivitetään. VALIDOINTIVIESTI:</label>
-        <name>exceptionValidationRule</name>
-    </customLabels>
-    <customLabels>
-        <label>Suodatinkenttä ei voi sisältää nimitilan etuliitteitä, kuten hed__. Poista nimitilan etuliite ja yritä uudelleen.</label>
-        <name>fieldWithHEDANamespace</name>
-    </customLabels>
-    <customLabels>
-        <label>{!{!FirstName}} {!LastName} hallintatili</label>
-        <name>firstNameLastNameAdminAcc</name>
-    </customLabels>
-    <customLabels>
-        <label>{!{!FirstName}} {!LastName} perhe</label>
-        <name>firstNameLastNameFamily</name>
-    </customLabels>
-    <customLabels>
-        <label>{!{!FirstName}} {!LastName} kotitalous</label>
-        <name>firstNameLastNameHH</name>
-    </customLabels>
-    <customLabels>
-        <label>Yrität käyttää lahjakäsittelyä ilman vaadittuja määritystietoja. Ota yhteyttä pääkäyttäjään saadaksesi apua.</label>
-        <name>giftProcessingConfigException</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Field label for the Household Account Name setting --></label>
-        <name>hhAccNameFormat</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Household Account Name Format setting --></label>
-        <name>hhAccNameFormatHelpText</name>
-    </customLabels>
-    <customLabels>
-        <label>Perhe</label>
-        <name>hhFamily</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Error when a Contact&apos;s Primary Affiliation field isn&apos;t an Account lookup field --></label>
-        <name>invalidContactFieldInAffiliationMapping</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Error when an Affiliation Mapping&apos;s Account record type isn&apos;t valid --></label>
-        <name>invalidRecordTypeInAffiliationMapping</name>
-    </customLabels>
-    <customLabels>
-        <label>{!LastName} hallintatili</label>
-        <name>lastNameAdminAcc</name>
-    </customLabels>
-    <customLabels>
-        <label>{!LastName} perhe</label>
-        <name>lastNameFamily</name>
-    </customLabels>
-    <customLabels>
-        <label>{!LastName} ({!{!FirstName}}) hallintatili</label>
-        <name>lastNameFirstNameAdminAcc</name>
-    </customLabels>
-    <customLabels>
-        <label>{!LastName} ({!{!FirstName}}) perhe</label>
-        <name>lastNameFirstNameFamily</name>
-    </customLabels>
-    <customLabels>
-        <label>{!LastName} ({!{!FirstName}}) kotitalous</label>
-        <name>lastNameFirstNameHH</name>
-    </customLabels>
-    <customLabels>
-        <label>{!LastName} kotitalous</label>
-        <name>lastNameHH</name>
-    </customLabels>
-    <customLabels>
-        <label>Suunnitelmavaatimukset voivat määrittää joko ohjelmasuunnitelman tai pääsuunnitelman, mutta eivät molempia. Jos tämä suunnitelmavaatimus on osa toista suunnitelmavaatimusta, määritä vain pääsuunnitelmavaatimus. Jos tämä suunnitelmavaatimus on osa ohjelmasuunnitelmaa, määritä vain ohjelmasuunnitelma.</label>
-        <name>nestedPlanRequirementPPExp</name>
-    </customLabels>
-    <customLabels>
-        <label>Määritettyä tilitietueen tyyppiä ei ole:</label>
-        <name>noAccRecType</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Empty state message for Affiliation Mappings --></label>
-        <name>noAfflMappings</name>
-    </customLabels>
-    <customLabels>
-        <label>Automaattisia luontiasetuksia ei ole määritelty. Käytä alla olevaa lomaketta uuden automaattisen luontiasetuksen luomiseen.</label>
-        <name>noAutoCreateSettings</name>
-    </customLabels>
-    <customLabels>
-        <label>Vastavuoroisia asetuksia ei ole määritelty. Käyttä alla olevaa lomaketta uuden vastavuoroisen asetuksen luomiseen.</label>
-        <name>noRecSettings</name>
-    </customLabels>
-    <customLabels>
-        <label>Sähköposti (vakio)</label>
-        <name>preferredBatchDefaultEmail</name>
-    </customLabels>
-    <customLabels>
-        <label>Puhelin (vakio)</label>
-        <name>preferredBatchDefaultPhone</name>
-    </customLabels>
-    <customLabels>
-        <label>Oletustilimalli</label>
-        <name>stgAccModelTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation title for Account Model --></label>
-        <name>stgAccountModelNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Account Model Settings --></label>
-        <name>stgAccountModelSettingsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the list of Available Account Record Types --></label>
-        <name>stgAccountRecordTypeAvailableListTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Group label for the Account record type selection --></label>
-        <name>stgAccountRecordTypeGroupLabelTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Info text for Account Record Type picklist --></label>
-        <name>stgAccountRecordTypeHelp</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the list of Selected Account Record Types --></label>
-        <name>stgAccountRecordTypeSelectedListTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Kotitaloustilitietueen tyyppi</label>
-        <name>stgAccountRecordTypeSupportsHHAddress</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Enable Multiple Addresses for Account Types setting --></label>
-        <name>stgAccountTypesMultiAddressesEnabled</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Accounts Without Contacts setting --></label>
-        <name>stgAccoutTypesWithoutContactsDelete</name>
-    </customLabels>
-    <customLabels>
-        <label>Lisää tarvittaessa ”latinalaisamerikkalainen tai latino” valintaluettelon arvoksi etnisyys-kenttään.</label>
-        <name>stgAddHispanicOrLatinoPicklistValue</name>
-    </customLabels>
-    <customLabels>
-        <label>Lisää tarvittaessa ”ei latinalaisamerikkalainen tai latino” valintaluettelon arvoksi etnisyys-kenttään.</label>
-        <name>stgAddNotHispanicOrLatinoPicklistValue</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation title for Addresses --></label>
-        <name>stgAddressSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Addresses --></label>
-        <name>stgAddressSettingsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for Custom Name Format for Administrative Accounts --></label>
-        <name>stgAdminAccountCustomName</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Info text for Custom Name Format --></label>
-        <name>stgAdminAccountCustomNameHelp</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Administrative Account Naming --></label>
-        <name>stgAdminAccountNamingTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Administrative Account Record Type setting --></label>
-        <name>stgAdminAccountRecordType</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Delete Affiliation mapping window --></label>
-        <name>stgAffiliationsDeleteModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Delete Affiliation mapping window --></label>
-        <name>stgAffiliationsDeleteModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when an Affiliation mapping is deleted --></label>
-        <name>stgAffiliationsDeleteSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Edit Affiliation mapping window --></label>
-        <name>stgAffiliationsEditModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Edit Affiliation mapping window --></label>
-        <name>stgAffiliationsEditModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when an Affiliation mapping is saved --></label>
-        <name>stgAffiliationsEditSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the New Affiliation mapping window --></label>
-        <name>stgAffiliationsNewModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when an Affiliation mapping is created --></label>
-        <name>stgAffiliationsNewSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation title for Affiliations --></label>
-        <name>stgAffiliationsSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Affiliation Settings --></label>
-        <name>stgAffiliationsSettingsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Affiliation End Date setting --></label>
-        <name>stgAfflCopyProgramEnrollmentEndDate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Affiliation Start Date setting --></label>
-        <name>stgAfflCopyProgramEnrollmentStartDate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Status for Affiliations Not Deleted setting --></label>
-        <name>stgAfflDeleteProgramEnrollment</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Message before deleting Affiliation mapping with an auto-enrollment --></label>
-        <name>stgAfflDeleteWithAutoEnrollment</name>
-    </customLabels>
-    <customLabels>
-        <label>Emme voi kartoittaa tätä jäsenyyttä, koska se viittaa tietuetyyppiin, johon toinen jäsenyyskartoitus jo viittaa. Jos haluat lisätä tämän kartoituksen siten, että jäsenyys käännetään, muokkaa olemassa olevaa kartoitusta napsauttamalla Muokkaa. Määritä sitten kentän API-nimi yhteyshenkilön ensisijaiseen jäsenyyskenttään. Älä muuta tilintietueen tyypille määritettyä nimeä.</label>
-        <name>stgAfflNotInserted</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Affiliations Related to Deleted Program Enrollments setting --></label>
-        <name>stgAfflProgEnrollDeleteRelated</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Program Enrollment Deletions --></label>
-        <name>stgAfflProgEnrollDeleteTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Määritä luotujen jäsenyyksien rooli</label>
-        <name>stgAfflProgEnrollSetRole</name>
-    </customLabels>
-    <customLabels>
-        <label>Luotujen jäsenyyksien rooli</label>
-        <name>stgAfflProgEnrollSetRoleValue</name>
-    </customLabels>
-    <customLabels>
-        <label>Luotujen jäsenyyksien tila</label>
-        <name>stgAfflProgEnrollSetStatusValue</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Affiliations Created with Program Enrollments --></label>
-        <name>stgAfflProgramEnrollmentSettingsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Täytön suorittamisen jälkeen</label>
-        <name>stgAfterRunBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- The API name associated with the selected Account Record Type --></label>
-        <name>stgApiNameLabel</name>
-    </customLabels>
-    <customLabels>
-        <label>Aloita kirjoittaminen hakeaksesi Chatter-ryhmän nimeä.</label>
-        <name>stgAutoCompleteEnterChatterGroupName</name>
-    </customLabels>
-    <customLabels>
-        <label>Aloita kirjoittaminen hakeaksesi käyttäjänimeä.</label>
-        <name>stgAutoCompleteEnterUserName</name>
-    </customLabels>
-    <customLabels>
-        <label>Valitse Chatter-ryhmä</label>
-        <name>stgAutoCompleteSelectChatterGroup</name>
-    </customLabels>
-    <customLabels>
-        <label>Valitse käyttäjä</label>
-        <name>stgAutoCompleteSelectUser</name>
-    </customLabels>
-    <customLabels>
-        <label>Automaattinen ilmoittautuminen</label>
-        <name>stgAutoEnrollment</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Delete auto-enrollment mapping confirmation window --></label>
-        <name>stgAutoEnrollmentDeleteModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Delete auto-enrollment mapping confirmation window --></label>
-        <name>stgAutoEnrollmentDeleteModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when an auto-enrollment mapping is deleted --></label>
-        <name>stgAutoEnrollmentDeleteSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Edit auto-enrollment mapping confirmation window --></label>
-        <name>stgAutoEnrollmentEditModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Edit auto-enrollment mapping confirmation window --></label>
-        <name>stgAutoEnrollmentEditModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when an auto-enrollment mapping is saved --></label>
-        <name>stgAutoEnrollmentEditSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the New auto-enrollment mapping confirmation window --></label>
-        <name>stgAutoEnrollmentNewModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the New auto-enrollment mapping confirmation window --></label>
-        <name>stgAutoEnrollmentNewModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when an auto-enrollment mapping is created --></label>
-        <name>stgAutoEnrollmentNewSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Auto-Enrollment Mappings setting --></label>
-        <name>stgAutoEnrollmentProgramDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Auto-Enrollment Mappings setting --></label>
-        <name>stgAutoEnrollmentProgramTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Automaattisen ilmoittautumisen rooli</label>
-        <name>stgAutoEnrollmentRole</name>
-    </customLabels>
-    <customLabels>
-        <label>Automaattisen ilmoittautumisen tila</label>
-        <name>stgAutoEnrollmentStatus</name>
-    </customLabels>
-    <customLabels>
-        <label>Täytön asettaminen jonoon onnistui. Erän valmistuttua siitä lähetetään sähköposti.</label>
-        <name>stgBackfillQueuedEmailSent</name>
-    </customLabels>
-    <customLabels>
-        <label>Ennen täytön suorittamista</label>
-        <name>stgBeforeRunBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button label for New Affiliation mapping window --></label>
-        <name>stgBtnAddMapping</name>
-    </customLabels>
-    <customLabels>
-        <label>Lisää asetus</label>
-        <name>stgBtnAddSetting</name>
-    </customLabels>
-    <customLabels>
-        <label>Peruuta</label>
-        <name>stgBtnCancel</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that clears a field --></label>
-        <name>stgBtnClearSelectionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches the Trailblazer Community site --></label>
-        <name>stgBtnCommunity</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches the Trailblazer Community site --></label>
-        <name>stgBtnCommunityActionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button label for delete Affiliation mapping warning --></label>
-        <name>stgBtnDelete</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches EDA documentation --></label>
-        <name>stgBtnDocumentation</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches EDA documentation --></label>
-        <name>stgBtnDocumentationActionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches the Education Cloud trailmix --></label>
-        <name>stgBtnEDCTrailhead</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches the Education Cloud trailmix --></label>
-        <name>stgBtnEDCTrailheadActionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label>Muokkaa</label>
-        <name>stgBtnEdit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches Settings Health Check --></label>
-        <name>stgBtnHealthCheck</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that creates an auto-enrollment mapping --></label>
-        <name>stgBtnNewAutoEnrollA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
-        <name>stgBtnRefreshAdminNames</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates all Administrative Account names --></label>
-        <name>stgBtnRefreshAdminNamesA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates Race field on Contacts from Ethnicity field --></label>
-        <name>stgBtnRefreshEthnicityDataA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
-        <name>stgBtnRefreshHouseholdNames</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates all Household Account names --></label>
-        <name>stgBtnRefreshHouseholdNamesA11y</name>
-    </customLabels>
-    <customLabels>
-        <label>Suorita täyttö</label>
-        <name>stgBtnRunBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
-        <name>stgBtnRunCopy</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates Course Descriptions --></label>
-        <name>stgBtnRunCopyA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates Course Connection record types --></label>
-        <name>stgBtnRunCourseConnBackfillA11y</name>
-    </customLabels>
-    <customLabels>
-        <label>Tallenna</label>
-        <name>stgBtnSave</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches EDA Settings --></label>
-        <name>stgBtnSettings</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches EDA Settings --></label>
-        <name>stgBtnSettingsActionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches EDA Trailhead modules --></label>
-        <name>stgBtnTrailhead</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches EDA Trailhead modules --></label>
-        <name>stgBtnTrailheadActionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that runs a selected Apex job --></label>
-        <name>stgBtnUpdate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches the Salesforce.org YouTube channel --></label>
-        <name>stgBtnVideos</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches the Salesforce.org YouTube channel --></label>
-        <name>stgBtnVideosActionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label>Siivouksen asettaminen jonoon onnistui. Erän valmistuttua siitä lähetetään sähköposti.</label>
-        <name>stgCleanupQueuedEmailSent</name>
-    </customLabels>
-    <customLabels>
-        <label>Tilitietueen tyyppi</label>
-        <name>stgColAccountRecordType</name>
-    </customLabels>
-    <customLabels>
-        <label>Aktiivinen</label>
-        <name>stgColActive</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Column header for Auto-Enrollment Role --></label>
-        <name>stgColAutoEnrollmentRole</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Column header for Auto-Enrollment Status --></label>
-        <name>stgColAutoEnrollmentStatus</name>
-    </customLabels>
-    <customLabels>
-        <label>Kampanjatyypit</label>
-        <name>stgColCampTypes</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Column header for Primary Affiliation Fields on Contact --></label>
-        <name>stgColContactPrimaryAfflField</name>
-    </customLabels>
-    <customLabels>
         <label>Nainen</label>
-        <name>stgColFemale</name>
     </customLabels>
     <customLabels>
-        <label>Kenttäotsake</label>
-        <name>stgColField</name>
+        <name>InvalidFilter</name>
+        <label>Suodatinkentäksi syötetty kenttä ei kelpaa. Suodatinkentät voivat olla mitä tahansa vakio- tai mukautettuja kenttiä objektissa, jolle käynnistin on tarkoitettu, samoin kuin kentät liittyvissä tietueissa. Varmista, että käytät kentän API-nimeä ja jätä pois EDA-nimitilan etuliite (&quot;hed__&quot;).</label>
     </customLabels>
     <customLabels>
+        <name>Male</name>
         <label>Mies</label>
-        <name>stgColMale</name>
     </customLabels>
     <customLabels>
-        <label>Neutraali</label>
-        <name>stgColNeutral</name>
+        <name>MultipleCourseConnection</name>
+        <label>Tähän yhteyshenkilöön ja tähän kurssitarjontaan on liitetty useampi kuin yksi kurssiyhteys. Määritä kurssiyhteys, joka edustaa opiskelijan ilmoittautumista tähän kurssitarjontaan tälle jakson arvosanalle.</label>
     </customLabels>
     <customLabels>
-        <label>Objektin API-nimi</label>
-        <name>stgColObject</name>
+        <name>NoContactCOFound</name>
+        <label>Yhteyshenkilöä ja kurssitarjousta ei ole määritelty tai ne eivät vastaa kurssiyhteyttä. Joko määritä vain kurssiyhteys tai sekä yhteyshenkilö että kurssitarjous, jotta voimme tallentaa tämän tietueen oikeilla tiedoilla.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Products --></label>
-        <name>stgColProducts</name>
+        <name>NoCourseConnection</name>
+        <label>Tähän yhteyshenkilöön ja kurssitarjoukseen ei ole liitetty kurssiyhteyttä. Jos tämä opiskelija on ilmoittautunut tähän kurssitarjontaan, luo kurssiyhteys.</label>
     </customLabels>
     <customLabels>
-        <label>Suhdetyyppi</label>
-        <name>stgColRelType</name>
+        <name>NoDataMatch</name>
+        <label>Yhteyshenkilö ja kurssitarjonta eivät täsmää kurssiyhteyden kanssa. Joko määritä vain kurssiyhteys tai sekä yhteyshenkilö että kurssitarjous, jotta voimme tallentaa tämän tietueen oikeilla tiedoilla.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Settings names --></label>
-        <name>stgColRelationshipName</name>
+        <name>NoFieldsPopulated</name>
+        <label>Joko määritä vain kurssiyhteys tai sekä yhteyshenkilö että kurssitarjous.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Resources --></label>
-        <name>stgColResources</name>
+        <name>NoneOption</name>
+        <label>Ei mitään</label>
     </customLabels>
     <customLabels>
-        <label>Rooli</label>
-        <name>stgColRole</name>
+        <name>OnlyCourseConnectionPopulated</name>
+        <label>Tähän kurssiyhteyteen ei ole liitetty yhteyshenkilöä tai kurssitarjousta. Valitse kelvollinen kurssiyhteys.</label>
     </customLabels>
     <customLabels>
-        <label>Tila</label>
-        <name>stgColStatus</name>
+        <name>PreferredEmailMatchMustExist</name>
+        <label>Ensisijaisessa sähköpostissa määritettyä sähköpostiosoitetta ei löydy. Varmista, että annat olemassa olevan mukautetun sähköpostikentän kenttäotsakkeen.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Tools --></label>
-        <name>stgColTools</name>
+        <name>PreferredEmailMatchNotNull</name>
+        <label>Ensisijaisessa sähköpostissa valitsemasi sähköpostikenttä on tyhjä. Joko valitse toinen ensisijainen sähköpostiosoite tai lisää arvo kyseiselle sähköpostikentälle.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Trailblazer Community card --></label>
-        <name>stgCommunityTitle</name>
+        <name>PreferredEmailRequiredError</name>
+        <label>Valitse arvo ensisijaiselle sähköpostille.</label>
     </customLabels>
     <customLabels>
-        <label>Ymmärrän ja olen valmis suorittamaan täytön.</label>
-        <name>stgConfirmReadyRunBackfill</name>
+        <name>PreferredPhoneMatchMustExist</name>
+        <label>Ensisijaisessa puhelimessa määritettyä puhelinta ei löydy. Varmista, että annat olemassa olevan mukautetun puhelin-kentän kenttäotsakkeen.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Contact Information --></label>
-        <name>stgContactInformationSettingsNav</name>
+        <name>PreferredPhoneMatchNotNull</name>
+        <label>Ensisijaiseksi puhelimeksi valittu puhelin ei voi olla tyhjä.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Contact Information Settings --></label>
-        <name>stgContactInformationSettingsTitle</name>
+        <name>PreferredPhoneRequiredError</name>
+        <label>Valitse arvo ensisijaiselle puhelimelle.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Allow Multiple Contact Addresses setting --></label>
-        <name>stgContactMultiAddressesEnabled</name>
+        <name>Relationship_Explanation_Connector</name>
+        <label>on</label>
     </customLabels>
     <customLabels>
-        <label>Täyttöä aloitettaessa tapahtui virhe.</label>
-        <name>stgCourseConnBackFillError</name>
+        <name>Relationship_Split</name>
+        <label>-</label>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when Course Connection record types are queued for update --></label>
-        <name>stgCourseConnBackFillSuccess</name>
+        <name>RelationshipsAutoDescription</name>
+        <label>Automaattisen luonnin asetusten avulla voit määrittää, milloin yhteyshenkilötietue luodaan automaattisesti yhteyshenkilön ja kampanjajäsenen välille toisen objektin mukautetun hakukentän perusteella. Esimerkiksi kampanjajäsenestä yhteyshenkilöön viitehaku voi luoda viittaajan ja viitatun suhteen kahden yhteyshenkilön välille. (Huomaa, että tämä ominaisuus ei ole käytettävissä liideille tai kampanjan jäsenobjekteille, jotka viittaavat liideihin.)</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
-        <name>stgCourseConnectionBackfillModalTitle</name>
+        <name>RelationshipsLookupDescription</name>
+        <label>Määritä vastaavat suhteet nähdäksesi, miten yhteyshenkilö liittyy toiseen, kummasta tahansa yhteyshenkilötietueesta.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Course Connections --></label>
-        <name>stgCourseConnectionsNav</name>
+        <name>acctNamingOther</name>
+        <label>Mukautettu muoto</label>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Course Connection Settings --></label>
-        <name>stgCourseConnectionsTitle</name>
+        <name>adapterException</name>
+        <label>Virheellinen kutsu. Tämä toiminto on varattu Salesforcen käyttöön.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update Extended Description field confirmation window --></label>
-        <name>stgCourseDataMigrationModalBody</name>
+        <name>addrHhAdmAccountOnly</name>
+        <label>Osoitetietueet voidaan liittää vain tileihin tai yhteyshenkilöihin.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update Extended Description field confirmation window --></label>
-        <name>stgCourseDataMigrationModalTitle</name>
+        <name>addrNotEnabledAccount</name>
+        <label>Mahdollisuus lisätä useita osoitteita on poistettu käytöstä tämän tilin tietuetyypille. Ota se käyttöön siirtymällä EDA-asetuksiin, napsauttamalla tilit ja yhteyshenkilöt, ja valitsemalla valintaruutu kohdassa Tilityypit, joissa on käytössä useita osoitteita.</label>
     </customLabels>
     <customLabels>
-        <label>Apex-erätyö käsitteli {0} erää, joista {1} epäonnistui.</label>
-        <name>stgCourseDescriptionCopyEmailBody</name>
+        <name>addrNotEnabledContact</name>
+        <label>Useiden osoitteiden lisääminen on poistettu käytöstä yhteyshenkilöistä. Ota se käyttöön siirtymällä EDA-asetuksiin, napsauttamalla tilit ja yhteyshenkilöt, ja valitsemalla Yhteyshenkilöiden monet osoitteet käytössä -valintaruutu.</label>
     </customLabels>
     <customLabels>
-        <label>Kurssin kuvauksen kopiointityön suorittamisen tila:</label>
-        <name>stgCourseDescriptionCopyEmailSubject</name>
+        <name>addrSeasonalOverlap</name>
+        <label>Tälle tilille tai yhteyshenkilölle on olemassa oleva osoitetietue, jonka kausittaiset aloitus- ja päättymispäivät ovat päällekkäisiä tämän tietueen kausiluonteisten päivämäärien kanssa. Säädä kausipäivät niin, että ne eivät mene päällekkäin toisen osoitetietueen kanssa.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Courses and Enrollments --></label>
-        <name>stgCoursesAndEnrollmentsNav</name>
+        <name>addrSeasonalPartial</name>
+        <label>Osoitteella ei voi olla osittaisia kausittaisia aloitus- ja päättymispäiviä. Joko syötä arvot kaikille kausiluonteisille aloitus- ja päättymispäiville tai jätä ne tyhjiksi.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Contact Language Fluency setting --></label>
-        <name>stgDefaultContactLanguageFluency</name>
+        <name>addrSeasonalPartialYear</name>
+        <label>Osoitteella ei voi olla osittaisia kausittaisia aloitus- ja päättymispäiviä. Joko syötä arvot kaikille kausiluonteisille aloitus- ja päättymispäiville tai jätä ne tyhjiksi.</label>
     </customLabels>
     <customLabels>
-        <label>Oletusarvoinen opetushenkilöstön tietuetyyppi</label>
-        <name>stgDefaultFacultyTypeTitle</name>
+        <name>addrValidParentObjects</name>
+        <label>Osoitetietueet voidaan liittää vain tileihin tai yhteyshenkilöihin.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Default Student Record Type setting --></label>
-        <name>stgDefaultStudentTypeTitle</name>
+        <name>adminAccNameFormat</name>
+        <label>Hallintatilin nimen muoto</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Error Handling setting --></label>
-        <name>stgDisableErrorHandlingTitle</name>
+        <name>adminAccNameFormatHelpText</name>
+        <label>Automaattisesti luotujen hallintatilien nimeämismuoto.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Require Preferred Email setting --></label>
-        <name>stgDisablePreferredEmailEnforcement</name>
+        <name>affiliationWithSameAccExists</name>
+        <label>Tällä yhteyshenkilöllä on jo ensisijainen yhteys määritettyyn tiliin. Joko poista ensisijaisen asetuksen valinta toisesta jäsenyydestä, jotta voit määrittää tämän ensisijaiseksi, tai luo tämä jäsenyys ilman ensisijaista arvoa.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Require Preferred Phone setting --></label>
-        <name>stgDisablePreferredPhoneEnforcement</name>
+        <name>afflAccountNoRecordType</name>
+        <label>Emme voi luoda tätä jäsenyyttä, koska määritetyllä tilillä ei ole tietuetyyppiä.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Prevent Duplicate Relationships Settings --></label>
-        <name>stgDuplicateRelationships</name>
+        <name>afflAccoutMappingError</name>
+        <label>Emme voi tallentaa tätä tietuetta tilitietueen tyyppivirheen vuoksi jäsenyyskartoituksissa. Pyydä pääkäyttäjää varmistamaan, että tilitietueen tyypit on kartoitettu oikein yhteyshenkilön ensisijaisiin jäsenyyksiin.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Prevent Duplicate Relationships setting --></label>
-        <name>stgDuplicateRelationshipsHelp</name>
+        <name>afflNullPointerError</name>
+        <label>{0} tilitietueen tyyppiä ei ole olemassa. Pyydä pääkäyttäjää tarkastamaan tietuetyypit jäsenyyskartoituksissa.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the EDA Aapp --></label>
-        <name>stgEDAAppDesc</name>
+        <name>afflTypeEnforced</name>
+        <label>Tietuetyypin vahvistus</label>
     </customLabels>
     <customLabels>
-        <label><!-- Initials for the EDA App --></label>
-        <name>stgEDAAppInitials</name>
+        <name>afflTypeEnforcedDescription</name>
+        <label>Vaadi, että yhteyshenkilön ensisijaiseksi jäsenyydeksi määritetyt tilit käyttävät tietuetyyppiä. Varmista myös, että kaikki tilitietuetyypit on kartoitettu Yhteyshenkilö-objektin ensisijaisiin jäsenyyskenttiin. Jos vahvistus epäonnistuu, jäsenyyttä ei tallennetta.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of EDA Settings has moved --></label>
-        <name>stgEDASettingsHasMovedDesc</name>
+        <name>automaticHHNaming</name>
+        <label>Nimeä kotitaloustilit automaattisesti uudelleen</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title of EDA Settings has moved --></label>
-        <name>stgEDASettingsHasMovedTitle</name>
+        <name>automaticHHNamingHelpText</name>
+        <label>Nimeä kotitaloustilit automaattisesti uudelleen, kun yhteyshenkilöitä lisätään tai muutetaan.</label>
     </customLabels>
     <customLabels>
-        <label>EDA-määritys</label>
-        <name>stgEDASetupTitle</name>
+        <name>defaultAccountRecordTypeMissingError</name>
+        <label>Organisaatiosta ei löydy hallintatilin tietuetyyppiä. Asennuksen jälkeen käytä Object Manageria ja luo uusi tietuetyyppi nimeltä ”Hallinnollinen” tili-objektille.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of Settings Health Check --></label>
-        <name>stgEDCSettingsHealthCheckDescription</name>
+        <name>defaultNamingConnector</name>
+        <label>ja</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Course Connection Record Types setting --></label>
-        <name>stgEnableCourseConnectionsTitle</name>
+        <name>duplicateFieldInFilter</name>
+        <label>(DuplicateAcknowledged)</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Debug Logging setting --></label>
-        <name>stgEnableDebugHelp</name>
+        <name>duplicateWithHEDAField</name>
+        <label>Suodatinkenttä-arvo nimeää tuotekentän kaksoiskappaleen. Määritä kenttä, joka ei ole kopio. Muussa tapauksessa suodatus tehdään käyttämällä tuotekentän arvoa. Jos valitset jälkimmäisen vaihtoehdon, vahvista tämä suodatuslogiikka liittämällä {0} kentän nimen perään. Jos esimerkiksi kaksoiskenttä on Kuollut__c, kirjoita suodatinkentän arvoksi Kuollut__c{0}.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Debug Logging setting --></label>
-        <name>stgEnableDebugTitle</name>
+        <name>exceptionRequiredField</name>
+        <label>Tyhjä pakollinen kenttä estää tämän tietueen tallentamisen. Pakollinen kenttä voi olla tässä tietueessa tai tietueessa, johon hakuarvo liittyy.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Enhanced Preferred Phone Functionality setting --></label>
-        <name>stgEnablePreferredPhoneSync</name>
+        <name>exceptionValidationRule</name>
+        <label>Vahvistussääntö estää tämän tietueen käsittelyn. Vahvistussääntö voi olla tässä tietueessa tai siihen liittyvässä tietueessa, jota päivitetään. VALIDOINTIVIESTI:</label>
     </customLabels>
     <customLabels>
-        <label><!-- Error when the user doesn&apos;t have the permissions to view a page --></label>
-        <name>stgErrorInsufficientAccess</name>
+        <name>fieldWithHEDANamespace</name>
+        <label>Suodatinkenttä ei voi sisältää nimitilan etuliitteitä, kuten hed__. Poista nimitilan etuliite ja yritä uudelleen.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Error when the user doesn&apos;t have the permissions to save settings --></label>
-        <name>stgErrorInsufficientAccessSaving</name>
+        <name>firstNameLastNameAdminAcc</name>
+        <label>{!{!FirstName}} {!LastName} hallintatili</label>
     </customLabels>
     <customLabels>
-        <label><!-- Error when a generic error occurs --></label>
-        <name>stgErrorInvalidSettings</name>
+        <name>firstNameLastNameFamily</name>
+        <label>{!{!FirstName}} {!LastName} perhe</label>
     </customLabels>
     <customLabels>
-        <label><!-- Message when no record types for auto-enrollment mappings exist --></label>
-        <name>stgErrorNewAutoEnrollment</name>
+        <name>firstNameLastNameHH</name>
+        <label>{!{!FirstName}} {!LastName} kotitalous</label>
     </customLabels>
     <customLabels>
-        <label>Virheilmoitusten vastaanottaja:</label>
-        <name>stgErrorNotiTo</name>
+        <name>giftProcessingConfigException</name>
+        <label>Yrität käyttää lahjakäsittelyä ilman vaadittuja määritystietoja. Ota yhteyttä pääkäyttäjään saadaksesi apua.</label>
     </customLabels>
     <customLabels>
-        <label>Virheilmoituksen vastaanottajat</label>
-        <name>stgErrorNotifRecipientsTitle</name>
+        <name>hhAccNameFormat</name>
+        <label>Kotitaloustilin nimen muoto</label>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Errors --></label>
-        <name>stgErrorSettingsNav</name>
+        <name>hhAccNameFormatHelpText</name>
+        <label>Automaattisesti luotujen kotitaloustilien nimeämismuoto.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Error Settings --></label>
-        <name>stgErrorSettingsTitle</name>
+        <name>hhFamily</name>
+        <label>Perhe</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Legacy Ethnicity Data setting --></label>
-        <name>stgEthnicityRaceBackfillContacts</name>
+        <name>invalidContactFieldInAffiliationMapping</name>
+        <label>Emme voineet tallentaa tätä tietuetta, koska yhteyshenkilökentässä {1} on virhe. Pyydä pääkäyttäjääsi tarkastamaan jäsenyyskartoitukset EDA-asetuksista ja määrittämään kentän {0} arvoksi Yhteyshenkilö-objektin Tili-hakusuhdekentän API-nimen, kentän {1} sijaan.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update the Race field on Contacts confirmation window --></label>
-        <name>stgEthnicityRaceBackfillModalBody</name>
+        <name>invalidRecordTypeInAffiliationMapping</name>
+        <label>Emme voineet tallentaa tätä tietuetta, koska {1} ei ole käypä tilitietuetyyppi. Pyydä pääkäyttäjääsi tarkastamaan jäsenyyskartoitukset EDA-asetuksista ja määrittämään kentän {0} arvoksi kelvollisen tilitietuetyypin API-nimen, kentän {1} sijaan.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update the Race field on Contacts confirmation window --></label>
-        <name>stgEthnicityRaceBackfillModalTitle</name>
+        <name>lastNameAdminAcc</name>
+        <label>{!LastName} hallintatili</label>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when the Race field is queued for update --></label>
-        <name>stgEthnicityRaceBackfillSuccessToast</name>
+        <name>lastNameFamily</name>
+        <label>{!LastName} perhe</label>
     </customLabels>
     <customLabels>
-        <label>Fluent</label>
-        <name>stgFluent</name>
+        <name>lastNameFirstNameAdminAcc</name>
+        <label>{!LastName} ({!{!FirstName}}) hallintatili</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
-        <name>stgHCAccountModelAdminInactiveFix</name>
+        <name>lastNameFirstNameFamily</name>
+        <label>{!LastName} ({!{!FirstName}}) perhe</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Administrative Account Record Type --></label>
-        <name>stgHCAccountModelAdminNotFoundFix</name>
+        <name>lastNameFirstNameHH</name>
+        <label>{!LastName} ({!{!FirstName}}) kotitalous</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
-        <name>stgHCAccountModelDefaultInactiveFix</name>
+        <name>lastNameHH</name>
+        <label>{!LastName} kotitalous</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Account Model record type --></label>
-        <name>stgHCAccountModelDefaultNotFoundFix</name>
+        <name>nestedPlanRequirementPPExp</name>
+        <label>Suunnitelmavaatimukset voivat määrittää joko ohjelmasuunnitelman tai pääsuunnitelman, mutta eivät molempia. Jos tämä suunnitelmavaatimus on osa toista suunnitelmavaatimusta, määritä vain pääsuunnitelmavaatimus. Jos tämä suunnitelmavaatimus on osa ohjelmasuunnitelmaa, määritä vain ohjelmasuunnitelma.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
-        <name>stgHCAccountModelHHInactiveFix</name>
+        <name>noAccRecType</name>
+        <label>Määritettyä tilitietueen tyyppiä ei ole:</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find the Household Account Record Type --></label>
-        <name>stgHCAccountModelHHNotFoundFix</name>
+        <name>noAfflMappings</name>
+        <label>Ei jäsenyyskartoituksia vielä. Luo sellainen napsauttamalla Uusi.</label>
     </customLabels>
     <customLabels>
-        <label>Yksilölliset Hallinta- ja kotitaloustilitietueen tyyppien asetukset.</label>
-        <name>stgHCAccountRecordTypeSettingsUnique</name>
+        <name>noAutoCreateSettings</name>
+        <label>Automaattisia luontiasetuksia ei ole määritelty. Käytä alla olevaa lomaketta uuden automaattisen luontiasetuksen luomiseen.</label>
     </customLabels>
     <customLabels>
-        <label>Hallintatilin ja Kotitaloustilitietueen tyypin asetukset määrittävät saman tietuetyypin.</label>
-        <name>stgHCAccountRecordTypesNotUnique</name>
+        <name>noRecSettings</name>
+        <label>Vastavuoroisia asetuksia ei ole määritelty. Käyttä alla olevaa lomaketta uuden vastavuoroisen asetuksen luomiseen.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
-        <name>stgHCAccountRecordTypesNotUniqueFix</name>
+        <name>preferredBatchDefaultEmail</name>
+        <label>Sähköposti (vakio)</label>
     </customLabels>
     <customLabels>
-        <label>Hallintatilin ja Kotitaloustilitietueen tyypin asetukset määrittävät eri tietuetyyppejä.</label>
-        <name>stgHCAccountRecordTypesUnique</name>
+        <name>preferredBatchDefaultPhone</name>
+        <label>Puhelin (vakio)</label>
     </customLabels>
     <customLabels>
-        <label>{0} jäsenyyskartoitus on virheellinen.</label>
-        <name>stgHCAffiliationMappingSettingDesc</name>
+        <name>stgAccModelTitle</name>
+        <label>Oletustilimalli</label>
     </customLabels>
     <customLabels>
-        <label>{0} jäsenyyskartoitus</label>
-        <name>stgHCAffiliationMappingSettingHeading</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type is inactive --></label>
-        <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist --></label>
-        <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Tietuetyyppi {0} ({1}) on kartoitettu useisiin yhteyshenkilön ensisijaisiin jäsenyyskenttiin.</label>
-        <name>stgHCAfflMapAccRecordTypeNotUnique</name>
-    </customLabels>
-    <customLabels>
-        <label>Tilitietueen tyyppi</label>
-        <name>stgHCAfflMapAccRecordTypeTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Tietuetyyppi {0} ({1}) on kartoitettu yhteen yhteyshenkilön ensisijaiseen jäsenyyskenttään.</label>
-        <name>stgHCAfflMapAccRecordTypeUnique</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when Account record types in Affiliation mappings aren&apos;t unique --></label>
-        <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Yksilöllinen jäsenyyskartoituksen tietuetyyppi</label>
-        <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ({1}) -valintaluettelon arvo ei ole aktiivinen.</label>
-        <name>stgHCAfflMapAutoEnrollRoleInactive</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
-        <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Emme löydä {0}-valintaluettelon arvoa.</label>
-        <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
-        <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Automaattisen ilmoittautumisen roolin arvo</label>
-        <name>stgHCAfflMapAutoEnrollRoleTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ({1}) -valintaluettelon arvo on kelvollinen.</label>
-        <name>stgHCAfflMapAutoEnrollRoleValid</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ({1}) -valintaluettelon arvo ei ole aktiivinen.</label>
-        <name>stgHCAfflMapAutoEnrollStatusInactive</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
-        <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Emme löydä {0}-valintaluettelon arvoa.</label>
-        <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status --></label>
-        <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Automaattisen ilmoittautumisen tilan arvo</label>
-        <name>stgHCAfflMapAutoEnrollStatusTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ({1}) -valintaluettelon arvo on kelvollinen.</label>
-        <name>stgHCAfflMapAutoEnrollStatusValid</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Primary Affiliation field isn&apos;t valid --></label>
-        <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Yksilöllinen yhteyshenkilön ensisijainen jäsenyyskenttä</label>
-        <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ei ole kelvollinen yhteyshenkilökenttä.</label>
-        <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ({1}) -kenttä on kartoitettu useisiin tilitietueen tyyppeihin.</label>
-        <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
-    </customLabels>
-    <customLabels>
-        <label>Yhteyshenkilön ensisijainen jäsenyyskenttä</label>
-        <name>stgHCAfflMapContactPrimaryFieldTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ({1}) -kenttä on kartoitettu yhteen tilitietueen tyyppiin.</label>
-        <name>stgHCAfflMapContactPrimaryFieldUnique</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when mappings&apos; Primary Affiliation fields aren&apos;t unique --></label>
-        <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ({1}) -kenttä on kelvollinen.</label>
-        <name>stgHCAfflMapContactPrimaryFieldValid</name>
-    </customLabels>
-    <customLabels>
-        <label>Kurssiyhteydet eivät ole käytössä.</label>
-        <name>stgHCCourseConEnable</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when Course Connections isn&apos;t enabled --></label>
-        <name>stgHCCourseConEnableFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
-        <name>stgHCCourseConFacultyInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Faculty Record Type --></label>
-        <name>stgHCCourseConFacultyNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Oletusarvoinen opetushenkilöstön tietuetyypin ja Oletusarvoinen aktiivisen opiskelijatietueen tyypin asetukset määrittävät saman tietuetyypin.</label>
-        <name>stgHCCourseConRecordTypesNotUnique</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when student and faculty Course Connection record types match --></label>
-        <name>stgHCCourseConRecordTypesNotUniqueFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Yksilöllinen oletusarvoinen opetushenkilöstön tietuetyyppi ja oletusarvoinen aktiivisen opiskelijatietueen tyyppi</label>
-        <name>stgHCCourseConRecordTypesUnique</name>
-    </customLabels>
-    <customLabels>
-        <label>Oletusarvoinen opetushenkilöstön tietuetyypin ja Oletusarvoinen aktiivisen opiskelijatietueen tyypin asetukset määrittävät eri tietuetyyppejä.</label>
-        <name>stgHCCourseConRecordTypesUniqueDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
-        <name>stgHCCourseConStudentInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Student Record Type --></label>
-        <name>stgHCCourseConStudentNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Kurssiyhteydet</label>
-        <name>stgHCCourseConnectionsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ({1}) -valintaluettelon arvo ei ole aktiivinen.</label>
-        <name>stgHCPicklistValueInactive</name>
-    </customLabels>
-    <customLabels>
-        <label>Emme löydä {0}-valintaluettelon arvoa.</label>
-        <name>stgHCPicklistValueNotFound</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ({1}) -valintaluettelon arvo on kelvollinen.</label>
-        <name>stgHCPicklistValueValid</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} Vastavuoroiset suhteet ovat kelvolliset.</label>
-        <name>stgHCReciprocalRelDescription</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value is inactive --></label>
-        <name>stgHCReciprocalRelFemaleInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist --></label>
-        <name>stgHCReciprocalRelFemaleNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Vastavuoroisen asetuksen Nainen-arvo</label>
-        <name>stgHCReciprocalRelFemaleTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value is inactive --></label>
-        <name>stgHCReciprocalRelMaleInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist --></label>
-        <name>stgHCReciprocalRelMaleNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Vastavuoroisen asetuksen Mies-arvo</label>
-        <name>stgHCReciprocalRelMaleTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value is inactive --></label>
-        <name>stgHCReciprocalRelNameInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist --></label>
-        <name>stgHCReciprocalRelNameNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Vahvista vastavuoroiset asetukset kohteelle {0} ({1}), jotka on määritetty EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdellä. Jos {0} ({1}) on oikein, siirry suhdeobjektin tyypin kenttään Salesforcen Määritykset-valikossa ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Nimi-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
-        <name>stgHCReciprocalRelNameNotUniqueDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value isn&apos;t unique --></label>
-        <name>stgHCReciprocalRelNameNotUniqueFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Vastavuoroisen asetuksen Nimi-arvo</label>
-        <name>stgHCReciprocalRelNameTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ({1}) -valintaluettelon arvoa käytetään ainoastaan yhdessä vastavuoroisessa asetuksessa.</label>
-        <name>stgHCReciprocalRelNameUniqueDesc</name>
-    </customLabels>
-    <customLabels>
-        <label>Yksilöllinen vastavuoroisen asetuksen nimi</label>
-        <name>stgHCReciprocalRelNameUniqueTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value is inactive --></label>
-        <name>stgHCReciprocalRelNeutralInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist --></label>
-        <name>stgHCReciprocalRelNeutralNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Vastavuoroisen asetuksen Neutraali-arvo</label>
-        <name>stgHCReciprocalRelNeutralTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} Vastavuoroiset suhteet</label>
-        <name>stgHCReciprocalRelSetting</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ({1}) -tietuetyyppi ei ole aktiivinen.</label>
-        <name>stgHCRecordTypeInactive</name>
-    </customLabels>
-    <customLabels>
-        <label>Emme löydä {0}-tietuetyyppiä.</label>
-        <name>stgHCRecordTypeNotFound</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} ({1}) -tietuetyyppi on kelvollinen.</label>
-        <name>stgHCRecordTypeValid</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for Custom Name Format for Household Accounts --></label>
-        <name>stgHHAccountCustomName</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Info text for Custom Name Format --></label>
-        <name>stgHHAccountCustomNameHelp</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Household Account Naming --></label>
-        <name>stgHHAccountNamingTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches Settings Health Check --></label>
-        <name>stgHealthCheckA11y</name>
-    </customLabels>
-    <customLabels>
+        <name>stgAccountModelNav</name>
         <label>Tilimalli</label>
-        <name>stgHealthCheckAccountModel</name>
     </customLabels>
     <customLabels>
-        <label>Jäsenyyskartoitukset</label>
-        <name>stgHealthCheckAffiliationMappings</name>
+        <name>stgAccountModelSettingsTitle</name>
+        <label>Tilimallien asetukset</label>
     </customLabels>
     <customLabels>
-        <label>Asetusten Terveystarkastus tarkistaa EDA-asetuksesi virheellisten määritysten varalta. Kun tarkistus on valmis, käytä tuloksia tunnistamaan ja korjaamaan virheelliset asetukset.</label>
-        <name>stgHealthCheckDescription</name>
+        <name>stgAccountRecordTypeAvailableListTitle</name>
+        <label>Käytettävissä olevat tilitietuetyypit</label>
     </customLabels>
     <customLabels>
-        <label>Emme voi näyttää viimeistä suorituspäivää virheen seurauksena</label>
-        <name>stgHealthCheckErrorLastRunDate</name>
+        <name>stgAccountRecordTypeGroupLabelTitle</name>
+        <label>Valitse tilitietuetyypit</label>
     </customLabels>
     <customLabels>
-        <label>Ei käytettävissä</label>
-        <name>stgHealthCheckFixNotApplicable</name>
+        <name>stgAccountRecordTypeHelp</name>
+        <label>Vain kartoittamattomia tilitietuetyyppejä on käytettävissä.</label>
     </customLabels>
     <customLabels>
-        <label>Viimeksi suoritettu: {0}</label>
-        <name>stgHealthCheckLastRun</name>
+        <name>stgAccountRecordTypeSelectedListTitle</name>
+        <label>Valitut tilitietuetyypit</label>
     </customLabels>
     <customLabels>
-        <label>Ladataan...</label>
-        <name>stgHealthCheckLoadingIndicator</name>
+        <name>stgAccountRecordTypeSupportsHHAddress</name>
+        <label>Kotitaloustilitietueen tyyppi</label>
     </customLabels>
     <customLabels>
-        <label>Vastavuoroiset suhteet</label>
-        <name>stgHealthCheckReciprocalRelTitle</name>
+        <name>stgAccountTypesMultiAddressesEnabled</name>
+        <label>Ota useat osoitteet käyttöön tilityypeille</label>
     </customLabels>
     <customLabels>
-        <label>Suositeltu korjaus</label>
-        <name>stgHealthCheckRecoFix</name>
+        <name>stgAccoutTypesWithoutContactsDelete</name>
+        <label>Yhteyshenkilöttömät tilit</label>
     </customLabels>
     <customLabels>
-        <label>Tiivistä nämä tulokset</label>
-        <name>stgHealthCheckResultsCollapse</name>
+        <name>stgAddHispanicOrLatinoPicklistValue</name>
+        <label>Lisää tarvittaessa ”latinalaisamerikkalainen tai latino” valintaluettelon arvoksi etnisyys-kenttään.</label>
     </customLabels>
     <customLabels>
-        <label>Kuvaus</label>
-        <name>stgHealthCheckResultsDescription</name>
+        <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+        <label>Lisää tarvittaessa ”ei latinalaisamerikkalainen tai latino” valintaluettelon arvoksi etnisyys-kenttään.</label>
     </customLabels>
     <customLabels>
-        <label>Laajenna nämä tulokset</label>
-        <name>stgHealthCheckResultsExpand</name>
+        <name>stgAddressSettingsNav</name>
+        <label>Osoitteet</label>
     </customLabels>
     <customLabels>
-        <label>Suorita terveystarkastus</label>
-        <name>stgHealthCheckRunButton</name>
+        <name>stgAddressSettingsTitle</name>
+        <label>Osoiteasetukset</label>
     </customLabels>
     <customLabels>
-        <label>Emme voi suorittaa asetusten terveystarkastusta virheen takia. Yritä suorittaa se uudelleen.</label>
-        <name>stgHealthCheckRunError</name>
+        <name>stgAdminAccountCustomName</name>
+        <label>Mukautettu nimeämismuoto</label>
     </customLabels>
     <customLabels>
-        <label>Asetus</label>
-        <name>stgHealthCheckSetting</name>
+        <name>stgAdminAccountCustomNameHelp</name>
+        <label>Määritä oma nimeämiskäytäntösi.</label>
     </customLabels>
     <customLabels>
-        <label>Tila</label>
-        <name>stgHealthCheckStatus</name>
+        <name>stgAdminAccountNamingTitle</name>
+        <label>Hallintatilien nimeäminen</label>
     </customLabels>
     <customLabels>
-        <label>Epäonnistui</label>
-        <name>stgHealthCheckStatusFailed</name>
+        <name>stgAdminAccountRecordType</name>
+        <label>Hallintatilin tietuetyyppi</label>
     </customLabels>
     <customLabels>
-        <label>Hyväksytty</label>
-        <name>stgHealthCheckStatusPassed</name>
+        <name>stgAffiliationsDeleteModalBody</name>
+        <label>Tämä jäsenyyskartoitus kartoittaa tilitietuetyypin {0} yhteyshenkilötietueiden {1}-kenttään. Haluamme vain varmistaa, että haluat poistaa sen.</label>
     </customLabels>
     <customLabels>
-        <label>Varoitus</label>
-        <name>stgHealthCheckStatusWarning</name>
+        <name>stgAffiliationsDeleteModalTitle</name>
+        <label>Haluatko poistaa jäsenyyskartoituksen?</label>
     </customLabels>
     <customLabels>
-        <label>Asetusten terveystarkastus</label>
-        <name>stgHealthCheckTitle</name>
+        <name>stgAffiliationsDeleteSuccess</name>
+        <label>Ensisijainen jäsenyys {0} poistettiin.</label>
     </customLabels>
     <customLabels>
-        <label>Kaikki tarkistukset hyväksytty</label>
-        <name>stgHealthChecksAllPassed</name>
+        <name>stgAffiliationsEditModalBody</name>
+        <label>Valitse tilitietuetyyppi, joka kartoitetaan yhteyshenkilöiden ensisijaiseen jäsenyyskenttään. Tilitietuetyypin arvo täyttää ensisijaisen jäsenyyskentän automaattisesti.</label>
     </customLabels>
     <customLabels>
-        <label>{0}/{1} tarkistusta hyväksytty</label>
-        <name>stgHealthChecksNotAllPassed</name>
+        <name>stgAffiliationsEditModalTitle</name>
+        <label>Haluatko muokata jäsenyyskartoitusta?</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Default Account Model setting --></label>
-        <name>stgHelpAccountModel</name>
+        <name>stgAffiliationsEditSuccess</name>
+        <label>Jäsenyyskartoitus {0} tallennettiin.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Accounts Without Contacts setting --></label>
-        <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
+        <name>stgAffiliationsNewModalBody</name>
+        <label>Valitse tilitietuetyyppi, joka kartoitetaan yhteyshenkilöiden ensisijaiseen jäsenyyskenttään. Tilitietuetyypin arvo täyttää ensisijaisen jäsenyyskentän automaattisesti.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Enable Multiple Addresses for Account Types setting --></label>
-        <name>stgHelpAddressAccRecType</name>
+        <name>stgAffiliationsNewSuccess</name>
+        <label>Ensisijainen jäsenyys {0} luotiin</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Administrative Account Record Type setting --></label>
-        <name>stgHelpAdminRecType</name>
+        <name>stgAffiliationsSettingsNav</name>
+        <label>Jäsenyydet</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Affiliation End Date setting --></label>
-        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
+        <name>stgAffiliationsSettingsTitle</name>
+        <label>Jäsenyyksien asetukset</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Affiliation Start Date setting --></label>
-        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
+        <name>stgAfflCopyProgramEnrollmentEndDate</name>
+        <label>Jäsenyyden päättymispäivä</label>
     </customLabels>
     <customLabels>
-        <label>Ohjelmaan ilmoittautumisella luodut jäsenyydet</label>
-        <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
+        <name>stgAfflCopyProgramEnrollmentStartDate</name>
+        <label>Jäsenyyden alkamispäivä</label>
     </customLabels>
     <customLabels>
-        <label>Kun ohjelmaan ilmoittautumistietue luodaan ilman olemassa olevaa jäsenyyttä, luo jäsenyystietue alla määritellyillä arvoilla.</label>
-        <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
+        <name>stgAfflDeleteProgramEnrollment</name>
+        <label>Jäsenyyksien tilaa ei poistettu</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Status for Affiliations Not Deleted setting --></label>
-        <name>stgHelpAfflDeleteProgramEnrollment</name>
+        <name>stgAfflDeleteWithAutoEnrollment</name>
+        <label>Jos poistat tämän jäsenyyskartoituksen, ohjelmaan ilmoittautumisen tietuetta ei luoda enää automaattisesti, kun yhteyshenkilölle luodaan jäsenyys, jonka tilitietuetyyppi on {0}.</label>
     </customLabels>
     <customLabels>
+        <name>stgAfflNotInserted</name>
+        <label>Emme voi kartoittaa tätä jäsenyyttä, koska se viittaa tietuetyyppiin, johon toinen jäsenyyskartoitus jo viittaa. Jos haluat lisätä tämän kartoituksen siten, että jäsenyys käännetään, muokkaa olemassa olevaa kartoitusta napsauttamalla Muokkaa. Määritä sitten kentän API-nimi yhteyshenkilön ensisijaiseen jäsenyyskenttään. Älä muuta tilintietueen tyypille määritettyä nimeä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfflProgEnrollDeleteRelated</name>
+        <label>Poistettuihin ohjelmaan ilmoittautumisiin liittyvät jäsenyydet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfflProgEnrollDeleteTitle</name>
         <label>Ohjelmaan ilmoittautumisen poistamiset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfflProgEnrollSetRole</name>
+        <label>Määritä luotujen jäsenyyksien rooli</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfflProgEnrollSetRoleValue</name>
+        <label>Luotujen jäsenyyksien rooli</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfflProgEnrollSetStatusValue</name>
+        <label>Luotujen jäsenyyksien tila</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfflProgramEnrollmentSettingsTitle</name>
+        <label>Ohjelmaan ilmoittautumisella luodut jäsenyydet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfterRunBackfill</name>
+        <label>Täytön suorittamisen jälkeen</label>
+    </customLabels>
+    <customLabels>
+        <name>stgApiNameLabel</name>
+        <label>API-nimi: {0}</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoCompleteEnterChatterGroupName</name>
+        <label>Aloita kirjoittaminen hakeaksesi Chatter-ryhmän nimeä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoCompleteEnterUserName</name>
+        <label>Aloita kirjoittaminen hakeaksesi käyttäjänimeä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoCompleteSelectChatterGroup</name>
+        <label>Valitse Chatter-ryhmä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoCompleteSelectUser</name>
+        <label>Valitse käyttäjä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollment</name>
+        <label>Automaattinen ilmoittautuminen</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentDeleteModalBody</name>
+        <label>Tämä automaattisen ilmoittautumisten kartoitus luo jäsenyyksiä käyttäviä ohjelmaan ilmoittautumisia, joilla on tilitietuetyyppi on {0}, jäsenyyden tila on {1} ja jäsenyysrooli on {2}. Jos poistat tämän automaattisten ilmoittautumisten kartoituksen, vastaaville jäsenyyksille ei luoda ohjelmaan ilmoittautumisia.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentDeleteModalTitle</name>
+        <label>Haluatko poistaa automaattisten ilmoittautumisten kartoituksen?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentDeleteSuccess</name>
+        <label>Automaattisten ilmoittautumisten kartoitus {0} poistettiin.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentEditModalBody</name>
+        <label>Valitse arvot, jotka luovat ohjelmaan ilmoittautumisen tietueen, kun niitä käyttävä jäsenyys luodaan tai päivitetään ja merkitään ensisijaiseksi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentEditModalTitle</name>
+        <label>Haluatko muokata automaattisten ilmoittautumisten kartoitusta?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentEditSuccess</name>
+        <label>Automaattisten ilmoittautumisten kartoitus {0} tallennettiin.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentNewModalBody</name>
+        <label>Valitse arvot, jotka luovat ohjelmaan ilmoittautumisen tietueen, kun niitä käyttävä jäsenyys luodaan tai päivitetään ja merkitään ensisijaiseksi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentNewModalTitle</name>
+        <label>Haluatko luoda uuden automaattisten ilmoittautumisten kartoituksen?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentNewSuccess</name>
+        <label>Automaattisten ilmoittautumisten kartoitus {0} luotiin.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentProgramDesc</name>
+        <label>Kun ensisijaisia jäsenyyksiä luodaan käyttämällä näiden kartoitusten arvoja, luo ohjelmaan ilmoittautumiset automaattisesti.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentProgramTitle</name>
+        <label>Automaattisten ilmoittautumisten kartoitukset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentRole</name>
+        <label>Automaattisen ilmoittautumisen rooli</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentStatus</name>
+        <label>Automaattisen ilmoittautumisen tila</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBackfillQueuedEmailSent</name>
+        <label>Täytön asettaminen jonoon onnistui. Erän valmistuttua siitä lähetetään sähköposti.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBeforeRunBackfill</name>
+        <label>Ennen täytön suorittamista</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnAddMapping</name>
+        <label>Uusi</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnAddSetting</name>
+        <label>Lisää asetus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnCancel</name>
+        <label>Peruuta</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnClearSelectionA11y</name>
+        <label>Tyhjennä valinta</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnCommunity</name>
+        <label>Avaa Trailblazer Community</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnCommunityActionA11y</name>
+        <label>Avaa Trailblazer Community.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnDelete</name>
+        <label>Poista</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnDocumentation</name>
+        <label>Dokumentaatio</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnDocumentationActionA11y</name>
+        <label>Avaa EDA-dokumentaatio.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnEDCTrailhead</name>
+        <label>Avaa Trailhead</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnEDCTrailheadActionA11y</name>
+        <label>Avaa Education Cloudin Trailhead-moduulit.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnEdit</name>
+        <label>Muokkaa</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnHealthCheck</name>
+        <label>Avaa asetusten terveystarkastus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnNewAutoEnrollA11y</name>
+        <label>Luo automaattisten ilmoittautumisten kartoitus.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRefreshAdminNames</name>
+        <label>Päivitä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRefreshAdminNamesA11y</name>
+        <label>Päivitä kaikkien hallintatilien nimet.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRefreshEthnicityDataA11y</name>
+        <label>Päivitä yhteyshenkilöiden Rotu-kenttä Etnisyys-kentästä saaduilla arvoilla. Ei latinalaisamerikkalainen tai latino- ja Latinalaisamerikkalainen tai latino -arvoja ei kopioida.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRefreshHouseholdNames</name>
+        <label>Päivitä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRefreshHouseholdNamesA11y</name>
+        <label>Päivitä kaikkien kotitaloustilien nimet.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRunBackfill</name>
+        <label>Suorita täyttö</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRunCopy</name>
+        <label>Päivitä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRunCopyA11y</name>
+        <label>Päivitä kurssitietueiden Laajennettu kuvaus -kenttä käyttämään Kuvaus-kentästä saatua tekstiä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRunCourseConnBackfillA11y</name>
+        <label>Päivitä opetushenkilöstön kurssiyhteydet Oletusarvoinen opetushenkilöstön tietuetyyppi -arvoon ja jäljelle jääneet kurssiyhteydet Oletusarvoinen opiskelijan tietuetyyppi -arvoon.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnSave</name>
+        <label>Tallenna</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnSettings</name>
+        <label>Asetukset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnSettingsActionA11y</name>
+        <label>Avaa EDA-asetukset.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnTrailhead</name>
+        <label>Trailhead</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnTrailheadActionA11y</name>
+        <label>Avaa EDA:n Trailhead-moduulit.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnUpdate</name>
+        <label>Päivitä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnVideos</name>
+        <label>YouTube</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnVideosActionA11y</name>
+        <label>YouTube</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCleanupQueuedEmailSent</name>
+        <label>Siivouksen asettaminen jonoon onnistui. Erän valmistuttua siitä lähetetään sähköposti.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColAccountRecordType</name>
+        <label>Tilitietueen tyyppi</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColActive</name>
+        <label>Aktiivinen</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColAutoEnrollmentRole</name>
+        <label>Automaattisen ilmoittautumisen rooli</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColAutoEnrollmentStatus</name>
+        <label>Automaattisen ilmoittautumisen tila</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColCampTypes</name>
+        <label>Kampanjatyypit</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColContactPrimaryAfflField</name>
+        <label>Yhteyshenkilön ensisijainen jäsenyyskenttä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColFemale</name>
+        <label>Nainen</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColField</name>
+        <label>Kenttäotsake</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColMale</name>
+        <label>Mies</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColNeutral</name>
+        <label>Neutraali</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColObject</name>
+        <label>Objektin API-nimi</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColProducts</name>
+        <label>Tuotteet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColRelType</name>
+        <label>Suhdetyyppi</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColRelationshipName</name>
+        <label>Nimi</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColResources</name>
+        <label>Resurssit</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColRole</name>
+        <label>Rooli</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColStatus</name>
+        <label>Tila</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColTools</name>
+        <label>Työkalut</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCommunityTitle</name>
+        <label>Trailblazer Community</label>
+    </customLabels>
+    <customLabels>
+        <name>stgConfirmReadyRunBackfill</name>
+        <label>Ymmärrän ja olen valmis suorittamaan täytön.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgContactInformationSettingsNav</name>
+        <label>Yhteystiedot</label>
+    </customLabels>
+    <customLabels>
+        <name>stgContactInformationSettingsTitle</name>
+        <label>Yhteystietoasetukset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgContactMultiAddressesEnabled</name>
+        <label>Salli useat yhteydenotto-osoitteet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseConnBackFillError</name>
+        <label>Täyttöä aloitettaessa tapahtui virhe.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseConnBackFillSuccess</name>
+        <label>Päivitämme kurssiyhteyksien tietuetyyppejä. Tarkasta työn tila Määritykset-valikon Apex-työt-sivulta.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseConnectionBackfillModalTitle</name>
+        <label>Haluatko päivittää kurssiyhteyksien tietuetyypit?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseConnectionsNav</name>
+        <label>Kurssiyhteydet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseConnectionsTitle</name>
+        <label>Kurssiyhteyksien asetukset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseDataMigrationModalBody</name>
+        <label>Kopioi kurssitietueiden Kuvaus-kentän tekstin Laajennettu kuvaus -kenttään. Nykyisiä Laajennettu kuvaus -arvoja ei korvata. Päivitä sivuasettelut ja muut Kuvaus-kentän viittaukset tämän päivityksen jälkeen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseDataMigrationModalTitle</name>
+        <label>Haluatko päivittää Laajennettu kuvaus -kentän?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseDescriptionCopyEmailBody</name>
+        <label>Apex-erätyö käsitteli {0} erää, joista {1} epäonnistui.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseDescriptionCopyEmailSubject</name>
+        <label>Kurssin kuvauksen kopiointityön suorittamisen tila:</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCoursesAndEnrollmentsNav</name>
+        <label>Kurssit ja ilmoittautumiset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDefaultContactLanguageFluency</name>
+        <label>Yhteyshenkilön kielen sujuvuus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDefaultFacultyTypeTitle</name>
+        <label>Oletusarvoinen opetushenkilöstön tietuetyyppi</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDefaultStudentTypeTitle</name>
+        <label>Oletusarvoinen opiskelijan tietuetyyppi</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDisableErrorHandlingTitle</name>
+        <label>Virheiden käsittely</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDisablePreferredEmailEnforcement</name>
+        <label>Vaadi ensisijainen sähköposti</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDisablePreferredPhoneEnforcement</name>
+        <label>Vaadi ensisijainen puhelin</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDuplicateRelationships</name>
+        <label>Estä identtiset suhteet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDuplicateRelationshipsHelp</name>
+        <label>Määritä haluatko estää useamman kuin yhden samantyyppisen suhdetietueen kahden yhteyshenkilön välillä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEDAAppDesc</name>
+        <label>Education Data Architecture (EDA) on Education Cloudin ydin. Sen joustava data-arkkitehtuuri on suunniteltu Salesforcen määrittämiseen koulutusta varten.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEDAAppInitials</name>
+        <label>EDA</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEDASettingsHasMovedDesc</name>
+        <label>Loimme Education Cloud -asetuksille uuden käyttökokemuksen, joka tarjoaa pääsyn EDA-asetuksiin ja moniin muihin hyödyllisiin asetuksiin. Määritysvaiheet vaihtelevat EDA-versiosi mukaan. Katso lisätietoja dokumentaatiosta.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEDASettingsHasMovedTitle</name>
+        <label>Olemme muuttaneet!</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEDASetupTitle</name>
+        <label>EDA-määritys</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEDCSettingsHealthCheckDescription</name>
+        <label>Asetusten terveystarkastus etsii kokoonpanovirheitä EDA-asetuksista ja -määrityksistä. Noudata tarjottuja suosituksia korjataksesi raportoidut virheet.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEnableCourseConnectionsTitle</name>
+        <label>Kurssiyhteyksien tietuetyypit</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEnableDebugHelp</name>
+        <label>Ota virheenkorjaus käyttöön, jotta Salesforce-tuki voi nähdä hallittujen pakettien virheenkorjauslokit.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEnableDebugTitle</name>
+        <label>Virheenkorjauslokit</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEnablePreferredPhoneSync</name>
+        <label>Parannettu ensisijaisen puhelimen toiminnallisuus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorInsufficientAccess</name>
+        <label>Et voi tarkastella tätä sivua. Pyydä apua Salesforce-pääkäyttäjältäsi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorInsufficientAccessSaving</name>
+        <label>Et voi tallentaa näitä asetuksia, koska sinulla ei ole enää niiden muokkausoikeutta. Salesforce-pääkäyttäjäsi voi auttaa sinua.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorInvalidSettings</name>
+        <label>Emme voineet tallentaa töitäsi. Päivitä sivu ja yritä uudelleen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorNewAutoEnrollment</name>
+        <label>Kaikilla tilitietuetyypeillä, joilla on ensisijaisia jäsenyyksiä, on jo automaattisten ilmoittautumisten kartoitukset. Avaa EDA-asetukset | Jäsenyydet luodaksesi ensin jäsenyyskartoituksen haluamallasi tietuetyypillä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorNotiTo</name>
+        <label>Virheilmoitusten vastaanottaja:</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorNotifRecipientsTitle</name>
+        <label>Virheilmoituksen vastaanottajat</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorSettingsNav</name>
+        <label>Virheet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorSettingsTitle</name>
+        <label>Virheasetukset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEthnicityRaceBackfillContacts</name>
+        <label>Vanha etnisyysdata</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEthnicityRaceBackfillModalBody</name>
+        <label>Kopioi Etnisyys-kentän vakiomuotoiset ja mukautetut valintaluetteloarvot, pois lukien Ei latinalaisamerikkalainen tai latino ja Latinalaisamerikkalainen tai latino, Yhteyshenkilöt-objektin Rotu-kenttään. Varmista ennen jatkamista, että olet poistanut käytöstä kaikki prosessit, jotka viittaavat Etnisyys- ja Rotu-kenttiin.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEthnicityRaceBackfillModalTitle</name>
+        <label>Haluatko päivittää yhteyshenkilöiden Rotu-kentän?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEthnicityRaceBackfillSuccessToast</name>
+        <label>Päivitämme yhteyshenkilöiden Rotu-kenttää. Saat sähköpostia, kun työ on valmis.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgFluent</name>
+        <label>Sujuva</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountModelAdminInactiveFix</name>
+        <label>Avaa EDA-asetukset | Tilimalli ja tarkasta hallintatilien tietuetyyppi. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aktivoi tietuetyyppi. Jos se ei ole oikein, muuta hallintatilien tietuetyypiksi käypä ja aktiivinen tietuetyyppi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountModelAdminNotFoundFix</name>
+        <label>Avaa EDA-asetukset | Tilimalli ja muuta hallintatilin tietuetyypiksi käypä ja aktiivinen tietuetyyppi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountModelDefaultInactiveFix</name>
+        <label>Avaa EDA-asetukset | Tilimalli ja tarkasta oletustilimallin tietuetyyppi. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aktivoi tietuetyyppi. Jos se ei ole oikein, muuta oletustilimallin tietuetyypiksi käypä ja aktiivinen tietuetyyppi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountModelDefaultNotFoundFix</name>
+        <label>Valitse oletustilimalliksi käypä ja aktiivinen tietuetyyppi kohdasta EDA-asetukset | Tilimalli.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountModelHHInactiveFix</name>
+        <label>Avaa EDA-asetukset | Tilimalli ja tarkasta kotitaloustilien tietuetyyppi. Jos {0} ({1}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aktivoi tietuetyyppi. Jos se ei ole oikein, muuta kotitaloustilien tietuetyypiksi käypä ja aktiivinen tietuetyyppi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountModelHHNotFoundFix</name>
+        <label>Avaa EDA-asetukset | Tilimalli ja muuta kotitaloustilien tietuetyypiksi käypä ja aktiivinen tietuetyyppi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountRecordTypeSettingsUnique</name>
+        <label>Yksilölliset Hallinta- ja kotitaloustilitietueen tyyppien asetukset.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountRecordTypesNotUnique</name>
+        <label>Hallintatilin ja Kotitaloustilitietueen tyypin asetukset määrittävät saman tietuetyypin.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountRecordTypesNotUniqueFix</name>
+        <label>Avaa EDA-asetukset | Tilimalli ja muuta hallintatilien tietuetyyppiä tai kotitaloustilien tietuetyyppiä käyttämään yksilöllistä tietuetyyppiä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountRecordTypesUnique</name>
+        <label>Hallintatilin ja Kotitaloustilitietueen tyypin asetukset määrittävät eri tietuetyyppejä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAffiliationMappingSettingDesc</name>
+        <label>{0} jäsenyyskartoitus on virheellinen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAffiliationMappingSettingHeading</name>
+        <label>{0} jäsenyyskartoitus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
+        <label>Tarkasta tämän jäsenyyskartoituksen tilitietuetyyppi kohdasta EDA-asetukset | Jäsenyydet. Jos {0} ({1}) on oikein, avaa Tili-objektin tilitietuetyyppi Salesforcen Määritykset-valikosta ja aktivoi se. Jos se ei ole oikein, muuta jäsenyyskartoituksen tietuetyypiksi käypä ja aktiivinen tietuetyyppi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
+        <label>Tämän jäsenyyskartoituksen tilitietuetyyppiä ei ole olemassa. Avaa EDA-asetukset | Jäsenyydet ja muuta jäsenyyskartoitusta käyttämään tilille määritettyä, kelvollista ja aktiivista tietuetyyppiä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeNotUnique</name>
+        <label>Tietuetyyppi {0} ({1}) on kartoitettu useisiin yhteyshenkilön ensisijaisiin jäsenyyskenttiin.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeTitle</name>
+        <label>Tilitietueen tyyppi</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeUnique</name>
+        <label>Tietuetyyppi {0} ({1}) on kartoitettu yhteen yhteyshenkilön ensisijaiseen jäsenyyskenttään.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
+        <label>Avaa EDA-asetukset | Jäsenyydet ja tarkasta, onko Tilitietueen tyyppi -sarakkeessa useita kartoituksia, jotka käyttävät tietuetyyppiä {0} ({1}). Muokkaa kyseisiä jäsenyyskartoituksia siten, että tämä tietuetyyppi on kartoitettu vain yhteen yhteyshenkilön ensisijaiseen jäsenyyskenttään.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
+        <label>Yksilöllinen jäsenyyskartoituksen tietuetyyppi</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollRoleInactive</name>
+        <label>{0} ({1}) -valintaluettelon arvo ei ole aktiivinen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
+        <label>Automaattisten ilmoittautumisten rooli {0} ({1}) ei ole aktiivinen. Avaa EDA-asetukset | Ohjelmaan ilmoittautumiset ja tarkasta tämän roolin määrittävä automaattisten ohjelmaan ilmoittautumisten kartoitus. Jos kartoitus on oikein, avaa Jäsenyys-objektin Rooli-kenttä Salesforcen Määritykset-valikosta ja aktivoi valintaluetteloarvo. Jos se ei ole oikein, valitse automaattisten ohjelmaan ilmoittautumisten rooliksi käypä ja aktiivinen valintaluetteloarvo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
+        <label>Emme löydä {0}-valintaluettelon arvoa.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
+        <label>Automaattisten ilmoittautumisten rooli ei kelpaa. Avaa EDA-asetukset | Ohjelmaan ilmoittautumiset ja muuta roolin määrittäväksi automaattisten ohjelmaan ilmoittautumisten kartoitukseksi käypä ja aktiivinen valintaluetteloarvo Jäsenyys-objektin Rooli-kentälle.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollRoleTitle</name>
+        <label>Automaattisen ilmoittautumisen roolin arvo</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollRoleValid</name>
+        <label>{0} ({1}) -valintaluettelon arvo on kelvollinen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollStatusInactive</name>
+        <label>{0} ({1}) -valintaluettelon arvo ei ole aktiivinen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
+        <label>Automaattisten ilmoittautumisten tila {0} ({1}) ei ole aktiivinen. Avaa EDA-asetukset | Ohjelmaan ilmoittautumiset ja tarkasta tämän tilan määrittävä automaattisten ohjelmaan ilmoittautumisten kartoitus. Jos kartoitus on oikein, avaa Jäsenyys-objektin Tila-kenttä Salesforcen Määritykset-valikosta ja aktivoi valintaluetteloarvo. Jos se ei ole oikein, valitse automaattisten ohjelmaan ilmoittautumisten tilaksi käypä ja aktiivinen valintaluetteloarvo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
+        <label>Emme löydä {0}-valintaluettelon arvoa.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
+        <label>Automaattisten ilmoittautumisten tila ei kelpaa. Avaa EDA-asetukset | Ohjelmaan ilmoittautumiset ja muuta tilan määrittäväksi automaattisten ohjelmaan ilmoittautumisten kartoitukseksi käypä ja aktiivinen valintaluetteloarvo Jäsenyys-objektin Tila-kentälle.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollStatusTitle</name>
+        <label>Automaattisen ilmoittautumisen tilan arvo</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollStatusValid</name>
+        <label>{0} ({1}) -valintaluettelon arvo on kelvollinen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
+        <label>Ensisijainen jäsenyyskenttä {0} ei kelpaa. Avaa EDA-asetukset | Jäsenyydet ja muokkaa jäsenyyskartoitusta käyttämään kelvollista Yhteyshenkilö-objektin hakusuhdekenttää.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
+        <label>Yksilöllinen yhteyshenkilön ensisijainen jäsenyyskenttä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
+        <label>{0} ei ole kelvollinen yhteyshenkilökenttä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
+        <label>{0} ({1}) -kenttä on kartoitettu useisiin tilitietueen tyyppeihin.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContactPrimaryFieldTitle</name>
+        <label>Yhteyshenkilön ensisijainen jäsenyyskenttä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContactPrimaryFieldUnique</name>
+        <label>{0} ({1}) -kenttä on kartoitettu yhteen tilitietueen tyyppiin.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
+        <label>Avaa EDA-asetukset | Jäsenyydet ja tarkasta, onko Yhteyshenkilön ensisijainen jäsenyyskenttä -sarakkeessa useita kartoituksia, jotka käyttävät kenttää {0} ({1}). Muokkaa kyseisiä kartoituksia siten, että tämä kenttä on kartoitettu vain yhteen jäsenyyskartoitukseen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContactPrimaryFieldValid</name>
+        <label>{0} ({1}) -kenttä on kelvollinen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConEnable</name>
+        <label>Kurssiyhteydet eivät ole käytössä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConEnableFix</name>
+        <label>Ota käyttöön kurssiyhteydet, joihin sisältyy kurssiyhteyden tietuetyyppien määritys. Avaa EDA-asetukset | Kurssiyhteydet ja ota kurssiyhteyksien tietuetyypit käyttöön. Määritä sitten oletusarvoinen opiskelijan tietuetyyppi ja oletusarvoinen opetushenkilöstön tietuetyyppi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConFacultyInactiveFix</name>
+        <label>Avaa EDA-asetukset | Kurssiyhteydet ja tarkasta oletusarvoinen opetushenkilöstön tietuetyyppi. Jos {1} ({0}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aktivoi tietuetyyppi. Jos se ei ole oikein, valitse oletusarvoiseksi opetushenkilöstön tietuetyypiksi käypä ja aktiivinen tietuetyyppi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConFacultyNotFoundFix</name>
+        <label>Avaa EDA-asetukset | Kurssiyhteydet ja muuta oletusarvoiseksi opetushenkilöstön tietuetyypiksi käypä ja aktiivinen tietuetyyppi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConRecordTypesNotUnique</name>
+        <label>Oletusarvoinen opetushenkilöstön tietuetyypin ja Oletusarvoinen aktiivisen opiskelijatietueen tyypin asetukset määrittävät saman tietuetyypin.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConRecordTypesNotUniqueFix</name>
+        <label>Avaa EDA-asetukset | Kurssiyhteydet ja muuta oletusarvoista opetushenkilöstön tietuetyyppiä tai oletusarvoista opiskelijan tietuetyyppiä käyttämään yksilöllistä tietuetyyppiä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConRecordTypesUnique</name>
+        <label>Yksilöllinen oletusarvoinen opetushenkilöstön tietuetyyppi ja oletusarvoinen aktiivisen opiskelijatietueen tyyppi</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConRecordTypesUniqueDesc</name>
+        <label>Oletusarvoinen opetushenkilöstön tietuetyypin ja Oletusarvoinen aktiivisen opiskelijatietueen tyypin asetukset määrittävät eri tietuetyyppejä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConStudentInactiveFix</name>
+        <label>Avaa EDA-asetukset | Kurssiyhteydet ja tarkasta oletusarvoinen opiskelijan tietuetyyppi. Jos {1} ({0}) on oikein, siirry Salesforcen Määritykset-valikkoon ja aktivoi tietuetyyppi. Jos se ei ole oikein, valitse oletusarvoiseksi opiskelijan tietuetyypiksi käypä ja aktiivinen tietuetyyppi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConStudentNotFoundFix</name>
+        <label>Avaa EDA-asetukset | Kurssiyhteydet ja muuta oletusarvoiseksi opiskelijan tietuetyypiksi käypä ja aktiivinen tietuetyyppi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConnectionsTitle</name>
+        <label>Kurssiyhteydet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCPicklistValueInactive</name>
+        <label>{0} ({1}) -valintaluettelon arvo ei ole aktiivinen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCPicklistValueNotFound</name>
+        <label>Emme löydä {0}-valintaluettelon arvoa.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCPicklistValueValid</name>
+        <label>{0} ({1}) -valintaluettelon arvo on kelvollinen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelDescription</name>
+        <label>{0} Vastavuoroiset suhteet ovat kelvolliset.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelFemaleInactiveFix</name>
+        <label>Kohteen {0} ({1}) vastavuoroisten suhteiden kartoituksen Nainen-valintaluetteloarvo ei ole aktiivinen. Avaa EDA-asetukset | Suhteet ja tarkasta kartoitus. Jos kartoitus on oikein, avaa Suhde-objektin Tyyppi-kenttä Salesforcen Määritykset-valikosta ja aktivoi valintaluetteloarvo. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Nainen-arvoksi käypä ja aktiivinen valintaluetteloarvo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelFemaleNotFoundFix</name>
+        <label>Vastavuoroisten suhteiden kartoituksen Nainen-valintaluetteloarvo ei kelpaa. Avaa EDA-asetukset | Suhteet ja muuta tämän kartoituksen Nainen-arvoksi käypä ja aktiivinen valintaluetteloarvo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelFemaleTitle</name>
+        <label>Vastavuoroisen asetuksen Nainen-arvo</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelMaleInactiveFix</name>
+        <label>Kohteen {0} ({1}) vastavuoroisten suhteiden kartoituksen Mies-valintaluetteloarvo ei ole aktiivinen. Avaa EDA-asetukset | Suhteet ja tarkasta kartoitus. Jos kartoitus on oikein, avaa Suhde-objektin Tyyppi-kenttä Salesforcen Määritykset-valikosta ja aktivoi valintaluetteloarvo. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Mies-arvoksi käypä ja aktiivinen valintaluetteloarvo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelMaleNotFoundFix</name>
+        <label>Vastavuoroisten suhteiden kartoituksen Mies-valintaluetteloarvo ei kelpaa. Avaa EDA-asetukset | Suhteet ja muuta tämän kartoituksen Mies-arvoksi käypä ja aktiivinen valintaluetteloarvo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelMaleTitle</name>
+        <label>Vastavuoroisen asetuksen Mies-arvo</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameInactiveFix</name>
+        <label>Kohteen {0} ({1}) vastavuoroisten suhteiden kartoitus ei ole aktiivinen. Avaa EDA-asetukset | Suhteet ja tarkasta tämän Nimi-arvon määrittävä kartoitus. Jos kartoitus on oikein, avaa Suhde-objektin Tyyppi-kenttä Salesforcen Määritykset-valikosta ja aktivoi valintaluetteloarvo. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Nimi-arvoksi käypä ja aktiivinen valintaluetteloarvo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameNotFoundFix</name>
+        <label>Kohteen {0} vastavuoroisten suhteiden kartoitus ei kelpaa. Avaa EDA-asetukset | Suhteet ja muuta tämän Nimi-arvon määrittäväksi kartoitukseksi käypä ja aktiivinen valintaluetteloarvon.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameNotUniqueDesc</name>
+        <label>Vahvista vastavuoroiset asetukset kohteelle {0} ({1}), jotka on määritetty EDA-asetuksissa Suhteet-välilehden Vastavuoroiset asetukset -alavälilehdellä. Jos {0} ({1}) on oikein, siirry suhdeobjektin tyypin kenttään Salesforcen Määritykset-valikossa ja aseta valintaluettelon arvo aktiiviseksi. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Nimi-arvo kelvolliseksi, aktiiviseksi valintaluettelon arvoksi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameNotUniqueFix</name>
+        <label>Avaa EDA-asetukset | Suhteet ja tarkasta, onko Vastavuoroiset suhteet -taulukossa useita kartoituksia, jotka käyttävät nimeä {0} ({1}). Muokkaa kartoituksia siten, että vain yksi kartoitus käyttää tätä nimeä. </label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameTitle</name>
+        <label>Vastavuoroisen asetuksen Nimi-arvo</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameUniqueDesc</name>
+        <label>{0} ({1}) -valintaluettelon arvoa käytetään ainoastaan yhdessä vastavuoroisessa asetuksessa.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameUniqueTitle</name>
+        <label>Yksilöllinen vastavuoroisen asetuksen nimi</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNeutralInactiveFix</name>
+        <label>Kohteen {0} ({1}) vastavuoroisten suhteiden kartoituksen Neutraali-valintaluetteloarvo ei ole aktiivinen. Avaa EDA-asetukset | Suhteet ja tarkasta kartoitus. Jos kartoitus on oikein, avaa Suhde-objektin Tyyppi-kenttä Salesforcen Määritykset-valikosta ja aktivoi valintaluetteloarvo. Jos se ei ole oikein, muuta vastavuoroisen asetuksen Neutraali-arvoksi käypä ja aktiivinen valintaluetteloarvo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNeutralNotFoundFix</name>
+        <label>Vastavuoroisten suhteiden kartoituksen Neutraali-valintaluetteloarvo ei kelpaa. Avaa EDA-asetukset | Suhteet ja muuta tämän kartoituksen Neutraali-arvoksi käypä ja aktiivinen valintaluetteloarvo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNeutralTitle</name>
+        <label>Vastavuoroisen asetuksen Neutraali-arvo</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelSetting</name>
+        <label>{0} Vastavuoroiset suhteet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCRecordTypeInactive</name>
+        <label>{0} ({1}) -tietuetyyppi ei ole aktiivinen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCRecordTypeNotFound</name>
+        <label>Emme löydä {0}-tietuetyyppiä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCRecordTypeValid</name>
+        <label>{0} ({1}) -tietuetyyppi on kelvollinen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHHAccountCustomName</name>
+        <label>Mukautettu nimeämismuoto</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHHAccountCustomNameHelp</name>
+        <label>Määritä oma nimeämiskäytäntösi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHHAccountNamingTitle</name>
+        <label>Kotitaloustilien nimeäminen</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckA11y</name>
+        <label>Avaa asetusten terveystarkastus.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckAccountModel</name>
+        <label>Tilimalli</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckAffiliationMappings</name>
+        <label>Jäsenyyskartoitukset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckDescription</name>
+        <label>Asetusten Terveystarkastus tarkistaa EDA-asetuksesi virheellisten määritysten varalta. Kun tarkistus on valmis, käytä tuloksia tunnistamaan ja korjaamaan virheelliset asetukset.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckErrorLastRunDate</name>
+        <label>Emme voi näyttää viimeistä suorituspäivää virheen seurauksena</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckFixNotApplicable</name>
+        <label>Ei käytettävissä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckLastRun</name>
+        <label>Viimeksi suoritettu: {0}</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckLoadingIndicator</name>
+        <label>Ladataan...</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckReciprocalRelTitle</name>
+        <label>Vastavuoroiset suhteet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckRecoFix</name>
+        <label>Suositeltu korjaus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckResultsCollapse</name>
+        <label>Tiivistä nämä tulokset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckResultsDescription</name>
+        <label>Kuvaus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckResultsExpand</name>
+        <label>Laajenna nämä tulokset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckRunButton</name>
+        <label>Suorita terveystarkastus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckRunError</name>
+        <label>Emme voi suorittaa asetusten terveystarkastusta virheen takia. Yritä suorittaa se uudelleen.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckSetting</name>
+        <label>Asetus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckStatus</name>
+        <label>Tila</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckStatusFailed</name>
+        <label>Epäonnistui</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckStatusPassed</name>
+        <label>Hyväksytty</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckStatusWarning</name>
+        <label>Varoitus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckTitle</name>
+        <label>Asetusten terveystarkastus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthChecksAllPassed</name>
+        <label>Kaikki tarkistukset hyväksytty</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthChecksNotAllPassed</name>
+        <label>{0}/{1} tarkistusta hyväksytty</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAccountModel</name>
+        <label>Tilitietuetyyppi, jota käytetään, kun erilliselle yhteyshenkilölle luodaan automaattisesti tili.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
+        <label>Poista näitä tietuetyyppejä käyttävät tilit, jos niillä ei ole yhteyshenkilöitä.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAddressAccRecType</name>
+        <label>Valitse tilitietuetyypit, jotka tukevat useita osoitteita.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAdminRecType</name>
+        <label>Hallintatileille käytetty tilitietuetyyppi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
+        <label>Kopioi ohjelmaan ilmoittautumisten tietueiden päättymispäivä uusiin jäsenyystietueisiin. Jätä muussa tapauksessa kenttä tyhjäksi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
+        <label>Kopioi ohjelmaan ilmoittautumisten tietueiden alkamispäivä uusiin jäsenyystietueisiin. Jätä muussa tapauksessa kenttä tyhjäksi.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
+        <label>Ohjelmaan ilmoittautumisella luodut jäsenyydet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
+        <label>Kun ohjelmaan ilmoittautumistietue luodaan ilman olemassa olevaa jäsenyyttä, luo jäsenyystietue alla määritellyillä arvoilla.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflDeleteProgramEnrollment</name>
+        <label>Jos päätät olla poistamatta jäsenyyksiä, kun poistat niihin liittyvät ohjelmaan ilmoittautumiset, valitse jäsenyyksille tila. Jos haluat jättää jäsenyyksien tilan ennalleen, valitse Ei mitään.</label>
+    </customLabels>
+    <customLabels>
         <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
+        <label>Ohjelmaan ilmoittautumisen poistamiset</label>
     </customLabels>
     <customLabels>
-        <label>Määritä alla miten haluat, että poistettujen ohjelmaan ilmoittautumisten jäsenyystietueet käsitellään. Liittyvä jäsenyystietue voidaan joko poistaa tai sen tila voidaan päivittää.</label>
         <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
+        <label>Määritä alla miten haluat, että poistettujen ohjelmaan ilmoittautumisten jäsenyystietueet käsitellään. Liittyvä jäsenyystietue voidaan joko poistaa tai sen tila voidaan päivittää.</label>
     </customLabels>
     <customLabels>
-        <label>Jos tämä on valittuna, aseta uuden jäsenyyden rooli arvoon, joka on määritetty kohdassa Luotujen jäsenyyksien rooli. Muussa tapauksessa jätä jäsenyyden rooli tyhjäksi.</label>
         <name>stgHelpAfflProgEnrollSetRole</name>
+        <label>Jos tämä on valittuna, aseta uuden jäsenyyden rooli arvoon, joka on määritetty kohdassa Luotujen jäsenyyksien rooli. Muussa tapauksessa jätä jäsenyyden rooli tyhjäksi.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Role for Created Affiliations setting --></label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
+        <label>Valitse ohjelmaan ilmoittautumisella luoduille jäsenyyksille rooli.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Status for Created Affiliations setting --></label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
+        <label>Valitse ohjelmaan ilmoittautumisella luoduille jäsenyyksille tila.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Allow Multiple Contact Addresses setting --></label>
         <name>stgHelpContactAddrs</name>
+        <label>Salli useiden osoitetietueiden liittäminen yhteyshenkilöihin</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Require Preferred Email setting --></label>
         <name>stgHelpContactPreferredEmail</name>
+        <label>Vaadi, että yhteyshenkilöillä on ensisijainen sähköpostiosoite.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Require Preferred Phone setting --></label>
         <name>stgHelpContactPreferredPhone</name>
+        <label>Vaadi, että yhteyshenkilöillä on ensisijainen puhelinnumero.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Enhanced Preferred Phone Functionality setting --></label>
         <name>stgHelpContactPreferredPhoneSync</name>
+        <label>Kopioi yhteyshenkilön ensisijainen puhelinnumero Puhelin-kenttään.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when the Extended Description field is queued for update --></label>
         <name>stgHelpCopyQueuedEmailSent</name>
+        <label>Päivitämme Laajennettu kuvaus -kenttää. Saat sähköpostia, kun työ on valmis.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update Course Connection record types confirmation window --></label>
         <name>stgHelpCourseConnBackfillDescription</name>
+        <label>Muuttaa opetushenkilöstöjen kurssiyhteyksien tietueet käyttämään Oletusarvoinen opetushenkilöstön tietuetyyppi -arvoa ja kaikki muut kurssiyhteystietueet käyttämään Oletusarvoinen opiskelijan tietuetyyppi -arvoon.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
         <name>stgHelpCourseConnectionBackfill</name>
+        <label>Ennen kuin otat kurssiyhteydet käyttöön ensimmäistä kertaa, suorita tämä Apex-työ päivittääksesi opetushenkilöstön kurssiyhteyksien tietueet Oletusarvoinen opetushenkilöstön tietuetyyppi -arvoon. Se päivittää myös jäljelle jääneet kurssiyhteydet Oletusarvoinen opiskelijan tietuetyyppi -arvoon.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Extended Course Descriptions setting --></label>
         <name>stgHelpCoursesDataMigration</name>
+        <label>Kopioi kurssitietueiden Kuvaus-kentän tekstin Laajennettu kuvaus -kenttään tukeakseen pidempiä kurssien kuvauksia.</label>
     </customLabels>
     <customLabels>
-        <label>Tämä apuohjelma kopioi arvot kurssikuvaus-kentästä laajennettu kuvaus-kenttään. Tämä prosessi voi kestää jonkin aikaa, mutta voit sulkea tämän sivun turvallisesti ja prosessi jatkuu taustalla.</label>
         <name>stgHelpCoursesDataMigrationCopiesValues</name>
+        <label>Tämä apuohjelma kopioi arvot kurssikuvaus-kentästä laajennettu kuvaus-kenttään. Tämä prosessi voi kestää jonkin aikaa, mutta voit sulkea tämän sivun turvallisesti ja prosessi jatkuu taustalla.</label>
     </customLabels>
     <customLabels>
-        <label>Jos kurssilla on jo laajennetun kuvauksen arvo, emme korvaa sitä.</label>
         <name>stgHelpCoursesDataMigrationDontOverwrite</name>
+        <label>Jos kurssilla on jo laajennetun kuvauksen arvo, emme korvaa sitä.</label>
     </customLabels>
     <customLabels>
-        <label>Kun prosessi on valmis, muista päivittää sivuasettelut ja muut sovelluksen alueet, jotka viittaavat kuvauskenttiin.</label>
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
+        <label>Kun prosessi on valmis, muista päivittää sivuasettelut ja muut sovelluksen alueet, jotka viittaavat kuvauskenttiin.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Contact Language Fluency setting --></label>
         <name>stgHelpDefaultContactLanguageFluency</name>
+        <label>Määritetty Sujuvuus-arvo, kun yhteyshenkilön ensisijaista kieltä muutetaan yhteyshenkilön kielen tietueessa.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Default Faculty Record Type setting --></label>
         <name>stgHelpDefaultFacultyType</name>
+        <label>Valitse tietuetyyppi opetushenkilöstön kurssiyhteyksille.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Default Student Record Type setting --></label>
         <name>stgHelpDefaultStudentType</name>
+        <label>Valitse tietuetyyppi opiskelijoiden kurssiyhteyksille.</label>
     </customLabels>
     <customLabels>
-        <label>Kurssiyhteydet on otettava käyttöön ennen kurssiyhteyksien täyttö -toiminnon suorittamista.</label>
         <name>stgHelpEnableCourseConnBeforeBackfill</name>
+        <label>Kurssiyhteydet on otettava käyttöön ennen kurssiyhteyksien täyttö -toiminnon suorittamista.</label>
     </customLabels>
     <customLabels>
-        <label>Kurssiyhteydet on otettava käyttöön ennen tietuetyyppien muokkaamista.</label>
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
+        <label>Kurssiyhteydet on otettava käyttöön ennen tietuetyyppien muokkaamista.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Course Connections setting --></label>
         <name>stgHelpEnableCourseConnections</name>
+        <label>Vaadi, että kurssiyhteyksien tietueet määrittävät, onko ne tarkoitettu opetushenkilöstölle vai opiskelijoille. Jos otat asetuksen käyttöön, määritä myös oletusarvoinen opetushenkilöstön tietuetyyppi ja oletusarvoinen opiskelijan tietuetyyppi.&lt;/br&gt;&lt;/br&gt;Ennen kuin otat tämän asetuksen käyttöön ensimmäistä kertaa, suorita järjestelmätyökaluista Apex-työ nimeltään Vanha kurssille ilmoittautumisten data.</label>
     </customLabels>
     <customLabels>
-        <label>Siivous varmistaa, että yksi yhteyshenkilön vakio- tai mukautetuista sähköpostiosoitteista tai puhelinnumeroista asetetaan ensisijaiseksi arvoksi niille yhteyshenkilöille, jotka eivät ole määrittäneet ensisijaista sähköpostiosoitetta tai ensisijaista puhelinta.</label>
         <name>stgHelpEnsureExistContactPreferEmail</name>
+        <label>Siivous varmistaa, että yksi yhteyshenkilön vakio- tai mukautetuista sähköpostiosoitteista tai puhelinnumeroista asetetaan ensisijaiseksi arvoksi niille yhteyshenkilöille, jotka eivät ole määrittäneet ensisijaista sähköpostiosoitetta tai ensisijaista puhelinta.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Error Handling setting --></label>
         <name>stgHelpErrorDisable</name>
+        <label>Salli asynkronisten töiden virheiden käsittely, jotta näet helpommin, kun ajoitettuja töitä epäonnistuu.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Error Notifications setting --></label>
         <name>stgHelpErrorNotifyOn</name>
+        <label>Lähetä virheilmoitukset valituille vastaanottajille. Jos valitset Chatter-ryhmä tai Käyttäjä, määritä myös virheilmoituksen vastaanottajat.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Error Notification Recipients setting --></label>
         <name>stgHelpErrorNotifyTo</name>
+        <label>Syötä yksi käyttäjänimi tai Chatter-ryhmä. Käyttäjille ilmoitetaan virheistä sähköpostitse ja Chatter-ryhmille ilmoitetaan lähettämällä viesti syötteeseen.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Legacy Ethnicity Data setting --></label>
         <name>stgHelpEthnicityRaceBackfill</name>
+        <label>Jos käytit Etnisyys-kenttää ennen EDA-versiota 1.28, tämä Apex-työ päivittää yhteyshenkilöiden Rotu-kentän käyttämällä Etnisyys-kentän vakiomuotoisten ja mukautettujen valintaluetteloarvojen kopiota. Ei latinalaisamerikkalainen tai latino- ja Latinalaisamerikkalainen tai latino -arvoja ei kopioida.</label>
     </customLabels>
     <customLabels>
-        <label>Valittuna ottaa hallinta- ja kotitaloustlien osoitteenhallinnan käyttöön.</label>
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
+        <label>Valittuna ottaa hallinta- ja kotitaloustlien osoitteenhallinnan käyttöön.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Household Account Record Type setting --></label>
         <name>stgHelpHouseholdRecType</name>
+        <label>Kotitaloustileille käytetty tilitietuetyyppi.</label>
     </customLabels>
     <customLabels>
-        <label>Jos organisaatio lisäsi aiemmin mukautettuja valintaluettelon arvoja etnisyyskenttään, jonka haluat käyttää rotukentässä, kopioi nämä mukautetut valintaluettelon arvot rotukenttään.</label>
         <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
+        <label>Jos organisaatio lisäsi aiemmin mukautettuja valintaluettelon arvoja etnisyyskenttään, jonka haluat käyttää rotukentässä, kopioi nämä mukautetut valintaluettelon arvot rotukenttään.</label>
     </customLabels>
     <customLabels>
-        <label>Kun tämä valitaan, suunnitelmavaatimukset voivat määrittää joko ohjelmasuunnitelman tai pääsuunnitelman vaatimuksen, mutta eivät molempia. Jos määrität sekä ohjelmasuunnitelman että pääsuunnitelman vaatimuksen, virheilmoitus estää sinua tallentamasta, kunnes vain yksi on valittuna.</label>
         <name>stgHelpNestedPlanRequirementPP</name>
+        <label>Jos sinulla on hierarkia sisäkkäisille suunnitelmavaatimuksille, voit auttaa sen rakenteen ylläpidossa määrittämällä, että suunnitelmavaatimuksilla voi olla vain ohjelmasuunnitelma tai vain pääsuunnitelmavaatimus.</label>
     </customLabels>
     <customLabels>
-        <label>Valittuna ottaa käyttöön organisaatiotilien osoitteenhallinnan.</label>
         <name>stgHelpOrgAccountAddressMgmt</name>
+        <label>Valittuna ottaa käyttöön organisaatiotilien osoitteenhallinnan.</label>
     </customLabels>
     <customLabels>
-        <label>Automaattisesti luotujen suhteiden kopiot poistetaan oletusarvoisesti, jotta estetään päällekkäisten suhdetietueiden luominen kahden yhteyshenkilön välille. Valitse ”Salli automaattisesti luodut päällekkäiset suhteet” poistaaksesi tämän toiminnon ja salli useita samantyyppisiä suhteita kahden yhteyshenkilön välillä.</label>
         <name>stgHelpRelAutoCreatedDup</name>
+        <label>Automaattisesti luotujen suhteiden kopiot poistetaan oletusarvoisesti, jotta estetään päällekkäisten suhdetietueiden luominen kahden yhteyshenkilön välille. Valitse ”Salli automaattisesti luodut päällekkäiset suhteet” poistaaksesi tämän toiminnon ja salli useita samantyyppisiä suhteita kahden yhteyshenkilön välillä.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Reciprocal Method setting --></label>
         <name>stgHelpRelReciprocalMethod</name>
+        <label>Määritä miten haluat täyttää automaattisesti luotujen vastavuoroisten suhteiden Tyyppi-kentän. Valitse Luetteloasetus käyttääksesi vastavuoroisista suhteista saatuja arvoja. Valitse Arvon kääntäminen kääntääksesi alkuperäisen suhdetietueen Tyyppi-kentän.</label>
     </customLabels>
     <customLabels>
-        <label>Poista kaikki valintaluettelon arvot etnisyyskentästä paitsi ”latinalaisamerikkalainen tai latino” ja ”ei latinalaisamerikkalainen tai latino”. Suosittelemme, että korvaat jokaisen poistetun arvon yhdellä jäljellä olevista kelvollisista arvoista sen sijaan, että poistat ne suoraan olemassa olevista tietueista. EDA-versiosta 1.28 lähtien ainoat voimassa olevat etniset arvot ovat ”ei latinalaisamerikkalainen tai latino” ja ”latinalaisamerikkalainen tai latino”.</label>
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
+        <label>Poista kaikki valintaluettelon arvot etnisyyskentästä paitsi ”latinalaisamerikkalainen tai latino” ja ”ei latinalaisamerikkalainen tai latino”. Suosittelemme, että korvaat jokaisen poistetun arvon yhdellä jäljellä olevista kelvollisista arvoista sen sijaan, että poistat ne suoraan olemassa olevista tietueista. EDA-versiosta 1.28 lähtien ainoat voimassa olevat etniset arvot ovat ”ei latinalaisamerikkalainen tai latino” ja ”latinalaisamerikkalainen tai latino”.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update Address Records for Simple Changes setting --></label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
+        <label>Kun haluat tehdä yhteyshenkilöiden tai tilien osoitteisiin yksinkertaisia muutoksia, päivitä nykyiset osoitetietueet sen sijaan, että loisit uudet.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Store Errors setting --></label>
         <name>stgHelpStoreErrorsOn</name>
+        <label>Kirjaa ja tallenna virheet Virhe-objektiin. Kun tämä asetus on otettu käyttöön, luo Virhe-objektille välilehti, josta näet virhetietueet.</label>
     </customLabels>
     <customLabels>
-        <label>Jos sinulla on raportteja tai kaavakenttiä, jotka viittaavat aiempiin arvoihin etnisyyskentässä, päivitä ne.</label>
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
+        <label>Jos sinulla on raportteja tai kaavakenttiä, jotka viittaavat aiempiin arvoihin etnisyyskentässä, päivitä ne.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Automatically Rename Lead-Converted Accounts setting --></label>
         <name>stgLeadConversionAccountNaming</name>
+        <label>Nimeä liideistä muunnetut tilit automaattisesti uudelleen</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Automatically Rename Lead-Converted Accounts setting --></label>
         <name>stgLeadConversionAccountNamingDesc</name>
+        <label>Kun liidejä muunnetaan, nimeä tilit automaattisesti uudelleen käyttämällä näihin valittuihin tietuetyyppeihin liitettyä tilien nimeämismuotoa.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Lead Conversion Account Naming --></label>
         <name>stgLeadConversionAccountNamingTitle</name>
+        <label>Liideistä muunnettujen tilien nimeäminen</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Plan Requirement Hierarchy setting --></label>
         <name>stgNestedPlanRequirementPP</name>
+        <label>Suunnitelmavaatimusten hierarkia</label>
     </customLabels>
     <customLabels>
-        <label>Uusi jäsenyyskartoitus</label>
         <name>stgNewAfflMapping</name>
+        <label>Haluatko luoda uuden jäsenyyskartoituksen?</label>
     </customLabels>
     <customLabels>
-        <label>Kaikki pääkäyttäjät</label>
         <name>stgOptAllSysAdmins</name>
+        <label>Kaikki pääkäyttäjät</label>
     </customLabels>
     <customLabels>
-        <label>Chatter-ryhmä</label>
         <name>stgOptChatterGroup</name>
+        <label>Chatter-ryhmä</label>
     </customLabels>
     <customLabels>
-        <label>Valitse...</label>
         <name>stgOptSelect</name>
+        <label>Valitse...</label>
     </customLabels>
     <customLabels>
-        <label>Käyttäjä</label>
         <name>stgOptUser</name>
+        <label>Käyttäjä</label>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for People and Groups --></label>
         <name>stgPeopleAndGroupsNav</name>
+        <label>Ihmiset ja ryhmät</label>
     </customLabels>
     <customLabels>
-        <label><!-- Body of email after Run Cleanup for preferred email/phone --></label>
         <name>stgPreferredEmailBatchEmailBody</name>
+        <label>Apex-erätyö käsitteli {0} tietuetta, joista {1} epäonnistui.</label>
     </customLabels>
     <customLabels>
-        <label>Ensisijainen sähköposti-/puhelintyö valmistui ja sen tila on:</label>
         <name>stgPreferredEmailBatchEmailSubject</name>
+        <label>Ensisijainen sähköposti-/puhelintyö valmistui ja sen tila on:</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Preferred Email and Preferred Phone setting --></label>
         <name>stgPreferredEmailDataCleanup</name>
+        <label>Ensisijainen sähköpostiosoite ja ensisijainen puhelinnumero</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneDefault</name>
+        <label>Oletusarvoinen ensisijainen puhelinnumero</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update Preferred Email and Phone fields confirmation window --></label>
         <name>stgPreferredPhoneEmailModalBody</name>
+        <label>Päivittää kaikkien yhteyshenkilöiden Ensisijainen sähköposti- ja Ensisijainen puhelin -kentät organisaatiosi asetusten perusteella. Varmista ennen jatkamista, että olet poistanut käytöstä kaikki Ensisijainen sähköposti- ja Ensisijainen puhelin -kenttiin viittaavat prosessit.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update Preferred Email and Phone fields confirmation window --></label>
         <name>stgPreferredPhoneEmailModalTitle</name>
+        <label>Haluatko päivittää Ensisijainen sähköposti- ja Ensisijainen puhelin -kentät?</label>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when Preferred Email and Phone fields are queued for update --></label>
         <name>stgPreferredPhoneEmailSuccessToast</name>
+        <label>Päivitämme Ensisijainen sähköposti- ja Ensisijainen puhelin -kenttiä. Saat sähköpostia, kun työ on valmis.</label>
     </customLabels>
     <customLabels>
-        <label>Valitse kenttä ensisijaisesta puhelimesta, josta arvo kopioidaan, kun vakiopuhelinkentässä ei ole arvoa tai jos useampi kuin yksi puhelinkenttä on määritetty.</label>
         <name>stgPreferredPhoneSelection</name>
+        <label>Valitse kenttä ensisijaisesta puhelimesta, josta arvo kopioidaan, kun vakiopuhelinkentässä ei ole arvoa tai jos useampi kuin yksi puhelinkenttä on määritetty.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Default Preferred Phone setting --></label>
         <name>stgPreferredPhoneSelectionDesc</name>
+        <label>Ensisijainen puhelin -kentälle käytetty kenttä, kun Puhelin-kenttä on tyhjä tai jos puhelinnumeroita on määritetty useita.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Program Plans --></label>
         <name>stgProgramPlanSettingsNav</name>
+        <label>Ohjelmasuunnitelmat</label>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Program Plan Settings --></label>
         <name>stgProgramPlanSettingsTitle</name>
+        <label>Ohjelmasuunnitelmien asetukset</label>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Program Enrollments --></label>
         <name>stgProgramsSettingsNav</name>
+        <label>Ohjelmaan ilmoittautumiset</label>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Program Enrollment Settings --></label>
         <name>stgProgramsSettingsTitle</name>
+        <label>Ohjelmaan ilmoittautumisten asetukset</label>
     </customLabels>
     <customLabels>
-        <label>Luetteloasetus</label>
         <name>stgReciprocalMethodListSetting</name>
+        <label>Luetteloasetus</label>
     </customLabels>
     <customLabels>
-        <label>Arvon kääntäminen</label>
         <name>stgReciprocalMethodValueInversion</name>
+        <label>Arvon kääntäminen</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Delete Reciprocal Relationship window --></label>
         <name>stgReciprocalRelDeleteModalBody</name>
+        <label>Tämä vastavuoroinen suhde kartoittaa vastavuoroisen arvon {0} vastavuoroisiin arvoihin {1} {2} ja {3}. Haluamme vain varmistaa, että haluat poistaa sen.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Delete Reciprocal Relationship window --></label>
         <name>stgReciprocalRelDeleteModalTitle</name>
+        <label>Haluatko poistaa vastavuoroisen suhteen?</label>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when a Reciprocal Relationship is created --></label>
         <name>stgReciprocalRelDeleteSuccess</name>
+        <label>Kohteen {0} vastavuoroinen suhde poistettiin.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Edit Reciprocal Relationship window --></label>
         <name>stgReciprocalRelEditModalBody</name>
+        <label>Valitse vastavuoroinen suhde, jota haluat muokata.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Edit Reciprocal Relationship window --></label>
         <name>stgReciprocalRelEditModalTitle</name>
+        <label>Haluatko muokata vastavuoroista suhdetta?</label>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when a Reciprocal Relationship is saved --></label>
         <name>stgReciprocalRelEditSuccess</name>
+        <label>Kohteen {0} vastavuoroinen suhde tallennettiin.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the New Reciprocal Relationship window --></label>
         <name>stgReciprocalRelNewModalBody</name>
+        <label>Valitse luotavan vastavuoroisen suhteen tyyppi.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the New Reciprocal Relationship window --></label>
         <name>stgReciprocalRelNewModalTitle</name>
+        <label>Haluatko luoda uuden vastavuoroisen suhteen?</label>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when a Reciprocal Relationship is created --></label>
         <name>stgReciprocalRelNewSuccess</name>
+        <label>Vastavuoroinen suhde luotiin kohteelle {0}.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update All Administrative Account Names setting --></label>
         <name>stgRefreshAdminAcctNameDesc</name>
+        <label>Päivittää kaikki hallintatilien tietueet käyttämään Hallintatilin nimen muoto -asetuksen määrittämää muotoa.&lt;/br&gt;&lt;/br&gt;Varoitus: Tutustu tämän asetuksen vaikutuksiin ennen jatkamista. Poista myös kaikki hallintatileihin viittaavat prosessit käytöstä.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Update All Administrative Account Names setting --></label>
         <name>stgRefreshAdminAcctNameTitle</name>
+        <label>Päivitä kaikkien hallintatilien nimet</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update all Administrative Account names confirmation window --></label>
         <name>stgRefreshAdminNamesModalBody</name>
+        <label>Päivittää kaikki hallintatilien tietueet käyttämään Hallintatilin nimen muoto -asetuksen määrittämää muotoa. Varmista ennen jatkamista, että olet poistanut kaikki hallintatileihin viittaavat prosessit käytöstä.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update All Administrative Account Names confirmation window --></label>
         <name>stgRefreshAdminNamesModalTitle</name>
+        <label>Haluatko päivittää kaikkien hallintatilien nimet?</label>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when Administrative Account names are queued for update --></label>
         <name>stgRefreshAdminNamesSuccessToast</name>
+        <label>Päivitämme hallintatilien nimiä. Saat sähköpostia, kun työ on valmis.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update All Household Account Names setting --></label>
         <name>stgRefreshHHAcctNameDesc</name>
+        <label>Päivittää kaikki kotitaloustilien tietueet käyttämään Kotitaloustilin nimen muoto -asetuksen määrittämää muotoa. Ottaa myös Nimeä kotitaloustilit automaattisesti uudelleen -asetuksen käyttöön automaattisesti, jos se ei ole käytössä.&lt;/br&gt;&lt;/br&gt;Varoitus: Tutustu tämän asetuksen vaikutuksiin ennen jatkamista. Poista myös kaikki kotitaloustileihin viittaavat prosessit käytöstä.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Update All Household Account Names settings --></label>
         <name>stgRefreshHHAcctNameTitle</name>
+        <label>Päivitä kaikkien kotitaloustilien nimet</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update all Household Account names confirmation window --></label>
         <name>stgRefreshHouseholdNamesModalBody</name>
+        <label>Päivittää kaikki kotitaloustilien tietueet käyttämään Kotitaloustilin nimen muoto -asetuksen määrittämää muotoa. Varmista ennen jatkamista, että olet poistanut kaikki kotitaloustileihin viittaavat prosessit käytöstä.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update all Household Account names confirmation window --></label>
         <name>stgRefreshHouseholdNamesModalTitle</name>
+        <label>Haluatko päivittää kaikkien kotitaloustilien nimet?</label>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when Household Account names are queued for update --></label>
         <name>stgRefreshHouseholdNamesSuccessToast</name>
+        <label>Päivitämme kotitaloustilien nimiä. Saat sähköpostia, kun työ on valmis.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Relationships --></label>
         <name>stgRelationshipSettingsNav</name>
+        <label>Suhteet</label>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Relationship Settings --></label>
         <name>stgRelationshipSettingsTitle</name>
+        <label>Suhdeasetukset</label>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
         <name>stgRunCleanUp</name>
+        <label>Päivitä</label>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that updates Contacts&apos; Preferred Email/Phone fields --></label>
         <name>stgRunCleanUpA11y</name>
+        <label>Haluatko päivittää kaikkien yhteyshenkilöiden Ensisijainen sähköposti- ja Ensisijainen puhelin -kentät?</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
         <name>stgRunCleanUpEnableFirstTime</name>
+        <label>Päivittää kaikkien yhteyshenkilöiden Ensisijainen sähköposti- ja Ensisijainen puhelin -kentät organisaatiosi asetusten perusteella. Sinun kannattaa suorittaa tämä työ, kun otat Vaadi ensisijainen sähköposti- tai Vaadi ensisijainen puhelin -asetuksen käyttöön ensimmäistä kertaa tai jos et ole käyttänyt niitä hetkeen.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation messsage that updated settings were saved --></label>
         <name>stgSaveSettings</name>
+        <label>EDA-asetukset tallennettiin.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Select Chatter Group setting --></label>
         <name>stgSelectChatterGroupDesc</name>
+        <label>Syötä Chatter-ryhmä...</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for Select Chatter Group --></label>
         <name>stgSelectChatterGroupTitle</name>
+        <label>Chatter-ryhmä</label>
     </customLabels>
     <customLabels>
-        <label>Valitse vastaanottajan tyyppi:</label>
         <name>stgSelectReciType</name>
+        <label>Valitse vastaanottajan tyyppi:</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Select User setting --></label>
         <name>stgSelectUserDesc</name>
+        <label>Syötä käyttäjänimi...</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for Select User --></label>
         <name>stgSelectUserTitle</name>
+        <label>Käyttäjä</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Error Notifications setting --></label>
         <name>stgSendErrorsTitle</name>
+        <label>Virheilmoitukset</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Update Address Records for Simple Changes setting --></label>
         <name>stgSimpleAddressChangeUpdate</name>
+        <label>Päivitä osoitetietueet yksinkertaisia muutoksia varten</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Store Errors setting --></label>
         <name>stgStoreErrorsTitle</name>
+        <label>Tallenna virheet</label>
     </customLabels>
     <customLabels>
-        <label>Onnistui</label>
         <name>stgSuccess</name>
+        <label>Onnistui</label>
     </customLabels>
     <customLabels>
+        <name>stgSuccessAdminAccountNameRefresh</name>
         <label>Hallintatilin nimeämispäivityksen asettaminen jonoon onnistui.
          Erän valmistuttua siitä lähetetään sähköposti.</label>
-        <name>stgSuccessAdminAccountNameRefresh</name>
     </customLabels>
     <customLabels>
+        <name>stgSuccessHHAccountNameRefresh</name>
         <label>Kotitaloustilin nimeämisen päivityksen asettaminen jonoon onnistui.
          Erän valmistuttua siitä lähetetään sähköposti.</label>
-        <name>stgSuccessHHAccountNameRefresh</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for System --></label>
         <name>stgSystemSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation title for System Tools --></label>
-        <name>stgSystemToolsNav</name>
-    </customLabels>
-    <customLabels>
-        <label>Tilit ja yhteyshenkilöt</label>
-        <name>stgTabAccCont</name>
-    </customLabels>
-    <customLabels>
-        <label>Jäsenyydet</label>
-        <name>stgTabAffl</name>
-    </customLabels>
-    <customLabels>
-        <label>Jäsenyyskartoitukset</label>
-        <name>stgTabAfflMappings</name>
-    </customLabels>
-    <customLabels>
-        <label>Automaattinen luominen</label>
-        <name>stgTabAutocreation</name>
-    </customLabels>
-    <customLabels>
-        <label>Täyttö</label>
-        <name>stgTabBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label>Kurssit</label>
-        <name>stgTabCourse</name>
-    </customLabels>
-    <customLabels>
-        <label>Kurssiyhteydet</label>
-        <name>stgTabCourseConn</name>
-    </customLabels>
-    <customLabels>
-        <label>Nimi</label>
-        <name>stgTabName</name>
-    </customLabels>
-    <customLabels>
-        <label>Yhteyshenkilön ensisijainen jäsenyyskenttä</label>
-        <name>stgTabPrimaryAfflField</name>
-    </customLabels>
-    <customLabels>
-        <label>Ohjelmasuunnitelmat</label>
-        <name>stgTabProgramPlan</name>
-    </customLabels>
-    <customLabels>
-        <label>Vastavuoroiset asetukset</label>
-        <name>stgTabReciprocalSettings</name>
-    </customLabels>
-    <customLabels>
-        <label>Suhteet</label>
-        <name>stgTabRel</name>
-    </customLabels>
-    <customLabels>
-        <label>Asetukset</label>
-        <name>stgTabSettings</name>
-    </customLabels>
-    <customLabels>
         <label>Järjestelmä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSystemToolsNav</name>
+        <label>Järjestelmätyökalut</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabAccCont</name>
+        <label>Tilit ja yhteyshenkilöt</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabAffl</name>
+        <label>Jäsenyydet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabAfflMappings</name>
+        <label>Jäsenyyskartoitukset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabAutocreation</name>
+        <label>Automaattinen luominen</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabBackfill</name>
+        <label>Täyttö</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabCourse</name>
+        <label>Kurssit</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabCourseConn</name>
+        <label>Kurssiyhteydet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabName</name>
+        <label>Nimi</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabPrimaryAfflField</name>
+        <label>Yhteyshenkilön ensisijainen jäsenyyskenttä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabProgramPlan</name>
+        <label>Ohjelmasuunnitelmat</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabReciprocalSettings</name>
+        <label>Vastavuoroiset asetukset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabRel</name>
+        <label>Suhteet</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabSettings</name>
+        <label>Asetukset</label>
+    </customLabels>
+    <customLabels>
         <name>stgTabSystem</name>
+        <label>Järjestelmä</label>
     </customLabels>
     <customLabels>
-        <label><!-- Hyperlinked text to EDA documentation --></label>
         <name>stgTellMeMoreLink</name>
+        <label>Lue lisää</label>
     </customLabels>
     <customLabels>
-        <label>Salli autom. luodut päällekkäissuhteet</label>
         <name>stgTitleAllowAutocreatedDuplicateRel</name>
+        <label>Salli autom. luodut päällekkäissuhteet</label>
     </customLabels>
     <customLabels>
-        <label>Sovelluksenlaajuiset asetukset</label>
         <name>stgTitleAppwideSettings</name>
+        <label>Sovelluksenlaajuiset asetukset</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Legacy Course Enrollment Data setting --></label>
         <name>stgTitleCourseConnectionBackfill</name>
+        <label>Vanha kurssille ilmoittautumisten data</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Extended Course Descriptions setting --></label>
         <name>stgTitleCoursesDescriptionDataMigration</name>
+        <label>Laajennetut kurssien kuvaukset</label>
     </customLabels>
     <customLabels>
-        <label>Kokoonpano</label>
         <name>stgTitleHEDAConfig</name>
+        <label>Kokoonpano</label>
     </customLabels>
     <customLabels>
-        <label>EDA-asetukset</label>
         <name>stgTitleHEDASettings</name>
-    </customLabels>
-    <customLabels>
-        <label>Uusi automaattisen luomisen asetus</label>
-        <name>stgTitleNewAutocreateSetting</name>
-    </customLabels>
-    <customLabels>
-        <label>Uusi vastavuoroinen asetus</label>
-        <name>stgTitleNewReciSetting</name>
-    </customLabels>
-    <customLabels>
-        <label>Vastavuoroinen menetelmä</label>
-        <name>stgTitleReciMethod</name>
-    </customLabels>
-    <customLabels>
-        <label>Virhe</label>
-        <name>stgToastError</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Trailhead card --></label>
-        <name>stgTrailheadTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the YouTube card --></label>
-        <name>stgVideosTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Emme voi tallentaa kurssitarjonnan aikataulua, koska sen päättymisaika ei vastaa siihen liittyvän aikalohkon päättymisaikaa. Joko muokkaa päättymisaikaa, määritä toinen aikalohko tai älä määritä aikalohkoa.</label>
-        <name>timeBlockEndTimeMismatch</name>
-    </customLabels>
-    <customLabels>
-        <label>Emme voi tallentaa kurssitarjonnan aikataulua, koska sen aloitusaika ei ole sama kuin siihen liittyvän aikalohkon aloitusaika. Joko muokkaa aloitusaikaa, määritä toinen aikalohko tai älä määritä aikalohkoa.</label>
-        <name>timeBlockStartTimeMismatch</name>
-    </customLabels>
-    <customTabs>
-        <label><!-- Education Cloud Settings --></label>
-        <name>Education_Cloud_Settings</name>
-    </customTabs>
-    <customTabs>
         <label>EDA-asetukset</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTitleNewAutocreateSetting</name>
+        <label>Uusi automaattisen luomisen asetus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTitleNewReciSetting</name>
+        <label>Uusi vastavuoroinen asetus</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTitleReciMethod</name>
+        <label>Vastavuoroinen menetelmä</label>
+    </customLabels>
+    <customLabels>
+        <name>stgToastError</name>
+        <label>Virhe</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTrailheadTitle</name>
+        <label>Trailhead</label>
+    </customLabels>
+    <customLabels>
+        <name>stgVideosTitle</name>
+        <label>YouTube</label>
+    </customLabels>
+    <customLabels>
+        <name>timeBlockEndTimeMismatch</name>
+        <label>Emme voi tallentaa kurssitarjonnan aikataulua, koska sen päättymisaika ei vastaa siihen liittyvän aikalohkon päättymisaikaa. Joko muokkaa päättymisaikaa, määritä toinen aikalohko tai älä määritä aikalohkoa.</label>
+    </customLabels>
+    <customLabels>
+        <name>timeBlockStartTimeMismatch</name>
+        <label>Emme voi tallentaa kurssitarjonnan aikataulua, koska sen aloitusaika ei ole sama kuin siihen liittyvän aikalohkon aloitusaika. Joko muokkaa aloitusaikaa, määritä toinen aikalohko tai älä määritä aikalohkoa.</label>
+    </customLabels>
+    <customTabs>
         <name>HEDA_Settings</name>
+        <label>EDA-asetukset</label>
     </customTabs>
+    <customTabs>
+        <name>Education_Cloud_Settings</name>
+        <label>Education Cloud -asetukset</label>
+    </customTabs>
+    <customApplications>
+        <name>HEDA</name>
+        <label>EDA</label>
+    </customApplications>
 </Translations>

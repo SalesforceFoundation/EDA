@@ -2,5 +2,5 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <name>Administrative_Account_Record_Type__c</name>
     <help>El tipo de registro de Cuenta utilizado para Cuentas administrativas. Esta configuración afecta a la gestión de registros de dirección y el formato de nomenclatura de Cuentas administrativas.</help>
-    <label>Tipo de registro de cuenta administrativa</label>
+    <label>Tipo registro de cuenta administrativa</label>
 </CustomFieldTranslation>

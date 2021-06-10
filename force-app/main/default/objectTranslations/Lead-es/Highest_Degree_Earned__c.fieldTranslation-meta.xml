@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label><!-- Highest Degree Earned --></label>
     <name>Highest_Degree_Earned__c</name>
-    <picklistValues>
-        <masterLabel>AA</masterLabel>
-        <translation><!-- AA --></translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>AS</masterLabel>
-        <translation><!-- AS --></translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>BA</masterLabel>
-        <translation><!-- BA --></translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>BS</masterLabel>
-        <translation><!-- BS --></translation>
-    </picklistValues>
+    <label>Título más alto obtenido</label>
     <picklistValues>
         <masterLabel>GED</masterLabel>
-        <translation><!-- GED --></translation>
+        <translation>Bachillerato</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>High School Diploma</masterLabel>
-        <translation><!-- High School Diploma --></translation>
+        <translation>Diploma de escuela secundaria</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>JD</masterLabel>
-        <translation><!-- JD --></translation>
+        <masterLabel>AA</masterLabel>
+        <translation>AA</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AS</masterLabel>
+        <translation>AS</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BA</masterLabel>
+        <translation>BA</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BS</masterLabel>
+        <translation>BS</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>MA</masterLabel>
-        <translation><!-- MA --></translation>
+        <translation>MA</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>MBA</masterLabel>
-        <translation><!-- MBA --></translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>MD</masterLabel>
-        <translation><!-- MD --></translation>
+        <translation>MBA</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>MS</masterLabel>
-        <translation><!-- MS --></translation>
+        <translation>MS</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Other</masterLabel>
-        <translation><!-- Other --></translation>
+        <masterLabel>JD</masterLabel>
+        <translation>JD</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MD</masterLabel>
+        <translation>MD</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>PhD</masterLabel>
-        <translation><!-- PhD --></translation>
+        <translation>PhD</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation>Otro</translation>
     </picklistValues>
 </CustomFieldTranslation>

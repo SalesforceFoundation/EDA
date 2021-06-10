@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <name>Lead_Converted_Account_RTypes__c</name>
+    <help>Els tipus de registre de compte per utilitzar el  format de denominació del compte d’EDA quan es converteixen clients potencials.</help>
+    <label>Tip. reg. comptes conver. clients poten.</label>
+</CustomFieldTranslation>

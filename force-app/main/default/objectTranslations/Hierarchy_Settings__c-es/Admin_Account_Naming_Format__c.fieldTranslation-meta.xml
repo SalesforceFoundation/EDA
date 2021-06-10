@@ -2,5 +2,5 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <name>Admin_Account_Naming_Format__c</name>
     <help>Almacena el formato predeterminado para nombres de cuenta de administrador</help>
-    <label>Formato de nomenclatura de cuenta de administrador</label>
+    <label>Formato nomenclatura cuenta administrad</label>
 </CustomFieldTranslation>

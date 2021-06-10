@@ -1,1923 +1,1923 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customApplications>
-        <label>EDA</label>
-        <name>HEDA</name>
-    </customApplications>
     <customLabels>
-        <label><!-- Description of the Affiliation Mappings setting --></label>
         <name>AfflMappingsDescription</name>
+        <label>Asigne tipos de registros Cuenta a los campos de Afiliación principal en Contactos para definir cómo afectan las actualizaciones de esos campos a los registros de Afiliación y cómo las actualizaciones en los registros de Afiliación afectan a los registros de Contactos.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Affiliations Related to Deleted Program Enrollments setting --></label>
         <name>AfflProgEnrollDeleted</name>
+        <label>Si una afiliación está relacionada con solo una Inscripción de programa y esta se elimina, también se elimina la afiliación. Si no activa este parámetro seleccione un Estado para afiliaciones no eliminadas.</label>
     </customLabels>
     <customLabels>
-        <label>Especifique una conexión de curso que tenga el mismo contacto que especificó para este evento de asistencia.</label>
         <name>AttendanceCourseConnectionContactMismatch</name>
+        <label>Especifique una conexión de curso que tenga el mismo contacto que especificó para este evento de asistencia.</label>
     </customLabels>
     <customLabels>
-        <label>Hay un parámetro de relación de creación automática no válido configurado en Configuración de EDA | Relaciones | Creación automática. Elimine o modifique el valor no válido e inténtelo de nuevo.</label>
         <name>AutoCreateFieldError</name>
+        <label>Hay un parámetro de relación de creación automática no válido configurado en Configuración de EDA | Relaciones | Creación automática. Elimine o modifique el valor no válido e inténtelo de nuevo.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Message when an Apex job can&apos;t run --></label>
         <name>BatchJobRunningProblem</name>
+        <label>No pudimos ejecutar el trabajo de Apex.</label>
     </customLabels>
     <customLabels>
-        <label>Establezca el campo Filtro, o el campo Filtro y el valor Filtro.</label>
         <name>BothFieldAndValue</name>
+        <label>Establezca el campo Filtro, o el campo Filtro y el valor Filtro.</label>
     </customLabels>
     <customLabels>
-        <label>No se puede cambiar el Contacto o la Oferta de curso en una Conexión de curso que tenga Evaluaciones de periodo o Eventos de asistencia asociados. Si desea una Conexión de curso con un Contacto u Oferta de curso diferentes, cree una nueva Conexión de curso.</label>
         <name>CannotChangeContactAndCourseOffering</name>
+        <label>No se puede cambiar el Contacto o la Oferta de curso en una Conexión de curso que tenga Evaluaciones de periodo o Eventos de asistencia asociados. Si desea una Conexión de curso con un Contacto u Oferta de curso diferentes, cree una nueva Conexión de curso.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Error when deleting a record with child records --></label>
         <name>CannotDelete</name>
+        <label>Este registro no puede eliminarse porque tiene uno o más registros relacionados asociados con él. Elimine primero los registros asociados y luego elimine este registro. Para determinar qué registros deben eliminarse primero, haga clic en la ficha Relacionado. Si no ve registros relacionados o no puede eliminarlos, póngase en contacto con su administrador del sistema.</label>
     </customLabels>
     <customLabels>
-        <label>Cuenta</label>
         <name>DefaultAccountName</name>
+        <label>Cuenta</label>
     </customLabels>
     <customLabels>
-        <label>Cuenta administrativa</label>
         <name>DefaultAdminName</name>
+        <label>Cuenta administrativa</label>
     </customLabels>
     <customLabels>
-        <label>Hogar</label>
         <name>DefaultHouseholdName</name>
+        <label>Hogar</label>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings --></label>
         <name>EDASettingsContainerAuraComponentLabel</name>
+        <label>Configuración de EDA</label>
     </customLabels>
     <customLabels>
-        <label><!-- Education Cloud Settings --></label>
         <name>EDCSettingsContainerAuraComponentLabel</name>
+        <label>Configuración de Education Cloud</label>
     </customLabels>
     <customLabels>
-        <label>Female</label>
         <name>Female</name>
-    </customLabels>
-    <customLabels>
-        <label>El campo introducido como el Campo de filtro no es válido. Los campos de filtro pueden ser cualquier campo estándar o personalizado en el objeto para el que es este desencadenador, así como campos en registros relacionados. Asegúrese de que utiliza el nombre de API del campo, y omite cualquier prefijo de espacio de nombres de EDA (&quot;hed__&quot;).</label>
-        <name>InvalidFilter</name>
-    </customLabels>
-    <customLabels>
-        <label>Male</label>
-        <name>Male</name>
-    </customLabels>
-    <customLabels>
-        <label>Hay más de una Conexión de curso asociada con este Contacto y esta Oferta de curso. Especifique la Conexión de curso que represente la inscripción del estudiante en esta Oferta de curso para esta Evaluación de periodo.</label>
-        <name>MultipleCourseConnection</name>
-    </customLabels>
-    <customLabels>
-        <label>No se ha especificado el Contacto y la Oferta de curso o no coinciden con la Conexión de curso. Especifique solo una Conexión de curso o tanto un Contacto como una Oferta de curso de modo que se pueda guardar este registro con los datos correctos.</label>
-        <name>NoContactCOFound</name>
-    </customLabels>
-    <customLabels>
-        <label>No hay ninguna Conexión de curso asociada con este Contacto y esta Oferta de curso. Si este estudiante está inscrito en esta Oferta de curso, cree una Conexión de curso.</label>
-        <name>NoCourseConnection</name>
-    </customLabels>
-    <customLabels>
-        <label>El Contacto y la Oferta de curso no coinciden con la Conexión de curso. Especifique solo una Conexión de curso o tanto un Contacto como una Oferta de curso de modo que se pueda guardar este registro con los datos correctos.</label>
-        <name>NoDataMatch</name>
-    </customLabels>
-    <customLabels>
-        <label>Especifique solo una Conexión de curso o tanto un Contacto como una Oferta de curso.</label>
-        <name>NoFieldsPopulated</name>
-    </customLabels>
-    <customLabels>
-        <label>ninguna</label>
-        <name>NoneOption</name>
-    </customLabels>
-    <customLabels>
-        <label>No hay ningún Contacto u Oferta de curso asociado con esta Conexión de curso. Seleccione una Conexión de curso válida.</label>
-        <name>OnlyCourseConnectionPopulated</name>
-    </customLabels>
-    <customLabels>
-        <label>No podemos encontrar el correo electrónico especificado en Correo electrónico preferido. Asegúrese de que está introduciendo la etiqueta de campo de un campo de correo electrónico personalizado existente.</label>
-        <name>PreferredEmailMatchMustExist</name>
-    </customLabels>
-    <customLabels>
-        <label>El campo de correo electrónico que seleccionó en Correo electrónico de preferencia está en blanco. Seleccione un Correo electrónico de preferencia diferente o agregue un valor para ese campo de correo electrónico.</label>
-        <name>PreferredEmailMatchNotNull</name>
-    </customLabels>
-    <customLabels>
-        <label>Seleccione un valor para Correo electrónico de preferencia.</label>
-        <name>PreferredEmailRequiredError</name>
-    </customLabels>
-    <customLabels>
-        <label>No podemos encontrar el teléfono especificado en Teléfono preferido. Asegúrese de que está introduciendo la etiqueta de campo de un campo Teléfono personalizado existente.</label>
-        <name>PreferredPhoneMatchMustExist</name>
-    </customLabels>
-    <customLabels>
-        <label>El teléfono seleccionado para Teléfono preferido no puede estar en blanco.</label>
-        <name>PreferredPhoneMatchNotNull</name>
-    </customLabels>
-    <customLabels>
-        <label>Seleccione un valor para Teléfono de preferencia.</label>
-        <name>PreferredPhoneRequiredError</name>
-    </customLabels>
-    <customLabels>
-        <label>es</label>
-        <name>Relationship_Explanation_Connector</name>
-    </customLabels>
-    <customLabels>
-        <label>-</label>
-        <name>Relationship_Split</name>
-    </customLabels>
-    <customLabels>
-        <label>Los parámetros de Creación automática le permiten definir cuándo se crea automáticamente un registro Relación entre un Contacto y un Miembro de campaña, en base a un campo de búsqueda personalizado en uno de los dos objetos. Por ejemplo, una búsqueda de &apos;Referencia&apos; desde Miembro de campaña a Contacto podría crear una Relación &apos;Referencia&apos; y &apos;Mediador&apos; entre los dos contactos. (Tenga en cuenta que esta función no está disponible para los objetos Candidato o Miembro de campaña que hacen referencia a Candidatos).</label>
-        <name>RelationshipsAutoDescription</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Reciprocal Relationships setting --></label>
-        <name>RelationshipsLookupDescription</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Picklist value for naming format used for Administrative and Household Accounts --></label>
-        <name>acctNamingOther</name>
-    </customLabels>
-    <customLabels>
-        <label>Llamada no válida. Esta función está reservada para uso de Salesforce.</label>
-        <name>adapterException</name>
-    </customLabels>
-    <customLabels>
-        <label>Los registros de dirección solo pueden asociarse con Cuentas o Contactos.</label>
-        <name>addrHhAdmAccountOnly</name>
-    </customLabels>
-    <customLabels>
-        <label>La capacidad de agregar múltiples direcciones está desactivada para este tipo de registro de Cuenta. Para activarla, vaya a Configuración de EDA, haga clic en Cuentas y Contactos y seleccione la casilla de verificación apropiada junto a Tipos de cuenta con Múltiples direcciones activada.</label>
-        <name>addrNotEnabledAccount</name>
-    </customLabels>
-    <customLabels>
-        <label>La capacidad de agregar múltiples direcciones está desactivada para Contactos. Para activarla, vaya a Configuración de EDA, haga clic en Cuentas y Contactos y luego seleccione la casilla de verificación Múltiples direcciones de contacto activada.</label>
-        <name>addrNotEnabledContact</name>
-    </customLabels>
-    <customLabels>
-        <label>Hay un registro Dirección existente para esta cuenta o contacto con fechas de inicio y finalización de temporada que se solapan con las fechas de temporada de este registro. Ajuste las fechas de temporada de modo que no se solapen con las del otro registro Dirección.</label>
-        <name>addrSeasonalOverlap</name>
-    </customLabels>
-    <customLabels>
-        <label>Una dirección no puede tener fechas de inicio y finalización de temporada parciales. Introduzca valores para los campos de fecha de inicio y finalización de temporada o déjelos en blanco.</label>
-        <name>addrSeasonalPartial</name>
-    </customLabels>
-    <customLabels>
-        <label>Una dirección no puede tener fechas de inicio y finalización de temporada parciales. Introduzca valores para los campos de fecha de inicio y finalización de temporada o déjelos en blanco.</label>
-        <name>addrSeasonalPartialYear</name>
-    </customLabels>
-    <customLabels>
-        <label>Los registros de dirección solo pueden asociarse con Cuentas o Contactos.</label>
-        <name>addrValidParentObjects</name>
-    </customLabels>
-    <customLabels>
-        <label>Formato de nombre de cuenta administrativa</label>
-        <name>adminAccNameFormat</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Administrative Account Name Format setting --></label>
-        <name>adminAccNameFormatHelpText</name>
-    </customLabels>
-    <customLabels>
-        <label>Este contacto ya tiene una Afiliación principal con la cuenta especificada. Anule la selección del parámetro Principal para la otra afiliación de modo que pueda designar esta como Principal, o cree esta afiliación sin el valor Principal.</label>
-        <name>affiliationWithSameAccExists</name>
-    </customLabels>
-    <customLabels>
-        <label>No podemos crear esta Afiliación porque la Cuenta especificada no tiene un tipo de registro.</label>
-        <name>afflAccountNoRecordType</name>
-    </customLabels>
-    <customLabels>
-        <label>No podemos guardar este registro debido a un error de tipo de registro Cuenta en Asignaciones de afiliación. Solicite a su administrador verificar que Tipos de registro de cuenta están asignados correctamente a Afiliaciones principales de contacto.</label>
-        <name>afflAccoutMappingError</name>
-    </customLabels>
-    <customLabels>
-        <label>El tipo de registro Cuenta {0} no existe. Solicite a su administrador comprobar los tipos de registro en Asignaciones de afiliaciones.</label>
-        <name>afflNullPointerError</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Record Type Validation setting --></label>
-        <name>afflTypeEnforced</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Record Type Validation setting --></label>
-        <name>afflTypeEnforcedDescription</name>
-    </customLabels>
-    <customLabels>
-        <label>Cambiar el nombre automáticamente a cuentas domésticas</label>
-        <name>automaticHHNaming</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Automatically Rename Household Accounts setting --></label>
-        <name>automaticHHNamingHelpText</name>
-    </customLabels>
-    <customLabels>
-        <label>No podemos encontrar el tipo de registro de cuenta administrativa en su organización. Tras la instalación, utilice el Gestor de objetos para crear un nuevo tipo de registro denominado &quot;Administrativo&quot; para el objeto Cuenta.</label>
-        <name>defaultAccountRecordTypeMissingError</name>
-    </customLabels>
-    <customLabels>
-        <label>y</label>
-        <name>defaultNamingConnector</name>
-    </customLabels>
-    <customLabels>
-        <label>(DuplicateAcknowledged)</label>
-        <name>duplicateFieldInFilter</name>
-    </customLabels>
-    <customLabels>
-        <label>El valor Campo de filtro asigna un nombre a un duplicado de un campo de producto. Especifique un campo no duplicado. En caso contrario, filtramos utilizando el valor en el campo de producto. Si elige la otra opción, reconozca que acepta esta lógica de filtrado anexando {0} después del nombre de campo. Por ejemplo, si el campo duplicado es Deceased__c, introduzca Deceased__c{0} como el valor de Campo de filtro.</label>
-        <name>duplicateWithHEDAField</name>
-    </customLabels>
-    <customLabels>
-        <label>Un campo en blanco requerido está impidiendo que se guarde este registro. El campo requerido podría estar en este registro, o en un registro relacionado por un valor de búsqueda.</label>
-        <name>exceptionRequiredField</name>
-    </customLabels>
-    <customLabels>
-        <label>Una regla de validación está evitando el procesamiento de este registro. La regla de validación puede ser sobre este registro, o un registro relacionado que se esté actualizando. MENSAJE DE VALIDACIÓN:</label>
-        <name>exceptionValidationRule</name>
-    </customLabels>
-    <customLabels>
-        <label>Campo de filtro no puede incluir prefijos de espacio de nombres como hed__. Elimine el prefijo de espacio de nombres e inténtelo de nuevo.</label>
-        <name>fieldWithHEDANamespace</name>
-    </customLabels>
-    <customLabels>
-        <label>Cuenta administrativa de {!{!FirstName}} {!LastName}</label>
-        <name>firstNameLastNameAdminAcc</name>
-    </customLabels>
-    <customLabels>
-        <label>Familia de {!{!FirstName}} {!LastName}</label>
-        <name>firstNameLastNameFamily</name>
-    </customLabels>
-    <customLabels>
-        <label>Domicilio de {!{!FirstName}} {!LastName}</label>
-        <name>firstNameLastNameHH</name>
-    </customLabels>
-    <customLabels>
-        <label>Está intentando acceder a Procesamiento de regalo sin la información de configuración requerida. Póngase en contacto con su administrador para obtener ayuda.</label>
-        <name>giftProcessingConfigException</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Field label for the Household Account Name setting --></label>
-        <name>hhAccNameFormat</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Household Account Name Format setting --></label>
-        <name>hhAccNameFormatHelpText</name>
-    </customLabels>
-    <customLabels>
-        <label>Familia</label>
-        <name>hhFamily</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Error when a Contact&apos;s Primary Affiliation field isn&apos;t an Account lookup field --></label>
-        <name>invalidContactFieldInAffiliationMapping</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Error when an Affiliation Mapping&apos;s Account record type isn&apos;t valid --></label>
-        <name>invalidRecordTypeInAffiliationMapping</name>
-    </customLabels>
-    <customLabels>
-        <label>Cuenta administrativa de {!LastName}</label>
-        <name>lastNameAdminAcc</name>
-    </customLabels>
-    <customLabels>
-        <label>Familia {!LastName}</label>
-        <name>lastNameFamily</name>
-    </customLabels>
-    <customLabels>
-        <label>Cuenta administrativa de {!LastName} ({!{!FirstName}})</label>
-        <name>lastNameFirstNameAdminAcc</name>
-    </customLabels>
-    <customLabels>
-        <label>Familia de {!LastName} ({!{!FirstName}})</label>
-        <name>lastNameFirstNameFamily</name>
-    </customLabels>
-    <customLabels>
-        <label>Domicilio de {!LastName} ({!{!FirstName}})</label>
-        <name>lastNameFirstNameHH</name>
-    </customLabels>
-    <customLabels>
-        <label>Domicilio de {!LastName}</label>
-        <name>lastNameHH</name>
-    </customLabels>
-    <customLabels>
-        <label>Requisitos de plan puede especificar un Plan de programa o un Requisito de plan principal, pero no ambos. Si este Requisito de plan es un secundario de otro Requisito de plan, especifique solo un Requisito de plan principal. Si este Requisito de plan es un secundario de un Plan de programa, especifique únicamente un Plan de programa.</label>
-        <name>nestedPlanRequirementPPExp</name>
-    </customLabels>
-    <customLabels>
-        <label>El tipo de registro de cuenta definido no existe:</label>
-        <name>noAccRecType</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Empty state message for Affiliation Mappings --></label>
-        <name>noAfflMappings</name>
-    </customLabels>
-    <customLabels>
-        <label>No se definieron configuraciones de creación automática. Utilice el formulario que encontrará a continuación para crear una nueva configuración de creación automática.</label>
-        <name>noAutoCreateSettings</name>
-    </customLabels>
-    <customLabels>
-        <label>No se definieron configuraciones de reciprocidad. Utilice el formulario que encontrará a continuación para crear una nueva configuración de reciprocidad.</label>
-        <name>noRecSettings</name>
-    </customLabels>
-    <customLabels>
-        <label>Correo electrónico (estándar)</label>
-        <name>preferredBatchDefaultEmail</name>
-    </customLabels>
-    <customLabels>
-        <label>Teléfono (estándar)</label>
-        <name>preferredBatchDefaultPhone</name>
-    </customLabels>
-    <customLabels>
-        <label>Modelo de cuenta predeterminado</label>
-        <name>stgAccModelTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation title for Account Model --></label>
-        <name>stgAccountModelNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Account Model Settings --></label>
-        <name>stgAccountModelSettingsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the list of Available Account Record Types --></label>
-        <name>stgAccountRecordTypeAvailableListTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Group label for the Account record type selection --></label>
-        <name>stgAccountRecordTypeGroupLabelTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Info text for Account Record Type picklist --></label>
-        <name>stgAccountRecordTypeHelp</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the list of Selected Account Record Types --></label>
-        <name>stgAccountRecordTypeSelectedListTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Tipo de registro para cuenta doméstica</label>
-        <name>stgAccountRecordTypeSupportsHHAddress</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Enable Multiple Addresses for Account Types setting --></label>
-        <name>stgAccountTypesMultiAddressesEnabled</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Accounts Without Contacts setting --></label>
-        <name>stgAccoutTypesWithoutContactsDelete</name>
-    </customLabels>
-    <customLabels>
-        <label>Agregue “Hispano o Latino” como un valor de lista de selección al campo Etnia si es necesario.</label>
-        <name>stgAddHispanicOrLatinoPicklistValue</name>
-    </customLabels>
-    <customLabels>
-        <label>Agregue “No Hispano o Latino” como un valor de lista de selección al campo Etnia si es necesario.</label>
-        <name>stgAddNotHispanicOrLatinoPicklistValue</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation title for Addresses --></label>
-        <name>stgAddressSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Addresses --></label>
-        <name>stgAddressSettingsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for Custom Name Format for Administrative Accounts --></label>
-        <name>stgAdminAccountCustomName</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Info text for Custom Name Format --></label>
-        <name>stgAdminAccountCustomNameHelp</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Administrative Account Naming --></label>
-        <name>stgAdminAccountNamingTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Administrative Account Record Type setting --></label>
-        <name>stgAdminAccountRecordType</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Delete Affiliation mapping window --></label>
-        <name>stgAffiliationsDeleteModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Delete Affiliation mapping window --></label>
-        <name>stgAffiliationsDeleteModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when an Affiliation mapping is deleted --></label>
-        <name>stgAffiliationsDeleteSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Edit Affiliation mapping window --></label>
-        <name>stgAffiliationsEditModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Edit Affiliation mapping window --></label>
-        <name>stgAffiliationsEditModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when an Affiliation mapping is saved --></label>
-        <name>stgAffiliationsEditSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the New Affiliation mapping window --></label>
-        <name>stgAffiliationsNewModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when an Affiliation mapping is created --></label>
-        <name>stgAffiliationsNewSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation title for Affiliations --></label>
-        <name>stgAffiliationsSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Affiliation Settings --></label>
-        <name>stgAffiliationsSettingsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Affiliation End Date setting --></label>
-        <name>stgAfflCopyProgramEnrollmentEndDate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Affiliation Start Date setting --></label>
-        <name>stgAfflCopyProgramEnrollmentStartDate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Status for Affiliations Not Deleted setting --></label>
-        <name>stgAfflDeleteProgramEnrollment</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Message before deleting Affiliation mapping with an auto-enrollment --></label>
-        <name>stgAfflDeleteWithAutoEnrollment</name>
-    </customLabels>
-    <customLabels>
-        <label>No podemos asignar esta afiliación porque hace referencia a un tipo de registro al que otra asignación de afiliación ya hace referencia. Si desea agregar esta asignación de modo que se traduzca la afiliación, haga clic en Modificar para cambiar la asignación existente. A continuación, especifique el nombre de API del campo bajo Campo de afiliación principal de contacto. No cambie el nombre especificado para Tipo de registro de cuenta.</label>
-        <name>stgAfflNotInserted</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Affiliations Related to Deleted Program Enrollments setting --></label>
-        <name>stgAfflProgEnrollDeleteRelated</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Program Enrollment Deletions --></label>
-        <name>stgAfflProgEnrollDeleteTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Especificar función para afiliaciones creadas</label>
-        <name>stgAfflProgEnrollSetRole</name>
-    </customLabels>
-    <customLabels>
-        <label>Función para afiliaciones creadas</label>
-        <name>stgAfflProgEnrollSetRoleValue</name>
-    </customLabels>
-    <customLabels>
-        <label>Estado para afiliaciones creadas</label>
-        <name>stgAfflProgEnrollSetStatusValue</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Affiliations Created with Program Enrollments --></label>
-        <name>stgAfflProgramEnrollmentSettingsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Después de ejecutar el relleno</label>
-        <name>stgAfterRunBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- The API name associated with the selected Account Record Type --></label>
-        <name>stgApiNameLabel</name>
-    </customLabels>
-    <customLabels>
-        <label>Empiece a escribir el nombre del grupo de Chatter para buscar.</label>
-        <name>stgAutoCompleteEnterChatterGroupName</name>
-    </customLabels>
-    <customLabels>
-        <label>Empiece a escribir el nombre del usuario para buscar.</label>
-        <name>stgAutoCompleteEnterUserName</name>
-    </customLabels>
-    <customLabels>
-        <label>Seleccionar Grupo de Chatter</label>
-        <name>stgAutoCompleteSelectChatterGroup</name>
-    </customLabels>
-    <customLabels>
-        <label>Seleccionar usuario</label>
-        <name>stgAutoCompleteSelectUser</name>
-    </customLabels>
-    <customLabels>
-        <label>Inscripción automática</label>
-        <name>stgAutoEnrollment</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Delete auto-enrollment mapping confirmation window --></label>
-        <name>stgAutoEnrollmentDeleteModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Delete auto-enrollment mapping confirmation window --></label>
-        <name>stgAutoEnrollmentDeleteModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when an auto-enrollment mapping is deleted --></label>
-        <name>stgAutoEnrollmentDeleteSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Edit auto-enrollment mapping confirmation window --></label>
-        <name>stgAutoEnrollmentEditModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Edit auto-enrollment mapping confirmation window --></label>
-        <name>stgAutoEnrollmentEditModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when an auto-enrollment mapping is saved --></label>
-        <name>stgAutoEnrollmentEditSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the New auto-enrollment mapping confirmation window --></label>
-        <name>stgAutoEnrollmentNewModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the New auto-enrollment mapping confirmation window --></label>
-        <name>stgAutoEnrollmentNewModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when an auto-enrollment mapping is created --></label>
-        <name>stgAutoEnrollmentNewSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Auto-Enrollment Mappings setting --></label>
-        <name>stgAutoEnrollmentProgramDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Auto-Enrollment Mappings setting --></label>
-        <name>stgAutoEnrollmentProgramTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Función de Inscripción automática</label>
-        <name>stgAutoEnrollmentRole</name>
-    </customLabels>
-    <customLabels>
-        <label>Estado de Inscripción automática</label>
-        <name>stgAutoEnrollmentStatus</name>
-    </customLabels>
-    <customLabels>
-        <label>El relleno se colocó en cola correctamente. Se enviará un correo electrónico al finalizar el lote.</label>
-        <name>stgBackfillQueuedEmailSent</name>
-    </customLabels>
-    <customLabels>
-        <label>Antes de ejecutar el relleno</label>
-        <name>stgBeforeRunBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button label for New Affiliation mapping window --></label>
-        <name>stgBtnAddMapping</name>
-    </customLabels>
-    <customLabels>
-        <label>Agregar Configuración</label>
-        <name>stgBtnAddSetting</name>
-    </customLabels>
-    <customLabels>
-        <label>Cancelar</label>
-        <name>stgBtnCancel</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that clears a field --></label>
-        <name>stgBtnClearSelectionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches the Trailblazer Community site --></label>
-        <name>stgBtnCommunity</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches the Trailblazer Community site --></label>
-        <name>stgBtnCommunityActionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button label for delete Affiliation mapping warning --></label>
-        <name>stgBtnDelete</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches EDA documentation --></label>
-        <name>stgBtnDocumentation</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches EDA documentation --></label>
-        <name>stgBtnDocumentationActionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches the Education Cloud trailmix --></label>
-        <name>stgBtnEDCTrailhead</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches the Education Cloud trailmix --></label>
-        <name>stgBtnEDCTrailheadActionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label>Modificar</label>
-        <name>stgBtnEdit</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches Settings Health Check --></label>
-        <name>stgBtnHealthCheck</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that creates an auto-enrollment mapping --></label>
-        <name>stgBtnNewAutoEnrollA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
-        <name>stgBtnRefreshAdminNames</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates all Administrative Account names --></label>
-        <name>stgBtnRefreshAdminNamesA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates Race field on Contacts from Ethnicity field --></label>
-        <name>stgBtnRefreshEthnicityDataA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
-        <name>stgBtnRefreshHouseholdNames</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates all Household Account names --></label>
-        <name>stgBtnRefreshHouseholdNamesA11y</name>
-    </customLabels>
-    <customLabels>
-        <label>Ejecutar Relleno</label>
-        <name>stgBtnRunBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
-        <name>stgBtnRunCopy</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates Course Descriptions --></label>
-        <name>stgBtnRunCopyA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates Course Connection record types --></label>
-        <name>stgBtnRunCourseConnBackfillA11y</name>
-    </customLabels>
-    <customLabels>
-        <label>Guardar</label>
-        <name>stgBtnSave</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches EDA Settings --></label>
-        <name>stgBtnSettings</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches EDA Settings --></label>
-        <name>stgBtnSettingsActionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches EDA Trailhead modules --></label>
-        <name>stgBtnTrailhead</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches EDA Trailhead modules --></label>
-        <name>stgBtnTrailheadActionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that runs a selected Apex job --></label>
-        <name>stgBtnUpdate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button that launches the Salesforce.org YouTube channel --></label>
-        <name>stgBtnVideos</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches the Salesforce.org YouTube channel --></label>
-        <name>stgBtnVideosActionA11y</name>
-    </customLabels>
-    <customLabels>
-        <label>La limpieza se colocó en cola correctamente. Se enviará un correo electrónico cuando se complete el lote.</label>
-        <name>stgCleanupQueuedEmailSent</name>
-    </customLabels>
-    <customLabels>
-        <label>Tipo de registro de cuenta</label>
-        <name>stgColAccountRecordType</name>
-    </customLabels>
-    <customLabels>
-        <label>Activa</label>
-        <name>stgColActive</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Column header for Auto-Enrollment Role --></label>
-        <name>stgColAutoEnrollmentRole</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Column header for Auto-Enrollment Status --></label>
-        <name>stgColAutoEnrollmentStatus</name>
-    </customLabels>
-    <customLabels>
-        <label>Tipos de campaña</label>
-        <name>stgColCampTypes</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Column header for Primary Affiliation Fields on Contact --></label>
-        <name>stgColContactPrimaryAfflField</name>
-    </customLabels>
-    <customLabels>
         <label>Femenino</label>
-        <name>stgColFemale</name>
     </customLabels>
     <customLabels>
-        <label>Etiqueta de campo</label>
-        <name>stgColField</name>
+        <name>InvalidFilter</name>
+        <label>El campo introducido como el Campo de filtro no es válido. Los campos de filtro pueden ser cualquier campo estándar o personalizado en el objeto para el que es este desencadenador, así como campos en registros relacionados. Asegúrese de que utiliza el nombre de API del campo, y omite cualquier prefijo de espacio de nombres de EDA (&quot;hed__&quot;).</label>
     </customLabels>
     <customLabels>
+        <name>Male</name>
         <label>Masculino</label>
-        <name>stgColMale</name>
     </customLabels>
     <customLabels>
-        <label>Neutro</label>
-        <name>stgColNeutral</name>
+        <name>MultipleCourseConnection</name>
+        <label>Hay más de una Conexión de curso asociada con este Contacto y esta Oferta de curso. Especifique la Conexión de curso que represente la inscripción del estudiante en esta Oferta de curso para esta Evaluación de periodo.</label>
     </customLabels>
     <customLabels>
-        <label>Nombre API del objeto</label>
-        <name>stgColObject</name>
+        <name>NoContactCOFound</name>
+        <label>No se ha especificado el Contacto y la Oferta de curso o no coinciden con la Conexión de curso. Especifique solo una Conexión de curso o tanto un Contacto como una Oferta de curso de modo que se pueda guardar este registro con los datos correctos.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Products --></label>
-        <name>stgColProducts</name>
+        <name>NoCourseConnection</name>
+        <label>No hay ninguna Conexión de curso asociada con este Contacto y esta Oferta de curso. Si este estudiante está inscrito en esta Oferta de curso, cree una Conexión de curso.</label>
     </customLabels>
     <customLabels>
-        <label>Tipo de relación</label>
-        <name>stgColRelType</name>
+        <name>NoDataMatch</name>
+        <label>El Contacto y la Oferta de curso no coinciden con la Conexión de curso. Especifique solo una Conexión de curso o tanto un Contacto como una Oferta de curso de modo que se pueda guardar este registro con los datos correctos.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Settings names --></label>
-        <name>stgColRelationshipName</name>
+        <name>NoFieldsPopulated</name>
+        <label>Especifique solo una Conexión de curso o tanto un Contacto como una Oferta de curso.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Resources --></label>
-        <name>stgColResources</name>
+        <name>NoneOption</name>
+        <label>Ninguno</label>
     </customLabels>
     <customLabels>
-        <label>Función</label>
-        <name>stgColRole</name>
+        <name>OnlyCourseConnectionPopulated</name>
+        <label>No hay ningún Contacto u Oferta de curso asociado con esta Conexión de curso. Seleccione una Conexión de curso válida.</label>
     </customLabels>
     <customLabels>
-        <label>Estado</label>
-        <name>stgColStatus</name>
+        <name>PreferredEmailMatchMustExist</name>
+        <label>No podemos encontrar el correo electrónico especificado en Correo electrónico preferido. Asegúrese de que está introduciendo la etiqueta de campo de un campo de correo electrónico personalizado existente.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Tools --></label>
-        <name>stgColTools</name>
+        <name>PreferredEmailMatchNotNull</name>
+        <label>El campo de correo electrónico que seleccionó en Correo electrónico de preferencia está en blanco. Seleccione un Correo electrónico de preferencia diferente o agregue un valor para ese campo de correo electrónico.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Trailblazer Community card --></label>
-        <name>stgCommunityTitle</name>
+        <name>PreferredEmailRequiredError</name>
+        <label>Seleccione un valor para Correo electrónico de preferencia.</label>
     </customLabels>
     <customLabels>
-        <label>Lo entiendo y estoy listo para ejecutar el relleno.</label>
-        <name>stgConfirmReadyRunBackfill</name>
+        <name>PreferredPhoneMatchMustExist</name>
+        <label>No podemos encontrar el teléfono especificado en Teléfono preferido. Asegúrese de que está introduciendo la etiqueta de campo de un campo Teléfono personalizado existente.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Contact Information --></label>
-        <name>stgContactInformationSettingsNav</name>
+        <name>PreferredPhoneMatchNotNull</name>
+        <label>El teléfono seleccionado para Teléfono preferido no puede estar en blanco.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Contact Information Settings --></label>
-        <name>stgContactInformationSettingsTitle</name>
+        <name>PreferredPhoneRequiredError</name>
+        <label>Seleccione un valor para Teléfono de preferencia.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Allow Multiple Contact Addresses setting --></label>
-        <name>stgContactMultiAddressesEnabled</name>
+        <name>Relationship_Explanation_Connector</name>
+        <label>es</label>
     </customLabels>
     <customLabels>
-        <label>Se produjo un error al iniciar el relleno.</label>
-        <name>stgCourseConnBackFillError</name>
+        <name>Relationship_Split</name>
+        <label>-</label>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when Course Connection record types are queued for update --></label>
-        <name>stgCourseConnBackFillSuccess</name>
+        <name>RelationshipsAutoDescription</name>
+        <label>Los parámetros de Creación automática le permiten definir cuándo se crea automáticamente un registro Relación entre un Contacto y un Miembro de campaña, en base a un campo de búsqueda personalizado en uno de los dos objetos. Por ejemplo, una búsqueda de &apos;Referencia&apos; desde Miembro de campaña a Contacto podría crear una Relación &apos;Referencia&apos; y &apos;Mediador&apos; entre los dos contactos. (Tenga en cuenta que esta función no está disponible para los objetos Candidato o Miembro de campaña que hacen referencia a Candidatos).</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
-        <name>stgCourseConnectionBackfillModalTitle</name>
+        <name>RelationshipsLookupDescription</name>
+        <label>Configure relaciones coincidentes de modo que pueda comprender cómo está relacionado un contacto con otro desde cualquiera de los registros de contacto.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Course Connections --></label>
-        <name>stgCourseConnectionsNav</name>
+        <name>acctNamingOther</name>
+        <label>Formato personalizado</label>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Course Connection Settings --></label>
-        <name>stgCourseConnectionsTitle</name>
+        <name>adapterException</name>
+        <label>Llamada no válida. Esta función está reservada para uso de Salesforce.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update Extended Description field confirmation window --></label>
-        <name>stgCourseDataMigrationModalBody</name>
+        <name>addrHhAdmAccountOnly</name>
+        <label>Los registros de dirección solo pueden asociarse con Cuentas o Contactos.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update Extended Description field confirmation window --></label>
-        <name>stgCourseDataMigrationModalTitle</name>
+        <name>addrNotEnabledAccount</name>
+        <label>La capacidad de agregar múltiples direcciones está desactivada para este tipo de registro de Cuenta. Para activarla, vaya a Configuración de EDA, haga clic en Cuentas y Contactos y seleccione la casilla de verificación apropiada junto a Tipos de cuenta con Múltiples direcciones activada.</label>
     </customLabels>
     <customLabels>
-        <label>El trabajo de Apex por lotes procesó {0} lotes con {1} fallos.</label>
-        <name>stgCourseDescriptionCopyEmailBody</name>
+        <name>addrNotEnabledContact</name>
+        <label>La capacidad de agregar múltiples direcciones está desactivada para Contactos. Para activarla, vaya a Configuración de EDA, haga clic en Cuentas y Contactos y luego seleccione la casilla de verificación Múltiples direcciones de contacto activada.</label>
     </customLabels>
     <customLabels>
-        <label>Se completó el trabajo de copia de descripción de curso con un estado de:</label>
-        <name>stgCourseDescriptionCopyEmailSubject</name>
+        <name>addrSeasonalOverlap</name>
+        <label>Hay un registro Dirección existente para esta cuenta o contacto con fechas de inicio y finalización de temporada que se solapan con las fechas de temporada de este registro. Ajuste las fechas de temporada de modo que no se solapen con las del otro registro Dirección.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Courses and Enrollments --></label>
-        <name>stgCoursesAndEnrollmentsNav</name>
+        <name>addrSeasonalPartial</name>
+        <label>Una dirección no puede tener fechas de inicio y finalización de temporada parciales. Introduzca valores para los campos de fecha de inicio y finalización de temporada o déjelos en blanco.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Contact Language Fluency setting --></label>
-        <name>stgDefaultContactLanguageFluency</name>
+        <name>addrSeasonalPartialYear</name>
+        <label>Una dirección no puede tener fechas de inicio y finalización de temporada parciales. Introduzca valores para los campos de fecha de inicio y finalización de temporada o déjelos en blanco.</label>
     </customLabels>
     <customLabels>
-        <label>Tipo de registro de facultad predeterminado</label>
-        <name>stgDefaultFacultyTypeTitle</name>
+        <name>addrValidParentObjects</name>
+        <label>Los registros de dirección solo pueden asociarse con Cuentas o Contactos.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Default Student Record Type setting --></label>
-        <name>stgDefaultStudentTypeTitle</name>
+        <name>adminAccNameFormat</name>
+        <label>Formato de nombre de cuenta administrativa</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Error Handling setting --></label>
-        <name>stgDisableErrorHandlingTitle</name>
+        <name>adminAccNameFormatHelpText</name>
+        <label>El formato para asignar nombres a Cuentas administrativas cuando se crean automáticamente.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Require Preferred Email setting --></label>
-        <name>stgDisablePreferredEmailEnforcement</name>
+        <name>affiliationWithSameAccExists</name>
+        <label>Este contacto ya tiene una Afiliación principal con la cuenta especificada. Anule la selección del parámetro Principal para la otra afiliación de modo que pueda designar esta como Principal, o cree esta afiliación sin el valor Principal.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Require Preferred Phone setting --></label>
-        <name>stgDisablePreferredPhoneEnforcement</name>
+        <name>afflAccountNoRecordType</name>
+        <label>No podemos crear esta Afiliación porque la Cuenta especificada no tiene un tipo de registro.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Prevent Duplicate Relationships Settings --></label>
-        <name>stgDuplicateRelationships</name>
+        <name>afflAccoutMappingError</name>
+        <label>No podemos guardar este registro debido a un error de tipo de registro Cuenta en Asignaciones de afiliación. Solicite a su administrador verificar que Tipos de registro de cuenta están asignados correctamente a Afiliaciones principales de contacto.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Prevent Duplicate Relationships setting --></label>
-        <name>stgDuplicateRelationshipsHelp</name>
+        <name>afflNullPointerError</name>
+        <label>El tipo de registro Cuenta {0} no existe. Solicite a su administrador comprobar los tipos de registro en Asignaciones de afiliaciones.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the EDA Aapp --></label>
-        <name>stgEDAAppDesc</name>
+        <name>afflTypeEnforced</name>
+        <label>Validación de tipo de registro</label>
     </customLabels>
     <customLabels>
-        <label><!-- Initials for the EDA App --></label>
-        <name>stgEDAAppInitials</name>
+        <name>afflTypeEnforcedDescription</name>
+        <label>Requiere que las cuentas especificadas como una Afiliación principal de contacto utilicen un tipo de registro. También garantiza que todos los tipos de registro Cuenta se asignan a campos de Afiliación principal en el objeto Contacto. Si falla la validación, no se guarda la afiliación.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of EDA Settings has moved --></label>
-        <name>stgEDASettingsHasMovedDesc</name>
+        <name>automaticHHNaming</name>
+        <label>Cambiar el nombre automáticamente a cuentas domésticas</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title of EDA Settings has moved --></label>
-        <name>stgEDASettingsHasMovedTitle</name>
+        <name>automaticHHNamingHelpText</name>
+        <label>Cambia el nombre automáticamente a cuentas domésticas cuando se agregan o cambian contactos.</label>
     </customLabels>
     <customLabels>
-        <label>Instalación de EDA</label>
-        <name>stgEDASetupTitle</name>
+        <name>defaultAccountRecordTypeMissingError</name>
+        <label>No podemos encontrar el tipo de registro de cuenta administrativa en su organización. Tras la instalación, utilice el Gestor de objetos para crear un nuevo tipo de registro denominado &quot;Administrativo&quot; para el objeto Cuenta.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of Settings Health Check --></label>
-        <name>stgEDCSettingsHealthCheckDescription</name>
+        <name>defaultNamingConnector</name>
+        <label>y</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Course Connection Record Types setting --></label>
-        <name>stgEnableCourseConnectionsTitle</name>
+        <name>duplicateFieldInFilter</name>
+        <label>(DuplicateAcknowledged)</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Debug Logging setting --></label>
-        <name>stgEnableDebugHelp</name>
+        <name>duplicateWithHEDAField</name>
+        <label>El valor Campo de filtro asigna un nombre a un duplicado de un campo de producto. Especifique un campo no duplicado. En caso contrario, filtramos utilizando el valor en el campo de producto. Si elige la otra opción, reconozca que acepta esta lógica de filtrado anexando {0} después del nombre de campo. Por ejemplo, si el campo duplicado es Deceased__c, introduzca Deceased__c{0} como el valor de Campo de filtro.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Debug Logging setting --></label>
-        <name>stgEnableDebugTitle</name>
+        <name>exceptionRequiredField</name>
+        <label>Un campo en blanco requerido está impidiendo que se guarde este registro. El campo requerido podría estar en este registro, o en un registro relacionado por un valor de búsqueda.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Enhanced Preferred Phone Functionality setting --></label>
-        <name>stgEnablePreferredPhoneSync</name>
+        <name>exceptionValidationRule</name>
+        <label>Una regla de validación está evitando el procesamiento de este registro. La regla de validación puede ser sobre este registro, o un registro relacionado que se esté actualizando. MENSAJE DE VALIDACIÓN:</label>
     </customLabels>
     <customLabels>
-        <label><!-- Error when the user doesn&apos;t have the permissions to view a page --></label>
-        <name>stgErrorInsufficientAccess</name>
+        <name>fieldWithHEDANamespace</name>
+        <label>Campo de filtro no puede incluir prefijos de espacio de nombres como hed__. Elimine el prefijo de espacio de nombres e inténtelo de nuevo.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Error when the user doesn&apos;t have the permissions to save settings --></label>
-        <name>stgErrorInsufficientAccessSaving</name>
+        <name>firstNameLastNameAdminAcc</name>
+        <label>Cuenta administrativa de {!{!FirstName}} {!LastName}</label>
     </customLabels>
     <customLabels>
-        <label><!-- Error when a generic error occurs --></label>
-        <name>stgErrorInvalidSettings</name>
+        <name>firstNameLastNameFamily</name>
+        <label>Familia de {!{!FirstName}} {!LastName}</label>
     </customLabels>
     <customLabels>
-        <label><!-- Message when no record types for auto-enrollment mappings exist --></label>
-        <name>stgErrorNewAutoEnrollment</name>
+        <name>firstNameLastNameHH</name>
+        <label>Domicilio de {!{!FirstName}} {!LastName}</label>
     </customLabels>
     <customLabels>
-        <label>Notificaciones de error en:</label>
-        <name>stgErrorNotiTo</name>
+        <name>giftProcessingConfigException</name>
+        <label>Está intentando acceder a Procesamiento de regalo sin la información de configuración requerida. Póngase en contacto con su administrador para obtener ayuda.</label>
     </customLabels>
     <customLabels>
-        <label>Destinatario de notificación de errores</label>
-        <name>stgErrorNotifRecipientsTitle</name>
+        <name>hhAccNameFormat</name>
+        <label>Formato de nombre de cuenta doméstica</label>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Errors --></label>
-        <name>stgErrorSettingsNav</name>
+        <name>hhAccNameFormatHelpText</name>
+        <label>El formato para asignar nombres a Cuentas domésticas cuando se crean automáticamente.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Error Settings --></label>
-        <name>stgErrorSettingsTitle</name>
+        <name>hhFamily</name>
+        <label>Familia</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Legacy Ethnicity Data setting --></label>
-        <name>stgEthnicityRaceBackfillContacts</name>
+        <name>invalidContactFieldInAffiliationMapping</name>
+        <label>No podemos guardar este registro debido a un error con el campo {1} del contacto. Solicite a su administrador que compruebe las asignaciones de afiliaciones en Configuración de EDA y establezca el valor para {0} al nombre de API para un campo de consulta de cuenta en el objeto Contacto en vez de {1}</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update the Race field on Contacts confirmation window --></label>
-        <name>stgEthnicityRaceBackfillModalBody</name>
+        <name>invalidRecordTypeInAffiliationMapping</name>
+        <label>No podemos guardar este registro debido a que {1} no es un tipo de registro válido. Solicite a su administrador que compruebe las asignaciones de afiliaciones en Configuración de EDA y establezca el valor para {0} al nombre de API para un tipo de registro Cuenta válido en vez de {1}.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update the Race field on Contacts confirmation window --></label>
-        <name>stgEthnicityRaceBackfillModalTitle</name>
+        <name>lastNameAdminAcc</name>
+        <label>Cuenta administrativa de {!LastName}</label>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when the Race field is queued for update --></label>
-        <name>stgEthnicityRaceBackfillSuccessToast</name>
+        <name>lastNameFamily</name>
+        <label>Familia {!LastName}</label>
     </customLabels>
     <customLabels>
-        <label>Fluent</label>
-        <name>stgFluent</name>
+        <name>lastNameFirstNameAdminAcc</name>
+        <label>Cuenta administrativa de {!LastName} ({!{!FirstName}})</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
-        <name>stgHCAccountModelAdminInactiveFix</name>
+        <name>lastNameFirstNameFamily</name>
+        <label>Familia de {!LastName} ({!{!FirstName}})</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Administrative Account Record Type --></label>
-        <name>stgHCAccountModelAdminNotFoundFix</name>
+        <name>lastNameFirstNameHH</name>
+        <label>Domicilio de {!LastName} ({!{!FirstName}})</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
-        <name>stgHCAccountModelDefaultInactiveFix</name>
+        <name>lastNameHH</name>
+        <label>Domicilio de {!LastName}</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Account Model record type --></label>
-        <name>stgHCAccountModelDefaultNotFoundFix</name>
+        <name>nestedPlanRequirementPPExp</name>
+        <label>Requisitos de plan puede especificar un Plan de programa o un Requisito de plan principal, pero no ambos. Si este Requisito de plan es un secundario de otro Requisito de plan, especifique solo un Requisito de plan principal. Si este Requisito de plan es un secundario de un Plan de programa, especifique únicamente un Plan de programa.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
-        <name>stgHCAccountModelHHInactiveFix</name>
+        <name>noAccRecType</name>
+        <label>El tipo de registro de cuenta definido no existe:</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find the Household Account Record Type --></label>
-        <name>stgHCAccountModelHHNotFoundFix</name>
+        <name>noAfflMappings</name>
+        <label>Aún no hay asignaciones de afiliaciones. Haga clic en Nueva para crear una.</label>
     </customLabels>
     <customLabels>
-        <label>Configuración de Tipo de registro para cuenta administrativa y doméstica exclusiva.</label>
-        <name>stgHCAccountRecordTypeSettingsUnique</name>
+        <name>noAutoCreateSettings</name>
+        <label>No se definieron configuraciones de creación automática. Utilice el formulario que encontrará a continuación para crear una nueva configuración de creación automática.</label>
     </customLabels>
     <customLabels>
-        <label>La configuración de Tipo de registro para cuenta administrativa y doméstica especifica el mismo tipo de registro.</label>
-        <name>stgHCAccountRecordTypesNotUnique</name>
+        <name>noRecSettings</name>
+        <label>No se definieron configuraciones de reciprocidad. Utilice el formulario que encontrará a continuación para crear una nueva configuración de reciprocidad.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
-        <name>stgHCAccountRecordTypesNotUniqueFix</name>
+        <name>preferredBatchDefaultEmail</name>
+        <label>Correo electrónico (estándar)</label>
     </customLabels>
     <customLabels>
-        <label>La configuración de Tipo de registro para cuenta administrativa y doméstica especifica tipos de registro diferentes.</label>
-        <name>stgHCAccountRecordTypesUnique</name>
+        <name>preferredBatchDefaultPhone</name>
+        <label>Teléfono (estándar)</label>
     </customLabels>
     <customLabels>
-        <label>La asignación de Afiliación {0} es válida.</label>
-        <name>stgHCAffiliationMappingSettingDesc</name>
+        <name>stgAccModelTitle</name>
+        <label>Modelo de cuenta predeterminado</label>
     </customLabels>
     <customLabels>
-        <label>Asignación de Afiliación {0}</label>
-        <name>stgHCAffiliationMappingSettingHeading</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type is inactive --></label>
-        <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist --></label>
-        <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>El tipo de registro {0} ({1}) está asignado a múltiples campos Afiliación principal de Contacto.</label>
-        <name>stgHCAfflMapAccRecordTypeNotUnique</name>
-    </customLabels>
-    <customLabels>
-        <label>Tipo de registro de cuenta</label>
-        <name>stgHCAfflMapAccRecordTypeTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>El tipo de registro {0} ({1}) está asignado a un único campo Afiliación principal de Contacto.</label>
-        <name>stgHCAfflMapAccRecordTypeUnique</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when Account record types in Affiliation mappings aren&apos;t unique --></label>
-        <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Tipo de registro de asignación de Afiliación exclusivo</label>
-        <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>El valor de la lista de selección {0} ({1}) no está activo.</label>
-        <name>stgHCAfflMapAutoEnrollRoleInactive</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
-        <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label>No podemos encontrar el valor de lista de selección {0}.</label>
-        <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
-        <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Valor de Función de Inscripción automática</label>
-        <name>stgHCAfflMapAutoEnrollRoleTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>El valor de la lista de selección {0} ({1}) es válido.</label>
-        <name>stgHCAfflMapAutoEnrollRoleValid</name>
-    </customLabels>
-    <customLabels>
-        <label>El valor de la lista de selección {0} ({1}) no está activo.</label>
-        <name>stgHCAfflMapAutoEnrollStatusInactive</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
-        <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label>No podemos encontrar el valor de lista de selección {0}.</label>
-        <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status --></label>
-        <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Valor de Estado de Inscripción automática</label>
-        <name>stgHCAfflMapAutoEnrollStatusTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>El valor de la lista de selección {0} ({1}) es válido.</label>
-        <name>stgHCAfflMapAutoEnrollStatusValid</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Primary Affiliation field isn&apos;t valid --></label>
-        <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Campo Afiliación principal de Contacto exclusivo</label>
-        <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} no es un campo Contacto válido.</label>
-        <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
-    </customLabels>
-    <customLabels>
-        <label>El campo {0} ({1}) está asignado a múltiples tipos de registro Cuenta.</label>
-        <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
-    </customLabels>
-    <customLabels>
-        <label>Campo Afiliación principal de Contacto</label>
-        <name>stgHCAfflMapContactPrimaryFieldTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>El campo {0} ({1}) está asignado a un único tipo de registro Cuenta.</label>
-        <name>stgHCAfflMapContactPrimaryFieldUnique</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when mappings&apos; Primary Affiliation fields aren&apos;t unique --></label>
-        <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
-    </customLabels>
-    <customLabels>
-        <label>El campo {0} ({1}) es válido.</label>
-        <name>stgHCAfflMapContactPrimaryFieldValid</name>
-    </customLabels>
-    <customLabels>
-        <label>Enlaces de cursos no está activada.</label>
-        <name>stgHCCourseConEnable</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when Course Connections isn&apos;t enabled --></label>
-        <name>stgHCCourseConEnableFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
-        <name>stgHCCourseConFacultyInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Faculty Record Type --></label>
-        <name>stgHCCourseConFacultyNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>La configuración del Tipo de registro de facultad predeterminado y del Tipo de registro de estudiante activo predeterminado especifican el mismo tipo de registro.</label>
-        <name>stgHCCourseConRecordTypesNotUnique</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when student and faculty Course Connection record types match --></label>
-        <name>stgHCCourseConRecordTypesNotUniqueFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Configuración de Tipo de registro de facultad predeterminado y Tipo de registro de estudiante activo predeterminado exclusiva</label>
-        <name>stgHCCourseConRecordTypesUnique</name>
-    </customLabels>
-    <customLabels>
-        <label>La configuración del Tipo de registro de facultad predeterminado y del Tipo de registro de estudiante activo predeterminado especifican tipos de registro diferentes.</label>
-        <name>stgHCCourseConRecordTypesUniqueDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
-        <name>stgHCCourseConStudentInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Student Record Type --></label>
-        <name>stgHCCourseConStudentNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Enlaces de cursos</label>
-        <name>stgHCCourseConnectionsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>El valor de la lista de selección {0} ({1}) no está activo.</label>
-        <name>stgHCPicklistValueInactive</name>
-    </customLabels>
-    <customLabels>
-        <label>No podemos encontrar el valor de lista de selección {0}.</label>
-        <name>stgHCPicklistValueNotFound</name>
-    </customLabels>
-    <customLabels>
-        <label>El valor de la lista de selección {0} ({1}) es válido.</label>
-        <name>stgHCPicklistValueValid</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} relaciones recíprocas son válidas.</label>
-        <name>stgHCReciprocalRelDescription</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value is inactive --></label>
-        <name>stgHCReciprocalRelFemaleInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist --></label>
-        <name>stgHCReciprocalRelFemaleNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Valor de Femenino de la configuración recíproca</label>
-        <name>stgHCReciprocalRelFemaleTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value is inactive --></label>
-        <name>stgHCReciprocalRelMaleInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist --></label>
-        <name>stgHCReciprocalRelMaleNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Valor de Masculino de la configuración recíproca</label>
-        <name>stgHCReciprocalRelMaleTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value is inactive --></label>
-        <name>stgHCReciprocalRelNameInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist --></label>
-        <name>stgHCReciprocalRelNameNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Verifique la configuración recíproca para {0} ({1}) especificada en Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones. Si {0} ({1}) es correcto, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Nombre de la configuración recíproca a un valor de lista de selección activo y válido.</label>
-        <name>stgHCReciprocalRelNameNotUniqueDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value isn&apos;t unique --></label>
-        <name>stgHCReciprocalRelNameNotUniqueFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Valor de Nombre de la configuración recíproca</label>
-        <name>stgHCReciprocalRelNameTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>El valor de la lista de selección {0} ({1}) solo se utiliza en una configuración recíproca.</label>
-        <name>stgHCReciprocalRelNameUniqueDesc</name>
-    </customLabels>
-    <customLabels>
-        <label>Nombre de configuración recíproca exclusivo</label>
-        <name>stgHCReciprocalRelNameUniqueTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value is inactive --></label>
-        <name>stgHCReciprocalRelNeutralInactiveFix</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist --></label>
-        <name>stgHCReciprocalRelNeutralNotFoundFix</name>
-    </customLabels>
-    <customLabels>
-        <label>Valor de Neutro de la configuración recíproca</label>
-        <name>stgHCReciprocalRelNeutralTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>{0} relaciones recíprocas</label>
-        <name>stgHCReciprocalRelSetting</name>
-    </customLabels>
-    <customLabels>
-        <label>El tipo de registro {0} ({1}) no está activo.</label>
-        <name>stgHCRecordTypeInactive</name>
-    </customLabels>
-    <customLabels>
-        <label>No podemos encontrar el tipo de registro {0}.</label>
-        <name>stgHCRecordTypeNotFound</name>
-    </customLabels>
-    <customLabels>
-        <label>El tipo de registro {0} ({1}) es válido.</label>
-        <name>stgHCRecordTypeValid</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for Custom Name Format for Household Accounts --></label>
-        <name>stgHHAccountCustomName</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Info text for Custom Name Format --></label>
-        <name>stgHHAccountCustomNameHelp</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Household Account Naming --></label>
-        <name>stgHHAccountNamingTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that launches Settings Health Check --></label>
-        <name>stgHealthCheckA11y</name>
-    </customLabels>
-    <customLabels>
+        <name>stgAccountModelNav</name>
         <label>Modelo de cuenta</label>
-        <name>stgHealthCheckAccountModel</name>
     </customLabels>
     <customLabels>
-        <label>Asignaciones de afiliaciones</label>
-        <name>stgHealthCheckAffiliationMappings</name>
+        <name>stgAccountModelSettingsTitle</name>
+        <label>Configuración del modelo de cuenta</label>
     </customLabels>
     <customLabels>
-        <label>Comprobación de estado de configuración comprueba si existen configuraciones no válidas en sus parámetros de EDA. Cuando termine, utilice los resultados para identificar y solucionar configuraciones no válidas.</label>
-        <name>stgHealthCheckDescription</name>
+        <name>stgAccountRecordTypeAvailableListTitle</name>
+        <label>Tipos de registro de cuenta disponibles</label>
     </customLabels>
     <customLabels>
-        <label>No podemos mostrar la fecha de la última ejecución debido a un error</label>
-        <name>stgHealthCheckErrorLastRunDate</name>
+        <name>stgAccountRecordTypeGroupLabelTitle</name>
+        <label>Establecer tipos de registro de cuenta</label>
     </customLabels>
     <customLabels>
-        <label>No aplicable</label>
-        <name>stgHealthCheckFixNotApplicable</name>
+        <name>stgAccountRecordTypeHelp</name>
+        <label>Solo hay disponibles tipos de registros de cuenta sin asignar.</label>
     </customLabels>
     <customLabels>
-        <label>Última ejecución: {0}</label>
-        <name>stgHealthCheckLastRun</name>
+        <name>stgAccountRecordTypeSelectedListTitle</name>
+        <label>Tipos de registro de cuenta seleccionados</label>
     </customLabels>
     <customLabels>
-        <label>Cargando…</label>
-        <name>stgHealthCheckLoadingIndicator</name>
+        <name>stgAccountRecordTypeSupportsHHAddress</name>
+        <label>Tipo de registro para cuenta doméstica</label>
     </customLabels>
     <customLabels>
-        <label>Relaciones recíprocas</label>
-        <name>stgHealthCheckReciprocalRelTitle</name>
+        <name>stgAccountTypesMultiAddressesEnabled</name>
+        <label>Activar direcciones múltiples para tipos de cuenta</label>
     </customLabels>
     <customLabels>
-        <label>Solución recomendada</label>
-        <name>stgHealthCheckRecoFix</name>
+        <name>stgAccoutTypesWithoutContactsDelete</name>
+        <label>Cuentas sin contactos</label>
     </customLabels>
     <customLabels>
-        <label>Contraer estos resultados</label>
-        <name>stgHealthCheckResultsCollapse</name>
+        <name>stgAddHispanicOrLatinoPicklistValue</name>
+        <label>Agregue “Hispano o Latino” como un valor de lista de selección al campo Etnia si es necesario.</label>
     </customLabels>
     <customLabels>
-        <label>Descripción</label>
-        <name>stgHealthCheckResultsDescription</name>
+        <name>stgAddNotHispanicOrLatinoPicklistValue</name>
+        <label>Agregue “No Hispana o Latina” como un valor de lista de selección al campo Etnia si es necesario.</label>
     </customLabels>
     <customLabels>
-        <label>Ampliar estos resultados</label>
-        <name>stgHealthCheckResultsExpand</name>
+        <name>stgAddressSettingsNav</name>
+        <label>Direcciones</label>
     </customLabels>
     <customLabels>
-        <label>Ejecutar comprobación de estado</label>
-        <name>stgHealthCheckRunButton</name>
+        <name>stgAddressSettingsTitle</name>
+        <label>Configuración de dirección</label>
     </customLabels>
     <customLabels>
-        <label>No podemos ejecutar Comprobación de estado de configuración debido a un error. Pruebe a ejecutar la herramienta de nuevo.</label>
-        <name>stgHealthCheckRunError</name>
+        <name>stgAdminAccountCustomName</name>
+        <label>Formato de nombre personalizado</label>
     </customLabels>
     <customLabels>
-        <label>Parámetro</label>
-        <name>stgHealthCheckSetting</name>
+        <name>stgAdminAccountCustomNameHelp</name>
+        <label>Especifique su propia convención de nomenclatura.</label>
     </customLabels>
     <customLabels>
-        <label>Estado</label>
-        <name>stgHealthCheckStatus</name>
+        <name>stgAdminAccountNamingTitle</name>
+        <label>Nomenclatura de cuenta administrativa</label>
     </customLabels>
     <customLabels>
-        <label>Fallo</label>
-        <name>stgHealthCheckStatusFailed</name>
+        <name>stgAdminAccountRecordType</name>
+        <label>Tipo de registro de cuenta administrativa</label>
     </customLabels>
     <customLabels>
-        <label>Superado</label>
-        <name>stgHealthCheckStatusPassed</name>
+        <name>stgAffiliationsDeleteModalBody</name>
+        <label>Esta asignación de afiliación asigna el tipo de registro de cuenta {0} al campo {1} en registros de Contacto. Solo estamos asegurándonos de que desea eliminarla.</label>
     </customLabels>
     <customLabels>
-        <label>Advertencia</label>
-        <name>stgHealthCheckStatusWarning</name>
+        <name>stgAffiliationsDeleteModalTitle</name>
+        <label>¿Eliminar asignación de afiliación?</label>
     </customLabels>
     <customLabels>
-        <label>Comprobación de estado de configuración</label>
-        <name>stgHealthCheckTitle</name>
+        <name>stgAffiliationsDeleteSuccess</name>
+        <label>Se eliminó la afiliación principal {0}.</label>
     </customLabels>
     <customLabels>
-        <label>Todas las comprobaciones superadas</label>
-        <name>stgHealthChecksAllPassed</name>
+        <name>stgAffiliationsEditModalBody</name>
+        <label>Seleccione el tipo de registro de cuenta para asignar al campo Afiliación principal en Contactos. El valor del tipo de registro de cuenta se rellena automáticamente en el campo Afiliación principal.</label>
     </customLabels>
     <customLabels>
-        <label>{0} de {1} comprobaciones superadas</label>
-        <name>stgHealthChecksNotAllPassed</name>
+        <name>stgAffiliationsEditModalTitle</name>
+        <label>¿Modificar asignación de afiliación?</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Default Account Model setting --></label>
-        <name>stgHelpAccountModel</name>
+        <name>stgAffiliationsEditSuccess</name>
+        <label>Se guardó la asignación de afiliación para {0}.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Accounts Without Contacts setting --></label>
-        <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
+        <name>stgAffiliationsNewModalBody</name>
+        <label>Seleccione el tipo de registro de cuenta para asignar al campo Afiliación principal en Contactos. El valor del tipo de registro de cuenta se rellena automáticamente en el campo Afiliación principal.</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Enable Multiple Addresses for Account Types setting --></label>
-        <name>stgHelpAddressAccRecType</name>
+        <name>stgAffiliationsNewSuccess</name>
+        <label>Se creó la afiliación principal {0}</label>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Administrative Account Record Type setting --></label>
-        <name>stgHelpAdminRecType</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Affiliation End Date setting --></label>
-        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Affiliation Start Date setting --></label>
-        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
-    </customLabels>
-    <customLabels>
-        <label>Afiliaciones creadas con inscripciones del programa</label>
-        <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
-    </customLabels>
-    <customLabels>
-        <label>Cuando un registro Inscripción de programa se crea sin una afiliación existente, se crea un registro Afiliación con los valores especificados a continuación.</label>
-        <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Status for Affiliations Not Deleted setting --></label>
-        <name>stgHelpAfflDeleteProgramEnrollment</name>
-    </customLabels>
-    <customLabels>
-        <label>Eliminaciones de inscripción del programa</label>
-        <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
-    </customLabels>
-    <customLabels>
-        <label>Especifique cómo desea que se traten los registros Afiliación de inscripciones de programas eliminadas. El registro Afiliación relacionado puede eliminarse o actualizarse su estado.</label>
-        <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
-    </customLabels>
-    <customLabels>
-        <label>Si se selecciona, establezca la función de la nueva afiliación al valor definido en Función para afiliaciones creadas. De lo contrario, deje la función de la afiliación en blanco.</label>
-        <name>stgHelpAfflProgEnrollSetRole</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Role for Created Affiliations setting --></label>
-        <name>stgHelpAfflProgEnrollSetRoleValue</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Status for Created Affiliations setting --></label>
-        <name>stgHelpAfflProgEnrollSetStatusValue</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Allow Multiple Contact Addresses setting --></label>
-        <name>stgHelpContactAddrs</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Require Preferred Email setting --></label>
-        <name>stgHelpContactPreferredEmail</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description for the Require Preferred Phone setting --></label>
-        <name>stgHelpContactPreferredPhone</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Enhanced Preferred Phone Functionality setting --></label>
-        <name>stgHelpContactPreferredPhoneSync</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when the Extended Description field is queued for update --></label>
-        <name>stgHelpCopyQueuedEmailSent</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Update Course Connection record types confirmation window --></label>
-        <name>stgHelpCourseConnBackfillDescription</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
-        <name>stgHelpCourseConnectionBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Extended Course Descriptions setting --></label>
-        <name>stgHelpCoursesDataMigration</name>
-    </customLabels>
-    <customLabels>
-        <label>Esta utilidad copia valores del campo Descripción de curso en el campo Descripción ampliada. Este proceso podría tardar, pero puede cerrar esta página de forma segura y el proceso continuará en segundo plano.</label>
-        <name>stgHelpCoursesDataMigrationCopiesValues</name>
-    </customLabels>
-    <customLabels>
-        <label>Si un curso ya tiene un valor para Descripción ampliada, no lo sobrescribimos.</label>
-        <name>stgHelpCoursesDataMigrationDontOverwrite</name>
-    </customLabels>
-    <customLabels>
-        <label>Una vez completado el proceso, recuerde actualizar formatos de página y otras áreas de la aplicación que hacen referencia a los campos Descripción.</label>
-        <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Contact Language Fluency setting --></label>
-        <name>stgHelpDefaultContactLanguageFluency</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Default Faculty Record Type setting --></label>
-        <name>stgHelpDefaultFacultyType</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Default Student Record Type setting --></label>
-        <name>stgHelpDefaultStudentType</name>
-    </customLabels>
-    <customLabels>
-        <label>Debe activar Enlaces de curso antes de ejecutar el Relleno de enlaces de curso.</label>
-        <name>stgHelpEnableCourseConnBeforeBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label>Debe activar Enlaces de curso antes de modificar tipos de registro.</label>
-        <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Course Connections setting --></label>
-        <name>stgHelpEnableCourseConnections</name>
-    </customLabels>
-    <customLabels>
-        <label>Para Contactos existentes que no especificaron un Correo electrónico preferido o un Teléfono preferido, la limpieza garantiza que una de las direcciones de correo electrónico estándar o personalizadas o los números de teléfono están establecidos como el valor preferido.</label>
-        <name>stgHelpEnsureExistContactPreferEmail</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Error Handling setting --></label>
-        <name>stgHelpErrorDisable</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Error Notifications setting --></label>
-        <name>stgHelpErrorNotifyOn</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Error Notification Recipients setting --></label>
-        <name>stgHelpErrorNotifyTo</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Legacy Ethnicity Data setting --></label>
-        <name>stgHelpEthnicityRaceBackfill</name>
-    </customLabels>
-    <customLabels>
-        <label>Activa la gestión de direcciones para cuentas administrativas y domésticas cuando se selecciona.</label>
-        <name>stgHelpHouseAdmAccountAddressMgmt</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Household Account Record Type setting --></label>
-        <name>stgHelpHouseholdRecType</name>
-    </customLabels>
-    <customLabels>
-        <label>Si su organización agregó anteriormente valores de lista de selección personalizados al campo Etnia que desea que esté disponible en el campo Raza, copie esos valores de lista de selección personalizados en el campo Raza.</label>
-        <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
-    </customLabels>
-    <customLabels>
-        <label>Al seleccionar Requisitos de plan puede especificar un Plan de programa o un Requisito de plan principal, pero no ambos. Si especifica un Plan de programa y un Requisito de plan principal un error evitará que guarde hasta que se seleccione solo uno.</label>
-        <name>stgHelpNestedPlanRequirementPP</name>
-    </customLabels>
-    <customLabels>
-        <label>Habilita direcciones para Cuenta Organización cuando esta seleccionado.</label>
-        <name>stgHelpOrgAccountAddressMgmt</name>
-    </customLabels>
-    <customLabels>
-        <label>Se anulan automáticamente los duplicados de las relaciones creadas automáticamente de forma predeterminada para evitar que se creen registros de relaciones duplicados entre dos contactos. Seleccione Permitir relaciones de duplicados creadas automáticamente para desactivar este comportamiento y permitir la creación de múltiples relaciones del mismo tipo entre dos contactos.</label>
-        <name>stgHelpRelAutoCreatedDup</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description for the Reciprocal Method setting --></label>
-        <name>stgHelpRelReciprocalMethod</name>
-    </customLabels>
-    <customLabels>
-        <label>Elimine todos los valores de lista de selección del campo Etnia excepto para “Hispano o Latino” y “No Hispano o Latino”. Le recomendamos sustituir cada valor eliminado con uno de los valores válidos restantes, en vez de eliminarlos por completo de los registros existentes. A partir de la versión 1.28 de EDA, los únicos valores válidos de Etnia con “No Hispano o Latino” e “Hispano o Latino”.</label>
-        <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Update Address Records for Simple Changes setting --></label>
-        <name>stgHelpSimpleAddrChangeIsUpdate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Store Errors setting --></label>
-        <name>stgHelpStoreErrorsOn</name>
-    </customLabels>
-    <customLabels>
-        <label>Si tenía informes o campos de fórmula que hacían referencia a los valores anteriores en el campo Etnia, actualícelos.</label>
-        <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Automatically Rename Lead-Converted Accounts setting --></label>
-        <name>stgLeadConversionAccountNaming</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Automatically Rename Lead-Converted Accounts setting --></label>
-        <name>stgLeadConversionAccountNamingDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Lead Conversion Account Naming --></label>
-        <name>stgLeadConversionAccountNamingTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Plan Requirement Hierarchy setting --></label>
-        <name>stgNestedPlanRequirementPP</name>
-    </customLabels>
-    <customLabels>
-        <label>Nueva asignación de afiliación</label>
-        <name>stgNewAfflMapping</name>
-    </customLabels>
-    <customLabels>
-        <label>Todos los administradores del sistema</label>
-        <name>stgOptAllSysAdmins</name>
-    </customLabels>
-    <customLabels>
-        <label>Grupo de Chatter</label>
-        <name>stgOptChatterGroup</name>
-    </customLabels>
-    <customLabels>
-        <label>Seleccionar...</label>
-        <name>stgOptSelect</name>
-    </customLabels>
-    <customLabels>
-        <label>Usuario</label>
-        <name>stgOptUser</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation title for People and Groups --></label>
-        <name>stgPeopleAndGroupsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Body of email after Run Cleanup for preferred email/phone --></label>
-        <name>stgPreferredEmailBatchEmailBody</name>
-    </customLabels>
-    <customLabels>
-        <label>Se completó el Trabajo de correo electrónico/Teléfono preferido con un estado de:</label>
-        <name>stgPreferredEmailBatchEmailSubject</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Preferred Email and Preferred Phone setting --></label>
-        <name>stgPreferredEmailDataCleanup</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Default Preferred Phone setting --></label>
-        <name>stgPreferredPhoneDefault</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Update Preferred Email and Phone fields confirmation window --></label>
-        <name>stgPreferredPhoneEmailModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Update Preferred Email and Phone fields confirmation window --></label>
-        <name>stgPreferredPhoneEmailModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when Preferred Email and Phone fields are queued for update --></label>
-        <name>stgPreferredPhoneEmailSuccessToast</name>
-    </customLabels>
-    <customLabels>
-        <label>Seleccione un campo para Teléfono preferido desde el que copiar el valor cuando el campo Teléfono estándar no tenga un valor, o se defina más de un campo &quot;Teléfono&quot;.</label>
-        <name>stgPreferredPhoneSelection</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description for the Default Preferred Phone setting --></label>
-        <name>stgPreferredPhoneSelectionDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation title for Program Plans --></label>
-        <name>stgProgramPlanSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Program Plan Settings --></label>
-        <name>stgProgramPlanSettingsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation title for Program Enrollments --></label>
-        <name>stgProgramsSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Program Enrollment Settings --></label>
-        <name>stgProgramsSettingsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Configuración de lista</label>
-        <name>stgReciprocalMethodListSetting</name>
-    </customLabels>
-    <customLabels>
-        <label>Inversión de valor</label>
-        <name>stgReciprocalMethodValueInversion</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Delete Reciprocal Relationship window --></label>
-        <name>stgReciprocalRelDeleteModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Delete Reciprocal Relationship window --></label>
-        <name>stgReciprocalRelDeleteModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when a Reciprocal Relationship is created --></label>
-        <name>stgReciprocalRelDeleteSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Edit Reciprocal Relationship window --></label>
-        <name>stgReciprocalRelEditModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Edit Reciprocal Relationship window --></label>
-        <name>stgReciprocalRelEditModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when a Reciprocal Relationship is saved --></label>
-        <name>stgReciprocalRelEditSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the New Reciprocal Relationship window --></label>
-        <name>stgReciprocalRelNewModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the New Reciprocal Relationship window --></label>
-        <name>stgReciprocalRelNewModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when a Reciprocal Relationship is created --></label>
-        <name>stgReciprocalRelNewSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Update All Administrative Account Names setting --></label>
-        <name>stgRefreshAdminAcctNameDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Update All Administrative Account Names setting --></label>
-        <name>stgRefreshAdminAcctNameTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Update all Administrative Account names confirmation window --></label>
-        <name>stgRefreshAdminNamesModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Update All Administrative Account Names confirmation window --></label>
-        <name>stgRefreshAdminNamesModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Toast message when Administrative Account names are queued for update --></label>
-        <name>stgRefreshAdminNamesSuccessToast</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Update All Household Account Names setting --></label>
-        <name>stgRefreshHHAcctNameDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Update All Household Account Names settings --></label>
-        <name>stgRefreshHHAcctNameTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Update all Household Account names confirmation window --></label>
-        <name>stgRefreshHouseholdNamesModalBody</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Title for the Update all Household Account names confirmation window --></label>
-        <name>stgRefreshHouseholdNamesModalTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation message when Household Account names are queued for update --></label>
-        <name>stgRefreshHouseholdNamesSuccessToast</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation title for Relationships --></label>
-        <name>stgRelationshipSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Relationship Settings --></label>
-        <name>stgRelationshipSettingsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
-        <name>stgRunCleanUp</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Alt text for button that updates Contacts&apos; Preferred Email/Phone fields --></label>
-        <name>stgRunCleanUpA11y</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
-        <name>stgRunCleanUpEnableFirstTime</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Confirmation messsage that updated settings were saved --></label>
-        <name>stgSaveSettings</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description for the Select Chatter Group setting --></label>
-        <name>stgSelectChatterGroupDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for Select Chatter Group --></label>
-        <name>stgSelectChatterGroupTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Seleccionar tipo de destinatario:</label>
-        <name>stgSelectReciType</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Description for the Select User setting --></label>
-        <name>stgSelectUserDesc</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for Select User --></label>
-        <name>stgSelectUserTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Error Notifications setting --></label>
-        <name>stgSendErrorsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Update Address Records for Simple Changes setting --></label>
-        <name>stgSimpleAddressChangeUpdate</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Store Errors setting --></label>
-        <name>stgStoreErrorsTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>Operación correcta</label>
-        <name>stgSuccess</name>
-    </customLabels>
-    <customLabels>
-        <label>La actualización de nomenclatura de la cuenta administrativa se colocó en cola correctamente. Se enviará un correo electrónico al finalizar el lote.</label>
-        <name>stgSuccessAdminAccountNameRefresh</name>
-    </customLabels>
-    <customLabels>
-        <label>La actualización de nomenclatura de la cuenta doméstica se colocó en cola correctamente. Se enviará un correo electrónico al finalizar el lote.</label>
-        <name>stgSuccessHHAccountNameRefresh</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation section title for System --></label>
-        <name>stgSystemSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Navigation title for System Tools --></label>
-        <name>stgSystemToolsNav</name>
-    </customLabels>
-    <customLabels>
-        <label>Cuentas y Contactos</label>
-        <name>stgTabAccCont</name>
-    </customLabels>
-    <customLabels>
+        <name>stgAffiliationsSettingsNav</name>
         <label>Afiliaciones</label>
-        <name>stgTabAffl</name>
     </customLabels>
     <customLabels>
-        <label>Asignaciones de afiliaciones</label>
-        <name>stgTabAfflMappings</name>
+        <name>stgAffiliationsSettingsTitle</name>
+        <label>Configuración de afiliación</label>
     </customLabels>
     <customLabels>
-        <label>Creación automática</label>
-        <name>stgTabAutocreation</name>
+        <name>stgAfflCopyProgramEnrollmentEndDate</name>
+        <label>Fecha de finalización de afiliación</label>
     </customLabels>
     <customLabels>
-        <label>Relleno</label>
-        <name>stgTabBackfill</name>
+        <name>stgAfflCopyProgramEnrollmentStartDate</name>
+        <label>Fecha de inicio de afiliación</label>
     </customLabels>
     <customLabels>
-        <label>Cursos</label>
-        <name>stgTabCourse</name>
+        <name>stgAfflDeleteProgramEnrollment</name>
+        <label>Estado para afiliaciones no eliminadas</label>
     </customLabels>
     <customLabels>
-        <label>Enlaces de cursos</label>
-        <name>stgTabCourseConn</name>
+        <name>stgAfflDeleteWithAutoEnrollment</name>
+        <label>Si elimina esta asignación de afiliación, cuando una afiliación con el tipo de registro de cuenta {0} se crea para un contacto, ya no se crea un registro Inscripción de programa automáticamente.</label>
     </customLabels>
     <customLabels>
+        <name>stgAfflNotInserted</name>
+        <label>No podemos asignar esta afiliación porque hace referencia a un tipo de registro al que otra asignación de afiliación ya hace referencia. Si desea agregar esta asignación de modo que se traduzca la afiliación, haga clic en Modificar para cambiar la asignación existente. A continuación, especifique el nombre de API del campo bajo Campo de afiliación principal de contacto. No cambie el nombre especificado para Tipo de registro de cuenta.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfflProgEnrollDeleteRelated</name>
+        <label>Afiliaciones relacionadas con inscripciones de programa eliminadas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfflProgEnrollDeleteTitle</name>
+        <label>Eliminaciones de inscripción del programa</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfflProgEnrollSetRole</name>
+        <label>Especificar función para afiliaciones creadas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfflProgEnrollSetRoleValue</name>
+        <label>Función para afiliaciones creadas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfflProgEnrollSetStatusValue</name>
+        <label>Estado para afiliaciones creadas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfflProgramEnrollmentSettingsTitle</name>
+        <label>Afiliaciones creadas con inscripciones del programa</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAfterRunBackfill</name>
+        <label>Después de ejecutar el relleno</label>
+    </customLabels>
+    <customLabels>
+        <name>stgApiNameLabel</name>
+        <label>Nombre de API: {0}</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoCompleteEnterChatterGroupName</name>
+        <label>Empiece a escribir el nombre del grupo de Chatter para buscar.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoCompleteEnterUserName</name>
+        <label>Empiece a escribir el nombre del usuario para buscar.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoCompleteSelectChatterGroup</name>
+        <label>Seleccionar Grupo de Chatter</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoCompleteSelectUser</name>
+        <label>Seleccionar usuario</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollment</name>
+        <label>Inscripción automática</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentDeleteModalBody</name>
+        <label>Esta asignación de inscripción automática crea inscripciones de programa con el tipo de registro de cuenta {0}, el estado de afiliación {1} y la función de afiliación {2}. Si elimina esta asignación de inscripción automática, no se crearán inscripciones de programa para las afiliaciones coincidentes.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentDeleteModalTitle</name>
+        <label>¿Eliminar asignación de inscripción automática?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentDeleteSuccess</name>
+        <label>Se eliminó la asignación de inscripción automática {0}.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentEditModalBody</name>
+        <label>Seleccione los valores que crean un registro Inscripción de programa cuando se crea o se actualiza una afiliación con estos valores, y la afiliación se marca como Principal.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentEditModalTitle</name>
+        <label>¿Modificar asignación de inscripción automática?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentEditSuccess</name>
+        <label>Se guardó la asignación de inscripción automática {0}.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentNewModalBody</name>
+        <label>Seleccione los valores que crean un registro Inscripción de programa cuando se crea o se actualiza una afiliación con estos valores, y la afiliación se marca como Principal.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentNewModalTitle</name>
+        <label>¿Nueva asignación de inscripción automática?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentNewSuccess</name>
+        <label>Se creó la asignación de inscripción automática {0}.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentProgramDesc</name>
+        <label>Cuando se crean Afiliaciones principales con los valores en estas asignaciones, se crean automáticamente Inscripciones de programa.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentProgramTitle</name>
+        <label>Asignaciones de inscripción automática</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentRole</name>
+        <label>Función de Inscripción automática</label>
+    </customLabels>
+    <customLabels>
+        <name>stgAutoEnrollmentStatus</name>
+        <label>Estado de Inscripción automática</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBackfillQueuedEmailSent</name>
+        <label>El relleno se colocó en cola correctamente. Se enviará un correo electrónico al finalizar el lote.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBeforeRunBackfill</name>
+        <label>Antes de ejecutar el relleno</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnAddMapping</name>
+        <label>Nueva</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnAddSetting</name>
+        <label>Agregar Configuración</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnCancel</name>
+        <label>Cancelar</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnClearSelectionA11y</name>
+        <label>Borrar selección</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnCommunity</name>
+        <label>Ir a la Trailblazer Community</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnCommunityActionA11y</name>
+        <label>Se dirige a la Trailblazer Community.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnDelete</name>
+        <label>Eliminar</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnDocumentation</name>
+        <label>Documentación</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnDocumentationActionA11y</name>
+        <label>Ir a la documentación de EDA</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnEDCTrailhead</name>
+        <label>Ir a Trailhead</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnEDCTrailheadActionA11y</name>
+        <label>Se dirige al trailmix de Education Cloud.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnEdit</name>
+        <label>Modificar</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnHealthCheck</name>
+        <label>Ir a Comprobación de estado de configuración</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnNewAutoEnrollA11y</name>
+        <label>Crea una asignación de inscripción automática.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRefreshAdminNames</name>
+        <label>Actualizar</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRefreshAdminNamesA11y</name>
+        <label>Actualizar todos los nombres de cuentas administrativas.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRefreshEthnicityDataA11y</name>
+        <label>Actualice el campo Raza en contactos con valores del campo Etnia. Los valores No Hispana o Latina e Hispana o Latina no se copian.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRefreshHouseholdNames</name>
+        <label>Actualizar</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRefreshHouseholdNamesA11y</name>
+        <label>Actualizar todos los nombres de cuentas domésticas.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRunBackfill</name>
+        <label>Ejecutar Relleno</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRunCopy</name>
+        <label>Actualizar</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRunCopyA11y</name>
+        <label>Actualiza el campo Descripción ampliada en los registros Curso para que utilicen texto procedente del campo Descripción.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnRunCourseConnBackfillA11y</name>
+        <label>Actualiza los Enlaces de cursos de facultad al valor de Tipo de registro de facultad predeterminado y los Enlaces de cursos restantes al valor de Tipo de registro de estudiante predeterminado.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnSave</name>
+        <label>Guardar</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnSettings</name>
+        <label>Configuración</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnSettingsActionA11y</name>
+        <label>Se dirige a la configuración de EDA.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnTrailhead</name>
+        <label>Trailhead</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnTrailheadActionA11y</name>
+        <label>Se dirige a los módulos de EDA en Trailhead.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnUpdate</name>
+        <label>Actualizar</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnVideos</name>
+        <label>YouTube</label>
+    </customLabels>
+    <customLabels>
+        <name>stgBtnVideosActionA11y</name>
+        <label>YouTube</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCleanupQueuedEmailSent</name>
+        <label>La limpieza se colocó en cola correctamente. Se enviará un correo electrónico cuando se complete el lote.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColAccountRecordType</name>
+        <label>Tipo de registro de cuenta</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColActive</name>
+        <label>Activa</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColAutoEnrollmentRole</name>
+        <label>Función de Inscripción automática</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColAutoEnrollmentStatus</name>
+        <label>Estado de Inscripción automática</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColCampTypes</name>
+        <label>Tipos de campaña</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColContactPrimaryAfflField</name>
+        <label>Campo Afiliación principal en Contacto</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColFemale</name>
+        <label>Femenino</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColField</name>
+        <label>Etiqueta de campo</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColMale</name>
+        <label>Masculino</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColNeutral</name>
+        <label>Neutro</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColObject</name>
+        <label>Nombre API del objeto</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColProducts</name>
+        <label>Productos</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColRelType</name>
+        <label>Tipo de relación</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColRelationshipName</name>
         <label>Nombre</label>
-        <name>stgTabName</name>
     </customLabels>
     <customLabels>
-        <label>Campo de afiliación principal de contacto</label>
-        <name>stgTabPrimaryAfflField</name>
+        <name>stgColResources</name>
+        <label>Recursos</label>
     </customLabels>
     <customLabels>
+        <name>stgColRole</name>
+        <label>Función</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColStatus</name>
+        <label>Estado</label>
+    </customLabels>
+    <customLabels>
+        <name>stgColTools</name>
+        <label>Herramientas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCommunityTitle</name>
+        <label>Trailblazer Community</label>
+    </customLabels>
+    <customLabels>
+        <name>stgConfirmReadyRunBackfill</name>
+        <label>Lo entiendo y estoy listo para ejecutar el relleno.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgContactInformationSettingsNav</name>
+        <label>Información de contacto</label>
+    </customLabels>
+    <customLabels>
+        <name>stgContactInformationSettingsTitle</name>
+        <label>Configuración de información de contacto</label>
+    </customLabels>
+    <customLabels>
+        <name>stgContactMultiAddressesEnabled</name>
+        <label>Permitir múltiples direcciones de contactos</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseConnBackFillError</name>
+        <label>Se produjo un error al iniciar el relleno.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseConnBackFillSuccess</name>
+        <label>Estamos actualizando los tipos de registro Enlace de curso. Compruebe el estado del trabajo para Trabajos de Apex en Configuración.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseConnectionBackfillModalTitle</name>
+        <label>¿Actualizar tipos de registros de Enlace de curso?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseConnectionsNav</name>
+        <label>Enlaces de cursos</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseConnectionsTitle</name>
+        <label>Configuración de enlace de cuso</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseDataMigrationModalBody</name>
+        <label>Copia texto procedente del campo Descripción al campo Descripción ampliada en registros Curso. Los valores de Descripción ampliada existentes no se sobreescribirán. Actualice los formatos de página y otras referencias al campo Descripción después de esta actualización.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseDataMigrationModalTitle</name>
+        <label>¿Actualizar el campo Descripción ampliada?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseDescriptionCopyEmailBody</name>
+        <label>El trabajo de Apex por lotes procesó {0} lotes con {1} fallos.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCourseDescriptionCopyEmailSubject</name>
+        <label>Se completó el trabajo de copia de descripción de curso con un estado de:</label>
+    </customLabels>
+    <customLabels>
+        <name>stgCoursesAndEnrollmentsNav</name>
+        <label>Cursos e inscripciones</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDefaultContactLanguageFluency</name>
+        <label>Fluidez del idioma de contacto</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDefaultFacultyTypeTitle</name>
+        <label>Tipo de registro de facultad predeterminado</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDefaultStudentTypeTitle</name>
+        <label>Tipo de registro de estudiante predeterminado</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDisableErrorHandlingTitle</name>
+        <label>Control de errores</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDisablePreferredEmailEnforcement</name>
+        <label>Requerir correo electrónico de preferencia</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDisablePreferredPhoneEnforcement</name>
+        <label>Requerir teléfono de preferencia</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDuplicateRelationships</name>
+        <label>Evitar relaciones duplicadas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgDuplicateRelationshipsHelp</name>
+        <label>Especifica si se evita que haya más de un registro Relación del mismo tipo entre dos contactos.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEDAAppDesc</name>
+        <label>Education Data Architecture (EDA) es la base de Education Cloud. Su flexible arquitectura de datos está diseñada para configurar Salesforce para la educación.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEDAAppInitials</name>
+        <label>EDA</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEDASettingsHasMovedDesc</name>
+        <label>Creamos una nueva experiencia de Configuración de Education Cloud que proporciona acceso a los parámetros de EDA, junto con muchos otros excelentes recursos. Los pasos de configuración varían en base a su versión de EDA. Revise la documentación para ver los detalles.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEDASettingsHasMovedTitle</name>
+        <label>¡Nos hemos trasladado!</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEDASetupTitle</name>
+        <label>Instalación de EDA</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEDCSettingsHealthCheckDescription</name>
+        <label>Comprobación de estado de configuración busca errores de configuración en Configuración de EDA y Configuración. Siga las recomendaciones que se proporcionan para solucionar los errores localizados.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEnableCourseConnectionsTitle</name>
+        <label>Tipos de registros de enlace de cursos</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEnableDebugHelp</name>
+        <label>Active la depuración de modo que el servicio de asistencia de Salesforce pueda ver las instrucciones de depuración para paquetes gestionados.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEnableDebugTitle</name>
+        <label>Registro de depuración</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEnablePreferredPhoneSync</name>
+        <label>Funciones de teléfono de preferencia mejoradas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorInsufficientAccess</name>
+        <label>No puede ver esta página. Su administrador de Salesforce puede ayudarle con ello.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorInsufficientAccessSaving</name>
+        <label>No puede guardar esta configuración porque ya no tiene permiso para modificarla. Su administrador de Salesforce puede ayudarle con ello.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorInvalidSettings</name>
+        <label>No pudimos guardar su trabajo. Actualice la página e inténtelo de nuevo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorNewAutoEnrollment</name>
+        <label>Todos los tipos de registros Cuenta que tengan afiliaciones principales ya tienen una asignación de inscripción automática. Vaya a Configuración de EDA | Afiliaciones para crear primero una asignación de afiliación con el tipo de registro que desea.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorNotiTo</name>
+        <label>Notificaciones de error en:</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorNotifRecipientsTitle</name>
+        <label>Destinatarios de notificación de errores</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorSettingsNav</name>
+        <label>Errores</label>
+    </customLabels>
+    <customLabels>
+        <name>stgErrorSettingsTitle</name>
+        <label>Configuración de errores</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEthnicityRaceBackfillContacts</name>
+        <label>Datos de etnia heredados</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEthnicityRaceBackfillModalBody</name>
+        <label>Copia los valores de listas de selección estándar y personalizadas, excepto No Hispana o Latina o Hispana o Latina del campo Etnia al campo Raza en Contactos. Antes de proceder, asegúrese de que desactivó cualquier proceso que haga referencia a los campos Etnia y Raza.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEthnicityRaceBackfillModalTitle</name>
+        <label>¿Actualizar el campo Raza en Contactos?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgEthnicityRaceBackfillSuccessToast</name>
+        <label>Estamos actualizando el campo Raza en Contactos. Recibirá un mensaje por correo electrónico cuando finalice el trabajo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgFluent</name>
+        <label>Fluido</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountModelAdminInactiveFix</name>
+        <label>En Configuración de EDA | Modelo de cuenta, verifique el tipo de registro de cuenta administrativa. Si {0} ({1}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el tipo de registro de cuenta administrativa a un tipo de registro activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountModelAdminNotFoundFix</name>
+        <label>En Configuración de EDA | Modelo de cuenta, cambie el tipo de registro de cuenta administrativa a un tipo de registro activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountModelDefaultInactiveFix</name>
+        <label>En Configuración de EDA | Modelo de cuenta, verifique el tipo de registro de modelo de cuenta predeterminado. Si {0} ({1}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el modelo de cuenta predeterminado a un tipo de registro activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountModelDefaultNotFoundFix</name>
+        <label>En Configuración de EDA | Modelo de cuenta, cambie el modelo de cuenta predeterminado a un tipo de registro activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountModelHHInactiveFix</name>
+        <label>En Configuración de EDA | Modelo de cuenta, verifique el tipo de registro de cuenta doméstica. Si {0} ({1}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el tipo de registro de cuenta doméstica a un tipo de registro activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountModelHHNotFoundFix</name>
+        <label>En Configuración de EDA | Modelo de cuenta, cambie el tipo de registro de cuenta doméstica a un tipo de registro activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountRecordTypeSettingsUnique</name>
+        <label>Configuración de Tipo de registro para cuenta administrativa y doméstica exclusiva.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountRecordTypesNotUnique</name>
+        <label>La configuración de Tipo de registro para cuenta administrativa y doméstica especifica el mismo tipo de registro.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountRecordTypesNotUniqueFix</name>
+        <label>En Configuración de EDA, en la ficha Cuentas y Contactos, cambie el tipo de registro de cuenta administrativa o el tipo de registro de cuenta doméstica de modo que especifiquen un tipo de registro exclusivo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAccountRecordTypesUnique</name>
+        <label>La configuración de Tipo de registro para cuenta administrativa y doméstica especifica tipos de registro diferentes.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAffiliationMappingSettingDesc</name>
+        <label>La asignación de Afiliación {0} es válida.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAffiliationMappingSettingHeading</name>
+        <label>Asignación de Afiliación {0}</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
+        <label>En Configuración de EDA | Afiliaciones, verifique el tipo de registro de cuenta para esta asignación de Afiliación. Si {0} ({1}) es correcto, vaya al tipo de registro de cuenta para el objeto Cuenta en Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el tipo de registro de la asignación de Afiliación a un tipo de registro activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
+        <label>Este tipo de registro de cuenta para esta asignación de Afiliación no existe. En Configuración de EDA | Afiliaciones, cambie la asignación de Afiliación para que utilice un tipo de registro activo y válido para la cuenta especificada.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeNotUnique</name>
+        <label>El tipo de registro {0} ({1}) está asignado a múltiples campos Afiliación principal de Contacto.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeTitle</name>
+        <label>Tipo de registro de cuenta</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeUnique</name>
+        <label>El tipo de registro {0} ({1}) está asignado a un único campo Afiliación principal de Contacto.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
+        <label>En Configuración de EDA | Afiliaciones, busque en la columna Tipo de registro de cuenta múltiples asignaciones que especifiquen {0} ({1}). Modifique esas asignaciones de Afiliación de modo que este tipo de registro solo esté asignado a un campo Afiliación principal de Contacto.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
+        <label>Tipo de registro de asignación de Afiliación exclusivo</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollRoleInactive</name>
+        <label>El valor de la lista de selección {0} ({1}) no está activo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
+        <label>La función de Inscripción automática {0} ({1}) no está activa. En Configuración de EDA | Inscripciones de programa, verifique la Asignación de programa de Inscripción automática que especifica esta función. Si la asignación es correcta, vaya al campo Función del objeto Afiliación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie la función de Inscripción automática a un valor de lista de selección activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
+        <label>No podemos encontrar el valor de lista de selección {0}.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
+        <label>La función de Inscripción automática no es válida. En Configuración de EDA | Inscripciones de programa, modifique la Asignación de programa de Inscripción automática que especifica esta función a un valor de lista de selección activo y válido para el campo Función en el objeto Afiliación.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollRoleTitle</name>
+        <label>Valor de Función de Inscripción automática</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollRoleValid</name>
+        <label>El valor de la lista de selección {0} ({1}) es válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollStatusInactive</name>
+        <label>El valor de la lista de selección {0} ({1}) no está activo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
+        <label>El estado de Inscripción automática {0} ({1}) no está activo. En Configuración de EDA | Inscripciones de programa, verifique la Asignación de programa de Inscripción automática que especifica este estado. Si la asignación es correcta, vaya al campo Estado del objeto Afiliación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el estado de Inscripción automática a un valor de lista de selección activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
+        <label>No podemos encontrar el valor de lista de selección {0}.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
+        <label>El estado de Inscripción automática no es válido. En Configuración de EDA | Inscripciones de programa, modifique la Asignación de programa de Inscripción automática que especifica este estado a un valor de lista de selección activo y válido para el campo Estado en el objeto Afiliación.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollStatusTitle</name>
+        <label>Valor de Estado de Inscripción automática</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapAutoEnrollStatusValid</name>
+        <label>El valor de la lista de selección {0} ({1}) es válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
+        <label>El campo Afiliación principal {0} no es válido. En Configuración de EDA | Afiliaciones, modifique la asignación de Afiliación para que especifique un campo de consulta válido en el objeto Contacto.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
+        <label>Campo Afiliación principal de Contacto exclusivo</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
+        <label>{0} no es un campo Contacto válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
+        <label>El campo {0} ({1}) está asignado a múltiples tipos de registro Cuenta.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContactPrimaryFieldTitle</name>
+        <label>Campo Afiliación principal de Contacto</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContactPrimaryFieldUnique</name>
+        <label>El campo {0} ({1}) está asignado a un único tipo de registro Cuenta.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
+        <label>En Configuración de EDA | Afiliaciones, busque en la columna Campo Afiliación principal en Contacto múltiples asignaciones que especifiquen {0} ({1}). Modifique esas asignaciones de modo que este campo solo esté asignado a una asignación de Afiliación.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCAfflMapContactPrimaryFieldValid</name>
+        <label>El campo {0} ({1}) es válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConEnable</name>
+        <label>Enlaces de cursos no está activada.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConEnableFix</name>
+        <label>Active Enlaces de cursos, que incluye la configuración de los tipos de registro Enlace de curso. En Configuración de EDA | Enlaces de cursos, active tipos de registros de Enlace de curso. Luego configure el Tipo de registro de estudiante predeterminado y el Tipo de registro de facultad predeterminado.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConFacultyInactiveFix</name>
+        <label>En Configuración de EDA | Enlaces de cursos, verifique el Tipo de registro de facultad predeterminado. Si {1} ({0}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el Tipo de registro de facultad predeterminado a un tipo de registro activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConFacultyNotFoundFix</name>
+        <label>En Configuración de EDA | Enlaces de cursos, cambie el Tipo de registro de facultad predeterminado a un tipo de registro activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConRecordTypesNotUnique</name>
+        <label>La configuración del Tipo de registro de facultad predeterminado y del Tipo de registro de estudiante activo predeterminado especifican el mismo tipo de registro.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConRecordTypesNotUniqueFix</name>
+        <label>En Configuración de EDA | Enlaces de cursos, cambie el Tipo de registro de facultad predeterminado o el Tipo de registro de estudiante predeterminado de modo que cada uno especifique un tipo de registro exclusivo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConRecordTypesUnique</name>
+        <label>Configuración de Tipo de registro de facultad predeterminado y Tipo de registro de estudiante activo predeterminado exclusiva</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConRecordTypesUniqueDesc</name>
+        <label>La configuración del Tipo de registro de facultad predeterminado y del Tipo de registro de estudiante activo predeterminado especifican tipos de registro diferentes.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConStudentInactiveFix</name>
+        <label>En Configuración de EDA | Enlaces de cursos, verifique el Tipo de registro de estudiante predeterminado. Si {1} ({0}) es correcto, vaya a Configuración de Salesforce y establezca el tipo de registro en Activo. Si no es correcto, cambie el Tipo de registro de estudiante predeterminado a un tipo de registro activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConStudentNotFoundFix</name>
+        <label>En Configuración de EDA | Enlaces de cursos, cambie el Tipo de registro de estudiante predeterminado a un tipo de registro activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCCourseConnectionsTitle</name>
+        <label>Enlaces de cursos</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCPicklistValueInactive</name>
+        <label>El valor de la lista de selección {0} ({1}) no está activo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCPicklistValueNotFound</name>
+        <label>No podemos encontrar el valor de lista de selección {0}.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCPicklistValueValid</name>
+        <label>El valor de la lista de selección {0} ({1}) es válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelDescription</name>
+        <label>{0} relaciones recíprocas son válidas.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelFemaleInactiveFix</name>
+        <label>El valor de la lista de selección para Female en la asignación Relaciones recíprocas para {0} ({1}) no está activo. En Configuración de EDA | Relaciones, verifique la asignación. Si la asignación es correcta, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Female de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelFemaleNotFoundFix</name>
+        <label>El valor de la lista de selección para Female en la asignación Relaciones recíprocas no es válido. En Configuración de EDA | Relaciones, modifique el valor de Female para esta asignación a un valor de lista de selección activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelFemaleTitle</name>
+        <label>Valor de Femenino de la configuración recíproca</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelMaleInactiveFix</name>
+        <label>El valor de la lista de selección para Male en la asignación Relaciones recíprocas para {0} ({1}) no está activo. En Configuración de EDA | Relaciones, verifique la asignación. Si la asignación es correcta, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Male de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelMaleNotFoundFix</name>
+        <label>El valor de la lista de selección para Male en la asignación Relaciones recíprocas no es válido. En Configuración de EDA | Relaciones, modifique el valor de Male para esta asignación a un valor de lista de selección activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelMaleTitle</name>
+        <label>Valor de Masculino de la configuración recíproca</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameInactiveFix</name>
+        <label>La asignación Relaciones recíprocas para {0} ({1}) no está activa. En Configuración de EDA | Relaciones, verifique la asignación que especifica este nombre. Si la asignación es correcta, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de nombre de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameNotFoundFix</name>
+        <label>La asignación Relaciones recíprocas para {0} no es válida. En Configuración de EDA | Relaciones, verifique la asignación que especifica este nombre a un valor de lista de selección activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameNotUniqueDesc</name>
+        <label>Verifique la configuración recíproca para {0} ({1}) especificada en Configuración de EDA, en la subficha Configuración recíproca de la ficha Relaciones. Si {0} ({1}) es correcto, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Nombre de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameNotUniqueFix</name>
+        <label>E Configuración de EDA | Relaciones, busque en la tabla Relaciones recíprocas asignaciones múltiples con el nombre {0} ({1}). Modifique esas asignaciones de modo que solo una asignación utilice este nombre.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameTitle</name>
+        <label>Valor de Nombre de la configuración recíproca</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameUniqueDesc</name>
+        <label>El valor de la lista de selección {0} ({1}) solo se utiliza en una configuración recíproca.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNameUniqueTitle</name>
+        <label>Nombre de configuración recíproca exclusivo</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNeutralInactiveFix</name>
+        <label>El valor de la lista de selección para Neutral en la asignación Relaciones recíprocas para {0} ({1}) no está activo. En Configuración de EDA | Relaciones, verifique la asignación. Si la asignación es correcta, vaya al campo Tipo del objeto Relación en Configuración de Salesforce y establezca el valor de la lista de selección en Activo. Si no es correcto, cambie el valor de Neutral de la configuración recíproca a un valor de lista de selección activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNeutralNotFoundFix</name>
+        <label>El valor de la lista de selección para Neutral en la asignación Relaciones recíprocas no es válido. En Configuración de EDA | Relaciones, modifique el valor de Neutral para esta asignación a un valor de lista de selección activo y válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelNeutralTitle</name>
+        <label>Valor de Neutro de la configuración recíproca</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCReciprocalRelSetting</name>
+        <label>{0} relaciones recíprocas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCRecordTypeInactive</name>
+        <label>El tipo de registro {0} ({1}) no está activo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCRecordTypeNotFound</name>
+        <label>No podemos encontrar el tipo de registro {0}.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHCRecordTypeValid</name>
+        <label>El tipo de registro {0} ({1}) es válido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHHAccountCustomName</name>
+        <label>Formato de nombre personalizado</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHHAccountCustomNameHelp</name>
+        <label>Especifique su propia convención de nomenclatura.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHHAccountNamingTitle</name>
+        <label>Nomenclatura de cuenta doméstica</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckA11y</name>
+        <label>Se dirige a Comprobación de estado de configuración.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckAccountModel</name>
+        <label>Modelo de cuenta</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckAffiliationMappings</name>
+        <label>Asignaciones de afiliaciones</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckDescription</name>
+        <label>Comprobación de estado de configuración comprueba si existen configuraciones no válidas en sus parámetros de EDA. Cuando termine, utilice los resultados para identificar y solucionar configuraciones no válidas.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckErrorLastRunDate</name>
+        <label>No podemos mostrar la fecha de la última ejecución debido a un error</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckFixNotApplicable</name>
+        <label>No aplicable</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckLastRun</name>
+        <label>Última ejecución: {0}</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckLoadingIndicator</name>
+        <label>Cargando…</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckReciprocalRelTitle</name>
+        <label>Relaciones recíprocas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckRecoFix</name>
+        <label>Solución recomendada</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckResultsCollapse</name>
+        <label>Contraer estos resultados</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckResultsDescription</name>
+        <label>Descripción</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckResultsExpand</name>
+        <label>Ampliar estos resultados</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckRunButton</name>
+        <label>Ejecutar comprobación de estado</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckRunError</name>
+        <label>No podemos ejecutar Comprobación de estado de configuración debido a un error. Pruebe a ejecutar la herramienta de nuevo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckSetting</name>
+        <label>Parámetro</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckStatus</name>
+        <label>Estado</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckStatusFailed</name>
+        <label>Fallo</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckStatusPassed</name>
+        <label>Superado</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckStatusWarning</name>
+        <label>Advertencia</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthCheckTitle</name>
+        <label>Comprobación de estado de configuración</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthChecksAllPassed</name>
+        <label>Todas las comprobaciones superadas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHealthChecksNotAllPassed</name>
+        <label>{0} de {1} comprobaciones superadas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAccountModel</name>
+        <label>El tipo de registro de cuenta cuando una cuenta se crea automáticamente para un contacto independiente.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
+        <label>Elimina cuentas con estos tipos de registro si no tienen contactos.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAddressAccRecType</name>
+        <label>Selecciona los tipos de registro de cuenta que admiten direcciones múltiples.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAdminRecType</name>
+        <label>El tipo de registro de cuenta empleado para cuentas administrativas.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
+        <label>Copia la fecha de finalización para registros Inscripción de programa en nuevos registros Afiliación. En caso contrario, deje el campo en blanco.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
+        <label>Copia la fecha de inicio para registros Inscripción de programa en nuevos registros Afiliación. En caso contrario, deje el campo en blanco.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
+        <label>Afiliaciones creadas con inscripciones del programa</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
+        <label>Cuando un registro Inscripción de programa se crea sin una afiliación existente, se crea un registro Afiliación con los valores especificados a continuación.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflDeleteProgramEnrollment</name>
+        <label>Si elige no eliminar las afiliaciones cuando elimina sus inscripciones de programa relacionadas, seleccione un estado para las afiliaciones. Para dejar el estado de estas afiliaciones tal cual, seleccione Ninguno.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
+        <label>Eliminaciones de inscripción del programa</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
+        <label>Especifique cómo desea que se traten los registros Afiliación de inscripciones de programas eliminadas. El registro Afiliación relacionado puede eliminarse o actualizarse su estado.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflProgEnrollSetRole</name>
+        <label>Si se selecciona, establezca la función de la nueva afiliación al valor definido en Función para afiliaciones creadas. De lo contrario, deje la función de la afiliación en blanco.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflProgEnrollSetRoleValue</name>
+        <label>Seleccione una función para afiliaciones creadas con inscripciones de programa.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpAfflProgEnrollSetStatusValue</name>
+        <label>Seleccione un estado para afiliaciones creadas con inscripciones de programa.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpContactAddrs</name>
+        <label>Permite que los contactos tengan registros de direcciones múltiples.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpContactPreferredEmail</name>
+        <label>Requiere que los contactos tengan un correo electrónico preferido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpContactPreferredPhone</name>
+        <label>Requiere que los contactos tengan un teléfono preferido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpContactPreferredPhoneSync</name>
+        <label>Copia el teléfono preferido del contacto a su campo Teléfono.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpCopyQueuedEmailSent</name>
+        <label>Estamos actualizando el campo Descripción ampliada. Recibirá un mensaje por correo electrónico cuando finalice el trabajo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpCourseConnBackfillDescription</name>
+        <label>Cambia los registros Enlace de curso de facultad al valor de Tipo de registro de facultad predeterminado y los registros Enlace de curso restantes al valor de Tipo de registro de estudiante predeterminado.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpCourseConnectionBackfill</name>
+        <label>Antes de activar Enlaces de cursos por primera vez, ejecute este trabajo de Apex para actualizar los registros Enlace de curso de facultada al valor de Tipo de registro de facultad predeterminado. También actualiza los Enlaces de cursos restantes al valor de Tipo de registro de estudiante.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpCoursesDataMigration</name>
+        <label>Copia texto procedente del campo Descripción en registros Curso al campo Descripción ampliada para dar cabida a descripciones de cursos más amplias.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpCoursesDataMigrationCopiesValues</name>
+        <label>Esta utilidad copia valores del campo Descripción de curso en el campo Descripción ampliada. Este proceso podría tardar, pero puede cerrar esta página de forma segura y el proceso continuará en segundo plano.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpCoursesDataMigrationDontOverwrite</name>
+        <label>Si un curso ya tiene un valor para Descripción ampliada, no lo sobrescribimos.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
+        <label>Una vez completado el proceso, recuerde actualizar formatos de página y otras áreas de la aplicación que hacen referencia a los campos Descripción.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpDefaultContactLanguageFluency</name>
+        <label>El valor de fluidez establecido cuando se cambia o se establece el idioma principal de un contacto en un registro Idioma de contacto.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpDefaultFacultyType</name>
+        <label>Seleccione el tipo de registro para los enlaces de cursos de facultad.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpDefaultStudentType</name>
+        <label>Seleccione el tipo de registro para los enlaces de cursos de estudiante.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpEnableCourseConnBeforeBackfill</name>
+        <label>Debe activar Enlaces de curso antes de ejecutar el Relleno de enlaces de curso.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
+        <label>Debe activar Enlaces de curso antes de modificar tipos de registro.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpEnableCourseConnections</name>
+        <label>Requiere que los registros Enlace de curso especifiquen si son para facultades o estudiantes. Si activa este parámetro, también establezca el Tipo de registro de estudiante predeterminado y el Tipo de registro de facultad predeterminado. &lt;/br&gt;&lt;/br&gt;Antes de activar este parámetro por primera vez, ejecute el trabajo de Apex Datos de inscripción de cursos heredados en Herramientas del sistema.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpEnsureExistContactPreferEmail</name>
+        <label>Para Contactos existentes que no especificaron un Correo electrónico preferido o un Teléfono preferido, la limpieza garantiza que una de las direcciones de correo electrónico estándar o personalizadas o los números de teléfono están establecidos como el valor preferido.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpErrorDisable</name>
+        <label>Permite el control de errores para trabajos asíncronos para facilitar ver cuándo fallan trabajos programados.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpErrorNotifyOn</name>
+        <label>Envía notificaciones de errores a los destinatarios seleccionados. Si selecciona Grupo de Chatter o Usuario, especifique también un valor en Destinatarios de notificación de errores.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpErrorNotifyTo</name>
+        <label>Introduzca un único nombre de usuario o grupo de Chatter. A los usuarios se les notifican los errores por correo electrónico, mientras que a los grupos de Chatter se les notifica con una publicación en las noticias en tiempo real.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpEthnicityRaceBackfill</name>
+        <label>Si utilizó el campo Etnia antes de la versión 1.28 de EDA, este trabajo de Apex actualiza el campo Raza en Contactos con una copia de valores estándar y personalizados procedentes del campo Etnia. Los valores para No Hispana o Latina o Hispana o Latina no se copian.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpHouseAdmAccountAddressMgmt</name>
+        <label>Activa la gestión de direcciones para cuentas administrativas y domésticas cuando se selecciona.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpHouseholdRecType</name>
+        <label>El tipo de registro de cuenta empleado para cuentas domésticas.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
+        <label>Si su organización agregó anteriormente valores de lista de selección personalizados al campo Etnia que desea que esté disponible en el campo Raza, copie esos valores de lista de selección personalizados en el campo Raza.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpNestedPlanRequirementPP</name>
+        <label>Si tiene una jerarquía para Requisitos de planes anidados, especificar si pueden tener únicamente un Plan de programa o un Requisito del plan principal puede ayudar a mantener su estructura.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpOrgAccountAddressMgmt</name>
+        <label>Habilita direcciones para Cuenta Organización cuando esta seleccionado.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpRelAutoCreatedDup</name>
+        <label>Se anulan automáticamente los duplicados de las relaciones creadas automáticamente de forma predeterminada para evitar que se creen registros de relaciones duplicados entre dos contactos. Seleccione Permitir relaciones de duplicados creadas automáticamente para desactivar este comportamiento y permitir la creación de múltiples relaciones del mismo tipo entre dos contactos.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpRelReciprocalMethod</name>
+        <label>Especifique cómo rellenar el campo Tipo en relaciones recíprocas creadas automáticamente. Seleccione Configuración de lista para utilizar los valores procedentes de las relaciones recíprocas. Seleccione Inversión de valor para invertir el tipo en el registro Relación original.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
+        <label>Elimine todos los valores de lista de selección del campo Etnia excepto para “Hispana o Latina” y “No Hispana o Latina”. Le recomendamos sustituir cada valor eliminado con uno de los valores válidos restantes, en vez de eliminarlos por completo de los registros existentes. A partir de la versión 1.28 de EDA, los únicos valores válidos de Etnia con “No Hispana o Latina” e “Hispana o Latina”.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpSimpleAddrChangeIsUpdate</name>
+        <label>Para cambios sencillos de dirección en Contactos o Cuentas, actualiza los registros Dirección existentes en vez de crear nuevos.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpStoreErrorsOn</name>
+        <label>Registra y almacena errores en el objeto Error. Después de activar este parámetro, crea una ficha para el objeto Error para ver registros de errores.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
+        <label>Si tenía informes o campos de fórmula que hacían referencia a los valores anteriores en el campo Etnia, actualícelos.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgLeadConversionAccountNaming</name>
+        <label>Cambiar nombre automáticamente a cuentas con candidatos convertidos</label>
+    </customLabels>
+    <customLabels>
+        <name>stgLeadConversionAccountNamingDesc</name>
+        <label>Cuando se convierten candidatos, cambia el nombre automáticamente a las cuentas para que utilicen el formato de nomenclatura de cuenta asociado con estos tipos de registros seleccionados.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgLeadConversionAccountNamingTitle</name>
+        <label>Nomenclatura de cuenta de conversión de candidatos</label>
+    </customLabels>
+    <customLabels>
+        <name>stgNestedPlanRequirementPP</name>
+        <label>Jerarquía de requisito de plan</label>
+    </customLabels>
+    <customLabels>
+        <name>stgNewAfflMapping</name>
+        <label>¿Nueva asignación de afiliación?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgOptAllSysAdmins</name>
+        <label>Todos los administradores del sistema</label>
+    </customLabels>
+    <customLabels>
+        <name>stgOptChatterGroup</name>
+        <label>Grupo de Chatter</label>
+    </customLabels>
+    <customLabels>
+        <name>stgOptSelect</name>
+        <label>Seleccionar...</label>
+    </customLabels>
+    <customLabels>
+        <name>stgOptUser</name>
+        <label>Usuario</label>
+    </customLabels>
+    <customLabels>
+        <name>stgPeopleAndGroupsNav</name>
+        <label>Personas y grupos</label>
+    </customLabels>
+    <customLabels>
+        <name>stgPreferredEmailBatchEmailBody</name>
+        <label>El trabajo de Apex por lotes procesó {0} registros con {1} fallos.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgPreferredEmailBatchEmailSubject</name>
+        <label>Se completó el Trabajo de correo electrónico/Teléfono preferido con un estado de:</label>
+    </customLabels>
+    <customLabels>
+        <name>stgPreferredEmailDataCleanup</name>
+        <label>Correo electrónico de preferencia y Teléfono de preferencia</label>
+    </customLabels>
+    <customLabels>
+        <name>stgPreferredPhoneDefault</name>
+        <label>Teléfono de preferencia predeterminado</label>
+    </customLabels>
+    <customLabels>
+        <name>stgPreferredPhoneEmailModalBody</name>
+        <label>Actualiza los campos Correo electrónico de preferencia y Teléfono de preferencia para todos los contactos según especifican los parámetros relacionados de su organización. Antes de continuar, asegúrese de haber desactivado cualquier proceso que haga referencia a los campos Correo electrónico de preferencia y Teléfono de preferencia.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgPreferredPhoneEmailModalTitle</name>
+        <label>¿Actualizar los campos Correo electrónico de preferencia y Teléfono de preferencia?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgPreferredPhoneEmailSuccessToast</name>
+        <label>Estamos actualizando los campos Correo electrónico de preferencia y Teléfono de preferencia. Recibirá un mensaje por correo electrónico cuando finalice el trabajo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgPreferredPhoneSelection</name>
+        <label>Seleccione un campo para Teléfono preferido desde el que copiar el valor cuando el campo Teléfono estándar no tenga un valor, o se defina más de un campo &quot;Teléfono&quot;.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgPreferredPhoneSelectionDesc</name>
+        <label>El campo que hay que utilizar para Teléfono de preferencia cuando el campo Teléfono está en blanco o se define más de un valor de teléfono.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgProgramPlanSettingsNav</name>
         <label>Planes del programa</label>
-        <name>stgTabProgramPlan</name>
     </customLabels>
     <customLabels>
-        <label>Configuración recíproca</label>
-        <name>stgTabReciprocalSettings</name>
+        <name>stgProgramPlanSettingsTitle</name>
+        <label>Configuración de Plan de programa</label>
     </customLabels>
     <customLabels>
+        <name>stgProgramsSettingsNav</name>
+        <label>Inscripciones de programa</label>
+    </customLabels>
+    <customLabels>
+        <name>stgProgramsSettingsTitle</name>
+        <label>Configuración de Inscripción de programa</label>
+    </customLabels>
+    <customLabels>
+        <name>stgReciprocalMethodListSetting</name>
+        <label>Configuración de lista</label>
+    </customLabels>
+    <customLabels>
+        <name>stgReciprocalMethodValueInversion</name>
+        <label>Inversión de valor</label>
+    </customLabels>
+    <customLabels>
+        <name>stgReciprocalRelDeleteModalBody</name>
+        <label>Esta relación recíproca asigna el valor recíproco {0} a los valores recíprocos {1}, {2} y {3}. Solo estamos asegurándonos de que desea eliminarla.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgReciprocalRelDeleteModalTitle</name>
+        <label>¿Eliminar relación recíproca?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgReciprocalRelDeleteSuccess</name>
+        <label>Se eliminó la relación recíproca para {0}.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgReciprocalRelEditModalBody</name>
+        <label>Seleccione la relación recíproca para modificar.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgReciprocalRelEditModalTitle</name>
+        <label>¿Modificar relación recíproca?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgReciprocalRelEditSuccess</name>
+        <label>Se guardó la relación recíproca para {0}.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgReciprocalRelNewModalBody</name>
+        <label>Seleccione el tipo de relación recíproca para crear.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgReciprocalRelNewModalTitle</name>
+        <label>¿Nueva relación recíproca?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgReciprocalRelNewSuccess</name>
+        <label>Se creó la relación recíproca para {0}.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRefreshAdminAcctNameDesc</name>
+        <label>Actualiza todos los registros de cuentas administrativas para que utilicen el formato de Formato de nombre de cuenta administrativa.&lt;/br&gt;&lt;/br&gt;Advertencia: Antes de continuar, vea la repercusión de este parámetro. Desactive también los procesos que hagan referencia a las cuentas administrativas.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRefreshAdminAcctNameTitle</name>
+        <label>Actualizar todos los nombres de cuentas administrativas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRefreshAdminNamesModalBody</name>
+        <label>Actualiza todos los registros de cuentas administrativas para que utilicen el formato de Formato de nombre de cuenta administrativa. Antes de continuar, asegúrese de haber desactivado cualquier proceso que haga referencia a las cuentas administrativas.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRefreshAdminNamesModalTitle</name>
+        <label>¿Actualizar todos los nombres de cuentas administrativas?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRefreshAdminNamesSuccessToast</name>
+        <label>Estamos actualizando los nombres de cuentas administrativas. Recibirá un mensaje por correo electrónico cuando finalice el trabajo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRefreshHHAcctNameDesc</name>
+        <label>Actualiza todos los registros de cuentas domésticas para que utilicen el formato de Formato de nombre de cuenta doméstica. También activa Cambiar el nombre automáticamente a cuentas domésticas incluso si estaba desactivada antes. &lt;/br&gt;&lt;/br&gt;Advertencia: Antes de continuar, vea la repercusión de este parámetro. Desactive también los procesos que hagan referencia a las cuentas domésticas.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRefreshHHAcctNameTitle</name>
+        <label>Actualizar todos los nombres de cuentas domésticas</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRefreshHouseholdNamesModalBody</name>
+        <label>Se actualizan todos los registros de cuentas domésticas para que utilicen el formato de Formato de nombre de cuenta doméstica. Antes de continuar, asegúrese de haber desactivado cualquier proceso que haga referencia a las cuentas domésticas.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRefreshHouseholdNamesModalTitle</name>
+        <label>¿Actualizar todos los nombres de cuentas domésticas?</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRefreshHouseholdNamesSuccessToast</name>
+        <label>Estamos actualizando los nombres de cuentas domésticas. Recibirá un mensaje por correo electrónico cuando finalice el trabajo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRelationshipSettingsNav</name>
         <label>Relaciones</label>
-        <name>stgTabRel</name>
     </customLabels>
     <customLabels>
-        <label>Configuración</label>
-        <name>stgTabSettings</name>
+        <name>stgRelationshipSettingsTitle</name>
+        <label>Configuración de relación</label>
     </customLabels>
     <customLabels>
+        <name>stgRunCleanUp</name>
+        <label>Actualizar</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRunCleanUpA11y</name>
+        <label>Actualiza los campos Correo electrónico de preferencia y Teléfono de preferencia para todos los contactos.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgRunCleanUpEnableFirstTime</name>
+        <label>Actualiza los campos Correo electrónico de preferencia y Teléfono de preferencia para todos los contactos en base a los parámetros relacionados de su organización. Es buena idea ejecutar este trabajo cuando activa Requerir correo electrónico de preferencia o Requerir teléfono de preferencia por primera vez o si no los ha aplicado durante un tiempo.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSaveSettings</name>
+        <label>Se guardó la configuración de EDA.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSelectChatterGroupDesc</name>
+        <label>Introduzca un grupo de Chatter...</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSelectChatterGroupTitle</name>
+        <label>Grupo de Chatter</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSelectReciType</name>
+        <label>Seleccionar tipo de destinatario:</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSelectUserDesc</name>
+        <label>Introduzca un nombre de usuario...</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSelectUserTitle</name>
+        <label>Usuario</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSendErrorsTitle</name>
+        <label>Notificaciones de Error</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSimpleAddressChangeUpdate</name>
+        <label>Actualizar registros de dirección con cambios sencillos</label>
+    </customLabels>
+    <customLabels>
+        <name>stgStoreErrorsTitle</name>
+        <label>Guardar errores</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSuccess</name>
+        <label>Operación correcta</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSuccessAdminAccountNameRefresh</name>
+        <label>La actualización de nomenclatura de la cuenta administrativa se colocó en cola correctamente. Se enviará un correo electrónico al finalizar el lote.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSuccessHHAccountNameRefresh</name>
+        <label>La actualización de nomenclatura de la cuenta doméstica se colocó en cola correctamente. Se enviará un correo electrónico al finalizar el lote.</label>
+    </customLabels>
+    <customLabels>
+        <name>stgSystemSettingsNav</name>
         <label>Sistema</label>
-        <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Hyperlinked text to EDA documentation --></label>
-        <name>stgTellMeMoreLink</name>
+        <name>stgSystemToolsNav</name>
+        <label>Herramientas del sistema</label>
     </customLabels>
     <customLabels>
-        <label>Permitir relaciones de duplicados creadas automáticamente</label>
-        <name>stgTitleAllowAutocreatedDuplicateRel</name>
+        <name>stgTabAccCont</name>
+        <label>Cuentas y Contactos</label>
     </customLabels>
     <customLabels>
-        <label>Configuración de toda la aplicación</label>
-        <name>stgTitleAppwideSettings</name>
+        <name>stgTabAffl</name>
+        <label>Afiliaciones</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Legacy Course Enrollment Data setting --></label>
-        <name>stgTitleCourseConnectionBackfill</name>
+        <name>stgTabAfflMappings</name>
+        <label>Asignaciones de afiliaciones</label>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Extended Course Descriptions setting --></label>
-        <name>stgTitleCoursesDescriptionDataMigration</name>
+        <name>stgTabAutocreation</name>
+        <label>Creación automática</label>
     </customLabels>
     <customLabels>
+        <name>stgTabBackfill</name>
+        <label>Relleno</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabCourse</name>
+        <label>Cursos</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabCourseConn</name>
+        <label>Enlaces de cursos</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabName</name>
+        <label>Nombre</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabPrimaryAfflField</name>
+        <label>Campo de afiliación principal de contacto</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabProgramPlan</name>
+        <label>Planes del programa</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabReciprocalSettings</name>
+        <label>Configuración recíproca</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabRel</name>
+        <label>Relaciones</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabSettings</name>
         <label>Configuración</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTabSystem</name>
+        <label>Sistema</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTellMeMoreLink</name>
+        <label>Más información</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTitleAllowAutocreatedDuplicateRel</name>
+        <label>Permitir relaciones de duplicados creadas automáticamente</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTitleAppwideSettings</name>
+        <label>Configuración de toda la aplicación</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTitleCourseConnectionBackfill</name>
+        <label>Datos de inscripción de cursos heredados</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTitleCoursesDescriptionDataMigration</name>
+        <label>Descripciones de cursos ampliadas</label>
+    </customLabels>
+    <customLabels>
         <name>stgTitleHEDAConfig</name>
+        <label>Configuración</label>
     </customLabels>
     <customLabels>
-        <label>Configuración de EDA</label>
         <name>stgTitleHEDASettings</name>
-    </customLabels>
-    <customLabels>
-        <label>Nueva configuración de creación automática</label>
-        <name>stgTitleNewAutocreateSetting</name>
-    </customLabels>
-    <customLabels>
-        <label>Nueva configuración recíproca</label>
-        <name>stgTitleNewReciSetting</name>
-    </customLabels>
-    <customLabels>
-        <label>Método de reciprocidad</label>
-        <name>stgTitleReciMethod</name>
-    </customLabels>
-    <customLabels>
-        <label>Error</label>
-        <name>stgToastError</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the Trailhead card --></label>
-        <name>stgTrailheadTitle</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Label for the YouTube card --></label>
-        <name>stgVideosTitle</name>
-    </customLabels>
-    <customLabels>
-        <label>No podemos guardar la Programación de ofertas de cursos porque su hora de finalización no coincide con la hora de finalización de su bloque de tiempo asociado. Modifique la hora de finalización, especifique un bloque de tiempo diferente o no especifique un bloque de tiempo.</label>
-        <name>timeBlockEndTimeMismatch</name>
-    </customLabels>
-    <customLabels>
-        <label>No podemos guardar la Programación de ofertas de cursos porque su hora de inicio no coincide con la hora de inicio de su bloque de tiempo asociado. Modifique la hora de inicio, especifique un bloque de tiempo diferente o no especifique un bloque de tiempo.</label>
-        <name>timeBlockStartTimeMismatch</name>
-    </customLabels>
-    <customTabs>
-        <label><!-- Education Cloud Settings --></label>
-        <name>Education_Cloud_Settings</name>
-    </customTabs>
-    <customTabs>
         <label>Configuración de EDA</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTitleNewAutocreateSetting</name>
+        <label>Nueva configuración de creación automática</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTitleNewReciSetting</name>
+        <label>Nueva configuración recíproca</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTitleReciMethod</name>
+        <label>Método de reciprocidad</label>
+    </customLabels>
+    <customLabels>
+        <name>stgToastError</name>
+        <label>Error</label>
+    </customLabels>
+    <customLabels>
+        <name>stgTrailheadTitle</name>
+        <label>Trailhead</label>
+    </customLabels>
+    <customLabels>
+        <name>stgVideosTitle</name>
+        <label>YouTube</label>
+    </customLabels>
+    <customLabels>
+        <name>timeBlockEndTimeMismatch</name>
+        <label>No podemos guardar la Programación de ofertas de cursos porque su hora de finalización no coincide con la hora de finalización de su bloque de tiempo asociado. Modifique la hora de finalización, especifique un bloque de tiempo diferente o no especifique un bloque de tiempo.</label>
+    </customLabels>
+    <customLabels>
+        <name>timeBlockStartTimeMismatch</name>
+        <label>No podemos guardar la Programación de ofertas de cursos porque su hora de inicio no coincide con la hora de inicio de su bloque de tiempo asociado. Modifique la hora de inicio, especifique un bloque de tiempo diferente o no especifique un bloque de tiempo.</label>
+    </customLabels>
+    <customTabs>
         <name>HEDA_Settings</name>
+        <label>Configuración de EDA</label>
     </customTabs>
+    <customTabs>
+        <name>Education_Cloud_Settings</name>
+        <label>Configuración de Education Cloud</label>
+    </customTabs>
+    <customApplications>
+        <name>HEDA</name>
+        <label>EDA</label>
+    </customApplications>
 </Translations>

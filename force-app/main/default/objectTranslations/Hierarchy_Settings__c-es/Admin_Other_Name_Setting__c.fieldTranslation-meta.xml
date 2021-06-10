@@ -2,5 +2,5 @@
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <name>Admin_Other_Name_Setting__c</name>
     <help>Almacena otra información sobre el formato de nomenclatura de cuenta de administrador.</help>
-    <label>Configuración de otro nombre de administrador</label>
+    <label>Configuración otro nombre administrador</label>
 </CustomFieldTranslation>
