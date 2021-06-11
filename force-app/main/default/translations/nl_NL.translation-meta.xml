@@ -57,7 +57,7 @@
         <name>EDCSettingsContainerAuraComponentLabel</name>
     </customLabels>
     <customLabels>
-        <label>Vrouw</label>
+        <label>Female</label>
         <name>Female</name>
     </customLabels>
     <customLabels>
@@ -65,7 +65,7 @@
         <name>InvalidFilter</name>
     </customLabels>
     <customLabels>
-        <label>Man</label>
+        <label>Male</label>
         <name>Male</name>
     </customLabels>
     <customLabels>
@@ -957,7 +957,7 @@
         <name>stgEthnicityRaceBackfillSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label>Vloeiend</label>
+        <label>Fluent</label>
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
