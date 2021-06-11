@@ -41,6 +41,8 @@ import stgProgramPlanSettingsNav from "@salesforce/label/c.stgProgramPlanSetting
 import stgNestedPlanRequirementPP from "@salesforce/label/c.stgNestedPlanRequirementPP";
 import stgCourseConnectionsNav from "@salesforce/label/c.stgCourseConnectionsNav";
 import stgEnableCourseConnectionsTitle from "@salesforce/label/c.stgEnableCourseConnectionsTitle";
+import stgDefaultStudentTypeTitle from "@salesforce/label/c.stgDefaultStudentTypeTitle";
+import stgDefaultFacultyTypeTitle from "@salesforce/label/c.stgDefaultFacultyTypeTitle";
 // Relationship Labels
 import stgDuplicateRelationships from "@salesforce/label/c.stgDuplicateRelationships";
 import stgTitleReciMethod from "@salesforce/label/c.stgTitleReciMethod";
@@ -101,6 +103,8 @@ export default class EdaSettingsNavigation extends LightningElement {
             coursesAndEnrollmentsSettings: stgCoursesAndEnrollmentsNav,
             courseConnectionSettings: stgCourseConnectionsNav,
             stgEnableCourseConnectionsTitle: stgEnableCourseConnectionsTitle,
+            stgDefaultStudentTypeTitle: stgDefaultStudentTypeTitle,
+            stgDefaultFacultyTypeTitle: stgDefaultFacultyTypeTitle,
         },
         errorSettings: {
             enableDebug: stgEnableDebugTitle,
@@ -305,6 +309,14 @@ export default class EdaSettingsNavigation extends LightningElement {
                                 label: this.labelReference.coursesAndEnrollmentsSettings
                                     .stgEnableCourseConnectionsTitle,
                                 id: "programEnrollmentDeletions",
+                            },
+                            {
+                                label: this.labelReference.coursesAndEnrollmentsSettings.stgDefaultStudentTypeTitle,
+                                id: "defaultStudentRecType",
+                            },
+                            {
+                                label: this.labelReference.coursesAndEnrollmentsSettings.stgDefaultFacultyTypeTitle,
+                                id: "defaultFacultyRecType",
                             },
                         ],
                     },

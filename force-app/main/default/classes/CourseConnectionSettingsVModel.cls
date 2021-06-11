@@ -35,12 +35,26 @@ public with sharing class CourseConnectionSettingsVModel {
     @AuraEnabled
     public Boolean courseConnectionRecordTypes { get; private set; }
 
+    @AuraEnabled
+    public ComboboxVModel defaultStudentRecType { get; private set; }
+
+    @AuraEnabled
+    public ComboboxVModel defaultFacultyRecType { get; private set; }
+
     /****************************************************************************************
      * @description Constructor for CourseConnectionSettingsVModel
      * @param courseConnectionRecordTypes Whether or not Course Connection Record Types is enabled
+     * @param defaultStudentRecType A comboboxModel representing Course Connection Record Types available for selection
+     * @param defaultFacultyRecType A comboboxModel representing Course Connection Record Types available for selection
      * @return A CourseConnectionSettingsVModel with all properties populated.
      ****************************************************************************************/
-    public CourseConnectionSettingsVModel(Boolean courseConnectionRecordTypes) {
+    public CourseConnectionSettingsVModel(
+        Boolean courseConnectionRecordTypes,
+        ComboboxVModel defaultStudentRecType,
+        ComboboxVModel defaultFacultyRecType
+    ) {
         this.courseConnectionRecordTypes = courseConnectionRecordTypes;
+        this.defaultStudentRecType = defaultStudentRecType;
+        this.defaultFacultyRecType = defaultFacultyRecType;
     }
 }
