@@ -70,7 +70,8 @@ export default class ErrorSettings extends LightningElement {
         return undefined;
     }
 
-    get showRequired() {
+    get showRequiredIndicator() {
+        //Only show when you can change the field
         return !this.affordancesDisabled;
     }
 
@@ -127,7 +128,7 @@ export default class ErrorSettings extends LightningElement {
 
     handleErrorNotificationRecipientCategoryChange(event) {
         const eventDetail = event.detail;
-        this.errorNotificationRecipientCategory = eventDetail.value;
+        this.errorNotificationRecipientCategory = event.detail.value;
         let hierarchySettingsChange;
 
         hierarchySettingsChange = {
