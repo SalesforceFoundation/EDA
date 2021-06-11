@@ -11,6 +11,7 @@ Test Setup      Go to education cloud settings
 
 *** Keywords ***
 Update settings to out of the box values
+    [Documentation]         Resets the settings value to its out of the box values
     Go to education cloud settings
     Select settings from navigation pane        Relationships
     Click action button on new EDA settings     Edit

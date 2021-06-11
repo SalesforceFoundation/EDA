@@ -24,15 +24,9 @@ class EducationCloudSettingsPage(BaseEDAPage, HomePage):
             page.
         """
         for field,value in kwargs.items():
-            if field == "Resources":
-                locator = eda_lex_locators["eda_settings_new"]["resources_tile"].format(field,value)
-                self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
-                self.selenium.wait_until_element_is_visible(locator,
-                                                error= "Element is not displayed for the user")
-            else:
-                locator = eda_lex_locators["eda_settings_new"]["other_tile"].format(field,value)
-                self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
-                self.selenium.wait_until_element_is_visible(locator,
+            locator = eda_lex_locators["eda_settings_new"]["app_tile"].format(field,value)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
+            self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
 
     def click_app_in_edc_home(self,value):

@@ -437,7 +437,11 @@ class EDA(BaseEDAPage):
     def go_to_settings_health_check(self):
         """ Navigates to the Home view of Settings Health Check app"""
         url = self.cumulusci.org.lightning_base_url
-        url = "{}/lightning/cmp/c__HealthCheckContainer".format(url)
+        namespace=self.get_eda_namespace_prefix()
+        if namespace=="hed__":
+            url = "{}/lightning/cmp/{}HealthCheckContainer".format(url,namespace)
+        else:
+            url = "{}/lightning/cmp/c__HealthCheckContainer".format(url)
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
 
@@ -687,7 +691,7 @@ class EDA(BaseEDAPage):
                                                 error=f"'{field}' field is not available ")
             self.selenium.click_element(locator)
             self.click_footer_button(value)
-            self.verify_custom_toast_message_displayed
+            self.verify_custom_toast_message_displayed()
             time.sleep(0.25) #to avoid toast messages overlapping each other
 
     def click_footer_button(self,value):

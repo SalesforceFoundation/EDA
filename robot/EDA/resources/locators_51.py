@@ -125,8 +125,7 @@ eda_lex_locators = {
         "toggle_input": "//span[text()='{}']/../descendant::span[contains(@id, 'toggle')]",
         "update_button": "//div[text()='{}']/../parent::div/descendant::button[text()='{}']",
         "footer_button": "//div[contains(@class, 'footer')]/descendant::button[@title='{}']",
-        "resources_tile": "//h2[text()='{}']/../descendant::ul/descendant::div[text()='{}']",
-        "other_tile": "//h2[text()='{}']/../descendant::ul/descendant::span[text()='{}']",
+        "app_tile": "//h2[text()='{}']/../descendant::ul/descendant::*[self::div or self::span][text()='{}']",
     },
      "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
