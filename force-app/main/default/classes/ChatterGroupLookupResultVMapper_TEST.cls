@@ -216,6 +216,26 @@ private with sharing class ChatterGroupLookupResultVMapper_TEST {
     }
 
     /**
+     * @description Test method to verify that the truncateDescription method returns a blank description
+     */
+    @isTest
+    private static void truncateDescriptionBlank() {
+        ChatterGroupLookupResultVMapper chatterGroupLookupResultVMapperInstance = ChatterGroupLookupResultVMapper.getInstance();
+
+        String description = null;
+
+        Test.startTest();
+        String truncatedDescription = chatterGroupLookupResultVMapperInstance.truncateDescription(description);
+        Test.StopTest();
+
+        System.assertEquals(
+            description,
+            truncatedDescription,
+            'Descriptions under 80 characters should not be truncated.'
+        );
+    }
+
+    /**
      * @description Test method to verify that the truncateDescription method returns a non-truncated description when under 80 characters
      */
     @isTest

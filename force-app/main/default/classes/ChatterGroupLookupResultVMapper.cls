@@ -101,7 +101,7 @@ public virtual with sharing class ChatterGroupLookupResultVMapper {
      ******************************************************************************/
     @TestVisible
     private String truncateDescription(String description) {
-        if (description.length() > 80) {
+        if (String.isBlank(description) == false && description.length() > 80) {
             return description.substring(0, 77) + '...';
         }
 

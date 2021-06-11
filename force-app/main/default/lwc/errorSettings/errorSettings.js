@@ -133,7 +133,7 @@ export default class ErrorSettings extends LightningElement {
         hierarchySettingsChange = {
             settingsType: "string",
             settingsName: "Error_Notifications_To__c",
-            settingsValue: "eventDetail.value",
+            settingsValue: eventDetail.value,
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
