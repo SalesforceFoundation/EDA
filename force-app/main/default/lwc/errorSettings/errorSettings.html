@@ -58,8 +58,7 @@
                                     label={labelReference.chatterGroupLookupTitle}
                                     remove-label={labelReference.lookupClearSelection}
                                     placeholder={labelReference.chatterGroupLookupPlaceholder}
-                                    value={chatterValue}
-                                    options={chatterOptions}
+                                    value={errorSettingsVModel.userOrChatterGroupLookupResult}
                                     disabled={affordancesDisabled}
                                     onsearch={handleChatterGroupSearch}
                                     oninputchange={handleErrorNotificationRecipientChange}
@@ -79,7 +78,6 @@
                                     remove-label={labelReference.lookupClearSelection}
                                     placeholder={labelReference.userLookupPlaceholder}
                                     value={errorSettingsVModel.userOrChatterGroupLookupResult}
-                                    options={userOptions}
                                     disabled={affordancesDisabled}
                                     onsearch={handleUserSearch}
                                     oninputchange={handleErrorNotificationRecipientChange}
@@ -117,4 +115,5 @@
             ></c-settings-row-input>
         </template>
     </c-settings-save-canvas>
+    {viewModelJSON}
 </template>
