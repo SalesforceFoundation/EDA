@@ -81,9 +81,8 @@ public virtual with sharing class RelationshipLookupMapper {
     /**
      * @description inserts a relationship lookup record
      * @param  relLookupModel A RelationshipLookupModel model of a new relationship lookup
-     * @return                A string representing the name associated with the inserted relationship lookup
      */
-    public String insertRelationshipLookupModel(RelationshipLookupModel relLookupModel) {
+    public void insertRelationshipLookupModel(RelationshipLookupModel relLookupModel) {
         Relationship_Lookup__c relLookupRecord = new Relationship_Lookup__c(
             Name = relLookupModel.name,
             Female__c = relLookupModel.femaleValue,
@@ -93,16 +92,14 @@ public virtual with sharing class RelationshipLookupMapper {
         );
 
         insert relLookupRecord;
-        return relLookupRecord.Name;
     }
 
     /**
      * @description updates a relationship lookup record
      * @param  relationshipLookupName An old relationship lookup record name to update
      * @param  relLookupModel         A RelationshipLookupModel model of a relationship lookup to update
-     * @return                        A string representing the new name associated with the updated relationship lookup
      */
-    public String updateRelationshipLookupModel(String relationshipLookupName, RelationshipLookupModel relLookupModel) {
+    public void updateRelationshipLookupModel(String relationshipLookupName, RelationshipLookupModel relLookupModel) {
         Relationship_Lookup__c relLookupRecord = Relationship_Lookup__c.getInstance(relationshipLookupName);
         relLookupRecord.Name = relLookupModel.name;
         relLookupRecord.Female__c = relLookupModel.femaleValue;
@@ -110,19 +107,16 @@ public virtual with sharing class RelationshipLookupMapper {
         relLookupRecord.Neutral__c = relLookupModel.neutralValue;
         relLookupRecord.Active__c = relLookupModel.isActive;
         update relLookupRecord;
-        return relLookupRecord.Name;
     }
 
     /**
      * @description deletes a relationship lookup record
      * @param  relLookupModel A RelationshipLookupModel model of a relationship lookup to delete
-     * @return                A string representing the name associated with the deleted relationship lookup
      */
-    public String deleteRelationshipLookupModel(RelationshipLookupModel relLookupModel) {
+    public void deleteRelationshipLookupModel(RelationshipLookupModel relLookupModel) {
         Relationship_Lookup__c relationshipLookupToDelete = Relationship_Lookup__c.getInstance(relLookupModel.name);
         String deletedRelationshipLookupName = relationshipLookupToDelete.Name;
 
         delete relationshipLookupToDelete;
-        return deletedRelationshipLookupName;
     }
 }

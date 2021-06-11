@@ -60,7 +60,7 @@ public virtual with sharing class RelationshipLookupsVMapper {
      * @description Retrieve a RelationshipLookupsVModel represeting the current values specified for Reciprocal Relationship mappings.
      * @return   A RelationshipLookupsVModel instance
      */
-    public RelationshipLookupsVModel getRelationshipLookupsVModel() {
+    public virtual RelationshipLookupsVModel getRelationshipLookupsVModel() {
         List<RelationshipLookupModel> relationshipLookupModelList = this.locateRelationshipLookupSettingsService()
             .getRelationshipLookupModels();
         List<RelationshipLookupVModel> relationshipLookupVModelList = new List<RelationshipLookupVModel>();

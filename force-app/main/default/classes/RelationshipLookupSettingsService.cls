@@ -94,9 +94,9 @@ public virtual with sharing class RelationshipLookupSettingsService {
      * @param  maleValue              male relationship type value
      * @param  neutralValue           neutral relationship type value
      * @param  isActive               specifies if the lookup is active
-     * @return                        inserted relationship lookup name
+     * @return                        inserted relationship lookup model
      */
-    public String insertRelationshipLookup(
+    public virtual RelationshipLookupModel insertRelationshipLookup(
         String relationshipLookupName,
         String femaleValue,
         String maleValue,
@@ -104,11 +104,16 @@ public virtual with sharing class RelationshipLookupSettingsService {
         Boolean isActive
     ) {
         this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
+        RelationshipLookupModel relationshipLookupModelToInsert = new RelationshipLookupModel(
+            relationshipLookupName,
+            isActive,
+            femaleValue,
+            maleValue,
+            neutralValue
+        );
 
-        return this.locateRelationshipLookupMapper()
-            .insertRelationshipLookupModel(
-                new RelationshipLookupModel(relationshipLookupName, isActive, femaleValue, maleValue, neutralValue)
-            );
+        this.locateRelationshipLookupMapper().insertRelationshipLookupModel(relationshipLookupModelToInsert);
+        return relationshipLookupModelToInsert;
     }
 
     /**
@@ -119,9 +124,9 @@ public virtual with sharing class RelationshipLookupSettingsService {
      * @param  maleValue                 male relationship type value
      * @param  neutralValue              neutral relationship type value
      * @param  isActive                  specifies if the lookup is active
-     * @return                           updated relationship lookup name
+     * @return                           updated relationship lookup model
      */
-    public String updateRelationshipLookup(
+    public virtual RelationshipLookupModel updateRelationshipLookup(
         String oldRelationshipLookupName,
         String newRelationshipLookupName,
         String femaleValue,
@@ -137,16 +142,17 @@ public virtual with sharing class RelationshipLookupSettingsService {
             maleValue,
             neutralValue
         );
-        return this.locateRelationshipLookupMapper()
+        this.locateRelationshipLookupMapper()
             .updateRelationshipLookupModel(oldRelationshipLookupName, relationshipLookupModelToUpdate);
+        return relationshipLookupModelToUpdate;
     }
 
     /**
      * @description deletes a relationship lookup
      * @param  relationshipLookupName relationship lookup name to delete
-     * @return                        deleted relationship lookup name or null if the record was not found
+     * @return                        deleted relationship lookup model or null if the record was not found
      */
-    public virtual String deleteRelationshipLookup(String relationshipLookupName) {
+    public virtual RelationshipLookupModel deleteRelationshipLookup(String relationshipLookupName) {
         if (this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser() != true) {
             return null;
         }
@@ -158,16 +164,16 @@ public virtual with sharing class RelationshipLookupSettingsService {
             return null;
         }
 
-        return this.locateRelationshipLookupMapper()
-            .deleteRelationshipLookupModel(
-                new RelationshipLookupModel(
-                    relationshipLookupToDelete.name,
-                    relationshipLookupToDelete.Active__c,
-                    relationshipLookupToDelete.Female__c,
-                    relationshipLookupToDelete.Male__c,
-                    relationshipLookupToDelete.Neutral__c
-                )
-            );
+        RelationshipLookupModel relationshipLookupModelToDelete = new RelationshipLookupModel(
+            relationshipLookupToDelete.name,
+            relationshipLookupToDelete.Active__c,
+            relationshipLookupToDelete.Female__c,
+            relationshipLookupToDelete.Male__c,
+            relationshipLookupToDelete.Neutral__c
+        );
+
+        this.locateRelationshipLookupMapper().deleteRelationshipLookupModel(relationshipLookupModelToDelete);
+        return relationshipLookupModelToDelete;
     }
 
     /*****************************************************************************

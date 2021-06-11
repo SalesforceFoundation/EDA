@@ -110,7 +110,8 @@ public with sharing class RelationshipSettingsController {
     ) {
         try {
             return RelationshipSettingsController.locateRelationshipLookupSettingsService()
-                .insertRelationshipLookup(relationshipLookupName, femaleValue, maleValue, neutralValue, isActive);
+                .insertRelationshipLookup(relationshipLookupName, femaleValue, maleValue, neutralValue, isActive)
+                .name;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -144,7 +145,8 @@ public with sharing class RelationshipSettingsController {
                     maleValue,
                     neutralValue,
                     isActive
-                );
+                )
+                .name;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -159,7 +161,8 @@ public with sharing class RelationshipSettingsController {
     public static String deleteRelationshipLookup(String relationshipLookupName) {
         try {
             return RelationshipSettingsController.locateRelationshipLookupSettingsService()
-                .deleteRelationshipLookup(relationshipLookupName);
+                .deleteRelationshipLookup(relationshipLookupName)
+                .name;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
