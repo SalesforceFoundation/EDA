@@ -33,9 +33,9 @@
  */
 @isTest
 private with sharing class ErrorSettingsController_TEST {
-    /**
+    /**************************************************************************************************************************
      * @description Test method to verify that the locateErrorSettingsVMapper method returns instance of ErrorSettingsVMapper
-     */
+     **************************************************************************************************************************/
     @isTest
     private static void locateErrorSettingsVMapperValid() {
         Test.startTest();
@@ -49,9 +49,9 @@ private with sharing class ErrorSettingsController_TEST {
         );
     }
 
-    /**
+    /**************************************************************************************************************************
      * @description Test method to verify that the locateUserLookupResultVMapper method returns instance of UserLookupResultVMapper
-     */
+     **************************************************************************************************************************/
     @isTest
     private static void locateUserLookupResultVMapperValid() {
         Test.startTest();
@@ -65,10 +65,10 @@ private with sharing class ErrorSettingsController_TEST {
         );
     }
 
-    /**
+    /**************************************************************************************************************************
      * @description Test method to verify that the getErrorSettingsViewModel method returns an ErrorSettingsVModel that reflects the
      * error settings set in hierarchy settings
-     */
+     **************************************************************************************************************************/
     @isTest
     private static void getErrorSettingsViewModelValid() {
         ErrorSettingsVMapper.instance = new STUB_ErrorSettingsVMapper();
@@ -123,9 +123,9 @@ private with sharing class ErrorSettingsController_TEST {
         );
     }
 
-    /**
+    /**************************************************************************************************************************
      * @description Test method to verify that the getErrorSettingsViewModel method fails gracefuly when an exception is encountered.
-     */
+     **************************************************************************************************************************/
     @isTest
     private static void getErrorSettingsViewModelException() {
         ErrorSettingsVMapper.instance = new STUB_ExceptionErrorSettingsVMapper();
@@ -141,10 +141,10 @@ private with sharing class ErrorSettingsController_TEST {
         Test.stopTest();
     }
 
-    /**
+    /**************************************************************************************************************************
      * @description Test method to verify that the getLookupResultsLikeName method returns a List of LookupResults that reflects the
      * search string
-     */
+     **************************************************************************************************************************/
     @isTest
     private static void getLookupResultsLikeUserNameValid() {
         Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
@@ -174,9 +174,9 @@ private with sharing class ErrorSettingsController_TEST {
         System.assertEquals('user@test.com', lookupResult.meta, 'Lookup Result meta should be the expected value.');
     }
 
-    /**
+    /**************************************************************************************************************************
      * @description Test method to verify that the getLookupResultsLikeUserName method fails gracefuly when an exception is encountered.
-     */
+     **************************************************************************************************************************/
     @isTest
     private static void getLookupResultsLikeUserNameException() {
         UserLookupResultVMapper.instance = new STUB_UserLookupResultVMapperError();
@@ -192,10 +192,10 @@ private with sharing class ErrorSettingsController_TEST {
         }
     }
 
-    /**
+    /**************************************************************************************************************************
      * @description Test method to verify that the getLookupResultsLikeChatterGroupName method returns a List of LookupResults that reflects the
      * search string
-     */
+     **************************************************************************************************************************/
     @isTest
     private static void getLookupResultsLikeChatterGroupNameValid() {
         Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
@@ -241,9 +241,9 @@ private with sharing class ErrorSettingsController_TEST {
         );
     }
 
-    /**
+    /**************************************************************************************************************************
      * @description Test method to verify that the getLookupResultsLikeUserName method fails gracefuly when an exception is encountered.
-     */
+     **************************************************************************************************************************/
     @isTest
     private static void getLookupResultsLikeChatterGroupNameException() {
         ChatterGroupLookupResultVMapper.instance = new STUB_CGLookupResultVMapperError();
@@ -265,9 +265,9 @@ private with sharing class ErrorSettingsController_TEST {
      ****************************************************** STUBS **************************************************************
      **************************************************************************************************************************/
 
-    /**
+    /**************************************************************************************************************************
      * @description Stub class to simulate the response from ErrorSettingsVMapper to return a valid ErrorSettingsVModel
-     */
+     **************************************************************************************************************************/
     private class STUB_ErrorSettingsVMapper extends ErrorSettingsVMapper {
         public override ErrorSettingsVModel getErrorSettingsViewModel() {
             List<ComboboxValueVModel> errorNotificationsRecipientCategoryValues = new List<ComboboxValueVModel>{
@@ -282,18 +282,18 @@ private with sharing class ErrorSettingsController_TEST {
         }
     }
 
-    /**
+    /**************************************************************************************************************************
      * @description Stub class to simulate the response from ErrorSettingsVMapper to throw an exception
-     */
+     **************************************************************************************************************************/
     private class STUB_ExceptionErrorSettingsVMapper extends ErrorSettingsVMapper {
         public override ErrorSettingsVModel getErrorSettingsViewModel() {
             throw new TestException('Exception encountered!');
         }
     }
 
-    /**
+    /**************************************************************************************************************************
      * @description Stub class to simulate the response from UserLookupResultVMapper for valid information
-     */
+     **************************************************************************************************************************/
     private class STUB_UserLookupResultVMapper extends UserLookupResultVMapper {
         public Id userId;
 
@@ -315,18 +315,18 @@ private with sharing class ErrorSettingsController_TEST {
         }
     }
 
-    /**
+    /**************************************************************************************************************************
      * @description Stub class to simulate the response from UserLookupResultVMapper to throw an exception
-     */
+     **************************************************************************************************************************/
     private class STUB_UserLookupResultVMapperError extends UserLookupResultVMapper {
         public override List<LookupResult> getLookupResultsLikeName(String userNameMatch, Integer recordLimit) {
             throw new TestException('Exception encountered!');
         }
     }
 
-    /**
+    /**************************************************************************************************************************
      * @description Stub class to simulate the response from ChatterGroupLookupResultVMapper for valid information
-     */
+     **************************************************************************************************************************/
     private class STUB_ChatterGroupLookupResultVMapper extends ChatterGroupLookupResultVMapper {
         public Id chatterGroupId;
 
@@ -348,9 +348,9 @@ private with sharing class ErrorSettingsController_TEST {
         }
     }
 
-    /**
+    /**************************************************************************************************************************
      * @description Stub class to simulate the response from ChatterGroupLookupResultVMapper to throw an exception
-     */
+     **************************************************************************************************************************/
     private class STUB_CGLookupResultVMapperError extends ChatterGroupLookupResultVMapper {
         public override List<LookupResult> getLookupResultsLikeName(String chatterGrupNameMatch, Integer recordLimit) {
             throw new TestException('Exception encountered!');
