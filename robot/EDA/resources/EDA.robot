@@ -79,6 +79,16 @@ API Create Collaboration Group
     ...                  CollaborationType=Public
     [return]         ${group_id}
 
+API Update Records
+    [Documentation]         Updates the record based on the Id,field_name & field_value.
+    [Arguments]             ${obj_name}    ${id}   &{fields}
+    ${record} =             Salesforce Update  ${obj_name}   ${id}
+    ...                     &{fields}
+    @{records} =            Salesforce Query      ${obj_name}
+    ...                         select=Id
+    &{Id} =                 Get From List  ${records}  0
+    [return]                &{Id}
+
 Create Contact with Email
     [Documentation]         Creating a contact with email address through API
     ${first_name} =           Generate Random String
