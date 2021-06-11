@@ -23,7 +23,6 @@ import stgEnableDebugHelp from "@salesforce/label/c.stgEnableDebugHelp";
 import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
 import stgHelpErrorDisable from "@salesforce/label/c.stgHelpErrorDisable";
 
-const errorNotificationRecipientCategoryAllSysAdmins = "All Sys Admins";
 const errorNotificationRecipientCategoryChatterGroup = "Chatter Group";
 const errorNotificationRecipientCategoryUser = "User";
 export default class ErrorSettings extends LightningElement {
