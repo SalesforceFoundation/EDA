@@ -49,15 +49,24 @@
                     disabled={affordancesDisabled}
                 ></c-settings-row-input>
                 <template if:true={errorNotificationRecipientIsChatterGroup}>
-                    <c-single-lookup
-                        required={showRequired}
-                        label={labelReference.chatterGroupLookupTitle}
-                        remove-label={labelReference.lookupClearSelection}
-                        placeholder={labelReference.chatterGroupLookupPlaceholder}
-                        value={chatterValue}
-                        options={chatterOptions}
-                        disabled={affordancesDisabled}
-                    ></c-single-lookup>
+                    <div class="slds-col slds-size_2-of-3"></div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-grid slds-grid_align-end slds-var-p-right_x-large slds-var-p-bottom_x-large">
+                            <div class="slds-col">
+                                <c-single-lookup
+                                    required={showRequired}
+                                    label={labelReference.chatterGroupLookupTitle}
+                                    remove-label={labelReference.lookupClearSelection}
+                                    placeholder={labelReference.chatterGroupLookupPlaceholder}
+                                    value={chatterValue}
+                                    options={chatterOptions}
+                                    disabled={affordancesDisabled}
+                                    onsearch={handleChatterGroupSearch}
+                                    oninputchange={handleErrorNotificationRecipientChange}
+                                ></c-single-lookup>
+                            </div>
+                        </div>
+                    </div>
                 </template>
                 <template if:true={errorNotificationRecipientIsUser}>
                     <div class="slds-col slds-size_2-of-3"></div>
