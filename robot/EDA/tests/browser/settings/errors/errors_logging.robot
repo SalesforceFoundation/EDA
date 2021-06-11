@@ -11,7 +11,7 @@ Test Setup      Go to education cloud settings
 *** Keywords ***
 Update settings to out of the box values
     Go to education cloud settings
-    Select settings from navigation pane        Contact Information
+    Select settings from navigation pane        Errors
     Click action button on new EDA settings     Edit
     Set toggle input
     ...                                         Store Errors=True

@@ -12,7 +12,7 @@ Test Setup      Go to education cloud settings
 *** Keywords ***
 Update settings to out of the box values
     Go to education cloud settings
-    Select settings from navigation pane        Contact Information
+    Select settings from navigation pane        Program Plans
     Click action button on new EDA settings     Edit
     Set toggle input
     ...                                         Plan Requirement Hierarchy=True
