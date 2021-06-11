@@ -409,7 +409,11 @@ class EDA(BaseEDAPage):
     def go_to_education_cloud_settings(self):
         """ Navigates to the Education Cloud Settings Page"""
         url = self.cumulusci.org.lightning_base_url
-        url = "{}/lightning/n/Education_Cloud_Settings".format(url)
+        namespace=self.get_eda_namespace_prefix()
+        if namespace=="hed__": 
+            url = "{}/lightning/cmp/{}EDASettingsContainer".format(url,namespace)
+        else:
+            url = "{}/lightning/cmp/c__EDASettingsContainer".format(url)
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
 
