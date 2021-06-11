@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Household_Addresses_RecType__c</name>
     <help>世帯取引先で使用する取引先レコードタイプ。この設定は、住所レコードの管理と世帯取引先の命名形式に影響します。</help>
     <label>世帯住所の取引先レコードタイプ</label>
+    <name>Household_Addresses_RecType__c</name>
 </CustomFieldTranslation>

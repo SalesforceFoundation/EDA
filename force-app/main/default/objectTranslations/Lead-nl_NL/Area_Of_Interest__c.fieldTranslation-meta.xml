@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Area_Of_Interest__c</name>
     <help>Het interessegebied van de lead, zoals een programma, diploma of concentratie.</help>
     <label>Interessegebied</label>
+    <name>Area_Of_Interest__c</name>
     <picklistValues>
         <masterLabel>None</masterLabel>
         <translation>Geen</translation>

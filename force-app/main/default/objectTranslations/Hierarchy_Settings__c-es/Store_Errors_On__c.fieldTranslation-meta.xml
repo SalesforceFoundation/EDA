@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Store_Errors_On__c</name>
     <help>Active esta función para almacenar errores.</help>
     <label>Guardar errores</label>
+    <name>Store_Errors_On__c</name>
 </CustomFieldTranslation>

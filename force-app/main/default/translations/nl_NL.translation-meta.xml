@@ -1,1925 +1,1929 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Translations xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customLabels>
-        <name>AfflMappingsDescription</name>
-        <label>Wijs accountrecordtypen toe aan de primaire-affiliatievelden in Contactpersonen om te bepalen welke impact updates op deze velden hebben op affiliatierecords en welke impact updates op affiliatierecords hebben op contactpersoonsrecords.</label>
-    </customLabels>
-    <customLabels>
-        <name>AfflProgEnrollDeleted</name>
-        <label>Als een affiliatie gerelateerd is aan slechts één programma-inschrijving en deze inschrijving wordt verwijderd, verwijdert u ook de affiliatie. Schakelt u deze instelling niet in, dan selecteert u een status voor niet-verwijderde affiliaties.</label>
-    </customLabels>
-    <customLabels>
-        <name>AttendanceCourseConnectionContactMismatch</name>
-        <label>Geef een cursusverbinding op met dezelfde contactpersoon als die u voor dit aanwezigheidsevent hebt opgegeven.</label>
-    </customLabels>
-    <customLabels>
-        <name>AutoCreateFieldError</name>
-        <label>Er is een ongeldige instelling voor het automatisch maken van relaties geconfigureerd in EDA-instellingen | Relaties | Automatisch maken. Verwijder of bewerk de ongeldige instelling en probeer het dan opnieuw.</label>
-    </customLabels>
-    <customLabels>
-        <name>BatchJobRunningProblem</name>
-        <label>De Apex-taak kan niet worden uitgevoerd.</label>
-    </customLabels>
-    <customLabels>
-        <name>BothFieldAndValue</name>
-        <label>Stel het filterveld in, of zowel het filterveld als de filterwaarde.</label>
-    </customLabels>
-    <customLabels>
-        <name>CannotChangeContactAndCourseOffering</name>
-        <label>Kan de contactpersoon of het cursusaanbod niet wijzigen voor een cursusverbinding die gekoppelde termijnscores of aanwezigheidsevents heeft. Als u een cursusverbinding met een andere contactpersoon of ander cursusaanbod wilt, maakt u een nieuwe cursusverbinding.</label>
-    </customLabels>
-    <customLabels>
-        <name>CannotDelete</name>
-        <label>Deze record kan niet worden verwijderd omdat er een of meer gerelateerde records aan zijn gekoppeld. Verwijder eerst de gekoppelde records en dan pas deze record. Om te bepalen welke records eerst moeten worden verwijderd, klikt u op het tabblad Gerelateerd. Als u geen gerelateerde records ziet of als u ze niet kunt verwijderen, vraag dan uw systeembeheerder om hulp.</label>
-    </customLabels>
-    <customLabels>
-        <name>DefaultAccountName</name>
-        <label>Account</label>
-    </customLabels>
-    <customLabels>
-        <name>DefaultAdminName</name>
-        <label>Administratief account</label>
-    </customLabels>
-    <customLabels>
-        <name>DefaultHouseholdName</name>
-        <label>Huishouden</label>
-    </customLabels>
-    <customLabels>
-        <name>EDASettingsContainerAuraComponentLabel</name>
-        <label>EDA-instellingen</label>
-    </customLabels>
-    <customLabels>
-        <name>EDCSettingsContainerAuraComponentLabel</name>
-        <label>Instellingen voor Education Cloud</label>
-    </customLabels>
-    <customLabels>
-        <name>Female</name>
-        <label>Vrouw</label>
-    </customLabels>
-    <customLabels>
-        <name>InvalidFilter</name>
-        <label>Het veld dat als filterveld is ingevoerd is ongeldig. Filtervelden kunnen elk standaard of aangepast veld zijn op het object waarvoor deze trigger is, evenals een veld op een gerelateerde record. Zorg dat u de API-naam van het veld gebruikt en laat EDA-naamruimtevoorvoegsels (&quot;hed__&quot;) weg.</label>
-    </customLabels>
-    <customLabels>
-        <name>Male</name>
-        <label>Man</label>
-    </customLabels>
-    <customLabels>
-        <name>MultipleCourseConnection</name>
-        <label>Er is meer dan één cursusverbinding gekoppeld aan deze contactpersoon en dit cursusaanbod. Specificeer de cursusverbinding die de inschrijving van de student in dit cursusaanbod voor deze termijnscore vertegenwoordigt.</label>
-    </customLabels>
-    <customLabels>
-        <name>NoContactCOFound</name>
-        <label>De contactpersoon en het cursusaanbod zijn niet gespecificeerd of komen niet overeen met de cursusverbinding. Geef of alleen een cursusverbinding op, of zowel een contactpersoon als een cursusaanbod, zodat we deze record met de juiste gegevens kunnen opslaan.</label>
-    </customLabels>
-    <customLabels>
-        <name>NoCourseConnection</name>
-        <label>Er is geen cursusverbinding gekoppeld aan deze contactpersoon en dit cursusaanbod. Als deze student is ingeschreven voor dit cursusaanbod, maak dan een cursusverbinding.</label>
-    </customLabels>
-    <customLabels>
-        <name>NoDataMatch</name>
-        <label>De contactpersoon en het cursusaanbod komen niet overeen met de cursusverbinding. Geef of alleen een cursusverbinding op, of zowel een contactpersoon als een cursusaanbod, zodat we deze record met de juiste gegevens kunnen opslaan.</label>
-    </customLabels>
-    <customLabels>
-        <name>NoFieldsPopulated</name>
-        <label>Geef of alleen een cursusverbinding op, of zowel een contactpersoon als een cursusaanbod.</label>
-    </customLabels>
-    <customLabels>
-        <name>NoneOption</name>
-        <label>Geen</label>
-    </customLabels>
-    <customLabels>
-        <name>OnlyCourseConnectionPopulated</name>
-        <label>Er is geen contactpersoon of cursusaanbod gekoppeld aan deze cursusverbinding. Kies een geldige cursusverbinding.</label>
-    </customLabels>
-    <customLabels>
-        <name>PreferredEmailMatchMustExist</name>
-        <label>We kunnen het e-mailadres dat in Voorkeurs-e-mail is opgegeven niet vinden. Zorg dat u het veldlabel van een bestaand aangepast e-mailveld invoert.</label>
-    </customLabels>
-    <customLabels>
-        <name>PreferredEmailMatchNotNull</name>
-        <label>Het e-mailveld dat u in Voorkeurs-e-mail hebt geselecteerd is leeg. Kies een andere voorkeurs-e-mail of voeg een waarde toe voor dat e-mailveld.</label>
-    </customLabels>
-    <customLabels>
-        <name>PreferredEmailRequiredError</name>
-        <label>Selecteer een waarde voor Voorkeurs-e-mail.</label>
-    </customLabels>
-    <customLabels>
-        <name>PreferredPhoneMatchMustExist</name>
-        <label>We kunnen het telefoonnummer dat in Voorkeurstelefoonnummer is opgegeven niet vinden. Zorg dat u het veldlabel van een bestaand aangepast telefoonnummerveld invoert.</label>
-    </customLabels>
-    <customLabels>
-        <name>PreferredPhoneMatchNotNull</name>
-        <label>Het telefoonnummer dat u voor Voorkeurstelefoonnummer selecteert mag niet leeg zijn.</label>
-    </customLabels>
-    <customLabels>
-        <name>PreferredPhoneRequiredError</name>
-        <label>Selecteer een waarde voor Voorkeurstelefoonnummer.</label>
-    </customLabels>
-    <customLabels>
-        <name>Relationship_Explanation_Connector</name>
-        <label>is</label>
-    </customLabels>
-    <customLabels>
-        <name>Relationship_Split</name>
-        <label>-</label>
-    </customLabels>
-    <customLabels>
-        <name>RelationshipsAutoDescription</name>
-        <label>Met instellingen voor automatisch maken kunt u definiëren wanneer er automatisch een relatierecord wordt gemaakt tussen een contactpersoon en een campagnelid, op basis van een aangepast opzoekveld op één van de twee objecten. De opzoekopdracht &apos;doorverwijzing&apos; van campagnelid naar contactpersoon kan bijvoorbeeld tot de relatie &apos;doorverwijzer&apos; en &apos;doorverwezene&apos; leiden tussen de twee contactpersonen. (Deze functie is niet beschikbaar voor leads of campagnelidobjecten die naar leads verwijzen.)</label>
-    </customLabels>
-    <customLabels>
-        <name>RelationshipsLookupDescription</name>
-        <label>Configureer overeenkomende relaties zodat u weet hoe contactpersonen zijn gerelateerd aan andere contactpersonen van contactpersoonrecords.</label>
-    </customLabels>
-    <customLabels>
-        <name>acctNamingOther</name>
-        <label>Aangepaste indeling</label>
-    </customLabels>
-    <customLabels>
-        <name>adapterException</name>
-        <label>Ongeldige aanroep. Deze functie is voorbehouden voor Salesforce-gebruik.</label>
-    </customLabels>
-    <customLabels>
-        <name>addrHhAdmAccountOnly</name>
-        <label>Adresrecords kunnen alleen worden gekoppeld aan accounts of contactpersonen.</label>
-    </customLabels>
-    <customLabels>
-        <name>addrNotEnabledAccount</name>
-        <label>De mogelijkheid om meerdere adressen toe te voegen is uitgeschakeld voor dit accountrecordtype. Als u dit wilt inschakelen, gaat u naar EDA-instellingen, klikt u op Accounts en contactpersonen, en selecteert u het toepasselijke selectievakje naast Accounttypen die meerdere adressen kunnen bevatten.</label>
-    </customLabels>
-    <customLabels>
-        <name>addrNotEnabledContact</name>
-        <label>De mogelijkheid om meerdere adressen toe te voegen is uitgeschakeld voor contactpersonen. Als u dit wilt inschakelen, gaat u naar EDA-instellingen, klikt u op Accounts en contactpersonen, en selecteert u het toepasselijke selectievakje Meerdere adressen ingeschakeld voor contactpersoon.</label>
-    </customLabels>
-    <customLabels>
-        <name>addrSeasonalOverlap</name>
-        <label>Er is een bestaande adresrecord voor dit account of deze contactpersoon waarbij de begin- en einddatum van het seizoen de seizoensdatums voor deze record overlappen. Pas de seizoensdatums aan zodat ze de andere adresrecord niet overlappen.</label>
-    </customLabels>
-    <customLabels>
-        <name>addrSeasonalPartial</name>
-        <label>Een adres kan geen gedeeltelijke begin- en einddatums van het seizoen hebben. Voer waarden in voor alle velden voor de begin- en einddatums van het seizoen of laat al deze velden leeg.</label>
-    </customLabels>
-    <customLabels>
-        <name>addrSeasonalPartialYear</name>
-        <label>Een adres kan geen gedeeltelijke begin- en einddatums van het seizoen hebben. Voer waarden in voor alle velden voor de begin- en einddatums van het seizoen of laat al deze velden leeg.</label>
-    </customLabels>
-    <customLabels>
-        <name>addrValidParentObjects</name>
-        <label>Adresrecords kunnen alleen worden gekoppeld aan accounts of contactpersonen.</label>
-    </customLabels>
-    <customLabels>
-        <name>adminAccNameFormat</name>
-        <label>Naamindeling administratief account</label>
-    </customLabels>
-    <customLabels>
-        <name>adminAccNameFormatHelpText</name>
-        <label>De naamindeling voor administratieve accounts die automatisch worden gemaakt.</label>
-    </customLabels>
-    <customLabels>
-        <name>affiliationWithSameAccExists</name>
-        <label>Deze contactpersoon heeft al een primaire affiliatie met het gespecificeerde account. Schakel de primaire instelling uit voor de andere affiliatie zodat u deze nieuwe affiliatie als primair kunt aanmerken, of maak deze affiliatie zonder de primaire waarde.</label>
-    </customLabels>
-    <customLabels>
-        <name>afflAccountNoRecordType</name>
-        <label>Deze affiliatie kan niet worden gemaakt omdat het opgegeven account geen recordtype heeft.</label>
-    </customLabels>
-    <customLabels>
-        <name>afflAccoutMappingError</name>
-        <label>Deze record kan niet worden opgeslagen vanwege een accountrecordtypefout in de affiliatietoewijzingen. Vraag uw beheerder om te verifiëren dat accountrecordtypen correct zijn toegewezen aan primaire contactpersoonaffiliaties.</label>
-    </customLabels>
-    <customLabels>
-        <name>afflNullPointerError</name>
-        <label>Het accountrecordtype {0} bestaat niet. Vraag uw beheerder om de recordtypen in de affiliatietoewijzingen te controleren.</label>
-    </customLabels>
-    <customLabels>
-        <name>afflTypeEnforced</name>
-        <label>Recordtypevalidatie</label>
-    </customLabels>
-    <customLabels>
-        <name>afflTypeEnforcedDescription</name>
-        <label>Accounts die als primaire affiliatie van een contactpersoon zijn gedefinieerd, moeten verplicht een recordtype gebruiken. Ook worden alle accountrecordtypen toegewezen aan primaire-affiliatievelden in het object Contactpersoon. Als de validatie mislukt, wordt de affiliatie niet opgeslagen.</label>
-    </customLabels>
-    <customLabels>
-        <name>automaticHHNaming</name>
-        <label>Huishoudenaccounts automatisch hernoemen</label>
-    </customLabels>
-    <customLabels>
-        <name>automaticHHNamingHelpText</name>
-        <label>Huishoudenaccounts worden automatisch hernoemd wanneer contactpersonen worden toegevoegd of gewijzigd.</label>
-    </customLabels>
-    <customLabels>
-        <name>defaultAccountRecordTypeMissingError</name>
-        <label>Het recordtype administratief account is niet gevonden in uw organisatie. Gebruik na installatie objectbeheer om een nieuw recordtype met de naam &apos;administratief&apos; te maken voor het accountobject.</label>
-    </customLabels>
-    <customLabels>
-        <name>defaultNamingConnector</name>
-        <label>en</label>
-    </customLabels>
-    <customLabels>
-        <name>duplicateFieldInFilter</name>
-        <label>(DuplicateAcknowledged)</label>
-    </customLabels>
-    <customLabels>
-        <name>duplicateWithHEDAField</name>
-        <label>De filterveldwaarde specificeert een duplicaat van een productveld. Geef een veld op dat geen duplicaat is. Zo niet, dan filteren we op de waarde in het productveld. Als u voor deze tweede optie kiest, moet u erkennen dat u deze filterlogica accepteert door het achtervoegsel {0} aan de veldnaam toe te voegen. Als het gedupliceerde veld bijvoorbeeld Overleden__c is, voert u Overleden__c{0} in als de waarde voor het filterveld.</label>
-    </customLabels>
-    <customLabels>
-        <name>exceptionRequiredField</name>
-        <label>Deze record kan niet worden opgeslagen omdat een vereist veld leeg is. Het vereiste veld kan zich op deze record bevinden of op een record die door een opzoekwaarde aan deze record gerelateerd is.</label>
-    </customLabels>
-    <customLabels>
-        <name>exceptionValidationRule</name>
-        <label>Een validatieregel voorkomt dat deze record kan worden verwerkt. De validatieregel kan zich in deze record bevinden of in een gerelateerde record die momenteel wordt bijgewerkt. VALIDATIEBERICHT:</label>
-    </customLabels>
-    <customLabels>
-        <name>fieldWithHEDANamespace</name>
-        <label>Het filterveld mag geen naamruimtevoorvoegsels bevatten zoals hed__. Verwijder het naamruimtevoorvoegsel en probeer het opnieuw.</label>
-    </customLabels>
-    <customLabels>
-        <name>firstNameLastNameAdminAcc</name>
-        <label>Administratief account {!{!FirstName}} {!LastName}</label>
-    </customLabels>
-    <customLabels>
-        <name>firstNameLastNameFamily</name>
-        <label>Familie {!{!FirstName}} {!LastName}</label>
-    </customLabels>
-    <customLabels>
-        <name>firstNameLastNameHH</name>
-        <label>Huishouden {!{!FirstName}} {!LastName}</label>
-    </customLabels>
-    <customLabels>
-        <name>giftProcessingConfigException</name>
-        <label>U probeert giftverwerking te gebruiken zonder de vereiste configuratiegegevens. Neem voor hulp contact op met de beheerder.</label>
-    </customLabels>
-    <customLabels>
-        <name>hhAccNameFormat</name>
-        <label>Naamindeling huishoudenaccount</label>
-    </customLabels>
-    <customLabels>
-        <name>hhAccNameFormatHelpText</name>
-        <label>De naamindeling voor huishoudenaccounts die automatisch worden gemaakt.</label>
-    </customLabels>
-    <customLabels>
-        <name>hhFamily</name>
-        <label>Familie</label>
-    </customLabels>
-    <customLabels>
-        <name>invalidContactFieldInAffiliationMapping</name>
-        <label>Deze record kan niet worden opgeslagen vanwege een fout in het contactpersoonsveld {1}. Vraag de beheerder om Affiliatietoewijzingen te controleren in de EDA-instellingen en de waarde voor {0} in te stellen op de API-naam van een accountopzoekveld in het object Contactpersoon in plaats van op {1}.</label>
-    </customLabels>
-    <customLabels>
-        <name>invalidRecordTypeInAffiliationMapping</name>
-        <label>Deze record kan niet worden opgeslagen, omdat {1} geen geldig accountrecordtype is. Vraag de beheerder om Affiliatietoewijzingen te controleren in de EDA-instellingen en de waarde voor {0} in te stellen op de API-naam van een geldig accountrecordtype in plaats van op {1}.</label>
-    </customLabels>
-    <customLabels>
-        <name>lastNameAdminAcc</name>
-        <label>Administratief account {!LastName}</label>
-    </customLabels>
-    <customLabels>
-        <name>lastNameFamily</name>
-        <label>Familie {!LastName}</label>
-    </customLabels>
-    <customLabels>
-        <name>lastNameFirstNameAdminAcc</name>
-        <label>Administratief account {!LastName} ({!{!FirstName}})</label>
-    </customLabels>
-    <customLabels>
-        <name>lastNameFirstNameFamily</name>
-        <label>Familie {!LastName} ({!{!FirstName}})</label>
-    </customLabels>
-    <customLabels>
-        <name>lastNameFirstNameHH</name>
-        <label>Huishouden {!LastName} ({!{!FirstName}})</label>
-    </customLabels>
-    <customLabels>
-        <name>lastNameHH</name>
-        <label>Huishouden {!LastName}</label>
-    </customLabels>
-    <customLabels>
-        <name>nestedPlanRequirementPPExp</name>
-        <label>Planvereisten kunnen een programmaplan of een bovenliggende planvereiste specificeren, maar niet allebei. Als deze planvereiste een onderliggend element is van een andere planvereiste, geeft u alleen een bovenliggende planvereiste op. Als deze planvereiste een onderliggend element is van een programmaplan, geeft u alleen een programmaplan op.</label>
-    </customLabels>
-    <customLabels>
-        <name>noAccRecType</name>
-        <label>Het gedefinieerde accountrecordtype bestaat niet:</label>
-    </customLabels>
-    <customLabels>
-        <name>noAfflMappings</name>
-        <label>Er zijn nog geen affiliatietoewijzingen. Klik op Nieuw om er een te maken.</label>
-    </customLabels>
-    <customLabels>
-        <name>noAutoCreateSettings</name>
-        <label>Er zijn geen instellingen voor automatisch maken gedefinieerd. Gebruik het formulier hieronder om een nieuwe instelling voor automatisch maken te maken.</label>
-    </customLabels>
-    <customLabels>
-        <name>noRecSettings</name>
-        <label>Er zijn geen wederzijdse instellingen gedefinieerd. Gebruik het formulier hieronder om een nieuwe wederzijdse instelling te maken.</label>
-    </customLabels>
-    <customLabels>
-        <name>preferredBatchDefaultEmail</name>
-        <label>E-mail (standaard)</label>
-    </customLabels>
-    <customLabels>
-        <name>preferredBatchDefaultPhone</name>
-        <label>Telefoon (standaard)</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAccModelTitle</name>
-        <label>Standaard accountmodel</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAccountModelNav</name>
-        <label>Accountmodel</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAccountModelSettingsTitle</name>
-        <label>Instellingen voor accountmodel</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAccountRecordTypeAvailableListTitle</name>
-        <label>Beschikbare accountrecordtypen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAccountRecordTypeGroupLabelTitle</name>
-        <label>Accountrecordtypen selecteren</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAccountRecordTypeHelp</name>
-        <label>Er zijn alleen niet-toegewezen accountrecordtypen beschikbaar.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAccountRecordTypeSelectedListTitle</name>
-        <label>Geselecteerde accountrecordtypen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAccountRecordTypeSupportsHHAddress</name>
-        <label>Recordtype huishoudenaccount</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAccountTypesMultiAddressesEnabled</name>
-        <label>Meerdere adressen voor accounttypen inschakelen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAccoutTypesWithoutContactsDelete</name>
-        <label>Accounts zonder contactpersonen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAddHispanicOrLatinoPicklistValue</name>
-        <label>Voeg indien nodig &apos;Spaans of Latino&apos; als keuzelijstwaarde toe aan het veld Etniciteit.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAddNotHispanicOrLatinoPicklistValue</name>
-        <label>Voeg indien nodig &apos;Niet Spaans of Latino&apos; als keuzelijstwaarde toe aan het veld Etniciteit.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAddressSettingsNav</name>
-        <label>Adressen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAddressSettingsTitle</name>
-        <label>Adresinstellingen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAdminAccountCustomName</name>
-        <label>Aangepaste naamindeling</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAdminAccountCustomNameHelp</name>
-        <label>Geef zelf een naamgevingsconventie op.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAdminAccountNamingTitle</name>
-        <label>Naamgeving administratief account</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAdminAccountRecordType</name>
-        <label>Recordtype administratief account</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAffiliationsDeleteModalBody</name>
-        <label>Met deze affiliatietoewijzing wordt het accountrecordtype {0} toegewezen aan het veld {1} in contactpersoonsrecords. U moet wel zeker weten dat u deze wilt verwijderen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAffiliationsDeleteModalTitle</name>
-        <label>Affiliatietoewijzing verwijderen?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAffiliationsDeleteSuccess</name>
-        <label>Primaire affiliatie {0} is verwijderd.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAffiliationsEditModalBody</name>
-        <label>Selecteer het accountrecordtype dat u wilt toewijzen aan het veld Primaire affiliatie in Contactpersoon. De waarde van het accountrecordtype wordt automatisch ingevuld in het veld Primaire affiliatie.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAffiliationsEditModalTitle</name>
-        <label>Affiliatietoewijzing bewerken?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAffiliationsEditSuccess</name>
-        <label>Affiliatietoewijzing voor {0} is opgeslagen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAffiliationsNewModalBody</name>
-        <label>Selecteer het accountrecordtype dat u wilt toewijzen aan het veld Primaire affiliatie in Contactpersoon. De waarde van het accountrecordtype wordt automatisch ingevuld in het veld Primaire affiliatie.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAffiliationsNewSuccess</name>
-        <label>Primaire affiliatie {0} is gemaakt.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAffiliationsSettingsNav</name>
-        <label>Affiliaties</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAffiliationsSettingsTitle</name>
-        <label>Instellingen voor affiliaties</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAfflCopyProgramEnrollmentEndDate</name>
-        <label>Einddatum affiliatie</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAfflCopyProgramEnrollmentStartDate</name>
-        <label>Startdatum affiliatie</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAfflDeleteProgramEnrollment</name>
-        <label>Status voor niet-verwijderde affiliaties</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAfflDeleteWithAutoEnrollment</name>
-        <label>Als u deze affiliatietoewijzing verwijdert, wordt er niet meer automatisch een programma-inschrijvingsrecord gemaakt wanneer er een affiliatie met het accountrecordtype {0} wordt gemaakt voor een contactpersoon.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAfflNotInserted</name>
-        <label>Deze affiliatie kan niet worden toegewezen omdat deze naar een recordtype verwijst waarnaar al wordt verwezen door een andere affiliatietoewijzing. Als u deze toewijzing wilt toevoegen zodat de affiliatie wordt vertaald, klikt u op Bewerken om de bestaande toewijzing aan te passen. Specificeer vervolgens de API-naam van het veld onder Primair affiliatieveld contactpersoon. Wijzig de naam die voor Accountrecordtype is opgegeven niet.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAfflProgEnrollDeleteRelated</name>
-        <label>Affiliaties gerelateerd aan verwijderde programma-inschrijvingen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAfflProgEnrollDeleteTitle</name>
-        <label>Verwijdering van programma-inschrijvingen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAfflProgEnrollSetRole</name>
-        <label>Rol opgeven voor gemaakte affiliaties</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAfflProgEnrollSetRoleValue</name>
-        <label>Rol voor gemaakte affiliaties</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAfflProgEnrollSetStatusValue</name>
-        <label>Status voor gemaakte affiliaties</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAfflProgramEnrollmentSettingsTitle</name>
-        <label>Bij programma-inschrijving gemaakte affiliaties</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAfterRunBackfill</name>
-        <label>Na uitvoeren van de backfill</label>
-    </customLabels>
-    <customLabels>
-        <name>stgApiNameLabel</name>
-        <label>API-naam: {0}</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoCompleteEnterChatterGroupName</name>
-        <label>Begin de Chatter-groepsnaam te typen om te zoeken.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoCompleteEnterUserName</name>
-        <label>Begin de gebruikersnaam te typen om te zoeken.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoCompleteSelectChatterGroup</name>
-        <label>Chatter-groep selecteren</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoCompleteSelectUser</name>
-        <label>Gebruiker selecteren</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollment</name>
-        <label>Automatische inschrijving</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentDeleteModalBody</name>
-        <label>Met deze toewijzing van automatische inschrijving worden programma-inschrijvingen gemaakt voor affiliaties met accountrecordtype {0}, affiliatiestatus {1} en affiliatierol {2}. Als u deze toewijzing van automatische inschrijving verwijdert, worden er geen programma-inschrijvingen voor overeenkomende affiliaties gemaakt.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentDeleteModalTitle</name>
-        <label>Toewijzing automatische inschrijving verwijderen?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentDeleteSuccess</name>
-        <label>Toewijzing automatische inschrijving {0} is verwijderd.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentEditModalBody</name>
-        <label>Selecteer waarden waarmee een programma-inschrijvingsrecord wordt gemaakt wanneer met deze waarden een affiliatie wordt gemaakt of bijgewerkt en de affiliatie is aangemerkt als Primair.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentEditModalTitle</name>
-        <label>Toewijzing automatische inschrijving bewerken?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentEditSuccess</name>
-        <label>Toewijzing automatische inschrijving {0} is opgeslagen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentNewModalBody</name>
-        <label>Selecteer waarden waarmee een programma-inschrijvingsrecord wordt gemaakt wanneer met deze waarden een affiliatie wordt gemaakt of bijgewerkt en de affiliatie is aangemerkt als Primair.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentNewModalTitle</name>
-        <label>Nieuwe toewijzing automatische inschrijving?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentNewSuccess</name>
-        <label>Toewijzing automatische inschrijving {0} is gemaakt.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentProgramDesc</name>
-        <label>Wanneer er primaire affiliaties worden gemaakt met de waarden in deze toewijzingen, maakt u automatisch programma-inschrijvingen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentProgramTitle</name>
-        <label>Toewijzingen voor automatische inschrijving</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentRole</name>
-        <label>Automatische inschrijvingsrol</label>
-    </customLabels>
-    <customLabels>
-        <name>stgAutoEnrollmentStatus</name>
-        <label>Automatische inschrijvingsstatus</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBackfillQueuedEmailSent</name>
-        <label>De backfill is in de wachtrij geplaatst. Er wordt een e-mail verzonden bij voltooiing van de batch.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBeforeRunBackfill</name>
-        <label>Voor uitvoeren van de backfill</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnAddMapping</name>
-        <label>Nieuw</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnAddSetting</name>
-        <label>Instelling toevoegen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnCancel</name>
-        <label>Annuleren</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnClearSelectionA11y</name>
-        <label>Selectie wissen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnCommunity</name>
-        <label>Trailblazer-community openen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnCommunityActionA11y</name>
-        <label>Ga naar de Trailblazer-community.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnDelete</name>
-        <label>Verwijderen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnDocumentation</name>
-        <label>Documentatie</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnDocumentationActionA11y</name>
-        <label>Ga naar de EDA-documentatie.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnEDCTrailhead</name>
-        <label>Trailhead openen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnEDCTrailheadActionA11y</name>
-        <label>Ga naar de Education Cloud-trailmix.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnEdit</name>
-        <label>Bewerken</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnHealthCheck</name>
-        <label>Controle van de instellingentoestand openen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnNewAutoEnrollA11y</name>
-        <label>Maak een toewijzing van automatische inschrijving.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnRefreshAdminNames</name>
-        <label>Bijwerken</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnRefreshAdminNamesA11y</name>
-        <label>Werk alle administratief-accountnamen bij.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnRefreshEthnicityDataA11y</name>
-        <label>Werk het veld Ras in Contactpersoon bij met waarden uit het veld Etniciteit. De waarden &apos;Niet Spaans of Latino&apos; en &apos;Spaans of Latino&apos; worden niet gekopieerd.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnRefreshHouseholdNames</name>
-        <label>Bijwerken</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnRefreshHouseholdNamesA11y</name>
-        <label>Werk alle huishoudenaccountnamen bij.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnRunBackfill</name>
-        <label>Backfill uitvoeren</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnRunCopy</name>
-        <label>Bijwerken</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnRunCopyA11y</name>
-        <label>Werk het veld Uitgebreide beschrijving in Cursusrecords bij zodat tekst uit het veld Beschrijving wordt gebruikt.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnRunCourseConnBackfillA11y</name>
-        <label>Werk cursusverbindingen voor stafleden bij naar de waarde voor Standaard recordtype voor staflid en overige cursusverbindingen naar de waarde voor Standaard recordtype voor student.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnSave</name>
-        <label>Opslaan</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnSettings</name>
-        <label>Instellingen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnSettingsActionA11y</name>
-        <label>Ga naar de EDA-instellingen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnTrailhead</name>
-        <label>Trailhead</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnTrailheadActionA11y</name>
-        <label>Ga naar de EDA Trailhead-modules.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnUpdate</name>
-        <label>Bijwerken</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnVideos</name>
-        <label>YouTube</label>
-    </customLabels>
-    <customLabels>
-        <name>stgBtnVideosActionA11y</name>
-        <label>YouTube</label>
-    </customLabels>
-    <customLabels>
-        <name>stgCleanupQueuedEmailSent</name>
-        <label>De opschoning is in de wachtrij geplaatst. Er wordt een e-mail verzonden bij voltooiing van de batch.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColAccountRecordType</name>
-        <label>Accountrecordtype</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColActive</name>
-        <label>Actief</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColAutoEnrollmentRole</name>
-        <label>Automatische inschrijvingsrol</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColAutoEnrollmentStatus</name>
-        <label>Automatische inschrijvingsstatus</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColCampTypes</name>
-        <label>Campagnetypen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColContactPrimaryAfflField</name>
-        <label>Het veld Primaire affiliatie in Contactpersoon</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColFemale</name>
-        <label>Vrouw</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColField</name>
-        <label>Veldlabel</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColMale</name>
-        <label>Man</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColNeutral</name>
-        <label>Neutraal</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColObject</name>
-        <label>API-naam van object</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColProducts</name>
-        <label>Producten</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColRelType</name>
-        <label>Relatietype</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColRelationshipName</name>
-        <label>Naam</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColResources</name>
-        <label>Resources</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColRole</name>
-        <label>Rol</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColStatus</name>
-        <label>Status</label>
-    </customLabels>
-    <customLabels>
-        <name>stgColTools</name>
-        <label>Hulpmiddelen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgCommunityTitle</name>
-        <label>Trailblazer-community</label>
-    </customLabels>
-    <customLabels>
-        <name>stgConfirmReadyRunBackfill</name>
-        <label>Ik begrijp het en ben er klaar voor om de backfill uit te voeren.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgContactInformationSettingsNav</name>
-        <label>Gegevens contactpersoon</label>
-    </customLabels>
-    <customLabels>
-        <name>stgContactInformationSettingsTitle</name>
-        <label>Instellingen voor contactgegevens</label>
-    </customLabels>
-    <customLabels>
-        <name>stgContactMultiAddressesEnabled</name>
-        <label>Meerdere adressen voor contactpersoon toestaan</label>
-    </customLabels>
-    <customLabels>
-        <name>stgCourseConnBackFillError</name>
-        <label>Er is een fout opgetreden bij het starten van de backfill.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgCourseConnBackFillSuccess</name>
-        <label>Er komt een update voor de recordtypen Cursusverbinding. Controleer de status van de taak onder Apex-taken in Set-up.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgCourseConnectionBackfillModalTitle</name>
-        <label>Recordtypen voor cursusverbindingen bijwerken?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgCourseConnectionsNav</name>
-        <label>Cursusverbindingen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgCourseConnectionsTitle</name>
-        <label>Instellingen voor cursusverbindingen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgCourseDataMigrationModalBody</name>
-        <label>Tekst uit het veld Beschrijving wordt naar het veld Uitgebreide beschrijving in Cursusrecords gekopieerd. Bestaande waarden voor Uitgebreide beschrijving worden niet overschreven. Werk paginalay-outs en andere verwijzingen naar het veld Beschrijving bij wanneer deze update is voltooid.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgCourseDataMigrationModalTitle</name>
-        <label>Het veld Uitgebreide beschrijving bijwerken?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgCourseDescriptionCopyEmailBody</name>
-        <label>De Apex-batchtaak heeft {0} batches verwerkt met {1} fouten.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgCourseDescriptionCopyEmailSubject</name>
-        <label>Kopieertaak cursusbeschrijving voltooid met status:</label>
-    </customLabels>
-    <customLabels>
-        <name>stgCoursesAndEnrollmentsNav</name>
-        <label>Cursussen en inschrijvingen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgDefaultContactLanguageFluency</name>
-        <label>Taalbeheersing contactpersoon</label>
-    </customLabels>
-    <customLabels>
-        <name>stgDefaultFacultyTypeTitle</name>
-        <label>Standaard recordtype voor staflid</label>
-    </customLabels>
-    <customLabels>
-        <name>stgDefaultStudentTypeTitle</name>
-        <label>Standaard recordtype voor student</label>
-    </customLabels>
-    <customLabels>
-        <name>stgDisableErrorHandlingTitle</name>
-        <label>Foutafhandeling</label>
-    </customLabels>
-    <customLabels>
-        <name>stgDisablePreferredEmailEnforcement</name>
-        <label>Voorkeurs-e-mailadres vereisen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgDisablePreferredPhoneEnforcement</name>
-        <label>Voorkeurstelefoonnummer vereisen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgDuplicateRelationships</name>
-        <label>Dubbele relaties voorkomen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgDuplicateRelationshipsHelp</name>
-        <label>Geef aan of u wilt voorkomen dat er meer dan één relatierecord van hetzelfde type bestaat tussen twee contactpersonen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgEDAAppDesc</name>
-        <label>Education Data Architecture (EDA) is de basis van de Education Cloud. De flexibele gegevensarchitectuur dient speciaal om Salesforce voor het onderwijs te configureren.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgEDAAppInitials</name>
+    <customApplications>
         <label>EDA</label>
-    </customLabels>
-    <customLabels>
-        <name>stgEDASettingsHasMovedDesc</name>
-        <label>We hebben een nieuwe ervaring voor de Education Cloud-instellingen gemaakt waarmee toegang kan worden verkregen tot de EDA-instellingen en vele andere geweldige resources. De stappen voor de set-up kunnen verschillen, afhankelijk van uw EDA-versie. Raadpleeg de documentatie voor meer informatie.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgEDASettingsHasMovedTitle</name>
-        <label>We zijn verhuisd!</label>
-    </customLabels>
-    <customLabels>
-        <name>stgEDASetupTitle</name>
-        <label>EDA-set-up</label>
-    </customLabels>
-    <customLabels>
-        <name>stgEDCSettingsHealthCheckDescription</name>
-        <label>Met &apos;Controle van de instellingentoestand&apos; wordt gezocht naar configuratiefouten in de EDA-instellingen en in Set-up. Volg de aangegeven aanbevelingen om gerapporteerde fouten te corrigeren.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgEnableCourseConnectionsTitle</name>
-        <label>Recordtypen voor cursusverbinding</label>
-    </customLabels>
-    <customLabels>
-        <name>stgEnableDebugHelp</name>
-        <label>Schakel foutopsporing in, zodat Salesforce Ondersteuning foutopsporingsinstructies voor beheerde pakketten kan zien.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgEnableDebugTitle</name>
-        <label>Foutopsporingslogboek</label>
-    </customLabels>
-    <customLabels>
-        <name>stgEnablePreferredPhoneSync</name>
-        <label>Verbeterde functionaliteit voorkeurstelefoonnummer</label>
-    </customLabels>
-    <customLabels>
-        <name>stgErrorInsufficientAccess</name>
-        <label>U kunt deze pagina niet weergeven. Uw Salesforce-beheerder kan u hierbij helpen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgErrorInsufficientAccessSaving</name>
-        <label>U kunt deze instellingen niet opslaan, omdat u niet meer beschikt over de machtiging om ze te bewerken. Uw Salesforce-beheerder kan u hierbij helpen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgErrorInvalidSettings</name>
-        <label>Uw werk kan niet worden opgeslagen. Laad de pagina opnieuw en probeer het nog eens.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgErrorNewAutoEnrollment</name>
-        <label>Alle accountrecordtypen met primaire affiliaties beschikken al over een toewijzing voor automatische inschrijving. Ga naar EDA-instellingen | Affiliaties om eerst een affiliatietoewijzing te maken met het gewenste recordtype.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgErrorNotiTo</name>
-        <label>Foutmeldingen aan:</label>
-    </customLabels>
-    <customLabels>
-        <name>stgErrorNotifRecipientsTitle</name>
-        <label>Ontvangers foutmeldingen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgErrorSettingsNav</name>
-        <label>Fouten</label>
-    </customLabels>
-    <customLabels>
-        <name>stgErrorSettingsTitle</name>
-        <label>Foutinstellingen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgEthnicityRaceBackfillContacts</name>
-        <label>Verouderde etniciteitsgegevens</label>
-    </customLabels>
+        <name>HEDA</name>
+    </customApplications>
     <customLabels>
-        <name>stgEthnicityRaceBackfillModalBody</name>
-        <label>Standaard en aangepaste keuzelijstwaarden worden van het veld Etniciteit naar het veld Ras in Contactpersoon gekopieerd, met uitzondering van &apos;Niet Spaans of Latino&apos; en &apos;Spaans of Latino&apos;. Controleer voordat u verdergaat of alle processen die naar de velden Etniciteit en Ras verwijzen wel zijn uitgeschakeld.</label>
+        <label>Wijs accountrecordtypen toe aan de primaire-affiliatievelden in Contactpersonen om te bepalen welke impact updates op deze velden hebben op affiliatierecords en welke impact updates op affiliatierecords hebben op contactpersoonsrecords.</label>
+        <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
-        <name>stgEthnicityRaceBackfillModalTitle</name>
-        <label>Het veld Ras in Contactpersoon bijwerken?</label>
+        <label>Als een affiliatie gerelateerd is aan slechts één programma-inschrijving en deze inschrijving wordt verwijderd, verwijdert u ook de affiliatie. Schakelt u deze instelling niet in, dan selecteert u een status voor niet-verwijderde affiliaties.</label>
+        <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
-        <name>stgEthnicityRaceBackfillSuccessToast</name>
-        <label>Er komt een update voor het veld Ras in Contactpersoon. Wij sturen u een e-mail wanneer het zover is.</label>
+        <label>Geef een cursusverbinding op met dezelfde contactpersoon als die u voor dit aanwezigheidsevent hebt opgegeven.</label>
+        <name>AttendanceCourseConnectionContactMismatch</name>
     </customLabels>
     <customLabels>
-        <name>stgFluent</name>
-        <label>Vloeiend</label>
+        <label>Er is een ongeldige instelling voor het automatisch maken van relaties geconfigureerd in EDA-instellingen | Relaties | Automatisch maken. Verwijder of bewerk de ongeldige instelling en probeer het dan opnieuw.</label>
+        <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAccountModelAdminInactiveFix</name>
-        <label>Ga naar EDA-instellingen | Accountmodel en controleer het recordtype Administratief account. Als {0} ({1}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Is het niet correct, dan wijzigt u het recordtype Administratief account in een geldig, actief recordtype.</label>
+        <label>De Apex-taak kan niet worden uitgevoerd.</label>
+        <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAccountModelAdminNotFoundFix</name>
-        <label>Wijzig het recordtype Administratief account in EDA-instellingen | Accountmodel in een geldig, actief recordtype.</label>
+        <label>Stel het filterveld in, of zowel het filterveld als de filterwaarde.</label>
+        <name>BothFieldAndValue</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAccountModelDefaultInactiveFix</name>
-        <label>Ga naar EDA-instellingen | Accountmodel en controleer het recordtype Standaard accountmodel. Als {0} ({1}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Is het niet correct, dan wijzigt u het recordtype Standaard accountmodel in een geldig, actief recordtype.</label>
+        <label>Kan de contactpersoon of het cursusaanbod niet wijzigen voor een cursusverbinding die gekoppelde termijnscores of aanwezigheidsevents heeft. Als u een cursusverbinding met een andere contactpersoon of ander cursusaanbod wilt, maakt u een nieuwe cursusverbinding.</label>
+        <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAccountModelDefaultNotFoundFix</name>
-        <label>Wijzig het recordtype Standaard accountmodel in EDA-instellingen | Accountmodel in een geldig, actief recordtype.</label>
+        <label>Deze record kan niet worden verwijderd omdat er een of meer gerelateerde records aan zijn gekoppeld. Verwijder eerst de gekoppelde records en dan pas deze record. Om te bepalen welke records eerst moeten worden verwijderd, klikt u op het tabblad Gerelateerd. Als u geen gerelateerde records ziet of als u ze niet kunt verwijderen, vraag dan uw systeembeheerder om hulp.</label>
+        <name>CannotDelete</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAccountModelHHInactiveFix</name>
-        <label>Ga naar EDA-instellingen | Accountmodel en controleer het recordtype Huishoudenaccount. Als {0} ({1}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Is het niet correct, dan wijzigt u het recordtype Huishoudenaccount in een geldig, actief recordtype.</label>
+        <label>Account</label>
+        <name>DefaultAccountName</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAccountModelHHNotFoundFix</name>
-        <label>Wijzig het recordtype Huishoudenaccount in EDA-instellingen | Accountmodel in een geldig, actief recordtype.</label>
+        <label>Administratief account</label>
+        <name>DefaultAdminName</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAccountRecordTypeSettingsUnique</name>
-        <label>Unieke instellingen voor de recordtypes Administratief account en Account voor huishouden.</label>
+        <label>Huishouden</label>
+        <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAccountRecordTypesNotUnique</name>
-        <label>In de instellingen voor de recordtypes Administratief account en Account voor huishouden wordt hetzelfde recordtype opgegeven.</label>
+        <label>EDA-instellingen</label>
+        <name>EDASettingsContainerAuraComponentLabel</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAccountRecordTypesNotUniqueFix</name>
-        <label>Wijzig het recordtype Administratief account of het recordtype Huishoudenaccount in EDA-instellingen | Accountmodel in een uniek recordtype.</label>
+        <label>Instellingen voor Education Cloud</label>
+        <name>EDCSettingsContainerAuraComponentLabel</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAccountRecordTypesUnique</name>
-        <label>In de instellingen voor de recordtypen Administratief account en Account voor huishouden wordt een ander recordtype opgegeven.</label>
+        <label>Vrouw</label>
+        <name>Female</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAffiliationMappingSettingDesc</name>
-        <label>De affiliatietoewijzing {0} is geldig.</label>
+        <label>Het veld dat als filterveld is ingevoerd is ongeldig. Filtervelden kunnen elk standaard of aangepast veld zijn op het object waarvoor deze trigger is, evenals een veld op een gerelateerde record. Zorg dat u de API-naam van het veld gebruikt en laat EDA-naamruimtevoorvoegsels (&quot;hed__&quot;) weg.</label>
+        <name>InvalidFilter</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAffiliationMappingSettingHeading</name>
-        <label>Affiliatietoewijzing {0}</label>
+        <label>Man</label>
+        <name>Male</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
-        <label>Controleer in EDA-instellingen | Affiliaties het accountrecordtype voor deze affiliatietoewijzing. Als {0} ({1}) correct is, gaat u in Salesforce Set-up naar het accountrecordtype voor het accountobject en stelt u het recordtype in op Actief. Is het niet correct, dan wijzigt u het recordtype voor de affiliatietoewijzing in een geldig, actief recordtype.</label>
+        <label>Er is meer dan één cursusverbinding gekoppeld aan deze contactpersoon en dit cursusaanbod. Specificeer de cursusverbinding die de inschrijving van de student in dit cursusaanbod voor deze termijnscore vertegenwoordigt.</label>
+        <name>MultipleCourseConnection</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
-        <label>Het accountrecordtype voor deze affiliatietoewijzing bestaat niet. Wijzig de affiliatietoewijzing in EDA-instellingen | Affiliaties zodanig dat er een geldig, actief recordtype voor het opgegeven account wordt gebruikt.</label>
+        <label>De contactpersoon en het cursusaanbod zijn niet gespecificeerd of komen niet overeen met de cursusverbinding. Geef of alleen een cursusverbinding op, of zowel een contactpersoon als een cursusaanbod, zodat we deze record met de juiste gegevens kunnen opslaan.</label>
+        <name>NoContactCOFound</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAccRecordTypeNotUnique</name>
-        <label>Het recordtype {0} ({1}) is toegewezen aan meerdere primaire affiliatievelden voor contactpersonen.</label>
+        <label>Er is geen cursusverbinding gekoppeld aan deze contactpersoon en dit cursusaanbod. Als deze student is ingeschreven voor dit cursusaanbod, maak dan een cursusverbinding.</label>
+        <name>NoCourseConnection</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAccRecordTypeTitle</name>
-        <label>Accountrecordtype</label>
+        <label>De contactpersoon en het cursusaanbod komen niet overeen met de cursusverbinding. Geef of alleen een cursusverbinding op, of zowel een contactpersoon als een cursusaanbod, zodat we deze record met de juiste gegevens kunnen opslaan.</label>
+        <name>NoDataMatch</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAccRecordTypeUnique</name>
-        <label>Het recordtype {0} ({1}) is toegewezen aan één primair affiliatieveld voor contactpersonen.</label>
+        <label>Geef of alleen een cursusverbinding op, of zowel een contactpersoon als een cursusaanbod.</label>
+        <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
-        <label>Ga naar EDA-instellingen | Affiliaties en controleer in de kolom Accountrecordtype of er meerdere toewijzingen zijn die naar {0} ({1}) verwijzen. Bewerk deze affiliatietoewijzingen zodanig dat dit recordtype aan slechts één primair affiliatieveld voor contactpersonen is toegewezen.</label>
+        <label>Geen</label>
+        <name>NoneOption</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
-        <label>Uniek recordtype Affiliatietoewijzingen</label>
+        <label>Er is geen contactpersoon of cursusaanbod gekoppeld aan deze cursusverbinding. Kies een geldige cursusverbinding.</label>
+        <name>OnlyCourseConnectionPopulated</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAutoEnrollRoleInactive</name>
-        <label>De keuzelijstwaarde {0} ({1}) is niet actief.</label>
+        <label>We kunnen het e-mailadres dat in Voorkeurs-e-mail is opgegeven niet vinden. Zorg dat u het veldlabel van een bestaand aangepast e-mailveld invoert.</label>
+        <name>PreferredEmailMatchMustExist</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
-        <label>De automatische-inschrijvingsrol {0} ({1}) is niet actief. Ga naar EDA-instellingen | Programma-inschrijvingen en controleer de toewijzing Automatische-inschrijvingsprogramma waarmee deze rol wordt gedefinieerd. Als de toewijzing correct is, gaat u in Salesforce Set-up naar het veld Rol in het affiliatieobject en stelt u de keuzelijstwaarde in op Actief. Is de toewijzing niet correct, dan stelt u de automatische-inschrijvingsrol in op een geldige, actieve keuzelijstwaarde.</label>
+        <label>Het e-mailveld dat u in Voorkeurs-e-mail hebt geselecteerd is leeg. Kies een andere voorkeurs-e-mail of voeg een waarde toe voor dat e-mailveld.</label>
+        <name>PreferredEmailMatchNotNull</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
-        <label>We kunnen de keuzelijstwaarde {0} niet vinden.</label>
+        <label>Selecteer een waarde voor Voorkeurs-e-mail.</label>
+        <name>PreferredEmailRequiredError</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
-        <label>De automatische-inschrijvingsrol is niet geldig. Ga naar EDA-instellingen | Programma-inschrijvingen en stel de toewijzing Automatische-inschrijvingsprogramma waarmee deze rol wordt gedefinieerd in op een geldige, actieve keuzelijstwaarde voor het veld Rol in het affiliatieobject.</label>
+        <label>We kunnen het telefoonnummer dat in Voorkeurstelefoonnummer is opgegeven niet vinden. Zorg dat u het veldlabel van een bestaand aangepast telefoonnummerveld invoert.</label>
+        <name>PreferredPhoneMatchMustExist</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAutoEnrollRoleTitle</name>
-        <label>Waarde voor Automatische inschrijvingsrol</label>
+        <label>Het telefoonnummer dat u voor Voorkeurstelefoonnummer selecteert mag niet leeg zijn.</label>
+        <name>PreferredPhoneMatchNotNull</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAutoEnrollRoleValid</name>
-        <label>De keuzelijstwaarde {0} ({1}) is geldig.</label>
+        <label>Selecteer een waarde voor Voorkeurstelefoonnummer.</label>
+        <name>PreferredPhoneRequiredError</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAutoEnrollStatusInactive</name>
-        <label>De keuzelijstwaarde {0} ({1}) is niet actief.</label>
+        <label>is</label>
+        <name>Relationship_Explanation_Connector</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
-        <label>De automatische-inschrijvingsstatus {0} ({1}) is niet actief. Ga naar EDA-instellingen | Programma-inschrijvingen en controleer de toewijzing Automatische-inschrijvingsprogramma waarmee deze status wordt gedefinieerd. Als de toewijzing correct is, gaat u in Salesforce Set-up naar het veld Status in het affiliatieobject en stelt u de keuzelijstwaarde in op Actief. Is de toewijzing niet correct, dan stelt u de automatische-inschrijvingsstatus in op een geldige, actieve keuzelijstwaarde.</label>
+        <label>-</label>
+        <name>Relationship_Split</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
-        <label>We kunnen de keuzelijstwaarde {0} niet vinden.</label>
+        <label>Met instellingen voor automatisch maken kunt u definiëren wanneer er automatisch een relatierecord wordt gemaakt tussen een contactpersoon en een campagnelid, op basis van een aangepast opzoekveld op één van de twee objecten. De opzoekopdracht &apos;doorverwijzing&apos; van campagnelid naar contactpersoon kan bijvoorbeeld tot de relatie &apos;doorverwijzer&apos; en &apos;doorverwezene&apos; leiden tussen de twee contactpersonen. (Deze functie is niet beschikbaar voor leads of campagnelidobjecten die naar leads verwijzen.)</label>
+        <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
-        <label>De automatische-inschrijvingsstatus is niet geldig. Ga naar EDA-instellingen | Programma-inschrijvingen en stel de toewijzing Automatische-inschrijvingsprogramma waarmee deze status wordt gedefinieerd in op een geldige, actieve keuzelijstwaarde voor het veld Status in het affiliatieobject.</label>
+        <label>Configureer overeenkomende relaties zodat u weet hoe contactpersonen zijn gerelateerd aan andere contactpersonen van contactpersoonrecords.</label>
+        <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAutoEnrollStatusTitle</name>
-        <label>Waarde voor Automatische inschrijvingsstatus</label>
+        <label>Aangepaste indeling</label>
+        <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapAutoEnrollStatusValid</name>
-        <label>De keuzelijstwaarde {0} ({1}) is geldig.</label>
+        <label>Ongeldige aanroep. Deze functie is voorbehouden voor Salesforce-gebruik.</label>
+        <name>adapterException</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
-        <label>Het primaire-affiliatieveld {0} is niet actief. Ga naar EDA-instellingen | Affiliaties en stel de affiliatietoewijzing in op een geldig, actief opzoekveld in het object Contactpersoon.</label>
+        <label>Adresrecords kunnen alleen worden gekoppeld aan accounts of contactpersonen.</label>
+        <name>addrHhAdmAccountOnly</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
-        <label>Uniek veld voor primaire contactpersoonaffiliaties.</label>
+        <label>De mogelijkheid om meerdere adressen toe te voegen is uitgeschakeld voor dit accountrecordtype. Als u dit wilt inschakelen, gaat u naar EDA-instellingen, klikt u op Accounts en contactpersonen, en selecteert u het toepasselijke selectievakje naast Accounttypen die meerdere adressen kunnen bevatten.</label>
+        <name>addrNotEnabledAccount</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
-        <label>{0} is geen geldig veld voor contactpersonen.</label>
+        <label>De mogelijkheid om meerdere adressen toe te voegen is uitgeschakeld voor contactpersonen. Als u dit wilt inschakelen, gaat u naar EDA-instellingen, klikt u op Accounts en contactpersonen, en selecteert u het toepasselijke selectievakje Meerdere adressen ingeschakeld voor contactpersoon.</label>
+        <name>addrNotEnabledContact</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
-        <label>Het veld {0} ({1}) is toegewezen aan meerdere accountrecordtypen.</label>
+        <label>Er is een bestaande adresrecord voor dit account of deze contactpersoon waarbij de begin- en einddatum van het seizoen de seizoensdatums voor deze record overlappen. Pas de seizoensdatums aan zodat ze de andere adresrecord niet overlappen.</label>
+        <name>addrSeasonalOverlap</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapContactPrimaryFieldTitle</name>
-        <label>Primair affiliatieveld contactpersoon</label>
+        <label>Een adres kan geen gedeeltelijke begin- en einddatums van het seizoen hebben. Voer waarden in voor alle velden voor de begin- en einddatums van het seizoen of laat al deze velden leeg.</label>
+        <name>addrSeasonalPartial</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapContactPrimaryFieldUnique</name>
-        <label>Het veld {0} ({1}) is toegewezen aan één accountrecordtype.</label>
+        <label>Een adres kan geen gedeeltelijke begin- en einddatums van het seizoen hebben. Voer waarden in voor alle velden voor de begin- en einddatums van het seizoen of laat al deze velden leeg.</label>
+        <name>addrSeasonalPartialYear</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
-        <label>Ga naar EDA-instellingen | Affiliaties, vervolgens naar de kolom Contactpersoon en controleer in het veld Primaire affiliatie of er meerdere toewijzingen zijn die naar {0} ({1}) verwijzen. Bewerk deze toewijzingen zodanig dat dit veld in slechts één affiliatietoewijzing voorkomt.</label>
+        <label>Adresrecords kunnen alleen worden gekoppeld aan accounts of contactpersonen.</label>
+        <name>addrValidParentObjects</name>
     </customLabels>
     <customLabels>
-        <name>stgHCAfflMapContactPrimaryFieldValid</name>
-        <label>Het veld {0} ({1}) is geldig.</label>
+        <label>Naamindeling administratief account</label>
+        <name>adminAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <name>stgHCCourseConEnable</name>
-        <label>Cursusverbindingen is niet ingeschakeld.</label>
+        <label>De naamindeling voor administratieve accounts die automatisch worden gemaakt.</label>
+        <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
-        <name>stgHCCourseConEnableFix</name>
-        <label>Schakel Cursusverbindingen in; hierbij hoort ook het configureren van de recordtypen voor cursusverbindingen. Ga naar EDA-instellingen | Cursusverbindingen, schakel de recordtypen voor cursusverbindingen in en configureer Standaard recordtype voor student en Standaard recordtype voor staflid.</label>
+        <label>Deze contactpersoon heeft al een primaire affiliatie met het gespecificeerde account. Schakel de primaire instelling uit voor de andere affiliatie zodat u deze nieuwe affiliatie als primair kunt aanmerken, of maak deze affiliatie zonder de primaire waarde.</label>
+        <name>affiliationWithSameAccExists</name>
     </customLabels>
     <customLabels>
-        <name>stgHCCourseConFacultyInactiveFix</name>
-        <label>Controleer Standaard recordtype voor staflid in EDA-instellingen | Cursusverbindingen. Als {1} ({0}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Is het niet correct, dan stelt u Standaard recordtype voor staflid in op een geldig, actief recordtype.</label>
+        <label>Deze affiliatie kan niet worden gemaakt omdat het opgegeven account geen recordtype heeft.</label>
+        <name>afflAccountNoRecordType</name>
     </customLabels>
     <customLabels>
-        <name>stgHCCourseConFacultyNotFoundFix</name>
-        <label>Wijzig Standaard recordtype voor staflid in EDA-instellingen | Cursusverbindingen in een geldig, actief recordtype.</label>
+        <label>Deze record kan niet worden opgeslagen vanwege een accountrecordtypefout in de affiliatietoewijzingen. Vraag uw beheerder om te verifiëren dat accountrecordtypen correct zijn toegewezen aan primaire contactpersoonaffiliaties.</label>
+        <name>afflAccoutMappingError</name>
     </customLabels>
     <customLabels>
-        <name>stgHCCourseConRecordTypesNotUnique</name>
-        <label>In de instellingen voor Standaard recordtype voor staflid en Standaard recordtype voor actieve student wordt hetzelfde recordtype opgegeven.</label>
+        <label>Het accountrecordtype {0} bestaat niet. Vraag uw beheerder om de recordtypen in de affiliatietoewijzingen te controleren.</label>
+        <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <name>stgHCCourseConRecordTypesNotUniqueFix</name>
-        <label>Stel Standaard recordtype voor staflid of Standaard recordtype voor student in EDA-instellingen | Cursusverbindingen in op een uniek recordtype.</label>
+        <label>Recordtypevalidatie</label>
+        <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <name>stgHCCourseConRecordTypesUnique</name>
-        <label>Unieke instellingen voor Standaard recordtype voor staflid en Standaard recordtype voor actieve student</label>
+        <label>Accounts die als primaire affiliatie van een contactpersoon zijn gedefinieerd, moeten verplicht een recordtype gebruiken. Ook worden alle accountrecordtypen toegewezen aan primaire-affiliatievelden in het object Contactpersoon. Als de validatie mislukt, wordt de affiliatie niet opgeslagen.</label>
+        <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
-        <name>stgHCCourseConRecordTypesUniqueDesc</name>
-        <label>In de instellingen voor Standaard recordtype voor staflid en Standaard recordtype voor actieve student wordt een ander recordtype opgegeven.</label>
+        <label>Huishoudenaccounts automatisch hernoemen</label>
+        <name>automaticHHNaming</name>
     </customLabels>
     <customLabels>
-        <name>stgHCCourseConStudentInactiveFix</name>
-        <label>Controleer Standaard recordtype voor student in EDA-instellingen | Cursusverbindingen. Als {1} ({0}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Is het niet correct, dan stelt u Standaard recordtype voor student in op een geldig, actief recordtype.</label>
+        <label>Huishoudenaccounts worden automatisch hernoemd wanneer contactpersonen worden toegevoegd of gewijzigd.</label>
+        <name>automaticHHNamingHelpText</name>
     </customLabels>
     <customLabels>
-        <name>stgHCCourseConStudentNotFoundFix</name>
-        <label>Wijzig Standaard recordtype voor student in EDA-instellingen | Cursusverbindingen in een geldig, actief recordtype.</label>
+        <label>Het recordtype administratief account is niet gevonden in uw organisatie. Gebruik na installatie objectbeheer om een nieuw recordtype met de naam &apos;administratief&apos; te maken voor het accountobject.</label>
+        <name>defaultAccountRecordTypeMissingError</name>
     </customLabels>
     <customLabels>
-        <name>stgHCCourseConnectionsTitle</name>
-        <label>Cursusverbindingen</label>
+        <label>en</label>
+        <name>defaultNamingConnector</name>
     </customLabels>
     <customLabels>
-        <name>stgHCPicklistValueInactive</name>
-        <label>De keuzelijstwaarde {0} ({1}) is niet actief.</label>
+        <label>(DuplicateAcknowledged)</label>
+        <name>duplicateFieldInFilter</name>
     </customLabels>
     <customLabels>
-        <name>stgHCPicklistValueNotFound</name>
-        <label>We kunnen de keuzelijstwaarde {0} niet vinden.</label>
+        <label>De filterveldwaarde specificeert een duplicaat van een productveld. Geef een veld op dat geen duplicaat is. Zo niet, dan filteren we op de waarde in het productveld. Als u voor deze tweede optie kiest, moet u erkennen dat u deze filterlogica accepteert door het achtervoegsel {0} aan de veldnaam toe te voegen. Als het gedupliceerde veld bijvoorbeeld Overleden__c is, voert u Overleden__c{0} in als de waarde voor het filterveld.</label>
+        <name>duplicateWithHEDAField</name>
     </customLabels>
     <customLabels>
-        <name>stgHCPicklistValueValid</name>
-        <label>De keuzelijstwaarde {0} ({1}) is geldig.</label>
+        <label>Deze record kan niet worden opgeslagen omdat een vereist veld leeg is. Het vereiste veld kan zich op deze record bevinden of op een record die door een opzoekwaarde aan deze record gerelateerd is.</label>
+        <name>exceptionRequiredField</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelDescription</name>
-        <label>Er zijn {0} wederzijdse relaties geldig.</label>
+        <label>Een validatieregel voorkomt dat deze record kan worden verwerkt. De validatieregel kan zich in deze record bevinden of in een gerelateerde record die momenteel wordt bijgewerkt. VALIDATIEBERICHT:</label>
+        <name>exceptionValidationRule</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelFemaleInactiveFix</name>
-        <label>De keuzelijstwaarde voor Vrouw in de toewijzing Wederzijdse relaties voor {0} ({1}) is niet actief. Ga naar EDA-instellingen | Relaties en controleer de toewijzing. Als deze correct is, gaat u in Salesforce Set-up naar het veld Type in het relatie-object en stelt u de keuzelijstwaarde in op Actief. Is de toewijzing niet correct, dan stelt u de waarde voor Vrouw in Wederzijdse relaties in op een geldige, actieve keuzelijstwaarde.</label>
+        <label>Het filterveld mag geen naamruimtevoorvoegsels bevatten zoals hed__. Verwijder het naamruimtevoorvoegsel en probeer het opnieuw.</label>
+        <name>fieldWithHEDANamespace</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelFemaleNotFoundFix</name>
-        <label>De keuzelijstwaarde voor Vrouw in de toewijzing Wederzijdse relaties is niet geldig. Ga naar EDA-instellingen | Relaties en stel de waarde voor Vrouw voor deze toewijzing in op een geldige, actieve keuzelijstwaarde.</label>
+        <label>Administratief account {!{!FirstName}} {!LastName}</label>
+        <name>firstNameLastNameAdminAcc</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelFemaleTitle</name>
-        <label>De waarde Vrouw van Wederzijdse instellingen</label>
+        <label>Familie {!{!FirstName}} {!LastName}</label>
+        <name>firstNameLastNameFamily</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelMaleInactiveFix</name>
-        <label>De keuzelijstwaarde voor Man in de toewijzing Wederzijdse relaties voor {0} ({1}) is niet actief. Ga naar EDA-instellingen | Relaties en controleer de toewijzing. Als deze correct is, gaat u in Salesforce Set-up naar het veld Type in het relatie-object en stelt u de keuzelijstwaarde in op Actief. Is de toewijzing niet correct, dan stelt u de waarde voor Man in Wederzijdse relaties in op een geldige, actieve keuzelijstwaarde.</label>
+        <label>Huishouden {!{!FirstName}} {!LastName}</label>
+        <name>firstNameLastNameHH</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelMaleNotFoundFix</name>
-        <label>De keuzelijstwaarde voor Man in de toewijzing Wederzijdse relaties is niet geldig. Ga naar EDA-instellingen | Relaties en stel de waarde voor Man voor deze toewijzing in op een geldige, actieve keuzelijstwaarde.</label>
+        <label>U probeert giftverwerking te gebruiken zonder de vereiste configuratiegegevens. Neem voor hulp contact op met de beheerder.</label>
+        <name>giftProcessingConfigException</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelMaleTitle</name>
-        <label>De waarde Man van Wederzijdse instellingen</label>
+        <label>Naamindeling huishoudenaccount</label>
+        <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelNameInactiveFix</name>
-        <label>De toewijzing Wederzijdse relaties voor {0} ({1}) is niet actief. Ga naar EDA-instellingen | Relaties en controleer de toewijzing waarin deze naam wordt gedefinieerd. Als de toewijzing correct is, gaat u in Salesforce Set-up naar het veld Type in het relatie-object en stelt u de keuzelijstwaarde in op Actief. Is de toewijzing niet correct, dan stelt u de waarde voor Naam in Wederzijdse relaties in op een geldige, actieve keuzelijstwaarde.</label>
+        <label>De naamindeling voor huishoudenaccounts die automatisch worden gemaakt.</label>
+        <name>hhAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelNameNotFoundFix</name>
-        <label>De toewijzing voor Wederzijdse relaties voor {0} is niet geldig. Ga naar EDA-instellingen | Relaties en stel de toewijzing waarmee deze naam wordt gedefinieerd in op een geldige, actieve keuzelijstwaarde.</label>
+        <label>Familie</label>
+        <name>hhFamily</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelNameNotUniqueDesc</name>
-        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en controleer de opgegeven wederzijdse instelling voor {0} ({1}). Als {0} ({1}) correct is, gaat u naar het typeveld van het relatie-object in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de waarde Naam van de wederzijdse instelling in een geldige, actieve keuzelijstwaarde.</label>
+        <label>Deze record kan niet worden opgeslagen vanwege een fout in het contactpersoonsveld {1}. Vraag de beheerder om Affiliatietoewijzingen te controleren in de EDA-instellingen en de waarde voor {0} in te stellen op de API-naam van een accountopzoekveld in het object Contactpersoon in plaats van op {1}.</label>
+        <name>invalidContactFieldInAffiliationMapping</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelNameNotUniqueFix</name>
-        <label>Controleer in de tabel Wederzijdse relaties in EDA-instellingen | Relaties of er meerdere toewijzingen zijn met de naam {0} ({1}). Bewerk deze toewijzingen zodanig dat slechts één toewijzing naar deze naam verwijst.</label>
+        <label>Deze record kan niet worden opgeslagen, omdat {1} geen geldig accountrecordtype is. Vraag de beheerder om Affiliatietoewijzingen te controleren in de EDA-instellingen en de waarde voor {0} in te stellen op de API-naam van een geldig accountrecordtype in plaats van op {1}.</label>
+        <name>invalidRecordTypeInAffiliationMapping</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelNameTitle</name>
-        <label>De waarde Naam van Wederzijdse instellingen</label>
+        <label>Administratief account {!LastName}</label>
+        <name>lastNameAdminAcc</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelNameUniqueDesc</name>
-        <label>De keuzelijstwaarde {0} ({1}) wordt slechts in één wederzijdse instelling gebruikt.</label>
+        <label>Familie {!LastName}</label>
+        <name>lastNameFamily</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelNameUniqueTitle</name>
-        <label>Unieke naam van Wederzijdse instellingen</label>
+        <label>Administratief account {!LastName} ({!{!FirstName}})</label>
+        <name>lastNameFirstNameAdminAcc</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelNeutralInactiveFix</name>
-        <label>De keuzelijstwaarde voor Neutraal in de toewijzing Wederzijdse relaties voor {0} ({1}) is niet actief. Ga naar EDA-instellingen | Relaties en controleer de toewijzing. Als deze correct is, gaat u in Salesforce Set-up naar het veld Type in het relatie-object en stelt u de keuzelijstwaarde in op Actief. Is de toewijzing niet correct, dan stelt u de waarde voor Neutraal in Wederzijdse relaties in op een geldige, actieve keuzelijstwaarde.</label>
+        <label>Familie {!LastName} ({!{!FirstName}})</label>
+        <name>lastNameFirstNameFamily</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelNeutralNotFoundFix</name>
-        <label>De keuzelijstwaarde voor Neutraal in de toewijzing Wederzijdse relaties is niet geldig. Ga naar EDA-instellingen | Relaties en stel de waarde voor Neutraal voor deze toewijzing in op een geldige, actieve keuzelijstwaarde.</label>
+        <label>Huishouden {!LastName} ({!{!FirstName}})</label>
+        <name>lastNameFirstNameHH</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelNeutralTitle</name>
-        <label>De waarde Neutraal van Wederzijdse instellingen</label>
+        <label>Huishouden {!LastName}</label>
+        <name>lastNameHH</name>
     </customLabels>
     <customLabels>
-        <name>stgHCReciprocalRelSetting</name>
-        <label>{0} wederzijdse relaties</label>
+        <label>Planvereisten kunnen een programmaplan of een bovenliggende planvereiste specificeren, maar niet allebei. Als deze planvereiste een onderliggend element is van een andere planvereiste, geeft u alleen een bovenliggende planvereiste op. Als deze planvereiste een onderliggend element is van een programmaplan, geeft u alleen een programmaplan op.</label>
+        <name>nestedPlanRequirementPPExp</name>
     </customLabels>
     <customLabels>
-        <name>stgHCRecordTypeInactive</name>
-        <label>Het recordtype {0} ({1}) is niet actief.</label>
+        <label>Het gedefinieerde accountrecordtype bestaat niet:</label>
+        <name>noAccRecType</name>
     </customLabels>
     <customLabels>
-        <name>stgHCRecordTypeNotFound</name>
-        <label>We kunnen het recordtype {0} niet vinden.</label>
+        <label>Er zijn nog geen affiliatietoewijzingen. Klik op Nieuw om er een te maken.</label>
+        <name>noAfflMappings</name>
     </customLabels>
     <customLabels>
-        <name>stgHCRecordTypeValid</name>
-        <label>Het recordtype {0} ({1}) is geldig.</label>
+        <label>Er zijn geen instellingen voor automatisch maken gedefinieerd. Gebruik het formulier hieronder om een nieuwe instelling voor automatisch maken te maken.</label>
+        <name>noAutoCreateSettings</name>
     </customLabels>
     <customLabels>
-        <name>stgHHAccountCustomName</name>
-        <label>Aangepaste naamindeling</label>
+        <label>Er zijn geen wederzijdse instellingen gedefinieerd. Gebruik het formulier hieronder om een nieuwe wederzijdse instelling te maken.</label>
+        <name>noRecSettings</name>
     </customLabels>
     <customLabels>
-        <name>stgHHAccountCustomNameHelp</name>
-        <label>Geef zelf een naamgevingsconventie op.</label>
+        <label>E-mail (standaard)</label>
+        <name>preferredBatchDefaultEmail</name>
     </customLabels>
     <customLabels>
-        <name>stgHHAccountNamingTitle</name>
-        <label>Naamgeving huishoudenaccount</label>
+        <label>Telefoon (standaard)</label>
+        <name>preferredBatchDefaultPhone</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckA11y</name>
-        <label>Open de controle van de instellingentoestand.</label>
+        <label>Standaard accountmodel</label>
+        <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckAccountModel</name>
         <label>Accountmodel</label>
+        <name>stgAccountModelNav</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckAffiliationMappings</name>
-        <label>Affiliatietoewijzingen</label>
+        <label>Instellingen voor accountmodel</label>
+        <name>stgAccountModelSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckDescription</name>
-        <label>Controle van de instellingentoestand controleert uw EDA-instellingen op ongeldige configuraties. Als de controle is voltooid, kunt u aan de hand van de resultaten eventuele ongeldige instellingen identificeren en corrigeren.</label>
+        <label>Beschikbare accountrecordtypen</label>
+        <name>stgAccountRecordTypeAvailableListTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckErrorLastRunDate</name>
-        <label>We kunnen de datum van de laatste uitvoer niet weergeven vanwege een fout</label>
+        <label>Accountrecordtypen selecteren</label>
+        <name>stgAccountRecordTypeGroupLabelTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckFixNotApplicable</name>
-        <label>Niet van toepassing</label>
+        <label>Er zijn alleen niet-toegewezen accountrecordtypen beschikbaar.</label>
+        <name>stgAccountRecordTypeHelp</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckLastRun</name>
-        <label>Laatste uitvoering: {0}</label>
+        <label>Geselecteerde accountrecordtypen</label>
+        <name>stgAccountRecordTypeSelectedListTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckLoadingIndicator</name>
-        <label>Wordt geladen...</label>
+        <label>Recordtype huishoudenaccount</label>
+        <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckReciprocalRelTitle</name>
-        <label>Wederzijdse relaties</label>
+        <label>Meerdere adressen voor accounttypen inschakelen</label>
+        <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckRecoFix</name>
-        <label>Aanbevolen correctie</label>
+        <label>Accounts zonder contactpersonen</label>
+        <name>stgAccoutTypesWithoutContactsDelete</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckResultsCollapse</name>
-        <label>Deze resultaten samenvouwen</label>
+        <label>Voeg indien nodig &apos;Spaans of Latino&apos; als keuzelijstwaarde toe aan het veld Etniciteit.</label>
+        <name>stgAddHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckResultsDescription</name>
-        <label>Beschrijving</label>
+        <label>Voeg indien nodig &apos;Niet Spaans of Latino&apos; als keuzelijstwaarde toe aan het veld Etniciteit.</label>
+        <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckResultsExpand</name>
-        <label>Deze resultaten uitvouwen</label>
+        <label>Adressen</label>
+        <name>stgAddressSettingsNav</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckRunButton</name>
-        <label>Controle van de toestand uitvoeren</label>
+        <label>Adresinstellingen</label>
+        <name>stgAddressSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckRunError</name>
-        <label>We kunnen de controle van de instellingentoestand niet uitvoeren vanwege een fout. Probeer het opnieuw.</label>
+        <label>Aangepaste naamindeling</label>
+        <name>stgAdminAccountCustomName</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckSetting</name>
-        <label>Instelling</label>
+        <label>Geef zelf een naamgevingsconventie op.</label>
+        <name>stgAdminAccountCustomNameHelp</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckStatus</name>
-        <label>Status</label>
+        <label>Naamgeving administratief account</label>
+        <name>stgAdminAccountNamingTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckStatusFailed</name>
-        <label>Mislukt</label>
+        <label>Recordtype administratief account</label>
+        <name>stgAdminAccountRecordType</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckStatusPassed</name>
-        <label>Geslaagd</label>
+        <label>Met deze affiliatietoewijzing wordt het accountrecordtype {0} toegewezen aan het veld {1} in contactpersoonsrecords. U moet wel zeker weten dat u deze wilt verwijderen.</label>
+        <name>stgAffiliationsDeleteModalBody</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckStatusWarning</name>
-        <label>Waarschuwing</label>
+        <label>Affiliatietoewijzing verwijderen?</label>
+        <name>stgAffiliationsDeleteModalTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthCheckTitle</name>
-        <label>Controle van de instellingentoestand</label>
+        <label>Primaire affiliatie {0} is verwijderd.</label>
+        <name>stgAffiliationsDeleteSuccess</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthChecksAllPassed</name>
-        <label>Alle controles geslaagd</label>
+        <label>Selecteer het accountrecordtype dat u wilt toewijzen aan het veld Primaire affiliatie in Contactpersoon. De waarde van het accountrecordtype wordt automatisch ingevuld in het veld Primaire affiliatie.</label>
+        <name>stgAffiliationsEditModalBody</name>
     </customLabels>
     <customLabels>
-        <name>stgHealthChecksNotAllPassed</name>
-        <label>{0} van {1} controles geslaagd</label>
+        <label>Affiliatietoewijzing bewerken?</label>
+        <name>stgAffiliationsEditModalTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAccountModel</name>
-        <label>Het accountrecordtype dat wordt gebruikt wanneer er automatisch een account wordt gemaakt voor een onafhankelijke contactpersoon.</label>
+        <label>Affiliatietoewijzing voor {0} is opgeslagen.</label>
+        <name>stgAffiliationsEditSuccess</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
-        <label>Verwijder accounts met deze recordtypen als ze geen contactpersonen bevatten.</label>
+        <label>Selecteer het accountrecordtype dat u wilt toewijzen aan het veld Primaire affiliatie in Contactpersoon. De waarde van het accountrecordtype wordt automatisch ingevuld in het veld Primaire affiliatie.</label>
+        <name>stgAffiliationsNewModalBody</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAddressAccRecType</name>
-        <label>Selecteer de accountrecordtypen die meerdere adressen ondersteunen.</label>
+        <label>Primaire affiliatie {0} is gemaakt.</label>
+        <name>stgAffiliationsNewSuccess</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAdminRecType</name>
-        <label>Het accountrecordtype dat voor administratieve accounts wordt gebruikt.</label>
+        <label>Affiliaties</label>
+        <name>stgAffiliationsSettingsNav</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
-        <label>Kopieer de einddatum van programma-inschrijvingsrecords naar nieuwe affiliatierecords of laat het veld leeg.</label>
+        <label>Instellingen voor affiliaties</label>
+        <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
-        <label>Kopieer de startdatum van programma-inschrijvingsrecords naar nieuwe affiliatierecords of laat het veld leeg.</label>
+        <label>Einddatum affiliatie</label>
+        <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
-        <label>Bij programma-inschrijving gemaakte affiliaties</label>
+        <label>Startdatum affiliatie</label>
+        <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
-        <label>Als een programma-inschrijvingsrecord wordt gemaakt zonder bestaande affiliatie, maakt u een affiliatierecord met de hieronder opgegeven waarden.</label>
+        <label>Status voor niet-verwijderde affiliaties</label>
+        <name>stgAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflDeleteProgramEnrollment</name>
-        <label>Als u ervoor kiest affiliaties niet te verwijderen wanneer u de daaraan gerelateerde programma-inschrijvingen verwijdert, selecteert u een status voor de affiliaties. Wilt u de status van deze affiliaties ongewijzigd laten, dan selecteert u Geen.</label>
+        <label>Als u deze affiliatietoewijzing verwijdert, wordt er niet meer automatisch een programma-inschrijvingsrecord gemaakt wanneer er een affiliatie met het accountrecordtype {0} wordt gemaakt voor een contactpersoon.</label>
+        <name>stgAfflDeleteWithAutoEnrollment</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
+        <label>Deze affiliatie kan niet worden toegewezen omdat deze naar een recordtype verwijst waarnaar al wordt verwezen door een andere affiliatietoewijzing. Als u deze toewijzing wilt toevoegen zodat de affiliatie wordt vertaald, klikt u op Bewerken om de bestaande toewijzing aan te passen. Specificeer vervolgens de API-naam van het veld onder Primair affiliatieveld contactpersoon. Wijzig de naam die voor Accountrecordtype is opgegeven niet.</label>
+        <name>stgAfflNotInserted</name>
+    </customLabels>
+    <customLabels>
+        <label>Affiliaties gerelateerd aan verwijderde programma-inschrijvingen</label>
+        <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
         <label>Verwijdering van programma-inschrijvingen</label>
+        <name>stgAfflProgEnrollDeleteTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
-        <label>Geef hieronder op wat u wilt dat er gebeurt met affiliatierecords voor verwijderde programma-inschrijvingen. De gerelateerde affiliatierecord kan worden verwijderd of de status ervan kan worden geüpdatet.</label>
+        <label>Rol opgeven voor gemaakte affiliaties</label>
+        <name>stgAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflProgEnrollSetRole</name>
-        <label>Indien geselecteerd, stelt u de rol van de nieuwe affiliatie in op de waarde die is gedefinieerd in Rol voor gemaakte affiliaties. In andere gevallen laat u de rol van de affiliatie leeg.</label>
+        <label>Rol voor gemaakte affiliaties</label>
+        <name>stgAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflProgEnrollSetRoleValue</name>
-        <label>Selecteer een rol voor affiliaties die met programma-inschrijvingen zijn gemaakt.</label>
+        <label>Status voor gemaakte affiliaties</label>
+        <name>stgAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpAfflProgEnrollSetStatusValue</name>
-        <label>Selecteer een status voor affiliaties die met programma-inschrijvingen zijn gemaakt.</label>
+        <label>Bij programma-inschrijving gemaakte affiliaties</label>
+        <name>stgAfflProgramEnrollmentSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpContactAddrs</name>
-        <label>Sta contactpersonen meerdere adresrecords toe.</label>
+        <label>Na uitvoeren van de backfill</label>
+        <name>stgAfterRunBackfill</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpContactPreferredEmail</name>
-        <label>Verplicht contactpersonen om een voorkeurs-e-mailadres in te stellen.</label>
+        <label>API-naam: {0}</label>
+        <name>stgApiNameLabel</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpContactPreferredPhone</name>
-        <label>Verplicht contactpersonen om een voorkeurstelefoonnummer in te stellen.</label>
+        <label>Begin de Chatter-groepsnaam te typen om te zoeken.</label>
+        <name>stgAutoCompleteEnterChatterGroupName</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpContactPreferredPhoneSync</name>
-        <label>Kopieer het voorkeurstelefoonnummer van de contactpersoon naar diens veld Telefoon.</label>
+        <label>Begin de gebruikersnaam te typen om te zoeken.</label>
+        <name>stgAutoCompleteEnterUserName</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpCopyQueuedEmailSent</name>
-        <label>Er komt een update voor het veld Uitgebreide beschrijving. Wij sturen u een e-mail wanneer het zover is.</label>
+        <label>Chatter-groep selecteren</label>
+        <name>stgAutoCompleteSelectChatterGroup</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpCourseConnBackfillDescription</name>
-        <label>Cursusverbindingsrecords voor stafleden worden gewijzigd in de waarde voor Standaard recordtype voor staflid en overige cursusverbindingsrecords in de waarde voor Standaard recordtype voor student.</label>
+        <label>Gebruiker selecteren</label>
+        <name>stgAutoCompleteSelectUser</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpCourseConnectionBackfill</name>
-        <label>Voer deze Apex-taak uit voordat u cursusverbindingen voor het eerst inschakelt, om cursusverbindingsrecords voor stafleden bij te werken naar de waarde voor Standaard recordtype voor staflid. Hierbij worden ook overige cursusverbindingen bijgewerkt naar de waarde voor Standaard recordtype voor student.</label>
+        <label>Automatische inschrijving</label>
+        <name>stgAutoEnrollment</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpCoursesDataMigration</name>
-        <label>Tekst uit het veld Beschrijving in Cursusrecords wordt naar het veld Uitgebreide beschrijving gekopieerd ter ondersteuning van langere cursusbeschrijvingen.</label>
+        <label>Met deze toewijzing van automatische inschrijving worden programma-inschrijvingen gemaakt voor affiliaties met accountrecordtype {0}, affiliatiestatus {1} en affiliatierol {2}. Als u deze toewijzing van automatische inschrijving verwijdert, worden er geen programma-inschrijvingen voor overeenkomende affiliaties gemaakt.</label>
+        <name>stgAutoEnrollmentDeleteModalBody</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpCoursesDataMigrationCopiesValues</name>
-        <label>Deze functionaliteit kopieert waarden uit het veld Cursusbeschrijving naar het veld Uitgebreide beschrijving. Dit proces kan enige tijd in beslag nemen, maar u kunt deze pagina veilig afsluiten terwijl het proces op de achtergrond verder wordt uitgevoerd.</label>
+        <label>Toewijzing automatische inschrijving verwijderen?</label>
+        <name>stgAutoEnrollmentDeleteModalTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpCoursesDataMigrationDontOverwrite</name>
-        <label>Als een cursus al een waarde voor Uitgebreide beschrijving heeft, wordt deze niet overschreven.</label>
+        <label>Toewijzing automatische inschrijving {0} is verwijderd.</label>
+        <name>stgAutoEnrollmentDeleteSuccess</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
-        <label>Vergeet na voltooiing van het proces niet om paginalay-outs en andere delen van de applicatie die naar de beschrijvingsvelden verwijzen te updaten.</label>
+        <label>Selecteer waarden waarmee een programma-inschrijvingsrecord wordt gemaakt wanneer met deze waarden een affiliatie wordt gemaakt of bijgewerkt en de affiliatie is aangemerkt als Primair.</label>
+        <name>stgAutoEnrollmentEditModalBody</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpDefaultContactLanguageFluency</name>
-        <label>De waarde voor Beheersing die is ingesteld bij het wijzigen of instellen van de primaire taal van een contactpersoon in een record voor de taal van een contactpersoon.</label>
+        <label>Toewijzing automatische inschrijving bewerken?</label>
+        <name>stgAutoEnrollmentEditModalTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpDefaultFacultyType</name>
-        <label>Selecteer het recordtype voor cursusverbindingen voor stafleden.</label>
+        <label>Toewijzing automatische inschrijving {0} is opgeslagen.</label>
+        <name>stgAutoEnrollmentEditSuccess</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpDefaultStudentType</name>
-        <label>Selecteer het recordtype voor cursusverbindingen voor studenten.</label>
+        <label>Selecteer waarden waarmee een programma-inschrijvingsrecord wordt gemaakt wanneer met deze waarden een affiliatie wordt gemaakt of bijgewerkt en de affiliatie is aangemerkt als Primair.</label>
+        <name>stgAutoEnrollmentNewModalBody</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpEnableCourseConnBeforeBackfill</name>
-        <label>U moet cursusverbindingen inschakelen voordat u de backfill voor cursusverbindingen uitvoert.</label>
+        <label>Nieuwe toewijzing automatische inschrijving?</label>
+        <name>stgAutoEnrollmentNewModalTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
-        <label>U moet cursusverbindingen inschakelen voordat u recordtypen bewerkt.</label>
+        <label>Toewijzing automatische inschrijving {0} is gemaakt.</label>
+        <name>stgAutoEnrollmentNewSuccess</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpEnableCourseConnections</name>
-        <label>Verplicht dat cursusverbindingsrecords worden opgegeven, of ze nu voor stafleden of studenten zijn. Als u deze instelling inschakelt, moet u ook het standaard recordtype voor studenten en het standaard recordtype voor stafleden instellen.&lt;/br&gt;&lt;/br&gt;Voordat u deze instelling de eerste keer inschakelt, voert u de Apex-taak voor verouderde cursusinschrijvingsgegevens uit in Systeemfuncties.</label>
+        <label>Wanneer er primaire affiliaties worden gemaakt met de waarden in deze toewijzingen, maakt u automatisch programma-inschrijvingen.</label>
+        <name>stgAutoEnrollmentProgramDesc</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpEnsureExistContactPreferEmail</name>
-        <label>De opschoning zorgt ervoor dat bij bestaande contactpersonen die geen voorkeurs-e-mail of voorkeurstelefoonnummer hebben opgegeven een van de standaard of aangepaste e-mailadressen of telefoonnummers wordt ingesteld als de voorkeurswaarde.</label>
+        <label>Toewijzingen voor automatische inschrijving</label>
+        <name>stgAutoEnrollmentProgramTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpErrorDisable</name>
-        <label>Sta foutafhandeling voor asynchrone taken toe, zodat het makkelijker wordt om te zien wanneer geplande taken zijn mislukt.</label>
+        <label>Automatische inschrijvingsrol</label>
+        <name>stgAutoEnrollmentRole</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpErrorNotifyOn</name>
-        <label>Verstuur foutmeldingen naar geselecteerde ontvangers. Als u een Chatter-groep of gebruiker kiest, geeft u ook een waarde op in &apos;Ontvangers foutmeldingen&apos;.</label>
+        <label>Automatische inschrijvingsstatus</label>
+        <name>stgAutoEnrollmentStatus</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpErrorNotifyTo</name>
-        <label>Voer één gebruikersnaam of Chatter-groep op. Gebruikers ontvangen per e-mail een melding over fouten; Chatter-groepen ontvangen met een bericht in de feed een melding.</label>
+        <label>De backfill is in de wachtrij geplaatst. Er wordt een e-mail verzonden bij voltooiing van de batch.</label>
+        <name>stgBackfillQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpEthnicityRaceBackfill</name>
-        <label>Als u het veld Etniciteit vóór EDA-versie 1.28 hebt gebruikt, wordt het veld Ras in Contactpersoon door deze Apex-taak bijgewerkt met een kopie van standaard en aangepaste waarden uit het veld Etniciteit. De waarden &apos;Niet Spaans of Latino&apos; en &apos;Spaans of Latino&apos; worden niet gekopieerd.</label>
+        <label>Voor uitvoeren van de backfill</label>
+        <name>stgBeforeRunBackfill</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpHouseAdmAccountAddressMgmt</name>
-        <label>Indien geselecteerd, wordt adresbeheer ingeschakeld voor administratieve en huishoudenaccounts.</label>
+        <label>Nieuw</label>
+        <name>stgBtnAddMapping</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpHouseholdRecType</name>
-        <label>Het accountrecordtype dat voor huishoudenaccounts wordt gebruikt.</label>
+        <label>Instelling toevoegen</label>
+        <name>stgBtnAddSetting</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
-        <label>Als uw organisatie eerder aangepaste keuzelijstwaarden aan het veld Etniciteit heeft toegevoegd die u beschikbaar wilt maken in het veld Ras, kopieert u die aangepaste keuzelijstwaarden naar het veld Ras.</label>
+        <label>Annuleren</label>
+        <name>stgBtnCancel</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpNestedPlanRequirementPP</name>
-        <label>Als u een hiërarchie hebt voor de geneste planvereisten, kan het handig zijn om op te geven dat er maar één programmaplan of slechts één bovenliggende planvereiste mag zijn. Dit helpt de structuur te behouden.</label>
+        <label>Selectie wissen</label>
+        <name>stgBtnClearSelectionA11y</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpOrgAccountAddressMgmt</name>
-        <label>Indien geselecteerd, wordt adresbeheer ingeschakeld voor organisatieaccounts.</label>
+        <label>Trailblazer-community openen</label>
+        <name>stgBtnCommunity</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpRelAutoCreatedDup</name>
-        <label>Automatisch gemaakte relaties worden standaard gededupliceerd om te voorkomen dat er dubbele relatierecords worden gemaakt tussen twee contactpersonen. Selecteer &apos;Autom. gem. duplicaatrelaties toestaan&apos; om dit gedrag uit te schakelen en meerdere relaties van hetzelfde type tussen twee contactpersonen toe te staan.</label>
+        <label>Ga naar de Trailblazer-community.</label>
+        <name>stgBtnCommunityActionA11y</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpRelReciprocalMethod</name>
-        <label>Geef aan hoe de typevelden moeten worden ingevuld bij automatisch gemaakte wederzijdse relaties. Selecteer Lijstinstelling om de waarden van de wederzijdse relaties te gebruiken. Selecteer Waarde-omkering om het type waarde om te keren voor het oorspronkelijke relatierecord.</label>
+        <label>Verwijderen</label>
+        <name>stgBtnDelete</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
-        <label>Verwijder alle keuzelijstwaarden uit het veld Etniciteit behalve &apos;Spaans of Latino&apos; en &apos;Niet Spaans of Latino&apos;. We raden u aan om alle verwijderde waarden te vervangen door een van de resterende geldige waarden, in plaats van ze gewoonweg van bestaande records te verwijderen. Sinds EDA-versie 1.28 zijn de enige geldige etniciteitswaarden &apos;Niet Spaans of Latino&apos; en &apos;Spaans of Latino&apos;.</label>
+        <label>Documentatie</label>
+        <name>stgBtnDocumentation</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpSimpleAddrChangeIsUpdate</name>
-        <label>Als u eenvoudige adreswijzigingen wilt aanbrengen voor contactpersonen of accounts, kunt u het beste bestaande adresrecords aanpassen in plaats van nieuwe te maken.</label>
+        <label>Ga naar de EDA-documentatie.</label>
+        <name>stgBtnDocumentationActionA11y</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpStoreErrorsOn</name>
-        <label>Leg fouten vast en sla deze op in het object Fout. Nadat u deze instelling hebt ingeschakeld, maakt u een tabblad voor het object Fout zodat u foutrecords kunt bekijken.</label>
+        <label>Trailhead openen</label>
+        <name>stgBtnEDCTrailhead</name>
     </customLabels>
     <customLabels>
-        <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
-        <label>Als u rapporten of formulevelden had die naar de vorige waarden in het veld Etniciteit verwezen, moet u die updaten.</label>
+        <label>Ga naar de Education Cloud-trailmix.</label>
+        <name>stgBtnEDCTrailheadActionA11y</name>
     </customLabels>
     <customLabels>
-        <name>stgLeadConversionAccountNaming</name>
-        <label>Accounts na leadconversie automatisch hernoemen</label>
+        <label>Bewerken</label>
+        <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
-        <name>stgLeadConversionAccountNamingDesc</name>
-        <label>Wanneer leads worden geconverteerd, kunnen accounts automatisch worden hernoemd aan de hand van de accountnaamindeling die aan deze geselecteerde recordtypen is gekoppeld.</label>
+        <label>Controle van de instellingentoestand openen</label>
+        <name>stgBtnHealthCheck</name>
     </customLabels>
     <customLabels>
-        <name>stgLeadConversionAccountNamingTitle</name>
-        <label>Naamgeving voor accounts na leadconversie</label>
+        <label>Maak een toewijzing van automatische inschrijving.</label>
+        <name>stgBtnNewAutoEnrollA11y</name>
     </customLabels>
     <customLabels>
-        <name>stgNestedPlanRequirementPP</name>
-        <label>Hiërarchie van planvereisten</label>
-    </customLabels>
-    <customLabels>
-        <name>stgNewAfflMapping</name>
-        <label>Nieuwe affiliatietoewijzing?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgOptAllSysAdmins</name>
-        <label>Alle systeembeheerders</label>
-    </customLabels>
-    <customLabels>
-        <name>stgOptChatterGroup</name>
-        <label>Chatter-groep</label>
-    </customLabels>
-    <customLabels>
-        <name>stgOptSelect</name>
-        <label>Selecteren...</label>
-    </customLabels>
-    <customLabels>
-        <name>stgOptUser</name>
-        <label>Gebruiker</label>
-    </customLabels>
-    <customLabels>
-        <name>stgPeopleAndGroupsNav</name>
-        <label>Mensen en groepen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgPreferredEmailBatchEmailBody</name>
-        <label>De Apex-batchtaak heeft {0} records verwerkt met {1} fouten.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgPreferredEmailBatchEmailSubject</name>
-        <label>Voorkeurs-e-mail/telefoonnummertaak voltooid met status:</label>
-    </customLabels>
-    <customLabels>
-        <name>stgPreferredEmailDataCleanup</name>
-        <label>Voorkeurs-e-mailadres en voorkeurstelefoonnummer</label>
-    </customLabels>
-    <customLabels>
-        <name>stgPreferredPhoneDefault</name>
-        <label>Standaard voorkeurstelefoonnummer</label>
-    </customLabels>
-    <customLabels>
-        <name>stgPreferredPhoneEmailModalBody</name>
-        <label>De velden Voorkeurs-e-mailadres en Voorkeurstelefoonnummer worden vernieuwd voor alle contactpersonen zoals bepaald door de instellingen voor uw organisatie. Controleer voordat u verdergaat of alle processen die naar de velden Voorkeurs-e-mailadres en Voorkeurstelefoonnummer verwijzen wel zijn uitgeschakeld.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgPreferredPhoneEmailModalTitle</name>
-        <label>De velden Voorkeurs-e-mailadres en Voorkeurstelefoonnummer bijwerken?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgPreferredPhoneEmailSuccessToast</name>
-        <label>Er komt een update voor de velden Voorkeurs-e-mailadres en Voorkeurstelefoonnummer. Wij sturen u een e-mail wanneer het zover is.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgPreferredPhoneSelection</name>
-        <label>Selecteer een veld voor het voorkeurstelefoonnummer van waaruit de waarde moet worden gekopieerd in het geval dat het standaard telefoonnummerveld geen waarde heeft of er meer dan één telefoonnummerveld is gedefinieerd.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgPreferredPhoneSelectionDesc</name>
-        <label>Het veld dat moet worden gebruikt voor Voorkeurstelefoonnummer wanneer het veld Telefoon leeg is of wanneer er meerdere telefoonwaarden zijn opgegeven.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgProgramPlanSettingsNav</name>
-        <label>Programmaplannen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgProgramPlanSettingsTitle</name>
-        <label>Instellingen voor programmaplan</label>
-    </customLabels>
-    <customLabels>
-        <name>stgProgramsSettingsNav</name>
-        <label>Programma-inschrijvingen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgProgramsSettingsTitle</name>
-        <label>Instellingen voor programma-inschrijvingen</label>
-    </customLabels>
-    <customLabels>
-        <name>stgReciprocalMethodListSetting</name>
-        <label>Lijstinstelling</label>
-    </customLabels>
-    <customLabels>
-        <name>stgReciprocalMethodValueInversion</name>
-        <label>Waarde-omkering</label>
-    </customLabels>
-    <customLabels>
-        <name>stgReciprocalRelDeleteModalBody</name>
-        <label>Met deze wederzijdse relatie wordt de wederzijdse waarde {0} toegewezen aan de wederzijdse waarden {1} {2} en {3}. U moet wel zeker weten dat u deze wilt verwijderen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgReciprocalRelDeleteModalTitle</name>
-        <label>Wederzijdse relatie verwijderen?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgReciprocalRelDeleteSuccess</name>
-        <label>Wederzijdse relatie voor {0} is verwijderd.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgReciprocalRelEditModalBody</name>
-        <label>Selecteer de wederzijdse relatie die u wilt bewerken.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgReciprocalRelEditModalTitle</name>
-        <label>Wederzijdse relatie bewerken?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgReciprocalRelEditSuccess</name>
-        <label>Wederzijdse relatie voor {0} is opgeslagen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgReciprocalRelNewModalBody</name>
-        <label>Selecteer het type wederzijdse relatie dat u wilt maken.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgReciprocalRelNewModalTitle</name>
-        <label>Nieuwe wederzijdse relatie?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgReciprocalRelNewSuccess</name>
-        <label>Wederzijdse relatie voor {0} is gemaakt.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRefreshAdminAcctNameDesc</name>
-        <label>Alle administratief-accountrecords worden bijgewerkt zodat ze de indeling gebruiken die is opgegeven in Naamindeling administratief account.&lt;/br&gt;&lt;/br&gt;Waarschuwing: Verdiep u voordat u verdergaat in de impact die deze instelling heeft. Schakel daarnaast processen uit die naar administratieve accounts verwijzen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRefreshAdminAcctNameTitle</name>
-        <label>Alle administratief-accountnamen bijwerken</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRefreshAdminNamesModalBody</name>
-        <label>Alle administratief-accountrecords worden bijgewerkt zodat ze de indeling gebruiken die is opgegeven in Naamindeling administratief account. Schakel voordat u verdergaat alle processen uit die naar administratieve accounts verwijzen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRefreshAdminNamesModalTitle</name>
-        <label>Alle administratief-accountnamen bijwerken?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRefreshAdminNamesSuccessToast</name>
-        <label>Er komt een update voor administratief-accountnamen. Wij sturen u een e-mail wanneer het zover is.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRefreshHHAcctNameDesc</name>
-        <label>Alle huishoudenaccountrecords worden bijgewerkt zodat ze de indeling gebruiken die is opgegeven in Naamindeling huishoudenaccount, zelfs als deze instelling eerder is uitgeschakeld.&lt;/br&gt;&lt;/br&gt;Waarschuwing: Verdiep u voordat u verdergaat in de impact die deze instelling heeft. Schakel daarnaast alle processen uit die naar huishoudenaccounts verwijzen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRefreshHHAcctNameTitle</name>
-        <label>Alle huishoudenaccountnamen bijwerken</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRefreshHouseholdNamesModalBody</name>
-        <label>Alle huishoudenaccountrecords worden bijgewerkt zodat ze de indeling gebruiken die is opgegeven in Naamindeling huishoudenaccount. Schakel voordat u verdergaat alle processen uit die naar huishoudenaccounts verwijzen.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRefreshHouseholdNamesModalTitle</name>
-        <label>Alle huishoudenaccountnamen bijwerken?</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRefreshHouseholdNamesSuccessToast</name>
-        <label>Er komt een update voor huishoudenaccountnamen. Wij sturen u een e-mail wanneer het zover is.</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRelationshipSettingsNav</name>
-        <label>Relaties</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRelationshipSettingsTitle</name>
-        <label>Instellingen voor relaties</label>
-    </customLabels>
-    <customLabels>
-        <name>stgRunCleanUp</name>
         <label>Bijwerken</label>
+        <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <name>stgRunCleanUpA11y</name>
-        <label>Werk de velden Voorkeurs-e-mailadres en Voorkeurstelefoonnummer bij voor alle contactpersonen.</label>
+        <label>Werk alle administratief-accountnamen bij.</label>
+        <name>stgBtnRefreshAdminNamesA11y</name>
     </customLabels>
     <customLabels>
-        <name>stgRunCleanUpEnableFirstTime</name>
-        <label>De velden Voorkeurs-e-mailadres en Voorkeurstelefoonnummer worden bijgewerkt voor alle contactpersonen zoals bepaald door de instellingen voor uw organisatie. Het is raadzaam om deze taak uit te voeren wanneer u Voorkeurs-e-mailadres vereisen of Voorkeurstelefoonnummer vereisen voor het eerst inschakelt of als u deze instellingen enige tijd niet hebt gebruikt.</label>
+        <label>Werk het veld Ras in Contactpersoon bij met waarden uit het veld Etniciteit. De waarden &apos;Niet Spaans of Latino&apos; en &apos;Spaans of Latino&apos; worden niet gekopieerd.</label>
+        <name>stgBtnRefreshEthnicityDataA11y</name>
     </customLabels>
     <customLabels>
-        <name>stgSaveSettings</name>
-        <label>De EDA-instellingen zijn opgeslagen.</label>
+        <label>Bijwerken</label>
+        <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
-        <name>stgSelectChatterGroupDesc</name>
-        <label>Chatter-groep openen...</label>
+        <label>Werk alle huishoudenaccountnamen bij.</label>
+        <name>stgBtnRefreshHouseholdNamesA11y</name>
     </customLabels>
     <customLabels>
-        <name>stgSelectChatterGroupTitle</name>
+        <label>Backfill uitvoeren</label>
+        <name>stgBtnRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Bijwerken</label>
+        <name>stgBtnRunCopy</name>
+    </customLabels>
+    <customLabels>
+        <label>Werk het veld Uitgebreide beschrijving in Cursusrecords bij zodat tekst uit het veld Beschrijving wordt gebruikt.</label>
+        <name>stgBtnRunCopyA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Werk cursusverbindingen voor stafleden bij naar de waarde voor Standaard recordtype voor staflid en overige cursusverbindingen naar de waarde voor Standaard recordtype voor student.</label>
+        <name>stgBtnRunCourseConnBackfillA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Opslaan</label>
+        <name>stgBtnSave</name>
+    </customLabels>
+    <customLabels>
+        <label>Instellingen</label>
+        <name>stgBtnSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Ga naar de EDA-instellingen.</label>
+        <name>stgBtnSettingsActionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Trailhead</label>
+        <name>stgBtnTrailhead</name>
+    </customLabels>
+    <customLabels>
+        <label>Ga naar de EDA Trailhead-modules.</label>
+        <name>stgBtnTrailheadActionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Bijwerken</label>
+        <name>stgBtnUpdate</name>
+    </customLabels>
+    <customLabels>
+        <label>YouTube</label>
+        <name>stgBtnVideos</name>
+    </customLabels>
+    <customLabels>
+        <label>YouTube</label>
+        <name>stgBtnVideosActionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>De opschoning is in de wachtrij geplaatst. Er wordt een e-mail verzonden bij voltooiing van de batch.</label>
+        <name>stgCleanupQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
+        <label>Accountrecordtype</label>
+        <name>stgColAccountRecordType</name>
+    </customLabels>
+    <customLabels>
+        <label>Actief</label>
+        <name>stgColActive</name>
+    </customLabels>
+    <customLabels>
+        <label>Automatische inschrijvingsrol</label>
+        <name>stgColAutoEnrollmentRole</name>
+    </customLabels>
+    <customLabels>
+        <label>Automatische inschrijvingsstatus</label>
+        <name>stgColAutoEnrollmentStatus</name>
+    </customLabels>
+    <customLabels>
+        <label>Campagnetypen</label>
+        <name>stgColCampTypes</name>
+    </customLabels>
+    <customLabels>
+        <label>Het veld Primaire affiliatie in Contactpersoon</label>
+        <name>stgColContactPrimaryAfflField</name>
+    </customLabels>
+    <customLabels>
+        <label>Vrouw</label>
+        <name>stgColFemale</name>
+    </customLabels>
+    <customLabels>
+        <label>Veldlabel</label>
+        <name>stgColField</name>
+    </customLabels>
+    <customLabels>
+        <label>Man</label>
+        <name>stgColMale</name>
+    </customLabels>
+    <customLabels>
+        <label>Neutraal</label>
+        <name>stgColNeutral</name>
+    </customLabels>
+    <customLabels>
+        <label>API-naam van object</label>
+        <name>stgColObject</name>
+    </customLabels>
+    <customLabels>
+        <label>Producten</label>
+        <name>stgColProducts</name>
+    </customLabels>
+    <customLabels>
+        <label>Relatietype</label>
+        <name>stgColRelType</name>
+    </customLabels>
+    <customLabels>
+        <label>Naam</label>
+        <name>stgColRelationshipName</name>
+    </customLabels>
+    <customLabels>
+        <label>Resources</label>
+        <name>stgColResources</name>
+    </customLabels>
+    <customLabels>
+        <label>Rol</label>
+        <name>stgColRole</name>
+    </customLabels>
+    <customLabels>
+        <label>Status</label>
+        <name>stgColStatus</name>
+    </customLabels>
+    <customLabels>
+        <label>Hulpmiddelen</label>
+        <name>stgColTools</name>
+    </customLabels>
+    <customLabels>
+        <label>Trailblazer-community</label>
+        <name>stgCommunityTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Ik begrijp het en ben er klaar voor om de backfill uit te voeren.</label>
+        <name>stgConfirmReadyRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Gegevens contactpersoon</label>
+        <name>stgContactInformationSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Instellingen voor contactgegevens</label>
+        <name>stgContactInformationSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Meerdere adressen voor contactpersoon toestaan</label>
+        <name>stgContactMultiAddressesEnabled</name>
+    </customLabels>
+    <customLabels>
+        <label>Er is een fout opgetreden bij het starten van de backfill.</label>
+        <name>stgCourseConnBackFillError</name>
+    </customLabels>
+    <customLabels>
+        <label>Er komt een update voor de recordtypen Cursusverbinding. Controleer de status van de taak onder Apex-taken in Set-up.</label>
+        <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Recordtypen voor cursusverbindingen bijwerken?</label>
+        <name>stgCourseConnectionBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Cursusverbindingen</label>
+        <name>stgCourseConnectionsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Instellingen voor cursusverbindingen</label>
+        <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Tekst uit het veld Beschrijving wordt naar het veld Uitgebreide beschrijving in Cursusrecords gekopieerd. Bestaande waarden voor Uitgebreide beschrijving worden niet overschreven. Werk paginalay-outs en andere verwijzingen naar het veld Beschrijving bij wanneer deze update is voltooid.</label>
+        <name>stgCourseDataMigrationModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Het veld Uitgebreide beschrijving bijwerken?</label>
+        <name>stgCourseDataMigrationModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>De Apex-batchtaak heeft {0} batches verwerkt met {1} fouten.</label>
+        <name>stgCourseDescriptionCopyEmailBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Kopieertaak cursusbeschrijving voltooid met status:</label>
+        <name>stgCourseDescriptionCopyEmailSubject</name>
+    </customLabels>
+    <customLabels>
+        <label>Cursussen en inschrijvingen</label>
+        <name>stgCoursesAndEnrollmentsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Taalbeheersing contactpersoon</label>
+        <name>stgDefaultContactLanguageFluency</name>
+    </customLabels>
+    <customLabels>
+        <label>Standaard recordtype voor staflid</label>
+        <name>stgDefaultFacultyTypeTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Standaard recordtype voor student</label>
+        <name>stgDefaultStudentTypeTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Foutafhandeling</label>
+        <name>stgDisableErrorHandlingTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Voorkeurs-e-mailadres vereisen</label>
+        <name>stgDisablePreferredEmailEnforcement</name>
+    </customLabels>
+    <customLabels>
+        <label>Voorkeurstelefoonnummer vereisen</label>
+        <name>stgDisablePreferredPhoneEnforcement</name>
+    </customLabels>
+    <customLabels>
+        <label>Dubbele relaties voorkomen</label>
+        <name>stgDuplicateRelationships</name>
+    </customLabels>
+    <customLabels>
+        <label>Geef aan of u wilt voorkomen dat er meer dan één relatierecord van hetzelfde type bestaat tussen twee contactpersonen.</label>
+        <name>stgDuplicateRelationshipsHelp</name>
+    </customLabels>
+    <customLabels>
+        <label>Education Data Architecture (EDA) is de basis van de Education Cloud. De flexibele gegevensarchitectuur dient speciaal om Salesforce voor het onderwijs te configureren.</label>
+        <name>stgEDAAppDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>EDA</label>
+        <name>stgEDAAppInitials</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the EDA App --></label>
+        <name>stgEDAAppTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>We hebben een nieuwe ervaring voor de Education Cloud-instellingen gemaakt waarmee toegang kan worden verkregen tot de EDA-instellingen en vele andere geweldige resources. De stappen voor de set-up kunnen verschillen, afhankelijk van uw EDA-versie. Raadpleeg de documentatie voor meer informatie.</label>
+        <name>stgEDASettingsHasMovedDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>We zijn verhuisd!</label>
+        <name>stgEDASettingsHasMovedTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>EDA-set-up</label>
+        <name>stgEDASetupTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Met &apos;Controle van de instellingentoestand&apos; wordt gezocht naar configuratiefouten in de EDA-instellingen en in Set-up. Volg de aangegeven aanbevelingen om gerapporteerde fouten te corrigeren.</label>
+        <name>stgEDCSettingsHealthCheckDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>Recordtypen voor cursusverbinding</label>
+        <name>stgEnableCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Schakel foutopsporing in, zodat Salesforce Ondersteuning foutopsporingsinstructies voor beheerde pakketten kan zien.</label>
+        <name>stgEnableDebugHelp</name>
+    </customLabels>
+    <customLabels>
+        <label>Foutopsporingslogboek</label>
+        <name>stgEnableDebugTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Verbeterde functionaliteit voorkeurstelefoonnummer</label>
+        <name>stgEnablePreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
+        <label>U kunt deze pagina niet weergeven. Uw Salesforce-beheerder kan u hierbij helpen.</label>
+        <name>stgErrorInsufficientAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>U kunt deze instellingen niet opslaan, omdat u niet meer beschikt over de machtiging om ze te bewerken. Uw Salesforce-beheerder kan u hierbij helpen.</label>
+        <name>stgErrorInsufficientAccessSaving</name>
+    </customLabels>
+    <customLabels>
+        <label>Uw werk kan niet worden opgeslagen. Laad de pagina opnieuw en probeer het nog eens.</label>
+        <name>stgErrorInvalidSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle accountrecordtypen met primaire affiliaties beschikken al over een toewijzing voor automatische inschrijving. Ga naar EDA-instellingen | Affiliaties om eerst een affiliatietoewijzing te maken met het gewenste recordtype.</label>
+        <name>stgErrorNewAutoEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label>Foutmeldingen aan:</label>
+        <name>stgErrorNotiTo</name>
+    </customLabels>
+    <customLabels>
+        <label>Ontvangers foutmeldingen</label>
+        <name>stgErrorNotifRecipientsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Fouten</label>
+        <name>stgErrorSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Foutinstellingen</label>
+        <name>stgErrorSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Verouderde etniciteitsgegevens</label>
+        <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label>Standaard en aangepaste keuzelijstwaarden worden van het veld Etniciteit naar het veld Ras in Contactpersoon gekopieerd, met uitzondering van &apos;Niet Spaans of Latino&apos; en &apos;Spaans of Latino&apos;. Controleer voordat u verdergaat of alle processen die naar de velden Etniciteit en Ras verwijzen wel zijn uitgeschakeld.</label>
+        <name>stgEthnicityRaceBackfillModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Het veld Ras in Contactpersoon bijwerken?</label>
+        <name>stgEthnicityRaceBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Er komt een update voor het veld Ras in Contactpersoon. Wij sturen u een e-mail wanneer het zover is.</label>
+        <name>stgEthnicityRaceBackfillSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label>Vloeiend</label>
+        <name>stgFluent</name>
+    </customLabels>
+    <customLabels>
+        <label>Ga naar EDA-instellingen | Accountmodel en controleer het recordtype Administratief account. Als {0} ({1}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Is het niet correct, dan wijzigt u het recordtype Administratief account in een geldig, actief recordtype.</label>
+        <name>stgHCAccountModelAdminInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Wijzig het recordtype Administratief account in EDA-instellingen | Accountmodel in een geldig, actief recordtype.</label>
+        <name>stgHCAccountModelAdminNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Ga naar EDA-instellingen | Accountmodel en controleer het recordtype Standaard accountmodel. Als {0} ({1}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Is het niet correct, dan wijzigt u het recordtype Standaard accountmodel in een geldig, actief recordtype.</label>
+        <name>stgHCAccountModelDefaultInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Wijzig het recordtype Standaard accountmodel in EDA-instellingen | Accountmodel in een geldig, actief recordtype.</label>
+        <name>stgHCAccountModelDefaultNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Ga naar EDA-instellingen | Accountmodel en controleer het recordtype Huishoudenaccount. Als {0} ({1}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Is het niet correct, dan wijzigt u het recordtype Huishoudenaccount in een geldig, actief recordtype.</label>
+        <name>stgHCAccountModelHHInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Wijzig het recordtype Huishoudenaccount in EDA-instellingen | Accountmodel in een geldig, actief recordtype.</label>
+        <name>stgHCAccountModelHHNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Unieke instellingen voor de recordtypes Administratief account en Account voor huishouden.</label>
+        <name>stgHCAccountRecordTypeSettingsUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>In de instellingen voor de recordtypes Administratief account en Account voor huishouden wordt hetzelfde recordtype opgegeven.</label>
+        <name>stgHCAccountRecordTypesNotUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>Wijzig het recordtype Administratief account of het recordtype Huishoudenaccount in EDA-instellingen | Accountmodel in een uniek recordtype.</label>
+        <name>stgHCAccountRecordTypesNotUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label>In de instellingen voor de recordtypen Administratief account en Account voor huishouden wordt een ander recordtype opgegeven.</label>
+        <name>stgHCAccountRecordTypesUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>De affiliatietoewijzing {0} is geldig.</label>
+        <name>stgHCAffiliationMappingSettingDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Affiliatietoewijzing {0}</label>
+        <name>stgHCAffiliationMappingSettingHeading</name>
+    </customLabels>
+    <customLabels>
+        <label>Controleer in EDA-instellingen | Affiliaties het accountrecordtype voor deze affiliatietoewijzing. Als {0} ({1}) correct is, gaat u in Salesforce Set-up naar het accountrecordtype voor het accountobject en stelt u het recordtype in op Actief. Is het niet correct, dan wijzigt u het recordtype voor de affiliatietoewijzing in een geldig, actief recordtype.</label>
+        <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Het accountrecordtype voor deze affiliatietoewijzing bestaat niet. Wijzig de affiliatietoewijzing in EDA-instellingen | Affiliaties zodanig dat er een geldig, actief recordtype voor het opgegeven account wordt gebruikt.</label>
+        <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Het recordtype {0} ({1}) is toegewezen aan meerdere primaire affiliatievelden voor contactpersonen.</label>
+        <name>stgHCAfflMapAccRecordTypeNotUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>Accountrecordtype</label>
+        <name>stgHCAfflMapAccRecordTypeTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Het recordtype {0} ({1}) is toegewezen aan één primair affiliatieveld voor contactpersonen.</label>
+        <name>stgHCAfflMapAccRecordTypeUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>Ga naar EDA-instellingen | Affiliaties en controleer in de kolom Accountrecordtype of er meerdere toewijzingen zijn die naar {0} ({1}) verwijzen. Bewerk deze affiliatietoewijzingen zodanig dat dit recordtype aan slechts één primair affiliatieveld voor contactpersonen is toegewezen.</label>
+        <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Uniek recordtype Affiliatietoewijzingen</label>
+        <name>stgHCAfflMapAccRecordTypeUniqueTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde {0} ({1}) is niet actief.</label>
+        <name>stgHCAfflMapAutoEnrollRoleInactive</name>
+    </customLabels>
+    <customLabels>
+        <label>De automatische-inschrijvingsrol {0} ({1}) is niet actief. Ga naar EDA-instellingen | Programma-inschrijvingen en controleer de toewijzing Automatische-inschrijvingsprogramma waarmee deze rol wordt gedefinieerd. Als de toewijzing correct is, gaat u in Salesforce Set-up naar het veld Rol in het affiliatieobject en stelt u de keuzelijstwaarde in op Actief. Is de toewijzing niet correct, dan stelt u de automatische-inschrijvingsrol in op een geldige, actieve keuzelijstwaarde.</label>
+        <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>We kunnen de keuzelijstwaarde {0} niet vinden.</label>
+        <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label>De automatische-inschrijvingsrol is niet geldig. Ga naar EDA-instellingen | Programma-inschrijvingen en stel de toewijzing Automatische-inschrijvingsprogramma waarmee deze rol wordt gedefinieerd in op een geldige, actieve keuzelijstwaarde voor het veld Rol in het affiliatieobject.</label>
+        <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Waarde voor Automatische inschrijvingsrol</label>
+        <name>stgHCAfflMapAutoEnrollRoleTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde {0} ({1}) is geldig.</label>
+        <name>stgHCAfflMapAutoEnrollRoleValid</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde {0} ({1}) is niet actief.</label>
+        <name>stgHCAfflMapAutoEnrollStatusInactive</name>
+    </customLabels>
+    <customLabels>
+        <label>De automatische-inschrijvingsstatus {0} ({1}) is niet actief. Ga naar EDA-instellingen | Programma-inschrijvingen en controleer de toewijzing Automatische-inschrijvingsprogramma waarmee deze status wordt gedefinieerd. Als de toewijzing correct is, gaat u in Salesforce Set-up naar het veld Status in het affiliatieobject en stelt u de keuzelijstwaarde in op Actief. Is de toewijzing niet correct, dan stelt u de automatische-inschrijvingsstatus in op een geldige, actieve keuzelijstwaarde.</label>
+        <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>We kunnen de keuzelijstwaarde {0} niet vinden.</label>
+        <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label>De automatische-inschrijvingsstatus is niet geldig. Ga naar EDA-instellingen | Programma-inschrijvingen en stel de toewijzing Automatische-inschrijvingsprogramma waarmee deze status wordt gedefinieerd in op een geldige, actieve keuzelijstwaarde voor het veld Status in het affiliatieobject.</label>
+        <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Waarde voor Automatische inschrijvingsstatus</label>
+        <name>stgHCAfflMapAutoEnrollStatusTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde {0} ({1}) is geldig.</label>
+        <name>stgHCAfflMapAutoEnrollStatusValid</name>
+    </customLabels>
+    <customLabels>
+        <label>Het primaire-affiliatieveld {0} is niet actief. Ga naar EDA-instellingen | Affiliaties en stel de affiliatietoewijzing in op een geldig, actief opzoekveld in het object Contactpersoon.</label>
+        <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Uniek veld voor primaire contactpersoonaffiliaties.</label>
+        <name>stgHCAfflMapContPrimaryFieldUniqueTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} is geen geldig veld voor contactpersonen.</label>
+        <name>stgHCAfflMapContactPrimaryFieldInvalid</name>
+    </customLabels>
+    <customLabels>
+        <label>Het veld {0} ({1}) is toegewezen aan meerdere accountrecordtypen.</label>
+        <name>stgHCAfflMapContactPrimaryFieldNotUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>Primair affiliatieveld contactpersoon</label>
+        <name>stgHCAfflMapContactPrimaryFieldTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Het veld {0} ({1}) is toegewezen aan één accountrecordtype.</label>
+        <name>stgHCAfflMapContactPrimaryFieldUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>Ga naar EDA-instellingen | Affiliaties, vervolgens naar de kolom Contactpersoon en controleer in het veld Primaire affiliatie of er meerdere toewijzingen zijn die naar {0} ({1}) verwijzen. Bewerk deze toewijzingen zodanig dat dit veld in slechts één affiliatietoewijzing voorkomt.</label>
+        <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Het veld {0} ({1}) is geldig.</label>
+        <name>stgHCAfflMapContactPrimaryFieldValid</name>
+    </customLabels>
+    <customLabels>
+        <label>Cursusverbindingen is niet ingeschakeld.</label>
+        <name>stgHCCourseConEnable</name>
+    </customLabels>
+    <customLabels>
+        <label>Schakel Cursusverbindingen in; hierbij hoort ook het configureren van de recordtypen voor cursusverbindingen. Ga naar EDA-instellingen | Cursusverbindingen, schakel de recordtypen voor cursusverbindingen in en configureer Standaard recordtype voor student en Standaard recordtype voor staflid.</label>
+        <name>stgHCCourseConEnableFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Controleer Standaard recordtype voor staflid in EDA-instellingen | Cursusverbindingen. Als {1} ({0}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Is het niet correct, dan stelt u Standaard recordtype voor staflid in op een geldig, actief recordtype.</label>
+        <name>stgHCCourseConFacultyInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Wijzig Standaard recordtype voor staflid in EDA-instellingen | Cursusverbindingen in een geldig, actief recordtype.</label>
+        <name>stgHCCourseConFacultyNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>In de instellingen voor Standaard recordtype voor staflid en Standaard recordtype voor actieve student wordt hetzelfde recordtype opgegeven.</label>
+        <name>stgHCCourseConRecordTypesNotUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>Stel Standaard recordtype voor staflid of Standaard recordtype voor student in EDA-instellingen | Cursusverbindingen in op een uniek recordtype.</label>
+        <name>stgHCCourseConRecordTypesNotUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Unieke instellingen voor Standaard recordtype voor staflid en Standaard recordtype voor actieve student</label>
+        <name>stgHCCourseConRecordTypesUnique</name>
+    </customLabels>
+    <customLabels>
+        <label>In de instellingen voor Standaard recordtype voor staflid en Standaard recordtype voor actieve student wordt een ander recordtype opgegeven.</label>
+        <name>stgHCCourseConRecordTypesUniqueDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Controleer Standaard recordtype voor student in EDA-instellingen | Cursusverbindingen. Als {1} ({0}) correct is, gaat u naar Salesforce Set-up en stelt u het recordtype in op Actief. Is het niet correct, dan stelt u Standaard recordtype voor student in op een geldig, actief recordtype.</label>
+        <name>stgHCCourseConStudentInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Wijzig Standaard recordtype voor student in EDA-instellingen | Cursusverbindingen in een geldig, actief recordtype.</label>
+        <name>stgHCCourseConStudentNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Cursusverbindingen</label>
+        <name>stgHCCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde {0} ({1}) is niet actief.</label>
+        <name>stgHCPicklistValueInactive</name>
+    </customLabels>
+    <customLabels>
+        <label>We kunnen de keuzelijstwaarde {0} niet vinden.</label>
+        <name>stgHCPicklistValueNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde {0} ({1}) is geldig.</label>
+        <name>stgHCPicklistValueValid</name>
+    </customLabels>
+    <customLabels>
+        <label>Er zijn {0} wederzijdse relaties geldig.</label>
+        <name>stgHCReciprocalRelDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde voor Vrouw in de toewijzing Wederzijdse relaties voor {0} ({1}) is niet actief. Ga naar EDA-instellingen | Relaties en controleer de toewijzing. Als deze correct is, gaat u in Salesforce Set-up naar het veld Type in het relatie-object en stelt u de keuzelijstwaarde in op Actief. Is de toewijzing niet correct, dan stelt u de waarde voor Vrouw in Wederzijdse relaties in op een geldige, actieve keuzelijstwaarde.</label>
+        <name>stgHCReciprocalRelFemaleInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde voor Vrouw in de toewijzing Wederzijdse relaties is niet geldig. Ga naar EDA-instellingen | Relaties en stel de waarde voor Vrouw voor deze toewijzing in op een geldige, actieve keuzelijstwaarde.</label>
+        <name>stgHCReciprocalRelFemaleNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>De waarde Vrouw van Wederzijdse instellingen</label>
+        <name>stgHCReciprocalRelFemaleTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde voor Man in de toewijzing Wederzijdse relaties voor {0} ({1}) is niet actief. Ga naar EDA-instellingen | Relaties en controleer de toewijzing. Als deze correct is, gaat u in Salesforce Set-up naar het veld Type in het relatie-object en stelt u de keuzelijstwaarde in op Actief. Is de toewijzing niet correct, dan stelt u de waarde voor Man in Wederzijdse relaties in op een geldige, actieve keuzelijstwaarde.</label>
+        <name>stgHCReciprocalRelMaleInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde voor Man in de toewijzing Wederzijdse relaties is niet geldig. Ga naar EDA-instellingen | Relaties en stel de waarde voor Man voor deze toewijzing in op een geldige, actieve keuzelijstwaarde.</label>
+        <name>stgHCReciprocalRelMaleNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>De waarde Man van Wederzijdse instellingen</label>
+        <name>stgHCReciprocalRelMaleTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>De toewijzing Wederzijdse relaties voor {0} ({1}) is niet actief. Ga naar EDA-instellingen | Relaties en controleer de toewijzing waarin deze naam wordt gedefinieerd. Als de toewijzing correct is, gaat u in Salesforce Set-up naar het veld Type in het relatie-object en stelt u de keuzelijstwaarde in op Actief. Is de toewijzing niet correct, dan stelt u de waarde voor Naam in Wederzijdse relaties in op een geldige, actieve keuzelijstwaarde.</label>
+        <name>stgHCReciprocalRelNameInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>De toewijzing voor Wederzijdse relaties voor {0} is niet geldig. Ga naar EDA-instellingen | Relaties en stel de toewijzing waarmee deze naam wordt gedefinieerd in op een geldige, actieve keuzelijstwaarde.</label>
+        <name>stgHCReciprocalRelNameNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Ga naar de EDA-instellingen, naar het subtabblad Wederzijdse instellingen van het tabblad Relaties en controleer de opgegeven wederzijdse instelling voor {0} ({1}). Als {0} ({1}) correct is, gaat u naar het typeveld van het relatie-object in Salesforce Set-up en stelt u de keuzelijstwaarde in op Actief. Als het niet correct is, wijzigt u de waarde Naam van de wederzijdse instelling in een geldige, actieve keuzelijstwaarde.</label>
+        <name>stgHCReciprocalRelNameNotUniqueDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Controleer in de tabel Wederzijdse relaties in EDA-instellingen | Relaties of er meerdere toewijzingen zijn met de naam {0} ({1}). Bewerk deze toewijzingen zodanig dat slechts één toewijzing naar deze naam verwijst.</label>
+        <name>stgHCReciprocalRelNameNotUniqueFix</name>
+    </customLabels>
+    <customLabels>
+        <label>De waarde Naam van Wederzijdse instellingen</label>
+        <name>stgHCReciprocalRelNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde {0} ({1}) wordt slechts in één wederzijdse instelling gebruikt.</label>
+        <name>stgHCReciprocalRelNameUniqueDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Unieke naam van Wederzijdse instellingen</label>
+        <name>stgHCReciprocalRelNameUniqueTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde voor Neutraal in de toewijzing Wederzijdse relaties voor {0} ({1}) is niet actief. Ga naar EDA-instellingen | Relaties en controleer de toewijzing. Als deze correct is, gaat u in Salesforce Set-up naar het veld Type in het relatie-object en stelt u de keuzelijstwaarde in op Actief. Is de toewijzing niet correct, dan stelt u de waarde voor Neutraal in Wederzijdse relaties in op een geldige, actieve keuzelijstwaarde.</label>
+        <name>stgHCReciprocalRelNeutralInactiveFix</name>
+    </customLabels>
+    <customLabels>
+        <label>De keuzelijstwaarde voor Neutraal in de toewijzing Wederzijdse relaties is niet geldig. Ga naar EDA-instellingen | Relaties en stel de waarde voor Neutraal voor deze toewijzing in op een geldige, actieve keuzelijstwaarde.</label>
+        <name>stgHCReciprocalRelNeutralNotFoundFix</name>
+    </customLabels>
+    <customLabels>
+        <label>De waarde Neutraal van Wederzijdse instellingen</label>
+        <name>stgHCReciprocalRelNeutralTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} wederzijdse relaties</label>
+        <name>stgHCReciprocalRelSetting</name>
+    </customLabels>
+    <customLabels>
+        <label>Het recordtype {0} ({1}) is niet actief.</label>
+        <name>stgHCRecordTypeInactive</name>
+    </customLabels>
+    <customLabels>
+        <label>We kunnen het recordtype {0} niet vinden.</label>
+        <name>stgHCRecordTypeNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label>Het recordtype {0} ({1}) is geldig.</label>
+        <name>stgHCRecordTypeValid</name>
+    </customLabels>
+    <customLabels>
+        <label>Aangepaste naamindeling</label>
+        <name>stgHHAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label>Geef zelf een naamgevingsconventie op.</label>
+        <name>stgHHAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label>Naamgeving huishoudenaccount</label>
+        <name>stgHHAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Open de controle van de instellingentoestand.</label>
+        <name>stgHealthCheckA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Accountmodel</label>
+        <name>stgHealthCheckAccountModel</name>
+    </customLabels>
+    <customLabels>
+        <label>Affiliatietoewijzingen</label>
+        <name>stgHealthCheckAffiliationMappings</name>
+    </customLabels>
+    <customLabels>
+        <label>Controle van de instellingentoestand controleert uw EDA-instellingen op ongeldige configuraties. Als de controle is voltooid, kunt u aan de hand van de resultaten eventuele ongeldige instellingen identificeren en corrigeren.</label>
+        <name>stgHealthCheckDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>We kunnen de datum van de laatste uitvoer niet weergeven vanwege een fout</label>
+        <name>stgHealthCheckErrorLastRunDate</name>
+    </customLabels>
+    <customLabels>
+        <label>Niet van toepassing</label>
+        <name>stgHealthCheckFixNotApplicable</name>
+    </customLabels>
+    <customLabels>
+        <label>Laatste uitvoering: {0}</label>
+        <name>stgHealthCheckLastRun</name>
+    </customLabels>
+    <customLabels>
+        <label>Wordt geladen...</label>
+        <name>stgHealthCheckLoadingIndicator</name>
+    </customLabels>
+    <customLabels>
+        <label>Wederzijdse relaties</label>
+        <name>stgHealthCheckReciprocalRelTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Aanbevolen correctie</label>
+        <name>stgHealthCheckRecoFix</name>
+    </customLabels>
+    <customLabels>
+        <label>Deze resultaten samenvouwen</label>
+        <name>stgHealthCheckResultsCollapse</name>
+    </customLabels>
+    <customLabels>
+        <label>Beschrijving</label>
+        <name>stgHealthCheckResultsDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>Deze resultaten uitvouwen</label>
+        <name>stgHealthCheckResultsExpand</name>
+    </customLabels>
+    <customLabels>
+        <label>Controle van de toestand uitvoeren</label>
+        <name>stgHealthCheckRunButton</name>
+    </customLabels>
+    <customLabels>
+        <label>We kunnen de controle van de instellingentoestand niet uitvoeren vanwege een fout. Probeer het opnieuw.</label>
+        <name>stgHealthCheckRunError</name>
+    </customLabels>
+    <customLabels>
+        <label>Instelling</label>
+        <name>stgHealthCheckSetting</name>
+    </customLabels>
+    <customLabels>
+        <label>Status</label>
+        <name>stgHealthCheckStatus</name>
+    </customLabels>
+    <customLabels>
+        <label>Mislukt</label>
+        <name>stgHealthCheckStatusFailed</name>
+    </customLabels>
+    <customLabels>
+        <label>Geslaagd</label>
+        <name>stgHealthCheckStatusPassed</name>
+    </customLabels>
+    <customLabels>
+        <label>Waarschuwing</label>
+        <name>stgHealthCheckStatusWarning</name>
+    </customLabels>
+    <customLabels>
+        <label>Controle van de instellingentoestand</label>
+        <name>stgHealthCheckTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle controles geslaagd</label>
+        <name>stgHealthChecksAllPassed</name>
+    </customLabels>
+    <customLabels>
+        <label>{0} van {1} controles geslaagd</label>
+        <name>stgHealthChecksNotAllPassed</name>
+    </customLabels>
+    <customLabels>
+        <label>Het accountrecordtype dat wordt gebruikt wanneer er automatisch een account wordt gemaakt voor een onafhankelijke contactpersoon.</label>
+        <name>stgHelpAccountModel</name>
+    </customLabels>
+    <customLabels>
+        <label>Verwijder accounts met deze recordtypen als ze geen contactpersonen bevatten.</label>
+        <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
+    </customLabels>
+    <customLabels>
+        <label>Selecteer de accountrecordtypen die meerdere adressen ondersteunen.</label>
+        <name>stgHelpAddressAccRecType</name>
+    </customLabels>
+    <customLabels>
+        <label>Het accountrecordtype dat voor administratieve accounts wordt gebruikt.</label>
+        <name>stgHelpAdminRecType</name>
+    </customLabels>
+    <customLabels>
+        <label>Kopieer de einddatum van programma-inschrijvingsrecords naar nieuwe affiliatierecords of laat het veld leeg.</label>
+        <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
+    </customLabels>
+    <customLabels>
+        <label>Kopieer de startdatum van programma-inschrijvingsrecords naar nieuwe affiliatierecords of laat het veld leeg.</label>
+        <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
+    </customLabels>
+    <customLabels>
+        <label>Bij programma-inschrijving gemaakte affiliaties</label>
+        <name>stgHelpAfflCreateFromProgramEnrollmentHeader</name>
+    </customLabels>
+    <customLabels>
+        <label>Als een programma-inschrijvingsrecord wordt gemaakt zonder bestaande affiliatie, maakt u een affiliatierecord met de hieronder opgegeven waarden.</label>
+        <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
+    </customLabels>
+    <customLabels>
+        <label>Als u ervoor kiest affiliaties niet te verwijderen wanneer u de daaraan gerelateerde programma-inschrijvingen verwijdert, selecteert u een status voor de affiliaties. Wilt u de status van deze affiliaties ongewijzigd laten, dan selecteert u Geen.</label>
+        <name>stgHelpAfflDeleteProgramEnrollment</name>
+    </customLabels>
+    <customLabels>
+        <label>Verwijdering van programma-inschrijvingen</label>
+        <name>stgHelpAfflDeleteProgramEnrollmentHeader</name>
+    </customLabels>
+    <customLabels>
+        <label>Geef hieronder op wat u wilt dat er gebeurt met affiliatierecords voor verwijderde programma-inschrijvingen. De gerelateerde affiliatierecord kan worden verwijderd of de status ervan kan worden geüpdatet.</label>
+        <name>stgHelpAfflDeleteProgramEnrollmentInfo</name>
+    </customLabels>
+    <customLabels>
+        <label>Indien geselecteerd, stelt u de rol van de nieuwe affiliatie in op de waarde die is gedefinieerd in Rol voor gemaakte affiliaties. In andere gevallen laat u de rol van de affiliatie leeg.</label>
+        <name>stgHelpAfflProgEnrollSetRole</name>
+    </customLabels>
+    <customLabels>
+        <label>Selecteer een rol voor affiliaties die met programma-inschrijvingen zijn gemaakt.</label>
+        <name>stgHelpAfflProgEnrollSetRoleValue</name>
+    </customLabels>
+    <customLabels>
+        <label>Selecteer een status voor affiliaties die met programma-inschrijvingen zijn gemaakt.</label>
+        <name>stgHelpAfflProgEnrollSetStatusValue</name>
+    </customLabels>
+    <customLabels>
+        <label>Sta contactpersonen meerdere adresrecords toe.</label>
+        <name>stgHelpContactAddrs</name>
+    </customLabels>
+    <customLabels>
+        <label>Verplicht contactpersonen om een voorkeurs-e-mailadres in te stellen.</label>
+        <name>stgHelpContactPreferredEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>Verplicht contactpersonen om een voorkeurstelefoonnummer in te stellen.</label>
+        <name>stgHelpContactPreferredPhone</name>
+    </customLabels>
+    <customLabels>
+        <label>Kopieer het voorkeurstelefoonnummer van de contactpersoon naar diens veld Telefoon.</label>
+        <name>stgHelpContactPreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
+        <label>Er komt een update voor het veld Uitgebreide beschrijving. Wij sturen u een e-mail wanneer het zover is.</label>
+        <name>stgHelpCopyQueuedEmailSent</name>
+    </customLabels>
+    <customLabels>
+        <label>Cursusverbindingsrecords voor stafleden worden gewijzigd in de waarde voor Standaard recordtype voor staflid en overige cursusverbindingsrecords in de waarde voor Standaard recordtype voor student.</label>
+        <name>stgHelpCourseConnBackfillDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>Voer deze Apex-taak uit voordat u cursusverbindingen voor het eerst inschakelt, om cursusverbindingsrecords voor stafleden bij te werken naar de waarde voor Standaard recordtype voor staflid. Hierbij worden ook overige cursusverbindingen bijgewerkt naar de waarde voor Standaard recordtype voor student.</label>
+        <name>stgHelpCourseConnectionBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Tekst uit het veld Beschrijving in Cursusrecords wordt naar het veld Uitgebreide beschrijving gekopieerd ter ondersteuning van langere cursusbeschrijvingen.</label>
+        <name>stgHelpCoursesDataMigration</name>
+    </customLabels>
+    <customLabels>
+        <label>Deze functionaliteit kopieert waarden uit het veld Cursusbeschrijving naar het veld Uitgebreide beschrijving. Dit proces kan enige tijd in beslag nemen, maar u kunt deze pagina veilig afsluiten terwijl het proces op de achtergrond verder wordt uitgevoerd.</label>
+        <name>stgHelpCoursesDataMigrationCopiesValues</name>
+    </customLabels>
+    <customLabels>
+        <label>Als een cursus al een waarde voor Uitgebreide beschrijving heeft, wordt deze niet overschreven.</label>
+        <name>stgHelpCoursesDataMigrationDontOverwrite</name>
+    </customLabels>
+    <customLabels>
+        <label>Vergeet na voltooiing van het proces niet om paginalay-outs en andere delen van de applicatie die naar de beschrijvingsvelden verwijzen te updaten.</label>
+        <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
+    </customLabels>
+    <customLabels>
+        <label>De waarde voor Beheersing die is ingesteld bij het wijzigen of instellen van de primaire taal van een contactpersoon in een record voor de taal van een contactpersoon.</label>
+        <name>stgHelpDefaultContactLanguageFluency</name>
+    </customLabels>
+    <customLabels>
+        <label>Selecteer het recordtype voor cursusverbindingen voor stafleden.</label>
+        <name>stgHelpDefaultFacultyType</name>
+    </customLabels>
+    <customLabels>
+        <label>Selecteer het recordtype voor cursusverbindingen voor studenten.</label>
+        <name>stgHelpDefaultStudentType</name>
+    </customLabels>
+    <customLabels>
+        <label>U moet cursusverbindingen inschakelen voordat u de backfill voor cursusverbindingen uitvoert.</label>
+        <name>stgHelpEnableCourseConnBeforeBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>U moet cursusverbindingen inschakelen voordat u recordtypen bewerkt.</label>
+        <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
+    </customLabels>
+    <customLabels>
+        <label>Verplicht dat cursusverbindingsrecords worden opgegeven, of ze nu voor stafleden of studenten zijn. Als u deze instelling inschakelt, moet u ook het standaard recordtype voor studenten en het standaard recordtype voor stafleden instellen.&lt;/br&gt;&lt;/br&gt;Voordat u deze instelling de eerste keer inschakelt, voert u de Apex-taak voor verouderde cursusinschrijvingsgegevens uit in Systeemfuncties.</label>
+        <name>stgHelpEnableCourseConnections</name>
+    </customLabels>
+    <customLabels>
+        <label>De opschoning zorgt ervoor dat bij bestaande contactpersonen die geen voorkeurs-e-mail of voorkeurstelefoonnummer hebben opgegeven een van de standaard of aangepaste e-mailadressen of telefoonnummers wordt ingesteld als de voorkeurswaarde.</label>
+        <name>stgHelpEnsureExistContactPreferEmail</name>
+    </customLabels>
+    <customLabels>
+        <label>Sta foutafhandeling voor asynchrone taken toe, zodat het makkelijker wordt om te zien wanneer geplande taken zijn mislukt.</label>
+        <name>stgHelpErrorDisable</name>
+    </customLabels>
+    <customLabels>
+        <label>Verstuur foutmeldingen naar geselecteerde ontvangers. Als u een Chatter-groep of gebruiker kiest, geeft u ook een waarde op in &apos;Ontvangers foutmeldingen&apos;.</label>
+        <name>stgHelpErrorNotifyOn</name>
+    </customLabels>
+    <customLabels>
+        <label>Voer één gebruikersnaam of Chatter-groep op. Gebruikers ontvangen per e-mail een melding over fouten; Chatter-groepen ontvangen met een bericht in de feed een melding.</label>
+        <name>stgHelpErrorNotifyTo</name>
+    </customLabels>
+    <customLabels>
+        <label>Als u het veld Etniciteit vóór EDA-versie 1.28 hebt gebruikt, wordt het veld Ras in Contactpersoon door deze Apex-taak bijgewerkt met een kopie van standaard en aangepaste waarden uit het veld Etniciteit. De waarden &apos;Niet Spaans of Latino&apos; en &apos;Spaans of Latino&apos; worden niet gekopieerd.</label>
+        <name>stgHelpEthnicityRaceBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Indien geselecteerd, wordt adresbeheer ingeschakeld voor administratieve en huishoudenaccounts.</label>
+        <name>stgHelpHouseAdmAccountAddressMgmt</name>
+    </customLabels>
+    <customLabels>
+        <label>Het accountrecordtype dat voor huishoudenaccounts wordt gebruikt.</label>
+        <name>stgHelpHouseholdRecType</name>
+    </customLabels>
+    <customLabels>
+        <label>Als uw organisatie eerder aangepaste keuzelijstwaarden aan het veld Etniciteit heeft toegevoegd die u beschikbaar wilt maken in het veld Ras, kopieert u die aangepaste keuzelijstwaarden naar het veld Ras.</label>
+        <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
+    </customLabels>
+    <customLabels>
+        <label>Als u een hiërarchie hebt voor de geneste planvereisten, kan het handig zijn om op te geven dat er maar één programmaplan of slechts één bovenliggende planvereiste mag zijn. Dit helpt de structuur te behouden.</label>
+        <name>stgHelpNestedPlanRequirementPP</name>
+    </customLabels>
+    <customLabels>
+        <label>Indien geselecteerd, wordt adresbeheer ingeschakeld voor organisatieaccounts.</label>
+        <name>stgHelpOrgAccountAddressMgmt</name>
+    </customLabels>
+    <customLabels>
+        <label>Automatisch gemaakte relaties worden standaard gededupliceerd om te voorkomen dat er dubbele relatierecords worden gemaakt tussen twee contactpersonen. Selecteer &apos;Autom. gem. duplicaatrelaties toestaan&apos; om dit gedrag uit te schakelen en meerdere relaties van hetzelfde type tussen twee contactpersonen toe te staan.</label>
+        <name>stgHelpRelAutoCreatedDup</name>
+    </customLabels>
+    <customLabels>
+        <label>Geef aan hoe de typevelden moeten worden ingevuld bij automatisch gemaakte wederzijdse relaties. Selecteer Lijstinstelling om de waarden van de wederzijdse relaties te gebruiken. Selecteer Waarde-omkering om het type waarde om te keren voor het oorspronkelijke relatierecord.</label>
+        <name>stgHelpRelReciprocalMethod</name>
+    </customLabels>
+    <customLabels>
+        <label>Verwijder alle keuzelijstwaarden uit het veld Etniciteit behalve &apos;Spaans of Latino&apos; en &apos;Niet Spaans of Latino&apos;. We raden u aan om alle verwijderde waarden te vervangen door een van de resterende geldige waarden, in plaats van ze gewoonweg van bestaande records te verwijderen. Sinds EDA-versie 1.28 zijn de enige geldige etniciteitswaarden &apos;Niet Spaans of Latino&apos; en &apos;Spaans of Latino&apos;.</label>
+        <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
+    </customLabels>
+    <customLabels>
+        <label>Als u eenvoudige adreswijzigingen wilt aanbrengen voor contactpersonen of accounts, kunt u het beste bestaande adresrecords aanpassen in plaats van nieuwe te maken.</label>
+        <name>stgHelpSimpleAddrChangeIsUpdate</name>
+    </customLabels>
+    <customLabels>
+        <label>Leg fouten vast en sla deze op in het object Fout. Nadat u deze instelling hebt ingeschakeld, maakt u een tabblad voor het object Fout zodat u foutrecords kunt bekijken.</label>
+        <name>stgHelpStoreErrorsOn</name>
+    </customLabels>
+    <customLabels>
+        <label>Als u rapporten of formulevelden had die naar de vorige waarden in het veld Etniciteit verwezen, moet u die updaten.</label>
+        <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
+    </customLabels>
+    <customLabels>
+        <label>Accounts na leadconversie automatisch hernoemen</label>
+        <name>stgLeadConversionAccountNaming</name>
+    </customLabels>
+    <customLabels>
+        <label>Wanneer leads worden geconverteerd, kunnen accounts automatisch worden hernoemd aan de hand van de accountnaamindeling die aan deze geselecteerde recordtypen is gekoppeld.</label>
+        <name>stgLeadConversionAccountNamingDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Naamgeving voor accounts na leadconversie</label>
+        <name>stgLeadConversionAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Hiërarchie van planvereisten</label>
+        <name>stgNestedPlanRequirementPP</name>
+    </customLabels>
+    <customLabels>
+        <label>Nieuwe affiliatietoewijzing?</label>
+        <name>stgNewAfflMapping</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle systeembeheerders</label>
+        <name>stgOptAllSysAdmins</name>
+    </customLabels>
+    <customLabels>
         <label>Chatter-groep</label>
+        <name>stgOptChatterGroup</name>
     </customLabels>
     <customLabels>
-        <name>stgSelectReciType</name>
-        <label>Type ontvanger selecteren:</label>
+        <label>Selecteren...</label>
+        <name>stgOptSelect</name>
     </customLabels>
     <customLabels>
-        <name>stgSelectUserDesc</name>
-        <label>Voer een gebruikersnaam in...</label>
-    </customLabels>
-    <customLabels>
-        <name>stgSelectUserTitle</name>
         <label>Gebruiker</label>
+        <name>stgOptUser</name>
     </customLabels>
     <customLabels>
-        <name>stgSendErrorsTitle</name>
+        <label>Mensen en groepen</label>
+        <name>stgPeopleAndGroupsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>De Apex-batchtaak heeft {0} records verwerkt met {1} fouten.</label>
+        <name>stgPreferredEmailBatchEmailBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Voorkeurs-e-mail/telefoonnummertaak voltooid met status:</label>
+        <name>stgPreferredEmailBatchEmailSubject</name>
+    </customLabels>
+    <customLabels>
+        <label>Voorkeurs-e-mailadres en voorkeurstelefoonnummer</label>
+        <name>stgPreferredEmailDataCleanup</name>
+    </customLabels>
+    <customLabels>
+        <label>Standaard voorkeurstelefoonnummer</label>
+        <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
+        <label>De velden Voorkeurs-e-mailadres en Voorkeurstelefoonnummer worden vernieuwd voor alle contactpersonen zoals bepaald door de instellingen voor uw organisatie. Controleer voordat u verdergaat of alle processen die naar de velden Voorkeurs-e-mailadres en Voorkeurstelefoonnummer verwijzen wel zijn uitgeschakeld.</label>
+        <name>stgPreferredPhoneEmailModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>De velden Voorkeurs-e-mailadres en Voorkeurstelefoonnummer bijwerken?</label>
+        <name>stgPreferredPhoneEmailModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Er komt een update voor de velden Voorkeurs-e-mailadres en Voorkeurstelefoonnummer. Wij sturen u een e-mail wanneer het zover is.</label>
+        <name>stgPreferredPhoneEmailSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label>Selecteer een veld voor het voorkeurstelefoonnummer van waaruit de waarde moet worden gekopieerd in het geval dat het standaard telefoonnummerveld geen waarde heeft of er meer dan één telefoonnummerveld is gedefinieerd.</label>
+        <name>stgPreferredPhoneSelection</name>
+    </customLabels>
+    <customLabels>
+        <label>Het veld dat moet worden gebruikt voor Voorkeurstelefoonnummer wanneer het veld Telefoon leeg is of wanneer er meerdere telefoonwaarden zijn opgegeven.</label>
+        <name>stgPreferredPhoneSelectionDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Programmaplannen</label>
+        <name>stgProgramPlanSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Instellingen voor programmaplan</label>
+        <name>stgProgramPlanSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Programma-inschrijvingen</label>
+        <name>stgProgramsSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Instellingen voor programma-inschrijvingen</label>
+        <name>stgProgramsSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Lijstinstelling</label>
+        <name>stgReciprocalMethodListSetting</name>
+    </customLabels>
+    <customLabels>
+        <label>Waarde-omkering</label>
+        <name>stgReciprocalMethodValueInversion</name>
+    </customLabels>
+    <customLabels>
+        <label>Met deze wederzijdse relatie wordt de wederzijdse waarde {0} toegewezen aan de wederzijdse waarden {1} {2} en {3}. U moet wel zeker weten dat u deze wilt verwijderen.</label>
+        <name>stgReciprocalRelDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Wederzijdse relatie verwijderen?</label>
+        <name>stgReciprocalRelDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Wederzijdse relatie voor {0} is verwijderd.</label>
+        <name>stgReciprocalRelDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Selecteer de wederzijdse relatie die u wilt bewerken.</label>
+        <name>stgReciprocalRelEditModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Wederzijdse relatie bewerken?</label>
+        <name>stgReciprocalRelEditModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Wederzijdse relatie voor {0} is opgeslagen.</label>
+        <name>stgReciprocalRelEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Selecteer het type wederzijdse relatie dat u wilt maken.</label>
+        <name>stgReciprocalRelNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Nieuwe wederzijdse relatie?</label>
+        <name>stgReciprocalRelNewModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Wederzijdse relatie voor {0} is gemaakt.</label>
+        <name>stgReciprocalRelNewSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle administratief-accountrecords worden bijgewerkt zodat ze de indeling gebruiken die is opgegeven in Naamindeling administratief account.&lt;/br&gt;&lt;/br&gt;Waarschuwing: Verdiep u voordat u verdergaat in de impact die deze instelling heeft. Schakel daarnaast processen uit die naar administratieve accounts verwijzen.</label>
+        <name>stgRefreshAdminAcctNameDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle administratief-accountnamen bijwerken</label>
+        <name>stgRefreshAdminAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle administratief-accountrecords worden bijgewerkt zodat ze de indeling gebruiken die is opgegeven in Naamindeling administratief account. Schakel voordat u verdergaat alle processen uit die naar administratieve accounts verwijzen.</label>
+        <name>stgRefreshAdminNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle administratief-accountnamen bijwerken?</label>
+        <name>stgRefreshAdminNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Er komt een update voor administratief-accountnamen. Wij sturen u een e-mail wanneer het zover is.</label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle huishoudenaccountrecords worden bijgewerkt zodat ze de indeling gebruiken die is opgegeven in Naamindeling huishoudenaccount, zelfs als deze instelling eerder is uitgeschakeld.&lt;/br&gt;&lt;/br&gt;Waarschuwing: Verdiep u voordat u verdergaat in de impact die deze instelling heeft. Schakel daarnaast alle processen uit die naar huishoudenaccounts verwijzen.</label>
+        <name>stgRefreshHHAcctNameDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle huishoudenaccountnamen bijwerken</label>
+        <name>stgRefreshHHAcctNameTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle huishoudenaccountrecords worden bijgewerkt zodat ze de indeling gebruiken die is opgegeven in Naamindeling huishoudenaccount. Schakel voordat u verdergaat alle processen uit die naar huishoudenaccounts verwijzen.</label>
+        <name>stgRefreshHouseholdNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle huishoudenaccountnamen bijwerken?</label>
+        <name>stgRefreshHouseholdNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Er komt een update voor huishoudenaccountnamen. Wij sturen u een e-mail wanneer het zover is.</label>
+        <name>stgRefreshHouseholdNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label>Relaties</label>
+        <name>stgRelationshipSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Instellingen voor relaties</label>
+        <name>stgRelationshipSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Bijwerken</label>
+        <name>stgRunCleanUp</name>
+    </customLabels>
+    <customLabels>
+        <label>Werk de velden Voorkeurs-e-mailadres en Voorkeurstelefoonnummer bij voor alle contactpersonen.</label>
+        <name>stgRunCleanUpA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>De velden Voorkeurs-e-mailadres en Voorkeurstelefoonnummer worden bijgewerkt voor alle contactpersonen zoals bepaald door de instellingen voor uw organisatie. Het is raadzaam om deze taak uit te voeren wanneer u Voorkeurs-e-mailadres vereisen of Voorkeurstelefoonnummer vereisen voor het eerst inschakelt of als u deze instellingen enige tijd niet hebt gebruikt.</label>
+        <name>stgRunCleanUpEnableFirstTime</name>
+    </customLabels>
+    <customLabels>
+        <label>De EDA-instellingen zijn opgeslagen.</label>
+        <name>stgSaveSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Chatter-groep openen...</label>
+        <name>stgSelectChatterGroupDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Chatter-groep</label>
+        <name>stgSelectChatterGroupTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Type ontvanger selecteren:</label>
+        <name>stgSelectReciType</name>
+    </customLabels>
+    <customLabels>
+        <label>Voer een gebruikersnaam in...</label>
+        <name>stgSelectUserDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Gebruiker</label>
+        <name>stgSelectUserTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Foutmeldingen</label>
+        <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgSimpleAddressChangeUpdate</name>
         <label>Adresrecords bijwerken voor eenvoudige wijzigingen</label>
+        <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>
-        <name>stgStoreErrorsTitle</name>
         <label>Fouten bewaren</label>
+        <name>stgStoreErrorsTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgSuccess</name>
         <label>Succes</label>
+        <name>stgSuccess</name>
     </customLabels>
     <customLabels>
-        <name>stgSuccessAdminAccountNameRefresh</name>
         <label>Het opnieuw laden van de administratieve accountnamen is in de wachtrij geplaatst.
         Er wordt een e-mail verzonden bij voltooiing van de batch.</label>
+        <name>stgSuccessAdminAccountNameRefresh</name>
     </customLabels>
     <customLabels>
-        <name>stgSuccessHHAccountNameRefresh</name>
         <label>Het opnieuw laden van de huishoudenaccountnamen is in de wachtrij geplaatst.
         Er wordt een e-mail verzonden bij voltooiing van de batch.</label>
+        <name>stgSuccessHHAccountNameRefresh</name>
     </customLabels>
     <customLabels>
+        <label>Systeem</label>
         <name>stgSystemSettingsNav</name>
-        <label>Systeem</label>
     </customLabels>
     <customLabels>
-        <name>stgSystemToolsNav</name>
         <label>Systeemfuncties</label>
+        <name>stgSystemToolsNav</name>
     </customLabels>
     <customLabels>
-        <name>stgTabAccCont</name>
         <label>Accounts en contactpersonen</label>
+        <name>stgTabAccCont</name>
     </customLabels>
     <customLabels>
-        <name>stgTabAffl</name>
         <label>Affiliaties</label>
+        <name>stgTabAffl</name>
     </customLabels>
     <customLabels>
-        <name>stgTabAfflMappings</name>
         <label>Affiliatietoewijzingen</label>
+        <name>stgTabAfflMappings</name>
     </customLabels>
     <customLabels>
-        <name>stgTabAutocreation</name>
         <label>Automatisch maken</label>
+        <name>stgTabAutocreation</name>
     </customLabels>
     <customLabels>
-        <name>stgTabBackfill</name>
         <label>Backfill</label>
+        <name>stgTabBackfill</name>
     </customLabels>
     <customLabels>
-        <name>stgTabCourse</name>
         <label>Cursussen</label>
+        <name>stgTabCourse</name>
     </customLabels>
     <customLabels>
-        <name>stgTabCourseConn</name>
         <label>Cursusverbindingen</label>
+        <name>stgTabCourseConn</name>
     </customLabels>
     <customLabels>
-        <name>stgTabName</name>
         <label>Naam</label>
+        <name>stgTabName</name>
     </customLabels>
     <customLabels>
-        <name>stgTabPrimaryAfflField</name>
         <label>Primair affiliatieveld contactpersoon</label>
+        <name>stgTabPrimaryAfflField</name>
     </customLabels>
     <customLabels>
-        <name>stgTabProgramPlan</name>
         <label>Programmaplannen</label>
+        <name>stgTabProgramPlan</name>
     </customLabels>
     <customLabels>
-        <name>stgTabReciprocalSettings</name>
         <label>Wederzijdse instellingen</label>
+        <name>stgTabReciprocalSettings</name>
     </customLabels>
     <customLabels>
-        <name>stgTabRel</name>
         <label>Relaties</label>
+        <name>stgTabRel</name>
     </customLabels>
     <customLabels>
-        <name>stgTabSettings</name>
         <label>Instellingen</label>
+        <name>stgTabSettings</name>
     </customLabels>
     <customLabels>
-        <name>stgTabSystem</name>
         <label>Systeem</label>
+        <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <name>stgTellMeMoreLink</name>
         <label>Meer informatie</label>
+        <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
-        <name>stgTitleAllowAutocreatedDuplicateRel</name>
         <label>Autom. gem. duplicaatrelaties toestaan</label>
+        <name>stgTitleAllowAutocreatedDuplicateRel</name>
     </customLabels>
     <customLabels>
-        <name>stgTitleAppwideSettings</name>
         <label>Instellingen voor de hele app</label>
+        <name>stgTitleAppwideSettings</name>
     </customLabels>
     <customLabels>
-        <name>stgTitleCourseConnectionBackfill</name>
         <label>Verouderde cursusinschrijvingsgegevens</label>
+        <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <name>stgTitleCoursesDescriptionDataMigration</name>
         <label>Uitgebreide cursusbeschrijvingen</label>
+        <name>stgTitleCoursesDescriptionDataMigration</name>
     </customLabels>
     <customLabels>
-        <name>stgTitleHEDAConfig</name>
         <label>Configuratie</label>
+        <name>stgTitleHEDAConfig</name>
     </customLabels>
     <customLabels>
+        <label>EDA-instellingen</label>
         <name>stgTitleHEDASettings</name>
-        <label>EDA-instellingen</label>
     </customLabels>
     <customLabels>
-        <name>stgTitleNewAutocreateSetting</name>
         <label>Nieuwe instelling voor automatisch maken</label>
+        <name>stgTitleNewAutocreateSetting</name>
     </customLabels>
     <customLabels>
-        <name>stgTitleNewReciSetting</name>
         <label>Nieuwe wederzijdse instelling</label>
+        <name>stgTitleNewReciSetting</name>
     </customLabels>
     <customLabels>
-        <name>stgTitleReciMethod</name>
         <label>Wederzijdse methode</label>
+        <name>stgTitleReciMethod</name>
     </customLabels>
     <customLabels>
-        <name>stgToastError</name>
         <label>Fout</label>
+        <name>stgToastError</name>
     </customLabels>
     <customLabels>
-        <name>stgTrailheadTitle</name>
         <label>Trailhead</label>
+        <name>stgTrailheadTitle</name>
     </customLabels>
     <customLabels>
-        <name>stgVideosTitle</name>
         <label>YouTube</label>
+        <name>stgVideosTitle</name>
     </customLabels>
     <customLabels>
-        <name>timeBlockEndTimeMismatch</name>
         <label>Het rooster voor het cursusaanbod kan niet worden opgeslagen omdat de eindtijd niet overeenkomt met de eindtijd van het gekoppelde tijdblok. Bewerk de eindtijd, geef een ander tijdblok op of geef geen tijdblok op.</label>
+        <name>timeBlockEndTimeMismatch</name>
     </customLabels>
     <customLabels>
-        <name>timeBlockStartTimeMismatch</name>
         <label>Het rooster voor het cursusaanbod kan niet worden opgeslagen omdat de begintijd niet overeenkomt met de begintijd van het gekoppelde tijdblok. Bewerk de begintijd, geef een ander tijdblok op of geef geen tijdblok op.</label>
+        <name>timeBlockStartTimeMismatch</name>
     </customLabels>
     <customTabs>
-        <name>HEDA_Settings</name>
-        <label>EDA-instellingen</label>
+        <label>Instellingen voor Education Cloud</label>
+        <name>Education_Cloud_Settings</name>
     </customTabs>
     <customTabs>
-        <name>Education_Cloud_Settings</name>
-        <label>Instellingen voor Education Cloud</label>
+        <label>EDA-instellingen</label>
+        <name>HEDA_Settings</name>
     </customTabs>
-    <customApplications>
-        <name>HEDA</name>
-        <label>EDA</label>
-    </customApplications>
 </Translations>

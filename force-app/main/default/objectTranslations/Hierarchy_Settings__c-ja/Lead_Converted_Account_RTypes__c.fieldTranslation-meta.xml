@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Lead_Converted_Account_RTypes__c</name>
     <help>リードの取引を開始するときに EDA の取引先の命名形式を使用する取引先レコードタイプ。</help>
     <label>リード取引開始済み取引先レコードタイプ</label>
+    <name>Lead_Converted_Account_RTypes__c</name>
 </CustomFieldTranslation>

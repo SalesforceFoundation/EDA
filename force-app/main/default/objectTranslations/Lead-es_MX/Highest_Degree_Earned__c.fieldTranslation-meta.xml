@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Highest_Degree_Earned__c</name>
     <label>Título más alto obtenido</label>
-    <picklistValues>
-        <masterLabel>GED</masterLabel>
-        <translation>Bachillerato</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>High School Diploma</masterLabel>
-        <translation>Diploma de escuela secundaria</translation>
-    </picklistValues>
+    <name>Highest_Degree_Earned__c</name>
     <picklistValues>
         <masterLabel>AA</masterLabel>
         <translation>AA</translation>
@@ -27,6 +19,18 @@
         <translation>BS</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>GED</masterLabel>
+        <translation>Bachillerato</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High School Diploma</masterLabel>
+        <translation>Diploma de escuela secundaria</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>JD</masterLabel>
+        <translation>JD</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>MA</masterLabel>
         <translation>MA</translation>
     </picklistValues>
@@ -35,23 +39,19 @@
         <translation>MBA</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>MS</masterLabel>
-        <translation>MS</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>JD</masterLabel>
-        <translation>JD</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>MD</masterLabel>
         <translation>MD</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>PhD</masterLabel>
-        <translation>PhD</translation>
+        <masterLabel>MS</masterLabel>
+        <translation>MS</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Other</masterLabel>
         <translation>Otros</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PhD</masterLabel>
+        <translation>PhD</translation>
     </picklistValues>
 </CustomFieldTranslation>

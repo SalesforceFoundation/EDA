@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_Course_Connections__c</name>
     <help>Cuando se activa, permite a los usuarios elegir el tipo de contacto (Facultad o Estudiante) cuando se crea un registro Enlace de curso. Esta función requiere que los tipos de registro Contacto estén establecidos para estudiantes y facultades.</help>
     <label>Activar enlaces de cursos</label>
+    <name>Enable_Course_Connections__c</name>
 </CustomFieldTranslation>

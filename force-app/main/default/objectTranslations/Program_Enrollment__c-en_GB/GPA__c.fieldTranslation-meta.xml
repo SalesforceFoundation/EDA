@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>GPA__c</name>
     <help>The student&apos;s current grade point average.</help>
     <label>GPA</label>
+    <name>GPA__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Status_Map__c</name>
     <help>Ohjelmaan ilmoittautumisella automaattisesti luodun jäsenyystietueen tilaksi määritetty arvo.</help>
     <label>Jäsen.tila, kun ohj. ilm. luodaan</label>
+    <name>Affl_ProgEnroll_Status_Map__c</name>
 </CustomFieldTranslation>

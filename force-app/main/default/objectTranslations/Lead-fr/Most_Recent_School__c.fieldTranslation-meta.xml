@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Most_Recent_School__c</name>
     <help>École que la piste fréquente actuellement ou a fréquentée le plus récemment.</help>
     <label>École la plus récente</label>
+    <name>Most_Recent_School__c</name>
 </CustomFieldTranslation>

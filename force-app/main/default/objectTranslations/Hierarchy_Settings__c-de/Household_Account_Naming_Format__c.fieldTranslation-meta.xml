@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Household_Account_Naming_Format__c</name>
     <help>Speichert das Benennungsformat des Haushalt-Accounts.</help>
     <label>Haushalt-Account – Benennungsformat</label>
+    <name>Household_Account_Naming_Format__c</name>
 </CustomFieldTranslation>

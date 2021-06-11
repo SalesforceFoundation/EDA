@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Accounts_to_Delete__c</name>
     <help>Tilitietuetyypit, jotka poistetaan automaattisesti, jos kaikki niihin liittyvät yhteyshenkilöt on poistettu.</help>
     <label>Poistettavat tilit</label>
+    <name>Accounts_to_Delete__c</name>
 </CustomFieldTranslation>

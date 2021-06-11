@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Preferred_Teaching_Format__c</name>
     <label>Format d&apos;ensenyament preferit</label>
+    <name>Preferred_Teaching_Format__c</name>
     <picklistValues>
-        <masterLabel>Remote</masterLabel>
-        <translation>A distància</translation>
+        <masterLabel>Hybrid</masterLabel>
+        <translation>Híbrid</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>In-Person</masterLabel>
         <translation>Presencial</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Hybrid</masterLabel>
-        <translation>Híbrid</translation>
+        <masterLabel>Remote</masterLabel>
+        <translation>A distància</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Undecided</masterLabel>

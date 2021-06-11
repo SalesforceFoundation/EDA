@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Highest_Degree_Earned__c</name>
     <label>Plus haut diplôme obtenu</label>
-    <picklistValues>
-        <masterLabel>GED</masterLabel>
-        <translation>GED</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>High School Diploma</masterLabel>
-        <translation>Diplôme d&apos;études supérieures</translation>
-    </picklistValues>
+    <name>Highest_Degree_Earned__c</name>
     <picklistValues>
         <masterLabel>AA</masterLabel>
         <translation>DEUG, BTS, DUT</translation>
@@ -27,6 +19,18 @@
         <translation>BS</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>GED</masterLabel>
+        <translation>GED</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High School Diploma</masterLabel>
+        <translation>Diplôme d&apos;études supérieures</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>JD</masterLabel>
+        <translation>Doctorat en droit</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>MA</masterLabel>
         <translation>MA</translation>
     </picklistValues>
@@ -35,23 +39,19 @@
         <translation>Master en droit des affaires et management (MBA)</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>MS</masterLabel>
-        <translation>MS</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>JD</masterLabel>
-        <translation>Doctorat en droit</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>MD</masterLabel>
         <translation>MD</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>PhD</masterLabel>
-        <translation>Doctorat</translation>
+        <masterLabel>MS</masterLabel>
+        <translation>MS</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Other</masterLabel>
         <translation>Autre</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PhD</masterLabel>
+        <translation>Doctorat</translation>
     </picklistValues>
 </CustomFieldTranslation>

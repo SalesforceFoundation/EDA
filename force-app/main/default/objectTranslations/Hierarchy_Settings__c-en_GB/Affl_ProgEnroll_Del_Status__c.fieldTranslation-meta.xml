@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Del_Status__c</name>
     <help>If the related setting, Affil Delete When Delete Prog Enrol, is disabled, this setting specifies the value to set for the Affiliation&apos;s Status, when its related Program Enrolment is deleted.</help>
     <label>Affil Status When Delete Prog Enrol</label>
+    <name>Affl_ProgEnroll_Del_Status__c</name>
 </CustomFieldTranslation>

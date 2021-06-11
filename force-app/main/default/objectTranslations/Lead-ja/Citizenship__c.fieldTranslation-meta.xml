@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Citizenship__c</name>
     <label>国籍</label>
+    <name>Citizenship__c</name>
     <picklistValues>
         <masterLabel>Afghanistan</masterLabel>
         <translation>アフガニスタン</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Åland Islands</masterLabel>
-        <translation>オーランド諸島</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Albania</masterLabel>
@@ -235,10 +231,6 @@
         <translation>コスタリカ</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Côte d&apos;Ivoire</masterLabel>
-        <translation>コートジボアール</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>Croatia</masterLabel>
         <translation>クロアチア</translation>
     </picklistValues>
@@ -261,6 +253,10 @@
     <picklistValues>
         <masterLabel>Czechoslovakia</masterLabel>
         <translation>チェコスロバキア</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Côte d&apos;Ivoire</masterLabel>
+        <translation>コートジボアール</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Dahomey</masterLabel>
@@ -355,12 +351,12 @@
         <translation>フランス領ポリネシア</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>French Southern and Antarctic Territories</masterLabel>
-        <translation>フランス領南方・南極地域</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>French Southern Territories (the)</masterLabel>
         <translation>フランス南方領土</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>French Southern and Antarctic Territories</masterLabel>
+        <translation>フランス領南方・南極地域</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Gabon</masterLabel>
@@ -799,10 +795,6 @@
         <translation>カタール</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Réunion</masterLabel>
-        <translation>レユニオン</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>Romania</masterLabel>
         <translation>ルーマニア</translation>
     </picklistValues>
@@ -813,6 +805,10 @@
     <picklistValues>
         <masterLabel>Rwanda</masterLabel>
         <translation>ルワンダ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Réunion</masterLabel>
+        <translation>レユニオン</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Saint Barthélemy</masterLabel>
@@ -1015,6 +1011,10 @@
         <translation>ツバル</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>USSR</masterLabel>
+        <translation>USSR</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Uganda</masterLabel>
         <translation>ウガンダ</translation>
     </picklistValues>
@@ -1035,12 +1035,12 @@
         <translation>その他の米領諸島</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
-        <translation>米領太平洋諸島</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>United States of America (the)</masterLabel>
         <translation>アメリカ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
+        <translation>米領太平洋諸島</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Upper Volta</masterLabel>
@@ -1049,10 +1049,6 @@
     <picklistValues>
         <masterLabel>Uruguay</masterLabel>
         <translation>ウルグアイ</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>USSR</masterLabel>
-        <translation>USSR</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Uzbekistan</masterLabel>
@@ -1117,5 +1113,9 @@
     <picklistValues>
         <masterLabel>Zimbabwe</masterLabel>
         <translation>ジンバブエ</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Åland Islands</masterLabel>
+        <translation>オーランド諸島</translation>
     </picklistValues>
 </CustomFieldTranslation>

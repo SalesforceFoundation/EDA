@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Recruitment_Stage__c</name>
     <help>採用プロセスのリードのフェーズ。</help>
     <label>採用フェーズ</label>
+    <name>Recruitment_Stage__c</name>
     <picklistValues>
         <masterLabel>Prospect</masterLabel>
         <translation>未登録ボランティア (数)</translation>

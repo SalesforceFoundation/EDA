@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Reciprocal_Method__c</name>
     <help>Määrittää menetelmän, jota käytetään vastavuoroisen suhteen luomiseen. Käytä luetteloasetusta käyttääksesi mukautettuja asetuksia sukupuolen mukaan. Käytä arvon kääntämistä kääntääksesi tyypin tarvittaessa (&quot;Vanhempi-lapsi&quot; – &quot;Lapsi-vanhempi&quot;)</help>
     <label>Vastavuoroinen menetelmä</label>
+    <name>Reciprocal_Method__c</name>
 </CustomFieldTranslation>

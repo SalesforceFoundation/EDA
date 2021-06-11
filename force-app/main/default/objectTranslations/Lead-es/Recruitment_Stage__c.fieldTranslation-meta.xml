@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Recruitment_Stage__c</name>
     <help>La etapa del candidato en el proceso de captación.</help>
     <label>Etapa de captación</label>
+    <name>Recruitment_Stage__c</name>
     <picklistValues>
         <masterLabel>Prospect</masterLabel>
         <translation>Potencial</translation>

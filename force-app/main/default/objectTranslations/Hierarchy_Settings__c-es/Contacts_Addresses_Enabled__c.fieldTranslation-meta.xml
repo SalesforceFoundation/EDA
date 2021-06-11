@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Contacts_Addresses_Enabled__c</name>
     <help>Activa la función de direcciones múltiples para contactos.</help>
     <label>Gestión de direcciones para Contactos.</label>
+    <name>Contacts_Addresses_Enabled__c</name>
 </CustomFieldTranslation>

@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Citizenship__c</name>
     <label>Kansalaisuus</label>
+    <name>Citizenship__c</name>
     <picklistValues>
         <masterLabel>Afghanistan</masterLabel>
         <translation>Afganistan</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Åland Islands</masterLabel>
-        <translation>Ahvenanmaa</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Albania</masterLabel>
@@ -235,10 +231,6 @@
         <translation>Costa Rica</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Côte d&apos;Ivoire</masterLabel>
-        <translation>Norsunluurannikko</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>Croatia</masterLabel>
         <translation>Kroatia</translation>
     </picklistValues>
@@ -261,6 +253,10 @@
     <picklistValues>
         <masterLabel>Czechoslovakia</masterLabel>
         <translation>Tšekkoslovakia</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Côte d&apos;Ivoire</masterLabel>
+        <translation>Norsunluurannikko</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Dahomey</masterLabel>
@@ -355,12 +351,12 @@
         <translation>Ranskan Polynesia</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>French Southern and Antarctic Territories</masterLabel>
-        <translation>Ranskan eteläiset ja Etelämantereen alueet</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>French Southern Territories (the)</masterLabel>
         <translation>Ranskan eteläiset alueet</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>French Southern and Antarctic Territories</masterLabel>
+        <translation>Ranskan eteläiset ja Etelämantereen alueet</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Gabon</masterLabel>
@@ -799,10 +795,6 @@
         <translation>Qatar</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Réunion</masterLabel>
-        <translation>Réunion</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>Romania</masterLabel>
         <translation>Romania</translation>
     </picklistValues>
@@ -813,6 +805,10 @@
     <picklistValues>
         <masterLabel>Rwanda</masterLabel>
         <translation>Ruanda</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Réunion</masterLabel>
+        <translation>Réunion</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Saint Barthélemy</masterLabel>
@@ -1015,6 +1011,10 @@
         <translation>Tuvalu</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>USSR</masterLabel>
+        <translation>USSR</translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Uganda</masterLabel>
         <translation>Uganda</translation>
     </picklistValues>
@@ -1035,12 +1035,12 @@
         <translation>Yhdysvaltojen pienet erillissaaret</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
-        <translation>Yhdysvaltojen sekalaiset Tyynenmeren saaret</translation>
-    </picklistValues>
-    <picklistValues>
         <masterLabel>United States of America (the)</masterLabel>
         <translation>Amerikan Yhdysvallat</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
+        <translation>Yhdysvaltojen sekalaiset Tyynenmeren saaret</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Upper Volta</masterLabel>
@@ -1049,10 +1049,6 @@
     <picklistValues>
         <masterLabel>Uruguay</masterLabel>
         <translation>Uruguay</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>USSR</masterLabel>
-        <translation>USSR</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Uzbekistan</masterLabel>
@@ -1117,5 +1113,9 @@
     <picklistValues>
         <masterLabel>Zimbabwe</masterLabel>
         <translation>Zimbabwe</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Åland Islands</masterLabel>
+        <translation>Ahvenanmaa</translation>
     </picklistValues>
 </CustomFieldTranslation>

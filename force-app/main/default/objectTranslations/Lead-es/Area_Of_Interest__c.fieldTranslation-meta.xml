@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Area_Of_Interest__c</name>
     <help>El área de interés del candidato, como un programa, título o concentración.</help>
     <label>Área de interés</label>
+    <name>Area_Of_Interest__c</name>
     <picklistValues>
         <masterLabel>None</masterLabel>
         <translation>Ninguna</translation>

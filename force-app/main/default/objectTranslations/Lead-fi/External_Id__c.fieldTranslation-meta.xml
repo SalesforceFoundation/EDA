@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>External_Id__c</name>
     <help>Valinnainen ulkoinen tunnus, joka on yksilöllinen liidille.</help>
     <label>Ulkoinen tunnus</label>
+    <name>External_Id__c</name>
 </CustomFieldTranslation>

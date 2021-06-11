@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Recruitment_Stage__c</name>
     <help>Etapa del possible estudiant en el procés de reclutament.</help>
     <label>Etapa de reclutament</label>
+    <name>Recruitment_Stage__c</name>
     <picklistValues>
         <masterLabel>Prospect</masterLabel>
         <translation>Perspectiva</translation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Set_Role__c</name>
     <help>Indicates whether to specify a Role for the Affiliation created with a Program Enrolment. If enabled, set the Affiliation&apos;s Role to the value specified in the related setting, Affil Role When Create Prog Enrol. If disabled, don&apos;t specify a Role.</help>
     <label>Affil Set Role When Create Prog Enrol</label>
+    <name>Affl_ProgEnroll_Set_Role__c</name>
 </CustomFieldTranslation>

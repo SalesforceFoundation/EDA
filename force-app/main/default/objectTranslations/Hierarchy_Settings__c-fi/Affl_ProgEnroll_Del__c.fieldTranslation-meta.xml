@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Del__c</name>
     <help>Osoittaa poistetaanko jäsenyys, kun liittyvä ohjelmaan ilmoittautuminen poistetaan. Poista jäsenyys, jos käytössä. Jos on poistettu käytöstä, aseta jäsenyystila arvo, joka on määritetty liittyvässä asetuksessa, Jäsen.tila, kun ohj. ilmoit. poistuu.</help>
     <label>Jäsen. poisto, kun ohj. ilmoit. poistuu</label>
+    <name>Affl_ProgEnroll_Del__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Allow_AutoCreated_Duplicates__c</name>
     <help>Se anulan los duplicados de las relaciones creadas de registros de relaciones entre contactos. Seleccione Permitir relaciones de duplicados creadas para desactivar esto y permitir la creación de múltiples relaciones del mismo tipo entre dos contactos.</help>
     <label>Permitir creación auto relac duplicadas</label>
+    <name>Allow_AutoCreated_Duplicates__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Simple_Address_Change_Treated_as_Update__c</name>
     <help>Cuando se activa, los cambios en campos de dirección únicos en Contactos o Cuentas son actualizaciones en la dirección existente (no se crea ningún objeto Dirección nuevo). Los cambios de caso y los espacios en blanco se tratan como actualizaciones.</help>
     <label>Cambios en dirección son actualizaciones</label>
+    <name>Simple_Address_Change_Treated_as_Update__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Admin_Account_Naming_Format__c</name>
     <help>管理取引先名のデフォルト形式を保存します。</help>
     <label>管理取引先の命名形式</label>
+    <name>Admin_Account_Naming_Format__c</name>
 </CustomFieldTranslation>

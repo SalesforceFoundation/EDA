@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Area_Of_Interest__c</name>
     <help>Das Interessensgebiet des Leads, etwa ein Programm, ein Abschluss oder Konzentration.</help>
     <label>Interessensgebiet</label>
+    <name>Area_Of_Interest__c</name>
     <picklistValues>
         <masterLabel>None</masterLabel>
         <translation>Keins</translation>

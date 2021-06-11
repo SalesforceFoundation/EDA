@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Gender__c</name>
     <label>Género</label>
+    <name>Gender__c</name>
+    <picklistValues>
+        <masterLabel>Decline to State</masterLabel>
+        <translation>Rechaza declarar</translation>
+    </picklistValues>
     <picklistValues>
         <masterLabel>Female</masterLabel>
         <translation>Femenino</translation>
@@ -9,9 +13,5 @@
     <picklistValues>
         <masterLabel>Male</masterLabel>
         <translation>Masculino</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Decline to State</masterLabel>
-        <translation>Rechaza declarar</translation>
     </picklistValues>
 </CustomFieldTranslation>

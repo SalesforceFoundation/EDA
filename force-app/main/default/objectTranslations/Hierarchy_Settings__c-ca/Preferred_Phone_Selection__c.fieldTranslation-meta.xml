@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Preferred_Phone_Selection__c</name>
     <help>Seleccioneu el telèfon preferit que vulgueu quan s&apos;executi el treball per lots de neteja de dades.</help>
     <label>Selecció de telèfon preferit</label>
+    <name>Preferred_Phone_Selection__c</name>
 </CustomFieldTranslation>
