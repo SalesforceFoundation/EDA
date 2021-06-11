@@ -62,7 +62,7 @@ public virtual with sharing class UserLookupResultVMapper {
      * @param recordLimit The number of records to limit the query to
      * @return A list of Lookup Results with a name matching the search string
      ************************************************************************************************************/
-    public virtual List<LookupResult> getLookupResultsLikeName(String userNameMatch, Integer recordLimit) {
+    public virtual List<LookupResult> getLookupResultsLikeUserName(String userNameMatch, Integer recordLimit) {
         List<UserModel> userModelList = this.locateUserService().getUserModelsLikeName(userNameMatch, recordLimit);
         List<LookupResult> lookupResultList = new List<LookupResult>();
 

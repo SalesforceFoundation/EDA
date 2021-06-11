@@ -680,20 +680,16 @@ private with sharing class ErrorSettingsVMapper_TEST {
      * @description Stub class to simulate the response from ErrorSettingsService to return a valid ErrorSettingsModel
      *********************************************************************************************************************/
     private class STUB_ErrorSettingsServiceAllSysAdmins extends ErrorSettingsService {
-        public Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>{
-            'All Sys Admins' => 'All Sys Admins Label'
-        };
-
         public override ErrorSettingsModel getErrorSettingsModel() {
-            return new ErrorSettingsModel(
-                true,
-                true,
-                'All Sys Admins',
-                'All Sys Admins',
-                false,
-                true,
-                this.validErrorNotificationRecipientCategoryLabelsByValue
-            );
+            return new ErrorSettingsModel(true, true, 'All Sys Admins', 'All Sys Admins', false, true);
+        }
+
+        public override Map<String, String> getValidErrorNotificationRecipientCategoryLabelsByValue() {
+            Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>();
+
+            validErrorNotificationRecipientCategoryLabelsByValue.put('All Sys Admins', 'All Sys Admins Label');
+
+            return validErrorNotificationRecipientCategoryLabelsByValue;
         }
     }
 
@@ -707,20 +703,16 @@ private with sharing class ErrorSettingsVMapper_TEST {
             this.userId = userId;
         }
 
-        public Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>{
-            'User' => 'User Label'
-        };
-
         public override ErrorSettingsModel getErrorSettingsModel() {
-            return new ErrorSettingsModel(
-                true,
-                true,
-                'User',
-                this.userId,
-                false,
-                true,
-                this.validErrorNotificationRecipientCategoryLabelsByValue
-            );
+            return new ErrorSettingsModel(true, true, 'User', this.userId, false, true);
+        }
+
+        public override Map<String, String> getValidErrorNotificationRecipientCategoryLabelsByValue() {
+            Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>();
+
+            validErrorNotificationRecipientCategoryLabelsByValue.put('User', 'User Label');
+
+            return validErrorNotificationRecipientCategoryLabelsByValue;
         }
     }
 
@@ -734,20 +726,16 @@ private with sharing class ErrorSettingsVMapper_TEST {
             this.chatterGroupId = chatterGroupId;
         }
 
-        public Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>{
-            'Chatter Group' => 'Chatter Group Label'
-        };
-
         public override ErrorSettingsModel getErrorSettingsModel() {
-            return new ErrorSettingsModel(
-                true,
-                true,
-                'Chatter Group',
-                this.chatterGroupId,
-                false,
-                true,
-                this.validErrorNotificationRecipientCategoryLabelsByValue
-            );
+            return new ErrorSettingsModel(true, true, 'Chatter Group', this.chatterGroupId, false, true);
+        }
+
+        public override Map<String, String> getValidErrorNotificationRecipientCategoryLabelsByValue() {
+            Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>();
+
+            validErrorNotificationRecipientCategoryLabelsByValue.put('Chatter Group', 'Chatter Group Label');
+
+            return validErrorNotificationRecipientCategoryLabelsByValue;
         }
     }
 

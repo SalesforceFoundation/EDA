@@ -168,7 +168,7 @@ private with sharing class ChatterGroupMapper_TEST {
      * @description Test method to verify that getting chatter group models like a name is functional
      ***************************************************************************************************************************/
     @isTest
-    private static void getChatterGroupModelsLikeNameNegative() {
+    private static void getChatterGroupModelsLikeNameNoneRetrieved() {
         ChatterGroupMapper chatterGroupMapperInstance = ChatterGroupMapper.getInstance();
         List<CollaborationGroup> chatterGroupList = UTIL_UnitTestData_TEST.getCollaborationGroupList(
             System.now().getTime() + 'EDA',

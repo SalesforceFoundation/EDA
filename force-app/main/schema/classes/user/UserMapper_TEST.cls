@@ -138,7 +138,7 @@ private with sharing class UserMapper_TEST {
      * @description Test method to verify that getting user models like a name is functional
      ***************************************************************************************************************************/
     @isTest
-    private static void getUserModelsLikeNameNegative() {
+    private static void getUserModelsLikeNameNoneRetrieved() {
         UserMapper userMapperInstance = UserMapper.getInstance();
         List<Id> userToTestIdList = new List<Id>();
         userToTestIdList.add(

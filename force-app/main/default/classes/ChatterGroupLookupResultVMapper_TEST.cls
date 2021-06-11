@@ -152,16 +152,16 @@ private with sharing class ChatterGroupLookupResultVMapper_TEST {
     }
 
     /**
-     * @description Test method to verify that the getLookupResultsLikeName method returns a mapped Lookup Result
+     * @description Test method to verify that the getLookupResultsLikeChatterGroupName method returns a mapped Lookup Result
      */
     @isTest
-    private static void getLookupResultsLikeName() {
+    private static void getLookupResultsLikeChatterGroupName() {
         Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
         ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
         ChatterGroupLookupResultVMapper chatterGroupLookupResultVMapperInstance = ChatterGroupLookupResultVMapper.getInstance();
 
         Test.startTest();
-        List<LookupResult> lookupResultList = chatterGroupLookupResultVMapperInstance.getLookupResultsLikeName(
+        List<LookupResult> lookupResultList = chatterGroupLookupResultVMapperInstance.getLookupResultsLikeChatterGroupName(
             'Chatter',
             1
         );

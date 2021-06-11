@@ -37,11 +37,7 @@ public with sharing class ErrorSettingsModel_TEST {
      * @description Test to verify the constructor returns a model with all properties populated.
      ********************************************************************************************/
     @isTest
-    private static void SevenArgumentConstructorValid() {
-        Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>{
-            'All Sys Admins' => 'All Sys Admins Label'
-        };
-
+    private static void SixArgumentConstructorValid() {
         Test.startTest();
         ErrorSettingsModel errorSettingsModel = new ErrorSettingsModel(
             true,
@@ -49,8 +45,7 @@ public with sharing class ErrorSettingsModel_TEST {
             'All Sys Admins',
             'All Sys Admins',
             true,
-            false,
-            validErrorNotificationRecipientCategoryLabelsByValue
+            false
         );
         Test.stopTest();
 
@@ -75,16 +70,6 @@ public with sharing class ErrorSettingsModel_TEST {
             false,
             errorSettingsModel.errorHandling,
             'Error handling functionality should not be enabled.'
-        );
-        System.assertEquals(
-            1,
-            errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue.size(),
-            'Valid error notification recipient categories should have 1 value.'
-        );
-        System.assertEquals(
-            'All Sys Admins Label',
-            errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue.get('All Sys Admins'),
-            'Valid error notification recipient categories label for \'All Sys Admins\' should be \'All Sys Admins Label\'.'
         );
     }
 }

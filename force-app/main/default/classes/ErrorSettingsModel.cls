@@ -39,8 +39,6 @@ public with sharing class ErrorSettingsModel {
     public Boolean enableDebug { get; private set; }
     public Boolean errorHandling { get; private set; }
 
-    public Map<String, String> validErrorNotificationsRecipientCategoryLabelsByValue;
-
     /******************************************************************************************
      * @description constructor
      * @param  storeErrors A boolen indicating whether error storing functionality is enabled
@@ -52,8 +50,6 @@ public with sharing class ErrorSettingsModel {
      * notifications
      * @param  enableDebug A boolen indicating whether debug functionality is enabled
      * @param  errorHandling A boolen indicating whether error handling functionality is enabled
-     * @param validErrorNotificationsRecipientCategoryLabelsByValue The map of valid error
-     * notificiation category labels by their values
      * @return A ErrorSettingsModel with all properties populated.
      ******************************************************************************************/
     public ErrorSettingsModel(
@@ -62,8 +58,7 @@ public with sharing class ErrorSettingsModel {
         String errorNotificationsRecipientCategory,
         String errorNotificationsRecipient,
         Boolean enableDebug,
-        Boolean errorHandling,
-        Map<String, String> validErrorNotificationsRecipientCategoryLabelsByValue
+        Boolean errorHandling
     ) {
         this.storeErrors = storeErrors;
         this.sendErrorNotifications = sendErrorNotifications;
@@ -71,6 +66,5 @@ public with sharing class ErrorSettingsModel {
         this.errorNotificationsRecipient = errorNotificationsRecipient;
         this.enableDebug = enableDebug;
         this.errorHandling = errorHandling;
-        this.validErrorNotificationsRecipientCategoryLabelsByValue = validErrorNotificationsRecipientCategoryLabelsByValue;
     }
 }

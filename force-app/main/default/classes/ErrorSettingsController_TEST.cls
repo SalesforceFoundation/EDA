@@ -142,7 +142,7 @@ private with sharing class ErrorSettingsController_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that the getLookupResultsLikeName method returns a List of LookupResults that reflects the
+     * @description Test method to verify that the getLookupResultsLikeUserName method returns a List of LookupResults that reflects the
      * search string
      **************************************************************************************************************************/
     @isTest
@@ -301,7 +301,7 @@ private with sharing class ErrorSettingsController_TEST {
             this.userId = userId;
         }
 
-        public override List<LookupResult> getLookupResultsLikeName(String userNameMatch, Integer recordLimit) {
+        public override List<LookupResult> getLookupResultsLikeUserName(String userNameMatch, Integer recordLimit) {
             return new List<LookupResult>{
                 new LookupResult(
                     'User Name',
@@ -319,7 +319,7 @@ private with sharing class ErrorSettingsController_TEST {
      * @description Stub class to simulate the response from UserLookupResultVMapper to throw an exception
      **************************************************************************************************************************/
     private class STUB_UserLookupResultVMapperError extends UserLookupResultVMapper {
-        public override List<LookupResult> getLookupResultsLikeName(String userNameMatch, Integer recordLimit) {
+        public override List<LookupResult> getLookupResultsLikeUserName(String userNameMatch, Integer recordLimit) {
             throw new TestException('Exception encountered!');
         }
     }
@@ -334,7 +334,10 @@ private with sharing class ErrorSettingsController_TEST {
             this.chatterGroupId = chatterGroupId;
         }
 
-        public override List<LookupResult> getLookupResultsLikeName(String chatterGroupNameMatch, Integer recordLimit) {
+        public override List<LookupResult> getLookupResultsLikeChatterGroupName(
+            String chatterGroupNameMatch,
+            Integer recordLimit
+        ) {
             return new List<LookupResult>{
                 new LookupResult(
                     'Chatter Group Name',
@@ -352,7 +355,10 @@ private with sharing class ErrorSettingsController_TEST {
      * @description Stub class to simulate the response from ChatterGroupLookupResultVMapper to throw an exception
      **************************************************************************************************************************/
     private class STUB_CGLookupResultVMapperError extends ChatterGroupLookupResultVMapper {
-        public override List<LookupResult> getLookupResultsLikeName(String chatterGrupNameMatch, Integer recordLimit) {
+        public override List<LookupResult> getLookupResultsLikeChatterGroupName(
+            String chatterGrupNameMatch,
+            Integer recordLimit
+        ) {
             throw new TestException('Exception encountered!');
         }
     }

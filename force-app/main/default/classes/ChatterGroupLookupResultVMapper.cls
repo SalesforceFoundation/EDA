@@ -62,7 +62,10 @@ public virtual with sharing class ChatterGroupLookupResultVMapper {
      * @param recordLimit The number of records to limit the query to
      * @return A list of Lookup Results with a name matching the search string
      ************************************************************************************************************/
-    public virtual List<LookupResult> getLookupResultsLikeName(String chatterGroupNameMatch, Integer recordLimit) {
+    public virtual List<LookupResult> getLookupResultsLikeChatterGroupName(
+        String chatterGroupNameMatch,
+        Integer recordLimit
+    ) {
         List<ChatterGroupModel> chatterGroupModelList = this.locateChatterGroupService()
             .getChatterGroupModelsLikeName(chatterGroupNameMatch, recordLimit);
         List<LookupResult> lookupResultList = new List<LookupResult>();

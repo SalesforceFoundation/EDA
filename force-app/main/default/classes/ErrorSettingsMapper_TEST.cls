@@ -106,9 +106,6 @@ private with sharing class ErrorSettingsMapper_TEST {
         Test.stopTest();
 
         ErrorSettingsMapper_TEST.assertSettingBooleans(errorSettingsModel);
-        ErrorSettingsMapper_TEST.assertValidErrorNotificationRecipientCategoryLabelsByValue(
-            errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue
-        );
 
         System.assertEquals(
             'All Sys Admins',
@@ -147,9 +144,6 @@ private with sharing class ErrorSettingsMapper_TEST {
         Test.stopTest();
 
         ErrorSettingsMapper_TEST.assertSettingBooleans(errorSettingsModel);
-        ErrorSettingsMapper_TEST.assertValidErrorNotificationRecipientCategoryLabelsByValue(
-            errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue
-        );
 
         System.assertEquals(
             'User',
@@ -188,9 +182,6 @@ private with sharing class ErrorSettingsMapper_TEST {
         Test.stopTest();
 
         ErrorSettingsMapper_TEST.assertSettingBooleans(errorSettingsModel);
-        ErrorSettingsMapper_TEST.assertValidErrorNotificationRecipientCategoryLabelsByValue(
-            errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue
-        );
 
         System.assertEquals(
             'Chatter Group',
@@ -231,34 +222,6 @@ private with sharing class ErrorSettingsMapper_TEST {
             true,
             errorSettingsModel.errorHandling,
             'Error handling on resulting model should be inverse of value set in hierarchy settings.'
-        );
-    }
-
-    /**************************************************************************************************************************
-     * @description Helper assert method to make certain that consistency in valid models is used.
-     ***************************************************************************************************************************/
-    private static void assertValidErrorNotificationRecipientCategoryLabelsByValue(
-        Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue
-    ) {
-        System.assertEquals(
-            3,
-            validErrorNotificationRecipientCategoryLabelsByValue.size(),
-            'Only 3 values should be pulled for valid error notification recipient categories.'
-        );
-        System.assertEquals(
-            Label.stgOptAllSysAdmins,
-            validErrorNotificationRecipientCategoryLabelsByValue.get('All Sys Admins'),
-            'The label for \'All Sys Admins\' should be the expected value.'
-        );
-        System.assertEquals(
-            Label.stgOptUser,
-            validErrorNotificationRecipientCategoryLabelsByValue.get('User'),
-            'The label for \'User\' should be the expected value.'
-        );
-        System.assertEquals(
-            Label.stgOptChatterGroup,
-            validErrorNotificationRecipientCategoryLabelsByValue.get('Chatter Group'),
-            'The label for \'Chatter Group\' should be the expected value.'
         );
     }
 
@@ -309,8 +272,25 @@ private with sharing class ErrorSettingsMapper_TEST {
         Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = errorSettingsMapperInstance.getValidErrorNotificationRecipientCategoryLabelsByValue();
         Test.stopTest();
 
-        ErrorSettingsMapper_TEST.assertValidErrorNotificationRecipientCategoryLabelsByValue(
-            validErrorNotificationRecipientCategoryLabelsByValue
+        System.assertEquals(
+            3,
+            validErrorNotificationRecipientCategoryLabelsByValue.size(),
+            'Only 3 values should be pulled for valid error notification recipient categories.'
+        );
+        System.assertEquals(
+            Label.stgOptAllSysAdmins,
+            validErrorNotificationRecipientCategoryLabelsByValue.get('All Sys Admins'),
+            'The label for \'All Sys Admins\' should be the expected value.'
+        );
+        System.assertEquals(
+            Label.stgOptUser,
+            validErrorNotificationRecipientCategoryLabelsByValue.get('User'),
+            'The label for \'User\' should be the expected value.'
+        );
+        System.assertEquals(
+            Label.stgOptChatterGroup,
+            validErrorNotificationRecipientCategoryLabelsByValue.get('Chatter Group'),
+            'The label for \'Chatter Group\' should be the expected value.'
         );
     }
 }

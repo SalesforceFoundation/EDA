@@ -74,10 +74,6 @@ export default class ErrorSettings extends LightningElement {
         return !this.affordancesDisabled;
     }
 
-    get showRequired() {
-        return !this.affordancesDisabled;
-    }
-
     get showErrorNotificationRecipientChatterGroupLookup() {
         return this.errorNotificationRecipientCategory === errorNotificationRecipientCategoryChatterGroup;
     }

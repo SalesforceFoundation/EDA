@@ -91,17 +91,17 @@ public virtual with sharing class ErrorSettingsVMapper {
     private ComboboxVModel getErrorNotificationsRecipientCategoryVModel(ErrorSettingsModel errorSettingsModel) {
         List<ComboboxValueVModel> errorNotificationsRecipientCategoryVModelList = new List<ComboboxValueVModel>();
 
+        Map<String, String> errorNotificationsRecipientCategoryByValue = this.locateErrorSettingsService()
+            .getValidErrorNotificationRecipientCategoryLabelsByValue();
+
         List<String> errorNotificationsRecipientCategoryValueList = new List<String>(
-            errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue.keySet()
+            errorNotificationsRecipientCategoryByValue.keySet()
         );
         errorNotificationsRecipientCategoryValueList.sort();
 
         for (String categoryValue : errorNotificationsRecipientCategoryValueList) {
             errorNotificationsRecipientCategoryVModelList.add(
-                new ComboboxValueVModel(
-                    errorSettingsModel.validErrorNotificationsRecipientCategoryLabelsByValue.get(categoryValue),
-                    categoryValue
-                )
+                new ComboboxValueVModel(errorNotificationsRecipientCategoryByValue.get(categoryValue), categoryValue)
             );
         }
 

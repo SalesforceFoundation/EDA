@@ -80,8 +80,7 @@ public virtual with sharing class ErrorSettingsMapper {
             errorNotificationsCategory,
             hierarchySettings.Error_Notifications_To__c,
             hierarchySettings.Enable_Debug__c,
-            !hierarchySettings.Disable_Error_Handling__c,
-            this.getValidErrorNotificationRecipientCategoryLabelsByValue()
+            !hierarchySettings.Disable_Error_Handling__c
         );
     }
 
@@ -92,7 +91,7 @@ public virtual with sharing class ErrorSettingsMapper {
      * categories
      **********************************************************************************/
     @TestVisible
-    private Map<String, String> getValidErrorNotificationRecipientCategoryLabelsByValue() {
+    public virtual Map<String, String> getValidErrorNotificationRecipientCategoryLabelsByValue() {
         Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>();
 
         validErrorNotificationRecipientCategoryLabelsByValue.put('All Sys Admins', Label.stgOptAllSysAdmins);

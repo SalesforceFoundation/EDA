@@ -53,7 +53,8 @@ public with sharing class ErrorSettingsController {
     @AuraEnabled
     public static List<LookupResult> getLookupResultsLikeUserName(String userNameMatch) {
         try {
-            return ErrorSettingsController.locateUserLookupResultVMapper().getLookupResultsLikeName(userNameMatch, 5);
+            return ErrorSettingsController.locateUserLookupResultVMapper()
+                .getLookupResultsLikeUserName(userNameMatch, 5);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -68,7 +69,7 @@ public with sharing class ErrorSettingsController {
     public static List<LookupResult> getLookupResultsLikeChatterGroupName(String chatterGroupNameMatch) {
         try {
             return ErrorSettingsController.locateChatterGroupLookupResultVMapper()
-                .getLookupResultsLikeName(chatterGroupNameMatch, 5);
+                .getLookupResultsLikeChatterGroupName(chatterGroupNameMatch, 5);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

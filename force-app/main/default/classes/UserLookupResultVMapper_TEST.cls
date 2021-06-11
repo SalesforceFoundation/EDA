@@ -136,16 +136,16 @@ private with sharing class UserLookupResultVMapper_TEST {
         System.assertEquals('user@test.com', lookupResult.meta, 'Lookup Result meta should be the expected value.');
     }
     /**
-     * @description Test method to verify that the getLookupResultFromUserModel method returns a mapped Lookup Result
+     * @description Test method to verify that the getLookupResultsLikeUserName method returns a mapped Lookup Result
      */
     @isTest
-    private static void getLookupResultsLikeName() {
+    private static void getLookupResultsLikeUserName() {
         Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
         UserService.instance = new STUB_UserService(userId);
         UserLookupResultVMapper userLookupResultVMapperInstance = UserLookupResultVMapper.getInstance();
 
         Test.startTest();
-        List<LookupResult> lookupResultList = userLookupResultVMapperInstance.getLookupResultsLikeName('User', 1);
+        List<LookupResult> lookupResultList = userLookupResultVMapperInstance.getLookupResultsLikeUserName('User', 1);
         Test.stopTest();
 
         System.assertEquals(1, lookupResultList.size(), 'Only 1 Lookup result should be retrieved.');

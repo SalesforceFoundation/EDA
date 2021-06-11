@@ -87,12 +87,12 @@ public virtual with sharing class ChatterGroupMapper {
         String chatterGroupNameMatch,
         Integer recordLimit
     ) {
-        String sanitizedNameMatchSearch = '%' + String.escapeSingleQuotes(chatterGroupNameMatch) + '%';
+        String escapedChatterGroupNameMatch = '%' + String.escapeSingleQuotes(chatterGroupNameMatch) + '%';
 
         List<CollaborationGroup> chatterGroupsRetrievedList = [
             SELECT Id, Name, Description, SmallPhotoUrl
             FROM CollaborationGroup
-            WHERE Name LIKE :sanitizedNameMatchSearch
+            WHERE Name LIKE :escapedChatterGroupNameMatch
             WITH SECURITY_ENFORCED
             LIMIT :recordLimit
         ];

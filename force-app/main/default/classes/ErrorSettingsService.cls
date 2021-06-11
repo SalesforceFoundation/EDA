@@ -64,6 +64,17 @@ public virtual with sharing class ErrorSettingsService {
         return this.locateErrorSettingsMapper().getErrorSettingsModel();
     }
 
+    /**********************************************************************************
+     * @description Retrieves the valid error notification recipient categories for
+     * Error Settings
+     * @return A map of strings to labels for valid error notification recipient
+     * categories
+     **********************************************************************************/
+    @TestVisible
+    public virtual Map<String, String> getValidErrorNotificationRecipientCategoryLabelsByValue() {
+        return this.locateErrorSettingsMapper().getValidErrorNotificationRecipientCategoryLabelsByValue();
+    }
+
     /******************************************************************************
      * @description Retrieve an instance of the ErrorSettingsMapper class
      * @return An instance of ErrorSettingsMapper
