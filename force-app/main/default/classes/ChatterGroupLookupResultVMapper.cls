@@ -67,8 +67,8 @@ public virtual with sharing class ChatterGroupLookupResultVMapper {
             .getChatterGroupModelsLikeName(chatterGroupNameMatch, recordLimit);
         List<LookupResult> lookupResultList = new List<LookupResult>();
 
-        for (ChatterGroupModel ChatterGroupModel : chatterGroupModelList) {
-            lookupResultList.add(this.getLookupResultFromChatterGroupModel(ChatterGroupModel));
+        for (ChatterGroupModel chatterGroupModel : chatterGroupModelList) {
+            lookupResultList.add(this.getLookupResultFromChatterGroupModel(chatterGroupModel));
         }
 
         lookupResultList.sort();
