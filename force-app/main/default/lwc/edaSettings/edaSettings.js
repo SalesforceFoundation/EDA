@@ -129,6 +129,9 @@ export default class EDASettings extends NavigationMixin(LightningElement) {
             case "autoenrollmentmapping":
                 this.template.querySelector("c-program-settings").modalSave(saveModel);
                 break;
+            case "relationshipmapping":
+                this.template.querySelector("c-relationship-settings").modalSave(saveModel);
+                break;
             case "batchjob":
                 this.template.querySelector("c-system-tools").modalConfirm(saveModel);
                 break;

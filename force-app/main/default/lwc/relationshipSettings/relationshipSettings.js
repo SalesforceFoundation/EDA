@@ -1,8 +1,14 @@
 import { LightningElement, wire, track, api } from "lwc";
 import { refreshApex } from "@salesforce/apex";
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 // Controllers
 import getRelationshipSettingsVModel from "@salesforce/apex/RelationshipSettingsController.getRelationshipSettingsVModel";
+import getRelationshipLookupsVModel from "@salesforce/apex/RelationshipSettingsController.getRelationshipLookupsVModel";
+import updateRelationshipLookup from "@salesforce/apex/RelationshipSettingsController.updateRelationshipLookup";
+import createRelationshipLookup from "@salesforce/apex/RelationshipSettingsController.createRelationshipLookup";
+import deleteRelationshipLookup from "@salesforce/apex/RelationshipSettingsController.deleteRelationshipLookup";
+
 // Reciprocal Method Custom Labels
 import stgRelationshipSettingsTitle from "@salesforce/label/c.stgRelationshipSettingsTitle";
 import stgTitleReciMethod from "@salesforce/label/c.stgTitleReciMethod";
@@ -12,6 +18,22 @@ import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 // Allow Duplicates Custom Labels
 import stgDuplicateRelationships from "@salesforce/label/c.stgDuplicateRelationships";
 import stgDuplicateRelationshipsHelp from "@salesforce/label/c.stgDuplicateRelationshipsHelp";
+// Reciprocal Relationship Mappings Labels
+import stgTabReciprocalSettings from "@salesforce/label/c.stgTabReciprocalSettings";
+import RelationshipsLookupDescription from "@salesforce/label/c.RelationshipsLookupDescription";
+import stgBtnAddSetting from "@salesforce/label/c.stgBtnAddSetting";
+import stgColRelationshipName from "@salesforce/label/c.stgColRelationshipName";
+import stgColFemale from "@salesforce/label/c.stgColFemale";
+import stgColMale from "@salesforce/label/c.stgColMale";
+import stgColNeutral from "@salesforce/label/c.stgColNeutral";
+import stgColActive from "@salesforce/label/c.stgColActive";
+import stgBtnEdit from "@salesforce/label/c.stgBtnEdit";
+import stgBtnDelete from "@salesforce/label/c.stgBtnDelete";
+import stgReciprocalRelEditSuccess from "@salesforce/label/c.stgReciprocalRelEditSuccess";
+import stgReciprocalRelNewSuccess from "@salesforce/label/c.stgReciprocalRelNewSuccess";
+import stgReciprocalRelDeleteSuccess from "@salesforce/label/c.stgReciprocalRelDeleteSuccess";
+import stgSuccess from "@salesforce/label/c.stgSuccess";
+
 // Articles
 const relationshipsArticle = '<a href="https://powerofus.force.com/EDA-Config-Relationships-Settings">';
 export default class relationshipSettings extends LightningElement {
@@ -21,6 +43,9 @@ export default class relationshipSettings extends LightningElement {
     @track relationshipSettingsVModel;
     @track relationshipSettingsWireResult;
 
+    @track relationshipLookupsVModel;
+    @track relationshipLookupsWireResult;
+
     labelReference = {
         stgRelationshipSettingsTitle: stgRelationshipSettingsTitle,
         reciprocalMethodSettingsName: stgTitleReciMethod,
@@ -29,6 +54,23 @@ export default class relationshipSettings extends LightningElement {
         comboboxPlaceholderText: stgOptSelect,
         duplicateRelationshipTitle: stgDuplicateRelationships,
         duplicateRelationshipDesc: stgDuplicateRelationshipsHelp,
+        relationshipMappingsTitle: stgTabReciprocalSettings,
+        relationshipMappingsDescription: RelationshipsLookupDescription,
+        newButton: stgBtnAddSetting,
+        newButtonA11y: stgBtnAddSetting,
+        createSuccessMessage: stgReciprocalRelNewSuccess,
+        editSuccessMessage: stgReciprocalRelEditSuccess,
+        deleteSuccessMessage: stgReciprocalRelDeleteSuccess,
+        successToast: stgSuccess,
+        relationshipMappingsTable: {
+            relationshipNameColumn: stgColRelationshipName,
+            femaleValueColumn: stgColFemale,
+            maleValueColumn: stgColMale,
+            neutralValueColumn: stgColNeutral,
+            isActiveColumn: stgColActive,
+            editAction: stgBtnEdit,
+            deleteAction: stgBtnDelete,
+        },
     };
 
     inputAttributeReference = {
@@ -113,10 +155,207 @@ export default class relationshipSettings extends LightningElement {
     }
 
     refreshAllApex() {
-        Promise.all([refreshApex(this.relationshipSettingsWireResult)]).then(() => {
+        Promise.all([
+            refreshApex(this.relationshipSettingsWireResult),
+            refreshApex(this.relationshipLookupsWireResult),
+        ]).then(() => {
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });
         });
+    }
+
+    @wire(getRelationshipLookupsVModel)
+    relationshipLookupsVModelWire(result) {
+        this.relationshipLookupsWireResult = result;
+        if (result.data) {
+            this.relationshipLookupsVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving relationshipLookupsVModel");
+        }
+    }
+
+    get relationshipMappingsTableColumns() {
+        return [
+            {
+                label: this.labelReference.relationshipMappingsTable.relationshipNameColumn,
+                fieldName: "name",
+            },
+            {
+                label: this.labelReference.relationshipMappingsTable.femaleValueColumn,
+                fieldName: "femaleValue",
+            },
+            {
+                label: this.labelReference.relationshipMappingsTable.maleValueColumn,
+                fieldName: "maleValue",
+            },
+            {
+                label: this.labelReference.relationshipMappingsTable.neutralValueColumn,
+                fieldName: "neutralValue",
+            },
+            {
+                label: this.labelReference.relationshipMappingsTable.isActiveColumn,
+                fieldName: "isActive",
+                type: "boolean",
+            },
+            {
+                type: "action",
+                typeAttributes: {
+                    rowActions: [
+                        { label: this.labelReference.relationshipMappingsTable.editAction, name: "edit" },
+                        { label: this.labelReference.relationshipMappingsTable.deleteAction, name: "delete" },
+                    ],
+                },
+            },
+        ];
+    }
+
+    handleNewRelationshipMappingClick(event) {
+        const relationshipMappingDetail = {
+            actionName: "create",
+            relationshipMappingName: "",
+            femaleValue: "",
+            maleValue: "",
+            neutralValue: "",
+            isActive: true,
+        };
+
+        this.dispatchRelationshipMappingModalRequestEvent(relationshipMappingDetail);
+    }
+
+    handleRelationshipMappingRowAction(event) {
+        const actionName = event.detail.action.name;
+        const actionRow = event.detail.row;
+        const relationshipMappingDetail = {
+            actionName: actionName,
+            relationshipMappingName: actionRow.name,
+            femaleValue: actionRow.femaleValue,
+            maleValue: actionRow.maleValue,
+            neutralValue: actionRow.neutralValue,
+            isActive: actionRow.isActive,
+        };
+
+        this.dispatchRelationshipMappingModalRequestEvent(relationshipMappingDetail);
+    }
+
+    dispatchRelationshipMappingModalRequestEvent(relationshipMappingDetail) {
+        const relationshipMappingModalRequestEvent = new CustomEvent("relationshipmappingmodalrequest", {
+            detail: relationshipMappingDetail,
+            bubbles: true,
+            composed: true,
+        });
+
+        this.dispatchEvent(relationshipMappingModalRequestEvent);
+    }
+
+    @api modalSave(saveModel) {
+        switch (saveModel.action) {
+            case "create":
+                this.executeCreateRelationshipMapping(
+                    saveModel.relationshipMappingName,
+                    saveModel.femaleValue,
+                    saveModel.maleValue,
+                    saveModel.neutralValue,
+                    saveModel.isActive
+                );
+                break;
+            case "edit":
+                this.executeUpdateRelationshipMappings(
+                    saveModel.oldRelationshipMappingName,
+                    saveModel.relationshipMappingName,
+                    saveModel.femaleValue,
+                    saveModel.maleValue,
+                    saveModel.neutralValue,
+                    saveModel.isActive
+                );
+                break;
+            case "delete":
+                this.executeDeleteRelationshipMappings(saveModel.relationshipMappingName);
+                break;
+        }
+    }
+
+    executeUpdateRelationshipMappings(
+        oldRelationshipMappingName,
+        relationshipMappingName,
+        femaleValue,
+        maleValue,
+        neutralValue,
+        isActive
+    ) {
+        updateRelationshipLookup({
+            oldRelationshipLookupName: oldRelationshipMappingName,
+            newRelationshipLookupName: relationshipMappingName,
+            femaleValue: femaleValue,
+            maleValue: maleValue,
+            neutralValue: neutralValue,
+            isActive: isActive,
+        })
+            .then((result) => {
+                this.showToast(
+                    "success",
+                    "Update Complete",
+                    this.labelReference.editSuccessMessage.replace("{0}", result)
+                );
+            })
+
+            .catch((error) => {
+                //console.log("Inside error");
+            });
+        this.refreshAllApex();
+    }
+
+    executeCreateRelationshipMapping(relationshipMappingName, femaleValue, maleValue, neutralValue, isActive) {
+        createRelationshipLookup({
+            relationshipLookupName: relationshipMappingName,
+            femaleValue: femaleValue,
+            maleValue: maleValue,
+            neutralValue: neutralValue,
+            isActive: isActive,
+        })
+            .then((result) => {
+                this.showToast(
+                    "success",
+                    this.labelReference.successToast,
+                    this.labelReference.createSuccessMessage.replace("{0}", result)
+                );
+            })
+
+            .catch((error) => {
+                // console.log('Inside error');
+            });
+        this.refreshAllApex();
+    }
+
+    executeDeleteRelationshipMappings(relationshipMappingName) {
+        deleteRelationshipLookup({
+            relationshipLookupName: relationshipMappingName,
+        })
+            .then((result) => {
+                if (result) {
+                    this.showToast(
+                        "success",
+                        "Delete Complete",
+                        this.labelReference.deleteSuccessMessage.replace("{0}", result)
+                    );
+                } else {
+                    //console.log("Delete error: the mapping was not found");
+                }
+            })
+
+            .catch((error) => {
+                //console.log("Inside error");
+            });
+        this.refreshAllApex();
+    }
+
+    showToast(toastType, toastTitle, toastMessage) {
+        const showToastEvent = new ShowToastEvent({
+            title: toastTitle,
+            message: toastMessage,
+            variant: toastType,
+            mode: "dismissable",
+        });
+        this.dispatchEvent(showToastEvent);
     }
 }

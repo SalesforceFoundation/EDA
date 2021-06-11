@@ -25,31 +25,30 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
-* @description Mapper class to return a list of RelationshipLookup models
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group
+ * @group-content ../../ApexDocContent/
+ * @description Mapper class to return a list of RelationshipLookup models
+ */
 public virtual with sharing class RelationshipLookupMapper {
-
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static RelationshipLookupMapper instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected RelationshipLookupMapper() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected RelationshipLookupMapper() {
+    }
 
     /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of RelationshipLookupMapper.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of RelationshipLookupMapper.
+     ******************************************************************************/
     public static RelationshipLookupMapper getInstance() {
-
         if (instance == null) {
             instance = new RelationshipLookupMapper();
         }
@@ -58,19 +57,72 @@ public virtual with sharing class RelationshipLookupMapper {
     }
 
     /**********************************************************************************
-    * @description Returns a list of RelationshipLookup models
-    * @return List<RelationshipLookupModel> A list of RelationshipLookup models
-    **********************************************************************************/
+     * @description Returns a list of RelationshipLookup models
+     * @return List<RelationshipLookupModel> A list of RelationshipLookup models
+     **********************************************************************************/
     public virtual List<RelationshipLookupModel> getRelationshipLookupModels() {
-
         List<RelationshipLookupModel> relationshipLookupModelsList = new List<RelationshipLookupModel>();
         List<Relationship_Lookup__c> relationshipLookupSettingsList = UTIL_CustomSettingsFacade.getReciprocalSettings();
 
-        for (Relationship_Lookup__c each: relationshipLookupSettingsList) {
-            RelationshipLookupModel relLookUpModel = new RelationshipLookupModel(each.Name, each.Active__c, each.Female__c, each.Male__c, each.Neutral__c);
+        for (Relationship_Lookup__c each : relationshipLookupSettingsList) {
+            RelationshipLookupModel relLookUpModel = new RelationshipLookupModel(
+                each.Name,
+                each.Active__c,
+                each.Female__c,
+                each.Male__c,
+                each.Neutral__c
+            );
             relationshipLookupModelsList.add(relLookUpModel);
         }
 
-       return relationshipLookupModelsList;
+        return relationshipLookupModelsList;
+    }
+
+    /**
+     * @description inserts a relationship lookup record
+     * @param  relLookupModel A RelationshipLookupModel model of a new relationship lookup
+     * @return                A string representing the name associated with the inserted relationship lookup
+     */
+    public String insertRelationshipLookupModel(RelationshipLookupModel relLookupModel) {
+        Relationship_Lookup__c relLookupRecord = new Relationship_Lookup__c(
+            Name = relLookupModel.name,
+            Female__c = relLookupModel.femaleValue,
+            Male__c = relLookupModel.maleValue,
+            Neutral__c = relLookupModel.neutralValue,
+            Active__c = relLookupModel.isActive
+        );
+
+        insert relLookupRecord;
+        return relLookupRecord.Name;
+    }
+
+    /**
+     * @description updates a relationship lookup record
+     * @param  relationshipLookupName An old relationship lookup record name to update
+     * @param  relLookupModel         A RelationshipLookupModel model of a relationship lookup to update
+     * @return                        A string representing the new name associated with the updated relationship lookup
+     */
+    public String updateRelationshipLookupModel(String relationshipLookupName, RelationshipLookupModel relLookupModel) {
+        Relationship_Lookup__c relLookupRecord = Relationship_Lookup__c.getInstance(relationshipLookupName);
+        relLookupRecord.Name = relLookupModel.name;
+        relLookupRecord.Female__c = relLookupModel.femaleValue;
+        relLookupRecord.Male__c = relLookupModel.maleValue;
+        relLookupRecord.Neutral__c = relLookupModel.neutralValue;
+        relLookupRecord.Active__c = relLookupModel.isActive;
+        update relLookupRecord;
+        return relLookupRecord.Name;
+    }
+
+    /**
+     * @description deletes a relationship lookup record
+     * @param  relLookupModel A RelationshipLookupModel model of a relationship lookup to delete
+     * @return                A string representing the name associated with the deleted relationship lookup
+     */
+    public String deleteRelationshipLookupModel(RelationshipLookupModel relLookupModel) {
+        Relationship_Lookup__c relationshipLookupToDelete = Relationship_Lookup__c.getInstance(relLookupModel.name);
+        String deletedRelationshipLookupName = relationshipLookupToDelete.Name;
+
+        delete relationshipLookupToDelete;
+        return deletedRelationshipLookupName;
     }
 }

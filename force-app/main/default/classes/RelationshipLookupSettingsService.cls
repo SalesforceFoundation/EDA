@@ -25,31 +25,30 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group
-* @group-content ../../ApexDocContent/
-* @description Returns a list of RelationshipLookup models
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group
+ * @group-content ../../ApexDocContent/
+ * @description Returns a list of RelationshipLookup models
+ */
 public virtual with sharing class RelationshipLookupSettingsService {
-
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static RelationshipLookupSettingsService instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected RelationshipLookupSettingsService() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected RelationshipLookupSettingsService() {
+    }
 
     /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of RelationshipLookupSettingsService.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of RelationshipLookupSettingsService.
+     ******************************************************************************/
     public static RelationshipLookupSettingsService getInstance() {
-
         if (instance == null) {
             instance = new RelationshipLookupSettingsService();
         }
@@ -58,27 +57,27 @@ public virtual with sharing class RelationshipLookupSettingsService {
     }
 
     /*******************************************************************************************************
-    * @description Returns a List of RelationshipLookupModels
-    * @return List<RelationshipLookupModel> The list of RelationshipLookupModels
-    ********************************************************************************************************/
+     * @description Returns a List of RelationshipLookupModels
+     * @return List<RelationshipLookupModel> The list of RelationshipLookupModels
+     ********************************************************************************************************/
     public virtual List<RelationshipLookupModel> getRelationshipLookupModels() {
         return this.locateRelationshipLookupMapper().getRelationshipLookupModels();
     }
 
     /***************************************************************************
-    * @description Retrieves a set of duplicate names from a list of models
-    * @param relationshipLookupModelList The relationship lookup model list to
-    * retrieve names from
-    * @return The set of duplicate names
-    ***************************************************************************/
+     * @description Retrieves a set of duplicate names from a list of models
+     * @param relationshipLookupModelList The relationship lookup model list to
+     * retrieve names from
+     * @return The set of duplicate names
+     ***************************************************************************/
     public Set<String> getDuplicateRelationshipModelNamesFromList(
         List<RelationshipLookupModel> relationshipLookupModelList
     ) {
         Set<String> nameSet = new Set<String>();
         Set<String> duplicateSet = new Set<String>();
 
-        for(RelationshipLookupModel relationshipLookupModel : relationshipLookupModelList) {
-            if(nameSet.contains(relationshipLookupModel.name)) {
+        for (RelationshipLookupModel relationshipLookupModel : relationshipLookupModelList) {
+            if (nameSet.contains(relationshipLookupModel.name)) {
                 duplicateSet.add(relationshipLookupModel.name);
             } else {
                 nameSet.add(relationshipLookupModel.name);
@@ -88,10 +87,102 @@ public virtual with sharing class RelationshipLookupSettingsService {
         return duplicateSet;
     }
 
+    /**
+     * @description inserts a relationship lookup
+     * @param  relationshipLookupName relationship lookup name
+     * @param  femaleValue            female relationship type value
+     * @param  maleValue              male relationship type value
+     * @param  neutralValue           neutral relationship type value
+     * @param  isActive               specifies if the lookup is active
+     * @return                        inserted relationship lookup name
+     */
+    public String insertRelationshipLookup(
+        String relationshipLookupName,
+        String femaleValue,
+        String maleValue,
+        String neutralValue,
+        Boolean isActive
+    ) {
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
+
+        return this.locateRelationshipLookupMapper()
+            .insertRelationshipLookupModel(
+                new RelationshipLookupModel(relationshipLookupName, isActive, femaleValue, maleValue, neutralValue)
+            );
+    }
+
+    /**
+     * @description updates a relationship lookup
+     * @param  oldRelationshipLookupName old relationship lookup name
+     * @param  newRelationshipLookupName new relationship lookup name
+     * @param  femaleValue               female relationship type value
+     * @param  maleValue                 male relationship type value
+     * @param  neutralValue              neutral relationship type value
+     * @param  isActive                  specifies if the lookup is active
+     * @return                           updated relationship lookup name
+     */
+    public String updateRelationshipLookup(
+        String oldRelationshipLookupName,
+        String newRelationshipLookupName,
+        String femaleValue,
+        String maleValue,
+        String neutralValue,
+        Boolean isActive
+    ) {
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
+        RelationshipLookupModel relationshipLookupModelToUpdate = new RelationshipLookupModel(
+            newRelationshipLookupName,
+            isActive,
+            femaleValue,
+            maleValue,
+            neutralValue
+        );
+        return this.locateRelationshipLookupMapper()
+            .updateRelationshipLookupModel(oldRelationshipLookupName, relationshipLookupModelToUpdate);
+    }
+
+    /**
+     * @description deletes a relationship lookup
+     * @param  relationshipLookupName relationship lookup name to delete
+     * @return                        deleted relationship lookup name or null if the record was not found
+     */
+    public virtual String deleteRelationshipLookup(String relationshipLookupName) {
+        if (this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser() != true) {
+            return null;
+        }
+
+        Relationship_Lookup__c relationshipLookupToDelete = Relationship_Lookup__c.getInstance(relationshipLookupName);
+
+        if (relationshipLookupToDelete == null) {
+            // no relationship lookup matching specified name
+            return null;
+        }
+
+        return this.locateRelationshipLookupMapper()
+            .deleteRelationshipLookupModel(
+                new RelationshipLookupModel(
+                    relationshipLookupToDelete.name,
+                    relationshipLookupToDelete.Active__c,
+                    relationshipLookupToDelete.Female__c,
+                    relationshipLookupToDelete.Male__c,
+                    relationshipLookupToDelete.Neutral__c
+                )
+            );
+    }
+
+    /*****************************************************************************
+     * @description Retrieves an instance of the UserPermissionService.
+     * @return The instance of UserPermissionService.
+     ******************************************************************************/
+    @TestVisible
+    private UserPermissionService locateUserPermissionService() {
+        return UserPermissionService.getInstance();
+    }
+
     /*******************************************************************************************************
-    * @description Returns the instance of RelationshipLookupMapper class
-    * @return The instance of RelationshipLookupMapper class
-    ********************************************************************************************************/
+     * @description Returns the instance of RelationshipLookupMapper class
+     * @return The instance of RelationshipLookupMapper class
+     ********************************************************************************************************/
     @TestVisible
     private RelationshipLookupMapper locateRelationshipLookupMapper() {
         return RelationshipLookupMapper.getInstance();
