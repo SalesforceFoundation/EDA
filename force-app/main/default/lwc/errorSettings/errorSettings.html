@@ -34,10 +34,10 @@
                 disabled={affordancesDisabled}
             ></c-settings-row-input>
 
-            <template if:true={errorSettingsVModel.sendErrorNotifications}>
+            <template if:true={showErrorNotificationRecipients}>
                 <!-- Send Error Notification Category -->
                 <c-settings-row-input
-                    class="slds-size_3-of-3"
+                    class="slds-size_3-of-3 slds-var-p-left_x-large"
                     title={labelReference.errorNotificationRecipientsTitle}
                     description={labelReference.errorNotificationRecipientsDescription}
                     type="combobox"
@@ -48,7 +48,7 @@
                     onsettingsinputchange={handleErrorNotificationRecipientCategoryChange}
                     disabled={affordancesDisabled}
                 ></c-settings-row-input>
-                <template if:true={errorNotificationRecipientIsChatterGroup}>
+                <template if:true={showErrorNotificationRecipientChatterGroupLookup}>
                     <div class="slds-col slds-size_2-of-3"></div>
                     <div class="slds-col slds-size_1-of-3">
                         <div class="slds-grid slds-grid_align-end slds-var-p-right_x-large slds-var-p-bottom_x-large">
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </template>
-                <template if:true={errorNotificationRecipientIsUser}>
+                <template if:true={showErrorNotificationRecipientUserLookup}>
                     <div class="slds-col slds-size_2-of-3"></div>
                     <div class="slds-col slds-size_1-of-3">
                         <div class="slds-grid slds-grid_align-end slds-var-p-right_x-large slds-var-p-bottom_x-large">

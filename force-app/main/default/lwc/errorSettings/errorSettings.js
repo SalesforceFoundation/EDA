@@ -32,6 +32,7 @@ export default class ErrorSettings extends LightningElement {
 
     @track errorSettingsWireResult;
     @track errorSettingsVModel;
+    @track showErrorNotificationRecipients;
     errorNotificationRecipientCategory;
 
     labelReference = {
@@ -73,11 +74,15 @@ export default class ErrorSettings extends LightningElement {
         return !this.affordancesDisabled;
     }
 
-    get errorNotificationRecipientIsChatterGroup() {
+    get showRequired() {
+        return !this.affordancesDisabled;
+    }
+
+    get showErrorNotificationRecipientChatterGroupLookup() {
         return this.errorNotificationRecipientCategory === errorNotificationRecipientCategoryChatterGroup;
     }
 
-    get errorNotificationRecipientIsUser() {
+    get showErrorNotificationRecipientUserLookup() {
         return this.errorNotificationRecipientCategory === errorNotificationRecipientCategoryUser;
     }
 
@@ -92,6 +97,7 @@ export default class ErrorSettings extends LightningElement {
 
         if (result.data) {
             this.errorSettingsVModel = result.data;
+            this.showErrorNotificationRecipients = this.errorSettingsVModel.sendErrorNotifications;
             this.errorNotificationRecipientCategory = this.errorSettingsVModel.errorNotificationsRecipientCategory.value;
         } else if (result.error) {
             //console.log("error retrieving errorSettingsVModel");
@@ -112,6 +118,7 @@ export default class ErrorSettings extends LightningElement {
 
     handleSendErrorNotificationsChange(event) {
         const eventDetail = event.detail;
+        this.showErrorNotificationRecipients = event.detail.value;
 
         let hierarchySettingsChange = {
             settingsType: "boolean",
@@ -130,7 +137,7 @@ export default class ErrorSettings extends LightningElement {
         hierarchySettingsChange = {
             settingsType: "string",
             settingsName: "Error_Notifications_To__c",
-            settingsValue: eventDetail.value,
+            settingsValue: "eventDetail.value",
         };
 
         this.template.querySelector("c-settings-save-canvas").handleHierarchySettingsChange(hierarchySettingsChange);
@@ -216,6 +223,7 @@ export default class ErrorSettings extends LightningElement {
     refreshAllApex() {
         Promise.all([refreshApex(this.errorSettingsWireResult)]).then(() => {
             this.errorNotificationRecipientCategory = this.errorSettingsVModel.errorNotificationsRecipientCategory.value;
+            this.showErrorNotificationRecipients = this.errorSettingsVModel.sendErrorNotifications;
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();
             });
