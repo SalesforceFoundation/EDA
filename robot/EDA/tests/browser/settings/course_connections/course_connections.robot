@@ -30,9 +30,9 @@ Update settings to out of the box values
     Click action button on new EDA settings     Save
 
 *** Variables ***
-${faculty_record_type}       Household Account
-${student_record_type}       Administrative
-${sObject_name}              Course Connection
+${faculty_record_type}       Faculty
+${student_record_type}       Student
+${sObject_name}              Course_Enrollment__c
 
 *** Test Cases ***
 Validate enable course connection setting is updated in hierarchy settings
