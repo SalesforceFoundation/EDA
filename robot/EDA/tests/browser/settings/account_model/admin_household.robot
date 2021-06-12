@@ -69,6 +69,7 @@ Validate admin and household account naming format settings are updated in hiera
     ${url} =                                    Get location
     Should Start With                           ${url}      https://powerofus.force.com
     Switch window                               MAIN
+    Scroll to field                             Household Account Name Format
     Update settings dropdown value
     ...                                         Administrative Account Name Format=${admin_acc_name_format}
     ...                                         Household Account Name Format=${hh_acc_name_format}
