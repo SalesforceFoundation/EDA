@@ -221,6 +221,7 @@ private with sharing class RelationshipSettingsController_TEST {
      * @description Test method to verify that the getActiveRelationshipTypesComboboxVModel method fails gracefully when an exception is
      * encountered.
      ****************************************************************************************************************************/
+    @isTest
     private static void getActiveRelationshipTypesComboboxVModelException() {
         RelationshipLookupsVMapper.instance = new STUB_ExceptionRelationshipLookupsVMapper();
 
@@ -238,6 +239,7 @@ private with sharing class RelationshipSettingsController_TEST {
      * @description Test method to verify that the getRelationshipLookupNameComboboxVModel method fails gracefully when an exception is
      * encountered.
      ****************************************************************************************************************************/
+    @isTest
     private static void getRelationshipLookupNameComboboxVModelException() {
         RelationshipLookupsVMapper.instance = new STUB_ExceptionRelationshipLookupsVMapper();
 
@@ -331,6 +333,7 @@ private with sharing class RelationshipSettingsController_TEST {
      * @description Test method to verify that the createRelationshipLookup method fails gracefully when an exception is
      * encountered.
      ****************************************************************************************************************************/
+    @isTest
     private static void createRelationshipLookupException() {
         RelationshipLookupSettingsService.instance = new STUB_ExceptionRelationshipLookupSettingsService();
 
@@ -354,6 +357,7 @@ private with sharing class RelationshipSettingsController_TEST {
      * @description Test method to verify that the updateRelationshipLookup method fails gracefully when an exception is
      * encountered.
      ****************************************************************************************************************************/
+    @isTest
     private static void updateRelationshipLookupException() {
         RelationshipLookupSettingsService.instance = new STUB_ExceptionRelationshipLookupSettingsService();
 
@@ -378,6 +382,7 @@ private with sharing class RelationshipSettingsController_TEST {
      * @description Test method to verify that the deleteRelationshipLookup method fails gracefully when an exception is
      * encountered.
      ****************************************************************************************************************************/
+    @isTest
     private static void deleteRelationshipLookupException() {
         RelationshipLookupSettingsService.instance = new STUB_ExceptionRelationshipLookupSettingsService();
 

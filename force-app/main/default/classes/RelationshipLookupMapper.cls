@@ -82,7 +82,7 @@ public virtual with sharing class RelationshipLookupMapper {
      * @description inserts a relationship lookup record
      * @param  relLookupModel A RelationshipLookupModel model of a new relationship lookup
      */
-    public void insertRelationshipLookupModel(RelationshipLookupModel relLookupModel) {
+    public virtual void insertRelationshipLookupModel(RelationshipLookupModel relLookupModel) {
         Relationship_Lookup__c relLookupRecord = new Relationship_Lookup__c(
             Name = relLookupModel.name,
             Female__c = relLookupModel.femaleValue,
@@ -99,7 +99,10 @@ public virtual with sharing class RelationshipLookupMapper {
      * @param  relationshipLookupName An old relationship lookup record name to update
      * @param  relLookupModel         A RelationshipLookupModel model of a relationship lookup to update
      */
-    public void updateRelationshipLookupModel(String relationshipLookupName, RelationshipLookupModel relLookupModel) {
+    public virtual void updateRelationshipLookupModel(
+        String relationshipLookupName,
+        RelationshipLookupModel relLookupModel
+    ) {
         Relationship_Lookup__c relLookupRecord = Relationship_Lookup__c.getInstance(relationshipLookupName);
         relLookupRecord.Name = relLookupModel.name;
         relLookupRecord.Female__c = relLookupModel.femaleValue;
@@ -113,7 +116,7 @@ public virtual with sharing class RelationshipLookupMapper {
      * @description deletes a relationship lookup record
      * @param  relLookupModel A RelationshipLookupModel model of a relationship lookup to delete
      */
-    public void deleteRelationshipLookupModel(RelationshipLookupModel relLookupModel) {
+    public virtual void deleteRelationshipLookupModel(RelationshipLookupModel relLookupModel) {
         Relationship_Lookup__c relationshipLookupToDelete = Relationship_Lookup__c.getInstance(relLookupModel.name);
         String deletedRelationshipLookupName = relationshipLookupToDelete.Name;
 
