@@ -19,8 +19,6 @@ Update settings to out of the box values
     ...                                         Require Preferred Phone=True
     Click action button on new EDA settings     Save
 
-Test Setup      Go to education cloud settings
-
 *** Variables ***
 ${fluency}                  Intermediate
 ${preferred_phone}          Mobile Phone
