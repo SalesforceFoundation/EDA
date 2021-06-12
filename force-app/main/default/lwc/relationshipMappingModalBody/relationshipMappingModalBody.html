@@ -5,7 +5,7 @@
         <template if:true={modifyRecords}>
             <div class="slds-col slds-size-1-of-1 slds-p-bottom_small">{relationshipMappingModalBodyDesc}</div>
             <template if:true={relationshipLookupNameComboboxVModel}>
-                <div class="slds-col slds-size_2-of-3">
+                <div class="slds-col slds-size_2-of-3 slds-p-bottom_medium">
                     <lightning-combobox
                         id={inputAttributeReference.relationshipMappingName}
                         name={inputAttributeReference.relationshipMappingName}
@@ -18,7 +18,6 @@
                         data-qa-locator={inputAttributeReference.relationshipMappingName}
                     ></lightning-combobox>
                 </div>
-                <div class="slds-col slds-size-1-of-1 slds-p-bottom_medium">{relationshipMappingNameApiNameLabel}</div>
             </template>
             <template if:true={activeRelationshipTypesComboboxVModel}>
                 <div class="slds-col slds-size_2-of-3 slds-p-bottom_medium">

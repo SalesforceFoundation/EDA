@@ -2,7 +2,6 @@ import { LightningElement, api, track, wire } from "lwc";
 import getRelationshipLookupNameComboboxVModel from "@salesforce/apex/RelationshipSettingsController.getRelationshipLookupNameComboboxVModel";
 import getActiveRelationshipTypesComboboxVModel from "@salesforce/apex/RelationshipSettingsController.getActiveRelationshipTypesComboboxVModel";
 
-import stgApiNameLabel from "@salesforce/label/c.stgApiNameLabel";
 import stgColRelationshipName from "@salesforce/label/c.stgColRelationshipName";
 import stgColFemale from "@salesforce/label/c.stgColFemale";
 import stgColMale from "@salesforce/label/c.stgColMale";
@@ -31,7 +30,6 @@ export default class RelationshipMappingModalBody extends LightningElement {
 
     labelReference = {
         relationshipMappingName: stgColRelationshipName,
-        apiNameDisplay: stgApiNameLabel,
         comboboxPlaceholderText: stgOptSelect,
         femaleValue: stgColFemale,
         maleValue: stgColMale,
@@ -81,10 +79,6 @@ export default class RelationshipMappingModalBody extends LightningElement {
 
     get deleteRecords() {
         return this.relationshipMappingAction === "delete";
-    }
-
-    get relationshipMappingNameApiNameLabel() {
-        return this.labelReference.apiNameDisplay.replace("{0}", this.relationshipMappingName);
     }
 
     handleRelationshipMappingNameChange(event) {
