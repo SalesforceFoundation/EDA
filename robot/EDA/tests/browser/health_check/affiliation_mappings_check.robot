@@ -6,20 +6,26 @@ Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/AffiliationsSettingsPageObject.py
 ...             robot/EDA/resources/SystemSettingsPageObject.py
 
-Suite Setup     Open Test Browser
+Suite Setup     Run keywords
+...             Open Test Browser
+...             Setup Test Data
 Suite Teardown  Run Keywords
 ...             Revert account record type changes        AND
 ...             Capture screenshot and delete records and close browser
 
 *** Keywords ***
+Setup Test Data
+    ${academic_id} =           Get Record Type Id        ${sObject_name}     ${academic_record_type}
+    Set suite variable         ${academic_id}
+
 Revert account record type changes
     [Documentation]             Reverts the changes made to the account record type. This is added
     ...                         to clean the data so this suite runs clean on every run.
-    Go to EDA settings tab                      Affiliations
-    Go to affiliations sub tab                  Affiliation Mappings
-    Click action button on EDA settings page    Edit
-    Modify account record type                  1_Academic_Program        Academic_Program
-    Click action button on EDA settings page    Save
+    API Update Records          RecordType    ${academic_id}      IsActive=true
+
+*** Variables ***
+${academic_record_type}    Academic Program
+${sObject_name}            Account
 
 *** Test Cases ***
 Verify affiliation mappings health check settings checks pass
@@ -40,20 +46,15 @@ Verify affiliation mappings health check settings checks pass
 Verify affiliation mapping health check settings checks fail and display recommended fix message
     [Documentation]         Verifies the failing affiliation mapping health check and its message
     [tags]                  unstable        rbt:high        W-9048429
-    Go to EDA settings tab                      Affiliations
-    Go to affiliations sub tab                  Affiliation Mappings
-    Click action button on EDA settings page    Edit
-    Modify account record type                  Academic_Program        1_Academic_Program
-    Click action button on EDA settings page    Save
-    Reload Page
+    API Update Records      RecordType    ${academic_id}      IsActive=false
     Go to settings health check
     Current page should be                      Home        Settings Health Check
     Run health check settings   Affiliation Mappings  AffiliationMappings   AffiliationMappingsResults
-    ...         1_Academic_Program Affiliation Mapping=Failed
+    ...         Academic_Program Affiliation Mapping=Failed
     ...         Business_Organization Affiliation Mapping=Passed
     ...         Educational_Institution Affiliation Mapping=Passed
     ...         HH_Account Affiliation Mapping=Passed
     ...         Sports_Organization Affiliation Mapping=Passed
     ...         University_Department Affiliation Mapping=Passed
     Verify recommended fix      AffiliationMappingsResults
-    ...                     Unique Affiliation Mapping Record Type=valid
+    ...                     Account Record Type=Active

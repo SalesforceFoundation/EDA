@@ -259,6 +259,12 @@ class EDA(BaseEDAPage):
         self.selenium.wait_until_page_contains_element(locator)
 
     @capture_screenshot_on_error
+    def verify_custom_toast_message_displayed(self):
+        """ Verifies the custom toast message in new EDA settings"""
+        locator = eda_lex_locators["eda_settings_new"]["custom_toast"]
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+
+    @capture_screenshot_on_error
     def close_toast_message(self):
         """ Close the toast message banner """
         locator = eda_lex_locators["toast_close"]
@@ -410,7 +416,7 @@ class EDA(BaseEDAPage):
         """ Navigates to the Education Cloud Settings Page"""
         url = self.cumulusci.org.lightning_base_url
         namespace=self.get_eda_namespace_prefix()
-        if namespace=="hed__": 
+        if namespace=="hed__":
             url = "{}/lightning/cmp/{}EDASettingsContainer".format(url,namespace)
         else:
             url = "{}/lightning/cmp/c__EDASettingsContainer".format(url)
@@ -431,7 +437,11 @@ class EDA(BaseEDAPage):
     def go_to_settings_health_check(self):
         """ Navigates to the Home view of Settings Health Check app"""
         url = self.cumulusci.org.lightning_base_url
-        url = "{}/lightning/n/Settings_Health_Check".format(url)
+        namespace=self.get_eda_namespace_prefix()
+        if namespace=="hed__":
+            url = "{}/lightning/cmp/{}HealthCheckContainer".format(url,namespace)
+        else:
+            url = "{}/lightning/cmp/c__HealthCheckContainer".format(url)
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
 
@@ -631,6 +641,7 @@ class EDA(BaseEDAPage):
         self.selenium.wait_until_page_contains_element(locator, timeout=60)
         self.selenium.wait_until_element_is_visible(locator,
                                                 error= f"{locator} is not displayed for the user")
+        self.salesforce.scroll_element_into_view(locator)
         self.selenium.click_element(locator)
 
     def select_and_move_from_list(self, settingName, recordType):
@@ -642,6 +653,8 @@ class EDA(BaseEDAPage):
         self.selenium.wait_until_page_contains_element(locator, timeout=60)
         self.selenium.wait_until_element_is_visible(locator,
                                                 error= f"{locator} is not displayed for the user")
+        if settingName == "Automatically Rename Lead-Converted Accounts":
+            self.salesforce.scroll_element_into_view(locator)
         self.selenium.click_element(locator)
         locator = eda_lex_locators["eda_settings_new"]["move_to_selected"].format(settingName)
         self.selenium.wait_until_page_contains_element(locator, timeout=60)
@@ -665,4 +678,29 @@ class EDA(BaseEDAPage):
             self.selenium.wait_until_element_is_visible(locator,
                                                 error=f"'{value}' as dropdown value in '{field}' field is not available ")
             self.selenium.click_element(locator)
+
+    def update_system_tools(self,value,**kwargs):
+        """ This method will run the update job by clicking the update button present in System
+            Tools section in Education Cloud Settings. Pass the name of the field and the name of
+            the button from test.
+        """
+        for field,button in kwargs.items():
+            locator = eda_lex_locators["eda_settings_new"]["update_button"].format(field,button)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60)
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error=f"'{field}' field is not available ")
+            self.selenium.click_element(locator)
+            self.click_footer_button(value)
+            self.verify_custom_toast_message_displayed()
+            time.sleep(0.25) #to avoid toast messages overlapping each other
+
+    def click_footer_button(self,value):
+        """ This method will click the buttons available on the footer in a modal window
+        """
+        locator = eda_lex_locators["eda_settings_new"]["footer_button"].format(value)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error=f"'{locator}' is not available ")
+        self.selenium.click_element(locator)
+
 

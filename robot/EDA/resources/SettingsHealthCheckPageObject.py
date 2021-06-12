@@ -46,6 +46,7 @@ class SettingsHealthCheckPage(BaseEDAPage, HomePage):
         self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
         self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
+        time.sleep(0.25) #to give enough time for the system to update date
         actual_value = self.selenium.get_webelement(locator).text
         last_run_date = actual_value.split(" ")
         todays_date = date.today().strftime('%-m/%-d/%Y')

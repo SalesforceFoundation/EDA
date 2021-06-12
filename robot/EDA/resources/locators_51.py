@@ -111,8 +111,10 @@ eda_lex_locators = {
         "add_setting_button": "//span[text()='{}']/../following-sibling::button/span[text()='{}']",
     },
     "eda_settings_new": {
-        "global_action": "//button[@title='{}']",
+        "global_action": "//button[text()='{}']",
+        "edc_header": "//h2[contains(@class, 'header')]/descendant::span[text()='{}']",
         "toast_message": "//div[contains(@class, 'slds-theme--success slds-notify--toast slds-notify slds-notify--toast forceToastMessage')]/descendant::span[text()='{}']",
+        "custom_toast": "//div[contains(@class, 'forceToastMessage')]/descendant::span[contains(@class, 'toastMessage')]",
         "settings_nav_title": "//div[@data-qa-locator='edaSettingsNavigation']/descendant::a[text()='{}']",
         "dropdown_input": "//label[text()='{}']/../descendant::input[@role='combobox']",
         "settings_dropdown": "//label[text()='{}']/../descendant::span[text()='{}']",
@@ -121,6 +123,9 @@ eda_lex_locators = {
         "tell_me_more": "//div[text()='{}']/../descendant::a[text()='{}']",
         "toggle_status": "//span[text()='{}']/../ancestor::lightning-input",
         "toggle_input": "//span[text()='{}']/../descendant::span[contains(@id, 'toggle')]",
+        "update_button": "//div[text()='{}']/../parent::div/descendant::button[text()='{}']",
+        "footer_button": "//div[contains(@class, 'footer')]/descendant::button[@title='{}']",
+        "app_tile": "//h2[text()='{}']/../descendant::ul/descendant::*[self::div or self::span][text()='{}']",
     },
      "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
