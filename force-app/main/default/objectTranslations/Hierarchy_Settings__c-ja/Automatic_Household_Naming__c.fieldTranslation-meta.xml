@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Automatic_Household_Naming__c</name>
     <help>有効にした場合、[世帯名形式] 設定に基づいて世帯名が自動的に設定されます。</help>
     <label>自動世帯命名</label>
+    <name>Automatic_Household_Naming__c</name>
 </CustomFieldTranslation>

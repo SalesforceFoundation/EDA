@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_Debug__c</name>
     <help>Auswählen, um das Debuggen von Anweisungen im Code verwalteter Pakete zu ermöglichen.</help>
     <label>Debuggen aktivieren</label>
+    <name>Enable_Debug__c</name>
 </CustomFieldTranslation>

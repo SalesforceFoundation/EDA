@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Household_Addresses_RecType__c</name>
     <help>El tipus de registre del compte utilitzat per als comptes domèstics. Aquesta configuració afecta la gestió dels registres d’adreça i el format de denominació dels comptes domèstics.</help>
     <label>Tipus de registre de compte d&apos;adreces de la llar</label>
+    <name>Household_Addresses_RecType__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Disable_Preferred_Phone_Enforcement__c</name>
     <help>Selecteer dit om het afdwingen van het veld Voorkeurstelefoonnummer voor contactpersonen uit te schakelen.</help>
     <label>Afdwinging voorkeurstel.nr uitschakelen</label>
+    <name>Disable_Preferred_Phone_Enforcement__c</name>
 </CustomFieldTranslation>

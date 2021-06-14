@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Validate_Program_Plan_for_Nested_PR__c</name>
     <help>Si cette option est activée, les exigences du plan peuvent spécifier un plan de programme ou une exigence de plan parent, mais pas les deux. Si vous spécifiez les deux, un message d’erreur empêche l&apos;enregistrement jusqu&apos;à ce qu&apos;un seul soit sélectionné.</help>
     <label>Valider plan prog. pour EP imbriquée</label>
+    <name>Validate_Program_Plan_for_Nested_PR__c</name>
 </CustomFieldTranslation>

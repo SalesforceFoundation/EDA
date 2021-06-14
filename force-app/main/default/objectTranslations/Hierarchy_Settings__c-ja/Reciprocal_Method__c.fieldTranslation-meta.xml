@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Reciprocal_Method__c</name>
     <help>相互関係の生成に使用される方法を決定します。性別によるカスタム設定を使用するリスト設定を使用するか、必要に応じて種別を反転 (「親-子」から「子-親」) する値反転を使用します。</help>
     <label>相互方法</label>
+    <name>Reciprocal_Method__c</name>
 </CustomFieldTranslation>

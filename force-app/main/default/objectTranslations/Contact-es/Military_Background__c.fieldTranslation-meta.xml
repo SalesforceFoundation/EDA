@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Military_Background__c</name>
     <help>Describe el servicio militar de esta persona, como por ejemplo, el cuerpo del ejército, el tiempo de servicio como militar, la fecha de licenciamiento, etc.</help>
     <label>Formación militar</label>
+    <name>Military_Background__c</name>
 </CustomFieldTranslation>

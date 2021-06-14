@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label><!-- Preferred Enrollment Status --></label>
+    <label>Voorkeursregistratiestatus</label>
     <name>Preferred_Enrollment_Status__c</name>
     <picklistValues>
         <masterLabel>Full-Time</masterLabel>
-        <translation><!-- Full-Time --></translation>
+        <translation>Fulltime</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Part-Time</masterLabel>
-        <translation><!-- Part-Time --></translation>
+        <translation>Parttime</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Undecided</masterLabel>
-        <translation><!-- Undecided --></translation>
+        <translation>Nog niet beslist</translation>
     </picklistValues>
 </CustomFieldTranslation>

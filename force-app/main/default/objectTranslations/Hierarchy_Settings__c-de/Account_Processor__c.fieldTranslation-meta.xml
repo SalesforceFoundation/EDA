@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Account_Processor__c</name>
     <help>ID des standardmäßigen Datensatztyps für &quot;Account&quot;. Wenn Sie z. B. &quot;Verwaltung&quot; (das empfohlene Accountmodell) angeben, geben Sie für das Objekt &quot;Account&quot; die ID des Datensatztyps &quot;Verwaltung&quot; ein.</help>
     <label>Accountprozessor</label>
+    <name>Account_Processor__c</name>
 </CustomFieldTranslation>

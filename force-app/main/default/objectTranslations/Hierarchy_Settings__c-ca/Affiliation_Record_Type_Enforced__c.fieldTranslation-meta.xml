@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affiliation_Record_Type_Enforced__c</name>
     <help>Si està activat, es produeix un error quan els usuaris omplen un camp principal al contacte amb un compte que té un tipus de registre que no coincideix amb el tipus de registre definit a la configuració EDA. No es crea el registre d’afiliació ni es corregeixen els camps principals del contacte</help>
     <label>Tipus de registre d’afiliació forçat</label>
+    <name>Affiliation_Record_Type_Enforced__c</name>
 </CustomFieldTranslation>
