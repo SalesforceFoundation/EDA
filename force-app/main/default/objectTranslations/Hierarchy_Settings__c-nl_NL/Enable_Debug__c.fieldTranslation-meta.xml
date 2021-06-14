@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_Debug__c</name>
     <help>Selecteer dit om debug-instructies in beheerde pakketcode in te schakelen.</help>
     <label>Debug inschakelen</label>
+    <name>Enable_Debug__c</name>
 </CustomFieldTranslation>

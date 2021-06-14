@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Allow_AutoCreated_Duplicates__c</name>
     <help>Les relacions creades automàticament es dedueixen automàticament per evitar la duplicació de registres de relacions entre contactes. Seleccioneu Permetre relacions duplicades creades automàticament per desactivar aquest comportament i permetre diverses relacions del mateix tipus entre dos contactes.</help>
     <label>Permetre relacions duplicades creades automàticament</label>
+    <name>Allow_AutoCreated_Duplicates__c</name>
 </CustomFieldTranslation>

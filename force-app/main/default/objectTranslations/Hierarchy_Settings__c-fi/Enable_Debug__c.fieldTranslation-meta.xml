@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_Debug__c</name>
     <help>Valitse tämä, jos haluat ottaa virheenkorjauslausekkeet käyttöön hallittavassa pakettikoodissa.</help>
     <label>Ota virheenkorjaus käyttöön</label>
+    <name>Enable_Debug__c</name>
 </CustomFieldTranslation>

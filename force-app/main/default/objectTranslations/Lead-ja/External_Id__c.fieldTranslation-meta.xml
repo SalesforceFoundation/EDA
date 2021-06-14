@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- An optional external ID that&apos;s unique to the Lead. --></help>
-    <label><!-- External ID --></label>
+    <help>リードに固有の省略可能な外部 ID。</help>
+    <label>外部 ID</label>
     <name>External_Id__c</name>
 </CustomFieldTranslation>

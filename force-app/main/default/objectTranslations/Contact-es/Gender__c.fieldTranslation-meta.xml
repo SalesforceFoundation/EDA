@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Gender__c</name>
     <help>Indica el género autoidentificado de la persona.</help>
     <label>Género</label>
-    <picklistValues>
-        <masterLabel>Female</masterLabel>
-        <translation>Female</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Male</masterLabel>
-        <translation>Male</translation>
-    </picklistValues>
+    <name>Gender__c</name>
     <picklistValues>
         <masterLabel>Decline to State</masterLabel>
         <translation>Rechaza declarar</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Female</masterLabel>
+        <translation>Femenino</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Male</masterLabel>
+        <translation>Masculino</translation>
     </picklistValues>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Accounts_to_Delete__c</name>
     <help>Die Datensatztypen von Accounts, die automatisch gelöscht werden, wenn alle zugehörigen Kontakte gelöscht wurden.</help>
     <label>Zu löschende Accounts</label>
+    <name>Accounts_to_Delete__c</name>
 </CustomFieldTranslation>

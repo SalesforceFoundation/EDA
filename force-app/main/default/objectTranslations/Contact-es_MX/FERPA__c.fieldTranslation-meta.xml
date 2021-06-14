@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>FERPA__c</name>
     <help>Indica si esta persona anuló su suscripción a la divulgación de información según Family Education Rights (Derechos de educación familiar) y Privacy Act (Ley de privacidad)</help>
     <label>FERPA</label>
+    <name>FERPA__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Work_Address__c</name>
     <help>Si estableció &quot;Laboral&quot; como Dirección principal, la Dirección laboral se rellena con valores de Dirección postal. Si &quot;Laboral&quot; es Dirección secundaria, la dirección laboral se rellena con valores de &quot;Otra dirección&quot;. Este campo es de solo lectura.</help>
     <label>Dirección laboral</label>
+    <name>Work_Address__c</name>
 </CustomFieldTranslation>

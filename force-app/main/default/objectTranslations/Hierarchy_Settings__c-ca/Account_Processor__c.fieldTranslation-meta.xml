@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Account_Processor__c</name>
     <help>ID del tipus de registre predeterminat del compte. Per exemple, si s&apos;especifica Administratiu (el model de compte recomanat), introduïu l&apos;ID del tipus de registre administratiu per a l&apos;objecte Compte.</help>
     <label>Processador de compte</label>
+    <name>Account_Processor__c</name>
 </CustomFieldTranslation>

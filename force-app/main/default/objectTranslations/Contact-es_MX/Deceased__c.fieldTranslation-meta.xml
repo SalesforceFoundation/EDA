@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Deceased__c</name>
     <help>Indica que esta persona está fallecida. También activa No contactar, No llamar, Anulación de suscripción de email y Anulación de suscripción de fax. Si el contacto no es el único miembro doméstico, el nombre del contacto se elimina del nombre doméstico.</help>
     <label>Fallecido</label>
+    <name>Deceased__c</name>
 </CustomFieldTranslation>

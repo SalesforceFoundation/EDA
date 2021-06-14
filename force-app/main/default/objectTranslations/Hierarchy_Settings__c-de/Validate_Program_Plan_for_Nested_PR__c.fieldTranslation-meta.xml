@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Validate_Program_Plan_for_Nested_PR__c</name>
     <help>Falls ausgewählt, kann in &quot;Plananforderungen&quot; ein Programmplan oder eine übergeordnete Plananforderung, aber nicht beides angegeben werden. Wird beides angegeben, hindert eine Fehlermeldung das Speichern, bis nur eine der Optionen gewählt wird.</help>
     <label>Programmplan für geschachtelte PA prüfen</label>
+    <name>Validate_Program_Plan_for_Nested_PR__c</name>
 </CustomFieldTranslation>

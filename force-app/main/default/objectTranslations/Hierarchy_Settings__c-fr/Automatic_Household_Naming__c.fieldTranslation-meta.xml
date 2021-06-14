@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Automatic_Household_Naming__c</name>
     <help>Si cette option est activée, le Nom du foyer est automatiquement défini sur la base des paramètres Format de nom du foyer.</help>
     <label>Nommage automatique du foyer</label>
+    <name>Automatic_Household_Naming__c</name>
 </CustomFieldTranslation>
