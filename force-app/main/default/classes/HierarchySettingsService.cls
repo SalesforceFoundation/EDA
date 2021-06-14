@@ -81,7 +81,7 @@ public virtual with sharing class HierarchySettingsService {
                     .getHierarchySettingsField(settingsField);
                 Schema.DisplayType displayType = fieldDescribeResult.getType();
 
-                if (displayType == Schema.DisplayType.STRING) {
+                if (displayType == Schema.DisplayType.TEXTAREA || displayType == Schema.DisplayType.STRING) {
                     String hierarchySettingValue = (String) hierarchySettingsChangesVModel.settingsSingleValueBySettingsName.get(
                         changedSettingName
                     );

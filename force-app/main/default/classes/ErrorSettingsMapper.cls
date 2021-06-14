@@ -62,11 +62,65 @@ public virtual with sharing class ErrorSettingsMapper {
      ********************************************************************************************/
     public virtual ErrorSettingsModel getErrorSettingsModel() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettingsFacade.getSettings();
+        String errorNotificationsCategory;
+
+        if (String.isBlank(hierarchySettings.Error_Notifications_To__c)) {
+            errorNotificationsCategory = '';
+        } else if (hierarchySettings.Error_Notifications_To__c == 'All Sys Admins') {
+            errorNotificationsCategory = 'All Sys Admins';
+        } else if (hierarchySettings.Error_Notifications_To__c.startsWith(this.getUserIdPrefix())) {
+            errorNotificationsCategory = 'User';
+        } else if (hierarchySettings.Error_Notifications_To__c.startsWith(this.getChatterGroupIdPrefix())) {
+            errorNotificationsCategory = 'Chatter Group';
+        }
 
         return new ErrorSettingsModel(
             hierarchySettings.Store_Errors_On__c,
+            hierarchySettings.Error_Notifications_On__c,
+            errorNotificationsCategory,
+            hierarchySettings.Error_Notifications_To__c,
             hierarchySettings.Enable_Debug__c,
             !hierarchySettings.Disable_Error_Handling__c
         );
+    }
+
+    /**********************************************************************************
+     * @description Retrieves the valid error notification recipient categories for
+     * Error Settings
+     * @return A map of strings to labels for valid error notification recipient
+     * categories
+     **********************************************************************************/
+    @TestVisible
+    public virtual Map<String, String> getValidErrorNotificationRecipientCategoryLabelsByValue() {
+        Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>();
+
+        validErrorNotificationRecipientCategoryLabelsByValue.put('All Sys Admins', Label.stgOptAllSysAdmins);
+        validErrorNotificationRecipientCategoryLabelsByValue.put('User', Label.stgOptUser);
+        validErrorNotificationRecipientCategoryLabelsByValue.put('Chatter Group', Label.stgOptChatterGroup);
+
+        return validErrorNotificationRecipientCategoryLabelsByValue;
+    }
+
+    /*******************************************************************************************
+     * @description Retrieves the Id prefix for the User SObjectType in a chaching-safe method
+     * @return The Id prefix for the User SObjectType
+     ********************************************************************************************/
+    @TestVisible
+    private String getUserIdPrefix() {
+        Schema.DescribeSObjectResult userSObjectDescribeResult = UTIL_Describe.getObjectDescribe('User');
+        return userSObjectDescribeResult.getKeyPrefix();
+    }
+
+    /*******************************************************************************************
+     * @description Retrieves the Id prefix for the CollaborationGroup SObjectType, Chatter
+     * Groups, in a chaching-safe method
+     * @return The Id prefix for the CollaborationGroup SObjectType
+     ********************************************************************************************/
+    @TestVisible
+    private String getChatterGroupIdPrefix() {
+        Schema.DescribeSObjectResult chatterGroupSObjectDescribeResult = UTIL_Describe.getObjectDescribe(
+            'CollaborationGroup'
+        );
+        return chatterGroupSObjectDescribeResult.getKeyPrefix();
     }
 }

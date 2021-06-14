@@ -112,15 +112,6 @@ private with sharing class ErrorSettingsService_TEST {
     @isTest
     private static void getErrorSettingsModelValid() {
         ErrorSettingsMapper.instance = new STUB_ErrorSettingsMapper();
-
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(
-                Store_Errors_On__c = true,
-                Enable_Debug__c = false,
-                Disable_Error_Handling__c = false
-            )
-        );
-
         ErrorSettingsService errorSettingsServiceInstance = ErrorSettingsService.getInstance();
 
         Test.startTest();
@@ -131,6 +122,24 @@ private with sharing class ErrorSettingsService_TEST {
             true,
             errorSettingsModel.storeErrors,
             'Store errors model property should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsModel.sendErrorNotifications,
+            'Send error notifications model property should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsModel.errorNotificationsRecipientCategory,
+            'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsModel.errorNotificationsRecipient,
+            'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
         );
 
         System.assertEquals(
@@ -147,6 +156,29 @@ private with sharing class ErrorSettingsService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify that the expected valid error notification recipient categories are pulled
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getValidErrorNotificationRecipientCategoryLabelsByValue() {
+        ErrorSettingsMapper.instance = new STUB_ErrorSettingsMapper();
+        ErrorSettingsService errorSettingsServiceInstance = ErrorSettingsService.getInstance();
+
+        Test.startTest();
+        Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = errorSettingsServiceInstance.getValidErrorNotificationRecipientCategoryLabelsByValue();
+        Test.stopTest();
+
+        System.assert(
+            !validErrorNotificationRecipientCategoryLabelsByValue.isEmpty(),
+            'Category label by value map should not be empty.'
+        );
+        System.assertEquals(
+            'All Sys Admins Label',
+            validErrorNotificationRecipientCategoryLabelsByValue.get('All Sys Admins'),
+            'Error Notification Recipient Categories should have appropriate labels'
+        );
+    }
+
+    /**************************************************************************************************************************
      ****************************************************** STUBS **************************************************************
      **************************************************************************************************************************/
 
@@ -155,7 +187,15 @@ private with sharing class ErrorSettingsService_TEST {
      **************************************************************************************************************************************/
     private class STUB_ErrorSettingsMapper extends ErrorSettingsMapper {
         public override ErrorSettingsModel getErrorSettingsModel() {
-            return new ErrorSettingsModel(true, false, true);
+            return new ErrorSettingsModel(true, true, 'All Sys Admins', 'All Sys Admins', false, true);
+        }
+
+        public override Map<String, String> getValidErrorNotificationRecipientCategoryLabelsByValue() {
+            Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = new Map<String, String>();
+
+            validErrorNotificationRecipientCategoryLabelsByValue.put('All Sys Admins', 'All Sys Admins Label');
+
+            return validErrorNotificationRecipientCategoryLabelsByValue;
         }
     }
 }

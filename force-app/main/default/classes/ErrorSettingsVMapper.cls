@@ -62,11 +62,129 @@ public virtual with sharing class ErrorSettingsVMapper {
      *********************************************************************************************/
     public virtual ErrorSettingsVModel getErrorSettingsViewModel() {
         ErrorSettingsModel errorSettingsModel = this.locateErrorSettingsService().getErrorSettingsModel();
+        ComboboxVModel errorNotificationsRecipientCategoryVModel = this.getErrorNotificationsRecipientCategoryVModel(
+            errorSettingsModel
+        );
+        LookupResult errorNotificationRecipientVModel = this.getLookupResultForSetting(
+            errorSettingsModel.errorNotificationsRecipientCategory,
+            errorSettingsModel.errorNotificationsRecipient
+        );
+
         return new ErrorSettingsVModel(
             errorSettingsModel.storeErrors,
+            errorSettingsModel.sendErrorNotifications,
+            errorNotificationsRecipientCategoryVModel,
             errorSettingsModel.enableDebug,
-            errorSettingsModel.errorHandling
+            errorSettingsModel.errorHandling,
+            errorNotificationRecipientVModel
         );
+    }
+
+    /******************************************************************************
+     * @description Retrieve the valid error notification recipient category
+     * combobox view model
+     * @param errorSettingsModel The error settings model to get combobox value
+     * Vmodels from
+     * @return The valid error notification recipient category combobox view model
+     ******************************************************************************/
+    @TestVisible
+    private ComboboxVModel getErrorNotificationsRecipientCategoryVModel(ErrorSettingsModel errorSettingsModel) {
+        List<ComboboxValueVModel> errorNotificationsRecipientCategoryVModelList = new List<ComboboxValueVModel>();
+
+        Map<String, String> errorNotificationsRecipientCategoryByValue = this.locateErrorSettingsService()
+            .getValidErrorNotificationRecipientCategoryLabelsByValue();
+
+        List<String> errorNotificationsRecipientCategoryValueList = new List<String>(
+            errorNotificationsRecipientCategoryByValue.keySet()
+        );
+        errorNotificationsRecipientCategoryValueList.sort();
+
+        for (String categoryValue : errorNotificationsRecipientCategoryValueList) {
+            errorNotificationsRecipientCategoryVModelList.add(
+                new ComboboxValueVModel(errorNotificationsRecipientCategoryByValue.get(categoryValue), categoryValue)
+            );
+        }
+
+        return new ComboboxVModel(
+            errorSettingsModel.errorNotificationsRecipientCategory,
+            errorNotificationsRecipientCategoryVModelList
+        );
+    }
+
+    /******************************************************************************
+     * @description Retrieve the lookup result for a user based on its id
+     * @param userIdString The string representing a user Id, representing the
+     * possibility that it is not an Id
+     * @return A LookupResult for a user model
+     ******************************************************************************/
+    @TestVisible
+    private LookupResult getLookupResultForSetting(String errorRecipientCategory, String errorRecipient) {
+        switch on errorRecipientCategory {
+            when 'All Sys Admins' {
+                return null;
+            }
+            when 'Chatter Group' {
+                return this.getChatterGroupLookupResultById(errorRecipient);
+            }
+            when 'User' {
+                return this.getUserLookupResultById(errorRecipient);
+            }
+            when else {
+                //Deliberately permit invalid values to be pulled but have it be blank
+                return null;
+            }
+        }
+    }
+
+    /******************************************************************************
+     * @description Retrieve the lookup result for a user based on its id
+     * @param userIdString The string representing a user Id, representing the
+     * possibility that it is not an Id
+     * @return A LookupResult for a user id
+     ******************************************************************************/
+    @TestVisible
+    private LookupResult getUserLookupResultById(String userIdString) {
+        Id userId;
+
+        try {
+            userId = Id.valueOf(userIdString);
+        } catch (System.StringException se) {
+            return null;
+        }
+
+        UserModel userModel = UserService.getInstance().getUserModelById(userId);
+
+        if (userModel == null) {
+            return null;
+        }
+
+        return this.locateUserLookupResultVMapper().getLookupResultFromUserModel(userModel);
+    }
+
+    /******************************************************************************
+     * @description Retrieve the lookup result for a chatter group based on its id
+     * @param chatterGroupIdString The string representing a chatter group Id,
+     * representing the possibility that it is not an Id
+     * @return A LookupResult for a chatter group id
+     ******************************************************************************/
+    @TestVisible
+    private LookupResult getChatterGroupLookupResultById(String chatterGroupIdString) {
+        Id chatterGroupId;
+
+        try {
+            chatterGroupId = Id.valueOf(chatterGroupIdString);
+        } catch (System.StringException se) {
+            return null;
+        }
+
+        ChatterGroupModel chatterGroupModel = ChatterGroupService.getInstance()
+            .getChatterGroupModelById(chatterGroupId);
+
+        if (chatterGroupModel == null) {
+            return null;
+        }
+
+        return this.locateChatterGroupLookupResultVMapper().getLookupResultFromChatterGroupModel(chatterGroupModel);
     }
 
     /******************************************************************************
@@ -76,5 +194,41 @@ public virtual with sharing class ErrorSettingsVMapper {
     @TestVisible
     private ErrorSettingsService locateErrorSettingsService() {
         return ErrorSettingsService.getInstance();
+    }
+
+    /******************************************************************************
+     * @description Retrieve an instance of the UserService class.
+     * @return An instance of UserService
+     ******************************************************************************/
+    @TestVisible
+    private UserService locateUserService() {
+        return UserService.getInstance();
+    }
+
+    /******************************************************************************
+     * @description Retrieve an instance of the ChatterGroupService class.
+     * @return An instance of ChatterGroupService
+     ******************************************************************************/
+    @TestVisible
+    private ChatterGroupService locateChatterGroupService() {
+        return ChatterGroupService.getInstance();
+    }
+
+    /******************************************************************************
+     * @description Retrieve an instance of the UserLookupResultVMapper class.
+     * @return An instance of UserLookupResultVMapper
+     ******************************************************************************/
+    @TestVisible
+    private UserLookupResultVMapper locateUserLookupResultVMapper() {
+        return UserLookupResultVMapper.getInstance();
+    }
+
+    /******************************************************************************
+     * @description Retrieve an instance of the ChatterGroupLookupResultVMapper class.
+     * @return An instance of ChatterGroupLookupResultVMapper
+     ******************************************************************************/
+    @TestVisible
+    private ChatterGroupLookupResultVMapper locateChatterGroupLookupResultVMapper() {
+        return ChatterGroupLookupResultVMapper.getInstance();
     }
 }

@@ -61,6 +61,7 @@ import stgEthnicityRaceBackfillContacts from "@salesforce/label/c.stgEthnicityRa
 //Error Settings Labels
 import stgErrorSettingsNav from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
+import stgErrorNotifRecipientsTitle from "@salesforce/label/c.stgErrorNotifRecipientsTitle";
 import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
 import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
 import stgSendErrorsTitle from "@salesforce/label/c.stgSendErrorsTitle";
@@ -111,6 +112,7 @@ export default class EdaSettingsNavigation extends LightningElement {
             enableErrorHandling: stgDisableErrorHandlingTitle,
             errorSettings: stgErrorSettingsNav,
             sendErrorNotifications: stgSendErrorsTitle,
+            errorNotificationRecipients: stgErrorNotifRecipientsTitle,
             storeErrors: stgStoreErrorsTitle,
         },
         programSettings: {
@@ -335,6 +337,10 @@ export default class EdaSettingsNavigation extends LightningElement {
                             {
                                 label: this.labelReference.errorSettings.sendErrorNotifications,
                                 id: "sendErrorNotifications",
+                            },
+                            {
+                                label: this.labelReference.errorSettings.errorNotificationRecipients,
+                                id: "errorNotificationRecipients",
                             },
                             {
                                 label: this.labelReference.errorSettings.enableErrorHandling,

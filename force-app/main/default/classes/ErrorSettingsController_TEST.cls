@@ -33,9 +33,9 @@
  */
 @isTest
 private with sharing class ErrorSettingsController_TEST {
-    /***********************************************************************************************************************************
+    /**************************************************************************************************************************
      * @description Test method to verify that the locateErrorSettingsVMapper method returns instance of ErrorSettingsVMapper
-     ***********************************************************************************************************************************/
+     **************************************************************************************************************************/
     @isTest
     private static void locateErrorSettingsVMapperValid() {
         Test.startTest();
@@ -49,21 +49,29 @@ private with sharing class ErrorSettingsController_TEST {
         );
     }
 
-    /***********************************************************************************************************************************
+    /**************************************************************************************************************************
+     * @description Test method to verify that the locateUserLookupResultVMapper method returns instance of UserLookupResultVMapper
+     **************************************************************************************************************************/
+    @isTest
+    private static void locateUserLookupResultVMapperValid() {
+        Test.startTest();
+        UserLookupResultVMapper UserLookupResultVMapperInstance = ErrorSettingsController.locateUserLookupResultVMapper();
+        Test.stopTest();
+
+        System.assertEquals(
+            UserLookupResultVMapper.getInstance(),
+            UserLookupResultVMapperInstance,
+            'Should return the instance of UserLookupResultVMapper'
+        );
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify that the getErrorSettingsViewModel method returns an ErrorSettingsVModel that reflects the
      * error settings set in hierarchy settings
-     ***********************************************************************************************************************************/
+     **************************************************************************************************************************/
     @isTest
     private static void getErrorSettingsViewModelValid() {
         ErrorSettingsVMapper.instance = new STUB_ErrorSettingsVMapper();
-
-        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(
-                Store_Errors_On__c = true,
-                Enable_Debug__c = false,
-                Disable_Error_Handling__c = true
-            )
-        );
 
         Test.startTest();
         ErrorSettingsVModel errorSettingsVModel = ErrorSettingsController.getErrorSettingsViewModel();
@@ -72,25 +80,52 @@ private with sharing class ErrorSettingsController_TEST {
         System.assertEquals(
             true,
             errorSettingsVModel.storeErrors,
-            'Store errors functionality should match value set in hierarchy settings.'
+            'Store errors functionality should match expected value.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsVModel.sendErrorNotifications,
+            'Send error notifications functionality should match expected value.'
+        );
+
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsVModel.errorNotificationsRecipientCategory.value,
+            'Send Error Notificiation recipient category should match expected value.'
+        );
+        System.assertEquals(
+            1,
+            errorSettingsVModel.errorNotificationsRecipientCategory.options.size(),
+            'Number of Send Error Notificiation recipient category valid options should match expected size.'
+        );
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsVModel.errorNotificationsRecipientCategory.options[0].value,
+            'Send Error Notificiation recipient category valid option for All Sys Admins should have expected value.'
+        );
+        System.assertEquals(
+            'All Sys Admins Label',
+            errorSettingsVModel.errorNotificationsRecipientCategory.options[0].label,
+            'Send Error Notificiation recipient category valid option for All Sys Admins should have expected label.'
         );
 
         System.assertEquals(
             false,
             errorSettingsVModel.enableDebug,
-            'Enable debug functionality should match value set in hierarchy settings.'
+            'Enable debug functionality should match expected value.'
         );
 
         System.assertEquals(
             false,
             errorSettingsVModel.errorHandling,
-            'Error handling model property should be inverse of value set in hierarchy settings.'
+            'Error handling model property should match expected value.'
         );
     }
 
-    /***********************************************************************************************************************************
+    /**************************************************************************************************************************
      * @description Test method to verify that the getErrorSettingsViewModel method fails gracefuly when an exception is encountered.
-     ***********************************************************************************************************************************/
+     **************************************************************************************************************************/
     @isTest
     private static void getErrorSettingsViewModelException() {
         ErrorSettingsVMapper.instance = new STUB_ExceptionErrorSettingsVMapper();
@@ -107,23 +142,223 @@ private with sharing class ErrorSettingsController_TEST {
     }
 
     /**************************************************************************************************************************
-     ****************************************************** STUBS **************************************************************
+     * @description Test method to verify that the getLookupResultsLikeUserName method returns a List of LookupResults that reflects the
+     * search string
      **************************************************************************************************************************/
+    @isTest
+    private static void getLookupResultsLikeUserNameValid() {
+        Id userId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
+        UserLookupResultVMapper.instance = new STUB_UserLookupResultVMapper(userId);
 
-    /*********************************************************************************************************************
-     * @description Stub class to simulate the response from ErrorSettingsVMapper to return a valid ErrorSettingsVModel
-     *********************************************************************************************************************/
-    private class STUB_ErrorSettingsVMapper extends ErrorSettingsVMapper {
-        public override ErrorSettingsVModel getErrorSettingsViewModel() {
-            return new ErrorSettingsVModel(true, false, false);
+        Test.startTest();
+        List<LookupResult> lookupResultList = ErrorSettingsController.getLookupResultsLikeUserName('User');
+        Test.stopTest();
+
+        System.assertEquals(1, lookupResultList.size(), 'Only 1 Lookup result should be retrieved.');
+
+        LookupResult lookupResult = lookupResultList[0];
+
+        System.assertEquals('User Name', lookupResult.label, 'Lookup Result label should be the expected label.');
+        System.assertEquals(userId, lookupResult.value, 'Lookup Result value should be the expected value.');
+        System.assertEquals('standard:avatar', lookupResult.icon, 'Lookup Result icon should be the expected icon.');
+        System.assertEquals(
+            'User',
+            lookupResult.alternativeText,
+            'Lookup Result alternative text should be the expected value.'
+        );
+        System.assertEquals(
+            'https://example.com/user.png',
+            lookupResult.imageUrl,
+            'Lookup Result image url should be the expected value.'
+        );
+        System.assertEquals('user@test.com', lookupResult.meta, 'Lookup Result meta should be the expected value.');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultsLikeUserName method fails gracefuly when an exception is encountered.
+     **************************************************************************************************************************/
+    @isTest
+    private static void getLookupResultsLikeUserNameException() {
+        UserLookupResultVMapper.instance = new STUB_UserLookupResultVMapperError();
+
+        try {
+            Test.startTest();
+            List<LookupResult> lookupResultList = ErrorSettingsController.getLookupResultsLikeUserName('User');
+            Test.stopTest();
+
+            System.assert(false, 'should throw an exception.');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
         }
     }
 
-    /**************************************************************************************************************************************
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultsLikeChatterGroupName method returns a List of LookupResults that reflects the
+     * search string
+     **************************************************************************************************************************/
+    @isTest
+    private static void getLookupResultsLikeChatterGroupNameValid() {
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
+        ChatterGroupLookupResultVMapper.instance = new STUB_ChatterGroupLookupResultVMapper(chatterGroupId);
+
+        Test.startTest();
+        List<LookupResult> lookupResultList = ErrorSettingsController.getLookupResultsLikeChatterGroupName('Chatter');
+        Test.stopTest();
+
+        System.assertEquals(1, lookupResultList.size(), 'Only 1 Lookup result should be retrieved.');
+
+        LookupResult lookupResult = lookupResultList[0];
+
+        System.assertEquals(
+            'Chatter Group Name',
+            lookupResult.label,
+            'Send Error Notification recipient lookup label should be the expected label.'
+        );
+        System.assertEquals(
+            chatterGroupId,
+            lookupResult.value,
+            'Send Error Notification recipient lookup value should be the expected value.'
+        );
+        System.assertEquals(
+            'standard:groups',
+            lookupResult.icon,
+            'Send Error Notification recipient lookup icon should be the expected icon.'
+        );
+        System.assertEquals(
+            Label.stgOptChatterGroup,
+            lookupResult.alternativeText,
+            'Send Error Notification recipient lookup alternative text should be the expected value.'
+        );
+        System.assertEquals(
+            'https://fake.url/test.png',
+            lookupResult.imageUrl,
+            'Send Error Notification recipient lookup image url should be the expected value.'
+        );
+        System.assertEquals(
+            'Chatter Group Description',
+            lookupResult.meta,
+            'Send Error Notification recipient lookup meta should be the expected value.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getLookupResultsLikeUserName method fails gracefuly when an exception is encountered.
+     **************************************************************************************************************************/
+    @isTest
+    private static void getLookupResultsLikeChatterGroupNameException() {
+        ChatterGroupLookupResultVMapper.instance = new STUB_CGLookupResultVMapperError();
+
+        try {
+            Test.startTest();
+            List<LookupResult> lookupResultList = ErrorSettingsController.getLookupResultsLikeChatterGroupName(
+                'Chatter'
+            );
+            Test.stopTest();
+
+            System.assert(false, 'should throw an exception.');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** STUBS **************************************************************
+     **************************************************************************************************************************/
+
+    /**************************************************************************************************************************
+     * @description Stub class to simulate the response from ErrorSettingsVMapper to return a valid ErrorSettingsVModel
+     **************************************************************************************************************************/
+    private class STUB_ErrorSettingsVMapper extends ErrorSettingsVMapper {
+        public override ErrorSettingsVModel getErrorSettingsViewModel() {
+            List<ComboboxValueVModel> errorNotificationsRecipientCategoryValues = new List<ComboboxValueVModel>{
+                new ComboboxValueVModel('All Sys Admins Label', 'All Sys Admins')
+            };
+            ComboboxVModel errorNotificationsRecipientCategory = new ComboboxVModel(
+                'All Sys Admins',
+                errorNotificationsRecipientCategoryValues
+            );
+
+            return new ErrorSettingsVModel(true, true, errorNotificationsRecipientCategory, false, false, null);
+        }
+    }
+
+    /**************************************************************************************************************************
      * @description Stub class to simulate the response from ErrorSettingsVMapper to throw an exception
-     **************************************************************************************************************************************/
+     **************************************************************************************************************************/
     private class STUB_ExceptionErrorSettingsVMapper extends ErrorSettingsVMapper {
         public override ErrorSettingsVModel getErrorSettingsViewModel() {
+            throw new TestException('Exception encountered!');
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Stub class to simulate the response from UserLookupResultVMapper for valid information
+     **************************************************************************************************************************/
+    private class STUB_UserLookupResultVMapper extends UserLookupResultVMapper {
+        public Id userId;
+
+        public STUB_UserLookupResultVMapper(Id userId) {
+            this.userId = userId;
+        }
+
+        public override List<LookupResult> getLookupResultsLikeUserName(String userNameMatch, Integer recordLimit) {
+            return new List<LookupResult>{
+                new LookupResult(
+                    'User Name',
+                    userId,
+                    'standard:avatar',
+                    'https://example.com/user.png',
+                    'User',
+                    'user@test.com'
+                )
+            };
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Stub class to simulate the response from UserLookupResultVMapper to throw an exception
+     **************************************************************************************************************************/
+    private class STUB_UserLookupResultVMapperError extends UserLookupResultVMapper {
+        public override List<LookupResult> getLookupResultsLikeUserName(String userNameMatch, Integer recordLimit) {
+            throw new TestException('Exception encountered!');
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Stub class to simulate the response from ChatterGroupLookupResultVMapper for valid information
+     **************************************************************************************************************************/
+    private class STUB_ChatterGroupLookupResultVMapper extends ChatterGroupLookupResultVMapper {
+        public Id chatterGroupId;
+
+        public STUB_ChatterGroupLookupResultVMapper(Id chatterGroupId) {
+            this.chatterGroupId = chatterGroupId;
+        }
+
+        public override List<LookupResult> getLookupResultsLikeChatterGroupName(
+            String chatterGroupNameMatch,
+            Integer recordLimit
+        ) {
+            return new List<LookupResult>{
+                new LookupResult(
+                    'Chatter Group Name',
+                    chatterGroupId,
+                    'standard:groups',
+                    'https://fake.url/test.png',
+                    Label.stgOptChatterGroup,
+                    'Chatter Group Description'
+                )
+            };
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Stub class to simulate the response from ChatterGroupLookupResultVMapper to throw an exception
+     **************************************************************************************************************************/
+    private class STUB_CGLookupResultVMapperError extends ChatterGroupLookupResultVMapper {
+        public override List<LookupResult> getLookupResultsLikeChatterGroupName(
+            String chatterGrupNameMatch,
+            Integer recordLimit
+        ) {
             throw new TestException('Exception encountered!');
         }
     }
