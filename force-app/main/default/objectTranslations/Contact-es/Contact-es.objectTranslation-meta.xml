@@ -3,20 +3,20 @@
     <layouts>
         <layout>HEDA Contact Layout</layout>
         <sections>
-            <label>Detalle del contacto</label>
-            <section>Contact Details</section>
-        </sections>
-        <sections>
             <label>Información adicional</label>
             <section>Additional Information</section>
         </sections>
         <sections>
-            <label>Afiliaciones principales</label>
-            <section>Primary Affiliations</section>
-        </sections>
-        <sections>
             <label>Preferencias de comunicación</label>
             <section>Communication Preferences</section>
+        </sections>
+        <sections>
+            <label>Detalle del contacto</label>
+            <section>Contact Details</section>
+        </sections>
+        <sections>
+            <label>Afiliaciones principales</label>
+            <section>Primary Affiliations</section>
         </sections>
     </layouts>
 </CustomObjectTranslation>

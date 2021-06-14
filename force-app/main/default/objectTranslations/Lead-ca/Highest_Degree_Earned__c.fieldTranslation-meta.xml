@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label><!-- Highest Degree Earned --></label>
+    <label>Màxima titulació obtinguda</label>
     <name>Highest_Degree_Earned__c</name>
     <picklistValues>
         <masterLabel>AA</masterLabel>
-        <translation><!-- AA --></translation>
+        <translation>Grau d&apos;associat d&apos;arts</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>AS</masterLabel>
-        <translation><!-- AS --></translation>
+        <translation>Grau d&apos;associat de ciències</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>BA</masterLabel>
-        <translation><!-- BA --></translation>
+        <translation>Llicenciatura</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>BS</masterLabel>
-        <translation><!-- BS --></translation>
+        <translation>Llicenciatura de ciències</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>GED</masterLabel>
-        <translation><!-- GED --></translation>
+        <translation>Diploma General d&apos;Educació</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>High School Diploma</masterLabel>
-        <translation><!-- High School Diploma --></translation>
+        <translation>Diploma d&apos;escola secundària</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>JD</masterLabel>
-        <translation><!-- JD --></translation>
+        <translation>Doctorat en Dret</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>MA</masterLabel>
-        <translation><!-- MA --></translation>
+        <translation>Màster en Art</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>MBA</masterLabel>
-        <translation><!-- MBA --></translation>
+        <translation>Màster en administració d&apos;empreses</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>MD</masterLabel>
-        <translation><!-- MD --></translation>
+        <translation>Doctorat en Medicina</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>MS</masterLabel>
-        <translation><!-- MS --></translation>
+        <translation>Màster en ciències</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Other</masterLabel>
-        <translation><!-- Other --></translation>
+        <translation>Altres</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>PhD</masterLabel>
-        <translation><!-- PhD --></translation>
+        <translation>Doctorat</translation>
     </picklistValues>
 </CustomFieldTranslation>

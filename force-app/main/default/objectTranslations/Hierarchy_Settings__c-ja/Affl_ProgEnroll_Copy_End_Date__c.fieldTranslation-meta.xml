@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
     <help>プログラム登録で作成された所属の終了日を設定するかどうかを示します。有効にした場合、終了日はプログラム登録の終了日に設定されます。無効にした場合、所属の終了日は指定されません。</help>
     <label>所属の終了日をプログラム登録からコピー</label>
+    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
 </CustomFieldTranslation>

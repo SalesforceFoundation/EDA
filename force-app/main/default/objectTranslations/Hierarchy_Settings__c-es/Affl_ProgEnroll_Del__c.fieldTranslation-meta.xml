@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Indica si eliminar una afiliación cuando se elimina su Inscripción relacionada. Si se activa, elimine la afiliación. Si no, establezca el estado de la afiliación como el valor de configuración relacionada, Estado de afilia al eliminar inscrip de programa.</help>
+    <label>Elim afilia al eliminar inscrip programa</label>
     <name>Affl_ProgEnroll_Del__c</name>
-    <help>Indica si eliminar una afiliación cuando se elimina su Inscripción de programa relacionada. Si se activa, elimine la afiliación. Si desactiva, establezca el estado de la afiliación como el valor especificado en la configuración relacionada, Estado de afilia al eliminar inscrip de programa.</help>
-    <label>Elim de afilia al eliminar inscrip de programa</label>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Admin_Account_Naming_Format__c</name>
     <help>Emmagatzema el format predeterminat per als noms del compte administratiu.</help>
     <label>Format de noms del compte administratiu</label>
+    <name>Admin_Account_Naming_Format__c</name>
 </CustomFieldTranslation>

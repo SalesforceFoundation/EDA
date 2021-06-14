@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_Course_Connections__c</name>
     <help>Quan està activat, permet als usuaris triar el tipus de contacte (professorat o estudiant) en crear un registre de connexió al curs. Aquesta funció requereix que es defineixin els tipus de registre de contacte predeterminats per a estudiants i professat actius.</help>
     <label>Activa les connexions del curs</label>
+    <name>Enable_Course_Connections__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_Course_Connections__c</name>
     <help>Kun asetus on käytössä, käyttäjät voivat valita yhteyshenkilötyypin (opetushenkilöstö tai opiskelija) luodessaan kurssiyhteystietueita. Edellyttää, että aktiivisille opiskelijoille ja opettajille määritetään oletusarvoiset yhteystietotyypit.</help>
     <label>Ota kurssiyhteydet käyttöön</label>
+    <name>Enable_Course_Connections__c</name>
 </CustomFieldTranslation>

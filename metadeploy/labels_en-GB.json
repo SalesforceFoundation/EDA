@@ -55,6 +55,10 @@
         "Deploy Einstein Analytics Templates": {
             "message": "Deploy Einstein Analytics Templates",
             "description": "title of installation step"
+        },
+        "Health Check": {
+            "message": "Health Check",
+            "description": "title of installation step"
         }
     },
     "plan:ra_einstein_template": {

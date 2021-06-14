@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Reciprocal_Method__c</name>
     <help>Bepaalt de methode voor het generen van de wederzijdse relatie. Gebruik Instellingen lijst om aangepaste instellingen op geslacht/gender te gebruiken. Gebruik Waarde-inversie om het type om te keren, indien van toepassing (&quot;Ouder-Kind&quot; naar &quot;Kind-Ouder&quot;)</help>
     <label>Wederzijdse methode</label>
+    <name>Reciprocal_Method__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Set_Role__c</name>
     <help>Indica si cal especificar una funció per a l’afiliació creada amb una inscripció de programa. Si està activada, definiu la funció d’afiliació amb el valor especificat a la configuració relacionada, Funció afilia. en crear inscrip. program. Si està desactivada, no especifiqueu cap funció.</help>
     <label>Func. def. afili. en crear inscr. progr.</label>
+    <name>Affl_ProgEnroll_Set_Role__c</name>
 </CustomFieldTranslation>

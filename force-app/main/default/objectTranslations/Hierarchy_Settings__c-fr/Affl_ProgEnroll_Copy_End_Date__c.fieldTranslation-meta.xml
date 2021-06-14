@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
     <help>Indique si la Date de fin de l&apos;Affiliation créée lors de l&apos;inscription au programme doit être définie. Si cette case est activée, définissez la date de fin sur celle de l&apos;inscription au programme, sinon, ne spécifiez pas la date de fin de l&apos;affiliation.</help>
     <label>Copie date fin affiliation inscr. prog.</label>
+    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
 </CustomFieldTranslation>

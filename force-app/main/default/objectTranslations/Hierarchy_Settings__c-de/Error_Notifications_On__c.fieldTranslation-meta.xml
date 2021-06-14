@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Error_Notifications_On__c</name>
     <help>Falls ausgewählt, werden Benachrichtigungen für durch Pakete generierte Fehler gesendet.</help>
     <label>Fehlerbenachrichtigungen</label>
+    <name>Error_Notifications_On__c</name>
 </CustomFieldTranslation>

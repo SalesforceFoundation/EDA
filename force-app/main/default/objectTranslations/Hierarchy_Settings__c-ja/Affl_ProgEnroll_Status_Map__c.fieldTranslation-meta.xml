@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Status_Map__c</name>
     <help>プログラム登録で自動的に作成された所属レコードの状況に設定する値。</help>
     <label>プログラム登録の作成時の所属の状況</label>
+    <name>Affl_ProgEnroll_Status_Map__c</name>
 </CustomFieldTranslation>

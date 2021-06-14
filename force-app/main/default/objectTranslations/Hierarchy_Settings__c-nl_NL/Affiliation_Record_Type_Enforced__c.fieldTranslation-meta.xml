@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affiliation_Record_Type_Enforced__c</name>
     <help>Na inschakeling ontstaat een fout als het in een primair contactpersoonveld opgegeven account een ander recordtype heeft dan in de EDA-instellingen. De affiliatierecord wordt niet gemaakt en primaire contactpersoonvelden worden niet gecorrigeerd.</help>
     <label>Affiliatierecordtype afgedwongen</label>
+    <name>Affiliation_Record_Type_Enforced__c</name>
 </CustomFieldTranslation>

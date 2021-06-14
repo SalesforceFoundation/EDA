@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label><!-- Preferred Teaching Format --></label>
+    <label>Gewenste type onderwijs</label>
     <name>Preferred_Teaching_Format__c</name>
     <picklistValues>
         <masterLabel>Hybrid</masterLabel>
-        <translation><!-- Hybrid --></translation>
+        <translation>Combinatie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>In-Person</masterLabel>
-        <translation><!-- In-Person --></translation>
+        <translation>Face-to-face</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Remote</masterLabel>
-        <translation><!-- Remote --></translation>
+        <translation>Op afstand</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Undecided</masterLabel>
-        <translation><!-- Undecided --></translation>
+        <translation>Nog niet beslist</translation>
     </picklistValues>
 </CustomFieldTranslation>

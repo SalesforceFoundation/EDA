@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Citizenship_Status__c</name>
     <help>El estado de nacionalidad del contacto</help>
     <label>Estado de nacionalidad</label>
+    <name>Citizenship_Status__c</name>
+    <picklistValues>
+        <masterLabel>Other (Non-U.S.)</masterLabel>
+        <translation>Otro (no de Estado Unidos)</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Temporary Resident</masterLabel>
+        <translation>Residente temporal</translation>
+    </picklistValues>
     <picklistValues>
         <masterLabel>U.S. Citizen or U.S. National</masterLabel>
         <translation>Ciudadano estadounidense</translation>
@@ -18,13 +26,5 @@
     <picklistValues>
         <masterLabel>U.S. Refugee or Asylee</masterLabel>
         <translation>Refugiado o asilado en Estados Unidos</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Temporary Resident</masterLabel>
-        <translation>Residente temporal</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Other (Non-U.S.)</masterLabel>
-        <translation>Otro (no de Estado Unidos)</translation>
     </picklistValues>
 </CustomFieldTranslation>

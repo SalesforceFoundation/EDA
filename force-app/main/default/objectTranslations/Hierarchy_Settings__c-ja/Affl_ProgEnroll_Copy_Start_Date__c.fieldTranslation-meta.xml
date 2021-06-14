@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
     <help>プログラム登録で作成された所属の開始日を設定するかどうかを示します。有効にした場合、開始日はプログラム登録の開始日に設定されます。無効にした場合、所属の開始日は指定されません。</help>
     <label>所属の開始日をプログラム登録からコピー</label>
+    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
 </CustomFieldTranslation>

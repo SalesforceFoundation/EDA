@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Disable_Preferred_Phone_Enforcement__c</name>
     <help>Sélectionnez cette option pour désactiver l&apos;application du champ Téléphone préféré des contacts.</help>
     <label>Désactiver applic. du téléphone préféré</label>
+    <name>Disable_Preferred_Phone_Enforcement__c</name>
 </CustomFieldTranslation>

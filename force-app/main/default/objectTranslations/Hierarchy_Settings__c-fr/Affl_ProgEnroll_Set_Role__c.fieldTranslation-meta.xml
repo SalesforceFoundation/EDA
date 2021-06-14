@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Set_Role__c</name>
     <help>Indique si un rôle doit être spécifié pour l&apos;affiliation créée lors de l&apos;inscription au programme. Si cette case est activée, définissez le rôle de l&apos;affiliation sur la valeur spécifiée dans le paramètre associé, sinon, ne spécifiez pas de rôle.</help>
     <label>Rôle affiliation défini qd inscr. prog.</label>
+    <name>Affl_ProgEnroll_Set_Role__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Administrative_Account_Record_Type__c</name>
     <help>The Account record type used for Administrative Accounts. This setting affects management of Address records and the naming format of Administrative Accounts.</help>
     <label>Administrative Account Record Type</label>
+    <name>Administrative_Account_Record_Type__c</name>
 </CustomFieldTranslation>

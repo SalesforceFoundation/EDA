@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Automatic_Household_Naming__c</name>
     <help>Si està activat, la denominació domèstica es defineix automàticament en funció de la configuració del format de la denominació domèstica.</help>
     <label>Denominació domèstica automàtica</label>
+    <name>Automatic_Household_Naming__c</name>
 </CustomFieldTranslation>

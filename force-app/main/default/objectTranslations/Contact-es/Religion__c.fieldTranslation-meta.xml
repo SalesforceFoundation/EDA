@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Religion__c</name>
     <help>La religión que profesa esta persona.</help>
     <label>Religión</label>
+    <name>Religion__c</name>
     <picklistValues>
         <masterLabel>Atheist</masterLabel>
         <translation>Ateo</translation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Set_Role__c</name>
     <help>Gibt an, ob eine Rolle für mit einer Programmregistrierung erstellten Zugehörigkeit angegeben werden soll. Falls aktiviert, Rolle der Zugehörigkeit auf Wert von &quot;Rolle Zugehör. bei Erstellen von ProgReg&quot; festlegen. Falls deaktiviert, keine Rolle angeben.</help>
     <label>Rolle Zugeh. bei Erstel. v. ProgReg fes.</label>
+    <name>Affl_ProgEnroll_Set_Role__c</name>
 </CustomFieldTranslation>

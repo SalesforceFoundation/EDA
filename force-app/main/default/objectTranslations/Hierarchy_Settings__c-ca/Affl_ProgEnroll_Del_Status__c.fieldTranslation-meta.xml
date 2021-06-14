@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Del_Status__c</name>
     <help>Si la configuració relacionada, Estat afili. en suprimir inscrip. progr, està desactivada, aquest paràmetre especifica el valor que s&apos;ha d&apos;establir per a l&apos;estat de l&apos;afiliació quan se suprimeix la inscripció del programa relacionada.</help>
     <label>Estat afili. en suprimir inscrip. progr</label>
+    <name>Affl_ProgEnroll_Del_Status__c</name>
 </CustomFieldTranslation>

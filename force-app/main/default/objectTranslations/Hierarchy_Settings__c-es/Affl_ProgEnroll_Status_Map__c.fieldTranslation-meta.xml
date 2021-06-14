@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Status_Map__c</name>
     <help>El valor establecido para el estado de un registro de afiliación creado automáticamente con una Inscripción de programa.</help>
-    <label>Estado de afilia al crear inscrip de programa</label>
+    <label>Estado afilia al crear inscrip programa</label>
+    <name>Affl_ProgEnroll_Status_Map__c</name>
 </CustomFieldTranslation>

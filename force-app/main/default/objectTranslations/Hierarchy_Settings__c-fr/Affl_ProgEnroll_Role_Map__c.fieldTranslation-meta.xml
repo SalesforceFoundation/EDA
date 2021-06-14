@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Role_Map__c</name>
     <help>Si le paramètre associé (Rôle affiliation défini qd inscr. prog.) est désactivé, ce paramètre spécifie la valeur à définir pour le statut de l&apos;affiliation lors de la suppression de son inscription au programme associée.</help>
     <label>Rôle affiliation qd inscr. prog. créée</label>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
 </CustomFieldTranslation>

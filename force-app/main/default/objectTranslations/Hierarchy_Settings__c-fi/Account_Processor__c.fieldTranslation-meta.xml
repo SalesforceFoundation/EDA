@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Account_Processor__c</name>
     <help>Tilin oletustietuetyypin tunnus. Jos esimerkiksi määrität hallintatilin (suositeltu tilimalli), syötä tili-objektin hallinta-tietuetyypin tunnus.</help>
     <label>Tilin käsittelijä</label>
+    <name>Account_Processor__c</name>
 </CustomFieldTranslation>

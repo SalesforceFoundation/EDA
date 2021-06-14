@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Validate_Program_Plan_for_Nested_PR__c</name>
     <help>選択すると、プラン要件でプログラムプランまたは親プラン要件を指定できます。ただし、この両方を指定することはできません。プログラムプランと親プラン要件の両方を指定した場合、どちらか 1 つのみを選択するまで、エラーメッセージが出力され、保存できません。</help>
     <label>ネストされた PR のプログラムプランを検証</label>
+    <name>Validate_Program_Plan_for_Nested_PR__c</name>
 </CustomFieldTranslation>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Race__c</name>
     <help>Seleccione la raza(s) que esta persona utiliza para describirse a sí misma.</help>
     <label>Raza</label>
+    <name>Race__c</name>
     <picklistValues>
         <masterLabel>American Indian or Alaska Native</masterLabel>
         <translation>India americana o Nativo de Alaska</translation>

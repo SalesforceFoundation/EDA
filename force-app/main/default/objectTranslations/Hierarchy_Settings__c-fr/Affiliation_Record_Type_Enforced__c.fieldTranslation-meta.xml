@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affiliation_Record_Type_Enforced__c</name>
     <help>Si activée, une erreur est renvoyée lorsque les utilisateurs remplissent un champ dans Contact avec un Compte dont le type n&apos;est pas défini dans les paramètres EDA. L&apos;enregistrement Affiliation n&apos;est pas créé et les champs du contact sont incorrects.</help>
     <label>Type enregistrement affiliation appliqué</label>
+    <name>Affiliation_Record_Type_Enforced__c</name>
 </CustomFieldTranslation>

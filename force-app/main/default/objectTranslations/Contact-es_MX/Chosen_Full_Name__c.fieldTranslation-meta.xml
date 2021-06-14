@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Chosen_Full_Name__c</name>
     <help>El nombre completo que este contacto prefiere utilizar en lugar de su razón social.</help>
     <label>Nombre completo elegido</label>
+    <name>Chosen_Full_Name__c</name>
 </CustomFieldTranslation>

@@ -1,1121 +1,1121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label><!-- Citizenship --></label>
+    <label>Citoyenneté</label>
     <name>Citizenship__c</name>
     <picklistValues>
         <masterLabel>Afghanistan</masterLabel>
-        <translation><!-- Afghanistan --></translation>
+        <translation>Afghanistan</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Albania</masterLabel>
-        <translation><!-- Albania --></translation>
+        <translation>Albanie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Algeria</masterLabel>
-        <translation><!-- Algeria --></translation>
+        <translation>Algérie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>American Samoa</masterLabel>
-        <translation><!-- American Samoa --></translation>
+        <translation>Samoa américaines</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Andorra</masterLabel>
-        <translation><!-- Andorra --></translation>
+        <translation>Andorre</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Angola</masterLabel>
-        <translation><!-- Angola --></translation>
+        <translation>Angola</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Anguilla</masterLabel>
-        <translation><!-- Anguilla --></translation>
+        <translation>Anguilla</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Antarctica</masterLabel>
-        <translation><!-- Antarctica --></translation>
+        <translation>Antarctique</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Antigua and Barbuda</masterLabel>
-        <translation><!-- Antigua and Barbuda --></translation>
+        <translation>Antigua et Barbuda</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Argentina</masterLabel>
-        <translation><!-- Argentina --></translation>
+        <translation>Argentine</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Armenia</masterLabel>
-        <translation><!-- Armenia --></translation>
+        <translation>Arménie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Aruba</masterLabel>
-        <translation><!-- Aruba --></translation>
+        <translation>Aruba</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Australia</masterLabel>
-        <translation><!-- Australia --></translation>
+        <translation>Australie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Austria</masterLabel>
-        <translation><!-- Austria --></translation>
+        <translation>Autriche</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Azerbaijan</masterLabel>
-        <translation><!-- Azerbaijan --></translation>
+        <translation>Azerbaïdjan</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Bahamas (the)</masterLabel>
-        <translation><!-- Bahamas (the) --></translation>
+        <translation>Bahamas (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Bahrain</masterLabel>
-        <translation><!-- Bahrain --></translation>
+        <translation>Bahreïn</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Bangladesh</masterLabel>
-        <translation><!-- Bangladesh --></translation>
+        <translation>Bangladesh</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Barbados</masterLabel>
-        <translation><!-- Barbados --></translation>
+        <translation>Barbade</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Belarus</masterLabel>
-        <translation><!-- Belarus --></translation>
+        <translation>Biélorussie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Belgium</masterLabel>
-        <translation><!-- Belgium --></translation>
+        <translation>Belgique</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Belize</masterLabel>
-        <translation><!-- Belize --></translation>
+        <translation>Belize</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Benin</masterLabel>
-        <translation><!-- Benin --></translation>
+        <translation>Bénin</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Bermuda</masterLabel>
-        <translation><!-- Bermuda --></translation>
+        <translation>Bermudes</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Bhutan</masterLabel>
-        <translation><!-- Bhutan --></translation>
+        <translation>Bhoutan</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Bolivia (Plurinational State of)</masterLabel>
-        <translation><!-- Bolivia (Plurinational State of) --></translation>
+        <translation>Bolivie (État plurinational de)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Bonaire, Sint Eustatius and Saba</masterLabel>
-        <translation><!-- Bonaire, Sint Eustatius and Saba --></translation>
+        <translation>Bonaire, Saint-Eustache et Saba</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Bosnia and Herzegovina</masterLabel>
-        <translation><!-- Bosnia and Herzegovina --></translation>
+        <translation>Bosnie-Herzégovine</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Botswana</masterLabel>
-        <translation><!-- Botswana --></translation>
+        <translation>Botswana</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Bouvet Island</masterLabel>
-        <translation><!-- Bouvet Island --></translation>
+        <translation>Île Bouvet</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Brazil</masterLabel>
-        <translation><!-- Brazil --></translation>
+        <translation>Brésil</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>British Antarctic Territory</masterLabel>
-        <translation><!-- British Antarctic Territory --></translation>
+        <translation>Territoire antarctique britannique</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>British Indian Ocean Territory (the)</masterLabel>
-        <translation><!-- British Indian Ocean Territory (the) --></translation>
+        <translation>Territoire britannique de l&apos;océan Indien (Le)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Brunei Darussalam</masterLabel>
-        <translation><!-- Brunei Darussalam --></translation>
+        <translation>Brunéi Darussalam</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Bulgaria</masterLabel>
-        <translation><!-- Bulgaria --></translation>
+        <translation>Bulgarie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Burkina Faso</masterLabel>
-        <translation><!-- Burkina Faso --></translation>
+        <translation>Burkina Faso</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Burma</masterLabel>
-        <translation><!-- Burma --></translation>
+        <translation>Birmanie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Burundi</masterLabel>
-        <translation><!-- Burundi --></translation>
+        <translation>Burundi</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Byelorussian SSR</masterLabel>
-        <translation><!-- Byelorussian SSR --></translation>
+        <translation>RSS de Biélorussie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Cabo Verde</masterLabel>
-        <translation><!-- Cabo Verde --></translation>
+        <translation>Cap-Vert</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Cambodia</masterLabel>
-        <translation><!-- Cambodia --></translation>
+        <translation>Cambodge</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Cameroon</masterLabel>
-        <translation><!-- Cameroon --></translation>
+        <translation>Cameroun</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Canada</masterLabel>
-        <translation><!-- Canada --></translation>
+        <translation>Canada</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Canton and Enderbury Islands</masterLabel>
-        <translation><!-- Canton and Enderbury Islands --></translation>
+        <translation>Îles Canton et Enderbury</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Cayman Islands (the)</masterLabel>
-        <translation><!-- Cayman Islands (the) --></translation>
+        <translation>Îles Caïman (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Central African Republic (the)</masterLabel>
-        <translation><!-- Central African Republic (the) --></translation>
+        <translation>République centrafricaine (La)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Chad</masterLabel>
-        <translation><!-- Chad --></translation>
+        <translation>Tchad</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Chile</masterLabel>
-        <translation><!-- Chile --></translation>
+        <translation>Chili</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>China</masterLabel>
-        <translation><!-- China --></translation>
+        <translation>Chine</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Christmas Island</masterLabel>
-        <translation><!-- Christmas Island --></translation>
+        <translation>Île Christmas</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Cocos (Keeling) Islands (the)</masterLabel>
-        <translation><!-- Cocos (Keeling) Islands (the) --></translation>
+        <translation>Îles Cocos (Keeling) (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Colombia</masterLabel>
-        <translation><!-- Colombia --></translation>
+        <translation>Colombie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Comoros (the)</masterLabel>
-        <translation><!-- Comoros (the) --></translation>
+        <translation>Comores (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Congo (the Democratic Republic of the)</masterLabel>
-        <translation><!-- Congo (the Democratic Republic of the) --></translation>
+        <translation>Congo (La république démocratique du)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Congo (the)</masterLabel>
-        <translation><!-- Congo (the) --></translation>
+        <translation>Congo (Le)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Cook Islands (the)</masterLabel>
-        <translation><!-- Cook Islands (the) --></translation>
+        <translation>Îles Cook (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Costa Rica</masterLabel>
-        <translation><!-- Costa Rica --></translation>
+        <translation>Costa Rica</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Croatia</masterLabel>
-        <translation><!-- Croatia --></translation>
+        <translation>Croatie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Cuba</masterLabel>
-        <translation><!-- Cuba --></translation>
+        <translation>Cuba</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Curaçao</masterLabel>
-        <translation><!-- Curaçao --></translation>
+        <translation>Curaçao</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Cyprus</masterLabel>
-        <translation><!-- Cyprus --></translation>
+        <translation>Chypre</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Czech Republic (the)</masterLabel>
-        <translation><!-- Czech Republic (the) --></translation>
+        <translation>République tchèque (La)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Czechoslovakia</masterLabel>
-        <translation><!-- Czechoslovakia --></translation>
+        <translation>Tchécoslovaquie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Côte d&apos;Ivoire</masterLabel>
-        <translation><!-- Côte d&apos;Ivoire --></translation>
+        <translation>Côte d&apos;Ivoire</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Dahomey</masterLabel>
-        <translation><!-- Dahomey --></translation>
+        <translation>Dahomey</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Denmark</masterLabel>
-        <translation><!-- Denmark --></translation>
+        <translation>Danemark</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Djibouti</masterLabel>
-        <translation><!-- Djibouti --></translation>
+        <translation>Djibouti</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Dominica</masterLabel>
-        <translation><!-- Dominica --></translation>
+        <translation>Dominique</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Dominican Republic (the)</masterLabel>
-        <translation><!-- Dominican Republic (the) --></translation>
+        <translation>République dominicaine (La)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Dronning Maud Land</masterLabel>
-        <translation><!-- Dronning Maud Land --></translation>
+        <translation>Terre de la Reine-Maud</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>East Timor</masterLabel>
-        <translation><!-- East Timor --></translation>
+        <translation>Timor oriental</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Ecuador</masterLabel>
-        <translation><!-- Ecuador --></translation>
+        <translation>Équateur</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Egypt</masterLabel>
-        <translation><!-- Egypt --></translation>
+        <translation>Égypte</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>El Salvador</masterLabel>
-        <translation><!-- El Salvador --></translation>
+        <translation>Salvador</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Equatorial Guinea</masterLabel>
-        <translation><!-- Equatorial Guinea --></translation>
+        <translation>Guinée équatoriale</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Eritrea</masterLabel>
-        <translation><!-- Eritrea --></translation>
+        <translation>Érythrée</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Estonia</masterLabel>
-        <translation><!-- Estonia --></translation>
+        <translation>Estonie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Ethiopia</masterLabel>
-        <translation><!-- Ethiopia --></translation>
+        <translation>Éthiopie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Falkland Islands (the) [Malvinas]</masterLabel>
-        <translation><!-- Falkland Islands (the) [Malvinas] --></translation>
+        <translation>Îles Malouines (Les ) [Malvinas]</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Faroe Islands (the)</masterLabel>
-        <translation><!-- Faroe Islands (the) --></translation>
+        <translation>Îles Féroé (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Fiji</masterLabel>
-        <translation><!-- Fiji --></translation>
+        <translation>Fidji</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Finland</masterLabel>
-        <translation><!-- Finland --></translation>
+        <translation>Finlande</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>France</masterLabel>
-        <translation><!-- France --></translation>
+        <translation>France</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>France, Metropolitan</masterLabel>
-        <translation><!-- France, Metropolitan --></translation>
+        <translation>France métropolitaine</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>French Afars and Issas</masterLabel>
-        <translation><!-- French Afars and Issas --></translation>
+        <translation>Territoire français des Afars et des Issas</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>French Guiana</masterLabel>
-        <translation><!-- French Guiana --></translation>
+        <translation>Guyane française</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>French Polynesia</masterLabel>
-        <translation><!-- French Polynesia --></translation>
+        <translation>Polynésie française</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>French Southern Territories (the)</masterLabel>
-        <translation><!-- French Southern Territories (the) --></translation>
+        <translation>Terres australes françaises (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>French Southern and Antarctic Territories</masterLabel>
-        <translation><!-- French Southern and Antarctic Territories --></translation>
+        <translation>Terres australes et antarctiques françaises</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Gabon</masterLabel>
-        <translation><!-- Gabon --></translation>
+        <translation>Gabon</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Gambia (the)</masterLabel>
-        <translation><!-- Gambia (the) --></translation>
+        <translation>Gambie (La)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Georgia</masterLabel>
-        <translation><!-- Georgia --></translation>
+        <translation>Géorgie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>German Democratic Republic</masterLabel>
-        <translation><!-- German Democratic Republic --></translation>
+        <translation>République démocratique allemande</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Germany</masterLabel>
-        <translation><!-- Germany --></translation>
+        <translation>Allemagne</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Ghana</masterLabel>
-        <translation><!-- Ghana --></translation>
+        <translation>Ghana</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Gibraltar</masterLabel>
-        <translation><!-- Gibraltar --></translation>
+        <translation>Gibraltar</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Gilbert and Ellice Islands</masterLabel>
-        <translation><!-- Gilbert and Ellice Islands --></translation>
+        <translation>Îles Gilbert et Ellice</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Greece</masterLabel>
-        <translation><!-- Greece --></translation>
+        <translation>Grèce</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Greenland</masterLabel>
-        <translation><!-- Greenland --></translation>
+        <translation>Groenland</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Grenada</masterLabel>
-        <translation><!-- Grenada --></translation>
+        <translation>Grenade</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Guadeloupe</masterLabel>
-        <translation><!-- Guadeloupe --></translation>
+        <translation>Guadeloupe</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Guam</masterLabel>
-        <translation><!-- Guam --></translation>
+        <translation>Guam</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Guatemala</masterLabel>
-        <translation><!-- Guatemala --></translation>
+        <translation>Guatemala</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Guernsey</masterLabel>
-        <translation><!-- Guernsey --></translation>
+        <translation>Guernesey</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Guinea</masterLabel>
-        <translation><!-- Guinea --></translation>
+        <translation>Guinée</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Guinea-Bissau</masterLabel>
-        <translation><!-- Guinea-Bissau --></translation>
+        <translation>Guinée-Bissau</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Guyana</masterLabel>
-        <translation><!-- Guyana --></translation>
+        <translation>Guyane</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Haiti</masterLabel>
-        <translation><!-- Haiti --></translation>
+        <translation>Haïti</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Heard Island and McDonal Islands</masterLabel>
-        <translation><!-- Heard Island and McDonal Islands --></translation>
+        <translation>Îles Heard-et-MacDonald</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Holy See (the)</masterLabel>
-        <translation><!-- Holy See (the) --></translation>
+        <translation>Saint-Siège (Le)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Honduras</masterLabel>
-        <translation><!-- Honduras --></translation>
+        <translation>Honduras</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Hong Kong</masterLabel>
-        <translation><!-- Hong Kong --></translation>
+        <translation>Hong Kong</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Hungary</masterLabel>
-        <translation><!-- Hungary --></translation>
+        <translation>Hongrie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Iceland</masterLabel>
-        <translation><!-- Iceland --></translation>
+        <translation>Islande</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>India</masterLabel>
-        <translation><!-- India --></translation>
+        <translation>Inde</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Indonesia</masterLabel>
-        <translation><!-- Indonesia --></translation>
+        <translation>Indonésie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Iran (Islamic Republic of)</masterLabel>
-        <translation><!-- Iran (Islamic Republic of) --></translation>
+        <translation>Iran (République islamique)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Iraq</masterLabel>
-        <translation><!-- Iraq --></translation>
+        <translation>Iraq</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Ireland</masterLabel>
-        <translation><!-- Ireland --></translation>
+        <translation>Irlande</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Isle of Man</masterLabel>
-        <translation><!-- Isle of Man --></translation>
+        <translation>Île de Man</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Israel</masterLabel>
-        <translation><!-- Israel --></translation>
+        <translation>Israël</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Italy</masterLabel>
-        <translation><!-- Italy --></translation>
+        <translation>Italie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Jamaica</masterLabel>
-        <translation><!-- Jamaica --></translation>
+        <translation>Jamaïque</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Japan</masterLabel>
-        <translation><!-- Japan --></translation>
+        <translation>Japon</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Jersey</masterLabel>
-        <translation><!-- Jersey --></translation>
+        <translation>Jersey</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Johnston Island</masterLabel>
-        <translation><!-- Johnston Island --></translation>
+        <translation>Île Johnston</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Jordan</masterLabel>
-        <translation><!-- Jordan --></translation>
+        <translation>Jordanie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Kazakhstan</masterLabel>
-        <translation><!-- Kazakhstan --></translation>
+        <translation>Kazakhstan</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Kenya</masterLabel>
-        <translation><!-- Kenya --></translation>
+        <translation>Kenya</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Kiribati</masterLabel>
-        <translation><!-- Kiribati --></translation>
+        <translation>Kiribati</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Korea (the Democratic People&apos;s Republic of)</masterLabel>
-        <translation><!-- Korea (the Democratic People&apos;s Republic of) --></translation>
+        <translation>Corée (La république démocratique populaire de)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Korea (the Republic of)</masterLabel>
-        <translation><!-- Korea (the Republic of) --></translation>
+        <translation>Corée (La république de)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Kuwait</masterLabel>
-        <translation><!-- Kuwait --></translation>
+        <translation>Koweït</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Kyrgyzstan</masterLabel>
-        <translation><!-- Kyrgyzstan --></translation>
+        <translation>Kirghizistan</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Lao People&apos;s Democratic Republic (the)</masterLabel>
-        <translation><!-- Lao People&apos;s Democratic Republic (the) --></translation>
+        <translation>République démocratique populaire lao (La)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Latvia</masterLabel>
-        <translation><!-- Latvia --></translation>
+        <translation>Lettonie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Lebanon</masterLabel>
-        <translation><!-- Lebanon --></translation>
+        <translation>Liban</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Lesotho</masterLabel>
-        <translation><!-- Lesotho --></translation>
+        <translation>Lesotho</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Liberia</masterLabel>
-        <translation><!-- Liberia --></translation>
+        <translation>Libéria</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Libya</masterLabel>
-        <translation><!-- Libya --></translation>
+        <translation>Libye</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Liechtenstein</masterLabel>
-        <translation><!-- Liechtenstein --></translation>
+        <translation>Liechtenstein</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Lithuania</masterLabel>
-        <translation><!-- Lithuania --></translation>
+        <translation>Lituanie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Luxembourg</masterLabel>
-        <translation><!-- Luxembourg --></translation>
+        <translation>Luxembourg</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Macao</masterLabel>
-        <translation><!-- Macao --></translation>
+        <translation>Macao</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Macedonia (the former Yugoslav Republic of)</masterLabel>
-        <translation><!-- Macedonia (the former Yugoslav Republic of) --></translation>
+        <translation>Macédoine (Ex-république yougoslave)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Madagascar</masterLabel>
-        <translation><!-- Madagascar --></translation>
+        <translation>Madagascar</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Malawi</masterLabel>
-        <translation><!-- Malawi --></translation>
+        <translation>Malawi</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Malaysia</masterLabel>
-        <translation><!-- Malaysia --></translation>
+        <translation>Malaisie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Mali</masterLabel>
-        <translation><!-- Mali --></translation>
+        <translation>Mali</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Malta</masterLabel>
-        <translation><!-- Malta --></translation>
+        <translation>Malte</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Marshall Islands (the)</masterLabel>
-        <translation><!-- Marshall Islands (the) --></translation>
+        <translation>Îles Marshall (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Martinique</masterLabel>
-        <translation><!-- Martinique --></translation>
+        <translation>Martinique</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Mauritania</masterLabel>
-        <translation><!-- Mauritania --></translation>
+        <translation>Mauritanie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Mauritius</masterLabel>
-        <translation><!-- Mauritius --></translation>
+        <translation>Maurice</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Mayotte</masterLabel>
-        <translation><!-- Mayotte --></translation>
+        <translation>Mayotte</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Mexico</masterLabel>
-        <translation><!-- Mexico --></translation>
+        <translation>Mexique</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Micronesia (Federated States of)</masterLabel>
-        <translation><!-- Micronesia (Federated States of) --></translation>
+        <translation>Micronésie (États fédérés de)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Midway Islands</masterLabel>
-        <translation><!-- Midway Islands --></translation>
+        <translation>Îles Midway</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Moldova (the Republic of)</masterLabel>
-        <translation><!-- Moldova (the Republic of) --></translation>
+        <translation>Moldavie (La République de)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Monaco</masterLabel>
-        <translation><!-- Monaco --></translation>
+        <translation>Monaco</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Mongolia</masterLabel>
-        <translation><!-- Mongolia --></translation>
+        <translation>Mongolie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Montenegro</masterLabel>
-        <translation><!-- Montenegro --></translation>
+        <translation>Monténégro</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Montserrat</masterLabel>
-        <translation><!-- Montserrat --></translation>
+        <translation>Montserrat</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Morocco</masterLabel>
-        <translation><!-- Morocco --></translation>
+        <translation>Maroc</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Mozambique</masterLabel>
-        <translation><!-- Mozambique --></translation>
+        <translation>Mozambique</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Myanmar</masterLabel>
-        <translation><!-- Myanmar --></translation>
+        <translation>Birmanie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Namibia</masterLabel>
-        <translation><!-- Namibia --></translation>
+        <translation>Namibie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Nauru</masterLabel>
-        <translation><!-- Nauru --></translation>
+        <translation>Nauru</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Nepal</masterLabel>
-        <translation><!-- Nepal --></translation>
+        <translation>Népal</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Netherlands (the)</masterLabel>
-        <translation><!-- Netherlands (the) --></translation>
+        <translation>Pays-Bas (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Netherlands Antilles</masterLabel>
-        <translation><!-- Netherlands Antilles --></translation>
+        <translation>Antilles néerlandaises</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Neutral Zone</masterLabel>
-        <translation><!-- Neutral Zone --></translation>
+        <translation>Zone neutre</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>New Caledonia</masterLabel>
-        <translation><!-- New Caledonia --></translation>
+        <translation>Nouvelle-Calédonie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>New Hebrides</masterLabel>
-        <translation><!-- New Hebrides --></translation>
+        <translation>Nouvelles-Hébrides</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>New Zealand</masterLabel>
-        <translation><!-- New Zealand --></translation>
+        <translation>Nouvelle-Zélande</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Nicaragua</masterLabel>
-        <translation><!-- Nicaragua --></translation>
+        <translation>Nicaragua</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Niger (the)</masterLabel>
-        <translation><!-- Niger (the) --></translation>
+        <translation>Niger (Le)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Nigeria</masterLabel>
-        <translation><!-- Nigeria --></translation>
+        <translation>Nigéria</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Niue</masterLabel>
-        <translation><!-- Niue --></translation>
+        <translation>Niué</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Norfolk Island</masterLabel>
-        <translation><!-- Norfolk Island --></translation>
+        <translation>Île Norfolk</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Northern Mariana Islands (the)</masterLabel>
-        <translation><!-- Northern Mariana Islands (the) --></translation>
+        <translation>Îles Mariannes du Nord (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Norway</masterLabel>
-        <translation><!-- Norway --></translation>
+        <translation>Norvège</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Oman</masterLabel>
-        <translation><!-- Oman --></translation>
+        <translation>Oman</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Pacific Islands (Trust Territory)</masterLabel>
-        <translation><!-- Pacific Islands (Trust Territory) --></translation>
+        <translation>Îles du Pacifique (Territoire sous tutelle)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Pakistan</masterLabel>
-        <translation><!-- Pakistan --></translation>
+        <translation>Pakistan</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Palau</masterLabel>
-        <translation><!-- Palau --></translation>
+        <translation>Palau</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Palestine, State of</masterLabel>
-        <translation><!-- Palestine, State of --></translation>
+        <translation>Palestine, État de</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Panama</masterLabel>
-        <translation><!-- Panama --></translation>
+        <translation>Panama</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Panama Canal Zone</masterLabel>
-        <translation><!-- Panama Canal Zone --></translation>
+        <translation>Zone du canal de Panama</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Papua New Guinea</masterLabel>
-        <translation><!-- Papua New Guinea --></translation>
+        <translation>Papouasie-Nouvelle-Guinée</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Paraguay</masterLabel>
-        <translation><!-- Paraguay --></translation>
+        <translation>Paraguay</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Peru</masterLabel>
-        <translation><!-- Peru --></translation>
+        <translation>Pérou</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Philippines (the)</masterLabel>
-        <translation><!-- Philippines (the) --></translation>
+        <translation>Philippines (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Pitcairn</masterLabel>
-        <translation><!-- Pitcairn --></translation>
+        <translation>Pitcairn</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Poland</masterLabel>
-        <translation><!-- Poland --></translation>
+        <translation>Pologne</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Portugal</masterLabel>
-        <translation><!-- Portugal --></translation>
+        <translation>Portugal</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Puerto Rico</masterLabel>
-        <translation><!-- Puerto Rico --></translation>
+        <translation>Porto Rico</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Qatar</masterLabel>
-        <translation><!-- Qatar --></translation>
+        <translation>Qatar</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Romania</masterLabel>
-        <translation><!-- Romania --></translation>
+        <translation>Roumanie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Russian Federation (the)</masterLabel>
-        <translation><!-- Russian Federation (the) --></translation>
+        <translation>Fédération de Russie (La)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Rwanda</masterLabel>
-        <translation><!-- Rwanda --></translation>
+        <translation>Rwanda</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Réunion</masterLabel>
-        <translation><!-- Réunion --></translation>
+        <translation>Réunion</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Saint Barthélemy</masterLabel>
-        <translation><!-- Saint Barthélemy --></translation>
+        <translation>Saint-Barthélemy</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Saint Helena, Ascension and Tristan da Cunha</masterLabel>
-        <translation><!-- Saint Helena, Ascension and Tristan da Cunha --></translation>
+        <translation>Sainte-Hélène, Ascension et Tristan da Cunha</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Saint Kitts and Nevis</masterLabel>
-        <translation><!-- Saint Kitts and Nevis --></translation>
+        <translation>Saint-Christophe-et-Niévès</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Saint Lucia</masterLabel>
-        <translation><!-- Saint Lucia --></translation>
+        <translation>Sainte Lucie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Saint Martin (French part)</masterLabel>
-        <translation><!-- Saint Martin (French part) --></translation>
+        <translation>Saint-Martin (Antilles françaises)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Saint Pierre and Miquelon</masterLabel>
-        <translation><!-- Saint Pierre and Miquelon --></translation>
+        <translation>Saint-Pierre-et-Miquelon</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Saint Vincent and the Grenadines</masterLabel>
-        <translation><!-- Saint Vincent and the Grenadines --></translation>
+        <translation>Saint-Vincent-et-les-Grenadines</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Samoa</masterLabel>
-        <translation><!-- Samoa --></translation>
+        <translation>Samoa</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>San Marino</masterLabel>
-        <translation><!-- San Marino --></translation>
+        <translation>San Marin</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Sao Tome and Principe</masterLabel>
-        <translation><!-- Sao Tome and Principe --></translation>
+        <translation>Sao Tomé-et-Principe</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Saudi Arabia</masterLabel>
-        <translation><!-- Saudi Arabia --></translation>
+        <translation>Arabie Saoudite</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Senegal</masterLabel>
-        <translation><!-- Senegal --></translation>
+        <translation>Sénégal</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Serbia</masterLabel>
-        <translation><!-- Serbia --></translation>
+        <translation>Serbie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Serbia and Montenegro</masterLabel>
-        <translation><!-- Serbia and Montenegro --></translation>
+        <translation>Serbie et Monténégro</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Seychelles</masterLabel>
-        <translation><!-- Seychelles --></translation>
+        <translation>Seychelles</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Sierra Leone</masterLabel>
-        <translation><!-- Sierra Leone --></translation>
+        <translation>Sierra Leone</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Sikkim</masterLabel>
-        <translation><!-- Sikkim --></translation>
+        <translation>Sikkim</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Singapore</masterLabel>
-        <translation><!-- Singapore --></translation>
+        <translation>Singapour</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Sint Maarten (Dutch part)</masterLabel>
-        <translation><!-- Sint Maarten (Dutch part) --></translation>
+        <translation>Saint-Martin (Royaume des Pays-Bas)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Slovakia</masterLabel>
-        <translation><!-- Slovakia --></translation>
+        <translation>Slovaquie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Slovenia</masterLabel>
-        <translation><!-- Slovenia --></translation>
+        <translation>Slovénie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Solomon Islands</masterLabel>
-        <translation><!-- Solomon Islands --></translation>
+        <translation>Îles Solomon</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Somalia</masterLabel>
-        <translation><!-- Somalia --></translation>
+        <translation>Somalie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>South Africa</masterLabel>
-        <translation><!-- South Africa --></translation>
+        <translation>Afrique du Sud</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>South Georgia and the South Sandwich Islands</masterLabel>
-        <translation><!-- South Georgia and the South Sandwich Islands --></translation>
+        <translation>Géorgie du Sud-et-les Îles Sandwich du Sud</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>South Sudan</masterLabel>
-        <translation><!-- South Sudan --></translation>
+        <translation>Soudan du Sud</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Southern Rodesia</masterLabel>
-        <translation><!-- Southern Rodesia --></translation>
+        <translation>Rhodésie du Sud</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Spain</masterLabel>
-        <translation><!-- Spain --></translation>
+        <translation>Espagne</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Sri Lanka</masterLabel>
-        <translation><!-- Sri Lanka --></translation>
+        <translation>Sri Lanka</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Sudan (the)</masterLabel>
-        <translation><!-- Sudan (the) --></translation>
+        <translation>Soudan (Le)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Surinam</masterLabel>
-        <translation><!-- Surinam --></translation>
+        <translation>Suriname</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Svalbard and Jan Mayen</masterLabel>
-        <translation><!-- Svalbard and Jan Mayen --></translation>
+        <translation>Svalbard et Jan Mayen</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Swaziland</masterLabel>
-        <translation><!-- Swaziland --></translation>
+        <translation>Swaziland</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Sweden</masterLabel>
-        <translation><!-- Sweden --></translation>
+        <translation>Suède</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Switzerland</masterLabel>
-        <translation><!-- Switzerland --></translation>
+        <translation>Suisse</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Syrian Arab Republic</masterLabel>
-        <translation><!-- Syrian Arab Republic --></translation>
+        <translation>République arabe syrienne</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Taiwan (Province of China)</masterLabel>
-        <translation><!-- Taiwan (Province of China) --></translation>
+        <translation>Taïwan (Province de Chine)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Tajikistan</masterLabel>
-        <translation><!-- Tajikistan --></translation>
+        <translation>Tadjikistan</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Tanzania, United Republic of</masterLabel>
-        <translation><!-- Tanzania, United Republic of --></translation>
+        <translation>Tanzanie, République unie de</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Thailand</masterLabel>
-        <translation><!-- Thailand --></translation>
+        <translation>Thaïlande</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Timor-Leste</masterLabel>
-        <translation><!-- Timor-Leste --></translation>
+        <translation>Timor-Leste</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Togo</masterLabel>
-        <translation><!-- Togo --></translation>
+        <translation>Togo</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Tokelau</masterLabel>
-        <translation><!-- Tokelau --></translation>
+        <translation>Tokelau</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Tonga</masterLabel>
-        <translation><!-- Tonga --></translation>
+        <translation>Tonga</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Trinidad and Tobago</masterLabel>
-        <translation><!-- Trinidad and Tobago --></translation>
+        <translation>Trinité-et-Tobago</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Tunisia</masterLabel>
-        <translation><!-- Tunisia --></translation>
+        <translation>Tunisie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Turkey</masterLabel>
-        <translation><!-- Turkey --></translation>
+        <translation>Turquie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Turkmenistan</masterLabel>
-        <translation><!-- Turkmenistan --></translation>
+        <translation>Turkménistan</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Turks and Caicos Islands (the)</masterLabel>
-        <translation><!-- Turks and Caicos Islands (the) --></translation>
+        <translation>Îles Turques-et-Caïques (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Tuvalu</masterLabel>
-        <translation><!-- Tuvalu --></translation>
+        <translation>Tuvalu</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>USSR</masterLabel>
-        <translation><!-- USSR --></translation>
+        <translation>URSS</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Uganda</masterLabel>
-        <translation><!-- Uganda --></translation>
+        <translation>Ouganda</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Ukraine</masterLabel>
-        <translation><!-- Ukraine --></translation>
+        <translation>Ukraine</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>United Arab Emirates (the)</masterLabel>
-        <translation><!-- United Arab Emirates (the) --></translation>
+        <translation>Émirats arabes unis (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>United Kingdom of Great Britain and Northern Ireland (the)</masterLabel>
-        <translation><!-- United Kingdom of Great Britain and Northern Ireland (the) --></translation>
+        <translation>Royaume-Uni de Grande-Bretagne et d&apos;Irlande du Nord (Le)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>United States Minor Outlying Islands (the)</masterLabel>
-        <translation><!-- United States Minor Outlying Islands (the) --></translation>
+        <translation>Îles mineures éloignées des États-Unis (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>United States of America (the)</masterLabel>
-        <translation><!-- United States of America (the) --></translation>
+        <translation>États-Unis d&apos;Amérique (Les)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Unites States Miscellaneous Pacific Islands</masterLabel>
-        <translation><!-- Unites States Miscellaneous Pacific Islands --></translation>
+        <translation>Îles diverses du Pacifique des États-Unis</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Upper Volta</masterLabel>
-        <translation><!-- Upper Volta --></translation>
+        <translation>Haute-Volta</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Uruguay</masterLabel>
-        <translation><!-- Uruguay --></translation>
+        <translation>Uruguay</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Uzbekistan</masterLabel>
-        <translation><!-- Uzbekistan --></translation>
+        <translation>Ouzbékistan</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Vanuatu</masterLabel>
-        <translation><!-- Vanuatu --></translation>
+        <translation>Vanuatu</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Venezuela (Bolivarian Republic of)</masterLabel>
-        <translation><!-- Venezuela (Bolivarian Republic of) --></translation>
+        <translation>Venezuela (République bolivarienne)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Viet Nam</masterLabel>
-        <translation><!-- Viet Nam --></translation>
+        <translation>Vietnam</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Viet-Nam, Democratic Republic of</masterLabel>
-        <translation><!-- Viet-Nam, Democratic Republic of --></translation>
+        <translation>Viêt Nam, République démocratique du</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Virgin Islands (British)</masterLabel>
-        <translation><!-- Virgin Islands (British) --></translation>
+        <translation>Îles Vierges (britanniques)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Virgin Islands (U.S.)</masterLabel>
-        <translation><!-- Virgin Islands (U.S.) --></translation>
+        <translation>Îles Vierges (des États-Unis)</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Wake Island</masterLabel>
-        <translation><!-- Wake Island --></translation>
+        <translation>Île Wake</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Wallis and Futuna</masterLabel>
-        <translation><!-- Wallis and Futuna --></translation>
+        <translation>Wallis-et-Futuna</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Western Sahara</masterLabel>
-        <translation><!-- Western Sahara --></translation>
+        <translation>Sahara occidental</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Yemen</masterLabel>
-        <translation><!-- Yemen --></translation>
+        <translation>Yémen</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Yemen, Democratic</masterLabel>
-        <translation><!-- Yemen, Democratic --></translation>
+        <translation>Yémen, Démocratique</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Yugoslavia</masterLabel>
-        <translation><!-- Yugoslavia --></translation>
+        <translation>Yougoslavie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Zaire</masterLabel>
-        <translation><!-- Zaire --></translation>
+        <translation>Zaïre</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Zambia</masterLabel>
-        <translation><!-- Zambia --></translation>
+        <translation>Zambie</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Zimbabwe</masterLabel>
-        <translation><!-- Zimbabwe --></translation>
+        <translation>Zimbabwe</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Åland Islands</masterLabel>
-        <translation><!-- Åland Islands --></translation>
+        <translation>Îles Åland</translation>
     </picklistValues>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Del__c</name>
     <help>Indica si s&apos;ha de suprimir una afiliació quan se suprimeix la inscripció del programa relacionada. Si l&apos;opció està activada, se suprimeix l’afiliació. Si està desactivada, s&apos;estableix l’estat d’afiliació al valor especificat en la configuració relacionada, Estat afili. en suprimir inscrip. progr.</help>
     <label>Supr. afili. en suprimir inscrip. progr</label>
+    <name>Affl_ProgEnroll_Del__c</name>
 </CustomFieldTranslation>

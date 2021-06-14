@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
     <help>Osoittaa, asetetaanko ohjelmaan ilmoittautumisella luotu jäsenyyden aloittamispäivä. Jos tämä on käytössä, aseta aloittamispäiväksi ohjelmaan ilmoittautumisen aloittamispäivä. Jos se on poistettu käytöstä, älä määritä jäsenyyden aloittamispäivää.</help>
     <label>Jäsen. aloituspäiväkopio ohj. ilmoit.</label>
+    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
 </CustomFieldTranslation>
