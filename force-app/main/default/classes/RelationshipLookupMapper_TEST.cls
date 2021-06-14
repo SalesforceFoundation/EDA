@@ -88,6 +88,8 @@ private class RelationshipLookupMapper_TEST {
      *****************************************************************************************************************************/
     @isTest
     private static void getRelationshipLookupModels() {
+        RelationshipLookupMapper relationshipLookupMapperInstance = RelationshipLookupMapper.getInstance();
+
         insert new Relationship_Lookup__c(
             Name = 'test' + system.now(),
             Active__c = true,
@@ -97,8 +99,7 @@ private class RelationshipLookupMapper_TEST {
         );
 
         Test.startTest();
-        List<RelationshipLookupModel> relationshipLookupModelsList = RelationshipLookupMapper.getInstance()
-            .getRelationshipLookupModels();
+        List<RelationshipLookupModel> relationshipLookupModelsList = relationshipLookupMapperInstance.getRelationshipLookupModels();
         Test.stopTest();
 
         List<Relationship_Lookup__c> relationshipLookupList = UTIL_CustomSettingsFacade.getReciprocalSettings();
@@ -141,12 +142,12 @@ private class RelationshipLookupMapper_TEST {
         String maleValue = 'Son';
         String neutralValue = 'Child';
         Boolean isActive = false;
+        RelationshipLookupMapper relationshipLookupMapperInstance = RelationshipLookupMapper.getInstance();
 
         Test.startTest();
-        RelationshipLookupMapper.getInstance()
-            .insertRelationshipLookupModel(
-                new RelationshipLookupModel(relationshipLookupName, isActive, femaleValue, maleValue, neutralValue)
-            );
+        relationshipLookupMapperInstance.insertRelationshipLookupModel(
+            new RelationshipLookupModel(relationshipLookupName, isActive, femaleValue, maleValue, neutralValue)
+        );
         Test.stopTest();
 
         Relationship_Lookup__c insertedRelationshipLookup = Relationship_Lookup__c.getInstance(relationshipLookupName);
@@ -188,6 +189,7 @@ private class RelationshipLookupMapper_TEST {
         String maleValue = 'Son';
         String neutralValue = 'Child';
         Boolean isActive = true;
+        RelationshipLookupMapper relationshipLookupMapperInstance = RelationshipLookupMapper.getInstance();
 
         insert new Relationship_Lookup__c(
             Name = oldRelationshipLookupName,
@@ -198,11 +200,10 @@ private class RelationshipLookupMapper_TEST {
         );
 
         Test.startTest();
-        RelationshipLookupMapper.getInstance()
-            .updateRelationshipLookupModel(
-                oldRelationshipLookupName,
-                new RelationshipLookupModel(newRelationshipLookupName, isActive, femaleValue, maleValue, neutralValue)
-            );
+        relationshipLookupMapperInstance.updateRelationshipLookupModel(
+            oldRelationshipLookupName,
+            new RelationshipLookupModel(newRelationshipLookupName, isActive, femaleValue, maleValue, neutralValue)
+        );
         Test.stopTest();
 
         Relationship_Lookup__c updatedOldRelationshipLookup = Relationship_Lookup__c.getInstance(
@@ -254,6 +255,7 @@ private class RelationshipLookupMapper_TEST {
         String maleValue = 'Son';
         String neutralValue = 'Child';
         Boolean isActive = true;
+        RelationshipLookupMapper relationshipLookupMapperInstance = RelationshipLookupMapper.getInstance();
 
         insert new Relationship_Lookup__c(
             Name = relationshipLookupName,
@@ -262,14 +264,12 @@ private class RelationshipLookupMapper_TEST {
             Male__c = maleValue,
             Neutral__c = neutralValue
         );
-
-        Test.startTest();
         Relationship_Lookup__c existingRelationshipLookup = Relationship_Lookup__c.getInstance(relationshipLookupName);
 
-        RelationshipLookupMapper.getInstance()
-            .deleteRelationshipLookupModel(
-                new RelationshipLookupModel(relationshipLookupName, isActive, femaleValue, maleValue, neutralValue)
-            );
+        Test.startTest();
+        relationshipLookupMapperInstance.deleteRelationshipLookupModel(
+            new RelationshipLookupModel(relationshipLookupName, isActive, femaleValue, maleValue, neutralValue)
+        );
         Test.stopTest();
 
         Relationship_Lookup__c deletedRelationshipLookup = Relationship_Lookup__c.getInstance(relationshipLookupName);
