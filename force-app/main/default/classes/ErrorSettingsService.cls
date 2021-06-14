@@ -60,8 +60,19 @@ public virtual with sharing class ErrorSettingsService {
      * @description Retrieve a model representing error settings set in hierarchy settings.
      * @return An ErrorSettingsModel
      ******************************************************************************/
-    public ErrorSettingsModel getErrorSettingsModel() {
+    public virtual ErrorSettingsModel getErrorSettingsModel() {
         return this.locateErrorSettingsMapper().getErrorSettingsModel();
+    }
+
+    /**********************************************************************************
+     * @description Retrieves the valid error notification recipient categories for
+     * Error Settings
+     * @return A map of strings to labels for valid error notification recipient
+     * categories
+     **********************************************************************************/
+    @TestVisible
+    public virtual Map<String, String> getValidErrorNotificationRecipientCategoryLabelsByValue() {
+        return this.locateErrorSettingsMapper().getValidErrorNotificationRecipientCategoryLabelsByValue();
     }
 
     /******************************************************************************

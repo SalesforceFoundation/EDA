@@ -37,12 +37,34 @@ public with sharing class ErrorSettingsModel_TEST {
      * @description Test to verify the constructor returns a model with all properties populated.
      ********************************************************************************************/
     @isTest
-    private static void singleArgumentConstructorValid() {
+    private static void SixArgumentConstructorValid() {
         Test.startTest();
-        ErrorSettingsModel errorSettingsModel = new ErrorSettingsModel(true, true, false);
+        ErrorSettingsModel errorSettingsModel = new ErrorSettingsModel(
+            true,
+            true,
+            'All Sys Admins',
+            'All Sys Admins',
+            true,
+            false
+        );
         Test.stopTest();
 
         System.assertEquals(true, errorSettingsModel.storeErrors, 'Store errors functionality should be enabled.');
+        System.assertEquals(
+            true,
+            errorSettingsModel.sendErrorNotifications,
+            'Send error notifications functionality should be enabled.'
+        );
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsModel.errorNotificationsRecipientCategory,
+            'Send error notifications recipient category should be \'All Sys Admins\'.'
+        );
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsModel.errorNotificationsRecipient,
+            'Send error notifications recipient should be \'All Sys Admins\'.'
+        );
         System.assertEquals(true, errorSettingsModel.enableDebug, 'Debug functionality should be enabled.');
         System.assertEquals(
             false,

@@ -85,13 +85,15 @@ private with sharing class ErrorSettingsMapper_TEST {
 
     /**************************************************************************************************************************
      * @description Test method to verify that the getErrorSettingsModel method returns an ErrorSettingsModel with properties
-     * set to match those in Hierarchy Settings.
+     * set to match those in Hierarchy Settings when the send error notifications recipient is all sys admins.
      ***************************************************************************************************************************/
     @isTest
-    private static void getErrorSettingsModelValid() {
+    private static void getErrorSettingsModelValidAllSysAdmins() {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Store_Errors_On__c = true,
+                Error_Notifications_On__c = true,
+                Error_Notifications_To__c = 'All Sys Admins',
                 Enable_Debug__c = false,
                 Disable_Error_Handling__c = false
             )
@@ -103,10 +105,111 @@ private with sharing class ErrorSettingsMapper_TEST {
         ErrorSettingsModel errorSettingsModel = errorSettingsMapperInstance.getErrorSettingsModel();
         Test.stopTest();
 
+        ErrorSettingsMapper_TEST.assertSettingBooleans(errorSettingsModel);
+
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsModel.errorNotificationsRecipientCategory,
+            'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            'All Sys Admins',
+            errorSettingsModel.errorNotificationsRecipient,
+            'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getErrorSettingsModel method returns an ErrorSettingsModel with properties
+     * set to match those in Hierarchy Settings when the send error notifications recipient is a user.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getErrorSettingsModelValidUser() {
+        String fakeUserId = UTIL_UnitTestData_TEST.getFakeId(User.SObjectType);
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Store_Errors_On__c = true,
+                Error_Notifications_On__c = true,
+                Error_Notifications_To__c = fakeUserId,
+                Enable_Debug__c = false,
+                Disable_Error_Handling__c = false
+            )
+        );
+
+        ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        Test.startTest();
+        ErrorSettingsModel errorSettingsModel = errorSettingsMapperInstance.getErrorSettingsModel();
+        Test.stopTest();
+
+        ErrorSettingsMapper_TEST.assertSettingBooleans(errorSettingsModel);
+
+        System.assertEquals(
+            'User',
+            errorSettingsModel.errorNotificationsRecipientCategory,
+            'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            fakeUserId,
+            errorSettingsModel.errorNotificationsRecipient,
+            'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getErrorSettingsModel method returns an ErrorSettingsModel with properties
+     * set to match those in Hierarchy Settings when the send error notifications recipient is a chatter group
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getErrorSettingsModelValidChatterGroup() {
+        String fakeChatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Store_Errors_On__c = true,
+                Error_Notifications_On__c = true,
+                Error_Notifications_To__c = fakeChatterGroupId,
+                Enable_Debug__c = false,
+                Disable_Error_Handling__c = false
+            )
+        );
+
+        ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        Test.startTest();
+        ErrorSettingsModel errorSettingsModel = errorSettingsMapperInstance.getErrorSettingsModel();
+        Test.stopTest();
+
+        ErrorSettingsMapper_TEST.assertSettingBooleans(errorSettingsModel);
+
+        System.assertEquals(
+            'Chatter Group',
+            errorSettingsModel.errorNotificationsRecipientCategory,
+            'Send Error Notifications Recipient category on resulting model should match determination based on value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            fakeChatterGroupId,
+            errorSettingsModel.errorNotificationsRecipient,
+            'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Helper assert method to assert error settings model booleans to make permutations easier to read
+     ***************************************************************************************************************************/
+    private static void assertSettingBooleans(ErrorSettingsModel errorSettingsModel) {
         System.assertEquals(
             true,
             errorSettingsModel.storeErrors,
             'Store Errors on resulting model should match value set in hierarchy settings.'
+        );
+
+        System.assertEquals(
+            true,
+            errorSettingsModel.sendErrorNotifications,
+            'Send Error Notifications on resulting model should match value set in hierarchy settings.'
         );
 
         System.assertEquals(
@@ -119,6 +222,75 @@ private with sharing class ErrorSettingsMapper_TEST {
             true,
             errorSettingsModel.errorHandling,
             'Error handling on resulting model should be inverse of value set in hierarchy settings.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the user id prefix retrieves the appropriate prefix for the user SObject
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getUserIdPrefix() {
+        ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        Test.startTest();
+        String userIdPrefix = errorSettingsMapperInstance.getUserIdPrefix();
+        Test.stopTest();
+
+        System.assertEquals(
+            User.SObjectType.getDescribe().getKeyPrefix(),
+            userIdPrefix,
+            'User Id Prefix identified should match the prefix from the schema.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the chatter group id prefix retrieves the appropriate prefix for the user SObject
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getChatterGroupIdPrefix() {
+        ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        Test.startTest();
+        String chatterGroupIdPrefix = errorSettingsMapperInstance.getChatterGroupIdPrefix();
+        Test.stopTest();
+
+        System.assertEquals(
+            CollaborationGroup.SObjectType.getDescribe().getKeyPrefix(),
+            chatterGroupIdPrefix,
+            'Chatter Group Id Prefix identified should match the prefix from the schema.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the expected valid error notification recipient categories are pulled
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getValidErrorNotificationRecipientCategoryLabelsByValue() {
+        ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        Test.startTest();
+        Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = errorSettingsMapperInstance.getValidErrorNotificationRecipientCategoryLabelsByValue();
+        Test.stopTest();
+
+        System.assertEquals(
+            3,
+            validErrorNotificationRecipientCategoryLabelsByValue.size(),
+            'Only 3 values should be pulled for valid error notification recipient categories.'
+        );
+        System.assertEquals(
+            Label.stgOptAllSysAdmins,
+            validErrorNotificationRecipientCategoryLabelsByValue.get('All Sys Admins'),
+            'The label for \'All Sys Admins\' should be the expected value.'
+        );
+        System.assertEquals(
+            Label.stgOptUser,
+            validErrorNotificationRecipientCategoryLabelsByValue.get('User'),
+            'The label for \'User\' should be the expected value.'
+        );
+        System.assertEquals(
+            Label.stgOptChatterGroup,
+            validErrorNotificationRecipientCategoryLabelsByValue.get('Chatter Group'),
+            'The label for \'Chatter Group\' should be the expected value.'
         );
     }
 }
