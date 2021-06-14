@@ -32,15 +32,6 @@
  * @description Apex controller for errorSettings LWC component
  */
 public with sharing class ErrorSettingsController {
-    /******************************************************************************
-     * @description Retrieve an instance of the ErrorSettingsVMapper class.
-     * @return An instance of ErrorSettingsVMapper
-     ******************************************************************************/
-    @TestVisible
-    private static ErrorSettingsVMapper locateErrorSettingsVMapper() {
-        return ErrorSettingsVMapper.getInstance();
-    }
-
     /*********************************************************************************************
      * @description Retrieve a view model representing the error settings in hierarchy settings.
      * @return An ErrorSettingsVModel
@@ -52,5 +43,62 @@ public with sharing class ErrorSettingsController {
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
+    }
+
+    /************************************************************************************************************
+     * @description Retrieve a list of sorted LookupResults representing a user
+     * @param userNameMatch The string to match user names to
+     * @return A list of Lookup Results with a name matching the search string
+     ************************************************************************************************************/
+    @AuraEnabled
+    public static List<LookupResult> getLookupResultsLikeUserName(String userNameMatch) {
+        try {
+            return ErrorSettingsController.locateUserLookupResultVMapper()
+                .getLookupResultsLikeUserName(userNameMatch, 5);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /************************************************************************************************************
+     * @description Retrieve a list of sorted LookupResults representing a chatter group
+     * @param chatterGroupNameMatch The string to match chatter groups names to
+     * @return A list of Lookup Results with a name matching the search string
+     ************************************************************************************************************/
+    @AuraEnabled
+    public static List<LookupResult> getLookupResultsLikeChatterGroupName(String chatterGroupNameMatch) {
+        try {
+            return ErrorSettingsController.locateChatterGroupLookupResultVMapper()
+                .getLookupResultsLikeChatterGroupName(chatterGroupNameMatch, 5);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /******************************************************************************
+     * @description Retrieve an instance of the ErrorSettingsVMapper class.
+     * @return An instance of ErrorSettingsVMapper
+     ******************************************************************************/
+    @TestVisible
+    private static ErrorSettingsVMapper locateErrorSettingsVMapper() {
+        return ErrorSettingsVMapper.getInstance();
+    }
+
+    /******************************************************************************
+     * @description Retrieve an instance of the UserLookupResultVMapper class.
+     * @return An instance of UserLookupResultVMapper
+     ******************************************************************************/
+    @TestVisible
+    private static UserLookupResultVMapper locateUserLookupResultVMapper() {
+        return UserLookupResultVMapper.getInstance();
+    }
+
+    /******************************************************************************
+     * @description Retrieve an instance of the ChatterGroupLookupResultVMapper class.
+     * @return An instance of ChatterGroupLookupResultVMapper
+     ******************************************************************************/
+    @TestVisible
+    private static ChatterGroupLookupResultVMapper locateChatterGroupLookupResultVMapper() {
+        return ChatterGroupLookupResultVMapper.getInstance();
     }
 }
