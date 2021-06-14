@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Accounts_to_Delete__c</name>
     <help>Les types d&apos;enregistrement de Comptes qui sont automatiquement supprimés si tous leurs Contacts associés ont été supprimés.</help>
     <label>Comptes à supprimer</label>
+    <name>Accounts_to_Delete__c</name>
 </CustomFieldTranslation>

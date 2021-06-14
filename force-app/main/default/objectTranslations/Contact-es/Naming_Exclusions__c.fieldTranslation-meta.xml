@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Naming_Exclusions__c</name>
     <help>La selección de la opción Nombre doméstico excluye este contacto del nombre doméstico. NOTA: Las opciones de Saludo formal y Saludo informal son están enlazadas en estos momentos a funciones existentes del producto.</help>
     <label>Exclusión en el nombres de familia</label>
-    <picklistValues>
-        <masterLabel>Household__c.Name</masterLabel>
-        <translation>Household__c.Name</translation>
-    </picklistValues>
+    <name>Naming_Exclusions__c</name>
     <picklistValues>
         <masterLabel>Household__c.Formal_Greeting__c</masterLabel>
         <translation>Household__c.Formal_Greeting__c</translation>
@@ -14,5 +10,9 @@
     <picklistValues>
         <masterLabel>Household__c.Informal_Greeting__c</masterLabel>
         <translation>Household__c.Informal_Greeting__c</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Household__c.Name</masterLabel>
+        <translation>Household__c.Name</translation>
     </picklistValues>
 </CustomFieldTranslation>

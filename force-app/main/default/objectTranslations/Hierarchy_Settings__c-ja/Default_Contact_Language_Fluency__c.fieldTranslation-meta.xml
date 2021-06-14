@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Default_Contact_Language_Fluency__c</name>
     <help>ユーザが取引先責任者の [第一言語] 参照項目を設定した場合に新しく作成される取引先責任者の言語レコードで自動的に設定される [流暢さ] の値。</help>
     <label>取引先責任者の言語のデフォルトの流暢さ</label>
+    <name>Default_Contact_Language_Fluency__c</name>
 </CustomFieldTranslation>

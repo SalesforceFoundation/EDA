@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_Debug__c</name>
     <help>Seleccioneu aquesta opció per activar les sentències de depuració al codi del paquet gestionat.</help>
     <label>Activa la depuració</label>
+    <name>Enable_Debug__c</name>
 </CustomFieldTranslation>

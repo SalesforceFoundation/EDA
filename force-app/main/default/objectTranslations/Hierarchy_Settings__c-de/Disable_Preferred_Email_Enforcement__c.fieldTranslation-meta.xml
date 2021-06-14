@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Disable_Preferred_Email_Enforcement__c</name>
     <help>Auswählen, um die Erzwingung des Felds &quot;Bevorzugte E-Mail-Adresse&quot; für Kontakte zu deaktivieren.</help>
     <label>Erzw. v. Bevorzugte E-Mail-Adresse deak.</label>
+    <name>Disable_Preferred_Email_Enforcement__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_New_Preferred_Phone_Sync__c</name>
     <help>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validates that the value in Preferred Phone exists and has a value.</help>
     <label>Enable New Preferred Phone Sync</label>
+    <name>Enable_New_Preferred_Phone_Sync__c</name>
 </CustomFieldTranslation>

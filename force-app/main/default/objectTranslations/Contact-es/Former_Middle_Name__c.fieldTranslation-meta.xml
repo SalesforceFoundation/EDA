@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Former_Middle_Name__c</name>
     <help>El segundo nombre anterior del contacto.</help>
     <label>Segundo nombre anterior</label>
+    <name>Former_Middle_Name__c</name>
 </CustomFieldTranslation>

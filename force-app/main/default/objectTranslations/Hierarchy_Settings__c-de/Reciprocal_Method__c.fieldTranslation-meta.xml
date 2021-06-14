@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Reciprocal_Method__c</name>
     <help>Legt die Methode zur Generierung der wechselseitigen Beziehung fest. Entweder Listeneinstellung zum Verwenden benutzerdefinierter Einstellungen nach Geschlecht oder Wertumkehr, die ggf. den Typ umkehrt (&quot;Elternteil-Kind&quot; zu &quot;Kind-Elternteil&quot;).</help>
     <label>Wechselseitige Methode</label>
+    <name>Reciprocal_Method__c</name>
 </CustomFieldTranslation>

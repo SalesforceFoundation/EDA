@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
     <help>Indicates whether to set the Start Date of the Affiliation created with a Program Enrolment. If enabled, set the Start Date to the Program Enrolment&apos;s Start Date. If disabled, don&apos;t specify the Affiliation&apos;s Start Date.</help>
     <label>Affil Start Date Copy from Prog Enrol</label>
+    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
 </CustomFieldTranslation>

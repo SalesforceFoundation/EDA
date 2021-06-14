@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Faculty_RecType__c</name>
     <help>El tipo de registro Contacto predeterminado para Facultad cuando se crea un registro Enlace de curso.</help>
     <label>Tipo de registro de facultad</label>
+    <name>Faculty_RecType__c</name>
 </CustomFieldTranslation>

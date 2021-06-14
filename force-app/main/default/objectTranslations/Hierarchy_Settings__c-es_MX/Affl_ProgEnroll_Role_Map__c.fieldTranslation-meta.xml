@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Role_Map__c</name>
     <help>Si se desactiva la configuración relacionada, Función conj afilia crear inscr programa, esta configuración especifica el valor a establecer para la función en la afiliación creada con una Inscripción de programa.</help>
     <label>Función afilia al crear inscrip programa</label>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Simple_Address_Change_Treated_as_Update__c</name>
     <help>Quan s’activa, els canvis als camps d’adreça única al contacte o al compte es tracten com a actualitzacions de l’adreça existent (per exemple, no es crea cap objecte d’adreça nou). Els canvis en els espais en blanc i les majúscules es tracten com a actualitzacions.</help>
     <label>Canvi simple d&apos;adreça tractat com a actualització</label>
+    <name>Simple_Address_Change_Treated_as_Update__c</name>
 </CustomFieldTranslation>
