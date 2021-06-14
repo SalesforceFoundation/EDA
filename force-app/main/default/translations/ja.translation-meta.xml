@@ -5,11 +5,11 @@
         <name>HEDA</name>
     </customApplications>
     <customLabels>
-        <label><!-- Description of the Affiliation Mappings setting --></label>
+        <label>取引先レコードタイプを取引先責任者の [主所属] 項目に対応付け、それらの項目の更新による所属レコードへの影響や、所属レコードへの更新による取引先責任者レコードへの影響を定義します。</label>
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Affiliations Related to Deleted Program Enrollments setting --></label>
+        <label>所属は 1 つのプログラム登録にのみ関連し、そのプログラム登録が削除されると、所属も削除されます。この設定を有効にしない場合は、[削除されていない所属の状況] を選択します。</label>
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message when an Apex job can&apos;t run --></label>
+        <label>Apex ジョブを実行できませんでした。</label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
@@ -33,7 +33,7 @@
         <name>CannotChangeContactAndCourseOffering</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when deleting a record with child records --></label>
+        <label>1 つ以上の関連レコードが関連付けられているため、このレコードを削除できません。まず、関連付けられたレコードを削除してから、このレコードを削除してください。どのレコードを最初に削除する必要があるかを確認するには、[関連] タブをクリックしてください。関連レコードが表示されない場合、または関連レコードを削除できない場合は、システム管理者にお問い合わせください。</label>
         <name>CannotDelete</name>
     </customLabels>
     <customLabels>
@@ -49,11 +49,11 @@
         <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Settings --></label>
+        <label>EDA 設定</label>
         <name>EDASettingsContainerAuraComponentLabel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Education Cloud Settings --></label>
+        <label>Education Cloud 設定</label>
         <name>EDCSettingsContainerAuraComponentLabel</name>
     </customLabels>
     <customLabels>
@@ -133,11 +133,11 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Reciprocal Relationships setting --></label>
+        <label>取引先責任者レコードから取引先責任者が別の取引先責任者にどのように関連しているのかを把握できるように、照合リレーションを設定します。</label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Picklist value for naming format used for Administrative and Household Accounts --></label>
+        <label>カスタム形式</label>
         <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
@@ -177,7 +177,7 @@
         <name>adminAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Administrative Account Name Format setting --></label>
+        <label>管理取引先が自動的に作成されるときの命名形式。</label>
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -197,11 +197,11 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Record Type Validation setting --></label>
+        <label>レコードタイプの検証</label>
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Record Type Validation setting --></label>
+        <label>取引先責任者の主所属として指定された取引先でレコードタイプを使用する必要があります。すべての取引先レコードタイプは、取引先責任者オブジェクトの [主所属] 項目に対応付けられている必要があります。検証に失敗すると、所属は保存されません。</label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -209,7 +209,7 @@
         <name>automaticHHNaming</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Automatically Rename Household Accounts setting --></label>
+        <label>取引先責任者が追加または変更されたときに世帯取引先の名前を自動的に変更します。</label>
         <name>automaticHHNamingHelpText</name>
     </customLabels>
     <customLabels>
@@ -257,11 +257,11 @@
         <name>giftProcessingConfigException</name>
     </customLabels>
     <customLabels>
-        <label><!-- Field label for the Household Account Name setting --></label>
+        <label>世帯取引先名形式</label>
         <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Household Account Name Format setting --></label>
+        <label>世帯取引先が自動的に作成されるときの命名形式。</label>
         <name>hhAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -269,11 +269,11 @@
         <name>hhFamily</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when a Contact&apos;s Primary Affiliation field isn&apos;t an Account lookup field --></label>
+        <label>このレコードは、[取引先責任者] 項目 {1} にエラーがあるため保存できません。[EDA 設定] の [所属対応付け] を確認し、{1} の代わりに {0} の値を取引先責任者オブジェクトの [取引先] 参照項目の API 参照名に設定するようにシステム管理者に依頼してください。</label>
         <name>invalidContactFieldInAffiliationMapping</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when an Affiliation Mapping&apos;s Account record type isn&apos;t valid --></label>
+        <label>このレコードは、{1} が有効な取引先レコードタイプでないため保存できません。[EDA 設定] の [所属対応付け] を確認し、{1} の代わりに {0} の値を有効な取引先レコードタイプの API 参照名に設定するようにシステム管理者に依頼してください。</label>
         <name>invalidRecordTypeInAffiliationMapping</name>
     </customLabels>
     <customLabels>
@@ -309,7 +309,7 @@
         <name>noAccRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Empty state message for Affiliation Mappings --></label>
+        <label>まだ所属対応付けがありません。作成するには、[新規] をクリックしてください。</label>
         <name>noAfflMappings</name>
     </customLabels>
     <customLabels>
@@ -333,27 +333,27 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Account Model --></label>
+        <label>取引先モデル</label>
         <name>stgAccountModelNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Account Model Settings --></label>
+        <label>取引先モデル設定</label>
         <name>stgAccountModelSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the list of Available Account Record Types --></label>
+        <label>使用可能な取引先レコードタイプ</label>
         <name>stgAccountRecordTypeAvailableListTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Group label for the Account record type selection --></label>
+        <label>取引先レコードタイプを選択</label>
         <name>stgAccountRecordTypeGroupLabelTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Account Record Type picklist --></label>
+        <label>対応付けられていない取引先レコードタイプのみを使用できます。</label>
         <name>stgAccountRecordTypeHelp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the list of Selected Account Record Types --></label>
+        <label>選択された取引先レコードタイプ</label>
         <name>stgAccountRecordTypeSelectedListTitle</name>
     </customLabels>
     <customLabels>
@@ -361,11 +361,11 @@
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Enable Multiple Addresses for Account Types setting --></label>
+        <label>取引先種別の複数の住所を有効化</label>
         <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Accounts Without Contacts setting --></label>
+        <label>取引先責任者のない取引先</label>
         <name>stgAccoutTypesWithoutContactsDelete</name>
     </customLabels>
     <customLabels>
@@ -377,83 +377,83 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Addresses --></label>
+        <label>住所</label>
         <name>stgAddressSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Addresses --></label>
+        <label>住所設定</label>
         <name>stgAddressSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for Custom Name Format for Administrative Accounts --></label>
+        <label>カスタム名形式</label>
         <name>stgAdminAccountCustomName</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Custom Name Format --></label>
+        <label>独自の命名規則を指定します。</label>
         <name>stgAdminAccountCustomNameHelp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Administrative Account Naming --></label>
+        <label>管理取引先の命名</label>
         <name>stgAdminAccountNamingTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Administrative Account Record Type setting --></label>
+        <label>管理取引先レコードタイプ</label>
         <name>stgAdminAccountRecordType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Delete Affiliation mapping window --></label>
+        <label>この所属対応付けにより、{0} 取引先レコードタイプが取引先責任者レコードの {1} 項目に対応付けられています。削除してよろしいですか?</label>
         <name>stgAffiliationsDeleteModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Delete Affiliation mapping window --></label>
+        <label>所属対応付けを削除しますか?</label>
         <name>stgAffiliationsDeleteModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when an Affiliation mapping is deleted --></label>
+        <label>{0} 主所属が削除されました。</label>
         <name>stgAffiliationsDeleteSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Edit Affiliation mapping window --></label>
+        <label>取引先責任者の [主所属] 項目に対応付ける取引先レコードタイプを選択肢します。取引先レコードタイプの値は [主所属] 項目に自動的に入力されます。</label>
         <name>stgAffiliationsEditModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Edit Affiliation mapping window --></label>
+        <label>所属対応付けを編集しますか?</label>
         <name>stgAffiliationsEditModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when an Affiliation mapping is saved --></label>
+        <label>{0} の所属対応付けが保存されました。</label>
         <name>stgAffiliationsEditSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the New Affiliation mapping window --></label>
+        <label>取引先責任者の [主所属] 項目に対応付ける取引先レコードタイプを選択肢します。取引先レコードタイプの値は [主所属] 項目に自動的に入力されます。</label>
         <name>stgAffiliationsNewModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when an Affiliation mapping is created --></label>
+        <label>{0} 主所属が作成されました</label>
         <name>stgAffiliationsNewSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Affiliations --></label>
+        <label>所属</label>
         <name>stgAffiliationsSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Affiliation Settings --></label>
+        <label>所属設定</label>
         <name>stgAffiliationsSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Affiliation End Date setting --></label>
+        <label>所属終了日</label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Affiliation Start Date setting --></label>
+        <label>所属開始日</label>
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Status for Affiliations Not Deleted setting --></label>
+        <label>削除されていない所属の状況</label>
         <name>stgAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message before deleting Affiliation mapping with an auto-enrollment --></label>
+        <label>この所属対応付けを削除すると、{0} 取引先レコードタイプの所属が取引先責任者に作成されたときにプログラム登録レコードが自動的に作成されなくなります。</label>
         <name>stgAfflDeleteWithAutoEnrollment</name>
     </customLabels>
     <customLabels>
@@ -461,11 +461,11 @@
         <name>stgAfflNotInserted</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Affiliations Related to Deleted Program Enrollments setting --></label>
+        <label>削除されたプログラム登録に関連する所属</label>
         <name>stgAfflProgEnrollDeleteRelated</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Program Enrollment Deletions --></label>
+        <label>プログラム登録の削除</label>
         <name>stgAfflProgEnrollDeleteTitle</name>
     </customLabels>
     <customLabels>
@@ -481,7 +481,7 @@
         <name>stgAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Affiliations Created with Program Enrollments --></label>
+        <label>プログラム登録で所属を作成</label>
         <name>stgAfflProgramEnrollmentSettingsTitle</name>
     </customLabels>
     <customLabels>
@@ -489,7 +489,7 @@
         <name>stgAfterRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- The API name associated with the selected Account Record Type --></label>
+        <label>API 参照名: {0}</label>
         <name>stgApiNameLabel</name>
     </customLabels>
     <customLabels>
@@ -513,47 +513,47 @@
         <name>stgAutoEnrollment</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Delete auto-enrollment mapping confirmation window --></label>
+        <label>この自動登録対応付けにより、取引先レコードタイプが {0}、所属の状況が {1}、所属の役割が {2} の所属のプログラム登録が作成されます。この自動登録対応付けを削除すると、一致する所属のプログラム登録が作成されなくなります。</label>
         <name>stgAutoEnrollmentDeleteModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Delete auto-enrollment mapping confirmation window --></label>
+        <label>自動登録対応付けを削除しますか?</label>
         <name>stgAutoEnrollmentDeleteModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when an auto-enrollment mapping is deleted --></label>
+        <label>{0} 自動登録対応付けが削除されました。</label>
         <name>stgAutoEnrollmentDeleteSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Edit auto-enrollment mapping confirmation window --></label>
+        <label>プログラム登録レコードを作成する値を選択します。プログラム登録レコードは、これらの値で所属が作成または更新されたときや、所属が [主] とマークされたときに作成されます。</label>
         <name>stgAutoEnrollmentEditModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Edit auto-enrollment mapping confirmation window --></label>
+        <label>自動登録対応付けを編集しますか?</label>
         <name>stgAutoEnrollmentEditModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when an auto-enrollment mapping is saved --></label>
+        <label>{0} 自動登録対応付けが保存されました。</label>
         <name>stgAutoEnrollmentEditSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the New auto-enrollment mapping confirmation window --></label>
+        <label>プログラム登録レコードを作成する値を選択します。プログラム登録レコードは、これらの値で所属が作成または更新されたときや、所属が [主] とマークされたときに作成されます。</label>
         <name>stgAutoEnrollmentNewModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the New auto-enrollment mapping confirmation window --></label>
+        <label>自動登録対応付けを新規作成しますか?</label>
         <name>stgAutoEnrollmentNewModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when an auto-enrollment mapping is created --></label>
+        <label>{0} 自動登録対応付けが作成されました。</label>
         <name>stgAutoEnrollmentNewSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Auto-Enrollment Mappings setting --></label>
+        <label>これらの対応付けの値で主所属が作成されると、自動的にプログラム登録が作成されます。</label>
         <name>stgAutoEnrollmentProgramDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Auto-Enrollment Mappings setting --></label>
+        <label>自動登録対応付け</label>
         <name>stgAutoEnrollmentProgramTitle</name>
     </customLabels>
     <customLabels>
@@ -573,7 +573,7 @@
         <name>stgBeforeRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for New Affiliation mapping window --></label>
+        <label>新規</label>
         <name>stgBtnAddMapping</name>
     </customLabels>
     <customLabels>
@@ -585,35 +585,35 @@
         <name>stgBtnCancel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that clears a field --></label>
+        <label>選択をクリア</label>
         <name>stgBtnClearSelectionA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button that launches the Trailblazer Community site --></label>
+        <label>Trailblazer Community に移動</label>
         <name>stgBtnCommunity</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that launches the Trailblazer Community site --></label>
+        <label>Trailblazer Community に移動に移動します。</label>
         <name>stgBtnCommunityActionA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for delete Affiliation mapping warning --></label>
+        <label>削除</label>
         <name>stgBtnDelete</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button that launches EDA documentation --></label>
+        <label>ドキュメント</label>
         <name>stgBtnDocumentation</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that launches EDA documentation --></label>
+        <label>EDA ドキュメントに移動します。</label>
         <name>stgBtnDocumentationActionA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button that launches the Education Cloud trailmix --></label>
+        <label>Trailhead に移動</label>
         <name>stgBtnEDCTrailhead</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that launches the Education Cloud trailmix --></label>
+        <label>Education Cloud Trailmix に移動します。</label>
         <name>stgBtnEDCTrailheadActionA11y</name>
     </customLabels>
     <customLabels>
@@ -621,31 +621,31 @@
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button that launches Settings Health Check --></label>
+        <label>[設定の状態チェック] に移動</label>
         <name>stgBtnHealthCheck</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that creates an auto-enrollment mapping --></label>
+        <label>自動登録対応付けを作成します。</label>
         <name>stgBtnNewAutoEnrollA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
+        <label>更新</label>
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that updates all Administrative Account names --></label>
+        <label>すべての管理取引先名を更新します。</label>
         <name>stgBtnRefreshAdminNamesA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that updates Race field on Contacts from Ethnicity field --></label>
+        <label>[民族] 項目の値で取引先責任者の [人種] 項目を更新します。[ヒスパニックまたはラテン系ではない] および [ヒスパニックまたはラテン系] の値はコピーされません。</label>
         <name>stgBtnRefreshEthnicityDataA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
+        <label>更新</label>
         <name>stgBtnRefreshHouseholdNames</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that updates all Household Account names --></label>
+        <label>すべての世帯取引先名を更新します。</label>
         <name>stgBtnRefreshHouseholdNamesA11y</name>
     </customLabels>
     <customLabels>
@@ -653,15 +653,15 @@
         <name>stgBtnRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
+        <label>更新</label>
         <name>stgBtnRunCopy</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that updates Course Descriptions --></label>
+        <label>[説明] 項目のテキストを使用するように科目レコードの [拡張説明] 項目を更新します。</label>
         <name>stgBtnRunCopyA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that updates Course Connection record types --></label>
+        <label>教職員履修科目の値を [デフォルトの教職員レコードタイプ]、残りの履修科目の値を [デフォルトの学生レコードタイプ] に更新します。</label>
         <name>stgBtnRunCourseConnBackfillA11y</name>
     </customLabels>
     <customLabels>
@@ -669,31 +669,31 @@
         <name>stgBtnSave</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button that launches EDA Settings --></label>
+        <label>設定</label>
         <name>stgBtnSettings</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that launches EDA Settings --></label>
+        <label>[EDA 設定] に移動します。</label>
         <name>stgBtnSettingsActionA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button that launches EDA Trailhead modules --></label>
+        <label>Trailhead</label>
         <name>stgBtnTrailhead</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that launches EDA Trailhead modules --></label>
+        <label>EDA Trailhead モジュールに移動します。</label>
         <name>stgBtnTrailheadActionA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button that runs a selected Apex job --></label>
+        <label>更新</label>
         <name>stgBtnUpdate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button that launches the Salesforce.org YouTube channel --></label>
+        <label>YouTube</label>
         <name>stgBtnVideos</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that launches the Salesforce.org YouTube channel --></label>
+        <label>YouTube</label>
         <name>stgBtnVideosActionA11y</name>
     </customLabels>
     <customLabels>
@@ -709,11 +709,11 @@
         <name>stgColActive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Auto-Enrollment Role --></label>
+        <label>自動登録の役割</label>
         <name>stgColAutoEnrollmentRole</name>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Auto-Enrollment Status --></label>
+        <label>自動登録の状況</label>
         <name>stgColAutoEnrollmentStatus</name>
     </customLabels>
     <customLabels>
@@ -721,7 +721,7 @@
         <name>stgColCampTypes</name>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Primary Affiliation Fields on Contact --></label>
+        <label>取引先責任者の [主所属] 項目</label>
         <name>stgColContactPrimaryAfflField</name>
     </customLabels>
     <customLabels>
@@ -745,7 +745,7 @@
         <name>stgColObject</name>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Products --></label>
+        <label>製品</label>
         <name>stgColProducts</name>
     </customLabels>
     <customLabels>
@@ -753,11 +753,11 @@
         <name>stgColRelType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Settings names --></label>
+        <label>名前</label>
         <name>stgColRelationshipName</name>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Resources --></label>
+        <label>リソース</label>
         <name>stgColResources</name>
     </customLabels>
     <customLabels>
@@ -769,11 +769,11 @@
         <name>stgColStatus</name>
     </customLabels>
     <customLabels>
-        <label><!-- Column header for Tools --></label>
+        <label>ツール</label>
         <name>stgColTools</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Trailblazer Community card --></label>
+        <label>Trailblazer Community</label>
         <name>stgCommunityTitle</name>
     </customLabels>
     <customLabels>
@@ -781,15 +781,15 @@
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Contact Information --></label>
+        <label>取引先責任者情報</label>
         <name>stgContactInformationSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Contact Information Settings --></label>
+        <label>取引先責任者情報設定</label>
         <name>stgContactInformationSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Allow Multiple Contact Addresses setting --></label>
+        <label>複数の取引先責任者の住所を許可</label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -797,27 +797,27 @@
         <name>stgCourseConnBackFillError</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when Course Connection record types are queued for update --></label>
+        <label>履修科目レコードタイプを更新しています。[設定] の [Apex ジョブ] でジョブの状況を確認してください。</label>
         <name>stgCourseConnBackFillSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update Course Connection record types confirmation window --></label>
+        <label>履修科目レコードタイプを更新しますか?</label>
         <name>stgCourseConnectionBackfillModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Course Connections --></label>
+        <label>履修科目</label>
         <name>stgCourseConnectionsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Course Connection Settings --></label>
+        <label>履修科目設定</label>
         <name>stgCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update Extended Description field confirmation window --></label>
+        <label>[説明] 項目のテキストを科目レコードの [拡張説明] 項目にコピーします。既存の [拡張説明] の値は上書きされません。この更新の後にページレイアウトと、[説明] 項目への他の参照を更新します。</label>
         <name>stgCourseDataMigrationModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update Extended Description field confirmation window --></label>
+        <label>[拡張説明] 項目を更新しますか?</label>
         <name>stgCourseDataMigrationModalTitle</name>
     </customLabels>
     <customLabels>
@@ -829,11 +829,11 @@
         <name>stgCourseDescriptionCopyEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Courses and Enrollments --></label>
+        <label>科目と登録</label>
         <name>stgCoursesAndEnrollmentsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Contact Language Fluency setting --></label>
+        <label>取引先責任者の言語の流暢さ</label>
         <name>stgDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
@@ -841,43 +841,47 @@
         <name>stgDefaultFacultyTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Default Student Record Type setting --></label>
+        <label>デフォルトの学生レコードタイプ</label>
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Error Handling setting --></label>
+        <label>エラー処理</label>
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Require Preferred Email setting --></label>
+        <label>メール連絡先が必須</label>
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Require Preferred Phone setting --></label>
+        <label>電話連絡先が必須</label>
         <name>stgDisablePreferredPhoneEnforcement</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Prevent Duplicate Relationships Settings --></label>
+        <label>重複リレーションを回避</label>
         <name>stgDuplicateRelationships</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Prevent Duplicate Relationships setting --></label>
+        <label>2 人の取引先責任者のリレーションレコードタイプが重複しないようにするかどうかを指定します。</label>
         <name>stgDuplicateRelationshipsHelp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the EDA Aapp --></label>
+        <label>Education Data Architecture (EDA) は Education Cloud の基盤です。その柔軟性の高いデータアーキテクチャは、教育のために Salesforce を設定するように設計されています。</label>
         <name>stgEDAAppDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Initials for the EDA App --></label>
+        <label>EDA</label>
         <name>stgEDAAppInitials</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of EDA Settings has moved --></label>
+        <label><!-- Title for the EDA App --></label>
+        <name>stgEDAAppTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>他の有益なリソースと共に [EDA 設定] にアクセスできる新しい Education Cloud 設定環境が作成されました。設定ステップは、EDA バージョンによって異なります。詳細は、ドキュメントを参照してください。</label>
         <name>stgEDASettingsHasMovedDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title of EDA Settings has moved --></label>
+        <label>移行されました。</label>
         <name>stgEDASettingsHasMovedTitle</name>
     </customLabels>
     <customLabels>
@@ -885,39 +889,39 @@
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of Settings Health Check --></label>
+        <label>[設定の状態チェック] では、EDA 設定の設定エラーが検出されます。提供される推奨事項に従って、報告されたエラーを修正します。</label>
         <name>stgEDCSettingsHealthCheckDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Course Connection Record Types setting --></label>
+        <label>履修科目レコードタイプ</label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Debug Logging setting --></label>
+        <label>Salesforce サポートが管理パッケージのデバッグステートメントを表示できるようにデバッグを有効にします。</label>
         <name>stgEnableDebugHelp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Debug Logging setting --></label>
+        <label>デバッグログ</label>
         <name>stgEnableDebugTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Enhanced Preferred Phone Functionality setting --></label>
+        <label>拡張電話連絡先機能</label>
         <name>stgEnablePreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when the user doesn&apos;t have the permissions to view a page --></label>
+        <label>このページを表示できません。Salesforce システム管理者にお問い合わせください。</label>
         <name>stgErrorInsufficientAccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when the user doesn&apos;t have the permissions to save settings --></label>
+        <label>編集する権限がないため、これらの設定を保存できません。Salesforce システム管理者にお問い合わせください。</label>
         <name>stgErrorInsufficientAccessSaving</name>
     </customLabels>
     <customLabels>
-        <label><!-- Error when a generic error occurs --></label>
+        <label>作業を保存できませんでした。ページを更新して、もう一度お試しください。</label>
         <name>stgErrorInvalidSettings</name>
     </customLabels>
     <customLabels>
-        <label><!-- Message when no record types for auto-enrollment mappings exist --></label>
+        <label>主所属のあるすべての取引先レコードタイプにすでに自動登録対応付けがあります。まず、[EDA 設定] | [所属] を移動して、目的のレコードタイプとの所属対応付けを作成してください。</label>
         <name>stgErrorNewAutoEnrollment</name>
     </customLabels>
     <customLabels>
@@ -929,27 +933,27 @@
         <name>stgErrorNotifRecipientsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Errors --></label>
+        <label>エラー</label>
         <name>stgErrorSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Error Settings --></label>
+        <label>エラー設定</label>
         <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Legacy Ethnicity Data setting --></label>
+        <label>従来の民族データ</label>
         <name>stgEthnicityRaceBackfillContacts</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update the Race field on Contacts confirmation window --></label>
+        <label>[民族] 項目から取引先責任者の [人種] 項目に標準およびカスタム選択リスト値 ([ヒスパニックまたはラテン系ではない] と [ヒスパニックまたはラテン系] は除く) をコピーします。続行する前に、[民族] 項目と [人種] 項目を参照するプロセスが無効になっていることを確認します。</label>
         <name>stgEthnicityRaceBackfillModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update the Race field on Contacts confirmation window --></label>
+        <label>取引先責任者の [人種] 項目を更新しますか?</label>
         <name>stgEthnicityRaceBackfillModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when the Race field is queued for update --></label>
+        <label>取引先責任者の [人種] 項目を更新しています。ジョブが完了したらメールを確認してください。</label>
         <name>stgEthnicityRaceBackfillSuccessToast</name>
     </customLabels>
     <customLabels>
@@ -957,27 +961,27 @@
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Administrative Account Record Type is inactive --></label>
+        <label>[EDA 設定] | [取引先モデル] で、[管理取引先レコードタイプ] を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[管理取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Administrative Account Record Type --></label>
+        <label>[EDA 設定] | [取引先モデル] で、[管理取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Account Model record type is inactive --></label>
+        <label>[EDA 設定] | [取引先モデル] で、[デフォルト取引先モデル] レコードタイプを確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルト取引先モデル] を有効なレコードタイプに変更します。</label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Account Model record type --></label>
+        <label>[EDA 設定] | [取引先モデル] で、[デフォルト取引先モデル] を有効なレコードタイプに変更します。</label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Household Account Record Type is inactive --></label>
+        <label>[EDA 設定] | [取引先モデル] で、[世帯取引先レコードタイプ] を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[世帯取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find the Household Account Record Type --></label>
+        <label>[EDA 設定] | [取引先モデル] で、[世帯取引先レコードタイプ] を有効なレコードタイプに変更します。</label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -989,7 +993,7 @@
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Administrative and Household Account Record Types match --></label>
+        <label>[EDA 設定] | [取引先モデル] で、[管理取引先レコードタイプ] または [世帯取引先レコードタイプ] を変更し、一意のレコードタイプが指定されるようにします。</label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1005,11 +1009,11 @@
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type is inactive --></label>
+        <label>[EDA 設定] | [所属] で、この所属対応付けの [取引先レコードタイプ] を確認します。{0} ({1}) が正しい場合は、Salesforce の [設定] で取引先オブジェクトの [取引先レコードタイプ] に移動してレコードタイプを [有効] に設定し、正しくない場合は、所属対応付けのレコードタイプを有効なレコードタイプに変更します。</label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist --></label>
+        <label>この所属対応付けの [取引先レコードタイプ] が存在しません。[EDA 設定] | [所属] で、指定された取引先で有効なレコードタイプが使用されるようにこの所属対応付けを変更します。</label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1025,7 +1029,7 @@
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Account record types in Affiliation mappings aren&apos;t unique --></label>
+        <label>[EDA 設定] | [所属] で、[取引先レコードタイプ] 列を調べて、{0} ({1}) が指定されている複数の対応付けを探します。その所属対応付けを編集し、このレコードタイプが取引先責任者の 1 つの主所属項目にのみ対応付けられるようにします。</label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1037,7 +1041,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active --></label>
+        <label>[自動登録の役割] {0} ({1}) が有効ではありません。[EDA 設定] | [プログラム登録] で、この役割を指定する自動登録プログラム対応付けを確認します。対応付けが正しい場合は、Salesforce の [設定] で所属オブジェクトの [役割] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、[自動登録の役割] を有効な選択リスト値に変更します。</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -1045,7 +1049,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role --></label>
+        <label>[自動登録の役割] が有効ではありません。[EDA 設定] | [プログラム登録] で、この役割を指定する自動登録プログラム対応付けを編集して、所属オブジェクトの [役割] 項目の有効な選択リスト値にします。</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1061,7 +1065,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active --></label>
+        <label>[自動登録の状況] {0} ({1}) が有効ではありません。[EDA 設定] | [プログラム登録] で、この状況を指定する自動登録プログラム対応付けを確認します。対応付けが正しい場合は、Salesforce の [設定] で所属オブジェクトの [状況] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、[自動登録の状況] を有効な選択リスト値に変更します。</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -1069,7 +1073,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status --></label>
+        <label>[自動登録の状況] が有効ではありません。[EDA 設定] | [プログラム登録] で、この状況を指定する自動登録プログラム対応付けを編集して、所属オブジェクトの [状況] 項目の有効な選択リスト値にします。</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1081,7 +1085,7 @@
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when a mapping&apos;s Primary Affiliation field isn&apos;t valid --></label>
+        <label>[主所属] 項目 {0} が有効ではありません。[EDA 設定] | [所属] で、所属対応付けを編集して、取引先責任者オブジェクトの有効な参照項目を指定します。</label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
@@ -1105,7 +1109,7 @@
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when mappings&apos; Primary Affiliation fields aren&apos;t unique --></label>
+        <label>[EDA 設定] | [所属] で、[取引先責任者] 列の [主所属] 項目を調べて、{0} ({1}) が指定されている複数の対応付けを探します。その対応付けを編集し、この項目が 1 つの所属対応付けでのみ対応付けられるようにします。</label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1117,15 +1121,15 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Course Connections isn&apos;t enabled --></label>
+        <label>履修科目レコードタイプの設定を含め、履修科目を有効化します。[EDA 設定] | [履修科目] で、履修科目レコードタイプを有効にします。次に、[デフォルトの学生レコードタイプ] と [デフォルトの教職員レコードタイプ] を設定します。</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Faculty Record Type is inactive --></label>
+        <label>[EDA 設定] | [履修科目] で、[デフォルトの教職員レコードタイプ] を確認します。{1} ({0}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルトの教職員レコードタイプ] を有効なレコードタイプに変更します。</label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Faculty Record Type --></label>
+        <label>[EDA 設定] | [履修科目] で、[デフォルトの教職員レコードタイプ] を有効なレコードタイプに変更します。</label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1133,7 +1137,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when student and faculty Course Connection record types match --></label>
+        <label>[EDA 設定] | [履修科目] で、[デフォルトの教職員レコードタイプ] または [デフォルトの学生レコードタイプ] のいずれかを変更し、それぞれの設定で一意のレコードタイプが指定されるようにします。</label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1145,11 +1149,11 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the Default Student Record Type is inactive --></label>
+        <label>[EDA 設定] | [履修科目] で、[デフォルトの学生レコードタイプ] を確認します。{1} ({0}) が正しい場合は、Salesforce の [設定] に移動してレコードタイプを [有効] に設定し、正しくない場合は、[デフォルトの学生レコードタイプ] を有効なレコードタイプに変更します。</label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when Health Check can&apos;t find Default Student Record Type --></label>
+        <label>[EDA 設定] | [履修科目] で、[デフォルトの学生レコードタイプ] を有効なレコードタイプに変更します。</label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1173,11 +1177,11 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value is inactive --></label>
+        <label>{0} ({1}) の相互関係対応付けの [女性] の選択リスト値が有効ではありません。[EDA 設定] | [リレーション] で、対応付けを確認します。対応付けが正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [女性] の値を有効な選択リスト値に変更します。</label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist --></label>
+        <label>相互関係対応付けの [女性] の選択リスト値が有効ではありません。[EDA 設定] | [リレーション] で、この対応付けの [女性] の値を編集して有効な選択リスト値にします。</label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1185,11 +1189,11 @@
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value is inactive --></label>
+        <label>{0} ({1}) の相互関係対応付けの [男性] の選択リスト値が有効ではありません。[EDA 設定] | [リレーション] で、対応付けを確認します。対応付けが正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [男性] の値を有効な選択リスト値に変更します。</label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist --></label>
+        <label>相互関係対応付けの [男性] の選択リスト値が有効ではありません。[EDA 設定] | [リレーション] で、この対応付けの [男性] の値を編集して有効な選択リスト値にします。</label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1197,11 +1201,11 @@
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value is inactive --></label>
+        <label>{0} ({1}) の相互関係対応付けが有効ではありません。[EDA 設定] | [リレーション] で、この名前を指定する対応付けを確認します。対応付けが正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [名前] の値を有効な選択リスト値に変更します。</label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist --></label>
+        <label>{0} の相互関係対応付けが有効ではありません。[EDA 設定] | [リレーション] で、この名前を指定する対応付けを編集し、有効な選択リスト値にします。</label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1209,7 +1213,7 @@
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Name value isn&apos;t unique --></label>
+        <label>[EDA 設定] | [リレーション] で、[相互関係] テーブルを調べて、名前が {0} ({1}) の複数の対応付けを探します。その対応付けを編集し、この名前が 1 つの対応付けでのみ使用されるようにします。</label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -1225,11 +1229,11 @@
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value is inactive --></label>
+        <label>{0} ({1}) の相互関係対応付けの [どちらでもない] の選択リスト値が有効ではありません。[EDA 設定] | [リレーション] で、対応付けを確認します。対応付けが正しい値の場合は、Salesforce の [設定] でリレーションオブジェクトの [種別] 項目に移動して選択リスト値を [有効] に設定し、正しくない場合は、相互関係設定の [どちらでもない] の値を有効な選択リスト値に変更します。</label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label><!-- Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist --></label>
+        <label>相互関係対応付けの [どちらでもない] の選択リスト値が有効ではありません。[EDA 設定] | [リレーション] で、この対応付けの [どちらでもない] の値を編集して有効な選択リスト値にします。</label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -1253,19 +1257,19 @@
         <name>stgHCRecordTypeValid</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for Custom Name Format for Household Accounts --></label>
+        <label>カスタム名形式</label>
         <name>stgHHAccountCustomName</name>
     </customLabels>
     <customLabels>
-        <label><!-- Info text for Custom Name Format --></label>
+        <label>独自の命名規則を指定します。</label>
         <name>stgHHAccountCustomNameHelp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Household Account Naming --></label>
+        <label>世帯取引先の命名</label>
         <name>stgHHAccountNamingTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that launches Settings Health Check --></label>
+        <label>[設定の状態チェック] に移動します。</label>
         <name>stgHealthCheckA11y</name>
     </customLabels>
     <customLabels>
@@ -1357,27 +1361,27 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Default Account Model setting --></label>
+        <label>独立した取引先責任者の取引先が自動的に作成されるときに使用される取引先レコードタイプ。</label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Accounts Without Contacts setting --></label>
+        <label>取引先責任者がない場合、これらのレコードタイプの取引先を削除します。</label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Enable Multiple Addresses for Account Types setting --></label>
+        <label>複数の住所をサポートする取引先レコードタイプを選択します。</label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Administrative Account Record Type setting --></label>
+        <label>管理取引先で使用される取引先レコードタイプ。</label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Affiliation End Date setting --></label>
+        <label>プログラム登録レコードの終了日を新しい所属レコードにコピーします。コピーしない場合は、項目を空白のままにします。</label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Affiliation Start Date setting --></label>
+        <label>プログラム登録レコードの開始日を新しい所属レコードにコピーします。コピーしない場合は、項目を空白のままにします。</label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -1389,7 +1393,7 @@
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Status for Affiliations Not Deleted setting --></label>
+        <label>関連するプログラム登録を削除するときに所属を削除しない場合、所属の状況を選択します。これらの所属の状況をそのままにするには、[なし] を選択します。</label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
@@ -1405,43 +1409,43 @@
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Role for Created Affiliations setting --></label>
+        <label>[プログラム登録で所属を作成] の役割を選択します。</label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Status for Created Affiliations setting --></label>
+        <label>[プログラム登録で所属を作成] の状況を選択します。</label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Allow Multiple Contact Addresses setting --></label>
+        <label>取引先責任者に複数の住所レコードを設定することを許可します。</label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Require Preferred Email setting --></label>
+        <label>取引先責任者にメール連絡先を設定する必要があります。</label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Require Preferred Phone setting --></label>
+        <label>取引先責任者に電話連絡先を設定する必要があります。</label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Enhanced Preferred Phone Functionality setting --></label>
+        <label>取引先責任者の電話連絡先を [電話] 項目にコピーします。</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when the Extended Description field is queued for update --></label>
+        <label>[拡張説明] 項目を更新しています。ジョブが完了したらメールを確認してください。</label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update Course Connection record types confirmation window --></label>
+        <label>教職員履修科目レコードの値を [デフォルトの教職員レコードタイプ]、他のすべての履修科目レコードの値を [デフォルトの学生レコードタイプ] に変更します。</label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Legacy Course Enrollment Data setting --></label>
+        <label>初めて履修科目を有効にする場合は、その前にこの Apex ジョブを実行して教職員履修科目レコードの値を [デフォルトの教職員レコードタイプ] に更新し、残りの履修科目の値を [デフォルトの学生レコードタイプ] に更新します。</label>
         <name>stgHelpCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Extended Course Descriptions setting --></label>
+        <label>より長い科目説明に対応するように、取引先責任者レコードの [説明] 項目のテキストを [拡張説明] 項目にコピーします。</label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
@@ -1457,15 +1461,15 @@
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Contact Language Fluency setting --></label>
+        <label>取引先責任者の言語レコードの第一言語を変更または設定するときに設定される [流暢さ] の値。</label>
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Default Faculty Record Type setting --></label>
+        <label>教職員履修科目のレコードタイプを選択します。</label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Default Student Record Type setting --></label>
+        <label>学生履修科目のレコードタイプを選択します。</label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
@@ -1477,7 +1481,7 @@
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Course Connections setting --></label>
+        <label>履修科目レコードでそのレコードが教職員のレコードなのか、学生のレコードなのかを指定する必要があります。この設定を有効にすると、[デフォルトの学生レコードタイプ] と [デフォルトの教職員レコードタイプ] も設定されます。&lt;/br&gt;&lt;/br&gt;この設定を初めて有効にする場合、有効にする前にシステムツールで従来の科目登録データ Apex ジョブを実行します。</label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
@@ -1485,19 +1489,19 @@
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Error Handling setting --></label>
+        <label>非同期ジョブのエラー処理を許可して、スケジュール済みジョブがいつ失敗したのかを簡単に確認できるようにします。</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Error Notifications setting --></label>
+        <label>選択した受信者にエラー通知を送信します。Chatter グループまたはユーザを選択した場合、[エラー通知受信者] の値も指定します。</label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Error Notification Recipients setting --></label>
+        <label>1 つのユーザ名または Chatter グループを指定します。ユーザにはメールでエラーが通知され、Chatter グループにはフィードへの投稿で通知されます。</label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Legacy Ethnicity Data setting --></label>
+        <label>EDA バージョン 1.28 より前に [民族] 項目を使用していた場合、この Apex ジョブは、[民族] 項目の標準およびカスタム値のコピーを使用して、取引先責任者の [人種] 項目を更新します。[ヒスパニックまたはラテン系ではない] および [ヒスパニックまたはラテン系] の値はコピーされません。</label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
@@ -1505,7 +1509,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Household Account Record Type setting --></label>
+        <label>世帯取引先で使用される取引先レコードタイプ。</label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
@@ -1513,7 +1517,7 @@
         <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
     </customLabels>
     <customLabels>
-        <label>選択すると、プラン要件でプログラムプランまたは親プラン要件を指定できます。ただし、この両方を指定することはできません。プログラムプランと親プラン要件の両方を指定した場合、どちらか 1 つのみを選択するまで、エラーメッセージが出力され、保存できません。</label>
+        <label>ネストされたプラン要件の階層がある場合、プログラムプランまたは親プラン要件のみを含めることができるように指定すると、構造を維持しやすくなります。</label>
         <name>stgHelpNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
@@ -1525,7 +1529,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Reciprocal Method setting --></label>
+        <label>自動的に作成される相互関係の [種別] 項目を入力する方法を指定します。[相互関係] の値を使用するには [リスト設定] を選択し、元のリレーションレコードの [種別] を反転するには [値反転] を選択します。</label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
@@ -1533,11 +1537,11 @@
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update Address Records for Simple Changes setting --></label>
+        <label>取引先責任者または取引先の単純な住所の変更の場合、新しい住所レコードを作成する代わりに既存の住所レコードを更新します。</label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Store Errors setting --></label>
+        <label>エラーを記録してエラーオブジェクトに保存します。この設定が有効になったら、エラーレコードを表示できるようにエラーオブジェクトのタブを作成します。</label>
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
@@ -1545,23 +1549,23 @@
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Automatically Rename Lead-Converted Accounts setting --></label>
+        <label>リード取引開始済み取引先の名前を自動的に変更</label>
         <name>stgLeadConversionAccountNaming</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Automatically Rename Lead-Converted Accounts setting --></label>
+        <label>リードの取引が開始されると、選択したこれらのレコードタイプに関連付けられた取引先の命名形式を使用するように取引先の名前が自動的に変更されます。</label>
         <name>stgLeadConversionAccountNamingDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Lead Conversion Account Naming --></label>
+        <label>リード取引開始の取引先の命名</label>
         <name>stgLeadConversionAccountNamingTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Plan Requirement Hierarchy setting --></label>
+        <label>プラン要件階層</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
-        <label>新規所属対応付け</label>
+        <label>所属対応付けを新規作成しますか?</label>
         <name>stgNewAfflMapping</name>
     </customLabels>
     <customLabels>
@@ -1581,11 +1585,11 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for People and Groups --></label>
+        <label>人とグループ</label>
         <name>stgPeopleAndGroupsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Body of email after Run Cleanup for preferred email/phone --></label>
+        <label>バッチ Apex ジョブで {0} 件のレコードが処理され、{1} 件が失敗しました。</label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>
     <customLabels>
@@ -1593,23 +1597,23 @@
         <name>stgPreferredEmailBatchEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Preferred Email and Preferred Phone setting --></label>
+        <label>メール連絡先と電話連絡先</label>
         <name>stgPreferredEmailDataCleanup</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Default Preferred Phone setting --></label>
+        <label>デフォルトの電話連絡先</label>
         <name>stgPreferredPhoneDefault</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update Preferred Email and Phone fields confirmation window --></label>
+        <label>組織の関連設定で指定されているすべての取引先責任者の [メール連絡先] 項目と [電話連絡先] 項目を更新します。続行する前に、[メール連絡先] 項目と [電話連絡先] 項目を参照するプロセスが無効になっていることを確認します。</label>
         <name>stgPreferredPhoneEmailModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update Preferred Email and Phone fields confirmation window --></label>
+        <label>[メール連絡先] 項目と [電話連絡先] 項目を更新しますか?</label>
         <name>stgPreferredPhoneEmailModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when Preferred Email and Phone fields are queued for update --></label>
+        <label>[メール連絡先] 項目と [電話連絡先] 項目を更新しています。ジョブが完了したらメールを確認してください。</label>
         <name>stgPreferredPhoneEmailSuccessToast</name>
     </customLabels>
     <customLabels>
@@ -1617,23 +1621,23 @@
         <name>stgPreferredPhoneSelection</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Default Preferred Phone setting --></label>
+        <label>[電話] 項目が空白の場合や、複数の電話値が定義された場合に [電話連絡先] で使用される項目。</label>
         <name>stgPreferredPhoneSelectionDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Program Plans --></label>
+        <label>プログラムプラン</label>
         <name>stgProgramPlanSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Program Plan Settings --></label>
+        <label>プログラムプラン設定</label>
         <name>stgProgramPlanSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Program Enrollments --></label>
+        <label>プログラム登録</label>
         <name>stgProgramsSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Program Enrollment Settings --></label>
+        <label>プログラム登録設定</label>
         <name>stgProgramsSettingsTitle</name>
     </customLabels>
     <customLabels>
@@ -1645,111 +1649,111 @@
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Delete Reciprocal Relationship window --></label>
+        <label>この相互関係により、{0} 相互関係値が {1} {2}、および {3} 相互関係値に対応付けられています。削除してよろしいですか?</label>
         <name>stgReciprocalRelDeleteModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Delete Reciprocal Relationship window --></label>
+        <label>相互関係を削除しますか?</label>
         <name>stgReciprocalRelDeleteModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when a Reciprocal Relationship is created --></label>
+        <label>{0} の相互関係が削除されました。</label>
         <name>stgReciprocalRelDeleteSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Edit Reciprocal Relationship window --></label>
+        <label>編集する相互関係を選択します。</label>
         <name>stgReciprocalRelEditModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Edit Reciprocal Relationship window --></label>
+        <label>相互関係を編集しますか?</label>
         <name>stgReciprocalRelEditModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when a Reciprocal Relationship is saved --></label>
+        <label>{0} の相互関係が保存されました。</label>
         <name>stgReciprocalRelEditSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the New Reciprocal Relationship window --></label>
+        <label>作成する相互関係種別を選択します。</label>
         <name>stgReciprocalRelNewModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the New Reciprocal Relationship window --></label>
+        <label>相互関係を新規作成しますか?</label>
         <name>stgReciprocalRelNewModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when a Reciprocal Relationship is created --></label>
+        <label>{0} の相互関係が作成されました。</label>
         <name>stgReciprocalRelNewSuccess</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update All Administrative Account Names setting --></label>
+        <label>[管理取引先名形式] の形式を使用するようにすべての管理取引先レコードを更新します。&lt;/br&gt;&lt;/br&gt;警告: 続行する前に、この設定の影響について確認し、管理取引先を参照するプロセスを無効にします。</label>
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Update All Administrative Account Names setting --></label>
+        <label>すべての管理取引先名を更新</label>
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update all Administrative Account names confirmation window --></label>
+        <label>[管理取引先名形式] の形式を使用するようにすべての管理取引先レコードを更新します。続行する前に、管理取引先を参照するプロセスが無効になっていることを確認します。</label>
         <name>stgRefreshAdminNamesModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update All Administrative Account Names confirmation window --></label>
+        <label>すべての管理取引先名を更新しますか?</label>
         <name>stgRefreshAdminNamesModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Toast message when Administrative Account names are queued for update --></label>
+        <label>管理取引先名を更新しています。ジョブが完了したらメールを確認してください。</label>
         <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update All Household Account Names setting --></label>
+        <label>[世帯取引先名形式] の形式を使用するようにすべての世帯取引先レコードを更新します。また、以前に無効にしていても [世帯取引先の名前を自動的に変更] を有効にします。&lt;/br&gt;&lt;/br&gt;警告: 続行する前に、この設定の影響について確認し、世帯取引先を参照するプロセスを無効にします。</label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Update All Household Account Names settings --></label>
+        <label>すべての世帯取引先名を更新</label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Update all Household Account names confirmation window --></label>
+        <label>[世帯取引先名形式] の形式を使用するようにすべての世帯取引先レコードを更新します。続行する前に、世帯取引先を参照するプロセスが無効になっていることを確認します。</label>
         <name>stgRefreshHouseholdNamesModalBody</name>
     </customLabels>
     <customLabels>
-        <label><!-- Title for the Update all Household Account names confirmation window --></label>
+        <label>すべての世帯取引先名を更新しますか?</label>
         <name>stgRefreshHouseholdNamesModalTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation message when Household Account names are queued for update --></label>
+        <label>世帯取引先名を更新しています。ジョブが完了したらメールを確認してください。</label>
         <name>stgRefreshHouseholdNamesSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for Relationships --></label>
+        <label>リレーション</label>
         <name>stgRelationshipSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Section title for Relationship Settings --></label>
+        <label>リレーション設定</label>
         <name>stgRelationshipSettingsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Button label for updating the selected Apex job --></label>
+        <label>更新</label>
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label><!-- Alt text for button that updates Contacts&apos; Preferred Email/Phone fields --></label>
+        <label>すべての取引先責任者の [メール連絡先] 項目と [電話連絡先] 項目を更新します。</label>
         <name>stgRunCleanUpA11y</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description of the Preferred Email and Preferred Phone setting --></label>
+        <label>組織の関連設定に基づいてすべての取引先責任者の [メール連絡先] と [電話連絡先] を更新します。[メール連絡先が必須] または [電話連絡先が必須] を有効にする場合や、初めてまたはしばらく適用していなかった場合、このジョブを実行することをお勧めします。</label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
-        <label><!-- Confirmation messsage that updated settings were saved --></label>
+        <label>EDA 設定が保存されました。</label>
         <name>stgSaveSettings</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Select Chatter Group setting --></label>
+        <label>Chatter グループを入力...</label>
         <name>stgSelectChatterGroupDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for Select Chatter Group --></label>
+        <label>Chatter グループ</label>
         <name>stgSelectChatterGroupTitle</name>
     </customLabels>
     <customLabels>
@@ -1757,23 +1761,23 @@
         <name>stgSelectReciType</name>
     </customLabels>
     <customLabels>
-        <label><!-- Description for the Select User setting --></label>
+        <label>ユーザ名を入力...</label>
         <name>stgSelectUserDesc</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for Select User --></label>
+        <label>ユーザ</label>
         <name>stgSelectUserTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Error Notifications setting --></label>
+        <label>エラー通知</label>
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Update Address Records for Simple Changes setting --></label>
+        <label>単純な変更の場合に住所レコードを更新</label>
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Store Errors setting --></label>
+        <label>エラーの保存</label>
         <name>stgStoreErrorsTitle</name>
     </customLabels>
     <customLabels>
@@ -1791,11 +1795,11 @@
         <name>stgSuccessHHAccountNameRefresh</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation section title for System --></label>
+        <label>システム</label>
         <name>stgSystemSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label><!-- Navigation title for System Tools --></label>
+        <label>システムツール</label>
         <name>stgSystemToolsNav</name>
     </customLabels>
     <customLabels>
@@ -1855,7 +1859,7 @@
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
-        <label><!-- Hyperlinked text to EDA documentation --></label>
+        <label>詳細はこちら</label>
         <name>stgTellMeMoreLink</name>
     </customLabels>
     <customLabels>
@@ -1867,11 +1871,11 @@
         <name>stgTitleAppwideSettings</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Legacy Course Enrollment Data setting --></label>
+        <label>従来の科目登録データ</label>
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Extended Course Descriptions setting --></label>
+        <label>拡張科目説明</label>
         <name>stgTitleCoursesDescriptionDataMigration</name>
     </customLabels>
     <customLabels>
@@ -1899,11 +1903,11 @@
         <name>stgToastError</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the Trailhead card --></label>
+        <label>Trailhead</label>
         <name>stgTrailheadTitle</name>
     </customLabels>
     <customLabels>
-        <label><!-- Label for the YouTube card --></label>
+        <label>YouTube</label>
         <name>stgVideosTitle</name>
     </customLabels>
     <customLabels>
@@ -1915,7 +1919,7 @@
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
     <customTabs>
-        <label><!-- Education Cloud Settings --></label>
+        <label>Education Cloud 設定</label>
         <name>Education_Cloud_Settings</name>
     </customTabs>
     <customTabs>

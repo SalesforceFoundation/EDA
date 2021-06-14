@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_Course_Connections__c</name>
     <help>Indien ingeschakeld, kunnen gebruikers het contactpersoontype (staflid of student) kiezen als ze een cursusverbindingsrecord maken. Deze functie vereist dat standaard contactpersoonrecordtypen worden ingesteld voor actieve studenten en stafleden.</help>
     <label>Cursusverbindingen inschakelen</label>
+    <name>Enable_Course_Connections__c</name>
 </CustomFieldTranslation>

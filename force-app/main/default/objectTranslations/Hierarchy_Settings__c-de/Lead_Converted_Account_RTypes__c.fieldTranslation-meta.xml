@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Die Account-Datensatztypen, die bei der Konvertierung von Leads das EDA-Format für die Benennung von Accounts verwenden.</help>
+    <label>Konvertierte Lead-Account-Datensatztypen</label>
+    <name>Lead_Converted_Account_RTypes__c</name>
+</CustomFieldTranslation>

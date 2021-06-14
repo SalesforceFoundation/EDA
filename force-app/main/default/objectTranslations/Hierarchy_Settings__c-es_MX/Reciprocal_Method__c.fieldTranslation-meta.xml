@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Reciprocal_Method__c</name>
     <help>Determina el método utilizado para generar la relación de reciprocidad. Utilice Configuración de lista para emplear parámetros personalizados por género. Utilice Inversión de valor para invertir el tipo si procede (&quot;Padre-Hijo&quot; a &quot;Hijo-Padre&quot;).</help>
     <label>Método de reciprocidad</label>
+    <name>Reciprocal_Method__c</name>
 </CustomFieldTranslation>

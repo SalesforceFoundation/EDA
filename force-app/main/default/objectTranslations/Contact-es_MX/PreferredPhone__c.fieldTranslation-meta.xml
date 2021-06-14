@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>PreferredPhone__c</name>
     <help>El teléfono (particular, laboral, celular, otro) que este contacto prefiere que utilice.</help>
     <label>Teléfono elegido</label>
+    <name>PreferredPhone__c</name>
     <picklistValues>
         <masterLabel>Home Phone</masterLabel>
         <translation>Teléfono particular</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Work Phone</masterLabel>
-        <translation>Teléfono laboral</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Mobile Phone</masterLabel>
@@ -18,5 +14,9 @@
     <picklistValues>
         <masterLabel>Other Phone</masterLabel>
         <translation>Otro teléfono</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Work Phone</masterLabel>
+        <translation>Teléfono laboral</translation>
     </picklistValues>
 </CustomFieldTranslation>

@@ -55,6 +55,10 @@
         "Deploy Einstein Analytics Templates": {
             "message": "Einstein Analytics テンプレートのリリース",
             "description": "title of installation step"
+        },
+        "Health Check": {
+            "message": "状態チェック",
+            "description": "title of installation step"
         }
     },
     "plan:ra_einstein_template": {

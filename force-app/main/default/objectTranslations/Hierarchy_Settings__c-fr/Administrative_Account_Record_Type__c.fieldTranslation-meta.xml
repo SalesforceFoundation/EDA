@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Administrative_Account_Record_Type__c</name>
     <help>Le type d&apos;enregistrement Compte utilisé pour des Comptes administratifs. Ce paramètre affecte la gestion des enregistrements Adresse et le format de nommage des comptes administratifs.</help>
     <label>Type enregistrement compte administratif</label>
+    <name>Administrative_Account_Record_Type__c</name>
 </CustomFieldTranslation>

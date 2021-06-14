@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Default_Contact_Language_Fluency__c</name>
     <help>La valeur Maîtrise linguistique automatiquement définie dans les enregistrements de langue du contact créés lorsque les utilisateurs définissent le champ Langue principale dans un contact.</help>
     <label>Maîtrise linguistique contact par défaut</label>
+    <name>Default_Contact_Language_Fluency__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Admin_Other_Name_Setting__c</name>
     <help>Slaat overige informatie op over de naamindeling voor een administratief account.</help>
     <label>Overige administratieve naaminstelling</label>
+    <name>Admin_Other_Name_Setting__c</name>
 </CustomFieldTranslation>

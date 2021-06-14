@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Simple_Address_Change_Treated_as_Update__c</name>
     <help>Kun tämä asetus on käytössä, yhteyshenkilön tai tilin yhden osoitekentän muutoksia pidetään nykyisen osoitteen päivityksinä (esim. uutta osoite-objektia ei luoda). Välilyönti ja kirjainkokomuutokset käsitellään päivityksinä.</help>
     <label>Nopea osoitteenmuutos päivityksenä</label>
+    <name>Simple_Address_Change_Treated_as_Update__c</name>
 </CustomFieldTranslation>

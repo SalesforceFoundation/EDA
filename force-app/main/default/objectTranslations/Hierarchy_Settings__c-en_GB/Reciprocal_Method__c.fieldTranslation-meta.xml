@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Reciprocal_Method__c</name>
     <help>Determines the method used to generate the reciprocal relationship. Use List Setting to use custom settings by gender. Use Value Inversion to invert the type if appropriate (&quot;Parent-Child&quot; to &quot;Child-Parent&quot;)</help>
     <label>Reciprocal Method</label>
+    <name>Reciprocal_Method__c</name>
 </CustomFieldTranslation>

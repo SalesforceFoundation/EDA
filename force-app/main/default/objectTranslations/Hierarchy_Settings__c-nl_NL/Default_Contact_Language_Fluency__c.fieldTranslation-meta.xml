@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Default_Contact_Language_Fluency__c</name>
     <help>De beheersingswaarde die automatisch wordt ingesteld voor nieuw gemaakte records voor de taal van een contactpersoon wanneer gebruikers het opzoekveld Primaire taal instellen voor een contactpersoon.</help>
     <label>Standaardbeheersing taal contactpersoon</label>
+    <name>Default_Contact_Language_Fluency__c</name>
 </CustomFieldTranslation>

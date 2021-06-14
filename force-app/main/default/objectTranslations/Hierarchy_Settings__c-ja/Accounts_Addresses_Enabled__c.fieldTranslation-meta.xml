@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Accounts_Addresses_Enabled__c</name>
     <help>複数住所を有効にする取引先のレコードタイプ。</help>
     <label>複数住所の取引先</label>
+    <name>Accounts_Addresses_Enabled__c</name>
 </CustomFieldTranslation>

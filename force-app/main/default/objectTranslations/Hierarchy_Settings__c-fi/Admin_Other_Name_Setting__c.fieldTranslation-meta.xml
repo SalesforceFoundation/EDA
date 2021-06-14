@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Admin_Other_Name_Setting__c</name>
     <help>Tallentaa muut tiedot hallintatilin nimeämismuodosta.</help>
     <label>Hallintatilin muu nimi -asetus</label>
+    <name>Admin_Other_Name_Setting__c</name>
 </CustomFieldTranslation>

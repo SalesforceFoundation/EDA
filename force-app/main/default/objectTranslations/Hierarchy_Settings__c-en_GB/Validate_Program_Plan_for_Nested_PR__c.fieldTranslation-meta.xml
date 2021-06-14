@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Validate_Program_Plan_for_Nested_PR__c</name>
     <help>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message prevents saving until only one is selected.</help>
     <label>Validate Program Plan for Nested PR</label>
+    <name>Validate_Program_Plan_for_Nested_PR__c</name>
 </CustomFieldTranslation>

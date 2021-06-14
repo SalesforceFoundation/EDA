@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <layouts>
-        <layout>HEDA Program Enrollment Layout</layout>
-        <sections>
-            <label>Custom Links</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Program Enrolment ID</nameFieldLabel>
-    <standardFields>
-        <name>Name</name>
-        <label>Program Enrolment ID</label>
-    </standardFields>
-    <startsWith>Consonant</startsWith>
     <caseValues>
         <plural>false</plural>
         <value>Program Enrolment</value>
@@ -21,4 +8,13 @@
         <plural>true</plural>
         <value>Program Enrolments</value>
     </caseValues>
+    <layouts>
+        <layout>HEDA Program Enrollment Layout</layout>
+        <sections>
+            <label>Custom Links</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Program Enrolment ID</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
