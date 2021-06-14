@@ -4,80 +4,70 @@
     >
         <template if:true={modifyRecords}>
             <div class="slds-col slds-size-1-of-1 slds-p-bottom_small">{relationshipMappingModalBodyDesc}</div>
-            <template if:true={relationshipLookupNameComboboxVModel}>
-                <div class="slds-col slds-size_2-of-3 slds-p-bottom_medium">
-                    <lightning-combobox
-                        id={inputAttributeReference.relationshipMappingName}
-                        name={inputAttributeReference.relationshipMappingName}
-                        label={labelReference.relationshipMappingName}
-                        value={relationshipLookupNameComboboxVModel.value}
-                        placeholder={labelReference.comboboxPlaceholderText}
-                        options={relationshipLookupNameComboboxVModel.options}
-                        required="true"
-                        onchange={handleRelationshipMappingNameChange}
-                        data-qa-locator={inputAttributeReference.relationshipMappingName}
-                    ></lightning-combobox>
-                </div>
-            </template>
-            <template if:true={activeRelationshipTypesComboboxVModel}>
-                <div class="slds-col slds-size_2-of-3 slds-p-bottom_medium">
-                    <lightning-combobox
-                        id={inputAttributeReference.femaleValue}
-                        name={inputAttributeReference.femaleValue}
-                        label={labelReference.femaleValue}
-                        value={femaleValue}
-                        placeholder={labelReference.comboboxPlaceholderText}
-                        options={activeRelationshipTypesComboboxVModel.options}
-                        required="true"
-                        onchange={handleFemaleValueChange}
-                        data-qa-locator={inputAttributeReference.femaleValue}
-                    ></lightning-combobox>
-                </div>
-            </template>
-            <template if:true={activeRelationshipTypesComboboxVModel}>
-                <div class="slds-col slds-size_2-of-3 slds-p-bottom_medium">
-                    <lightning-combobox
-                        id={inputAttributeReference.maleValue}
-                        name={inputAttributeReference.maleValue}
-                        label={labelReference.maleValue}
-                        value={maleValue}
-                        placeholder={labelReference.comboboxPlaceholderText}
-                        options={activeRelationshipTypesComboboxVModel.options}
-                        required="true"
-                        onchange={handleMaleValueChange}
-                        data-qa-locator={inputAttributeReference.maleValue}
-                    ></lightning-combobox>
-                </div>
-            </template>
-            <template if:true={activeRelationshipTypesComboboxVModel}>
-                <div class="slds-col slds-size_2-of-3 slds-p-bottom_medium">
-                    <lightning-combobox
-                        id={inputAttributeReference.neutralValue}
-                        name={inputAttributeReference.neutralValue}
-                        label={labelReference.neutralValue}
-                        value={neutralValue}
-                        placeholder={labelReference.comboboxPlaceholderText}
-                        options={activeRelationshipTypesComboboxVModel.options}
-                        required="true"
-                        onchange={handleNeutralValueChange}
-                        data-qa-locator={inputAttributeReference.neutralValue}
-                    ></lightning-combobox>
-                </div>
-            </template>
-            <template if:true={activeRelationshipTypesComboboxVModel}>
-                <div class="slds-col slds-size_2-of-3 slds-p-bottom_xx-large slds-p-top_medium">
-                    <lightning-input
-                        class={inputStyling}
-                        type="toggle"
-                        label={labelReference.isActive}
-                        id={inputAttributeReference.isActive}
-                        name={inputAttributeReference.isActive}
-                        onchange={handleIsActiveChange}
-                        checked={isActive}
-                        value={isActive}
-                    ></lightning-input>
-                </div>
-            </template>
+            <div class="slds-col slds-size_2-of-3 slds-p-bottom_medium">
+                <lightning-combobox
+                    id={inputAttributeReference.relationshipMappingName}
+                    name={inputAttributeReference.relationshipMappingName}
+                    label={labelReference.relationshipMappingName}
+                    value={relationshipLookupNameComboboxVModel.value}
+                    placeholder={labelReference.comboboxPlaceholderText}
+                    options={relationshipLookupNameComboboxVModel.options}
+                    required="true"
+                    onchange={handleRelationshipMappingNameChange}
+                    data-qa-locator={inputAttributeReference.relationshipMappingName}
+                ></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_2-of-3 slds-p-bottom_medium">
+                <lightning-combobox
+                    id={inputAttributeReference.femaleValue}
+                    name={inputAttributeReference.femaleValue}
+                    label={labelReference.femaleValue}
+                    value={femaleValue}
+                    placeholder={labelReference.comboboxPlaceholderText}
+                    options={activeRelationshipTypesComboboxVModel.options}
+                    required="true"
+                    onchange={handleFemaleValueChange}
+                    data-qa-locator={inputAttributeReference.femaleValue}
+                ></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_2-of-3 slds-p-bottom_medium">
+                <lightning-combobox
+                    id={inputAttributeReference.maleValue}
+                    name={inputAttributeReference.maleValue}
+                    label={labelReference.maleValue}
+                    value={maleValue}
+                    placeholder={labelReference.comboboxPlaceholderText}
+                    options={activeRelationshipTypesComboboxVModel.options}
+                    required="true"
+                    onchange={handleMaleValueChange}
+                    data-qa-locator={inputAttributeReference.maleValue}
+                ></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_2-of-3 slds-p-bottom_medium">
+                <lightning-combobox
+                    id={inputAttributeReference.neutralValue}
+                    name={inputAttributeReference.neutralValue}
+                    label={labelReference.neutralValue}
+                    value={neutralValue}
+                    placeholder={labelReference.comboboxPlaceholderText}
+                    options={activeRelationshipTypesComboboxVModel.options}
+                    required="true"
+                    onchange={handleNeutralValueChange}
+                    data-qa-locator={inputAttributeReference.neutralValue}
+                ></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_2-of-3 slds-p-bottom_xx-large slds-p-top_medium">
+                <lightning-input
+                    class={inputStyling}
+                    type="toggle"
+                    label={labelReference.isActive}
+                    id={inputAttributeReference.isActive}
+                    name={inputAttributeReference.isActive}
+                    onchange={handleIsActiveChange}
+                    checked={isActive}
+                    value={isActive}
+                ></lightning-input>
+            </div>
         </template>
         <template if:true={deleteRecords}>
             <div class="slds-col slds-size_1-of-1 slds-p-around_none">{relationshipMappingModalBodyDesc}</div>

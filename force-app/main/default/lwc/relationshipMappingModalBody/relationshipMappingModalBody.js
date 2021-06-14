@@ -74,7 +74,11 @@ export default class RelationshipMappingModalBody extends LightningElement {
     }
 
     get modifyRecords() {
-        return this.relationshipMappingAction === "edit" || this.relationshipMappingAction === "create";
+        return (
+            (this.relationshipMappingAction === "edit" || this.relationshipMappingAction === "create") &&
+            this.relationshipLookupNameComboboxVModel &&
+            this.activeRelationshipTypesComboboxVModel
+        );
     }
 
     get deleteRecords() {
