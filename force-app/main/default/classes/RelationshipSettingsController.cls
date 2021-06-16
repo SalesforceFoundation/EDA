@@ -82,7 +82,7 @@ public with sharing class RelationshipSettingsController {
      * @param  relationshipLookupName Specifies and existing relationship lookup name. Should be an empty string for a new record
      * @return                        A ComboBoxVModel
      */
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static ComboBoxVModel getRelationshipLookupNameComboboxVModel(String relationshipLookupName) {
         try {
             return RelationshipSettingsController.locateRelationshipLookupsVMapper()

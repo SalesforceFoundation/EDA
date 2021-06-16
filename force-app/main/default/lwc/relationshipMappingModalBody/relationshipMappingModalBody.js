@@ -60,11 +60,15 @@ export default class RelationshipMappingModalBody extends LightningElement {
         this.oldFemaleValue = this.femaleValue;
         this.oldMaleValue = this.maleValue;
         this.oldNeutralValue = this.neutralValue;
+        getRelationshipLookupNameComboboxVModel({ relationshipLookupName: this.oldRelationshipMappingName })
+            .then((result) => {
+                this.relationshipLookupNameComboboxVModelWire({ data: result });
+            })
+            .catch((error) => {
+                this.relationshipLookupNameComboboxVModelWire({ error: error });
+            });
     }
 
-    @wire(getRelationshipLookupNameComboboxVModel, {
-        relationshipLookupName: "$oldRelationshipMappingName",
-    })
     relationshipLookupNameComboboxVModelWire(result) {
         this.relationshipLookupNameComboboxWireResult = result;
 
