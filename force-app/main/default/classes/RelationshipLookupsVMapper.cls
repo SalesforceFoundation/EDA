@@ -79,64 +79,59 @@ public virtual with sharing class RelationshipLookupsVMapper {
     }
 
     /**
-     * @description gets all active Relationship Type picklist values
-     * @return   A ComboBoxVModel
+     * @description Gets Relationship Type picklist values for FemaleValue, MaleValue and NeutralValue
+     * @param  relationshipLookupName Specifies an existing relationship lookup name.
+     * @return                        A ComboBoxVModel
      */
-    public virtual ComboBoxVModel getActiveRelationshipTypesComboboxVModel() {
-        String comboboxValue = '';
+    public virtual ComboBoxVModel getRelationshipLookupComboboxVModel(String relationshipLookupName) {
+        return this.getActiveRelationshipTypesComboboxVModel(relationshipLookupName);
+    }
 
-        PicklistEntryService picklistEntryServiceInstance = this.locatePicklistEntryService();
-
-        Map<String, PicklistEntryModel> picklistEntryModelByName = picklistEntryServiceInstance.getActivePicklistEntryModelsByName(
-            picklistEntryServiceInstance.getModelsByNameForSObjectField(
-                Relationship__c.SObjectType,
-                Relationship__c.Type__c
-            )
+    /**
+     * @description gets all active Relationship Type picklist values
+     * @param  relationshipLookupName Specifies an existing relationship lookup name.
+     * @return                        A ComboBoxVModel
+     */
+    public virtual ComboBoxVModel getActiveRelationshipTypesComboboxVModel(String relationshipLookupName) {
+        Map<String, PicklistEntryModel> picklistEntryModelsByName = this.locatePicklistEntryService()
+            .getModelsByNameForSObjectField(Relationship__c.SObjectType, Relationship__c.Type__c);
+        Map<String, PicklistEntryModel> activePicklistEntryModelsByName = new Map<String, PicklistEntryModel>();
+        Boolean nameExists = false;
+        for (PicklistEntryModel picklistEntryModel : picklistEntryModelsByName.values()) {
+            if (picklistEntryModel.isActive == true || picklistEntryModel.name == relationshipLookupName) {
+                nameExists |= picklistEntryModel.name == relationshipLookupName;
+                activePicklistEntryModelsByName.put(picklistEntryModel.name, picklistEntryModel);
+            }
+        }
+        List<ComboboxValueVModel> activePicklistEntryModelList = this.getComboboxValueVModelListFromPicklist(
+            activePicklistEntryModelsByName
         );
-
-        List<ComboboxValueVModel> comboboxValues = this.getComboboxValueVModelListFromPicklist(
-            picklistEntryModelByName
-        );
-
-        return new ComboboxVModel(comboboxValue, comboboxValues);
+        if (!nameExists && String.isNotBlank(relationshipLookupName)) {
+            //if relationshipLookupName doesn't exist in picklistEntryModelsByName (for example if it is inactive or missing)
+            //insert it explicitly so the dropdown control could show the current value
+            activePicklistEntryModelList.add(
+                0,
+                new ComboboxValueVModel(relationshipLookupName, relationshipLookupName)
+            );
+        }
+        return new ComboboxVModel(relationshipLookupName, activePicklistEntryModelList);
     }
 
     /**
      * @description Gets Relationship Type picklist values for the name field
-     * For a new relationship lookup record return all active unmapped items
-     * For an existing record return all active items
-     * @param  relationshipLookupName Specifies and existing relationship lookup name. Should be an empty string for a new record
-     * @return                        A ComboBoxVModel model with populated picklist items
+     * @param  relationshipLookupName Specifies an existing relationship lookup name. Should be an empty string for a new record
+     * @return                        A ComboBoxVModel model with populated active unmapped picklist items
      */
     public virtual ComboBoxVModel getRelationshipLookupNameComboboxVModel(String relationshipLookupName) {
-        if (String.isNotBlank(relationshipLookupName)) {
-            //For existing relationship lookup filter out all inactive picklist values but leave the current one (if it is inactive)
-            Map<String, PicklistEntryModel> picklistEntryModelsByName = this.locatePicklistEntryService()
-                .getModelsByNameForSObjectField(Relationship__c.SObjectType, Relationship__c.Type__c);
-            Map<String, PicklistEntryModel> activePicklistEntryModelsByName = new Map<String, PicklistEntryModel>();
-
-            for (PicklistEntryModel picklistEntryModel : picklistEntryModelsByName.values()) {
-                if (picklistEntryModel.isActive == true || picklistEntryModel.name == relationshipLookupName) {
-                    activePicklistEntryModelsByName.put(picklistEntryModel.name, picklistEntryModel);
-                }
-            }
-            return new ComboboxVModel(
-                relationshipLookupName,
-                this.getComboboxValueVModelListFromPicklist(activePicklistEntryModelsByName)
-            );
-        } else {
-            //For new relationship lookup record we return the unmapped values
-            return this.getActiveUnmappedRelationshipTypesComboboxVModel();
-        }
+        //For relationship lookup name field we return the active unmapped values
+        return this.getActiveUnmappedRelationshipTypesComboboxVModel(relationshipLookupName);
     }
 
     /**
      * @description gets all active unmapped Relationship Type picklist values
      * @return   A ComboBoxVModel
      */
-    public virtual ComboBoxVModel getActiveUnmappedRelationshipTypesComboboxVModel() {
-        String comboboxValue = '';
-
+    public virtual ComboBoxVModel getActiveUnmappedRelationshipTypesComboboxVModel(String relationshipLookupName) {
         PicklistEntryService picklistEntryServiceInstance = this.locatePicklistEntryService();
 
         Map<String, PicklistEntryModel> picklistEntryModelByName = picklistEntryServiceInstance.getActivePicklistEntryModelsByName(
@@ -150,14 +145,23 @@ public virtual with sharing class RelationshipLookupsVMapper {
         List<RelationshipLookupModel> relationshipLookupModelList = this.locateRelationshipLookupSettingsService()
             .getRelationshipLookupModels();
         for (RelationshipLookupModel relLookupModel : relationshipLookupModelList) {
-            picklistEntryModelByName.remove(relLookupModel.name);
+            if (relLookupModel.name != relationshipLookupName) {
+                picklistEntryModelByName.remove(relLookupModel.name);
+            }
         }
 
         List<ComboboxValueVModel> comboboxValues = this.getComboboxValueVModelListFromPicklist(
             picklistEntryModelByName
         );
+        if (
+            String.isNotBlank(relationshipLookupName) && !picklistEntryModelByName.containsKey(relationshipLookupName)
+        ) {
+            //if relationshipLookupName doesn't exist in picklistEntryModelsByName (for example if it is inactive or missing)
+            //insert it explicitly so the dropdown control could show the current value
+            comboboxValues.add(0, new ComboboxValueVModel(relationshipLookupName, relationshipLookupName));
+        }
 
-        return new ComboboxVModel(comboboxValue, comboboxValues);
+        return new ComboboxVModel(relationshipLookupName, comboboxValues);
     }
 
     /**

@@ -1,6 +1,6 @@
 import { LightningElement, api, track, wire } from "lwc";
 import getRelationshipLookupNameComboboxVModel from "@salesforce/apex/RelationshipSettingsController.getRelationshipLookupNameComboboxVModel";
-import getActiveRelationshipTypesComboboxVModel from "@salesforce/apex/RelationshipSettingsController.getActiveRelationshipTypesComboboxVModel";
+import getRelationshipLookupComboboxVModel from "@salesforce/apex/RelationshipSettingsController.getRelationshipLookupComboboxVModel";
 
 import stgColRelationshipName from "@salesforce/label/c.stgColRelationshipName";
 import stgColFemale from "@salesforce/label/c.stgColFemale";
@@ -22,11 +22,18 @@ export default class RelationshipMappingModalBody extends LightningElement {
     @api neutralValue;
     @api isActive;
 
+    @track oldFemaleValue;
+    @track oldMaleValue;
+    @track oldNeutralValue;
+
     @track relationshipLookupNameComboboxVModel;
     @track relationshipLookupNameComboboxWireResult;
-
-    @track activeRelationshipTypesComboboxVModel;
-    @track activeRelationshipTypesComboboxWireResult;
+    @track femaleValueComboboxVModel;
+    @track femaleValueComboboxWireResult;
+    @track maleValueComboboxVModel;
+    @track maleValueComboboxWireResult;
+    @track neutralValueComboboxVModel;
+    @track neutralValueComboboxWireResult;
 
     labelReference = {
         relationshipMappingName: stgColRelationshipName,
@@ -49,6 +56,12 @@ export default class RelationshipMappingModalBody extends LightningElement {
         isActive: "relationshipMappingIsActiveValue",
     };
 
+    connectedCallback() {
+        this.oldFemaleValue = this.femaleValue;
+        this.oldMaleValue = this.maleValue;
+        this.oldNeutralValue = this.neutralValue;
+    }
+
     @wire(getRelationshipLookupNameComboboxVModel, {
         relationshipLookupName: "$oldRelationshipMappingName",
     })
@@ -62,14 +75,42 @@ export default class RelationshipMappingModalBody extends LightningElement {
         }
     }
 
-    @wire(getActiveRelationshipTypesComboboxVModel)
-    activeRelationshipTypesComboboxVModelWire(result) {
-        this.activeRelationshipTypesComboboxWireResult = result;
+    @wire(getRelationshipLookupComboboxVModel, {
+        relationshipLookupName: "$oldFemaleValue",
+    })
+    femaleValueComboboxVModelWire(result) {
+        this.femaleValueComboboxWireResult = result;
 
         if (result.data) {
-            this.activeRelationshipTypesComboboxVModel = result.data;
+            this.femaleValueComboboxVModel = result.data;
         } else if (result.error) {
-            //console.log("error retrieving activeRelationshipTypesVModel");
+            //console.log("error retrieving femaleValueComboboxVModel");
+        }
+    }
+
+    @wire(getRelationshipLookupComboboxVModel, {
+        relationshipLookupName: "$oldMaleValue",
+    })
+    maleValueComboboxVModelWire(result) {
+        this.maleValueComboboxWireResult = result;
+
+        if (result.data) {
+            this.maleValueComboboxVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving maleValueComboboxVModel");
+        }
+    }
+
+    @wire(getRelationshipLookupComboboxVModel, {
+        relationshipLookupName: "$oldNeutralValue",
+    })
+    neutralValueComboboxVModelWire(result) {
+        this.neutralValueComboboxWireResult = result;
+
+        if (result.data) {
+            this.neutralValueComboboxVModel = result.data;
+        } else if (result.error) {
+            //console.log("error retrieving neutralValueComboboxVModel");
         }
     }
 
@@ -77,7 +118,9 @@ export default class RelationshipMappingModalBody extends LightningElement {
         return (
             (this.relationshipMappingAction === "edit" || this.relationshipMappingAction === "create") &&
             this.relationshipLookupNameComboboxVModel &&
-            this.activeRelationshipTypesComboboxVModel
+            this.femaleValueComboboxVModel &&
+            this.maleValueComboboxVModel &&
+            this.neutralValueComboboxVModel
         );
     }
 

@@ -61,14 +61,15 @@ public with sharing class RelationshipSettingsController {
     }
 
     /**
-     * @description gets all active Relationship Type picklist values
-     * @return   A ComboBoxVModel
+     * @description gets all active Relationship Type picklist values for FemaleValue, MaleValue and NeutralValue
+     * @param  relationshipLookupName Specifies and existing relationship lookup value. Should be an empty string for a new record
+     * @return                        A ComboBoxVModel
      */
     @AuraEnabled(cacheable=true)
-    public static ComboBoxVModel getActiveRelationshipTypesComboboxVModel() {
+    public static ComboBoxVModel getRelationshipLookupComboboxVModel(String relationshipLookupName) {
         try {
             return RelationshipSettingsController.locateRelationshipLookupsVMapper()
-                .getActiveRelationshipTypesComboboxVModel();
+                .getRelationshipLookupComboboxVModel(relationshipLookupName);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -160,9 +161,9 @@ public with sharing class RelationshipSettingsController {
     @AuraEnabled
     public static String deleteRelationshipLookup(String relationshipLookupName) {
         try {
-            return RelationshipSettingsController.locateRelationshipLookupSettingsService()
-                .deleteRelationshipLookup(relationshipLookupName)
-                .name;
+            RelationshipLookupModel deletedRelationshipLookupModel = RelationshipSettingsController.locateRelationshipLookupSettingsService()
+                .deleteRelationshipLookup(relationshipLookupName);
+            return deletedRelationshipLookupModel == null ? null : deletedRelationshipLookupModel.name;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }

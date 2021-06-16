@@ -199,45 +199,66 @@ private with sharing class RelationshipLookupsVMapper_TEST {
     }
 
     /****************************************************************************************
-     * @description Test method to verify getActiveRelationshipTypesComboboxVModel()
+     * @description Test method to verify getRelationshipLookupComboboxVModel()
      * returns a ComboboxVModel representing active picklist items
      ****************************************************************************************/
     @isTest
-    private static void getActiveRelationshipTypesComboboxVModelValid() {
+    private static void getRelationshipLookupComboboxVModelValid() {
         PicklistEntryService.instance = new STUB_PicklistEntryService();
         RelationshipLookupSettingsService.instance = new STUB_RelationshipLookupSettingsService();
 
         RelationshipLookupsVMapper relationshipLookupsVMapperInstance = RelationshipLookupsVMapper.getInstance();
 
         Test.startTest();
-        ComboBoxVModel activeRelTypesComboBoxVModel = relationshipLookupsVMapperInstance.getActiveRelationshipTypesComboboxVModel();
+        ComboBoxVModel relationshipLookupComboBoxVModel = relationshipLookupsVMapperInstance.getRelationshipLookupComboboxVModel(
+            ''
+        );
+        ComboBoxVModel missingRelationshipLookupComboBoxVModel = relationshipLookupsVMapperInstance.getRelationshipLookupComboboxVModel(
+            'MissingValue'
+        );
         Test.stopTest();
 
         System.assertEquals(
             5,
-            activeRelTypesComboBoxVModel.options.size(),
+            relationshipLookupComboBoxVModel.options.size(),
             'Should return 5 active relationship types'
         );
 
         System.assertEquals(
             'TestRelationshipName1',
-            activeRelTypesComboBoxVModel.options[0].value,
+            relationshipLookupComboBoxVModel.options[0].value,
             'Relationship type value should be \'TestRelationshipName1\''
         );
         System.assertEquals(
             'TestRelationshipLabel1',
-            activeRelTypesComboBoxVModel.options[0].label,
+            relationshipLookupComboBoxVModel.options[0].label,
             'Relationship type label should be \'TestRelationshipLabel1\''
         );
         System.assertEquals(
             'TestRelationshipName7',
-            activeRelTypesComboBoxVModel.options[4].value,
+            relationshipLookupComboBoxVModel.options[4].value,
             'Relationship type value should be \'TestRelationshipName7\''
         );
         System.assertEquals(
             'TestRelationshipLabel7',
-            activeRelTypesComboBoxVModel.options[4].label,
+            relationshipLookupComboBoxVModel.options[4].label,
             'Relationship type label should be \'TestRelationshipLabel7\''
+        );
+
+        System.assertEquals(
+            6,
+            missingRelationshipLookupComboBoxVModel.options.size(),
+            'Should return 6 relationship types (5 active, 1 missing)'
+        );
+        System.assertEquals(
+            'MissingValue',
+            missingRelationshipLookupComboBoxVModel.options[0].value,
+            'Relationship type value should be \'TestRelationshipName1\''
+        );
+        System.assertEquals(
+            'MissingValue',
+            missingRelationshipLookupComboBoxVModel.options[0].label,
+            'Relationship type label should be \'TestRelationshipLabel1\''
         );
     }
 
@@ -253,7 +274,9 @@ private with sharing class RelationshipLookupsVMapper_TEST {
         RelationshipLookupsVMapper relationshipLookupsVMapperInstance = RelationshipLookupsVMapper.getInstance();
 
         Test.startTest();
-        ComboBoxVModel activeUnmappedRelTypesComboBoxVModel = relationshipLookupsVMapperInstance.getActiveUnmappedRelationshipTypesComboboxVModel();
+        ComboBoxVModel activeUnmappedRelTypesComboBoxVModel = relationshipLookupsVMapperInstance.getActiveUnmappedRelationshipTypesComboboxVModel(
+            ''
+        );
         Test.stopTest();
 
         System.assertEquals(
@@ -348,20 +371,24 @@ private with sharing class RelationshipLookupsVMapper_TEST {
             'TestRelationshipName1'
         );
         ComboBoxVModel inactiveItemRelTypesComboBoxVModel = relationshipLookupsVMapperInstance.getRelationshipLookupNameComboboxVModel(
-            'TestRelationshipName4'
+            'TestRelationshipName6'
         );
+        ComboBoxVModel missingItemRelTypesComboBoxVModel = relationshipLookupsVMapperInstance.getRelationshipLookupNameComboboxVModel(
+            'TestRelationshipName8'
+        );
+
         Test.stopTest();
 
         System.assertEquals(
-            5,
+            3,
             activeItemRelTypesComboBoxVModel.options.size(),
-            'Should return 5 active relationship types'
+            'Should return 3 active unmapped relationship types (2 active unmapped + 1 current)'
         );
 
         System.assertEquals(
-            6,
+            2,
             inactiveItemRelTypesComboBoxVModel.options.size(),
-            'Should return 6 relationship types (5 active + 1 inactive)'
+            'Should return 2 active unmapped relationship types'
         );
 
         System.assertEquals(
@@ -375,10 +402,16 @@ private with sharing class RelationshipLookupsVMapper_TEST {
             'Relationship type label should be \'TestRelationshipLabel1\''
         );
 
+        System.assertEquals(
+            3,
+            missingItemRelTypesComboBoxVModel.options.size(),
+            'Should return 3 active unmapped relationship types'
+        );
+
         //Checking if the mapper returns inactive item because this is the current record's value
         Boolean hasInactiveItemValue = false;
         for (ComboboxValueVModel inactiveItemVModel : inactiveItemRelTypesComboBoxVModel.options) {
-            if (inactiveItemVModel.value == 'TestRelationshipName4') {
+            if (inactiveItemVModel.value == 'TestRelationshipName6') {
                 hasInactiveItemValue = true;
                 break;
             }
@@ -386,7 +419,21 @@ private with sharing class RelationshipLookupsVMapper_TEST {
         System.assertEquals(
             true,
             hasInactiveItemValue,
-            'getRelationshipLookupNameComboboxVModel should return \'TestRelationshipName4\''
+            'getRelationshipLookupNameComboboxVModel should return \'TestRelationshipName6\''
+        );
+
+        //Checking if the mapper returns missing item because this is the current record's value
+        Boolean hasMissingItemValue = false;
+        for (ComboboxValueVModel missingItemVModel : missingItemRelTypesComboBoxVModel.options) {
+            if (missingItemVModel.value == 'TestRelationshipName8') {
+                hasMissingItemValue = true;
+                break;
+            }
+        }
+        System.assertEquals(
+            true,
+            hasMissingItemValue,
+            'getRelationshipLookupNameComboboxVModel should return \'TestRelationshipName8\''
         );
     }
 

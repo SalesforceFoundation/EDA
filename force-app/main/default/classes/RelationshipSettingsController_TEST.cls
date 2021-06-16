@@ -150,15 +150,17 @@ private with sharing class RelationshipSettingsController_TEST {
     }
 
     /****************************************************************************************************************************
-     * @description Test method to verify that the getActiveRelationshipTypesComboboxVModel method returns a ComboBoxVModel
+     * @description Test method to verify that the getRelationshipLookupComboboxVModel method returns a ComboBoxVModel
      * representing active relationship types.
      ****************************************************************************************************************************/
     @isTest
-    private static void getActiveRelationshipTypesComboboxVModelValid() {
+    private static void getRelationshipLookupComboboxVModelValid() {
         RelationshipLookupsVMapper.instance = new STUB_RelationshipLookupsVMapper();
 
         Test.startTest();
-        ComboBoxVModel activeRelTypesComboboxVModel = RelationshipSettingsController.getActiveRelationshipTypesComboboxVModel();
+        ComboBoxVModel activeRelTypesComboboxVModel = RelationshipSettingsController.getRelationshipLookupComboboxVModel(
+            ''
+        );
         Test.stopTest();
         System.assertEquals(2, activeRelTypesComboboxVModel.options.size(), 'Should return 2 items');
         System.assertEquals(
@@ -218,16 +220,18 @@ private with sharing class RelationshipSettingsController_TEST {
     }
 
     /****************************************************************************************************************************
-     * @description Test method to verify that the getActiveRelationshipTypesComboboxVModel method fails gracefully when an exception is
+     * @description Test method to verify that the getRelationshipLookupComboboxVModel method fails gracefully when an exception is
      * encountered.
      ****************************************************************************************************************************/
     @isTest
-    private static void getActiveRelationshipTypesComboboxVModelException() {
+    private static void getRelationshipLookupComboboxVModelException() {
         RelationshipLookupsVMapper.instance = new STUB_ExceptionRelationshipLookupsVMapper();
 
         try {
             Test.startTest();
-            ComboBoxVModel activeRelTypesComboboxVModel = RelationshipSettingsController.getActiveRelationshipTypesComboboxVModel();
+            ComboBoxVModel activeRelTypesComboboxVModel = RelationshipSettingsController.getRelationshipLookupComboboxVModel(
+                ''
+            );
             Test.stopTest();
             System.assert(false, 'should always throw an exception');
         } catch (AuraHandledException e) {
@@ -463,7 +467,7 @@ private with sharing class RelationshipSettingsController_TEST {
             return new RelationshipLookupsVModel(relationshipLookupVModelList);
         }
 
-        public override ComboBoxVModel getActiveRelationshipTypesComboboxVModel() {
+        public override ComboBoxVModel getRelationshipLookupComboboxVModel(String relationshipLookupName) {
             List<ComboboxValueVModel> relationshipLookupComboboxValueVModelsList = new List<ComboboxValueVModel>();
             relationshipLookupComboboxValueVModelsList.add(
                 new ComboboxValueVModel('ActiveRelationshipLabel1', 'ActiveRelationshipName1')
@@ -496,7 +500,7 @@ private with sharing class RelationshipSettingsController_TEST {
             throw new TestException('Exception encountered!');
         }
 
-        public override ComboBoxVModel getActiveRelationshipTypesComboboxVModel() {
+        public override ComboBoxVModel getRelationshipLookupComboboxVModel(String relationshipLookupName) {
             throw new TestException('Exception encountered!');
         }
 

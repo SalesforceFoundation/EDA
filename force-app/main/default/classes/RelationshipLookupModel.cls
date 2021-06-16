@@ -25,14 +25,13 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
-* @description Model class for Relationship Lookup
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group
+ * @group-content ../../ApexDocContent/
+ * @description Model class for Relationship Lookup
+ */
 public with sharing class RelationshipLookupModel {
-
     // Properties for this model
     public String name;
     public Boolean isActive;
@@ -41,11 +40,17 @@ public with sharing class RelationshipLookupModel {
     public String neutralValue;
 
     // Constructor to set the values
-    public RelationshipLookupModel(String name, Boolean isActive, String femaleValue, String maleValue, String neutralValue) {
-        this.name = (String.isBlank(name) ? '""' : name );
+    public RelationshipLookupModel(
+        String name,
+        Boolean isActive,
+        String femaleValue,
+        String maleValue,
+        String neutralValue
+    ) {
+        this.name = name;
         this.isActive = isActive;
-        this.femaleValue = (String.isBlank(femaleValue) ? '""' : femaleValue );
-        this.maleValue = (String.isBlank(maleValue) ? '""' : maleValue );
+        this.femaleValue = (String.isBlank(femaleValue) ? '""' : femaleValue);
+        this.maleValue = (String.isBlank(maleValue) ? '""' : maleValue);
         this.neutralValue = (String.isBlank(neutralValue) ? '""' : neutralValue);
     }
 }

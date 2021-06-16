@@ -21,7 +21,7 @@ import stgDuplicateRelationshipsHelp from "@salesforce/label/c.stgDuplicateRelat
 // Reciprocal Relationship Mappings Labels
 import stgTabReciprocalSettings from "@salesforce/label/c.stgTabReciprocalSettings";
 import RelationshipsLookupDescription from "@salesforce/label/c.RelationshipsLookupDescription";
-import stgBtnAddSetting from "@salesforce/label/c.stgBtnAddSetting";
+import stgBtnAddMapping from "@salesforce/label/c.stgBtnAddMapping";
 import stgColRelationshipName from "@salesforce/label/c.stgColRelationshipName";
 import stgColFemale from "@salesforce/label/c.stgColFemale";
 import stgColMale from "@salesforce/label/c.stgColMale";
@@ -56,8 +56,8 @@ export default class relationshipSettings extends LightningElement {
         duplicateRelationshipDesc: stgDuplicateRelationshipsHelp,
         relationshipMappingsTitle: stgTabReciprocalSettings,
         relationshipMappingsDescription: RelationshipsLookupDescription,
-        newButton: stgBtnAddSetting,
-        newButtonA11y: stgBtnAddSetting,
+        newButton: stgBtnAddMapping,
+        newButtonA11y: stgBtnAddMapping,
         createSuccessMessage: stgReciprocalRelNewSuccess,
         editSuccessMessage: stgReciprocalRelEditSuccess,
         deleteSuccessMessage: stgReciprocalRelDeleteSuccess,
