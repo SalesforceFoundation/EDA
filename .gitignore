@@ -1,4 +1,28 @@
+# SFDX
+/.sfdx
+
+# CCI
 .cci
+robot/EDA/results/
+robot/HEDAP/results/
+unpackaged/*/*/*.zip
+unpackaged/namespaced_zipped
+unpackaged/zipped
+unpackaged_stage
+packaged
+test_results.json
+test_results.xml
+/uninstall
+/uninstallsrc
+/installdeploy
+/installedPackages
+
+# Editors
+**/.vscode/
+
+# Referenced Packages
+.*.swp
+*.pyc
 .idea
 .externalToolBuilders
 .appcloud
@@ -7,24 +31,26 @@
 .gitignore
 build.properties
 salesforce.schema
-Referenced Packages
-/.sfdx
-**/.vscode/
-/uninstall
-/uninstallsrc
-/installdeploy
-/installedPackages
-test_results.json
-test_results.xml
-robot/HEDAP/results/
-unpackaged/*/*/*.zip
-unpackaged/namespaced_zipped
-unpackaged/zipped
-unpackaged_stage
-packaged
-.*.swp
-*.pyc
-robot/EDA/results/
+
+# Jest coverage
+coverage/
+
+# LWC linting
+**/lwc/.eslintrc.json
+**/lwc/jsconfig.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Eslint cache
+.eslintcache
 
 # macOS Specific Ignores
 # https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
@@ -32,5 +58,8 @@ robot/EDA/results/
 .AppleDouble
 .LSOverride
 
-# Dependency directories
-node_modules/
+# Windows system files
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/

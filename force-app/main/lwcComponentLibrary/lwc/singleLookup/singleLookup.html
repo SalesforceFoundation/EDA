@@ -1,0 +1,113 @@
+<template>
+    <div class="slds-form-element">
+        <label id="lookupLabel" class="slds-form-element__label" if:true={label} for="lookupInput">
+            <abbr class="slds-required" if:true={required}>*</abbr>{label}
+        </label>
+        <div class="slds-form-element__control">
+            <div class={containerClass}>
+                <div class={comboboxClass} aria-expanded={isExpanded} aria-haspopup="listbox" role="combobox">
+                    <div class={comboboxFormElementClass} role="none">
+                        <template if:true={value}>
+                            <lightning-icon
+                                if:false={value.imageUrl}
+                                class="slds-input__icon slds-input__icon_left"
+                                icon-name={value.icon}
+                                size="x-small"
+                            >
+                            </lightning-icon>
+                            <lightning-avatar
+                                if:true={value.imageUrl}
+                                class="slds-input__icon slds-input__icon_left"
+                                src={value.imageUrl}
+                                alternative-text={value.alternativeText}
+                                initials={value.initials}
+                                fallback-icon-name={value.icon}
+                                size="small"
+                                variant="circle"
+                            >
+                            </lightning-avatar
+                        ></template>
+                        <input
+                            type="text"
+                            class={inputClass}
+                            id="lookupInput"
+                            aria-autocomplete="list"
+                            aria-controls="lookupListbox"
+                            aria-labelledby="lookupLabel"
+                            aria-owns="lookupListbox"
+                            autocomplete="off"
+                            role="textbox"
+                            placeholder={placeholder}
+                            value={inputValue}
+                            disabled={disabled}
+                            onblur={handleBlur}
+                            onfocus={handleFocus}
+                            oninput={handleInput}
+                            onkeydown={handleKeydown}
+                            data-qa-locator={qaLocator}
+                        />
+                        <lightning-icon
+                            if:false={value}
+                            class="slds-input__icon slds-input__icon_right searchIcon"
+                            icon-name="utility:search"
+                            size="x-small"
+                        >
+                        </lightning-icon>
+                        <!--Button Icon doesn't play nicely here-->
+                        <button
+                            if:true={showClearSelection}
+                            title={removeLabel}
+                            class="slds-button slds-button_icon slds-input__icon slds-input__icon_right"
+                            onclick={handleRemoveButtonClick}
+                        >
+                            <lightning-icon
+                                class="slds-button__icon"
+                                icon-name="utility:close"
+                                alternative-text={removeLabel}
+                                size="x-small"
+                            >
+                            </lightning-icon>
+                        </button>
+                    </div>
+                    <div
+                        id="lookupListbox"
+                        class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid"
+                        if:true={showOptions}
+                        role="listbox"
+                        onmousedown={handleMouseDown}
+                        onmouseup={handleMouseUp}
+                        aria-labelledby="lookupLabel"
+                    >
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <li role="presentation" class="slds-listbox__item">
+                                <div
+                                    class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_term slds-has-focus"
+                                    role="option"
+                                >
+                                    <span class="slds-media__figure slds-listbox__option-icon">
+                                        <lightning-icon icon-name="utility:search" size="small"> </lightning-icon>
+                                    </span>
+                                    <span class="slds-media__body">
+                                        <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                            {inputValue}
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                            <template for:each={options} for:item="inputOption">
+                                <c-single-lookup-option
+                                    key={inputOption.index}
+                                    view-model={inputOption}
+                                    onblur={handleBlur}
+                                    onfocus={handleFocus}
+                                    onoptionconfirm={handleOptionConfirm}
+                                    onoptionview={handleOptionSelection}
+                                ></c-single-lookup-option>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

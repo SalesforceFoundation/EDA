@@ -620,6 +620,48 @@ public with sharing class HierarchySettingsService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify that the updateHierarchySetting method updates the Hierarchy Settings fields for
+     * updates to fields with TextArea type.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void updateHierarchySettingsWithSingleValuesValidTextArea() {
+        PermissionSetMapper.instance = new STUB_PermissionSetMapperHasAccess();
+        HierarchySettingsMapper.instance = new STUB_HierarchySettingsMapper();
+
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(Error_Notifications_To__c = 'Original Value')
+        );
+
+        Map<String, String> singleValueSettingUpdatesByName = new Map<String, String>{
+            'Error_Notifications_To__c' => 'Updated Value'
+        };
+
+        HierarchySettingsChangesVModel hierarchySettingsChangesVModelStringValues = new HierarchySettingsChangesVModel(
+            singleValueSettingUpdatesByName,
+            new Map<String, List<String>>()
+        );
+
+        HierarchySettingsService hierarchySettingsServiceInstance = HierarchySettingsService.getInstance();
+
+        Boolean updateResult;
+        Test.startTest();
+        updateResult = hierarchySettingsServiceInstance.updateHierarchySettings(
+            hierarchySettingsChangesVModelStringValues
+        );
+        Test.stopTest();
+
+        System.assertEquals(true, updateResult, 'Update to text area value should complete successfully.');
+
+        Hierarchy_Settings__c updatedHierarchySettings = UTIL_CustomSettings_API.getSettings();
+
+        System.assertEquals(
+            'Updated Value',
+            updatedHierarchySettings.Error_Notifications_To__c,
+            'Error Notifications To value should be updated.'
+        );
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify that the denormalizeListSettingChange returns a semicolon-delimited string containing
      * all values in a specified list of strings.
      ***************************************************************************************************************************/
