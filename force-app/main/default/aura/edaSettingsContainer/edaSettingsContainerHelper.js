@@ -37,6 +37,25 @@
                 autoProgramEnrollmentRole
             );
     },
+    openRelationshipMappingModal: function (component, eventParameters) {
+        const actionName = eventParameters.actionName;
+        const relationshipMappingName = eventParameters.relationshipMappingName;
+        const femaleValue = eventParameters.femaleValue;
+        const maleValue = eventParameters.maleValue;
+        const neutralValue = eventParameters.neutralValue;
+        const isActive = eventParameters.isActive;
+
+        component
+            .find("relationshipMappingModal")
+            .openRelationshipMappingModal(
+                actionName,
+                relationshipMappingName,
+                femaleValue,
+                maleValue,
+                neutralValue,
+                isActive
+            );
+    },
     openSettingsBatchJobModal: function (component, eventParameters) {
         const batchJobToRun = eventParameters.batchJobToRun;
         component.find("settingBatchJobModal").openSettingsBatchJobModal(batchJobToRun);

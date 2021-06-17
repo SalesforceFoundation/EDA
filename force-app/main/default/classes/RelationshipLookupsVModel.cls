@@ -4,13 +4,13 @@
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     * Redistributions of source code must retain the above copyright
-    notice, this List of conditions and the following disclaimer.
+      notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
-    notice, this List of conditions and the following disclaimer in the
-    documentation and/or other materials provided with the distribution.
+      notice, this List of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
     * Neither the name of Salesforce.org nor the names of
-    its contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
+      its contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -29,28 +29,17 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Model class for Relationship Lookup
+ * @description Model to represent data required for Relationship Mappings.
  */
-public with sharing class RelationshipLookupModel {
-    // Properties for this model
-    public String name;
-    public Boolean isActive;
-    public String femaleValue;
-    public String maleValue;
-    public String neutralValue;
+public with sharing class RelationshipLookupsVModel {
+    @AuraEnabled
+    public List<RelationshipLookupVModel> relationshipLookups { get; private set; }
 
-    // Constructor to set the values
-    public RelationshipLookupModel(
-        String name,
-        Boolean isActive,
-        String femaleValue,
-        String maleValue,
-        String neutralValue
-    ) {
-        this.name = name;
-        this.isActive = isActive;
-        this.femaleValue = (String.isBlank(femaleValue) ? '""' : femaleValue);
-        this.maleValue = (String.isBlank(maleValue) ? '""' : maleValue);
-        this.neutralValue = (String.isBlank(neutralValue) ? '""' : neutralValue);
+    /**
+     * @description RelationshipLookupsVModel constructor
+     * @param  relationshipLookupVModelList A list of relationship mapping VModels
+     */
+    public RelationshipLookupsVModel(List<RelationshipLookupVModel> relationshipLookupVModelList) {
+        this.relationshipLookups = relationshipLookupVModelList;
     }
 }

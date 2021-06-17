@@ -3678,7 +3678,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the Reciprocal Relationships setting</shortDescription>
-        <value>Reciprocal Settings</value>
+        <value>Reciprocal Relationships</value>
     </labels>
     <labels>
         <fullName>stgTabRel</fullName>

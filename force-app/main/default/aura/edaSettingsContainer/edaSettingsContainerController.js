@@ -12,6 +12,11 @@
         const eventParameters = event.getParams();
         helper.openAutoEnrollmentMappingModal(component, eventParameters);
     },
+    handleRelationshipMappingModalRequest: function (component, event, helper) {
+        event.stopPropagation();
+        const eventParameters = event.getParams();
+        helper.openRelationshipMappingModal(component, eventParameters);
+    },
     settingsBatchJobModalRequestHandler: function (component, event, helper) {
         event.stopPropagation();
         const eventParameters = event.getParams();

@@ -3,6 +3,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
     <c:primaryAffiliationsModalOpener aura:id="primaryAffiliationsModal"></c:primaryAffiliationsModalOpener>
     <c:autoEnrollmentMappingModalOpener aura:id="autoEnrollmentMappingModal"></c:autoEnrollmentMappingModalOpener>
+    <c:relationshipMappingModalOpener aura:id="relationshipMappingModal"></c:relationshipMappingModalOpener>
     <c:settingsBatchJobModalOpener aura:id="settingBatchJobModal"></c:settingsBatchJobModalOpener>
     <aura:handler name="modalSaveEvent" event="c:modalSaveEvent" action="{!c.handleModalSaveEvent}" />
     <c:edaSettings
@@ -10,6 +11,7 @@
         pageReference="{!v.pageReference}"
         onprimaryaffiliationmodalrequest="{!c.primaryAffiliationModalRequestHandler}"
         onautoenrollmentmodalrequest="{!c.handleAutoEnrollmentModalRequest}"
+        onrelationshipmappingmodalrequest="{!c.handleRelationshipMappingModalRequest}"
         onsettingsbatchjobmodalrequest="{!c.settingsBatchJobModalRequestHandler}"
     />
 </aura:component>

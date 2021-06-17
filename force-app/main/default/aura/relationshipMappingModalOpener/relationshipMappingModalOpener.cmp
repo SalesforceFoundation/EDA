@@ -1,0 +1,23 @@
+<aura:component>
+    <aura:attribute name="relationshipMappingAction" type="String" />
+    <aura:attribute name="relationshipMappingName" type="String" />
+    <aura:attribute name="oldRelationshipMappingName" type="String" />
+    <aura:attribute name="femaleValue" type="String" />
+    <aura:attribute name="maleValue" type="String" />
+    <aura:attribute name="neutralValue" type="String" />
+    <aura:attribute name="isActive" type="Boolean" />
+
+    <aura:handler name="modalDataChangeEventHandler" event="c:modalDataChangeEvent" action="{!c.handleModalDataChangeEvent}" />
+    <aura:handler name="modalFooterEventHandler" event="c:customModalFooterEvent" action="{!c.handleModalFooterEvent}" />
+    <aura:registerEvent name="modalSaveEvent" type="c:modalSaveEvent" />
+    <lightning:overlayLibrary aura:id="edaOverlayLibrary" />
+
+    <aura:method name="openRelationshipMappingModal" action="{!c.openRelationshipMappingModal}">
+        <aura:attribute name="relationshipMappingAction" type="String" />
+        <aura:attribute name="relationshipMappingName" type="String" />
+        <aura:attribute name="femaleValue" type="String" />
+        <aura:attribute name="maleValue" type="String" />
+        <aura:attribute name="neutralValue" type="String" />
+        <aura:attribute name="isActive" type="Boolean" />
+    </aura:method>
+</aura:component>	
