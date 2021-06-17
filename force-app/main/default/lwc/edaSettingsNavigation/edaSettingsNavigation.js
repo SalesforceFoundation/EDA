@@ -47,7 +47,7 @@ import stgDefaultFacultyTypeTitle from "@salesforce/label/c.stgDefaultFacultyTyp
 import stgDuplicateRelationships from "@salesforce/label/c.stgDuplicateRelationships";
 import stgTitleReciMethod from "@salesforce/label/c.stgTitleReciMethod";
 import stgRelationshipSettingsNav from "@salesforce/label/c.stgRelationshipSettingsNav";
-import stgTitleNewReciSetting from "@salesforce/label/c.stgTitleNewReciSetting";
+import stgTabReciprocalSettings from "@salesforce/label/c.stgTabReciprocalSettings";
 //System Settings Labels
 import stgSystemSettingsNav from "@salesforce/label/c.stgSystemSettingsNav";
 //System Tools Labels
@@ -131,7 +131,7 @@ export default class EdaSettingsNavigation extends LightningElement {
         relationshipSettings: {
             preventAutoCreatedDuplicateRelationships: stgDuplicateRelationships,
             reciprocalMethod: stgTitleReciMethod,
-            reciprocalRelationshipMappings: stgTitleNewReciSetting,
+            reciprocalRelationshipMappings: stgTabReciprocalSettings,
             relationshipSettings: stgRelationshipSettingsNav,
         },
         systemTools: {

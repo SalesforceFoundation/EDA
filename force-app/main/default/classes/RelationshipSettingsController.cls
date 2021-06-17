@@ -46,11 +46,152 @@ public with sharing class RelationshipSettingsController {
         }
     }
 
+    /************************************************************************************
+     * @description Retrieve an RelationshipLookupsVModel represeting the current values
+     * specified for Reciprocal Relationship mappings.
+     * @return An RelationshipLookupsVModel
+     ************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static RelationshipLookupsVModel getRelationshipLookupsVModel() {
+        try {
+            return RelationshipSettingsController.locateRelationshipLookupsVMapper().getRelationshipLookupsVModel();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /**
+     * @description gets all active Relationship Type picklist values for FemaleValue, MaleValue and NeutralValue
+     * @param  relationshipLookupName Specifies and existing relationship lookup value. Should be an empty string for a new record
+     * @return                        A ComboBoxVModel
+     */
+    @AuraEnabled(cacheable=true)
+    public static ComboBoxVModel getRelationshipLookupComboboxVModel(String relationshipLookupName) {
+        try {
+            return RelationshipSettingsController.locateRelationshipLookupsVMapper()
+                .getRelationshipLookupComboboxVModel(relationshipLookupName);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /**
+     * @description Gets picklist values for a relationship name lookup.
+     * For a new record returns all active unmapped Relationship Type picklist values
+     * For an existing record returns all active Relationship Type picklist values plus the existing one if it is not active
+     * @param  relationshipLookupName Specifies and existing relationship lookup name. Should be an empty string for a new record
+     * @return                        A ComboBoxVModel
+     */
+    @AuraEnabled
+    public static ComboBoxVModel getRelationshipLookupNameComboboxVModel(String relationshipLookupName) {
+        try {
+            return RelationshipSettingsController.locateRelationshipLookupsVMapper()
+                .getRelationshipLookupNameComboboxVModel(relationshipLookupName);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /**
+     * @description inserts a relationship lookup
+     * @param  relationshipLookupName relationship lookup name
+     * @param  femaleValue            female relationship type value
+     * @param  maleValue              male relationship type value
+     * @param  neutralValue           neutral relationship type value
+     * @param  isActive               specifies if the lookup is active
+     * @return                        inserted relationship lookup name
+     */
+    @AuraEnabled
+    public static String createRelationshipLookup(
+        String relationshipLookupName,
+        String femaleValue,
+        String maleValue,
+        String neutralValue,
+        Boolean isActive
+    ) {
+        try {
+            return RelationshipSettingsController.locateRelationshipLookupSettingsService()
+                .insertRelationshipLookup(relationshipLookupName, femaleValue, maleValue, neutralValue, isActive)
+                .name;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /**
+     * @description updates a relationship lookup
+     * @param  oldRelationshipLookupName old relationship lookup name
+     * @param  newRelationshipLookupName new relationship lookup name
+     * @param  femaleValue               female relationship type value
+     * @param  maleValue                 male relationship type value
+     * @param  neutralValue              neutral relationship type value
+     * @param  isActive                  specifies if the lookup is active
+     * @return                           updated relationship lookup name
+     */
+    @AuraEnabled
+    public static String updateRelationshipLookup(
+        String oldRelationshipLookupName,
+        String newRelationshipLookupName,
+        String femaleValue,
+        String maleValue,
+        String neutralValue,
+        Boolean isActive
+    ) {
+        try {
+            return RelationshipSettingsController.locateRelationshipLookupSettingsService()
+                .updateRelationshipLookup(
+                    oldRelationshipLookupName,
+                    newRelationshipLookupName,
+                    femaleValue,
+                    maleValue,
+                    neutralValue,
+                    isActive
+                )
+                .name;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /**
+     * @description deletes a relationship lookup
+     * @param  relationshipLookupName relationship lookup name to delete
+     * @return                        deleted relationship lookup name or null if the record was not found
+     */
+    @AuraEnabled
+    public static String deleteRelationshipLookup(String relationshipLookupName) {
+        try {
+            RelationshipLookupModel deletedRelationshipLookupModel = RelationshipSettingsController.locateRelationshipLookupSettingsService()
+                .deleteRelationshipLookup(relationshipLookupName);
+            return deletedRelationshipLookupModel == null ? null : deletedRelationshipLookupModel.name;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /**********************************************************************************
      * @description Locates and returns an instance of RelationshipSettingsVMapper.
      **********************************************************************************/
     @TestVisible
     private static RelationshipSettingsVMapper locateRelationshipSettingsVMapper() {
         return RelationshipSettingsVMapper.getInstance();
+    }
+
+    /**********************************************************************************
+     * @description Locates and returns an instance of RelationshipLookupsVMapper.
+     * @return An instance of RelationshipLookupsVMapper
+     **********************************************************************************/
+    @TestVisible
+    private static RelationshipLookupsVMapper locateRelationshipLookupsVMapper() {
+        return RelationshipLookupsVMapper.getInstance();
+    }
+
+    /*****************************************************************************
+     * @description Retrieve an instance of the RelationshipLookupSettingsService class.
+     * @return An instance of RelationshipLookupSettingsService.
+     *****************************************************************************/
+    @TestVisible
+    private static RelationshipLookupSettingsService locateRelationshipLookupSettingsService() {
+        return RelationshipLookupSettingsService.getInstance();
     }
 }
