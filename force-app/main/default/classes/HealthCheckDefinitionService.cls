@@ -25,29 +25,44 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2020
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Service class for Health Check
-*/
-public virtual with sharing class HealthCheckDefinitionService {
-
+ * @author Salesforce.org
+ * @date 2020
+ * @group Health Check
+ * @group-content ../../ApexDocContent/HealthCheck.htm
+ * @description Service class for Health Check
+ */
+public virtual with sharing class HealthCheckDefinitionService implements Callable {
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static HealthCheckDefinitionService instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected HealthCheckDefinitionService() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected HealthCheckDefinitionService() {
+    }
+
+    public Object call(String action, Map<String, Object> args) {
+        /*if (action != 'Health Check Definition') {
+            throw new InvalidParameterValueException('This isn\'t a valid action!');
+        }
+
+        if (args.get('Api Version') == null) {
+            throw new InvalidParameterValueException('You gotta have an API version!');
+        }*/
+
+        List<HealthCheckDefinitionModel> healthCheckDefinitionModelList = HealthCheckDefinitionService.getInstance()
+            .getHealthCheckDefinitionModels();
+
+        return JSON.serialize(healthCheckDefinitionModelList);
+    }
 
     /******************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckDefinitionService.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of HealthCheckDefinitionService.
+     ******************************************************************************/
     public static HealthCheckDefinitionService getInstance() {
         if (instance == null) {
             instance = new HealthCheckDefinitionService();
@@ -57,17 +72,17 @@ public virtual with sharing class HealthCheckDefinitionService {
     }
 
     /******************************************************************************
-    * @description Get a list of Health Check Definition models
-    * @return A list of HealthCheckDefinitionModel.
-    ******************************************************************************/
+     * @description Get a list of Health Check Definition models
+     * @return A list of HealthCheckDefinitionModel.
+     ******************************************************************************/
     public virtual List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
         return this.locateHealthCheckDefinitionMapper().getHealthCheckDefinitionModels();
     }
 
     /******************************************************************************
-    * @description Retrieves an instance of the HealthCheckDefinitionMapper class.
-    * @return An instance of HealthCheckDefinitionMapper.
-    ******************************************************************************/
+     * @description Retrieves an instance of the HealthCheckDefinitionMapper class.
+     * @return An instance of HealthCheckDefinitionMapper.
+     ******************************************************************************/
     @TestVisible
     private HealthCheckDefinitionMapper locateHealthCheckDefinitionMapper() {
         return HealthCheckDefinitionMapper.getInstance();

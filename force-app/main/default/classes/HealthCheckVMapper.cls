@@ -25,30 +25,30 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Class to generate a view model for Health Checks to be run and retrieves date of
-* last run.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group Health Check
+ * @group-content ../../ApexDocContent/HealthCheck.htm
+ * @description Class to generate a view model for Health Checks to be run and retrieves date of
+ * last run.
+ */
 public virtual with sharing class HealthCheckVMapper {
-
     /**********************************************************************************
-    * @description Instance for Singleton Pattern
-    **********************************************************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************************************************/
     @TestVisible
     private static HealthCheckVMapper instance;
 
     /**********************************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************************/
-    protected HealthCheckVMapper() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************************/
+    protected HealthCheckVMapper() {
+    }
 
     /**********************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckVMapper.
-    **********************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of HealthCheckVMapper.
+     **********************************************************************************/
     public static HealthCheckVMapper getInstance() {
         if (instance == null) {
             instance = new HealthCheckVMapper();
@@ -58,44 +58,46 @@ public virtual with sharing class HealthCheckVMapper {
     }
 
     /**********************************************************************************
-    * @description Locates and returns an instance of FeatureParameterService 
-    **********************************************************************************/
+     * @description Locates and returns an instance of FeatureParameterService
+     **********************************************************************************/
     @TestVisible
     private FeatureParameterService locateFeatureParameterService() {
         return FeatureParameterService.getInstance();
     }
 
     /**********************************************************************************
-    * @description Locates and returns an instance of HealthCheckDefinitionService 
-    **********************************************************************************/
+     * @description Locates and returns an instance of HealthCheckDefinitionService
+     **********************************************************************************/
     @TestVisible
     private HealthCheckDefinitionService locateHealthCheckDefinitionService() {
         return HealthCheckDefinitionService.getInstance();
     }
 
     /**********************************************************************************
-    * @description Retrieve a view model representing a health check to run.
-    * @return A HealthCheckVModel representing details of a health check to be run.
-    **********************************************************************************/
+     * @description Retrieve a view model representing a health check to run.
+     * @return A HealthCheckVModel representing details of a health check to be run.
+     **********************************************************************************/
     public virtual HealthCheckVModel getHealthCheckViewModel() {
         try {
             String lastRunDate = '';
 
-            FeatureParameterDateModel featureParamDateModel = 
-               (FeatureParameterDateModel)this.locateFeatureParameterService().getFeatureParameterModel('SettingsHealthCheckLastRunDate');
+            FeatureParameterDateModel featureParamDateModel = (FeatureParameterDateModel) this.locateFeatureParameterService()
+                .getFeatureParameterModel('SettingsHealthCheckLastRunDate');
 
             if (featureParamDateModel.value != date.newinstance(2015, 12, 31)) {
                 lastRunDate = featureParamDateModel.convertToString();
             }
 
             List<HealthCheckDefinitionVModel> healthCheckDefViewModelsList = new List<HealthCheckDefinitionVModel>(); // list to store VIEW MODELS
-            List<HealthCheckDefinitionModel> healthCheckDefinitionList = this.locateHealthCheckDefinitionService().getHealthCheckDefinitionModels(); // retrieve models
-            
+            List<HealthCheckDefinitionModel> healthCheckDefinitionList = this.getHealthCheckDefinitionList();
+
             for (HealthCheckDefinitionModel healthCheckDefinitionModel : healthCheckDefinitionList) {
                 //Generate view model for current health check definition model
-                HealthCheckDefinitionVModel healthCheckDefinitionVModel = new HealthCheckDefinitionVModel(healthCheckDefinitionModel.name,
-                                                                                                    healthCheckDefinitionModel.className,
-                                                                                                    healthCheckDefinitionModel.namespace);
+                HealthCheckDefinitionVModel healthCheckDefinitionVModel = new HealthCheckDefinitionVModel(
+                    healthCheckDefinitionModel.name,
+                    healthCheckDefinitionModel.className,
+                    healthCheckDefinitionModel.namespace
+                );
 
                 healthCheckDefViewModelsList.add(healthCheckDefinitionVModel);
             }
@@ -103,9 +105,67 @@ public virtual with sharing class HealthCheckVMapper {
             Integer numberOfRuns = healthCheckDefinitionList.size();
 
             return new HealthCheckVModel(lastRunDate, numberOfRuns, healthCheckDefViewModelsList);
-        }
-        catch (FeatureParameterMapper.FeatureParameterMapperException e) {
+        } catch (FeatureParameterMapper.FeatureParameterMapperException e) {
             throw new AuraHandledException(Label.stgHealthCheckErrorLastRunDate);
+        }
+    }
+
+    private List<HealthCheckDefinitionModel> getHealthCheckDefinitionList() {
+        //Totally faking a product registry model here
+        List<ProductRegistryModel> productRegistryModelList = this.getProductRegistryModels();
+
+        List<HealthCheckDefinitionModel> healthCheckDefinitionModelList = new List<HealthCheckDefinitionModel>();
+
+        for (ProductRegistryModel productRegistryModel : productRegistryModelList) {
+            try {
+                //This can go wrong, so we want to catch for this kind of exception
+                Type classType = Type.forName(productRegistryModel.namespace, productRegistryModel.classname);
+
+                //This can *also* go wrong!
+                String productHealthCheckDefinitionJSON = (String) ((Callable) classType.newInstance())
+                    .call(
+                        'Health Check Definition',
+                        new Map<String, Object>{ 'Api Verison' => productRegistryModel.apiVersion }
+                    );
+
+                List<HealthCheckDefinitionModel> healthCheckDefinitionModelListFromProduct = (List<HealthCheckDefinitionModel>) JSON.deserialize(
+                    productHealthCheckDefinitionJSON,
+                    List<HealthCheckDefinitionModel>.class
+                );
+            } catch (InvalidParameterValueException ipve) {
+                //We expect this if the pattern is followed and something goes wrong
+                //We can swallow this at the Health Check Definition Model Level
+            } catch (Exception e) {
+                //This is for all the unexpected funsies
+                //We can swallow this at the Health Check Definition Model Level
+            }
+        }
+        return this.locateHealthCheckDefinitionService().getHealthCheckDefinitionModels(); // retrieve models
+    }
+
+    private List<ProductRegistryModel> getProductRegistryModels() {
+        //Normally query down the stack for 'Health Check Definition' actions on a CMDT
+        return new List<ProductRegistryModel>{
+            new ProductRegistryModel(
+                'Health Check Definition',
+                UTIL_Namespace.getNamespace(),
+                'HealthCheckDefinitionService',
+                51.0
+            )
+        };
+    }
+
+    private class ProductRegistryModel {
+        public String action { get; private set; }
+        public String namespace { get; private set; }
+        public String classname { get; private set; }
+        public Decimal apiVersion { get; private set; }
+
+        public ProductRegistryModel(String action, String namespace, String classname, Decimal apiVersion) {
+            this.action = action;
+            this.namespace = namespace;
+            this.classname = classname;
+            this.apiVersion = apiVersion;
         }
     }
 }
