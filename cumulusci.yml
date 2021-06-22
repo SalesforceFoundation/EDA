@@ -706,6 +706,10 @@ plans:
         slug: install
         title: Install
         tier: primary
+        checks:
+            - when: "not tasks.check_my_domain_active()"
+              action: error
+              message: "Please enable My Domain in your org prior to installing."
         steps:
             1:
                 flow: customer_org
