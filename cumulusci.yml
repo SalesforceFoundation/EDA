@@ -11,11 +11,6 @@ project:
         repo_url: https://github.com/SalesforceFoundation/EDA
         default_branch: main
     source_format: sfdx
-    apexdoc:
-        homepage: ApexDocContent/homepage.htm
-        banner: ApexDocContent/projectheader.htm
-        branch: gh-pages
-        repo_dir: ApexDocumentation
     dependency_resolutions:
         preproduction: include_beta
 
@@ -706,6 +701,10 @@ plans:
         slug: install
         title: Install
         tier: primary
+        checks:
+            - when: "not tasks.check_my_domain_active()"
+              action: error
+              message: "Please enable My Domain in your org prior to installing."
         steps:
             1:
                 flow: customer_org
