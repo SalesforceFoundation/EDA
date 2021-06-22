@@ -25,28 +25,29 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2020
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Service class for Health Check Group.
-*/
+ * @author Salesforce.org
+ * @date 2020
+ * @group Health Check
+ * @group-content ../../ApexDocContent/HealthCheck.htm
+ * @description Service class for Health Check Group.
+ */
 public virtual with sharing class HealthCheckGroupService {
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static HealthCheckGroupService instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected HealthCheckGroupService() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected HealthCheckGroupService() {
+    }
 
     /******************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckGroupService.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of HealthCheckGroupService.
+     ******************************************************************************/
     public static HealthCheckGroupService getInstance() {
         if (instance == null) {
             instance = new HealthCheckGroupService();
@@ -56,50 +57,57 @@ public virtual with sharing class HealthCheckGroupService {
     }
 
     /********************************************************************************************
-    * @description Retrieves the HealthCheckGroup view model for a specified 
-    * HealthCheckDefinitionModel.
-    * @param  name The name corresponding to a specified HealthCheckDefinitionModel
-    * @param  className The className corresponding to a specified HealthCheckDefinitionModel
-    * @param  namespace The namespace corresponding to a specified HealthCheckDefinitionModel
-    * @return A HealthCheckGroupVModel representing the specified HealthCheckDefinitionModel.
-    ********************************************************************************************/
-    public virtual HealthCheckGroupVModel getHealthCheckGroup(String name, String className, String namespace){
-        HealthCheckGroupAPIServiceInterface healthCheckGroupServiceInterface = 
-            this.locateHealthCheckGroupAPIService(className, namespace);
+     * @description Retrieves the HealthCheckGroup view model for a specified
+     * HealthCheckDefinitionModel.
+     * @param  name The name corresponding to a specified HealthCheckDefinitionModel
+     * @param  className The className corresponding to a specified HealthCheckDefinitionModel
+     * @param  namespace The namespace corresponding to a specified HealthCheckDefinitionModel
+     * @return A HealthCheckGroupVModel representing the specified HealthCheckDefinitionModel.
+     ********************************************************************************************/
+    public virtual HealthCheckGroupVModel getHealthCheckGroup(String name, String className, String namespace) {
+        Callable healthCheckGroupServiceInterface = this.locateHealthCheckGroupAPIService(className, namespace);
 
-        return healthCheckGroupServiceInterface.getHealthCheckGroup(name);
+        String healthCheckGroupVModelJSON = (String) healthCheckGroupServiceInterface.call(
+            'Health Check',
+            new Map<String, Object>{ 'Health Check Name' => name }
+        );
+
+        HealthCheckGroupVModel healthCheckGroupVModel = (HealthCheckGroupVModel) JSON.deserialize(
+            healthCheckGroupVModelJSON,
+            HealthCheckGroupVModel.class
+        );
+        return healthCheckGroupVModel;
     }
 
     /********************************************************************************************
-    * @description Dynamically instantiates a HealthCheckGroupAPIServiceInterface based on a 
-    * specified classname and namespace.
-    * @param  className The classname of a HealthCheckDefinitionModel
-    * @param  namespace The namespace of a HealthCheckDefinitionModel
-    * @return A HealthCheckGroupAPIServiceInterface corresponding to the specified classname and namespace.
-    ********************************************************************************************/
+     * @description Dynamically instantiates a HealthCheckGroupAPIServiceInterface based on a
+     * specified classname and namespace.
+     * @param  className The classname of a HealthCheckDefinitionModel
+     * @param  namespace The namespace of a HealthCheckDefinitionModel
+     * @return A Callable corresponding to the specified classname and namespace.
+     ********************************************************************************************/
     @TestVisible
-    private virtual HealthCheckGroupAPIServiceInterface locateHealthCheckGroupAPIService(String className, String namespace){
-        HealthCheckGroupAPIServiceInterface healthCheckGroupServiceInterface;
+    private virtual Callable locateHealthCheckGroupAPIService(String className, String namespace) {
+        Callable healthCheckGroupServiceInterface;
         String nonEDANamespace = namespace;
-        
-        if (namespace.equalsIgnoreCase('hed')){
+
+        if (namespace.equalsIgnoreCase('hed')) {
             nonEDANamespace = '';
         }
 
-        try{
-            Type healthCheckGroupType = Type.forName(nonEDANamespace, className);
-            healthCheckGroupServiceInterface = (HealthCheckGroupAPIServiceInterface)healthCheckGroupType.newInstance();
-        } catch (System.NullPointerException e){
+        try {
+            Type healthCheckGroupServiceType = Type.forName(nonEDANamespace, className);
+            return healthCheckGroupServiceInterface = (Callable) healthCheckGroupServiceType.newInstance();
+        } catch (System.NullPointerException e) {
             throw new HealthCheckNotFoundException(e.getMessage());
-        } catch (System.TypeException e){
+        } catch (System.TypeException e) {
             throw new HealthCheckNotFoundException(e.getMessage());
         }
-
-        return healthCheckGroupServiceInterface.getInstance();
     }
 
     /********************************************************************************************
-    * @description A custom exception class to represent Health Check Not Found errors.
-    ********************************************************************************************/
-    public class HealthCheckNotFoundException extends Exception{}
+     * @description A custom exception class to represent Health Check Not Found errors.
+     ********************************************************************************************/
+    public class HealthCheckNotFoundException extends Exception {
+    }
 }

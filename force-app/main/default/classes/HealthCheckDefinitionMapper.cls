@@ -25,31 +25,30 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2020
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Mapper class for Health Check Definition
-*/
+ * @author Salesforce.org
+ * @date 2020
+ * @group Health Check
+ * @group-content ../../ApexDocContent/HealthCheck.htm
+ * @description Mapper class for Health Check Definition
+ */
 public virtual with sharing class HealthCheckDefinitionMapper {
-
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static HealthCheckDefinitionMapper instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected HealthCheckDefinitionMapper() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected HealthCheckDefinitionMapper() {
+    }
 
     /******************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckDefinitionMapper.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of HealthCheckDefinitionMapper.
+     ******************************************************************************/
     public static HealthCheckDefinitionMapper getInstance() {
-
         if (instance == null) {
             instance = new HealthCheckDefinitionMapper();
         }
@@ -58,41 +57,45 @@ public virtual with sharing class HealthCheckDefinitionMapper {
     }
 
     /******************************************************************************
-    * @description Get a list of Health Check Definition models to determine which
-    * Health Checks to run.
-    * @return A list of HealthCheckDefinitionModel.
-    ******************************************************************************/
+     * @description Get a list of Health Check Definition models to determine which
+     * Health Checks to run.
+     * @return A list of HealthCheckDefinitionModel.
+     ******************************************************************************/
     public virtual List<HealthCheckDefinitionModel> getHealthCheckDefinitionModels() {
         List<HealthCheckDefinitionModel> healthCheckDefinitionModelList = new List<HealthCheckDefinitionModel>();
 
         healthCheckDefinitionModelList.add(
             new HealthCheckDefinitionModel(
-                'AccountModel', 
-                'EDAHealthCheckGroupAPIService', 
-                'hed'
-            ));
+                'AccountModel',
+                'EDAHealthCheckGroupAPIService',
+                UTIL_Namespace.getNamespace()
+            )
+        );
 
         healthCheckDefinitionModelList.add(
             new HealthCheckDefinitionModel(
-                'AffiliationMappings', 
-                'EDAHealthCheckGroupAPIService', 
-                'hed'
-            ));
-        
-        healthCheckDefinitionModelList.add(
-            new HealthCheckDefinitionModel(
-                'ReciprocalRelationship', 
-                'EDAHealthCheckGroupAPIService', 
-                'hed'
-            ));
+                'AffiliationMappings',
+                'EDAHealthCheckGroupAPIService',
+                UTIL_Namespace.getNamespace()
+            )
+        );
 
         healthCheckDefinitionModelList.add(
             new HealthCheckDefinitionModel(
-                'courseconnectionsettings', 
-                'EDAHealthCheckGroupAPIService', 
-                'hed')
-            );
+                'ReciprocalRelationship',
+                'EDAHealthCheckGroupAPIService',
+                UTIL_Namespace.getNamespace()
+            )
+        );
 
-        return healthCheckDefinitionModelList;                                                                                                                             
+        healthCheckDefinitionModelList.add(
+            new HealthCheckDefinitionModel(
+                'courseconnectionsettings',
+                'EDAHealthCheckGroupAPIService',
+                UTIL_Namespace.getNamespace()
+            )
+        );
+
+        return healthCheckDefinitionModelList;
     }
 }

@@ -25,31 +25,31 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description API service class for EDA HealthCheckGroup to retrieve HealthCheckGroup view models
-* corresponding to specified HealthCheckDefinition models.
-*/
-public virtual with sharing class EDAHealthCheckGroupAPIService implements HealthCheckGroupAPIServiceInterface {
-
+ * @author Salesforce.org
+ * @date 2021
+ * @group Health Check
+ * @group-content ../../ApexDocContent/HealthCheck.htm
+ * @description API service class for EDA HealthCheckGroup to retrieve HealthCheckGroup view models
+ * corresponding to specified HealthCheckDefinition models.
+ */
+public virtual with sharing class EDAHealthCheckGroupAPIService implements Callable {
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static EDAHealthCheckGroupAPIService instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    public EDAHealthCheckGroupAPIService() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    public EDAHealthCheckGroupAPIService() {
+    }
 
     /******************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of HealthCheckGroupAPIServiceInterface.
-    ******************************************************************************/
-    public static HealthCheckGroupAPIServiceInterface getInstance() {
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of HealthCheckGroupAPIServiceInterface.
+     ******************************************************************************/
+    public static EDAHealthCheckGroupAPIService getInstance() {
         if (instance == null) {
             instance = new EDAHealthCheckGroupAPIService();
         }
@@ -58,40 +58,56 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
     }
 
     /******************************************************************************************
-    * @description Retrieves an instance of CourseConSettingHealthCheckVMapper. 
-    * @return An instance of CourseConSettingHealthCheckVMapper.
-    ******************************************************************************************/
-    @TestVisible 
-    private CourseConSettingHealthCheckVMapper locateCourseConSettingHealthCheckVMapper(){
+     * @description Retrieves an instance of CourseConSettingHealthCheckVMapper.
+     * @return An instance of CourseConSettingHealthCheckVMapper.
+     ******************************************************************************************/
+    @TestVisible
+    private CourseConSettingHealthCheckVMapper locateCourseConSettingHealthCheckVMapper() {
         return CourseConSettingHealthCheckVMapper.getInstance();
     }
 
     /******************************************************************************************
-    * @description Retrieves an instance of AccountModelHealthCheckVMapper. 
-    * @return An instance of AccountModelHealthCheckVMapper.
-    ******************************************************************************************/
-    @TestVisible 
-    private AccountModelHealthCheckVMapper locateAccountModelHealthCheckVMapper(){
+     * @description Retrieves an instance of AccountModelHealthCheckVMapper.
+     * @return An instance of AccountModelHealthCheckVMapper.
+     ******************************************************************************************/
+    @TestVisible
+    private AccountModelHealthCheckVMapper locateAccountModelHealthCheckVMapper() {
         return AccountModelHealthCheckVMapper.getInstance();
     }
 
     /******************************************************************************************
-    * @description Retrieves an instance of AffiliationMappingsHealthCheckVMapper. 
-    * @return An instance of AffiliationMappingsHealthCheckVMapper.
-    ******************************************************************************************/
-    @TestVisible 
-    private AffiliationMappingsHealthCheckVMapper locateAffiliationMappingsHealthCheckVMapper(){
+     * @description Retrieves an instance of AffiliationMappingsHealthCheckVMapper.
+     * @return An instance of AffiliationMappingsHealthCheckVMapper.
+     ******************************************************************************************/
+    @TestVisible
+    private AffiliationMappingsHealthCheckVMapper locateAffiliationMappingsHealthCheckVMapper() {
         return AffiliationMappingsHealthCheckVMapper.getInstance();
     }
 
+    public Object call(String action, Map<String, Object> args) {
+        /*if (action != 'Health Check') {
+            throw new InvalidParameterValueException('This isn\'t a valid action!');
+        }
+
+        if (args.get('Api Version') == null) {
+            throw new InvalidParameterValueException('You gotta have an API version!');
+        }*/
+
+        //Want to handle this as an illegal argument too
+        HealthCheckGroupVModel healthCheckGroupVModel = EDAHealthCheckGroupAPIService.getInstance()
+            .getHealthCheckGroup((String) args.get('Health Check Name'));
+
+        return JSON.serialize(healthCheckGroupVModel);
+    }
+
     /******************************************************************************************
-    * @description Retrieves a view model representing a health check group for a specified 
-    * HealthCheckDefinition.
-    * @param  name The name of a HealthCheckDefinition
-    * @return A HealthCheckGroupVModel representing a specified HealthCheckDefinition; null if one
-    * matching the name provided does not exist.
-    ******************************************************************************************/
-    public virtual HealthCheckGroupVModel getHealthCheckGroup(String name){
+     * @description Retrieves a view model representing a health check group for a specified
+     * HealthCheckDefinition.
+     * @param  name The name of a HealthCheckDefinition
+     * @return A HealthCheckGroupVModel representing a specified HealthCheckDefinition; null if one
+     * matching the name provided does not exist.
+     ******************************************************************************************/
+    public virtual HealthCheckGroupVModel getHealthCheckGroup(String name) {
         String lowercasedHCGroupName = name.toLowerCase();
 
         List<HealthCheckItemVModel> hlthChkItemsList = new List<HealthCheckItemVModel>();
@@ -100,28 +116,28 @@ public virtual with sharing class EDAHealthCheckGroupAPIService implements Healt
         switch on lowercasedHCGroupName {
             when 'courseconnectionsettings' {
                 return this.locateCourseConSettingHealthCheckVMapper().getHealthCheckGroup();
-            }    
+            }
             when 'accountmodel' {
                 return this.locateAccountModelHealthCheckVMapper().getHealthCheckGroup();
-            } 
+            }
             when 'affiliationmappings' {
                 return this.locateAffiliationMappingsHealthCheckVMapper().getHealthCheckGroup();
-            } 
+            }
             when 'reciprocalrelationship' {
                 return this.locateReciprocalRelHealthCheckVMapper().getHealthCheckGroup();
-            } 
+            }
             when else {
-                return null;                
+                return null;
             }
         }
     }
 
     /***************************************************************************
-    * @description Retrieves an instance of ReciprocalRelHealthCheckVMapper. 
-    * @return An instance of ReciprocalRelHealthCheckVMapper.
-    ***************************************************************************/
+     * @description Retrieves an instance of ReciprocalRelHealthCheckVMapper.
+     * @return An instance of ReciprocalRelHealthCheckVMapper.
+     ***************************************************************************/
     @TestVisible
-    private ReciprocalRelHealthCheckVMapper locateReciprocalRelHealthCheckVMapper(){
+    private ReciprocalRelHealthCheckVMapper locateReciprocalRelHealthCheckVMapper() {
         return ReciprocalRelHealthCheckVMapper.getInstance();
     }
 }
