@@ -15,11 +15,12 @@ Suite Teardown  Run Keywords
 Reset accounts and contacts settings
     [Documentation]             Reverts the changes made to the account record type. This is added
     ...                         to clean the data so this suite runs clean on every run.
-    Go to EDA settings tab                      Accounts and Contacts
-    Click action button on EDA settings page    Edit
-    Update account contact record type
-    ...                       Administrative Account Record Type=Administrative
-    Click action button on EDA settings page    Save
+    Go to education cloud settings
+    Select settings from navigation pane        Account Model
+    Click action button on new EDA settings     Edit
+    Update settings dropdown value
+    ...                                         Administrative Account Record Type=Administrative
+    Click action button on new EDA settings     Save
 
 *** Test Cases ***
 Verify account model health check settings checks pass
@@ -38,11 +39,12 @@ Verify account model health check settings checks pass
 Verify account model health check settings checks fail and display correct Recommended Fix text
     [Documentation]         Verifies the failure status of the Account Model test
     [tags]                  unstable        rbt:high        W-8977007
-    Go to EDA settings tab          Accounts and Contacts
-    Click action button on EDA settings page    Edit
-    Update account contact record type
-    ...                       Administrative Account Record Type=Household Account
-    Click action button on EDA settings page    Save
+    Go to education cloud settings
+    Select settings from navigation pane        Account Model
+    Click action button on new EDA settings     Edit
+    Update settings dropdown value
+    ...                                         Administrative Account Record Type=Household Account
+    Click action button on new EDA settings     Save
     Reload Page
     Go to settings health check
     Current page should be                      Home        Settings Health Check

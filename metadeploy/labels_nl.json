@@ -55,6 +55,10 @@
         "Deploy Einstein Analytics Templates": {
             "message": "Einstein Analytics-sjablonen implementeren",
             "description": "title of installation step"
+        },
+        "Health Check": {
+            "message": "Controle van de toestand",
+            "description": "title of installation step"
         }
     },
     "plan:ra_einstein_template": {

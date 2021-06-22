@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Graduation_Year__c</name>
     <help>The year the student is expected to graduate from this Program.</help>
     <label>Class Year</label>
+    <name>Graduation_Year__c</name>
 </CustomFieldTranslation>

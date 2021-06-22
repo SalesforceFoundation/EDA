@@ -1,0 +1,32 @@
+<template>
+    <li role="presentation" class="slds-listbox__item" onmouseover={handleMouseOver}>
+        <div class={lookupOptionClass} id="lookup-option" role="option" onclick={handleClick}>
+            <span class="slds-media__figure">
+                <lightning-icon
+                    if:false={viewModel.imageUrl}
+                    icon-name={viewModel.icon}
+                    alternative-text={viewModel.alternativeText}
+                    size="small"
+                ></lightning-icon>
+                <lightning-avatar
+                    if:true={viewModel.imageUrl}
+                    src={viewModel.imageUrl}
+                    alternative-text={viewModel.alternativeText}
+                    initials={viewModel.initials}
+                    fallback-icon-name={viewModel.icon}
+                    size="small"
+                    variant="circle"
+                >
+                </lightning-avatar>
+            </span>
+            <span class="slds-media__body">
+                <span class="slds-listbox__option-text slds-listbox__option-text_entity" data-qa-locator={qaLocator}>
+                    {viewModel.label}
+                </span>
+                <template if:true={viewModel.meta}>
+                    <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">{viewModel.meta}</span>
+                </template>
+            </span>
+        </div>
+    </li>
+</template>

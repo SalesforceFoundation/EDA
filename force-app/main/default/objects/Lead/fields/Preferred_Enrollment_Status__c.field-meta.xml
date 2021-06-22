@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Preferred_Enrollment_Status__c</fullName>
+    <description>The Lead&apos;s preferred enrollment status.</description>
+    <externalId>false</externalId>
+    <label>Preferred Enrollment Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Full-Time</fullName>
+                <default>false</default>
+                <label>Full-Time</label>
+            </value>
+            <value>
+                <fullName>Part-Time</fullName>
+                <default>false</default>
+                <label>Part-Time</label>
+            </value>
+            <value>
+                <fullName>Undecided</fullName>
+                <default>false</default>
+                <label>Undecided</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

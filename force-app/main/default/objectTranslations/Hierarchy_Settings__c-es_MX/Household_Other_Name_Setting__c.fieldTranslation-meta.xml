@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Household_Other_Name_Setting__c</name>
     <help>Almacena información sobre el formato de nomenclatura de cuenta doméstica.</help>
     <label>Configuración de otro nombre doméstico</label>
+    <name>Household_Other_Name_Setting__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Credits_Attempted__c</name>
     <help>The number of credits the student has tried to complete to date. This includes credits in progress and failed courses for which no credit was received.</help>
     <label>Credits Attempted</label>
+    <name>Credits_Attempted__c</name>
 </CustomFieldTranslation>

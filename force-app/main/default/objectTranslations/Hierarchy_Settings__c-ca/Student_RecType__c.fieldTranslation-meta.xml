@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Student_RecType__c</name>
     <label>Tipus de registre d&apos;estudiant</label>
+    <name>Student_RecType__c</name>
 </CustomFieldTranslation>

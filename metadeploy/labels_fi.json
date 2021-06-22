@@ -55,6 +55,10 @@
         "Deploy Einstein Analytics Templates": {
             "message": "Ota käyttöön Einstein Analytics -mallit",
             "description": "title of installation step"
+        },
+        "Health Check": {
+            "message": "Terveystarkastus",
+            "description": "title of installation step"
         }
     },
     "plan:ra_einstein_template": {

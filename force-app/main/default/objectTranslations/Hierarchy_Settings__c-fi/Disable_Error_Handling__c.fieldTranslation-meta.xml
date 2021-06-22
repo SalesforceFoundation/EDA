@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Disable_Error_Handling__c</name>
     <help>Jos tämä valitaan, mukautettu virhekäsittelykehys poistetaan käytöstä.</help>
     <label>Poista virheiden käsittely käytöstä</label>
+    <name>Disable_Error_Handling__c</name>
 </CustomFieldTranslation>

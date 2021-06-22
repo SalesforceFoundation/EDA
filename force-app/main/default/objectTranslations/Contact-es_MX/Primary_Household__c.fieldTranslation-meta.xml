@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Primary_Household__c</name>
     <help>Consulta de la cuenta doméstica principal (registro Cuenta) con la que está asociado este contacto.</help>
-    <relationshipLabel>Contactos (Domicilio principal)</relationshipLabel>
     <label>Domicilio principal</label>
+    <name>Primary_Household__c</name>
+    <relationshipLabel>Contactos (Domicilio principal)</relationshipLabel>
 </CustomFieldTranslation>

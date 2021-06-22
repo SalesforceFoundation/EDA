@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_Course_Connections__c</name>
     <help>Falls aktiviert, können Benutzer den Kontakttyp (Lehrpersonal oder Student) beim Erstellen eines Kursverbindungs-Datensatzes wählen. Hierfür müssen standardmäßige Kontakt-Datensatztypen für aktive Studenten und Lehrkräfte festgelegt werden.</help>
     <label>Kursverbindungen aktivieren</label>
+    <name>Enable_Course_Connections__c</name>
 </CustomFieldTranslation>

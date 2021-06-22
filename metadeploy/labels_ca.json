@@ -55,6 +55,10 @@
         "Deploy Einstein Analytics Templates": {
             "message": "Desplegueu les plantilles d'Einstein Analytics",
             "description": "title of installation step"
+        },
+        "Health Check": {
+            "message": "Revisió de salut",
+            "description": "title of installation step"
         }
     },
     "plan:ra_einstein_template": {

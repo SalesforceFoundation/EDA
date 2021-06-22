@@ -5,16 +5,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Mapped Primary Affiliations</shortDescription>
-        <value>Mapped Primary Affiliations appear in a special Primary Affiliations section on the Contact record. The value set as Primary for an Account Record Type appears in the corresponding fields on the Contact record, as defined below. For more information, see the</value>
+        <shortDescription>Description of the Affiliation Mappings setting</shortDescription>
+        <value>Map Account record types to the Primary Affiliation fields on Contacts to define how updates to those fields impact Affiliation records and how updates to Affiliation records impact Contact records.</value>
     </labels>
     <labels>
         <fullName>AfflProgEnrollDeleted</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for deleting Affiliations related to deleted Program Enrollments</shortDescription>
-        <value>If selected, when deleting a Program Enrollment, delete its related Affiliation. Otherwise, keep the Affiliation and set its Status to the value defined in Status for Affiliations Not Deleted.</value>
+        <shortDescription>Description of the Affiliations Related to Deleted Program Enrollments setting</shortDescription>
+        <value>If an Affiliation is related to only one Program Enrollment and that Program Enrollment is deleted, also delete the Affiliation. If you don&apos;t enable this setting, select a Status for Affiliations Not Deleted.</value>
     </labels>
     <labels>
         <fullName>AttendanceCourseConnectionContactMismatch</fullName>
@@ -37,8 +37,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Batch message when there&apos;s a problem starting</shortDescription>
-        <value>There was a problem starting the Batch.</value>
+        <shortDescription>Message when an Apex job can&apos;t run</shortDescription>
+        <value>We couldn&apos;t run the Apex job.</value>
     </labels>
     <labels>
         <fullName>BothFieldAndValue</fullName>
@@ -53,7 +53,7 @@
         <categories>Course Connections</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Cannot Change Contact And Course Offering</shortDescription>
+        <shortDescription>Cannot Change Contact and Course Offering</shortDescription>
         <value>Can&apos;t change the Contact or Course Offering on a Course Connection that has associated Term Grades or Attendance Events. If you want a Course Connection with a different Contact or Course Offering, create a new Course Connection.</value>
     </labels>
     <labels>
@@ -62,7 +62,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error when deleting a record with child records</shortDescription>
-        <value>This record can&apos;t be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don&apos;t see related records, or if you&apos;re unable to delete them, contact your System Administrator for assistance.</value>
+        <value>This record can&apos;t be deleted because it has one or more related records associated with it. Delete the associated records first, then delete this record. To determine which records should be deleted first, click the Related tab. If you don&apos;t see related records, or if you&apos;re unable to delete them, contact your System Administrator.</value>
     </labels>
     <labels>
         <fullName>DefaultAccountName</fullName>
@@ -89,6 +89,21 @@
         <value>Household</value>
     </labels>
     <labels>
+        <fullName>EDASettingsContainerAuraComponentLabel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Settings</shortDescription>
+        <value>EDA Settings</value>
+    </labels>
+    <labels>
+        <fullName>EDCSettingsContainerAuraComponentLabel</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Education Cloud Settings</shortDescription>
+        <value>Education Cloud Settings</value>
+    </labels>
+    <labels>
         <fullName>Female</fullName>
         <categories>Relationships</categories>
         <language>en_US</language>
@@ -97,28 +112,12 @@
         <value>Female</value>
     </labels>
     <labels>
-        <fullName>invalidContactFieldInAffiliationMapping</fullName>
-        <categories>Affiliations</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Error when a Contact's Primary Affiliation field isn't an Account lookup field</shortDescription>
-        <value>We can't save this record because of an error with the Contact field {1}. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of an Account lookup field on the Contact object instead of {1}</value>
-    </labels>
-    <labels>
         <fullName>InvalidFilter</fullName>
         <categories>TDTM</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Error message for TDTM filtering functionality</shortDescription>
         <value>The field entered as the Filter Field isn&apos;t valid. Filter Fields can be any standard or custom field on the object this trigger is for, as well as fields on related records. Make sure you use the field&apos;s API name, and omit any EDA namespace prefix (&quot;hed__&quot;).</value>
-    </labels>
-    <labels>
-        <fullName>invalidRecordTypeInAffiliationMapping</fullName>
-        <categories>Affiliations</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Error when an Affiliation Mapping's Account record type isn't valid</shortDescription>
-        <value>We can't save this record because {1} isn't a valid Account record type. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of a valid Account record type instead of {1}.</value>
     </labels>
     <labels>
         <fullName>Male</fullName>
@@ -174,7 +173,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Provides a blank value option to custom built picklists</shortDescription>
-        <value>--None--</value>
+        <value>None</value>
     </labels>
     <labels>
         <fullName>OnlyCourseConnectionPopulated</fullName>
@@ -253,7 +252,7 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Relationships Auto Creation: what they are and how to create them</shortDescription>
+        <shortDescription>Descrption of the Relationships Auto-Create setting</shortDescription>
         <value>Auto-Create settings let you define when a Relationship record is automatically created between a Contact and a Campaign Member, based on a custom lookup field on one of the two objects. For example, a &apos;Referral&apos; lookup from Campaign Member to Contact could create a &apos;Referrer&apos; and &apos;Referee&apos; Relationship between the two Contacts. (Note that this feature is not available for Leads or Campaign Member objects that reference Leads.)</value>
     </labels>
     <labels>
@@ -261,16 +260,16 @@
         <categories>Relationships</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Reciprocal Relationships Settings</shortDescription>
-        <value>These settings allow you to configure reciprocal relationships, or the &quot;matching&quot; relationship between two Contacts. For example, since a father is related to his son, there should be an additional record showing the son related back to his father. You can specify the Type value for the Name, and what the reciprocal value should be based on the gender of the connecting Contact. You can define male, female, and neutral values for each reciprocal setting..</value>
+        <shortDescription>Description of the Reciprocal Relationships setting</shortDescription>
+        <value>Configure matching relationships so you can understand how a Contact is related to another from either Contact record.</value>
     </labels>
     <labels>
         <fullName>acctNamingOther</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for Admin and Household Account Name Format fields</shortDescription>
-        <value>Other</value>
+        <shortDescription>Picklist value for naming format used for Administrative and Household Accounts</shortDescription>
+        <value>Custom Format</value>
     </labels>
     <labels>
         <fullName>adapterException</fullName>
@@ -341,7 +340,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Admin Acct Name format</shortDescription>
+        <shortDescription>Field label for the Administrative Account Name Format setting</shortDescription>
         <value>Administrative Account Name Format</value>
     </labels>
     <labels>
@@ -349,8 +348,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text under Admin Acct Name Format field label</shortDescription>
-        <value>The name format used for auto-created Administrative Accounts.</value>
+        <shortDescription>Description of the Administrative Account Name Format setting</shortDescription>
+        <value>The format for naming Administrative Accounts when they are automatically created.</value>
     </labels>
     <labels>
         <fullName>affiliationWithSameAccExists</fullName>
@@ -389,23 +388,23 @@
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliations setting</shortDescription>
-        <value>Enable Record Type Validation</value>
+        <shortDescription>Label for the Record Type Validation setting</shortDescription>
+        <value>Record Type Validation</value>
     </labels>
     <labels>
         <fullName>afflTypeEnforcedDescription</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for the Enable Record Type Validation setting for Affilliations</shortDescription>
-        <value>When selected, if users specify an Account as a Contact&apos;s Primary Affiliation, the Account is required to have a record type and all Account Record Type values must be correctly mapped to their respective Contact Primary Affl Fields in Affiliation Mappings. If validation fails, an error prevents the Affiliation from being saved.</value>
+        <shortDescription>Description of the Record Type Validation setting</shortDescription>
+        <value>Require Accounts specified as a Contact’s Primary Affiliation use a record type. Also ensure that all Account record types are mapped to Primary Affiliation fields on the Contact object. If validation fails, the Affiliation isn’t saved.</value>
     </labels>
     <labels>
         <fullName>automaticHHNaming</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Automatic HH Naming</shortDescription>
+        <shortDescription>Field label for the Automatically Rename Household Accounts setting</shortDescription>
         <value>Automatically Rename Household Accounts</value>
     </labels>
     <labels>
@@ -413,8 +412,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Automatic Household Naming</shortDescription>
-        <value>If selected, automatically renames an existing Household Account whenever a Contact is added to the Account or an existing Contact is changed.</value>
+        <shortDescription>Description of the Automatically Rename Household Accounts setting</shortDescription>
+        <value>Automatically rename Household Accounts when Contacts are added or changed.</value>
     </labels>
     <labels>
         <fullName>defaultAccountRecordTypeMissingError</fullName>
@@ -473,11 +472,11 @@
         <value>The Filter Field can&apos;t include namespace prefixes such as hed__. Remove the namespace prefix and try again.</value>
     </labels>
     <labels>
-        <fullName>firstNameLastNameAdminACC</fullName>
+        <fullName>firstNameLastNameAdminAcc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>A picklist value for the Admin Account Name Format setting</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Administrative Accounts</shortDescription>
         <value>{!{!FirstName}} {!LastName} Administrative Account</value>
     </labels>
     <labels>
@@ -485,7 +484,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>A picklist value for the Household Account Name Format setting</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!{!FirstName}} {!LastName} Family</value>
     </labels>
     <labels>
@@ -493,7 +492,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>A picklist value for the Household Account Name Format setting</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!{!FirstName}} {!LastName} Household</value>
     </labels>
     <labels>
@@ -508,7 +507,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for the Household Account Name format setting</shortDescription>
+        <shortDescription>Field label for the Household Account Name setting</shortDescription>
         <value>Household Account Name Format</value>
     </labels>
     <labels>
@@ -516,8 +515,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Household Acct Naming Format</shortDescription>
-        <value>The format used for naming Household Accounts.</value>
+        <shortDescription>Description of the Household Account Name Format setting</shortDescription>
+        <value>The format for naming Household Accounts when they are automatically created.</value>
     </labels>
     <labels>
         <fullName>hhFamily</fullName>
@@ -528,11 +527,27 @@
         <value>Family</value>
     </labels>
     <labels>
+        <fullName>invalidContactFieldInAffiliationMapping</fullName>
+        <categories>Affiliations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when a Contact&apos;s Primary Affiliation field isn&apos;t an Account lookup field</shortDescription>
+        <value>We can&apos;t save this record because of an error with the Contact field {1}. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of an Account lookup field on the Contact object instead of {1}</value>
+    </labels>
+    <labels>
+        <fullName>invalidRecordTypeInAffiliationMapping</fullName>
+        <categories>Affiliations</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when an Affiliation Mapping&apos;s Account record type isn&apos;t valid</shortDescription>
+        <value>We can&apos;t save this record because {1} isn&apos;t a valid Account record type. Ask your admin to check Affiliation Mappings in EDA Settings and set the value for {0} to the API name of a valid Account record type instead of {1}.</value>
+    </labels>
+    <labels>
         <fullName>lastNameAdminAcc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Admin Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Administrative Accounts</shortDescription>
         <value>{!LastName} Administrative Account</value>
     </labels>
     <labels>
@@ -540,7 +555,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!LastName} Family</value>
     </labels>
     <labels>
@@ -548,7 +563,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Admin Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Administrative Accounts</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Administrative Account</value>
     </labels>
     <labels>
@@ -556,7 +571,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Household Account Name format.</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Family</value>
     </labels>
     <labels>
@@ -564,7 +579,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!LastName} ({!{!FirstName}}) Household</value>
     </labels>
     <labels>
@@ -572,7 +587,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for the Household Account Name format</shortDescription>
+        <shortDescription>Picklist value for the naming format used for Household Accounts</shortDescription>
         <value>{!LastName} Household</value>
     </labels>
     <labels>
@@ -597,7 +612,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Empty state message for Affiliation Mappings</shortDescription>
-        <value>No Affiliation Mappings have been created. Use the form below to create a new Affiliation Mapping.</value>
+        <value>No Affiliation mappings yet. Click New to create one.</value>
     </labels>
     <labels>
         <fullName>noAutoCreateSettings</fullName>
@@ -636,15 +651,55 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Account model</shortDescription>
+        <shortDescription>Label for the Account Model setting</shortDescription>
         <value>Default Account Model</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountModelNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Account Model</shortDescription>
+        <value>Account Model</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountRecordTypeGroupLabelTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Group label for the Account record type selection</shortDescription>
+        <value>Select Account Record Types</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountModelSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Account Model Settings</shortDescription>
+        <value>Account Model Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountRecordTypeAvailableListTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the list of Available Account Record Types</shortDescription>
+        <value>Available Account Record Types</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountRecordTypeSelectedListTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the list of Selected Account Record Types</shortDescription>
+        <value>Selected Account Record Types</value>
     </labels>
     <labels>
         <fullName>stgAccountRecordTypeSupportsHHAddress</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
+        <shortDescription>Label for the Household Account Record Type setting</shortDescription>
         <value>Household Account Record Type</value>
     </labels>
     <labels>
@@ -652,16 +707,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for multi address functionality Settings</shortDescription>
-        <value>Account Types with Multi-Addresses Enabled</value>
+        <shortDescription>Label for the Enable Multiple Addresses for Account Types setting</shortDescription>
+        <value>Enable Multiple Addresses for Account Types</value>
     </labels>
     <labels>
         <fullName>stgAccoutTypesWithoutContactsDelete</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Account Types without Contacts to Delete</value>
+        <shortDescription>Label for the Accounts Without Contacts setting</shortDescription>
+        <value>Accounts Without Contacts</value>
     </labels>
     <labels>
         <fullName>stgAddHispanicOrLatinoPicklistValue</fullName>
@@ -680,36 +735,164 @@
         <value>Add &quot;Not Hispanic or Latino&quot; as a picklist value to the Ethnicity field if necessary.</value>
     </labels>
     <labels>
+        <fullName>stgAddressSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Addresses</shortDescription>
+        <value>Addresses</value>
+    </labels>
+    <labels>
+        <fullName>stgAddressSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Addresses</shortDescription>
+        <value>Address Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgAdminAccountCustomName</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for Custom Name Format for Administrative Accounts</shortDescription>
+        <value>Custom Name Format</value>
+    </labels>
+    <labels>
+        <fullName>stgAdminAccountCustomNameHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Info text for Custom Name Format</shortDescription>
+        <value>Specify your own naming convention.</value>
+    </labels>
+    <labels>
+        <fullName>stgAdminAccountNamingTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Administrative Account Naming</shortDescription>
+        <value>Administrative Account Naming</value>
+    </labels>
+    <labels>
         <fullName>stgAdminAccountRecordType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Account record types Setting</shortDescription>
+        <shortDescription>Label for the Administrative Account Record Type setting</shortDescription>
         <value>Administrative Account Record Type</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsDeleteModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Delete Affiliation mapping window</shortDescription>
+        <value>This Affiliation mapping maps the {0} Account record type to the {1} field on Contact records. We're just making sure that you want to delete it.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsDeleteModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Delete Affiliation mapping window</shortDescription>
+        <value>Delete Affiliation Mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsDeleteSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when an Affiliation mapping is deleted</shortDescription>
+        <value>{0} primary Affiliation was deleted.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsEditModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Edit Affiliation mapping window</shortDescription>
+        <value>Select the Account Record Type to map to the Primary Affiliation field on Contacts. The value of the Account Record Type automatically populates in the Primary Affiliation field.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsEditModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Edit Affiliation mapping window</shortDescription>
+        <value>Edit Affiliation Mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsEditSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when an Affiliation mapping is saved</shortDescription>
+        <value>Affiliation mapping for {0} was saved.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsNewModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the New Affiliation mapping window</shortDescription>
+        <value>Select the Account Record Type to map to the Primary Affiliation field on Contacts. The value of the Account Record Type automatically populates in the Primary Affiliation field.</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsNewSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when an Affiliation mapping is created</shortDescription>
+        <value>{0} primary Affiliation was created</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Affiliations</shortDescription>
+        <value>Affiliations</value>
+    </labels>
+    <labels>
+        <fullName>stgAffiliationsSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Affiliation Settings</shortDescription>
+        <value>Affiliation Settings</value>
     </labels>
     <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliation Settings</shortDescription>
-        <value>Copy Affiliation End Date from Program Enrollment</value>
+        <shortDescription>Label for the Affiliation End Date setting</shortDescription>
+        <value>Affiliation End Date</value>
     </labels>
     <labels>
         <fullName>stgAfflCopyProgramEnrollmentStartDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliation Settings</shortDescription>
-        <value>Copy Affiliation Start Date from Program Enrollment</value>
+        <shortDescription>Label for the Affiliation Start Date setting</shortDescription>
+        <value>Affiliation Start Date</value>
     </labels>
     <labels>
         <fullName>stgAfflDeleteProgramEnrollment</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <shortDescription>Label for the Status for Affiliations Not Deleted setting</shortDescription>
         <value>Status for Affiliations Not Deleted</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflDeleteWithAutoEnrollment</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message before deleting Affiliation mapping with an auto-enrollment</shortDescription>
+        <value>If you delete this Affiliation mapping, when an Affiliation with the {0} Account record type is created for a Contact, a Program Enrollment record is no longer automatically created.</value>
     </labels>
     <labels>
         <fullName>stgAfflNotInserted</fullName>
@@ -724,8 +907,24 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliation Settings</shortDescription>
-        <value>Delete Related Affiliation When Deleting Program Enrollment</value>
+        <shortDescription>Label for the Affiliations Related to Deleted Program Enrollments setting</shortDescription>
+        <value>Affiliations Related to Deleted Program Enrollments</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflProgramEnrollmentSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Affiliations Created with Program Enrollments</shortDescription>
+        <value>Affiliations Created with Program Enrollments</value>
+    </labels>
+    <labels>
+        <fullName>stgAfflProgEnrollDeleteTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Program Enrollment Deletions</shortDescription>
+        <value>Program Enrollment Deletions</value>
     </labels>
     <labels>
         <fullName>stgAfflProgEnrollSetRole</fullName>
@@ -740,7 +939,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <shortDescription>Label for the Role for Created Affiliations setting</shortDescription>
         <value>Role for Created Affiliations</value>
     </labels>
     <labels>
@@ -748,7 +947,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Affiliation Settings</shortDescription>
+        <shortDescription>Label for the Status for Created Affiliations setting</shortDescription>
         <value>Status for Created Affiliations</value>
     </labels>
     <labels>
@@ -758,6 +957,14 @@
         <protected>true</protected>
         <shortDescription>Label for Accounts and Contacts Backfill</shortDescription>
         <value>After Running the Backfill</value>
+    </labels>
+    <labels>
+        <fullName>stgApiNameLabel</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The API name associated with the selected Account Record Type</shortDescription>
+        <value>API Name: {0}</value>
     </labels>
     <labels>
         <fullName>stgAutoCompleteEnterChatterGroupName</fullName>
@@ -800,6 +1007,102 @@
         <value>Auto-Enrollment</value>
     </labels>
     <labels>
+        <fullName>stgAutoEnrollmentEditModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Edit auto-enrollment mapping confirmation window</shortDescription>
+        <value>Select values that create a Program Enrollment record when an Affiliation is created or updated with these values, and the Affiliation is marked as Primary.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentEditModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Edit auto-enrollment mapping confirmation window</shortDescription>
+        <value>Edit auto-enrollment mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentEditSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when an auto-enrollment mapping is saved</shortDescription>
+        <value>{0} auto-enrollment mapping was saved.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentNewModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the New auto-enrollment mapping confirmation window</shortDescription>
+        <value>Select values that create a Program Enrollment record when an Affiliation is created or updated with these values, and the Affiliation is marked as Primary.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentNewModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the New auto-enrollment mapping confirmation window</shortDescription>
+        <value>New auto-enrollment mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentNewSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when an auto-enrollment mapping is created</shortDescription>
+        <value>{0} auto-enrollment mapping was created.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentDeleteModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Delete auto-enrollment mapping confirmation window</shortDescription>
+        <value>This auto-enrollment mapping creates Program Enrollments for Affiliations with the {0} Account record type, {1} Affiliation status, and {2} Affiliation role. If you delete this auto-enrollment mapping, Program Enrollments won't be created for matching Affiliations.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentDeleteModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Delete auto-enrollment mapping confirmation window</shortDescription>
+        <value>Delete auto-enrollment mapping?</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentDeleteSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when an auto-enrollment mapping is deleted</shortDescription>
+        <value>{0} auto-enrollment mapping was deleted.</value>
+    </labels>
+    <labels>
+        <fullName>stgAccountRecordTypeHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Info text for Account Record Type picklist</shortDescription>
+        <value>Only unmapped Account record types are available.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentProgramDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Auto-Enrollment Mappings setting</shortDescription>
+        <value>When Primary Affiliations are created with the values in these mappings, automatically create Program Enrollments.</value>
+    </labels>
+    <labels>
+        <fullName>stgAutoEnrollmentProgramTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Auto-Enrollment Mappings setting</shortDescription>
+        <value>Auto-Enrollment Mappings</value>
+    </labels>
+    <labels>
         <fullName>stgAutoEnrollmentRole</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -836,8 +1139,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for Affiliation Mappings Settings</shortDescription>
-        <value>Add Mapping</value>
+        <shortDescription>Button label for New Affiliation mapping window</shortDescription>
+        <value>New</value>
     </labels>
     <labels>
         <fullName>stgBtnAddSetting</fullName>
@@ -852,32 +1155,136 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
+        <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnClearSelectionA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that clears a field</shortDescription>
+        <value>Clear Selection</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnCommunity</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches the Trailblazer Community site</shortDescription>
+        <value>Go to Trailblazer Community</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnCommunityActionA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches the Trailblazer Community site</shortDescription>
+        <value>Go to the Trailblazer community.</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnDelete</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button label for delete Affiliation mapping warning</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnDocumentation</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches EDA documentation</shortDescription>
+        <value>Documentation</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnDocumentationActionA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches EDA documentation</shortDescription>
+        <value>Go to the EDA documentation.</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnEDCTrailhead</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches the Education Cloud trailmix</shortDescription>
+        <value>Go to Trailhead</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnEDCTrailheadActionA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches the Education Cloud trailmix</shortDescription>
+        <value>Go to the Education Cloud trailmix.</value>
     </labels>
     <labels>
         <fullName>stgBtnEdit</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
+        <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnHealthCheck</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches Settings Health Check</shortDescription>
+        <value>Go to Settings Health Check</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnNewAutoEnrollA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that creates an auto-enrollment mapping</shortDescription>
+        <value>Create an auto-enrollment mapping.</value>
     </labels>
     <labels>
         <fullName>stgBtnRefreshAdminNames</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for refreshing Administrative Account Names</shortDescription>
-        <value>Refresh All Administrative Names</value>
+        <shortDescription>Button label for updating the selected Apex job</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRefreshAdminNamesA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates all Administrative Account names</shortDescription>
+        <value>Update all Administrative Account names.</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRefreshEthnicityDataA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates Race field on Contacts from Ethnicity field</shortDescription>
+        <value>Update the Race field on Contacts with values from the Ethnicity field. The values Not Hispanic or Latino and Hispanic or Latino aren&apos;t copied.</value>
     </labels>
     <labels>
         <fullName>stgBtnRefreshHouseholdNames</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for refreshing Household Account Names</shortDescription>
-        <value>Refresh All Household Names</value>
+        <shortDescription>Button label for updating the selected Apex job</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRefreshHouseholdNamesA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates all Household Account names</shortDescription>
+        <value>Update all Household Account names.</value>
     </labels>
     <labels>
         <fullName>stgBtnRunBackfill</fullName>
@@ -892,23 +1299,87 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for Courses Settings</shortDescription>
-        <value>Run Copy</value>
+        <shortDescription>Button label for updating the selected Apex job</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRunCopyA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates Course Descriptions</shortDescription>
+        <value>Update the Extended Description field on Course records to use text from the Description field.</value>
     </labels>
     <labels>
         <fullName>stgBtnSave</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button label for multiple EDA Settings tabs</shortDescription>
+        <shortDescription>Button label in EDA Settings</shortDescription>
         <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnSettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches EDA Settings</shortDescription>
+        <value>Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnSettingsActionA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches EDA Settings</shortDescription>
+        <value>Go to EDA Settings.</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnTrailhead</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches EDA Trailhead modules</shortDescription>
+        <value>Trailhead</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnTrailheadActionA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches EDA Trailhead modules</shortDescription>
+        <value>Go to EDA Trailhead modules.</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnUpdate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that runs a selected Apex job</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnVideos</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that launches the Salesforce.org YouTube channel</shortDescription>
+        <value>Go to Salesforce.org on YouTube</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnVideosActionA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches the Salesforce.org YouTube channel</shortDescription>
+        <value>Go to Salesforce.org on YouTube</value>
     </labels>
     <labels>
         <fullName>stgCleanupQueuedEmailSent</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Confirmation msg for Run Cleanup on Accts and Contacts</shortDescription>
+        <shortDescription>Confirmation message for Run Cleanup on Accts and Contacts</shortDescription>
         <value>The Cleanup was queued successfully. An email will be sent when the batch is completed.</value>
     </labels>
     <labels>
@@ -916,7 +1387,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header and label for Affiliation Mappings Settings</shortDescription>
+        <shortDescription>Column header for Account Record Types</shortDescription>
         <value>Account Record Type</value>
     </labels>
     <labels>
@@ -924,8 +1395,24 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Reciprocal Relationship Settings</shortDescription>
+        <shortDescription>Column header for Active or Inactive Relationship Type status</shortDescription>
         <value>Active</value>
+    </labels>
+    <labels>
+        <fullName>stgColAutoEnrollmentRole</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column header for Auto-Enrollment Role</shortDescription>
+        <value>Auto-Enrollment Role</value>
+    </labels>
+    <labels>
+        <fullName>stgColAutoEnrollmentStatus</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column header for Auto-Enrollment Status</shortDescription>
+        <value>Auto-Enrollment Status</value>
     </labels>
     <labels>
         <fullName>stgColCampTypes</fullName>
@@ -940,15 +1427,15 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Affiliation Mappings Settings</shortDescription>
-        <value>Contact Primary Affl Field</value>
+        <shortDescription>Column header for Primary Affiliation Fields on Contact</shortDescription>
+        <value>Primary Affiliation Field on Contact</value>
     </labels>
     <labels>
         <fullName>stgColFemale</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Reciprocal Relationship Settings</shortDescription>
+        <shortDescription>Column header for Female Relationship Types</shortDescription>
         <value>Female</value>
     </labels>
     <labels>
@@ -964,7 +1451,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Reciprocal Relationships Settings</shortDescription>
+        <shortDescription>Column header for Male Relationship Types</shortDescription>
         <value>Male</value>
     </labels>
     <labels>
@@ -972,7 +1459,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Col header for Reciprocal Relationships Settings</shortDescription>
+        <shortDescription>Column header for Neutral Relationship Types</shortDescription>
         <value>Neutral</value>
     </labels>
     <labels>
@@ -984,12 +1471,36 @@
         <value>Object API Name</value>
     </labels>
     <labels>
+        <fullName>stgColProducts</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column header for Products</shortDescription>
+        <value>Products</value>
+    </labels>
+    <labels>
         <fullName>stgColRelType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Col header and field label for Relationships  Autocreation Settings</shortDescription>
         <value>Relationship Type</value>
+    </labels>
+    <labels>
+        <fullName>stgColRelationshipName</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column header for Settings names</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>stgColResources</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column header for Resources</shortDescription>
+        <value>Resources</value>
     </labels>
     <labels>
         <fullName>stgColRole</fullName>
@@ -1008,6 +1519,22 @@
         <value>Status</value>
     </labels>
     <labels>
+        <fullName>stgColTools</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Column header for Tools</shortDescription>
+        <value>Tools</value>
+    </labels>
+    <labels>
+        <fullName>stgCommunityTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Trailblazer Community card</shortDescription>
+        <value>Trailblazer Community</value>
+    </labels>
+    <labels>
         <fullName>stgConfirmReadyRunBackfill</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1016,12 +1543,28 @@
         <value>I understand and am ready to run Backfill.</value>
     </labels>
     <labels>
+        <fullName>stgContactInformationSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Contact Information</shortDescription>
+        <value>Contact Information</value>
+    </labels>
+    <labels>
+        <fullName>stgContactInformationSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Contact Information Settings</shortDescription>
+        <value>Contact Information Settings</value>
+    </labels>
+    <labels>
         <fullName>stgContactMultiAddressesEnabled</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Contact Multi-Addresses Enabled</value>
+        <shortDescription>Label for the Allow Multiple Contact Addresses setting</shortDescription>
+        <value>Allow Multiple Contact Addresses</value>
     </labels>
     <labels>
         <fullName>stgCourseConnBackFillError</fullName>
@@ -1036,8 +1579,65 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Success message for Course Connection backfill</shortDescription>
-        <value>The backfill was queued successfully.</value>
+        <shortDescription>Confirmation message when Course Connection record types are queued for update</shortDescription>
+        <value>We&apos;re updating Course Connection record types. Check the status of the job under Apex Jobs in Setup.</value>
+    </labels>
+    <labels>
+        <fullName>stgHelpCourseConnectionBackfill</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Legacy Course Enrollment Data setting</shortDescription>
+        <value>Before enabling Course Connections for the first time, run this Apex job to update Faculty Course Connection records to the Default Faculty Record Type value. Also updates remaining Course Connections to the Default Student Record Type value.</value>
+    </labels>
+    <labels>
+       
+        <fullName>stgCourseConnectionsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Course Connections</shortDescription>
+        <value>Course Connections</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseConnectionsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Course Connection Settings</shortDescription>
+        <value>Course Connection Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnRunCourseConnBackfillA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates Course Connection record types</shortDescription>
+        <value>Update Faculty Course Connections to the Default Faculty Record Type value and remaining Course Connections to the Default Student Record Type value.</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseConnectionBackfillModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update Course Connection record types confirmation window</shortDescription>
+        <value>Update Course Connection record types?</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseDataMigrationModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update Extended Description field confirmation window</shortDescription>
+        <value>Update the Extended Description field?</value>
+    </labels>
+    <labels>
+        <fullName>stgCourseDataMigrationModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update Extended Description field confirmation window</shortDescription>
+        <value>Copies text from the Description field to the Extended Description field on Course records. Existing Extended Description values won't be overwritten. Update page layouts and other references to the Description field after this update.</value>
     </labels>
     <labels>
         <fullName>stgCourseDescriptionCopyEmailBody</fullName>
@@ -1045,7 +1645,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Setting Course Course Description Copy Email Body</shortDescription>
-        <value>The batch Apex job processed {0} batches with {1} failures.</value>
+        <value>The Apex job processed {0} batches with {1} failures.</value>
     </labels>
     <labels>
         <fullName>stgCourseDescriptionCopyEmailSubject</fullName>
@@ -1056,19 +1656,27 @@
         <value>Course Description Copy Job Completed with a status of:</value>
     </labels>
     <labels>
+        <fullName>stgCoursesAndEnrollmentsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Courses and Enrollments</shortDescription>
+        <value>Courses and Enrollments</value>
+    </labels>
+    <labels>
         <fullName>stgDefaultContactLanguageFluency</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Default Contact Language Fluency</value>
+        <shortDescription>Label for the Contact Language Fluency setting</shortDescription>
+        <value>Contact Language Fluency</value>
     </labels>
     <labels>
         <fullName>stgDefaultFacultyTypeTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Course Connections Settings</shortDescription>
+        <shortDescription>Label for the Default Faculty Record Type setting</shortDescription>
         <value>Default Faculty Record Type</value>
     </labels>
     <labels>
@@ -1076,32 +1684,88 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Course Connections Settings</shortDescription>
-        <value>Default Active Student Record Type</value>
+        <shortDescription>Label for the Default Student Record Type setting</shortDescription>
+        <value>Default Student Record Type</value>
     </labels>
     <labels>
         <fullName>stgDisableErrorHandlingTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for System Settings</shortDescription>
-        <value>Disable Error Handling</value>
+        <shortDescription>Label for the Error Handling setting</shortDescription>
+        <value>Error Handling</value>
     </labels>
     <labels>
         <fullName>stgDisablePreferredEmailEnforcement</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Disable Preferred Email Enforcement</value>
+        <shortDescription>Label for the Require Preferred Email setting</shortDescription>
+        <value>Require Preferred Email</value>
     </labels>
     <labels>
         <fullName>stgDisablePreferredPhoneEnforcement</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Disable Preferred Phone Enforcement</value>
+        <shortDescription>Label for the Require Preferred Phone setting</shortDescription>
+        <value>Require Preferred Phone</value>
+    </labels>
+    <labels>
+        <fullName>stgDuplicateRelationships</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Prevent Duplicate Relationships Settings</shortDescription>
+        <value>Prevent Duplicate Relationships</value>
+    </labels>
+    <labels>
+        <fullName>stgDuplicateRelationshipsHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Prevent Duplicate Relationships setting</shortDescription>
+        <value>Specify whether to prevent more than one Relationship record of the same type between two Contacts.</value>
+    </labels>
+    <labels>
+        <fullName>stgEDAAppDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the EDA app</shortDescription>
+        <value>Education Data Architecture (EDA) is the foundation of the Education Cloud. Its flexible data architecture is designed to configure Salesforce for education.</value>
+    </labels>
+    <labels>
+        <fullName>stgEDAAppInitials</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Initials for the EDA App</shortDescription>
+        <value>EDA</value>
+    </labels>
+    <labels>
+        <fullName>stgEDAAppTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the EDA App</shortDescription>
+        <value>Education Data Architecture</value>
+    </labels>
+    <labels>
+        <fullName>stgEDASettingsHasMovedDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of EDA Settings has moved</shortDescription>
+        <value>We created a new Education Cloud Settings experience that provides access to EDA Settings, along with many other great resources. Setup steps vary based on your EDA version. Review the documentation for details.</value>
+    </labels>
+    <labels>
+        <fullName>stgEDASettingsHasMovedTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title of EDA Settings has moved</shortDescription>
+        <value>We&apos;ve moved!</value>
     </labels>
     <labels>
         <fullName>stgEDASetupTitle</fullName>
@@ -1112,20 +1776,76 @@
         <value>EDA Setup</value>
     </labels>
     <labels>
+        <fullName>stgEDCSettingsHealthCheckDescription</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of Settings Health Check</shortDescription>
+        <value>Settings Health Check looks for configuration errors in EDA Settings and Setup. Follow the provided recommendations to fix reported errors.</value>
+    </labels>
+    <labels>
         <fullName>stgEnableCourseConnectionsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for Course Connections Settings</shortDescription>
-        <value>Enable Course Connections</value>
+        <shortDescription>Label for the Course Connection Record Types setting</shortDescription>
+        <value>Course Connection Record Types</value>
+    </labels>
+    <labels>
+        <fullName>stgEnableDebugHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Debug Logging setting</shortDescription>
+        <value>Enable debugging so that Salesforce support can view debug statements for managed packages.</value>
+    </labels>
+    <labels>
+        <fullName>stgEnableDebugTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Debug Logging setting</shortDescription>
+        <value>Debug Logging</value>
     </labels>
     <labels>
         <fullName>stgEnablePreferredPhoneSync</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Enable Enhanced Preferred Phone Functionality</value>
+        <shortDescription>Label for the Enhanced Preferred Phone Functionality setting</shortDescription>
+        <value>Enhanced Preferred Phone Functionality</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorInsufficientAccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when the user doesn&apos;t have the permissions to view a page</shortDescription>
+        <value>You can&apos;t view this page. Your Salesforce admin can help with that.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorInsufficientAccessSaving</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when the user doesn&apos;t have the permissions to save settings</shortDescription>
+        <value>You can&apos;t save these settings because you no longer have permission to edit them. Your Salesforce admin can help with that.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorInvalidSettings</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when a generic error occurs</shortDescription>
+        <value>We couldn’t save your work. Please refresh the page and try again.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorNewAutoEnrollment</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message when no record types for auto-enrollment mappings exist</shortDescription>
+        <value>All Account record types that have primary Affiliations already have an auto-enrollment mapping. Go to EDA Settings | Affiliations to first create an Affiliation mapping with the record type you want.</value>
     </labels>
     <labels>
         <fullName>stgErrorNotiTo</fullName>
@@ -1140,16 +1860,56 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for System Settings</shortDescription>
+        <shortDescription>Label for the Error Notification Recipients setting</shortDescription>
         <value>Error Notification Recipients</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Errors</shortDescription>
+        <value>Errors</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Error Settings</shortDescription>
+        <value>Error Settings</value>
     </labels>
     <labels>
         <fullName>stgEthnicityRaceBackfillContacts</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Section title for Accounts and Contacts Settings</shortDescription>
-        <value>Ethnicity and Race Backfill for Contacts</value>
+        <shortDescription>Label for the Legacy Ethnicity Data setting</shortDescription>
+        <value>Legacy Ethnicity Data</value>
+    </labels>
+    <labels>
+        <fullName>stgEthnicityRaceBackfillModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update the Race field on Contacts confirmation window</shortDescription>
+        <value>Copies standard and custom picklist values, except Not Hispanic or Latino and Hispanic or Latino, from the Ethnicity field to the Race field on Contacts. Before proceeding, make sure you've disabled any processes that reference Ethnicity and Race fields.</value>
+    </labels>
+    <labels>
+        <fullName>stgEthnicityRaceBackfillModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update the Race field on Contacts confirmation window</shortDescription>
+        <value>Update the Race field on Contacts?</value>
+    </labels>
+    <labels>
+        <fullName>stgEthnicityRaceBackfillSuccessToast</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when the Race field is queued for update</shortDescription>
+        <value>We&apos;re updating the Race field on Contacts. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgFluent</fullName>
@@ -1165,7 +1925,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Administrative Account Record Type is inactive</shortDescription>
-        <value>Verify the Administrative Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Administrative Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, verify the Administrative Account Record Type. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Administrative Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelAdminNotFoundFix</fullName>
@@ -1173,7 +1933,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find Administrative Account Record Type</shortDescription>
-        <value>In EDA Settings, on the Accounts and Contacts tab, change the Administrative Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, change the Administrative Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelDefaultInactiveFix</fullName>
@@ -1181,7 +1941,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Account Model record type is inactive</shortDescription>
-        <value>Verify the Default Account Model record type specified in EDA Settings, on the System tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Account Model to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, verify the Default Account Model record type. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Account Model to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelDefaultNotFoundFix</fullName>
@@ -1189,7 +1949,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find Default Account Model record type</shortDescription>
-        <value>In EDA Settings, on the System tab, change the Default Account Model to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, change the Default Account Model to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelHHInactiveFix</fullName>
@@ -1197,7 +1957,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Household Account Record Type is inactive</shortDescription>
-        <value>Verify the Household Account Record Type specified in EDA Settings, on the Accounts and Contacts tab. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Household Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, verify the Household Account Record Type. If {0} ({1}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Household Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountModelHHNotFoundFix</fullName>
@@ -1205,7 +1965,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find the Household Account Record Type</shortDescription>
-        <value>In EDA Settings, on the Accounts and Contacts tab, change the Household Account Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Account Model, change the Household Account Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountRecordTypeSettingsUnique</fullName>
@@ -1228,8 +1988,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Administrative and Household Account Record Types are same</shortDescription>
-        <value>In EDA Settings, in the Accounts and Contacts tab, change either the Administrative Account Record Type or the Household Account Record Type so that each specifies a unique record type.</value>
+        <shortDescription>Recommended fix when Administrative and Household Account Record Types match</shortDescription>
+        <value>In EDA Settings | Account Model, change the Administrative Account Record Type or the Household Account Record Type so that they specify a unique record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAccountRecordTypesUnique</fullName>
@@ -1261,7 +2021,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Affiliation mapping&apos;s Account record type is inactive</shortDescription>
-        <value>Verify the Affiliation mapping for  {0} ({1}) specified in EDA Settings, on the Affiliations tab. If {0} ({1}) is correct, go to the Account object in Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Affiliation mapping&apos;s record type to a valid, active record type.</value>
+        <value>In EDA Settings | Affiliations, verify the Account Record Type for this Affiliation mapping. If {0} ({1}) is correct, go to the Account Record Type for the Account object in Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Affiliation mapping&apos;s record type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAccRecordTypeNotFoundFix</fullName>
@@ -1269,7 +2029,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Affiliation mapping&apos;s Account record type doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Affiliation mapping to a valid, active record type for the Account object.</value>
+        <value>The Account Record Type for this Affiliation mapping doesn&apos;t exist. In EDA Settings | Affiliations, change the Affiliation mapping to use a valid, active record type for the specified Account.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAccRecordTypeNotUnique</fullName>
@@ -1301,7 +2061,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Account record types in Affiliation mappings aren&apos;t unique</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, look in the Account Record Type column for multiple mappings specifying {0} ({1}). Edit those Affiliation mappings so that this record type is mapped to only one Contact Primary Affiliation field.</value>
+        <value>In EDA Settings | Affiliations, look in the Account Record Type column for multiple mappings specifying {0} ({1}). Edit those Affiliation mappings so that this record type is mapped to only one Contact Primary Affiliation field.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAccRecordTypeUniqueTitle</fullName>
@@ -1325,7 +2085,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when a mapping&apos;s Auto-Enrollment Role isn&apos;t active</shortDescription>
-        <value>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Role, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Affiliation object&apos;s Role field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Role to a valid, active picklist value.</value>
+        <value>The Auto-Enrollment Role {0} ({1}) isn&apos;t active. In EDA Settings | Program Enrollments, verify the Auto-Enrollment Program Mapping that specifies this Role. If the mapping is correct, go to the Affiliation object&apos;s Role field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Role to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollRoleNotFound</fullName>
@@ -1341,7 +2101,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Role</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Role to a valid, active picklist value for the Role field on the Affiliation object.</value>
+        <value>The Auto-Enrollment Role isn&apos;t valid. In EDA Settings | Program Enrollments, edit the Auto-Enrollment Program Mapping that specifies this Role to a valid, active picklist value for the Role field on the Affiliation object.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollRoleTitle</fullName>
@@ -1373,7 +2133,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when a mapping&apos;s Auto-Enrollment Status isn&apos;t active</shortDescription>
-        <value>Verify the {0} ({1}) specified for an Affiliation mapping&apos;s Auto-Enrollment Status, in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. If {0} ({1}) is correct, go to the Affiliation object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
+        <value>The Auto-Enrollment Status {0} ({1}) isn&apos;t active. In EDA Settings | Program Enrollments, verify the Auto-Enrollment Program Mapping that specifies this Status. If the mapping is correct, go to the Affiliation object&apos;s Status field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the Auto-Enrollment Status to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollStatusNotFound</fullName>
@@ -1389,7 +2149,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find a mapping&apos;s Auto-Enrollment Status</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, change the Auto-Enrollment Status to a valid, active picklist value for the Status field on the Affiliation object.</value>
+        <value>The Auto-Enrollment Status isn&apos;t valid. In EDA Settings | Program Enrollments, edit the Auto-Enrollment Program Mapping that specifies this Status to a valid, active picklist value for the Status field on the Affiliation object.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapAutoEnrollStatusTitle</fullName>
@@ -1412,8 +2172,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when a mapping&apos;s Contact Primary Affiliation field isn&apos;t valid</shortDescription>
-        <value>Verify the {0} specified in EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab. It must be a valid lookup field on the Contact object.</value>
+        <shortDescription>Recommended fix when a mapping&apos;s Primary Affiliation field isn&apos;t valid</shortDescription>
+        <value>The Primary Affiliation field {0} isn&apos;t valid. In EDA Settings | Affiliations, edit the Affiliation mapping to specify a valid lookup field on the Contact object.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapContPrimaryFieldUniqueTitle</fullName>
@@ -1460,8 +2220,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when mappings&apos; Contact Primary Affiliation fields aren&apos;t unique</shortDescription>
-        <value>In EDA Settings, on the Affiliation Mappings subtab of the Affiliations tab, look in the Contact Primary Affl Field column for multiple mappings specifying {0} ({1}). Edit those mappings so that this field is mapped in only one Affiliation mapping.</value>
+        <shortDescription>Recommended fix when mappings&apos; Primary Affiliation fields aren&apos;t unique</shortDescription>
+        <value>In EDA Settings | Affiliations, look in the Primary Affiliation Field on Contact column for multiple mappings specifying {0} ({1}). Edit those mappings so that this field is mapped in only one Affiliation mapping.</value>
     </labels>
     <labels>
         <fullName>stgHCAfflMapContactPrimaryFieldValid</fullName>
@@ -1485,7 +2245,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Course Connections isn&apos;t enabled</shortDescription>
-        <value>Enable Course Connections, which includes configuring Course Connection record types. For details, see Configure Course Connection in the EDA documentation.</value>
+        <value>Enable Course Connections, which includes configuring Course Connection record types. In EDA Settings | Course Connections, turn on Course Connection Record Types. Then configure Default Student Record Type and Default Faculty Record Type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConFacultyInactiveFix</fullName>
@@ -1493,7 +2253,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the Default Faculty Record Type is inactive</shortDescription>
-        <value>Verify the Default Faculty Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Faculty Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Course Connections, verify the the Default Faculty Record Type. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Faculty Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConFacultyNotFoundFix</fullName>
@@ -1501,7 +2261,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when Health Check can&apos;t find Default Faculty Record Type</shortDescription>
-        <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Faculty Record Type to a valid, active record type.</value>
+        <value>In EDA Settings | Course Connections, change the Default Faculty Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConRecordTypesNotUnique</fullName>
@@ -1516,8 +2276,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when student and faculty Course Connection record types are same</shortDescription>
-        <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change either the Default Faculty Record Type or the Default Active Student Record Type so that each specifies a unique record type.</value>
+        <shortDescription>Recommended fix when student and faculty Course Connection record types match</shortDescription>
+        <value>In EDA Settings | Course Connections, change either the Default Faculty Record Type or the Default Student Record Type so that each specifies a unique record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConRecordTypesUnique</fullName>
@@ -1540,16 +2300,16 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when the Default Active Student Record Type is inactive</shortDescription>
-        <value>Verify the Default Active Student Record Type specified in EDA Settings, on the Settings subtab of the Course Connections tab. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn&apos;t correct, change the Default Active Student Record Type to a valid, active record type.</value>
+        <shortDescription>Recommended fix when the Default Student Record Type is inactive</shortDescription>
+        <value>In EDA Settings | Course Connections, verify the Default Student Record Type. If {1} ({0}) is correct, go to Salesforce Setup and set the record type to Active. If it isn't correct, change the Default Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConStudentNotFoundFix</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended fix when Health Check can&apos;t find Default Active Student Record Type</shortDescription>
-        <value>In EDA Settings, on the Settings subtab of the Course Connections tab, change the Default Active Student Record Type to a valid, active record type.</value>
+        <shortDescription>Recommended fix when Health Check can&apos;t find Default Student Record Type</shortDescription>
+        <value>In EDA Settings | Course Connections, change the Default Student Record Type to a valid, active record type.</value>
     </labels>
     <labels>
         <fullName>stgHCCourseConnectionsTitle</fullName>
@@ -1597,7 +2357,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Female value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct for Female, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+        <value>The picklist value for Female in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelFemaleNotFoundFix</fullName>
@@ -1605,7 +2365,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Female value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+        <value>The picklist value for Female in the Reciprocal Relationships mapping isn&apos;t valid. In EDA Settings | Relationships, edit the Female value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelFemaleTitle</fullName>
@@ -1621,7 +2381,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Male value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct for Male, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Female value to a valid, active picklist value.</value>
+        <value>The picklist value for Male in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Male value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelMaleNotFoundFix</fullName>
@@ -1629,7 +2389,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Male value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Male value to a valid, active picklist value.</value>
+        <value>The picklist value for Male in the Reciprocal Relationships mapping isn&apos;t valid. In EDA Settings | Relationships, edit the Male value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelMaleTitle</fullName>
@@ -1645,7 +2405,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Name value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
+        <value>The Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping that specifies this Name. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameNotFoundFix</fullName>
@@ -1653,7 +2413,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Name value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Name value to a valid, active picklist value.</value>
+        <value>The Reciprocal Relationships mapping for {0} isn&apos;t valid. In EDA Settings | Relationships, edit the mapping that specifies this Name to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameNotUniqueDesc</fullName>
@@ -1668,8 +2428,8 @@
         <categories>Setup</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Recommended Fix when Name isn&apos;t unique in reciprocal settings</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, look for multiple rows specifying {0} ({1}) in the Name column. Edit those reciprocal settings so that this Name value appears in only one reciprocal setting row.</value>
+        <shortDescription>Recommended fix when the reciprocal setting&apos;s Name value isn&apos;t unique</shortDescription>
+        <value>In EDA Settings | Relationships, look in the Reciprocal Relationships table for multiple mappings with the Name {0} ({1}). Edit those mappings so that only one mapping uses this Name.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNameTitle</fullName>
@@ -1701,7 +2461,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Neutral value is inactive</shortDescription>
-        <value>Verify the reciprocal setting for {0} ({1}) specified in EDA Settings, on the Reciprocal Settings subtab of the Relationships tab. If {0} ({1}) is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
+        <value>The picklist value for Neutral in the Reciprocal Relationships mapping for {0} ({1}) isn&apos;t active. In EDA Settings | Relationships, verify the mapping. If the mapping is correct, go to the Relationship object&apos;s Type field in Salesforce Setup and set the picklist value to Active. If it isn&apos;t correct, change the reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNeutralNotFoundFix</fullName>
@@ -1709,7 +2469,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Recommended fix when the reciprocal setting&apos;s Neutral value doesn&apos;t exist</shortDescription>
-        <value>In EDA Settings, on the Reciprocal Settings subtab of the Relationships tab, change the corresponding reciprocal setting&apos;s Neutral value to a valid, active picklist value.</value>
+        <value>The picklist value for Neutral in the Reciprocal Relationships mapping isn&apos;t valid. In EDA Settings | Relationships, edit the Neutral value for this mapping to a valid, active picklist value.</value>
     </labels>
     <labels>
         <fullName>stgHCReciprocalRelNeutralTitle</fullName>
@@ -1760,6 +2520,14 @@
         <value>Account Model</value>
     </labels>
     <labels>
+        <fullName>stgHealthCheckA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that launches Settings Health Check</shortDescription>
+        <value>Go to Settings Health Check.</value>
+    </labels>
+    <labels>
         <fullName>stgHealthCheckAffiliationMappings</fullName>
         <categories>Setup</categories>
         <language>en_US</language>
@@ -1773,7 +2541,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Settings Health Check component description</shortDescription>
-        <value>Settings Health Check checks your EDA Settings for invalid configurations. When complete, use the results to identify and fix any invalid settings.</value>
+        <value>Settings Health Check checks your EDA Settings for invalid configurations. Use the results to identify and fix invalid settings.</value>
     </labels>
     <labels>
         <fullName>stgHealthCheckErrorLastRunDate</fullName>
@@ -1905,10 +2673,10 @@
     </labels>
     <labels>
         <fullName>stgHealthCheckTitle</fullName>
-        <categories>Setup</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Settings Health Check component title</shortDescription>
+        <shortDescription>Label for the Settings Health Check card</shortDescription>
         <value>Settings Health Check</value>
     </labels>
     <labels>
@@ -1932,48 +2700,72 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for System Settings</shortDescription>
-        <value>For Higher Education institutions, we recommend the &quot;Administrative&quot; Account model. For K-12 schools, we recommend the &quot;Household&quot; Account model.</value>
+        <shortDescription>Description of the Default Account Model setting</shortDescription>
+        <value>The Account record type used when an Account is automatically created for an independent Contact.</value>
     </labels>
     <labels>
         <fullName>stgHelpAccoutsDeletedIfChildContactsDeleted</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Record types of Accounts that are automatically deleted if all their associated Contacts have been deleted.</value>
+        <shortDescription>Description of the Accounts Without Contacts setting</shortDescription>
+        <value>Delete Accounts with these record types if they have no Contacts.</value>
+    </labels>  
+    <labels>
+        <fullName>stgLeadConversionAccountNamingDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Automatically Rename Lead-Converted Accounts setting</shortDescription>
+        <value>When Leads are converted, automatically rename Accounts to use the account naming format associated with these selected record types.</value>
     </labels>
+    <labels>
+        <fullName>stgLeadConversionAccountNaming</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Automatically Rename Lead-Converted Accounts setting</shortDescription>
+        <value>Automatically Rename Lead-Converted Accounts</value>
+    </labels>    
+        <labels>
+        <fullName>stgLeadConversionAccountNamingTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Lead Conversion Account Naming</shortDescription>
+        <value>Lead Conversion Account Naming</value>
+    </labels>   
     <labels>
         <fullName>stgHelpAddressAccRecType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Account record types that support multiple address management.</value>
+        <shortDescription>Description of the Enable Multiple Addresses for Account Types setting</shortDescription>
+        <value>Select the Account record types that support multiple addresses.</value>
     </labels>
     <labels>
         <fullName>stgHelpAdminRecType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Account record type used for Administrative Accounts. This setting affects management of address records and the naming format of Administrative Accounts.</value>
+        <shortDescription>Description of the Administrative Account Record Type setting</shortDescription>
+        <value>The Account record type used for Administrative Accounts.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Affiliations Settings</shortDescription>
-        <value>If selected, the Program Enrollment End Date is copied to the End Date on new Affiliation records. Otherwise, the Affiliation End Date is left blank.</value>
+        <shortDescription>Description of the Affiliation End Date setting</shortDescription>
+        <value>Copy the End Date from Program Enrollment records to new Affiliation records. Otherwise, leave the field blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCopyProgramEnrollmentStartDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Affiliations Settings</shortDescription>
-        <value>If selected, the Program Enrollment Start Date is copied to the Start Date on new Affiliation records. Otherwise, the Affiliation Start Date is left blank.</value>
+        <shortDescription>Description of the Affiliation Start Date setting</shortDescription>
+        <value>Copy the Start Date from Program Enrollment records to new Affiliation records. Otherwise, leave the field blank.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflCreateFromProgramEnrollmentHeader</fullName>
@@ -1996,7 +2788,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Affiliations status</shortDescription>
+        <shortDescription>Description of the Status for Affiliations Not Deleted setting</shortDescription>
         <value>The Status set on the Affiliation related to a deleted Program Enrollment.</value>
     </labels>
     <labels>
@@ -2028,72 +2820,72 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Affiliations role</shortDescription>
-        <value>The role set on the Affiliation created with a Program Enrollment.</value>
+        <shortDescription>Description of the Role for Created Affiliations setting</shortDescription>
+        <value>Select a role for Affiliations created with Program Enrollments.</value>
     </labels>
     <labels>
         <fullName>stgHelpAfflProgEnrollSetStatusValue</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Affiliations status</shortDescription>
-        <value>The status set on the Affiliation created with a Program Enrollment.</value>
+        <shortDescription>Description of the Status for Created Affiliations setting</shortDescription>
+        <value>Select a status for Affiliations created with Program Enrollments.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactAddrs</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts address mgmt</shortDescription>
-        <value>Select this option to enable multiple address management for Contacts.</value>
+        <shortDescription>Description of the Allow Multiple Contact Addresses setting</shortDescription>
+        <value>Allow Contacts to have multiple Address records.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactPreferredEmail</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Preferred Email</shortDescription>
-        <value>Do not require Contacts to have a Preferred Email.</value>
+        <shortDescription>Description of the Require Preferred Email setting</shortDescription>
+        <value>Require Contacts to have a Preferred Email.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactPreferredPhone</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Do not require Contacts to have a Preferred Phone.</value>
+        <shortDescription>Description for the Require Preferred Phone setting</shortDescription>
+        <value>Require Contacts to have a Preferred Phone.</value>
     </labels>
     <labels>
         <fullName>stgHelpContactPreferredPhoneSync</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Sync the Preferred Phone field to the Contact&apos;s standard Phone field and validate that the value in Preferred Phone exists and has a value.</value>
+        <shortDescription>Description of the Enhanced Preferred Phone Functionality setting</shortDescription>
+        <value>Copy the Contact&apos;s Preferred Phone to their Phone field.</value>
     </labels>
     <labels>
         <fullName>stgHelpCopyQueuedEmailSent</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Confirmation msg for Run Copy button on Courses</shortDescription>
-        <value>The process was queued successfully. An email will be sent at the completion of the job.</value>
+        <shortDescription>Confirmation message when the Extended Description field is queued for update</shortDescription>
+        <value>We&apos;re updating the Extended Description field. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgHelpCourseConnBackfillDescription</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Course Connections backfill</shortDescription>
-        <value>The Course Connections Backfill should be used only when enabling Course Connections for the first time and only in orgs where Course Offerings and Course Connections (Enrollments) existed prior to enabling the Course Connections feature. The Backfill converts all Contacts that were listed as faculty on a Course Connection (Enrollment) or Course Offering to the Default Faculty Record Type. The Backfill then converts the Contacts on the remaining Course Connections (Enrollments) to the Default Active Student Record Type.</value>
+        <shortDescription>Description of the Update Course Connection record types confirmation window</shortDescription>
+        <value>Changes Faculty Course Connection records to the Default Faculty Record Type value, and all other Course Connection records to the Default Student Record Type value.</value>
     </labels>
     <labels>
         <fullName>stgHelpCoursesDataMigration</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Courses description field data migration</shortDescription>
-        <value>In EDA 1.30, the Extended Description field was added to accommodate longer course descriptions.</value>
+        <shortDescription>Description of the Extended Course Descriptions setting</shortDescription>
+        <value>Copies text from the Description field on Course records to the Extended Description field to accommodate longer course descriptions.</value>
     </labels>
     <labels>
         <fullName>stgHelpCoursesDataMigrationCopiesValues</fullName>
@@ -2124,24 +2916,24 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Fluency value automatically set on newly created Contact Language records when users set the Primary Language lookup field on a Contact.</value>
+        <shortDescription>Description of the Contact Language Fluency setting</shortDescription>
+        <value>The Fluency value set when changing or setting a Contact&apos;s Primary Language on a Contact Language record.</value>
     </labels>
     <labels>
         <fullName>stgHelpDefaultFacultyType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Course Connections Settings</shortDescription>
-        <value>The default record type when creating Course Connections for a faculty member.</value>
+        <shortDescription>Description of the Default Faculty Record Type setting</shortDescription>
+        <value>Select the record type for faculty Course Connections.</value>
     </labels>
     <labels>
         <fullName>stgHelpDefaultStudentType</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Course Connections Settings</shortDescription>
-        <value>The default record type when creating Course Connections for active students.</value>
+        <shortDescription>Description of the Default Student Record Type setting</shortDescription>
+        <value>Select the record type for student Course Connections.</value>
     </labels>
     <labels>
         <fullName>stgHelpEnableCourseConnBeforeBackfill</fullName>
@@ -2164,8 +2956,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Course Connections Settings</shortDescription>
-        <value>Course Connection records connect a Contact with a Course Offering. Enabling this feature allows users to choose the type of Contact (Faculty or Student) to create the Course Connection for. When you enable this feature, you also need to set the Default Active Student Record Type and Default Faculty Record Type, below. If you&apos;re enabling this feature for the first time, we highly recommend you run the Course Connections Backfill.</value>
+        <shortDescription>Description of the Course Connections setting</shortDescription>
+        <value>Require that Course Connection records specify whether they&apos;re for faculty or students. If you turn on this setting, also set the Default Student Record Type and Default Faculty Record Type.&lt;/br&gt;&lt;/br&gt;Before enabling this setting for the first time, run the Legacy Course Enrollment Data Apex job in System Tools.</value>
     </labels>
     <labels>
         <fullName>stgHelpEnsureExistContactPreferEmail</fullName>
@@ -2180,32 +2972,32 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>Select to disable the product&apos;s error handling framework.</value>
+        <shortDescription>Description of the Error Handling setting</shortDescription>
+        <value>Allow error handling for asynchronous jobs to make it easier to see when scheduled jobs fail.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyOn</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>If selected, notifications are posted for product-generated errors.</value>
+        <shortDescription>Description of the Error Notifications setting</shortDescription>
+        <value>Send error notifications to selected recipients. If you choose Chatter Group or User, also specify a value in Error Notification Recipients.</value>
     </labels>
     <labels>
         <fullName>stgHelpErrorNotifyTo</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Systems Settings</shortDescription>
-        <value>Specify who should receive email error notifications. Valid values are &apos;All Sys Admins&apos;, the ID of a user in your org, or the ID of a Chatter group. You can enter only one value.</value>
+        <shortDescription>Description of the Error Notification Recipients setting</shortDescription>
+        <value>Enter a single user name or Chatter group. Users are notified of errors by email, Chatter groups are notified with a post to the feed.</value>
     </labels>
     <labels>
         <fullName>stgHelpEthnicityRaceBackfill</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Use the Ethnicity and Race Backfill only if your org used the Ethnicity field before the Race field was added and values were removed from the Ethnicity field as of EDA version 1.28. If the value in the Contact&apos;s Ethnicity field does not equal “Not Hispanic or Latino” or “Hispanic or Latino,” the Backfill copies the value to the Race field. Both standard picklist values and any custom values that you may have added are eligible to be copied.</value>
+        <shortDescription>Description of the Legacy Ethnicity Data setting</shortDescription>
+        <value>If you used the Ethnicity field before EDA version 1.28, this Apex job updates the Race field on Contacts with a copy of standard and custom values from the Ethnicity field. The values Not Hispanic or Latino and Hispanic or Latino aren&apos;t copied.</value>
     </labels>
     <labels>
         <fullName>stgHelpHouseAdmAccountAddressMgmt</fullName>
@@ -2220,8 +3012,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>The Account record type used for Household Accounts. This setting affects management of Address records and the naming format of Household Accounts.</value>
+        <shortDescription>Description of the Household Account Record Type setting</shortDescription>
+        <value>The Account record type used for Household Accounts.</value>
     </labels>
     <labels>
         <fullName>stgHelpIfCustomValuesEthnicityCopyRace</fullName>
@@ -2233,11 +3025,11 @@
     </labels>
     <labels>
         <fullName>stgHelpNestedPlanRequirementPP</fullName>
-        <categories>Setting</categories>
+        <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Info text for Program Plans Settings</shortDescription>
-        <value>When selected, Plan Requirements can specify either a Program Plan or a parent Plan Requirement, but not both. If you specify both a Program Plan and a parent Plan Requirement, an error message will prevent you from saving until only one is selected.</value>
+        <shortDescription>Description of the Plan Requirement Hierarchy setting</shortDescription>
+        <value>If you have a hierarchy for nested Plan Requirements, specifying that they can have only a Program Plan or only a parent Plan Requirement can help maintain your structure.</value>
     </labels>
     <labels>
         <fullName>stgHelpOrgAccountAddressMgmt</fullName>
@@ -2260,8 +3052,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Relationships Settings</shortDescription>
-        <value>The method used to populate the type field when creating a Reciprocal Relationship. &quot;List Setting&quot; uses the custom settings defined on the Reciprocal Relationships tab with male, female, and neutral values. &quot;Value Inversion&quot; inverts the type on the original Relationship record where appropriate. For example, if the originating Relationship is Parent-Child, the Reciprocal Relationship will be Child-Parent.</value>
+        <shortDescription>Description for the Reciprocal Method setting</shortDescription>
+        <value>Specify how to populate the Type field on automatically created Reciprocal Relationships. Select List Setting to use the values from the Reciprocal Relationships. Select Value Inversion to invert the Type on the original Relationship record.</value>
     </labels>
     <labels>
         <fullName>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</fullName>
@@ -2276,16 +3068,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for Accounts and Contacts Settings</shortDescription>
-        <value>Treats changes to single Contact or Account address fields as updates to the existing address (i.e., no new Address object is created). Also causes white space and case changes to be treated as updates.</value>
+        <shortDescription>Description of the Update Address Records for Simple Changes setting</shortDescription>
+        <value>For simple address changes to Contacts or Accounts, update existing Address records rather than creating new ones.</value>
     </labels>
     <labels>
         <fullName>stgHelpStoreErrorsOn</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Info text for System Settings</shortDescription>
-        <value>When selected, errors are stored in a custom Error object. You can create a tab for the Errors object to view a list of all stored errors.</value>
+        <shortDescription>Description of the Store Errors setting</shortDescription>
+        <value>Log and store errors on the Error object. After this setting is enabled, create a tab for the Error object to view error records.</value>
     </labels>
     <labels>
         <fullName>stgHelpUpdateReportIfDependenciesEthnicity</fullName>
@@ -2296,27 +3088,51 @@
         <value>If you had reports or formula fields that referenced the previous values in the Ethnicity field, update them.</value>
     </labels>
     <labels>
+        <fullName>stgHHAccountCustomName</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for Custom Name Format for Household Accounts</shortDescription>
+        <value>Custom Name Format</value>
+    </labels>
+    <labels>
+        <fullName>stgHHAccountCustomNameHelp</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Info text for Custom Name Format</shortDescription>
+        <value>Specify your own naming convention.</value>
+    </labels>
+    <labels>
+        <fullName>stgHHAccountNamingTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Household Account Naming</shortDescription>
+        <value>Household Account Naming</value>
+    </labels>
+    <labels>
         <fullName>stgNestedPlanRequirementPP</fullName>
         <categories>Setting</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Program Plans Settings</shortDescription>
-        <value>Validate Program Plan for Nested Plan Requirements</value>
+        <shortDescription>Label for the Plan Requirement Hierarchy setting</shortDescription>
+        <value>Plan Requirement Hierarchy</value>
     </labels>
     <labels>
         <fullName>stgNewAfflMapping</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Section header for Affiliation Mappings Settings</shortDescription>
-        <value>New Affiliation Mapping</value>
+        <shortDescription>Title for the New Affiliation Mapping window</shortDescription>
+        <value>New Affiliation Mapping?</value>
     </labels>
     <labels>
         <fullName>stgOptAllSysAdmins</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
+        <shortDescription>Picklist value for Error Notifications</shortDescription>
         <value>All Sys Admins</value>
     </labels>
     <labels>
@@ -2324,7 +3140,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
+        <shortDescription>Picklist value for Error Notifications</shortDescription>
         <value>Chatter Group</value>
     </labels>
     <labels>
@@ -2332,7 +3148,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
+        <shortDescription>Picklist value for EDA Settings</shortDescription>
         <value>Select...</value>
     </labels>
     <labels>
@@ -2340,8 +3156,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for System Settings Error Notification</shortDescription>
+        <shortDescription>Picklist value for Error Notifications</shortDescription>
         <value>User</value>
+    </labels>
+    <labels>
+        <fullName>stgPeopleAndGroupsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for People and Groups</shortDescription>
+        <value>People and Groups</value>
     </labels>
     <labels>
         <fullName>stgPreferredEmailBatchEmailBody</fullName>
@@ -2349,7 +3173,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Body of email after Run Cleanup for preferred email/phone</shortDescription>
-        <value>The batch Apex job processed {0} records with {1} failures.</value>
+        <value>The Apex job processed {0} records with {1} failures.</value>
     </labels>
     <labels>
         <fullName>stgPreferredEmailBatchEmailSubject</fullName>
@@ -2364,23 +3188,95 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Preferred Email/Phone Data Cleanup:</value>
+        <shortDescription>Label for the Preferred Email and Preferred Phone setting</shortDescription>
+        <value>Preferred Email and Preferred Phone</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneDefault</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Default Preferred Phone setting</shortDescription>
+        <value>Default Preferred Phone</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneEmailModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update Preferred Email and Phone fields confirmation window</shortDescription>
+        <value>Refreshes Preferred Email and Preferred Phone fields for all Contacts as specified by your org&apos;s related settings. Before proceeding, make sure you&apos;ve disabled any processes that reference Preferred Email and Preferred Phone fields.</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneEmailModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update Preferred Email and Phone fields confirmation window</shortDescription>
+        <value>Update Preferred Email and Phone fields?</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneEmailSuccessToast</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when Preferred Email and Phone fields are queued for update</shortDescription>
+        <value>We&apos;re updating the Preferred Email and Preferred Phone fields. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgPreferredPhoneSelection</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Select a desired picklist value for the batch job to selct a value from</shortDescription>
+        <shortDescription>Select a desired picklist value for the batch job to select a value from</shortDescription>
         <value>Select a field for Preferred Phone to copy the value from when the standard Phone field has no value, or more than one &apos;Phone&apos; field is defined.</value>
+    </labels>
+    <labels>
+        <fullName>stgPreferredPhoneSelectionDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Default Preferred Phone setting</shortDescription>
+        <value>The field to use for Preferred Phone when the Phone field is blank, or more than one phone value is defined.</value>
+    </labels>
+    <labels>
+        <fullName>stgProgramPlanSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Program Plans</shortDescription>
+        <value>Program Plans</value>
+    </labels>
+    <labels>
+        <fullName>stgProgramPlanSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Program Plan Settings</shortDescription>
+        <value>Program Plan Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgProgramsSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Program Enrollments</shortDescription>
+        <value>Program Enrollments</value>
+    </labels>
+    <labels>
+        <fullName>stgProgramsSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Program Enrollment Settings</shortDescription>
+        <value>Program Enrollment Settings</value>
     </labels>
     <labels>
         <fullName>stgReciprocalMethodListSetting</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for Reciprocal Method in EDA Settings</shortDescription>
+        <shortDescription>Picklist value for the method used for Reciprocal Method</shortDescription>
         <value>List Setting</value>
     </labels>
     <labels>
@@ -2388,64 +3284,223 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Picklist value for Reciprocal Method in EDA Settings</shortDescription>
+        <shortDescription>Picklist value for the method used for Reciprocal Method</shortDescription>
         <value>Value Inversion</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelDeleteModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Delete Reciprocal Relationship window</shortDescription>
+        <value>This Reciprocal Relationship maps the {0} reciprocal value to the {1} {2}, and {3} reciprocal values. We&apos;re just making sure that you want to delete it.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelDeleteModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Delete Reciprocal Relationship window</shortDescription>
+        <value>Delete Reciprocal Relationship?</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelDeleteSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when a Reciprocal Relationship is created</shortDescription>
+        <value>Reciprocal Relationship for {0} was deleted.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelEditModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Edit Reciprocal Relationship window</shortDescription>
+        <value>Select the Reciprocal Relationship to edit.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelEditModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Edit Reciprocal Relationship window</shortDescription>
+        <value>Edit Reciprocal Relationship?</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelEditSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when a Reciprocal Relationship is saved</shortDescription>
+        <value>Reciprocal Relationship for {0} was saved.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelNewModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the New Reciprocal Relationship window</shortDescription>
+        <value>Select the Reciprocal Relationship type to create.</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelNewModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the New Reciprocal Relationship window</shortDescription>
+        <value>New Reciprocal Relationship?</value>
+    </labels>
+    <labels>
+        <fullName>stgReciprocalRelNewSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when a Reciprocal Relationship is created</shortDescription>
+        <value>Reciprocal Relationship for {0} was created.</value>
     </labels>
     <labels>
         <fullName>stgRefreshAdminAcctNameDesc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Warning for Refresh Admin Account Names</shortDescription>
-        <value>Warning: Clicking this button renames ALL existing Administrative Account records to the format specified in Administrative Account Name Format. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Administrative Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
+        <shortDescription>Description of the Update All Administrative Account Names setting</shortDescription>
+        <value>Updates all Administrative Account records to use the format in Administrative Account Name Format.&lt;/br&gt;&lt;/br&gt;Warning: Before proceeding, learn about the impact of this setting. Also disable processes that reference Administrative Accounts.</value>
     </labels>
     <labels>
         <fullName>stgRefreshAdminAcctNameTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for System Settings</shortDescription>
-        <value>Refresh All Administrative Account Names</value>
+        <shortDescription>Label for the Update All Administrative Account Names setting</shortDescription>
+        <value>Update All Administrative Account Names</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshAdminNamesModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update all Administrative Account names confirmation window</shortDescription>
+        <value>Refreshes all Administrative Account records to use the format in Administrative Account Name Format. Before proceeding, make sure you&apos;ve disabled any processes that reference Administrative Accounts.</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshAdminNamesModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update All Administrative Account Names confirmation window </shortDescription>
+        <value>Update all Administrative Account names?</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshAdminNamesSuccessToast</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when Administrative Account names are queued for update</shortDescription>
+        <value>We&apos;re updating Administrative Account names. Look for an email when the job is done.</value>
     </labels>
     <labels>
         <fullName>stgRefreshHHAcctNameDesc</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Warning for Refresh Household Account Names</shortDescription>
-        <value>Warning: Clicking this button renames ALL existing Household Account records to the format specified in Household Account Name Format. This action enables the Automatically Rename Household Accounts setting, even if previously unselected. Read the product documentation to be sure that you understand the consequences of this irreversible change. Before you proceed, disable any automation or processes that reference Household Accounts (for example, workflow rules). After the refresh is complete, you can re-enable them.</value>
+        <shortDescription>Description of the Update All Household Account Names setting</shortDescription>
+        <value>Updates all Household Account records to use the format in Household Account Name Format. Also enables Automatically Rename Household Accounts, even if previously disabled.  &lt;/br&gt;&lt;/br&gt; Warning: Before proceeding, learn about the impact of this setting. Also disable processes that reference Household Accounts.</value>
     </labels>
     <labels>
         <fullName>stgRefreshHHAcctNameTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for System Settings</shortDescription>
-        <value>Refresh All Household Account Names</value>
+        <shortDescription>Label for the Update All Household Account Names settings</shortDescription>
+        <value>Update All Household Account Names</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHouseholdNamesModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Update all Household Account names confirmation window</shortDescription>
+        <value>Refreshes all Household Account records to use the format in Household Account Name Format. Before proceeding, make sure you've disabled any processes that reference Household Accounts.</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHouseholdNamesModalTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title for the Update all Household Account names confirmation window</shortDescription>
+        <value>Update all Household Account names?</value>
+    </labels>
+    <labels>
+        <fullName>stgRefreshHouseholdNamesSuccessToast</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Confirmation message when Household Account names are queued for update</shortDescription>
+        <value>We&apos;re updating Household Account names. Look for an email when the job is done.</value>
+    </labels>
+    <labels>
+        <fullName>stgRelationshipSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Relationships</shortDescription>
+        <value>Relationships</value>
+    </labels>
+    <labels>
+        <fullName>stgRelationshipSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Relationship Settings</shortDescription>
+        <value>Relationship Settings</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUp</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Label for button on Settings UI</shortDescription>
-        <value>Run Cleanup</value>
+        <shortDescription>Button label for updating the selected Apex job</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>stgRunCleanUpA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Alt text for button that updates Contacts&apos; Preferred Email/Phone fields</shortDescription>
+        <value>Update Preferred Email and Phone fields for all Contacts.</value>
     </labels>
     <labels>
         <fullName>stgRunCleanUpEnableFirstTime</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Accounts and Contacts Settings</shortDescription>
-        <value>Run this data cleanup process after you&apos;ve enabled the Preferred Email or Preferred Phone requirement for the first time or after a period of not enforcing the requirement.</value>
+        <shortDescription>Description of the Preferred Email and Preferred Phone setting</shortDescription>
+        <value>Updates Preferred Email and Preferred Phone for all Contacts based on your org&apos;s related settings. It&apos;s a good idea to run this job when you enable Require Preferred Email or Require Preferred Phone for the first time or if you haven&apos;t enforced them for a while.</value>
     </labels>
     <labels>
         <fullName>stgSaveSettings</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Confirmation msg for Settings Save action</shortDescription>
-        <value>Settings successfully saved.</value>
+        <shortDescription>Confirmation messsage that updated settings were saved</shortDescription>
+        <value>EDA Settings were saved.</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectChatterGroupDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Select Chatter Group setting</shortDescription>
+        <value>Enter a Chatter group...</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectChatterGroupTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for Select Chatter Group</shortDescription>
+        <value>Chatter Group</value>
     </labels>
     <labels>
         <fullName>stgSelectReciType</fullName>
@@ -2456,27 +3511,43 @@
         <value>Select recipient type:</value>
     </labels>
     <labels>
+        <fullName>stgSelectUserDesc</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description for the Select User setting</shortDescription>
+        <value>Enter a username...</value>
+    </labels>
+    <labels>
+        <fullName>stgSelectUserTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for Select User</shortDescription>
+        <value>User</value>
+    </labels>
+    <labels>
         <fullName>stgSendErrorsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for error notifications</shortDescription>
-        <value>Send Error Notifications</value>
+        <shortDescription>Label for the Error Notifications setting</shortDescription>
+        <value>Error Notifications</value>
     </labels>
     <labels>
         <fullName>stgSimpleAddressChangeUpdate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Field label for Address mgmt Setting</shortDescription>
-        <value>Simple Address Change Treated as Update</value>
+        <shortDescription>Label for the Update Address Records for Simple Changes setting</shortDescription>
+        <value>Update Address Records for Simple Changes</value>
     </labels>
     <labels>
         <fullName>stgStoreErrorsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Field label for error storage setting</shortDescription>
+        <shortDescription>Label for the Store Errors setting</shortDescription>
         <value>Store Errors</value>
     </labels>
     <labels>
@@ -2484,7 +3555,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Confirmation toast displayed in multiple places</shortDescription>
+        <shortDescription>Confirmation message displayed in multiple places</shortDescription>
         <value>Success</value>
     </labels>
     <labels>
@@ -2504,6 +3575,22 @@
         <shortDescription>Success message for Household Account naming refresh</shortDescription>
         <value>The Household Account naming refresh was queued successfully.
         An email will be sent at the completion of the batch.</value>
+    </labels>
+    <labels>
+        <fullName>stgSystemToolsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for System Tools</shortDescription>
+        <value>System Tools</value>
+    </labels>
+    <labels>
+        <fullName>stgSystemSettingsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for System</shortDescription>
+        <value>System</value>
     </labels>
     <labels>
         <fullName>stgTabAccCont</fullName>
@@ -2526,7 +3613,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Settings tab name</shortDescription>
+        <shortDescription>Label for the Affiliation Mappings setting</shortDescription>
         <value>Affiliation Mappings</value>
     </labels>
     <labels>
@@ -2590,8 +3677,8 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Settings tab name</shortDescription>
-        <value>Reciprocal Settings</value>
+        <shortDescription>Label for the Reciprocal Relationships setting</shortDescription>
+        <value>Reciprocal Relationships</value>
     </labels>
     <labels>
         <fullName>stgTabRel</fullName>
@@ -2618,6 +3705,14 @@
         <value>System</value>
     </labels>
     <labels>
+        <fullName>stgTellMeMoreLink</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Hyperlinked text to EDA documentation</shortDescription>
+        <value>Tell Me More</value>
+    </labels>
+    <labels>
         <fullName>stgTitleAllowAutocreatedDuplicateRel</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -2638,16 +3733,16 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Title of info text</shortDescription>
-        <value>Course Connection Backfill</value>
+        <shortDescription>Label for the Legacy Course Enrollment Data setting</shortDescription>
+        <value>Legacy Course Enrollment Data</value>
     </labels>
     <labels>
         <fullName>stgTitleCoursesDescriptionDataMigration</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Title of info text for Course description data migration</shortDescription>
-        <value>Courses: Description Data Migration</value>
+        <shortDescription>Label for the Extended Course Descriptions setting</shortDescription>
+        <value>Extended Course Descriptions</value>
     </labels>
     <labels>
         <fullName>stgTitleHEDAConfig</fullName>
@@ -2670,7 +3765,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Section header for auto-create relationships</shortDescription>
+        <shortDescription>Section header for Auto-Create Relationships</shortDescription>
         <value>New Auto-Create Setting</value>
     </labels>
     <labels>
@@ -2686,7 +3781,7 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Title for Reciprocal Relationships info text</shortDescription>
+        <shortDescription>Label for the Reciprocal Method setting</shortDescription>
         <value>Reciprocal Method</value>
     </labels>
     <labels>
@@ -2694,8 +3789,25 @@
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Error msg used throughout Settings</shortDescription>
+        <shortDescription>Error message used throughout Settings</shortDescription>
         <value>Error</value>
+    </labels>
+
+    <labels>
+        <fullName>stgTrailheadTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Trailhead card</shortDescription>
+        <value>Trailhead</value>
+    </labels>
+    <labels>
+        <fullName>stgVideosTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the YouTube card</shortDescription>
+        <value>YouTube</value>
     </labels>
     <labels>
         <fullName>timeBlockEndTimeMismatch</fullName>

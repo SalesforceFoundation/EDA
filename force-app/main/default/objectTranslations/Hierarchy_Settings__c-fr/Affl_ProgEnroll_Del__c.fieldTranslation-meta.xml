@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Del__c</name>
     <help>Indique si une affil. doit être supprimée lors de la suppr. de son inscr. au progr. assoc. Si activé, supprimez l&apos;affil. Si désactivé, définissez le stat. de l&apos;affil. sur la valeur spécifiée dans le par. assoc. (Stat. affil. qd inscr. prog. suppr).</help>
     <label>Suppr. affiliation qd inscr. prog. suppr</label>
+    <name>Affl_ProgEnroll_Del__c</name>
 </CustomFieldTranslation>

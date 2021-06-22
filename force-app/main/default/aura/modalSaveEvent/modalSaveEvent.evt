@@ -1,0 +1,3 @@
+<aura:event type="Component" description="Event capturing a modal save attempt.">
+    <aura:attribute name="saveModel" type="Object" />
+</aura:event>

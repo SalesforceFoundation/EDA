@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
     <help>Indique si une affiliation doit être supprimée si son inscription au programme associée est supprimée. Si activée, supprimez l&apos;affiliation. Si désactivée, définissez le statut d&apos;affiliation sur la valeur spécifiée dans le paramètre associé.</help>
     <label>Copie date début affiliation inscr. prog</label>
+    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
 </CustomFieldTranslation>

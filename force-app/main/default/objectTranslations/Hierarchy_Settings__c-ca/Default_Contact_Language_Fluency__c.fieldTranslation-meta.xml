@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Default_Contact_Language_Fluency__c</name>
     <help>El valor de domini s&apos;estableix automàticament als registres d&apos;idioma de contacte de nova creació quan els usuaris estableixen el camp de cerca d&apos;idioma principal en un contacte.</help>
     <label>Domini predeterminat de l&apos;idioma de contacte</label>
+    <name>Default_Contact_Language_Fluency__c</name>
 </CustomFieldTranslation>

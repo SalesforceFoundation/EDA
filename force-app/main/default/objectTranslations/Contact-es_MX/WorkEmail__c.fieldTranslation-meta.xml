@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>WorkEmail__c</name>
     <help>El email laboral de esta persona.</help>
     <label>Email laboral</label>
+    <name>WorkEmail__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Household_Other_Name_Setting__c</name>
     <help>Stocke d&apos;autres informations sur le format de nom du Compte de foyer.</help>
     <label>Autre paramètre de nommage du foyer</label>
+    <name>Household_Other_Name_Setting__c</name>
 </CustomFieldTranslation>

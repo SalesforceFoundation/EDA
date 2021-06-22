@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_New_Preferred_Phone_Sync__c</name>
     <help>[電話連絡先] 項目を取引先責任者の標準の [電話] 項目と同期し、電話連絡先の値が存在することを検証します。</help>
     <label>新しい電話連絡先の同期を有効化</label>
+    <name>Enable_New_Preferred_Phone_Sync__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Simple_Address_Change_Treated_as_Update__c</name>
     <help>Indien ingeschakeld, worden wijzigingen van enkele adresvelden voor een contactpersoon of account gezien als updates van het bestaande adres (zo wordt er geen nieuw adresobject gemaakt). Wijzigingen van spaties en hoofdletters worden als updates gezien.</help>
     <label>Simpele adreswijziging gezien als update</label>
+    <name>Simple_Address_Change_Treated_as_Update__c</name>
 </CustomFieldTranslation>

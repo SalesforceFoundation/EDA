@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Del__c</name>
     <help>Bepaalt of een affiliatie moet worden verwijderd bij het verwijderen van de gerelateerde programma-inschrijving. Indien ingeschakeld, stelt u de status van de affiliatie in op de waarde uit de gerelateerde instelling, &apos;Affil.status bij verw. pr.inschr.&apos;.</help>
     <label>Affil. verwijderen bij verw. pr.inschr.</label>
+    <name>Affl_ProgEnroll_Del__c</name>
 </CustomFieldTranslation>

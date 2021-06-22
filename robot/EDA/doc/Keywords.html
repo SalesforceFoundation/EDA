@@ -197,6 +197,18 @@ pre {
                 <td class="kwdoc"><p>Clicks on the action (eg: Save, Cancel) button on the EDA Settings page</p></td>
               </tr>
               
+              <tr class="kwrow" id="EDA.py.Click Action Button On New Eda Settings">
+                <td class="kwname">
+                  Click Action Button On New Eda Settings
+                </td>
+                <td class="kwargs">
+                  
+                  <i>action</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Clicks on the action (eg: Save, Cancel, Edit) button on the new EDA Settings page</p></td>
+              </tr>
+              
               <tr class="kwrow" id="EDA.py.Click Add New Setting Button">
                 <td class="kwname">
                   Click Add New Setting Button
@@ -275,6 +287,20 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>Clicks on the element if it exists by building a locator using the path and args but the keyword will not fail in case the element doesn't exist</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Click On Hub Link">
+                <td class="kwname">
+                  Click On Hub Link
+                </td>
+                <td class="kwargs">
+                  
+                  <i>field</i>, 
+                  
+                  <i>link</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Click the power of us hub link available in Education cloud settings page. Accepts the name of the setting and the name of the link as its parameter</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.py.Click Record Button">
@@ -397,6 +423,16 @@ pre {
                 <td class="kwdoc"><p>Navigates to EDA settings URL and click on the tab passed by the parameter and then loads the page object identified by the tab name</p></td>
               </tr>
               
+              <tr class="kwrow" id="EDA.py.Go To Education Cloud Settings">
+                <td class="kwname">
+                  Go To Education Cloud Settings
+                </td>
+                <td class="kwargs">
+                  
+                </td>
+                <td class="kwdoc"><p>Navigates to the Education Cloud Settings Page</p></td>
+              </tr>
+              
               <tr class="kwrow" id="EDA.py.Go To Groups Home">
                 <td class="kwname">
                   Go To Groups Home
@@ -503,6 +539,18 @@ pre {
                 <td class="kwdoc"><p>Populate placeholder element as a locator and actual value of the place holder.</p></td>
               </tr>
               
+              <tr class="kwrow" id="EDA.py.Scroll To Field">
+                <td class="kwname">
+                  Scroll To Field
+                </td>
+                <td class="kwargs">
+                  
+                  <i>field</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will scroll to the location of the field until it is visible on the page by accepting the name of the field as a parameter</p></td>
+              </tr>
+              
               <tr class="kwrow" id="EDA.py.Scroll Web Page">
                 <td class="kwname">
                   Scroll Web Page
@@ -511,6 +559,20 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>This method will scroll to the bottom of the page and back to the top using javascript page scroll commands</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Select And Move From List">
+                <td class="kwname">
+                  Select And Move From List
+                </td>
+                <td class="kwargs">
+                  
+                  <i>settingName</i>, 
+                  
+                  <i>recordType</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will select and move the record type from available record type list to selected record type list. It accepts the name of the setting and name of the record type as parameters and then selects the record type and click on the move button</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.py.Select Checkbox In Eda Settings">
@@ -563,6 +625,18 @@ pre {
                 <td class="kwdoc"><p>click on the related list to open it</p></td>
               </tr>
               
+              <tr class="kwrow" id="EDA.py.Select Settings From Navigation Pane">
+                <td class="kwname">
+                  Select Settings From Navigation Pane
+                </td>
+                <td class="kwargs">
+                  
+                  <i>settingName</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will click the setting hyperlink present in the navigation section of new EDA settings page. It accepts the name of the setting to be clicked from the test and then clicks it</p></td>
+              </tr>
+              
               <tr class="kwrow" id="EDA.py.Select Tab">
                 <td class="kwname">
                   Select Tab
@@ -590,6 +664,18 @@ pre {
                 </td>
                 <td class="kwdoc"><p>Run a single selenium command and retry once.</p>
 <p>The retry happens for certain errors that are likely to be resolved by retrying.</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Set Toggle Input">
+                <td class="kwname">
+                  Set Toggle Input
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will set the toggle input to true or false based on the value passed</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.py.Shift To Default Content">
@@ -624,6 +710,18 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>This method will update the drop down field value passed in keyword arguments Pass the expected value to be set in the drop down field from the tests</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Update Settings Dropdown Value">
+                <td class="kwname">
+                  Update Settings Dropdown Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>**kwargs</i>
+                  
+                </td>
+                <td class="kwdoc"><p>This method will update the drop down field value passed in keyword arguments in new EDA settings. Pass the expected value to be set in the drop down field from the tests</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.py.Verify Action Button Status">
@@ -696,6 +794,18 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>Verifies that the given item is present in the app launcher</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.py.Verify New Toast Message">
+                <td class="kwname">
+                  Verify New Toast Message
+                </td>
+                <td class="kwargs">
+                  
+                  <i>value</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Verifies the toast message in new EDA settings</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.py.Verify Record">
@@ -827,8 +937,22 @@ pre {
                 </td>
                 <td class="kwargs">
                   
+                  <i>**fields</i>
+                  
                 </td>
-                <td class="kwdoc"><p>Creating a contact through API</p></td>
+                <td class="kwdoc"><p>Creates a contact using the arguments passed from the tests and returns the ID of a contact record after inserting it</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.API create language">
+                <td class="kwname">
+                  API create language
+                </td>
+                <td class="kwargs">
+                  
+                  <i>language_name</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Creating a language record through API</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.robot.API create plan requirement">
@@ -905,6 +1029,62 @@ pre {
                   
                 </td>
                 <td class="kwdoc"><p>Creating an organization account through API</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Get Contact Language Value">
+                <td class="kwname">
+                  Get Contact Language Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>obj_name</i>, 
+                  
+                  <i>contact_id</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Returns language fluency, language name and status of primary language by accepting object name and contact record id</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Get Custom Settings Value">
+                <td class="kwname">
+                  Get Custom Settings Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>field_name</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Returns the value of the field in hierarch settings by accepting the name of the value as a parameter</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Get Language Field Value">
+                <td class="kwname">
+                  Get Language Field Value
+                </td>
+                <td class="kwargs">
+                  
+                  <i>obj_name</i>, 
+                  
+                  <i>record_id</i>, 
+                  
+                  <i>field_name</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Returns the value of a field in language object by accepting the field name , record ID and object name</p></td>
+              </tr>
+              
+              <tr class="kwrow" id="EDA.robot.Get Record Type Id">
+                <td class="kwname">
+                  Get Record Type Id
+                </td>
+                <td class="kwargs">
+                  
+                  <i>sObject_name</i>, 
+                  
+                  <i>record_type_name</i>
+                  
+                </td>
+                <td class="kwdoc"><p>Returns the Id of the record type by accepting the name of the record type and sObject type</p></td>
               </tr>
               
               <tr class="kwrow" id="EDA.robot.Get Records Count">
@@ -2549,7 +2729,7 @@ pre {
       
     </div>
     <div class="footer">
-      Generated on Thursday April 01, 11:27 AM - cumulusci v3.31.0
+      Generated on Tuesday May 25, 01:29 PM - cumulusci v3.35.0
     </div>
   </body>
 </html>

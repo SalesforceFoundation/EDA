@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Disable_Error_Handling__c</name>
     <help>Si se selecciona, el marc de gestió d&apos;errors personalitzat està desactivat.</help>
     <label>Desactiva el maneig d&apos;errors</label>
+    <name>Disable_Error_Handling__c</name>
 </CustomFieldTranslation>

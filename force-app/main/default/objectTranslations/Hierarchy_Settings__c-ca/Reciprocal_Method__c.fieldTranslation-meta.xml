@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Reciprocal_Method__c</name>
     <help>Determina el mètode utilitzat per generar la relació recíproca. Utilitzeu l&apos;opció Configuració de llista per utilitzar configuracions personalitzades per sexe. Utilitzeu la inversió de valor per invertir el tipus si escau (&quot;Parent-fill&quot; a &quot;Fill-pare&quot;)</help>
     <label>Mètode recíproc</label>
+    <name>Reciprocal_Method__c</name>
 </CustomFieldTranslation>

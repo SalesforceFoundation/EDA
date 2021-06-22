@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Accounts_Addresses_Enabled__c</name>
     <help>Die Datensatztypen von Accounts, bei denen mehrere Adressen aktiviert werden sollten.</help>
     <label>Accounts mit mehreren Adressen</label>
+    <name>Accounts_Addresses_Enabled__c</name>
 </CustomFieldTranslation>

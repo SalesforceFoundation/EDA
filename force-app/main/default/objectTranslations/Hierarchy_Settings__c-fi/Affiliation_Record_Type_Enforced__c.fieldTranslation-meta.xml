@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affiliation_Record_Type_Enforced__c</name>
     <help>Jos asetus on käytössä, seuraa on virhe, kun käyttäjä täyttää yhteyshenkilön ensisijaisen kentän tilillä, jonka tietuetyyppi ei vastaa EDA-asetuksissa määritettyä tietuetyyppiä. Jäsenyystietuetta ei luoda eikä yhteyshenkilön ensisijaisia kenttiä korjata.</help>
     <label>Jäsenyystietuetyyppi pakotettu</label>
+    <name>Affiliation_Record_Type_Enforced__c</name>
 </CustomFieldTranslation>

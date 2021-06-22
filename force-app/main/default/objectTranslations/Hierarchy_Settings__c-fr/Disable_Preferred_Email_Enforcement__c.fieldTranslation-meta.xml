@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Disable_Preferred_Email_Enforcement__c</name>
     <help>Sélectionnez cette option pour désactiver l&apos;application du champ Adresse e-mail préférée des contacts.</help>
     <label>Désactiver application e-mail préféré</label>
+    <name>Disable_Preferred_Email_Enforcement__c</name>
 </CustomFieldTranslation>

@@ -253,6 +253,18 @@ class EDA(BaseEDAPage):
         self.selenium.wait_until_page_contains_element(locator)
 
     @capture_screenshot_on_error
+    def verify_new_toast_message(self, value):
+        """ Verifies the toast message in new EDA settings"""
+        locator = eda_lex_locators["eda_settings_new"]["toast_message"].format(value)
+        self.selenium.wait_until_page_contains_element(locator)
+
+    @capture_screenshot_on_error
+    def verify_custom_toast_message_displayed(self):
+        """ Verifies the custom toast message in new EDA settings"""
+        locator = eda_lex_locators["eda_settings_new"]["custom_toast"]
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+
+    @capture_screenshot_on_error
     def close_toast_message(self):
         """ Close the toast message banner """
         locator = eda_lex_locators["toast_close"]
@@ -400,10 +412,36 @@ class EDA(BaseEDAPage):
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
 
+    def go_to_education_cloud_settings(self):
+        """ Navigates to the Education Cloud Settings Page"""
+        url = self.cumulusci.org.lightning_base_url
+        namespace=self.get_eda_namespace_prefix()
+        if namespace=="hed__":
+            url = "{}/lightning/cmp/{}EDASettingsContainer".format(url,namespace)
+        else:
+            url = "{}/lightning/cmp/c__EDASettingsContainer".format(url)
+        self.selenium.go_to(url)
+        self.salesforce.wait_until_loading_is_complete()
+
+    def click_on_hub_link(self, field, link):
+        """
+        Click the power of us hub link available in Education cloud settings page.
+        Accepts the name of the setting and the name of the link as its parameter
+        """
+        locator = eda_lex_locators["eda_settings_new"]["tell_me_more"].format(field, link)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= f"Element '{locator}' is not displayed for the user")
+        self.selenium.click_element(locator)
+
     def go_to_settings_health_check(self):
         """ Navigates to the Home view of Settings Health Check app"""
         url = self.cumulusci.org.lightning_base_url
-        url = "{}/lightning/n/Settings_Health_Check".format(url)
+        namespace=self.get_eda_namespace_prefix()
+        if namespace=="hed__":
+            url = "{}/lightning/cmp/{}HealthCheckContainer".format(url,namespace)
+        else:
+            url = "{}/lightning/cmp/c__HealthCheckContainer".format(url)
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
 
@@ -414,6 +452,17 @@ class EDA(BaseEDAPage):
         self.selenium.click_element(locator)
 
     @capture_screenshot_on_error
+    def click_action_button_on_new_eda_settings(self, action):
+        """ Clicks on the action (eg: Save, Cancel, Edit) button on the new EDA Settings page """
+        locator = eda_lex_locators["eda_settings_new"]["global_action"].format(action)
+        self.selenium.wait_until_page_contains_element(
+            locator, error=f"Action button with locator '{locator}' is not available on the EDA settings page")
+        self.salesforce._jsclick(locator)
+        if action == "Save":
+            self.verify_new_toast_message("EDA Settings were saved.")
+            self.close_toast_message()
+
+    @capture_screenshot_on_error
     def click_action_button_on_eda_settings_page(self, action):
         """ Clicks on the action (eg: Save, Cancel) button on the EDA Settings page """
         locator = eda_lex_locators["eda_settings"]["action"].format(lower(action))
@@ -421,7 +470,7 @@ class EDA(BaseEDAPage):
             locator, error=f"Action button with locator '{locator}' is not available on the EDA settings page")
         self.salesforce._jsclick(locator)
         if action == "Save":
-            self.verify_toast_message("Settings successfully saved.")
+            self.verify_toast_message("EDA Settings were saved.")
             self.close_toast_message()
 
     @capture_screenshot_on_error
@@ -560,4 +609,98 @@ class EDA(BaseEDAPage):
         self.selenium.execute_javascript("window.scrollTo(0, document.body.scrollHeight)")
         time.sleep(0.1)
         self.selenium.execute_javascript("window.scrollTo(document.body.scrollHeight, 0)")
+
+    def scroll_to_field(self, field):
+        """ This method will scroll to the location of the field until it is visible on the page by
+            accepting the name of the field as a parameter
+        """
+        locator = eda_lex_locators["eda_settings_new"]["dropdown_input"].format(field)
+        self.selenium.get_webelement(locator).send_keys(Keys.PAGE_DOWN)
+
+    def set_toggle_input(self, **kwargs):
+        """
+        This method will set the toggle input to true or false based on the value passed
+        """
+        for field,expected_value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_new"]["toggle_status"].format(field)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60)
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error= f"{locator} is not displayed for the user")
+            actual_value = self.selenium.get_webelement(locator).get_attribute("data-qa-value")
+            print(f"The actual value of {locator} is", actual_value)
+            if not str(actual_value).lower() == str(expected_value).lower():
+                locator = eda_lex_locators["eda_settings_new"]["toggle_input"].format(field)
+                self.selenium.click_element(locator)
+
+    def select_settings_from_navigation_pane(self, settingName):
+        """ This method will click the setting hyperlink present in the navigation section of
+            new EDA settings page. It accepts the name of the setting to be clicked from the test
+            and then clicks it
+        """
+        locator = eda_lex_locators["eda_settings_new"]["settings_nav_title"].format(settingName)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= f"{locator} is not displayed for the user")
+        self.salesforce.scroll_element_into_view(locator)
+        self.selenium.click_element(locator)
+
+    def select_and_move_from_list(self, settingName, recordType):
+        """ This method will select and move the record type from available record type list to
+            selected record type list. It accepts the name of the setting and name of the record
+            type as parameters and then selects the record type and click on the move button
+        """
+        locator = eda_lex_locators["eda_settings_new"]["select_from_list"].format(settingName,recordType)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= f"{locator} is not displayed for the user")
+        if settingName == "Automatically Rename Lead-Converted Accounts":
+            self.salesforce.scroll_element_into_view(locator)
+        self.selenium.click_element(locator)
+        locator = eda_lex_locators["eda_settings_new"]["move_to_selected"].format(settingName)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= f"{locator} is not displayed for the user")
+        self.selenium.click_element(locator)
+
+
+    def update_settings_dropdown_value(self,**kwargs):
+        """ This method will update the drop down field value passed in keyword arguments in new
+            EDA settings. Pass the expected value to be set in the drop down field from the tests
+        """
+        for field,value in kwargs.items():
+            locator = eda_lex_locators["eda_settings_new"]["dropdown_input"].format(field)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60)
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error=f"'{value}' as dropdown value in '{field}' field is not available ")
+            self.selenium.click_element(locator)
+            locator = eda_lex_locators["eda_settings_new"]["settings_dropdown"].format(field,value)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60)
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error=f"'{value}' as dropdown value in '{field}' field is not available ")
+            self.selenium.click_element(locator)
+
+    def update_system_tools(self,value,**kwargs):
+        """ This method will run the update job by clicking the update button present in System
+            Tools section in Education Cloud Settings. Pass the name of the field and the name of
+            the button from test.
+        """
+        for field,button in kwargs.items():
+            locator = eda_lex_locators["eda_settings_new"]["update_button"].format(field,button)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60)
+            self.selenium.wait_until_element_is_visible(locator,
+                                                error=f"'{field}' field is not available ")
+            self.selenium.click_element(locator)
+            self.click_footer_button(value)
+            self.verify_custom_toast_message_displayed()
+            time.sleep(0.25) #to avoid toast messages overlapping each other
+
+    def click_footer_button(self,value):
+        """ This method will click the buttons available on the footer in a modal window
+        """
+        locator = eda_lex_locators["eda_settings_new"]["footer_button"].format(value)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error=f"'{locator}' is not available ")
+        self.selenium.click_element(locator)
+
 

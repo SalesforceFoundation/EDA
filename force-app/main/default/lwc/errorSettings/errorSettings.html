@@ -1,0 +1,118 @@
+<template>
+    <c-settings-save-canvas
+        component-title={labelReference.errorSettingsTitle}
+        onsettingseditmodechange={handleSettingsEditModeChange}
+        onsettingssaving={handleSettingsSaving}
+        onsettingssavecancel={handleSettingsSaveCancel}
+        onsettingssavecompleted={handleSettingsSaveCompleted}
+    >
+        <!-- Body of Contact Information Model Settings page (populates Slot in child component) -->
+        <template if:true={errorSettingsVModel}>
+            <!-- Store Errors Setting -->
+            <c-settings-row-input
+                class="slds-size_3-of-3"
+                title={labelReference.storeErrorsSettingTitle}
+                description={labelReference.storeErrorsSettingDescription}
+                type="toggle"
+                input-id={inputAttributeReference.storeErrorsToggleId}
+                value={errorSettingsVModel.storeErrors}
+                checked={errorSettingsVModel.storeErrors}
+                onsettingsinputchange={handleStoreErrorsChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+
+            <!-- Send Error Notigication Setting -->
+            <c-settings-row-input
+                class="slds-size_3-of-3"
+                title={labelReference.sendErrorsSettingTitle}
+                description={labelReference.sendErrorsSettingDescription}
+                type="toggle"
+                input-id={inputAttributeReference.sendErrorNotificationsToggleId}
+                value={errorSettingsVModel.sendErrorNotifications}
+                checked={errorSettingsVModel.sendErrorNotifications}
+                onsettingsinputchange={handleSendErrorNotificationsChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+
+            <template if:true={showErrorNotificationRecipients}>
+                <!-- Send Error Notification Category -->
+                <c-settings-row-input
+                    class="slds-size_3-of-3 slds-var-p-left_x-large"
+                    title={labelReference.errorNotificationRecipientsTitle}
+                    description={labelReference.errorNotificationRecipientsDescription}
+                    type="combobox"
+                    input-id={inputAttributeReference.errorNotificationRecipientsComboboxId}
+                    value={errorSettingsVModel.errorNotificationsRecipientCategory.value}
+                    placeholder={labelReference.comboboxPlaceholderText}
+                    options={errorSettingsVModel.errorNotificationsRecipientCategory.options}
+                    onsettingsinputchange={handleErrorNotificationRecipientCategoryChange}
+                    disabled={affordancesDisabled}
+                ></c-settings-row-input>
+                <template if:true={showErrorNotificationRecipientChatterGroupLookup}>
+                    <div class="slds-col slds-size_2-of-3"></div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-grid slds-grid_align-end slds-var-p-right_x-large slds-var-p-bottom_x-large">
+                            <div class="slds-col">
+                                <c-single-lookup
+                                    required={showRequiredIndicator}
+                                    label={labelReference.chatterGroupLookupTitle}
+                                    remove-label={labelReference.lookupClearSelection}
+                                    placeholder={labelReference.chatterGroupLookupPlaceholder}
+                                    value={errorSettingsVModel.userOrChatterGroupLookupResult}
+                                    disabled={affordancesDisabled}
+                                    onsearch={handleChatterGroupSearch}
+                                    oninputchange={handleErrorNotificationRecipientChange}
+                                ></c-single-lookup>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+                <template if:true={showErrorNotificationRecipientUserLookup}>
+                    <div class="slds-col slds-size_2-of-3"></div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <div class="slds-grid slds-grid_align-end slds-var-p-right_x-large slds-var-p-bottom_x-large">
+                            <div class="slds-col">
+                                <c-single-lookup
+                                    required={showRequiredIndicator}
+                                    label={labelReference.userLookupTitle}
+                                    remove-label={labelReference.lookupClearSelection}
+                                    placeholder={labelReference.userLookupPlaceholder}
+                                    value={errorSettingsVModel.userOrChatterGroupLookupResult}
+                                    disabled={affordancesDisabled}
+                                    onsearch={handleUserSearch}
+                                    oninputchange={handleErrorNotificationRecipientChange}
+                                ></c-single-lookup>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <!-- Enable Error Handling Setting -->
+            <c-settings-row-input
+                class="slds-size_3-of-3"
+                title={labelReference.errorHandlingSettingTitle}
+                description={labelReference.errorHandlingSettingDescription}
+                type="toggle"
+                input-id={inputAttributeReference.errorHandlingToggleId}
+                value={errorSettingsVModel.errorHandling}
+                checked={errorSettingsVModel.errorHandling}
+                onsettingsinputchange={handleErrorHandlingChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+
+            <!-- Enable Debug Setting -->
+            <c-settings-row-input
+                class="slds-size_3-of-3"
+                title={labelReference.enableDebugSettingsTitle}
+                description={labelReference.enableDebugSettingsDescription}
+                type="toggle"
+                input-id={inputAttributeReference.enableDebugToggleId}
+                value={errorSettingsVModel.enableDebug}
+                checked={errorSettingsVModel.enableDebug}
+                onsettingsinputchange={handleEnableDebugChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+        </template>
+    </c-settings-save-canvas>
+</template>

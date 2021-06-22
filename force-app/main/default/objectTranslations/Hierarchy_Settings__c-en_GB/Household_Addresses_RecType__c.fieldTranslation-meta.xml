@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Household_Addresses_RecType__c</name>
     <help>The Account record type used for Household Accounts. This setting affects management of Address records and the naming format of Household Accounts.</help>
     <label>Household Addresses Acc Record Type</label>
+    <name>Household_Addresses_RecType__c</name>
 </CustomFieldTranslation>

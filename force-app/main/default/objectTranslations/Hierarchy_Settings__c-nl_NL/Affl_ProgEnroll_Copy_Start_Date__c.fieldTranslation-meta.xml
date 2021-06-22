@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
     <help>Geeft aan of de begindatum van de affiliatie die bij programma-inschrijving is gemaakt moet worden ingesteld. Indien ingeschakeld, stelt u de begindatum van de programma-inschrijving in. Indien uitgeschakeld, geeft u geen begindatum op voor de affiliatie.</help>
     <label>Begindat. affil. kopiëren van pr.inschr.</label>
+    <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
 </CustomFieldTranslation>

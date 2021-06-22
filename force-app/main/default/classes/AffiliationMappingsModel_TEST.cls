@@ -25,21 +25,20 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group Health Check
-* @group-content ../../ApexDocContent/Tests.htm
-* @description Test class for AffiliationMappingsModel class.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group Health Check
+ * @group-content ../../ApexDocContent/Tests.htm
+ * @description Test class for AffiliationMappingsModel class.
+ */
 @isTest
 public with sharing class AffiliationMappingsModel_TEST {
-    
     /*****************************************************************************
-    * @description Test to verify constructor with six arguments instantiates a 
-    * model with the appropriate data.
-    *****************************************************************************/
-    @isTest 
-    private static void affiliationMappingsModelValid(){
+     * @description Test to verify constructor with six arguments instantiates a
+     * model with the appropriate data.
+     *****************************************************************************/
+    @isTest
+    private static void affiliationMappingsModelValid() {
         Test.startTest();
         AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
             'TestAfflMappingModel',
@@ -52,35 +51,110 @@ public with sharing class AffiliationMappingsModel_TEST {
         Test.stopTest();
 
         System.assertEquals('TestAfflMappingModel', affiliationMappingsModel.name, 'Name should be set.');
-        System.assertEquals('Test Account Record Type Name', affiliationMappingsModel.accountRecordTypeFieldValue, 'Record Type name should be \'Test Account Record Type Name\'.');
-        System.assertEquals('Test Primary Affl Field', affiliationMappingsModel.primaryAffiliationField, 'Primary Affiliation Field should be set.');
+        System.assertEquals(
+            'Test Account Record Type Name',
+            affiliationMappingsModel.accountRecordTypeFieldValue,
+            'Record Type name should be \'Test Account Record Type Name\'.'
+        );
+        System.assertEquals(
+            'Test Primary Affl Field',
+            affiliationMappingsModel.primaryAffiliationField,
+            'Primary Affiliation Field should be set.'
+        );
         System.assertEquals(true, affiliationMappingsModel.autoProgramEnrollment, 'Auto Enrollment should be true');
-        System.assertEquals('Test Status', affiliationMappingsModel.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be set.');
-        System.assertEquals('Test Role', affiliationMappingsModel.autoProgramEnrollmentRole, 'Auto Enrollment Role should be set.');
+        System.assertEquals(
+            'Test Status',
+            affiliationMappingsModel.autoProgramEnrollmentStatus,
+            'Auto Enrollment Status should be set.'
+        );
+        System.assertEquals(
+            'Test Role',
+            affiliationMappingsModel.autoProgramEnrollmentRole,
+            'Auto Enrollment Role should be set.'
+        );
     }
 
     /*****************************************************************************
-    * @description Test to verify constructor with six arguments instantiates a 
-    * model with the appropriate data when blank values are specified.
-    *****************************************************************************/
-    @isTest 
-    private static void affiliationMappingsModelNull(){
+     * @description Test to verify constructor with six arguments instantiates a
+     * model with the appropriate data when blank values are specified.
+     *****************************************************************************/
+    @isTest
+    private static void affiliationMappingsModelNull() {
         Test.startTest();
-        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
-            '',
-            '',
-            '',
-            true,
-            '',
-            ''
-        );
+        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel('', '', '', true, '', '');
         Test.stopTest();
 
         System.assertEquals('', affiliationMappingsModel.name, 'Name should be blank.');
-        System.assertEquals('""', affiliationMappingsModel.accountRecordTypeFieldValue, 'Record Type Id should be \'""\'.');
-        System.assertEquals('""', affiliationMappingsModel.primaryAffiliationField, 'Primary Affiliation Field should be \'""\'.');
+        System.assertEquals(
+            '""',
+            affiliationMappingsModel.accountRecordTypeFieldValue,
+            'Record Type Id should be \'""\'.'
+        );
+        System.assertEquals(
+            '""',
+            affiliationMappingsModel.primaryAffiliationField,
+            'Primary Affiliation Field should be \'""\'.'
+        );
         System.assertEquals(true, affiliationMappingsModel.autoProgramEnrollment, 'Auto Enrollment should be true');
-        System.assertEquals('""', affiliationMappingsModel.autoProgramEnrollmentStatus, 'Auto Enrollment Status should be \'""\'.');
-        System.assertEquals('""', affiliationMappingsModel.autoProgramEnrollmentRole, 'Auto Enrollment Role should be \'""\'.');
+        System.assertEquals(
+            '""',
+            affiliationMappingsModel.autoProgramEnrollmentStatus,
+            'Auto Enrollment Status should be \'""\'.'
+        );
+        System.assertEquals(
+            '""',
+            affiliationMappingsModel.autoProgramEnrollmentRole,
+            'Auto Enrollment Role should be \'""\'.'
+        );
+    }
+
+    /*****************************************************************************
+     * @description Test to verify constructor with three arguments instantiates a
+     * model with the appropriate data.
+     *****************************************************************************/
+    @isTest
+    private static void affiliationMappingsModelThreeParamValid() {
+        Test.startTest();
+        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel(
+            'TestAfflMappingModel',
+            'Test Account Record Type Name',
+            'Test Primary Affl Field'
+        );
+        Test.stopTest();
+
+        System.assertEquals('TestAfflMappingModel', affiliationMappingsModel.name, 'Name should be set.');
+        System.assertEquals(
+            'Test Account Record Type Name',
+            affiliationMappingsModel.accountRecordTypeFieldValue,
+            'Record Type name should be \'Test Account Record Type Name\'.'
+        );
+        System.assertEquals(
+            'Test Primary Affl Field',
+            affiliationMappingsModel.primaryAffiliationField,
+            'Primary Affiliation Field should be set.'
+        );
+    }
+
+    /*****************************************************************************
+     * @description Test to verify constructor with three arguments instantiates a
+     * model with the appropriate data when blank values are specified.
+     *****************************************************************************/
+    @isTest
+    private static void affiliationMappingsModelThreeParamNull() {
+        Test.startTest();
+        AffiliationMappingsModel affiliationMappingsModel = new AffiliationMappingsModel('', '', '');
+        Test.stopTest();
+
+        System.assertEquals('', affiliationMappingsModel.name, 'Name should be blank.');
+        System.assertEquals(
+            '""',
+            affiliationMappingsModel.accountRecordTypeFieldValue,
+            'Record Type Id should be \'""\'.'
+        );
+        System.assertEquals(
+            '""',
+            affiliationMappingsModel.primaryAffiliationField,
+            'Primary Affiliation Field should be \'""\'.'
+        );
     }
 }

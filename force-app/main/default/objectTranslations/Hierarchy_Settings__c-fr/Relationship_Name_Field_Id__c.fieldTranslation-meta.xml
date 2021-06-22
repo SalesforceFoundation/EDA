@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Relationship_Name_Field_Id__c</name>
     <help>Ce champ n&apos;est pas utilisé actuellement.</help>
     <label>ID du champ Nom de la relation</label>
+    <name>Relationship_Name_Field_Id__c</name>
 </CustomFieldTranslation>

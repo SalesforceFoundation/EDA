@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_Course_Connections__c</name>
     <help>Si activée, les utilisateurs peuvent choisir le type de Contact (Professeur ou Étudiant) en créant un enregistrement Connexion au cours. Des types d&apos;enregistrement Contact par défaut doivent être définis pour les étudiants et les professeurs actifs.</help>
     <label>Activer les connexions aux cours</label>
+    <name>Enable_Course_Connections__c</name>
 </CustomFieldTranslation>

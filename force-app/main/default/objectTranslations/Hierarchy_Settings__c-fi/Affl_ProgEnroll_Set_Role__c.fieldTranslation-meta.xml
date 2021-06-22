@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Set_Role__c</name>
     <help>Osoittaa, määritetäänkö rooli ohjelmaan ilmoittautumisella luodussa jäsenyydessä. Jos on käytössä, aseta jäsenyysrooli arvoon, joka on määritetty liittyvässä asetuksessa, Jäsen.rooli, kun ohj. ilm. luodaan. Jos poistettu käytöstä, älä määritä roolia.</help>
     <label>Jäsen.ryhmäas., kun ohj. ilm. luodaan</label>
+    <name>Affl_ProgEnroll_Set_Role__c</name>
 </CustomFieldTranslation>

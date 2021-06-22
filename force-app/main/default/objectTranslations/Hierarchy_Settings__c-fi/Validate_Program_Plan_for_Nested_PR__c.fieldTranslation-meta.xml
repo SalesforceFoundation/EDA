@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Validate_Program_Plan_for_Nested_PR__c</name>
     <help>Kun valitaan, suunnitelmavaatimukset määrittävät joko ohjelmasuunnitelman tai pääsuunnitelmavaatimuksen, eivät molempia. Jos määrität sekä ohjelmasuunnitelman että pääsuunnitelmavaatimuksen, virheilmoitus estää tallentamisen, kunnes vain yksi valitaan.</help>
     <label>Vahvista sisäinen PR-ohjelmasuunnitelma</label>
+    <name>Validate_Program_Plan_for_Nested_PR__c</name>
 </CustomFieldTranslation>

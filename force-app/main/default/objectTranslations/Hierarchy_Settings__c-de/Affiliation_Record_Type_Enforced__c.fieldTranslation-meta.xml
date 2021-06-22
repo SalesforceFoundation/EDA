@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affiliation_Record_Type_Enforced__c</name>
     <help>Falls aktiviert, Fehler, wenn Benutzer ein primäres Feld für Kontakt mit Account füllen, dessen Datensatztyp nicht den EDA-Einstellungen entspricht. Der Datensatz &quot;Zugehörigkeit&quot; wird nicht erstellt, die Primärfelder für Kontakt werden nicht korrigiert.</help>
     <label>Zugehörigkeits-Datensatztyp erzwungen</label>
+    <name>Affiliation_Record_Type_Enforced__c</name>
 </CustomFieldTranslation>

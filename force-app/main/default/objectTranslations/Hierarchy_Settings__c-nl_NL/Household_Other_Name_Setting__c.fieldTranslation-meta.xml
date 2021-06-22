@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Household_Other_Name_Setting__c</name>
     <help>Slaat overige informatie op over de naamindeling voor een huishoudenaccount.</help>
     <label>Overige huishoudennaaminstelling</label>
+    <name>Household_Other_Name_Setting__c</name>
 </CustomFieldTranslation>

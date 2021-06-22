@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Account_Processor__c</name>
     <help>取引先のデフォルトレコードタイプの ID。たとえば、管理 (推奨取引先モデル) を指定する場合、取引先オブジェクトの管理レコードタイプの ID を入力します。</help>
     <label>取引先プロセッサ</label>
+    <name>Account_Processor__c</name>
 </CustomFieldTranslation>

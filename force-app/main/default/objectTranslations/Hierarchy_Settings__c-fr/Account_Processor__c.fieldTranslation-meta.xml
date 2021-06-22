@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Account_Processor__c</name>
     <help>ID du type d&apos;enregistrement par défaut du compte. Par exemple, si vous spécifiez Administratif (le modèle Compte recommandé), saisissez l&apos;ID du type d&apos;enregistrement Administratif pour l&apos;objet Compte.</help>
     <label>Processeur de compte</label>
+    <name>Account_Processor__c</name>
 </CustomFieldTranslation>

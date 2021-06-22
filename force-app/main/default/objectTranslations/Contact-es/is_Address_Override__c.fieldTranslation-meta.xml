@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>is_Address_Override__c</name>
     <help>La dirección de este contacto no se sincronizará con la dirección predeterminada o de temporada doméstica. Utilice esto para mantener una dirección postal separada para este contacto en particular. (Solo se aplica a contactos domésticos).</help>
     <label>No actualizar automáticamente</label>
+    <name>is_Address_Override__c</name>
 </CustomFieldTranslation>

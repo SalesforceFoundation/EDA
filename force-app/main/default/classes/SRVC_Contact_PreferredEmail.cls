@@ -25,31 +25,30 @@ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2020
-* @group
-* @group-content ../../ApexDocContent/Contacts.htm
-* @description Service class for CON_Preferred_TDTM. Returns Contact modified for Preferred Email
-*/
+ * @author Salesforce.org
+ * @date 2020
+ * @group
+ * @group-content ../../ApexDocContent/Contacts.htm
+ * @description Service class for CON_Preferred_TDTM. Returns Contact modified for Preferred Email
+ */
 public virtual with sharing class SRVC_Contact_PreferredEmail {
-
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static SRVC_Contact_PreferredEmail instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected SRVC_Contact_PreferredEmail() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected SRVC_Contact_PreferredEmail() {
+    }
 
     /******************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of SRVC_Contact_PreferredEmail.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of SRVC_Contact_PreferredEmail.
+     ******************************************************************************/
     public static SRVC_Contact_PreferredEmail getInstance() {
-
         if (instance == null) {
             instance = new SRVC_Contact_PreferredEmail();
         }
@@ -58,54 +57,62 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
     }
 
     /******************************************************************************
-    * @description Method to process for Preferred Email functionality on Insert
-    * @param newContact The contact record being inserted
-    * @param preferredEmailSettings The MODL_PreferredEmailSettings record
-    * @return The Contact modified for Preferred Email
-    ******************************************************************************/
-    public Contact processPreferredEmailForInsert(Contact newContact,  MODL_PreferredEmailSettings preferredEmailSettings) {
-        
+     * @description Method to process for Preferred Email functionality on Insert
+     * @param newContact The contact record being inserted
+     * @param preferredEmailSettings The MODL_PreferredEmailSettings record
+     * @return The Contact modified for Preferred Email
+     ******************************************************************************/
+    public Contact processPreferredEmailForInsert(
+        Contact newContact,
+        MODL_PreferredEmailSettings preferredEmailSettings
+    ) {
         MODL_Contact newContactModel = this.getModelFromContact(newContact, preferredEmailSettings);
 
         if (newContactModel.isEmpty()) {
             return this.handleEmptyContactEmailFieldsForInsert(newContactModel, preferredEmailSettings);
         }
         return this.handleContactEmailFields(newContactModel, preferredEmailSettings);
-
     }
 
     /******************************************************************************
-    * @description Method to process for Preferred Email functionality on Update
-    * @param newContact The contact record being updated
-    * @param preferredEmailSettings The MODL_PreferredEmailSettings record
-    * @return The Contact modified for Preferred Email
-    ******************************************************************************/
-    public Contact processPreferredEmailForUpdate(Contact newContact,  Contact oldContact, MODL_PreferredEmailSettings preferredEmailSettings) {
-        
+     * @description Method to process for Preferred Email functionality on Update
+     * @param newContact The contact record being updated
+     * @param preferredEmailSettings The MODL_PreferredEmailSettings record
+     * @return The Contact modified for Preferred Email
+     ******************************************************************************/
+    public Contact processPreferredEmailForUpdate(
+        Contact newContact,
+        Contact oldContact,
+        MODL_PreferredEmailSettings preferredEmailSettings
+    ) {
         MODL_Contact newContactModel = this.getModelFromContact(newContact, preferredEmailSettings);
 
         if (newContactModel.isEmpty()) {
             return this.handleEmptyContactEmailFieldsForUpdate(newContactModel, oldContact, preferredEmailSettings);
         }
         return this.handleContactEmailFields(newContactModel, preferredEmailSettings);
-
     }
 
     /************************************************************************************************************************************
-    * @description Method to process for Preferred Email functionality on Insert on Contact with no values in custom email fields
-    * @param contactModel The contact model corresponding to the record being inserted
-    * @param preferredEmailSettingsModel The MODL_PreferredEmailSettings record
-    * @return The Contact modified for Preferred Email
-    ************************************************************************************************************************************/
+     * @description Method to process for Preferred Email functionality on Insert on Contact with no values in custom email fields
+     * @param contactModel The contact model corresponding to the record being inserted
+     * @param preferredEmailSettingsModel The MODL_PreferredEmailSettings record
+     * @return The Contact modified for Preferred Email
+     ************************************************************************************************************************************/
     @testVisible
-    private Contact handleEmptyContactEmailFieldsForInsert(SRVC_Contact_PreferredEmail.MODL_Contact contactModel, MODL_PreferredEmailSettings preferredEmailSettingsModel) {
-
+    private Contact handleEmptyContactEmailFieldsForInsert(
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel,
+        MODL_PreferredEmailSettings preferredEmailSettingsModel
+    ) {
         if (String.isNotBlank(contactModel.preferredEmail)) {
             contactModel.addError(Label.PreferredEmailMatchNotNull);
             return contactModel.Contact;
         }
 
-        if (preferredEmailSettingsModel.preferredEmailValidationEnabled == false || String.isBlank(contactModel.email) == true) {
+        if (
+            preferredEmailSettingsModel.preferredEmailValidationEnabled == false ||
+            String.isBlank(contactModel.email) == true
+        ) {
             return null;
         }
 
@@ -113,30 +120,40 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
     }
 
     /************************************************************************************************************************************
-    * @description Method to process for Preferred Email functionality on Update on Contact with no values in custom email fields
-    * @param contactModel The contact model corresponding to the record being updated
-    * @param oldContact The contact record in Trigger.old
-    * @param preferredEmailSettingsModel The MODL_PreferredEmailSettings record
-    * @return The Contact modified for Preferred Email
-    ************************************************************************************************************************************/
+     * @description Method to process for Preferred Email functionality on Update on Contact with no values in custom email fields
+     * @param contactModel The contact model corresponding to the record being updated
+     * @param oldContact The contact record in Trigger.old
+     * @param preferredEmailSettingsModel The MODL_PreferredEmailSettings record
+     * @return The Contact modified for Preferred Email
+     ************************************************************************************************************************************/
     @testVisible
-    private Contact handleEmptyContactEmailFieldsForUpdate(SRVC_Contact_PreferredEmail.MODL_Contact contactModel, Contact oldContact, MODL_PreferredEmailSettings preferredEmailSettingsModel) {
-
+    private Contact handleEmptyContactEmailFieldsForUpdate(
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel,
+        Contact oldContact,
+        MODL_PreferredEmailSettings preferredEmailSettingsModel
+    ) {
         if (String.isNotBlank(contactModel.preferredEmail)) {
             contactModel.addError(Label.PreferredEmailMatchNotNull);
             return contactModel.Contact;
         }
 
-        if (preferredEmailSettingsModel.preferredEmailValidationEnabled == false || String.isBlank(contactModel.email) == true) {
+        if (
+            preferredEmailSettingsModel.preferredEmailValidationEnabled == false ||
+            String.isBlank(contactModel.email) == true
+        ) {
             return null;
         }
 
-        if (System.isBatch() && preferredEmailSettingsModel.preferredEmailValidationEnabled == true && String.isBlank(contactModel.Email) == true) {
+        if (
+            System.isBatch() &&
+            preferredEmailSettingsModel.preferredEmailValidationEnabled == true &&
+            String.isBlank(contactModel.Email) == true
+        ) {
             return this.populateAlternateEmailAndSetAsPreffered(contactModel, preferredEmailSettingsModel);
         }
 
         MODL_Contact oldContactModel = this.getModelFromContact(oldContact, preferredEmailSettingsModel);
-        
+
         if (oldContactModel.isEmpty() == false) {
             contactModel.email = null;
             return contactModel.contact;
@@ -145,14 +162,16 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
     }
 
     /************************************************************************************************************************************
-    * @description Method to process for Preferred Email functionality on Update on Contact with values in custom email fields
-    * @param contactModel The contact model corresponding to the record being updated
-    * @param emailFieldSettingsModel The MODL_PreferredEmailSettings record
-    * @return The Contact modified for Preferred Email
-    ************************************************************************************************************************************/
+     * @description Method to process for Preferred Email functionality on Update on Contact with values in custom email fields
+     * @param contactModel The contact model corresponding to the record being updated
+     * @param emailFieldSettingsModel The MODL_PreferredEmailSettings record
+     * @return The Contact modified for Preferred Email
+     ************************************************************************************************************************************/
     @testVisible
-    private Contact handleContactEmailFields(SRVC_Contact_PreferredEmail.MODL_Contact contactModel, MODL_PreferredEmailSettings emailFieldSettingsModel) {
-
+    private Contact handleContactEmailFields(
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel,
+        MODL_PreferredEmailSettings emailFieldSettingsModel
+    ) {
         if (emailFieldSettingsModel.preferredEmailValidationEnabled == false) {
             return this.handleContactEmailFieldsForInsertAndUpdate(contactModel, emailFieldSettingsModel);
         }
@@ -163,32 +182,36 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
         }
 
         if (String.isNotBlank(contactModel.preferredEmail)) {
-            return this.handleContactEmailFieldsForInsertAndUpdate(contactModel,  emailFieldSettingsModel);
+            return this.handleContactEmailFieldsForInsertAndUpdate(contactModel, emailFieldSettingsModel);
         }
 
         if (contactModel.size() > 1) {
             contactModel.addError(Label.PreferredEmailRequiredError);
             return contactModel.contact;
         }
-        
+
         MODL_ContactEmailField firstEmailFieldModel = contactModel.getFirstEmailFieldModel();
         contactModel.preferredEmail = firstEmailFieldModel.preferredLabel;
         contactModel.email = firstEmailFieldModel.value;
         return contactModel.contact;
-
     }
 
     /**************************************************************************************************************************************************
-    * @description Method to further process for Preferred Email functionality called from handleContactEmailFields method for insert/updates scenarios
-    * @param contactModel The contact model corresponding to the record being updated
-    * @param emailFieldSettingsModel The MODL_PreferredEmailSettings record
-    * @return The Contact modified for Preferred Email
-    **************************************************************************************************************************************************/
+     * @description Method to further process for Preferred Email functionality called from handleContactEmailFields method for insert/updates scenarios
+     * @param contactModel The contact model corresponding to the record being updated
+     * @param emailFieldSettingsModel The MODL_PreferredEmailSettings record
+     * @return The Contact modified for Preferred Email
+     **************************************************************************************************************************************************/
     @testVisible
-    private Contact handleContactEmailFieldsForInsertAndUpdate(SRVC_Contact_PreferredEmail.MODL_Contact contactModel, MODL_PreferredEmailSettings emailFieldSettingsModel) {
-
-        if (String.isBlank(contactModel.preferredEmail) || contactModel.preferredEmail == Label.preferredBatchDefaultEmail || 
-            contactModel.preferredEmail == emailFieldSettingsModel.emailLabel) {
+    private Contact handleContactEmailFieldsForInsertAndUpdate(
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel,
+        MODL_PreferredEmailSettings emailFieldSettingsModel
+    ) {
+        if (
+            String.isBlank(contactModel.preferredEmail) ||
+            contactModel.preferredEmail == Label.preferredBatchDefaultEmail ||
+            contactModel.preferredEmail == emailFieldSettingsModel.emailLabel
+        ) {
             return null;
         }
 
@@ -196,7 +219,7 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
             contactModel.addError(Label.PreferredEmailMatchMustExist);
             return contactModel.contact;
         }
-        
+
         if (String.isBlank(contactModel.prefEmailFieldValue)) {
             contactModel.addError(Label.PreferredEmailMatchNotNull);
             return contactModel.contact;
@@ -207,27 +230,29 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
     }
 
     /**************************************************************************************************************************************************
-    * @description Method to further process for Preferred Email functionality called from handleContactEmailFields method for batch
-    * @param contactModel The contact model corresponding to the record being updated
-    * @param emailFieldSettingsModel The MODL_PreferredEmailSettings record
-    * @return The Contact modified for Preferred Email
-    **************************************************************************************************************************************************/
+     * @description Method to further process for Preferred Email functionality called from handleContactEmailFields method for batch
+     * @param contactModel The contact model corresponding to the record being updated
+     * @param emailFieldSettingsModel The MODL_PreferredEmailSettings record
+     * @return The Contact modified for Preferred Email
+     **************************************************************************************************************************************************/
     @testVisible
-    private SRVC_Contact_PreferredEmail.MODL_Contact handleContactEmailFieldsForBatch(SRVC_Contact_PreferredEmail.MODL_Contact contactModel, MODL_PreferredEmailSettings emailFieldSettingsModel) {
-
+    private SRVC_Contact_PreferredEmail.MODL_Contact handleContactEmailFieldsForBatch(
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel,
+        MODL_PreferredEmailSettings emailFieldSettingsModel
+    ) {
         if (String.isBlank(contactModel.email)) {
             MODL_ContactEmailField firstEmailFieldModel = contactModel.getFirstEmailFieldModel();
             contactModel.email = firstEmailFieldModel.value;
             contactModel.preferredEmail = firstEmailFieldModel.preferredLabel;
             return contactModel;
         }
-        
+
         if (String.isNotBlank(contactModel.preferredEmail)) {
             return contactModel;
         }
-        
+
         MODL_ContactEmailField emailFieldModel = contactModel.currentEmailModel;
-       
+
         if (emailFieldModel != null) {
             contactModel.preferredEmail = emailFieldModel.preferredLabel;
             return contactModel;
@@ -238,53 +263,63 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
     }
 
     /**************************************************************************************************************************************************
-    * @description Method to populate Preferred_Email__c with alternateEmailPreferredLabel and AlternateEmail__c with Standrd Email label
-    * @param contactModel The contact model corresponding to the record being updated
-    * @param emailFieldSettingsModel The MODL_PreferredEmailSettings record
-    * @return The Contact populated with Preferred Email and Alternate Email
-    **************************************************************************************************************************************************/
+     * @description Method to populate Preferred_Email__c with alternateEmailPreferredLabel and AlternateEmail__c with Standrd Email label
+     * @param contactModel The contact model corresponding to the record being updated
+     * @param emailFieldSettingsModel The MODL_PreferredEmailSettings record
+     * @return The Contact populated with Preferred Email and Alternate Email
+     **************************************************************************************************************************************************/
     @testVisible
-    private Contact populateAlternateEmailAndSetAsPreffered(SRVC_Contact_PreferredEmail.MODL_Contact contactModel, MODL_PreferredEmailSettings preferredEmailSettingsModel) {
+    private Contact populateAlternateEmailAndSetAsPreffered(
+        SRVC_Contact_PreferredEmail.MODL_Contact contactModel,
+        MODL_PreferredEmailSettings preferredEmailSettingsModel
+    ) {
         contactModel.preferredEmail = preferredEmailSettingsModel.alternateEmailPreferredLabel;
         contactModel.alternateEmail = contactModel.email;
         return contactModel.contact;
     }
 
     /**************************************************************************************************************************************************
-    * @description Returns a MODL_Contact for a given Contact and MODL_PreferredEmailSettings
-    * @param emailFieldSettingsModel The MODL_PreferredEmailSettings record
-    * @return The MODL_Contact for the given Contact and MODL_PreferredEmailSettings
-    **************************************************************************************************************************************************/
+     * @description Returns a MODL_Contact for a given Contact and MODL_PreferredEmailSettings
+     * @param emailFieldSettingsModel The MODL_PreferredEmailSettings record
+     * @return The MODL_Contact for the given Contact and MODL_PreferredEmailSettings
+     **************************************************************************************************************************************************/
     @testVisible
     private MODL_Contact getModelFromContact(Contact contact, MODL_PreferredEmailSettings preferredEmailSettingsModel) {
-
         List<MODL_ContactEmailField> contactEmailFieldModelList = new List<MODL_ContactEmailField>();
 
         Boolean hasPrefEmailField = false;
         String prefEmailFieldValue;
-        
+
         MODL_ContactEmailField currentEmailFieldModel;
-        String preferredEmailLabel = preferredEmailSettingsModel.preferredEmailPicklistLabelByApiName.get(contact.Preferred_Email__c);
+        String preferredEmailLabel = preferredEmailSettingsModel.preferredEmailPicklistLabelByApiName.get(
+            contact.Preferred_Email__c
+        );
 
-        for (MODL_PreferredEmailField each: preferredEmailSettingsModel.preferredEmailFieldModels) {
-            
-            String fieldValue = (String)contact.get(each.emailTypeFieldApiName);
+        for (MODL_PreferredEmailField each : preferredEmailSettingsModel.preferredEmailFieldModels) {
+            String fieldValue = (String) contact.get(each.emailTypeFieldApiName);
             MODL_ContactEmailField contactEmailFieldModel;
-                        
-            if (hasPrefEmailField == false) {
 
-                if (each.emailTypeFieldLabel == contact.Preferred_Email__c || each.preferredLabel ==  contact.Preferred_Email__c) {  
+            if (hasPrefEmailField == false) {
+                if (
+                    each.emailTypeFieldLabel == contact.Preferred_Email__c ||
+                    each.preferredLabel == contact.Preferred_Email__c
+                ) {
                     hasPrefEmailField = true;
                     prefEmailFieldValue = fieldValue;
                 }
             }
-            
+
             if (fieldValue == null) {
                 continue;
             }
-            
+
             if (contactEmailFieldModel == null) {
-                contactEmailFieldModel = new MODL_ContactEmailField(each.emailTypeFieldApiName, each.emailTypeFieldLabel, each.preferredLabel, fieldValue);
+                contactEmailFieldModel = new MODL_ContactEmailField(
+                    each.emailTypeFieldApiName,
+                    each.emailTypeFieldLabel,
+                    each.preferredLabel,
+                    fieldValue
+                );
             }
 
             contactEmailFieldModelList.add(contactEmailFieldModel);
@@ -294,32 +329,37 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
             }
         }
 
-        MODL_Contact contactModel = new MODL_Contact(contact, contactEmailFieldModelList, currentEmailFieldModel, hasPrefEmailField, prefEmailFieldValue);
+        MODL_Contact contactModel = new MODL_Contact(
+            contact,
+            contactEmailFieldModelList,
+            currentEmailFieldModel,
+            hasPrefEmailField,
+            prefEmailFieldValue
+        );
         return contactModel;
     }
 
     /**********************************************************************************************************************************
-    * @description Inner model class to set Contact, contactEmailFieldModels, currentEmailModel, Preferred Email field and its value
-    ************************************************************************************************************************************/
+     * @description Inner model class to set Contact, contactEmailFieldModels, currentEmailModel, Preferred Email field and its value
+     ************************************************************************************************************************************/
     @testVisible
     private class MODL_Contact {
+        public Contact contact { get; private set; }
+        public List<MODL_ContactEmailField> contactEmailFieldModels { get; private set; }
+        public MODL_ContactEmailField currentEmailModel { get; private set; }
+        public Boolean hasPrefEmailField { get; private set; }
+        public String prefEmailFieldValue { get; private set; }
 
-        public Contact contact {get; private set; }
-        public List<MODL_ContactEmailField> contactEmailFieldModels {get; private set; }
-        public MODL_ContactEmailField currentEmailModel {get; private set; }
-        public Boolean hasPrefEmailField {get; private set;}
-        public String prefEmailFieldValue {get; private set;}
-            
-        public String alternateEmail { 
+        public String alternateEmail {
             get {
                 return this.contact.AlternateEmail__c;
             }
             set {
                 this.contact.AlternateEmail__c = value;
-            } 
+            }
         }
 
-        public String email { 
+        public String email {
             get {
                 return this.contact.Email;
             }
@@ -337,9 +377,16 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
             }
         }
 
-        public MODL_Contact() {}
+        public MODL_Contact() {
+        }
 
-        public MODL_Contact(Contact contact, List<MODL_ContactEmailField> contactEmailFieldModels, MODL_ContactEmailField currentEmailModel, Boolean hasPrefEmailField, String prefEmailFieldValue) {
+        public MODL_Contact(
+            Contact contact,
+            List<MODL_ContactEmailField> contactEmailFieldModels,
+            MODL_ContactEmailField currentEmailModel,
+            Boolean hasPrefEmailField,
+            String prefEmailFieldValue
+        ) {
             this.contact = contact;
             this.contactEmailFieldModels = contactEmailFieldModels;
             this.currentEmailModel = currentEmailModel;
@@ -356,21 +403,19 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
         }
 
         public Boolean isEmpty() {
-            return this.contactEmailFieldModels.isEmpty();    
+            return this.contactEmailFieldModels.isEmpty();
         }
 
         public Integer size() {
             return this.contactEmailFieldModels.size();
-        } 
-
+        }
     }
 
     /**********************************************************************************************
-    * @description Inner model class to set a Contact's label, API, Preferred Label and its value
-    ***********************************************************************************************/
+     * @description Inner model class to set a Contact's label, API, Preferred Label and its value
+     ***********************************************************************************************/
     @testVisible
     private class MODL_ContactEmailField extends MODL_PreferredEmailField {
-
         public String value { get; private set; }
 
         public MODL_ContactEmailField(String apiName, String label, String preferredLabel, String value) {
@@ -379,4 +424,27 @@ public virtual with sharing class SRVC_Contact_PreferredEmail {
         }
     }
 
+    /**********************************************************************************
+     * @description Runs the CON_Email_BATCH Job
+     * @return Boolean True is success, else throws an error
+     **********************************************************************************/
+    public virtual Boolean runPreferredPhoneAndEmailCleanupJob() {
+        CON_Email_BATCH prefEmailPhonebatch = new CON_Email_BATCH(null);
+        Id jobId = this.runPreferredPhoneAndEmailCleanupBatch(prefEmailPhonebatch);
+        if (jobId == null) {
+            throw new AuraHandledException(Label.BatchJobRunningProblem);
+        } else {
+            return true;
+        }
+    }
+
+    /**********************************************************************************
+     * @description Runs the CON_Email_BATCH Job
+     * @return Id The batch job id for the CON_Email_BATCH
+     **********************************************************************************/
+    @TestVisible
+    private virtual Id runPreferredPhoneAndEmailCleanupBatch(CON_Email_BATCH prefEmailPhonebatch) {
+        Id jobId = Database.executeBatch(prefEmailPhonebatch, 200);
+        return jobId;
+    }
 }

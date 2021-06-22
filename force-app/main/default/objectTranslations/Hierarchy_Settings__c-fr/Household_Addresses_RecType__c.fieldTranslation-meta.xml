@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Household_Addresses_RecType__c</name>
     <help>Le type d&apos;enregistrement Compte utilisé pour des Comptes de foyer. Ce paramètre affecte la gestion des enregistrements Adresse et le format de nommage des comptes de foyer.</help>
     <label>Type enreg. de compte adresses du foyer</label>
+    <name>Household_Addresses_RecType__c</name>
 </CustomFieldTranslation>

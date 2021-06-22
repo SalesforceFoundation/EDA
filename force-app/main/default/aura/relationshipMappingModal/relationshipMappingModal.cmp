@@ -1,0 +1,27 @@
+<aura:component>
+    <aura:registerEvent name="modalDataChangeEvent" type="c:modalDataChangeEvent" />
+
+    <aura:attribute name="relationshipMappingAction" type="String" />
+    <aura:attribute name="relationshipMappingName" type="String" />
+    <aura:attribute name="oldRelationshipMappingName" type="String" />
+    <aura:attribute name="femaleValue" type="String" />
+    <aura:attribute name="maleValue" type="String" />
+    <aura:attribute name="neutralValue" type="String" />
+    <aura:attribute name="isActive" type="Boolean" />
+
+    <c:relationshipMappingModalBody
+        relationshipMappingAction="{!v.relationshipMappingAction}"
+        relationshipMappingName="{!v.relationshipMappingName}"
+        oldRelationshipMappingName="{!v.oldRelationshipMappingName}"
+        femaleValue="{!v.femaleValue}"
+        maleValue="{!v.maleValue}"
+        neutralValue="{!v.neutralValue}"
+        isActive="{!v.isActive}"
+        onrelationshipmappingnamechange="{!c.handleRelationshipMappingNameChange}"
+        onfemalevaluechange="{!c.handleFemaleValueChange}"
+        onmalevaluechange="{!c.handleMaleValueChange}"
+        onneutralvaluechange="{!c.handleNeutralValueChange}"
+        onisactivechange="{!c.handleIsActiveChange}"
+    ></c:relationshipMappingModalBody>
+
+</aura:component>	

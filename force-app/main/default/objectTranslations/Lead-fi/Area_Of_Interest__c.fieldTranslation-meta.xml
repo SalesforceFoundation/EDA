@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Tämän liidin mielenkiinnon kohde, kuten ohjelma, tutkinto tai erikoisala.</help>
+    <label>Mielenkiinnon kohde</label>
+    <name>Area_Of_Interest__c</name>
+    <picklistValues>
+        <masterLabel>None</masterLabel>
+        <translation>Ei mitään</translation>
+    </picklistValues>
+</CustomFieldTranslation>

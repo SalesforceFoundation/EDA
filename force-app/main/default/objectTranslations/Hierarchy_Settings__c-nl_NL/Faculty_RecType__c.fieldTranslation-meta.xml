@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Faculty_RecType__c</name>
     <help>Het standaard contactpersoonrecordtype voor stafleden wanneer een cursusverbindingsrecord wordt gemaakt.</help>
     <label>Recordtype voor staflid</label>
+    <name>Faculty_RecType__c</name>
 </CustomFieldTranslation>

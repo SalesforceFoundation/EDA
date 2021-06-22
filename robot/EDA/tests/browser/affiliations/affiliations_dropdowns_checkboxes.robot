@@ -89,6 +89,7 @@ Affiliations settings put dropdowns at defaults
 
 Affiliations settings checkboxes toggle
     [Documentation]     Validates the settings behavior by enabling/disabling the checkbox values
+    [tags]                                      unstable
     Go to EDA settings tab                      Affiliations
     Go to affiliations sub tab                  Settings
 

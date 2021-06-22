@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Enable_Course_Connections__c</name>
     <help>有効化すると、ユーザは履修科目レコードの作成時に取引先責任者種別 (教職員または学生) を選択できます。この機能では、有効な学生および教職員のデフォルトの取引先責任者レコードタイプを設定する必要があります。</help>
     <label>履修科目を有効化</label>
+    <name>Enable_Course_Connections__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Faculty_RecType__c</name>
     <help>履修科目レコードの作成時の教職員のデフォルトの取引先責任者レコードタイプ。</help>
     <label>教職員レコードタイプ</label>
+    <name>Faculty_RecType__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Default_Contact_Language_Fluency__c</name>
     <help>El valor de Fluidez se establece automáticamente en registros de Idioma de contacto recién creados cuando los usuarios establecen el campo de búsqueda Idioma principal en un contacto.</help>
-    <label>Fluidez del idioma de contacto predeterminado</label>
+    <label>Fluidez idioma contacto predeterminado</label>
+    <name>Default_Contact_Language_Fluency__c</name>
 </CustomFieldTranslation>

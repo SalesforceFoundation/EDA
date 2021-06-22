@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Date_Deceased__c</name>
     <label>Fecha de fallecimiento</label>
+    <name>Date_Deceased__c</name>
 </CustomFieldTranslation>

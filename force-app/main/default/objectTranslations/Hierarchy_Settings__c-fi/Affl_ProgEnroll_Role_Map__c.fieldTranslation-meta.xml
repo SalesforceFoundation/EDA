@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Role_Map__c</name>
     <help>Jos liittyvä asetus, Jäsen.ryhmäas., kun ohj. ilm. luodaan, on käytössä, tämä asetus määrittää arvon, joka asetetaan roolille ohjelmaan ilmoittautumisella luodussa jäsenyydessä.</help>
     <label>Jäsen.rooli, kun ohj. ilm. luodaan</label>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Role_Map__c</name>
     <help>Si la configuració relacionada, Func. def. afili. en crear inscr. progr., està activada, aquest paràmetre especifica el valor que s&apos;ha d&apos;establir per a la funció de l&apos;afiliació creada amb una inscripció del programa.</help>
     <label>Funció afilia. en crear inscrip. program</label>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
 </CustomFieldTranslation>

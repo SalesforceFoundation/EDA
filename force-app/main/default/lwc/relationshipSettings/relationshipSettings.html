@@ -1,0 +1,66 @@
+<template>
+    <c-settings-save-canvas
+        component-title={labelReference.stgRelationshipSettingsTitle}
+        onsettingseditmodechange={handleSettingsEditModeChange}
+        onsettingssaving={handleSettingsSaving}
+        onsettingssavecancel={handleSettingsSaveCancel}
+        onsettingssavecompleted={handleSettingsSaveCompleted}
+    >
+        <!-- Body of Relationship Settings page (populates Slot in child component) -->
+        <template if:true={relationshipSettingsVModel}>
+            <!-- Reciprocal Method Mark Up-->
+            <c-settings-row-input
+                class="slds-size_3-of-3"
+                title={labelReference.reciprocalMethodSettingsName}
+                description={relationshipSettingsDesc}
+                type="combobox"
+                input-id={inputAttributeReference.defaultReciprocalComboboxId}
+                value={relationshipSettingsVModel.reciprocalMethodComboboxVModel.value}
+                placeholder={labelReference.comboboxPlaceholderText}
+                options={relationshipSettingsVModel.reciprocalMethodComboboxVModel.options}
+                onsettingsinputchange={handleReciprocalMethodChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+
+            <!-- Relationship Auto Create Mark Up-->
+            <c-settings-row-input
+                class="slds-col"
+                title={labelReference.duplicateRelationshipTitle}
+                description={duplicateRelationshipDesc}
+                type="toggle"
+                input-id={inputAttributeReference.allowAutoCreatedDuplicatesId}
+                value={relationshipSettingsVModel.preventAutoCreatedDuplicates}
+                onsettingsinputchange={handleAuoCreatedDuplicatesChange}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+        </template>
+
+        <!-- Reciprocal Relationship Mappings -->
+        <template if:true={relationshipLookupsVModel}>
+            <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
+                <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+                    {labelReference.relationshipMappingsTitle}
+                </div>
+                <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                    {labelReference.relationshipMappingsDescription}
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-3 slds-p-right_large slds-text-align_right">
+                <lightning-button
+                    label={labelReference.newButton}
+                    title={labelReference.newButtonA11y}
+                    onclick={handleNewRelationshipMappingClick}
+                ></lightning-button>
+            </div>
+
+            <div class="slds-col slds-size_3-of-3 slds-p-right_x-large">
+                <lightning-datatable
+                    key-field="name"
+                    data={relationshipLookupsVModel.relationshipLookups}
+                    columns={relationshipMappingsTableColumns}
+                    onrowaction={handleRelationshipMappingRowAction}
+                ></lightning-datatable>
+            </div>
+        </template>
+    </c-settings-save-canvas>
+</template>

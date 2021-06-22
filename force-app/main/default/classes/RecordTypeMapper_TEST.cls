@@ -95,4 +95,38 @@ private class RecordTypeMapper_TEST {
             System.assertEquals(recordTypeInfo.isActive(),recordTypeModel.isActive,'The record type model for a record type should have the same is active flag.');
         }
     }
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getRecordTypeModelFromRecTypeDevName returns a recordtype model for a valid
+    * object and its record type.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getRecordTypeModelFromRecTypeDevNamePositiveTest() {
+        UTIL_Describe.populateRecordTypeInfoForSObject('Account');
+        Test.startTest();
+            RecordTypeModel accRecTypeMdl = RecordTypeMapper.getInstance().getRecordTypeModelFromRecTypeDevName('Account', 'Academic_Program');
+        Test.stopTest();
+        
+        System.assert(accRecTypeMdl.Id != null, 'The id of the account recordtype in the model should have a value');
+        System.assertEquals('Academic Program', accRecTypeMdl.name, 'The name of the account recordtype in the model should have a value');
+        System.assertEquals('Academic_Program', accRecTypeMdl.developerName, 'The developer name of the account recordtype in the model should have a value');
+        System.assertEquals(true, accRecTypeMdl.isActive, 'The account record type should be active.');
+
+    } 
+
+    /**************************************************************************************************************************
+    * @description Test method to verify that the getRecordTypeModelFromRecTypeDevName returns null for an invalid
+    * object or record type.
+    ***************************************************************************************************************************/
+    @isTest
+    private static void getRecordTypeModelFromRecTypeDevNameNegativeTest() {
+        UTIL_Describe.populateRecordTypeInfoForSObject('Account');
+        Test.startTest();
+            RecordTypeModel accRecTypeMdl = RecordTypeMapper.getInstance().getRecordTypeModelFromRecTypeDevName('Account', 'test only rec type');
+        Test.stopTest();
+        
+        System.assertEquals(null, accRecTypeMdl, 'A model should not be retireved for invalid recordtype');
+
+        
+    }
 }

@@ -1,0 +1,12 @@
+<aura:component implements="lightning:isUrlAddressable">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="namespace" type="String" />
+    <aura:attribute name="settingsMovedDesc" type="String" />
+
+    <div class="slds-theme_default eda-height_full">
+        <c:lakeMountain
+            title="{!$Label.c.stgEDASettingsHasMovedTitle}"
+            description="{!v.settingsMovedDesc}"
+        ></c:lakeMountain>
+    </div>
+</aura:component>

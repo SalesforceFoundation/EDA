@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Accounts_Addresses_Enabled__c</name>
     <help>Els tipus de registre de comptes que haurien de tenir adreces múltiples habilitades.</help>
     <label>Comptes d&apos;adreces múltiples</label>
+    <name>Accounts_Addresses_Enabled__c</name>
 </CustomFieldTranslation>

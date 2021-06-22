@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Exclude_from_Household_Name__c</name>
     <help>Cuando se selecciona, este se excluye del nombre doméstico.</help>
     <label>Excluir del nombre de hogar</label>
+    <name>Exclude_from_Household_Name__c</name>
 </CustomFieldTranslation>

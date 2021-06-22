@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Preferred Enrolment Status</label>
+    <name>Preferred_Enrollment_Status__c</name>
+    <picklistValues>
+        <masterLabel>Full-Time</masterLabel>
+        <translation>Full-Time</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Part-Time</masterLabel>
+        <translation>Part-Time</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Undecided</masterLabel>
+        <translation>Undecided</translation>
+    </picklistValues>
+</CustomFieldTranslation>

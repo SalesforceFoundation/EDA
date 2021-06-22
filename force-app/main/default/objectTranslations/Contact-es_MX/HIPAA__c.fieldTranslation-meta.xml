@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>HIPAA__c</name>
     <help>Indica si el registro de la persona está sujeto a los estándares de Health Insurance Portability (Portabilidad de seguros médicos) y Accountability Act (Ley de responsabilidad).</help>
     <label>HIPAA</label>
+    <name>HIPAA__c</name>
 </CustomFieldTranslation>

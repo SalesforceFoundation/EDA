@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Administrative_Account_Record_Type__c</name>
     <help>管理取引先で使用する取引先レコードタイプ。この設定は、住所レコードの管理と管理取引先の命名形式に影響します。</help>
     <label>管理取引先レコードタイプ</label>
+    <name>Administrative_Account_Record_Type__c</name>
 </CustomFieldTranslation>

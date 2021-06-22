@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Ethnicity__c</name>
     <help>Indica si esta persona se identifica como Hispana o Latina.</help>
     <label>Etnia</label>
+    <name>Ethnicity__c</name>
     <picklistValues>
         <masterLabel>Hispanic or Latino</masterLabel>
         <translation>Hispana o Latina</translation>

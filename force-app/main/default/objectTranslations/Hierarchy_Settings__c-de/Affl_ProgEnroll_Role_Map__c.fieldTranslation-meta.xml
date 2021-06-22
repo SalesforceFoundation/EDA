@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Role_Map__c</name>
     <help>Wenn die zugehörige Einstellung, Rolle Zugeh. bei Erstel. v. ProgReg fes., aktiviert ist, gibt diese Einstellung den Wert an, der für die Rolle der Zugehörigkeit festzulegen ist, die bei einer Programmregistrierung erstellt wird.</help>
     <label>Rolle Zugehör. bei Erstellen von ProgReg</label>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
 </CustomFieldTranslation>

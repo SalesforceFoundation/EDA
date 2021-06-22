@@ -2,14 +2,15 @@
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
         <application>%%%NAMESPACE%%%HEDA</application>
+        <default>false</default>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Education_Data_Architecture</application>
         <default>true</default>
         <visible>true</visible>
     </applicationVisibilities>
     <custom>false</custom>
-    <tabVisibilities>
-        <tab>Settings_Health_Check</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Error__c</tab>
         <visibility>DefaultOn</visibility>
