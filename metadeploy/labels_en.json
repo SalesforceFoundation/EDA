@@ -71,6 +71,10 @@
         "Einstein Analytics permission sets are not available.": {
             "message": "Einstein Analytics permission sets are not available.",
             "description": "shown if validation fails"
+        },
+        "Please enable My Domain in your org prior to installing.": {
+            "message": "Please enable My Domain in your org prior to installing.",
+            "description": "shown if validation fails"
         }
     }
 }
