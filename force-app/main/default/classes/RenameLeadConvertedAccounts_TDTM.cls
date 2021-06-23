@@ -39,10 +39,16 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
     private static ID userDefinedAdminRecordTypeId = Util_Describe.getCustomAdminAccRecTypeId();
     LeadConversionAccountNamingModel leadConversionNamingModel = LeadConversionAccountNamingService.getInstance()
         .getLeadConversionAccountNamingModel();
+    
     /*****************************************************************************************************************
      * @description The user defined Household Account record type.
      */
     private static ID userDefinedHHRecordTypeId = Util_Describe.getHhAccRecTypeID();
+    
+    /*****************************************************************************************************************
+     * @description The number of seconds old to consider an Account "Existing" (not created during lead conversion)
+     */
+    private static final Integer SECONDS_TO_DETERMINE_EXISTING_ACCOUNT = 30;
 
     /*******************************************************************************************************
      * @description Trigger Handler on lead that handles account management. Depending on the Account
@@ -124,7 +130,7 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
                 // Rename Account if it is a Household Account or Account Created less than 60 seconds ago
                 // If older than 60 seconds, it is assumed the Account is an existing Account not one created
                 // during Lead Conversion so we don't want to Rename
-                if (checkHouseholdNaming(aContact.Account.RecordTypeId) || secondsOld < 60) {
+                if (checkHouseholdNaming(aContact.Account.RecordTypeId) || secondsOld < SECONDS_TO_DETERMINE_EXISTING_ACCOUNT) {
                     Account anAccount = new Account(
                         Phone = aContact.Account.Phone,
                         Fax = aContact.Account.Fax,
