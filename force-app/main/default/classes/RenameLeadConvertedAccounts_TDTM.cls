@@ -127,8 +127,8 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
                 Long currentDTLong = DateTime.now().getTime();
                 Long secondsOld = (currentDTLong - accountCreatedDateLong) / 1000;
 
-                // Rename Account if it is a Household Account or Account Created less than 60 seconds ago
-                // If older than 60 seconds, it is assumed the Account is an existing Account not one created
+                // Rename Account if it is a Household Account or Account Created less than 30 seconds ago
+                // If older than 30 seconds, it is assumed the Account is an existing Account not one created
                 // during Lead Conversion so we don't want to Rename
                 if (checkHouseholdNaming(aContact.Account.RecordTypeId) || secondsOld < SECONDS_TO_DETERMINE_EXISTING_ACCOUNT) {
                     Account anAccount = new Account(
