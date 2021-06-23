@@ -157,7 +157,7 @@ private class RenameLeadConvertedAccounts_TEST {
         Account anAccount = new Account(Name = 'Demo Admin', RecordTypeId = UTIL_Describe_API.getHhAccRecTypeID());
         insert anAccount;
 
-        Contact firstContact = new Contact(LastName='Duck', FirstName='Daffy', AccountId=anAccount.Id);
+        Contact firstContact = new Contact(LastName = 'Duck', FirstName = 'Daffy', AccountId = anAccount.Id);
         insert firstContact;
 
         Test.setCreatedDate(anAccount.Id, DateTime.newInstance(2012, 12, 12));

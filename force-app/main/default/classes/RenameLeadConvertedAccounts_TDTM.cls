@@ -99,7 +99,8 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
             if (
                 UTIL_CustomSettingsFacade.getSettings().Lead_Converted_Account_RTypes__c != null &&
                 aContact.Account.RecordTypeId != null &&
-                UTIL_CustomSettingsFacade.getSettings().Lead_Converted_Account_RTypes__c.contains(aContact.Account.RecordTypeId)
+                UTIL_CustomSettingsFacade.getSettings()
+                    .Lead_Converted_Account_RTypes__c.contains(aContact.Account.RecordTypeId)
             ) {
                 Account anAccount = new Account(
                     Phone = aContact.Account.Phone,
