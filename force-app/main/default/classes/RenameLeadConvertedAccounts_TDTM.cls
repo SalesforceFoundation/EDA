@@ -33,6 +33,10 @@
  */
 public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
     private TDTM_Runnable.Action triggerAction;
+    /*****************************************************************************************************************
+     * @description The user defined Administrative Account record type in "ACCOUNTS AND CONTACTS" tab of EDA Settings.
+     */
+    private static ID userDefinedAdminRecordTypeId = Util_Describe.getCustomAdminAccRecTypeId();
     LeadConversionAccountNamingModel leadConversionNamingModel = LeadConversionAccountNamingService.getInstance()
         .getLeadConversionAccountNamingModel();
 
@@ -90,7 +94,16 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
         }
 
         for (Contact aContact : [
-            SELECT Account.Id, Account.Phone, Account.Fax, Account.OwnerId, Account.RecordTypeId, FirstName, LastName
+            SELECT
+                Account.Id,
+                Account.Phone,
+                Account.Fax,
+                Account.OwnerId,
+                Account.RecordTypeId,
+                Account.CreatedDate,
+                Account.Name,
+                FirstName,
+                LastName
             FROM Contact
             WHERE Id IN :contactIdsToUpdate
         ]) {
@@ -100,16 +113,27 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
                 UTIL_CustomSettingsFacade.getSettings()
                     .Lead_Converted_Account_RTypes__c.contains(aContact.Account.RecordTypeId)
             ) {
-                Account anAccount = new Account(
-                    Phone = aContact.Account.Phone,
-                    Fax = aContact.Account.Fax,
-                    OwnerId = aContact.Account.OwnerId,
-                    Id = aContact.Account.Id,
-                    RecordTypeId = aContact.Account.RecordTypeId
-                );
+                Long accountCreatedDateLong = aContact.Account.CreatedDate.getTime();
+                Long currentDTLong = DateTime.now().getTime();
+                Long secondsOld = (currentDTLong - accountCreatedDateLong) / 1000;
 
-                anAccount.Name = UTIL_ACCT_Naming.updateNameFromContact(new List<Contact>{ aContact }, anAccount);
-                accountsToUpdate.add(anAccount);
+                // If Administrative Record Type, then Account must have been created older than 60 seconds
+                // If older than 60 seconds, it is assumed the Account is an existing Account not one created during Lead Conversion
+                if (
+                    (aContact.Account.RecordTypeId == userDefinedAdminRecordTypeId) && (secondsOld < 60) ||
+                    (aContact.Account.RecordTypeId != userDefinedAdminRecordTypeId)
+                ) {
+                    Account anAccount = new Account(
+                        Phone = aContact.Account.Phone,
+                        Fax = aContact.Account.Fax,
+                        OwnerId = aContact.Account.OwnerId,
+                        Id = aContact.Account.Id,
+                        RecordTypeId = aContact.Account.RecordTypeId
+                    );
+
+                    anAccount.Name = UTIL_ACCT_Naming.updateNameFromContact(new List<Contact>{ aContact }, anAccount);
+                    accountsToUpdate.add(anAccount);
+                }
             }
 
             if (accountsToUpdate.size() > 0) {
