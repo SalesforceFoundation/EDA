@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Les types d’enregistrements de compte pour utiliser le format de nom de compte d’EDA lors de la conversion de pistes.</help>
+    <label>Types d’enreg. Compte Pistes converties</label>
+    <name>Lead_Converted_Account_RTypes__c</name>
+</CustomFieldTranslation>

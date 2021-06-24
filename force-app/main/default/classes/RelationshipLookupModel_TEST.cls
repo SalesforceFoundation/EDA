@@ -25,46 +25,89 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2020
-* @group
-* @group-content ../../ApexDocContent/Tests.htm
-* @description Test class for RelationshipLookupModel
-*/
+ * @author Salesforce.org
+ * @date 2020
+ * @group
+ * @group-content ../../ApexDocContent/Tests.htm
+ * @description Test class for RelationshipLookupModel
+ */
 @isTest
 private class RelationshipLookupModel_TEST {
-
     /**************************************************************************************************************************
-    * @description Test method to verify that the constructor set the properties 
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the constructor set the properties
+     ***************************************************************************************************************************/
     @isTest
     private static void constructor() {
-
         Test.startTest();
-            RelationshipLookupModel relLookupModel = new RelationshipLookupModel('Father', true, 'Daughter', 'Son', 'Child');
+        RelationshipLookupModel relLookupModel = new RelationshipLookupModel(
+            'Father',
+            true,
+            'Daughter',
+            'Son',
+            'Child'
+        );
         Test.stopTest();
 
-        System.assertEquals('Father', relLookupModel.name, 'Name property on the RelationshipLookup model should be set with the value that is passed');
-        System.assertEquals(true, relLookupModel.isActive, 'Active property on the RelationshipLookup model should be set with the value that is passed');
-        System.assertEquals('Daughter', relLookupModel.femaleValue, 'Female property on the RelationshipLookup model should be set with the value that is passed');
-        System.assertEquals('Son', relLookupModel.maleValue, 'Male property on the RelationshipLookup model should be set with the value that is passed');
-        System.assertEquals('Child', relLookupModel.neutralValue, 'Neutral property on the RelationshipLookup model should be set with the value that is passed');
+        System.assertEquals(
+            'Father',
+            relLookupModel.name,
+            'Name property on the RelationshipLookup model should be set with the value that is passed'
+        );
+        System.assertEquals(
+            true,
+            relLookupModel.isActive,
+            'Active property on the RelationshipLookup model should be set with the value that is passed'
+        );
+        System.assertEquals(
+            'Daughter',
+            relLookupModel.femaleValue,
+            'Female property on the RelationshipLookup model should be set with the value that is passed'
+        );
+        System.assertEquals(
+            'Son',
+            relLookupModel.maleValue,
+            'Male property on the RelationshipLookup model should be set with the value that is passed'
+        );
+        System.assertEquals(
+            'Child',
+            relLookupModel.neutralValue,
+            'Neutral property on the RelationshipLookup model should be set with the value that is passed'
+        );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the constructor set the properties with nulls
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the constructor set the properties with nulls
+     ***************************************************************************************************************************/
     @isTest
     private static void constructorNull() {
-
         Test.startTest();
-            RelationshipLookupModel relLookupModel = new RelationshipLookupModel(null, true, null, null, null);
+        RelationshipLookupModel relLookupModel = new RelationshipLookupModel(null, true, null, null, null);
         Test.stopTest();
 
-        System.assertEquals('""', relLookupModel.name, 'Name property on the RelationshipLookup model should be set with the value that is passed');
-        System.assertEquals(true, relLookupModel.isActive, 'Active property on the RelationshipLookup model should be set with the value that is passed');
-        System.assertEquals('""', relLookupModel.femaleValue, 'Female property on the RelationshipLookup model should be set with the value that is passed');
-        System.assertEquals('""', relLookupModel.maleValue, 'Male property on the RelationshipLookup model should be set with the value that is passed');
-        System.assertEquals('""', relLookupModel.neutralValue, 'Neutral property on the RelationshipLookup model should be set with the value that is passed');
+        System.assertEquals(
+            null,
+            relLookupModel.name,
+            'Name property on the RelationshipLookup model should be set with the value that is passed'
+        );
+        System.assertEquals(
+            true,
+            relLookupModel.isActive,
+            'Active property on the RelationshipLookup model should be set with the value that is passed'
+        );
+        System.assertEquals(
+            '""',
+            relLookupModel.femaleValue,
+            'Female property on the RelationshipLookup model should be set with the value that is passed'
+        );
+        System.assertEquals(
+            '""',
+            relLookupModel.maleValue,
+            'Male property on the RelationshipLookup model should be set with the value that is passed'
+        );
+        System.assertEquals(
+            '""',
+            relLookupModel.neutralValue,
+            'Neutral property on the RelationshipLookup model should be set with the value that is passed'
+        );
     }
 }

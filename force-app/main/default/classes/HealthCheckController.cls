@@ -67,6 +67,5 @@ public with sharing class HealthCheckController {
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
-        
     }
 }

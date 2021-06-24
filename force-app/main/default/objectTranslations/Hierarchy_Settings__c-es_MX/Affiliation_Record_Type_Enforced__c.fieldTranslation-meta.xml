@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affiliation_Record_Type_Enforced__c</name>
-    <help>Si se activa, se produce un error cuando los usuarios rellenan un campo principal en Contacto con una cuenta que tiene una discrepancia de tipo de registro en el tipo de registro definido en Configuración de EDA. El registro Afiliación no se crea y los campos principales en Contacto no se corrigen</help>
+    <help>Se produce un error cuando los usuarios rellenan un campo en Contacto con una cuenta con discrepancia de tipo de registro en el definido en Configuración de EDA. El registro Afiliación no se crea y los campos principales en Contacto no se corrigen</help>
     <label>Tipo de registro de afiliación aplicado</label>
+    <name>Affiliation_Record_Type_Enforced__c</name>
 </CustomFieldTranslation>

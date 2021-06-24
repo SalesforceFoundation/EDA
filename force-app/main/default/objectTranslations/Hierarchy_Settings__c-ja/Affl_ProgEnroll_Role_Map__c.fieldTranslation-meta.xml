@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Role_Map__c</name>
     <help>関連設定の [プログラム登録の作成時に所属の役割を設定] を有効にした場合、この設定で、プログラム登録で作成された所属の役割に設定する値を指定します。</help>
     <label>プログラム登録の作成時の所属の役割</label>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
 </CustomFieldTranslation>

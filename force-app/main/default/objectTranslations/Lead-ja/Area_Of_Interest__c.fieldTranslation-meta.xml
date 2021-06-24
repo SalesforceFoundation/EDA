@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>プログラム、学位、重点研究などのリードの関心領域。</help>
+    <label>関心領域</label>
+    <name>Area_Of_Interest__c</name>
+    <picklistValues>
+        <masterLabel>None</masterLabel>
+        <translation>なし</translation>
+    </picklistValues>
+</CustomFieldTranslation>

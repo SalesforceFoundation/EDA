@@ -5,11 +5,11 @@
         <name>HEDA</name>
     </customApplications>
     <customLabels>
-        <label>Zugeordnete primäre Zugehörigkeiten sind im speziellen Abschnitt &quot;Primäre Zugehörigkeiten&quot; im Kontaktdatensatz aufgeführt. Der als &quot;Primär&quot; für einen Account-Datensatztyp festgelegte Wert wird in den entsprechenden Feldern des Account-Datensatzes angezeigt, wie nachstehend definiert. Weitere Informationen finden Sie im Abschnitt</label>
+        <label>Ordnen Sie Account-Datensatztypen den primären Zugehörigkeitsfeldern von Kontakten zu, um zu definieren, wie sich Aktualisierungen dieser Felder auf Zugehörigkeitsdatensätze auswirken.</label>
         <name>AfflMappingsDescription</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, wird beim Löschen einer Programmregistrierung die entsprechende Zugehörigkeit gelöscht. Behalten Sie andernfalls die Zugehörigkeit bei und legen Sie Ihren Wert auf den in &quot;Status für nicht gelöschte Zugehörigkeiten&quot; angegebenen Wert fest.</label>
+        <label>Wenn eine Zugehörigkeit nur mit einer Programmregistrierung verknüpft ist und diese Programmregistrierung gelöscht wird, löschen Sie die Zugehörigkeit ebenfalls. Wenn Sie diese Einstellung nicht aktivieren, wählen Sie einen Status für nicht gelöschte Zugehörigkeiten aus.</label>
         <name>AfflProgEnrollDeleted</name>
     </customLabels>
     <customLabels>
@@ -21,7 +21,7 @@
         <name>AutoCreateFieldError</name>
     </customLabels>
     <customLabels>
-        <label>Es gab ein Problem beim Start des Batches.</label>
+        <label>Der Apex-Auftrag konnte nicht ausgeführt werden.</label>
         <name>BatchJobRunningProblem</name>
     </customLabels>
     <customLabels>
@@ -49,20 +49,20 @@
         <name>DefaultHouseholdName</name>
     </customLabels>
     <customLabels>
+        <label>EDA-Einstellungen</label>
+        <name>EDASettingsContainerAuraComponentLabel</name>
+    </customLabels>
+    <customLabels>
+        <label>Education Cloud-Einstellungen</label>
+        <name>EDCSettingsContainerAuraComponentLabel</name>
+    </customLabels>
+    <customLabels>
         <label>Female</label>
         <name>Female</name>
     </customLabels>
     <customLabels>
-        <name>invalidContactFieldInAffiliationMapping</name>
-        <label><!-- Error when a Contact's Primary Affiliation field isn't an Account lookup field --></label>
-    </customLabels>
-    <customLabels>
         <label>Das als Filterfeld eingegebene Feld ist nicht gültig. Bei Filterfeldern kann es sich um jedes Standard- oder benutzerdefinierte Feld des Objekts handeln, für das dieser Auslöser gilt, sowie um Felder in verwandten Datensätzen. Stellen Sie sicher, dass Sie den API-Namen des Feldes verwenden, und lassen Sie EDA-Namespace-Präfixe (&quot;hed__&quot;) weg.</label>
         <name>InvalidFilter</name>
-    </customLabels>
-    <customLabels>
-        <name>invalidRecordTypeInAffiliationMapping</name>
-        <label><!-- Error when an Affiliation Mapping's Account record type isn't valid --></label>
     </customLabels>
     <customLabels>
         <label>Male</label>
@@ -89,7 +89,7 @@
         <name>NoFieldsPopulated</name>
     </customLabels>
     <customLabels>
-        <label>--Ohne--</label>
+        <label>Ohne</label>
         <name>NoneOption</name>
     </customLabels>
     <customLabels>
@@ -125,7 +125,7 @@
         <name>Relationship_Explanation_Connector</name>
     </customLabels>
     <customLabels>
-        <label>-</label>
+        <label>–</label>
         <name>Relationship_Split</name>
     </customLabels>
     <customLabels>
@@ -133,11 +133,11 @@
         <name>RelationshipsAutoDescription</name>
     </customLabels>
     <customLabels>
-        <label>Diese Einstellungen ermöglichen Ihnen, wechselseitige Beziehungen oder die &quot;passende&quot; Beziehung zwischen zwei Kontakten zu konfigurieren. Da z. B. ein Vater mit seinem Sohn verwandt ist, sollte es einen zusätzlichen Datensatz geben, der zeigt, dass der Sohn wiederum mit seinem Vater verwandt ist. Sie können den Wert &quot;Typ&quot; für den Namen angeben und bestimmen, welcher wechselseitige Wert auf dem Geschlecht des verbindenden Kontakts basieren soll. Sie können für jede wechselseitige Einstellung männliche, weibliche und neutrale Werte definieren.</label>
+        <label>Konfigurieren Sie übereinstimmende Beziehungen, so dass Sie die Beziehung eines Kontakts zu einem anderen von jedem Kontaktdatensatz aus nachvollziehen können.</label>
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label>Sonstiges</label>
+        <label>Benutzerdefiniertes Format</label>
         <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
@@ -177,7 +177,7 @@
         <name>adminAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>Das für automatisch erstellte Verwaltungs-Accounts verwendete Namensformat.</label>
+        <label>Das Format für die Benennung von Verwaltungs-Accounts, wenn diese automatisch erstellt werden.</label>
         <name>adminAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
@@ -197,11 +197,11 @@
         <name>afflNullPointerError</name>
     </customLabels>
     <customLabels>
-        <label>Validierung von Datensatztypen aktivieren</label>
+        <label>Validierung von Datensatztypen</label>
         <name>afflTypeEnforced</name>
     </customLabels>
     <customLabels>
-        <label>Wenn Benutzer, falls ausgewählt, einen Account als primäre Zugehörigkeit eines Kontakts angeben, muss der Account einen Datensatztyp haben. Alle Account-Datensatztypen müssen in &quot;Zugehörigkeitszuordnungen&quot; ihren entsprechenden Feldern für die primäre Zugehörigkeit zum Kontakt ordnungsgemäß zugeordnet sein. Wenn die Validierung fehlschlägt, verhindert ein Fehler das Speichern der Zugehörigkeit.</label>
+        <label>Schreiben Sie vor, dass Accounts, die als primäre Zugehörigkeit eines Kontakts angegeben sind, einen Datensatztyp verwenden. Stellen Sie außerdem sicher, dass alle Account-Datensatztypen Feldern &quot;Primäre Zugehörigkeit&quot; auf dem Kontakt-Objekt zugeordnet sind. Bei einem Validierungsfehler wird die Zugehörigkeit nicht gespeichert.</label>
         <name>afflTypeEnforcedDescription</name>
     </customLabels>
     <customLabels>
@@ -209,7 +209,7 @@
         <name>automaticHHNaming</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, wird ein vorhandener Haushalt-Account automatisch umbenannt, sobald dem Account ein Kontakt hinzugefügt oder ein vorhandener Kontakt geändert wird.</label>
+        <label>Haushalt-Accounts werden automatisch umbenannt, wenn Kontakte hinzugefügt oder geändert werden.</label>
         <name>automaticHHNamingHelpText</name>
     </customLabels>
     <customLabels>
@@ -242,7 +242,7 @@
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} Verwaltungs-Account</label>
-        <name>firstNameLastNameAdminACC</name>
+        <name>firstNameLastNameAdminAcc</name>
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} Familie</label>
@@ -261,12 +261,20 @@
         <name>hhAccNameFormat</name>
     </customLabels>
     <customLabels>
-        <label>Das Format, das für das Benennen von Haushalt-Accounts verwendet werden soll.</label>
+        <label>Das Format für die Benennung von Haushalt-Accounts, wenn diese automatisch erstellt werden.</label>
         <name>hhAccNameFormatHelpText</name>
     </customLabels>
     <customLabels>
         <label>Familie</label>
         <name>hhFamily</name>
+    </customLabels>
+    <customLabels>
+        <label>Wir können diesen Datensatz aufgrund eines Fehlers beim Feld &quot;Kontakt&quot; nicht speichern {1}. Bitten Sie Ihren Administrator, die Zugehörigkeitszuordnungen in den EDA-Einstellungen zu überprüfen und den Wert für {0} anstelle von &quot;{1}&quot; auf den API-Namen eines Account-Nachschlagefelds für das Kontaktobjekt festzulegen.</label>
+        <name>invalidContactFieldInAffiliationMapping</name>
+    </customLabels>
+    <customLabels>
+        <label>Wir können diesen Datensatz nicht speichern, da {1} kein gültiger Account-Datensatztyp ist. Bitten Sie Ihren Administrator, die Zugehörigkeitszuordnungen in den EDA-Einstellungen zu überprüfen und den Wert für {0} anstelle von {1} auf den API-Namen eines Account-Datensatztyps für das Kontaktobjekt festzulegen.</label>
+        <name>invalidRecordTypeInAffiliationMapping</name>
     </customLabels>
     <customLabels>
         <label>{!LastName} Verwaltungs-Account</label>
@@ -301,7 +309,7 @@
         <name>noAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>Es wurden keine Zugehörigkeitszuordnungen erstellt. Erstellen Sie im nachstehenden Formular eine neue Zugehörigkeitszuordnung.</label>
+        <label>Es sind noch keine Zugehörigkeitszuordnungen vorhanden. Klicken Sie auf &quot;Neu&quot;, um eine zu erstellen.</label>
         <name>noAfflMappings</name>
     </customLabels>
     <customLabels>
@@ -325,15 +333,39 @@
         <name>stgAccModelTitle</name>
     </customLabels>
     <customLabels>
+        <label>Accountmodell</label>
+        <name>stgAccountModelNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Accountmodell-Einstellungen</label>
+        <name>stgAccountModelSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Verfügbare Account-Datensatztypen</label>
+        <name>stgAccountRecordTypeAvailableListTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Account-Datensatztypen auswählen</label>
+        <name>stgAccountRecordTypeGroupLabelTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Es sind nur nicht zugeordnete Account-Datensatztypen verfügbar.</label>
+        <name>stgAccountRecordTypeHelp</name>
+    </customLabels>
+    <customLabels>
+        <label>Ausgewählte Account-Datensatztypen</label>
+        <name>stgAccountRecordTypeSelectedListTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Datensatztyp für Haushalt-Accounts</label>
         <name>stgAccountRecordTypeSupportsHHAddress</name>
     </customLabels>
     <customLabels>
-        <label>Accounttypen mit aktivierten mehreren Adressen</label>
+        <label>Mehrere Adressen für Account-Typen aktivieren</label>
         <name>stgAccountTypesMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
-        <label>Accounttypen ohne zu löschende Kontakte</label>
+        <label>Accounts ohne Kontakte</label>
         <name>stgAccoutTypesWithoutContactsDelete</name>
     </customLabels>
     <customLabels>
@@ -345,15 +377,75 @@
         <name>stgAddNotHispanicOrLatinoPicklistValue</name>
     </customLabels>
     <customLabels>
+        <label>Adressen</label>
+        <name>stgAddressSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Adresseinstellungen</label>
+        <name>stgAddressSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Benutzerdefiniertes Namensformat</label>
+        <name>stgAdminAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label>Geben Sie Ihre eigene Benennungskonvention an.</label>
+        <name>stgAdminAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label>Benennung von Verwaltungs-Accounts</label>
+        <name>stgAdminAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Datensatztyp für Verwaltungs-Accounts</label>
         <name>stgAdminAccountRecordType</name>
     </customLabels>
     <customLabels>
-        <label>Enddatum der Zugehörigkeit aus der Programmregistrierung kopieren</label>
+        <label>Diese Zugehörigkeitszuordnung ordnet den Datensatztyp &quot;{0}&quot; dem Feld &quot;{1}&quot; von Kontaktdatensätzen zu. Wir wollen uns nur vergewissern, dass Sie sie löschen möchten.</label>
+        <name>stgAffiliationsDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Zugehörigkeitszuordnung löschen?</label>
+        <name>stgAffiliationsDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Die primäre Zugehörigkeit &quot;{0}&quot; wurde gelöscht.</label>
+        <name>stgAffiliationsDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Wählen Sie den Account-Datensatztyp aus, den Sie dem Feld &quot;Primäre Zugehörigkeit&quot; der Kontakte zuordnen möchten. Das Feld &quot;Primäre Zugehörigkeit&quot; wird automatisch mit dem Wert des Account-Datensatztyps aufgefüllt.</label>
+        <name>stgAffiliationsEditModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Zugehörigkeitszuordnung bearbeiten?</label>
+        <name>stgAffiliationsEditModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Die Zugehörigkeitszuordnung für &quot;{0}&quot; wurde gespeichert.</label>
+        <name>stgAffiliationsEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Wählen Sie den Account-Datensatztyp aus, den Sie dem Feld &quot;Primäre Zugehörigkeit&quot; der Kontakte zuordnen möchten. Das Feld &quot;Primäre Zugehörigkeit&quot; wird automatisch mit dem Wert des Account-Datensatztyps aufgefüllt.</label>
+        <name>stgAffiliationsNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Die primäre Zugehörigkeit &quot;{0}&quot; wurde erstellt</label>
+        <name>stgAffiliationsNewSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Zugehörigkeiten</label>
+        <name>stgAffiliationsSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Zugehörigkeitseinstellungen</label>
+        <name>stgAffiliationsSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Enddatum der Zugehörigkeit</label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>Startdatum der Zugehörigkeit aus der Programmregistrierung kopieren</label>
+        <label>Anfangsdatum der Zugehörigkeit</label>
         <name>stgAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -361,12 +453,20 @@
         <name>stgAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
+        <label>Wenn Sie diese Zugehörigkeitszuordnung löschen, wird nicht mehr automatisch ein Programmregistrierungs-Datensatz erstellt, wenn eine Zugehörigkeit vom Account-Datensatztyp {0} für einen Kontakt erstellt wird.</label>
+        <name>stgAfflDeleteWithAutoEnrollment</name>
+    </customLabels>
+    <customLabels>
         <label>Wir können diese Zugehörigkeit nicht zuordnen, da sie auf einen Datensatztyp verweist, auf den bereits eine andere Zugehörigkeitszuordnung verweist. Wenn Sie diese Zuordnung hinzufügen möchten, damit die Zugehörigkeit übersetzt wird, klicken Sie auf &quot;Bearbeiten&quot;, um die vorhandene Zuordnung zu ändern. Geben Sie dann den API-Namen des Felds unter dem Feld &quot;Primäre Zugehörigkeit&quot; des Kontakts an. Ändern Sie den für &quot;Account-Datensatztyp&quot; angegebenen Namen nicht.</label>
         <name>stgAfflNotInserted</name>
     </customLabels>
     <customLabels>
-        <label>Beim Löschen der Programmregistrierung die entsprechende Zugehörigkeit löschen</label>
+        <label>Zugehörigkeiten im Zusammenhang mit gelöschten Programmregistrierungen</label>
         <name>stgAfflProgEnrollDeleteRelated</name>
+    </customLabels>
+    <customLabels>
+        <label>Löschungen von Programmregistrierungen</label>
+        <name>stgAfflProgEnrollDeleteTitle</name>
     </customLabels>
     <customLabels>
         <label>Rolle für erstellte Zugehörigkeiten angeben</label>
@@ -381,8 +481,16 @@
         <name>stgAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
+        <label>Mit Programmregistrierungen erstellte Zugehörigkeiten</label>
+        <name>stgAfflProgramEnrollmentSettingsTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Nach Ausführung des Abgleichs</label>
         <name>stgAfterRunBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>API-Name: {0}</label>
+        <name>stgApiNameLabel</name>
     </customLabels>
     <customLabels>
         <label>Beginnen Sie die Suche mit der Eingabe des Namens der Chatter-Gruppe.</label>
@@ -405,6 +513,50 @@
         <name>stgAutoEnrollment</name>
     </customLabels>
     <customLabels>
+        <label>Diese automatische Registrierungszuordnung erstellt Programmregistrierungen für Zugehörigkeiten mit dem Account-Datensatztyp &quot;{0}&quot;, dem Zugehörigkeitsstatus &quot;{1}&quot; und der Zugehörigkeitsrolle &quot;{2}&quot;. Wenn Sie diese automatische Registrierungszuordnung löschen, werden keine Programmregistrierungen für passende Zugehörigkeiten erstellt.</label>
+        <name>stgAutoEnrollmentDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Automatische Registrierungszuordnung löschen?</label>
+        <name>stgAutoEnrollmentDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Die automatische Registrierungszuordnung &quot;{0}&quot; wurde gelöscht.</label>
+        <name>stgAutoEnrollmentDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Wählen Sie Werte aus, aus denen ein Programmregistrierungs-Datensatz erstellt wird, wenn eine Zugehörigkeit mit diesem Werten erstellt oder aktualisiert wird und die Zugehörigkeit als primär gekennzeichnet ist.</label>
+        <name>stgAutoEnrollmentEditModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Automatische Registrierungszuordnung bearbeiten?</label>
+        <name>stgAutoEnrollmentEditModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Die automatische Registrierungszuordnung &quot;{0}&quot; wurde gespeichert.</label>
+        <name>stgAutoEnrollmentEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Wählen Sie Werte aus, aus denen ein Programmregistrierungs-Datensatz erstellt wird, wenn eine Zugehörigkeit  mit diesem Werten erstellt oder aktualisiert wird und die Zugehörigkeit als primär gekennzeichnet ist.</label>
+        <name>stgAutoEnrollmentNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Neue automatische Registrierungszuordnung?</label>
+        <name>stgAutoEnrollmentNewModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Die automatische Registrierungszuordnung &quot;{0}&quot; wurde erstellt.</label>
+        <name>stgAutoEnrollmentNewSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Wenn primäre Zugehörigkeiten mit den Werten in diesen Zuordnungen erstellt werden, werden automatisch Programmregistrierungen erstellt.</label>
+        <name>stgAutoEnrollmentProgramDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Zuordnungen für die automatische Registrierung</label>
+        <name>stgAutoEnrollmentProgramTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Rolle &quot;Automatische Registrierung&quot;</label>
         <name>stgAutoEnrollmentRole</name>
     </customLabels>
@@ -421,7 +573,7 @@
         <name>stgBeforeRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Zuordnung hinzufügen</label>
+        <label>Neu</label>
         <name>stgBtnAddMapping</name>
     </customLabels>
     <customLabels>
@@ -433,28 +585,116 @@
         <name>stgBtnCancel</name>
     </customLabels>
     <customLabels>
+        <label>Auswahl aufheben</label>
+        <name>stgBtnClearSelectionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Zur Trailblazer Community wechseln</label>
+        <name>stgBtnCommunity</name>
+    </customLabels>
+    <customLabels>
+        <label>Zur Trailblazer-Community wechseln.</label>
+        <name>stgBtnCommunityActionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Löschen</label>
+        <name>stgBtnDelete</name>
+    </customLabels>
+    <customLabels>
+        <label>Dokumentation</label>
+        <name>stgBtnDocumentation</name>
+    </customLabels>
+    <customLabels>
+        <label>Zur EDA-Dokumentation wechseln.</label>
+        <name>stgBtnDocumentationActionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Zu Trailhead wechseln</label>
+        <name>stgBtnEDCTrailhead</name>
+    </customLabels>
+    <customLabels>
+        <label>Zum Education Cloud-Trailmix wechseln.</label>
+        <name>stgBtnEDCTrailheadActionA11y</name>
+    </customLabels>
+    <customLabels>
         <label>Bearbeiten</label>
         <name>stgBtnEdit</name>
     </customLabels>
     <customLabels>
-        <label>Alle Verwaltungsnamen aktualisieren</label>
+        <label>Zur Statusüberprüfung der Einstellungen wechseln</label>
+        <name>stgBtnHealthCheck</name>
+    </customLabels>
+    <customLabels>
+        <label>Erstellen einer automatischen Registrierungszuordnung.</label>
+        <name>stgBtnNewAutoEnrollA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Aktualisieren</label>
         <name>stgBtnRefreshAdminNames</name>
     </customLabels>
     <customLabels>
-        <label>Alle Haushaltsnamen aktualisieren</label>
+        <label>Alle Namen von Verwaltungs-Accounts aktualisieren.</label>
+        <name>stgBtnRefreshAdminNamesA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Aktualisieren Sie das Feld &quot;Rasse&quot; für Kontakte mit Werten aus dem Feld &quot;Ethnische Zugehörigkeit&quot;. Die Werte &quot;Nicht Hispanic oder Latino&quot; und &quot;Hispanic oder Latino&quot; werden nicht kopiert.</label>
+        <name>stgBtnRefreshEthnicityDataA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Aktualisieren</label>
         <name>stgBtnRefreshHouseholdNames</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle Namen von Haushalt-Account aktualisieren.</label>
+        <name>stgBtnRefreshHouseholdNamesA11y</name>
     </customLabels>
     <customLabels>
         <label>Abgleich ausführen</label>
         <name>stgBtnRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Kopie ausführen</label>
+        <label>Aktualisieren</label>
         <name>stgBtnRunCopy</name>
+    </customLabels>
+    <customLabels>
+        <label>Aktualisieren des Felds &quot;Erweiterte Beschreibung&quot; von Kursdatensätzen unter Verwendung von Text aus dem Feld &quot;Beschreibung&quot;.</label>
+        <name>stgBtnRunCopyA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Aktualisiert die Kursverbindungen für Lehrpersonal mit dem Wert von &quot;Standard-Datensatztyp für Lehrpersonal&quot; und die verbleibenden Kursverbindungen mit dem Wert von &quot;Standard-Datensatztyp für Studierende&quot;.</label>
+        <name>stgBtnRunCourseConnBackfillA11y</name>
     </customLabels>
     <customLabels>
         <label>Speichern</label>
         <name>stgBtnSave</name>
+    </customLabels>
+    <customLabels>
+        <label>Einstellungen</label>
+        <name>stgBtnSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Zu EDA-Einstellungen wechseln.</label>
+        <name>stgBtnSettingsActionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Trailhead</label>
+        <name>stgBtnTrailhead</name>
+    </customLabels>
+    <customLabels>
+        <label>Zu den EDA Trailhead-Modulen wechseln.</label>
+        <name>stgBtnTrailheadActionA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Aktualisieren</label>
+        <name>stgBtnUpdate</name>
+    </customLabels>
+    <customLabels>
+        <label>YouTube</label>
+        <name>stgBtnVideos</name>
+    </customLabels>
+    <customLabels>
+        <label>YouTube</label>
+        <name>stgBtnVideosActionA11y</name>
     </customLabels>
     <customLabels>
         <label>Die Bereinigung wurde erfolgreich in die Warteschlange gestellt. Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
@@ -469,11 +709,19 @@
         <name>stgColActive</name>
     </customLabels>
     <customLabels>
+        <label>Rolle &quot;Automatische Registrierung&quot;</label>
+        <name>stgColAutoEnrollmentRole</name>
+    </customLabels>
+    <customLabels>
+        <label>Status &quot;Automatische Registrierung&quot;</label>
+        <name>stgColAutoEnrollmentStatus</name>
+    </customLabels>
+    <customLabels>
         <label>Kampagnentypen</label>
         <name>stgColCampTypes</name>
     </customLabels>
     <customLabels>
-        <label>Feld &quot;Primäre Zugehörigkeit&quot; des Kontakts</label>
+        <label>Feld &quot;Primäre Zugehörigkeit&quot; in &quot;Kontakt&quot;</label>
         <name>stgColContactPrimaryAfflField</name>
     </customLabels>
     <customLabels>
@@ -497,8 +745,20 @@
         <name>stgColObject</name>
     </customLabels>
     <customLabels>
+        <label>Produkte</label>
+        <name>stgColProducts</name>
+    </customLabels>
+    <customLabels>
         <label>Beziehungstyp</label>
         <name>stgColRelType</name>
+    </customLabels>
+    <customLabels>
+        <label>Name</label>
+        <name>stgColRelationshipName</name>
+    </customLabels>
+    <customLabels>
+        <label>Ressourcen</label>
+        <name>stgColResources</name>
     </customLabels>
     <customLabels>
         <label>Rolle</label>
@@ -509,11 +769,27 @@
         <name>stgColStatus</name>
     </customLabels>
     <customLabels>
+        <label>Tools</label>
+        <name>stgColTools</name>
+    </customLabels>
+    <customLabels>
+        <label>Trailblazer Community</label>
+        <name>stgCommunityTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Ich verstehe den Abgleich und bin zu seiner Ausführung bereit.</label>
         <name>stgConfirmReadyRunBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Mehrere Adressen für Kontakt aktiviert</label>
+        <label>Kontaktinformationen</label>
+        <name>stgContactInformationSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Einstellungen für Kontaktinformationen</label>
+        <name>stgContactInformationSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Mehrere Kontaktadressen zulassen</label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
     <customLabels>
@@ -521,8 +797,28 @@
         <name>stgCourseConnBackFillError</name>
     </customLabels>
     <customLabels>
-        <label>Der Abgleich wurde erfolgreich in die Warteschlange gestellt.</label>
+        <label>Wir aktualisieren Kursverbindungs-Datensatztypen. Überprüfen Sie den Status des Auftrags unter &quot;Apex-Aufträge&quot; im Setup.</label>
         <name>stgCourseConnBackFillSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Kursverbindungs-Datensatztypen aktualisieren?</label>
+        <name>stgCourseConnectionBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Kursverbindungen</label>
+        <name>stgCourseConnectionsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Kursverbindungseinstellungen</label>
+        <name>stgCourseConnectionsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Kopiert Text aus dem Feld &quot;Beschreibung&quot; in das Feld &quot;Erweiterte Beschreibung&quot; von Kursdatensätzen. Vorhandene Werte von &quot;Erweiterte Beschreibung&quot; werden nicht überschrieben. Aktualisieren Sie Seitenlayouts und andere Verweise auf das Feld &quot;Beschreibung&quot; nach dieser Aktualisierung.</label>
+        <name>stgCourseDataMigrationModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Feld &quot;Erweiterte Beschreibung&quot; aktualisieren?</label>
+        <name>stgCourseDataMigrationModalTitle</name>
     </customLabels>
     <customLabels>
         <label>Der Batch-Apex-Auftrag hat {0} Batches mit {1} Fehler(n) verarbeitet.</label>
@@ -533,7 +829,11 @@
         <name>stgCourseDescriptionCopyEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>Standardkontakt – Sprachkompetenz</label>
+        <label>Kurse und Registrierungen</label>
+        <name>stgCoursesAndEnrollmentsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Kontakt-Sprachkompetenz</label>
         <name>stgDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
@@ -541,32 +841,88 @@
         <name>stgDefaultFacultyTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label>Standard-Datensatztyp für aktive Studenten</label>
+        <label>Standard-Datensatztyp für Studierende</label>
         <name>stgDefaultStudentTypeTitle</name>
     </customLabels>
     <customLabels>
-        <label>Fehlerbehandlung deaktivieren</label>
+        <label>Fehlerbehandlung</label>
         <name>stgDisableErrorHandlingTitle</name>
     </customLabels>
     <customLabels>
-        <label>Erzwingung von &quot;Bevorzugte E-Mail-Adresse&quot; deaktivieren</label>
+        <label>Bevorzugte E-Mail-Adresse vorschreiben</label>
         <name>stgDisablePreferredEmailEnforcement</name>
     </customLabels>
     <customLabels>
-        <label>Erzwingung von &quot;Bevorzugte Telefonnummer&quot; deaktivieren</label>
+        <label>Bevorzugte Telefonnummer vorschreiben</label>
         <name>stgDisablePreferredPhoneEnforcement</name>
+    </customLabels>
+    <customLabels>
+        <label>Verhindern doppelter Beziehungen</label>
+        <name>stgDuplicateRelationships</name>
+    </customLabels>
+    <customLabels>
+        <label>Geben Sie an, ob mehr als ein Beziehungsdatensatz gleichen Typs zwischen zwei Kontakten verhindert werden soll.</label>
+        <name>stgDuplicateRelationshipsHelp</name>
+    </customLabels>
+    <customLabels>
+        <label>Education Data Architecture (EDA) ist die Grundlage der Education Cloud. Ihre flexible Datenarchitektur ist darauf ausgelegt, Salesforce für das Bildungswesen zu konfigurieren.</label>
+        <name>stgEDAAppDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>EDA</label>
+        <name>stgEDAAppInitials</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title for the EDA App --></label>
+        <name>stgEDAAppTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Wir haben eine neue Benutzeroberfläche für Education Cloud Settings erstellt, die Zugriff auf die EDA.-Einstellungen sowie viele weitere tolle Ressourcen bietet. Die Setup-Schritte unterscheiden sich je nach verwendeter EDA-Version. Details finden Sie in der Dokumentation.</label>
+        <name>stgEDASettingsHasMovedDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Wir sind umgezogen!</label>
+        <name>stgEDASettingsHasMovedTitle</name>
     </customLabels>
     <customLabels>
         <label>EDA-Einrichtung</label>
         <name>stgEDASetupTitle</name>
     </customLabels>
     <customLabels>
-        <label>Kursverbindungen aktivieren</label>
+        <label>Die Statusüberprüfung der Einstellungen sucht nach Konfigurationsfehlern in EDA-Einstellungen und Setup. Folgen Sie den angegebenen Empfehlungen, um gemeldete Fehler zu beheben.</label>
+        <name>stgEDCSettingsHealthCheckDescription</name>
+    </customLabels>
+    <customLabels>
+        <label>Kursverbindungs-Datensatztypen</label>
         <name>stgEnableCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Verbesserte Funktionalität für &quot;Bevorzugte Telefonnummer&quot; aktivieren</label>
+        <label>Aktiviert Debuggen, so dass der Salesforce-Support Debug-Anweisungen für verwaltete Pakete anzeigen kann.</label>
+        <name>stgEnableDebugHelp</name>
+    </customLabels>
+    <customLabels>
+        <label>Debug-Protokollierung</label>
+        <name>stgEnableDebugTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Erweiterte Funktionalität für &quot;Bevorzugte Telefonnummer&quot;</label>
         <name>stgEnablePreferredPhoneSync</name>
+    </customLabels>
+    <customLabels>
+        <label>Sie können diese Seite nicht anzeigen. Ihr Salesforce-Administrator kann Ihnen in der Sache weiterhelfen.</label>
+        <name>stgErrorInsufficientAccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Sie können diese Einstellungen nicht speichern, da Sie keine Bearbeitungsberechtigungen mehr besitzen. Ihr Salesforce-Administrator kann Ihnen in der Sache weiterhelfen.</label>
+        <name>stgErrorInsufficientAccessSaving</name>
+    </customLabels>
+    <customLabels>
+        <label>Wir konnten Ihre Arbeit nicht speichern. Aktualisieren Sie die Seite, und versuchen Sie es noch einmal.</label>
+        <name>stgErrorInvalidSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle Account-Datensatztypen mit primären Zugehörigkeiten verfügen bereits über eine Zuordnung für die automatische Registrierung. Wechseln Sie zu &quot;EDA-Einstellungen&quot; | &quot;Zugehörigkeiten&quot;, um eine neue Zugehörigkeitszuordnung mit dem gewünschten Datensatztyp zu erstellen.</label>
+        <name>stgErrorNewAutoEnrollment</name>
     </customLabels>
     <customLabels>
         <label>Fehlerbenachrichtigungen an:</label>
@@ -577,35 +933,55 @@
         <name>stgErrorNotifRecipientsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Abgleich von Rasse oder ethnischer Zugehörigkeit für Kontakte</label>
+        <label>Fehler</label>
+        <name>stgErrorSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Fehlereinstellungen</label>
+        <name>stgErrorSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Legacy-Daten zur ethnischen Zugehörigkeit</label>
         <name>stgEthnicityRaceBackfillContacts</name>
+    </customLabels>
+    <customLabels>
+        <label>Kopiert standardmäßige und benutzerdefinierte Auswahllistenwerte aus dem Feld &quot;Ethnische Zugehörigkeit&quot; in das Feld &quot;Rasse&quot; von Kontakten, mit Ausnahme der Werte &quot;Nicht Hispanic oder Latino&quot; und &quot;Hispanic oder Latino&quot;. Bevor Sie fortfahren, vergewissern Sie sich, dass Sie alle Prozesse deaktiviert haben, die auf die Felder &quot;Ethnische Zugehörigkeit&quot; und &quot;Rasse&quot; verweisen.</label>
+        <name>stgEthnicityRaceBackfillModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Feld &quot;Rasse&quot; von Kontakten aktualisieren?</label>
+        <name>stgEthnicityRaceBackfillModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Wir aktualisieren das Feld &quot;Rasse&quot; von Kontakten. Wenn der Auftrag ausgeführt wurde, erhalten Sie eine E-Mail.</label>
+        <name>stgEthnicityRaceBackfillSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Fluent</label>
         <name>stgFluent</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie den Datensatztyp &quot;Verwaltungs-Account&quot;, der in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatztyp des Verwaltungs-Accounts in einen gültigen, aktiven Datensatztyp.</label>
+        <label>Überprüfen Sie in &quot;EDA-Einstellungen&quot; | &quot;Accountmodell&quot; den Datensatztyp für Verwaltungs-Accounts. Wenn &quot;{0} ({1})&quot; korrekt ist, wechseln Sie zu Salesforce Setup, und legen Sie den Datensatztyp als aktiv fest. Wenn er nicht korrekt ist, ändern Sie den Datensatztyp für Verwaltungs-Accounts in einen gültigen aktiven Datensatztyp.</label>
         <name>stgHCAccountModelAdminInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; den Datensatztyp des Verwaltungs-Accounts in einen gültigen, aktiven Datensatztyp.</label>
+        <label>Ändern Sie in &quot;EDA-Einstellungen&quot; | &quot;Accountmodell&quot; den Datensatztyp für Verwaltungs-Accounts in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAccountModelAdminNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie den Datensatztyp des Standard-Accountmodells, der in den EDA-Einstellungen auf der Registerkarte &quot;System&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie das Standard-Accountmodell in einen gültigen, aktiven Datensatztyp.</label>
+        <label>Überprüfen Sie in &quot;EDA-Einstellungen&quot; | &quot;Accountmodell&quot; den Datensatztyp des Standard-Accountmodells. Wenn &quot;{0} ({1})&quot; korrekt ist, wechseln Sie zu Salesforce Setup, und legen Sie den Datensatztyp als aktiv fest. Wenn er nicht korrekt ist, ändern Sie das Standard-Accountmodell in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAccountModelDefaultInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Registerkarte &quot;System&quot; das Standard-Accountmodell in einen gültigen, aktiven Datensatztyp.</label>
+        <label>Ändern Sie in &quot;EDA-Einstellungen&quot; | &quot;Accountmodell&quot; das Standard-Accountmodell in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAccountModelDefaultNotFoundFix</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie den Datensatztyp &quot;Haushalt-Account&quot;, der in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatztyp des Haushalt-Accounts in einen gültigen, aktiven Datensatztyp.</label>
+        <label>Überprüfen Sie in &quot;EDA-Einstellungen&quot; | &quot;Accountmodell&quot; den Datensatztyp für Haushalt-Accounts. Wenn &quot;{0} ({1})&quot; korrekt ist, wechseln Sie zu Salesforce Setup, und legen Sie den Datensatztyp als aktiv fest. Wenn er nicht korrekt ist, ändern Sie den Datensatztyp für Haushalt-Accounts in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAccountModelHHInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; den Datensatztyp des Haushalt-Accounts in einen gültigen, aktiven Datensatztyp.</label>
+        <label>Ändern Sie in &quot;EDA-Einstellungen&quot; | &quot;Accountmodell&quot; den Datensatztyp für Haushalt-Accounts in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAccountModelHHNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -617,7 +993,7 @@
         <name>stgHCAccountRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Registerkarte &quot;Accounts und Kontakte&quot; entweder den Datensatztyp des Verwaltungs-Accounts oder den des Haushalt-Accounts, so dass für jeden ein eindeutiger Datensatztyp angegeben ist.</label>
+        <label>Ändern Sie in &quot;EDA-Einstellungen&quot; | &quot;Accountmodell&quot; den Datensatztyp für Verwaltungs-Accounts oder den Datensatztyp für Haushalt-Accounts so, dass ein eindeutiger Datensatztyp angegeben wird.</label>
         <name>stgHCAccountRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -633,11 +1009,11 @@
         <name>stgHCAffiliationMappingSettingHeading</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie die Zugehörigkeitszuordnung für {0} ({1}), die in den EDA-Einstellungen auf der Registerkarte &quot;Zugehörigkeiten&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie zum Account-Objekt im Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatztyp der Zugehörigkeitszuordnung in einen gültigen, aktiven Datensatztyp.</label>
+        <label>Überprüfen Sie in &quot;EDA-Einstellungen&quot; | &quot;Zugehörigkeiten&quot; den Account-Datensatztyp für diese Zugehörigkeitszuordnung. Wenn &quot;{0} ({1})&quot; korrekt ist, wechseln Sie zum Account-Datensatztyp für das Account-Objekt in Salesforce Setup, und legen Sie den Datensatztyp als aktiv fest. Wenn er nicht korrekt ist, ändern Sie den Datensatztyp der Zugehörigkeitszuordnung in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCAfflMapAccRecordTypeInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Zugehörigkeitszuordnung für das Account-Objekt in einen gültigen, aktiven Datensatztyp.</label>
+        <label>Der Account-Datensatztyp für diese Zugehörigkeitszuordnung ist nicht vorhanden. Ändern Sie in &quot;EDA-Einstellungen&quot; | &quot;Zugehörigkeiten&quot; die Zugehörigkeitszuordnung so, dass für den angegebenen Account ein gültiger, aktiver Datensatztyp verwendet wird.</label>
         <name>stgHCAfflMapAccRecordTypeNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -653,7 +1029,7 @@
         <name>stgHCAfflMapAccRecordTypeUnique</name>
     </customLabels>
     <customLabels>
-        <label>Suchen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; in der Spalte &quot;Account-Datensatztyp&quot; nach mehreren Zuordnungen mit der Angabe &quot;{0} ({1})&quot;. Bearbeiten Sie diese Zugehörigkeitszuordnungen so, dass dieser Datensatztyp nur einem Feld &quot;Primäre Kontaktzugehörigkeit&quot; zugeordnet ist.</label>
+        <label>Suchen Sie in &quot;EDA-Einstellungen&quot; | &quot;Zugehörigkeiten&quot; in der Spalte &quot;Account-Datensatztyp&quot; nach mehreren Zuordnungen mit der Angabe &quot;{0} ({1})&quot;. Bearbeiten Sie diese Zugehörigkeitszuordnungen so, dass dieser Datensatztyp nur einem Feld &quot;Primäre Kontaktzugehörigkeit&quot; zugeordnet ist.</label>
         <name>stgHCAfflMapAccRecordTypeUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -665,7 +1041,7 @@
         <name>stgHCAfflMapAutoEnrollRoleInactive</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0} ({1})&quot; für die Autoregistrierungsrolle. Wenn &quot;{0} ({1})&quot; zutreffend ist, wechseln Sie zum Feld &quot;Rolle&quot; des Zugehörigkeitsobjekts im Salesforce-Setup, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie die Autoregistrierungsrolle in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label>Die Rolle &quot;{0} ({1})&quot; für die automatische Registrierung ist nicht aktiv. Überprüfen Sie unter &quot;EDA-Einstellungen&quot; | &quot;Programmregistrierungen&quot; die Programmzuordnung für die automatische Registrierung, in der diese Rolle angegeben ist. Wenn die Zuordnung richtig ist, wechseln Sie in Salesforce Setup zum Feld &quot;Rolle&quot; des Objekts &quot;Zugehörigkeit&quot;, und legen Sie den Auswahllistenwert als aktiv fest. Wenn sie nicht richtig ist, ändern Sie die Rolle für die automatische Registrierung in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCAfflMapAutoEnrollRoleInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -673,7 +1049,7 @@
         <name>stgHCAfflMapAutoEnrollRoleNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zuordnungen&quot; die Autoregistrierungsrolle in einen für das Feld &quot;Rolle&quot; des Zugehörigkeitsobjekts gültigen, aktiven Auswahllistenwert.</label>
+        <label>Die Rolle für die automatische Registrierung ist ungültig. Ändern Sie in &quot;EDA-Einstellungen&quot; | &quot;Programmregistrierungen&quot; die Programmzuordnung für die automatische Registrierung, in der diese Rolle angegeben ist, in einen aktiven, gültigen Auswahllistenwert für das Feld &quot;Rolle&quot; des Objekts &quot;Zugehörigkeit&quot;.</label>
         <name>stgHCAfflMapAutoEnrollRoleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -689,7 +1065,7 @@
         <name>stgHCAfflMapAutoEnrollStatusInactive</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0} ({1})&quot; für den Autoregistrierungsstatus. Wenn &quot;{0} ({1})&quot; zutreffend ist, wechseln Sie zum Feld &quot;Status&quot; des Zugehörigkeitsobjekts im Salesforce-Setup, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Autoregistrierungsstatus in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label>Der Status &quot;{0} ({1})&quot; der automatischen Registrierung ist nicht aktiv. Überprüfen Sie unter &quot;EDA-Einstellungen&quot; | &quot;Programmregistrierungen&quot; die Programmzuordnung für die automatische Registrierung, in der dieser Status angegeben ist. Wenn die Zuordnung richtig ist, wechseln Sie in Salesforce Setup zum Feld &quot;Status&quot; des Objekts &quot;Zugehörigkeit&quot;, und legen Sie den Auswahllistenwert als aktiv fest. Wenn sie nicht richtig ist, ändern Sie den Status der automatischen Registrierung in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCAfflMapAutoEnrollStatusInactiveFix</name>
     </customLabels>
     <customLabels>
@@ -697,7 +1073,7 @@
         <name>stgHCAfflMapAutoEnrollStatusNotFound</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zuordnungen&quot; den Status der Autoregistrierung in einen für das Feld &quot;Status&quot; des Zugehörigkeitsobjekts gültigen, aktiven Auswahllistenwert.</label>
+        <label>Der Status der automatischen Registrierung ist ungültig. Ändern Sie unter &quot;EDA-Einstellungen&quot; | &quot;Programmregistrierungen&quot; die Programmzuordnung für die automatische Registrierung, in der dieser Status angegeben ist, in einen gültigen, aktiven Auswahllistenwert für das Feld &quot;Status&quot; des Objekts &quot;Zugehörigkeit&quot;.</label>
         <name>stgHCAfflMapAutoEnrollStatusNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -709,7 +1085,7 @@
         <name>stgHCAfflMapAutoEnrollStatusValid</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnungen&quot; der Registerkarte &quot;Zugehörigkeiten&quot; die Angabe &quot;{0}&quot;. Es muss sich um ein gültiges Nachschlagefeld für das Objekt &quot;Kontakt&quot; handeln.</label>
+        <label>Das Feld &quot;Primäre Zugehörigkeit {0}&quot; ist ungültig. Bearbeiten Sie unter &quot;EDA-Einstellungen&quot; | &quot;Zugehörigkeiten&quot; die Zugehörigkeitszuordnung so, dass ein gültiges Nachschlagefeld des Kontaktobjekts angegeben wird.</label>
         <name>stgHCAfflMapContPrimaryFieldInvalidFix</name>
     </customLabels>
     <customLabels>
@@ -733,7 +1109,7 @@
         <name>stgHCAfflMapContactPrimaryFieldUnique</name>
     </customLabels>
     <customLabels>
-        <label>Suchen Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Zugehörigkeitszuordnung&quot; der Registerkarte &quot;Zugehörigkeiten&quot; in der Spalte des Felds &quot;Primäre Kontaktzugehörigkeit&quot; nach mehreren Zuordnungen mit der Angabe &quot;{0} ({1})&quot;. Bearbeiten Sie diese Zuordnungen so, dass dieses Feld nur einer Zugehörigkeitszuordnung zugeordnet ist.</label>
+        <label>Suchen Sie in &quot;EDA-Einstellungen&quot; | &quot;Zugehörigkeiten&quot; im Feld &quot;Primäre Zugehörigkeit&quot; in der Spalte &quot;Kontakt&quot; nach mehreren Zuordnungen mit der Angabe &quot;{0} ({1})&quot;. Bearbeiten Sie diese Zuordnungen so, dass dieses Feld nur einer Zugehörigkeitszuordnung zugeordnet ist.</label>
         <name>stgHCAfflMapContactPrimaryFieldUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -745,15 +1121,15 @@
         <name>stgHCCourseConEnable</name>
     </customLabels>
     <customLabels>
-        <label>Aktivieren Sie Kursverbindungen, was das Konfigurieren von Kursverbindungs-Datensatztypen beinhaltet. Details finden Sie unter &quot;Konfigurieren der Kursverbindung&quot; in der EDA-Dokumentation.</label>
+        <label>Aktivieren Sie &quot;Kursverbindungen&quot;, was auch das Konfigurieren von Kursverbindungs-Datensatztypen beinhaltet. Aktivieren Sie unter &quot;EDA-Einstellungen&quot; | &quot;Kursverbindungen&quot; die Kursverbindungs-Datensatztypen. Konfigurieren Sie anschließend den Standard-Datensatztyp für Studierende und den Standard-Datensatztyp für Lehrpersonal.</label>
         <name>stgHCCourseConEnableFix</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie den Datensatz für die Standardfakultät, der in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; angegeben ist. Wenn &quot;{1} ({0})&quot; zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatz für die Standardfakultät in einen gültigen, aktiven Datensatztyp.</label>
+        <label>Überprüfen Sie unter &quot;EDA-Einstellungen&quot; | &quot;Kursverbindungen&quot; den Standard-Datensatztyp für Lehrpersonal. Wenn &quot;{1} ({0})&quot; korrekt ist, wechseln Sie zu Salesforce Setup, und legen Sie den Datensatztyp als aktiv fest. Wenn er nicht korrekt ist, ändern Sie den Standard-Datensatztyp für Lehrpersonal in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCCourseConFacultyInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; den Datensatztyp &quot;Standardfakultät&quot; in einen gültigen, aktiven Datensatztyp.</label>
+        <label>Ändern Sie in &quot;EDA-Einstellungen&quot; | &quot;Kursverbindungen&quot; den Standard-Datensatztyp für Lehrpersonal in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCCourseConFacultyNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -761,7 +1137,7 @@
         <name>stgHCCourseConRecordTypesNotUnique</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; entweder den Datensatztyp für die Standardfakultät oder den Datensatztyp für den aktiven Standardstudierenden so, dass für jeden ein eindeutiger Datensatztyp angegeben wird.</label>
+        <label>Ändern Sie in &quot;EDA-Einstellungen&quot; | &quot;Kursverbindungen&quot; entweder den Standard-Datensatztyp für Lehrpersonal oder den Standard-Datensatztyp für Studierende so, dass für jeden ein eindeutiger Datensatztyp angegeben wird.</label>
         <name>stgHCCourseConRecordTypesNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -773,11 +1149,11 @@
         <name>stgHCCourseConRecordTypesUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie den Datensatz für den aktiven Standardstudierenden, der in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; angegeben ist. Wenn &quot;{1} ({0})&quot; zutreffend ist, wechseln Sie zum Salesforce-Setup, und legen Sie den Datensatztyp als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Datensatz für den Standardstudierenden in einen gültigen, aktiven Datensatztyp.</label>
+        <label>Überprüfen Sie unter &quot;EDA-Einstellungen&quot; | &quot;Kursverbindungen&quot; den Standard-Datensatztyp für Studierende. Wenn &quot;{1} ({0})&quot; korrekt ist, wechseln Sie zu Salesforce Setup, und legen Sie den Datensatztyp als aktiv fest. Wenn er nicht korrekt ist, ändern Sie den Standard-Datensatztyp für Studierende in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCCourseConStudentInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte &quot;Einstellungen&quot; der Registerkarte &quot;Kursverbindungen&quot; den Datensatztyp &quot;Aktiver Standardstudierender&quot; in einen gültigen, aktiven Datensatztyp.</label>
+        <label>Ändern Sie in &quot;EDA-Einstellungen&quot; | &quot;Kursverbindungen&quot; den Standard-Datensatztyp für Studierende in einen gültigen, aktiven Datensatztyp.</label>
         <name>stgHCCourseConStudentNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -801,11 +1177,11 @@
         <name>stgHCReciprocalRelDescription</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie die wechselseitige Einstellung für {0} ({1}), die in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; angegeben ist. Wenn {0} ({1}) für &quot;Weiblich&quot; zutreffend ist, wechseln Sie im Salesforce-Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Wert für &quot;Weiblich&quot; in den Einstellungen für wechselseitige Beziehungen in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label>Der Auswahllistenwert für &quot;Weiblich&quot; in der Zuordnung der wechselseitigen Beziehungen für &quot;{0} ({1})&quot; ist nicht aktiv. Überprüfen Sie die Zuordnung unter &quot;EDA-Einstellungen&quot; | &quot;Beziehungen&quot;. Wenn die Zuordnung korrekt ist, wechseln Sie in Salesforce Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als aktiv fest. Wenn sie nicht korrekt ist, ändern Sie den Wert &quot;Weiblich&quot; für die wechselseitige Beziehung in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelFemaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Weiblich&quot; in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label>Der Auswahllistenwert für &quot;Weiblich&quot; in der Zuordnung der wechselseitigen Beziehungen ist ungültig. Ändern Sie unter &quot;EDA-Einstellungen&quot; | &quot;Beziehungen&quot; den Wert &quot;Weiblich&quot; für diese Zuordnung in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelFemaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -813,11 +1189,11 @@
         <name>stgHCReciprocalRelFemaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie die wechselseitige Einstellung für {0} ({1}), die in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; angegeben ist. Wenn {0} ({1}) für &quot;Männlich&quot; zutreffend ist, wechseln Sie im Salesforce-Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Wert für &quot;Männlich&quot; in den Einstellungen für wechselseitige Beziehungen in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label>Der Auswahllistenwert für &quot;Männlich&quot; in der Zuordnung der wechselseitigen Beziehungen für &quot;{0} ({1})&quot; ist nicht aktiv. Überprüfen Sie die Zuordnung unter &quot;EDA-Einstellungen&quot; | &quot;Beziehungen&quot;. Wenn die Zuordnung korrekt ist, wechseln Sie in Salesforce Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als aktiv fest. Wenn sie nicht korrekt ist, ändern Sie den Wert &quot;Männlich&quot; für die wechselseitige Beziehung in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelMaleInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Männlich&quot; in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label>Der Auswahllistenwert für &quot;Männlich&quot; in der Zuordnung der wechselseitigen Beziehungen ist ungültig. Ändern Sie unter &quot;EDA-Einstellungen&quot; | &quot;Beziehungen&quot; den Wert &quot;Männlich&quot; für diese Zuordnung in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelMaleNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -825,11 +1201,11 @@
         <name>stgHCReciprocalRelMaleTitle</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie die wechselseitige Einstellung für {0} ({1}), die in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie im Salesforce-Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Wert für &quot;Name&quot; in den Einstellungen für wechselseitige Beziehungen in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label>Die Zuordnung der wechselseitigen Beziehungen für &quot;{0} ({1})&quot; ist nicht aktiv. Überprüfen Sie unter &quot;EDA-Einstellungen&quot; | &quot;Beziehungen&quot; die Zuordnung, in der dieser Name angegeben ist. Wenn die Zuordnung korrekt ist, wechseln Sie in Salesforce Setup zum Feld &quot;Typ&quot; des Objekts &quot;Beziehung&quot;, und legen Sie den Auswahllistenwert als aktiv fest. Wenn sie nicht korrekt ist, ändern Sie den Wert &quot;Name&quot; der wechselseitigen Beziehung in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelNameInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Name&quot; in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label>Die Zuordnung der wechselseitigen Beziehungen für &quot;{0}&quot; ist ungültig. Ändern Sie unter &quot;EDA-Einstellungen&quot; | &quot;Beziehungen&quot; die Zuordnung, in der dieser Name angegeben ist, in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelNameNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -837,7 +1213,7 @@
         <name>stgHCReciprocalRelNameNotUniqueDesc</name>
     </customLabels>
     <customLabels>
-        <label>Suchen Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; nach mehreren Zeilen mit der Angabe {0} ({1}) in der Spalte &quot;Name&quot;. Bearbeiten Sie diese wechselseitigen Einstellungen so, dass dieser Wert für Name nur in einer Zeile der Einstellungen für wechselseitige Beziehungen vorkommt.</label>
+        <label>Suchen Sie unter &quot;EDA-Einstellungen&quot; | &quot;Beziehungen&quot; in der Tabelle &quot;Wechselseitige Beziehungen&quot; nach mehreren Zuordnungen mit dem Namen &quot;{0} ({1})&quot;. Bearbeiten Sie diese Zuordnungen so, dass nur eine Zuordnung diesen Namen verwendet.</label>
         <name>stgHCReciprocalRelNameNotUniqueFix</name>
     </customLabels>
     <customLabels>
@@ -853,11 +1229,11 @@
         <name>stgHCReciprocalRelNameUniqueTitle</name>
     </customLabels>
     <customLabels>
-        <label>Überprüfen Sie die wechselseitige Einstellung für {0} ({1}), die in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; angegeben ist. Wenn {0} ({1}) zutreffend ist, wechseln Sie im Salesforce-Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als &quot;Aktiv&quot; fest. Wenn die Angabe nicht zutrifft, ändern Sie den Wert für &quot;Neutral&quot; in den Einstellungen für wechselseitige Beziehungen in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label>Der Auswahllistenwert für &quot;Neutral&quot; in der Zuordnung der wechselseitigen Beziehungen für &quot;{0} ({1})&quot; ist nicht aktiv. Überprüfen Sie die Zuordnung unter &quot;EDA-Einstellungen&quot; | &quot;Beziehungen&quot;. Wenn die Zuordnung korrekt ist, wechseln Sie in Salesforce Setup zum Feld &quot;Typ&quot; des Beziehungsobjekts, und legen Sie den Auswahllistenwert als aktiv fest. Wenn sie nicht korrekt ist, ändern Sie den Wert &quot;Neutral&quot; für die wechselseitige Beziehung in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelNeutralInactiveFix</name>
     </customLabels>
     <customLabels>
-        <label>Ändern Sie in den EDA-Einstellungen auf der Unterregisterkarte für wechselseitige Einstellungen der Registerkarte &quot;Beziehungen&quot; den entsprechenden Wert der Einstellungen für wechselseitige Beziehungen für &quot;Neutral&quot; in einen gültigen, aktiven Auswahllistenwert.</label>
+        <label>Der Auswahllistenwert für &quot;Neutral&quot; in der Zuordnung der wechselseitigen Beziehungen ist ungültig. Ändern Sie unter &quot;EDA-Einstellungen&quot; | &quot;Beziehungen&quot; den Wert &quot;Neutral&quot; für diese Zuordnung in einen gültigen, aktiven Auswahllistenwert.</label>
         <name>stgHCReciprocalRelNeutralNotFoundFix</name>
     </customLabels>
     <customLabels>
@@ -879,6 +1255,22 @@
     <customLabels>
         <label>Der Datensatztyp &quot;{0} ({1})&quot; ist gültig.</label>
         <name>stgHCRecordTypeValid</name>
+    </customLabels>
+    <customLabels>
+        <label>Benutzerdefiniertes Namensformat</label>
+        <name>stgHHAccountCustomName</name>
+    </customLabels>
+    <customLabels>
+        <label>Geben Sie Ihre eigene Benennungskonvention an.</label>
+        <name>stgHHAccountCustomNameHelp</name>
+    </customLabels>
+    <customLabels>
+        <label>Benennung von Haushalt-Accounts</label>
+        <name>stgHHAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Zur Statusüberprüfung der Einstellungen wechseln</label>
+        <name>stgHealthCheckA11y</name>
     </customLabels>
     <customLabels>
         <label>Accountmodell</label>
@@ -969,27 +1361,27 @@
         <name>stgHealthChecksNotAllPassed</name>
     </customLabels>
     <customLabels>
-        <label>Für höhere Bildungseinrichtungen empfehlen wir das Accountmodell &quot;Verwaltung&quot;. Für Grund- und weiterführende Schulen empfehlen wir das Accountmodell &quot;Haushalt&quot;.</label>
+        <label>Der verwendete Account-Datensatztyp, wenn für einen unabhängigen Kontakt automatisch ein Account erstellt wird.</label>
         <name>stgHelpAccountModel</name>
     </customLabels>
     <customLabels>
-        <label>Datensatztypen von Accounts, die automatisch gelöscht werden, wenn alle zugehörigen Kontakte gelöscht wurden.</label>
+        <label>Accounts mit diesen Datensatztypen werden gelöscht, wenn sie nicht über Kontakte verfügen.</label>
         <name>stgHelpAccoutsDeletedIfChildContactsDeleted</name>
     </customLabels>
     <customLabels>
-        <label>Die Account-Datensatztypen, die die Verwaltung mehrerer Adressen unterstützen.</label>
+        <label>Wählen Sie die Account-Datensatztypen aus, die mehrere Adressen unterstützen.</label>
         <name>stgHelpAddressAccRecType</name>
     </customLabels>
     <customLabels>
-        <label>Der Account-Datensatztyp, der für Verwaltungs-Accounts verwendet wird. Diese Einstellung wirkt sich auf die Verwaltung von Adressdatensätzen und das Benennungsformat von Verwaltung-Accounts aus.</label>
+        <label>Der für Verwaltungs-Accounts verwendete Account-Datensatztyp.</label>
         <name>stgHelpAdminRecType</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, wird das Enddatum der Programmregistrierung in neuen Zugehörigkeitsdatensätzen in das Enddatum kopiert. Andernfalls wird das Enddatum der Zugehörigkeit leer gelassen.</label>
+        <label>Kopieren Sie das Enddatum aus Programmregistrierungs-Datensätzen in neue Zugehörigkeitsdatensätze. Lassen Sie das Feld andernfalls leer.</label>
         <name>stgHelpAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, wird das Startdatum der Programmregistrierung in neuen Zugehörigkeitsdatensätzen in das Startdatum kopiert. Andernfalls wird das Startdatum der Zugehörigkeit leer gelassen.</label>
+        <label>Kopieren Sie das Anfangsdatum aus Programmregistrierungs-Datensätzen in neue Zugehörigkeitsdatensätze. Lassen Sie das Feld andernfalls leer.</label>
         <name>stgHelpAfflCopyProgramEnrollmentStartDate</name>
     </customLabels>
     <customLabels>
@@ -1001,7 +1393,7 @@
         <name>stgHelpAfflCreateFromProgramEnrollmentInfo</name>
     </customLabels>
     <customLabels>
-        <label>Der für eine Zugehörigkeit festgelegte Status in Bezug zu einer gelöschten Programmregistrierung.</label>
+        <label>Wenn Sie sich dafür entscheiden, Zugehörigkeiten beim Löschen ihrer zugehörigen Programmregistrierungen nicht zu löschen, wählen Sie einen Status für die Zugehörigkeiten aus. Wählen Sie &quot;Keiner&quot; aus, um den Status dieser Zugehörigkeiten unverändert zu lassen.</label>
         <name>stgHelpAfflDeleteProgramEnrollment</name>
     </customLabels>
     <customLabels>
@@ -1017,39 +1409,43 @@
         <name>stgHelpAfflProgEnrollSetRole</name>
     </customLabels>
     <customLabels>
-        <label>Die für die Zugehörigkeit festgelegte Rolle, die mit einer Programmregistrierung erstellt wurde.</label>
+        <label>Wählen Sie eine Rolle für Zugehörigkeiten aus, die zusammen mit Programmregistrierungen erstellt werden.</label>
         <name>stgHelpAfflProgEnrollSetRoleValue</name>
     </customLabels>
     <customLabels>
-        <label>Der für die Zugehörigkeit festgelegte Status, die mit einer Programmregistrierung erstellt wurde.</label>
+        <label>Wählen Sie einen Status für Zugehörigkeiten aus, die zusammen mit Programmregistrierungen erstellt werden.</label>
         <name>stgHelpAfflProgEnrollSetStatusValue</name>
     </customLabels>
     <customLabels>
-        <label>Wählen Sie diese Option aus, um die Verwaltung mehrerer Adressen für Kontakte zu aktivieren.</label>
+        <label>Mehrere Adressdatensätze für Kontakte zulassen.</label>
         <name>stgHelpContactAddrs</name>
     </customLabels>
     <customLabels>
-        <label>Verlangen Sie nicht, dass Kontakte eine bevorzugte E-Mail-Adresse haben.</label>
+        <label>Vorschreiben eines Felds &quot;Bevorzugte E-Mail-Adresse&quot; für Kontakte.</label>
         <name>stgHelpContactPreferredEmail</name>
     </customLabels>
     <customLabels>
-        <label>Verlangen Sie nicht, dass Kontakte eine bevorzugte Telefonnummer haben.</label>
+        <label>Vorschreiben eines Felds &quot;Bevorzugte Telefonnummer&quot; für Kontakte.</label>
         <name>stgHelpContactPreferredPhone</name>
     </customLabels>
     <customLabels>
-        <label>Synchronisiert das Feld &quot;Bevorzugte Telefonnummer&quot; mit dem Standardfeld &quot;Telefon&quot; des Kontakts und überprüft, ob der Wert in &quot;Bevorzugte Telefonnummer&quot; vorhanden ist und entsprechend eingestellt ist.</label>
+        <label>Kopieren Sie die bevorzugte Telefonnummer des Kontakts in sein Feld &quot;Telefonnummer&quot;.</label>
         <name>stgHelpContactPreferredPhoneSync</name>
     </customLabels>
     <customLabels>
-        <label>Der Prozess wurde erfolgreich in die Warteschlange gestellt. Nach Verarbeitung des Auftrags wird eine E-Mail gesendet.</label>
+        <label>Wir aktualisieren das Feld &quot;Erweiterte Beschreibung&quot;. Wenn der Auftrag ausgeführt wurde, erhalten Sie eine E-Mail.</label>
         <name>stgHelpCopyQueuedEmailSent</name>
     </customLabels>
     <customLabels>
-        <label>Der Abgleich für Kursverbindungen darf nur bei der erstmaligen Aktivierung von Kursverbindungen und nur in Organisationen zum Einsatz kommen, in denen Kursangebote und Kursverbindungen (Registrierungen) vor Aktivierung der Funktion &quot;Kursverbindungen&quot; vorhanden waren. Beim Abgleich werden alle Kontakte, die für eine Kursverbindung (Registrierung) oder ein Kursangebot als Lehrpersonal aufgeführt waren, in den Standard-Datensatztyp für Lehrpersonal konvertiert. Anschließend werden beim Abgleich die Kontakte in den verbleibenden Kursverbindungen (Registrierungen) in den Standard-Datensatztyp für aktive Studenten konvertiert.</label>
+        <label>Ändert die Kursverbindungen für Lehrpersonal in den Wert von &quot;Standard-Datensatztyp für Lehrpersonal&quot; und alle anderen Kursverbindungen in den Wert von &quot;Standard-Datensatztyp für Studierende&quot;.</label>
         <name>stgHelpCourseConnBackfillDescription</name>
     </customLabels>
     <customLabels>
-        <label>In EDA 1.30 wurde das Feld &quot;Erweiterte Beschreibung&quot; hinzugefügt, um längere Kursbeschreibungen zu ermöglichen.</label>
+        <label>Bevor Sie Kursverbindungen zum ersten Mal aktivieren, führen Sie diesen Apex-Auftrag aus, um die Kursverbindung für Lehrpersonal-Datensätze mit dem Wert von &quot;Standard-Datensatztyp für Lehrpersonal&quot; zu aktualisieren. Aktualisiert außerdem verbleibende Kursverbindungen mit dem Wert von &quot;Standard-Datensatztyp für Studierende&quot;.</label>
+        <name>stgHelpCourseConnectionBackfill</name>
+    </customLabels>
+    <customLabels>
+        <label>Kopiert Text aus dem Feld &quot;Beschreibung&quot; von Kursdatensätzen in das Feld &quot;Erweiterte Beschreibung&quot;, um längere Kursbeschreibungen zu ermöglichen.</label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
@@ -1065,15 +1461,15 @@
         <name>stgHelpCoursesDataMigrationUpdatePageLayouts</name>
     </customLabels>
     <customLabels>
-        <label>Der Wert &quot;Fließende Beherrschung&quot; wird automatisch für neu erstellte Datensätze für die Kontaktsprache festgelegt, wenn Benutzer das Nachschlagefeld &quot;Primäre Sprache&quot; für einen Kontakt festlegen.</label>
+        <label>Der festgelegte Wert für die Sprachkompetenz, wenn die Hauptsprache eines Kontakts in einem Datensatz &quot;Sprachen des Kontakts&quot; geändert oder festgelegt wird.</label>
         <name>stgHelpDefaultContactLanguageFluency</name>
     </customLabels>
     <customLabels>
-        <label>Der Standard-Datensatztyp beim Erstellen von Kursverbindungen für ein Mitglied des Lehrpersonals.</label>
+        <label>Wählen Sie den Datensatztyp für Kursverbindungen für Lehrpersonal aus.</label>
         <name>stgHelpDefaultFacultyType</name>
     </customLabels>
     <customLabels>
-        <label>Der Standard-Datensatztyp beim Erstellen von Kursverbindungen für aktive Studenten.</label>
+        <label>Wählen Sie den Datensatztyp für Kursverbindungen für Studierende aus.</label>
         <name>stgHelpDefaultStudentType</name>
     </customLabels>
     <customLabels>
@@ -1085,7 +1481,7 @@
         <name>stgHelpEnableCourseConnBeforeRecordTypes</name>
     </customLabels>
     <customLabels>
-        <label>Kursverbindungs-Datensätze verbinden einen Kontakt mit einem Kursangebot. Das Aktivieren dieser Funktion ermöglicht Benutzern die Wahl des Typs von Kontakt (Lehrpersonal oder Student), für den die Kursverbindung erstellt werden soll. Falls aktiviert, müssen Sie unten auch die Standard-Datensatztypen für aktive Studenten und Lehrpersonal festlegen. Bei erstmaliger Aktivierung dieser Funktion sollten Sie unbedingt den Abgleich für Kursverbindungen ausführen.</label>
+        <label>Vorschreiben, dass für Kursverbindungs-Datensätze angegeben wird, ob sie sich auf Lehrpersonal oder Studierende beziehen. Wenn Sie diese Einstellung aktivieren, legen Sie außerdem den Standard-Datensatztyp für Studierende und den Standard-Datensatztyp für Lehrpersonal fest.&lt;/br&gt;&lt;/br&gt;Bevor Sie diese Einstellung zum ersten Mal aktivieren, führen Sie den Apex-Auftrag &quot;Legacy-Kursregistrierungsdaten&quot; in den Systemtools aus.</label>
         <name>stgHelpEnableCourseConnections</name>
     </customLabels>
     <customLabels>
@@ -1093,19 +1489,19 @@
         <name>stgHelpEnsureExistContactPreferEmail</name>
     </customLabels>
     <customLabels>
-        <label>Wählen Sie diese Option aus, um das Fehlerbehandlungs-Framework des Produkts zu deaktivieren.</label>
+        <label>Fehlerbehandlung für asynchrone Aufträge zulassen, um Fehler bei geplanten Aufträgen besser sichtbar zu machen.</label>
         <name>stgHelpErrorDisable</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, werden Benachrichtigungen für vom Produkt generierte Fehler gesendet.</label>
+        <label>Senden von Fehlerbenachrichtigungen an ausgewählte Empfänger. Wenn Sie &quot;Chatter-Gruppe&quot; oder &quot;Benutzer&quot; auswählen, geben Sie außerdem einen Wert in &quot;Empfänger von Fehlerbenachrichtigungen&quot; an.</label>
         <name>stgHelpErrorNotifyOn</name>
     </customLabels>
     <customLabels>
-        <label>Geben Sie an, wer E-Mail-Fehlerbenachrichtigungen empfangen soll. Gültige Werte sind &quot;Alle Systemadministratoren&quot;, die ID eines Benutzers in Ihrer Organisation oder die ID einer Chatter-Gruppe. Sie können nur einen Wert eingeben.</label>
+        <label>Geben Sie einen einzelnen Benutzernamen oder eine einzelne Chatter-Gruppe an. Benutzer werden per E-Mail über Fehler benachrichtigt, Chatter-Gruppen werden mit einem Beitrag im Feed benachrichtigt.</label>
         <name>stgHelpErrorNotifyTo</name>
     </customLabels>
     <customLabels>
-        <label>Verwenden Sie den Abgleich für ethnische Zugehörigkeit und Rasse nur, wenn Ihre Organisation das Feld &quot;Ethnische Zugehörigkeit&quot; verwendet hat, ehe das Feld &quot;Rasse&quot; hinzugefügt wurde und ab EDA-Version 1.28 Werte aus dem Feld &quot;Ethnische Zugehörigkeit&quot; entfernt wurden. Wenn der Wert im Feld &quot;Ethnische Zugehörigkeit&quot; des Kontakts nicht gleich &quot;Nicht Hispanic oder Latino&quot; oder &quot;Hispanic oder Latino&quot; ist, wird beim Abgleich der Wert in das Feld &quot;Rasse&quot; kopiert. Sowohl die Standardwerte der Auswahlliste als auch alle benutzerdefinierten Werte, die Sie eventuell hinzugefügt haben, können kopiert werden.</label>
+        <label>Wenn Sie das Feld &quot;Ethnische Zugehörigkeit&quot; vor EDA-Version 1.28 verwendet haben, aktualisiert dieser Apex-Auftrag das Feld &quot;Rasse&quot; in Kontakten mit einer Kopie der standardmäßigen und benutzerdefinierten Werte aus dem Feld &quot;Ethnische Zugehörigkeit&quot;. Die Werte &quot;Nicht Hispanic oder Latino&quot; oder &quot;Hispanic oder Latino&quot; werden nicht kopiert.</label>
         <name>stgHelpEthnicityRaceBackfill</name>
     </customLabels>
     <customLabels>
@@ -1113,7 +1509,7 @@
         <name>stgHelpHouseAdmAccountAddressMgmt</name>
     </customLabels>
     <customLabels>
-        <label>Der Account-Datensatztyp, der für Haushalt-Accounts verwendet wird. Diese Einstellung wirkt sich auf die Verwaltung von Adressdatensätzen und das Benennungsformat von Haushalt-Accounts aus.</label>
+        <label>Der für Haushalt-Accounts verwendete Account-Datensatztyp.</label>
         <name>stgHelpHouseholdRecType</name>
     </customLabels>
     <customLabels>
@@ -1121,7 +1517,7 @@
         <name>stgHelpIfCustomValuesEthnicityCopyRace</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, kann in &quot;Plananforderungen&quot; ein Programmplan oder eine übergeordnete Plananforderung, aber nicht beides angegeben werden. Wird beides angegeben, hindert eine Fehlermeldung das Speichern, bis nur eine der Optionen gewählt wird.</label>
+        <label>Wenn Sie über eine Hierarchie für verschachtelte Plananforderungen verfügen, kann die Angabe, dass sie nur einen Programmplan oder nur eine übergeordnete Plananforderung haben können, dabei helfen, die Struktur beizubehalten.</label>
         <name>stgHelpNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
@@ -1133,7 +1529,7 @@
         <name>stgHelpRelAutoCreatedDup</name>
     </customLabels>
     <customLabels>
-        <label>Die Methode zum Auffüllen des Felds &quot;Typ&quot; beim Erstellen einer wechselseitigen Beziehung. Unter &quot;Listeneinstellung&quot; werden die auf der Registerkarte &quot;Wechselseitige Beziehungen&quot; definierten benutzerdefinierten Einstellungen mit den Werten &quot;Männlich&quot;, &quot;Weiblich&quot; und &quot;Neutral&quot; verwendet. Mit &quot;Wertumkehrung&quot; wird der Typ im Datensatz der ursprünglichen Beziehung ggf. umgekehrt. Wenn die ursprüngliche Beziehung z. B. Elternteil-Kind ist, ist die wechselseitige Beziehung Kind-Elternteil.</label>
+        <label>Geben Sie an, wie das Feld &quot;Typ&quot; für automatisch erstellte wechselseitige Beziehungen aufgefüllt werden soll. Wählen Sie &quot;Listeneinstellung&quot; aus, um die Werte aus den wechselseitigen Beziehungen zu verwenden. Wählen Sie &quot;Wertumkehrung&quot; aus, um den Typ im ursprünglichen Beziehungsdatensatz umzukehren.</label>
         <name>stgHelpRelReciprocalMethod</name>
     </customLabels>
     <customLabels>
@@ -1141,11 +1537,11 @@
         <name>stgHelpRemoveAllPicklistValuesEthnicityExceptHispanicOrLatino</name>
     </customLabels>
     <customLabels>
-        <label>Behandelt Änderungen an einzelnen Adressfeldern für Kontakte oder Accounts wie Aktualisierungen der bestehenden Adresse (d. h. es wird kein neues Adressobjekt erstellt). Bewirkt auch, dass Leerzeichen und Änderungen von Groß-/Kleinschreibung als Aktualisierungen behandelt werden.</label>
+        <label>Für einfache Adressänderungen an Kontakten oder oder Accounts aktualisieren Sie vorhandene Adressdatensätze, statt neue zu erstellen.</label>
         <name>stgHelpSimpleAddrChangeIsUpdate</name>
     </customLabels>
     <customLabels>
-        <label>Falls ausgewählt, werden Fehler in einem benutzerdefinierten Fehlerobjekt gespeichert. Sie können eine Registerkarte für das Objekt &quot;Fehler&quot; erstellen, um eine Liste aller gespeicherten Fehler anzuzeigen.</label>
+        <label>Protokollieren und speichern Sie Fehler im Objekt &quot;Fehler&quot;. Erstellen Sie nach dem Aktivieren dieser Einstellung eine Registerkarte für das Objekt &quot;Fehler&quot;, um Fehlerdatensätze anzuzeigen.</label>
         <name>stgHelpStoreErrorsOn</name>
     </customLabels>
     <customLabels>
@@ -1153,11 +1549,23 @@
         <name>stgHelpUpdateReportIfDependenciesEthnicity</name>
     </customLabels>
     <customLabels>
-        <label>Programmplan auf geschachtelte Plananforderungen prüfen</label>
+        <label>Aus Leads konvertierte Accounts automatisch umbenennen</label>
+        <name>stgLeadConversionAccountNaming</name>
+    </customLabels>
+    <customLabels>
+        <label>Wenn Leads konvertiert werden, werden Accounts automatisch umbenannt und verwenden dann das Account-Benennungsformat, das den ausgewählten Datensatztypen entspricht.</label>
+        <name>stgLeadConversionAccountNamingDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Benennung von Accounts bei der Konvertierung von Leads</label>
+        <name>stgLeadConversionAccountNamingTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Plananforderungs-Hierarchie</label>
         <name>stgNestedPlanRequirementPP</name>
     </customLabels>
     <customLabels>
-        <label>Neue Zugehörigkeitszuordnung</label>
+        <label>Neue Zugehörigkeitszuordnung?</label>
         <name>stgNewAfflMapping</name>
     </customLabels>
     <customLabels>
@@ -1177,6 +1585,10 @@
         <name>stgOptUser</name>
     </customLabels>
     <customLabels>
+        <label>Personen und Gruppen</label>
+        <name>stgPeopleAndGroupsNav</name>
+    </customLabels>
+    <customLabels>
         <label>Der Batch-Apex-Auftrag hat {0} Datensätze mit {1} Fehler(n) verarbeitet.</label>
         <name>stgPreferredEmailBatchEmailBody</name>
     </customLabels>
@@ -1185,12 +1597,48 @@
         <name>stgPreferredEmailBatchEmailSubject</name>
     </customLabels>
     <customLabels>
-        <label>Datenbereinigung für &quot;Bevorzugte E-Mail-Adresse/Telefonnummer&quot;:</label>
+        <label>Bevorzugte E-Mail-Adresse und Bevorzugte Telefonnummer</label>
         <name>stgPreferredEmailDataCleanup</name>
+    </customLabels>
+    <customLabels>
+        <label>Bevorzugte Standardtelefonnummer</label>
+        <name>stgPreferredPhoneDefault</name>
+    </customLabels>
+    <customLabels>
+        <label>Aktualisiert die Felder &quot;Bevorzugte E-Mail-Adresse&quot; und &quot;Bevorzugte Telefonnummer&quot; für alle Kontakte gemäß den diesbezüglichen Einstellungen Ihrer Organisation. Bevor Sie fortfahren, vergewissern Sie sich, dass Sie alle Prozesse deaktiviert haben, die auf die Felder &quot;Bevorzugte E-Mail-Adresse&quot; und &quot;Bevorzugte Telefonnummer&quot; verweisen.</label>
+        <name>stgPreferredPhoneEmailModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Felder &quot;Bevorzugte E-Mail-Adresse&quot; und &quot;Bevorzugte Telefonnummer&quot; aktualisieren?</label>
+        <name>stgPreferredPhoneEmailModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Wir aktualisieren die Felder &quot;Bevorzugte E-Mail-Adresse&quot; und &quot;Bevorzugte Telefonnummer&quot;. Sie erhalten eine E-Mail, wenn der Auftrag ausgeführt wurde.</label>
+        <name>stgPreferredPhoneEmailSuccessToast</name>
     </customLabels>
     <customLabels>
         <label>Wählen Sie ein Feld für &quot;Bevorzugte Telefonnummer&quot; aus, aus dem der Wert kopiert werden soll, wenn das Standardfeld &quot;Telefonnummer&quot; keinen Wert hat oder mehr als ein Feld &quot;Telefonnummer&quot; definiert ist.</label>
         <name>stgPreferredPhoneSelection</name>
+    </customLabels>
+    <customLabels>
+        <label>Das Feld, das für die bevorzugte Telefonnummer verwendet werden soll, wenn das Feld &quot;Telefonnummer&quot; leer ist oder mehrere Telefonnummern definiert sind.</label>
+        <name>stgPreferredPhoneSelectionDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Programmpläne</label>
+        <name>stgProgramPlanSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Programmplaneinstellungen</label>
+        <name>stgProgramPlanSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Programmregistrierungen</label>
+        <name>stgProgramsSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Einstellungen für die Programmregistrierung</label>
+        <name>stgProgramsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Listeneinstellung</label>
@@ -1201,7 +1649,43 @@
         <name>stgReciprocalMethodValueInversion</name>
     </customLabels>
     <customLabels>
-        <label>Achtung: Wenn Sie auf diese Schaltfläche klicken, werden ALLE vorhandenen Verwaltungs-Accountdatensätze in das in &quot;Verwaltungs-Account – Namensformat&quot; angegebene Format umbenannt. Lesen Sie die Produktdokumentation, um sicher zu sein, dass Sie die Folgen dieser unumkehrbaren Änderung verstehen. Bevor Sie fortfahren, deaktivieren Sie jegliche Automatisierung oder Prozesse, die auf Verwaltungs-Accounts verweisen (z. B. Workflow-Regeln). Nach der Aktualisierung können Sie sie wieder aktivieren.</label>
+        <label>Diese wechselseitige Beziehung ordnet den Wert {0} den wechselseitigen Werten {1} {2} und {3} zu. Wir möchten uns nur vergewissern, dass Sie sie löschen möchten.</label>
+        <name>stgReciprocalRelDeleteModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Wechselseitige Beziehung löschen?</label>
+        <name>stgReciprocalRelDeleteModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Die wechselseitige Beziehung für {0} wurde gelöscht.</label>
+        <name>stgReciprocalRelDeleteSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Wählen Sie die zu bearbeitende wechselseitige Beziehung aus.</label>
+        <name>stgReciprocalRelEditModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Wechselseitige Beziehung bearbeiten?</label>
+        <name>stgReciprocalRelEditModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Die wechselseitige Beziehung für {0} wurde gespeichert.</label>
+        <name>stgReciprocalRelEditSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Wählen Sie den Typ der zu erstellenden wechselseitigen Beziehung aus.</label>
+        <name>stgReciprocalRelNewModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Neue wechselseitige Beziehung?</label>
+        <name>stgReciprocalRelNewModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Die wechselseitige Beziehung für {0} wurde erstellt.</label>
+        <name>stgReciprocalRelNewSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label>Aktualisiert alle Verwaltungs-Account-Datensätze auf das in &quot;Verwaltungs-Account – Namensformat&quot; angegebene Format.&lt;/br&gt;&lt;/br&gt;Warnung: Bevor Sie fortfahren, informieren Sie sich über die Auswirkungen dieser Einstellung. Deaktivieren Sie außerdem alle Prozesse, die auf Verwaltungs-Accounts verweisen.</label>
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
@@ -1209,7 +1693,19 @@
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Achtung: Wenn Sie auf diese Schaltfläche klicken, werden ALLE vorhandenen Haushalt-Accountdatensätze in das in &quot;Haushalt-Account – Namensformat&quot; angegebene Format umbenannt. Diese Aktion aktiviert die Einstellung &quot;Haushalt-Accounts automatisch umbenennen&quot;, auch wenn sie zuvor nicht aktiviert war. Lesen Sie die Produktdokumentation, um sicher zu sein, dass Sie die Folgen dieser unumkehrbaren Änderung verstehen. Bevor Sie fortfahren, deaktivieren Sie jegliche Automatisierung oder Prozesse, die auf Haushalt-Accounts verweisen (z. B. Workflow-Regeln). Nach der Aktualisierung können Sie sie wieder aktivieren.</label>
+        <label>Aktualisiert alle Verwaltungs-Account-Datensätze auf das in &quot;Verwaltungs-Account – Namensformat&quot; angegebene Format. Vergewissern Sie sich, bevor Sie fortfahren, dass Sie alle Prozesse deaktiviert haben, die auf Verwaltungs-Accounts verweisen.</label>
+        <name>stgRefreshAdminNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle Namen von Verwaltungs-Accounts aktualisieren?</label>
+        <name>stgRefreshAdminNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Wir aktualisieren die Namen von Verwaltungs-Accounts. Wenn der Auftrag ausgeführt wurde, erhalten Sie eine E-Mail.</label>
+        <name>stgRefreshAdminNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label>Aktualisiert alle Haushalt-Account-Datensätze auf das in &quot;Haushalt-Account – Namensformat&quot; angegebene Format. Aktiviert darüber hinaus die automatische Umbenennung von Haushalt-Accounts, auch wenn sie zuvor deaktiviert war. &lt;/br&gt;&lt;/br&gt;Warnung: Bevor Sie fortfahren, informieren Sie sich über die Auswirkungen dieser Einstellung. Deaktivieren Sie außerdem alle Prozesse, die auf Haushalt-Accounts verweisen.</label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
@@ -1217,27 +1713,67 @@
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>
-        <label>Bereinigung ausführen</label>
+        <label>Aktualisiert alle Haushalt-Account-Datensätze auf das in &quot;Haushalt-Account – Namensformat&quot; angegebene Format. Vergewissern Sie sich, bevor Sie fortfahren, dass Sie alle Prozesse deaktiviert haben, die auf Haushalt-Accounts verweisen.</label>
+        <name>stgRefreshHouseholdNamesModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label>Alle Namen von Haushalt-Accounts aktualisieren?</label>
+        <name>stgRefreshHouseholdNamesModalTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Wir aktualisieren die Namen von Haushalt-Accounts. Wenn der Auftrag ausgeführt wurde, erhalten Sie eine E-Mail.</label>
+        <name>stgRefreshHouseholdNamesSuccessToast</name>
+    </customLabels>
+    <customLabels>
+        <label>Beziehungen</label>
+        <name>stgRelationshipSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Einstellungen für Beziehungen</label>
+        <name>stgRelationshipSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Aktualisieren</label>
         <name>stgRunCleanUp</name>
     </customLabels>
     <customLabels>
-        <label>Führen Sie diesen Datenbereinigungsprozess aus, nachdem Sie die Anforderung &quot;Bevorzugte E-Mail&quot; oder &quot;Bevorzugte Telefonnummer&quot; zum ersten Mal aktiviert oder eine Zeit lang nicht erzwungen haben.</label>
+        <label>Felder &quot;Bevorzugte E-Mail-Adresse&quot; und &quot;Bevorzugte Telefonnummer&quot; für alle Kontakte aktualisieren.</label>
+        <name>stgRunCleanUpA11y</name>
+    </customLabels>
+    <customLabels>
+        <label>Aktualisiert die &quot;Bevorzugte E-Mail-Adresse&quot; und die &quot;Bevorzugte Telefonnummer&quot; für alle Kontakte, gemäß den diesbezüglichen Einstellungen in Ihrer Organisation. Es empfiehlt sich, diesen Auftrag bei der ersten Aktivierung von &quot;Bevorzugte E-Mail-Adresse vorschreiben&quot; und &quot;Bevorzugte Telefonnummer vorschreiben&quot; auszuführen oder wenn diese Einstellungen längere Zeit nicht durchgesetzt wurden.</label>
         <name>stgRunCleanUpEnableFirstTime</name>
     </customLabels>
     <customLabels>
-        <label>Einstellungen erfolgreich gespeichert.</label>
+        <label>Die EDA-Einstellungen wurden gespeichert.</label>
         <name>stgSaveSettings</name>
+    </customLabels>
+    <customLabels>
+        <label>Eine Chatter-Gruppe betreten...</label>
+        <name>stgSelectChatterGroupDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Chatter-Gruppe</label>
+        <name>stgSelectChatterGroupTitle</name>
     </customLabels>
     <customLabels>
         <label>Empfängertyp auswählen:</label>
         <name>stgSelectReciType</name>
     </customLabels>
     <customLabels>
-        <label>Fehlerbenachrichtigungen senden</label>
+        <label>Einen Benutzernamen eingeben...</label>
+        <name>stgSelectUserDesc</name>
+    </customLabels>
+    <customLabels>
+        <label>Benutzer</label>
+        <name>stgSelectUserTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>Fehlerbenachrichtigungen</label>
         <name>stgSendErrorsTitle</name>
     </customLabels>
     <customLabels>
-        <label>Einfache Adressänd. als Aktualisierung</label>
+        <label>Adressdatensätze für einfache Änderungen aktualisieren</label>
         <name>stgSimpleAddressChangeUpdate</name>
     </customLabels>
     <customLabels>
@@ -1257,6 +1793,14 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <label>Die Namensaktualisierung für Haushalt-Accounts wurde erfolgreich in die Warteschlange gestellt. 
 Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgSuccessHHAccountNameRefresh</name>
+    </customLabels>
+    <customLabels>
+        <label>System</label>
+        <name>stgSystemSettingsNav</name>
+    </customLabels>
+    <customLabels>
+        <label>Systemtools</label>
+        <name>stgSystemToolsNav</name>
     </customLabels>
     <customLabels>
         <label>Accounts und Kontakte</label>
@@ -1315,6 +1859,10 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgTabSystem</name>
     </customLabels>
     <customLabels>
+        <label>Geben Sie mir mehr Informationen</label>
+        <name>stgTellMeMoreLink</name>
+    </customLabels>
+    <customLabels>
         <label>Autom. erst. dopp. Beziehungen zulassen</label>
         <name>stgTitleAllowAutocreatedDuplicateRel</name>
     </customLabels>
@@ -1323,11 +1871,11 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgTitleAppwideSettings</name>
     </customLabels>
     <customLabels>
-        <label>Abgleich für Kursverbindungen</label>
+        <label>Legacy-Kursregistrierungsdaten</label>
         <name>stgTitleCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Kurse: Beschreibung der Datenmigration</label>
+        <label>Erweiterte Kursbeschreibungen</label>
         <name>stgTitleCoursesDescriptionDataMigration</name>
     </customLabels>
     <customLabels>
@@ -1355,6 +1903,14 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgToastError</name>
     </customLabels>
     <customLabels>
+        <label>Trailhead</label>
+        <name>stgTrailheadTitle</name>
+    </customLabels>
+    <customLabels>
+        <label>YouTube</label>
+        <name>stgVideosTitle</name>
+    </customLabels>
+    <customLabels>
         <label>Wir können den Zeitplan für das Kursangebot nicht speichern, weil seine Endzeit nicht mit der Endzeit des zugehörigen Zeitblocks übereinstimmt. Bearbeiten Sie entweder die Endzeit, geben Sie einen anderen Zeitblock oder keinen Zeitblock an.</label>
         <name>timeBlockEndTimeMismatch</name>
     </customLabels>
@@ -1362,6 +1918,10 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <label>Wir können den Zeitplan für das Kursangebot nicht speichern, weil seine Startzeit nicht mit der Startzeit des zugehörigen Zeitblocks übereinstimmt. Bearbeiten Sie entweder die Startzeit, geben Sie einen anderen Zeitblock oder keinen Zeitblock an.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
+    <customTabs>
+        <label>Education Cloud-Einstellungen</label>
+        <name>Education_Cloud_Settings</name>
+    </customTabs>
     <customTabs>
         <label>EDA-Einstellungen</label>
         <name>HEDA_Settings</name>

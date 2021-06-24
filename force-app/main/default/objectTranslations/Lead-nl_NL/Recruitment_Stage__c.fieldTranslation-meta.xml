@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>De fase van de lead in het wervingsproces.</help>
+    <label>Wervingsfase</label>
+    <name>Recruitment_Stage__c</name>
+    <picklistValues>
+        <masterLabel>Prospect</masterLabel>
+        <translation>Prospect</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Suspect</masterLabel>
+        <translation>Suspect</translation>
+    </picklistValues>
+</CustomFieldTranslation>

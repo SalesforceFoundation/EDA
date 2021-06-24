@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Del__c</name>
     <help>関連するプログラム登録が削除されたときに所属を削除するかどうかを示します。有効にした場合、所属は削除されます。無効にした場合、関連設定の [プログラム登録の削除時の所属の状況] で指定した値に所属の状況が設定されます。</help>
     <label>プログラム登録の削除時に所属を削除</label>
+    <name>Affl_ProgEnroll_Del__c</name>
 </CustomFieldTranslation>

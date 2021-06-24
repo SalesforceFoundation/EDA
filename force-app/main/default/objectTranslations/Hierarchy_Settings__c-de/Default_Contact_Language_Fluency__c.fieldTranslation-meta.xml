@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Default_Contact_Language_Fluency__c</name>
     <help>Der Wert &quot;Fließende Beherrschung&quot; wird automatisch für neu erstellte Datensätze für die Kontaktsprache festgelegt, wenn Benutzer das Nachschlagefeld &quot;Primäre Sprache&quot; für einen Kontakt festlegen.</help>
     <label>Standardkontakt – Sprachkompetenz</label>
+    <name>Default_Contact_Language_Fluency__c</name>
 </CustomFieldTranslation>

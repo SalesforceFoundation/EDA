@@ -1,0 +1,21 @@
+<aura:component>
+    <aura:attribute name="affiliationsAction" type="String" />
+    <aura:attribute name="mappingName" type="String" />
+    <aura:attribute name="accountRecordType" type="String" />
+    <aura:attribute name="contactField" type="String" />
+    <aura:attribute name="autoProgramEnrollment" type="Boolean" />
+
+
+    <aura:handler name="modalDataChangeEventHandler" event="c:modalDataChangeEvent" action="{!c.handleModalDataChangeEvent}" />
+    <aura:handler name="modalFooterEventHandler" event="c:customModalFooterEvent" action="{!c.handleModalFooterEvent}" />
+    <aura:registerEvent name="modalSaveEvent" type="c:modalSaveEvent" />
+    <lightning:overlayLibrary aura:id="edaOverlayLibrary" />
+
+    <aura:method name="openPrimaryAffiliationsModal" action="{!c.openPrimaryAffiliationsModal}">
+        <aura:attribute name="affiliationsAction" type="String" />
+        <aura:attribute name="mappingName" type="String" />
+        <aura:attribute name="accountRecordType" type="String" />
+        <aura:attribute name="contactField" type="String" />
+        <aura:attribute name="autoProgramEnrollment" type="Boolean" />
+    </aura:method>
+</aura:component>

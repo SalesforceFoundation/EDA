@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Indica si establecer la fecha de inicio de la afiliación creada con una inscripción. Si se activa, establezca la fecha de inicio como la fecha de inicio de la inscripción de programa. Si se desactiva, no especifique la fecha de inicio de la afiliación.</help>
+    <label>Copia fecha inicio afiliación inscr prog</label>
     <name>Affl_ProgEnroll_Copy_Start_Date__c</name>
-    <help>Indica si establecer la fecha de inicio de la afiliación creada con una Inscripción de programa. Si se activa, establezca la fecha de inicio como la fecha de inicio de la inscripción de programa. Si se desactiva, no especifique la fecha de inicio de la afiliación.</help>
-    <label>Copia de fecha de inicio de afiliación de Ins de prog</label>
 </CustomFieldTranslation>

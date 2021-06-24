@@ -25,28 +25,29 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group Health Check
-* @group-content ../../ApexDocContent/HealthCheck.htm
-* @description Acts as service layer to AffiliationMappingsMapper.
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group Health Check
+ * @group-content ../../ApexDocContent/HealthCheck.htm
+ * @description Acts as service layer to AffiliationMappingsMapper.
+ */
 public virtual with sharing class AffiliationMappingsService {
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static AffiliationMappingsService instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected AffiliationMappingsService() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected AffiliationMappingsService() {
+    }
 
     /*****************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of AffiliationMappingsService.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of AffiliationMappingsService.
+     ******************************************************************************/
     public static AffiliationMappingsService getInstance() {
         if (instance == null) {
             instance = new AffiliationMappingsService();
@@ -56,20 +57,92 @@ public virtual with sharing class AffiliationMappingsService {
     }
 
     /*****************************************************************************
-    * @description Retrieves a list of models representing all Affiliation Mappings
-    * configured in EDA Settings.
-    * @return A list of AffiliationMappingsModel
-    *****************************************************************************/
-    public virtual List<AffiliationMappingsModel> getAffiliationMappingsModels(){
+     * @description Retrieves a list of models representing all Affiliation Mappings
+     * configured in EDA Settings.
+     * @return A list of AffiliationMappingsModel
+     *****************************************************************************/
+    public virtual List<AffiliationMappingsModel> getAffiliationMappingsModels() {
         return this.locateAffiliationMappingsMapper().getAffiliationMappingsModel();
     }
 
+    /********************************************************************************************************************************************
+     * @description Insert an affiliation mapping
+     * @param  affiliationMappingName A string representing the name of the new affiliation mapping
+     * @param  recordTypeName A string representing the Record Type name for the new affiliation mapping
+     * @param  contactFieldName A string representing the field label for the Contact primary affiliation field associated with the new affiliation mapping
+     * @param  autoProgramEnrollment A boolean indicating whether auto program enrollment is enabled for the new affiliation mapping
+     * @param  autoProgramEnrollmentStatus A string representing the auto program enrollment status of the new affiliation mapping
+     * @param  autoProgramEnrollmentRole A string representing the auto program enrollment role of the new affiliation mapping
+     ********************************************************************************************************************************************/
+    public void insertAffiliationMappings(
+        String affiliationMappingName,
+        String recordTypeName,
+        String contactFieldName
+    ) {
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
+
+        this.locateAffiliationMappingsMapper()
+            .insertAffiliationMappingModel(
+                new AffiliationMappingsModel(affiliationMappingName, recordTypeName, contactFieldName)
+            );
+    }
+
     /*****************************************************************************
-    * @description Retrieves an instance of the AffiliationMappingsMapper.
-    * @return The instance of AffiliationMappingsMapper.
-    ******************************************************************************/
+     * @description Checks user permissions, creates a model and passes to
+     * updateAffiliationMappings.
+     *****************************************************************************/
+    public void updateAffiliationMappings(String mappingName, String accRecordType, String conPrimaryAfflField) {
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
+        AffiliationMappingsModel afflMappingModel = new AffiliationMappingsModel(
+            mappingName,
+            accRecordType,
+            conPrimaryAfflField
+        );
+        this.locateAffiliationMappingsMapper().updateAffiliationMappings(afflMappingModel);
+    }
+
+    /*****************************************************************************************
+     * @description Delete an affiliation mapping record.
+     * @param  mappingName A string representing the name of the affiliation mapping to delete
+     * @return A string representing the record type name associated with the deleted affiliation mapping
+     *****************************************************************************************/
+    public virtual String deleteAffiliationMapping(String mappingName) {
+        if (this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser() != true) {
+            return null;
+        }
+
+        Affl_Mappings__c affiliationMappingsToDelete = Affl_Mappings__c.getInstance(mappingName);
+
+        if (affiliationMappingsToDelete == null) {
+            // no affiliation mapping matching specified name
+            return null;
+        }
+
+        return this.locateAffiliationMappingsMapper()
+            .deleteAffiliationMappingModel(
+                new AffiliationMappingsModel(
+                    affiliationMappingsToDelete.name,
+                    affiliationMappingsToDelete.Account_Record_Type__c,
+                    affiliationMappingsToDelete.Primary_Affl_Field__c
+                )
+            );
+    }
+
+    /*****************************************************************************
+     * @description Retrieves an instance of the AffiliationMappingsMapper.
+     * @return The instance of AffiliationMappingsMapper.
+     ******************************************************************************/
     @TestVisible
-    private AffiliationMappingsMapper locateAffiliationMappingsMapper(){
+    private AffiliationMappingsMapper locateAffiliationMappingsMapper() {
         return AffiliationMappingsMapper.getInstance();
+    }
+
+    /*****************************************************************************
+     * @description Retrieves an instance of the UserPermissionService.
+     * @return The instance of UserPermissionService.
+     ******************************************************************************/
+    @TestVisible
+    private UserPermissionService locateUserPermissionService() {
+        return UserPermissionService.getInstance();
     }
 }
