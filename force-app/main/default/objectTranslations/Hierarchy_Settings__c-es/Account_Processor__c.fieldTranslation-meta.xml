@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Account_Processor__c</name>
     <help>Id. del tipo de registro predeterminado para Cuenta. Por ejemplo, si se especifica Administrativa (el modelo de cuenta recomendado), introduzca el Id. del tipo de dirección Administrativa para le objeto Cuenta.</help>
     <label>Procesador de cuentas</label>
+    <name>Account_Processor__c</name>
 </CustomFieldTranslation>

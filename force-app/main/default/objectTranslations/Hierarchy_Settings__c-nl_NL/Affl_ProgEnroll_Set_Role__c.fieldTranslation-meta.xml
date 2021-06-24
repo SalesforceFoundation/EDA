@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Set_Role__c</name>
     <help>Bepaalt of een rol moet worden opgegeven voor de bij programma-inschrijving gemaakte affiliatie. Indien ingeschakeld, stelt u de affiliatierol in op de waarde uit de instelling &apos;Affil.rol bij maken prog.inschr.&apos;. Indien uitgeschakeld, geeft u geen rol op.</help>
     <label>Affil.rol instellen bij maken pr.inschr.</label>
+    <name>Affl_ProgEnroll_Set_Role__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Error_Notifications_To__c</name>
     <help>Slaat het type gebruiker op dat foutmeldingen moet ontvangen.</help>
     <label>Ontvangers foutmeldingen</label>
+    <name>Error_Notifications_To__c</name>
 </CustomFieldTranslation>

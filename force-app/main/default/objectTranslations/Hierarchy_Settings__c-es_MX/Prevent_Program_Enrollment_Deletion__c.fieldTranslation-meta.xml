@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Evitar eliminación inscripción programa</label>
     <name>Prevent_Program_Enrollment_Deletion__c</name>
-    <label>Evitar eliminación de inscripción de programa</label>
 </CustomFieldTranslation>

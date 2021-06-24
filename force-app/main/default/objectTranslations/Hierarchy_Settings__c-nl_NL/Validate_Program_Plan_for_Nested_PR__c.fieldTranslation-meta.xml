@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Validate_Program_Plan_for_Nested_PR__c</name>
     <help>Als dit is geselecteerd, kunnen planvereisten een programmaplan of een bovenliggende planvereiste specificeren, maar niet beide. Als u toch beide opgeeft, ziet u een foutbericht en kunt u pas opslaan als er slechts één is geselecteerd.</help>
     <label>Pr.plan vr geneste pr.vereiste valideren</label>
+    <name>Validate_Program_Plan_for_Nested_PR__c</name>
 </CustomFieldTranslation>

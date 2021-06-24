@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Class_Standing__c</name>
     <help>The student&apos;s level in a Program, for example, Freshman, Sophomore, Junior, or Senior.</help>
     <label>Class Standing</label>
+    <name>Class_Standing__c</name>
     <picklistValues>
         <masterLabel>Freshman</masterLabel>
         <translation>Freshman</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Sophomore</masterLabel>
-        <translation>Sophomore</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Junior</masterLabel>
@@ -18,5 +14,9 @@
     <picklistValues>
         <masterLabel>Senior</masterLabel>
         <translation>Senior</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sophomore</masterLabel>
+        <translation>Sophomore</translation>
     </picklistValues>
 </CustomFieldTranslation>

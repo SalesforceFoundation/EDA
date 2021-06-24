@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Disable_Preferred_Phone_Enforcement__c</name>
     <help>Select to disable the enforcement of the Preferred Phone field for Contacts.</help>
     <label>Disable Preferred Phone Enforcement</label>
+    <name>Disable_Preferred_Phone_Enforcement__c</name>
 </CustomFieldTranslation>

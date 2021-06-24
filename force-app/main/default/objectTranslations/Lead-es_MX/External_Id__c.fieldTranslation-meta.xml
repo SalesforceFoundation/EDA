@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Un Id. externo opcional que es exclusivo para el prospecto.</help>
+    <label>Id. externo</label>
+    <name>External_Id__c</name>
+</CustomFieldTranslation>

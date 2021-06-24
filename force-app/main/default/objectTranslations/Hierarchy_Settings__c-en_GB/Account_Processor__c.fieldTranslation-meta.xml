@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Account_Processor__c</name>
     <help>ID of the default record type for Account. For example, if specifying Administrative (the recommended Account model), enter the ID of the Administrative record type for the Account object.</help>
     <label>Account Processor</label>
+    <name>Account_Processor__c</name>
 </CustomFieldTranslation>

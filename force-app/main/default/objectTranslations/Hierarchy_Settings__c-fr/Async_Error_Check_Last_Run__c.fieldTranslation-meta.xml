@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Async_Error_Check_Last_Run__c</name>
     <help>La date de l&apos;exécution la plus récente dans l&apos;enregistreur d&apos;erreur de tâche asynchrone.</help>
     <label>Dernière exéc. vérif erreur asynchrone</label>
+    <name>Async_Error_Check_Last_Run__c</name>
 </CustomFieldTranslation>

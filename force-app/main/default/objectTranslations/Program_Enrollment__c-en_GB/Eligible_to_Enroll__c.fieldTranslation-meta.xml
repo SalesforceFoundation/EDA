@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Eligible_to_Enroll__c</name>
     <help>When selected, indicates the student has met program requirements and is eligible to enrol.</help>
     <label>Eligible to Enrol</label>
+    <name>Eligible_to_Enroll__c</name>
 </CustomFieldTranslation>

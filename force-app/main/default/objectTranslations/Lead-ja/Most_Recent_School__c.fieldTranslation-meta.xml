@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>リードが現在通学している学校または最後に通学した学校。</help>
+    <label>最終在学校</label>
+    <name>Most_Recent_School__c</name>
+</CustomFieldTranslation>
