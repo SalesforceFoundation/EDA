@@ -242,7 +242,7 @@
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} 管理取引先</label>
-        <name>firstNameLastNameAdminAcc</name>
+        <name>firstNameLastNameAdminACC</name>
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} 家族</label>

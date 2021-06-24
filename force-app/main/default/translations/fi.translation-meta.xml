@@ -242,7 +242,7 @@
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} hallintatili</label>
-        <name>firstNameLastNameAdminAcc</name>
+        <name>firstNameLastNameAdminACC</name>
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} perhe</label>
