@@ -180,7 +180,8 @@ private class RenameLeadConvertedAccounts_TEST {
 
     /*********************************************************************************************************
      * @description Insert and convert a new lead with the Household Record Type selected
-     * Make sure the Account's name is set based on account default naming setting.
+     * with an Existing Account
+     * Make sure the Account's name includes the new Contact lastName
      */
     @isTest
     private static void convertLeadHHRecordTypeExistingAccount() {

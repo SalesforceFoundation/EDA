@@ -106,7 +106,7 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
         }
 
         for (Contact aContact : [
-            SELECT AccountId, Account.Phone, Account.Fax, Account.OwnerId, Account.RecordTypeId, FirstName, LastName
+            SELECT AccountId, Account.Phone, Account.Fax, Account.OwnerId, Account.RecordTypeId, Account.CreatedDate, FirstName, LastName
             FROM Contact
             WHERE AccountId IN :accountIdsToUpdate
         ]) {
