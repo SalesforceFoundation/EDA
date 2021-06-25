@@ -242,7 +242,7 @@
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} Administrative Account</label>
-        <name>firstNameLastNameAdminAcc</name>
+        <name>firstNameLastNameAdminACC</name>
     </customLabels>
     <customLabels>
         <label>{!{!FirstName}} {!LastName} Family</label>

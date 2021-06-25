@@ -472,7 +472,7 @@
         <value>The Filter Field can&apos;t include namespace prefixes such as hed__. Remove the namespace prefix and try again.</value>
     </labels>
     <labels>
-        <fullName>firstNameLastNameAdminAcc</fullName>
+        <fullName>firstNameLastNameAdminACC</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
