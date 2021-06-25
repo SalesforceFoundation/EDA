@@ -242,7 +242,7 @@
     </customLabels>
     <customLabels>
         <label>Cuenta administrativa de {!{!FirstName}} {!LastName}</label>
-        <name>firstNameLastNameAdminAcc</name>
+        <name>firstNameLastNameAdminACC</name>
     </customLabels>
     <customLabels>
         <label>Familia de {!{!FirstName}} {!LastName}</label>
