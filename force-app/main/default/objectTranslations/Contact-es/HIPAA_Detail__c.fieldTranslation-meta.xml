@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>HIPAA_Detail__c</name>
     <help>Información sobre esta persona, como los nombres de los contactos relacionados autorizados para comunicarse sobre la persona.</help>
     <label>Detalle de HIPAA</label>
+    <name>HIPAA_Detail__c</name>
 </CustomFieldTranslation>

@@ -3,6 +3,24 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "c/accountModelSettings": [
+                "accountModelSettings/accountModelSettings.js"
+            ],
+            "c/edaSettings": [
+                "edaSettings/edaSettings.js"
+            ],
+            "c/edaSettingsNavigation": [
+                "edaSettingsNavigation/edaSettingsNavigation.js"
+            ],
+            "c/edaSettingsNavigationMenuItems": [
+                "edaSettingsNavigationMenuItems/edaSettingsNavigationMenuItems.js"
+            ],
+            "c/edaSettingsNavigationSection": [
+                "edaSettingsNavigationSection/edaSettingsNavigationSection.js"
+            ],
+            "c/edaSettingsNavigationSubsection": [
+                "edaSettingsNavigationSubsection/edaSettingsNavigationSubsection.js"
+            ],
             "c/healthCheck": [
                 "healthCheck/healthCheck.js"
             ],
@@ -17,12 +35,34 @@
             ],
             "c/healthCheckRun": [
                 "healthCheckRun/healthCheckRun.js"
+            ],
+            "c/settingsSaveCanvas": [
+                "settingsSaveCanvas/settingsSaveCanvas.js"
+            ],
+            "c/settingsRowInput": [
+                "../../settingsComponentLibrary/lwc/settingsRowInput/settingsRowInput.js"
+            ],
+            "c/affiliationSettings": [
+                "affiliationSettings/affiliationSettings.js"
+            ],
+            "c/addressSettings": [
+                "addressSettings/addressSettings.js"
+            ],
+            "c/contactInformationSettings": [
+                "contactInformationSettings/contactInformationSettings.js"
+            ],
+            "c/settingsRowDualListbox": [
+                "../../settingsComponentLibrary/lwc/settingsRowDualListbox/settingsRowDualListbox.js"
+            ],
+            "c/systemTools": [
+                "systemTools/systemTools.js"
             ]
         }
     },
     "include": [
         "**/*",
-        "../../.sfdx/typings/lwc/**/*.d.ts"
+        "../../.sfdx/typings/lwc/**/*.d.ts",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
     ],
     "paths": {
         "c/*": [

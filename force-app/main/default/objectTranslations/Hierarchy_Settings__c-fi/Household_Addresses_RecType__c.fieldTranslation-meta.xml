@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Household_Addresses_RecType__c</name>
     <help>Kotitaloustileille käytetty tilin tietuetyyppi. Tämä asetus vaikuttaa osoitetietueiden hallintaan ja kotitaloustilien nimeämismuotoon.</help>
     <label>Kotitalouksien osoitetilin tietuetyyppi</label>
+    <name>Household_Addresses_RecType__c</name>
 </CustomFieldTranslation>

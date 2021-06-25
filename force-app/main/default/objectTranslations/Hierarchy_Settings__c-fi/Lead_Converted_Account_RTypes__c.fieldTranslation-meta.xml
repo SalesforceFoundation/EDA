@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help>Tilitietuetyypit, jotka käyttävät EDA:n tilien nimeämismuotoa, kun liidejä muunnetaan.</help>
+    <label>Muunnettujen liidien tilitietuetyypit</label>
+    <name>Lead_Converted_Account_RTypes__c</name>
+</CustomFieldTranslation>

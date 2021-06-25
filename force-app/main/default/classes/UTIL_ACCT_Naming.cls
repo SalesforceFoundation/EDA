@@ -195,7 +195,7 @@ public class UTIL_ACCT_Naming {
             NameSpec ns = new NameSpec(accountNamingFormat);
             finalAccountName = buildAccountName(returnSortedContacts, ns);
         } else {
-            finalAccountName = defaultAccountName(returnSortedContacts, accountNamingFormat);
+            finalAccountName = defaultAccountName(returnSortedContacts, accountNamingFormat, acc);
         }
 
         return finalAccountName;
@@ -250,40 +250,34 @@ public class UTIL_ACCT_Naming {
      * @param accountNamingFormat is a string of the Account name format currently set in the org.
      * @return String.
      */
-    private static String defaultAccountName(List<Contact> cons, String accountNamingFormat) {
+    private static String defaultAccountName(List<Contact> cons, String accountNamingFormat, Account theAccount) {
         Set<String> householdLastNames = new Set<String>();
         String finalAccountName;
         String name = '';
         String strAnd = ' ' + Label.defaultNamingConnector + ' ';
         Integer counter = 0;
 
-        for (Contact con : cons) {
-            if (defaultRecTypeId == hhAccountRecordTypeId) {
-                householdLastNames.add(con.LastName);
-            } else if (defaultRecTypeId == userDefinedAdminRecordTypeId) {
-                finalAccountName = con.LastName + ' ' + System.label.DefaultAdminName;
-                break;
-            } else {
-                finalAccountName = con.LastName + ' ' + System.label.DefaultAccountName;
-                break;
+        if (cons.isEmpty()) {
+            return null;
+        }
+
+        if (theAccount.RecordTypeId == userDefinedAdminRecordTypeId) {
+            return finalAccountName = cons[0].LastName + ' ' + System.label.DefaultAdminName;
+        }
+
+        if (theAccount.RecordTypeId != hhAccountRecordTypeId) {
+            return finalAccountName = cons[0].LastName + ' ' + System.label.DefaultAccountName;
+        }
+
+        for (Contact aContact : cons) {
+            name += aContact.lastName;
+            counter++;
+            if (counter < householdLastNames.size()) {
+                name += strAnd;
             }
         }
 
-        if (householdLastNames.size() > 0) {
-            for (String lastName : householdLastNames) {
-                name += lastName;
-                counter++;
-                if (counter < householdLastNames.size()) {
-                    name += strAnd;
-                }
-            }
-
-            if (accountNamingFormat == hhNameFormat) {
-                finalAccountName = name + ' ' + System.label.DefaultHouseholdName;
-            }
-        }
-
-        return finalAccountName;
+        return name + ' ' + System.label.DefaultHouseholdName;
     }
 
     /*******************************************************************************************************

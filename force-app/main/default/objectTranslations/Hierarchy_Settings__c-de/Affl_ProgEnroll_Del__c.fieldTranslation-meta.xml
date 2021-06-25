@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Del__c</name>
     <help>Gibt an, ob die Zugehörigkeit gelöscht werden soll, wenn die zugehörige Programmregistrierung gelöscht wird. Falls aktiviert, Zugehörigkeit löschen. Falls deaktiviert, Status der Zugehörigkeit auf &quot;Status Zugehör. bei Lösch. von ProgReg&quot; festlegen.</help>
     <label>Zugehör. bei Löschen von ProgReg löschen</label>
+    <name>Affl_ProgEnroll_Del__c</name>
 </CustomFieldTranslation>

@@ -25,93 +25,192 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2021
-* @group 
-* @group-content ../../ApexDocContent/
-* @description Test class for PicklistEntryService class
-*/
+ * @author Salesforce.org
+ * @date 2021
+ * @group
+ * @group-content ../../ApexDocContent/
+ * @description Test class for PicklistEntryService class
+ */
 @isTest
 private class PicklistEntryService_TEST {
-
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns a new instance of the 
-    * PicklistEntryService class when one does not already exist.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getInstance method returns a new instance of the
+     * PicklistEntryService class when one does not already exist.
+     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceNew() {
-
         Test.startTest();
-            PicklistEntryService picklistEntryServiceInstance = PicklistEntryService.getInstance();
+        PicklistEntryService picklistEntryServiceInstance = PicklistEntryService.getInstance();
         Test.stopTest();
 
-        System.assertEquals(PicklistEntryService.instance, picklistEntryServiceInstance, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(true, picklistEntryServiceInstance != null, 'Instance of service class should not be null.');
+        System.assertEquals(
+            PicklistEntryService.instance,
+            picklistEntryServiceInstance,
+            'Instance of service class returned should match static instance variable.'
+        );
+        System.assertEquals(
+            true,
+            picklistEntryServiceInstance != null,
+            'Instance of service class should not be null.'
+        );
     }
 
     /**************************************************************************************************************************
-    * @description Test method to verify that the getInstance method returns the existing instance of the 
-    * PicklistEntryService class when one already exists.
-    ***************************************************************************************************************************/
+     * @description Test method to verify that the getInstance method returns the existing instance of the
+     * PicklistEntryService class when one already exists.
+     ***************************************************************************************************************************/
     @isTest
     private static void getInstanceExisting() {
-
         Test.startTest();
-            PicklistEntryService picklistEntryServiceInstance1 = PicklistEntryService.getInstance();
-            PicklistEntryService picklistEntryServiceInstance2 = PicklistEntryService.getInstance();
+        PicklistEntryService picklistEntryServiceInstance1 = PicklistEntryService.getInstance();
+        PicklistEntryService picklistEntryServiceInstance2 = PicklistEntryService.getInstance();
         Test.stopTest();
 
-        System.assertEquals(PicklistEntryService.instance, picklistEntryServiceInstance1, 'Instance of service class returned should match static instance variable.');
-        System.assertEquals(picklistEntryServiceInstance1, picklistEntryServiceInstance2, 'Subsequent retrievals of service class instance should return existing instance.');
-        System.assertEquals(true, picklistEntryServiceInstance1 != null, 'Instance of service class should not be null.');
+        System.assertEquals(
+            PicklistEntryService.instance,
+            picklistEntryServiceInstance1,
+            'Instance of service class returned should match static instance variable.'
+        );
+        System.assertEquals(
+            picklistEntryServiceInstance1,
+            picklistEntryServiceInstance2,
+            'Subsequent retrievals of service class instance should return existing instance.'
+        );
+        System.assertEquals(
+            true,
+            picklistEntryServiceInstance1 != null,
+            'Instance of service class should not be null.'
+        );
     }
 
     /***********************************************************************************************************************************
-    * @description Test method to verify that the locatePicklistEntryMapper method returns instance of PicklistEntryMapper
-    ***********************************************************************************************************************************/
+     * @description Test method to verify that the locatePicklistEntryMapper method returns instance of PicklistEntryMapper
+     ***********************************************************************************************************************************/
     @isTest
     private static void locatePicklistEntryMapper() {
-
         Test.startTest();
-            PicklistEntryMapper pcklstEntryMapper = PicklistEntryService.getInstance().locatePicklistEntryMapper();
+        PicklistEntryMapper pcklstEntryMapper = PicklistEntryService.getInstance().locatePicklistEntryMapper();
         Test.stopTest();
 
-        System.assertEquals(PicklistEntryMapper.getInstance(), pcklstEntryMapper, 'Should return the instance of PicklistEntryMapper');
-
+        System.assertEquals(
+            PicklistEntryMapper.getInstance(),
+            pcklstEntryMapper,
+            'Should return the instance of PicklistEntryMapper'
+        );
     }
 
     /***********************************************************************************************************************************
-    * @description Test method to verify that the getModelsByNameForSObjectField method returns instance of PicklistEntry Models
-    ***********************************************************************************************************************************/
+     * @description Test method to verify that the getModelsByNameForSObjectField method returns instance of PicklistEntry Models
+     ***********************************************************************************************************************************/
     @isTest
     private static void getModelsByNameForSObjectField() {
-
         PicklistEntryMapper.instance = new STUB_PicklistEntryMapper();
 
         Test.startTest();
-            Map<String, PicklistEntryModel> picklistEntryModelsByPicklistEntryName = 
-                PicklistEntryService.getInstance().getModelsByNameForSObjectField(Account.getSObjectType(), Account.Type.getDescribe().getSObjectField());
+        Map<String, PicklistEntryModel> picklistEntryModelsByPicklistEntryName = PicklistEntryService.getInstance()
+            .getModelsByNameForSObjectField(Account.getSObjectType(), Account.Type.getDescribe().getSObjectField());
         Test.stopTest();
 
-        System.assertEquals(1, picklistEntryModelsByPicklistEntryName.size(), 'Retieved map should contain models for all the picklist entries');
-        System.assertEquals('Prospect', picklistEntryModelsByPicklistEntryName.get('Prospect').name, 'Map should retrieve the name of the picklist entry');
-        System.assertEquals('Prospect', picklistEntryModelsByPicklistEntryName.get('Prospect').label, 'Map should retrieve the label of the picklist entry');
-        System.assertEquals(true, picklistEntryModelsByPicklistEntryName.get('Prospect').isActive, 'Map should retrieve active status of the picklist entry');
-
+        System.assertEquals(
+            1,
+            picklistEntryModelsByPicklistEntryName.size(),
+            'Retieved map should contain models for all the picklist entries'
+        );
+        System.assertEquals(
+            'Prospect',
+            picklistEntryModelsByPicklistEntryName.get('Prospect').name,
+            'Map should retrieve the name of the picklist entry'
+        );
+        System.assertEquals(
+            'Prospect',
+            picklistEntryModelsByPicklistEntryName.get('Prospect').label,
+            'Map should retrieve the label of the picklist entry'
+        );
+        System.assertEquals(
+            true,
+            picklistEntryModelsByPicklistEntryName.get('Prospect').isActive,
+            'Map should retrieve active status of the picklist entry'
+        );
     }
 
     /***********************************************************************************************************************************
-    ****************************************************** STUBS ***********************************************************************
-    ***********************************************************************************************************************************/
+     * @description Test method to verify that the getActivePicklistEntryModelsByName method returns a map containing only active
+     * picklist entry values.
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getActivePicklistEntryModelsByNameValid() {
+        Map<String, PicklistEntryModel> picklistEntryModelsByString = new Map<String, PicklistEntryModel>{
+            'Entry_1' => new PicklistEntryModel('Entry_1', 'Entry1', true),
+            'Entry2' => new PicklistEntryModel('Entry_2', 'Entry2', false),
+            'Entry_3' => new PicklistEntryModel('Entry_3', 'Entry3', true)
+        };
+
+        PicklistEntryService PicklistEntryServiceInstance = PicklistEntryService.getInstance();
+
+        Test.startTest();
+        Map<String, PicklistEntryModel> activePicklistEntryModelsByName = PicklistEntryServiceInstance.getActivePicklistEntryModelsByName(
+            picklistEntryModelsByString
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            2,
+            activePicklistEntryModelsByName.values().size(),
+            'Should only contain active picklist entry values.'
+        );
+        System.assertEquals(
+            'Entry_1',
+            activePicklistEntryModelsByName.values()[0].name,
+            'Name should match picklist entry name.'
+        );
+        System.assertEquals(
+            'Entry1',
+            activePicklistEntryModelsByName.values()[0].label,
+            'Label should match picklist entry label.'
+        );
+
+        System.assertEquals(
+            'Entry_3',
+            activePicklistEntryModelsByName.values()[1].name,
+            'Name should match picklist entry name.'
+        );
+        System.assertEquals(
+            'Entry3',
+            activePicklistEntryModelsByName.values()[1].label,
+            'Label should match picklist entry label.'
+        );
+    }
+
+    /***********************************************************************************************************************************
+     * @description Test method to verify that the getActivePicklistEntryModelsByName method returns an empty map when no active
+     * picklist values exist.
+     ***********************************************************************************************************************************/
+    @isTest
+    private static void getActivePicklistEntryModelsByNameEmpty() {
+        PicklistEntryService PicklistEntryServiceInstance = PicklistEntryService.getInstance();
+
+        Test.startTest();
+        Map<String, PicklistEntryModel> activePicklistEntryModelsByName = PicklistEntryServiceInstance.getActivePicklistEntryModelsByName(
+            new Map<String, PicklistEntryModel>()
+        );
+        Test.stopTest();
+
+        System.assertEquals(0, activePicklistEntryModelsByName.values().size(), 'Should return empty map.');
+    }
+
+    /***********************************************************************************************************************************
+     ****************************************************** STUBS ***********************************************************************
+     ***********************************************************************************************************************************/
 
     /**************************************************************************************************************************************
-    * @description Stub class to simulate the response from PicklistEntryMapper to return a map of picklistEntryModelsByPicklistEntryName
-    **************************************************************************************************************************************/ 
+     * @description Stub class to simulate the response from PicklistEntryMapper to return a map of picklistEntryModelsByPicklistEntryName
+     **************************************************************************************************************************************/
     private class STUB_PicklistEntryMapper extends PicklistEntryMapper {
-
-        public override Map<String, PicklistEntryModel> getModelsByNameForSObjectField(SObjectType sObjectTypeName, SObjectField sObjectFieldName) {
-
-            Map<String, PicklistEntryModel> picklistEntryModelsByPicklistEntryName= new Map<String, PicklistEntryModel>();
+        public override Map<String, PicklistEntryModel> getModelsByNameForSObjectField(
+            SObjectType sObjectTypeName,
+            SObjectField sObjectFieldName
+        ) {
+            Map<String, PicklistEntryModel> picklistEntryModelsByPicklistEntryName = new Map<String, PicklistEntryModel>();
 
             PicklistEntryModel pcklstEntryModel = new PicklistEntryModel('Prospect', 'Prospect', true);
             picklistEntryModelsByPicklistEntryName.put('Prospect', pcklstEntryModel);

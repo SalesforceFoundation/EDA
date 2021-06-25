@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Accounts_to_Delete__c</name>
     <help>関連付けられたすべての取引先責任者が削除された場合に自動的に削除される取引先のレコードタイプ。</help>
     <label>削除する取引先</label>
+    <name>Accounts_to_Delete__c</name>
 </CustomFieldTranslation>

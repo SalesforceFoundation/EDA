@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Validate_Program_Plan_for_Nested_PR__c</name>
     <help>Quan se selecciona, els requisits del pla poden especificar un pla de programa o un requisit de pla principal, però no tots dos. Si especifiqueu un pla de programa i un requisit del pla principal, un missatge d&apos;error impedeix desar fins que només se&apos;n seleccioni un.</help>
     <label>Valida el pla del programa per als requisits del pla enclavat</label>
+    <name>Validate_Program_Plan_for_Nested_PR__c</name>
 </CustomFieldTranslation>

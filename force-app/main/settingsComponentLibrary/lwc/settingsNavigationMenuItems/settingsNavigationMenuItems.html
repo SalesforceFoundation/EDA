@@ -1,0 +1,13 @@
+<template>
+    <template for:each={viewModel.menuItems} for:item="menuItem">
+        <li key={menuItem.id} class={menuItemClass}>
+            <a
+                href="javascript:void(0);"
+                class="slds-text-color_default nav-menu-item_link"
+                onclick={handleNavigationClick}
+                data-qa-locator={menuItem.qaLocator}
+                >{menuItem.label}</a
+            >
+        </li>
+    </template>
+</template>

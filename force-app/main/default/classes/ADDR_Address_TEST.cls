@@ -534,7 +534,7 @@ public class ADDR_Address_TEST {
             new Contact(AccountId = accounts[1].Id, LastName = 'White')
         };
         insert addContacts;
-        System.debug('TESTClass addContacts -->' + addContacts);
+        //System.debug('TESTClass addContacts -->' + addContacts);
 
         UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
         List<Contact> contacts = contactsAddrs.contacts;

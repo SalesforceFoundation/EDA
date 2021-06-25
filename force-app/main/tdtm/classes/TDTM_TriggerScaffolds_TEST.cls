@@ -168,4 +168,18 @@ private class TDTM_TriggerScaffolds_TEST {
         System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
     }
 
+    public static testmethod void tdtmContentVersion() {
+        //Currently we don't have any Trigger_Handler__c record for ContentVersion. This test is
+        //just for test coverage, and to verify no exception gets thrown.        
+        Test.startTest();
+        insert new ContentVersion(
+            Title = 'Test',
+            PathOnClient = 'Test.jpg',
+            VersionData = Blob.valueOf('Test Content Data')
+        );
+        Test.stopTest();
+       
+        System.assert(true, 'No exception thrown'); //Just checking that we get to this point = no exception thrown
+    }
+
 }

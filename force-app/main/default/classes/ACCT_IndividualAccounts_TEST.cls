@@ -1028,12 +1028,10 @@ private class ACCT_IndividualAccounts_TEST {
 
         Account acc = [SELECT Id FROM Account LIMIT 1];
 
-        Contact con2 = contacts[1];
-        insert con2;
-
         Test.startTest();
+        Contact con2 = contacts[1];
         con2.AccountId = acc.Id;
-        update con2;
+        insert con2;
         Test.stopTest();
 
         Account assertAccount = [SELECT Primary_Contact__c FROM Account WHERE Id = :acc.Id LIMIT 1];

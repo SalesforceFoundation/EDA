@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Role_Map__c</name>
     <help>Als de gerelateerde instelling &apos;Affil.rol instellen bij maken pr.inschr.&apos; is ingeschakeld, bepaalt deze instelling de waarde die moet worden ingesteld voor de rol van de affiliatie die met een programma-inschrijving is gemaakt.</help>
     <label>Affil.rol bij maken prog.inschr.</label>
+    <name>Affl_ProgEnroll_Role_Map__c</name>
 </CustomFieldTranslation>

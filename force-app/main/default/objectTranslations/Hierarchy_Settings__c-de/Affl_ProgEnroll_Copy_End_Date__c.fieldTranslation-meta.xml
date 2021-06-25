@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
     <help>Gibt an, ob das Enddatum der mit einer Programmregistrierung erstellten Zugehörigkeit festgelegt werden soll. Falls aktiviert, Enddatum auf das der Programmregistrierung festlegen. Falls deaktiviert, das Enddatum der Zugehörigkeit nicht angeben.</help>
     <label>Enddatum Zugehör. aus ProgReg kopieren</label>
+    <name>Affl_ProgEnroll_Copy_End_Date__c</name>
 </CustomFieldTranslation>

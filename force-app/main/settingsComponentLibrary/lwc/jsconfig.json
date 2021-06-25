@@ -1,0 +1,76 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "c/accountModelSettings": [
+                "../../default/lwc/accountModelSettings/accountModelSettings.js"
+            ],
+            "c/settingsSaveCanvas": [
+                "../../default/lwc/settingsSaveCanvas/settingsSaveCanvas.js"
+            ],
+            "c/edaSettings": [
+                "../../default/lwc/edaSettings/edaSettings.js"
+            ],
+            "c/edaSettingsNavigation": [
+                "../../default/lwc/edaSettingsNavigation/edaSettingsNavigation.js"
+            ],
+            "c/edaSettingsNavigationMenuItems": [
+                "../../default/lwc/edaSettingsNavigationMenuItems/edaSettingsNavigationMenuItems.js"
+            ],
+            "c/edaSettingsNavigationSection": [
+                "../../default/lwc/edaSettingsNavigationSection/edaSettingsNavigationSection.js"
+            ],
+            "c/edaSettingsNavigationSubsection": [
+                "../../default/lwc/edaSettingsNavigationSubsection/edaSettingsNavigationSubsection.js"
+            ],
+            "c/healthCheck": [
+                "../../default/lwc/healthCheck/healthCheck.js"
+            ],
+            "c/healthCheckDisplay": [
+                "../../default/lwc/healthCheckDisplay/healthCheckDisplay.js"
+            ],
+            "c/healthCheckGroup": [
+                "../../default/lwc/healthCheckGroup/healthCheckGroup.js"
+            ],
+            "c/healthCheckHighlightsPanel": [
+                "../../default/lwc/healthCheckHighlightsPanel/healthCheckHighlightsPanel.js"
+            ],
+            "c/healthCheckRun": [
+                "../../default/lwc/healthCheckRun/healthCheckRun.js"
+            ],
+            "c/settingsRowInput": [
+                "settingsRowInput/settingsRowInput.js"
+            ],
+            "c/affiliationSettings": [
+                "../../default/lwc/affiliationSettings/affiliationSettings.js"
+            ],
+            "c/addressSettings": [
+                "../../default/lwc/addressSettings/addressSettings.js"
+            ],
+            "c/contactInformationSettings": [
+                "../../default/lwc/contactInformationSettings/contactInformationSettings.js"
+            ],
+            "c/settingsRowDualListbox": [
+                "settingsRowDualListbox/settingsRowDualListbox.js"
+            ],
+            "c/systemTools": [
+                "../../default/lwc/systemTools/systemTools.js"
+            ]
+        },
+        "experimentalDecorators": true
+    },
+    "include": [
+        "**/*",
+        "../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "paths": {
+        "c/*": [
+            "*"
+        ]
+    },
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
+    }
+}

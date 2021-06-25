@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Disable_Preferred_Email_Enforcement__c</name>
     <help>Selecteer dit om het afdwingen van het veld Voorkeurs-e-mail voor contactpersonen uit te schakelen.</help>
     <label>Afdwinging voorkeurs-e-mail uitschakelen</label>
+    <name>Disable_Preferred_Email_Enforcement__c</name>
 </CustomFieldTranslation>
