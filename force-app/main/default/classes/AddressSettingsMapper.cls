@@ -67,7 +67,7 @@ public virtual with sharing class AddressSettingsMapper {
         List<String> accountRecordTypesForAddress = new List<String>();
 
         if (String.isNotEmpty(hierarchySettings.Accounts_Addresses_Enabled__c)) {
-            accountRecordTypesForAddress = hierarchySettings.Accounts_Addresses_Enabled__c.split(';');
+            accountRecordTypesForAddress = hierarchySettings.Accounts_Addresses_Enabled__c.split(';\\s?');
         }
 
         return new AddressSettingsModel(
