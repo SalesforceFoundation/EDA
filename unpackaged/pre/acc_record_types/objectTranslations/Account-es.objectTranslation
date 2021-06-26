@@ -22,7 +22,7 @@
   </recordTypes>
   <recordTypes>
     <name>HH_Account</name>
-    <label>Cuenta de domicilio</label>
+    <label>Cuenta doméstica</label>
     <description>Un domicilio incluye una o más personas.</description>
   </recordTypes>
   <recordTypes>

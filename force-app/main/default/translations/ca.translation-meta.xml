@@ -137,7 +137,7 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label>Format personalitzat</label>
+        <label>Altres</label>
         <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
@@ -1445,7 +1445,7 @@
         <name>stgHelpCourseConnectionBackfill</name>
     </customLabels>
     <customLabels>
-        <label>Copia els text del camp Descripció dels registres del curs al camp Descripció ampliada per adaptar-se a descripcions més llargues del curs.</label>
+        <label>Copia els texts del camp Descripció dels registres del curs al camp Descripció ampliada per adaptar-se a descripcions més llargues del curs.</label>
         <name>stgHelpCoursesDataMigration</name>
     </customLabels>
     <customLabels>
