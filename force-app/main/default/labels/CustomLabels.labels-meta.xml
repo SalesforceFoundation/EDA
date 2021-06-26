@@ -269,7 +269,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Picklist value for naming format used for Administrative and Household Accounts</shortDescription>
-        <value>Custom Format</value>
+        <value>Other</value>
     </labels>
     <labels>
         <fullName>adapterException</fullName>
