@@ -136,6 +136,52 @@ private class RenameLeadConvertedAccounts_TEST {
         System.assertEquals(testLead.LastName + ' Household Account', assertAccount.Name);
     }
 
+    /*********************************************************************************************************
+     * @description Insert and convert a new lead with the Household Record Type selected
+     * Make sure the Account's name is set based on account default naming setting.
+     */
+    @isTest
+    private static void convertLeadHHRecordTypeExistingAccount() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Household_Account_Naming_Format__c = '{!LastName} Household Account',
+                Automatic_Household_Naming__c = true,
+                Lead_Converted_Account_RTypes__c = UTIL_Describe_API.getHhAccRecTypeID()
+            )
+        );
+
+        Lead testLead = new Lead(FirstName = 'Mickey', LastName = 'Mouse', company = 'Company');
+        insert testLead;
+
+        Account anAccount = new Account(Name = 'Demo Admin', RecordTypeId = UTIL_Describe_API.getHhAccRecTypeID());
+        insert anAccount;
+
+        Contact firstContact = new Contact(LastName = 'Duck', FirstName = 'Daffy', AccountId = anAccount.Id);
+        insert firstContact;
+
+        Test.setCreatedDate(anAccount.Id, DateTime.newInstance(2012, 12, 12));
+
+        Test.startTest();
+        Database.LeadConvert lc = new database.LeadConvert();
+        lc.setLeadId(testLead.Id);
+        lc.setAccountId(anAccount.Id);
+        LeadStatus convertStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted = TRUE LIMIT 1];
+        lc.setConvertedStatus(convertStatus.MasterLabel);
+
+        Account theaccount = [SELECT CreatedDate FROM Account WHERE Id = :anAccount.Id];
+        lc.setAccountId(anAccount.Id);
+        Database.LeadConvertResult lcr = Database.convertLead(lc);
+
+        Test.stopTest();
+
+        System.assert(lcr.isSuccess());
+
+        Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account LIMIT 1];
+
+        System.assertEquals('Duck and Mouse Household Account', assertAccount.Name);
+    }
+
     @isTest
     private static void convertLeadDefaultRecordType() {
         UTIL_CustomSettingsFacade.getSettingsForTests(

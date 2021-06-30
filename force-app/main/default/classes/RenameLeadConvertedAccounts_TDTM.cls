@@ -80,19 +80,21 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
 
         List<lead> newLeadList = (List<lead>) newlist;
 
-        List<Id> contactIdsToUpdate = new List<Id>();
+        Set<Id> accountIdsToUpdate = new Set<Id>();
         List<Account> accountsToUpdate = new List<Account>();
+        Map<Id, List<Contact>> accountIdToContacts = new Map<Id, List<Contact>>();
+        Map<Id, Account> accountIdToAccount = new Map<Id, Account>();
 
         for (Lead aLead : newLeadList) {
             if (aLead.IsConverted) {
-                contactIdsToUpdate.add(aLead.ConvertedContactId);
+                accountIdsToUpdate.add(aLead.ConvertedAccountId);
             }
         }
 
         for (Contact aContact : [
-            SELECT Account.Id, Account.Phone, Account.Fax, Account.OwnerId, Account.RecordTypeId, FirstName, LastName
+            SELECT AccountId, Account.Phone, Account.Fax, Account.OwnerId, Account.RecordTypeId, FirstName, LastName
             FROM Contact
-            WHERE Id IN :contactIdsToUpdate
+            WHERE AccountId IN :accountIdsToUpdate and (Deceased__c != TRUE AND Exclude_from_Household_Name__c != TRUE)
         ]) {
             if (
                 UTIL_CustomSettingsFacade.getSettings().Lead_Converted_Account_RTypes__c != null &&
@@ -104,19 +106,29 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
                     Phone = aContact.Account.Phone,
                     Fax = aContact.Account.Fax,
                     OwnerId = aContact.Account.OwnerId,
-                    Id = aContact.Account.Id,
+                    Id = aContact.AccountId,
                     RecordTypeId = aContact.Account.RecordTypeId
                 );
 
-                anAccount.Name = UTIL_ACCT_Naming.updateNameFromContact(new List<Contact>{ aContact }, anAccount);
-                accountsToUpdate.add(anAccount);
+                if (accountIdToContacts.get(anAccount.Id) == null) {
+                    accountIdToContacts.put(anAccount.Id, new List<Contact>());
+                    accountIdToAccount.put(anAccount.Id, anAccount);
+                }
+                accountIdToAccount.put(anAccount.Id, anAccount);
+                accountIdToContacts.get(anAccount.Id).add(aContact);
             }
+        }
 
-            if (accountsToUpdate.size() > 0) {
-                DmlWrapper dmlWrapper = new DmlWrapper();
-                dmlWrapper.objectsToUpdate.addAll((List<SObject>) accountsToUpdate);
-                TDTM_TriggerHandler.processDML(dmlWrapper, true);
-            }
+        for (Id accountId : accountIdToContacts.keySet()) {
+            Account anAccount = accountIdToAccount.get(accountId);
+            anAccount.Name = UTIL_ACCT_Naming.updateNameFromContact(accountIdToContacts.get(accountId), anAccount);
+            accountsToUpdate.add(anAccount);
+        }
+
+        if (accountsToUpdate.size() > 0) {
+            DmlWrapper dmlWrapper = new DmlWrapper();
+            dmlWrapper.objectsToUpdate.addAll((List<SObject>) accountsToUpdate);
+            TDTM_TriggerHandler.processDML(dmlWrapper, true);
         }
 
         TDTM_ProcessControl.setRecursionFlag(
