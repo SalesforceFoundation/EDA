@@ -269,7 +269,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Picklist value for naming format used for Administrative and Household Accounts</shortDescription>
-        <value>Custom Format</value>
+        <value>Other</value>
     </labels>
     <labels>
         <fullName>adapterException</fullName>
@@ -472,7 +472,7 @@
         <value>The Filter Field can&apos;t include namespace prefixes such as hed__. Remove the namespace prefix and try again.</value>
     </labels>
     <labels>
-        <fullName>firstNameLastNameAdminAcc</fullName>
+        <fullName>firstNameLastNameAdminACC</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>

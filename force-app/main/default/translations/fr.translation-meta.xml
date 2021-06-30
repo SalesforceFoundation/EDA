@@ -137,7 +137,7 @@
         <name>RelationshipsLookupDescription</name>
     </customLabels>
     <customLabels>
-        <label>Format personnalisé</label>
+        <label>Autre</label>
         <name>acctNamingOther</name>
     </customLabels>
     <customLabels>
@@ -242,7 +242,7 @@
     </customLabels>
     <customLabels>
         <label>Compte administratif {!{!FirstName}} {!LastName}</label>
-        <name>firstNameLastNameAdminAcc</name>
+        <name>firstNameLastNameAdminACC</name>
     </customLabels>
     <customLabels>
         <label>Famille {!{!FirstName}} {!LastName}</label>
@@ -1689,7 +1689,7 @@
         <name>stgRefreshAdminAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Met à jour tous les noms de compte administratifs</label>
+        <label>Mise à jour de tous les noms de compte administratifs</label>
         <name>stgRefreshAdminAcctNameTitle</name>
     </customLabels>
     <customLabels>
@@ -1705,11 +1705,11 @@
         <name>stgRefreshAdminNamesSuccessToast</name>
     </customLabels>
     <customLabels>
-        <label>Ce paramètre met à jour tous les enregistrements de compte de foyer afin qu’ils utilisent le format défini dans Format de nom du compte de foyer. Il permet également de renommer automatiquement les comptes de foyer, même s’il était auparavant désactivé. &lt;/br&gt;&lt;/br&gt; Avertissement : avant de continuer, vous devez connaître les effets de ce paramètre. Désactivez également les processus faisant référence aux comptes de foyer.</label>
+        <label>Ce paramètre met à jour tous les enregistrements de compte de foyer afin qu’ils utilisent le format défini dans Format de nom du compte de foyer. Il permet également de renommer automatiquement les comptes de foyer, même si cette option était auparavant désactivée. &lt;/br&gt;&lt;/br&gt; Avertissement : avant de continuer, vous devez connaître les effets de ce paramètre. Désactivez également les processus faisant référence aux comptes de foyer.</label>
         <name>stgRefreshHHAcctNameDesc</name>
     </customLabels>
     <customLabels>
-        <label>Met à jour tous les noms de compte de foyer</label>
+        <label>Mise à jour de tous les noms de compte de foyer</label>
         <name>stgRefreshHHAcctNameTitle</name>
     </customLabels>
     <customLabels>
