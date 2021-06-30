@@ -41,7 +41,7 @@ public class ACCT_HouseholdNameRefresh_TEST {
     private static void refreshHouseHoldAccountNamesAutomaticHHName() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+                Account_Processor__c = Util_Describe.getCustomHHAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
                 Automatic_Household_Naming__c = true
             )
@@ -109,7 +109,7 @@ public class ACCT_HouseholdNameRefresh_TEST {
     private static void multipleContactsOnHHAccount() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getCustomHHAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
                 Automatic_Household_Naming__c = false
             )
