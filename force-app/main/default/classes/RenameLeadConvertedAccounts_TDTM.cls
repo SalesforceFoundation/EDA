@@ -94,7 +94,7 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
         for (Contact aContact : [
             SELECT AccountId, Account.Phone, Account.Fax, Account.OwnerId, Account.RecordTypeId, FirstName, LastName
             FROM Contact
-            WHERE AccountId IN :accountIdsToUpdate
+            WHERE AccountId IN :accountIdsToUpdate and (Deceased__c != TRUE AND Exclude_from_Household_Name__c != TRUE)
         ]) {
             if (
                 UTIL_CustomSettingsFacade.getSettings().Lead_Converted_Account_RTypes__c != null &&
