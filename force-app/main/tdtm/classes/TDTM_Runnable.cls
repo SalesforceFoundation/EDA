@@ -64,8 +64,8 @@ global abstract class TDTM_Runnable {
 
     /*******************************************************************************************************
      * @description Calls the run method of the class, as a future.
-     * @param newIds The IDs of the records that were passed to the trigger as trigger.new.
-     * @param oldIds The IDs of the records that were passed to the trigger as trigger.old.
+     * @param newIdSet The IDs of the records that were passed to the trigger as trigger.new.
+     * @param oldIdSet The IDs of the records that were passed to the trigger as trigger.old.
      * @param action The event (before insert, after insert,...) that caused the class to run.
      * @param objectName The name of the SObject the class runs for.
      * @param classToRunName The name of the class to run.
@@ -73,8 +73,8 @@ global abstract class TDTM_Runnable {
      */
     @future
     public static void runFuture(
-        Set<Id> newIds,
-        Set<Id> oldIds,
+        Set<Id> newIdSet,
+        Set<Id> oldIdSet,
         String action,
         String objectName,
         String classToRunName
@@ -86,8 +86,8 @@ global abstract class TDTM_Runnable {
             return;
         }
 
-        List<SObject> newlist = TDTM_Runnable.getAllFieldsForSObjectsFromIdList(objectName, newIds);
-        List<SObject> oldList = TDTM_Runnable.getAllFieldsForSObjectsFromIdList(objectName, oldIds);
+        List<SObject> newlist = TDTM_Runnable.getAllFieldsForSObjectsFromIdList(objectName, newIdSet);
+        List<SObject> oldList = TDTM_Runnable.getAllFieldsForSObjectsFromIdList(objectName, oldIdSet);
         TDTM_Runnable.Action triggerAction = TDTM_TriggerActionHelper.getTriggerActionFromName(action);
         Schema.DescribeSObjectResult objResult = UTIL_Describe.getObjectDescribe(objectName);
 
@@ -124,11 +124,11 @@ global abstract class TDTM_Runnable {
 
     //TODO: Document and test
     @TestVisible
-    private static List<SObject> getAllFieldsForSObjectsFromIdList(String objectName, List<Id> idList) {
+    private static List<SObject> getAllFieldsForSObjectsFromIdList(String objectName, Set<Id> idSet) {
         String allFieldsQuery =
             'SELECT FIELDS(ALL) FROM ' +
             String.escapeSingleQuotes(objectName) +
-            ' WHERE ID IN :idList';
+            ' WHERE ID IN :idSet';
 
         return Database.query(allFieldsQuery);
     }
