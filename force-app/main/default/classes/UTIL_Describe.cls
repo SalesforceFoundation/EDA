@@ -56,85 +56,112 @@ public class UTIL_Describe {
      * Gets describe maps for a new object
      ********************************************/
     static void fillMapsForObject(string objectName) {
-        // get the object map the first time
+        //Get the object map safely from the cache
         if (gd == null) {
             gd = Schema.getGlobalDescribe();
         }
 
-        // get the object description
-        if (gd.containsKey(objectName)) {
-            if (!objectDescribes.containsKey(objectName)) {
-                objectDescribes.put(objectName, gd.get(objectName).getDescribe());
-            }
-        } else {
+        //Stop if we already have the object
+        if (objectDescribes.containsKey(objectName)) {
+            return;
+        }
+
+        //If the object doesn't exist, throw an exception
+        if (!gd.containsKey(objectName)) {
             throw new SchemaDescribeException('Invalid object name \'' + objectName + '\'');
         }
+
+        //Populate the object map if we haven't already
+        Schema.DescribeSObjectResult objectDescribeResult = gd.get(objectName).getDescribe();
+        objectDescribes.put(objectName, objectDescribeResult);
     }
 
     /********************************************
      * Gets a field map for a new object/field pair
      *********************************************/
-    private static void fillFieldMapsForObject(string objectName, string fieldName) {
-        // get the object map the first time
-        fillMapsForObject(objectName);
+    private static void fillFieldMapsForObject(String objectName, String fieldName) {
+        UTIL_Describe.getFieldMapForObject(objectName);
+        String caseSafeFieldName = fieldName.toLowerCase();
 
-        // get the field description
-        if (!fieldTokens.containsKey(objectName)) {
-            fieldTokens.put(objectName, objectDescribes.get(objectName).fields.getMap());
-            fieldDescribes.put(objectName, new Map<String, Schema.DescribeFieldResult>());
-            fieldDescribeByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+        //Stop if we already have the field
+        if (fieldDescribes.get(objectName).containsKey(caseSafeFieldName)) {
+            return;
         }
 
-        if (!fieldDescribes.get(objectName).containsKey(fieldName)) {
-            if (fieldTokens.get(objectName).containsKey(fieldName)) {
-                Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).get(fieldName).getDescribe();
-                fieldDescribes.get(objectName).put(fieldName, dfr);
-                fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
-            } else {
-                throw new SchemaDescribeException('Invalid field name \'' + fieldName + '\'');
-            }
+        //Throw an exception if the field doesn't exist
+        if (!fieldTokens.get(objectName).containsKey(caseSafeFieldName)) {
+            throw new SchemaDescribeException('Invalid field name \'' + caseSafeFieldName + '\'');
         }
+
+        //Populate the field's information if it does
+        Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).get(caseSafeFieldName).getDescribe();
+        fieldDescribes.get(objectName).put(caseSafeFieldName, dfr);
+        fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
+    }
+
+    /**
+     * Populates field map for object and initializes the object
+     */
+    private static Map<String, Schema.SObjectField> getFieldMapForObject(String objectName) {
+        UTIL_Describe.fillMapsForObject(objectName);
+        //TODO: Write tests
+        if (UTIL_Describe.fieldTokens.containsKey(objectName)) {
+            return UTIL_Describe.fieldTokens.get(objectName);
+        }
+
+        UTIL_Describe.fieldTokens.put(objectName, objectDescribes.get(objectName).fields.getMap());
+        UTIL_Describe.fieldDescribes.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+        UTIL_Describe.fieldDescribeByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+
+        return UTIL_Describe.fieldTokens.get(objectName);
     }
 
     /*******************************************
      * Gets all field maps for a new object
      ********************************************/
     static void fillFieldMapsForObject(string objectName) {
-        // get the object map the first time
-        fillMapsForObject(objectName);
+        UTIL_Describe.getFieldMapForObject(objectName);
 
-        // get the field description
-        if (!fieldTokens.containsKey(objectName)) {
-            fieldTokens.put(objectName, objectDescribes.get(objectName).fields.getMap());
-            fieldDescribes.put(objectName, new Map<String, Schema.DescribeFieldResult>());
-            fieldDescribeByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
+        //Stop if we've already done all the work we can.
+        if (fieldTokens.get(objectName).size() == fieldDescribes.get(objectName).size()) {
+            return;
         }
 
-        if (fieldTokens.get(objectName).size() != fieldDescribes.get(objectName).size()) {
-            for (string fieldName : fieldTokens.get(objectName).keyset()) {
-                if (!fieldDescribes.get(objectName).containsKey(fieldName)) {
-                    Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).get(fieldName).getDescribe();
-                    fieldDescribes.get(objectName).put(fieldName, dfr);
-                    fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
-                }
+        for (string fieldName : fieldTokens.get(objectName).keyset()) {
+            //Skip over the fields we already have
+            if (fieldDescribes.get(objectName).containsKey(fieldName)) {
+                continue;
             }
+
+            Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).get(fieldName).getDescribe();
+            fieldDescribes.get(objectName).put(fieldName, dfr);
+            fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
         }
+    }
+
+    /***********************************************************************************
+     * Checks if an object and field describe exists for a field
+     ************************************************************************************/
+    private static Boolean objectAndFieldDescribeExists(String objectName, String fieldName) {
+        //TODO: Write tests
+        return fieldDescribes.containsKey(objectName) && fieldDescribes.get(objectName).containsKey(fieldName);
     }
 
     /***********************************************************************************
      * Gets a list of picklist entries for a new object/field/list<PicklistEntry> triple
      ************************************************************************************/
     private static void fillPicklistEntriesForObject(string objectName, string fieldName) {
+        String caseSafeFieldName = fieldName.toLowerCase();
         // make sure we have this field's schema mapped
-        if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName)) {
-            fillFieldMapsForObject(objectName, fieldName);
+        if (!UTIL_Describe.objectAndFieldDescribeExists(objectName, caseSafeFieldName)) {
+            fillFieldMapsForObject(objectName, caseSafeFieldName);
         }
 
         // Check for picklist.
-        if (getFieldType(objectName, fieldName) != 'PICKLIST') {
+        if (getFieldType(objectName, caseSafeFieldName) != 'PICKLIST') {
             throw new SchemaDescribeException(
                 'Invalid Selection. Field name \'' +
-                fieldName +
+                caseSafeFieldName +
                 '\' for object name \'' +
                 objectName +
                 '\' is not a picklist.'
@@ -147,11 +174,12 @@ public class UTIL_Describe {
         }
 
         //Create object to picklist map if needed.
-        if (!fieldPicklistEntries.get(objectName).containsKey(fieldName)) {
+        if (!fieldPicklistEntries.get(objectName).containsKey(caseSafeFieldName)) {
             //Get the picklist values for the field
-            List<Schema.PicklistEntry> picklistValues = getFieldDescribe(objectName, fieldName).getPicklistValues();
+            List<Schema.PicklistEntry> picklistValues = getFieldDescribe(objectName, caseSafeFieldName)
+                .getPicklistValues();
 
-            fieldPicklistEntries.get(objectName).put(fieldName, picklistValues);
+            fieldPicklistEntries.get(objectName).put(caseSafeFieldName, picklistValues);
         }
     }
 
@@ -189,11 +217,7 @@ public class UTIL_Describe {
      * @return Schema.DescribeSObjectResult of the object
      */
     public static Schema.DescribeSObjectResult getObjectDescribe(String objectName) {
-        // make sure we have this object's schema mapped
-        if (!objectDescribes.containsKey(objectName)) {
-            fillMapsForObject(objectName);
-        }
-
+        fillMapsForObject(objectName);
         return objectDescribes.get(objectName);
     }
 
@@ -204,16 +228,13 @@ public class UTIL_Describe {
      * @return true if the Id is for the given object type, false otherwise.
      */
     public static boolean isObjectIdThisType(Id salesforceId, String objectName) {
-        // make sure we have this object's schema mapped
-        if (!objectDescribes.containsKey(objectName)) {
-            fillMapsForObject(objectName);
-        }
+        fillMapsForObject(objectName);
 
         // now grab the requested id prefix
         boolean ret = false;
 
         if (salesforceId != null) {
-            string prefix = objectDescribes.get(objectName).getKeyPrefix();
+            string prefix = UTIL_Describe.getObjectDescribe(objectName).getKeyPrefix();
 
             if (prefix != null) {
                 ret = ((string) (salesforceId)).startsWith(prefix);
@@ -244,13 +265,7 @@ public class UTIL_Describe {
      * @return string the name of the of the field's type
      */
     public static string getFieldType(String objectName, String fieldName) {
-        // make sure we have this field's schema mapped
-        if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName)) {
-            fillFieldMapsForObject(objectName, fieldName);
-        }
-
-        Schema.DescribeFieldResult dfr = fieldDescribes.get(objectName).get(fieldName);
-        return dfr.getType().name();
+        return UTIL_Describe.getFieldDisplaytype(objectName, fieldName).name();
     }
 
     /*******************************************************************************************************
@@ -263,14 +278,7 @@ public class UTIL_Describe {
     public static Schema.Displaytype getFieldDisplaytype(String objectName, String fieldName) {
         // fields in our own package must not have their prefix for the Describe Field Map
         fieldName = UTIL_Namespace.StrTokenRemoveNSPrefix(fieldName);
-
-        // make sure we have this field's schema mapped
-        if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName)) {
-            fillFieldMapsForObject(objectName, fieldName);
-        }
-
-        Schema.DescribeFieldResult dfr = fieldDescribes.get(objectName).get(fieldName);
-        return dfr.getType();
+        return UTIL_Describe.getFieldDescribe(objectName, fieldName).getType();
     }
 
     /*******************************************************************************************************
@@ -302,12 +310,13 @@ public class UTIL_Describe {
      * @return Schema.DescribeFieldResult the describe field result for the given field
      */
     public static Schema.DescribeFieldResult getFieldDescribe(String objectName, String fieldName) {
+        String caseSafeFieldName = fieldName.toLowerCase();
         // make sure we have this field's schema mapped
-        if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName)) {
-            fillFieldMapsForObject(objectName, fieldName);
+        if (!UTIL_Describe.objectAndFieldDescribeExists(objectName, caseSafeFieldName)) {
+            fillFieldMapsForObject(objectName, caseSafeFieldName);
         }
 
-        Schema.DescribeFieldResult dfr = fieldDescribes.get(objectName).get(fieldName);
+        Schema.DescribeFieldResult dfr = fieldDescribes.get(objectName).get(caseSafeFieldName);
         return dfr;
     }
 
@@ -366,16 +375,7 @@ public class UTIL_Describe {
      * @return string the label of the field
      */
     public static string getFieldLabel(String objectName, String fieldName) {
-        // fields in our own package must not have their prefix for the Describe Field Map
-        fieldName = UTIL_Namespace.StrTokenRemoveNSPrefix(fieldName);
-
-        // make sure we have this field's schema mapped
-        if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName)) {
-            fillFieldMapsForObject(objectName, fieldName);
-        }
-
-        Schema.DescribeFieldResult dfr = fieldDescribes.get(objectName).get(fieldName);
-        return dfr.getLabel();
+        return UTIL_Describe.getFieldDescribe(objectName, fieldName).getLabel();
     }
 
     /*******************************************************************************************************
@@ -399,10 +399,11 @@ public class UTIL_Describe {
      * @return List<Schema.PicklistEntry> the picklist entry list for the given field
      */
     public static List<Schema.PicklistEntry> getFieldPicklistEntries(String objectName, String fieldName) {
+        String caseSafeFieldName = fieldName.toLowerCase();
         //fill picklist value map for object. Will throw an exception if it is invalid.
-        fillPicklistEntriesForObject(objectName, fieldName);
+        fillPicklistEntriesForObject(objectName, caseSafeFieldName);
 
-        return fieldPicklistEntries.get(objectName).get(fieldName);
+        return fieldPicklistEntries.get(objectName).get(caseSafeFieldName);
     }
 
     /*******************************************************************************************************
@@ -412,7 +413,8 @@ public class UTIL_Describe {
      * @return picklistLabelToApi A Map<String, String> with key value pair of picklist value's label and API respectively
      */
     public static Map<String, String> getpicklistEntriesLabelToAPIMap(String objectName, String fieldName) {
-        List<Schema.PicklistEntry> picklistEntries = getFieldPicklistEntries(objectName, fieldName);
+        String caseSafeFieldName = fieldName.toLowerCase();
+        List<Schema.PicklistEntry> picklistEntries = getFieldPicklistEntries(objectName, caseSafeFieldName);
         Map<String, String> picklistLabelToApi = new Map<String, String>();
         for (Schema.PicklistEntry eachValue : picklistEntries) {
             picklistLabelToApi.put(eachValue.getLabel(), eachValue.getValue());
@@ -427,7 +429,9 @@ public class UTIL_Describe {
      * @return picklistApiToLabel A Map<String, String> with key value pair of picklist value's API and Label respectively
      */
     public static Map<String, String> getPicklistEntriesApiToLabelMap(String objectName, String fieldName) {
-        List<Schema.PicklistEntry> picklistEntries = getFieldPicklistEntries(objectName, fieldName);
+        String caseSafeFieldName = fieldName.toLowerCase();
+
+        List<Schema.PicklistEntry> picklistEntries = getFieldPicklistEntries(objectName, caseSafeFieldName);
         Map<String, String> picklistApiToLabel = new Map<String, String>();
         for (Schema.PicklistEntry eachValue : picklistEntries) {
             picklistApiToLabel.put(eachValue.getValue(), eachValue.getLabel());
@@ -445,14 +449,11 @@ public class UTIL_Describe {
         // fields in our own package must not have their prefix for the Describe Field Map
         fieldName = UTIL_Namespace.StrTokenRemoveNSPrefix(fieldName);
 
+        String caseSafeFieldName = fieldName.toLowerCase();
+
         // make sure we have this field's schema mapped
         try {
-            if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName)) {
-                fillFieldMapsForObject(objectName, fieldName);
-            }
-
-            Schema.DescribeFieldResult dfr = fieldDescribes.get(objectName).get(fieldName);
-            return dfr != null;
+            return UTIL_Describe.getFieldDescribe(objectName, caseSafeFieldName) != null;
         } catch (exception ex) {
             return false;
         }
@@ -558,9 +559,10 @@ public class UTIL_Describe {
      */
     @AuraEnabled
     public static Map<String, String> getPicklistActiveValuesMap(String objectName, String fieldName) {
+        String caseSafeFieldName = fieldName.toLowerCase();
         Map<String, String> picklistValues = new Map<String, String>();
 
-        for (Schema.PicklistEntry picklistEntry : getFieldPicklistEntries(objectName, fieldName)) {
+        for (Schema.PicklistEntry picklistEntry : getFieldPicklistEntries(objectName, caseSafeFieldName)) {
             if (picklistEntry.isActive()) {
                 picklistValues.put(picklistEntry.getLabel(), picklistEntry.getValue());
             }
@@ -600,17 +602,11 @@ public class UTIL_Describe {
      *****/
 
     public static String getFieldAPIName(String objectName, String fieldLabel) {
-        // get the object map the first time
-        if (gd == null) {
-            gd = Schema.getGlobalDescribe();
-        }
+        Map<String, Schema.SObjectField> allFields = UTIL_Describe.getFieldMapForObject(objectName);
 
-        SObjectType objType = gd.get(objectName);
-        Map<String, Schema.SObjectField> allFields = objType.getDescribe().fields.getMap();
         String fieldAPIName = '';
         for (String strField : allFields.keySet()) {
             SObjectField fieldAPI = allFields.get(strField);
-            Schema.DisplayType fielddataType = fieldAPI.getDescribe().getType();
             if (fieldLabel == fieldAPI.getDescribe().getlabel()) {
                 fieldAPIName = strField;
                 break;

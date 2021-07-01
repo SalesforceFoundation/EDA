@@ -54,7 +54,7 @@ private class TDTM_Runnable_TEST {
      */
     @isTest
     public static void getTDTMRunnableFromClassNameNotTDTMRunnable() {
-        String className = 'TDTM_Manager';
+        String className = 'UTIL_Debug';
         Test.startTest();
         TDTM_Runnable runnable = TDTM_Runnable.getTDTMRunnableFromClassName(className);
         Test.stopTest();
@@ -80,6 +80,35 @@ private class TDTM_Runnable_TEST {
      */
     @isTest
     public static void getAllFieldsForSObjectsFromIdList() {
-        //TODO
+        List<Contact> contactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(5);
+        insert contactList;
+
+        Map<Id, Contact> contactsById = new Map<Id, Contact>(contactList);
+
+        Test.startTest();
+        List<SObject> sObjectList = TDTM_Runnable.getAllFieldsForSObjectsFromIdList('Contact', contactsById.keySet());
+        Test.stopTest();
+
+        System.assertEquals(
+            contactsById.size(),
+            sObjectList.size(),
+            'Inserted Contacts and retrieved generic SObject list should be the same size.'
+        );
+
+        for (SObject sObjectInList : sObjectList) {
+            Contact contact = contactsById.get(sObjectInList.Id);
+            //Test a standard field
+            System.assertEquals(
+                contact.FirstName,
+                sObjectInList.get('FirstName'),
+                'SObject First Name should be retrieved and match the associated SObject.'
+            );
+            //Test an EDA field
+            System.assertEquals(
+                contact.WorkPhone__c,
+                sObjectInList.get('WorkPhone__c'),
+                'SObject work phone should be retrieved and match its associated Contact\'s Work Phone.'
+            );
+        }
     }
 }

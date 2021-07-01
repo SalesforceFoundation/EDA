@@ -114,9 +114,8 @@ global abstract class TDTM_Runnable {
 
         try {
             runnable = (TDTM_Runnable) (classType.newInstance());
-        } catch (Exception e) {
-            //TODO: Catch for specific exception and return null to fail silently
-            throw e;
+        } catch (System.TypeException e) {
+            return null;
         }
 
         return runnable;
@@ -125,8 +124,21 @@ global abstract class TDTM_Runnable {
     //TODO: Document and test
     @TestVisible
     private static List<SObject> getAllFieldsForSObjectsFromIdList(String objectName, Set<Id> idSet) {
+        Map<String, Schema.DescribeFieldResult> allFieldsMap = UTIL_Describe.getAllFieldsDescribe(objectName);
+        List<String> fieldNameList = new List<String>(allFieldsMap.keySet());
+        fieldNameList.sort();
+
+        String allFields = String.escapeSingleQuotes(String.join(fieldNameList, ', '));
+
+        Set<String> stringSet = new Set<String>();
+        for (String field : fieldNameList) {
+            System.debug(field);
+        }
+
         String allFieldsQuery =
-            'SELECT FIELDS(ALL) FROM ' +
+            'SELECT ' +
+            allFields +
+            ' FROM ' +
             String.escapeSingleQuotes(objectName) +
             ' WHERE ID IN :idSet';
 
