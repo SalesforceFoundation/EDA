@@ -103,7 +103,7 @@ global abstract class TDTM_Runnable {
     //TODO: Document and test
     @TestVisible
     private static TDTM_Runnable getTDTMRunnableFromClassName(String className) {
-        Type classType = Type.forName(classToRunName);
+        Type classType = Type.forName(className);
 
         //Failing silently preserves backward functionality
         if (classType == null) {
