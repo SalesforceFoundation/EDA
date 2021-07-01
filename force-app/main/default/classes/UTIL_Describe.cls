@@ -40,9 +40,9 @@
 */
 
 public class UTIL_Describe {
-
     // throw custom exceptions when a bogus object or field is provided.
-    public class SchemaDescribeException extends Exception {}
+    public class SchemaDescribeException extends Exception {
+    }
 
     //maps to hold the describe info
     private static Map<String, Schema.SObjectType> gd;
@@ -53,31 +53,28 @@ public class UTIL_Describe {
     private static Map<String, Map<String, List<Schema.PicklistEntry>>> fieldPicklistEntries = new Map<String, Map<String, List<Schema.PicklistEntry>>>();
 
     /*******************************************
-    * Gets describe maps for a new object
-    ********************************************/
+     * Gets describe maps for a new object
+     ********************************************/
     static void fillMapsForObject(string objectName) {
-
         // get the object map the first time
         if (gd == null) {
             gd = Schema.getGlobalDescribe();
-        } 
+        }
 
         // get the object description
         if (gd.containsKey(objectName)) {
-
             if (!objectDescribes.containsKey(objectName)) {
                 objectDescribes.put(objectName, gd.get(objectName).getDescribe());
-            }    
+            }
         } else {
             throw new SchemaDescribeException('Invalid object name \'' + objectName + '\'');
         }
     }
 
     /********************************************
-    * Gets a field map for a new object/field pair
-    *********************************************/
+     * Gets a field map for a new object/field pair
+     *********************************************/
     private static void fillFieldMapsForObject(string objectName, string fieldName) {
-
         // get the object map the first time
         fillMapsForObject(objectName);
 
@@ -89,7 +86,6 @@ public class UTIL_Describe {
         }
 
         if (!fieldDescribes.get(objectName).containsKey(fieldName)) {
-
             if (fieldTokens.get(objectName).containsKey(fieldName)) {
                 Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).get(fieldName).getDescribe();
                 fieldDescribes.get(objectName).put(fieldName, dfr);
@@ -101,10 +97,9 @@ public class UTIL_Describe {
     }
 
     /*******************************************
-    * Gets all field maps for a new object
-    ********************************************/
+     * Gets all field maps for a new object
+     ********************************************/
     static void fillFieldMapsForObject(string objectName) {
-
         // get the object map the first time
         fillMapsForObject(objectName);
 
@@ -116,9 +111,7 @@ public class UTIL_Describe {
         }
 
         if (fieldTokens.get(objectName).size() != fieldDescribes.get(objectName).size()) {
-
-            for ( string fieldName : fieldTokens.get(objectName).keyset()) {
-
+            for (string fieldName : fieldTokens.get(objectName).keyset()) {
                 if (!fieldDescribes.get(objectName).containsKey(fieldName)) {
                     Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).get(fieldName).getDescribe();
                     fieldDescribes.get(objectName).put(fieldName, dfr);
@@ -129,28 +122,32 @@ public class UTIL_Describe {
     }
 
     /***********************************************************************************
-    * Gets a list of picklist entries for a new object/field/list<PicklistEntry> triple
-    ************************************************************************************/
+     * Gets a list of picklist entries for a new object/field/list<PicklistEntry> triple
+     ************************************************************************************/
     private static void fillPicklistEntriesForObject(string objectName, string fieldName) {
-        
         // make sure we have this field's schema mapped
         if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName)) {
             fillFieldMapsForObject(objectName, fieldName);
         }
 
         // Check for picklist.
-        if(getFieldType(objectName, fieldName) != 'PICKLIST') {
-            throw new SchemaDescribeException('Invalid Selection. Field name \'' + fieldName + '\' for object name \'' + objectName + '\' is not a picklist.');
+        if (getFieldType(objectName, fieldName) != 'PICKLIST') {
+            throw new SchemaDescribeException(
+                'Invalid Selection. Field name \'' +
+                fieldName +
+                '\' for object name \'' +
+                objectName +
+                '\' is not a picklist.'
+            );
         }
-        
+
         //Create object to field map for picklist if needed.
         if (!fieldPicklistEntries.containsKey(objectName)) {
             fieldPicklistEntries.put(objectName, new Map<String, List<Schema.PicklistEntry>>());
         }
-        
-        //Create object to picklist map if needed.
-        if(!fieldPicklistEntries.get(objectName).containsKey(fieldName)) {
 
+        //Create object to picklist map if needed.
+        if (!fieldPicklistEntries.get(objectName).containsKey(fieldName)) {
             //Get the picklist values for the field
             List<Schema.PicklistEntry> picklistValues = getFieldDescribe(objectName, fieldName).getPicklistValues();
 
@@ -159,12 +156,11 @@ public class UTIL_Describe {
     }
 
     /******************************************************************************************************
-    * @description Returns new object of given type.
-    * @param objectName the name of the object to create
-    * @return the new SObject
-    */
+     * @description Returns new object of given type.
+     * @param objectName the name of the object to create
+     * @return the new SObject
+     */
     public static SObject getPrototypeObject(String objectName) {
-
         // make sure we have this object's schema mapped
         if (!objectDescribes.containsKey(objectName)) {
             fillMapsForObject(objectName);
@@ -174,12 +170,11 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Returns object friendly name.
-    * @param objectName the name of the object to lookup
-    * @return the Label of the object
-    */
+     * @description Returns object friendly name.
+     * @param objectName the name of the object to lookup
+     * @return the Label of the object
+     */
     public static string getObjectLabel(String objectName) {
-
         // make sure we have this object's schema mapped
         if (!objectDescribes.containsKey(objectName)) {
             fillMapsForObject(objectName);
@@ -189,12 +184,11 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Returns object describe data.
-    * @param objectName the name of the object to lookup
-    * @return Schema.DescribeSObjectResult of the object
-    */
+     * @description Returns object describe data.
+     * @param objectName the name of the object to lookup
+     * @return Schema.DescribeSObjectResult of the object
+     */
     public static Schema.DescribeSObjectResult getObjectDescribe(String objectName) {
-
         // make sure we have this object's schema mapped
         if (!objectDescribes.containsKey(objectName)) {
             fillMapsForObject(objectName);
@@ -204,13 +198,12 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Compares Id to verify object type
-    * @param salesforceId of the object
-    * @param objectName
-    * @return true if the Id is for the given object type, false otherwise.
-    */
+     * @description Compares Id to verify object type
+     * @param salesforceId of the object
+     * @param objectName
+     * @return true if the Id is for the given object type, false otherwise.
+     */
     public static boolean isObjectIdThisType(Id salesforceId, String objectName) {
-
         // make sure we have this object's schema mapped
         if (!objectDescribes.containsKey(objectName)) {
             fillMapsForObject(objectName);
@@ -223,20 +216,19 @@ public class UTIL_Describe {
             string prefix = objectDescribes.get(objectName).getKeyPrefix();
 
             if (prefix != null) {
-                ret = ((string)(salesforceId)).startsWith(prefix);
-            }    
+                ret = ((string) (salesforceId)).startsWith(prefix);
+            }
         }
 
         return ret;
     }
 
     /*******************************************************************************************************
-    * @description Returns all field describe data
-    * @param objectName the name of the object to look up
-    * @return Map<String, Schema.DescribeFieldResult> a map of object names to describe file results.
-    */
+     * @description Returns all field describe data
+     * @param objectName the name of the object to look up
+     * @return Map<String, Schema.DescribeFieldResult> a map of object names to describe file results.
+     */
     public static Map<String, Schema.DescribeFieldResult> getAllFieldsDescribe(String objectName) {
-
         // make sure we have this field's schema mapped
         fillFieldMapsForObject(objectName);
 
@@ -245,14 +237,13 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Gives field type name - ID, STRING, TEXTAREA, DATE, DATETIME, BOOLEAN, REFERENCE,
-    * PICKLIST, MULTIPICKLIST, CURRENCY, DOUBLE, INTEGER, PERCENT, PHONE, EMAIL
-    * @param objectName the name of the object to look up
-    * @param fieldName the name of the field to look up
-    * @return string the name of the of the field's type
-    */
+     * @description Gives field type name - ID, STRING, TEXTAREA, DATE, DATETIME, BOOLEAN, REFERENCE,
+     * PICKLIST, MULTIPICKLIST, CURRENCY, DOUBLE, INTEGER, PERCENT, PHONE, EMAIL
+     * @param objectName the name of the object to look up
+     * @param fieldName the name of the field to look up
+     * @return string the name of the of the field's type
+     */
     public static string getFieldType(String objectName, String fieldName) {
-
         // make sure we have this field's schema mapped
         if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName)) {
             fillFieldMapsForObject(objectName, fieldName);
@@ -263,14 +254,13 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Gives field type name - ID, STRING, TEXTAREA, DATE, DATETIME, BOOLEAN, REFERENCE,
-    * PICKLIST, MULTIPICKLIST, CURRENCY, DOUBLE, INTEGER, PERCENT, PHONE, EMAIL
-    * @param objectName the name of the object to look up
-    * @param fieldName the name of the field to look up
-    * @return Displaytype the Displaytype of the field
-    */
+     * @description Gives field type name - ID, STRING, TEXTAREA, DATE, DATETIME, BOOLEAN, REFERENCE,
+     * PICKLIST, MULTIPICKLIST, CURRENCY, DOUBLE, INTEGER, PERCENT, PHONE, EMAIL
+     * @param objectName the name of the object to look up
+     * @param fieldName the name of the field to look up
+     * @return Displaytype the Displaytype of the field
+     */
     public static Schema.Displaytype getFieldDisplaytype(String objectName, String fieldName) {
-
         // fields in our own package must not have their prefix for the Describe Field Map
         fieldName = UTIL_Namespace.StrTokenRemoveNSPrefix(fieldName);
 
@@ -284,22 +274,21 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description returns fields of given type by object
-    * @param objectName the name of the object to look up
-    * @param type the type of field to return - ID, STRING, TEXTAREA, DATE, DATETIME, BOOLEAN, REFERENCE,
-    * PICKLIST, MULTIPICKLIST, CURRENCY, DOUBLE, INTEGER, PERCENT, PHONE, EMAIL
-    * @return DescribeFieldResult Map of DescribeFieldResult
-    */
+     * @description returns fields of given type by object
+     * @param objectName the name of the object to look up
+     * @param type the type of field to return - ID, STRING, TEXTAREA, DATE, DATETIME, BOOLEAN, REFERENCE,
+     * PICKLIST, MULTIPICKLIST, CURRENCY, DOUBLE, INTEGER, PERCENT, PHONE, EMAIL
+     * @return DescribeFieldResult Map of DescribeFieldResult
+     */
     public static Map<String, Schema.DescribeFieldResult> getFieldsOfType(String objectName, String type) {
-
-        Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
+        Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe(objectName);
         Map<String, Schema.DescribeFieldResult> fields = new Map<String, Schema.DescribeFieldResult>();
 
-        for(String fieldLabel: allFields.keySet()) {
+        for (String fieldLabel : allFields.keySet()) {
             Schema.DescribeFieldResult field = allFields.get(fieldLabel);
-             
-            if (String.valueOf( field.getType() ) == type) {
-                fields.put(field.getName(), field );
+
+            if (String.valueOf(field.getType()) == type) {
+                fields.put(field.getName(), field);
             }
         }
 
@@ -307,13 +296,12 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Returns field describe data
-    * @param objectName the name of the object to look up
-    * @param fieldName the name of the field to look up
-    * @return Schema.DescribeFieldResult the describe field result for the given field
-    */
+     * @description Returns field describe data
+     * @param objectName the name of the object to look up
+     * @param fieldName the name of the field to look up
+     * @return Schema.DescribeFieldResult the describe field result for the given field
+     */
     public static Schema.DescribeFieldResult getFieldDescribe(String objectName, String fieldName) {
-
         // make sure we have this field's schema mapped
         if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName)) {
             fillFieldMapsForObject(objectName, fieldName);
@@ -324,11 +312,11 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Returns field describe data by Field Label
-    * @param objectName the name of the object to lookup
-    * @param fieldLabel the label of the field to lookup
-    * @return Schema.DescribeFieldResult the describe field result for the given field
-    */
+     * @description Returns field describe data by Field Label
+     * @param objectName the name of the object to lookup
+     * @param fieldLabel the label of the field to lookup
+     * @return Schema.DescribeFieldResult the describe field result for the given field
+     */
 
     public static Schema.DescribeFieldResult getFieldDescribeByLabel(String objectName, String fieldLabel) {
         // get the object map the first time
@@ -341,7 +329,7 @@ public class UTIL_Describe {
             fieldDescribeByLabel.put(objectName, new Map<String, Schema.DescribeFieldResult>());
         }
 
-        if (fieldDescribeByLabel.get(objectName).containsKey(fieldLabel)) { 
+        if (fieldDescribeByLabel.get(objectName).containsKey(fieldLabel)) {
             return fieldDescribeByLabel.get(objectName).get(fieldLabel);
         }
 
@@ -349,22 +337,20 @@ public class UTIL_Describe {
         for (Integer i = labelMapsize; i < fieldTokens.get(objectName).size(); i++) {
             Schema.DescribeFieldResult dfr = fieldTokens.get(objectName).values()[i].getDescribe();
             fieldDescribeByLabel.get(objectName).put(dfr.getLabel(), dfr);
-            
+
             if (fieldLabel == dfr.getLabel()) {
                 return dfr;
             }
         }
         throw new SchemaDescribeException('Invalid field Label \'' + fieldLabel + '\'');
-
     }
 
     /*************************************************************************************************
-    * @description Caches object into UTIL_Describe.objectDescribes from Schema.DescribeSObjectResult
-    * @param sObjectResult Schema.DescribeSObjectResult
-    **************************************************************************************************/
+     * @description Caches object into UTIL_Describe.objectDescribes from Schema.DescribeSObjectResult
+     * @param sObjectResult Schema.DescribeSObjectResult
+     **************************************************************************************************/
     public static void cacheDescribeSObjectResult(Schema.DescribeSObjectResult sObjectResult) {
-
-        if (sObjectResult == null ) {
+        if (sObjectResult == null) {
             throw new SchemaDescribeException('Invalid null sObjectResult');
         }
 
@@ -374,13 +360,12 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Gives field friendly name
-    * @param objectName the name of the object to look up
-    * @param fieldName the name of the field to look up
-    * @return string the label of the field
-    */
+     * @description Gives field friendly name
+     * @param objectName the name of the object to look up
+     * @param fieldName the name of the field to look up
+     * @return string the label of the field
+     */
     public static string getFieldLabel(String objectName, String fieldName) {
-
         // fields in our own package must not have their prefix for the Describe Field Map
         fieldName = UTIL_Namespace.StrTokenRemoveNSPrefix(fieldName);
 
@@ -394,11 +379,11 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Gives field friendly name without throwing exception if not valid.
-    * @param objectName the name of the object to look up
-    * @param fieldName the name of the field to look up
-    * @return string the label of the field
-    */
+     * @description Gives field friendly name without throwing exception if not valid.
+     * @param objectName the name of the object to look up
+     * @param fieldName the name of the field to look up
+     * @return string the label of the field
+     */
     public static string getFieldLabelSafe(string strObj, string strField) {
         try {
             return getFieldLabel(strObj, strField);
@@ -406,65 +391,62 @@ public class UTIL_Describe {
             return strField;
         }
     }
-    
+
     /*******************************************************************************************************
-    * @description Returns field PicklistEntry data
-    * @param objectName the name of the object to look up
-    * @param fieldName the name of the field to look up
-    * @return List<Schema.PicklistEntry> the picklist entry list for the given field
-    */
+     * @description Returns field PicklistEntry data
+     * @param objectName the name of the object to look up
+     * @param fieldName the name of the field to look up
+     * @return List<Schema.PicklistEntry> the picklist entry list for the given field
+     */
     public static List<Schema.PicklistEntry> getFieldPicklistEntries(String objectName, String fieldName) {
-        
         //fill picklist value map for object. Will throw an exception if it is invalid.
         fillPicklistEntriesForObject(objectName, fieldName);
 
         return fieldPicklistEntries.get(objectName).get(fieldName);
     }
-    
+
     /*******************************************************************************************************
-    * @description Returns picklist value's Label to API map
-    * @param objectName the name of the object to look up
-    * @param fieldName the name of the field to look up
-    * @return picklistLabelToApi A Map<String, String> with key value pair of picklist value's label and API respectively
-    */
+     * @description Returns picklist value's Label to API map
+     * @param objectName the name of the object to look up
+     * @param fieldName the name of the field to look up
+     * @return picklistLabelToApi A Map<String, String> with key value pair of picklist value's label and API respectively
+     */
     public static Map<String, String> getpicklistEntriesLabelToAPIMap(String objectName, String fieldName) {
         List<Schema.PicklistEntry> picklistEntries = getFieldPicklistEntries(objectName, fieldName);
         Map<String, String> picklistLabelToApi = new Map<String, String>();
-        for (Schema.PicklistEntry eachValue: picklistEntries) {
+        for (Schema.PicklistEntry eachValue : picklistEntries) {
             picklistLabelToApi.put(eachValue.getLabel(), eachValue.getValue());
         }
         return picklistLabelToApi;
     }
 
     /*******************************************************************************************************
-    * @description Returns picklist value's APIto Label map
-    * @param objectName the name of the object to look up
-    * @param fieldName the name of the field to look up
-    * @return picklistApiToLabel A Map<String, String> with key value pair of picklist value's API and Label respectively
-    */
+     * @description Returns picklist value's APIto Label map
+     * @param objectName the name of the object to look up
+     * @param fieldName the name of the field to look up
+     * @return picklistApiToLabel A Map<String, String> with key value pair of picklist value's API and Label respectively
+     */
     public static Map<String, String> getPicklistEntriesApiToLabelMap(String objectName, String fieldName) {
         List<Schema.PicklistEntry> picklistEntries = getFieldPicklistEntries(objectName, fieldName);
         Map<String, String> picklistApiToLabel = new Map<String, String>();
-        for (Schema.PicklistEntry eachValue: picklistEntries) {
+        for (Schema.PicklistEntry eachValue : picklistEntries) {
             picklistApiToLabel.put(eachValue.getValue(), eachValue.getLabel());
         }
         return picklistApiToLabel;
     }
 
     /*******************************************************************************************************
-    * @description checks whether the field exists
-    * @param objectName the name of the object to look up
-    * @param fieldName the name of the field to look up
-    * @return boolean whether the field exists
-    */
+     * @description checks whether the field exists
+     * @param objectName the name of the object to look up
+     * @param fieldName the name of the field to look up
+     * @return boolean whether the field exists
+     */
     public static boolean isValidField(String objectName, String fieldName) {
-
         // fields in our own package must not have their prefix for the Describe Field Map
         fieldName = UTIL_Namespace.StrTokenRemoveNSPrefix(fieldName);
 
         // make sure we have this field's schema mapped
         try {
-
             if (!fieldDescribes.containsKey(objectName) || !fieldDescribes.get(objectName).containsKey(fieldName)) {
                 fillFieldMapsForObject(objectName, fieldName);
             }
@@ -477,31 +459,32 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description utility to check for compatible datatypes for data copying
-    * @param dtSrc the DisplayType of the source object
-    * @param dtTgt the DisplayType of the target object
-    * @return true if the types can be copied between
-    */
+     * @description utility to check for compatible datatypes for data copying
+     * @param dtSrc the DisplayType of the source object
+     * @param dtTgt the DisplayType of the target object
+     * @return true if the types can be copied between
+     */
     public static boolean canDisplaytypesCopy(Schema.Displaytype dtSrc, Schema.Displaytype dtTgt) {
-
         if (dtSrc == dtTgt) {
-           return true;
+            return true;
         }
 
         // date can go to datetime
         if (dtSrc == Schema.Displaytype.Date && dtTgt == Schema.Displaytype.DateTime) {
-           return true;
+            return true;
         }
 
         // numbers can implictly cast to other numbers
-        if ((dtSrc == Schema.Displaytype.Currency ||
+        if (
+            (dtSrc == Schema.Displaytype.Currency ||
             dtSrc == Schema.Displaytype.Double ||
             dtSrc == Schema.Displaytype.Integer ||
             dtSrc == Schema.Displaytype.Percent) &&
-           (dtTgt == Schema.Displaytype.Currency ||
+            (dtTgt == Schema.Displaytype.Currency ||
             dtTgt == Schema.Displaytype.Double ||
             dtTgt == Schema.Displaytype.Integer ||
-            dtTgt == Schema.Displaytype.Percent)) {
+            dtTgt == Schema.Displaytype.Percent)
+        ) {
             return true;
         }
 
@@ -514,11 +497,11 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description utility to return a list of strings from a field set.
-    * @param strObject the name of the object
-    * @param strFS the name of the object's field set
-    * @return a list of strings of field names in the field set
-    */
+     * @description utility to return a list of strings from a field set.
+     * @param strObject the name of the object
+     * @param strFS the name of the object's field set
+     * @return a list of strings of field names in the field set
+     */
 
     // utility to return a list of strings from a field set.
     public static list<string> listStrFromFieldSet(string strObject, string strFS) {
@@ -530,12 +513,18 @@ public class UTIL_Describe {
         if (fs == null) {
             return null;
         } else {
-
-            for(Schema.FieldSetMember f : fs.getFields()) {
-
+            for (Schema.FieldSetMember f : fs.getFields()) {
                 if (f.getFieldPath().contains('.')) {
-                    throw (new SchemaDescribeException('Related field \'' + f.getFieldPath() + '\' not supported ' +
-                        'in field set \'' + strFS + '\'.  You can only include fields directly on object \'' + strObject + '\'.'));
+                    throw (new SchemaDescribeException(
+                        'Related field \'' +
+                        f.getFieldPath() +
+                        '\' not supported ' +
+                        'in field set \'' +
+                        strFS +
+                        '\'.  You can only include fields directly on object \'' +
+                        strObject +
+                        '\'.'
+                    ));
                 }
                 listStrFields.add(f.getFieldPath());
             }
@@ -545,11 +534,11 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Returns a comma separated string of field names from a field set.
-    * @param strObject the name of the object
-    * @param strFS the name of the object's field set
-    * @return a comma separated string of field names in the field set
-    */
+     * @description Returns a comma separated string of field names from a field set.
+     * @param strObject the name of the object
+     * @param strFS the name of the object's field set
+     * @return a comma separated string of field names in the field set
+     */
     public static string strFieldNamesFromFieldSet(string strObject, string strFS) {
         string strFields = '';
 
@@ -557,9 +546,9 @@ public class UTIL_Describe {
             strFields += str + ',';
         }
 
-        return strFields.substring(0, strFields.length()-1);
+        return strFields.substring(0, strFields.length() - 1);
     }
-    
+
     /*******************************************************************************************************
      * @description Returns a map of active, user-available picklist values and labels for a given
      * SObjectType and field, keyed by picklist label with a value of picklist value.
@@ -570,17 +559,16 @@ public class UTIL_Describe {
     @AuraEnabled
     public static Map<String, String> getPicklistActiveValuesMap(String objectName, String fieldName) {
         Map<String, String> picklistValues = new Map<String, String>();
-        
-        for(Schema.PicklistEntry picklistEntry : getFieldPicklistEntries(objectName, fieldName)) {
 
-            if(picklistEntry.isActive()) {
+        for (Schema.PicklistEntry picklistEntry : getFieldPicklistEntries(objectName, fieldName)) {
+            if (picklistEntry.isActive()) {
                 picklistValues.put(picklistEntry.getLabel(), picklistEntry.getValue());
             }
         }
 
         return picklistValues;
     }
-    
+
     /*********************************************************************************************************
      * @description Returns a map of active, user-available fields labels and API name for a given
      * SObjectType and field type, keyed by  label with a value of api name.
@@ -590,21 +578,19 @@ public class UTIL_Describe {
      *****/
     @AuraEnabled
     public static Map<String, String> getFieldsOfTypeAura(String objectName, String type) {
-
         //API name and Schema of field
-        Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe( objectName );
+        Map<String, Schema.DescribeFieldResult> allFields = UTIL_Describe.getAllFieldsDescribe(objectName);
         Map<String, String> fields = new Map<String, String>();
-        for(String fieldAPI: allFields.keySet()) {
+        for (String fieldAPI : allFields.keySet()) {
             Schema.DescribeFieldResult field = allFields.get(fieldAPI);
 
-            if (String.valueOf( field.getType() ) == type) {
-                 fields.put(field.getLabel(), fieldAPI);
+            if (String.valueOf(field.getType()) == type) {
+                fields.put(field.getLabel(), fieldAPI);
             }
         }
 
         return fields;
     }
-    
 
     /*********************************************************************************************************
      * @description Returns field API name for a given object and field label
@@ -613,33 +599,32 @@ public class UTIL_Describe {
      * @return String API Name of the field retrieved
      *****/
 
-    public static String getFieldAPIName (String objectName, String fieldLabel) {
-        
+    public static String getFieldAPIName(String objectName, String fieldLabel) {
         // get the object map the first time
         if (gd == null) {
             gd = Schema.getGlobalDescribe();
         }
-        
+
         SObjectType objType = gd.get(objectName);
         Map<String, Schema.SObjectField> allFields = objType.getDescribe().fields.getMap();
-        String fieldAPIName = '';    
-        for (String strField: allFields.keySet()) {
+        String fieldAPIName = '';
+        for (String strField : allFields.keySet()) {
             SObjectField fieldAPI = allFields.get(strField);
             Schema.DisplayType fielddataType = fieldAPI.getDescribe().getType();
-            if(fieldLabel == fieldAPI.getDescribe().getlabel()) {
+            if (fieldLabel == fieldAPI.getDescribe().getlabel()) {
                 fieldAPIName = strField;
                 break;
             }
-        }   
-        
+        }
+
         return fieldAPIName;
     }
 
     /*******************************************************************************************************
-    * @description Cache for the record type Object Name to DeveloperName-to-ID map. It is a Map with
-    * Object name as the key and Map as the value. The value Map is the RecordType Developer Name to
-    * RecordType Id
-    */
+     * @description Cache for the record type Object Name to DeveloperName-to-ID map. It is a Map with
+     * Object name as the key and Map as the value. The value Map is the RecordType Developer Name to
+     * RecordType Id
+     */
     @testVisible
     private static Map<String, Map<String, Id>> mapRecordTypes = new Map<String, Map<String, Id>>();
 
@@ -674,8 +659,7 @@ public class UTIL_Describe {
      * of available record types for object specified.
      */
     private static Map<String, Id> getRecTypesMap(String objectName, Boolean devName) {
-
-        if(mapRecordTypes.get(objectName) == null) {
+        if (mapRecordTypes.get(objectName) == null) {
             Map<String, Id> recTypes = new Map<String, Id>();
 
             // Get the Describe Result
@@ -683,8 +667,12 @@ public class UTIL_Describe {
             Schema.DescribeSObjectResult obj = objectDescribes.get(objectName);
 
             // Obtain ALL Active Record Types for the given SObjectType objectType
-            String soql = 'SELECT Id, Name, DeveloperName FROM RecordType ' + 'WHERE SObjectType = \''
-                          + String.escapeSingleQuotes(obj.getName()) + '\' ' + 'AND IsActive = TRUE';
+            String soql =
+                'SELECT Id, Name, DeveloperName FROM RecordType ' +
+                'WHERE SObjectType = \'' +
+                String.escapeSingleQuotes(obj.getName()) +
+                '\' ' +
+                'AND IsActive = TRUE';
             List<SObject> results;
 
             try {
@@ -697,23 +685,19 @@ public class UTIL_Describe {
             Map<Id, Schema.RecordTypeInfo> recordTypeInfos = obj.getRecordTypeInfosByID();
 
             for (SObject rt : results) {
-
                 // Check RecordType IS available for the running user
                 if (!Test.isRunningTest()) {
-
                     if (recordTypeInfos.get(rt.Id).isAvailable()) {
-
-                        if(devName) {
+                        if (devName) {
                             recTypes.put(String.valueOf(rt.get('DeveloperName')), rt.Id);
                         } else {
                             recTypes.put(String.valueOf(rt.get('Name')), rt.Id);
                         }
                     }
-                // We don't want our tests to depend on the profile configuration in the org. Otherwise tests
-                // might fail just because the user running them does not have certain record types assigned.
+                    // We don't want our tests to depend on the profile configuration in the org. Otherwise tests
+                    // might fail just because the user running them does not have certain record types assigned.
                 } else {
-
-                    if(devName) {
+                    if (devName) {
                         recTypes.put(String.valueOf(rt.get('DeveloperName')), rt.Id);
                     } else {
                         recTypes.put(String.valueOf(rt.get('Name')), rt.Id);
@@ -727,9 +711,9 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************************
-    * @description Cache for the map recordTypeInfoByDeveloperName. It is a Map with
-    * RecordTypeDevName as the key and RecordTypeInfo as the value.
-    */
+     * @description Cache for the map recordTypeInfoByDeveloperName. It is a Map with
+     * RecordTypeDevName as the key and RecordTypeInfo as the value.
+     */
     @testVisible
     private static Map<String, Map<String, Schema.RecordTypeInfo>> recordTypeInfoByDeveloperName = new Map<String, Map<String, Schema.RecordTypeInfo>>();
 
@@ -740,7 +724,6 @@ public class UTIL_Describe {
      * @return Schema.RecordTypeInfo The RecordTypeInfo for a given recordTypedevName, object
      */
     public static Schema.RecordTypeInfo getRecordTypeInfoByDeveloperName(String objectName, String recordTypeDevName) {
-        
         if (recordTypeInfoByDeveloperName.get(objectName) == null) {
             populateRecordTypeInfoForSObject(objectName);
         }
@@ -748,8 +731,8 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************************
-    * @description Cache for the map recordTypeInfoByName
-    */
+     * @description Cache for the map recordTypeInfoByName
+     */
     @testVisible
     private static Map<String, Map<String, Schema.RecordTypeInfo>> recordTypeInfoByName = new Map<String, Map<String, Schema.RecordTypeInfo>>();
 
@@ -766,13 +749,13 @@ public class UTIL_Describe {
         return recordTypeInfoByName.get(objectName).get(recordTypeName);
     }
 
-     /**********************************************************************************************************************
+    /**********************************************************************************************************************
      * @description Populated recordTypeByDeveloperName and recordTypeInfoByName maps for a given objectName
      * @param objectName Name of the object to retrieve recordTypeInfos for
      * @return void
      */
     @testVisible
-    private static void populateRecordTypeInfoForSObject (String objectName) {
+    private static void populateRecordTypeInfoForSObject(String objectName) {
         if (recordTypeInfoByDeveloperName.get(objectName) != null) {
             return;
         }
@@ -785,8 +768,11 @@ public class UTIL_Describe {
         Schema.DescribeSObjectResult obj = objectDescribes.get(objectName);
 
         // Obtain ALL Record Types for the given SObjectType objectType
-        String soql = 'SELECT Id, Name, DeveloperName FROM RecordType ' + 'WHERE SObjectType = \''
-                        + String.escapeSingleQuotes(obj.getName()) + '\'';
+        String soql =
+            'SELECT Id, Name, DeveloperName FROM RecordType ' +
+            'WHERE SObjectType = \'' +
+            String.escapeSingleQuotes(obj.getName()) +
+            '\'';
         List<SObject> results;
 
         try {
@@ -804,21 +790,19 @@ public class UTIL_Describe {
         }
 
         recordTypeInfoByDeveloperName.put(objectName, recordTypeByDeveloperName);
-        recordTypeInfoByName.put(objectName,recordTypeByName);
-
+        recordTypeInfoByName.put(objectName, recordTypeByName);
     }
 
     /*******************************************************************************************************
-    * @description Returns the ID of the Administrative Account record type, if it exists.
-    * @return String The ID of the Administrative Account record type as a String.
-    */
+     * @description Returns the ID of the Administrative Account record type, if it exists.
+     * @return String The ID of the Administrative Account record type as a String.
+     */
 
     public static String getAdminAccRecTypeID() {
         String recTypeId = getRecTypesMapByDevName('Account').get('Administrative');
 
-        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-
-            if(getRecTypesMapByDevName('Account').values().size() > 0) {
+        if (String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if (getRecTypesMapByDevName('Account').values().size() > 0) {
                 return getRecTypesMapByDevName('Account').values()[0];
             } else {
                 return null;
@@ -834,8 +818,10 @@ public class UTIL_Describe {
      */
     public static Id getCustomAdminAccRecTypeID() {
         Id customAdminRecTypeId = Util_CustomSettingsFacade.getSettings().Administrative_Account_Record_Type__c;
-        if (customAdminRecTypeId == null 
-            || getRecTypesMapByDevName('Account').values().contains(customAdminRecTypeId) == false) {
+        if (
+            customAdminRecTypeId == null ||
+            getRecTypesMapByDevName('Account').values().contains(customAdminRecTypeId) == false
+        ) {
             customAdminRecTypeId = UTIL_Describe.getAdminAccRecTypeID();
         }
         return customAdminRecTypeId;
@@ -846,25 +832,59 @@ public class UTIL_Describe {
      * - If no default account record type is found, throw exception.
      * @return The ID of the default Administrative Account record type.
      */
-    public static Id getDefaultAdminAccRecTypeIDForNewInstall() { 
+    public static Id getDefaultAdminAccRecTypeIDForNewInstall() {
         Id defaultAdminRecTypeId = getRecTypesMapByDevName('Account').get('Administrative');
         if (Test.isRunningTest() == false && defaultAdminRecTypeId == null) {
-            throw new ERR_ExceptionHandler.DefaultAdminRecordTypelMissingException(Label.defaultAccountRecordTypeMissingError);
+            throw new ERR_ExceptionHandler.DefaultAdminRecordTypelMissingException(
+                Label.defaultAccountRecordTypeMissingError
+            );
         }
         return defaultAdminRecTypeId;
     }
 
     /*******************************************************************************************************
-    * @description Returns the ID of the Household Account record type, if it exists.
-    * @return String The ID of the Household Account record type as a String.
-    */
+     * @description Returns the ID of the Household Account record type, if it exists.
+     * @return String The ID of the Household Account record type as a String.
+     */
     public static String getHhAccRecTypeID() {
         String recTypeId = getRecTypesMapByDevName('Account').get('HH_Account');
 
-        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-
-            if(getRecTypesMapByDevName('Account').values().size() > 1) {
+        if (String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if (getRecTypesMapByDevName('Account').values().size() > 1) {
                 return getRecTypesMapByDevName('Account').values()[1];
+            } else {
+                return null;
+            }
+        } else {
+            return recTypeId;
+        }
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the custom Household Account record type
+     * @return The ID of the custom Household Account record type.
+     */
+    public static Id getCustomHHAccRecTypeID() {
+        Id customHHRecTypeId = Util_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c;
+        if (
+            customHHRecTypeId == null ||
+            UTIL_Describe.getRecTypesMapByDevName('Account').values().contains(customHHRecTypeId) == false
+        ) {
+            customHHRecTypeId = UTIL_Describe.getHhAccRecTypeID();
+        }
+        return customHHRecTypeId;
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Business Account record type, if it exists.
+     * @return String The ID of the Business Account record type as a String.
+     */
+    public static String getBizAccRecTypeID() {
+        String recTypeId = getRecTypesMapByDevName('Account').get('Business_Organization');
+
+        if (String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if (getRecTypesMapByDevName('Account').values().size() > 2) {
+                return getRecTypesMapByDevName('Account').values()[2];
             } else {
                 return null;
             }
@@ -877,31 +897,11 @@ public class UTIL_Describe {
      * @description Returns the ID of the Business Account record type, if it exists.
      * @return String The ID of the Business Account record type as a String.
      */
-    public static String getBizAccRecTypeID() {
-        String recTypeId = getRecTypesMapByDevName('Account').get('Business_Organization');
-
-        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-
-            if(getRecTypesMapByDevName('Account').values().size() > 2) {
-                return getRecTypesMapByDevName('Account').values()[2];
-            } else {
-                return null;
-            }
-        } else {
-            return recTypeId;
-        }
-    }
-
-    /*******************************************************************************************************
-    * @description Returns the ID of the Business Account record type, if it exists.
-    * @return String The ID of the Business Account record type as a String.
-    */
     public static String getDepAccRecTypeID() {
         String recTypeId = getRecTypesMapByDevName('Account').get('Department');
 
-        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-
-            if(getRecTypesMapByDevName('Account').values().size() > 2) {
+        if (String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if (getRecTypesMapByDevName('Account').values().size() > 2) {
                 return getRecTypesMapByDevName('Account').values()[2];
             } else {
                 return null;
@@ -910,7 +910,6 @@ public class UTIL_Describe {
             return recTypeId;
         }
     }
-
 
     /*******************************************************************************************************
      * @description Returns the ID of the Academic Program record type, if it exists.
@@ -919,9 +918,8 @@ public class UTIL_Describe {
     public static String getAcademicAccRecTypeID() {
         String recTypeId = getRecTypesMapByDevName('Account').get('Academic_Program');
 
-        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-
-            if(getRecTypesMapByDevName('Account').values().size() > 2) {
+        if (String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if (getRecTypesMapByDevName('Account').values().size() > 2) {
                 return getRecTypesMapByDevName('Account').values()[2];
             } else {
                 return null;
@@ -940,9 +938,8 @@ public class UTIL_Describe {
         Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'));
         String recTypeId = recTypes.get('Default');
 
-        if(String.isBlank(recTypeId) && Test.isRunningTest()) {
-
-            if(recTypes.values().size() > 2) {
+        if (String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if (recTypes.values().size() > 2) {
                 return recTypes.values()[2];
             } else {
                 return null;
@@ -959,13 +956,12 @@ public class UTIL_Describe {
     public static String getFacultyConnectionRecType() {
         String recTypeId = UTIL_CustomSettingsFacade.getSettings().Faculty_RecType__c;
 
-        if(Test.isRunningTest() && String.isBlank(recTypeId)) {
+        if (Test.isRunningTest() && String.isBlank(recTypeId)) {
             Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'));
             recTypeId = recTypes.get('Faculty');
 
             if (String.isBlank(recTypeId)) {
-
-                if(recTypes.values().size() > 0) {
+                if (recTypes.values().size() > 0) {
                     return recTypes.values()[0];
                 } else {
                     return null;
@@ -982,14 +978,13 @@ public class UTIL_Describe {
      */
     public static String getStudentConnectionRecType() {
         String recTypeId = UTIL_CustomSettingsFacade.getSettings().Student_RecType__c;
-        
-        if(Test.isRunningTest() && String.isBlank(recTypeId)) {
+
+        if (Test.isRunningTest() && String.isBlank(recTypeId)) {
             Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'));
             recTypeId = recTypes.get('Student');
 
             if (String.isBlank(recTypeId)) {
-
-                if(recTypes.values().size() > 1) {
+                if (recTypes.values().size() > 1) {
                     return recTypes.values()[1];
                 } else {
                     return null;
@@ -1008,9 +1003,9 @@ public class UTIL_Describe {
         Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Attribute__c'));
         String recTypeId = recTypes.get('Credential');
 
-        if(Test.isRunningTest() && String.isBlank(recTypeId)) {
+        if (Test.isRunningTest() && String.isBlank(recTypeId)) {
             if (String.isBlank(recTypeId)) {
-                if(recTypes.values().size() > 1) {
+                if (recTypes.values().size() > 1) {
                     return recTypes.values()[1];
                 } else {
                     return null;
@@ -1028,10 +1023,10 @@ public class UTIL_Describe {
     public static String getStudentCharacteristicAttributeRecType() {
         Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Attribute__c'));
         String recTypeId = recTypes.get('Student_Characteristic');
-       
-        if(Test.isRunningTest() && String.isBlank(recTypeId)) {          
+
+        if (Test.isRunningTest() && String.isBlank(recTypeId)) {
             if (String.isBlank(recTypeId)) {
-                if(recTypes.values().size() > 1) {
+                if (recTypes.values().size() > 1) {
                     return recTypes.values()[1];
                 } else {
                     return null;
@@ -1042,22 +1037,20 @@ public class UTIL_Describe {
         return recTypeId;
     }
     /*******************************************************************************************************
-    * @description Cache for SObject type to List of ChildRelationshipNames
-    */
+     * @description Cache for SObject type to List of ChildRelationshipNames
+     */
     private static Map<SObjectType, List<String>> sObjectTypeToChildRelationshipNames = new Map<SObjectType, List<String>>();
 
-
     /*******************************************************************************************************
-    * @description Returns the list of all Child Relationship Name for a given Sobject Type
-    * @return sObjectTypeToChildRelationshipNames.get(sObjectTypeName) List of all the child Relationship Names
-    */
+     * @description Returns the list of all Child Relationship Name for a given Sobject Type
+     * @return sObjectTypeToChildRelationshipNames.get(sObjectTypeName) List of all the child Relationship Names
+     */
     public static List<String> getAllChildRelationshipNames(SobjectType sObjectTypeName) {
-        
-        if (UTIL_Describe.sObjectTypeToChildRelationshipNames.get(sObjectTypeName) == NULL) {
+        if (UTIL_Describe.sObjectTypeToChildRelationshipNames.get(sObjectTypeName) == null) {
             List<String> childRelationshipNames = new List<String>();
             DescribeSObjectResult describe = sObjectTypeName.getDescribe();
             for (Schema.ChildRelationship childRelationship : describe.getChildRelationships()) {
-                if (childRelationship != NULL && childRelationship.getRelationshipName() != NULL) {
+                if (childRelationship != null && childRelationship.getRelationshipName() != null) {
                     childRelationshipNames.add(childRelationship.getRelationshipName());
                 }
             }
@@ -1068,9 +1061,9 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Get a map of Schema.RecordTypeInfo by Record Type name 
-    * @return A map of Schema.RecordTypeInfo by Record Type name
-    */ 
+     * @description Get a map of Schema.RecordTypeInfo by Record Type name
+     * @return A map of Schema.RecordTypeInfo by Record Type name
+     */
     public static Map<String, Schema.RecordTypeInfo> getRecordTypeInfoDevNameMap(String objectName) {
         if (recordTypeInfoByDeveloperName.get(objectName) == null) {
             populateRecordTypeInfoForSObject(objectName);
@@ -1079,11 +1072,11 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
-    * @description Determine if a specified field is a lookup to the specified SObjectType
-    * @param  fieldDescribe The Schema.DescribeFieldResult of a specified field
-    * @param  sObjectType   The SObjectType for the lookup object
-    * @return True if the specified field is a lookup to the specified SObjectType, false otherwise
-    */ 
+     * @description Determine if a specified field is a lookup to the specified SObjectType
+     * @param  fieldDescribe The Schema.DescribeFieldResult of a specified field
+     * @param  sObjectType   The SObjectType for the lookup object
+     * @return True if the specified field is a lookup to the specified SObjectType, false otherwise
+     */
     public static Boolean isLookupFieldTo(Schema.DescribeFieldResult fieldDescribe, SObjectType sObjectType) {
         Set<Schema.SObjectType> mappedLookupTypesSet = new Set<Schema.SObjectType>(fieldDescribe.getReferenceTo());
 
