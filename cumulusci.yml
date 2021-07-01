@@ -119,7 +119,7 @@ tasks:
                 name: EDA - Facility Display Name Formula Field
             case_behavior_record_types:
                 name: EDA - Case Behavior Record Types
-            deploy_unpackaged_eda_app:
+            eda_app:
                 name: EDA - Education Data Architecture App
 
     deploy_pre:
