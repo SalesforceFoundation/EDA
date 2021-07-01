@@ -33,8 +33,22 @@
  */
 public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
     private TDTM_Runnable.Action triggerAction;
+    /*****************************************************************************************************************
+     * @description The user defined Administrative Account record type in "ACCOUNTS AND CONTACTS" tab of EDA Settings.
+     */
+    private static ID userDefinedAdminRecordTypeId = Util_Describe.getCustomAdminAccRecTypeId();
     LeadConversionAccountNamingModel leadConversionNamingModel = LeadConversionAccountNamingService.getInstance()
         .getLeadConversionAccountNamingModel();
+
+    /*****************************************************************************************************************
+     * @description The user defined Household Account record type.
+     */
+    private static ID userDefinedHHRecordTypeId = Util_Describe.getHhAccRecTypeID();
+
+    /*****************************************************************************************************************
+     * @description The number of seconds old to consider an Account "Existing" (not created during lead conversion)
+     */
+    private static final Integer SECONDS_TO_DETERMINE_EXISTING_ACCOUNT = 30;
 
     /*******************************************************************************************************
      * @description Trigger Handler on lead that handles account management. Depending on the Account
@@ -92,7 +106,7 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
         }
 
         for (Contact aContact : [
-            SELECT AccountId, Account.Phone, Account.Fax, Account.OwnerId, Account.RecordTypeId, FirstName, LastName
+            SELECT AccountId, Account.Phone, Account.Fax, Account.OwnerId, Account.RecordTypeId, Account.CreatedDate, FirstName, LastName
             FROM Contact
             WHERE AccountId IN :accountIdsToUpdate and (Deceased__c != TRUE AND Exclude_from_Household_Name__c != TRUE)
         ]) {
@@ -102,20 +116,32 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
                 UTIL_CustomSettingsFacade.getSettings()
                     .Lead_Converted_Account_RTypes__c.contains(aContact.Account.RecordTypeId)
             ) {
-                Account anAccount = new Account(
-                    Phone = aContact.Account.Phone,
-                    Fax = aContact.Account.Fax,
-                    OwnerId = aContact.Account.OwnerId,
-                    Id = aContact.AccountId,
-                    RecordTypeId = aContact.Account.RecordTypeId
-                );
+                Long accountCreatedDateLong = aContact.Account.CreatedDate.getTime();
+                Long currentDTLong = DateTime.now().getTime();
+                Long secondsOld = (currentDTLong - accountCreatedDateLong) / 1000;
 
-                if (accountIdToContacts.get(anAccount.Id) == null) {
-                    accountIdToContacts.put(anAccount.Id, new List<Contact>());
+                // Rename Account if it is a Household Account or Account Created less than 30 seconds ago
+                // If older than 30 seconds, it is assumed the Account is an existing Account not one created
+                // during Lead Conversion so we don't want to Rename
+                if (
+                    checkHouseholdNaming(aContact.Account.RecordTypeId) ||
+                    secondsOld < SECONDS_TO_DETERMINE_EXISTING_ACCOUNT
+                ) {
+                    Account anAccount = new Account(
+                        Phone = aContact.Account.Phone,
+                        Fax = aContact.Account.Fax,
+                        OwnerId = aContact.Account.OwnerId,
+                        Id = aContact.AccountId,
+                        RecordTypeId = aContact.Account.RecordTypeId
+                    );
+
+                    if (accountIdToContacts.get(anAccount.Id) == null) {
+                        accountIdToContacts.put(anAccount.Id, new List<Contact>());
+                        accountIdToAccount.put(anAccount.Id, anAccount);
+                    }
                     accountIdToAccount.put(anAccount.Id, anAccount);
+                    accountIdToContacts.get(anAccount.Id).add(aContact);
                 }
-                accountIdToAccount.put(anAccount.Id, anAccount);
-                accountIdToContacts.get(anAccount.Id).add(aContact);
             }
         }
 
@@ -166,5 +192,16 @@ public class RenameLeadConvertedAccounts_TDTM extends TDTM_Runnable {
             TDTM_ProcessControl.registeredTrigger.RenameLeadConvertedAccounts_TDTM_After_Update,
             true
         );
+    }
+
+    /*******************************************************************************************************
+     * @description Check if all conditions for household naming are met
+     * @param accRecordTypeId the Id of parent Account's record type Id.
+     * @return boolean.
+     */
+    public static boolean checkHouseholdNaming(Id accRecordTypeId) {
+        return (accRecordTypeId != null &&
+        accRecordTypeId == userDefinedHHRecordTypeId &&
+        UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c == true);
     }
 }
