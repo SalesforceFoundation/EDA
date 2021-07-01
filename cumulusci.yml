@@ -120,7 +120,7 @@ tasks:
             case_behavior_record_types:
                 name: EDA - Case Behavior Record Types
             deploy_unpackaged_eda_app:
-                name: Deploy unpackaged/post/eda_app
+                name: EDA - Education Data Architecture App
 
     deploy_pre:
         ui_options:
