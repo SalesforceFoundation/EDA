@@ -87,7 +87,7 @@ global abstract class TDTM_Runnable {
         }
 
         List<SObject> newlist = TDTM_Runnable.getAllFieldsForSObjectsFromIdList(objectName, newIds);
-        List<SObject> newlist = TDTM_Runnable.getAllFieldsForSObjectsFromIdList(objectName, oldIds);
+        List<SObject> oldList = TDTM_Runnable.getAllFieldsForSObjectsFromIdList(objectName, oldIds);
         TDTM_Runnable.Action triggerAction = TDTM_TriggerActionHelper.getTriggerActionFromName(action);
         Schema.DescribeSObjectResult objResult = UTIL_Describe.getObjectDescribe(objectName);
 
