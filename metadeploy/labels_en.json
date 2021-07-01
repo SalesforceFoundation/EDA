@@ -59,6 +59,10 @@
         "Health Check": {
             "message": "Health Check",
             "description": "title of installation step"
+        },
+        "Deploy unpackaged/post/eda_app": {
+            "message": "Deploy unpackaged/post/eda_app",
+            "description": "title of installation step"
         }
     },
     "plan:ra_einstein_template": {
@@ -75,6 +79,20 @@
         "Please enable My Domain in your org prior to installing.": {
             "message": "Please enable My Domain in your org prior to installing.",
             "description": "shown if validation fails"
+        }
+    },
+    "plan:upgrade": {
+        "title": {
+            "message": "Product Upgrade",
+            "description": "title of installation plan"
+        },
+        "preflight_message": {
+            "message": "This installer upgrades this package and any required dependencies to the latest version in your org. This installer isn't supported and has risks. Please don't run this installer unless you're aware of its specific use cases and considerations.",
+            "description": "shown before user starts installation (markdown)"
+        },
+        "post_install_message": {
+            "message": "Installation complete and package is on the latest version.",
+            "description": "shown after successful installation (markdown)"
         }
     }
 }
