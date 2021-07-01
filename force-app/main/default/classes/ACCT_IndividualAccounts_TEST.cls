@@ -432,7 +432,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void newContactNewHHAcc() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -456,7 +456,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void newContactExistingHHAcc() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -507,7 +507,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void newContactExistingHHAccSameLastNameWithParenthesis() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} ({!FirstName}) Household',
                 Automatic_Household_Naming__c = true
             )
@@ -555,7 +555,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void newContactExistingHHAccSameLastName() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -603,7 +603,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void updateContactExistingHHAcc() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -675,7 +675,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void newContactExistingHHAccNotAutomatic() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = false
             )
@@ -711,7 +711,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void newContactExistingHHAccExcludedFromNaming() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -767,7 +767,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void updateContactExistingHHAccNotAutomatic() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = false
             )
@@ -813,7 +813,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void deleteContactFromHHAccAutomatic() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -871,7 +871,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void disconnectContactFromHHAccAutomatic() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -931,7 +931,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void deleteAllContactsFromHHAccAutomatic() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -1118,7 +1118,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void newContactExistingHHNewConEmptyString() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = Label.acctNamingOther,
                 Household_Other_Name_Setting__c = '{!Salutation} {!FirstName} Family',
                 Automatic_Household_Naming__c = true
@@ -1156,7 +1156,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void newContactExistingHHExistingConEmptyString() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = Label.acctNamingOther,
                 Household_Other_Name_Setting__c = '{!Salutation} {!FirstName} Family',
                 Automatic_Household_Naming__c = true
@@ -1194,7 +1194,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void newContactWithEmptyFirstName() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = Label.acctNamingOther,
                 Household_Other_Name_Setting__c = '{!{!FirstName}} {!LastName} Household',
                 Automatic_Household_Naming__c = true
@@ -1203,7 +1203,7 @@ private class ACCT_IndividualAccounts_TEST {
 
         String andConnector = Label.defaultNamingConnector;
 
-        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
+        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomHHAccRecTypeID())[0];
         insert acct;
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(3);
@@ -1338,7 +1338,7 @@ private class ACCT_IndividualAccounts_TEST {
     @isTest
     public static void testHandleAfterInsertUpdate() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID())
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID())
         );
 
         Contact con = UTIL_UnitTestData_TEST.getContact();
@@ -1353,7 +1353,7 @@ private class ACCT_IndividualAccounts_TEST {
             WHERE Id = :con.Id
         ];
 
-        System.assertEquals(UTIL_Describe_API.getHhAccRecTypeID(), contactReturned.Account.RecordTypeId);
+        System.assertEquals(UTIL_Describe.getCustomHHAccRecTypeID(), contactReturned.Account.RecordTypeId);
         System.assertEquals(con.Id, contactReturned.Account.Primary_Contact__c);
     }
 
@@ -1364,13 +1364,13 @@ private class ACCT_IndividualAccounts_TEST {
     private static void testHandleInsertWrapperLogic() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
         );
 
-        List<Account> accts = UTIL_UnitTestData_API.getMultipleTestAccounts(2, UTIL_Describe_API.getHhAccRecTypeID());
+        List<Account> accts = UTIL_UnitTestData_API.getMultipleTestAccounts(2, UTIL_Describe.getCustomHHAccRecTypeID());
         insert accts;
 
         List<Contact> cons = UTIL_UnitTestData_API.getMultipleTestContacts(2);
@@ -1402,7 +1402,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void testHandleUpdateWrapperLogic() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -1462,7 +1462,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void testBulkUpdateContactNames() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -1523,7 +1523,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void testHandlesAfterDelete() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -1553,7 +1553,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void sortContactsFirstLastNames() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!{!FirstName}} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -1561,7 +1561,7 @@ private class ACCT_IndividualAccounts_TEST {
 
         String andConnector = Label.defaultNamingConnector;
 
-        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
+        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomHHAccRecTypeID())[0];
         insert acct;
 
         List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(9);
@@ -1643,7 +1643,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void sortContactsLastFirstNames() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
                 Automatic_Household_Naming__c = true
             )
@@ -1651,7 +1651,7 @@ private class ACCT_IndividualAccounts_TEST {
 
         String andConnector = Label.defaultNamingConnector;
 
-        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
+        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomHHAccRecTypeID())[0];
         insert acct;
 
         List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(9);
@@ -1737,7 +1737,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void sortContactsLastNameOnly() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -1745,7 +1745,7 @@ private class ACCT_IndividualAccounts_TEST {
 
         String andConnector = Label.defaultNamingConnector;
 
-        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
+        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomHHAccRecTypeID())[0];
         insert acct;
 
         List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(3);
@@ -1792,7 +1792,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void sortContactsWithoutFirstNames() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!{!FirstName}} {!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -1800,7 +1800,7 @@ private class ACCT_IndividualAccounts_TEST {
 
         String andConnector = Label.defaultNamingConnector;
 
-        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getHhAccRecTypeID())[0];
+        Account acct = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomHHAccRecTypeID())[0];
         insert acct;
 
         List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(3);
@@ -1846,7 +1846,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void sortContactsWithCustomFormat() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!{!FirstName} {!LastName}} House',
                 Automatic_Household_Naming__c = true
             )
@@ -1914,7 +1914,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void sortContactsWithCustomFormat2() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!Salutation} {!{!FirstName}} {!LastName} Family',
                 Automatic_Household_Naming__c = true
             )
@@ -1981,7 +1981,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void contactMarkedDeceased() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -2018,7 +2018,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void contactMarkedDeceasedBulked() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
                 Automatic_Household_Naming__c = true
             )
@@ -2127,7 +2127,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void contactMarkedDeceasedandNonDeceased() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
                 Automatic_Household_Naming__c = true
             )
@@ -2185,7 +2185,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void deceasedContacts() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -2224,7 +2224,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void contactMarkedExcludedFromHHNaming() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -2259,7 +2259,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void allContactsMarkedExcludedFromHHNaming() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -2297,7 +2297,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void lastContactIsDeleted() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -2339,7 +2339,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void contactDeleted() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = '{!LastName} Household',
                 Automatic_Household_Naming__c = true
             )
@@ -2405,7 +2405,7 @@ private class ACCT_IndividualAccounts_TEST {
     private static void testBulkPrefix() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = 'Foyer {!LastName} ({!{!FirstName}})',
                 Automatic_Household_Naming__c = true
             )
