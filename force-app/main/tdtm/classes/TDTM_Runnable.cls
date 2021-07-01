@@ -83,7 +83,7 @@ global abstract class TDTM_Runnable {
 
         //Fail silently to preserve backward compatibility
         if (runnable == null) {
-            return null;
+            return;
         }
 
         List<SObject> newlist = TDTM_Runnable.getAllFieldsForSObjectsFromIdList(objectName, newIds);
