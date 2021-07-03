@@ -96,7 +96,10 @@ public virtual with sharing class ErrorSettingsMapper {
 
         validErrorNotificationRecipientCategoryLabelsByValue.put('All Sys Admins', Label.stgOptAllSysAdmins);
         validErrorNotificationRecipientCategoryLabelsByValue.put('User', Label.stgOptUser);
-        validErrorNotificationRecipientCategoryLabelsByValue.put('Chatter Group', Label.stgOptChatterGroup);
+
+        if (Schema.SObjectType.User.isFeedEnabled()) {
+            validErrorNotificationRecipientCategoryLabelsByValue.put('Chatter Group', Label.stgOptChatterGroup);
+        }
 
         return validErrorNotificationRecipientCategoryLabelsByValue;
     }

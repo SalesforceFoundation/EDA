@@ -202,6 +202,49 @@ private with sharing class ErrorSettingsMapper_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify that the getErrorSettingsModel method returns an ErrorSettingsModel with properties
+     * set to match those in Hierarchy Settings when the send error notifications recipient is a chatter group when chatter is
+     * disabled
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getErrorSettingsModelValidChatterGroupChatterDisabled() {
+        if (Schema.SObjectType.User.isFeedEnabled()) {
+            return;
+        }
+        String fakeChatterGroupId = UTIL_UnitTestData_TEST.getChatterGroupNoDependencyFakeId();
+
+        Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Store_Errors_On__c = true,
+                Error_Notifications_On__c = true,
+                Error_Notifications_To__c = fakeChatterGroupId,
+                Enable_Debug__c = false,
+                Disable_Error_Handling__c = false
+            )
+        );
+
+        ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        Test.startTest();
+        ErrorSettingsModel errorSettingsModel = errorSettingsMapperInstance.getErrorSettingsModel();
+        Test.stopTest();
+
+        ErrorSettingsMapper_TEST.assertSettingBooleans(errorSettingsModel);
+
+        System.assertEquals(
+            null,
+            errorSettingsModel.errorNotificationsRecipientCategory,
+            'Error recipient category should be null if chatter is not enabled.'
+        );
+
+        System.assertEquals(
+            fakeChatterGroupId,
+            errorSettingsModel.errorNotificationsRecipient,
+            'Send Error Notifications Recipient on resulting model should match value set in hierarchy settings.'
+        );
+    }
+
+    /**************************************************************************************************************************
      * @description Helper assert method to assert error settings model booleans to make permutations easier to read
      ***************************************************************************************************************************/
     private static void assertSettingBooleans(ErrorSettingsModel errorSettingsModel) {
@@ -278,6 +321,9 @@ private with sharing class ErrorSettingsMapper_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getValidErrorNotificationRecipientCategoryLabelsByValue() {
+        if (!Schema.SObjectType.User.isFeedEnabled()) {
+            return;
+        }
         ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
 
         Test.startTest();
@@ -303,6 +349,43 @@ private with sharing class ErrorSettingsMapper_TEST {
             Label.stgOptChatterGroup,
             validErrorNotificationRecipientCategoryLabelsByValue.get('Chatter Group'),
             'The label for \'Chatter Group\' should be the expected value.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the expected valid error notification recipient categories are pulled
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getValidErrorNotificationRecipientCategoryLabelsByValueChatterDisabled() {
+        if (Schema.SObjectType.User.isFeedEnabled()) {
+            return;
+        }
+
+        ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        Test.startTest();
+        Map<String, String> validErrorNotificationRecipientCategoryLabelsByValue = errorSettingsMapperInstance.getValidErrorNotificationRecipientCategoryLabelsByValue();
+        Test.stopTest();
+
+        System.assertEquals(
+            2,
+            validErrorNotificationRecipientCategoryLabelsByValue.size(),
+            'Only 3 values should be pulled for valid error notification recipient categories.'
+        );
+        System.assertEquals(
+            Label.stgOptAllSysAdmins,
+            validErrorNotificationRecipientCategoryLabelsByValue.get('All Sys Admins'),
+            'The label for \'All Sys Admins\' should be the expected value.'
+        );
+        System.assertEquals(
+            Label.stgOptUser,
+            validErrorNotificationRecipientCategoryLabelsByValue.get('User'),
+            'The label for \'User\' should be the expected value.'
+        );
+        System.assertEquals(
+            null,
+            validErrorNotificationRecipientCategoryLabelsByValue.get('Chatter Group'),
+            'No label should exist for chatter group when chatter is disabled.'
         );
     }
 }
