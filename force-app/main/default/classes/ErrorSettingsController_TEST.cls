@@ -198,7 +198,7 @@ private with sharing class ErrorSettingsController_TEST {
      **************************************************************************************************************************/
     @isTest
     private static void getLookupResultsLikeChatterGroupNameValid() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getChatterGroupNoDependencyFakeId();
         ChatterGroupLookupResultVMapper.instance = new STUB_ChatterGroupLookupResultVMapper(chatterGroupId);
 
         Test.startTest();

@@ -62,19 +62,25 @@ public virtual with sharing class ChatterGroupMapper {
      * @return A ChatterGroupModel
      ************************************************************************************************************/
     public virtual ChatterGroupModel getChatterGroupModelById(Id chatterGroupId) {
-        CollaborationGroup chatterGroupRetrieved = [
-            SELECT Id, Name, Description, SmallPhotoUrl
-            FROM CollaborationGroup
-            WHERE Id = :chatterGroupId
-            WITH SECURITY_ENFORCED
-        ];
+        ChatterGroupModel chatterGroupModel;
 
-        return new ChatterGroupModel(
-            chatterGroupRetrieved.Id,
-            chatterGroupRetrieved.Name,
-            chatterGroupRetrieved.Description,
-            chatterGroupRetrieved.SmallPhotoUrl
-        );
+        //Necessary to avoid a hard chatter dependency
+        if (Schema.SObjectType.User.isFeedEnabled()) {
+            List<SObject> chatterGroupsRetrieved = Database.query(
+                'SELECT Id, Name, Description, SmallPhotoUrl FROM CollaborationGroup WHERE Id = :chatterGroupId WITH SECURITY_ENFORCED'
+            );
+
+            SObject chatterGroupRetrieved = chatterGroupsRetrieved[0];
+
+            chatterGroupModel = new ChatterGroupModel(
+                chatterGroupRetrieved.Id,
+                (String) chatterGroupRetrieved.get('Name'),
+                (String) chatterGroupRetrieved.get('Description'),
+                (String) chatterGroupRetrieved.get('SmallPhotoUrl')
+            );
+        }
+
+        return chatterGroupModel;
     }
 
     /************************************************************************************************************
@@ -87,25 +93,26 @@ public virtual with sharing class ChatterGroupMapper {
         String chatterGroupNameMatch,
         Integer recordLimit
     ) {
-        String escapedChatterGroupNameMatch = '%' + String.escapeSingleQuotes(chatterGroupNameMatch) + '%';
+        List<SObject> chatterGroupsRetrievedList = new List<SObject>();
 
-        List<CollaborationGroup> chatterGroupsRetrievedList = [
-            SELECT Id, Name, Description, SmallPhotoUrl
-            FROM CollaborationGroup
-            WHERE Name LIKE :escapedChatterGroupNameMatch
-            WITH SECURITY_ENFORCED
-            LIMIT :recordLimit
-        ];
+        //Necessary to avoid a hard chatter dependency
+        if (Schema.SObjectType.User.isFeedEnabled()) {
+            String escapedChatterGroupNameMatch = '%' + String.escapeSingleQuotes(chatterGroupNameMatch) + '%';
+
+            chatterGroupsRetrievedList = Database.query(
+                'SELECT Id, Name, Description, SmallPhotoUrl FROM CollaborationGroup WHERE Name LIKE :escapedChatterGroupNameMatch WITH SECURITY_ENFORCED LIMIT :recordLimit'
+            );
+        }
 
         List<ChatterGroupModel> chatterGroupModelList = new List<ChatterGroupModel>();
 
-        for (CollaborationGroup chatterGroupRetrieved : chatterGroupsRetrievedList) {
+        for (SObject chatterGroupRetrieved : chatterGroupsRetrievedList) {
             chatterGroupModelList.add(
                 new ChatterGroupModel(
                     chatterGroupRetrieved.Id,
-                    chatterGroupRetrieved.Name,
-                    chatterGroupRetrieved.Description,
-                    chatterGroupRetrieved.SmallPhotoUrl
+                    (String) chatterGroupRetrieved.get('Name'),
+                    (String) chatterGroupRetrieved.get('Description'),
+                    (String) chatterGroupRetrieved.get('SmallPhotoUrl')
                 )
             );
         }

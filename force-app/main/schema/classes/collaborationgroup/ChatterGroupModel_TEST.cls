@@ -38,7 +38,7 @@ public with sharing class ChatterGroupModel_TEST {
      ********************************************************************************************/
     @isTest
     private static void FourArgumentConstructorValid() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getChatterGroupNoDependencyFakeId();
 
         Test.startTest();
         ChatterGroupModel chatterGroupModel = new ChatterGroupModel(

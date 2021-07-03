@@ -832,9 +832,25 @@ public class UTIL_UnitTestData_TEST {
      **********************************************************************************************************/
     static Integer s_num = 1;
 
+    /*********************************************************************************************************
+     * @description Creates a fake id for an SObject Type that is unique to the transaction
+     * @return The generated Fake Id
+     **********************************************************************************************************/
     public static String getFakeId(Schema.SObjectType sot) {
         String result = String.valueOf(s_num++);
         return sot.getDescribe().getKeyPrefix() + '0'.repeat(12 - result.length()) + result;
+    }
+
+    /*********************************************************************************************************
+     * @description Creates a fake id for Collaboration Group if Chatter is enabled, otherwise generates it for contact
+     * @return The generated Fake Id
+     **********************************************************************************************************/
+    public static String getChatterGroupNoDependencyFakeId() {
+        if (!Schema.SObjectType.User.isFeedEnabled()) {
+            return UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+        }
+
+        return UTIL_UnitTestData_TEST.getFakeId(UTIL_Describe.getObjectDescribe('CollaborationGroup').getSObjectType());
     }
 
     /*********************************************************************************************************
@@ -853,11 +869,15 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
-     * @description Creates multiple collaboration groups
+     * @description Creates multiple collaboration groups as SObject, avoiding a hard Chatter Dependency
      * @return The generated collaboration group records
      **********************************************************************************************************/
-    public static List<CollaborationGroup> getCollaborationGroupList(String baseName, Integer numberOfRecords) {
-        List<CollaborationGroup> collaborationGroupList = new List<CollaborationGroup>();
+    public static List<SObject> getCollaborationGroupList(String baseName, Integer numberOfRecords) {
+        if (!Schema.SObjectType.User.isFeedEnabled()) {
+            return new List<SObject>();
+        }
+
+        List<SObject> collaborationGroupList = new List<SObject>();
 
         for (Integer i = 0; i < numberOfRecords; i++) {
             collaborationGroupList.add(UTIL_UnitTestData_TEST.getCollaborationGroup(baseName + i));
@@ -867,15 +887,19 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
-     * @description Creates a single collaboration group record
+     * @description Creates a single collaboration group record as an SObject, avoiding a Chatter hard dependency
      * @return The generated collaboration group records
      **********************************************************************************************************/
-    public static CollaborationGroup getCollaborationGroup(String name) {
-        CollaborationGroup CollaborationGroup = new CollaborationGroup(
-            Name = name,
-            Description = name + ' description',
-            CollaborationType = 'Public'
-        );
-        return CollaborationGroup;
+    public static SObject getCollaborationGroup(String name) {
+        if (!Schema.SObjectType.User.isFeedEnabled()) {
+            return null;
+        }
+
+        SObject chatterGroup = (SObject) System.Type.forName('CollaborationGroup').newInstance();
+        chatterGroup.put('Name', name);
+        chatterGroup.put('Description', name + ' description');
+        chatterGroup.put('CollaborationType', 'Public');
+
+        return chatterGroup;
     }
 }
