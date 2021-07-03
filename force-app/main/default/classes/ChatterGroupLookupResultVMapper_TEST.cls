@@ -110,7 +110,7 @@ private with sharing class ChatterGroupLookupResultVMapper_TEST {
      */
     @isTest
     private static void getLookupResultFromChatterGroupModel() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getChatterGroupNoDependencyFakeId();
         ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
         ChatterGroupLookupResultVMapper chatterGroupLookupResultVMapperInstance = ChatterGroupLookupResultVMapper.getInstance();
 
@@ -156,7 +156,7 @@ private with sharing class ChatterGroupLookupResultVMapper_TEST {
      */
     @isTest
     private static void getLookupResultsLikeChatterGroupName() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getChatterGroupNoDependencyFakeId();
         ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
         ChatterGroupLookupResultVMapper chatterGroupLookupResultVMapperInstance = ChatterGroupLookupResultVMapper.getInstance();
 

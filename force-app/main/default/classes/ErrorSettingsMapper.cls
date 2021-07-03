@@ -96,7 +96,10 @@ public virtual with sharing class ErrorSettingsMapper {
 
         validErrorNotificationRecipientCategoryLabelsByValue.put('All Sys Admins', Label.stgOptAllSysAdmins);
         validErrorNotificationRecipientCategoryLabelsByValue.put('User', Label.stgOptUser);
-        validErrorNotificationRecipientCategoryLabelsByValue.put('Chatter Group', Label.stgOptChatterGroup);
+
+        if (Schema.SObjectType.User.isFeedEnabled()) {
+            validErrorNotificationRecipientCategoryLabelsByValue.put('Chatter Group', Label.stgOptChatterGroup);
+        }
 
         return validErrorNotificationRecipientCategoryLabelsByValue;
     }
@@ -113,14 +116,20 @@ public virtual with sharing class ErrorSettingsMapper {
 
     /*******************************************************************************************
      * @description Retrieves the Id prefix for the CollaborationGroup SObjectType, Chatter
-     * Groups, in a chaching-safe method
+     * Groups, in a chaching-safe method or an invalid match if chatter is not enabled
      * @return The Id prefix for the CollaborationGroup SObjectType
      ********************************************************************************************/
     @TestVisible
     private String getChatterGroupIdPrefix() {
-        Schema.DescribeSObjectResult chatterGroupSObjectDescribeResult = UTIL_Describe.getObjectDescribe(
-            'CollaborationGroup'
-        );
-        return chatterGroupSObjectDescribeResult.getKeyPrefix();
+        String keyPrefix = 'NeverValid';
+        //Avoid hard chatter dependency
+        if (Schema.SObjectType.User.isFeedEnabled()) {
+            Schema.DescribeSObjectResult chatterGroupSObjectDescribeResult = UTIL_Describe.getObjectDescribe(
+                'CollaborationGroup'
+            );
+            keyPrefix = chatterGroupSObjectDescribeResult.getKeyPrefix();
+        }
+
+        return keyPrefix;
     }
 }
