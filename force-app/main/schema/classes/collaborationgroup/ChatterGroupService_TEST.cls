@@ -81,7 +81,8 @@ private with sharing class ChatterGroupService_TEST {
      */
     @isTest
     private static void getChatterGroupModelById() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
+        //We deliberately don't use Collaboration Group here to keep us out of a hard Chatter dependency
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
         ChatterGroupMapper.instance = new STUB_ChatterGroupMapper(chatterGroupId);
         ChatterGroupService chatterGroupServiceInstance = ChatterGroupService.getInstance();
 
@@ -116,7 +117,8 @@ private with sharing class ChatterGroupService_TEST {
      */
     @isTest
     private static void getChatterGroupModelsLikeName() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
+        //We deliberately don't use Collaboration Group here to keep us out of a hard Chatter dependency
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
         ChatterGroupMapper.instance = new STUB_ChatterGroupMapper(chatterGroupId);
         ChatterGroupService chatterGroupServiceInstance = ChatterGroupService.getInstance();
 
@@ -140,7 +142,8 @@ private with sharing class ChatterGroupService_TEST {
      */
     @isTest
     private static void getChatterGroupModelsLikeNameNegative() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
+        //We deliberately don't use Collaboration Group here to keep us out of a hard Chatter dependency
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
         ChatterGroupMapper.instance = new STUB_ChatterGroupMapper(chatterGroupId);
         ChatterGroupService chatterGroupServiceInstance = ChatterGroupService.getInstance();
 

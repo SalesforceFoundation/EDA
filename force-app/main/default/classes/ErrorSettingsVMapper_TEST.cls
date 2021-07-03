@@ -313,7 +313,8 @@ private with sharing class ErrorSettingsVMapper_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void getErrorSettingsViewModelChatterGroup() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        //We deliberately don't use Collaboration Group here to keep us out of a hard Chatter dependency
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(Contact.getSObjectType());
         ErrorSettingsService.instance = new STUB_ErrorSettingsServiceChatterGroup(chatterGroupId);
         ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
         ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
@@ -580,7 +581,8 @@ private with sharing class ErrorSettingsVMapper_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void getLookupResultForSettingChatterGroupValid() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        //We deliberately don't use Collaboration Group here to keep us out of a hard Chatter dependency
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(Contact.getSObjectType());
         ErrorSettingsService.instance = new STUB_ErrorSettingsServiceChatterGroup(chatterGroupId);
         ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
         ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
@@ -601,8 +603,9 @@ private with sharing class ErrorSettingsVMapper_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void getLookupResultForSettingChatterGroupInvalidId() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
-        Id unfoundChatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        //We deliberately don't use Collaboration Group here to keep us out of a hard Chatter dependency
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(Contact.getSObjectType());
+        Id unfoundChatterGroupId = UTIL_UnitTestData_TEST.getFakeId(Contact.getSObjectType());
         ErrorSettingsService.instance = new STUB_ErrorSettingsServiceChatterGroup(chatterGroupId);
         ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
         ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
@@ -623,7 +626,8 @@ private with sharing class ErrorSettingsVMapper_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void getChatterGroupLookupResultByIdValid() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        //We deliberately don't use Collaboration Group here to keep us out of a hard Chatter dependency
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(Contact.getSObjectType());
         ErrorSettingsService.instance = new STUB_ErrorSettingsServiceChatterGroup(chatterGroupId);
         ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
         ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
@@ -641,8 +645,9 @@ private with sharing class ErrorSettingsVMapper_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void getChatterGroupLookupResultByIdUnfoundId() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
-        Id unfoundChatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        //We deliberately don't use Collaboration Group here to keep us out of a hard Chatter dependency
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(Contact.getSObjectType());
+        Id unfoundChatterGroupId = UTIL_UnitTestData_TEST.getFakeId(Contact.getSObjectType());
         ErrorSettingsService.instance = new STUB_ErrorSettingsServiceChatterGroup(chatterGroupId);
         ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
         ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();
@@ -660,7 +665,8 @@ private with sharing class ErrorSettingsVMapper_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void getChatterGroupLookupResultByIdNonId() {
-        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.getSObjectType());
+        //We deliberately don't use Collaboration Group here to keep us out of a hard Chatter dependency
+        Id chatterGroupId = UTIL_UnitTestData_TEST.getFakeId(Contact.getSObjectType());
         ErrorSettingsService.instance = new STUB_ErrorSettingsServiceChatterGroup(chatterGroupId);
         ChatterGroupService.instance = new STUB_ChatterGroupService(chatterGroupId);
         ErrorSettingsVMapper errorSettingsVMapperInstance = ErrorSettingsVMapper.getInstance();

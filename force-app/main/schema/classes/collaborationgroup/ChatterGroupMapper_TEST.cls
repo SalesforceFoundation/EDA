@@ -81,23 +81,29 @@ private with sharing class ChatterGroupMapper_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getChatterGroupModelById() {
+        //Avoid hard chatter dependency
+        if (!Schema.SObjectType.User.isFeedEnabled()) {
+            return;
+        }
+
         ChatterGroupMapper chatterGroupMapperInstance = ChatterGroupMapper.getInstance();
-        CollaborationGroup collaborationGroup = UTIL_UnitTestData_TEST.getCollaborationGroup(
+        SObject collaborationGroup = UTIL_UnitTestData_TEST.getCollaborationGroup(
             System.now().getTime() + '@testerson.com'
         );
         insert collaborationGroup;
 
-        List<CollaborationGroup> chatterGroupList = UTIL_UnitTestData_TEST.getCollaborationGroupList(
+        List<SObject> chatterGroupList = UTIL_UnitTestData_TEST.getCollaborationGroupList(
             System.now().getTime() + 'EDA',
             2
         );
         insert chatterGroupList;
 
-        CollaborationGroup chatterGroupToTest = [
-            SELECT Id, Name, Description, SmallPhotoUrl
-            FROM CollaborationGroup
-            WHERE Id = :collaborationGroup.id
-        ];
+        Id collaborationGroupId = collaborationGroup.Id;
+
+        List<SObject> chatterGroupsRetrieved = Database.query(
+            'SELECT Id, Name, Description, SmallPhotoUrl FROM CollaborationGroup WHERE Id = :collaborationGroupId'
+        );
+        SObject chatterGroupToTest = chatterGroupsRetrieved[0];
 
         Test.startTest();
         ChatterGroupModel chatterGroupModel = chatterGroupMapperInstance.getChatterGroupModelById(
@@ -111,17 +117,17 @@ private with sharing class ChatterGroupMapper_TEST {
             'Chatter Group Model id should match chatter group id.'
         );
         System.assertEquals(
-            chatterGroupToTest.Name,
+            (String) chatterGroupToTest.get('Name'),
             chatterGroupModel.name,
             'Chatter Group Model name should match chatter group name.'
         );
         System.assertEquals(
-            chatterGroupToTest.Description,
+            (String) chatterGroupToTest.get('Description'),
             chatterGroupModel.description,
             'Chatter Group Model description should match chatter group description.'
         );
         System.assertEquals(
-            chatterGroupToTest.SmallPhotoUrl,
+            (String) chatterGroupToTest.get('SmallPhotoUrl'),
             chatterGroupModel.smallPhotoUrl,
             'Chatter Group Model small photo url should match chatter group small photo url.'
         );
@@ -132,21 +138,23 @@ private with sharing class ChatterGroupMapper_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getChatterGroupModelsLikeName() {
+        //Avoid hard chatter dependency
+        if (!Schema.SObjectType.User.isFeedEnabled()) {
+            return;
+        }
+
         ChatterGroupMapper chatterGroupMapperInstance = ChatterGroupMapper.getInstance();
-        List<CollaborationGroup> chatterGroupList = UTIL_UnitTestData_TEST.getCollaborationGroupList(
+        List<SObject> chatterGroupList = UTIL_UnitTestData_TEST.getCollaborationGroupList(
             System.now().getTime() + 'EDA',
             2
         );
         insert chatterGroupList;
 
-        Map<Id, CollaborationGroup> chatterGroupsByIdsBeforeQuery = new Map<Id, CollaborationGroup>(chatterGroupList);
+        Map<Id, SObject> chatterGroupsByIdsBeforeQuery = new Map<Id, SObject>(chatterGroupList);
+        Set<Id> keySet = chatterGroupsByIdsBeforeQuery.keySet();
 
-        Map<Id, CollaborationGroup> chatterGroupsByIds = new Map<Id, CollaborationGroup>(
-            [
-                SELECT Id, Name, Description, SmallPhotoUrl
-                FROM CollaborationGroup
-                WHERE Id IN :chatterGroupsByIdsBeforeQuery.keySet()
-            ]
+        Map<Id, SObject> chatterGroupsByIds = new Map<Id, SObject>(
+            Database.query('SELECT Id, Name, Description, SmallPhotoUrl FROM CollaborationGroup WHERE Id IN :keySet')
         );
 
         Test.startTest();
@@ -169,21 +177,23 @@ private with sharing class ChatterGroupMapper_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getChatterGroupModelsLikeNameNoneRetrieved() {
+        //Avoid hard chatter dependency
+        if (!Schema.SObjectType.User.isFeedEnabled()) {
+            return;
+        }
+
         ChatterGroupMapper chatterGroupMapperInstance = ChatterGroupMapper.getInstance();
-        List<CollaborationGroup> chatterGroupList = UTIL_UnitTestData_TEST.getCollaborationGroupList(
+        List<SObject> chatterGroupList = UTIL_UnitTestData_TEST.getCollaborationGroupList(
             System.now().getTime() + 'EDA',
             2
         );
         insert chatterGroupList;
 
-        Map<Id, CollaborationGroup> chatterGroupsByIdsBeforeQuery = new Map<Id, CollaborationGroup>(chatterGroupList);
+        Map<Id, SObject> chatterGroupsByIdsBeforeQuery = new Map<Id, SObject>(chatterGroupList);
+        Set<Id> keySet = chatterGroupsByIdsBeforeQuery.keySet();
 
-        Map<Id, CollaborationGroup> chatterGroupsByIds = new Map<Id, CollaborationGroup>(
-            [
-                SELECT Id, Name, Description, SmallPhotoUrl
-                FROM CollaborationGroup
-                WHERE Id IN :chatterGroupsByIdsBeforeQuery.keySet()
-            ]
+        Map<Id, SObject> chatterGroupsByIds = new Map<Id, SObject>(
+            Database.query('SELECT Id, Name, Description, SmallPhotoUrl FROM CollaborationGroup WHERE Id IN :keySet')
         );
 
         Test.startTest();

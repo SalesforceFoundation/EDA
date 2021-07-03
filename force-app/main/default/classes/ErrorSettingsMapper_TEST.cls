@@ -164,7 +164,8 @@ private with sharing class ErrorSettingsMapper_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getErrorSettingsModelValidChatterGroup() {
-        String fakeChatterGroupId = UTIL_UnitTestData_TEST.getFakeId(CollaborationGroup.SObjectType);
+        String fakeChatterGroupId = UTIL_UnitTestData_TEST.getChatterGroupNoDependencyFakeId();
+
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Store_Errors_On__c = true,
@@ -248,14 +249,21 @@ private with sharing class ErrorSettingsMapper_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getChatterGroupIdPrefix() {
+        //Avoid hard chatter dependency
+        if (!Schema.SObjectType.User.isFeedEnabled()) {
+            return;
+        }
+
         ErrorSettingsMapper errorSettingsMapperInstance = ErrorSettingsMapper.getInstance();
+
+        String expectedKeyPrefix = UTIL_Describe.getObjectDescribe('CollaborationGroup').getKeyPrefix();
 
         Test.startTest();
         String chatterGroupIdPrefix = errorSettingsMapperInstance.getChatterGroupIdPrefix();
         Test.stopTest();
 
         System.assertEquals(
-            CollaborationGroup.SObjectType.getDescribe().getKeyPrefix(),
+            expectedKeyPrefix,
             chatterGroupIdPrefix,
             'Chatter Group Id Prefix identified should match the prefix from the schema.'
         );
