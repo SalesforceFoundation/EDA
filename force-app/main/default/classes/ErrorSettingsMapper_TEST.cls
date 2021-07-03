@@ -164,6 +164,10 @@ private with sharing class ErrorSettingsMapper_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getErrorSettingsModelValidChatterGroup() {
+        if (!Schema.SObjectType.User.isFeedEnabled()) {
+            return;
+        }
+
         String fakeChatterGroupId = UTIL_UnitTestData_TEST.getChatterGroupNoDependencyFakeId();
 
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
