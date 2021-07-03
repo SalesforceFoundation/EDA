@@ -370,7 +370,7 @@ private with sharing class ErrorSettingsMapper_TEST {
         System.assertEquals(
             2,
             validErrorNotificationRecipientCategoryLabelsByValue.size(),
-            'Only 3 values should be pulled for valid error notification recipient categories.'
+            'Only 2 values should be pulled for valid error notification recipient categories.'
         );
         System.assertEquals(
             Label.stgOptAllSysAdmins,
