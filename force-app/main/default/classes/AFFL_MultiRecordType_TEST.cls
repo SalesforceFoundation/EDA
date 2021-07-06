@@ -983,7 +983,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
      **************************************************************************/
 
     /**
-     * @description helper class for initialization of tests for processAfflDeletedValud
+     * @description helper class for initialization of tests for processAfflDeletedValid
      */
     private class ProcessAfflDeletedValidData {
         public AFFL_MultiRecordType_TDTM tdtmClass;
@@ -1029,7 +1029,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(
             null,
             contactReturned.get(testData.primaryAffiliationFieldAPIName),
-            'Contact api name should be set to null on deletion.'
+            'Contact Primary Affiliation Field api name should be set to null on deletion.'
         );
         System.assertEquals(
             true,
@@ -1095,11 +1095,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
     }
 
     /**
-     * @description Tests processAfflDeletedValid does not run for contacts with an unpopulated primary affiliation field
+     * @description Tests processAfflDeletedValid does not run for contacts when a primary affiliation field is not supplied
      */
     private static void processAfflDeletedNullAffiliationField() {
         ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
-        testData.testContact.put(testData.primaryAffiliationFieldAPIName, null);
+        testData.primaryAffiliationFieldAPIName = null;
 
         Test.startTest();
         Contact contactReturned = testData.tdtmClass.processAfflDeleted(
@@ -1266,6 +1266,221 @@ public with sharing class AFFL_MultiRecordType_TEST {
                 insertedContact.Primary_Organization__c,
                 'The Primary Organization field should be queried and match that of the inserted Contact.'
             );
+        }
+    }
+
+    /**
+     * @description helper class for initialization of tests for populateKeyAffls
+     */
+    private class PopulateKeyAfflsValidData {
+        public AFFL_MultiRecordType_TDTM tdtmClass;
+        public TDTM_Runnable.DmlWrapper dmlWrapper;
+        public Id fakeAccountId;
+        public String primaryAffiliationFieldAPIName;
+        public Contact testContact;
+        public Affiliation__c affiliation;
+
+        public PopulateKeyAfflsValidData() {
+            this.tdtmClass = new AFFL_MultiRecordType_TDTM();
+            this.dmlWrapper = new TDTM_Runnable.DmlWrapper();
+            this.primaryAffiliationFieldAPIName = AffiliationTestSetupFactory_TEST.getBusinessOrganizationFieldApiName();
+            this.fakeAccountId = UTIL_UnitTestData_TEST.getFakeId(Account.SObjectType);
+
+            Id fakeContactId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+            this.testContact = new Contact(Id = fakeContactId, FirstName = 'Test');
+            testContact.put(this.primaryAffiliationFieldAPIName, fakeAccountId);
+
+            this.affiliation = new Affiliation__c(
+                Account__c = fakeAccountId,
+                Contact__c = fakeContactId,
+                Primary__c = true
+            );
+        }
+    }
+
+    /**
+     * @description Tests populateKeyAffls appropriately sets the primary affiliation field
+     */
+    private static void populateKeyAfflsValid() {
+        PopulateKeyAfflsValidData testData = new PopulateKeyAfflsValidData();
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.populateKeyAffls(
+            testData.affiliation,
+            testData.primaryAffiliationFieldAPIName,
+            testData.testContact,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            testData.affiliation.Account__c,
+            (Id) contactReturned.get(testData.primaryAffiliationFieldAPIName),
+            'Contact Primary Affiliation Field api name should be set to the Affiliation\'s Account.'
+        );
+        System.assertEquals(
+            true,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'The Contact should be added to the DMLWrapper.'
+        );
+    }
+
+    /**
+     * @description Tests populateKeyAffls does not run on recursion
+     */
+    private static void populateKeyAfflsRecursion() {
+        PopulateKeyAfflsValidData testData = new PopulateKeyAfflsValidData();
+
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated,
+            true
+        );
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.populateKeyAffls(
+            testData.affiliation,
+            testData.primaryAffiliationFieldAPIName,
+            testData.testContact,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(null, contactReturned, 'Method should make no changes to the Contact on recursion.');
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on recursion.'
+        );
+    }
+
+    /**
+     * @description Tests populateKeyAffls does not run for contacts when a primary affiliation field is not supplied
+     */
+    private static void populateKeyAfflsNullAffiliationField() {
+        PopulateKeyAfflsValidData testData = new PopulateKeyAfflsValidData();
+        testData.primaryAffiliationFieldAPIName = null;
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.populateKeyAffls(
+            testData.affiliation,
+            testData.primaryAffiliationFieldAPIName,
+            testData.testContact,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            contactReturned,
+            'Method should make no changes to the Contact on a null primary affiliation field.'
+        );
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on a null primary affiliation field.'
+        );
+    }
+
+    /**
+     * @description Tests uncheckOtherPrimariesSameType for multiple affiliations
+     */
+    private static void uncheckOtherPrimariesSameType() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        //Setup Accounts
+        Id businessOrganizationRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID();
+        Id householdAccountId = UTIL_Describe.getCustomHHAccRecTypeID();
+
+        List<Account> businessOrganizationAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            AFFL_MultiRecordType_TEST.numberOfTestRecords,
+            businessOrganizationRecordTypeId
+        );
+        List<Account> householdAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            AFFL_MultiRecordType_TEST.numberOfTestRecords,
+            householdAccountId
+        );
+
+        List<Account> accountsToInsert = new List<Account>();
+        accountsToInsert.addAll(businessOrganizationAccounts);
+        accountsToInsert.addAll(householdAccounts);
+        //Saving time on the dml operation adds up
+        insert accountsToInsert;
+
+        //Setup Contacts
+        List<Contact> contactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(
+            AFFL_MultiRecordType_TEST.numberOfTestRecords
+        );
+
+        for (Integer i = 0; i < AFFL_MultiRecordType_TEST.numberOfTestRecords; i++) {
+            Contact contactToInsert = contactList[i];
+            contactToInsert.Primary_Household__c = householdAccounts[i].Id;
+            contactToInsert.Primary_Organization__c = businessOrganizationAccounts[i].Id;
+        }
+
+        insert contactList;
+        Map<Id, Contact> insertedContactsByIds = new Map<Id, Contact>(contactList);
+
+        //Setup Initial Primary Affiliations
+        List<Affiliation__c> oldPrimaryAffiliationList = new List<Affiliation__c>();
+
+        for (Integer i = 0; i < AFFL_MultiRecordType_TEST.numberOfTestRecords; i++) {
+            Affiliation__c businessAffiliation = new Affiliation__c(
+                Contact__c = contactList[i].Id,
+                Account__c = businessOrganizationAccounts[i].Id,
+                Primary__c = true
+            );
+            oldPrimaryAffiliationList.add(businessAffiliation);
+
+            Affiliation__c householdAffiliation = new Affiliation__c(
+                Contact__c = contactList[i].Id,
+                Account__c = householdAccounts[i].Id,
+                Primary__c = true
+            );
+            oldPrimaryAffiliationList.add(householdAffiliation);
+        }
+        insert oldPrimaryAffiliationList;
+        Map<Id, Affiliation__c> oldPrimaryAffiliationsById = new Map<Id, Affiliation__c>(oldPrimaryAffiliationList);
+
+        //Setup new primary affiliations
+        List<Affiliation__c> newPrimaryAffiliationList = new List<Affiliation__c>();
+
+        for (Integer i = 0; i < AFFL_MultiRecordType_TEST.numberOfTestRecords; i++) {
+            Integer nextSafeInteger = math.mod(i, 5);
+            Affiliation__c businessAffiliation = new Affiliation__c(
+                Contact__c = contactList[i].Id,
+                Account__c = businessOrganizationAccounts[nextSafeInteger].Id,
+                Primary__c = true
+            );
+            newPrimaryAffiliationList.add(businessAffiliation);
+
+            Affiliation__c householdAffiliation = new Affiliation__c(
+                Contact__c = contactList[i].Id,
+                Account__c = householdAccounts[nextSafeInteger].Id,
+                Primary__c = true
+            );
+            newPrimaryAffiliationList.add(householdAffiliation);
+        }
+        //Recalculate formulas in memory!
+        Formula.recalculateFormulas(newPrimaryAffiliationList);
+
+        Test.startTest();
+        List<Affiliation__c> uncheckedAffiliations = tdtmClass.uncheckOtherPrimariesSameType(
+            newPrimaryAffiliationList,
+            dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            oldPrimaryAffiliationList.size(),
+            uncheckedAffiliations.size(),
+            'Number of returned affiliations should match the number unchecked.'
+        );
+
+        for(Affiliation__c uncheckedAffiliation: uncheckedAffiliations) {
+            Affiliation__c originalAffiliation = oldPrimaryAffiliationsById.get(uncheckedAffiliation.Id);
+            System.assertNotEquals(null,originalAffiliation, 'Each old primary affiliation should be modified.');
+            System.assertEquals(false,originalAffiliation.Primary__c, 'Each old primary affiliation should have its Primary field set to false.');
         }
     }
 }
