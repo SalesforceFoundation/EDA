@@ -36,6 +36,8 @@
  */
 @isTest
 public with sharing class AFFL_MultiRecordType_TEST {
+    private static Integer numberOfTestRecords = 5;
+
     /**************************************************************************
      * INTEGRATION TESTS
      **************************************************************************/
@@ -1176,10 +1178,94 @@ public with sharing class AFFL_MultiRecordType_TEST {
         );
     }
 
-    /*
-    afflOld.Primary__c &&
-    lookupFieldAPIName != null &&
-    relatedContact != null &&
-    relatedContact.get(lookupFieldAPIName) == afflOld.Account__c
-    */
+    /**
+     * @description Tests queryAfflLookupFields for multiple affiliations
+     */
+    private static void queryAfflLookupFields() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        //Setup Accounts
+        Id businessOrganizationRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID();
+        Id householdAccountId = UTIL_Describe.getCustomHHAccRecTypeID();
+
+        List<Account> businessOrganizationAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            AFFL_MultiRecordType_TEST.numberOfTestRecords,
+            businessOrganizationRecordTypeId
+        );
+        List<Account> householdAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            AFFL_MultiRecordType_TEST.numberOfTestRecords,
+            householdAccountId
+        );
+
+        List<Account> accountsToInsert = new List<Account>();
+        accountsToInsert.addAll(businessOrganizationAccounts);
+        accountsToInsert.addAll(householdAccounts);
+        //Saving time on the dml operation adds up
+        insert accountsToInsert;
+
+        //Setup Contacts
+        List<Contact> contactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(
+            AFFL_MultiRecordType_TEST.numberOfTestRecords
+        );
+
+        for (Integer i = 0; i < AFFL_MultiRecordType_TEST.numberOfTestRecords; i++) {
+            Contact contactToInsert = contactList[i];
+            contactToInsert.Primary_Household__c = householdAccounts[i].Id;
+            contactToInsert.Primary_Organization__c = businessOrganizationAccounts[i].Id;
+        }
+
+        insert contactList;
+        Map<Id, Contact> insertedContactsByIds = new Map<Id, Contact>(contactList);
+
+        //Mock Affiliations
+        List<Affiliation__c> affiliationList = new List<Affiliation__c>();
+
+        for (Integer i = 0; i < AFFL_MultiRecordType_TEST.numberOfTestRecords; i++) {
+            Affiliation__c businessAffiliation = new Affiliation__c(
+                Contact__c = contactList[i].Id,
+                Account__c = businessOrganizationAccounts[i].Id,
+                Primary__c = true
+            );
+            affiliationList.add(businessAffiliation);
+
+            Affiliation__c householdAffiliation = new Affiliation__c(
+                Contact__c = contactList[i].Id,
+                Account__c = householdAccounts[i].Id,
+                Primary__c = true
+            );
+            affiliationList.add(householdAffiliation);
+        }
+
+        List<SObject> affiliationAsSObjectList = affiliationList;
+
+        //Set up affiliation mappings on household and business organization
+        //This is done later to cause it not to interfere with our data setup so the unit test detects unexpected behavior better.
+        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName();
+
+        Test.startTest();
+        Map<Id, Contact> returnedContactsByIds = tdtmClass.queryAfflLookupFields(affiliationAsSObjectList);
+        Test.stopTest();
+
+        System.assertEquals(
+            insertedContactsByIds.size(),
+            returnedContactsByIds.size(),
+            'Number of returned contacts should match the number inserted.'
+        );
+
+        for (Contact returnedContact : returnedContactsByIds.values()) {
+            Contact insertedContact = insertedContactsByIds.get(returnedContact.Id);
+
+            System.assertNotEquals(null, insertedContact, 'A contact should be returned for each inserted contact.');
+            System.assertEquals(
+                returnedContact.Primary_Household__c,
+                insertedContact.Primary_Household__c,
+                'The Primary Household field should be queried and match that of the inserted Contact.'
+            );
+            System.assertEquals(
+                returnedContact.Primary_Organization__c,
+                insertedContact.Primary_Organization__c,
+                'The Primary Organization field should be queried and match that of the inserted Contact.'
+            );
+        }
+    }
 }

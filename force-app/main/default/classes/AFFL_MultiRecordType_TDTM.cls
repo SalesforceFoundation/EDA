@@ -296,10 +296,10 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
      * @param affiliationList The Affiliation being deleted
      * @return The map of Contacts by their Ids with all primary Affiliation fields populated
      *******************************************************************************************************/
-    public Map<ID, Contact> queryAfflLookupFields(List<SObject> afflsList) {
+    public Map<Id, Contact> queryAfflLookupFields(List<SObject> afflsList) {
         //Query the primary affiliation fields for all contacts at once
         String contactIDs = '(';
-        Map<ID, Contact> relatedContactsMap = new Map<ID, Contact>();
+        Map<Id, Contact> relatedContactsMap = new Map<ID, Contact>();
         if (afflsList != null && afflsList.size() > 0) {
             Affiliation__c firstAffl = (Affiliation__c) afflsList[0];
             if (firstAffl.Contact__c != null)
