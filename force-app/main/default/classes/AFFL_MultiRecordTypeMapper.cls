@@ -235,6 +235,7 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
             autoRole = accTypeToEnrollCreateRole.get(affl.Affiliation_Type__c);
             autoStatus = accTypeToEnrollCreateStatus.get(affl.Affiliation_Type__c);
         }
+
         if (
             autoEnrollment &&
             affl != null &&

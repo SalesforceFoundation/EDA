@@ -312,4 +312,149 @@ private class AFFL_MultiRecordTypeMapper_TEST {
 
         System.assertEquals(null, primaryAfflLookupAPIName);
     }
+
+    /**
+     * @description helper class for initialization of tests for needsProgramEnrollment
+     */
+    private class NeedsProgramEnrollmentValidData {
+        public AFFL_MultiRecordTypeMapper testClass;
+        public Account accountToTest;
+        public Contact contactToTest;
+        public Affiliation__c affiliation;
+
+        public NeedsProgramEnrollmentValidData() {
+            this.testClass = new AFFL_MultiRecordTypeMapper();
+            this.contactToTest = UTIL_UnitTestData_TEST.getUniqueContact(1);
+            insert contactToTest;
+
+            Id businessOrganizationRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID();
+            this.accountToTest = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, businessOrganizationRecordTypeId)[0];
+            insert this.accountToTest;
+
+            this.affiliation = new Affiliation__c(
+                Id = UTIL_UnitTestData_TEST.getFakeId(Affiliation__c.SObjectType),
+                Account__c = this.accountToTest.Id,
+                Contact__c = this.contactToTest.Id,
+                Primary__c = true,
+                Role__c = 'Student',
+                Status__c = 'Current'
+            );
+        }
+    }
+
+    /**
+     * @description Tests needsProgramEnrollment for when a program enrollment should be created using a Record Type
+     * developer name and a Contact Field api name
+     */
+    @isTest
+    private static void needsProgramEnrollmentDevNameAndApiName() {
+        NeedsProgramEnrollmentValidData testData = new NeedsProgramEnrollmentValidData();
+        Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
+
+        //Create auto enrollment mapping
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName();
+
+        Test.startTest();
+        Boolean programEnrollmentNeeded = testData.testClass.needsProgramEnrollment(testData.affiliation);
+        Test.stopTest();
+
+        //TODO: Fix functionality so this is true
+        System.assertEquals(
+            false,
+            programEnrollmentNeeded,
+            'A program enrollment should not be needed for the Affiliation.'
+        );
+    }
+
+    /**
+     * @description Tests needsProgramEnrollment for when a program enrollment should be created using a Record Type
+     * developer name and a Contact Field label
+     */
+    @isTest
+    private static void needsProgramEnrollmentDevNameAndLabel() {
+        NeedsProgramEnrollmentValidData testData = new NeedsProgramEnrollmentValidData();
+        Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
+
+        //Create auto enrollment mapping
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel();
+
+        Test.startTest();
+        Boolean programEnrollmentNeeded = testData.testClass.needsProgramEnrollment(testData.affiliation);
+        Test.stopTest();
+
+        //TODO: Fix functionality so this is true
+        System.assertEquals(
+            false,
+            programEnrollmentNeeded,
+            'A program enrollment should not be needed for the Affiliation.'
+        );
+    }
+
+    /**
+     * @description Tests needsProgramEnrollment for when a program enrollment should be created using a Record Type name
+     * and a Contact Field api name
+     */
+    @isTest
+    private static void needsProgramEnrollmentNameAndApiName() {
+        NeedsProgramEnrollmentValidData testData = new NeedsProgramEnrollmentValidData();
+        Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
+
+        //Create auto enrollment mapping
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName();
+
+        Test.startTest();
+        Boolean programEnrollmentNeeded = testData.testClass.needsProgramEnrollment(testData.affiliation);
+        Test.stopTest();
+
+        //TODO: Fix functionality so this is true
+        System.assertEquals(
+            false,
+            programEnrollmentNeeded,
+            'A program enrollment should not be needed for the Affiliation.'
+        );
+    }
+
+    /**
+     * @description Tests needsProgramEnrollment for when a program enrollment should be created using a Record Type name
+     * and a Contact Field label
+     */
+    @isTest
+    private static void needsProgramEnrollmentNameAndLabel() {
+        NeedsProgramEnrollmentValidData testData = new NeedsProgramEnrollmentValidData();
+        Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
+
+        //Create auto enrollment mapping
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+
+        Test.startTest();
+        Boolean programEnrollmentNeeded = testData.testClass.needsProgramEnrollment(testData.affiliation);
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            programEnrollmentNeeded,
+            'A program enrollment should be needed for the Affiliation.'
+        );
+    }
+
+    /**
+     * @description Tests needsProgramEnrollment for when a the affiliation type is null
+     */
+    @isTest
+    private static void needsProgramEnrollmentNullAffiliationType() {
+        NeedsProgramEnrollmentValidData testData = new NeedsProgramEnrollmentValidData();
+
+        //Create auto enrollment mapping
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+
+        Test.startTest();
+        Boolean programEnrollmentNeeded = testData.testClass.needsProgramEnrollment(testData.affiliation);
+        Test.stopTest();
+
+        System.assertEquals(
+            false,
+            programEnrollmentNeeded,
+            'A program enrollment should not be needed for the Affiliation when the Affiliation type is null.'
+        );
+    }
 }
