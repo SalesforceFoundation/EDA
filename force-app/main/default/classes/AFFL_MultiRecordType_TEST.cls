@@ -37,7 +37,7 @@
 @isTest
 public with sharing class AFFL_MultiRecordType_TEST {
     /**************************************************************************
-     * TESTS
+     * INTEGRATION TESTS
      **************************************************************************/
     private static void createPrimaryAffl() {
         List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
@@ -929,7 +929,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     /* Test to ensure users can create Contacts and Affiliations when Affiliation Record Type Enforced is enabled in EDA Settings
      and Affiliation Mappings have Labels for Account Record Type and APIs for Primary Affiliaiton Fields */
-
     @isTest
     private static void affiliationRecordTypeEnforceWLabelsForAccRecTypeAndAPIForPrimaryAffl() {
         AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName();
@@ -975,5 +974,51 @@ public with sharing class AFFL_MultiRecordType_TEST {
         // Ensure 4 new Affiliations are inserted
         List<Affiliation__c> affiliationsInserted = [SELECT Id FROM Affiliation__c];
         System.assertEquals(5, affiliationsInserted.size());
+    }
+
+    /**************************************************************************
+     * Unit TESTS
+     **************************************************************************/
+
+    /**
+     * @description runs processAfflDeletedValid and validates that it functions when valid parameters are provided
+     */
+    private static void processAfflDeletedValid() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        String primaryAffiliationAPIName = AffiliationTestSetupFactory_TEST.getBusinessOrganizationFieldApiName();
+
+        Id fakeAccountId = UTIL_UnitTestData_TEST.getFakeId(Account.SObjectType);
+        Id fakeContactId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+
+        Contact contactToChange = new Contact(Id = fakeContactId, FirstName = 'Test');
+        contactToChange.put(primaryAffiliationAPIName, fakeAccountId);
+
+        Affiliation__c sourceAffiliation = new Affiliation__c(
+            Account__c = fakeAccountId,
+            Contact__c = fakeContactId,
+            Primary__c = true
+        );
+
+        Test.startTest();
+        Contact contact = tdtmClass.processAfflDeleted(
+            sourceAffiliation,
+            contactToChange,
+            primaryAffiliationAPIName,
+            dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            contactToChange.get(primaryAffiliationAPIName),
+            'Contact api name should be set to null on deletion.'
+        );
+        System.assertEquals(
+            true,
+            dmlWrapper.objectsToUpdate.contains(contactToChange),
+            'The Contact should be added to the DMLWrapper.'
+        );
     }
 }
