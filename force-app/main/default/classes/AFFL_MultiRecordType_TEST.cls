@@ -981,44 +981,205 @@ public with sharing class AFFL_MultiRecordType_TEST {
      **************************************************************************/
 
     /**
-     * @description runs processAfflDeletedValid and validates that it functions when valid parameters are provided
+     * @description helper class for initialization of tests for processAfflDeletedValud
+     */
+    private class ProcessAfflDeletedValidData {
+        public AFFL_MultiRecordType_TDTM tdtmClass;
+        public TDTM_Runnable.DmlWrapper dmlWrapper;
+        public Id fakeAccountId;
+        public String primaryAffiliationFieldAPIName;
+        public Contact testContact;
+        public Affiliation__c affiliation;
+
+        public ProcessAfflDeletedValidData() {
+            this.tdtmClass = new AFFL_MultiRecordType_TDTM();
+            this.dmlWrapper = new TDTM_Runnable.DmlWrapper();
+            this.primaryAffiliationFieldAPIName = AffiliationTestSetupFactory_TEST.getBusinessOrganizationFieldApiName();
+            this.fakeAccountId = UTIL_UnitTestData_TEST.getFakeId(Account.SObjectType);
+
+            Id fakeContactId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+            this.testContact = new Contact(Id = fakeContactId, FirstName = 'Test');
+            testContact.put(this.primaryAffiliationFieldAPIName, fakeAccountId);
+
+            this.affiliation = new Affiliation__c(
+                Account__c = fakeAccountId,
+                Contact__c = fakeContactId,
+                Primary__c = true
+            );
+        }
+    }
+
+    /**
+     * @description Tests processAfflDeletedValid appropriately clears the primary affiliation field
      */
     private static void processAfflDeletedValid() {
-        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
-        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
-
-        String primaryAffiliationAPIName = AffiliationTestSetupFactory_TEST.getBusinessOrganizationFieldApiName();
-
-        Id fakeAccountId = UTIL_UnitTestData_TEST.getFakeId(Account.SObjectType);
-        Id fakeContactId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
-
-        Contact contactToChange = new Contact(Id = fakeContactId, FirstName = 'Test');
-        contactToChange.put(primaryAffiliationAPIName, fakeAccountId);
-
-        Affiliation__c sourceAffiliation = new Affiliation__c(
-            Account__c = fakeAccountId,
-            Contact__c = fakeContactId,
-            Primary__c = true
-        );
+        ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
 
         Test.startTest();
-        Contact contact = tdtmClass.processAfflDeleted(
-            sourceAffiliation,
-            contactToChange,
-            primaryAffiliationAPIName,
-            dmlWrapper
+        Contact contactReturned = testData.tdtmClass.processAfflDeleted(
+            testData.affiliation,
+            testData.testContact,
+            testData.primaryAffiliationFieldAPIName,
+            testData.dmlWrapper
         );
         Test.stopTest();
 
         System.assertEquals(
             null,
-            contactToChange.get(primaryAffiliationAPIName),
+            contactReturned.get(testData.primaryAffiliationFieldAPIName),
             'Contact api name should be set to null on deletion.'
         );
         System.assertEquals(
             true,
-            dmlWrapper.objectsToUpdate.contains(contactToChange),
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
             'The Contact should be added to the DMLWrapper.'
         );
     }
+
+    /**
+     * @description Tests processAfflDeletedValid does not run on recursion
+     */
+    private static void processAfflDeletedRecursion() {
+        ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
+
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated,
+            true
+        );
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.processAfflDeleted(
+            testData.affiliation,
+            testData.testContact,
+            testData.primaryAffiliationFieldAPIName,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(null, contactReturned, 'Method should make no changes to the Contact on recursion.');
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on recursion.'
+        );
+    }
+
+    /**
+     * @description Tests processAfflDeletedValid does not run for non-primary affiliations
+     */
+    private static void processAfflDeletedNonPrimaryAffiliation() {
+        ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
+        testData.affiliation.Primary__c = false;
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.processAfflDeleted(
+            testData.affiliation,
+            testData.testContact,
+            testData.primaryAffiliationFieldAPIName,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            contactReturned,
+            'Method should make no changes to the Contact on non-primary affiliations.'
+        );
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on non-primary affiliations.'
+        );
+    }
+
+    /**
+     * @description Tests processAfflDeletedValid does not run for contacts with an unpopulated primary affiliation field
+     */
+    private static void processAfflDeletedNullAffiliationField() {
+        ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
+        testData.testContact.put(testData.primaryAffiliationFieldAPIName, null);
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.processAfflDeleted(
+            testData.affiliation,
+            testData.testContact,
+            testData.primaryAffiliationFieldAPIName,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            contactReturned,
+            'Method should make no changes to the Contact on a null primary affiliation field.'
+        );
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on a null primary affiliation field.'
+        );
+    }
+
+    /**
+     * @description Tests processAfflDeletedValid does not run for contacts when the contact is null
+     */
+    private static void processAfflDeletedNullContact() {
+        ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.processAfflDeleted(
+            testData.affiliation,
+            null,
+            testData.primaryAffiliationFieldAPIName,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(null, contactReturned, 'Method should make no changes to the Contact on a null contact.');
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on a null contact.'
+        );
+    }
+
+    /**
+     * @description Tests processAfflDeletedValid does not run for contacts when the affiliation account does not match the contact account
+     */
+    private static void processAfflDeletedDifferentContactPrimaryAffiliationAccount() {
+        ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
+        Id differentFakeAccountId = UTIL_UnitTestData_TEST.getFakeId(Account.SObjectType);
+        testData.affiliation = new Affiliation__c(
+            Account__c = differentFakeAccountId,
+            Contact__c = testData.testContact.Id,
+            Primary__c = true
+        );
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.processAfflDeleted(
+            testData.affiliation,
+            testData.testContact,
+            testData.primaryAffiliationFieldAPIName,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            contactReturned,
+            'Method should make no changes to the Contact on an unmatched account.'
+        );
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on an unmatched account.'
+        );
+    }
+
+    /*
+    afflOld.Primary__c &&
+    lookupFieldAPIName != null &&
+    relatedContact != null &&
+    relatedContact.get(lookupFieldAPIName) == afflOld.Account__c
+    */
 }
