@@ -1477,10 +1477,159 @@ public with sharing class AFFL_MultiRecordType_TEST {
             'Number of returned affiliations should match the number unchecked.'
         );
 
-        for(Affiliation__c uncheckedAffiliation: uncheckedAffiliations) {
+        for (Affiliation__c uncheckedAffiliation : uncheckedAffiliations) {
             Affiliation__c originalAffiliation = oldPrimaryAffiliationsById.get(uncheckedAffiliation.Id);
-            System.assertNotEquals(null,originalAffiliation, 'Each old primary affiliation should be modified.');
-            System.assertEquals(false,originalAffiliation.Primary__c, 'Each old primary affiliation should have its Primary field set to false.');
+            System.assertNotEquals(null, originalAffiliation, 'Each old primary affiliation should be modified.');
+            System.assertEquals(
+                false,
+                originalAffiliation.Primary__c,
+                'Each old primary affiliation should have its Primary field set to false.'
+            );
+        }
+    }
+
+    /**
+     * @description helper class for initialization of tests for createProgramEnrollmentIfNecessary
+     */
+    private class CreateProgramEnrollmentValidData {
+        public AFFL_MultiRecordType_TDTM tdtmClass;
+        public TDTM_Runnable.DmlWrapper dmlWrapper;
+        public Account accountToTest;
+        public Contact contactToTest;
+        public Affiliation__c affiliation;
+
+        public CreateProgramEnrollmentValidData() {
+            this.tdtmClass = new AFFL_MultiRecordType_TDTM();
+            this.dmlWrapper = new TDTM_Runnable.DmlWrapper();
+            this.contactToTest = UTIL_UnitTestData_TEST.getUniqueContact(1);
+            insert contactToTest;
+
+            Id businessOrganizationRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID();
+            this.accountToTest = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, businessOrganizationRecordTypeId)[0];
+            insert this.accountToTest;
+
+            this.affiliation = new Affiliation__c(
+                Id = UTIL_UnitTestData_TEST.getFakeId(Affiliation__c.SObjectType),
+                Account__c = this.accountToTest.Id,
+                Contact__c = this.contactToTest.Id,
+                Primary__c = true
+            );
+        }
+    }
+
+    /**
+     * @description Tests createProgramEnrollmentIfNecessary for valid data requiring a program enrollment be created
+     */
+    private static void createProgramEnrollmentIfNecessaryValidData() {
+        CreateProgramEnrollmentValidData testData = new CreateProgramEnrollmentValidData();
+        AFFL_MultiRecordType_TDTM.afflMapper = new AFFL_MultiRecordTypeMapper_STUB(true);
+        Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
+
+        Test.startTest();
+        Program_Enrollment__c programEnrollmentCreated = testData.tdtmClass.createProgramEnrollmentIfNecessary(
+            testData.affiliation,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertNotEquals(
+            null,
+            programEnrollmentCreated,
+            'A Program Enrollment should be created for the associated Affiliation.'
+        );
+        System.assertEquals(
+            testData.affiliation.Id,
+            programEnrollmentCreated.Affiliation__c,
+            'The Program Enrollment\'s Affiliation should match the provided Affiliation\'s.'
+        );
+        System.assertEquals(
+            testData.affiliation.Account__c,
+            programEnrollmentCreated.Account__c,
+            'The Program Enrollment\'s Account should match the Affiliation\'s.'
+        );
+        System.assertEquals(
+            testData.affiliation.Contact__c,
+            programEnrollmentCreated.Contact__c,
+            'The Program Enrollment\'s Contact should match the Affiliation\'s.'
+        );
+    }
+
+    /**
+     * @description Tests createProgramEnrollmentIfNecessary for when a Program Enrollment is not needed
+     */
+    private static void createProgramEnrollmentIfNecessaryNotNeeded() {
+        CreateProgramEnrollmentValidData testData = new CreateProgramEnrollmentValidData();
+        AFFL_MultiRecordType_TDTM.afflMapper = new AFFL_MultiRecordTypeMapper_STUB(false);
+        Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
+
+        Test.startTest();
+        Program_Enrollment__c programEnrollmentCreated = testData.tdtmClass.createProgramEnrollmentIfNecessary(
+            testData.affiliation,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            programEnrollmentCreated,
+            'A Program Enrollment should not be created when the mapper specifies it should not.'
+        );
+    }
+
+    /**
+     * @description Tests createProgramEnrollmentIfNecessary for when the affiliation type is null
+     */
+    private static void createProgramEnrollmentIfNecessaryNoAffiliationType() {
+        CreateProgramEnrollmentValidData testData = new CreateProgramEnrollmentValidData();
+        AFFL_MultiRecordType_TDTM.afflMapper = new AFFL_MultiRecordTypeMapper_STUB(true);
+
+        Test.startTest();
+        Program_Enrollment__c programEnrollmentCreated = testData.tdtmClass.createProgramEnrollmentIfNecessary(
+            testData.affiliation,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            programEnrollmentCreated,
+            'A Program Enrollment should not be created when the affiliation type is null.'
+        );
+    }
+
+    /**
+     * @description Tests createProgramEnrollmentIfNecessary for when the affiliation is null
+     */
+    private static void createProgramEnrollmentIfNecessaryNullAffiliation() {
+        CreateProgramEnrollmentValidData testData = new CreateProgramEnrollmentValidData();
+        AFFL_MultiRecordType_TDTM.afflMapper = new AFFL_MultiRecordTypeMapper_STUB(true);
+
+        Test.startTest();
+        Program_Enrollment__c programEnrollmentCreated = testData.tdtmClass.createProgramEnrollmentIfNecessary(
+            null,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            programEnrollmentCreated,
+            'A Program Enrollment should not be created when the affiliation type is null.'
+        );
+    }
+
+    /**
+     * @description Stubs the AFFL_MultiRecordTypeMapper to mock behavior of needsProgramEnrollment
+     */
+    public class AFFL_MultiRecordTypeMapper_STUB extends AFFL_MultiRecordTypeMapper {
+        Boolean programEnrollmentNeeded;
+
+        public AFFL_MultiRecordTypeMapper_STUB(Boolean programEnrollmentNeeded) {
+            this.programEnrollmentNeeded = programEnrollmentNeeded;
+        }
+
+        public override Boolean needsProgramEnrollment(Affiliation__c affl) {
+            return programEnrollmentNeeded;
         }
     }
 }
