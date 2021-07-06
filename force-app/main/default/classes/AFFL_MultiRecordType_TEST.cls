@@ -61,7 +61,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertNotEquals(null, contact.Primary_Household__c);
 
         //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account bizOrg1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert bizOrg1;
 
         //Create another key affiliation, this time to a biz org
@@ -83,7 +83,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(bizOrg1.ID, Contact.Primary_Organization__c);
 
         //Create second account of the same record type
-        Account bizOrg2 = new Account(Name = 'Toys Inc', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account bizOrg2 = new Account(Name = 'Toys Inc', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert bizOrg2;
 
         //Create second primary affiliation
@@ -126,7 +126,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert contact;
 
         //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account bizOrg1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert bizOrg1;
 
         //Create primary affiliation
@@ -169,7 +169,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertNotEquals(null, contact.Primary_Household__c);
 
         //Craete account of Business Organization record type
-        Account acc1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert acc1;
 
         //Create primary Business affiliation
@@ -241,7 +241,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert contact;
 
         //Create account of Business Organization record type
-        Account acc1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert acc1;
 
         //Create non-primary Business affiliation
@@ -277,8 +277,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert contact;
 
         //Create 2 accounts of Business Organization record type
-        Account acc1 = new Account(Name = 'Acme1', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
-        Account acc2 = new Account(Name = 'Acme2', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc1 = new Account(Name = 'Acme1', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
+        Account acc2 = new Account(Name = 'Acme2', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert new List<Account>{ acc1, acc2 };
 
         //Create primary Business affiliation
@@ -329,8 +329,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert contact;
 
         //Create 2 accounts of Business Organization record type
-        Account acc1 = new Account(Name = 'Acme1', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
-        Account acc2 = new Account(Name = 'Acme2', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc1 = new Account(Name = 'Acme1', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
+        Account acc2 = new Account(Name = 'Acme2', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert new List<Account>{ acc1, acc2 };
 
         //Create primary Business affiliation
@@ -372,7 +372,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert contact;
 
         //Craete account of Business Organization record type
-        Account acc = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert acc;
 
         //Create Business affiliation
@@ -415,7 +415,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert contact;
 
         //Craete account of Business Organization record type
-        Account acc = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert acc;
 
         //Create Business affiliation
@@ -450,7 +450,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact
@@ -502,8 +502,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
         AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
 
         // Insert Accounts
-        Account bizAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
-        Account bizAcc2 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
+        Account bizAcc2 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         Account hhAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomHHAccRecTypeID())[0];
         Account hhAcc2 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomHHAccRecTypeID())[0];
 
@@ -577,7 +577,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         List<Account> accList = new List<Account>();
 
         // Insert a Business Account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         accList.add(bizAcc);
 
         // Insert a Household Account
@@ -652,7 +652,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName();
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact with business account as Primary business organization
@@ -679,7 +679,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName();
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact with business account as Primary business organization
@@ -715,7 +715,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel();
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact with business account as Primary business organization
@@ -751,7 +751,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName();
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact with business account as Primary business organization
@@ -1185,7 +1185,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
 
         //Setup Accounts
-        Id businessOrganizationRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID();
+        Id businessOrganizationRecordTypeId = UTIL_Describe.getBizAccRecTypeID();
         Id householdAccountId = UTIL_Describe.getCustomHHAccRecTypeID();
 
         List<Account> businessOrganizationAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
@@ -1389,7 +1389,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
 
         //Setup Accounts
-        Id businessOrganizationRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID();
+        Id businessOrganizationRecordTypeId = UTIL_Describe.getBizAccRecTypeID();
         Id householdAccountId = UTIL_Describe.getCustomHHAccRecTypeID();
 
         List<Account> businessOrganizationAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
@@ -1504,7 +1504,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
             this.contactToTest = UTIL_UnitTestData_TEST.getUniqueContact(1);
             insert contactToTest;
 
-            Id businessOrganizationRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID();
+            Id businessOrganizationRecordTypeId = UTIL_Describe.getBizAccRecTypeID();
             this.accountToTest = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, businessOrganizationRecordTypeId)[0];
             insert this.accountToTest;
 
