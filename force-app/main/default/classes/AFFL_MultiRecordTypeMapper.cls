@@ -57,6 +57,7 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      * @description Account record type info, cached separately to maintain current functionality.
      ********************************************************************************************************/
     private static Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByName;
+    @TestVisible
     private static Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByDeveloperName;
     //NOTE: Consider for refactor. This is a high risk area
 
@@ -166,7 +167,6 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      * @description Gets affiliation mappings that have a populated Account Record Type field and a populated Primary Affiliation Field
      * @return The List of affiliation mappings that do not have a blank Account Record Type or a blank Primary Affiliation Field
      */
-    //TODO: Write Tests
     @TestVisible
     private List<Affl_Mappings__c> getPopulatedAffiliationMappings() {
         List<Affl_Mappings__c> affiliationMappings = UTIL_CustomSettingsFacade.getAfflMappings();
@@ -186,7 +186,6 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      * @param affiliationMappings The affiliation mappings to get the account record types from
      * @return The List of raw Account record types specified in the mappings
      */
-    //TODO: Write Tests
     @TestVisible
     private List<String> getRawAccountRecordTypes(List<Affl_Mappings__c> affiliationMappings) {
         List<String> accountRecordTypes = new List<String>();
@@ -202,7 +201,6 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      * @param affiliationMappings The affiliation mappings to get the Contact fields and Account Record Types from
      * @return The map of raw Account Record Types to raw Contact Primary Affiliation fields
      */
-    //TODO: Write Tests
     @TestVisible
     private Map<String, String> getRawContactFieldsByAccountRecordType(List<Affl_Mappings__c> affiliationMappings) {
         Map<String, String> contactFieldsByAccountRecordType = new Map<String, String>();
@@ -221,7 +219,6 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      * @param accountRecordTypeInfosByDeveloperName The map of Account Recorc
      * @return The map of valid Account Record Type labels to Primary Affiliation Mappings
      */
-    //TODO: Write Tests
     @TestVisible
     Map<String, Affl_Mappings__c> getPrimaryAffiliationMappingsByAccountRecordTypeName(
         List<Affl_Mappings__c> affiliationMappings,
@@ -315,9 +312,9 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
     }
 
     /*******************************************************************************************************
-     * @description Tells caller if Account record type needs Program Enrollment auto-creation.
-     * @param accountRecordType The name of the Account record type as entered in the Affiliation Mappings.
-     * @return Boolean Whether the Account record type has been flagged as needing Academic Record auto-creation.
+     * @description Whether or not the affiliation requires a program enrollment to be auto-created.
+     * @param affl The affiliation to check for program enrollment creations
+     * @return Whether or not the affiliation requires a program enrollment to be auto-created.
      ********************************************************************************************************/
     public virtual Boolean needsProgramEnrollment(Affiliation__c affiliation) {
         if (affiliation?.Affiliation_Type__c == null) {
