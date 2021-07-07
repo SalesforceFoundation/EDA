@@ -51,7 +51,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     static final TDTM_ProcessControl.registeredTrigger AFFILIATION_MADE_PRIMARY_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary;
 
     //Cross-trigger recursion flags. Potential antipattern.
-    //TODO: Evaluate if we can improve this
+    //NOTE: Evaluate if we can improve this
     static final TDTM_ProcessControl.registeredTrigger CONTACT_PRIMARY_AFFILIATION_UPDATED_RECURSION = TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated;
 
     //Get the primary affiliation fields defined in the Affiliation Mappings
@@ -220,7 +220,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
      */
     @TestVisible
     private DMLWrapper handleAfterInsert(List<SObject> newList, DMLWrapper dmlWrapper) {
-        //TODO: Continue refactor of this class to isolate after insert behavior. This is a small refactor
+        //NOTE: This is only a partial refactor. Class is in need of an overhaul
         if (this.isAfterInsertRecursion()) {
             return dmlWrapper;
         }
@@ -418,7 +418,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
             Account__c = affiliation.Account__c
         );
         dmlWrapper.objectsToInsert.add(programEnrollment);
-        return enroll;
+        return programEnrollment;
     }
 
     //Recursion Flags

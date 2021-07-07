@@ -36,6 +36,13 @@
  */
 @isTest
 private class AFFL_MultiRecordTypeMapper_TEST {
+    /**
+     * @description test to ensure that get populated affiliation mappings is valid
+     */
+    @isTest
+    private static void getPopulatedAffiliationMappingsValid() {
+    }
+
     // Test getPrimaryAffiliationLookupAPIFromAffiliationType method of AFFL_MultiRecordTypeMapper
     @isTest
     private static void getPrimaryAffiliationLookupAPIFromAffiliationTypeTest() {

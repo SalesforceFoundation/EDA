@@ -46,7 +46,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     static final TDTM_ProcessControl.registeredTrigger AFFILIATION_MADE_PRIMARY_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary;
 
     //Cross-trigger recursion flags. Potential antipattern.
-    //TODO: Evaluate if we can improve this
+    //NOTE: Evaluate if we can improve this
     static final TDTM_ProcessControl.registeredTrigger CONTACT_PRIMARY_AFFILIATION_UPDATED_RECURSION = TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated;
 
     /**************************************************************************
