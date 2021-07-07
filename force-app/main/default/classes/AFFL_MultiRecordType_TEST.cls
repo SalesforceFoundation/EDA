@@ -42,7 +42,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
      * INTEGRATION TESTS
      **************************************************************************/
     private static void createPrimaryAffl() {
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
         String bizOrgAcctName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -120,7 +122,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void noDuplicateAffl() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
@@ -151,7 +153,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void deletePrimaryAffl() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
@@ -194,7 +196,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void makePrimaryAfflNonPrimary() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
@@ -235,7 +237,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void makeNonPrimaryAfflPrimary() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
@@ -271,7 +273,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
@@ -323,7 +325,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void createPrimaryAfflWhenAnotherPrimaryExists() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
@@ -356,7 +358,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void autoCreateProgramEnrollment() {
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
 
         AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper bizOrgMappingWrapper = affiliationMappingWrapperList[1];
         String bizOrgRecordTypeName = bizOrgMappingWrapper.getAccountRecordTypeName();
@@ -399,7 +403,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void autoCreateProgramEnrollmentDifferentRole() {
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
 
         AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper bizOrgMappingWrapper = affiliationMappingWrapperList[1];
         String bizOrgRecordTypeName = bizOrgMappingWrapper.getAccountRecordTypeName();
@@ -447,7 +453,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
      */
     @isTest
     private static void affiliationDeleteNPECheck() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         // Insert a business account
         Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
@@ -499,7 +505,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
      */
     @isTest
     private static void multipleAffiliationUpdates() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         // Insert Accounts
         Account bizAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
@@ -572,7 +578,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
      */
     @isTest
     private static void bulkAffiliationUpdates() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         List<Account> accList = new List<Account>();
 
@@ -649,7 +655,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     // Test the usage of custom API field name for affiliation mapping for multi-language support
     @isTest
     private static void customFieldAPIInMappings() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName(false);
 
         // Insert a business account
         Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
@@ -676,7 +682,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void testAfflDeletionWithLabelForRecTypeAndAPINameForPrimaryAfflFields() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName(false);
 
         // Insert a business account
         Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
@@ -712,7 +718,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void testAfflDeletionWithAPIForRecTypeAndLabelForPrimaryAfflFields() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel(false);
 
         // Insert a business account
         Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
@@ -748,7 +754,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void testAfflDeletionWithAPIForRecTypeAndAPIForPrimaryAfflFields() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName();
+        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName(false);
 
         // Insert a business account
         Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
@@ -783,7 +789,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
      and Affilation Mappings have Record Type Names for Account Record Type */
     @isTest
     private static void affiliationRecordTypeEnforceWAPINamesForAccRecType() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel(false);
         AffiliationTestSetupFactory_TEST.enableAffiliationRecordTypeEnforcement();
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
@@ -833,7 +839,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void affiliationRecordTypeEnforceWLabelsForAccRecType() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
         AffiliationTestSetupFactory_TEST.enableAffiliationRecordTypeEnforcement();
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
@@ -884,7 +890,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void affiliationRecordTypeEnforceWAPINamesForAccRecTypeAndPrimaryAffl() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName();
+        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName(false);
         AffiliationTestSetupFactory_TEST.enableAffiliationRecordTypeEnforcement();
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
@@ -933,7 +939,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
      and Affiliation Mappings have Labels for Account Record Type and APIs for Primary Affiliaiton Fields */
     @isTest
     private static void affiliationRecordTypeEnforceWLabelsForAccRecTypeAndAPIForPrimaryAffl() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName(false);
         AffiliationTestSetupFactory_TEST.enableAffiliationRecordTypeEnforcement();
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
@@ -1240,7 +1246,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         //Set up affiliation mappings on household and business organization
         //This is done later to cause it not to interfere with our data setup so the unit test detects unexpected behavior better.
-        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName();
+        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName(false);
 
         Test.startTest();
         Map<Id, Contact> returnedContactsByIds = tdtmClass.queryAfflLookupFields(affiliationAsSObjectList);
