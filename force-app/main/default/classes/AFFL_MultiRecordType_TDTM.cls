@@ -418,7 +418,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
             Account__c = affiliation.Account__c
         );
         dmlWrapper.objectsToInsert.add(programEnrollment);
-        return enroll;
+        return programEnrollment;
     }
 
     //Recursion Flags
