@@ -337,27 +337,32 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      * @return Boolean Whether the Account record type has been flagged as needing Academic Record auto-creation.
      ********************************************************************************************************/
     public virtual Boolean needsProgramEnrollment(Affiliation__c affl) {
-        Boolean autoEnrollment = false;
-        String autoRole, autoStatus;
-        if (affl.Affiliation_Type__c != null) {
-            if (accTypeToEnrollCreate.get(affl.Affiliation_Type__c) != null) {
-                autoEnrollment = accTypeToEnrollCreate.get(affl.Affiliation_Type__c);
-            }
-            autoRole = accTypeToEnrollCreateRole.get(affl.Affiliation_Type__c);
-            autoStatus = accTypeToEnrollCreateStatus.get(affl.Affiliation_Type__c);
+        if (affl.Affiliation_Type__c == null) {
+            return false;
         }
 
-        if (
-            autoEnrollment &&
-            affl != null &&
-            affl.Role__c != null &&
-            autoRole == affl.Role__c &&
-            affl.Status__c != null &&
-            autoStatus == affl.Status__c
-        ) {
-            return true;
+        if (accTypeToEnrollCreate.get(affl.Affiliation_Type__c) == null) {
+            return false;
         }
-        return false;
+
+        Boolean autoEnrollment = accTypeToEnrollCreate.get(affl.Affiliation_Type__c);
+
+        if (autoEnrollment == false) {
+            return false;
+        }
+
+        String autoRole = accTypeToEnrollCreateRole.get(affl.Affiliation_Type__c);
+        String autoStatus = accTypeToEnrollCreateStatus.get(affl.Affiliation_Type__c);
+
+        if (String.isBlank(affl.Role__c) || String.isBlank(affl.Status__c)) {
+            return false;
+        }
+
+        if (autoRole != affl.Role__c || autoStatus != affl.Status__c) {
+            return false;
+        }
+
+        return true;
     }
 
     /*******************************************************************************************************
