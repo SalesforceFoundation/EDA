@@ -376,9 +376,8 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         Boolean programEnrollmentNeeded = testClass.needsProgramEnrollment(testData.affiliation);
         Test.stopTest();
 
-        //TODO: Fix functionality so this is true
         System.assertEquals(
-            false,
+            true,
             programEnrollmentNeeded,
             'A program enrollment should not be needed for the Affiliation.'
         );
@@ -403,11 +402,10 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         Boolean programEnrollmentNeeded = testClass.needsProgramEnrollment(testData.affiliation);
         Test.stopTest();
 
-        //TODO: Fix functionality so this is true
         System.assertEquals(
-            false,
+            true,
             programEnrollmentNeeded,
-            'A program enrollment should not be needed for the Affiliation.'
+            'A program enrollment should be needed for the Affiliation.'
         );
     }
 
@@ -433,7 +431,7 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         System.assertEquals(
             true,
             programEnrollmentNeeded,
-            'A program enrollment should not be needed for the Affiliation.'
+            'A program enrollment should be needed for the Affiliation.'
         );
     }
 
@@ -483,7 +481,7 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         System.assertEquals(
             false,
             programEnrollmentNeeded,
-            'A program enrollment should not be needed for the Affiliation when the Affiliation type is null.'
+            'A program enrollment should be needed for the Affiliation when the Affiliation type is null.'
         );
     }
 }
