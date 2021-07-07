@@ -481,7 +481,7 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         System.assertEquals(
             false,
             programEnrollmentNeeded,
-            'A program enrollment should be needed for the Affiliation when the Affiliation type is null.'
+            'A program enrollment should not be needed for the Affiliation when the Affiliation type is null.'
         );
     }
 }
