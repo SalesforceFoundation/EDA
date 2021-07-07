@@ -54,6 +54,13 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
     public Map<String, String> accTypeToEnrollCreateStatus;
 
     /*******************************************************************************************************
+     * @description Account record type info, cached separately to maintain current functionality.
+     ********************************************************************************************************/
+    private static Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByName;
+    private static Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByDeveloperName;
+    //TODO: Consider for refactor. This is a high risk area
+
+    /*******************************************************************************************************
      * @description List of account record types in mappings.
      ********************************************************************************************************/
     public List<String> accountRecordTypes;
@@ -78,37 +85,43 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      ********************************************************************************************************/
     public AFFL_MultiRecordTypeMapper() {
         //List of Contact field names.
+        //TODO: Target for Refactor to use UTIL_Describe in the future. Changing this is high-risk and disruptive
         List<SObjectField> contactFields = Contact.sObjectType.getDescribe().fields.getMap().values();
 
         //Map of Contact field labels to Contact field Names.
-        contactFieldAPINameByLabel = getContactLabelsNamesMap(contactFields);
+        this.contactFieldAPINameByLabel = this.getContactLabelsNamesMap(contactFields);
 
         //List of primary affiliation lookup fields names.
-        List<String> contactFieldNames = contactFieldAPINameByLabel.values();
+        List<String> contactFieldNames = this.contactFieldAPINameByLabel.values();
+
+        //Get and cache account record type info by name.
+        //TODO: Consider refactor of this high-risk area
+        AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByName = SObjectType.Account.getRecordTypeInfosByName();
+        AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByDeveloperName = SObjectType.Account.getRecordTypeInfosByDeveloperName();
 
         //Affiliation Account-record-type-to-Contact-field mappings.
-        populateMaps();
+        this.populateMaps();
 
         // Map of Account RecordType Label To API
-        accRecTypeLabelToAPI = getAccRecTypeLabelToAPIMap();
-
-        //List of primary affiliation lookup fields labels/API names from settings.
-        List<String> primaryAfflFieldsInMappings = primaryAfflFieldInMappingsByAccRecType.values();
-
-        //List of primary affiliation Contact fields.
-        List<SObjectField> primaryAfflFields = getPrimaryAfflFields(contactFields, primaryAfflFieldsInMappings);
+        this.accRecTypeLabelToAPI = this.getAccRecTypeLabelToAPIMap();
 
         //List of Valid Account Record types in mappings
-        validAccRecordTypesInMappings = getValidAccRecordTypesInMappings(accountRecordTypes);
+        this.validAccRecordTypesInMappings = this.getValidAccRecordTypesInMappings(this.accountRecordTypes);
+
+        //List of primary affiliation lookup fields labels/API names from settings.
+        List<String> primaryAfflFieldsInMappings = this.primaryAfflFieldInMappingsByAccRecType.values();
+
+        //List of primary affiliation Contact fields.
+        List<SObjectField> primaryAfflFields = this.getPrimaryAfflFields(contactFields, primaryAfflFieldsInMappings);
 
         //List of Valid Primary Contact Fields in mappings
-        List<String> validContactAfflFields = getValidPrimaryAfflFields(primaryAfflFieldsInMappings);
+        List<String> validContactAfflFields = this.getValidPrimaryAfflFields(primaryAfflFieldsInMappings);
 
         //Check if any mismatch in mappings
         if (
             UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c &&
             (primaryAfflFieldsInMappings.size() != validContactAfflFields.size() ||
-            accountRecordTypes.size() != validAccRecordTypesInMappings.size())
+            this.accountRecordTypes.size() != this.validAccRecordTypesInMappings.size())
         ) {
             throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
         }
@@ -148,6 +161,7 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
                     mapping.Account_Record_Type__c,
                     mapping.Primary_Affl_Field__c
                 );
+                //We need to excize this for Account Record Types
                 accTypeToEnrollCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);
                 accTypeToEnrollCreateRole.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Role__c);
                 accTypeToEnrollCreateStatus.put(
@@ -257,10 +271,11 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
     @testVisible
     private List<String> getValidAccRecordTypesInMappings(List<String> accRecordTypesInMappings) {
         List<String> validAccRecordTypesInMappings = new List<String>();
+
         for (String accRecordTypesInMapping : accRecordTypesInMappings) {
             if (
-                SObjectType.Account.getRecordTypeInfosByName().containsKey(accRecordTypesInMapping) ||
-                SObjectType.Account.getRecordTypeInfosByDeveloperName().containsKey(accRecordTypesInMapping)
+                AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByName.containsKey(accRecordTypesInMapping) ||
+                AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByDeveloperName.containsKey(accRecordTypesInMapping)
             ) {
                 validAccRecordTypesInMappings.add(accRecordTypesInMapping);
             }
