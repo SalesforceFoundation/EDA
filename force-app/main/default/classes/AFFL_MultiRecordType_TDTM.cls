@@ -392,27 +392,33 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
     /*******************************************************************************************************
      * @description Creates a program enrollment if Auto Enrollment has been set
-     * @param affl The affiliation to potentially create program enrollment for
+     * @param affiliation The affiliation to potentially create program enrollment for
      * @param dmlWrapper The DmlWrapper to register the change to
      * @return The program enrollment created
      *******************************************************************************************************/
     @TestVisible
-    private Program_Enrollment__c createProgramEnrollmentIfNecessary(Affiliation__c affl, DmlWrapper dmlWrapper) {
-        if (affl != null && affl.Affiliation_Type__c != null) {
-            Boolean needsProgramEnrollment = afflMapper.needsProgramEnrollment(affl);
-            UTIL_Debug.debug('****needsProgramEnrollment: ' + needsProgramEnrollment);
-            if (needsProgramEnrollment != null && needsProgramEnrollment) {
-                Program_Enrollment__c enroll = new Program_Enrollment__c(
-                    Affiliation__c = affl.ID,
-                    Contact__c = affl.Contact__c,
-                    Account__c = affl.Account__c
-                );
-                dmlWrapper.objectsToInsert.add(enroll);
-                return enroll;
-            }
+    private Program_Enrollment__c createProgramEnrollmentIfNecessary(
+        Affiliation__c affiliation,
+        DmlWrapper dmlWrapper
+    ) {
+        if (affiliation == null || affiliation.Affiliation_Type__c == null) {
+            return null;
         }
 
-        return null;
+        Boolean needsProgramEnrollment = AFFL_MultiRecordType_TDTM.afflMapper.needsProgramEnrollment(affiliation);
+        UTIL_Debug.debug('****needsProgramEnrollment: ' + needsProgramEnrollment);
+
+        if (needsProgramEnrollment != true) {
+            return null;
+        }
+
+        Program_Enrollment__c programEnrollment = new Program_Enrollment__c(
+            Affiliation__c = affiliation.ID,
+            Contact__c = affiliation.Contact__c,
+            Account__c = affiliation.Account__c
+        );
+        dmlWrapper.objectsToInsert.add(programEnrollment);
+        return enroll;
     }
 
     //Recursion Flags
