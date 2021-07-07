@@ -183,7 +183,6 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      * @description Gets affiliation mappings that have a populated Account Record Type field and a populated Primary Affiliation Field
      * @return The List of affiliation mappings that do not have a blank Account Record Type or a blank Primary Affiliation Field
      */
-    //TODO: Write Tests
     @TestVisible
     private List<Affl_Mappings__c> getPopulatedAffiliationMappings() {
         List<Affl_Mappings__c> affiliationMappings = UTIL_CustomSettingsFacade.getAfflMappings();
@@ -332,9 +331,9 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
     }
 
     /*******************************************************************************************************
-     * @description Tells caller if Account record type needs Program Enrollment auto-creation.
-     * @param accountRecordType The name of the Account record type as entered in the Affiliation Mappings.
-     * @return Boolean Whether the Account record type has been flagged as needing Academic Record auto-creation.
+     * @description Whether or not the affiliation requires a program enrollment to be auto-created.
+     * @param affl The affiliation to check for program enrollment creations
+     * @return Whether or not the affiliation requires a program enrollment to be auto-created.
      ********************************************************************************************************/
     public virtual Boolean needsProgramEnrollment(Affiliation__c affl) {
         if (affl.Affiliation_Type__c == null) {
