@@ -914,7 +914,7 @@
     graceful-fs "^4.2.4"
     source-map "^0.6.0"
 
-"@jest/test-result@^26.6.2":
+"@jest/test-result@26.6.2", "@jest/test-result@^26.6.2":
   version "26.6.2"
   resolved "https://registry.yarnpkg.com/@jest/test-result/-/test-result-26.6.2.tgz#55da58b62df134576cc95476efa5f7949e3f5f18"
   integrity sha512-5O7H5c/7YlojphYNrK02LlDIV2GNPYisKwHm2QTKjNZeEzezCbwYs9swJySv2UfPMyZ0VdsmMv7jIlD/IKYQpQ==
@@ -1121,6 +1121,48 @@
     "@types/estree" "0.0.39"
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
+
+"@sa11y/assert@0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@sa11y/assert/-/assert-0.2.6.tgz#ced6f36858512fe00f7983ba7059297f9e38a8a1"
+  integrity sha512-/g3KwlyN0l0MoX8V2znAshtrYiBI5T579Jmr9p/XPXMJhvfAIRN8PyNAsdYzOvXEP8eWTknDFmMqwPerbH3pRQ==
+  dependencies:
+    "@sa11y/common" "0.3.3"
+    "@sa11y/format" "0.4.2"
+    "@sa11y/preset-rules" "0.3.5"
+    axe-core "4.2.3"
+
+"@sa11y/common@0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@sa11y/common/-/common-0.3.3.tgz#1409f4556069061628ac2ec9fc8f90ce12b58ba1"
+  integrity sha512-bfJ/rmPuw+UclxUiqH4/BuKAoKILX/E6/IMx50LgyqB4cnU8yXajSyJTIqZuQY5G6Dwa1H42EBBCWAWuXN0UJg==
+  dependencies:
+    axe-core "4.2.3"
+
+"@sa11y/format@0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@sa11y/format/-/format-0.4.2.tgz#a9f8e85e06cbc0d809105ea96b90fcd68c049ce3"
+  integrity sha512-TCwKeqnG6YaSR2y063pV96hkPQa7Xbbgi1bvMBcZY062xJQs5kHx3zztrJupM3yu+YfnLtExYpuMsbBzQMIZfA==
+  dependencies:
+    axe-core "4.2.3"
+
+"@sa11y/jest@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@sa11y/jest/-/jest-0.4.2.tgz#e9271be698452bdb37761355913c18fb12cdf876"
+  integrity sha512-+Ylj8F0d//j7StfUlibKs5neAQo+aiQJnjKd3hgSuGH1hp/XIpCT0oaCZNkEL7qr4ICBJCmYpoibD2BvwA/SXA==
+  dependencies:
+    "@jest/test-result" "26.6.2"
+    "@sa11y/assert" "0.2.6"
+    "@sa11y/format" "0.4.2"
+    "@sa11y/preset-rules" "0.3.5"
+    jest-matcher-utils "26.6.2"
+
+"@sa11y/preset-rules@0.3.5":
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/@sa11y/preset-rules/-/preset-rules-0.3.5.tgz#10150f710d8561352b3fa2e7e142fa3cf0af2022"
+  integrity sha512-8oFLhMgSsUjpeo3sj54xkxF5968OmJC5lYTH8DtfJESDoS6GwimJJhaHDXy1q1SNbDssEBx+hthp2ll95zJ/Lw==
+  dependencies:
+    axe-core "4.2.3"
 
 "@salesforce/sfdx-lwc-jest@^0.12.6":
   version "0.12.6"
@@ -1452,6 +1494,11 @@ atob@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+
+axe-core@4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.2.3.tgz#2a3afc332f0031b42f602f4a3de03c211ca98f72"
+  integrity sha512-pXnVMfJKSIWU2Ml4JHP7pZEPIrgBO1Fd3WGx+fPBsS+KRGhE4vxooD8XBGWbQOIVSZsVK7pUDBBkCicNu80yzQ==
 
 axios@^0.21.0, axios@^0.21.1:
   version "0.21.1"
@@ -3340,7 +3387,7 @@ jest-leak-detector@^26.6.2:
     jest-get-type "^26.3.0"
     pretty-format "^26.6.2"
 
-jest-matcher-utils@^26.6.2:
+jest-matcher-utils@26.6.2, jest-matcher-utils@^26.6.2:
   version "26.6.2"
   resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-26.6.2.tgz#8e6fd6e863c8b2d31ac6472eeb237bc595e53e7a"
   integrity sha512-llnc8vQgYcNqDrqRDXWwMr9i7rS5XFiCwvh6DTP7Jqa2mqpcCBBlpCbn+trkG0KNhPu/h8rzyBkriOtBstvWhw==

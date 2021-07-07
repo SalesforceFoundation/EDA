@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@sa11y/jest": "^0.4.2",
     "@salesforce/sfdx-lwc-jest": "^0.12.6",
     "husky": "=4",
     "lint-staged": ">=10",
