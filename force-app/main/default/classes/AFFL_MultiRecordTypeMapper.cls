@@ -57,6 +57,7 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      * @description Account record type info, cached separately to maintain current functionality.
      ********************************************************************************************************/
     private static Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByName;
+    @TestVisible
     private static Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByDeveloperName;
     //NOTE: Consider for refactor. This is a high risk area
 
@@ -202,7 +203,6 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      * @param affiliationMappings The affiliation mappings to get the account record types from
      * @return The List of raw Account record types specified in the mappings
      */
-    //TODO: Write Tests
     @TestVisible
     private List<String> getRawAccountRecordTypes(List<Affl_Mappings__c> affiliationMappings) {
         List<String> accountRecordTypes = new List<String>();
@@ -218,7 +218,6 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      * @param affiliationMappings The affiliation mappings to get the Contact fields and Account Record Types from
      * @return The map of raw Account Record Types to raw Contact Primary Affiliation fields
      */
-    //TODO: Write Tests
     @TestVisible
     private Map<String, String> getRawContactFieldsByAccountRecordType(List<Affl_Mappings__c> affiliationMappings) {
         Map<String, String> contactFieldsByAccountRecordType = new Map<String, String>();
@@ -237,7 +236,6 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      * @param accountRecordTypeInfosByDeveloperName The map of Account Recorc
      * @return The map of valid Account Record Type labels to Primary Affiliation Mappings
      */
-    //TODO: Write Tests
     @TestVisible
     Map<String, Affl_Mappings__c> getPrimaryAffiliationMappingsByAccountRecordTypeName(
         List<Affl_Mappings__c> affiliationMappings,
