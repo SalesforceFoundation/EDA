@@ -43,34 +43,37 @@ public class AffiliationTestSetupFactory_TEST {
     /**************************************************************************
      * @description Sets up hierarchy settings and affiliation mappings for
      * tests using record type name and contact field api name
+     * @param autoEnrollment Whether or not to set auto enrollment for the mappings
      * @return The affiliation mapping wrappers set up for the tests.
      **************************************************************************/
-    public static List<AffiliationMappingWrapper> setupMappingsByDevNameAndApiName() {
+    public static List<AffiliationMappingWrapper> setupMappingsByDevNameAndApiName(Boolean autoEnrollment) {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.getAfflMappingWrapperByDevNameAndApiName();
 
-        return AffiliationTestSetupFactory_TEST.commonSetup(affiliationMappingWrapperList);
+        return AffiliationTestSetupFactory_TEST.commonSetup(affiliationMappingWrapperList, autoEnrollment);
     }
 
     /**************************************************************************
      * @description Sets up hierarchy settings and affiliation mappings for
      * tests using record type name and contact field label
+     * @param autoEnrollment Whether or not to set auto enrollment for the mappings
      * @return The affiliation mapping wrappers set up for the tests.
      **************************************************************************/
-    public static List<AffiliationMappingWrapper> setupMappingsByDevNameAndLabel() {
+    public static List<AffiliationMappingWrapper> setupMappingsByDevNameAndLabel(Boolean autoEnrollment) {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.getAfflMappingWrapperByDevNameAndLabel();
 
-        return AffiliationTestSetupFactory_TEST.commonSetup(affiliationMappingWrapperList);
+        return AffiliationTestSetupFactory_TEST.commonSetup(affiliationMappingWrapperList, autoEnrollment);
     }
 
     /**************************************************************************
      * @description Sets up hierarchy settings and affiliation mappings for
      * tests using record type name and contact field api name
+     * @param autoEnrollment Whether or not to set auto enrollment for the mappings
      * @return The affiliation mapping wrappers set up for the tests.
      **************************************************************************/
-    public static List<AffiliationMappingWrapper> setupMappingsByNameAndApiName() {
+    public static List<AffiliationMappingWrapper> setupMappingsByNameAndApiName(Boolean autoEnrollment) {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.getAfflMappingWrapperByNameAndApiName();
 
-        return AffiliationTestSetupFactory_TEST.commonSetup(affiliationMappingWrapperList);
+        return AffiliationTestSetupFactory_TEST.commonSetup(affiliationMappingWrapperList, autoEnrollment);
     }
 
     /**************************************************************************
@@ -78,10 +81,10 @@ public class AffiliationTestSetupFactory_TEST {
      * tests using record type name and contact field label
      * @return The affiliation mapping wrappers set up for the tests.
      **************************************************************************/
-    public static List<AffiliationMappingWrapper> setupMappingsByNameAndLabel() {
+    public static List<AffiliationMappingWrapper> setupMappingsByNameAndLabel(Boolean autoEnrollment) {
         List<AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.getAfflMappingWrapperByNameAndLabel();
 
-        return AffiliationTestSetupFactory_TEST.commonSetup(affiliationMappingWrapperList);
+        return AffiliationTestSetupFactory_TEST.commonSetup(affiliationMappingWrapperList, autoEnrollment);
     }
 
     /**************************************************************************
@@ -93,7 +96,8 @@ public class AffiliationTestSetupFactory_TEST {
      * @return The affiliation mapping wrappers set up for the tests.
      **************************************************************************/
     public static List<AffiliationMappingWrapper> commonSetup(
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList
+        List<AffiliationMappingWrapper> affiliationMappingWrapperList,
+        Boolean autoEnrollment
     ) {
         UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(Account_Processor__c = affiliationMappingWrapperList[0].getAccountRecordTypeId())
@@ -103,7 +107,15 @@ public class AffiliationTestSetupFactory_TEST {
             affiliationMappingWrapperList
         );
 
-        insert AffiliationTestSetupFactory_TEST.createAffiliationMappings(affiliationMappingWrapperList);
+        List<Affl_Mappings__c> affiliationMappings = AffiliationTestSetupFactory_TEST.createAffiliationMappings(
+            affiliationMappingWrapperList
+        );
+
+        if (autoEnrollment) {
+            affiliationMappings = AffiliationTestSetupFactory_TEST.setAutoEnrollmentForMappings(affiliationMappings);
+        }
+
+        insert affiliationMappings;
 
         return affiliationMappingWrapperList;
     }
@@ -281,6 +293,21 @@ public class AffiliationTestSetupFactory_TEST {
     }
 
     /**************************************************************************
+     * @description Sets the affiliation mappings auto enrollment information
+     * @param affiliationMappings The list of mappings to set auto enrollment for
+     * @return The affiliation mappings wrappers with auto enrollment set
+     **************************************************************************/
+    private static List<Affl_Mappings__c> setAutoEnrollmentForMappings(List<Affl_Mappings__c> affiliationMappings) {
+        for (Affl_Mappings__c affiliationMapping : affiliationMappings) {
+            affiliationMapping.Auto_Program_Enrollment__c = true;
+            affiliationMapping.Auto_Program_Enrollment_Role__c = 'Student';
+            affiliationMapping.Auto_Program_Enrollment_Status__c = 'Current';
+        }
+
+        return affiliationMappings;
+    }
+
+    /**************************************************************************
      * UTILITIES
      **************************************************************************/
 
@@ -368,7 +395,7 @@ public class AffiliationTestSetupFactory_TEST {
         Id accountRecordTypeId;
         String accountRecordTypeDeveloperName;
         String accountRecordTypeName;
-        Affl_Mappings__c affiliationMapping;
+        public Affl_Mappings__c affiliationMapping;
         String contactFieldApiName;
         String contactFieldLabel;
 

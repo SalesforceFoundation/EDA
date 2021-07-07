@@ -39,7 +39,9 @@ private class AFFL_MultiRecordTypeMapper_TEST {
     // Test getPrimaryAffiliationLookupAPIFromAffiliationType method of AFFL_MultiRecordTypeMapper
     @isTest
     private static void getPrimaryAffiliationLookupAPIFromAffiliationTypeTest() {
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
         String bizOrgRecordTypeName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
 
         AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
@@ -57,7 +59,7 @@ private class AFFL_MultiRecordTypeMapper_TEST {
     // Negative test for getPrimaryAffiliationLookupAPIFromAffiliationType method of AFFL_MultiRecordTypeMapper
     @isTest
     private static void getPrimaryAffiliationLookupAPIFromAffiliationTypeNegativeTest() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
         Test.startTest();
@@ -72,7 +74,7 @@ private class AFFL_MultiRecordTypeMapper_TEST {
     // Null test for getPrimaryAffiliationLookupAPIFromAffiliationType method of AFFL_MultiRecordTypeMapper
     @isTest
     private static void getPrimaryAffiliationLookupAPIFromAffiliationTypeNullTest() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
         Test.startTest();
@@ -85,7 +87,9 @@ private class AFFL_MultiRecordTypeMapper_TEST {
     // Positive test for getContactFieldFromSettings method of AFFL_MultiRecordTypeMapper
     @isTest
     private static void getContactFieldFromSettingsPoitiveTest() {
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
         String bizOrgName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
         String bizOrgContactFieldLabel = AffiliationTestSetupFactory_TEST.getBusinessOrganizationFieldLabel();
 
@@ -100,7 +104,7 @@ private class AFFL_MultiRecordTypeMapper_TEST {
     // Negative test for getContactFieldFromSettings method of AFFL_MultiRecordTypeMapper
     @isTest
     private static void getContactFieldFromSettingsNegativeTest() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
         Test.startTest();
@@ -113,7 +117,7 @@ private class AFFL_MultiRecordTypeMapper_TEST {
     // Positive test for getPrimaryAffiliationLookupAPI method of AFFL_MultiRecordTypeMapper using Label name
     @isTest
     private static void getPrimaryAffiliationLookupAPIPoitiveLabelTest() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
         String bizOrgContactFieldLabel = AffiliationTestSetupFactory_TEST.getBusinessOrganizationFieldLabel();
         String bizOrgContactFieldApiName = AffiliationTestSetupFactory_TEST.getBusinessOrganizationFieldApiName();
 
@@ -154,7 +158,9 @@ private class AFFL_MultiRecordTypeMapper_TEST {
     // This method tests getValidAccRecordTypesInMappings() of AFFL_MultiRecordTypeMapper class by passing Record Names list from affiliation mappings
     @isTest
     private static void testGetValidAccRecordTypesInMappingsMethodwithAPIs() {
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel(
+            false
+        );
 
         // Construct a list of Account Record Type Names
         List<String> accRecTypeDevNameList = new List<String>();
@@ -177,7 +183,9 @@ private class AFFL_MultiRecordTypeMapper_TEST {
      both Record type Names and Labels list from affiliation mappings */
     @isTest
     private static void testGetValidAccRecordTypesInMappingsMethodwithAPIAndLabels() {
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName(
+            false
+        );
 
         // Construct a list of Account Record Type Names and Labels
         List<String> accRecTypeLabelList = new List<String>();
@@ -202,7 +210,9 @@ private class AFFL_MultiRecordTypeMapper_TEST {
      both API names for Primary Affiliation Fields */
     @isTest
     private static void testsGetValidPrimaryAfflFields() {
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName(
+            false
+        );
 
         List<Affl_Mappings__c> allMappings = [SELECT ID FROM Affl_Mappings__c];
         System.assertEquals(affiliationMappingWrapperList.size(), allMappings.size());
@@ -263,7 +273,7 @@ private class AFFL_MultiRecordTypeMapper_TEST {
             )
         );
 
-        wrapperList = AffiliationTestSetupFactory_TEST.commonSetup(wrapperList);
+        wrapperList = AffiliationTestSetupFactory_TEST.commonSetup(wrapperList, false);
         //Custom setup ended
 
         List<Affl_Mappings__c> allMappings = [SELECT Id FROM Affl_Mappings__c];
@@ -286,7 +296,7 @@ private class AFFL_MultiRecordTypeMapper_TEST {
     // Positive test for getPrimaryAffiliationLookupAPI method of AFFL_MultiRecordTypeMapper using API name
     @isTest
     private static void getPrimaryAffiliationLookupAPIPoitiveAPITest() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         String bizOrgContactFieldApiName = AffiliationTestSetupFactory_TEST.getBusinessOrganizationFieldApiName();
 
@@ -302,7 +312,7 @@ private class AFFL_MultiRecordTypeMapper_TEST {
     // Negative test for getPrimaryAffiliationLookupAPI method of AFFL_MultiRecordTypeMapper
     @isTest
     private static void getPrimaryAffiliationLookupAPINegativeTest() {
-        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 
@@ -317,13 +327,11 @@ private class AFFL_MultiRecordTypeMapper_TEST {
      * @description helper class for initialization of tests for needsProgramEnrollment
      */
     private class NeedsProgramEnrollmentValidData {
-        public AFFL_MultiRecordTypeMapper testClass;
         public Account accountToTest;
         public Contact contactToTest;
         public Affiliation__c affiliation;
 
         public NeedsProgramEnrollmentValidData() {
-            this.testClass = new AFFL_MultiRecordTypeMapper();
             this.contactToTest = UTIL_UnitTestData_TEST.getUniqueContact(1);
             insert contactToTest;
 
@@ -352,10 +360,13 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
 
         //Create auto enrollment mapping
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName(
+            true
+        );
+        AFFL_MultiRecordTypeMapper testClass = new AFFL_MultiRecordTypeMapper();
 
         Test.startTest();
-        Boolean programEnrollmentNeeded = testData.testClass.needsProgramEnrollment(testData.affiliation);
+        Boolean programEnrollmentNeeded = testClass.needsProgramEnrollment(testData.affiliation);
         Test.stopTest();
 
         //TODO: Fix functionality so this is true
@@ -376,10 +387,13 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
 
         //Create auto enrollment mapping
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel(
+            true
+        );
+        AFFL_MultiRecordTypeMapper testClass = new AFFL_MultiRecordTypeMapper();
 
         Test.startTest();
-        Boolean programEnrollmentNeeded = testData.testClass.needsProgramEnrollment(testData.affiliation);
+        Boolean programEnrollmentNeeded = testClass.needsProgramEnrollment(testData.affiliation);
         Test.stopTest();
 
         //TODO: Fix functionality so this is true
@@ -400,15 +414,17 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
 
         //Create auto enrollment mapping
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName(
+            true
+        );
+        AFFL_MultiRecordTypeMapper testClass = new AFFL_MultiRecordTypeMapper();
 
         Test.startTest();
-        Boolean programEnrollmentNeeded = testData.testClass.needsProgramEnrollment(testData.affiliation);
+        Boolean programEnrollmentNeeded = testClass.needsProgramEnrollment(testData.affiliation);
         Test.stopTest();
 
-        //TODO: Fix functionality so this is true
         System.assertEquals(
-            false,
+            true,
             programEnrollmentNeeded,
             'A program enrollment should not be needed for the Affiliation.'
         );
@@ -424,10 +440,13 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
 
         //Create auto enrollment mapping
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            true
+        );
+        AFFL_MultiRecordTypeMapper testClass = new AFFL_MultiRecordTypeMapper();
 
         Test.startTest();
-        Boolean programEnrollmentNeeded = testData.testClass.needsProgramEnrollment(testData.affiliation);
+        Boolean programEnrollmentNeeded = testClass.needsProgramEnrollment(testData.affiliation);
         Test.stopTest();
 
         System.assertEquals(
@@ -445,10 +464,13 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         NeedsProgramEnrollmentValidData testData = new NeedsProgramEnrollmentValidData();
 
         //Create auto enrollment mapping
-        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            true
+        );
+        AFFL_MultiRecordTypeMapper testClass = new AFFL_MultiRecordTypeMapper();
 
         Test.startTest();
-        Boolean programEnrollmentNeeded = testData.testClass.needsProgramEnrollment(testData.affiliation);
+        Boolean programEnrollmentNeeded = testClass.needsProgramEnrollment(testData.affiliation);
         Test.stopTest();
 
         System.assertEquals(
