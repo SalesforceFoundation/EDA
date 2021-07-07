@@ -42,6 +42,18 @@
  * After Delete - If a Primary Affiliation is deleted then it clears its corresponding field's value on the Contact
  */
 public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
+    //Trigger-specific recursion flags
+    static final TDTM_ProcessControl.registeredTrigger BEFORE_INSERT_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert;
+    static final TDTM_ProcessControl.registeredTrigger AFTER_INSERT_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert;
+    static final TDTM_ProcessControl.registeredTrigger AFTER_UPDATE_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update;
+
+    //Special recursion flags
+    static final TDTM_ProcessControl.registeredTrigger AFFILIATION_MADE_PRIMARY_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary;
+
+    //Cross-trigger recursion flags. Potential antipattern.
+    //TODO: Evaluate if we can improve this
+    static final TDTM_ProcessControl.registeredTrigger CONTACT_PRIMARY_AFFILIATION_UPDATED_RECURSION = TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated;
+
     //Get the primary affiliation fields defined in the Affiliation Mappings
     public static AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
 
@@ -68,22 +80,16 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         DmlWrapper dmlWrapper = new DmlWrapper();
         List<Affiliation__c> afflsMadePrimary = new List<Affiliation__c>();
         if (
-            !TDTM_ProcessControl.getRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert
-            ) ||
-            !TDTM_ProcessControl.getRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update
-            ) ||
-            !TDTM_ProcessControl.getRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert
-            )
+            this.isBeforeInsertRecursion() == false ||
+            this.isAfterUpdateRecursion() == false ||
+            this.isAfterInsertRecursion() == false
         ) {
             //Query all the primary affiliation lookup fields on the contact - they are not available in the trigger.
             Map<ID, Contact> relatedContactsMap;
             if (newlist != null) {
-                relatedContactsMap = queryAfflLookupFields(newlist);
+                relatedContactsMap = this.queryAfflLookupFields(newlist);
             } else if (oldlist != null) {
-                relatedContactsMap = queryAfflLookupFields(oldlist);
+                relatedContactsMap = this.queryAfflLookupFields(oldlist);
             }
 
             if (newlist != null && newlist.size() > 0) {
@@ -106,12 +112,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
                     //BEFORE INSERT - we do it in the Before so we don't get the affiliation we just created when we query for
                     //affls of the same type.
-                    if (
-                        triggerAction == TDTM_Runnable.Action.BeforeInsert &&
-                        !TDTM_ProcessControl.getRecursionFlag(
-                            TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert
-                        )
-                    ) {
+                    if (triggerAction == TDTM_Runnable.Action.BeforeInsert && this.isBeforeInsertRecursion() == false) {
                         if (
                             affl.Primary__c &&
                             affl.Contact__c != null &&
@@ -120,23 +121,15 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
                             lookupFieldAPIName != null
                         ) {
                             afflsMadePrimary.add(affl);
-                            TDTM_ProcessControl.setRecursionFlag(
-                                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
-                                true
-                            );
-                            populateKeyAffls(affl, lookupFieldAPIName, relatedContact, dmlWrapper);
+                            this.setAffiliationMadePrimaryRecursion();
+                            this.populateKeyAffls(affl, lookupFieldAPIName, relatedContact, dmlWrapper);
                         }
                     }
 
                     // AFTER UPDATE - Runs when AFTER UPDATE Code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update)
                     // And when BEFORE INSERT code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary) so that values
                     // populated in BEFORE INSERT is not getting over-written in AFTER UPDATE
-                    if (
-                        triggerAction == TDTM_Runnable.Action.AfterUpdate &&
-                        !TDTM_ProcessControl.getRecursionFlag(
-                            TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update
-                        )
-                    ) {
+                    if (triggerAction == TDTM_Runnable.Action.AfterUpdate && this.isAfterUpdateRecursion() == false) {
                         Affiliation__c afflOld = (Affiliation__c) oldlist[i];
 
                         //If a primary affiliation is made nonprimary the key affiliation field on the contact needs to be cleared.
@@ -147,12 +140,8 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
                             relatedContact.get(lookupFieldAPIName) == affl.Account__c
                         ) {
                             if (
-                                !TDTM_ProcessControl.getRecursionFlag(
-                                    TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated
-                                ) &&
-                                !TDTM_ProcessControl.getRecursionFlag(
-                                    TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary
-                                )
+                                this.isContactPrimaryAffiliationUpdatedRecursion() == false &&
+                                this.isAffiliationMadePrimaryRecursion() == false
                             ) {
                                 relatedContact.put(lookupFieldAPIName, null);
                                 dmlWrapper.objectsToUpdate.add(relatedContact);
@@ -169,28 +158,19 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
                             lookupFieldAPIName != null
                         ) {
                             afflsMadePrimary.add(affl);
-                            TDTM_ProcessControl.setRecursionFlag(
-                                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
-                                true
-                            );
-                            populateKeyAffls(affl, lookupFieldAPIName, relatedContact, dmlWrapper);
+                            this.setAffiliationMadePrimaryRecursion();
+                            this.populateKeyAffls(affl, lookupFieldAPIName, relatedContact, dmlWrapper);
                         }
                     }
                     i++;
                 }
                 if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-                    TDTM_ProcessControl.setRecursionFlag(
-                        TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
-                        true
-                    );
+                    this.setBeforeInsertRecursion();
                 } else if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-                    TDTM_ProcessControl.setRecursionFlag(
-                        TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update,
-                        true
-                    );
+                    this.setAfterUpdateRecursion();
                 }
                 if (afflsMadePrimary.size() > 0) {
-                    uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
+                    this.uncheckOtherPrimariesSameType(afflsMadePrimary, dmlWrapper);
                 }
             }
 
@@ -205,52 +185,34 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
 
                     //AFTER DELETE - delete lookup relationship, if necessary
                     if (triggerAction == TDTM_Runnable.Action.AfterDelete && lookupFieldAPIName != null) {
-                        processAfflDeleted(afflOld, relatedContact, lookupFieldAPIName, dmlWrapper);
+                        this.processAfflDeleted(afflOld, relatedContact, lookupFieldAPIName, dmlWrapper);
                     }
                 }
             }
         }
 
         //AFTER INSERT - Runs when AFTER INSERT Code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert)
-        if (
-            !TDTM_ProcessControl.getRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert
-            ) && triggerAction == TDTM_Runnable.Action.AfterInsert
-        ) {
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert && this.isAfterInsertRecursion() == false) {
             if (newlist != null && newlist.size() > 0) {
                 for (SObject so : newlist) {
                     Affiliation__c affl = (Affiliation__c) so;
-                    createProgramEnrollmentIfNecessary(affl, dmlWrapper);
+                    this.createProgramEnrollmentIfNecessary(affl, dmlWrapper);
                 }
             }
-            TDTM_ProcessControl.setRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert,
-                true
-            );
+            this.setAfterInsertRecursion();
         }
+
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
         dmlWrapper = null;
+
         if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-            TDTM_ProcessControl.setRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert,
-                false
-            );
+            this.unsetAfterInsertRecursion();
         } else if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
-            TDTM_ProcessControl.setRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
-                false
-            );
-            TDTM_ProcessControl.resetRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary
-            );
+            this.unsetBeforeInsertRecursion();
+            this.resetAffiliationMadePrimaryRecursion();
         } else if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
-            TDTM_ProcessControl.setRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update,
-                false
-            );
-            TDTM_ProcessControl.resetRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary
-            );
+            this.unsetAfterUpdateRecursion();
+            this.resetAffiliationMadePrimaryRecursion();
         }
 
         return dmlWrapper;
@@ -277,11 +239,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
             relatedContact != null &&
             relatedContact.get(lookupFieldAPIName) == afflOld.Account__c
         ) {
-            if (
-                !TDTM_ProcessControl.getRecursionFlag(
-                    TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated
-                )
-            ) {
+            if (this.isContactPrimaryAffiliationUpdatedRecursion() == false) {
                 relatedContact.put(lookupFieldAPIName, null);
                 dmlWrapper.objectsToUpdate.add(relatedContact);
                 return relatedContact;
@@ -347,11 +305,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     ) {
         //If the reason why Affiliations have been made primary is that key affiliation fields on Contact have been populated,
         //we don't need to try populating them. In fact, this causes an error notification to be sent (W-009272).
-        if (
-            !TDTM_ProcessControl.getRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated
-            )
-        ) {
+        if (this.isContactPrimaryAffiliationUpdatedRecursion() == false) {
             //If we have a mapping, populate the lookup field defined in the mapping.
             if (!String.isBlank(lookupFieldAPIName)) {
                 relatedContact.put(lookupFieldAPIName, affl.Account__c);
@@ -437,5 +391,112 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         }
 
         return null;
+    }
+
+    //Recursion Flags
+    /*******************************************************************************************************
+     * @description Determines whether current context is associated with a before insert recursion.
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private Boolean isBeforeInsertRecursion() {
+        return TDTM_ProcessControl.getRecursionFlag(BEFORE_INSERT_RECURSION);
+    }
+
+    /*******************************************************************************************************
+     * @description Sets the Before Insert recursion flag for AFFL_MultiRecordType_TDTM.
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private void setBeforeInsertRecursion() {
+        TDTM_ProcessControl.setRecursionFlag(BEFORE_INSERT_RECURSION, true);
+    }
+
+    /*******************************************************************************************************
+     * @description Clears the Before Insert recursion flag for AFFL_MultiRecordType_TDTM.
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private void unsetBeforeInsertRecursion() {
+        TDTM_ProcessControl.setRecursionFlag(BEFORE_INSERT_RECURSION, false);
+    }
+
+    /*******************************************************************************************************
+     * @description Determines whether current context is associated with an after insert recursion.
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private Boolean isAfterInsertRecursion() {
+        return TDTM_ProcessControl.getRecursionFlag(AFTER_INSERT_RECURSION);
+    }
+
+    /*******************************************************************************************************
+     * @description Sets the After Insert recursion flag for AFFL_MultiRecordType_TDTM.
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private void setAfterInsertRecursion() {
+        TDTM_ProcessControl.setRecursionFlag(AFTER_INSERT_RECURSION, true);
+    }
+
+    /*******************************************************************************************************
+     * @description Clears the After Insert recursion flag for AFFL_MultiRecordType_TDTM.
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private void unsetAfterInsertRecursion() {
+        TDTM_ProcessControl.setRecursionFlag(AFTER_INSERT_RECURSION, false);
+    }
+
+    /*******************************************************************************************************
+     * @description Determines whether current context is associated with an after update recursion.
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private Boolean isAfterUpdateRecursion() {
+        return TDTM_ProcessControl.getRecursionFlag(AFTER_UPDATE_RECURSION);
+    }
+
+    /*******************************************************************************************************
+     * @description Sets the After Update recursion flag for AFFL_MultiRecordType_TDTM.
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private void setAfterUpdateRecursion() {
+        TDTM_ProcessControl.setRecursionFlag(AFTER_UPDATE_RECURSION, true);
+    }
+
+    /*******************************************************************************************************
+     * @description Clears the After Update recursion flag for AFFL_MultiRecordType_TDTM.
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private void unsetAfterUpdateRecursion() {
+        TDTM_ProcessControl.setRecursionFlag(AFTER_UPDATE_RECURSION, false);
+    }
+
+    /*******************************************************************************************************
+     * @description Determines whether current context is associated with an affiliation made primary
+     * recursion
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private Boolean isAffiliationMadePrimaryRecursion() {
+        return TDTM_ProcessControl.getRecursionFlag(AFFILIATION_MADE_PRIMARY_RECURSION);
+    }
+
+    /*******************************************************************************************************
+     * @description Sets the Affiliation Made Primary recursion flag for AFFL_MultiRecordType_TDTM.
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private void setAffiliationMadePrimaryRecursion() {
+        TDTM_ProcessControl.setRecursionFlag(AFFILIATION_MADE_PRIMARY_RECURSION, true);
+    }
+
+    /*******************************************************************************************************
+     * @description Resets the Affiliation Made Primary recursion flag for AFFL_MultiRecordType_TDTM.
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private void resetAffiliationMadePrimaryRecursion() {
+        TDTM_ProcessControl.resetRecursionFlag(AFFILIATION_MADE_PRIMARY_RECURSION);
+    }
+
+    /*******************************************************************************************************
+     * @description Determines whether current context is associated with an affiliation made primary in
+     * the contact trigger recursion
+     *******************************************************************************************************/
+    @TestVisible //TODO: Write tests
+    private Boolean isContactPrimaryAffiliationUpdatedRecursion() {
+        return TDTM_ProcessControl.getRecursionFlag(CONTACT_PRIMARY_AFFILIATION_UPDATED_RECURSION);
     }
 }
