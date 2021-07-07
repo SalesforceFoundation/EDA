@@ -192,14 +192,8 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         }
 
         //AFTER INSERT - Runs when AFTER INSERT Code has not already been run (checked from Recursion Flag - TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert)
-        if (triggerAction == TDTM_Runnable.Action.AfterInsert && this.isAfterInsertRecursion() == false) {
-            if (newlist != null && newlist.size() > 0) {
-                for (SObject so : newlist) {
-                    Affiliation__c affl = (Affiliation__c) so;
-                    this.createProgramEnrollmentIfNecessary(affl, dmlWrapper);
-                }
-            }
-            this.setAfterInsertRecursion();
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+            dmlWrapper = this.handleAfterInsert(newList, dmlWrapper);
         }
 
         TDTM_TriggerHandler.processDML(dmlWrapper, true);
@@ -213,6 +207,34 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
         } else if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             this.unsetAfterUpdateRecursion();
             this.resetAffiliationMadePrimaryRecursion();
+        }
+
+        return dmlWrapper;
+    }
+
+    /**
+     * @description Handles after insert context in a recursion-safe fashion, running program enrollment creation
+     * @param newList The list of SObjects of the Affiliation__c type being inserted
+     * @param dmlWrapper The DMLWrapper to register changes to
+     * @return The dmlWrapper that changes have been registered to
+     */
+    @TestVisible
+    private DMLWrapper handleAfterInsert(List<SObject> newList, DMLWrapper dmlWrapper) {
+        //TODO: Continue refactor of this class to isolate after insert behavior. This is a small refactor
+        if (this.isAfterInsertRecursion()) {
+            return dmlWrapper;
+        }
+
+        this.setAfterInsertRecursion();
+
+        if (newList?.isEmpty() != false) {
+            return dmlWrapper;
+        }
+
+        List<Affiliation__c> newAffiliationList = (List<Affiliation__c>) newlist;
+
+        for (Affiliation__c newAffiliation : newAffiliationList) {
+            this.createProgramEnrollmentIfNecessary(newAffiliation, dmlWrapper);
         }
 
         return dmlWrapper;
@@ -397,7 +419,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description Determines whether current context is associated with a before insert recursion.
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private Boolean isBeforeInsertRecursion() {
         return TDTM_ProcessControl.getRecursionFlag(BEFORE_INSERT_RECURSION);
     }
@@ -405,7 +427,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description Sets the Before Insert recursion flag for AFFL_MultiRecordType_TDTM.
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private void setBeforeInsertRecursion() {
         TDTM_ProcessControl.setRecursionFlag(BEFORE_INSERT_RECURSION, true);
     }
@@ -413,7 +435,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description Clears the Before Insert recursion flag for AFFL_MultiRecordType_TDTM.
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private void unsetBeforeInsertRecursion() {
         TDTM_ProcessControl.setRecursionFlag(BEFORE_INSERT_RECURSION, false);
     }
@@ -421,7 +443,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description Determines whether current context is associated with an after insert recursion.
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private Boolean isAfterInsertRecursion() {
         return TDTM_ProcessControl.getRecursionFlag(AFTER_INSERT_RECURSION);
     }
@@ -429,7 +451,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description Sets the After Insert recursion flag for AFFL_MultiRecordType_TDTM.
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private void setAfterInsertRecursion() {
         TDTM_ProcessControl.setRecursionFlag(AFTER_INSERT_RECURSION, true);
     }
@@ -437,7 +459,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description Clears the After Insert recursion flag for AFFL_MultiRecordType_TDTM.
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private void unsetAfterInsertRecursion() {
         TDTM_ProcessControl.setRecursionFlag(AFTER_INSERT_RECURSION, false);
     }
@@ -445,7 +467,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description Determines whether current context is associated with an after update recursion.
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private Boolean isAfterUpdateRecursion() {
         return TDTM_ProcessControl.getRecursionFlag(AFTER_UPDATE_RECURSION);
     }
@@ -453,7 +475,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description Sets the After Update recursion flag for AFFL_MultiRecordType_TDTM.
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private void setAfterUpdateRecursion() {
         TDTM_ProcessControl.setRecursionFlag(AFTER_UPDATE_RECURSION, true);
     }
@@ -461,7 +483,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description Clears the After Update recursion flag for AFFL_MultiRecordType_TDTM.
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private void unsetAfterUpdateRecursion() {
         TDTM_ProcessControl.setRecursionFlag(AFTER_UPDATE_RECURSION, false);
     }
@@ -470,7 +492,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
      * @description Determines whether current context is associated with an affiliation made primary
      * recursion
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private Boolean isAffiliationMadePrimaryRecursion() {
         return TDTM_ProcessControl.getRecursionFlag(AFFILIATION_MADE_PRIMARY_RECURSION);
     }
@@ -478,7 +500,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description Sets the Affiliation Made Primary recursion flag for AFFL_MultiRecordType_TDTM.
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private void setAffiliationMadePrimaryRecursion() {
         TDTM_ProcessControl.setRecursionFlag(AFFILIATION_MADE_PRIMARY_RECURSION, true);
     }
@@ -486,7 +508,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description Resets the Affiliation Made Primary recursion flag for AFFL_MultiRecordType_TDTM.
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private void resetAffiliationMadePrimaryRecursion() {
         TDTM_ProcessControl.resetRecursionFlag(AFFILIATION_MADE_PRIMARY_RECURSION);
     }
@@ -495,7 +517,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
      * @description Determines whether current context is associated with an affiliation made primary in
      * the contact trigger recursion
      *******************************************************************************************************/
-    @TestVisible //TODO: Write tests
+    @TestVisible
     private Boolean isContactPrimaryAffiliationUpdatedRecursion() {
         return TDTM_ProcessControl.getRecursionFlag(CONTACT_PRIMARY_AFFILIATION_UPDATED_RECURSION);
     }

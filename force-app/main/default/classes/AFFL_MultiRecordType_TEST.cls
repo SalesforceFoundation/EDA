@@ -37,6 +37,17 @@
 @isTest
 public with sharing class AFFL_MultiRecordType_TEST {
     private static Integer numberOfTestRecords = 5;
+    //Trigger-specific recursion flags
+    static final TDTM_ProcessControl.registeredTrigger BEFORE_INSERT_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert;
+    static final TDTM_ProcessControl.registeredTrigger AFTER_INSERT_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert;
+    static final TDTM_ProcessControl.registeredTrigger AFTER_UPDATE_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update;
+
+    //Special recursion flags
+    static final TDTM_ProcessControl.registeredTrigger AFFILIATION_MADE_PRIMARY_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary;
+
+    //Cross-trigger recursion flags. Potential antipattern.
+    //TODO: Evaluate if we can improve this
+    static final TDTM_ProcessControl.registeredTrigger CONTACT_PRIMARY_AFFILIATION_UPDATED_RECURSION = TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated;
 
     /**************************************************************************
      * INTEGRATION TESTS
@@ -980,10 +991,186 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     /**************************************************************************
      * Unit TESTS
-     **************************************************************************/
+     *************************************************************************/
+
+    /****************************************
+     * handleAfterInsert
+     ****************************************/
 
     /**
-     * @description helper class for initialization of tests for processAfflDeletedValid
+     * @description helper class for initialization of tests for handleAfterInsert
+     */
+    private class HandleAfterInsertValidData {
+        public AFFL_MultiRecordType_TDTM tdtmClass;
+        public TDTM_Runnable.DmlWrapper dmlWrapper;
+        public Account accountToTest;
+        public Contact contactToTest;
+        public Affiliation__c affiliation;
+
+        public HandleAfterInsertValidData() {
+            this.tdtmClass = new AFFL_MultiRecordType_TDTM();
+            this.dmlWrapper = new TDTM_Runnable.DmlWrapper();
+            this.contactToTest = UTIL_UnitTestData_TEST.getUniqueContact(1);
+            insert contactToTest;
+
+            Id businessOrganizationRecordTypeId = UTIL_Describe.getBizAccRecTypeID();
+            this.accountToTest = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, businessOrganizationRecordTypeId)[0];
+            insert this.accountToTest;
+
+            this.affiliation = new Affiliation__c(
+                Id = UTIL_UnitTestData_TEST.getFakeId(Affiliation__c.SObjectType),
+                Account__c = this.accountToTest.Id,
+                Contact__c = this.contactToTest.Id,
+                Primary__c = true
+            );
+        }
+    }
+
+    /**
+     * @description Tests handleAfterInsert appropriately calls createProgramEnrollmentIfNecessary
+     */
+    private static void handleAfterInsertValid() {
+        HandleAfterInsertValidData testData = new HandleAfterInsertValidData();
+        AFFL_MultiRecordType_TDTM.afflMapper = new AFFL_MultiRecordTypeMapper_STUB(true);
+        Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
+
+        List<SObject> newList = new List<SObject>();
+        newList.add(testData.affiliation);
+
+        Test.startTest();
+        TDTM_Runnable.DMLWrapper dmlWrapperReturned = testData.tdtmClass.handleAfterInsert(
+            newList,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            testData.tdtmClass.isAfterInsertRecursion(),
+            'After insert recursion for should be active for AFFL_MultiRecordType_TDTM.'
+        );
+
+        System.assertEquals(
+            1,
+            dmlWrapperReturned.objectsToInsert.size(),
+            'The DMLWrapper should contain a single program enrollment to insert.'
+        );
+
+        for (SObject sObjectRetrieved : dmlWrapperReturned.objectsToInsert) {
+            Program_Enrollment__c programEnrollment = (Program_Enrollment__c) sObjectRetrieved;
+
+            System.assertEquals(
+                testData.affiliation.Account__c,
+                programEnrollment.Account__c,
+                'The Account of the created Program Enrollment should match the provided Affiliation\'s.'
+            );
+            System.assertEquals(
+                testData.affiliation.Contact__c,
+                programEnrollment.Contact__c,
+                'The Contact of the created Program Enrollment should match the provided Affiliation\'s.'
+            );
+            System.assertEquals(
+                testData.affiliation.Id,
+                programEnrollment.Affiliation__c,
+                'The Affiliation of the created Program Enrollment should be the provided Affiliation\'s.'
+            );
+        }
+    }
+
+    /**
+     * @description Tests handleAfterInsert appropriately calls createProgramEnrollmentIfNecessary and does not create a Program Enrollment
+     */
+    private static void handleAfterInsertInvalid() {
+        HandleAfterInsertValidData testData = new HandleAfterInsertValidData();
+        AFFL_MultiRecordType_TDTM.afflMapper = new AFFL_MultiRecordTypeMapper_STUB(false);
+        Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
+
+        List<SObject> newList = new List<SObject>();
+        newList.add(testData.affiliation);
+
+        Test.startTest();
+        TDTM_Runnable.DMLWrapper dmlWrapperReturned = testData.tdtmClass.handleAfterInsert(
+            newList,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            testData.tdtmClass.isAfterInsertRecursion(),
+            'After insert recursion for should be active for AFFL_MultiRecordType_TDTM.'
+        );
+
+        System.assertEquals(true, dmlWrapperReturned.objectsToInsert.isEmpty(), 'The DMLWrapper should be empty.');
+    }
+
+    /**
+     * @description Tests handleAfterInsert only sets after insert recursion on an empty new list
+     */
+    private static void handleAfterInsertNewListEmpty() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        List<SObject> newList = new List<SObject>();
+
+        Test.startTest();
+        TDTM_Runnable.DMLWrapper dmlWrapperReturned = tdtmClass.handleAfterInsert(newList, dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            tdtmClass.isAfterInsertRecursion(),
+            'After insert recursion for should be active for AFFL_MultiRecordType_TDTM.'
+        );
+
+        System.assertEquals(true, dmlWrapperReturned.objectsToInsert.isEmpty(), 'The DMLWrapper should be empty.');
+    }
+
+    /**
+     * @description Tests handleAfterInsert only sets after insert recursion on a null new list
+     */
+    private static void handleAfterInsertNewListNull() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        List<SObject> newList = null;
+        tdtmClass.setAfterInsertRecursion();
+
+        Test.startTest();
+        TDTM_Runnable.DMLWrapper dmlWrapperReturned = tdtmClass.handleAfterInsert(newList, dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(true, dmlWrapperReturned.objectsToInsert.isEmpty(), 'The DMLWrapper should be empty.');
+    }
+
+    /**
+     * @description Tests handleAfterInsert does nothing on an after insert recursion
+     */
+    private static void handleAfterInsertNewListAfterInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        List<SObject> newList = null;
+
+        Test.startTest();
+        TDTM_Runnable.DMLWrapper dmlWrapperReturned = tdtmClass.handleAfterInsert(newList, dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(
+            false,
+            tdtmClass.isAfterInsertRecursion(),
+            'After insert recursion for should be inactive for AFFL_MultiRecordType_TDTM.'
+        );
+
+        System.assertEquals(true, dmlWrapperReturned.objectsToInsert.isEmpty(), 'The DMLWrapper should be empty.');
+    }
+
+    /****************************************
+     * processAfflDeletedValid
+     ****************************************/
+
+    /**
+     * @description helper class for initialization of tests for processAfflDeleted
      */
     private class ProcessAfflDeletedValidData {
         public AFFL_MultiRecordType_TDTM tdtmClass;
@@ -1012,7 +1199,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     }
 
     /**
-     * @description Tests processAfflDeletedValid appropriately clears the primary affiliation field
+     * @description Tests processAfflDeleted appropriately clears the primary affiliation field
      */
     private static void processAfflDeletedValid() {
         ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
@@ -1039,7 +1226,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     }
 
     /**
-     * @description Tests processAfflDeletedValid does not run on recursion
+     * @description Tests processAfflDeleted does not run on recursion
      */
     private static void processAfflDeletedRecursion() {
         ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
@@ -1067,7 +1254,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     }
 
     /**
-     * @description Tests processAfflDeletedValid does not run for non-primary affiliations
+     * @description Tests processAfflDeleted does not run for non-primary affiliations
      */
     private static void processAfflDeletedNonPrimaryAffiliation() {
         ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
@@ -1095,7 +1282,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     }
 
     /**
-     * @description Tests processAfflDeletedValid does not run for contacts when a primary affiliation field is not supplied
+     * @description Tests processAfflDeleted does not run for contacts when a primary affiliation field is not supplied
      */
     private static void processAfflDeletedNullAffiliationField() {
         ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
@@ -1123,7 +1310,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     }
 
     /**
-     * @description Tests processAfflDeletedValid does not run for contacts when the contact is null
+     * @description Tests processAfflDeleted does not run for contacts when the contact is null
      */
     private static void processAfflDeletedNullContact() {
         ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
@@ -1146,7 +1333,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     }
 
     /**
-     * @description Tests processAfflDeletedValid does not run for contacts when the affiliation account does not match the contact account
+     * @description Tests processAfflDeleted does not run for contacts when the affiliation account does not match the contact account
      */
     private static void processAfflDeletedDifferentContactPrimaryAffiliationAccount() {
         ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
@@ -1177,6 +1364,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
             'Method should make no changes to the DMLWrapper on an unmatched account.'
         );
     }
+
+    /****************************************
+     * queryAfflLookupFields
+     ****************************************/
 
     /**
      * @description Tests queryAfflLookupFields for multiple affiliations
@@ -1268,6 +1459,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
             );
         }
     }
+
+    /****************************************
+     * populateKeyAffls
+     ****************************************/
 
     /**
      * @description helper class for initialization of tests for populateKeyAffls
@@ -1381,6 +1576,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
         );
     }
 
+    /****************************************
+     * uncheckOtherPrimariesSameType
+     ****************************************/
+
     /**
      * @description Tests uncheckOtherPrimariesSameType for multiple affiliations
      */
@@ -1487,6 +1686,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
             );
         }
     }
+
+    /****************************************
+     * createProgramEnrollmentIfNecessary
+     ****************************************/
 
     /**
      * @description helper class for initialization of tests for createProgramEnrollmentIfNecessary
@@ -1617,6 +1820,277 @@ public with sharing class AFFL_MultiRecordType_TEST {
             'A Program Enrollment should not be created when the affiliation type is null.'
         );
     }
+
+    /****************************************
+     * RECURSION TESTS
+     ****************************************/
+
+    /**
+     * @description Tests setBeforeInsertRecursion
+     */
+    @isTest
+    static void setBeforeInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        Test.startTest();
+        tdtmClass.setBeforeInsertRecursion();
+        Test.stopTest();
+
+        Boolean beforeInsert = TDTM_ProcessControl.getRecursionFlag(BEFORE_INSERT_RECURSION);
+
+        System.assertEquals(
+            true,
+            beforeInsert,
+            'Before Insert recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests isBeforeInsertRecursion
+     */
+    @isTest
+    static void isBeforeInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        tdtmClass.setBeforeInsertRecursion();
+
+        Test.startTest();
+        Boolean beforeInsert = tdtmClass.isBeforeInsertRecursion();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            beforeInsert,
+            'Before Insert recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests unsetBeforeInsertRecursion
+     */
+    @isTest
+    static void unsetBeforeInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        tdtmClass.setBeforeInsertRecursion();
+
+        Test.startTest();
+        tdtmClass.unsetBeforeInsertRecursion();
+        Test.stopTest();
+
+        Boolean beforeInsert = tdtmClass.isBeforeInsertRecursion();
+
+        System.assertEquals(
+            false,
+            beforeInsert,
+            'Before Insert recursion flag should be inactive for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests setAfterInsertRecursion
+     */
+    @isTest
+    static void setAfterInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        Test.startTest();
+        tdtmClass.setAfterInsertRecursion();
+        Test.stopTest();
+
+        Boolean afterInsert = TDTM_ProcessControl.getRecursionFlag(AFTER_INSERT_RECURSION);
+
+        System.assertEquals(
+            true,
+            afterInsert,
+            'After Insert recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests isAfterInsertRecursion
+     */
+    @isTest
+    static void isAfterInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        tdtmClass.setAfterInsertRecursion();
+
+        Test.startTest();
+        Boolean afterInsert = tdtmClass.isAfterInsertRecursion();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            afterInsert,
+            'After Insert recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests unsetAfterInsertRecursion
+     */
+    @isTest
+    static void unsetAfterInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        tdtmClass.setAfterInsertRecursion();
+
+        Test.startTest();
+        tdtmClass.unsetAfterInsertRecursion();
+        Test.stopTest();
+
+        Boolean afterInsert = tdtmClass.isAfterInsertRecursion();
+
+        System.assertEquals(
+            false,
+            afterInsert,
+            'After Insert recursion flag should be inactive for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests setAfterUpdateRecursion
+     */
+    @isTest
+    static void setAfterUpdateRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        Test.startTest();
+        tdtmClass.setAfterUpdateRecursion();
+        Test.stopTest();
+
+        Boolean afterUpdate = TDTM_ProcessControl.getRecursionFlag(AFTER_UPDATE_RECURSION);
+
+        System.assertEquals(
+            true,
+            afterUpdate,
+            'After Update recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests isAfterUpdateRecursion
+     */
+    @isTest
+    static void isAfterUpdateRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        tdtmClass.setAfterUpdateRecursion();
+
+        Test.startTest();
+        Boolean afterUpdate = tdtmClass.isAfterUpdateRecursion();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            afterUpdate,
+            'After Update recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests unsetAfterUpdateRecursion
+     */
+    @isTest
+    static void unsetAfterUpdateRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        tdtmClass.setAfterUpdateRecursion();
+
+        Test.startTest();
+        tdtmClass.unsetAfterUpdateRecursion();
+        Test.stopTest();
+
+        Boolean afterUpdate = tdtmClass.isAfterUpdateRecursion();
+
+        System.assertEquals(
+            false,
+            afterUpdate,
+            'After Update recursion flag should be inactive for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests setAffiliationMadePrimaryRecursion
+     */
+    @isTest
+    static void setAffiliationMadePrimaryRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        Test.startTest();
+        tdtmClass.setAffiliationMadePrimaryRecursion();
+        Test.stopTest();
+
+        Boolean affiliationMadePrimary = TDTM_ProcessControl.getRecursionFlag(AFFILIATION_MADE_PRIMARY_RECURSION);
+
+        System.assertEquals(
+            true,
+            affiliationMadePrimary,
+            'Affiliation Made Primary recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests isAffiliationMadePrimaryRecursion
+     */
+    @isTest
+    static void isAffiliationMadePrimaryRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        tdtmClass.setAffiliationMadePrimaryRecursion();
+
+        Test.startTest();
+        Boolean affiliationMadePrimary = tdtmClass.isAffiliationMadePrimaryRecursion();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            affiliationMadePrimary,
+            'Affiliation Made Primary recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests resetAffiliationMadePrimaryRecursion
+     */
+    @isTest
+    static void resetAffiliationMadePrimaryRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        tdtmClass.setAffiliationMadePrimaryRecursion();
+
+        Test.startTest();
+        tdtmClass.resetAffiliationMadePrimaryRecursion();
+        Test.stopTest();
+
+        Boolean affiliationMadePrimary = tdtmClass.isAffiliationMadePrimaryRecursion();
+
+        System.assertEquals(
+            false,
+            affiliationMadePrimary,
+            'Affiliation Made Primary recursion flag should be inactive for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests isContactPrimaryAffiliationUpdatedRecursion
+     */
+    @isTest
+    static void isContactPrimaryAffiliationUpdatedRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        TDTM_ProcessControl.setRecursionFlag(CONTACT_PRIMARY_AFFILIATION_UPDATED_RECURSION, true);
+
+        Test.startTest();
+        Boolean contactPrimaryAffiliationUpdatedRecursion = tdtmClass.isContactPrimaryAffiliationUpdatedRecursion();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            contactPrimaryAffiliationUpdatedRecursion,
+            'Contact Primary Affiliation Updated recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**************************************************************************
+     * STUBS
+     **************************************************************************/
 
     /**
      * @description Stubs the AFFL_MultiRecordTypeMapper to mock behavior of needsProgramEnrollment
