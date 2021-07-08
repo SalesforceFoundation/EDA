@@ -313,7 +313,7 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
 
     /*******************************************************************************************************
      * @description Whether or not the affiliation requires a program enrollment to be auto-created.
-     * @param affl The affiliation to check for program enrollment creations
+     * @param affiliation The affiliation to check for program enrollment creations
      * @return Whether or not the affiliation requires a program enrollment to be auto-created.
      ********************************************************************************************************/
     public virtual Boolean needsProgramEnrollment(Affiliation__c affiliation) {
