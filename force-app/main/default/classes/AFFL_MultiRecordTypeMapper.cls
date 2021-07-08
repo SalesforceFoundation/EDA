@@ -329,10 +329,7 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
             return false;
         }
 
-        if (
-            String.isBlank(affiliationMapping.Auto_Program_Enrollment_Role__c) ||
-            String.isBlank(affiliationMapping.Auto_Program_Enrollment_Status__c)
-        ) {
+        if (String.isBlank(affiliation.Role__c) || String.isBlank(affiliation.Status__c)) {
             return false;
         }
 
