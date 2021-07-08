@@ -703,4 +703,20 @@ class EDA(BaseEDAPage):
                                                 error=f"'{locator}' is not available ")
         self.selenium.click_element(locator)
 
+    def click_show_actions_button(self,label,button):
+        """ This method will click on show actions drop down menu and select an action 'Edit or
+            Delete' based on the value passed from the test. It also accepts the name of the record
+            type or a label name as one of its arguments.
+        """
+        locator = eda_lex_locators["eda_settings_new"]["show_actions_button"].format(label)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
+        self.selenium.click_element(locator)
+        locator = eda_lex_locators["eda_settings_new"]["actions_menu"].format(label,button)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error=f"'{button}' as an option is not available ")
+        self.selenium.click_element(locator)
+
 
