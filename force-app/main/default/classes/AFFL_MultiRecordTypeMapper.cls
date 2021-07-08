@@ -125,8 +125,6 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
             AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByDeveloperName
         );
 
-        this.populateMaps(affiliationMappings);
-
         //Contact Fields
         //List of primary affiliation lookup fields labels/API names from settings.
         List<String> primaryAfflFieldsInMappings = this.primaryAfflFieldInMappingsByAccRecType.values();
@@ -163,21 +161,6 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
             labelsnames.put(field.Name, field.DeveloperName);
         }
         return labelsnames;
-    }
-
-    @testVisible
-    private void populateMaps(List<Affl_Mappings__c> affiliationMappings) {
-        accTypeToEnrollCreate = new Map<String, Boolean>();
-        accTypeToEnrollCreateRole = new Map<String, String>();
-        accTypeToEnrollCreateStatus = new Map<String, String>();
-
-        //Put affl mappings in a map.
-        for (Affl_Mappings__c mapping : affiliationMappings) {
-            //We need to excize this for Account Record Types and map over the labels. This is a nasty limitation on how we use a formula field for affiliation type
-            accTypeToEnrollCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);
-            accTypeToEnrollCreateRole.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Role__c);
-            accTypeToEnrollCreateStatus.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Status__c);
-        }
     }
 
     /**
@@ -330,32 +313,30 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
 
     /*******************************************************************************************************
      * @description Whether or not the affiliation requires a program enrollment to be auto-created.
-     * @param affl The affiliation to check for program enrollment creations
+     * @param affiliation The affiliation to check for program enrollment creations
      * @return Whether or not the affiliation requires a program enrollment to be auto-created.
      ********************************************************************************************************/
-    public virtual Boolean needsProgramEnrollment(Affiliation__c affl) {
-        if (affl.Affiliation_Type__c == null) {
+    public virtual Boolean needsProgramEnrollment(Affiliation__c affiliation) {
+        if (affiliation?.Affiliation_Type__c == null) {
             return false;
         }
 
-        if (accTypeToEnrollCreate.get(affl.Affiliation_Type__c) == null) {
+        Affl_Mappings__c affiliationMapping = primaryAffiliationMappingsByAccountRecordTypeName.get(
+            affiliation.Affiliation_Type__c
+        );
+
+        if (affiliationMapping?.Auto_Program_Enrollment__c != true) {
             return false;
         }
 
-        Boolean autoEnrollment = accTypeToEnrollCreate.get(affl.Affiliation_Type__c);
-
-        if (autoEnrollment == false) {
+        if (String.isBlank(affiliation.Role__c) || String.isBlank(affiliation.Status__c)) {
             return false;
         }
 
-        String autoRole = accTypeToEnrollCreateRole.get(affl.Affiliation_Type__c);
-        String autoStatus = accTypeToEnrollCreateStatus.get(affl.Affiliation_Type__c);
-
-        if (String.isBlank(affl.Role__c) || String.isBlank(affl.Status__c)) {
-            return false;
-        }
-
-        if (autoRole != affl.Role__c || autoStatus != affl.Status__c) {
+        if (
+            affiliationMapping.Auto_Program_Enrollment_Role__c != affiliation.Role__c ||
+            affiliationMapping.Auto_Program_Enrollment_Status__c != affiliation.Status__c
+        ) {
             return false;
         }
 
