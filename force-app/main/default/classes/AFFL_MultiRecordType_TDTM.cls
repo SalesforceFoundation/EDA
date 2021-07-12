@@ -221,7 +221,7 @@ public class AFFL_MultiRecordType_TDTM extends TDTM_Runnable {
     @TestVisible
     private DMLWrapper handleAfterInsert(List<SObject> newList, DMLWrapper dmlWrapper) {
         //NOTE: This is only a partial refactor. Class is in need of an overhaul
-        if (this.isAfterInsertRecursion()) {
+        if (this.isAfterInsertRecursion() == true) {
             return dmlWrapper;
         }
 
