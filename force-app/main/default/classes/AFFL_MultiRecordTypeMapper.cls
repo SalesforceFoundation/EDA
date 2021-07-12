@@ -64,7 +64,7 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
     /*******************************************************************************************************
      * @description List of account record types in mappings.
      ********************************************************************************************************/
-    public List<String> mappedAccountRecordTypes;
+    public List<String> accountRecordTypesInMappings;
 
     /*******************************************************************************************************
      * @description List of valid account record types in mappings.
@@ -114,10 +114,10 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
         //Make a map of the raw account record types to contact fields
         this.primaryAfflFieldInMappingsByAccRecType = this.getRawContactFieldsByAccountRecordType(affiliationMappings);
         //Get all mapped account record types
-        this.mappedAccountRecordTypes = this.getRawAccountRecordTypes(affiliationMappings);
+        this.accountRecordTypesInMappings = this.getRawAccountRecordTypes(affiliationMappings);
         //List of Valid Account Record types in mappings
         //NOTE: Consider a refactor relative to case sensitivity. This is a high-risk area
-        this.validAccRecordTypesInMappings = this.getValidAccRecordTypesInMappings(this.mappedAccountRecordTypes);
+        this.validAccRecordTypesInMappings = this.getValidAccRecordTypesInMappings(this.accountRecordTypesInMappings);
         //Get a map of account record type labels to Primary Affiliation Mapping
         this.primaryAffiliationMappingsByAccountRecordTypeName = this.getPrimaryAffiliationMappingsByAccountRecordTypeName(
             affiliationMappings,
@@ -137,7 +137,7 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
         if (
             UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c &&
             (primaryAfflFieldsInMappings.size() != validContactAfflFields.size() ||
-            this.mappedAccountRecordTypes.size() != this.validAccRecordTypesInMappings.size())
+            this.accountRecordTypesInMappings.size() != this.validAccRecordTypesInMappings.size())
         ) {
             throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
         }
