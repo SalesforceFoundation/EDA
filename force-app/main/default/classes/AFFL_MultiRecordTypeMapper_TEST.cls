@@ -36,6 +36,296 @@
  */
 @isTest
 private class AFFL_MultiRecordTypeMapper_TEST {
+    /**
+     * @description test to ensure that getPopulatedAffiliationMappings retrieves all mappings with populated Account Record Types
+     * and Primary Affiliation fields
+     */
+    @isTest
+    private static void getPopulatedAffiliationMappingsValid() {
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
+        AFFL_MultiRecordTypeMapper affiliationMapper = new AFFL_MultiRecordTypeMapper();
+
+        Test.startTest();
+        List<Affl_Mappings__c> populatedAffiliationMappings = affiliationMapper.getPopulatedAffiliationMappings();
+        Test.stopTest();
+
+        System.assertEquals(
+            2,
+            populatedAffiliationMappings.size(),
+            'Only the number of existing affiliation mappings should be retrieved.'
+        );
+    }
+
+    /**
+     * @description test to ensure that getPopulatedAffiliationMappings does not retrieve mappings with empty Account Record Types
+     */
+    @isTest
+    private static void getPopulatedAffiliationMappingsEmptyAccountRecordType() {
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
+        AFFL_MultiRecordTypeMapper affiliationMapper = new AFFL_MultiRecordTypeMapper();
+
+        List<Affl_Mappings__c> affiliationMappings = UTIL_CustomSettingsFacade.getAfflMappings();
+        affiliationMappings[0].Account_Record_Type__c = null;
+        update affiliationMappings;
+
+        Test.startTest();
+        List<Affl_Mappings__c> populatedAffiliationMappings = affiliationMapper.getPopulatedAffiliationMappings();
+        Test.stopTest();
+
+        System.assertEquals(
+            1,
+            populatedAffiliationMappings.size(),
+            'Affiliation Mappings with empty account record types should not be retrieved.'
+        );
+    }
+
+    /**
+     * @description test to ensure that getPopulatedAffiliationMappings does not retrieve mappings with empty Primary Affiliation Fields
+     */
+    @isTest
+    private static void getPopulatedAffiliationMappingsEmptyPrimaryAffiliationField() {
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
+        AFFL_MultiRecordTypeMapper affiliationMapper = new AFFL_MultiRecordTypeMapper();
+
+        List<Affl_Mappings__c> affiliationMappings = UTIL_CustomSettingsFacade.getAfflMappings();
+        affiliationMappings[0].Primary_Affl_Field__c = null;
+        update affiliationMappings;
+
+        Test.startTest();
+        List<Affl_Mappings__c> populatedAffiliationMappings = affiliationMapper.getPopulatedAffiliationMappings();
+        Test.stopTest();
+
+        System.assertEquals(
+            1,
+            populatedAffiliationMappings.size(),
+            'Affiliation Mappings with empty primary affiliation fields should not be retrieved.'
+        );
+    }
+
+    /**
+     * @description test to ensure that getRawAccountRecordTypes retrieves all account record type field values
+     */
+    @isTest
+    private static void getRawAccountRecordTypes() {
+        List<Affl_Mappings__c> mockedAffiliationMappings = new List<Affl_Mappings__c>{
+            new Affl_Mappings__c(Name = 'First', Account_Record_Type__c = 'First Record Type'),
+            new Affl_Mappings__c(Name = 'Second', Account_Record_Type__c = 'Second Record Type')
+        };
+        AFFL_MultiRecordTypeMapper affiliationMapper = new AFFL_MultiRecordTypeMapper();
+
+        Test.startTest();
+        List<String> rawAccountRecordTypes = affiliationMapper.getRawAccountRecordTypes(mockedAffiliationMappings);
+        Test.stopTest();
+
+        System.assertEquals(
+            2,
+            rawAccountRecordTypes.size(),
+            'Only the number of existing affiliation mappings should be retrieved.'
+        );
+        System.assertEquals(
+            true,
+            rawAccountRecordTypes.contains('First Record Type'),
+            'The first record type should be returned in the list.'
+        );
+        System.assertEquals(
+            true,
+            rawAccountRecordTypes.contains('Second Record Type'),
+            'The second record type should be returned in the list.'
+        );
+    }
+
+    /**
+     * @description test to ensure that getRawContactFieldsByAccountRecordType retrieves all account record types mapped to primary affiliation fields
+     */
+    @isTest
+    private static void getRawContactFieldsByAccountRecordType() {
+        List<Affl_Mappings__c> mockedAffiliationMappings = new List<Affl_Mappings__c>{
+            new Affl_Mappings__c(
+                Name = 'First',
+                Account_Record_Type__c = 'First Record Type',
+                Primary_Affl_Field__c = 'First Field'
+            ),
+            new Affl_Mappings__c(
+                Name = 'Second',
+                Account_Record_Type__c = 'Second Record Type',
+                Primary_Affl_Field__c = 'Second Field'
+            )
+        };
+        AFFL_MultiRecordTypeMapper affiliationMapper = new AFFL_MultiRecordTypeMapper();
+
+        Test.startTest();
+        Map<String, String> rawContactFieldsByAccountRecordType = affiliationMapper.getRawContactFieldsByAccountRecordType(
+            mockedAffiliationMappings
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            2,
+            rawContactFieldsByAccountRecordType.size(),
+            'Only the number of existing affiliation mappings should be retrieved.'
+        );
+        System.assertEquals(
+            'First Field',
+            rawContactFieldsByAccountRecordType.get('First Record Type'),
+            'The first record type should be returned in the map.'
+        );
+        System.assertEquals(
+            'Second Field',
+            rawContactFieldsByAccountRecordType.get('Second Record Type'),
+            'The second record type should be returned in the map.'
+        );
+    }
+
+    /**
+     * @description test to ensure that getPrimaryAffiliationMappingsByAccountRecordTypeName maps all primary affiliation
+     * record type to labels when the Account Record Type is referred to as a label
+     */
+    @isTest
+    private static void getPrimaryAffiliationMappingsByAccountRecordTypeNameLabel() {
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
+
+        Affl_Mappings__c firstMapping = affiliationMappingWrapperList[0].affiliationMapping;
+        Affl_Mappings__c secondMapping = affiliationMappingWrapperList[1].affiliationMapping;
+        List<Affl_Mappings__c> affiliationMappings = new List<Affl_Mappings__c>{ firstMapping, secondMapping };
+
+        String firstRecordType = affiliationMappingWrapperList[0].getAccountRecordTypeName();
+        String secondRecordType = affiliationMappingWrapperList[1].getAccountRecordTypeName();
+        List<String> validRawAccountRecordTypesInMappings = new List<String>{ firstRecordType, secondRecordType };
+
+        AFFL_MultiRecordTypeMapper affiliationMapper = new AFFL_MultiRecordTypeMapper();
+        Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByDeveloperName = AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByDeveloperName;
+
+        Test.startTest();
+        Map<String, Affl_Mappings__c> primaryAffiliationMappingsByAccountRecordTypeName = affiliationMapper.getPrimaryAffiliationMappingsByAccountRecordTypeName(
+            affiliationMappings,
+            validRawAccountRecordTypesInMappings,
+            accountRecordTypeInfosByDeveloperName
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            2,
+            primaryAffiliationMappingsByAccountRecordTypeName.size(),
+            'All Affiliation Mappings should be mapped.'
+        );
+        System.assertEquals(
+            firstMapping,
+            primaryAffiliationMappingsByAccountRecordTypeName.get(firstRecordType),
+            'The first record type should be appropriately mapped.'
+        );
+        System.assertEquals(
+            secondMapping,
+            primaryAffiliationMappingsByAccountRecordTypeName.get(secondRecordType),
+            'The second record type should be appropriately mapped.'
+        );
+    }
+
+    /**
+     * @description test to ensure that getPrimaryAffiliationMappingsByAccountRecordTypeName maps all primary affiliation
+     * record type to labels when the Account Record Type is referred to as an api name
+     */
+    @isTest
+    private static void getPrimaryAffiliationMappingsByAccountRecordTypeNameApiName() {
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel(
+            false
+        );
+
+        Affl_Mappings__c firstMapping = affiliationMappingWrapperList[0].affiliationMapping;
+        Affl_Mappings__c secondMapping = affiliationMappingWrapperList[1].affiliationMapping;
+        List<Affl_Mappings__c> affiliationMappings = new List<Affl_Mappings__c>{ firstMapping, secondMapping };
+
+        String firstRecordType = affiliationMappingWrapperList[0].getAccountRecordTypeName();
+        String secondRecordType = affiliationMappingWrapperList[1].getAccountRecordTypeName();
+
+        String firstRecordTypeDevName = affiliationMappingWrapperList[0].getAccountRecordTypeDeveloperName();
+        String secondRecordTypeDevName = affiliationMappingWrapperList[1].getAccountRecordTypeDeveloperName();
+        List<String> validRawAccountRecordTypesInMappings = new List<String>{
+            firstRecordTypeDevName,
+            secondRecordTypeDevName
+        };
+
+        AFFL_MultiRecordTypeMapper affiliationMapper = new AFFL_MultiRecordTypeMapper();
+        Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByDeveloperName = AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByDeveloperName;
+
+        Test.startTest();
+        Map<String, Affl_Mappings__c> primaryAffiliationMappingsByAccountRecordTypeName = affiliationMapper.getPrimaryAffiliationMappingsByAccountRecordTypeName(
+            affiliationMappings,
+            validRawAccountRecordTypesInMappings,
+            accountRecordTypeInfosByDeveloperName
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            2,
+            primaryAffiliationMappingsByAccountRecordTypeName.size(),
+            'All Affiliation Mappings should be mapped.'
+        );
+        System.assertEquals(
+            firstMapping,
+            primaryAffiliationMappingsByAccountRecordTypeName.get(firstRecordType),
+            'The first record type should be appropriately mapped.'
+        );
+        System.assertEquals(
+            secondMapping,
+            primaryAffiliationMappingsByAccountRecordTypeName.get(secondRecordType),
+            'The second record type should be appropriately mapped.'
+        );
+    }
+
+    /**
+     * @description test to ensure that getPrimaryAffiliationMappingsByAccountRecordTypeName does not map a primary affiliation
+     * record type to a label when the Account Record Type is not a valid Account Record Type
+     */
+    @isTest
+    private static void getPrimaryAffiliationMappingsByAccountRecordTypeNameInvalidAccountRecordType() {
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
+
+        Affl_Mappings__c firstMapping = affiliationMappingWrapperList[0].affiliationMapping;
+        Affl_Mappings__c secondMapping = affiliationMappingWrapperList[1].affiliationMapping;
+        List<Affl_Mappings__c> affiliationMappings = new List<Affl_Mappings__c>{ firstMapping, secondMapping };
+
+        String firstRecordType = affiliationMappingWrapperList[0].getAccountRecordTypeName();
+        String secondRecordType = affiliationMappingWrapperList[1].getAccountRecordTypeName();
+        List<String> validRawAccountRecordTypesInMappings = new List<String>{ firstRecordType };
+
+        AFFL_MultiRecordTypeMapper affiliationMapper = new AFFL_MultiRecordTypeMapper();
+        Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByDeveloperName = AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByDeveloperName;
+
+        Test.startTest();
+        Map<String, Affl_Mappings__c> primaryAffiliationMappingsByAccountRecordTypeName = affiliationMapper.getPrimaryAffiliationMappingsByAccountRecordTypeName(
+            affiliationMappings,
+            validRawAccountRecordTypesInMappings,
+            accountRecordTypeInfosByDeveloperName
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            1,
+            primaryAffiliationMappingsByAccountRecordTypeName.size(),
+            'All Affiliation Mappings should be mapped.'
+        );
+        System.assertEquals(
+            firstMapping,
+            primaryAffiliationMappingsByAccountRecordTypeName.get(firstRecordType),
+            'The first record type should be appropriately mapped.'
+        );
+        System.assertEquals(
+            null,
+            primaryAffiliationMappingsByAccountRecordTypeName.get(secondRecordType),
+            'The second record type should not be mapped.'
+        );
+    }
+
     // Test getPrimaryAffiliationLookupAPIFromAffiliationType method of AFFL_MultiRecordTypeMapper
     @isTest
     private static void getPrimaryAffiliationLookupAPIFromAffiliationTypeTest() {
@@ -369,9 +659,8 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         Boolean programEnrollmentNeeded = testClass.needsProgramEnrollment(testData.affiliation);
         Test.stopTest();
 
-        //TODO: Fix functionality so this is true
         System.assertEquals(
-            false,
+            true,
             programEnrollmentNeeded,
             'A program enrollment should not be needed for the Affiliation.'
         );
@@ -396,11 +685,10 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         Boolean programEnrollmentNeeded = testClass.needsProgramEnrollment(testData.affiliation);
         Test.stopTest();
 
-        //TODO: Fix functionality so this is true
         System.assertEquals(
-            false,
+            true,
             programEnrollmentNeeded,
-            'A program enrollment should not be needed for the Affiliation.'
+            'A program enrollment should be needed for the Affiliation.'
         );
     }
 
@@ -426,7 +714,7 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         System.assertEquals(
             true,
             programEnrollmentNeeded,
-            'A program enrollment should not be needed for the Affiliation.'
+            'A program enrollment should be needed for the Affiliation.'
         );
     }
 

@@ -47,21 +47,27 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
     public Map<String, String> primaryAfflFieldInMappingsByAccRecType;
 
     /*******************************************************************************************************
-     * @description Affiliation Account-record-type-to-Academic-auto-create-field mappings.
+     * @description Account record type info, cached separately to maintain current functionality.
      ********************************************************************************************************/
-    public Map<String, Boolean> accTypeToEnrollCreate;
-    public Map<String, String> accTypeToEnrollCreateRole;
-    public Map<String, String> accTypeToEnrollCreateStatus;
+    private static Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByName;
+    @TestVisible
+    private static Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByDeveloperName;
+    //NOTE: Consider for refactor. This is a high risk area
 
     /*******************************************************************************************************
      * @description List of account record types in mappings.
      ********************************************************************************************************/
-    public List<String> accountRecordTypes;
+    public List<String> accountRecordTypesInMappings;
 
     /*******************************************************************************************************
      * @description List of valid account record types in mappings.
      ********************************************************************************************************/
     public List<String> validAccRecordTypesInMappings;
+
+    /*******************************************************************************************************
+     * @description Map of account record type names to primary affiliation mappings
+     ********************************************************************************************************/
+    private Map<String, Affl_Mappings__c> primaryAffiliationMappingsByAccountRecordTypeName;
 
     /*******************************************************************************************************
      * @description List of primary affiliation lookup fields names on Contact.
@@ -78,37 +84,55 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      ********************************************************************************************************/
     public AFFL_MultiRecordTypeMapper() {
         //List of Contact field names.
+        //NOTE: Target for Refactor to use UTIL_Describe in the future. Changing this is high-risk and disruptive
         List<SObjectField> contactFields = Contact.sObjectType.getDescribe().fields.getMap().values();
-
         //Map of Contact field labels to Contact field Names.
-        contactFieldAPINameByLabel = getContactLabelsNamesMap(contactFields);
-
+        this.contactFieldAPINameByLabel = this.getContactLabelsNamesMap(contactFields);
         //List of primary affiliation lookup fields names.
-        List<String> contactFieldNames = contactFieldAPINameByLabel.values();
+        List<String> contactFieldNames = this.contactFieldAPINameByLabel.values();
 
-        //Affiliation Account-record-type-to-Contact-field mappings.
-        populateMaps();
-
+        //Get and cache account record type info by name.
+        //NOTE: Consider refactor of this high-risk area
+        AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByName = SObjectType.Account.getRecordTypeInfosByName();
+        AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByDeveloperName = SObjectType.Account.getRecordTypeInfosByDeveloperName();
         // Map of Account RecordType Label To API
-        accRecTypeLabelToAPI = getAccRecTypeLabelToAPIMap();
+        //NOTE: Consider a refactor relative to case sensitivity
+        this.accRecTypeLabelToAPI = this.getAccRecTypeLabelToAPIMap();
 
-        //List of primary affiliation lookup fields labels/API names from settings.
-        List<String> primaryAfflFieldsInMappings = primaryAfflFieldInMappingsByAccRecType.values();
+        //Note: Given the supportable number of records for affiliation mappings, having multiple small loops
+        //is an acceptable and negligible performance hit so we can apply a separation of concerns for future refactoring.
 
-        //List of primary affiliation Contact fields.
-        List<SObjectField> primaryAfflFields = getPrimaryAfflFields(contactFields, primaryAfflFieldsInMappings);
-
+        //Get the affiliation mappings we have available that do not have blank fields
+        List<Affl_Mappings__c> populatedAffiliationMappings = this.getPopulatedAffiliationMappings();
+        //Make a map of the raw account record types to contact fields
+        this.primaryAfflFieldInMappingsByAccRecType = this.getRawContactFieldsByAccountRecordType(
+            populatedAffiliationMappings
+        );
+        //Get all mapped account record types
+        this.accountRecordTypesInMappings = this.getRawAccountRecordTypes(populatedAffiliationMappings);
         //List of Valid Account Record types in mappings
-        validAccRecordTypesInMappings = getValidAccRecordTypesInMappings(accountRecordTypes);
+        //NOTE: Consider a refactor relative to case sensitivity. This is a high-risk area
+        this.validAccRecordTypesInMappings = this.getValidAccRecordTypesInMappings(this.accountRecordTypesInMappings);
+        //Get a map of account record type labels to Primary Affiliation Mapping
+        this.primaryAffiliationMappingsByAccountRecordTypeName = this.getPrimaryAffiliationMappingsByAccountRecordTypeName(
+            populatedAffiliationMappings,
+            this.validAccRecordTypesInMappings,
+            AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByDeveloperName
+        );
 
+        //Contact Fields
+        //List of primary affiliation lookup fields labels/API names from settings.
+        List<String> primaryAfflFieldsInMappings = this.primaryAfflFieldInMappingsByAccRecType.values();
+        //List of primary affiliation Contact fields.
+        List<SObjectField> primaryAfflFields = this.getPrimaryAfflFields(contactFields, primaryAfflFieldsInMappings);
         //List of Valid Primary Contact Fields in mappings
-        List<String> validContactAfflFields = getValidPrimaryAfflFields(primaryAfflFieldsInMappings);
+        List<String> validContactAfflFields = this.getValidPrimaryAfflFields(primaryAfflFieldsInMappings);
 
         //Check if any mismatch in mappings
         if (
             UTIL_CustomSettingsFacade.getSettings().Affiliation_Record_Type_Enforced__c &&
             (primaryAfflFieldsInMappings.size() != validContactAfflFields.size() ||
-            accountRecordTypes.size() != validAccRecordTypesInMappings.size())
+            this.accountRecordTypesInMappings.size() != this.validAccRecordTypesInMappings.size())
         ) {
             throw new ERR_ExceptionHandler.AffAccountRecordTypeMappingsException(Label.afflAccoutMappingError);
         }
@@ -116,9 +140,15 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
         UTIL_Debug.debug('****MRT: primaryAfflFieldNames: ' + JSON.serializePretty(primaryAfflFieldNames));
     }
 
+    /**
+     * @description Gets the contact field labels from the list of fields and produces a map of field names by labels
+     * @param contactFieldsList The list of contact fields to parse into a map of names by labels
+     * @return A map of contact field names by their labels
+     */
     private Map<String, String> getContactLabelsNamesMap(List<SObjectField> contactFieldsList) {
         Map<String, String> labelsnames = new Map<String, String>();
         for (SObjectField field : contactFieldsList) {
+            //NOTE: Consider this for a future refactor. This is a high-risk area
             labelsnames.put(field.getDescribe().getLabel(), field.getDescribe().getName());
         }
         return labelsnames;
@@ -133,30 +163,90 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
         return labelsnames;
     }
 
-    @testVisible
-    private void populateMaps() {
-        primaryAfflFieldInMappingsByAccRecType = new Map<String, String>();
-        accTypeToEnrollCreate = new Map<String, Boolean>();
-        accTypeToEnrollCreateRole = new Map<String, String>();
-        accTypeToEnrollCreateStatus = new Map<String, String>();
-        accountRecordTypes = new List<String>();
+    /**
+     * @description Gets affiliation mappings that have a populated Account Record Type field and a populated Primary Affiliation Field
+     * @return The List of affiliation mappings that do not have a blank Account Record Type or a blank Primary Affiliation Field
+     */
+    @TestVisible
+    private List<Affl_Mappings__c> getPopulatedAffiliationMappings() {
+        List<Affl_Mappings__c> affiliationMappings = UTIL_CustomSettingsFacade.getAfflMappings();
+        List<Affl_Mappings__c> populatedAffiliationMappings = new List<Affl_Mappings__c>();
 
-        //Put affl mappings in a map.
-        for (Affl_Mappings__c mapping : UTIL_CustomSettingsFacade.getAfflMappings()) {
-            if (!String.isBlank(mapping.Account_Record_Type__c) && !String.isBlank(mapping.Primary_Affl_Field__c)) {
-                primaryAfflFieldInMappingsByAccRecType.put(
-                    mapping.Account_Record_Type__c,
-                    mapping.Primary_Affl_Field__c
-                );
-                accTypeToEnrollCreate.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment__c);
-                accTypeToEnrollCreateRole.put(mapping.Account_Record_Type__c, mapping.Auto_Program_Enrollment_Role__c);
-                accTypeToEnrollCreateStatus.put(
-                    mapping.Account_Record_Type__c,
-                    mapping.Auto_Program_Enrollment_Status__c
-                );
-                accountRecordTypes.add(mapping.Account_Record_Type__c);
+        for (Affl_Mappings__c mapping : affiliationMappings) {
+            if (String.isBlank(mapping.Account_Record_Type__c) || String.isBlank(mapping.Primary_Affl_Field__c)) {
+                continue;
             }
+            populatedAffiliationMappings.add(mapping);
         }
+        return populatedAffiliationMappings;
+    }
+
+    /**
+     * @description Gets the account record types from a list of affiliation mappings
+     * @param affiliationMappings The affiliation mappings to get the account record types from
+     * @return The List of raw Account record types specified in the mappings
+     */
+    @TestVisible
+    private List<String> getRawAccountRecordTypes(List<Affl_Mappings__c> affiliationMappings) {
+        List<String> accountRecordTypes = new List<String>();
+
+        for (Affl_Mappings__c mapping : affiliationMappings) {
+            accountRecordTypes.add(mapping.Account_Record_Type__c);
+        }
+        return accountRecordTypes;
+    }
+
+    /**
+     * @description Gets the Contact fields by the Account Record Type
+     * @param affiliationMappings The affiliation mappings to get the Contact fields and Account Record Types from
+     * @return The map of raw Account Record Types to raw Contact Primary Affiliation fields
+     */
+    @TestVisible
+    private Map<String, String> getRawContactFieldsByAccountRecordType(List<Affl_Mappings__c> affiliationMappings) {
+        Map<String, String> contactFieldsByAccountRecordType = new Map<String, String>();
+
+        for (Affl_Mappings__c mapping : affiliationMappings) {
+            contactFieldsByAccountRecordType.put(mapping.Account_Record_Type__c, mapping.Primary_Affl_Field__c);
+        }
+        return contactFieldsByAccountRecordType;
+    }
+
+    /**
+     * @description Gets the map of valid Account Record Type labels to Primary Affiliation Mappings. Preserves behavior
+     * of last in taking precedence to avoid a breaking change.
+     * @param affiliationMappings The Affiliation Mappings to validate and map
+     * @param validRawAccountRecordTypesInMappings The raw Account Record Types from the Primary Affiliation Mappings
+     * @param accountRecordTypeInfosByDeveloperName The map of Account Recorc
+     * @return The map of valid Account Record Type labels to Primary Affiliation Mappings
+     */
+    @TestVisible
+    Map<String, Affl_Mappings__c> getPrimaryAffiliationMappingsByAccountRecordTypeName(
+        List<Affl_Mappings__c> affiliationMappings,
+        List<String> validRawAccountRecordTypesInMappings,
+        Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByDeveloperName
+    ) {
+        Map<String, Affl_Mappings__c> primaryAffiliationsByAccountRecordTypeNames = new Map<String, Affl_Mappings__c>();
+
+        for (Affl_Mappings__c affiliationMapping : affiliationMappings) {
+            String rawAccountRecordType = affiliationMapping.Account_Record_Type__c;
+
+            //This isn't a valid account record type, as previously confirmed
+            if (validRawAccountRecordTypesInMappings.contains(rawAccountRecordType) == false) {
+                continue;
+            }
+
+            //This isn't an API Name, so we know it's a label
+            if (accountRecordTypeInfosByDeveloperName.containsKey(rawAccountRecordType) == false) {
+                primaryAffiliationsByAccountRecordTypeNames.put(rawAccountRecordType, affiliationMapping);
+                continue;
+            }
+
+            //This is an API name, so we need the label
+            String accountRecordTypeName = accountRecordTypeInfosByDeveloperName.get(rawAccountRecordType).getName();
+            primaryAffiliationsByAccountRecordTypeNames.put(accountRecordTypeName, affiliationMapping);
+        }
+
+        return primaryAffiliationsByAccountRecordTypeNames;
     }
 
     /***************************************************************************************************************
@@ -172,6 +262,7 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
         Set<String> uniqueprimaryAfflFieldsInMappings = new Set<String>(primaryAfflFieldsInMappings);
         List<SObjectField> primaryFields = new List<SObjectField>();
         primaryAfflFieldNames = new List<String>();
+        //NOTE: Consider this for a future refactor. This is a high-risk area
         for (SObjectField field : contactFields) {
             if (
                 uniqueprimaryAfflFieldsInMappings.contains(field.getDescribe().getLabel()) ||
@@ -221,32 +312,35 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
     }
 
     /*******************************************************************************************************
-     * @description Tells caller if Account record type needs Program Enrollment auto-creation.
-     * @param accountRecordType The name of the Account record type as entered in the Affiliation Mappings.
-     * @return Boolean Whether the Account record type has been flagged as needing Academic Record auto-creation.
+     * @description Whether or not the affiliation requires a program enrollment to be auto-created.
+     * @param affiliation The affiliation to check for program enrollment creations
+     * @return Whether or not the affiliation requires a program enrollment to be auto-created.
      ********************************************************************************************************/
-    public virtual Boolean needsProgramEnrollment(Affiliation__c affl) {
-        Boolean autoEnrollment = false;
-        String autoRole, autoStatus;
-        if (affl.Affiliation_Type__c != null) {
-            if (accTypeToEnrollCreate.get(affl.Affiliation_Type__c) != null) {
-                autoEnrollment = accTypeToEnrollCreate.get(affl.Affiliation_Type__c);
-            }
-            autoRole = accTypeToEnrollCreateRole.get(affl.Affiliation_Type__c);
-            autoStatus = accTypeToEnrollCreateStatus.get(affl.Affiliation_Type__c);
+    public virtual Boolean needsProgramEnrollment(Affiliation__c affiliation) {
+        if (affiliation?.Affiliation_Type__c == null) {
+            return false;
+        }
+
+        Affl_Mappings__c affiliationMapping = primaryAffiliationMappingsByAccountRecordTypeName.get(
+            affiliation.Affiliation_Type__c
+        );
+
+        if (affiliationMapping?.Auto_Program_Enrollment__c != true) {
+            return false;
+        }
+
+        if (String.isBlank(affiliation.Role__c) || String.isBlank(affiliation.Status__c)) {
+            return false;
         }
 
         if (
-            autoEnrollment &&
-            affl != null &&
-            affl.Role__c != null &&
-            autoRole == affl.Role__c &&
-            affl.Status__c != null &&
-            autoStatus == affl.Status__c
+            affiliationMapping.Auto_Program_Enrollment_Role__c != affiliation.Role__c ||
+            affiliationMapping.Auto_Program_Enrollment_Status__c != affiliation.Status__c
         ) {
-            return true;
+            return false;
         }
-        return false;
+
+        return true;
     }
 
     /*******************************************************************************************************
@@ -257,10 +351,11 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
     @testVisible
     private List<String> getValidAccRecordTypesInMappings(List<String> accRecordTypesInMappings) {
         List<String> validAccRecordTypesInMappings = new List<String>();
+
         for (String accRecordTypesInMapping : accRecordTypesInMappings) {
             if (
-                SObjectType.Account.getRecordTypeInfosByName().containsKey(accRecordTypesInMapping) ||
-                SObjectType.Account.getRecordTypeInfosByDeveloperName().containsKey(accRecordTypesInMapping)
+                AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByName.containsKey(accRecordTypesInMapping) ||
+                AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByDeveloperName.containsKey(accRecordTypesInMapping)
             ) {
                 validAccRecordTypesInMappings.add(accRecordTypesInMapping);
             }
