@@ -109,18 +109,20 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
         //Note: Given the supportable number of records for affiliation mappings, having multiple small loops
         //is an acceptable and negligible performance hit so we can apply a separation of concerns for future refactoring.
 
-        //Get the affiliation mappings we have available
-        List<Affl_Mappings__c> affiliationMappings = this.getPopulatedAffiliationMappings();
+        //Get the affiliation mappings we have available that do not have blank fields
+        List<Affl_Mappings__c> populatedAffiliationMappings = this.getPopulatedAffiliationMappings();
         //Make a map of the raw account record types to contact fields
-        this.primaryAfflFieldInMappingsByAccRecType = this.getRawContactFieldsByAccountRecordType(affiliationMappings);
+        this.primaryAfflFieldInMappingsByAccRecType = this.getRawContactFieldsByAccountRecordType(
+            populatedAffiliationMappings
+        );
         //Get all mapped account record types
-        this.accountRecordTypesInMappings = this.getRawAccountRecordTypes(affiliationMappings);
+        this.accountRecordTypesInMappings = this.getRawAccountRecordTypes(populatedAffiliationMappings);
         //List of Valid Account Record types in mappings
         //NOTE: Consider a refactor relative to case sensitivity. This is a high-risk area
         this.validAccRecordTypesInMappings = this.getValidAccRecordTypesInMappings(this.accountRecordTypesInMappings);
         //Get a map of account record type labels to Primary Affiliation Mapping
         this.primaryAffiliationMappingsByAccountRecordTypeName = this.getPrimaryAffiliationMappingsByAccountRecordTypeName(
-            affiliationMappings,
+            populatedAffiliationMappings,
             this.validAccRecordTypesInMappings,
             AFFL_MultiRecordTypeMapper.accountRecordTypeInfosByDeveloperName
         );
