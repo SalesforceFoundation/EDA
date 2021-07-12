@@ -47,13 +47,6 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
     public Map<String, String> primaryAfflFieldInMappingsByAccRecType;
 
     /*******************************************************************************************************
-     * @description Affiliation Account-record-type-to-Academic-auto-create-field mappings.
-     ********************************************************************************************************/
-    public Map<String, Boolean> accTypeToEnrollCreate;
-    public Map<String, String> accTypeToEnrollCreateRole;
-    public Map<String, String> accTypeToEnrollCreateStatus;
-
-    /*******************************************************************************************************
      * @description Account record type info, cached separately to maintain current functionality.
      ********************************************************************************************************/
     private static Map<String, Schema.RecordTypeInfo> accountRecordTypeInfosByName;
