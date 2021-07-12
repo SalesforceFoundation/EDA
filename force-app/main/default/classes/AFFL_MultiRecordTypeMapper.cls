@@ -140,6 +140,11 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
         UTIL_Debug.debug('****MRT: primaryAfflFieldNames: ' + JSON.serializePretty(primaryAfflFieldNames));
     }
 
+    /**
+     * @description Gets the contact field labels from the list of fields and produces a map of field names by labels
+     * @param contactFieldsList The list of contact fields to parse into a map of names by labels
+     * @return A map of contact field names by their labels
+     */
     private Map<String, String> getContactLabelsNamesMap(List<SObjectField> contactFieldsList) {
         Map<String, String> labelsnames = new Map<String, String>();
         for (SObjectField field : contactFieldsList) {
