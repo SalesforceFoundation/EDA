@@ -7,8 +7,6 @@ yarn.lock
 .vscode
 venv
 scripts
-jest.config.js
-jest-sa11y-setup.js
 
 # Robot
 robot
