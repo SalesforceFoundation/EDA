@@ -28,7 +28,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Api_Version__c</field>
+                <field>API_Version__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
