@@ -610,6 +610,12 @@ class EDA(BaseEDAPage):
         time.sleep(0.1)
         self.selenium.execute_javascript("window.scrollTo(document.body.scrollHeight, 0)")
 
+    def scroll_to_bottom_of_the_page(self):
+        """ This method will scroll to the bottom of the page using javascript
+            page scroll commands
+        """
+        self.selenium.execute_javascript("window.scrollTo(0, document.body.scrollHeight)")
+
     def scroll_to_field(self, field):
         """ This method will scroll to the location of the field until it is visible on the page by
             accepting the name of the field as a parameter
@@ -712,6 +718,7 @@ class EDA(BaseEDAPage):
         self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
         self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
+        self.salesforce.scroll_element_into_view(locator)
         self.selenium.click_element(locator)
         locator = eda_lex_locators["eda_settings_new"]["actions_menu"].format(label,button)
         self.selenium.wait_until_page_contains_element(locator, timeout=60)
