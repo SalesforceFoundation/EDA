@@ -291,7 +291,7 @@ public without sharing class TDTM_DefaultConfig {
 
         // Prevents creation/changes of applications with a due date prior to the open date
         handlers.add(new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
-               Class__c = 'Application_TDTM', Load_Order__c = 1, Object__c = 'Application',
+               Class__c = 'Application_TDTM', Load_Order__c = 1, Object__c = 'Application__c',
                Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'BeforeInsert;BeforeUpdate'));
 
         return handlers;
