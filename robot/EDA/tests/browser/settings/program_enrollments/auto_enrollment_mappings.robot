@@ -20,6 +20,7 @@ Validate auto enrollment mappings can be added and it is updated in custom setti
     ...                                         Auto-Enrollment Status=Current
     ...                                         Auto-Enrollment Role=Student
     Click footer button                         Save
+    Reload Page
     ${role}=                                    Get Affiliation Mappings Value       Auto_Program_Enrollment_Role__c     Business_Organization
     ${status}=                                  Get Affiliation Mappings Value       Auto_Program_Enrollment_Status__c     Business_Organization
     Should Be Equal As Strings                  Student      ${role}
@@ -33,6 +34,7 @@ Validate auto enrollment mappings can be deleted and it is updated in custom set
     Select settings from navigation pane        Program Enrollments
     Click show actions button                   Business_Organization       Delete
     Click footer button                         Delete
+    Reload Page
     ${role}=                                    Get Affiliation Mappings Value       Auto_Program_Enrollment_Role__c     Business_Organization
     ${status}=                                  Get Affiliation Mappings Value       Auto_Program_Enrollment_Status__c     Business_Organization
     Should Be Equal As Strings                  None      ${role}

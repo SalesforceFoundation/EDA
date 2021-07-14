@@ -679,11 +679,11 @@ class EDA(BaseEDAPage):
             self.selenium.wait_until_element_is_visible(locator,
                                                 error=f"'{value}' as dropdown value in '{field}' field is not available ")
             self.selenium.click_element(locator)
-            locator = eda_lex_locators["eda_settings_new"]["settings_dropdown"].format(field,value)
-            self.selenium.wait_until_page_contains_element(locator, timeout=60)
-            self.selenium.wait_until_element_is_visible(locator,
+            value = eda_lex_locators["eda_settings_new"]["settings_dropdown"].format(field,value)
+            self.selenium.wait_until_page_contains_element(value, timeout=60)
+            self.selenium.wait_until_element_is_visible(value,
                                                 error=f"'{value}' as dropdown value in '{field}' field is not available ")
-            self.selenium.click_element(locator)
+            self.salesforce._jsclick(value)
 
     def update_system_tools(self,value,**kwargs):
         """ This method will run the update job by clicking the update button present in System
