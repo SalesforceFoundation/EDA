@@ -49,16 +49,16 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
         TDTM_Runnable.Action triggerAction,
         Schema.DescribeSObjectResult objResult
     ) {
-        Map<Id, SObject> oldMap = new Map<Id, SObject>(oldList);
-
         if (triggerAction == TDTM_Runnable.Action.BeforeInsert || triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-            for (Application__c application : newList) {
+            Map<Id, SObject> oldMap = (oldList != null) ? new Map<Id, SObject>(oldList) : new Map<Id, SObject>();
+
+            for (Application__c application : (List<Application__c>) newList) {
                 if (!application.isSet(Application__c.Open_Date__c) || !application.isSet(Application__c.Due_Date__c)) {
                     continue;
                 }
 
                 if (triggerAction == TDTM_Runnable.Action.BeforeUpdate) {
-                    Application__c oldRecord = oldMap.get(application.Id);
+                    Application__c oldRecord = (Application__c) oldMap.get(application.Id);
                     if (
                         oldRecord.Open_Date__c == application.Open_Date__c &&
                         oldRecord.Due_Date__c == application.Due_Date__c
