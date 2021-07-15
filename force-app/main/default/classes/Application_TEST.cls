@@ -55,9 +55,9 @@ private with sharing class Application_TEST {
      * @description Should fail to insert an application with a due date prior to the open date
      *********************************************************/
     @isTest
-    static void newApplicationWithDueBeforeOpen() {
-        Account academicAccount = [SELECT Id FROM Account LIMIT 1];
-        Contact student = [SELECT Id FROM Contact LIMIT 1];
+    static void shouldFailInsertWhenApplicationDueDateIsBeforeOpenDate() {
+        Account academicAccount = getAcademicAccount();
+        Contact student = getStudent();
 
         Application__c invalidApplication = new Application__c(
             Applicant__c = student.Id,
@@ -70,21 +70,21 @@ private with sharing class Application_TEST {
         Database.SaveResult insertResult = Database.insert(invalidApplication, false);
         Test.stopTest();
 
-        System.assertEquals(false, insertResult.isSuccess(), 'Should have failed due to invalid date range');
+        System.assertEquals(false, insertResult.isSuccess(), 'Insert should have failed due to invalid date range');
         System.assertEquals(
             Label.stgErrorAppDueDate,
             insertResult.getErrors()[0].getMessage(),
-            'The operation failed with the wrong message'
+            'Should fail with the Open/Due Date validation error message'
         );
     }
 
     /********************************************************
-     * @description Should fail to update an application setting the due date prior to the open date
+     * @description Should fail to update an application when setting the due date prior to the open date
      *********************************************************/
     @isTest
-    static void applicationDueBeforeOpen() {
-        Account academicAccount = [SELECT Id FROM Account LIMIT 1];
-        Contact student = [SELECT Id FROM Contact LIMIT 1];
+    static void shouldFailUpdateWhenApplicationDueDateIsBeforeOpenDate() {
+        Account academicAccount = getAcademicAccount();
+        Contact student = getStudent();
 
         Application__c openEndedApplication = new Application__c(
             Applicant__c = student.Id,
@@ -98,11 +98,11 @@ private with sharing class Application_TEST {
         Database.SaveResult updateResult = Database.update(openEndedApplication, false);
         Test.stopTest();
 
-        System.assertEquals(false, updateResult.isSuccess(), 'Should have failed due to invalid date range');
+        System.assertEquals(false, updateResult.isSuccess(), 'Update should have failed due to invalid date range');
         System.assertEquals(
             Label.stgErrorAppDueDate,
             updateResult.getErrors()[0].getMessage(),
-            'The operation failed with the wrong message'
+            'Should fail with the Open/Due Date validation error message'
         );
     }
 
@@ -110,9 +110,9 @@ private with sharing class Application_TEST {
      * @description Should succeed to insert an application with just one date set
      *********************************************************/
     @isTest
-    static void newApplicationWithJustOneDate() {
-        Account academicAccount = [SELECT Id FROM Account LIMIT 1];
-        Contact student = [SELECT Id FROM Contact LIMIT 1];
+    static void shouldSucceedWhenApplicationHasEitherDueOrOpenDate() {
+        Account academicAccount = getAcademicAccount();
+        Contact student = getStudent();
 
         Application__c pastDueApplication = new Application__c(
             Applicant__c = student.Id,
@@ -133,7 +133,19 @@ private with sharing class Application_TEST {
         Test.stopTest();
 
         for (Database.SaveResult insertResult : insertResults) {
-            System.assertEquals(true, insertResult.isSuccess(), 'Should have passed due to having a blank date field');
+            System.assertEquals(
+                true,
+                insertResult.isSuccess(),
+                'Insert should succeed since date fields are not compared due to only one of them being set'
+            );
         }
+    }
+
+    private static Account getAcademicAccount() {
+        return [SELECT Id FROM Account LIMIT 1];
+    }
+
+    private static Contact getStudent() {
+        return [SELECT Id FROM Contact LIMIT 1];
     }
 }
