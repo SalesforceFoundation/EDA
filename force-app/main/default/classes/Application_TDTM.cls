@@ -94,7 +94,7 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
         );
 
         for (Application__c updatedApplication : updatedApplications) {
-            Application__c oldApplication = (Application__c) oldApplicationsById.get(updatedApplication.Id);
+            Application__c oldApplication = oldApplicationsById.get(updatedApplication.Id);
 
             if (
                 this.openOrDueDateHasChanged(updatedApplication, oldApplication) &&
