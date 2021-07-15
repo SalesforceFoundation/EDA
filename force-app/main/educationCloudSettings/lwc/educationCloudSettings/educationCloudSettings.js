@@ -74,7 +74,16 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
             settingsComponent: this.edaSettingsContainerComponentNavigation,
             documentationUrl: EDADocumentationUrl,
             trailheadUrl: EDATrailheadUrl,
-        },
+        },/*
+        {
+            title: "Advisor Link",
+            description: "This is the Advisor Link settings page",
+            iconInitials: "SAL",
+            iconFallbackName: "standard:avatar",
+            settingsComponent: this.edaSettingsContainerComponentNavigation,
+            documentationUrl: EDADocumentationUrl,
+            trailheadUrl: EDATrailheadUrl,
+        },*/
     ];
 
     @track edcToolModels = [
