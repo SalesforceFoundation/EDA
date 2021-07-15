@@ -1,4 +1,4 @@
-import { LightningElement, track } from "lwc";
+import { LightningElement, track, wire } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 
 //Column Header Labels
@@ -29,6 +29,10 @@ import stgBtnVideos from "@salesforce/label/c.stgBtnVideos";
 import stgBtnVideosActionA11y from "@salesforce/label/c.stgBtnVideosActionA11y";
 
 import namespacedEDAField from "@salesforce/schema/Course_Offering_Schedule__c.Course_Offering__c";
+
+import getEDCSettingsProductVModels from "@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModels";
+import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
+
 const EDASettingsContainerComponentName = "EdaSettingsContainer";
 const HealthCheckContainerComponentName = "HealthCheckContainer";
 
@@ -40,6 +44,10 @@ const TrailblazerCommunityUrl = "https://trailblazers.salesforce.com/successHome
 const YoutubeUrl = "https://www.youtube.com/user/SalesforceFoundation";
 
 export default class EducationCloudSettings extends NavigationMixin(LightningElement) {
+
+    @track
+    edcProductModels = [];
+
     labelReference = {
         productsTitle: stgColProducts,
         resourcesTitle: stgColResources,
@@ -64,7 +72,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
     get healthCheckContainerComponentNavigation() {
         return this.edaComponentNavigationPrefix + HealthCheckContainerComponentName;
     }
-
+/*
     @track edcProductModels = [
         {
             title: stgEDAAppTitle,
@@ -74,7 +82,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
             settingsComponent: this.edaSettingsContainerComponentNavigation,
             documentationUrl: EDADocumentationUrl,
             trailheadUrl: EDATrailheadUrl,
-        },/*
+        },
         {
             title: "Advisor Link",
             description: "This is the Advisor Link settings page",
@@ -83,8 +91,19 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
             settingsComponent: this.edaSettingsContainerComponentNavigation,
             documentationUrl: EDADocumentationUrl,
             trailheadUrl: EDATrailheadUrl,
-        },*/
-    ];
+        },
+    ];*/
+
+    @wire(getEDCSettingsProductVModels)
+    edcSettingsProductModels({ error, data }) {
+        if (data) {
+            console.log(data);
+            this.edcProductModels = data;
+        } else if (error) {
+            //console.log('error retrieving edc settings product view model: ', error);
+        }
+    }
+
 
     @track edcToolModels = [
         {

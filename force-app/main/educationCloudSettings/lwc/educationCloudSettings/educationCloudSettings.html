@@ -8,15 +8,15 @@
                 <ul class="slds-grid slds-grid_vertical">
                     <template for:each={edcProductModels} for:item="edcProductModel">
                         <li
-                            key={edcProductModel.title}
+                            key={edcProductModel.name}
                             class="slds-col slds-var-m-horizontal_small slds-var-m-vertical_small"
                         >
                             <c-edc-settings-product-card
-                                title={edcProductModel.title}
+                                title={edcProductModel.name}
                                 description={edcProductModel.description}
                                 icon-src={edcProductModel.iconSrc}
-                                icon-initials={edcProductModel.iconInitials}
-                                icon-fallback-name={edcProductModel.iconFallbackName}
+                                icon-initials={edcProductModel.initials}
+                                icon-fallback-name={edcProductModel.icon}
                                 settings-component={edcProductModel.settingsComponent}
                                 documentation-url={edcProductModel.documentationUrl}
                                 trailhead-url={edcProductModel.trailheadUrl}

@@ -19,6 +19,7 @@ public virtual with sharing class EDCSettingsProductVMapper {
         List<EDCSettingsProductAPIModel.SettingsProductInformationResult> settingsProductInformationResultList = this.getAllSettingsProductInformation();
 
         if (settingsProductInformationResultList != null) {
+            String navigationPrefix = this.getEDAComponentNavigationPrefix();
             for (
                 EDCSettingsProductAPIModel.SettingsProductInformationResult productInformationResult : settingsProductInformationResultList
             ) {
@@ -26,7 +27,8 @@ public virtual with sharing class EDCSettingsProductVMapper {
                 settingsProductVModel.initials = productInformationResult.productInformation.initials;
                 settingsProductVModel.name = productInformationResult.productInformation.name;
                 settingsProductVModel.description = productInformationResult.productInformation.description;
-                settingsProductVModel.settingsComponent = productInformationResult.productInformation.settingsComponent;
+                settingsProductVModel.settingsComponent =
+                    navigationPrefix + productInformationResult.productInformation.settingsComponent;
                 settingsProductVModel.documentationUrl = productInformationResult.productInformation.documentationUrl;
                 settingsProductVModel.trailheadUrl = productInformationResult.productInformation.trailheadUrl;
                 settingsProductVModel.icon = productInformationResult.productInformation.icon;
@@ -89,14 +91,26 @@ public virtual with sharing class EDCSettingsProductVMapper {
                 UTIL_Namespace.getNamespace(),
                 'EDASettingsProductInformationAPIService',
                 51.0
-            ) /*,
+            ),
             new ProductRegistryModel(
                 'Settings Product Information',
                 UTIL_Namespace.getNamespace(),
                 'EDASettingsProductInformationAPIService',
                 51.0
-            )*/
+            )
         };
+    }
+
+    public String getEDAComponentNavigationPrefix() {
+        String courseOfferingName = Course_Offering_Schedule__c.Course_Offering__c.getDescribe().getName();
+        String navigationPrefix = courseOfferingName.replace('Course_Offering__c', '');
+        String prefix;
+
+        if (String.isBlank(navigationPrefix)) {
+            navigationPrefix = 'c__';
+        }
+
+        return navigationPrefix;
     }
 
     public class SettingsProductException extends Exception {
