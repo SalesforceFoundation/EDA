@@ -28,15 +28,14 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2014
-* @group Utilities
-* @group-content ../../ApexDocContent/Utilities.htm
-* @description Helper class that retrieves custom settings and sets defaults.
-* Needs to be "without sharing" so that the Install Script can run it.
-*/
+ * @author Salesforce.org
+ * @date 2014
+ * @group Utilities
+ * @group-content ../../ApexDocContent/Utilities.htm
+ * @description Helper class that retrieves custom settings and sets defaults.
+ * Needs to be "without sharing" so that the Install Script can run it.
+ */
 public without sharing class UTIL_CustomSettingsFacade {
-
     //storing user-level custom settings in-memory to avoid trying to insert/update them
     //twice and thus trigger the "duplicate OwnerId" error
     static Hierarchy_Settings__c settings;
@@ -54,22 +53,25 @@ public without sharing class UTIL_CustomSettingsFacade {
     private static List<Relationship_Lookup__c> activeRelationshipLookupList;
 
     /******************************************************************************************************
-    * @description Generates a list of Relationship Auto Create settings for Contact
-    * @return A  of Relationship Auto Create settings specified for the Contact object
-    ******************************************************************************************************/
-    public static List<Relationship_Auto_Create__c> getAutoCreateSettingsForContact(){
-        if (UTIL_CustomSettingsFacade.relationshipAutoCreateListBySObjectType != null){
+     * @description Generates a list of Relationship Auto Create settings for Contact
+     * @return A  of Relationship Auto Create settings specified for the Contact object
+     ******************************************************************************************************/
+    public static List<Relationship_Auto_Create__c> getAutoCreateSettingsForContact() {
+        if (UTIL_CustomSettingsFacade.relationshipAutoCreateListBySObjectType != null) {
             return UTIL_CustomSettingsFacade.relationshipAutoCreateListBySObjectType.get(Contact.SObjectType);
         }
 
-        if (UTIL_CustomSettingsFacade.relationshipAutocreate == null || UTIL_CustomSettingsFacade.relationshipAutocreate.isEmpty() == true){
+        if (
+            UTIL_CustomSettingsFacade.relationshipAutocreate == null ||
+            UTIL_CustomSettingsFacade.relationshipAutocreate.isEmpty() == true
+        ) {
             UTIL_CustomSettingsFacade.relationshipAutocreate = UTIL_CustomSettingsFacade.getAutocreateSettings();
         }
 
         List<Relationship_Auto_Create__c> relationshipAutoCreateList = new List<Relationship_Auto_Create__c>();
 
-        for (Relationship_Auto_Create__c relAutoCreate : relationshipAutocreate){
-            if (relAutoCreate.Object__c.equalsIgnoreCase('Contact')){
+        for (Relationship_Auto_Create__c relAutoCreate : relationshipAutocreate) {
+            if (relAutoCreate.Object__c.equalsIgnoreCase('Contact')) {
                 relationshipAutoCreateList.add(relAutoCreate);
             }
         }
@@ -81,49 +83,49 @@ public without sharing class UTIL_CustomSettingsFacade {
     }
 
     /******************************************************************************************************
-    * @description Generates a list of active Relationship Lookup mappings.
-    * @return A list containing the current active Relationship Lookup mappings.
-    ******************************************************************************************************/ 
-    public static List<Relationship_Lookup__c> getActiveRelationshipLookups(){
-        if (UTIL_CustomSettingsFacade.activeRelationshipLookupList != null){
+     * @description Generates a list of active Relationship Lookup mappings.
+     * @return A list containing the current active Relationship Lookup mappings.
+     ******************************************************************************************************/
+    public static List<Relationship_Lookup__c> getActiveRelationshipLookups() {
+        if (UTIL_CustomSettingsFacade.activeRelationshipLookupList != null) {
             return UTIL_CustomSettingsFacade.activeRelationshipLookupList;
         }
 
         UTIL_CustomSettingsFacade.activeRelationshipLookupList = new List<Relationship_Lookup__c>();
 
-        for (Relationship_Lookup__c relLookup : UTIL_CustomSettingsFacade.getReciprocalSettings()){
-            if (relLookup.Active__c == true){
+        for (Relationship_Lookup__c relLookup : UTIL_CustomSettingsFacade.getReciprocalSettings()) {
+            if (relLookup.Active__c == true) {
                 UTIL_CustomSettingsFacade.activeRelationshipLookupList.add(relLookup);
             }
         }
 
         return UTIL_CustomSettingsFacade.activeRelationshipLookupList;
     }
-    
+
     /*******************************************************************************************************
-    * @description Returns the default settings.
-    * @return Hierarchy_Settings__c custom settings record.
-    * At the org level, if no user level settings are defined. The ID field should be checked to determine if
-    * the returned record already exists or doesn't exist in the database.
-    */
+     * @description Returns the default settings.
+     * @return Hierarchy_Settings__c custom settings record.
+     * At the org level, if no user level settings are defined. The ID field should be checked to determine if
+     * the returned record already exists or doesn't exist in the database.
+     */
     public static Hierarchy_Settings__c getSettings() {
         if (Test.isRunningTest() && settings == null) {
-        	settings = new Hierarchy_Settings__c();
-        	configSettings(settings);
+            settings = new Hierarchy_Settings__c();
+            configSettings(settings);
         } else if (settings == null) {
             settings = Hierarchy_Settings__c.getInstance();
-            if(settings.Id == null)
+            if (settings.Id == null)
                 settings = getOrgSettings();
         }
         return settings;
     }
 
     /*******************************************************************************************************
-    * @description Returns the default settings for new installs.
-    * @return Hierarchy_Settings__c custom settings record.
-    * At the org level, if no user level settings are defined. The ID field should be checked to determine if
-    * the returned record already exists or doesn't exist in the database.
-    */
+     * @description Returns the default settings for new installs.
+     * @return Hierarchy_Settings__c custom settings record.
+     * At the org level, if no user level settings are defined. The ID field should be checked to determine if
+     * the returned record already exists or doesn't exist in the database.
+     */
     public static Hierarchy_Settings__c getSettingsForNewInstalls() {
         if (settings != null) {
             return settings;
@@ -139,7 +141,10 @@ public without sharing class UTIL_CustomSettingsFacade {
                 configSettings(orgSettings);
                 orgSettings.Setupownerid = UserInfo.getOrganizationId();
                 orgSettings.Administrative_Account_Record_Type__c = UTIL_Describe.getDefaultAdminAccRecTypeIdForNewInstall();
-                orgSettings.Lead_Converted_Account_RTypes__c = UTIL_Describe.getAdminAccRecTypeID()+';'+UTIL_Describe.getHhAccRecTypeID();
+                orgSettings.Lead_Converted_Account_RTypes__c =
+                    UTIL_Describe.getAdminAccRecTypeID() +
+                    ';' +
+                    UTIL_Describe.getHhAccRecTypeID();
                 orgSettings.Account_Processor__c = orgSettings.Administrative_Account_Record_Type__c;
 
                 if (Test.isRunningTest() == false) {
@@ -147,17 +152,16 @@ public without sharing class UTIL_CustomSettingsFacade {
                 }
             }
             settings = orgSettings;
-        }  
-            
-        return settings; 
+        }
+
+        return settings;
     }
 
-
     /*******************************************************************************************************
-    * @description Returns the org-level settings. Default org-level settings will be created
-    * if none exist. Meant to be called only from settings page and install script.
-    * @return Hierarchy_Settings__c org-level settings.
-    */
+     * @description Returns the org-level settings. Default org-level settings will be created
+     * if none exist. Meant to be called only from settings page and install script.
+     * @return Hierarchy_Settings__c org-level settings.
+     */
     public static Hierarchy_Settings__c getOrgSettings() {
         if (orgSettings == null) {
             orgSettings = Hierarchy_Settings__c.getOrgDefaults();
@@ -177,7 +181,11 @@ public without sharing class UTIL_CustomSettingsFacade {
      **/
     private static void configSettings(Hierarchy_Settings__c hs) {
         hs.Account_Processor__c = UTIL_Describe.getAdminAccRecTypeID();
-        hs.Accounts_Addresses_Enabled__c = UTIL_Describe.getBizAccRecTypeID() + ';' + UTIL_Describe.getAdminAccRecTypeID() + ';';
+        hs.Accounts_Addresses_Enabled__c =
+            UTIL_Describe.getBizAccRecTypeID() +
+            ';' +
+            UTIL_Describe.getAdminAccRecTypeID() +
+            ';';
         hs.Admin_Account_Naming_Format__c = '{!LastName} Administrative Account';
         hs.Administrative_Account_Record_Type__c = UTIL_Describe.getAdminAccRecTypeID();
         hs.Affl_ProgEnroll_Copy_End_Date__c = false;
@@ -198,33 +206,33 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Error_Notifications_On__c = false;
         hs.Error_Notifications_To__c = ERR_Notifier.NotificationOptions.sysAdmins;
         hs.Household_Account_Naming_Format__c = '{!LastName} Household';
-        hs.Household_Addresses_RecType__c = UTIL_Describe.getHhAccRecTypeID();
+        hs.Household_Addresses_RecType__c = UTIL_Describe.getHHAccRecTypeID();
         hs.Reciprocal_Method__c = 'List Setting';
         hs.Store_Errors_On__c = true;
     }
 
     /*******************************************************************************************************
-    * @description Creates instance of settings to use in tests. It does not insert it, but all other methods will see these settings
-    * as the configured settings.
-    * @param mySettings Settings instance with the values to set.
-    * @return Hierarchy_Settings__c The configured settings.
-    **/
+     * @description Creates instance of settings to use in tests. It does not insert it, but all other methods will see these settings
+     * as the configured settings.
+     * @param mySettings Settings instance with the values to set.
+     * @return Hierarchy_Settings__c The configured settings.
+     **/
     public static Hierarchy_Settings__c getSettingsForTests(Hierarchy_Settings__c mySettings) {
         if (settings == null) {
             settings = new Hierarchy_Settings__c();
         }
-        
+
         //create our own based on what's passed in from the test
         //Check if user defined admin record type exist. If so, populate with the user defined one.
         if (mySettings.Account_Processor__c != null) {
             settings.Account_Processor__c = mySettings.Account_Processor__c;
-        } else {             
+        } else {
             settings.Account_Processor__c = mySettings.Administrative_Account_Record_Type__c;
         }
 
         settings.Accounts_Addresses_Enabled__c = mySettings.Accounts_Addresses_Enabled__c;
-        settings.Accounts_to_Delete__c =  mySettings.Accounts_to_Delete__c;
-        settings.Lead_Converted_Account_RTypes__c =  mySettings.Lead_Converted_Account_RTypes__c;        
+        settings.Accounts_to_Delete__c = mySettings.Accounts_to_Delete__c;
+        settings.Lead_Converted_Account_RTypes__c = mySettings.Lead_Converted_Account_RTypes__c;
         settings.Admin_Account_Naming_Format__c = mySettings.Admin_Account_Naming_Format__c;
         settings.Admin_Other_Name_Setting__c = mySettings.Admin_Other_Name_Setting__c;
         settings.Administrative_Account_Record_Type__c = mySettings.Administrative_Account_Record_Type__c;
@@ -234,8 +242,8 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affl_ProgEnroll_Del__c = mySettings.Affl_ProgEnroll_Del__c;
         settings.Affl_ProgEnroll_Del_Status__c = mySettings.Affl_ProgEnroll_Del_Status__c;
         settings.Affl_ProgEnroll_Role_Map__c = mySettings.Affl_ProgEnroll_Role_Map__c;
-        settings.Affl_ProgEnroll_Set_Role__c= mySettings.Affl_ProgEnroll_Set_Role__c;
-        settings.Affl_ProgEnroll_Status_Map__c= mySettings.Affl_ProgEnroll_Status_Map__c;
+        settings.Affl_ProgEnroll_Set_Role__c = mySettings.Affl_ProgEnroll_Set_Role__c;
+        settings.Affl_ProgEnroll_Status_Map__c = mySettings.Affl_ProgEnroll_Status_Map__c;
         settings.Allow_AutoCreated_Duplicates__c = mySettings.Allow_AutoCreated_Duplicates__c;
         settings.Async_Error_Check_Last_Run__c = mySettings.Async_Error_Check_Last_Run__c;
         settings.Automatic_Household_Naming__c = mySettings.Automatic_Household_Naming__c;
@@ -258,7 +266,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Prevent_Behavior_Involvement_Deletion__c = mySettings.Prevent_Behavior_Involvement_Deletion__c;
         settings.Prevent_Case_Deletion__c = mySettings.Prevent_Case_Deletion__c;
         settings.Prevent_Contact_Deletion__c = mySettings.Prevent_Contact_Deletion__c;
-        settings.Prevent_Course_Deletion__c = mySettings.Prevent_Course_Deletion__c; 
+        settings.Prevent_Course_Deletion__c = mySettings.Prevent_Course_Deletion__c;
         settings.Prevent_Course_Connection_Deletion__c = mySettings.Prevent_Course_Connection_Deletion__c;
         settings.Prevent_Course_Offering_Deletion__c = mySettings.Prevent_Course_Offering_Deletion__c;
         settings.Prevent_Facility_Deletion__c = mySettings.Prevent_Facility_Deletion__c;
@@ -273,27 +281,36 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Simple_Address_Change_Treated_as_Update__c = mySettings.Simple_Address_Change_Treated_as_Update__c;
         settings.Store_Errors_On__c = mySettings.Store_Errors_On__c;
         settings.Student_RecType__c = mySettings.Student_RecType__c;
-        settings.Validate_Program_Plan_for_Nested_PR__c = mySettings.Validate_Program_Plan_for_Nested_PR__c; 
+        settings.Validate_Program_Plan_for_Nested_PR__c = mySettings.Validate_Program_Plan_for_Nested_PR__c;
         orgSettings = settings;
         return settings;
     }
 
     /*******************************************************************************************************
-    * @description Retrieves the existing Affiliation Mappings list custom settings.
-    * @return List<Affl_Mappings__c> Existing Affiliation Mappings custom settings in a list.
-    **/
+     * @description Retrieves the existing Affiliation Mappings list custom settings.
+     * @return List<Affl_Mappings__c> Existing Affiliation Mappings custom settings in a list.
+     **/
     public static List<Affl_Mappings__c> getAfflMappings() {
-        if(afflMappings == null) {
-        afflMappings = [select Account_Record_Type__c, Primary_Affl_Field__c, Auto_Program_Enrollment__c, Auto_Program_Enrollment_Role__c,
-               Auto_Program_Enrollment_Status__c from Affl_Mappings__c order by Account_Record_Type__c limit 50000];
+        if (afflMappings == null) {
+            afflMappings = [
+                SELECT
+                    Account_Record_Type__c,
+                    Primary_Affl_Field__c,
+                    Auto_Program_Enrollment__c,
+                    Auto_Program_Enrollment_Role__c,
+                    Auto_Program_Enrollment_Status__c
+                FROM Affl_Mappings__c
+                ORDER BY Account_Record_Type__c
+                LIMIT 50000
+            ];
         }
         return afflMappings;
     }
 
     /*******************************************************************************************************
-    * @description Retrieves the existing Affiliation Mappings list custom settings using getAll method.
-    * @return List<Affl_Mappings__c> Existing Affiliation Mappings custom settings in a list.
-    **/
+     * @description Retrieves the existing Affiliation Mappings list custom settings using getAll method.
+     * @return List<Affl_Mappings__c> Existing Affiliation Mappings custom settings in a list.
+     **/
     public static List<Affl_Mappings__c> getPrimaryAfflMappings() {
         if (primaryAfflMappings == null) {
             primaryAfflMappings = Affl_Mappings__c.getAll().values();
@@ -302,45 +319,49 @@ public without sharing class UTIL_CustomSettingsFacade {
     }
 
     /*******************************************************************************************************
-    * @description Retrieves the existing Relationship Reciprocal list custom settings.
-    * @return List<Relationship_Lookup__c> Existing Relationship Reciprocal custom settings in a list.
-    **/
+     * @description Retrieves the existing Relationship Reciprocal list custom settings.
+     * @return List<Relationship_Lookup__c> Existing Relationship Reciprocal custom settings in a list.
+     **/
     public static List<Relationship_Lookup__c> getReciprocalSettings() {
-        if(relationshipLookup == null) {
-            relationshipLookup = [select Id, Name, Active__c, Female__c, Male__c, Neutral__c from Relationship_Lookup__c limit 50000];
+        if (relationshipLookup == null) {
+            relationshipLookup = [
+                SELECT Id, Name, Active__c, Female__c, Male__c, Neutral__c
+                FROM Relationship_Lookup__c
+                LIMIT 50000
+            ];
         }
         return relationshipLookup;
     }
 
     /*******************************************************************************************************
-    * @description Retrieves the existing Relationship Auto-Create list custom settings.
-    * @return List<Relationship_Auto_Create__c> Existing Relationship Auto-Create custom settings in a list.
-    **/
+     * @description Retrieves the existing Relationship Auto-Create list custom settings.
+     * @return List<Relationship_Auto_Create__c> Existing Relationship Auto-Create custom settings in a list.
+     **/
     public static List<Relationship_Auto_Create__c> getAutoCreateSettings() {
-        if(relationshipAutocreate == null) {
-            relationshipAutocreate = [SELECT Id, 
-                                             Name, 
-                                             Campaign_Types__c, 
-                                             Field__c, Object__c, 
-                                             Relationship_Type__c 
-                                     FROM Relationship_Auto_Create__c
-                                     LIMIT 50000];
+        if (relationshipAutocreate == null) {
+            relationshipAutocreate = [
+                SELECT Id, Name, Campaign_Types__c, Field__c, Object__c, Relationship_Type__c
+                FROM Relationship_Auto_Create__c
+                LIMIT 50000
+            ];
         }
 
         return relationshipAutocreate;
     }
 
     /*******************************************************************************************************
-    * @description Gets if Course Connections is enabled
-    * @return Boolean
-    */
+     * @description Gets if Course Connections is enabled
+     * @return Boolean
+     */
     public static Boolean courseConnectionsEnabled() {
         if (getSettings().Enable_Course_Connections__c) {
-            if (getSettings().Student_RecType__c != null &&
-                 getSettings().Faculty_RecType__c != null &&
-                 getSettings().Student_RecType__c.length() >= 15 &&
-                 getSettings().Faculty_RecType__c.length() >= 15 &&
-                 getSettings().Faculty_RecType__c != getSettings().Student_RecType__c) {
+            if (
+                getSettings().Student_RecType__c != null &&
+                getSettings().Faculty_RecType__c != null &&
+                getSettings().Student_RecType__c.length() >= 15 &&
+                getSettings().Faculty_RecType__c.length() >= 15 &&
+                getSettings().Faculty_RecType__c != getSettings().Student_RecType__c
+            ) {
                 return true;
             } else if (Test.isRunningTest()) {
                 return true;

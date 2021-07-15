@@ -26,34 +26,15 @@ Verify affiliations with contacts
     [tags]                                  unstable
     Go To Page                              Listing                       Contact
     Click Link                              ${CONTACT.FirstName} ${CONTACT.LastName}
-    Current page should be                  Details                       Contact
+    Wait until loading is complete
+    Current page should be                  Details             Contact
     Click Related List Button               Affiliated Accounts           New
-
-
-    Wait for Locator                        eda_settings.new_account
-    Click on Element                        eda_settings.new_account
-
-    Wait for Locator                        academic_program
-    Click on Element                        academic_program
-
-    Wait for Locator                        new_account_next_button
-    Click on Element                        new_account_next_button
-
-    Wait for Locator                        new_account_name
-    Populate Field                          Account Name    Robot Academic Program Account
-
-    Wait for Locator                        new_account_save_button
-    Click on Element                        new_account_save_button
-    Close toast message
-
-    Wait for Locator                        new_program_enrollment_save_button
-    Click on Element                        new_program_enrollment_save_button
-    Close toast message
+    Create account from modal               Organization        Academic Program        TestAccount
+    Click Modal Button                      Save
+    Wait until loading is complete
+    Reload Page
     Select RelatedList                      Affiliated Accounts
-    # Wait for Locator                        eda_settings.affiliated_accounts
-    # Click on Element                        eda_settings.affiliated_accounts
-
-    Wait for Locator                        eda_settings.affiliation_match
+    Verify affiliation account              TestAccount
 
 Verify affiliations with blank record types and mismatched primary affiliations
     [Documentation]     Creates a new contact and verifies the affiliations in edit mode

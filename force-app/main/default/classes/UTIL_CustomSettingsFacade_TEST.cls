@@ -28,31 +28,35 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2015
-* @group Utilities
-* @group-content ../../ApexDocContent/Utilities.htm
-* @description Tests for UTIL_CustomSettingsFacade. Mainly for the @isTest
-* methods, since the others were tested by other tests.
-*/
+ * @author Salesforce.org
+ * @date 2015
+ * @group Utilities
+ * @group-content ../../ApexDocContent/Utilities.htm
+ * @description Tests for UTIL_CustomSettingsFacade. Mainly for the @isTest
+ * methods, since the others were tested by other tests.
+ */
 @isTest
 public with sharing class UTIL_CustomSettingsFacade_TEST {
-
     private static ID orgRecTypeID;
     private static ID householdRecTypeID;
     private static ID adminRecTypeID;
 
     public static void recTypesSetup() {
         orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
-        householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
+        householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
         adminRecTypeID = UTIL_Describe_API.getAdminAccRecTypeID();
     }
 
     @isTest
     public static void getAfflMappings() {
-        insert new Affl_Mappings__c(Name = 'edu', Account_Record_Type__c = 'educational institution',
-            Primary_Affl_Field__c = 'primary educational institution', Auto_Program_Enrollment__c = true,
-            Auto_Program_Enrollment_Role__c = 'student', Auto_Program_Enrollment_Status__c = 'current');
+        insert new Affl_Mappings__c(
+            Name = 'edu',
+            Account_Record_Type__c = 'educational institution',
+            Primary_Affl_Field__c = 'primary educational institution',
+            Auto_Program_Enrollment__c = true,
+            Auto_Program_Enrollment_Role__c = 'student',
+            Auto_Program_Enrollment_Status__c = 'current'
+        );
 
         Test.startTest();
         List<Affl_Mappings__c> mappings = UTIL_CustomSettingsFacade.getAfflMappings();
@@ -63,8 +67,13 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
 
     @isTest
     private static void getAutoCreateSettings() {
-        insert new Relationship_Auto_Create__c(Name = 'test'+ system.now(), Object__c = 'Contact', Field__c = 'coworker__c',
-        Relationship_Type__c = 'coworker', Campaign_Types__c = 'fun event');
+        insert new Relationship_Auto_Create__c(
+            Name = 'test' + system.now(),
+            Object__c = 'Contact',
+            Field__c = 'coworker__c',
+            Relationship_Type__c = 'coworker',
+            Campaign_Types__c = 'fun event'
+        );
 
         Test.startTest();
         List<Relationship_Auto_Create__c> settings = UTIL_CustomSettingsFacade.getAutoCreateSettings();
@@ -78,16 +87,28 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
      */
     @isTest
     public static void getAutoCreateSettingsForContactNew() {
-        insert new Relationship_Auto_Create__c(Name = 'test'+ System.now(), Object__c = 'Contact', Field__c = 'coworker__c',
-        Relationship_Type__c = 'coworker', Campaign_Types__c = 'fun event');
+        insert new Relationship_Auto_Create__c(
+            Name = 'test' + System.now(),
+            Object__c = 'Contact',
+            Field__c = 'coworker__c',
+            Relationship_Type__c = 'coworker',
+            Campaign_Types__c = 'fun event'
+        );
 
         Test.startTest();
-        List<Relationship_Auto_Create__c> relAutoCreateForContactList =
-            UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
+        List<Relationship_Auto_Create__c> relAutoCreateForContactList = UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
         Test.stopTest();
 
-        System.assertNotEquals(true,relAutoCreateForContactList.isEmpty(),'Relationship auto create settings for Contact should not be empty.');
-        System.assertEquals(1,relAutoCreateForContactList.size(),'Only one relationship auto create mapping should exist for the Contact.');
+        System.assertNotEquals(
+            true,
+            relAutoCreateForContactList.isEmpty(),
+            'Relationship auto create settings for Contact should not be empty.'
+        );
+        System.assertEquals(
+            1,
+            relAutoCreateForContactList.size(),
+            'Only one relationship auto create mapping should exist for the Contact.'
+        );
     }
 
     /**
@@ -95,18 +116,25 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
      */
     @isTest
     public static void getAutoCreateSettingsForContactCached() {
-        insert new Relationship_Auto_Create__c(Name = 'test'+ System.now(), Object__c = 'Contact', Field__c = 'coworker__c',
-        Relationship_Type__c = 'coworker', Campaign_Types__c = 'fun event');
+        insert new Relationship_Auto_Create__c(
+            Name = 'test' + System.now(),
+            Object__c = 'Contact',
+            Field__c = 'coworker__c',
+            Relationship_Type__c = 'coworker',
+            Campaign_Types__c = 'fun event'
+        );
 
-        List<Relationship_Auto_Create__c> relAutoCreateForContactList =
-            UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
+        List<Relationship_Auto_Create__c> relAutoCreateForContactList = UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
 
         Test.startTest();
-        List<Relationship_Auto_Create__c> relAutoCreateForContactCachedList =
-            UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
+        List<Relationship_Auto_Create__c> relAutoCreateForContactCachedList = UTIL_CustomSettingsFacade.getAutoCreateSettingsForContact();
         Test.stopTest();
 
-        System.assertEquals(relAutoCreateForContactList,relAutoCreateForContactCachedList,'Relationship auto create mappings for contact should be cached.');
+        System.assertEquals(
+            relAutoCreateForContactList,
+            relAutoCreateForContactCachedList,
+            'Relationship auto create mappings for contact should be cached.'
+        );
     }
 
     @isTest
@@ -115,19 +143,23 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
 
         System.assertEquals(false, hs.Error_Notifications_On__c);
     }
-    
+
     // Positive test for getPrimaryAfflMappings method
     @isTest
     public static void getPrimaryAfflMappings() {
-        
         String prefix = UTIL_Namespace.StrTokenNSPrefix('');
 
-        insert new Affl_Mappings__c(Name = 'edu', Account_Record_Type__c = 'Academic_Program',
-            Primary_Affl_Field__c = prefix + 'Primary_Academic_Program__c', Auto_Program_Enrollment__c = true,
-            Auto_Program_Enrollment_Role__c = 'student', Auto_Program_Enrollment_Status__c = 'current');
+        insert new Affl_Mappings__c(
+            Name = 'edu',
+            Account_Record_Type__c = 'Academic_Program',
+            Primary_Affl_Field__c = prefix + 'Primary_Academic_Program__c',
+            Auto_Program_Enrollment__c = true,
+            Auto_Program_Enrollment_Role__c = 'student',
+            Auto_Program_Enrollment_Status__c = 'current'
+        );
 
         Test.startTest();
-            List<Affl_Mappings__c> mappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
+        List<Affl_Mappings__c> mappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
         Test.stopTest();
 
         System.assertEquals(1, mappings.size());
@@ -136,9 +168,8 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
     // NULL test for getPrimaryAfflMappings method
     @isTest
     public static void getPrimaryAfflMappingsNULLTest() {
-
         Test.startTest();
-            List<Affl_Mappings__c> mappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
+        List<Affl_Mappings__c> mappings = UTIL_CustomSettingsFacade.getPrimaryAfflMappings();
         Test.stopTest();
 
         System.assertEquals(0, mappings.size());
@@ -146,8 +177,13 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
 
     @isTest
     public static void getReciprocalSettings() {
-        insert new Relationship_Lookup__c(Name = 'test' + system.now(), Active__c = true, Female__c = 'wife',
-        Male__c = 'husband', Neutral__c = 'spouse');
+        insert new Relationship_Lookup__c(
+            Name = 'test' + system.now(),
+            Active__c = true,
+            Female__c = 'wife',
+            Male__c = 'husband',
+            Neutral__c = 'spouse'
+        );
 
         Test.startTest();
         List<Relationship_Lookup__c> settings = UTIL_CustomSettingsFacade.getReciprocalSettings();
@@ -163,28 +199,39 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
     public static void getActiveRelationshipLookupsNew() {
         List<Relationship_Lookup__c> relationshipLookups = new List<Relationship_Lookup__c>();
         relationshipLookups.add(
-            new Relationship_Lookup__c(Name = 'test' + system.now() + '1',
-            Active__c = true,
-            Female__c = 'wife',
-            Male__c = 'husband',
-            Neutral__c = 'spouse')
+            new Relationship_Lookup__c(
+                Name = 'test' + system.now() + '1',
+                Active__c = true,
+                Female__c = 'wife',
+                Male__c = 'husband',
+                Neutral__c = 'spouse'
+            )
         );
         relationshipLookups.add(
-            new Relationship_Lookup__c(Name = 'test' + system.now() + '2',
-            Active__c = false,
-            Female__c = 'wife',
-            Male__c = 'husband',
-            Neutral__c = 'spouse')
+            new Relationship_Lookup__c(
+                Name = 'test' + system.now() + '2',
+                Active__c = false,
+                Female__c = 'wife',
+                Male__c = 'husband',
+                Neutral__c = 'spouse'
+            )
         );
         insert relationshipLookups;
 
         Test.startTest();
-        List<Relationship_Lookup__c> activeRelationshipLookups =
-            UTIL_CustomSettingsFacade.getActiveRelationshipLookups();
+        List<Relationship_Lookup__c> activeRelationshipLookups = UTIL_CustomSettingsFacade.getActiveRelationshipLookups();
         Test.stopTest();
 
-        System.assertNotEquals(true,activeRelationshipLookups.isEmpty(),'The active Reciprocal Relationship settings list should not be empty.');
-        System.assertEquals(1,activeRelationshipLookups.size(),'Only one reciprocal relationship mapping should be found.');
+        System.assertNotEquals(
+            true,
+            activeRelationshipLookups.isEmpty(),
+            'The active Reciprocal Relationship settings list should not be empty.'
+        );
+        System.assertEquals(
+            1,
+            activeRelationshipLookups.size(),
+            'Only one reciprocal relationship mapping should be found.'
+        );
     }
 
     /**
@@ -194,29 +241,35 @@ public with sharing class UTIL_CustomSettingsFacade_TEST {
     public static void getActiveRelationshipLookupsCached() {
         List<Relationship_Lookup__c> relationshipLookups = new List<Relationship_Lookup__c>();
         relationshipLookups.add(
-            new Relationship_Lookup__c(Name = 'test' + system.now() + '1',
-            Active__c = true,
-            Female__c = 'wife',
-            Male__c = 'husband',
-            Neutral__c = 'spouse')
+            new Relationship_Lookup__c(
+                Name = 'test' + system.now() + '1',
+                Active__c = true,
+                Female__c = 'wife',
+                Male__c = 'husband',
+                Neutral__c = 'spouse'
+            )
         );
         relationshipLookups.add(
-            new Relationship_Lookup__c(Name = 'test' + system.now() + '2',
-            Active__c = false,
-            Female__c = 'wife',
-            Male__c = 'husband',
-            Neutral__c = 'spouse')
+            new Relationship_Lookup__c(
+                Name = 'test' + system.now() + '2',
+                Active__c = false,
+                Female__c = 'wife',
+                Male__c = 'husband',
+                Neutral__c = 'spouse'
+            )
         );
         insert relationshipLookups;
 
-        List<Relationship_Lookup__c> activeRelationshipLookups =
-            UTIL_CustomSettingsFacade.getActiveRelationshipLookups();
+        List<Relationship_Lookup__c> activeRelationshipLookups = UTIL_CustomSettingsFacade.getActiveRelationshipLookups();
 
         Test.startTest();
-        List<Relationship_Lookup__c> activeRelationshipLookups2 =
-            UTIL_CustomSettingsFacade.getActiveRelationshipLookups();
+        List<Relationship_Lookup__c> activeRelationshipLookups2 = UTIL_CustomSettingsFacade.getActiveRelationshipLookups();
         Test.stopTest();
 
-        System.assertEquals(activeRelationshipLookups,activeRelationshipLookups2,'Active Reciprocal Relationship mappings should be cached.');
+        System.assertEquals(
+            activeRelationshipLookups,
+            activeRelationshipLookups2,
+            'Active Reciprocal Relationship mappings should be cached.'
+        );
     }
 }

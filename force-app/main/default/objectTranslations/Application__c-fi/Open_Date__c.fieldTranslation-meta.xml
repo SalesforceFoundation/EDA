@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The date when applicants can submit an application. --></help>
+    <label><!-- Open Date --></label>
+    <name>Open_Date__c</name>
+</CustomFieldTranslation>

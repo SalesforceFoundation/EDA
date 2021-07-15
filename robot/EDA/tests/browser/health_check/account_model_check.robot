@@ -27,7 +27,7 @@ Verify account model health check settings checks pass
     [Documentation]         Validates the account model health card is displayed with settings for
     ...                     Administrative, Household, Default Account Model and Unique account
     ...                     record type checks. Also verifies the status of each setting.
-    [tags]                  unstable        rbt:high        W-8880346
+    [tags]                  rbt:high        W-8880346
     Go to settings health check
     Current page should be                      Home        Settings Health Check
     Run health check settings                   Account Model  AccountModel   AccountModelResults
@@ -38,7 +38,7 @@ Verify account model health check settings checks pass
 
 Verify account model health check settings checks fail and display correct Recommended Fix text
     [Documentation]         Verifies the failure status of the Account Model test
-    [tags]                  unstable        rbt:high        W-8977007
+    [tags]                  rbt:high        W-8977007
     Go to education cloud settings
     Select settings from navigation pane        Account Model
     Click action button on new EDA settings     Edit

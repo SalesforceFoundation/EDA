@@ -13,7 +13,7 @@ Verify course connections health check when course connections is disabled
     [Documentation]         Validates course connections health check card displays a warning
     ...                     message with a single setting when course connections in EDA Settings
     ...                     is disabled
-    [tags]                  unstable        rbt:high        W-8976999
+    [tags]                  rbt:high        W-8976999
     Go to education cloud settings
     Select settings from navigation pane        Course Connections
     Click action button on new EDA settings     Edit
@@ -28,7 +28,7 @@ Verify course connections health check when course connections is disabled
 Verify course connections health check when course connections is enabled
     [Documentation]         Validates course connections health check card displays status of all
     ...                     settings when course connections in EDA Settings is enabled
-    [tags]                  unstable        rbt:high        W-9048400
+    [tags]                  rbt:high        W-9048400
     Go to education cloud settings
     Select settings from navigation pane        Course Connections
     Click action button on new EDA settings     Edit

@@ -610,6 +610,12 @@ class EDA(BaseEDAPage):
         time.sleep(0.1)
         self.selenium.execute_javascript("window.scrollTo(document.body.scrollHeight, 0)")
 
+    def scroll_to_bottom_of_the_page(self):
+        """ This method will scroll to the bottom of the page using javascript
+            page scroll commands
+        """
+        self.selenium.execute_javascript("window.scrollTo(0, document.body.scrollHeight)")
+
     def scroll_to_field(self, field):
         """ This method will scroll to the location of the field until it is visible on the page by
             accepting the name of the field as a parameter
@@ -673,11 +679,11 @@ class EDA(BaseEDAPage):
             self.selenium.wait_until_element_is_visible(locator,
                                                 error=f"'{value}' as dropdown value in '{field}' field is not available ")
             self.selenium.click_element(locator)
-            locator = eda_lex_locators["eda_settings_new"]["settings_dropdown"].format(field,value)
-            self.selenium.wait_until_page_contains_element(locator, timeout=60)
-            self.selenium.wait_until_element_is_visible(locator,
+            value = eda_lex_locators["eda_settings_new"]["settings_dropdown"].format(field,value)
+            self.selenium.wait_until_page_contains_element(value, timeout=60)
+            self.selenium.wait_until_element_is_visible(value,
                                                 error=f"'{value}' as dropdown value in '{field}' field is not available ")
-            self.selenium.click_element(locator)
+            self.salesforce._jsclick(value)
 
     def update_system_tools(self,value,**kwargs):
         """ This method will run the update job by clicking the update button present in System
@@ -701,6 +707,23 @@ class EDA(BaseEDAPage):
         self.selenium.wait_until_page_contains_element(locator, timeout=60)
         self.selenium.wait_until_element_is_visible(locator,
                                                 error=f"'{locator}' is not available ")
+        self.selenium.click_element(locator)
+
+    def click_show_actions_button(self,label,button):
+        """ This method will click on show actions drop down menu and select an action 'Edit or
+            Delete' based on the value passed from the test. It also accepts the name of the record
+            type or a label name as one of its arguments.
+        """
+        locator = eda_lex_locators["eda_settings_new"]["show_actions_button"].format(label)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error= "Element is not displayed for the user")
+        self.salesforce.scroll_element_into_view(locator)
+        self.selenium.click_element(locator)
+        locator = eda_lex_locators["eda_settings_new"]["actions_menu"].format(label,button)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                                error=f"'{button}' as an option is not available ")
         self.selenium.click_element(locator)
 
 

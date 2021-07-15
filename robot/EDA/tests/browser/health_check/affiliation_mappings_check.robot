@@ -32,7 +32,7 @@ Verify affiliation mappings health check settings checks pass
     [Documentation]         Validates the affiliation mappings health card is displayed with
     ...                     settings for default account record types. Also verifies the status of
     ...                     each setting.
-    [tags]                  unstable        rbt:high        W-8925750
+    [tags]                  rbt:high        W-8925750
     Go to settings health check
     Current page should be      Home        Settings Health Check
     Run health check settings   Affiliation Mappings  AffiliationMappings   AffiliationMappingsResults
@@ -45,7 +45,7 @@ Verify affiliation mappings health check settings checks pass
 
 Verify affiliation mapping health check settings checks fail and display recommended fix message
     [Documentation]         Verifies the failing affiliation mapping health check and its message
-    [tags]                  unstable        rbt:high        W-9048429
+    [tags]                  rbt:high        W-9048429
     API Update Records      RecordType    ${academic_id}      IsActive=false
     Go to settings health check
     Current page should be                      Home        Settings Health Check

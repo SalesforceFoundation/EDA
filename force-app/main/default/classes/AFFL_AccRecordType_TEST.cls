@@ -28,32 +28,33 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2015
-* @group Affiliations
-* @group-content ../../ApexDocContent/Affiliations.htm
-* @description Tests specific to Affiliation Management when an Account that
-* is part of one or more Affiliation changes. 
-*/
+ * @author Salesforce.org
+ * @date 2015
+ * @group Affiliations
+ * @group-content ../../ApexDocContent/Affiliations.htm
+ * @description Tests specific to Affiliation Management when an Account that
+ * is part of one or more Affiliation changes.
+ */
 @isTest
 public with sharing class AFFL_AccRecordType_TEST {
-
     private static ID orgRecTypeID;
     private static ID householdRecTypeID;
 
     private static void setup() {
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID()));
+        UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID())
+        );
 
         STG_InstallScript.insertMappings();
         RecordType univ = [SELECT Id, Name FROM RecordType WHERE DeveloperName = 'University_Department'];
         System.assertNotEquals(null, univ, 'University_Department Record Type was not found');
 
         orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
-        householdRecTypeID = UTIL_Describe_API.getHhAccRecTypeID();
+        householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
     }
 
     @isTest
-    private static void changePrimaryAffiliationRecordType() {        
+    private static void changePrimaryAffiliationRecordType() {
         AFFL_AccRecordType_TEST.setup();
 
         Contact contact = UTIL_UnitTestData_API.getContact();
@@ -71,7 +72,10 @@ public with sharing class AFFL_AccRecordType_TEST {
         contact = [SELECT AccountId, Primary_Household__c FROM Contact WHERE Id = :contact.Id];
         System.assertEquals(contact.AccountId, contact.Primary_Household__c);
 
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
+            false
+        );
         Account acc = [SELECT RecordTypeId FROM Account WHERE Id = :contact.AccountId];
         //Change the account record type to Business Organization
         acc.RecordTypeId = orgRecTypeID;
@@ -85,16 +89,18 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Verify primary business organization field has been populated
         System.assertEquals(acc.Id, contact.Primary_Organization__c);
 
-         //Verify no duplicate affiliations are created
-        List<Affiliation__c> allAffiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c 
-                                                   WHERE Contact__c = :contact.Id 
-                                                   AND Account__c = :acc.Id];
+        //Verify no duplicate affiliations are created
+        List<Affiliation__c> allAffiliationList = [
+            SELECT Id, Name, Primary__c
+            FROM Affiliation__c
+            WHERE Contact__c = :contact.Id AND Account__c = :acc.Id
+        ];
         System.assertEquals(1, allAffiliationList.size());
         System.assertEquals(true, allAffiliationList[0].Primary__c);
     }
 
     @isTest
-    private static void changePrimaryAffiliationRecordTypeReentrancyCheck() {        
+    private static void changePrimaryAffiliationRecordTypeReentrancyCheck() {
         AFFL_AccRecordType_TEST.setup();
 
         // Install Default HEDA TDTM Configuration
@@ -103,9 +109,15 @@ public with sharing class AFFL_AccRecordType_TEST {
 
         // Add the Test TDTM for the Contact object. This Test TDTM will simply update the account that caused the contact to be updated.
         // So the flow would be: Account updated -> contact updated -> account updated again
-        Trigger_Handler__c newTDTM = new Trigger_Handler__c(Active__c = true, Asynchronous__c = false,
-            Class__c = 'UTIL_UnitTestData_TEST.Test_TDTM', Load_Order__c = 1, Object__c = 'Contact',
-            Owned_by_Namespace__c = 'hed', Trigger_Action__c = 'AfterInsert;AfterUpdate');
+        Trigger_Handler__c newTDTM = new Trigger_Handler__c(
+            Active__c = true,
+            Asynchronous__c = false,
+            Class__c = 'UTIL_UnitTestData_TEST.Test_TDTM',
+            Load_Order__c = 1,
+            Object__c = 'Contact',
+            Owned_by_Namespace__c = 'hed',
+            Trigger_Action__c = 'AfterInsert;AfterUpdate'
+        );
         insert newTDTM;
 
         Contact contact = UTIL_UnitTestData_API.getContact();
@@ -119,7 +131,10 @@ public with sharing class AFFL_AccRecordType_TEST {
         contact = [SELECT AccountId, Primary_Household__c FROM Contact WHERE Id = :contact.Id];
         System.assertEquals(contact.AccountId, contact.Primary_Household__c);
 
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
+            false
+        );
 
         //Change the account record type to Business Organization
         Account acc = new Account(Id = contact.AccountId, RecordTypeId = orgRecTypeID);
@@ -137,12 +152,14 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Verify primary business organization field has been populated
         System.assertEquals(acc.Id, contact.Primary_Organization__c);
 
-        System.assert(AFFL_AccRecordType_TDTM.reentrancyPrevented == true, 
-            'Expected the reentrancy check to have prevented the AFFL_AccRecordType_TDTM trigger from processing again.');
+        System.assert(
+            AFFL_AccRecordType_TDTM.reentrancyPrevented == true,
+            'Expected the reentrancy check to have prevented the AFFL_AccRecordType_TDTM trigger from processing again.'
+        );
     }
 
     @isTest
-    private static void changePrimaryAffiliationRecordTypeTwoAccs() {        
+    private static void changePrimaryAffiliationRecordTypeTwoAccs() {
         AFFL_AccRecordType_TEST.setup();
 
         Contact contact = UTIL_UnitTestData_API.getContact();
@@ -175,8 +192,11 @@ public with sharing class AFFL_AccRecordType_TEST {
         household.RecordTypeId = orgRecTypeID;
         bizOrg.RecordTypeId = householdRecTypeID;
         Test.startTest();
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
-        update new Account[]{household, bizOrg};
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
+            false
+        );
+        update new List<Account>{ household, bizOrg };
         Test.stopTest();
 
         contact = [SELECT Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
@@ -187,7 +207,7 @@ public with sharing class AFFL_AccRecordType_TEST {
     }
 
     @isTest
-    private static void otherPrimaryNotPrimary() {        
+    private static void otherPrimaryNotPrimary() {
         AFFL_AccRecordType_TEST.setup();
 
         Contact contact = UTIL_UnitTestData_API.getContact();
@@ -210,7 +230,10 @@ public with sharing class AFFL_AccRecordType_TEST {
         insert bizOrg;
         UTIL_Debug.debug('****Biz org ID: ' + bizOrg.Id);
         Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizOrg.Id, Primary__c = true);
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
+            false
+        );
         insert bizAffl;
 
         //Verify the primary business organization field was populated
@@ -222,7 +245,10 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Change the account record type of parent Household to Business Organization
         household.RecordTypeId = orgRecTypeID;
         Test.startTest();
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary, false);
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
+            false
+        );
         update household;
         Test.stopTest();
 
@@ -238,7 +264,7 @@ public with sharing class AFFL_AccRecordType_TEST {
     }
 
     @isTest
-    private static void addRecordTypeToAcc() {        
+    private static void addRecordTypeToAcc() {
         AFFL_AccRecordType_TEST.setup();
 
         Contact contact = UTIL_UnitTestData_API.getContact();
@@ -249,7 +275,10 @@ public with sharing class AFFL_AccRecordType_TEST {
         Account acc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID())[0];
         insert acc;
         Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = acc.Id, Primary__c = true);
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
+            false
+        );
         insert affl;
 
         //Verify Primary Business Organization field was not populated
@@ -272,15 +301,22 @@ public with sharing class AFFL_AccRecordType_TEST {
         AFFL_AccRecordType_TEST.setup();
 
         //Create some Accounts with Admin record type
-        List<Account> adminAccList = UTIL_UnitTestData_API.getMultipleTestAccounts(10, UTIL_Describe.getCustomAdminAccRecTypeID());
+        List<Account> adminAccList = UTIL_UnitTestData_API.getMultipleTestAccounts(
+            10,
+            UTIL_Describe.getCustomAdminAccRecTypeID()
+        );
         insert adminAccList;
 
-        List<Account> theAccs = [SELECT Id FROM Account WHERE RecordTypeId = :UTIL_Describe.getCustomAdminAccRecTypeID()];
+        List<Account> theAccs = [
+            SELECT Id
+            FROM Account
+            WHERE RecordTypeId = :UTIL_Describe.getCustomAdminAccRecTypeID()
+        ];
         System.assertEquals(10, theAccs.size());
 
         //Change the record type of the Accounts to Biz type and HH type
-        for(Integer i = 0 ; i < 10; i++) {
-            if(i < 5) {
+        for (Integer i = 0; i < 10; i++) {
+            if (i < 5) {
                 theAccs[i].RecordTypeId = orgRecTypeID;
             } else {
                 theAccs[i].RecordTypeId = householdRecTypeID;
@@ -306,26 +342,36 @@ public with sharing class AFFL_AccRecordType_TEST {
         //Create Contacts
         Contact john = UTIL_UnitTestData_API.getContact();
         Contact mark = UTIL_UnitTestData_API.getContact();
-        List<Contact> contacts = new List<Contact>{john, mark};
+        List<Contact> contacts = new List<Contact>{ john, mark };
         insert contacts;
 
         //Create Accounts with Admin Record Type
-        Account company = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID())[0];
+        Account company = UTIL_UnitTestData_API.getMultipleTestAccounts(
+            1,
+            UTIL_Describe.getCustomAdminAccRecTypeID()
+        )[0];
         Account hh = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID())[0];
-        List<Account> accs = new List<Account>{company, hh};
+        List<Account> accs = new List<Account>{ company, hh };
         insert accs;
 
         //Create Affiliations
-        Affiliation__c companyAffl = new Affiliation__c(Contact__c = john.Id, Account__c = company.Id, Primary__c = true);
+        Affiliation__c companyAffl = new Affiliation__c(
+            Contact__c = john.Id,
+            Account__c = company.Id,
+            Primary__c = true
+        );
         Affiliation__c hhAffl = new Affiliation__c(Contact__c = mark.Id, Account__c = hh.Id, Primary__c = true);
-        List<Affiliation__c> affls = new List<Affiliation__c>{companyAffl, hhAffl};
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,false);
+        List<Affiliation__c> affls = new List<Affiliation__c>{ companyAffl, hhAffl };
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
+            false
+        );
         insert affls;
 
         //Now Update the Account Record Type
         Account companyWithCorrectType = new Account(Id = company.Id, RecordTypeId = orgRecTypeID);
         Account hhWithCorrectType = new Account(Id = hh.Id, RecordTypeId = householdRecTypeID);
-        List<Account> accsForUpdate = new List<Account>{companyWithCorrectType, hhWithCorrectType};
+        List<Account> accsForUpdate = new List<Account>{ companyWithCorrectType, hhWithCorrectType };
 
         Test.startTest();
         update accsForUpdate;
@@ -342,7 +388,7 @@ public with sharing class AFFL_AccRecordType_TEST {
     }
 
     @isTest
-    private static void duplicateAffiliationCheck() {        
+    private static void duplicateAffiliationCheck() {
         AFFL_AccRecordType_TEST.setup();
 
         // Insert a business account
@@ -353,14 +399,16 @@ public with sharing class AFFL_AccRecordType_TEST {
         Contact contact = UTIL_UnitTestData_API.getContact();
         insert contact;
 
-        contact = [SELECT AccountId,  Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        contact = [SELECT AccountId, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
         contact.Primary_Organization__c = bizAcc.id;
         update contact;
 
         //Verify 1 affiliation is created
-        List<Affiliation__c> affiliationList = [SELECT Id, Name, Primary__c	FROM Affiliation__c 
-                                                WHERE Contact__c = :contact.Id 
-                                                AND Account__c = :bizAcc.Id] ;
+        List<Affiliation__c> affiliationList = [
+            SELECT Id, Name, Primary__c
+            FROM Affiliation__c
+            WHERE Contact__c = :contact.Id AND Account__c = :bizAcc.Id
+        ];
         System.assertEquals(1, affiliationList.size());
         System.assertEquals(true, affiliationList[0].Primary__c);
 
@@ -374,16 +422,17 @@ public with sharing class AFFL_AccRecordType_TEST {
         Test.stopTest();
 
         //Verify no duplicate affiliations are created
-        List<Affiliation__c> allAffiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c 
-                                                   WHERE Contact__c = :contact.Id 
-                                                   AND Account__c = :bizAcc.Id] ;
+        List<Affiliation__c> allAffiliationList = [
+            SELECT Id, Name, Primary__c
+            FROM Affiliation__c
+            WHERE Contact__c = :contact.Id AND Account__c = :bizAcc.Id
+        ];
         System.assertEquals(1, allAffiliationList.size());
         System.assertEquals(true, allAffiliationList[0].Primary__c);
     }
 
     @isTest
-    private static void checkNPE() {        
-
+    private static void checkNPE() {
         AFFL_AccRecordType_TEST.setup();
 
         //delete an affiliation mapping
@@ -399,13 +448,18 @@ public with sharing class AFFL_AccRecordType_TEST {
 
         //Insert an affiliation
         Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
-        TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
+            false
+        );
         insert affl;
 
         //Verify 1 affiliation is created
-        List<Affiliation__c> affiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c 
-                                                WHERE Contact__c = :contact.Id 
-                                                AND Account__c = :bizAcc.Id] ;
+        List<Affiliation__c> affiliationList = [
+            SELECT Id, Name, Primary__c
+            FROM Affiliation__c
+            WHERE Contact__c = :contact.Id AND Account__c = :bizAcc.Id
+        ];
         System.assertEquals(1, affiliationList.size());
         System.assertEquals(true, affiliationList[0].Primary__c);
 
@@ -419,28 +473,37 @@ public with sharing class AFFL_AccRecordType_TEST {
         Test.stopTest();
 
         //Verify no duplicate affiliations are created and no NPE
-        List<Affiliation__c> allAffiliationList = [SELECT Id, Name, Primary__c FROM Affiliation__c 
-                                                   WHERE Contact__c = :contact.Id 
-                                                   AND Account__c = :bizAcc.Id] ;
+        List<Affiliation__c> allAffiliationList = [
+            SELECT Id, Name, Primary__c
+            FROM Affiliation__c
+            WHERE Contact__c = :contact.Id AND Account__c = :bizAcc.Id
+        ];
 
         //Verify Primary Organization is Null
-        Contact updatedContact = [SELECT id, Primary_Organization__c, Primary_Household__c FROM contact WHERE id = :contact.Id]; 
+        Contact updatedContact = [
+            SELECT id, Primary_Organization__c, Primary_Household__c
+            FROM contact
+            WHERE id = :contact.Id
+        ];
 
-        System.assertEquals(NULL, updatedContact.Primary_Organization__c);                                         
+        System.assertEquals(null, updatedContact.Primary_Organization__c);
         System.assertEquals(1, allAffiliationList.size());
         System.assertEquals(true, allAffiliationList[0].Primary__c);
     }
 
-    /* Test to ensure an error is thrown when an affiliation is inserted with an Account whose record 
-        type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled */
+    /* Test to ensure an error is thrown when an affiliation is inserted with an Account whose record
+     type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled */
 
     @isTest
     private static void insertAfflWAccRecTypeEnforced() {
-
         AFFL_AccRecordType_TEST.setup();
 
-        UTIL_CustomSettings_API.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
-                                                                              Affiliation_Record_Type_Enforced__c = true));
+        UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+                Affiliation_Record_Type_Enforced__c = true
+            )
+        );
 
         Contact contact = UTIL_UnitTestData_API.getContact();
         insert contact;
@@ -451,14 +514,19 @@ public with sharing class AFFL_AccRecordType_TEST {
 
         try {
             Test.startTest();
-                Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = acc.Id, Primary__c = true);
-                TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert, false);
-                insert affl;
+            Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = acc.Id, Primary__c = true);
+            TDTM_ProcessControl.setRecursionFlag(
+                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
+                false
+            );
+            insert affl;
             Test.stopTest();
-            System.assert(false, 'Always throw an exception when Account record type is not a part of Affiliation Mappings and when Affiliation Record Type is Enforced.');
+            System.assert(
+                false,
+                'Always throw an exception when Account record type is not a part of Affiliation Mappings and when Affiliation Record Type is Enforced.'
+            );
         } catch (System.DmlException error) {
             System.assert(error.getMessage().contains(Label.afflAccoutMappingError));
         }
     }
-
 }

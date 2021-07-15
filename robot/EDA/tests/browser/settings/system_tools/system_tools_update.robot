@@ -11,7 +11,7 @@ Test Setup      Go to education cloud settings
 Validate update administrative account name system job
     [Documentation]         Verifies the update all administrative account names job is triggered by
     ...                     checking the toast message displayed to the user
-    [tags]                                      unstable         W-9425207       rbt:high
+    [tags]                                      W-9425207       rbt:high
     Select settings from navigation pane        System Tools
     Update system tools             Update      Update All Administrative Account Names=Update
     ...                                         Update All Household Account Names=Update

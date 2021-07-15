@@ -40,7 +40,7 @@ ${sObject_name}            Account
 Validate multiple contact addresses and address records for simple changes settings
     [Documentation]         Verifies the allow multiple contact addresses and update address records
     ...                     for simple changes are updated in the hierarchy settings
-    [tags]                                      unstable        W-9354261       rbt:high
+    [tags]                                      W-9354261       rbt:high
     Select settings from navigation pane        Addresses
     Click action button on new EDA settings     Edit
     Set toggle input
@@ -56,7 +56,7 @@ Validate enable multiple addresses for account setting is updated in hierarchy s
     [Documentation]         Verifies the enable multiple addresses setting can be updated in
     ...                     EDA Settings page and the same record type is updated in hierarchy
     ...                     settings under custom settings.
-    [tags]                                      unstable        W-9294273       rbt:high
+    [tags]                                      W-9294273       rbt:high
     Select settings from navigation pane        Addresses
     Click action button on new EDA settings     Edit
     Select and move from list                   Enable Multiple Addresses for Account Types       Academic Program

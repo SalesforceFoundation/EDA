@@ -42,7 +42,7 @@ public class UTIL_ACCT_Naming {
     /*******************************************************************************************************
      * @description The Household Account record type.
      */
-    private static ID hhAccountRecordTypeId = UTIL_Describe.getHhAccRecTypeID();
+    private static ID hhAccountRecordTypeId = UTIL_Describe.getCustomHHAccRecTypeID();
 
     /*****************************************************************************************************************
      * @description The user defined Administrative Account record type in "ACCOUNTS AND CONTACTS" tab of EDA Settings.

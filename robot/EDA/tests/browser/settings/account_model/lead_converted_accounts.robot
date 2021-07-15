@@ -30,7 +30,7 @@ Validate automatically rename lead converted accounts setting is updated in hier
     [Documentation]         Verifies the lead converted accounts setting can be updated in
     ...                     EDA Settings page and the same record type is updated in hierarchy
     ...                     settings under custom settings.
-    [tags]                                      unstable        W-0000000       rbt:high
+    [tags]                                      W-9549044       rbt:high
     Select settings from navigation pane        Account Model
     Click action button on new EDA settings     Edit
     Select and move from list                   Automatically Rename Lead-Converted Accounts       Business Organization

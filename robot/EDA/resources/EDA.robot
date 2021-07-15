@@ -119,6 +119,16 @@ Create Organization Foundation
     Store Session Record       Account  ${account_id}
     [return]                   ${account_id}
 
+Get Affiliation Mappings Value
+    [Documentation]         Returns the value of the field in affiliation mappings by accepting the
+    ...                     name of the value as a parameter
+    ${NS} =                 Get EDA namespace prefix
+    [Arguments]             ${field_name}           ${record_type_name}
+    ${result} =             SOQL Query
+    ...                     SELECT ${NS}${field_name} FROM ${NS}Affl_Mappings__c where ${NS}Account_Record_Type__c = '${record_type_name}'
+    &{Id} =                 Get From List  ${result['records']}  0
+    [return]                ${Id}[${NS}${field_name}]
+
 Get Records Count
     [Documentation]         Returns the no of record identified by the given field_name and
     ...                     field_value input for a specific object

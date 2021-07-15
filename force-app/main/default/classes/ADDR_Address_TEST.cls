@@ -513,7 +513,7 @@ public class ADDR_Address_TEST {
      */
     @isTest
     private static void afterDeleteWithParentAccount() {
-        String hhRecordTypeId = UTIL_Describe_API.getHhAccRecTypeID();
+        String hhRecordTypeId = UTIL_Describe.getHhAccRecTypeID();
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = hhRecordTypeId,

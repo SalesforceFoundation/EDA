@@ -28,16 +28,15 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2015
-* @group TDTM
-* @group-content ../../ApexDocContent/TDTM.htm
-* @description Testing the enhanced TDTM functionality, which applies only to certain records
-* depending on their field values. 
-*/
+ * @author Salesforce.org
+ * @date 2015
+ * @group TDTM
+ * @group-content ../../ApexDocContent/TDTM.htm
+ * @description Testing the enhanced TDTM functionality, which applies only to certain records
+ * depending on their field values.
+ */
 @isTest
 private with sharing class TDTM_Filter_TEST {
-
     private static ID orgRecTypeID;
     private static ID householdRecTypeID;
     private static ID adminRecTypeID;
@@ -49,14 +48,18 @@ private with sharing class TDTM_Filter_TEST {
     }
 
     private static List<TDTM_Global_API.TdtmToken> setup() {
-        insert new Relationship_Auto_Create__c(Name='AutoCreate2',Object__c='Contact',
-                                                    Field__c='ReportsToId', Relationship_Type__c = 'TestType');
+        insert new Relationship_Auto_Create__c(
+            Name = 'AutoCreate2',
+            Object__c = 'Contact',
+            Field__c = 'ReportsToId',
+            Relationship_Type__c = 'TestType'
+        );
 
         List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getDefaultTdtmConfig();
 
         //Disabling class that creates reciprocal relationships
-        for(TDTM_Global_API.TdtmToken token : tokens) {
-            if(token.className == 'REL_Relationships_TDTM') {
+        for (TDTM_Global_API.TdtmToken token : tokens) {
+            if (token.className == 'REL_Relationships_TDTM') {
                 token.active = false;
             }
         }
@@ -90,7 +93,7 @@ private with sharing class TDTM_Filter_TEST {
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
         c4.UniversityEmail__c = '';
 
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -99,11 +102,11 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(2, rels.size());
     }
 
@@ -125,11 +128,11 @@ private with sharing class TDTM_Filter_TEST {
         c1.AssistantName = 'Nancy';
         Contact c2 = UTIL_UnitTestData_TEST.getContact();
         c2.AssistantName = 'Anne';
-        Contact c3 =  UTIL_UnitTestData_TEST.getContact();
+        Contact c3 = UTIL_UnitTestData_TEST.getContact();
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
         c4.AssistantName = 'John';
 
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -138,18 +141,18 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(2, rels.size());
     }
 
     @isTest
     private static void oneRecordOnly() {
         List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();
-        
+
         //Creating filter condition.
         for (TDTM_Global_API.TdtmToken token : tokens) {
             if (token.className == 'REL_Relationships_Con_TDTM') {
@@ -165,18 +168,18 @@ private with sharing class TDTM_Filter_TEST {
         Contact c2 = UTIL_UnitTestData_TEST.getContact();
         c2.AssistantName = 'Nancy';
 
-        Contact[] contacts = new Contact[] {c1, c2};
+        Contact[] contacts = new List<Contact>{ c1, c2 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
         //Using the 'ReportsTo' field because it's a standard lookup field from Contact to Contact.
         c1.ReportsToId = c2.Id;
         Test.startTest();
-            update c1;
+        update c1;
         Test.stopTest();
 
         //Since c1 should be filtered out, not relationship should be created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(0, rels.size());
     }
 
@@ -190,10 +193,9 @@ private with sharing class TDTM_Filter_TEST {
             if (token.className == 'REL_Relationships_Con_TDTM') {
                 token.filterField = 'InvalidField';
                 token.filterValue = 'Anne';
-            }
-            //Disabling THAN_Filter_TDTM, which validates that relationship defined in a Trigger Handler
-            //is valid.
-            else if (token.className == 'THAN_Filter_TDTM') {
+            } else if (token.className == 'THAN_Filter_TDTM') {
+                //Disabling THAN_Filter_TDTM, which validates that relationship defined in a Trigger Handler
+                //is valid.
                 token.active = false;
             }
         }
@@ -204,16 +206,16 @@ private with sharing class TDTM_Filter_TEST {
         c1.AssistantName = 'Nancy';
         Contact c2 = UTIL_UnitTestData_TEST.getContact();
         c2.AssistantName = 'Anne';
-        Contact c3 =  UTIL_UnitTestData_TEST.getContact();
+        Contact c3 = UTIL_UnitTestData_TEST.getContact();
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
         c4.AssistantName = 'John';
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
 
         try {
             Test.startTest();
-                insert contacts;
+            insert contacts;
             Test.stopTest();
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             // Should throw a validation message, catching the message to the test will still complete
             System.assertEquals(true, ex.getMessage().contains(Label.InvalidFilter));
         }
@@ -221,7 +223,7 @@ private with sharing class TDTM_Filter_TEST {
 
     @isTest
     private static void checkboxField() {
-        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();                                             
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();
         //Creating filter condition.
         for (TDTM_Global_API.TdtmToken token : tokens) {
             if (token.className == 'REL_Relationships_Con_TDTM') {
@@ -244,7 +246,7 @@ private with sharing class TDTM_Filter_TEST {
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
         c4.HasOptedOutOfEmail = false; //fyi, null cannot be inserted as the value of a checkbox field
 
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -253,11 +255,11 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(2, rels.size());
     }
 
@@ -274,18 +276,18 @@ private with sharing class TDTM_Filter_TEST {
         TDTM_Global_API.setTdtmConfig(tokens);
 
         //Creating four contacts. The second one meets the filtering criteria.
-        Contact c1 = UTIL_UnitTestData_TEST.getContact(); 
+        Contact c1 = UTIL_UnitTestData_TEST.getContact();
         c1.MobilePhone = '5555-333-1111';
 
-        Contact c2 = UTIL_UnitTestData_TEST.getContact(); 
+        Contact c2 = UTIL_UnitTestData_TEST.getContact();
         c2.MobilePhone = '5555-444-3322';
 
-        Contact c3 = UTIL_UnitTestData_TEST.getContact(); 
+        Contact c3 = UTIL_UnitTestData_TEST.getContact();
         c3.MobilePhone = '5555-333-1111';
 
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
 
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -294,11 +296,11 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(2, rels.size());
     }
 
@@ -318,7 +320,7 @@ private with sharing class TDTM_Filter_TEST {
         Contact c1 = UTIL_UnitTestData_TEST.getContact();
         c1.Birthdate = Date.parse('01/01/1989');
 
-        Contact c2 = UTIL_UnitTestData_TEST.getContact(); 
+        Contact c2 = UTIL_UnitTestData_TEST.getContact();
         c2.Birthdate = Date.parse('01/01/1990');
 
         Contact c3 = UTIL_UnitTestData_TEST.getContact();
@@ -326,7 +328,7 @@ private with sharing class TDTM_Filter_TEST {
 
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
 
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -335,17 +337,17 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(2, rels.size());
     }
 
     @isTest
     private static void picklistField() {
-        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();           
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();
         //Creating filter condition.
         for (TDTM_Global_API.TdtmToken token : tokens) {
             if (token.className == 'REL_Relationships_Con_TDTM') {
@@ -367,7 +369,7 @@ private with sharing class TDTM_Filter_TEST {
 
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
 
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -376,11 +378,11 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(2, rels.size());
     }
 
@@ -393,9 +395,9 @@ private with sharing class TDTM_Filter_TEST {
         Account acc1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
         Account acc2 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, householdRecTypeID)[0];
 
-        insert new Account[] {acc1, acc2};
-                      
-         //Creating filter condition.
+        insert new List<Account>{ acc1, acc2 };
+
+        //Creating filter condition.
         for (TDTM_Global_API.TdtmToken token : tokens) {
             if (token.className == 'REL_Relationships_Con_TDTM') {
                 token.filterField = 'Account.Id';
@@ -415,12 +417,12 @@ private with sharing class TDTM_Filter_TEST {
         Contact c3 = UTIL_UnitTestData_TEST.getContact();
         c3.AccountId = acc1.Id;
 
-        Contact c4 =  UTIL_UnitTestData_TEST.getContact();
+        Contact c4 = UTIL_UnitTestData_TEST.getContact();
 
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(0, rels.size());
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -429,11 +431,11 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         for (Relationship__c rel : rels) {
             UTIL_Debug.debug('****Contact: ' + rel.Contact__c);
             UTIL_Debug.debug('****Related contact: ' + rel.RelatedContact__c);
@@ -444,7 +446,7 @@ private with sharing class TDTM_Filter_TEST {
     @isTest
     private static void relationshipField() {
         TDTM_Filter_TEST.recTypesSetup();
-        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();                                             
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();
         //Creating filter condition.
         for (TDTM_Global_API.TdtmToken token : tokens) {
             if (token.className == 'REL_Relationships_Con_TDTM') {
@@ -459,7 +461,7 @@ private with sharing class TDTM_Filter_TEST {
         Account accNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
         accNotFiltered.Name = 'ABC';
 
-        insert new Account[] {accFiltered, accNotFiltered};
+        insert new List<Account>{ accFiltered, accNotFiltered };
 
         //Creating four contacts. two of them are not students, because they don't have a university email.
         Contact c1 = UTIL_UnitTestData_TEST.getContact();
@@ -473,7 +475,7 @@ private with sharing class TDTM_Filter_TEST {
 
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
         c4.AccountId = accFiltered.Id;
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -482,18 +484,18 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(2, rels.size());
     }
 
     @isTest
     private static void accountParentField() {
         TDTM_Filter_TEST.recTypesSetup();
-        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();                                             
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();
         for (TDTM_Global_API.TdtmToken token : tokens) {
             if (token.className == 'REL_Relationships_Con_TDTM') {
                 token.filterField = 'Account.Parent.Name';
@@ -507,7 +509,7 @@ private with sharing class TDTM_Filter_TEST {
         Account topAccountNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
         topAccountNotFiltered.Name = 'top2';
 
-        insert new Account[] {topAccountFiltered, topAccountNotFiltered};
+        insert new List<Account>{ topAccountFiltered, topAccountNotFiltered };
 
         Account accFiltered = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
         accFiltered.Name = 'Acme';
@@ -515,10 +517,10 @@ private with sharing class TDTM_Filter_TEST {
         Account accNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
         accNotFiltered.Name = 'ABC';
         accNotFiltered.ParentId = topAccountNotFiltered.Id;
-        Account accNotFiltered2 =  UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        Account accNotFiltered2 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
         accNotFiltered2.Name = 'XYC';
 
-        insert new Account[] {accFiltered, accNotFiltered, accNotFiltered2};
+        insert new List<Account>{ accFiltered, accNotFiltered, accNotFiltered2 };
 
         //Creating four contacts. two of them are not students, because they don't have a university email.
         Contact c1 = UTIL_UnitTestData_TEST.getContact();
@@ -533,7 +535,7 @@ private with sharing class TDTM_Filter_TEST {
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
         c4.AccountId = accFiltered.Id;
 
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -542,11 +544,11 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(2, rels.size());
     }
 
@@ -554,10 +556,13 @@ private with sharing class TDTM_Filter_TEST {
     private static void recordTypeRelationship() {
         TDTM_Filter_TEST.recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(), 
-                Accounts_Addresses_Enabled__c = orgRecTypeID + ');' + householdRecTypeID + ');'));
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ');' + householdRecTypeID + ');'
+            )
+        );
 
-        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();                                             
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();
         //Creating filter condition.
         for (TDTM_Global_API.TdtmToken token : tokens) {
             if (token.className == 'REL_Relationships_Con_TDTM') {
@@ -574,7 +579,7 @@ private with sharing class TDTM_Filter_TEST {
         Account accNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, householdRecTypeID)[0];
         accFiltered.Name = 'ABC';
 
-        insert new Account[] {accFiltered, accNotFiltered};
+        insert new List<Account>{ accFiltered, accNotFiltered };
 
         //Creating four contacts. two of them are not students, because they don't have a university email.
         Contact c1 = UTIL_UnitTestData_TEST.getContact();
@@ -585,11 +590,11 @@ private with sharing class TDTM_Filter_TEST {
 
         Contact c3 = UTIL_UnitTestData_TEST.getContact();
         c3.AccountId = accNotFiltered.Id;
- 
+
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
         c4.AccountId = accFiltered.Id;
 
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -598,11 +603,11 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(2, rels.size());
     }
 
@@ -610,8 +615,11 @@ private with sharing class TDTM_Filter_TEST {
     private static void customObject() {
         TDTM_Filter_TEST.recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(), 
-                Accounts_Addresses_Enabled__c = orgRecTypeID + ');' + householdRecTypeID + ');'));
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ');' + householdRecTypeID + ');'
+            )
+        );
 
         List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();
         //Creating filter condition.
@@ -628,17 +636,17 @@ private with sharing class TDTM_Filter_TEST {
         Account accFiltered = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
         Account accNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, householdRecTypeID)[0];
 
-        insert new Account[] {accFiltered, accNotFiltered};
+        insert new List<Account>{ accFiltered, accNotFiltered };
 
         Address__c addressFiltered = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
         addressFiltered.Parent_Account__c = accFiltered.Id;
         addressFiltered.MailingStreet__c = '123 Main St';
 
         Address__c addressNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
-        addressNotFiltered.Parent_Account__c = accNotFiltered.Id; 
+        addressNotFiltered.Parent_Account__c = accNotFiltered.Id;
         addressNotFiltered.MailingStreet__c = '123 Main St';
 
-        insert new Address__c[] {addressFiltered, addressNotFiltered};
+        insert new List<Address__c>{ addressFiltered, addressNotFiltered };
 
         //Creating four contacts. two of them are not students, because they don't have a university email.
 
@@ -648,12 +656,12 @@ private with sharing class TDTM_Filter_TEST {
         Contact c2 = UTIL_UnitTestData_TEST.getContact();
         c2.Current_Address__c = addressFiltered.Id;
 
-        Contact c3 =  UTIL_UnitTestData_TEST.getContact();
+        Contact c3 = UTIL_UnitTestData_TEST.getContact();
 
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
         c4.Current_Address__c = addressFiltered.Id;
 
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -662,11 +670,11 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(2, rels.size());
     }
 
@@ -674,10 +682,13 @@ private with sharing class TDTM_Filter_TEST {
     private static void customObjectTopOfChain() {
         TDTM_Filter_TEST.recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(), 
-                Accounts_Addresses_Enabled__c = orgRecTypeID + ');'));
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ');'
+            )
+        );
 
-        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();                                      
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();
         //Creating filter condition.
         for (TDTM_Global_API.TdtmToken token : tokens) {
             if (token.className == 'REL_Relationships_Con_TDTM') {
@@ -692,17 +703,17 @@ private with sharing class TDTM_Filter_TEST {
         Account accNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, orgRecTypeID)[0];
         accNotFiltered.Name = 'ABC';
 
-        insert new Account[] {accFiltered, accNotFiltered};
+        insert new List<Account>{ accFiltered, accNotFiltered };
 
-        Address__c addressFiltered = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0]; 
+        Address__c addressFiltered = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
         addressFiltered.Parent_Account__c = accFiltered.Id;
         addressFiltered.MailingStreet__c = '123 Main St';
 
-        Address__c addressNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0]; 
+        Address__c addressNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
         addressNotFiltered.Parent_Account__c = accNotFiltered.Id;
         addressNotFiltered.MailingStreet__c = '123 Main St';
 
-        insert new Address__c[] {addressFiltered, addressNotFiltered};
+        insert new List<Address__c>{ addressFiltered, addressNotFiltered };
 
         Contact c1 = UTIL_UnitTestData_TEST.getContact();
         c1.Current_Address__c = addressNotFiltered.Id;
@@ -710,12 +721,12 @@ private with sharing class TDTM_Filter_TEST {
         Contact c2 = UTIL_UnitTestData_TEST.getContact();
         c2.Current_Address__c = addressFiltered.Id;
 
-        Contact c3 =  UTIL_UnitTestData_TEST.getContact();
+        Contact c3 = UTIL_UnitTestData_TEST.getContact();
 
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
         c4.Current_Address__c = addressFiltered.Id;
 
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};        
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -724,11 +735,11 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(2, rels.size());
     }
 
@@ -736,10 +747,13 @@ private with sharing class TDTM_Filter_TEST {
     private static void customObjectOnlyOneInChain() {
         TDTM_Filter_TEST.recTypesSetup();
         Hierarchy_Settings__c contactSettingsForTests = UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(), 
-                Accounts_Addresses_Enabled__c = orgRecTypeID + ');'));
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
+                Accounts_Addresses_Enabled__c = orgRecTypeID + ');'
+            )
+        );
 
-        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();                   
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();
         //Creating filter condition.
         for (TDTM_Global_API.TdtmToken token : tokens) {
             if (token.className == 'REL_Relationships_Con_TDTM') {
@@ -759,12 +773,12 @@ private with sharing class TDTM_Filter_TEST {
         addressFiltered.Default_Address__c = true;
         addressFiltered.MailingStreet__c = '123 Main St';
 
-        Address__c addressNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0]; 
+        Address__c addressNotFiltered = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
         addressNotFiltered.Parent_Account__c = topAcc.Id;
         addressNotFiltered.Default_Address__c = false;
         addressNotFiltered.MailingStreet__c = '123 Main St';
 
-        insert new Address__c[] {addressFiltered, addressNotFiltered};
+        insert new List<Address__c>{ addressFiltered, addressNotFiltered };
 
         //Creating four contacts. two of them are not students, because they don't have a university email.
         Contact c1 = UTIL_UnitTestData_TEST.getContact();
@@ -773,12 +787,12 @@ private with sharing class TDTM_Filter_TEST {
         Contact c2 = UTIL_UnitTestData_TEST.getContact();
         c2.Current_Address__c = addressFiltered.Id;
 
-        Contact c3 =  UTIL_UnitTestData_TEST.getContact();
+        Contact c3 = UTIL_UnitTestData_TEST.getContact();
 
         Contact c4 = UTIL_UnitTestData_TEST.getContact();
         c4.Current_Address__c = addressFiltered.Id;
 
-        Contact[] contacts = new Contact[] {c1, c2, c3, c4};        
+        Contact[] contacts = new List<Contact>{ c1, c2, c3, c4 };
         insert contacts;
 
         //Adding lookups among the contacts. Relationships should be automatically created from them.
@@ -787,17 +801,17 @@ private with sharing class TDTM_Filter_TEST {
         c2.ReportsToId = c3.Id;
         c3.ReportsToId = c4.Id;
         Test.startTest();
-            update contacts;
+        update contacts;
         Test.stopTest();
 
         //Only those from c1 and c3 should have had a relationship automatically created.
-        Relationship__c[] rels = [select Contact__c, RelatedContact__c from Relationship__c];
+        Relationship__c[] rels = [SELECT Contact__c, RelatedContact__c FROM Relationship__c];
         System.assertEquals(2, rels.size());
     }
 
     /*********************************************************************************************************
-    * @description Update a contact to meet currency trigger handler filter. Make sure trigger does not run.
-    */
+     * @description Update a contact to meet currency trigger handler filter. Make sure trigger does not run.
+     */
     @isTest
     public static void filterCurrencyField() {
         List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();
@@ -819,22 +833,22 @@ private with sharing class TDTM_Filter_TEST {
         update testAccount;
 
         Test.startTest();
-            testContact.Deceased__c = true;
-            update testContact;
+        testContact.Deceased__c = true;
+        update testContact;
         Test.stopTest();
 
-        Contact assertContact = [SELECT Id,
-                                        Exclude_from_Household_Name__c,
-                                        Do_Not_Contact__c
-                                FROM Contact WHERE Id = :testContact.Id];
+        Contact assertContact = [
+            SELECT Id, Exclude_from_Household_Name__c, Do_Not_Contact__c
+            FROM Contact
+            WHERE Id = :testContact.Id
+        ];
         System.assertEquals(false, assertContact.Exclude_from_Household_Name__c);
         System.assertEquals(false, testContact.Do_Not_Contact__c);
-
     }
 
     /*********************************************************************************************************
-    * @description Update a contact to meet number trigger handler filter. Make sure trigger does not run.
-    */
+     * @description Update a contact to meet number trigger handler filter. Make sure trigger does not run.
+     */
     @isTest
     public static void filterNumberField() {
         List<TDTM_Global_API.TdtmToken> tokens = TDTM_Filter_TEST.setup();
@@ -856,18 +870,17 @@ private with sharing class TDTM_Filter_TEST {
         update testAccount;
 
         Test.startTest();
-            testContact.Deceased__c = true;
-            update testContact;
+        testContact.Deceased__c = true;
+        update testContact;
         Test.stopTest();
 
-        Contact assertContact = [SELECT Id,
-                Exclude_from_Household_Name__c,
-                Do_Not_Contact__c
-        FROM Contact WHERE Id = :testContact.Id];
+        Contact assertContact = [
+            SELECT Id, Exclude_from_Household_Name__c, Do_Not_Contact__c
+            FROM Contact
+            WHERE Id = :testContact.Id
+        ];
 
         System.assertEquals(false, assertContact.Exclude_from_Household_Name__c);
         System.assertEquals(false, testContact.Do_Not_Contact__c);
-
     }
-
 }
