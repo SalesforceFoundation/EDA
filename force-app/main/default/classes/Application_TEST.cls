@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2015, Salesforce.org
+    Copyright (c) 2021, Salesforce.org
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -29,10 +29,10 @@
 */
 /**
  * @author Salesforce.org
- * @date 2015
+ * @date 2021
  * @group Contacts
  * @group-content ../../ApexDocContent/Contacts.htm
- * @description Test for Contact primary affilation fields functionality.
+ * @description Test class for logic that prevents application due date to be prior to the open date.
  */
 @isTest
 private with sharing class Application_TEST {
