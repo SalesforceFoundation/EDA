@@ -36,17 +36,6 @@
  */
 @isTest
 private with sharing class Application_TEST {
-    @TestSetup
-    static void makeData() {
-        List<Account> academicAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
-            1,
-            UTIL_Describe_API.getAcademicAccRecTypeID()
-        );
-        insert academicAccount;
-
-        Contact student = UTIL_UnitTestData_TEST.getContact();
-        insert student;
-    }
     /**************************************************************************************************************************
      ****************************************************** UNIT TESTS *********************************************************
      **************************************************************************************************************************/
@@ -93,8 +82,9 @@ private with sharing class Application_TEST {
         );
         insert openEndedApplication;
 
-        Test.startTest();
         openEndedApplication.Due_Date__c = System.today().addDays(-10);
+
+        Test.startTest();
         Database.SaveResult updateResult = Database.update(openEndedApplication, false);
         Test.stopTest();
 
@@ -107,45 +97,67 @@ private with sharing class Application_TEST {
     }
 
     /********************************************************
-     * @description Should succeed to insert an application with just one date set
+     * @description Should succeed to insert an application with just the due date set
      *********************************************************/
     @isTest
-    static void shouldSucceedWhenApplicationHasEitherDueOrOpenDate() {
+    static void shouldSucceedWhenApplicationHasOnlyDueDate() {
         Account academicAccount = getAcademicAccount();
         Contact student = getStudent();
 
         Application__c pastDueApplication = new Application__c(
             Applicant__c = student.Id,
             Applying_To__c = academicAccount.Id,
-            Due_Date__c = System.today().addDays(-10)
-        );
-        Application__c openEndedApplication = new Application__c(
-            Applicant__c = student.Id,
-            Applying_To__c = academicAccount.Id,
-            Open_Date__c = System.today().addDays(-10)
+            Due_Date__c = System.today()
         );
 
         Test.startTest();
-        Database.SaveResult[] insertResults = Database.insert(
-            new List<Application__c>{ pastDueApplication, openEndedApplication },
-            false
-        );
+        Database.SaveResult insertResult = Database.insert(pastDueApplication, false);
         Test.stopTest();
 
-        for (Database.SaveResult insertResult : insertResults) {
-            System.assertEquals(
-                true,
-                insertResult.isSuccess(),
-                'Insert should succeed since date fields are not compared due to only one of them being set'
-            );
-        }
+        System.assertEquals(
+            true,
+            insertResult.isSuccess(),
+            'Insert should succeed since date fields are not compared due to only one of them being set'
+        );
+    }
+
+    /********************************************************
+     * @description Should succeed to insert an application with just the open date set
+     *********************************************************/
+    @isTest
+    static void shouldSucceedWhenApplicationHasOnlyOpenDate() {
+        Account academicAccount = getAcademicAccount();
+        Contact student = getStudent();
+
+        Application__c openEndedApplication = new Application__c(
+            Applicant__c = student.Id,
+            Applying_To__c = academicAccount.Id,
+            Open_Date__c = System.today()
+        );
+
+        Test.startTest();
+        Database.SaveResult insertResult = Database.insert(openEndedApplication, false);
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            insertResult.isSuccess(),
+            'Insert should succeed since date fields are not compared due to only one of them being set'
+        );
     }
 
     private static Account getAcademicAccount() {
-        return [SELECT Id FROM Account LIMIT 1];
+        Account academicAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe.getAcademicAccRecTypeID()
+        )[0];
+        insert academicAccount;
+        return academicAccount;
     }
 
     private static Contact getStudent() {
-        return [SELECT Id FROM Contact LIMIT 1];
+        Contact student = UTIL_UnitTestData_TEST.getContact();
+        insert student;
+        return student;
     }
 }
