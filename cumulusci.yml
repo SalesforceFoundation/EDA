@@ -130,6 +130,7 @@ tasks:
                 name: EDA - Contact Key Affiliation Fields
 
     deploy_preferred_email_config:
+        group: "EDA: Unpackaged Tests"
         description: Deploys Preferred Email configuration(custom email fields, translations, apex unit tests and sets Admin profile access to Email fields) for testing.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -138,6 +139,7 @@ tasks:
             namespaced_org: True
 
     deploy_unpackaged_primary_affiliations_config:
+        group: "EDA: Unpackaged Tests"
         description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -146,6 +148,7 @@ tasks:
             unmanaged: True
 
     deploy_unpackaged_relationship_autocreate_config:
+        group: "EDA: Unpackaged Tests"
         description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -154,6 +157,7 @@ tasks:
             unmanaged: True
 
     deploy_unpackaged_test_metadata:
+        group: "EDA: Unpackaged Tests"
         description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
         class_path: cumulusci.tasks.salesforce.DeployBundles
         group: "EDA: Unpackaged Tests"
@@ -180,6 +184,7 @@ tasks:
             command: "force:user:permset:assign -n Encryption"
 
     cancel_eda_scheduled_jobs:
+        group: "EDA: Dev Config"
         description: Unscheduleds EDA Apex jobs
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
