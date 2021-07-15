@@ -39,7 +39,7 @@ Validate enable course connection setting is updated in hierarchy settings
     [Documentation]         Verifies the course connection record type setting is updated in
     ...                     Education Cloud Settings page and it is also updated in the hierarchy
     ...                     settings.
-    [tags]                                      unstable        W-9425609       rbt:high
+    [tags]                                      W-9425609       rbt:high
     Select settings from navigation pane        Course Connections
     Click action button on new EDA settings     Edit
     Set toggle input
@@ -52,7 +52,7 @@ Validate default student and faculty record type settings are updated in hierarc
     [Documentation]         Verifies the default student and faculty record type settings are
     ...                     updated in Education Cloud Settings page and it is also updated in the
     ...                     hierarchy settings.
-    [tags]                                      unstable         W-9425609       rbt:high
+    [tags]                                      W-9425609       rbt:high
     Select settings from navigation pane        Course Connections
     Click action button on new EDA settings     Edit
     Update settings dropdown value

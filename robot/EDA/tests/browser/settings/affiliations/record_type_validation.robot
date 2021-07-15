@@ -22,7 +22,7 @@ Validate record type validation settings in affiliations is updated in hierarchy
     [Documentation]         Verifies the record type validation setting can be updated in
     ...                     EDA Settings page and the same field is updated in hierarchy
     ...                     settings under custom settings.
-    [tags]                                      unstable        W-9354256       rbt:high
+    [tags]                                      W-9354256       rbt:high
 
     Select settings from navigation pane        Affiliations
     Click action button on new EDA settings     Edit
