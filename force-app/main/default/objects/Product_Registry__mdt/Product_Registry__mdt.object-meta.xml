@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Defines a product tile or a tool on the Education Cloud Settings page</description>
+    <label>Product Registry</label>
+    <pluralLabel>Product Registries</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>
