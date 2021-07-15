@@ -1918,6 +1918,10 @@
         <label>Emme voi tallentaa kurssitarjonnan aikataulua, koska sen aloitusaika ei ole sama kuin siihen liittyvän aikalohkon aloitusaika. Joko muokkaa aloitusaikaa, määritä toinen aikalohko tai älä määritä aikalohkoa.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
+    <customLabels>
+        <label><!-- Message when a Due Date precedes an Open Date --></label>
+        <name>stgErrorAppDueDate</name>
+    </customLabels>
     <customTabs>
         <label>Education Cloud -asetukset</label>
         <name>Education_Cloud_Settings</name>

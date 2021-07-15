@@ -1916,6 +1916,10 @@
         <label>Nous ne pouvons pas enregistrer le Calendrier du choix de modules car son heure de début ne correspond pas à l’heure de début du bloc de temps associé. Modifiez l’heure de fin, spécifiez un autre bloc de temps ou ne spécifiez pas de bloc de temps.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
+    <customLabels>
+        <label><!-- Message when a Due Date precedes an Open Date --></label>
+        <name>stgErrorAppDueDate</name>
+    </customLabels>
     <customTabs>
         <label>Paramètres Education Cloud</label>
         <name>Education_Cloud_Settings</name>

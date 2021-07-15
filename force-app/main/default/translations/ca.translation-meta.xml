@@ -1918,6 +1918,10 @@
         <label>No podem desar els horaris de l’oferta de cursos perquè l&apos;hora d&apos;inici no coincideix amb l’hora d&apos;inici del bloc de temps associat. Editeu l&apos;hora d&apos;inici, especifiqueu un bloc de temps diferent o bé no especifiqueu cap bloc de temps.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
+    <customLabels>
+        <label><!-- Message when a Due Date precedes an Open Date --></label>
+        <name>stgErrorAppDueDate</name>
+    </customLabels>
     <customTabs>
         <label>Configuració Education Cloud</label>
         <name>Education_Cloud_Settings</name>

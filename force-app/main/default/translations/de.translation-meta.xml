@@ -1918,6 +1918,10 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <label>Wir können den Zeitplan für das Kursangebot nicht speichern, weil seine Startzeit nicht mit der Startzeit des zugehörigen Zeitblocks übereinstimmt. Bearbeiten Sie entweder die Startzeit, geben Sie einen anderen Zeitblock oder keinen Zeitblock an.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
+    <customLabels>
+        <label><!-- Message when a Due Date precedes an Open Date --></label>
+        <name>stgErrorAppDueDate</name>
+    </customLabels>
     <customTabs>
         <label>Education Cloud-Einstellungen</label>
         <name>Education_Cloud_Settings</name>
