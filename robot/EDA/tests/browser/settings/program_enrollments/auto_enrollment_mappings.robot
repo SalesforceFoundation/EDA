@@ -32,7 +32,7 @@ Validate auto enrollment mappings can be deleted and it is updated in custom set
     [tags]                                      unstable        W-9549025       rbt:high
 
     Select settings from navigation pane        Program Enrollments
-    Click show actions button                   Business_Organization       Delete
+    Click show actions button                   Business Organization       Delete
     Click footer button                         Delete
     Reload Page
     ${role}=                                    Get Affiliation Mappings Value       Auto_Program_Enrollment_Role__c     Business_Organization
