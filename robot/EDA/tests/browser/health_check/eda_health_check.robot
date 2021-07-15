@@ -11,7 +11,7 @@ Suite Teardown  Capture screenshot and delete records and close browser
 *** Test Cases ***
 Verify settings health check app is displayed
     [Documentation]         Validates 'Settings Health Check" app is displayed under app tile
-    [tags]                  unstable        rbt:high        W-8864633
+    [tags]                  rbt:high        W-8864633
     Select App Launcher Tab         Education Cloud Settings
     Current page should be          Home        Education Cloud Settings
     Verify app tiles displayed
@@ -20,7 +20,7 @@ Verify settings health check app is displayed
 Verify last run date is updated upon clicking run health check Button
     [Documentation]         Validates the last run date is updated accordingly after clicking the
     ...                     run health check button.
-    [tags]                  unstable        rbt:high        W-8874163
+    [tags]                  rbt:high        W-8874163
     Log To Console          ${PREV TEST STATUS}
     Run Keyword If          '${PREV TEST STATUS}' == 'PASS'
     ...                     Run Keywords
