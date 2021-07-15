@@ -36,336 +36,26 @@
  */
 @isTest
 public with sharing class AFFL_MultiRecordType_TEST {
-    /**************************************************************************
-     * SETUP
-     **************************************************************************/
+    private static Integer numberOfTestRecords = 5;
+    //Trigger-specific recursion flags
+    static final TDTM_ProcessControl.registeredTrigger BEFORE_INSERT_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert;
+    static final TDTM_ProcessControl.registeredTrigger AFTER_INSERT_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Insert;
+    static final TDTM_ProcessControl.registeredTrigger AFTER_UPDATE_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_After_Update;
+
+    //Special recursion flags
+    static final TDTM_ProcessControl.registeredTrigger AFFILIATION_MADE_PRIMARY_RECURSION = TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary;
+
+    //Cross-trigger recursion flags. Potential antipattern.
+    //NOTE: Evaluate if we can improve this
+    static final TDTM_ProcessControl.registeredTrigger CONTACT_PRIMARY_AFFILIATION_UPDATED_RECURSION = TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated;
 
     /**************************************************************************
-     * @description Sets up hierarchy settings and affiliation mappings for
-     * tests using record type name and contact field api name
-     * @return The affiliation mapping wrappers set up for the tests.
-     **************************************************************************/
-    public static List<AffiliationMappingWrapper> setupMappingsByDevNameAndApiName() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.getAfflMappingWrapperByDevNameAndApiName();
-
-        return AFFL_MultiRecordType_TEST.commonSetup(affiliationMappingWrapperList);
-    }
-
-    /**************************************************************************
-     * @description Sets up hierarchy settings and affiliation mappings for
-     * tests using record type name and contact field label
-     * @return The affiliation mapping wrappers set up for the tests.
-     **************************************************************************/
-    public static List<AffiliationMappingWrapper> setupMappingsByDevNameAndLabel() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.getAfflMappingWrapperByDevNameAndLabel();
-
-        return AFFL_MultiRecordType_TEST.commonSetup(affiliationMappingWrapperList);
-    }
-
-    /**************************************************************************
-     * @description Sets up hierarchy settings and affiliation mappings for
-     * tests using record type name and contact field api name
-     * @return The affiliation mapping wrappers set up for the tests.
-     **************************************************************************/
-    public static List<AffiliationMappingWrapper> setupMappingsByNameAndApiName() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.getAfflMappingWrapperByNameAndApiName();
-
-        return AFFL_MultiRecordType_TEST.commonSetup(affiliationMappingWrapperList);
-    }
-
-    /**************************************************************************
-     * @description Sets up hierarchy settings and affiliation mappings for
-     * tests using record type name and contact field label
-     * @return The affiliation mapping wrappers set up for the tests.
-     **************************************************************************/
-    public static List<AffiliationMappingWrapper> setupMappingsByNameAndLabel() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.getAfflMappingWrapperByNameAndLabel();
-
-        return AFFL_MultiRecordType_TEST.commonSetup(affiliationMappingWrapperList);
-    }
-
-    /**************************************************************************
-     * @description Sets up hierarchy settings and affiliation mappings for
-     * tests using provided affiliation wrapper mappings common to all setup
-     * scenarios
-     * @param affiliationMappingWrapperList The wrapper mappings to set up
-     * the test with
-     * @return The affiliation mapping wrappers set up for the tests.
-     **************************************************************************/
-    private static List<AffiliationMappingWrapper> commonSetup(
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList
-    ) {
-        UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(Account_Processor__c = affiliationMappingWrapperList[0].getAccountRecordTypeId())
-        );
-
-        affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.populateRecordTypeNamesForWrappers(
-            affiliationMappingWrapperList
-        );
-
-        insert AFFL_MultiRecordType_TEST.createAffiliationMappings(affiliationMappingWrapperList);
-
-        return affiliationMappingWrapperList;
-    }
-
-    /**************************************************************************
-     * @description Gets the account record type developer name to contact field
-     * api name wrappers for test setup and sets old id values for backward
-     * compatibility
-     * @return the list of account record type to contact label pairings to use
-     * for further setup with the intended record type id for the account
-     * processor as the first element.
-     **************************************************************************/
-    private static List<AfflMappingWrapperByDevNameAndApiName> getAfflMappingWrapperByDevNameAndApiName() {
-        List<AfflMappingWrapperByDevNameAndApiName> wrapperList = new List<AfflMappingWrapperByDevNameAndApiName>();
-
-        List<String> contactPrimaryAffiliationFieldApiNameList = AFFL_MultiRecordType_TEST.getContactPrimaryAffiliationFieldApiNames();
-
-        wrapperList.add(
-            new AfflMappingWrapperByDevNameAndApiName(
-                UTIL_Describe.getCustomHHAccRecTypeID(),
-                contactPrimaryAffiliationFieldApiNameList[0]
-            )
-        );
-
-        wrapperList.add(
-            new AfflMappingWrapperByDevNameAndApiName(
-                UTIL_Describe_API.getBizAccRecTypeID(),
-                contactPrimaryAffiliationFieldApiNameList[1]
-            )
-        );
-
-        return wrapperList;
-    }
-
-    /**************************************************************************
-     * @description Gets the account record type developer name to contact label
-     * wrappers for test setup and sets old id values for backward compatibility
-     * @return the list of account record type to contact label pairings to use
-     * for further setup with the intended record type id for the account
-     * processor ashe first element.
-     **************************************************************************/
-    private static List<AfflMappingWrapperByDevNameAndLabel> getAfflMappingWrapperByDevNameAndLabel() {
-        List<AfflMappingWrapperByDevNameAndLabel> wrapperList = new List<AfflMappingWrapperByDevNameAndLabel>();
-
-        List<String> contactPrimaryAffiliationFieldNameList = AFFL_MultiRecordType_TEST.getContactPrimaryAffiliationFieldLabels();
-
-        wrapperList.add(
-            new AfflMappingWrapperByDevNameAndLabel(
-                UTIL_Describe.getCustomHHAccRecTypeID(),
-                contactPrimaryAffiliationFieldNameList[0]
-            )
-        );
-
-        wrapperList.add(
-            new AfflMappingWrapperByDevNameAndLabel(
-                UTIL_Describe_API.getBizAccRecTypeID(),
-                contactPrimaryAffiliationFieldNameList[1]
-            )
-        );
-
-        return wrapperList;
-    }
-
-    /**************************************************************************
-     * @description Gets the account record type name to contact field api name
-     * wrappers for test setup and sets old id values for backward compatibility
-     * @return the list of account record type to contact label pairings to use
-     * for further setup with the intended record type id for the account
-     * processor as the first element.
-     **************************************************************************/
-    private static List<AfflMappingWrapperByNameAndApiName> getAfflMappingWrapperByNameAndApiName() {
-        List<AfflMappingWrapperByNameAndApiName> wrapperList = new List<AfflMappingWrapperByNameAndApiName>();
-
-        List<String> contactPrimaryAffiliationFieldApiNameList = AFFL_MultiRecordType_TEST.getContactPrimaryAffiliationFieldApiNames();
-
-        wrapperList.add(
-            new AfflMappingWrapperByNameAndApiName(
-                UTIL_Describe.getCustomHHAccRecTypeID(),
-                contactPrimaryAffiliationFieldApiNameList[0]
-            )
-        );
-
-        wrapperList.add(
-            new AfflMappingWrapperByNameAndApiName(
-                UTIL_Describe_API.getBizAccRecTypeID(),
-                contactPrimaryAffiliationFieldApiNameList[1]
-            )
-        );
-
-        return wrapperList;
-    }
-
-    /**************************************************************************
-     * @description Gets the account record type name to contact label wrappers
-     * for test setup and sets old id values for backward compatibility
-     * @return the list of account record type to contact label pairings to use
-     * for further setup with the intended record type id for the account
-     * processor ashe first element.
-     **************************************************************************/
-    private static List<AfflMappingWrapperByNameAndLabel> getAfflMappingWrapperByNameAndLabel() {
-        List<AfflMappingWrapperByNameAndLabel> wrapperList = new List<AfflMappingWrapperByNameAndLabel>();
-
-        List<String> contactPrimaryAffiliationFieldNameList = AFFL_MultiRecordType_TEST.getContactPrimaryAffiliationFieldLabels();
-
-        wrapperList.add(
-            new AfflMappingWrapperByNameAndLabel(
-                UTIL_Describe.getCustomHHAccRecTypeID(),
-                contactPrimaryAffiliationFieldNameList[0]
-            )
-        );
-
-        wrapperList.add(
-            new AfflMappingWrapperByNameAndLabel(
-                UTIL_Describe_API.getBizAccRecTypeID(),
-                contactPrimaryAffiliationFieldNameList[1]
-            )
-        );
-
-        return wrapperList;
-    }
-
-    /**************************************************************************
-     * @description Initializes the mappings based on the affiliation mapping
-     * wrappers passed to it
-     * @param affiliationMappingWrapperList The list of account record type ids to get
-     * mappings for.
-     * @return The List of Affiliation Mappings to insert.
-     **************************************************************************/
-    private static List<AffiliationMappingWrapper> populateRecordTypeNamesForWrappers(
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList
-    ) {
-        System.assertEquals(
-            false,
-            affiliationMappingWrapperList.size() < 2,
-            '2 Account Record Types were not found for affiliation mappings'
-        );
-
-        Map<Id, Schema.RecordTypeInfo> accountRecordTypeInfosByIds = AFFL_MultiRecordType_TEST.getIdToAccountRecordTypesMap();
-
-        for (AffiliationMappingWrapper affiliationMappingWrapper : affiliationMappingWrapperList) {
-            affiliationMappingWrapper.setRecordTypeNamesFromId(accountRecordTypeInfosByIds);
-        }
-
-        return affiliationMappingWrapperList;
-    }
-
-    /**************************************************************************
-     * @description Get record type infos for an account
-     * @return The List of Affiliation Mappings to insert.
-     **************************************************************************/
-    private static Map<Id, Schema.RecordTypeInfo> getIdToAccountRecordTypesMap() {
-        Schema.DescribeSObjectResult accountDescribe = UTIL_Describe.getObjectDescribe('Account');
-
-        return accountDescribe.getRecordTypeInfosByID();
-    }
-
-    /**************************************************************************
-     * @description Creates affiliation mappings from wrappers, setting the
-     * related mapping to the wrapper for later reference
-     * @param affiliationMappingWrapperList The list of mapping wrappers to
-     * create mappings for
-     * @return The affiliation mappings created
-     **************************************************************************/
-    private static List<Affl_Mappings__c> createAffiliationMappings(
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList
-    ) {
-        List<Affl_Mappings__c> affiliationMappingSettings = new List<Affl_Mappings__c>();
-
-        for (AffiliationMappingWrapper affiliationMappingWrapper : affiliationMappingWrapperList) {
-            affiliationMappingWrapper.setAffiliationMapping();
-            affiliationMappingSettings.add(affiliationMappingWrapper.getAffiliationMapping());
-        }
-
-        return affiliationMappingSettings;
-    }
-
-    /**************************************************************************
-     * UTILITIES
-     **************************************************************************/
-
-    /**************************************************************************
-     * @description Gets the contact primary affiliation field labels with the
-     * household field as the first index and the business organization field
-     * as the second index
-     * @return the list of contact primary affiliation field labels
-     **************************************************************************/
-    private static List<String> getContactPrimaryAffiliationFieldLabels() {
-        List<String> fieldLabelList = new List<String>();
-
-        fieldLabelList.add(AFFL_MultiRecordType_TEST.getHouseholdFieldLabel());
-        fieldLabelList.add(AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldLabel());
-
-        return fieldLabelList;
-    }
-
-    /**************************************************************************
-     * @description Gets the contact primary affiliation field label for
-     * Business Organization
-     * @return the contact primary affiliation field labels for Business
-     * Organization
-     **************************************************************************/
-    private static String getBusinessOrganizationFieldLabel() {
-        return 'Primary Business Organization';
-    }
-
-    /**************************************************************************
-     * @description Gets the contact primary affiliation field labels for
-     * Household
-     * @return the contact primary affiliation field labels for Household
-     **************************************************************************/
-    private static String getHouseholdFieldLabel() {
-        return 'Primary Household';
-    }
-
-    /**************************************************************************
-     * @description Gets the contact primary affiliation namespaced api names
-     * with the household field as the first index and the business
-     * organization field as the second index
-     * @return the list of contact primary affiliation local field names
-     **************************************************************************/
-    private static List<String> getContactPrimaryAffiliationFieldApiNames() {
-        List<String> fieldApiNameList = new List<String>();
-
-        fieldApiNameList.add(AFFL_MultiRecordType_TEST.getHouseholdFieldApiName());
-        fieldApiNameList.add(AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldApiName());
-
-        return fieldApiNameList;
-    }
-
-    /**************************************************************************
-     * @description Gets the contact primary affiliation field api name for
-     * Business Organization
-     * @return the contact primary affiliation field api name for Business
-     * Organization
-     **************************************************************************/
-    private static String getBusinessOrganizationFieldApiName() {
-        return UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c');
-    }
-
-    /**************************************************************************
-     * @description Gets the contact primary affiliation field api name for
-     * Household
-     * @return the contact primary affiliation field api name for Household
-     **************************************************************************/
-    private static String getHouseholdFieldApiName() {
-        return UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c');
-    }
-
-    /**************************************************************************
-     * @description Enables affiliation record type enforcement to true,
-     * assuming settings have been initialized. Leverages caching of the
-     * settings.
-     **************************************************************************/
-    private static void enableAffiliationRecordTypeEnforcement() {
-        UTIL_CustomSettings_API.getSettings().Affiliation_Record_Type_Enforced__c = true;
-    }
-
-    /**************************************************************************
-     * TESTS
+     * INTEGRATION TESTS
      **************************************************************************/
     private static void createPrimaryAffl() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
         String bizOrgAcctName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -384,7 +74,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertNotEquals(null, contact.Primary_Household__c);
 
         //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account bizOrg1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert bizOrg1;
 
         //Create another key affiliation, this time to a biz org
@@ -406,7 +96,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(bizOrg1.ID, Contact.Primary_Organization__c);
 
         //Create second account of the same record type
-        Account bizOrg2 = new Account(Name = 'Toys Inc', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account bizOrg2 = new Account(Name = 'Toys Inc', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert bizOrg2;
 
         //Create second primary affiliation
@@ -443,13 +133,13 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void noDuplicateAffl() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
 
         //Create account of Business Organization record type
-        Account bizOrg1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account bizOrg1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert bizOrg1;
 
         //Create primary affiliation
@@ -474,7 +164,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void deletePrimaryAffl() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
@@ -492,7 +182,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertNotEquals(null, contact.Primary_Household__c);
 
         //Craete account of Business Organization record type
-        Account acc1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert acc1;
 
         //Create primary Business affiliation
@@ -517,7 +207,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void makePrimaryAfflNonPrimary() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
@@ -558,13 +248,13 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void makeNonPrimaryAfflPrimary() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
 
         //Create account of Business Organization record type
-        Account acc1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc1 = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert acc1;
 
         //Create non-primary Business affiliation
@@ -594,14 +284,14 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void makeNonPrimaryAfflPrimaryWhenAnotherPrimaryExists() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
 
         //Create 2 accounts of Business Organization record type
-        Account acc1 = new Account(Name = 'Acme1', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
-        Account acc2 = new Account(Name = 'Acme2', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc1 = new Account(Name = 'Acme1', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
+        Account acc2 = new Account(Name = 'Acme2', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert new List<Account>{ acc1, acc2 };
 
         //Create primary Business affiliation
@@ -646,14 +336,14 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void createPrimaryAfflWhenAnotherPrimaryExists() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
 
         //Create 2 accounts of Business Organization record type
-        Account acc1 = new Account(Name = 'Acme1', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
-        Account acc2 = new Account(Name = 'Acme2', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc1 = new Account(Name = 'Acme1', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
+        Account acc2 = new Account(Name = 'Acme2', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert new List<Account>{ acc1, acc2 };
 
         //Create primary Business affiliation
@@ -679,9 +369,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void autoCreateProgramEnrollment() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
 
-        AffiliationMappingWrapper bizOrgMappingWrapper = affiliationMappingWrapperList[1];
+        AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper bizOrgMappingWrapper = affiliationMappingWrapperList[1];
         String bizOrgRecordTypeName = bizOrgMappingWrapper.getAccountRecordTypeName();
 
         //Turn on Academic Record auto-creation for Business Organization mapping, which we are using as an arbitrary record type for testing.
@@ -695,7 +387,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert contact;
 
         //Craete account of Business Organization record type
-        Account acc = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert acc;
 
         //Create Business affiliation
@@ -722,9 +414,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void autoCreateProgramEnrollmentDifferentRole() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
+        List<AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper> affiliationMappingWrapperList = AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(
+            false
+        );
 
-        AffiliationMappingWrapper bizOrgMappingWrapper = affiliationMappingWrapperList[1];
+        AffiliationTestSetupFactory_TEST.AffiliationMappingWrapper bizOrgMappingWrapper = affiliationMappingWrapperList[1];
         String bizOrgRecordTypeName = bizOrgMappingWrapper.getAccountRecordTypeName();
 
         //Turn on Academic Record auto-creation for Business Organization mapping, which we are using as an arbitrary record type for testing.
@@ -738,7 +432,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert contact;
 
         //Craete account of Business Organization record type
-        Account acc = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID());
+        Account acc = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
         insert acc;
 
         //Create Business affiliation
@@ -770,10 +464,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
      */
     @isTest
     private static void affiliationDeleteNPECheck() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact
@@ -822,11 +516,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
      */
     @isTest
     private static void multipleAffiliationUpdates() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         // Insert Accounts
-        Account bizAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
-        Account bizAcc2 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
+        Account bizAcc2 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         Account hhAcc1 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomHHAccRecTypeID())[0];
         Account hhAcc2 = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomHHAccRecTypeID())[0];
 
@@ -855,13 +549,15 @@ public with sharing class AFFL_MultiRecordType_TEST {
             System.assertEquals(eachCon.Primary_Organization__c, bizAcc1.Id);
             System.assertEquals(eachCon.Primary_Household__c, hhAcc1.Id);
         }
+
         // Make non-primary Affliations as primary
-        Test.startTest();
         List<Affiliation__c> afflList = new List<Affiliation__c>();
         for (Affiliation__c eachAffl : [SELECT Id, Primary__c FROM Affiliation__c WHERE Primary__c = FALSE]) {
             eachAffl.Primary__c = true;
             afflList.add(eachAffl);
         }
+
+        Test.startTest();
         if (afflList.size() > 0) {
             update afflList;
         }
@@ -893,12 +589,12 @@ public with sharing class AFFL_MultiRecordType_TEST {
      */
     @isTest
     private static void bulkAffiliationUpdates() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         List<Account> accList = new List<Account>();
 
         // Insert a Business Account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         accList.add(bizAcc);
 
         // Insert a Household Account
@@ -941,7 +637,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
         // Insert Affiliations on the Contacts with the same Account as the Primary Organization
         // Change the Primary Academic Affiliation to non-primary
-        test.startTest();
         List<Affiliation__c> afflListNew = new List<Affiliation__c>();
         for (Contact each : conList) {
             Affiliation__c affl1 = UTIL_UnitTestData_TEST.getAffiliation(each.Id, bizAcc.Id, true);
@@ -954,6 +649,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         afflListNew.add(hhAffl2);
         afflListNew.add(afflBiz);
 
+        test.startTest();
         upsert afflListNew;
         test.stopTest();
 
@@ -970,19 +666,19 @@ public with sharing class AFFL_MultiRecordType_TEST {
     // Test the usage of custom API field name for affiliation mapping for multi-language support
     @isTest
     private static void customFieldAPIInMappings() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndApiName();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName(false);
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact with business account as Primary business organization
         Contact contact = UTIL_UnitTestData_API.getContact();
         insert contact;
 
+        Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
         test.startTest();
         //Insert an affiliation
-        Affiliation__c affl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizAcc.Id, Primary__c = true);
         insert affl;
         test.stopTest();
 
@@ -997,10 +693,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void testAfflDeletionWithLabelForRecTypeAndAPINameForPrimaryAfflFields() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndApiName();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName(false);
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact with business account as Primary business organization
@@ -1033,10 +729,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void testAfflDeletionWithAPIForRecTypeAndLabelForPrimaryAfflFields() {
-        AFFL_MultiRecordType_TEST.setupMappingsByDevNameAndLabel();
+        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel(false);
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact with business account as Primary business organization
@@ -1069,10 +765,10 @@ public with sharing class AFFL_MultiRecordType_TEST {
 
     @isTest
     private static void testAfflDeletionWithAPIForRecTypeAndAPIForPrimaryAfflFields() {
-        AFFL_MultiRecordType_TEST.setupMappingsByDevNameAndApiName();
+        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName(false);
 
         // Insert a business account
-        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID())[0];
         insert bizAcc;
 
         // Insert a contact with business account as Primary business organization
@@ -1100,101 +796,12 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(null, Contact.Primary_Organization__c);
     }
 
-    // Test getPrimaryAffiliationLookupAPIFromAffiliationType method of AFFL_MultiRecordTypeMapper
-    @isTest
-    private static void getPrimaryAffiliationLookupAPIFromAffiliationTypeTest() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
-        String bizOrgRecordTypeName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        String primaryAfflLookupAPIName = afflMapper.getPrimaryAffiliationLookupAPIFromAffiliationType(
-            bizOrgRecordTypeName
-        );
-        Test.stopTest();
-
-        String bizOrgPrimaryAfflFieldApiName = AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldApiName();
-
-        System.assertEquals(bizOrgPrimaryAfflFieldApiName, primaryAfflLookupAPIName);
-    }
-
-    // Negative test for getPrimaryAffiliationLookupAPIFromAffiliationType method of AFFL_MultiRecordTypeMapper
-    @isTest
-    private static void getPrimaryAffiliationLookupAPIFromAffiliationTypeNegativeTest() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        String primaryAfflLookupAPIName = afflMapper.getPrimaryAffiliationLookupAPIFromAffiliationType(
-            'Test Organization xyz'
-        );
-        Test.stopTest();
-
-        System.assertEquals(null, primaryAfflLookupAPIName);
-    }
-
-    // Null test for getPrimaryAffiliationLookupAPIFromAffiliationType method of AFFL_MultiRecordTypeMapper
-    @isTest
-    private static void getPrimaryAffiliationLookupAPIFromAffiliationTypeNullTest() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        String primaryAfflLookupAPIName = afflMapper.getPrimaryAffiliationLookupAPIFromAffiliationType(null);
-        Test.stopTest();
-
-        System.assertEquals(null, primaryAfflLookupAPIName);
-    }
-
-    // Positive test for getContactFieldFromSettings method of AFFL_MultiRecordTypeMapper
-    @isTest
-    private static void getContactFieldFromSettingsPoitiveTest() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
-        String bizOrgName = affiliationMappingWrapperList[1].getAccountRecordTypeName();
-        String bizOrgContactFieldLabel = AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldLabel();
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        String contactFieldFromSettings = afflMapper.getContactFieldFromSettings(bizOrgName);
-        Test.stopTest();
-
-        System.assertEquals(bizOrgContactFieldLabel, contactFieldFromSettings);
-    }
-
-    // Negative test for getContactFieldFromSettings method of AFFL_MultiRecordTypeMapper
-    @isTest
-    private static void getContactFieldFromSettingsNegativeTest() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        String contactFieldFromSettings = afflMapper.getContactFieldFromSettings('Test1234');
-        Test.stopTest();
-
-        System.assertEquals(null, contactFieldFromSettings);
-    }
-
-    // Positive test for getPrimaryAffiliationLookupAPI method of AFFL_MultiRecordTypeMapper using Label name
-    @isTest
-    private static void getPrimaryAffiliationLookupAPIPoitiveLabelTest() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
-        String bizOrgContactFieldLabel = AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldLabel();
-        String bizOrgContactFieldApiName = AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldApiName();
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        String primaryAfflLookupAPIName = afflMapper.getPrimaryAffiliationLookupAPI(bizOrgContactFieldLabel);
-        Test.stopTest();
-
-        System.assertEquals(bizOrgContactFieldApiName, primaryAfflLookupAPIName);
-    }
-
-    /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
+    /* Test to ensure users can create Contacts and Affiliations when Affiliation Record Type Enforced is enabled in EDA Settings
      and Affilation Mappings have Record Type Names for Account Record Type */
     @isTest
     private static void affiliationRecordTypeEnforceWAPINamesForAccRecType() {
-        AFFL_MultiRecordType_TEST.setupMappingsByDevNameAndLabel();
-        AFFL_MultiRecordType_TEST.enableAffiliationRecordTypeEnforcement();
+        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndLabel(false);
+        AffiliationTestSetupFactory_TEST.enableAffiliationRecordTypeEnforcement();
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,
@@ -1206,7 +813,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
         List<Account> accountsInserted = [SELECT Id FROM Account];
         System.assert(accountsInserted.size() == 1);
 
-        Test.startTest();
         // Insert 4 Contacts
         List<Contact> contactsToBeInserted = UTIL_UnitTestData_TEST.getMultipleTestContacts(3);
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
@@ -1229,8 +835,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
             Affiliation__c affl = UTIL_UnitTestData_TEST.getAffiliation(each.Id, accountsInserted[0].Id, false);
             affiliationsToBeInserted.add(affl);
         }
-        insert affiliationsToBeInserted;
 
+        Test.startTest();
+        insert affiliationsToBeInserted;
         Test.stopTest();
 
         // Ensure 4 new Affiliations are inserted
@@ -1238,13 +845,13 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(5, affiliationsInserted.size());
     }
 
-    /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
-     and Affilaiton Mappings have Record Type Labels for Account Record Type */
+    /* Test to ensure users can create Contacts and Affiliations when Affiliation Record Type Enforced is enabled in EDA Settings
+     and Affiliation Mappings have Record Type Labels for Account Record Type */
 
     @isTest
     private static void affiliationRecordTypeEnforceWLabelsForAccRecType() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
-        AFFL_MultiRecordType_TEST.enableAffiliationRecordTypeEnforcement();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
+        AffiliationTestSetupFactory_TEST.enableAffiliationRecordTypeEnforcement();
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,
@@ -1256,7 +863,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
         List<Account> accountsInserted = [SELECT Id FROM Account];
         System.assert(accountsInserted.size() == 1);
 
-        Test.startTest();
         // Insert 4 Contacts
         List<Contact> contactsToBeInserted = UTIL_UnitTestData_TEST.getMultipleTestContacts(3);
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
@@ -1273,15 +879,16 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(1, affiliationsBeforeInserted.size());
         System.assertEquals(testContact.Id, affiliationsBeforeInserted[0].Contact__c);
 
-        // Create 1 affilaiton each for a Contact
+        // Create 1 affiliation each for a Contact
         List<Affiliation__c> affiliationsToBeInserted = new List<Affiliation__c>();
 
         for (Contact each : contactsInserted) {
             Affiliation__c affl = UTIL_UnitTestData_TEST.getAffiliation(each.Id, accountsInserted[0].Id, false);
             affiliationsToBeInserted.add(affl);
         }
-        insert affiliationsToBeInserted;
 
+        Test.startTest();
+        insert affiliationsToBeInserted;
         Test.stopTest();
 
         // Ensure 4 new Affiliations are inserted
@@ -1289,13 +896,13 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(5, affiliationsInserted.size());
     }
 
-    /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
-     and Affilaiton Mappings have API names for Account Record Type and primary Affiliaiton Fields */
+    /* Test to ensure users can create Contacts and Affiliations when Affiliation Record Type Enforced is enabled in EDA Settings
+     and Affiliation Mappings have API names for Account Record Type and primary Affiliaiton Fields */
 
     @isTest
     private static void affiliationRecordTypeEnforceWAPINamesForAccRecTypeAndPrimaryAffl() {
-        AFFL_MultiRecordType_TEST.setupMappingsByDevNameAndApiName();
-        AFFL_MultiRecordType_TEST.enableAffiliationRecordTypeEnforcement();
+        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName(false);
+        AffiliationTestSetupFactory_TEST.enableAffiliationRecordTypeEnforcement();
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,
@@ -1307,7 +914,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
         List<Account> accountsInserted = [SELECT Id FROM Account];
         System.assert(accountsInserted.size() == 1);
 
-        Test.startTest();
         // Insert 4 Contacts
         List<Contact> contactsToBeInserted = UTIL_UnitTestData_TEST.getMultipleTestContacts(3);
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
@@ -1324,14 +930,15 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(1, affiliationsBeforeInserted.size());
         System.assertEquals(testContact.Id, affiliationsBeforeInserted[0].Contact__c);
 
-        // Create 1 affilaiton each for a Contact
+        // Create 1 affiliation each for a Contact
         List<Affiliation__c> affiliationsToBeInserted = new List<Affiliation__c>();
         for (Contact each : contactsInserted) {
             Affiliation__c affl = UTIL_UnitTestData_TEST.getAffiliation(each.Id, accountsInserted[0].Id, false);
             affiliationsToBeInserted.add(affl);
         }
-        insert affiliationsToBeInserted;
 
+        Test.startTest();
+        insert affiliationsToBeInserted;
         Test.stopTest();
 
         // Ensure 4 new Affiliations are inserted
@@ -1339,13 +946,12 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(5, affiliationsInserted.size());
     }
 
-    /* Test to ensure users can create Contacts and Affilaitons when Affiliation Record Type Enforced is enabled in EDA Settings
-     and Affilaiton Mappings have Labels for Account Record Type and APIs for Primary Affiliaiton Fields */
-
+    /* Test to ensure users can create Contacts and Affiliations when Affiliation Record Type Enforced is enabled in EDA Settings
+     and Affiliation Mappings have Labels for Account Record Type and APIs for Primary Affiliaiton Fields */
     @isTest
     private static void affiliationRecordTypeEnforceWLabelsForAccRecTypeAndAPIForPrimaryAffl() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndApiName();
-        AFFL_MultiRecordType_TEST.enableAffiliationRecordTypeEnforcement();
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndApiName(false);
+        AffiliationTestSetupFactory_TEST.enableAffiliationRecordTypeEnforcement();
 
         List<Account> testAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,
@@ -1357,7 +963,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
         List<Account> accountsInserted = [SELECT Id FROM Account];
         System.assert(accountsInserted.size() == 1);
 
-        Test.startTest();
         // Insert 4 Contacts
         List<Contact> contactsToBeInserted = UTIL_UnitTestData_TEST.getMultipleTestContacts(3);
         Contact testContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
@@ -1374,377 +979,1137 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(1, affiliationsBeforeInserted.size());
         System.assertEquals(testContact.Id, affiliationsBeforeInserted[0].Contact__c);
 
-        // Create 1 affilaiton each for a Contact
+        // Create 1 affiliation each for a Contact
         List<Affiliation__c> affiliationsToBeInserted = new List<Affiliation__c>();
         for (Contact each : contactsInserted) {
             Affiliation__c affl = UTIL_UnitTestData_TEST.getAffiliation(each.Id, accountsInserted[0].Id, false);
             affiliationsToBeInserted.add(affl);
         }
-        insert affiliationsToBeInserted;
 
+        Test.startTest();
+        insert affiliationsToBeInserted;
         Test.stopTest();
 
         // Ensure 4 new Affiliations are inserted
         List<Affiliation__c> affiliationsInserted = [SELECT Id FROM Affiliation__c];
         System.assertEquals(5, affiliationsInserted.size());
-    }
-
-    // This method tests getValidAccRecordTypesInMappings() of AFFL_MultiRecordTypeMapper class by passing Record Names Labels from affiliation mappings
-    @isTest
-    private static void testGetValidAccRecordTypesInMappingsMethodwithLabels() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.getAfflMappingWrapperByNameAndLabel();
-
-        affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.populateRecordTypeNamesForWrappers(
-            affiliationMappingWrapperList
-        );
-
-        List<String> accRecTypeLabelList = new List<String>();
-        for (AffiliationMappingWrapper affiliationMappingWrapper : affiliationMappingWrapperList) {
-            accRecTypeLabelList.add(affiliationMappingWrapper.getAccountRecordTypeName());
-        }
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        List<String> matchingRecordTypeList = afflMapper.getValidAccRecordTypesInMappings(accRecTypeLabelList);
-        Test.stopTest();
-
-        // Ensure List has all mappings
-        System.assertEquals(accRecTypeLabelList.size(), matchingRecordTypeList.size());
-    }
-
-    // This method tests getValidAccRecordTypesInMappings() of AFFL_MultiRecordTypeMapper class by passing Record Names list from affiliation mappings
-    @isTest
-    private static void testGetValidAccRecordTypesInMappingsMethodwithAPIs() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.setupMappingsByDevNameAndLabel();
-
-        // Construct a list of Account Record Type Names
-        List<String> accRecTypeDevNameList = new List<String>();
-        for (AffiliationMappingWrapper affiliationMappingWrapper : affiliationMappingWrapperList) {
-            accRecTypeDevNameList.add(affiliationMappingWrapper.getAccountRecordTypeDeveloperName());
-        }
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        List<String> matchingRecordTypeList = afflMapper.getValidAccRecordTypesInMappings(accRecTypeDevNameList);
-        Test.stopTest();
-
-        // Ensure List has all mappings
-        System.assertEquals(affiliationMappingWrapperList.size(), matchingRecordTypeList.size());
-    }
-
-    /* This method tests getValidAccRecordTypesInMappings() of AFFL_MultiRecordTypeMapper class by passing
-     both Record type Names and Labels list from affiliation mappings */
-    @isTest
-    private static void testGetValidAccRecordTypesInMappingsMethodwithAPIAndLabels() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.setupMappingsByNameAndApiName();
-
-        // Construct a list of Account Record Type Names and Labels
-        List<String> accRecTypeLabelList = new List<String>();
-
-        for (AffiliationMappingWrapper affiliationMappingWrapper : affiliationMappingWrapperList) {
-            accRecTypeLabelList.add(affiliationMappingWrapper.getAccountRecordTypeName());
-        }
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        List<String> matchingRecordTypeList = afflMapper.getValidAccRecordTypesInMappings(accRecTypeLabelList);
-        Test.stopTest();
-
-        // Ensure List has all mappings
-        System.assertEquals(affiliationMappingWrapperList.size(), matchingRecordTypeList.size());
-    }
-
-    /* This method tests getValidPrimaryAfflFields() of AFFL_MultiRecordTypeMapper class by passing
-     both API names for Primary Affiliation Fields */
-    @isTest
-    private static void testsGetValidPrimaryAfflFields() {
-        List<AffiliationMappingWrapper> affiliationMappingWrapperList = AFFL_MultiRecordType_TEST.setupMappingsByNameAndApiName();
-
-        List<Affl_Mappings__c> allMappings = [SELECT ID FROM Affl_Mappings__c];
-        System.assertEquals(affiliationMappingWrapperList.size(), allMappings.size());
-
-        // Construct a list of primary Affiliation field API Names
-        List<String> primaryFieldsList = AFFL_MultiRecordType_TEST.getContactPrimaryAffiliationFieldApiNames();
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        List<String> validPrimaryFieldList = afflMapper.getValidPrimaryAfflFields(primaryFieldsList);
-        Test.stopTest();
-
-        // Ensure List has both mappings
-        System.assertEquals(affiliationMappingWrapperList.size(), validPrimaryFieldList.size());
-    }
-
-    /* This method tests getValidprimaryAfflFields() of AFFL_MultiRecordTypeMapper class by passing
-     labels for Primary Affiliation Fields */
-    @isTest
-    private static void testsGetValidPrimaryAfflFieldsWithLabels() {
-        // Construct a list of primary Affiliation field Labels
-        List<String> primaryFieldsList = AFFL_MultiRecordType_TEST.getContactPrimaryAffiliationFieldLabels();
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        List<String> validPrimaryFieldList = afflMapper.getValidPrimaryAfflFields(primaryFieldsList);
-        Test.stopTest();
-
-        // Ensure List has all mappings
-        System.assertEquals(primaryFieldsList.size(), validPrimaryFieldList.size());
-    }
-
-    /* This method tests getValidPrimaryAfflFields() of AFFL_MultiRecordTypeMapper class by passing
-     both label and API names for Primary Affiliation Fields */
-    @isTest
-    private static void testsGetValidPrimaryAfflFieldsWithLabelsAndAPI() {
-        //Note custom setup
-        List<AffiliationMappingWrapper> wrapperList = new List<AffiliationMappingWrapper>();
-
-        List<String> contactPrimaryAffiliationFieldApiNameList = AFFL_MultiRecordType_TEST.getContactPrimaryAffiliationFieldApiNames();
-        List<String> contactPrimaryAffiliationFieldLabelList = AFFL_MultiRecordType_TEST.getContactPrimaryAffiliationFieldLabels();
-        String bizOrgContactFieldApiName = AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldApiName();
-        String householdContactFieldLabel = AFFL_MultiRecordType_TEST.getHouseholdFieldLabel();
-
-        wrapperList.add(
-            new AfflMappingWrapperByNameAndApiName(
-                UTIL_Describe.getCustomHHAccRecTypeID(),
-                contactPrimaryAffiliationFieldApiNameList[0]
-            )
-        );
-
-        wrapperList.add(
-            new AfflMappingWrapperByNameAndLabel(
-                UTIL_Describe_API.getBizAccRecTypeID(),
-                contactPrimaryAffiliationFieldLabelList[1]
-            )
-        );
-
-        wrapperList = AFFL_MultiRecordType_TEST.commonSetup(wrapperList);
-        //Custom setup ended
-
-        List<Affl_Mappings__c> allMappings = [SELECT Id FROM Affl_Mappings__c];
-        System.assertEquals(wrapperList.size(), allMappings.size());
-
-        // Construct a list of primary Affiliation field Labels and API names
-        List<String> primaryFieldsList = new List<String>();
-        primaryFieldsList.add(bizOrgContactFieldApiName);
-        primaryFieldsList.add(householdContactFieldLabel);
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        List<String> validPrimaryFieldList = afflMapper.getValidPrimaryAfflFields(primaryFieldsList);
-        Test.stopTest();
-
-        // Ensure List has all mappings
-        System.assertEquals(wrapperList.size(), validPrimaryFieldList.size());
-    }
-
-    // Positive test for getPrimaryAffiliationLookupAPI method of AFFL_MultiRecordTypeMapper using API name
-    @isTest
-    private static void getPrimaryAffiliationLookupAPIPoitiveAPITest() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
-
-        String bizOrgContactFieldApiName = AFFL_MultiRecordType_TEST.getBusinessOrganizationFieldApiName();
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        String primaryAfflLookupAPIName = afflMapper.getPrimaryAffiliationLookupAPI(bizOrgContactFieldApiName);
-        Test.stopTest();
-
-        System.assertEquals(bizOrgContactFieldApiName, primaryAfflLookupAPIName);
-    }
-
-    // Negative test for getPrimaryAffiliationLookupAPI method of AFFL_MultiRecordTypeMapper
-    @isTest
-    private static void getPrimaryAffiliationLookupAPINegativeTest() {
-        AFFL_MultiRecordType_TEST.setupMappingsByNameAndLabel();
-
-        Test.startTest();
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-        String primaryAfflLookupAPIName = afflMapper.getPrimaryAffiliationLookupAPI('Test1234');
-        Test.stopTest();
-
-        System.assertEquals(null, primaryAfflLookupAPIName);
     }
 
     /**************************************************************************
-     * INNER CLASS MODELS
+     * Unit TESTS
+     *************************************************************************/
+
+    /****************************************
+     * handleAfterInsert
+     ****************************************/
+
+    /**
+     * @description helper class for initialization of tests for handleAfterInsert
+     */
+    private class HandleAfterInsertValidData {
+        public AFFL_MultiRecordType_TDTM tdtmClass;
+        public TDTM_Runnable.DmlWrapper dmlWrapper;
+        public Account accountToTest;
+        public Contact contactToTest;
+        public Affiliation__c affiliation;
+
+        public HandleAfterInsertValidData() {
+            this.tdtmClass = new AFFL_MultiRecordType_TDTM();
+            this.dmlWrapper = new TDTM_Runnable.DmlWrapper();
+            this.contactToTest = UTIL_UnitTestData_TEST.getUniqueContact(1);
+            insert contactToTest;
+
+            Id businessOrganizationRecordTypeId = UTIL_Describe.getBizAccRecTypeID();
+            this.accountToTest = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, businessOrganizationRecordTypeId)[0];
+            insert this.accountToTest;
+
+            this.affiliation = new Affiliation__c(
+                Id = UTIL_UnitTestData_TEST.getFakeId(Affiliation__c.SObjectType),
+                Account__c = this.accountToTest.Id,
+                Contact__c = this.contactToTest.Id,
+                Primary__c = true
+            );
+        }
+    }
+
+    /**
+     * @description Tests handleAfterInsert appropriately calls createProgramEnrollmentIfNecessary
+     */
+    private static void handleAfterInsertValid() {
+        HandleAfterInsertValidData testData = new HandleAfterInsertValidData();
+        AFFL_MultiRecordType_TDTM.afflMapper = new AFFL_MultiRecordTypeMapper_STUB(true);
+        Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
+
+        List<SObject> newList = new List<SObject>();
+        newList.add(testData.affiliation);
+
+        Test.startTest();
+        TDTM_Runnable.DMLWrapper dmlWrapperReturned = testData.tdtmClass.handleAfterInsert(
+            newList,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            testData.tdtmClass.isAfterInsertRecursion(),
+            'After insert recursion for should be active for AFFL_MultiRecordType_TDTM.'
+        );
+
+        System.assertEquals(
+            1,
+            dmlWrapperReturned.objectsToInsert.size(),
+            'The DMLWrapper should contain a single program enrollment to insert.'
+        );
+
+        for (SObject sObjectRetrieved : dmlWrapperReturned.objectsToInsert) {
+            Program_Enrollment__c programEnrollment = (Program_Enrollment__c) sObjectRetrieved;
+
+            System.assertEquals(
+                testData.affiliation.Account__c,
+                programEnrollment.Account__c,
+                'The Account of the created Program Enrollment should match the provided Affiliation\'s.'
+            );
+            System.assertEquals(
+                testData.affiliation.Contact__c,
+                programEnrollment.Contact__c,
+                'The Contact of the created Program Enrollment should match the provided Affiliation\'s.'
+            );
+            System.assertEquals(
+                testData.affiliation.Id,
+                programEnrollment.Affiliation__c,
+                'The Affiliation of the created Program Enrollment should be the provided Affiliation\'s.'
+            );
+        }
+    }
+
+    /**
+     * @description Tests handleAfterInsert appropriately calls createProgramEnrollmentIfNecessary and does not create a Program Enrollment
+     */
+    private static void handleAfterInsertInvalid() {
+        HandleAfterInsertValidData testData = new HandleAfterInsertValidData();
+        AFFL_MultiRecordType_TDTM.afflMapper = new AFFL_MultiRecordTypeMapper_STUB(false);
+        Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
+
+        List<SObject> newList = new List<SObject>();
+        newList.add(testData.affiliation);
+
+        Test.startTest();
+        TDTM_Runnable.DMLWrapper dmlWrapperReturned = testData.tdtmClass.handleAfterInsert(
+            newList,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            testData.tdtmClass.isAfterInsertRecursion(),
+            'After insert recursion for should be active for AFFL_MultiRecordType_TDTM.'
+        );
+
+        System.assertEquals(true, dmlWrapperReturned.objectsToInsert.isEmpty(), 'The DMLWrapper should be empty.');
+    }
+
+    /**
+     * @description Tests handleAfterInsert only sets after insert recursion on an empty new list
+     */
+    private static void handleAfterInsertNewListEmpty() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        List<SObject> newList = new List<SObject>();
+
+        Test.startTest();
+        TDTM_Runnable.DMLWrapper dmlWrapperReturned = tdtmClass.handleAfterInsert(newList, dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            tdtmClass.isAfterInsertRecursion(),
+            'After insert recursion for should be active for AFFL_MultiRecordType_TDTM.'
+        );
+
+        System.assertEquals(true, dmlWrapperReturned.objectsToInsert.isEmpty(), 'The DMLWrapper should be empty.');
+    }
+
+    /**
+     * @description Tests handleAfterInsert only sets after insert recursion on a null new list
+     */
+    private static void handleAfterInsertNewListNull() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        List<SObject> newList = null;
+        tdtmClass.setAfterInsertRecursion();
+
+        Test.startTest();
+        TDTM_Runnable.DMLWrapper dmlWrapperReturned = tdtmClass.handleAfterInsert(newList, dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(true, dmlWrapperReturned.objectsToInsert.isEmpty(), 'The DMLWrapper should be empty.');
+    }
+
+    /**
+     * @description Tests handleAfterInsert does nothing on an after insert recursion
+     */
+    private static void handleAfterInsertNewListAfterInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        List<SObject> newList = null;
+
+        Test.startTest();
+        TDTM_Runnable.DMLWrapper dmlWrapperReturned = tdtmClass.handleAfterInsert(newList, dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(
+            false,
+            tdtmClass.isAfterInsertRecursion(),
+            'After insert recursion for should be inactive for AFFL_MultiRecordType_TDTM.'
+        );
+
+        System.assertEquals(true, dmlWrapperReturned.objectsToInsert.isEmpty(), 'The DMLWrapper should be empty.');
+    }
+
+    /****************************************
+     * processAfflDeletedValid
+     ****************************************/
+
+    /**
+     * @description helper class for initialization of tests for processAfflDeleted
+     */
+    private class ProcessAfflDeletedValidData {
+        public AFFL_MultiRecordType_TDTM tdtmClass;
+        public TDTM_Runnable.DmlWrapper dmlWrapper;
+        public Id fakeAccountId;
+        public String primaryAffiliationFieldAPIName;
+        public Contact testContact;
+        public Affiliation__c affiliation;
+
+        public ProcessAfflDeletedValidData() {
+            this.tdtmClass = new AFFL_MultiRecordType_TDTM();
+            this.dmlWrapper = new TDTM_Runnable.DmlWrapper();
+            this.primaryAffiliationFieldAPIName = AffiliationTestSetupFactory_TEST.getBusinessOrganizationFieldApiName();
+            this.fakeAccountId = UTIL_UnitTestData_TEST.getFakeId(Account.SObjectType);
+
+            Id fakeContactId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+            this.testContact = new Contact(Id = fakeContactId, FirstName = 'Test');
+            testContact.put(this.primaryAffiliationFieldAPIName, fakeAccountId);
+
+            this.affiliation = new Affiliation__c(
+                Account__c = fakeAccountId,
+                Contact__c = fakeContactId,
+                Primary__c = true
+            );
+        }
+    }
+
+    /**
+     * @description Tests processAfflDeleted appropriately clears the primary affiliation field
+     */
+    private static void processAfflDeletedValid() {
+        ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.processAfflDeleted(
+            testData.affiliation,
+            testData.testContact,
+            testData.primaryAffiliationFieldAPIName,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            contactReturned.get(testData.primaryAffiliationFieldAPIName),
+            'Contact Primary Affiliation Field api name should be set to null on deletion.'
+        );
+        System.assertEquals(
+            true,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'The Contact should be added to the DMLWrapper.'
+        );
+    }
+
+    /**
+     * @description Tests processAfflDeleted does not run on recursion
+     */
+    private static void processAfflDeletedRecursion() {
+        ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
+
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated,
+            true
+        );
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.processAfflDeleted(
+            testData.affiliation,
+            testData.testContact,
+            testData.primaryAffiliationFieldAPIName,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(null, contactReturned, 'Method should make no changes to the Contact on recursion.');
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on recursion.'
+        );
+    }
+
+    /**
+     * @description Tests processAfflDeleted does not run for non-primary affiliations
+     */
+    private static void processAfflDeletedNonPrimaryAffiliation() {
+        ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
+        testData.affiliation.Primary__c = false;
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.processAfflDeleted(
+            testData.affiliation,
+            testData.testContact,
+            testData.primaryAffiliationFieldAPIName,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            contactReturned,
+            'Method should make no changes to the Contact on non-primary affiliations.'
+        );
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on non-primary affiliations.'
+        );
+    }
+
+    /**
+     * @description Tests processAfflDeleted does not run for contacts when a primary affiliation field is not supplied
+     */
+    private static void processAfflDeletedNullAffiliationField() {
+        ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
+        testData.primaryAffiliationFieldAPIName = null;
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.processAfflDeleted(
+            testData.affiliation,
+            testData.testContact,
+            testData.primaryAffiliationFieldAPIName,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            contactReturned,
+            'Method should make no changes to the Contact on a null primary affiliation field.'
+        );
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on a null primary affiliation field.'
+        );
+    }
+
+    /**
+     * @description Tests processAfflDeleted does not run for contacts when the contact is null
+     */
+    private static void processAfflDeletedNullContact() {
+        ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.processAfflDeleted(
+            testData.affiliation,
+            null,
+            testData.primaryAffiliationFieldAPIName,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(null, contactReturned, 'Method should make no changes to the Contact on a null contact.');
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on a null contact.'
+        );
+    }
+
+    /**
+     * @description Tests processAfflDeleted does not run for contacts when the affiliation account does not match the contact account
+     */
+    private static void processAfflDeletedDifferentContactPrimaryAffiliationAccount() {
+        ProcessAfflDeletedValidData testData = new ProcessAfflDeletedValidData();
+        Id differentFakeAccountId = UTIL_UnitTestData_TEST.getFakeId(Account.SObjectType);
+        testData.affiliation = new Affiliation__c(
+            Account__c = differentFakeAccountId,
+            Contact__c = testData.testContact.Id,
+            Primary__c = true
+        );
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.processAfflDeleted(
+            testData.affiliation,
+            testData.testContact,
+            testData.primaryAffiliationFieldAPIName,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            contactReturned,
+            'Method should make no changes to the Contact on an unmatched account.'
+        );
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on an unmatched account.'
+        );
+    }
+
+    /****************************************
+     * queryAfflLookupFields
+     ****************************************/
+
+    /**
+     * @description Tests queryAfflLookupFields for multiple affiliations
+     */
+    private static void queryAfflLookupFields() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        //Setup Accounts
+        Id businessOrganizationRecordTypeId = UTIL_Describe.getBizAccRecTypeID();
+        Id householdAccountId = UTIL_Describe.getCustomHHAccRecTypeID();
+
+        List<Account> businessOrganizationAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            AFFL_MultiRecordType_TEST.numberOfTestRecords,
+            businessOrganizationRecordTypeId
+        );
+        List<Account> householdAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            AFFL_MultiRecordType_TEST.numberOfTestRecords,
+            householdAccountId
+        );
+
+        List<Account> accountsToInsert = new List<Account>();
+        accountsToInsert.addAll(businessOrganizationAccounts);
+        accountsToInsert.addAll(householdAccounts);
+        //Saving time on the dml operation adds up
+        insert accountsToInsert;
+
+        //Setup Contacts
+        List<Contact> contactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(
+            AFFL_MultiRecordType_TEST.numberOfTestRecords
+        );
+
+        for (Integer i = 0; i < AFFL_MultiRecordType_TEST.numberOfTestRecords; i++) {
+            Contact contactToInsert = contactList[i];
+            contactToInsert.Primary_Household__c = householdAccounts[i].Id;
+            contactToInsert.Primary_Organization__c = businessOrganizationAccounts[i].Id;
+        }
+
+        insert contactList;
+        Map<Id, Contact> insertedContactsByIds = new Map<Id, Contact>(contactList);
+
+        //Mock Affiliations
+        List<Affiliation__c> affiliationList = new List<Affiliation__c>();
+
+        for (Integer i = 0; i < AFFL_MultiRecordType_TEST.numberOfTestRecords; i++) {
+            Affiliation__c businessAffiliation = new Affiliation__c(
+                Contact__c = contactList[i].Id,
+                Account__c = businessOrganizationAccounts[i].Id,
+                Primary__c = true
+            );
+            affiliationList.add(businessAffiliation);
+
+            Affiliation__c householdAffiliation = new Affiliation__c(
+                Contact__c = contactList[i].Id,
+                Account__c = householdAccounts[i].Id,
+                Primary__c = true
+            );
+            affiliationList.add(householdAffiliation);
+        }
+
+        List<SObject> affiliationAsSObjectList = affiliationList;
+
+        //Set up affiliation mappings on household and business organization
+        //This is done later to cause it not to interfere with our data setup so the unit test detects unexpected behavior better.
+        AffiliationTestSetupFactory_TEST.setupMappingsByDevNameAndApiName(false);
+
+        Test.startTest();
+        Map<Id, Contact> returnedContactsByIds = tdtmClass.queryAfflLookupFields(affiliationAsSObjectList);
+        Test.stopTest();
+
+        System.assertEquals(
+            insertedContactsByIds.size(),
+            returnedContactsByIds.size(),
+            'Number of returned contacts should match the number inserted.'
+        );
+
+        for (Contact returnedContact : returnedContactsByIds.values()) {
+            Contact insertedContact = insertedContactsByIds.get(returnedContact.Id);
+
+            System.assertNotEquals(null, insertedContact, 'A contact should be returned for each inserted contact.');
+            System.assertEquals(
+                returnedContact.Primary_Household__c,
+                insertedContact.Primary_Household__c,
+                'The Primary Household field should be queried and match that of the inserted Contact.'
+            );
+            System.assertEquals(
+                returnedContact.Primary_Organization__c,
+                insertedContact.Primary_Organization__c,
+                'The Primary Organization field should be queried and match that of the inserted Contact.'
+            );
+        }
+    }
+
+    /****************************************
+     * populateKeyAffls
+     ****************************************/
+
+    /**
+     * @description helper class for initialization of tests for populateKeyAffls
+     */
+    private class PopulateKeyAfflsValidData {
+        public AFFL_MultiRecordType_TDTM tdtmClass;
+        public TDTM_Runnable.DmlWrapper dmlWrapper;
+        public Id fakeAccountId;
+        public String primaryAffiliationFieldAPIName;
+        public Contact testContact;
+        public Affiliation__c affiliation;
+
+        public PopulateKeyAfflsValidData() {
+            this.tdtmClass = new AFFL_MultiRecordType_TDTM();
+            this.dmlWrapper = new TDTM_Runnable.DmlWrapper();
+            this.primaryAffiliationFieldAPIName = AffiliationTestSetupFactory_TEST.getBusinessOrganizationFieldApiName();
+            this.fakeAccountId = UTIL_UnitTestData_TEST.getFakeId(Account.SObjectType);
+
+            Id fakeContactId = UTIL_UnitTestData_TEST.getFakeId(Contact.SObjectType);
+            this.testContact = new Contact(Id = fakeContactId, FirstName = 'Test');
+            testContact.put(this.primaryAffiliationFieldAPIName, fakeAccountId);
+
+            this.affiliation = new Affiliation__c(
+                Account__c = fakeAccountId,
+                Contact__c = fakeContactId,
+                Primary__c = true
+            );
+        }
+    }
+
+    /**
+     * @description Tests populateKeyAffls appropriately sets the primary affiliation field
+     */
+    private static void populateKeyAfflsValid() {
+        PopulateKeyAfflsValidData testData = new PopulateKeyAfflsValidData();
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.populateKeyAffls(
+            testData.affiliation,
+            testData.primaryAffiliationFieldAPIName,
+            testData.testContact,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            testData.affiliation.Account__c,
+            (Id) contactReturned.get(testData.primaryAffiliationFieldAPIName),
+            'Contact Primary Affiliation Field api name should be set to the Affiliation\'s Account.'
+        );
+        System.assertEquals(
+            true,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'The Contact should be added to the DMLWrapper.'
+        );
+    }
+
+    /**
+     * @description Tests populateKeyAffls does not run on recursion
+     */
+    private static void populateKeyAfflsRecursion() {
+        PopulateKeyAfflsValidData testData = new PopulateKeyAfflsValidData();
+
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.CON_PrimaryAffls_TDTM_keyAfflLookupUpdated,
+            true
+        );
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.populateKeyAffls(
+            testData.affiliation,
+            testData.primaryAffiliationFieldAPIName,
+            testData.testContact,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(null, contactReturned, 'Method should make no changes to the Contact on recursion.');
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on recursion.'
+        );
+    }
+
+    /**
+     * @description Tests populateKeyAffls does not run for contacts when a primary affiliation field is not supplied
+     */
+    private static void populateKeyAfflsNullAffiliationField() {
+        PopulateKeyAfflsValidData testData = new PopulateKeyAfflsValidData();
+        testData.primaryAffiliationFieldAPIName = null;
+
+        Test.startTest();
+        Contact contactReturned = testData.tdtmClass.populateKeyAffls(
+            testData.affiliation,
+            testData.primaryAffiliationFieldAPIName,
+            testData.testContact,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            contactReturned,
+            'Method should make no changes to the Contact on a null primary affiliation field.'
+        );
+        System.assertEquals(
+            false,
+            testData.dmlWrapper.objectsToUpdate.contains(contactReturned),
+            'Method should make no changes to the DMLWrapper on a null primary affiliation field.'
+        );
+    }
+
+    /****************************************
+     * uncheckOtherPrimariesSameType
+     ****************************************/
+
+    /**
+     * @description Tests uncheckOtherPrimariesSameType for multiple affiliations
+     */
+    private static void uncheckOtherPrimariesSameType() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        //Setup Accounts
+        Id businessOrganizationRecordTypeId = UTIL_Describe.getBizAccRecTypeID();
+        Id householdAccountId = UTIL_Describe.getCustomHHAccRecTypeID();
+
+        List<Account> businessOrganizationAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            AFFL_MultiRecordType_TEST.numberOfTestRecords,
+            businessOrganizationRecordTypeId
+        );
+        List<Account> householdAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            AFFL_MultiRecordType_TEST.numberOfTestRecords,
+            householdAccountId
+        );
+
+        List<Account> accountsToInsert = new List<Account>();
+        accountsToInsert.addAll(businessOrganizationAccounts);
+        accountsToInsert.addAll(householdAccounts);
+        //Saving time on the dml operation adds up
+        insert accountsToInsert;
+
+        //Setup Contacts
+        List<Contact> contactList = UTIL_UnitTestData_TEST.getMultipleTestContacts(
+            AFFL_MultiRecordType_TEST.numberOfTestRecords
+        );
+
+        for (Integer i = 0; i < AFFL_MultiRecordType_TEST.numberOfTestRecords; i++) {
+            Contact contactToInsert = contactList[i];
+            contactToInsert.Primary_Household__c = householdAccounts[i].Id;
+            contactToInsert.Primary_Organization__c = businessOrganizationAccounts[i].Id;
+        }
+
+        insert contactList;
+        Map<Id, Contact> insertedContactsByIds = new Map<Id, Contact>(contactList);
+
+        //Setup Initial Primary Affiliations
+        List<Affiliation__c> oldPrimaryAffiliationList = new List<Affiliation__c>();
+
+        for (Integer i = 0; i < AFFL_MultiRecordType_TEST.numberOfTestRecords; i++) {
+            Affiliation__c businessAffiliation = new Affiliation__c(
+                Contact__c = contactList[i].Id,
+                Account__c = businessOrganizationAccounts[i].Id,
+                Primary__c = true
+            );
+            oldPrimaryAffiliationList.add(businessAffiliation);
+
+            Affiliation__c householdAffiliation = new Affiliation__c(
+                Contact__c = contactList[i].Id,
+                Account__c = householdAccounts[i].Id,
+                Primary__c = true
+            );
+            oldPrimaryAffiliationList.add(householdAffiliation);
+        }
+        insert oldPrimaryAffiliationList;
+        Map<Id, Affiliation__c> oldPrimaryAffiliationsById = new Map<Id, Affiliation__c>(oldPrimaryAffiliationList);
+
+        //Setup new primary affiliations
+        List<Affiliation__c> newPrimaryAffiliationList = new List<Affiliation__c>();
+
+        for (Integer i = 0; i < AFFL_MultiRecordType_TEST.numberOfTestRecords; i++) {
+            Integer nextSafeInteger = math.mod(i, 5);
+            Affiliation__c businessAffiliation = new Affiliation__c(
+                Contact__c = contactList[i].Id,
+                Account__c = businessOrganizationAccounts[nextSafeInteger].Id,
+                Primary__c = true
+            );
+            newPrimaryAffiliationList.add(businessAffiliation);
+
+            Affiliation__c householdAffiliation = new Affiliation__c(
+                Contact__c = contactList[i].Id,
+                Account__c = householdAccounts[nextSafeInteger].Id,
+                Primary__c = true
+            );
+            newPrimaryAffiliationList.add(householdAffiliation);
+        }
+        //Recalculate formulas in memory!
+        Formula.recalculateFormulas(newPrimaryAffiliationList);
+
+        Test.startTest();
+        List<Affiliation__c> uncheckedAffiliations = tdtmClass.uncheckOtherPrimariesSameType(
+            newPrimaryAffiliationList,
+            dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            oldPrimaryAffiliationList.size(),
+            uncheckedAffiliations.size(),
+            'Number of returned affiliations should match the number unchecked.'
+        );
+
+        for (Affiliation__c uncheckedAffiliation : uncheckedAffiliations) {
+            Affiliation__c originalAffiliation = oldPrimaryAffiliationsById.get(uncheckedAffiliation.Id);
+            System.assertNotEquals(null, originalAffiliation, 'Each old primary affiliation should be modified.');
+            System.assertEquals(
+                false,
+                originalAffiliation.Primary__c,
+                'Each old primary affiliation should have its Primary field set to false.'
+            );
+        }
+    }
+
+    /****************************************
+     * createProgramEnrollmentIfNecessary
+     ****************************************/
+
+    /**
+     * @description helper class for initialization of tests for createProgramEnrollmentIfNecessary
+     */
+    private class CreateProgramEnrollmentValidData {
+        public AFFL_MultiRecordType_TDTM tdtmClass;
+        public TDTM_Runnable.DmlWrapper dmlWrapper;
+        public Account accountToTest;
+        public Contact contactToTest;
+        public Affiliation__c affiliation;
+
+        public CreateProgramEnrollmentValidData() {
+            this.tdtmClass = new AFFL_MultiRecordType_TDTM();
+            this.dmlWrapper = new TDTM_Runnable.DmlWrapper();
+            this.contactToTest = UTIL_UnitTestData_TEST.getUniqueContact(1);
+            insert contactToTest;
+
+            Id businessOrganizationRecordTypeId = UTIL_Describe.getBizAccRecTypeID();
+            this.accountToTest = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, businessOrganizationRecordTypeId)[0];
+            insert this.accountToTest;
+
+            this.affiliation = new Affiliation__c(
+                Id = UTIL_UnitTestData_TEST.getFakeId(Affiliation__c.SObjectType),
+                Account__c = this.accountToTest.Id,
+                Contact__c = this.contactToTest.Id,
+                Primary__c = true
+            );
+        }
+    }
+
+    /**
+     * @description Tests createProgramEnrollmentIfNecessary for valid data requiring a program enrollment be created
+     */
+    private static void createProgramEnrollmentIfNecessaryValidData() {
+        CreateProgramEnrollmentValidData testData = new CreateProgramEnrollmentValidData();
+        AFFL_MultiRecordType_TDTM.afflMapper = new AFFL_MultiRecordTypeMapper_STUB(true);
+        Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
+
+        Test.startTest();
+        Program_Enrollment__c programEnrollmentCreated = testData.tdtmClass.createProgramEnrollmentIfNecessary(
+            testData.affiliation,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertNotEquals(
+            null,
+            programEnrollmentCreated,
+            'A Program Enrollment should be created for the associated Affiliation.'
+        );
+        System.assertEquals(
+            testData.affiliation.Id,
+            programEnrollmentCreated.Affiliation__c,
+            'The Program Enrollment\'s Affiliation should match the provided Affiliation\'s.'
+        );
+        System.assertEquals(
+            testData.affiliation.Account__c,
+            programEnrollmentCreated.Account__c,
+            'The Program Enrollment\'s Account should match the Affiliation\'s.'
+        );
+        System.assertEquals(
+            testData.affiliation.Contact__c,
+            programEnrollmentCreated.Contact__c,
+            'The Program Enrollment\'s Contact should match the Affiliation\'s.'
+        );
+    }
+
+    /**
+     * @description Tests createProgramEnrollmentIfNecessary for when a Program Enrollment is not needed
+     */
+    private static void createProgramEnrollmentIfNecessaryNotNeeded() {
+        CreateProgramEnrollmentValidData testData = new CreateProgramEnrollmentValidData();
+        AFFL_MultiRecordType_TDTM.afflMapper = new AFFL_MultiRecordTypeMapper_STUB(false);
+        Formula.recalculateFormulas(new List<Affiliation__c>{ testData.affiliation });
+
+        Test.startTest();
+        Program_Enrollment__c programEnrollmentCreated = testData.tdtmClass.createProgramEnrollmentIfNecessary(
+            testData.affiliation,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            programEnrollmentCreated,
+            'A Program Enrollment should not be created when the mapper specifies it should not.'
+        );
+    }
+
+    /**
+     * @description Tests createProgramEnrollmentIfNecessary for when the affiliation type is null
+     */
+    private static void createProgramEnrollmentIfNecessaryNoAffiliationType() {
+        CreateProgramEnrollmentValidData testData = new CreateProgramEnrollmentValidData();
+        AFFL_MultiRecordType_TDTM.afflMapper = new AFFL_MultiRecordTypeMapper_STUB(true);
+
+        Test.startTest();
+        Program_Enrollment__c programEnrollmentCreated = testData.tdtmClass.createProgramEnrollmentIfNecessary(
+            testData.affiliation,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            programEnrollmentCreated,
+            'A Program Enrollment should not be created when the affiliation type is null.'
+        );
+    }
+
+    /**
+     * @description Tests createProgramEnrollmentIfNecessary for when the affiliation is null
+     */
+    private static void createProgramEnrollmentIfNecessaryNullAffiliation() {
+        CreateProgramEnrollmentValidData testData = new CreateProgramEnrollmentValidData();
+        AFFL_MultiRecordType_TDTM.afflMapper = new AFFL_MultiRecordTypeMapper_STUB(true);
+
+        Test.startTest();
+        Program_Enrollment__c programEnrollmentCreated = testData.tdtmClass.createProgramEnrollmentIfNecessary(
+            null,
+            testData.dmlWrapper
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            null,
+            programEnrollmentCreated,
+            'A Program Enrollment should not be created when the affiliation type is null.'
+        );
+    }
+
+    /****************************************
+     * RECURSION TESTS
+     ****************************************/
+
+    /**
+     * @description Tests setBeforeInsertRecursion
+     */
+    @isTest
+    static void setBeforeInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        Test.startTest();
+        tdtmClass.setBeforeInsertRecursion();
+        Test.stopTest();
+
+        Boolean beforeInsert = TDTM_ProcessControl.getRecursionFlag(BEFORE_INSERT_RECURSION);
+
+        System.assertEquals(
+            true,
+            beforeInsert,
+            'Before Insert recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests isBeforeInsertRecursion
+     */
+    @isTest
+    static void isBeforeInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        tdtmClass.setBeforeInsertRecursion();
+
+        Test.startTest();
+        Boolean beforeInsert = tdtmClass.isBeforeInsertRecursion();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            beforeInsert,
+            'Before Insert recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests unsetBeforeInsertRecursion
+     */
+    @isTest
+    static void unsetBeforeInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        tdtmClass.setBeforeInsertRecursion();
+
+        Test.startTest();
+        tdtmClass.unsetBeforeInsertRecursion();
+        Test.stopTest();
+
+        Boolean beforeInsert = tdtmClass.isBeforeInsertRecursion();
+
+        System.assertEquals(
+            false,
+            beforeInsert,
+            'Before Insert recursion flag should be inactive for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests setAfterInsertRecursion
+     */
+    @isTest
+    static void setAfterInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        Test.startTest();
+        tdtmClass.setAfterInsertRecursion();
+        Test.stopTest();
+
+        Boolean afterInsert = TDTM_ProcessControl.getRecursionFlag(AFTER_INSERT_RECURSION);
+
+        System.assertEquals(
+            true,
+            afterInsert,
+            'After Insert recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests isAfterInsertRecursion
+     */
+    @isTest
+    static void isAfterInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        tdtmClass.setAfterInsertRecursion();
+
+        Test.startTest();
+        Boolean afterInsert = tdtmClass.isAfterInsertRecursion();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            afterInsert,
+            'After Insert recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests unsetAfterInsertRecursion
+     */
+    @isTest
+    static void unsetAfterInsertRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        tdtmClass.setAfterInsertRecursion();
+
+        Test.startTest();
+        tdtmClass.unsetAfterInsertRecursion();
+        Test.stopTest();
+
+        Boolean afterInsert = tdtmClass.isAfterInsertRecursion();
+
+        System.assertEquals(
+            false,
+            afterInsert,
+            'After Insert recursion flag should be inactive for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests setAfterUpdateRecursion
+     */
+    @isTest
+    static void setAfterUpdateRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        Test.startTest();
+        tdtmClass.setAfterUpdateRecursion();
+        Test.stopTest();
+
+        Boolean afterUpdate = TDTM_ProcessControl.getRecursionFlag(AFTER_UPDATE_RECURSION);
+
+        System.assertEquals(
+            true,
+            afterUpdate,
+            'After Update recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests isAfterUpdateRecursion
+     */
+    @isTest
+    static void isAfterUpdateRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        tdtmClass.setAfterUpdateRecursion();
+
+        Test.startTest();
+        Boolean afterUpdate = tdtmClass.isAfterUpdateRecursion();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            afterUpdate,
+            'After Update recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests unsetAfterUpdateRecursion
+     */
+    @isTest
+    static void unsetAfterUpdateRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        tdtmClass.setAfterUpdateRecursion();
+
+        Test.startTest();
+        tdtmClass.unsetAfterUpdateRecursion();
+        Test.stopTest();
+
+        Boolean afterUpdate = tdtmClass.isAfterUpdateRecursion();
+
+        System.assertEquals(
+            false,
+            afterUpdate,
+            'After Update recursion flag should be inactive for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests setAffiliationMadePrimaryRecursion
+     */
+    @isTest
+    static void setAffiliationMadePrimaryRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        Test.startTest();
+        tdtmClass.setAffiliationMadePrimaryRecursion();
+        Test.stopTest();
+
+        Boolean affiliationMadePrimary = TDTM_ProcessControl.getRecursionFlag(AFFILIATION_MADE_PRIMARY_RECURSION);
+
+        System.assertEquals(
+            true,
+            affiliationMadePrimary,
+            'Affiliation Made Primary recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests isAffiliationMadePrimaryRecursion
+     */
+    @isTest
+    static void isAffiliationMadePrimaryRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        tdtmClass.setAffiliationMadePrimaryRecursion();
+
+        Test.startTest();
+        Boolean affiliationMadePrimary = tdtmClass.isAffiliationMadePrimaryRecursion();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            affiliationMadePrimary,
+            'Affiliation Made Primary recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests resetAffiliationMadePrimaryRecursion
+     */
+    @isTest
+    static void resetAffiliationMadePrimaryRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+
+        tdtmClass.setAffiliationMadePrimaryRecursion();
+
+        Test.startTest();
+        tdtmClass.resetAffiliationMadePrimaryRecursion();
+        Test.stopTest();
+
+        Boolean affiliationMadePrimary = tdtmClass.isAffiliationMadePrimaryRecursion();
+
+        System.assertEquals(
+            false,
+            affiliationMadePrimary,
+            'Affiliation Made Primary recursion flag should be inactive for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**
+     * @description Tests isContactPrimaryAffiliationUpdatedRecursion
+     */
+    @isTest
+    static void isContactPrimaryAffiliationUpdatedRecursion() {
+        AFFL_MultiRecordType_TDTM tdtmClass = new AFFL_MultiRecordType_TDTM();
+        TDTM_ProcessControl.setRecursionFlag(CONTACT_PRIMARY_AFFILIATION_UPDATED_RECURSION, true);
+
+        Test.startTest();
+        Boolean contactPrimaryAffiliationUpdatedRecursion = tdtmClass.isContactPrimaryAffiliationUpdatedRecursion();
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            contactPrimaryAffiliationUpdatedRecursion,
+            'Contact Primary Affiliation Updated recursion flag should be active for AFFL_MultiRecordType_TDTM.'
+        );
+    }
+
+    /**************************************************************************
+     * STUBS
      **************************************************************************/
 
-    private abstract class AffiliationMappingWrapper {
-        Id accountRecordTypeId;
-        String accountRecordTypeDeveloperName;
-        String accountRecordTypeName;
-        Affl_Mappings__c affiliationMapping;
-        String contactFieldApiName;
-        String contactFieldLabel;
+    /**
+     * @description Stubs the AFFL_MultiRecordTypeMapper to mock behavior of needsProgramEnrollment
+     */
+    public class AFFL_MultiRecordTypeMapper_STUB extends AFFL_MultiRecordTypeMapper {
+        Boolean programEnrollmentNeeded;
 
-        /**************************************************************************
-         * @description Gets the account record type Id for the mapping
-         * @return The account record type Id for the mapping
-         **************************************************************************/
-        public Id getAccountRecordTypeId() {
-            return this.accountRecordTypeId;
+        public AFFL_MultiRecordTypeMapper_STUB(Boolean programEnrollmentNeeded) {
+            this.programEnrollmentNeeded = programEnrollmentNeeded;
         }
 
-        /**************************************************************************
-         * @description Gets the underlying affiliation mapping
-         * @return The underlying affiliation mapping
-         **************************************************************************/
-        public Affl_Mappings__c getAffiliationMapping() {
-            return this.affiliationMapping;
-        }
-
-        /**************************************************************************
-         * @description Gets the account record type developer name for the mapping
-         * @return The account record type developer name for the mapping
-         **************************************************************************/
-        public String getAccountRecordTypeDeveloperName() {
-            return this.accountRecordTypeDeveloperName;
-        }
-
-        /**************************************************************************
-         * @description Gets the account record type name for the mapping
-         * @return The account record type name for the mapping
-         **************************************************************************/
-        public String getAccountRecordTypeName() {
-            return this.accountRecordTypeName;
-        }
-
-        /**************************************************************************
-         * @description Sets the account record type name for the mapping
-         * @param accountRecordTypeName the new account record type name for the
-         * mapping
-         **************************************************************************/
-        public void setAccountRecordTypeName(String accountRecordTypeName) {
-            this.accountRecordTypeName = accountRecordTypeName;
-        }
-
-        /**************************************************************************
-         * @description Gets the contact field label for the mapping
-         * @return The contact field label for the mapping
-         **************************************************************************/
-        public String getContactFieldLabel() {
-            return this.contactFieldLabel;
-        }
-
-        /**************************************************************************
-         * @description Sets the record name from its id and the map of account
-         * record type infos
-         **************************************************************************/
-        public void setRecordTypeNamesFromId(Map<Id, Schema.RecordTypeInfo> accountRecordTypeInfosByIds) {
-            if (String.isBlank(this.getAccountRecordTypeId())) {
-                return;
-            }
-
-            this.accountRecordTypeName = accountRecordTypeInfosByIds.get(this.accountRecordTypeId).getName();
-            this.accountRecordTypeDeveloperName = accountRecordTypeInfosByIds.get(this.accountRecordTypeId)
-                .getDeveloperName();
-        }
-
-        public virtual void setAffiliationMapping() {
-        }
-    }
-
-    private class AfflMappingWrapperByDevNameAndApiName extends AffiliationMappingWrapper {
-        /**************************************************************************
-         * @description Creates a mapping wrapper using contact field api name,
-         * account record type developer name, and account record type Id
-         * @param accountRecordTypeId The record type id to use for the
-         * mapping
-         * @param contactFieldApiName The api name of the contact field to use for
-         * the mapping
-         **************************************************************************/
-        public AfflMappingWrapperByDevNameAndApiName(Id accountRecordTypeId, String contactFieldApiName) {
-            this.accountRecordTypeId = accountRecordTypeId;
-            this.contactFieldApiName = contactFieldApiName;
-        }
-        /**************************************************************************
-         * @description Sets the wrapper's mapping to one created by account name
-         * and contact field label.
-         **************************************************************************/
-        public override void setAffiliationMapping() {
-            this.affiliationMapping = new Affl_Mappings__c(
-                Name = this.accountRecordTypeName,
-                Account_Record_Type__c = this.accountRecordTypeDeveloperName,
-                Primary_Affl_Field__c = this.contactFieldApiName
-            );
-        }
-    }
-
-    private class AfflMappingWrapperByDevNameAndLabel extends AffiliationMappingWrapper {
-        /**************************************************************************
-         * @description Creates a mapping wrapper using contact field label, account
-         * record type developer name, and account record type Id
-         * @param accountRecordTypeId The record type id to use for the
-         * mapping
-         * @param contactFieldLabel The label of the contact field to use for the
-         * mapping
-         **************************************************************************/
-        public AfflMappingWrapperByDevNameAndLabel(Id accountRecordTypeId, String contactFieldLabel) {
-            this.accountRecordTypeId = accountRecordTypeId;
-            this.contactFieldLabel = contactFieldLabel;
-        }
-        /**************************************************************************
-         * @description Sets the wrapper's mapping to one created by account name
-         * and contact field label.
-         **************************************************************************/
-        public override void setAffiliationMapping() {
-            this.affiliationMapping = new Affl_Mappings__c(
-                Name = this.accountRecordTypeName,
-                Account_Record_Type__c = this.accountRecordTypeDeveloperName,
-                Primary_Affl_Field__c = this.contactFieldLabel
-            );
-        }
-    }
-
-    private class AfflMappingWrapperByNameAndApiName extends AffiliationMappingWrapper {
-        /**************************************************************************
-         * @description Creates a mapping wrapper using contact field api name,
-         * account record type name, and account record type Id
-         * @param accountRecordTypeId The record type id to use for the
-         * mapping
-         * @param contactFieldApiName The api name of the contact field to use for
-         * the mapping
-         **************************************************************************/
-        public AfflMappingWrapperByNameAndApiName(Id accountRecordTypeId, String contactFieldApiName) {
-            this.accountRecordTypeId = accountRecordTypeId;
-            this.contactFieldApiName = contactFieldApiName;
-        }
-        /**************************************************************************
-         * @description Sets the wrapper's mapping to one created by account name
-         * and contact field label.
-         **************************************************************************/
-        public override void setAffiliationMapping() {
-            this.affiliationMapping = new Affl_Mappings__c(
-                Name = this.accountRecordTypeName,
-                Account_Record_Type__c = this.accountRecordTypeName,
-                Primary_Affl_Field__c = this.contactFieldApiName
-            );
-        }
-    }
-
-    private class AfflMappingWrapperByNameAndLabel extends AffiliationMappingWrapper {
-        /**************************************************************************
-         * @description Creates a mapping wrapper using contact field label, account
-         * record type name, and account record type Id
-         * @param accountRecordTypeId The record type id to use for the
-         * mapping
-         * @param contactFieldLabel The label of the contact field to use for the
-         * mapping
-         **************************************************************************/
-        public AfflMappingWrapperByNameAndLabel(Id accountRecordTypeId, String contactFieldLabel) {
-            this.accountRecordTypeId = accountRecordTypeId;
-            this.contactFieldLabel = contactFieldLabel;
-        }
-        /**************************************************************************
-         * @description Sets the wrapper's mapping to one created by account name
-         * and contact field label.
-         **************************************************************************/
-        public override void setAffiliationMapping() {
-            this.affiliationMapping = new Affl_Mappings__c(
-                Name = this.accountRecordTypeName,
-                Account_Record_Type__c = this.accountRecordTypeName,
-                Primary_Affl_Field__c = this.contactFieldLabel
-            );
+        public override Boolean needsProgramEnrollment(Affiliation__c affl) {
+            return programEnrollmentNeeded;
         }
     }
 }
