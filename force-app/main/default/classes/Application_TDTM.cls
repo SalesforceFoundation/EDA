@@ -89,7 +89,7 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
     @TestVisible
     private void handleBeforeUpdate(List<SObject> oldSObjectList, List<SObject> newSObjectList) {
         List<Application__c> updatedApplications = (List<Application__c>) newSObjectList;
-        Map<Id, SObject> oldApplicationsById = new Map<Id, SObject>();
+        Map<Id, SObject> oldApplicationsById = new Map<Id, SObject>(oldSObjectList);
 
         for (Application__c updatedApplication : updatedApplications) {
             Application__c oldApplication = (Application__c) oldApplicationsById.get(updatedApplication.Id);
