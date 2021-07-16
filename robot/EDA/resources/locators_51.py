@@ -19,7 +19,7 @@ eda_lex_locators = {
         "list": "//div[contains(@class,'forcePageBlockItem')]//div//div//div//span//span[contains(text(), 'Primary Address Type')]/../../div/div/div/div/a[@class='select']",
         "related": {
             "new": "//div[@class='container']/descendant::div[contains(@class, 'slds-card__header')]/header/descendant::span[text()='{}']/ancestor::header/following-sibling::div/descendant::a[@title='New']",
-            "title": '//div[contains(@class, "slds-grid")]/header//a[./span[text()="{}"]]',
+            "title": "//span[@title='{}']",
         },
     },
     "tabs": {
@@ -81,7 +81,7 @@ eda_lex_locators = {
         "wait_loc_text": "(//td/following-sibling::td[text()='Batch Apex']/following-sibling::td)[1]",
         "new_account": "//span[@title='New Account']",
         "affiliated_accounts": "//span[@title='Affiliated Accounts']",
-        "affiliation_match": "//span/a[@title='Robot Academic Program Account']",
+        "affiliation_match": "//th[@data-label='Affiliation Key']/../descendant::a[@title='{}']",
         "edit_button": "//div[@class='slds-button-group']//span[contains(text(), 'Edit')]",
         "save_button": "//div[@class='slds-button-group']//span[contains(text(), 'Save')]",
         "administrative_account": "//div/a[text()='{} Administrative Account']",
@@ -126,6 +126,8 @@ eda_lex_locators = {
         "update_button": "//div[text()='{}']/../parent::div/descendant::button[text()='{}']",
         "footer_button": "//div[contains(@class, 'footer')]/descendant::button[@title='{}']",
         "app_tile": "//h2[text()='{}']/../descendant::ul/descendant::*[self::div or self::span][text()='{}']",
+        "show_actions_button": "//tr[@data-row-key-value='{}']/descendant::span[text()='Show actions']/ancestor::button[@type='button']",
+        "actions_menu": "//tr[@data-row-key-value='{}']/descendant::span[text()='{}']/ancestor::a[@role='menuitem']",
     },
      "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
@@ -266,7 +268,7 @@ eda_lex_locators = {
     "new_account_next_button": "//button[contains(@class, 'slds-button')]//span[@class=' label bBody' and text()='Next']",
     "new_account_name": "//label/span[text()='Account Name']/following-sibling::span/following::input[1]",
     "new_account_save_button": "//div[contains(@class, 'slds-modal__footer')]/descendant::button[@title='Save']",
-    "academic_program": "//span[contains(text(), 'Academic Program')]",
+    "account_record_type": "//span[contains(text(), '{}')]",
     "new_program_enrollment_save_button": "//div[contains(@class, 'inlineFooter')]/descendant::button[@title='Save']",
     "affiliated_accounts_count": "//span[text()='Affiliated Accounts']/following-sibling::span[contains(@title, '(1)')]",
     "custom_settings_title": "//a/mark[text()='{}']",
