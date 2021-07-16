@@ -1,4 +1,4 @@
-public virtual with sharing class EDCSettingsProductVModel {
+public virtual class EDCSettingsProductVModel implements Comparable {
     @AuraEnabled
     public String initials;
     @AuraEnabled
@@ -13,4 +13,20 @@ public virtual with sharing class EDCSettingsProductVModel {
     public String trailheadUrl;
     @AuraEnabled
     public String icon;
+
+    public EDCSettingsProductVModel() {
+    }
+
+    public Integer compareTo(Object compareTo) {
+        EDCSettingsProductVModel productVModel = (EDCSettingsProductVModel) compareTo;
+        if (this.name > productVModel.name) {
+            return 1;
+        }
+
+        if (this.name == productVModel.name) {
+            return 0;
+        }
+
+        return -1;
+    }
 }

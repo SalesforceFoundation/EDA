@@ -36,6 +36,10 @@ public virtual with sharing class EDCSettingsProductVMapper {
             }
         }
 
+        if (!edcSettingsProductVModels.isEmpty()) {
+            edcSettingsProductVModels.sort();
+        }
+
         return edcSettingsProductVModels;
     }
 

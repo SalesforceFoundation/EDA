@@ -48,13 +48,27 @@ public virtual with sharing class EDCSettingsProductAPIService {
             Type settingsProductInformationAPIServiceType = Type.forName(nonEDANamespace, className);
             settingsProductInformationAPIService = (Callable) settingsProductInformationAPIServiceType.newInstance();
         } catch (System.NullPointerException e) {
-            throw new HealthCheckNotFoundException(e.getMessage());
+            throw new SettingsProductNotFoundException(
+                'Class: ' +
+                className +
+                ' with namespace: ' +
+                nonEDANamespace +
+                ' could not get loaded',
+                e
+            );
         } catch (System.TypeException e) {
-            throw new HealthCheckNotFoundException(e.getMessage());
+            throw new SettingsProductNotFoundException(
+                'Class: ' +
+                className +
+                ' with namespace: ' +
+                nonEDANamespace +
+                ' could not get loaded',
+                e
+            );
         }
         return settingsProductInformationAPIService;
     }
 
-    public class HealthCheckNotFoundException extends Exception {
+    public class SettingsProductNotFoundException extends Exception {
     }
 }

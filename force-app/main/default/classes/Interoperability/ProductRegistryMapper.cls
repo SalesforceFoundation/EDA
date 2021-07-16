@@ -17,7 +17,7 @@ public virtual with sharing class ProductRegistryMapper {
 
     public List<ProductRegistryModel> getProductRegistrySettingsProductInformation() {
         List<ProductRegistryModel> productRegistryModelList = new List<ProductRegistryModel>();
-        List<Product_Registry__mdt> productRegistrySettingsProductInformationList = this.getProductRegistries(
+        List<Product_Registry__mdt> productRegistrySettingsProductInformationList = this.getProductRegistriesByAction(
             PRODUCT_INFORMATION_ACTION
         );
 
@@ -35,11 +35,11 @@ public virtual with sharing class ProductRegistryMapper {
         return productRegistryModelList;
     }
 
-    private List<Product_Registry__mdt> getProductRegistries(String action) {
+    private List<Product_Registry__mdt> getProductRegistriesByAction(String action) {
         List<Product_Registry__mdt> registriesList = [
             SELECT Action__c, API_Version__c, Class_Name__c, Enabled__c, Namespace__c
             FROM Product_Registry__mdt
-            WHERE Action__c = :action
+            WHERE Action__c = :action AND Enabled__c = TRUE
         ];
         return registriesList;
     }
