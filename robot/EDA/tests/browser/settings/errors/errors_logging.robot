@@ -24,7 +24,7 @@ Validate store errors, error handling and debug logging are updated in hierarchy
     [Documentation]         Verifies the preferred email and preferred phone settings can be
     ...                     updated in EDA Settings page and the same settings are updated in
     ...                     hierarchy settings under custom settings.
-    [tags]                                      unstable         W-9425199       rbt:high
+    [tags]                                      W-9425199       rbt:high
     Select settings from navigation pane        Errors
     Click action button on new EDA settings     Edit
     Set toggle input

@@ -1918,6 +1918,10 @@
         <label>Het rooster voor het cursusaanbod kan niet worden opgeslagen omdat de begintijd niet overeenkomt met de begintijd van het gekoppelde tijdblok. Bewerk de begintijd, geef een ander tijdblok op of geef geen tijdblok op.</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
+    <customLabels>
+        <label><!-- Message when a Due Date precedes an Open Date --></label>
+        <name>stgErrorAppDueDate</name>
+    </customLabels>
     <customTabs>
         <label>Instellingen voor Education Cloud</label>
         <name>Education_Cloud_Settings</name>

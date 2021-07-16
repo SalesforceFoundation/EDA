@@ -28,25 +28,22 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2020
-* @group Account
-* @group-content ../../ApexDocContent/Account.htm
-* @description Batch class to refresh Household Account names.
-*/
-public class ACCT_HouseholdNameRefresh_BATCH implements Database.Batchable<SObject>{
-
+ * @author Salesforce.org
+ * @date 2020
+ * @group Account
+ * @group-content ../../ApexDocContent/Account.htm
+ * @description Batch class to refresh Household Account names.
+ */
+public class ACCT_HouseholdNameRefresh_BATCH implements Database.Batchable<SObject> {
     public Database.Querylocator start(Database.BatchableContext bc) {
-        Id hhRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Household Account').getRecordTypeId();
-        String query = 'SELECT Id ' +
-                        'FROM Account ' +
-            	        'WHERE RecordTypeId = :hhRecordTypeId' ;
+        Id hhRecordTypeId = Util_Describe.getCustomHHAccRecTypeID();
+        String query = 'SELECT Id ' + 'FROM Account ' + 'WHERE RecordTypeId = :hhRecordTypeId';
         return Database.getQueryLocator(String.escapeSingleQuotes(query));
     }
 
-    public void execute(Database.BatchableContext bc, List<Account> returnAccounts){
+    public void execute(Database.BatchableContext bc, List<Account> returnAccounts) {
         Set<Id> dedupedAccountIds = new Set<Id>();
-		
+
         if (returnAccounts.size() > 0) {
             for (Account a : returnAccounts) {
                 dedupedAccountIds.add(a.Id);
@@ -59,18 +56,33 @@ public class ACCT_HouseholdNameRefresh_BATCH implements Database.Batchable<SObje
     }
 
     public void finish(Database.BatchableContext bc) {
-        AsyncApexJob a = [SELECT Id, Status, JobType, NumberOfErrors,
-                          JobItemsProcessed, TotalJobItems, CompletedDate,
-                          ExtendedStatus, CreatedById, CreatedBy.Email
-        				  FROM AsyncApexJob
-                          WHERE Id =:bc.getJobId()];
+        AsyncApexJob a = [
+            SELECT
+                Id,
+                Status,
+                JobType,
+                NumberOfErrors,
+                JobItemsProcessed,
+                TotalJobItems,
+                CompletedDate,
+                ExtendedStatus,
+                CreatedById,
+                CreatedBy.Email
+            FROM AsyncApexJob
+            WHERE Id = :bc.getJobId()
+        ];
 
-       	Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-            List<String> toAddresses = new List<String> {a.CreatedBy.Email};
-            mail.setToAddresses(toAddresses);
-            mail.setSubject('Household Name Refresh Status : ' + a.Status);
-            mail.setPlainTextBody('The batch Apex job processed ' + a.TotalJobItems +
-           ' batches with '+ a.NumberOfErrors + ' failures.');
-            Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+        List<String> toAddresses = new List<String>{ a.CreatedBy.Email };
+        mail.setToAddresses(toAddresses);
+        mail.setSubject('Household Name Refresh Status : ' + a.Status);
+        mail.setPlainTextBody(
+            'The batch Apex job processed ' +
+            a.TotalJobItems +
+            ' batches with ' +
+            a.NumberOfErrors +
+            ' failures.'
+        );
+        Messaging.sendEmail(new List<Messaging.SingleEmailMessage>{ mail });
     }
 }
