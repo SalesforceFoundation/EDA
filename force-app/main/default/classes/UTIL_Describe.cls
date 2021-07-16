@@ -861,6 +861,21 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
+     * @description Returns the ID of the custom Household Account record type
+     * @return The ID of the custom Household Account record type.
+     */
+    public static Id getCustomHHAccRecTypeID() {
+        Id customHHRecTypeId = Util_CustomSettingsFacade.getSettings().Household_Addresses_RecType__c;
+        if (
+            customHHRecTypeId == null ||
+            UTIL_Describe.getRecTypesMapByDevName('Account').values().contains(customHHRecTypeId) == false
+        ) {
+            customHHRecTypeId = UTIL_Describe.getHhAccRecTypeID();
+        }
+        return customHHRecTypeId;
+    }
+
+    /*******************************************************************************************************
      * @description Returns the ID of the Business Account record type, if it exists.
      * @return String The ID of the Business Account record type as a String.
      */

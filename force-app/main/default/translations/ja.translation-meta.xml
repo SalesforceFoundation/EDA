@@ -1918,6 +1918,10 @@
         <label>開講科目スケジュールの開始時刻が、関連付けらた時間ブロックの開始時刻に一致しないため、開講科目スケジュールを保存できません。開始時刻を編集するか、異なる時間ブロックを指定するか、時間ブロックを指定しないでください。</label>
         <name>timeBlockStartTimeMismatch</name>
     </customLabels>
+    <customLabels>
+        <label><!-- Message when a Due Date precedes an Open Date --></label>
+        <name>stgErrorAppDueDate</name>
+    </customLabels>
     <customTabs>
         <label>Education Cloud 設定</label>
         <name>Education_Cloud_Settings</name>
