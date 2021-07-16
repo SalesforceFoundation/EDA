@@ -23,7 +23,7 @@ Validate plan requirement setting is updated in hierarchy settings
     [Documentation]         Verifies the plan requirement hierarchy setting can be
     ...                     updated in EDA Settings page and the same setting is updated in
     ...                     hierarchy settings under custom settings.
-    [tags]                                      unstable         W-9425719       rbt:high
+    [tags]                                      W-9425719       rbt:high
     Select settings from navigation pane        Program Plans
     Click action button on new EDA settings     Edit
     Set toggle input

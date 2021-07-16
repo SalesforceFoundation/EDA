@@ -28,25 +28,29 @@
 	POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2020
-* @group Course Enrollments
-* @group-content ../../ApexDocContent/CourseEnrollments.htm
-* @description Tests for CCON_CannotDelete_TDTM.
-*/
+ * @author Salesforce.org
+ * @date 2020
+ * @group Course Enrollments
+ * @group-content ../../ApexDocContent/CourseEnrollments.htm
+ * @description Tests for CCON_CannotDelete_TDTM.
+ */
 @isTest
 private with sharing class CCON_CannotDelete_TEST {
     /*********************************************************************************************************
-    * @description Test method to test the following:
-    * (1) If Prevent_Course_Connection_Deletion__c is enabled in Hierarchy Settings, and a Course Connection
-    * has child records, it should not be deleted.
-    * (2) If Prevent_Course_Connection_Deletion__c is enabled in Hierarchy Settings, and a Course Connection
-    * does not have any child records, it can be deleted.
-    */
+     * @description Test method to test the following:
+     * (1) If Prevent_Course_Connection_Deletion__c is enabled in Hierarchy Settings, and a Course Connection
+     * has child records, it should not be deleted.
+     * (2) If Prevent_Course_Connection_Deletion__c is enabled in Hierarchy Settings, and a Course Connection
+     * does not have any child records, it can be deleted.
+     */
     @isTest
     private static void testPreventDeletionCourseConnectionLogic() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
-        																		Prevent_Course_Connection_Deletion__c = true));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+                Prevent_Course_Connection_Deletion__c = true
+            )
+        );
 
         Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert acc;
@@ -54,14 +58,29 @@ private with sharing class CCON_CannotDelete_TEST {
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(6);
         insert contacts;
 
-        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(null, null);
 
         List<Course_Enrollment__c> courseConnections = new List<Course_Enrollment__c>();
-        Course_Enrollment__c courseConnection1 = UTIL_UnitTestdata_TEST.getCourseConnection(contacts[0].Id, courseOffering.Id);
-        Course_Enrollment__c courseConnection2 = UTIL_UnitTestdata_TEST.getCourseConnection(contacts[1].Id, courseOffering.Id);
-        Course_Enrollment__c courseConnection3 = UTIL_UnitTestdata_TEST.getCourseConnection(contacts[2].Id, courseOffering.Id);
-        Course_Enrollment__c courseConnection4 = UTIL_UnitTestdata_TEST.getCourseConnection(contacts[3].Id, courseOffering.Id);
-        Course_Enrollment__c courseConnection5 = UTIL_UnitTestdata_TEST.getCourseConnection(contacts[4].Id, courseOffering.Id);
+        Course_Enrollment__c courseConnection1 = UTIL_UnitTestdata_TEST.getCourseConnection(
+            contacts[0].Id,
+            courseOffering.Id
+        );
+        Course_Enrollment__c courseConnection2 = UTIL_UnitTestdata_TEST.getCourseConnection(
+            contacts[1].Id,
+            courseOffering.Id
+        );
+        Course_Enrollment__c courseConnection3 = UTIL_UnitTestdata_TEST.getCourseConnection(
+            contacts[2].Id,
+            courseOffering.Id
+        );
+        Course_Enrollment__c courseConnection4 = UTIL_UnitTestdata_TEST.getCourseConnection(
+            contacts[3].Id,
+            courseOffering.Id
+        );
+        Course_Enrollment__c courseConnection5 = UTIL_UnitTestdata_TEST.getCourseConnection(
+            contacts[4].Id,
+            courseOffering.Id
+        );
         courseConnections.add(courseConnection1);
         courseConnections.add(courseConnection2);
         courseConnections.add(courseConnection3);
@@ -70,14 +89,32 @@ private with sharing class CCON_CannotDelete_TEST {
         insert courseConnections;
 
         List<Term_Grade__c> termGrades = new List<Term_Grade__c>();
-        Term_Grade__c termGrade1 = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id, courseOffering.Id, courseConnections[0].Id);
-        Term_Grade__c termGrade2 = UTIL_UnitTestData_TEST.getTermGrade(contacts[2].Id, courseOffering.Id, courseConnections[2].Id);
+        Term_Grade__c termGrade1 = UTIL_UnitTestData_TEST.getTermGrade(
+            contacts[0].Id,
+            courseOffering.Id,
+            courseConnections[0].Id
+        );
+        Term_Grade__c termGrade2 = UTIL_UnitTestData_TEST.getTermGrade(
+            contacts[2].Id,
+            courseOffering.Id,
+            courseConnections[2].Id
+        );
         termGrades.add(termGrade1);
         termGrades.add(termGrade2);
 
         List<Attendance_Event__c> attendanceEvents = new List<Attendance_Event__c>();
-        Attendance_Event__c attendanceEvent1 = UTIL_UnitTestData_TEST.getAttendanceEvent(contacts[1].Id, courseConnections[1].Id, NULL, NULL);
-        Attendance_Event__c attendanceEvent2 = UTIL_UnitTestData_TEST.getAttendanceEvent(contacts[2].Id, courseConnections[2].Id, NULL, NULL);
+        Attendance_Event__c attendanceEvent1 = UTIL_UnitTestData_TEST.getAttendanceEvent(
+            contacts[1].Id,
+            courseConnections[1].Id,
+            null,
+            null
+        );
+        Attendance_Event__c attendanceEvent2 = UTIL_UnitTestData_TEST.getAttendanceEvent(
+            contacts[2].Id,
+            courseConnections[2].Id,
+            null,
+            null
+        );
         attendanceEvents.add(attendanceEvent1);
         attendanceEvents.add(attendanceEvent2);
 
@@ -88,11 +125,12 @@ private with sharing class CCON_CannotDelete_TEST {
         Database.DeleteResult[] results = Database.delete(courseConnections, false);
         Test.stopTest();
 
-
         //Verifies only 2 Course Connection was deleted
-        List<Course_Enrollment__c> returnCourseConnections = [SELECT Id
-                                                              FROM Course_Enrollment__c
-                                                              WHERE Id IN :courseConnections];
+        List<Course_Enrollment__c> returnCourseConnections = [
+            SELECT Id
+            FROM Course_Enrollment__c
+            WHERE Id IN :courseConnections
+        ];
         System.assertEquals(3, returnCourseConnections.size());
 
         //Verifies Course Connection with Term Grade was not deleted
@@ -106,20 +144,23 @@ private with sharing class CCON_CannotDelete_TEST {
         //Verifies Course Connection with Attendance Event and Term Grade was not deleted.
         System.assertEquals(false, results[2].success);
         System.assertEquals(Label.CannotDelete, results[2].errors[0].message);
-
     }
 
     /*********************************************************************************************************
-    * @description Test method to test the following:
-    * (1) If Prevent_Course_Connection_Deletion__c is disabled in Hierarchy Settings, and a Course Connection
-    * has child records, it can be deleted.
-    * (2) If Prevent_Course_Connection_Deletion__c is disabled in Hierarchy Settings, and a Course Connection
-    * does not have any child records, it can be deleted.
-    */
+     * @description Test method to test the following:
+     * (1) If Prevent_Course_Connection_Deletion__c is disabled in Hierarchy Settings, and a Course Connection
+     * has child records, it can be deleted.
+     * (2) If Prevent_Course_Connection_Deletion__c is disabled in Hierarchy Settings, and a Course Connection
+     * does not have any child records, it can be deleted.
+     */
     @isTest
     private static void testAllowDeletionOfCourseConnection() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
-        																		Prevent_Course_Connection_Deletion__c = false));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+                Prevent_Course_Connection_Deletion__c = false
+            )
+        );
 
         Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         insert acc;
@@ -127,14 +168,29 @@ private with sharing class CCON_CannotDelete_TEST {
         Contact[] contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(6);
         insert contacts;
 
-        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(NULL, NULL);
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(null, null);
 
         List<Course_Enrollment__c> courseConnections = new List<Course_Enrollment__c>();
-        Course_Enrollment__c courseConnection1 = UTIL_UnitTestdata_TEST.getCourseConnection(contacts[0].Id, courseOffering.Id);
-        Course_Enrollment__c courseConnection2 = UTIL_UnitTestdata_TEST.getCourseConnection(contacts[1].Id, courseOffering.Id);
-        Course_Enrollment__c courseConnection3 = UTIL_UnitTestdata_TEST.getCourseConnection(contacts[2].Id, courseOffering.Id);
-        Course_Enrollment__c courseConnection4 = UTIL_UnitTestdata_TEST.getCourseConnection(contacts[3].Id, courseOffering.Id);
-        Course_Enrollment__c courseConnection5 = UTIL_UnitTestdata_TEST.getCourseConnection(contacts[4].Id, courseOffering.Id);
+        Course_Enrollment__c courseConnection1 = UTIL_UnitTestdata_TEST.getCourseConnection(
+            contacts[0].Id,
+            courseOffering.Id
+        );
+        Course_Enrollment__c courseConnection2 = UTIL_UnitTestdata_TEST.getCourseConnection(
+            contacts[1].Id,
+            courseOffering.Id
+        );
+        Course_Enrollment__c courseConnection3 = UTIL_UnitTestdata_TEST.getCourseConnection(
+            contacts[2].Id,
+            courseOffering.Id
+        );
+        Course_Enrollment__c courseConnection4 = UTIL_UnitTestdata_TEST.getCourseConnection(
+            contacts[3].Id,
+            courseOffering.Id
+        );
+        Course_Enrollment__c courseConnection5 = UTIL_UnitTestdata_TEST.getCourseConnection(
+            contacts[4].Id,
+            courseOffering.Id
+        );
         courseConnections.add(courseConnection1);
         courseConnections.add(courseConnection2);
         courseConnections.add(courseConnection3);
@@ -142,15 +198,33 @@ private with sharing class CCON_CannotDelete_TEST {
         courseConnections.add(courseConnection5);
         insert courseConnections;
 
-		List<Term_Grade__c> termGrades = new List<Term_Grade__c>();
-        Term_Grade__c termGrade1 = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id, courseOffering.Id, courseConnections[0].Id);
-        Term_Grade__c termGrade2 = UTIL_UnitTestData_TEST.getTermGrade(contacts[2].Id, courseOffering.Id, courseConnections[2].Id);
+        List<Term_Grade__c> termGrades = new List<Term_Grade__c>();
+        Term_Grade__c termGrade1 = UTIL_UnitTestData_TEST.getTermGrade(
+            contacts[0].Id,
+            courseOffering.Id,
+            courseConnections[0].Id
+        );
+        Term_Grade__c termGrade2 = UTIL_UnitTestData_TEST.getTermGrade(
+            contacts[2].Id,
+            courseOffering.Id,
+            courseConnections[2].Id
+        );
         termGrades.add(termGrade1);
         termGrades.add(termGrade2);
 
         List<Attendance_Event__c> attendanceEvents = new List<Attendance_Event__c>();
-        Attendance_Event__c attendanceEvent1 = UTIL_UnitTestData_TEST.getAttendanceEvent(contacts[1].Id, courseConnections[1].Id, NULL, NULL);
-        Attendance_Event__c attendanceEvent2 = UTIL_UnitTestData_TEST.getAttendanceEvent(contacts[2].Id, courseConnections[2].Id, NULL, NULL);
+        Attendance_Event__c attendanceEvent1 = UTIL_UnitTestData_TEST.getAttendanceEvent(
+            contacts[1].Id,
+            courseConnections[1].Id,
+            null,
+            null
+        );
+        Attendance_Event__c attendanceEvent2 = UTIL_UnitTestData_TEST.getAttendanceEvent(
+            contacts[2].Id,
+            courseConnections[2].Id,
+            null,
+            null
+        );
         attendanceEvents.add(attendanceEvent1);
         attendanceEvents.add(attendanceEvent2);
 
@@ -162,9 +236,11 @@ private with sharing class CCON_CannotDelete_TEST {
         Test.stopTest();
 
         //Verifies only all Course Connections were deleted
-        List<Course_Enrollment__c> returnCourseConnections = [SELECT Id
-                                                              FROM Course_Enrollment__c
-                                                              WHERE Id IN :courseConnections];
+        List<Course_Enrollment__c> returnCourseConnections = [
+            SELECT Id
+            FROM Course_Enrollment__c
+            WHERE Id IN :courseConnections
+        ];
         System.assertEquals(0, returnCourseConnections.size());
     }
 }
