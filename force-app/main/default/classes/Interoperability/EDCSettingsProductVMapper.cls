@@ -82,23 +82,13 @@ public virtual with sharing class EDCSettingsProductVMapper {
         return EDCSettingsProductAPIService.getInstance();
     }
 
-    private List<ProductRegistryModel> getProductRegistryModels() {
-        //Instead of this use the ProductRegistryVMapper for returning the list of product registry models
+    @TestVisible
+    private ProductRegistryMapper locateProductRegistryMapper() {
+        return ProductRegistryMapper.getInstance();
+    }
 
-        return new List<ProductRegistryModel>{
-            new ProductRegistryModel(
-                'Settings Product Information',
-                UTIL_Namespace.getNamespace(),
-                'EDASettingsProductInformationAPIService',
-                51.0
-            ),
-            new ProductRegistryModel(
-                'Settings Product Information',
-                UTIL_Namespace.getNamespace(),
-                'EDASettingsProductInformationAPIService',
-                51.0
-            )
-        };
+    private List<ProductRegistryModel> getProductRegistryModels() {
+        return this.locateProductRegistryMapper().getProductRegistrySettingsProductInformation();
     }
 
     private virtual String getEDAComponentNavigationPrefix() {
