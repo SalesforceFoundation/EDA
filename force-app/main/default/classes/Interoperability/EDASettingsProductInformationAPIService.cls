@@ -15,6 +15,8 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
             EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = this.getSettingsProductInformation();
             result = JSON.serialize(actionResult);
         } else {
+            //Need to build an EDCSettingsProductAPIModel.SettingsProductInformationActionResult which returns an error
+            //Instead of throwing the IllegalArgumentException
             throw new IllegalArgumentException('Method not implemented');
         }
         return result;

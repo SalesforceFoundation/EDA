@@ -1,14 +1,4 @@
 public virtual with sharing class EDCSettingsProductAPIModel {
-    public virtual class CallableResult {
-        public Boolean success;
-        public CallableError error;
-    }
-
-    public class CallableError {
-        public Integer code;
-        public String message;
-    }
-
     public class SettingsProductInformationActionResult extends CallableResult {
         public SettingsProductinformationResult result;
     }

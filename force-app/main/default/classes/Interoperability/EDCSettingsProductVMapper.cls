@@ -39,7 +39,7 @@ public virtual with sharing class EDCSettingsProductVMapper {
         return edcSettingsProductVModels;
     }
 
-    public virtual List<EDCSettingsProductAPIModel.SettingsProductInformationResult> getAllSettingsProductInformation() {
+    private virtual List<EDCSettingsProductAPIModel.SettingsProductInformationResult> getAllSettingsProductInformation() {
         List<ProductRegistryModel> productRegistryModelList = this.getProductRegistryModels();
         List<EDCSettingsProductAPIModel.SettingsProductInformationResult> settingsProductInformationResultList = new List<EDCSettingsProductAPIModel.SettingsProductInformationResult>();
 
@@ -101,7 +101,7 @@ public virtual with sharing class EDCSettingsProductVMapper {
         };
     }
 
-    public String getEDAComponentNavigationPrefix() {
+    private virtual String getEDAComponentNavigationPrefix() {
         String courseOfferingName = Course_Offering_Schedule__c.Course_Offering__c.getDescribe().getName();
         String navigationPrefix = courseOfferingName.replace('Course_Offering__c', '');
         String prefix;

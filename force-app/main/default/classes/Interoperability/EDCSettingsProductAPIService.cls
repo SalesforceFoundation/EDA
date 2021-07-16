@@ -36,7 +36,7 @@ public virtual with sharing class EDCSettingsProductAPIService {
         return settingsProductAPIModel;
     }
 
-    public virtual Callable locateSettingsProductInformationAPIService(String className, String namespace) {
+    private virtual Callable locateSettingsProductInformationAPIService(String className, String namespace) {
         Callable settingsProductInformationAPIService;
         String nonEDANamespace = namespace;
 
