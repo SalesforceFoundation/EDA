@@ -67,6 +67,11 @@
                 <default>false</default>
                 <label>Declined Offer</label>
             </value>
+            <value>
+                <fullName>Started</fullName>
+                <default>false</default>
+                <label>Started</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
