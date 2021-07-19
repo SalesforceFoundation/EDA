@@ -1,6 +1,6 @@
 public virtual with sharing class EDCSettingsProductAPIModel {
     public class SettingsProductInformationActionResult extends CallableResult {
-        public SettingsProductinformationResult result;
+        public SettingsProductInformationResult result;
     }
 
     public class SettingsProductInformationResult {
