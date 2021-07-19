@@ -15,7 +15,7 @@ public virtual with sharing class SALSettingsProductInformationAPIService implem
             EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = this.getSettingsProductInformation();
             result = JSON.serialize(actionResult);
         } else {
-            throw new IllegalArgumentException('Method not implemented');
+            throw new IllegalArgumentException('Method: ' + action + ' not implemented');
         }
         return result;
     }
