@@ -77,7 +77,6 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
     @wire(getEDCSettingsProductVModels)
     edcSettingsProductModels({ error, data }) {
         if (data) {
-            console.log(data);
             this.edcProductModels = data;
         } else if (error) {
             this.showErrorToast(error);
@@ -132,7 +131,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
             title: 'Error',
             message: errorMessage,
             variant: 'error',
-            mode: 'dismissable'
+            mode: 'sticky'
         });
         this.dispatchEvent(evt);
     }
