@@ -1,5 +1,6 @@
 import { LightningElement, track, wire } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 //Column Header Labels
 import stgColProducts from "@salesforce/label/c.stgColProducts";
@@ -72,27 +73,6 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
     get healthCheckContainerComponentNavigation() {
         return this.edaComponentNavigationPrefix + HealthCheckContainerComponentName;
     }
-/*
-    @track edcProductModels = [
-        {
-            title: stgEDAAppTitle,
-            description: stgEDAAppDesc,
-            iconInitials: stgEDAAppInitials,
-            iconFallbackName: "standard:avatar",
-            settingsComponent: this.edaSettingsContainerComponentNavigation,
-            documentationUrl: EDADocumentationUrl,
-            trailheadUrl: EDATrailheadUrl,
-        },
-        {
-            title: "Advisor Link",
-            description: "This is the Advisor Link settings page",
-            iconInitials: "SAL",
-            iconFallbackName: "standard:avatar",
-            settingsComponent: this.edaSettingsContainerComponentNavigation,
-            documentationUrl: EDADocumentationUrl,
-            trailheadUrl: EDATrailheadUrl,
-        },
-    ];*/
 
     @wire(getEDCSettingsProductVModels)
     edcSettingsProductModels({ error, data }) {
@@ -100,10 +80,9 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
             console.log(data);
             this.edcProductModels = data;
         } else if (error) {
-            //console.log('error retrieving edc settings product view model: ', error);
+            this.showErrorToast(error);
         }
     }
-
 
     @track edcToolModels = [
         {
@@ -140,4 +119,21 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
             navigationTarget: YoutubeUrl,
         },
     ];
+
+    showErrorToast(error) {
+        let errorMessage = 'Unknown error';
+        if (Array.isArray(error.body)) {
+            errorMessage = error.body.map(e => e.message).join(', ');
+        } else if (typeof error.body.message === 'string') {
+            errorMessage = error.body.message;
+        }
+
+        const evt = new ShowToastEvent({
+            title: 'Error',
+            message: errorMessage,
+            variant: 'error',
+            mode: 'dismissable'
+        });
+        this.dispatchEvent(evt);
+    }
 }
