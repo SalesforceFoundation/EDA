@@ -5,23 +5,8 @@
             "c/accountModelSettings": [
                 "../../default/lwc/accountModelSettings/accountModelSettings.js"
             ],
-            "c/addressSettings": [
-                "../../default/lwc/addressSettings/addressSettings.js"
-            ],
-            "c/affiliationSettings": [
-                "../../default/lwc/affiliationSettings/affiliationSettings.js"
-            ],
-            "c/autoEnrollmentMappingModalBody": [
-                "../../default/lwc/autoEnrollmentMappingModalBody/autoEnrollmentMappingModalBody.js"
-            ],
-            "c/batchJobModalBody": [
-                "../../default/lwc/batchJobModalBody/batchJobModalBody.js"
-            ],
-            "c/contactInformationSettings": [
-                "../../default/lwc/contactInformationSettings/contactInformationSettings.js"
-            ],
-            "c/courseConnectionSettings": [
-                "../../default/lwc/courseConnectionSettings/courseConnectionSettings.js"
+            "c/settingsSaveCanvas": [
+                "../../default/lwc/settingsSaveCanvas/settingsSaveCanvas.js"
             ],
             "c/edaSettings": [
                 "../../default/lwc/edaSettings/edaSettings.js"
@@ -29,8 +14,14 @@
             "c/edaSettingsNavigation": [
                 "../../default/lwc/edaSettingsNavigation/edaSettingsNavigation.js"
             ],
-            "c/errorSettings": [
-                "../../default/lwc/errorSettings/errorSettings.js"
+            "c/edaSettingsNavigationMenuItems": [
+                "../../default/lwc/edaSettingsNavigationMenuItems/edaSettingsNavigationMenuItems.js"
+            ],
+            "c/edaSettingsNavigationSection": [
+                "../../default/lwc/edaSettingsNavigationSection/edaSettingsNavigationSection.js"
+            ],
+            "c/edaSettingsNavigationSubsection": [
+                "../../default/lwc/edaSettingsNavigationSubsection/edaSettingsNavigationSubsection.js"
             ],
             "c/healthCheck": [
                 "../../default/lwc/healthCheck/healthCheck.js"
@@ -47,65 +38,23 @@
             "c/healthCheckRun": [
                 "../../default/lwc/healthCheckRun/healthCheckRun.js"
             ],
-            "c/primaryAffiliationsModalBody": [
-                "../../default/lwc/primaryAffiliationsModalBody/primaryAffiliationsModalBody.js"
+            "c/settingsRowInput": [
+                "settingsRowInput/settingsRowInput.js"
             ],
-            "c/programPlanSettings": [
-                "../../default/lwc/programPlanSettings/programPlanSettings.js"
+            "c/affiliationSettings": [
+                "../../default/lwc/affiliationSettings/affiliationSettings.js"
             ],
-            "c/programSettings": [
-                "../../default/lwc/programSettings/programSettings.js"
+            "c/addressSettings": [
+                "../../default/lwc/addressSettings/addressSettings.js"
             ],
-            "c/relationshipMappingModalBody": [
-                "../../default/lwc/relationshipMappingModalBody/relationshipMappingModalBody.js"
-            ],
-            "c/relationshipSettings": [
-                "../../default/lwc/relationshipSettings/relationshipSettings.js"
-            ],
-            "c/settingsSaveCanvas": [
-                "../../default/lwc/settingsSaveCanvas/settingsSaveCanvas.js"
-            ],
-            "c/systemTools": [
-                "../../default/lwc/systemTools/systemTools.js"
-            ],
-            "c/edcSettingsCard": [
-                "../../educationCloudSettings/lwc/edcSettingsCard/edcSettingsCard.js"
-            ],
-            "c/edcSettingsProductCard": [
-                "../../educationCloudSettings/lwc/edcSettingsProductCard/edcSettingsProductCard.js"
-            ],
-            "c/educationCloudSettings": [
-                "../../educationCloudSettings/lwc/educationCloudSettings/educationCloudSettings.js"
-            ],
-            "c/lakeMountain": [
-                "../../illustrationLibrary/lwc/lakeMountain/lakeMountain.js"
-            ],
-            "c/singleLookup": [
-                "../../lwcComponentLibrary/lwc/singleLookup/singleLookup.js"
-            ],
-            "c/singleLookupOption": [
-                "../../lwcComponentLibrary/lwc/singleLookupOption/singleLookupOption.js"
-            ],
-            "c/settingsNavigation": [
-                "settingsNavigation/settingsNavigation.js"
-            ],
-            "c/settingsNavigationMenuItems": [
-                "settingsNavigationMenuItems/settingsNavigationMenuItems.js"
-            ],
-            "c/settingsNavigationSection": [
-                "settingsNavigationSection/settingsNavigationSection.js"
-            ],
-            "c/settingsNavigationSubsection": [
-                "settingsNavigationSubsection/settingsNavigationSubsection.js"
+            "c/contactInformationSettings": [
+                "../../default/lwc/contactInformationSettings/contactInformationSettings.js"
             ],
             "c/settingsRowDualListbox": [
                 "settingsRowDualListbox/settingsRowDualListbox.js"
             ],
-            "c/settingsRowInput": [
-                "settingsRowInput/settingsRowInput.js"
-            ],
-            "c/settingsSubHeading": [
-                "settingsSubHeading/settingsSubHeading.js"
+            "c/systemTools": [
+                "../../default/lwc/systemTools/systemTools.js"
             ]
         },
         "experimentalDecorators": true
