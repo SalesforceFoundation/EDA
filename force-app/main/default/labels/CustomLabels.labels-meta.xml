@@ -1816,6 +1816,14 @@
         <value>Enhanced Preferred Phone Functionality</value>
     </labels>
     <labels>
+        <fullName>stgErrorAppDueDate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message when a Due Date precedes an Open Date</shortDescription>
+        <value>We can&apos;t save the Application because the Due Date must be after the Open Date.</value>
+    </labels>
+    <labels>
         <fullName>stgErrorInsufficientAccess</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
