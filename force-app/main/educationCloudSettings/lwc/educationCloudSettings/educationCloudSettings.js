@@ -31,7 +31,7 @@ import stgBtnVideosActionA11y from "@salesforce/label/c.stgBtnVideosActionA11y";
 import namespacedEDAField from "@salesforce/schema/Course_Offering_Schedule__c.Course_Offering__c";
 const EDASettingsContainerComponentName = "EdaSettingsContainer";
 const HealthCheckContainerComponentName = "HealthCheckContainer";
-const EDCReleaseManagementContainerComponentName = "edcReleaseManagementContainer";
+const ReleaseManagementContainerComponentName = "releaseManagementContainer";
 
 const EDADocumentationUrl = "https://powerofus.force.com/s/article/EDA-Documentation";
 const EDATrailheadUrl = "https://trailhead.salesforce.com/en/content/learn/trails/highered_heda";
@@ -66,8 +66,8 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         return this.edaComponentNavigationPrefix + HealthCheckContainerComponentName;
     }
 
-    get edcReleaseManagementContainerComponentNavigation() {
-        return this.edaComponentNavigationPrefix + EDCReleaseManagementContainerComponentName;
+    get releaseManagementContainerComponentNavigation() {
+        return this.edaComponentNavigationPrefix + ReleaseManagementContainerComponentName;
     }
 
     @track edcProductModels = [

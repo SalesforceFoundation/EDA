@@ -22,7 +22,7 @@ describe("c-education-cloud-settings", () => {
 
             const containerName = releaseManagementCardElement.navigationTarget;
             expect(containerName).not.toBeNull();
-            expect(containerName.endsWith("edcReleaseManagementContainer")).toBeTruthy();
+            expect(containerName.endsWith("releaseManagementContainer")).toBeTruthy();
         });
     });
 });
