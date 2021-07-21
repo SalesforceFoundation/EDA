@@ -7,14 +7,9 @@ Suite Teardown  Run Keywords
 ...             Capture screenshot and delete records and close browser
 Test Setup      Go to education cloud settings
 
-***Keywords***
-Setup Test Data
-    ${values} =                Get Affiliation Mappings Value  ${sObject_name}     ${field_name}
-    Set suite variable         ${values}
 
 *** Variables ***
-${field_name}               Account_Record_Type__c
-${sObject_name}             Affl_Mappings__c
+${field_name}               Name
 
 *** Test Cases ***
 Validate Affiliation Mappings can be Deleted
@@ -36,9 +31,9 @@ Validate Affiliation Mappings can be Deleted
     [tags]                                      unstable        W-9549025       rbt:high
 
     Select settings from navigation pane        Affiliations
-    Click show actions button                   Educational Institution       Delete
+    Click show actions button                   Household Account       Delete
     Click footer button                         Delete
     Reload Page
     Wait Until Loading is Complete
-    ${name_val}=                                Get Affiliation Mappings Value  ${sObject_name}     ${field_name}
-    List Should Not Contain Value               ${values}       Educational_Institution 
+    ${name_val}=                                Get Affiliation Mappings   ${field_name}
+    List Should Not Contain Value               ${name_val}       Household Account
