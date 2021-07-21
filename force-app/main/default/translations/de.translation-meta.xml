@@ -1922,6 +1922,22 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <label><!-- Message when a Due Date precedes an Open Date --></label>
         <name>stgErrorAppDueDate</name>
     </customLabels>
+    <customLabels>
+        <label><!-- Label for the Release Management card --></label>
+        <name>stgReleaseManagementTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of Release Management card --></label>
+        <name>stgReleaseManagementDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button that launches Release Management tile navigation button text --></label>
+        <name>stgBtnReleaseManagement</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Alt text for button that launches Release Management --></label>
+        <name>stgBtnReleaseManagementA11y</name>
+    </customLabels>
     <customTabs>
         <label>Education Cloud-Einstellungen</label>
         <name>Education_Cloud_Settings</name>
