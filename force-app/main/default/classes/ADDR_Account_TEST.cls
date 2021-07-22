@@ -33,4 +33,50 @@
  */
 @isTest
 private with sharing class ADDR_Account_TEST {
+    /**************************************************************************************************************************
+     ****************************************************** Recursion Flags ***************************************************
+     **************************************************************************************************************************/
+
+    @testSetup
+    static void testTurnOffRecursionFlag() {
+    }
+
+    @testSetup
+    static void testTurnOnRecursionFlag() {
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** Main Method *******************************************************
+     **************************************************************************************************************************/
+
+    @testSetup
+    static void testRunDMLWrapperSingleObjectType() {
+        /* To Refactor:
+         * 1. This method is handling too many things. Ideally we should mock other building dml wrappers methods.
+         */
+    }
+
+    @testSetup
+    static void testRunDMLWrapperMixedTypes() {
+    }
+
+    @testSetup
+    static void testRunDMLWrapperEmpty() {
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** DMLWrapper Method *************************************************
+     **************************************************************************************************************************/
+
+    @testSetup
+    static void testProcessAccsWithNewInfo() {
+    }
+
+    @testSetup
+    static void testUpdateChildContacts() {
+    }
+
+    @testSetup
+    static void testAddrInfoDeleted() {
+    }
 }
