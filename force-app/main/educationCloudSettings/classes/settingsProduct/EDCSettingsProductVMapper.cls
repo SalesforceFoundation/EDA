@@ -25,18 +25,19 @@ public virtual with sharing class EDCSettingsProductVMapper {
             prodRegistryVModel.apiVersion
         );
 
-        EDCSettingsProductVModel settingsProductVModel = new EDCSettingsProductVModel();
+        EDCSettingsProductVModel settingsProductVModel;
 
         if (productInformationResult != null) {
             String navigationPrefix = this.getEDAComponentNavigationPrefix();
-            settingsProductVModel.initials = productInformationResult.productInformation.initials;
-            settingsProductVModel.name = productInformationResult.productInformation.name;
-            settingsProductVModel.description = productInformationResult.productInformation.description;
-            settingsProductVModel.settingsComponent =
-                navigationPrefix + productInformationResult.productInformation.settingsComponent;
-            settingsProductVModel.documentationUrl = productInformationResult.productInformation.documentationUrl;
-            settingsProductVModel.trailheadUrl = productInformationResult.productInformation.trailheadUrl;
-            settingsProductVModel.icon = productInformationResult.productInformation.icon;
+            settingsProductVModel = new EDCSettingsProductVModel(
+                productInformationResult.productInformation.initials,
+                productInformationResult.productInformation.name,
+                productInformationResult.productInformation.description,
+                navigationPrefix + productInformationResult.productInformation.settingsComponent,
+                productInformationResult.productInformation.documentationUrl,
+                productInformationResult.productInformation.trailheadUrl,
+                productInformationResult.productInformation.icon
+            );
         }
 
         return settingsProductVModel;

@@ -1,20 +1,35 @@
 public virtual class EDCSettingsProductVModel implements Comparable {
     @AuraEnabled
-    public String initials;
+    public String initials { get; private set; }
     @AuraEnabled
-    public String name;
+    public String name { get; private set; }
     @AuraEnabled
-    public String description;
+    public String description { get; private set; }
     @AuraEnabled
-    public String settingsComponent;
+    public String settingsComponent { get; private set; }
     @AuraEnabled
-    public String documentationUrl;
+    public String documentationUrl { get; private set; }
     @AuraEnabled
-    public String trailheadUrl;
+    public String trailheadUrl { get; private set; }
     @AuraEnabled
-    public String icon;
+    public String icon { get; private set; }
 
-    public EDCSettingsProductVModel() {
+    public EDCSettingsProductVModel(
+        String initials,
+        String name,
+        String description,
+        String settingsComponent,
+        String documentationUrl,
+        String trailheadUrl,
+        String icon
+    ) {
+        this.initials = initials;
+        this.name = name;
+        this.description = description;
+        this.settingsComponent = settingsComponent;
+        this.documentationUrl = documentationUrl;
+        this.trailheadUrl = trailheadUrl;
+        this.icon = icon;
     }
 
     public Integer compareTo(Object compareTo) {

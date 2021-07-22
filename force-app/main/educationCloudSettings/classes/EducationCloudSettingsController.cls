@@ -1,14 +1,4 @@
 public with sharing class EducationCloudSettingsController {
-    @TestVisible
-    private static EDCSettingsProductVMapper locateSettingsProductVMapper() {
-        return EDCSettingsProductVMapper.getInstance();
-    }
-
-    @TestVisible
-    private static ProductRegistryVMapper locateProductRegistryVMapper() {
-        return ProductRegistryVMapper.getInstance();
-    }
-
     @AuraEnabled(cacheable=true)
     public static EDCSettingsProductVModel getEDCSettingsProductVModel(String productRegistry) {
         try {
@@ -27,5 +17,15 @@ public with sharing class EducationCloudSettingsController {
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
+    }
+
+    @TestVisible
+    private static EDCSettingsProductVMapper locateSettingsProductVMapper() {
+        return EDCSettingsProductVMapper.getInstance();
+    }
+
+    @TestVisible
+    private static ProductRegistryVMapper locateProductRegistryVMapper() {
+        return ProductRegistryVMapper.getInstance();
     }
 }

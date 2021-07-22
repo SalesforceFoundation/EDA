@@ -1,5 +1,12 @@
 public virtual with sharing class EDASettingsProductInformationAPIService implements Callable {
-    public static final string PRODUCT_INFORMATION_ACTION = 'Settings Product Information';
+    public static final String PRODUCT_INFORMATION_ACTION = 'Settings Product Information';
+    public static final String PRODUCT_EDA_INITIALS = 'EDA';
+    public static final String PRODUCT_EDA_NAME = 'Education Data Architecture';
+    public static final String PRODUCT_EDA_DESCRIPTION = 'Education Data Architecture (EDA) is the foundation of the Education Cloud. Its flexible data architecture is designed to configure Salesforce for education.';
+    public static final String PRODUCT_EDA_SETTINGSCOMPONENT = 'EdaSettingsContainer';
+    public static final String PRODUCT_EDA_DOCUMENTATIONURL = 'https://powerofus.force.com/s/article/EDA-Documentation';
+    public static final String PRODUCT_EDA_TRAILHEADURL = 'https://trailhead.salesforce.com/en/content/learn/trails/highered_heda';
+    public static final String PRODUCT_EDA_ICON = 'standard:avatar';
 
     public EDASettingsProductInformationAPIService() {
     }
@@ -27,14 +34,16 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
         EDCSettingsProductAPIModel.SettingsProductinformationResult productInformationResult = new EDCSettingsProductAPIModel.SettingsProductinformationResult();
         actionResult.result = productInformationResult;
 
-        EDCSettingsProductAPIModel.SettingsProductInformation productInformation = new EDCSettingsProductAPIModel.SettingsProductInformation();
-        productInformation.initials = 'EDA';
-        productInformation.name = 'Education Data Architecture';
-        productInformation.description = 'Education Data Architecture (EDA) is the foundation of the Education Cloud. Its flexible data architecture is designed to configure Salesforce for education.';
-        productInformation.settingsComponent = 'EdaSettingsContainer';
-        productInformation.documentationUrl = 'https://powerofus.force.com/s/article/EDA-Documentation';
-        productInformation.trailheadUrl = 'https://trailhead.salesforce.com/en/content/learn/trails/highered_heda';
-        productInformation.icon = 'standard:avatar';
+        EDCSettingsProductAPIModel.SettingsProductInformation productInformation = new EDCSettingsProductAPIModel.SettingsProductInformation(
+            PRODUCT_EDA_INITIALS,
+            PRODUCT_EDA_NAME,
+            PRODUCT_EDA_DESCRIPTION,
+            PRODUCT_EDA_SETTINGSCOMPONENT,
+            PRODUCT_EDA_DOCUMENTATIONURL,
+            PRODUCT_EDA_TRAILHEADURL,
+            PRODUCT_EDA_ICON
+        );
+
         productInformationResult.productInformation = productInformation;
 
         return actionResult;
