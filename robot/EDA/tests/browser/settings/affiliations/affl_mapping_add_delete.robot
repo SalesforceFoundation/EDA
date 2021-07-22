@@ -13,27 +13,32 @@ ${field_name}               Name
 
 *** Test Cases ***
 Validate Affiliation Mappings can be Deleted
-    [Documentation]         Verifies an affiliation mapping can be deleted from the affiliations table in EDA Settings. Also verifies the learn more link
-
-# Go to new EDA Settings
-# Delete sports organization affiliation mapping
-# Click Delete
-
-# Select primary affiliation field on contact as "Primary Sports Organization"
-# Click Save
-
-# Click Tell me more link
-# Expected Results:
-
-# Verify the affiliation mapping is removed from the table
-# Verify sports organization affiliation mapping is created
-# Verify power of us hub link is opened
+    [Documentation]         Verifies an affiliation mapping can be deleted from the affiliations table in EDA Settings. Also verifies the "Tell me More" link.
     [tags]                                      unstable        W-9549025       rbt:high
 
     Select settings from navigation pane        Affiliations
-    Click show actions button                   Household Account       Delete
+    Click on hub link                           Affiliation Mappings      Tell Me More
+    Switch window                               NEW
+    ${url} =                                    Get location
+    Should Start With                           ${url}      https://powerofus.force.com
+    Switch window                               MAIN
+    Click show actions button                   HH_Account       Delete
     Click footer button                         Delete
     Reload Page
     Wait Until Loading is Complete
     ${name_val}=                                Get Affiliation Mappings   ${field_name}
     List Should Not Contain Value               ${name_val}       Household Account
+
+Validate Affiliation Mappings can be Added
+    [Documentation]         Verifies an affiliation mapping can be added from the affiliations table in EDA Settings.
+    [tags]                                      unstable        W-9549025      rbt:high
+    Select settings from navigation pane        Affiliations
+    Click action button on new EDA settings     New
+    Update settings dropdown value
+    ...                                         Account Record Type=Household Account
+    ...                                         Primary Affiliation Field on Contact=Primary Household
+    Click footer button                         Save
+    Reload Page
+    Wait Until Loading is Complete
+    ${name_val}=                                Get Affiliation Mappings   ${field_name}
+    List Should Contain Value                   ${name_val}       HH_Account
