@@ -13,52 +13,33 @@ public virtual with sharing class EDCSettingsProductVMapper {
         return instance;
     }
 
-    public virtual List<EDCSettingsProductVModel> getEDCSettingsProductVModels() {
-        List<EDCSettingsProductVModel> edcSettingsProductVModels = new List<EDCSettingsProductVModel>();
+    public virtual EDCSettingsProductVModel getEDCSettingsProductVModel(String productRegistry) {
+        ProductRegistryVModel prodRegistryVModel = (ProductRegistryVModel) JSON.deserialize(
+            productRegistry,
+            ProductRegistryVModel.class
+        );
 
-        List<EDCSettingsProductAPIModel.SettingsProductInformationResult> settingsProductInformationResultList = this.getAllSettingsProductInformation();
+        EDCSettingsProductAPIModel.SettingsProductInformationResult productInformationResult = this.getSettingsProductInformation(
+            prodRegistryVModel.classname,
+            prodRegistryVModel.namespace,
+            prodRegistryVModel.apiVersion
+        );
 
-        if (settingsProductInformationResultList != null) {
+        EDCSettingsProductVModel settingsProductVModel = new EDCSettingsProductVModel();
+
+        if (productInformationResult != null) {
             String navigationPrefix = this.getEDAComponentNavigationPrefix();
-            for (
-                EDCSettingsProductAPIModel.SettingsProductInformationResult productInformationResult : settingsProductInformationResultList
-            ) {
-                EDCSettingsProductVModel settingsProductVModel = new EDCSettingsProductVModel();
-                settingsProductVModel.initials = productInformationResult.productInformation.initials;
-                settingsProductVModel.name = productInformationResult.productInformation.name;
-                settingsProductVModel.description = productInformationResult.productInformation.description;
-                settingsProductVModel.settingsComponent =
-                    navigationPrefix + productInformationResult.productInformation.settingsComponent;
-                settingsProductVModel.documentationUrl = productInformationResult.productInformation.documentationUrl;
-                settingsProductVModel.trailheadUrl = productInformationResult.productInformation.trailheadUrl;
-                settingsProductVModel.icon = productInformationResult.productInformation.icon;
-                edcSettingsProductVModels.add(settingsProductVModel);
-            }
+            settingsProductVModel.initials = productInformationResult.productInformation.initials;
+            settingsProductVModel.name = productInformationResult.productInformation.name;
+            settingsProductVModel.description = productInformationResult.productInformation.description;
+            settingsProductVModel.settingsComponent =
+                navigationPrefix + productInformationResult.productInformation.settingsComponent;
+            settingsProductVModel.documentationUrl = productInformationResult.productInformation.documentationUrl;
+            settingsProductVModel.trailheadUrl = productInformationResult.productInformation.trailheadUrl;
+            settingsProductVModel.icon = productInformationResult.productInformation.icon;
         }
 
-        if (!edcSettingsProductVModels.isEmpty()) {
-            edcSettingsProductVModels.sort();
-        }
-
-        return edcSettingsProductVModels;
-    }
-
-    private virtual List<EDCSettingsProductAPIModel.SettingsProductInformationResult> getAllSettingsProductInformation() {
-        List<ProductRegistryModel> productRegistryModelList = this.getProductRegistryModels();
-        List<EDCSettingsProductAPIModel.SettingsProductInformationResult> settingsProductInformationResultList = new List<EDCSettingsProductAPIModel.SettingsProductInformationResult>();
-
-        for (ProductRegistryModel productRegistryModel : productRegistryModelList) {
-            EDCSettingsProductAPIModel.SettingsProductInformationResult settingsProductInformationResult = this.getSettingsProductInformation(
-                productRegistryModel.classname,
-                productRegistryModel.namespace,
-                productRegistryModel.apiVersion
-            );
-            if (settingsProductInformationResult != null) {
-                settingsProductInformationResultList.add(settingsProductInformationResult);
-            }
-        }
-
-        return settingsProductInformationResultList;
+        return settingsProductVModel;
     }
 
     private virtual EDCSettingsProductAPIModel.SettingsProductInformationResult getSettingsProductInformation(
@@ -84,15 +65,6 @@ public virtual with sharing class EDCSettingsProductVMapper {
     @TestVisible
     private EDCSettingsProductAPIService locateSettingsProductAPIService() {
         return EDCSettingsProductAPIService.getInstance();
-    }
-
-    @TestVisible
-    private ProductRegistryMapper locateProductRegistryMapper() {
-        return ProductRegistryMapper.getInstance();
-    }
-
-    private List<ProductRegistryModel> getProductRegistryModels() {
-        return this.locateProductRegistryMapper().getProductRegistrySettingsProductInformation();
     }
 
     private virtual String getEDAComponentNavigationPrefix() {

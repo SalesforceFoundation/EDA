@@ -31,10 +31,11 @@ import stgBtnVideosActionA11y from "@salesforce/label/c.stgBtnVideosActionA11y";
 
 import namespacedEDAField from "@salesforce/schema/Course_Offering_Schedule__c.Course_Offering__c";
 
-import getEDCSettingsProductVModels from "@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModels";
+import getEDCSettingsProductVModel from "@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModel";
+import getProductRegistrySettingsProductInformationVModels from "@salesforce/apex/EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels";
+
 import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
 
-const EDASettingsContainerComponentName = "EdaSettingsContainer";
 const HealthCheckContainerComponentName = "HealthCheckContainer";
 
 const EDADocumentationUrl = "https://powerofus.force.com/s/article/EDA-Documentation";
@@ -66,18 +67,27 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         return navigationPrefix;
     }
 
-    get edaSettingsContainerComponentNavigation() {
-        return this.edaComponentNavigationPrefix + EDASettingsContainerComponentName;
-    }
-
     get healthCheckContainerComponentNavigation() {
         return this.edaComponentNavigationPrefix + HealthCheckContainerComponentName;
     }
 
-    @wire(getEDCSettingsProductVModels)
+    @wire(getProductRegistrySettingsProductInformationVModels)
     edcSettingsProductModels({ error, data }) {
         if (data) {
-            this.edcProductModels = data;
+            //For each product registry 'product information' call the API to get the Product Information
+            data.forEach((prodRegistry) => {
+
+                let prodRegistrySerialized = JSON.stringify(prodRegistry);
+                getEDCSettingsProductVModel({ productRegistry: prodRegistrySerialized })
+                .then((result) => {
+                    if (result) {
+                        this.edcProductModels.push(result);
+                    }
+                })
+                .catch((error) => {
+                    this.showErrorToast(error);
+                });
+            });
         } else if (error) {
             this.showErrorToast(error);
         }
