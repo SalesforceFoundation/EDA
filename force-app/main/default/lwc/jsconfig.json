@@ -6,32 +6,20 @@
             "c/accountModelSettings": [
                 "accountModelSettings/accountModelSettings.js"
             ],
-            "c/addressSettings": [
-                "addressSettings/addressSettings.js"
-            ],
-            "c/affiliationSettings": [
-                "affiliationSettings/affiliationSettings.js"
-            ],
-            "c/autoEnrollmentMappingModalBody": [
-                "autoEnrollmentMappingModalBody/autoEnrollmentMappingModalBody.js"
-            ],
-            "c/batchJobModalBody": [
-                "batchJobModalBody/batchJobModalBody.js"
-            ],
-            "c/contactInformationSettings": [
-                "contactInformationSettings/contactInformationSettings.js"
-            ],
-            "c/courseConnectionSettings": [
-                "courseConnectionSettings/courseConnectionSettings.js"
-            ],
             "c/edaSettings": [
                 "edaSettings/edaSettings.js"
             ],
             "c/edaSettingsNavigation": [
                 "edaSettingsNavigation/edaSettingsNavigation.js"
             ],
-            "c/errorSettings": [
-                "errorSettings/errorSettings.js"
+            "c/edaSettingsNavigationMenuItems": [
+                "edaSettingsNavigationMenuItems/edaSettingsNavigationMenuItems.js"
+            ],
+            "c/edaSettingsNavigationSection": [
+                "edaSettingsNavigationSection/edaSettingsNavigationSection.js"
+            ],
+            "c/edaSettingsNavigationSubsection": [
+                "edaSettingsNavigationSubsection/edaSettingsNavigationSubsection.js"
             ],
             "c/healthCheck": [
                 "healthCheck/healthCheck.js"
@@ -48,65 +36,26 @@
             "c/healthCheckRun": [
                 "healthCheckRun/healthCheckRun.js"
             ],
-            "c/primaryAffiliationsModalBody": [
-                "primaryAffiliationsModalBody/primaryAffiliationsModalBody.js"
-            ],
-            "c/programPlanSettings": [
-                "programPlanSettings/programPlanSettings.js"
-            ],
-            "c/programSettings": [
-                "programSettings/programSettings.js"
-            ],
-            "c/relationshipMappingModalBody": [
-                "relationshipMappingModalBody/relationshipMappingModalBody.js"
-            ],
-            "c/relationshipSettings": [
-                "relationshipSettings/relationshipSettings.js"
-            ],
             "c/settingsSaveCanvas": [
                 "settingsSaveCanvas/settingsSaveCanvas.js"
-            ],
-            "c/systemTools": [
-                "systemTools/systemTools.js"
-            ],
-            "c/edcSettingsCard": [
-                "../../educationCloudSettings/lwc/edcSettingsCard/edcSettingsCard.js"
-            ],
-            "c/edcSettingsProductCard": [
-                "../../educationCloudSettings/lwc/edcSettingsProductCard/edcSettingsProductCard.js"
-            ],
-            "c/educationCloudSettings": [
-                "../../educationCloudSettings/lwc/educationCloudSettings/educationCloudSettings.js"
-            ],
-            "c/lakeMountain": [
-                "../../illustrationLibrary/lwc/lakeMountain/lakeMountain.js"
-            ],
-            "c/singleLookup": [
-                "../../lwcComponentLibrary/lwc/singleLookup/singleLookup.js"
-            ],
-            "c/singleLookupOption": [
-                "../../lwcComponentLibrary/lwc/singleLookupOption/singleLookupOption.js"
-            ],
-            "c/settingsNavigation": [
-                "../../settingsComponentLibrary/lwc/settingsNavigation/settingsNavigation.js"
-            ],
-            "c/settingsNavigationMenuItems": [
-                "../../settingsComponentLibrary/lwc/settingsNavigationMenuItems/settingsNavigationMenuItems.js"
-            ],
-            "c/settingsNavigationSection": [
-                "../../settingsComponentLibrary/lwc/settingsNavigationSection/settingsNavigationSection.js"
-            ],
-            "c/settingsNavigationSubsection": [
-                "../../settingsComponentLibrary/lwc/settingsNavigationSubsection/settingsNavigationSubsection.js"
-            ],
-            "c/settingsRowDualListbox": [
-                "../../settingsComponentLibrary/lwc/settingsRowDualListbox/settingsRowDualListbox.js"
             ],
             "c/settingsRowInput": [
                 "../../settingsComponentLibrary/lwc/settingsRowInput/settingsRowInput.js"
             ],
-            "c/settingsSubHeading": [
-                "../../settingsComponentLibrary/lwc/settingsSubHeading/settingsSubHeading.js"
+            "c/affiliationSettings": [
+                "affiliationSettings/affiliationSettings.js"
+            ],
+            "c/addressSettings": [
+                "addressSettings/addressSettings.js"
+            ],
+            "c/contactInformationSettings": [
+                "contactInformationSettings/contactInformationSettings.js"
+            ],
+            "c/settingsRowDualListbox": [
+                "../../settingsComponentLibrary/lwc/settingsRowDualListbox/settingsRowDualListbox.js"
+            ],
+            "c/systemTools": [
+                "systemTools/systemTools.js"
             ]
         }
     },
