@@ -22,7 +22,7 @@ Validate Affiliation Mappings can be Deleted
     ${url} =                                    Get location
     Should Start With                           ${url}      https://powerofus.force.com
     Switch window                               MAIN
-    Click show actions button                   HH_Account       Delete
+    Click show actions button                   Household Account       Delete
     Click footer button                         Delete
     Reload Page
     Wait Until Loading is Complete
