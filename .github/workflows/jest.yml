@@ -21,4 +21,4 @@ jobs:
           yarn install
       - name: Run Jest Tests
         run: |
-          npx lwc-jest -- --coverage --passWithNoTests
+          npx lwc-jest -- --coverage --passWithNoTests --skipApiVersionCheck
