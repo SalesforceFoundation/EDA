@@ -144,6 +144,20 @@ Get Affiliation Mappings
     END
     [return]                ${ValueList}
 
+Get Relationship Type Values
+    [Documentation]         Returns the list of active picklist values for relationship type field
+    ${NS} =                 Get EDA namespace prefix
+    [Arguments]             ${obj_name}             ${field_name}
+    ${result} =             SOQL Query
+    ...                     SELECT Name FROM ${NS}${obj_name} where ${NS}${field_name}=true
+    ${count} =              Get Records Count       ${obj_name}     ${field_name}       true
+    @{ValueList}=           Create List
+    FOR     ${index}    IN RANGE    ${count}
+        ${name} =               Set variable    ${result}[records][${index}][Name]
+        Append To List          ${ValueList}    ${name}
+    END
+    [return]                ${ValueList}
+
 Get Custom Settings Value
     [Documentation]         Returns the value of the field in hierarch settings by accepting the
     ...                     name of the value as a parameter
