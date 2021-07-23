@@ -13,11 +13,10 @@ public virtual with sharing class ProductRegistryService {
         return instance;
     }
 
-    public List<ProductRegistryModel> getProductRegistrySettingsProductInformation() {
+    public virtual List<ProductRegistryModel> getProductRegistrySettingsProductInformation() {
         return this.locateProductRegistryMapper().getProductRegistrySettingsProductInformation();
     }
 
-    @TestVisible
     private ProductRegistryMapper locateProductRegistryMapper() {
         return ProductRegistryMapper.getInstance();
     }

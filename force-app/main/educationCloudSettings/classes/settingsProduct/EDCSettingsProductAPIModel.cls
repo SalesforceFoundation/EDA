@@ -1,10 +1,23 @@
 public virtual with sharing class EDCSettingsProductAPIModel {
     public class SettingsProductInformationActionResult extends CallableResult {
         public SettingsProductInformationResult result;
+
+        public SettingsProductInformationActionResult(
+            SettingsProductInformationResult result,
+            Boolean success,
+            CallableError error
+        ) {
+            super(success, error);
+            this.result = result;
+        }
     }
 
     public class SettingsProductInformationResult {
         public SettingsProductInformation productInformation;
+
+        public SettingsProductInformationResult(SettingsProductInformation productInformation) {
+            this.productInformation = productInformation;
+        }
     }
 
     public class SettingsProductInformation {

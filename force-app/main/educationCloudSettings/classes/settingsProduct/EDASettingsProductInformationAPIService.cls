@@ -28,12 +28,6 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
     }
 
     public EDCSettingsProductAPIModel.SettingsProductInformationActionResult getSettingsProductInformation() {
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = new EDCSettingsProductAPIModel.SettingsProductInformationActionResult();
-        actionResult.success = true;
-
-        EDCSettingsProductAPIModel.SettingsProductinformationResult productInformationResult = new EDCSettingsProductAPIModel.SettingsProductinformationResult();
-        actionResult.result = productInformationResult;
-
         EDCSettingsProductAPIModel.SettingsProductInformation productInformation = new EDCSettingsProductAPIModel.SettingsProductInformation(
             PRODUCT_EDA_INITIALS,
             PRODUCT_EDA_NAME,
@@ -44,7 +38,15 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
             PRODUCT_EDA_ICON
         );
 
-        productInformationResult.productInformation = productInformation;
+        EDCSettingsProductAPIModel.SettingsProductinformationResult productInformationResult = new EDCSettingsProductAPIModel.SettingsProductinformationResult(
+            productInformation
+        );
+
+        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = new EDCSettingsProductAPIModel.SettingsProductInformationActionResult(
+            productInformationResult,
+            true,
+            null
+        );
 
         return actionResult;
     }

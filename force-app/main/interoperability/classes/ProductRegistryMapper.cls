@@ -15,7 +15,7 @@ public virtual with sharing class ProductRegistryMapper {
         return instance;
     }
 
-    public List<ProductRegistryModel> getProductRegistrySettingsProductInformation() {
+    public virtual List<ProductRegistryModel> getProductRegistrySettingsProductInformation() {
         List<ProductRegistryModel> productRegistryModelList = new List<ProductRegistryModel>();
         List<Product_Registry__mdt> productRegistrySettingsProductInformationList = this.getProductRegistriesByAction(
             PRODUCT_INFORMATION_ACTION
@@ -35,7 +35,8 @@ public virtual with sharing class ProductRegistryMapper {
         return productRegistryModelList;
     }
 
-    private List<Product_Registry__mdt> getProductRegistriesByAction(String action) {
+    @TestVisible
+    private virtual List<Product_Registry__mdt> getProductRegistriesByAction(String action) {
         List<Product_Registry__mdt> registriesList = [
             SELECT Action__c, API_Version__c, Class_Name__c, Enabled__c, Namespace__c
             FROM Product_Registry__mdt

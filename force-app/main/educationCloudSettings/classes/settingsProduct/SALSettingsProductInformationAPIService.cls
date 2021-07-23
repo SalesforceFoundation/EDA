@@ -21,12 +21,6 @@ public virtual with sharing class SALSettingsProductInformationAPIService implem
     }
 
     public EDCSettingsProductAPIModel.SettingsProductInformationActionResult getSettingsProductInformation() {
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = new EDCSettingsProductAPIModel.SettingsProductInformationActionResult();
-        actionResult.success = true;
-
-        EDCSettingsProductAPIModel.SettingsProductinformationResult productInformationResult = new EDCSettingsProductAPIModel.SettingsProductinformationResult();
-        actionResult.result = productInformationResult;
-
         EDCSettingsProductAPIModel.SettingsProductInformation productInformation = new EDCSettingsProductAPIModel.SettingsProductInformation(
             'SAL',
             'Advisor Link',
@@ -34,10 +28,18 @@ public virtual with sharing class SALSettingsProductInformationAPIService implem
             'EdaSettingsContainer',
             'https://powerofus.force.com/s/article/SAL-Documentation',
             'https://trailhead.salesforce.com/en/content/learn/modules/student-advising-with-salesforce-advisor-link',
-            'standard:avatarS'
+            'standard:avatar'
         );
 
-        productInformationResult.productInformation = productInformation;
+        EDCSettingsProductAPIModel.SettingsProductinformationResult productInformationResult = new EDCSettingsProductAPIModel.SettingsProductinformationResult(
+            productInformation
+        );
+
+        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = new EDCSettingsProductAPIModel.SettingsProductInformationActionResult(
+            productInformationResult,
+            true,
+            null
+        );
 
         return actionResult;
     }

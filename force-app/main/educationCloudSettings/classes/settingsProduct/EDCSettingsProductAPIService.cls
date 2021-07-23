@@ -29,11 +29,11 @@ public virtual with sharing class EDCSettingsProductAPIService {
             new Map<String, Object>{ 'Api Version' => apiVersion }
         );
 
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult settingsProductAPIModel = (EDCSettingsProductAPIModel.SettingsProductInformationActionResult) JSON.deserialize(
+        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = (EDCSettingsProductAPIModel.SettingsProductInformationActionResult) JSON.deserialize(
             settingsInformationJSON,
             EDCSettingsProductAPIModel.SettingsProductInformationActionResult.class
         );
-        return settingsProductAPIModel;
+        return actionResult;
     }
 
     private virtual Callable locateSettingsProductInformationAPIService(String className, String namespace) {
