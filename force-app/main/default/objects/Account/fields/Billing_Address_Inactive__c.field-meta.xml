@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Address_Inactive__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates that this billing address is inactive</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates that this billing address is inactive</inlineHelpText>
+    <label>Billing Address Inactive</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>
