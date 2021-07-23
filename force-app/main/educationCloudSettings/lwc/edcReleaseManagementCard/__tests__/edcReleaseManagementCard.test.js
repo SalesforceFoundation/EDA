@@ -6,7 +6,7 @@ const ReleaseManagementButtonLabel = "ReleaseManagementButtonLabel is set";
 const ReleaseManagementButtonTitle = "ReleaseManagementButtonTitle is set";
 
 jest.mock(
-    "@salesforce/label/c.stgReleaseManagementTitle",
+    "@salesforce/label/c.stgReleaseManagementCardTitle",
     () => {
         return { default: ReleaseManagementTitleLabel };
     },

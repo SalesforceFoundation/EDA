@@ -3834,11 +3834,19 @@
         <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
     </labels>
     <labels>
-        <fullName>stgReleaseManagementTitle</fullName>
+        <fullName>stgReleaseManagementCardTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Label for the Release Management card</shortDescription>
+        <value>Release Management</value>
+    </labels>
+    <labels>
+        <fullName>stgReleaseManagementTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Release Management page title</shortDescription>
         <value>Release Management</value>
     </labels>
     <labels>
@@ -3847,14 +3855,14 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Description of Release Management</shortDescription>
-        <value>Release Management makes it easy to learn about the features that are available in the current release and then activate them in the current org when you're ready.</value>
+        <value>Release Management makes it easy to learn about the features in the current release and then activate the release when you're ready.</value>
     </labels>
     <labels>
         <fullName>stgBtnReleaseManagement</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>Button that launches Release Management tile navigation button text</shortDescription>
+        <shortDescription>Button that launches Release Management</shortDescription>
         <value>Go to Release Management</value>
     </labels>
     <labels>

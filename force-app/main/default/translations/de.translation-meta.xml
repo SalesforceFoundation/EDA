@@ -1924,6 +1924,10 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
     </customLabels>
     <customLabels>
         <label><!-- Label for the Release Management card --></label>
+        <name>stgReleaseManagementCardTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Release Management page --></label>
         <name>stgReleaseManagementTitle</name>
     </customLabels>
     <customLabels>

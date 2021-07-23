@@ -2,7 +2,7 @@ import { LightningElement, api } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 
 //Release Management Labels
-import stgReleaseManagementTitle from "@salesforce/label/c.stgReleaseManagementTitle";
+import stgReleaseManagementCardTitle from "@salesforce/label/c.stgReleaseManagementCardTitle";
 import stgReleaseManagementDescription from "@salesforce/label/c.stgReleaseManagementDescription";
 import stgBtnReleaseManagement from "@salesforce/label/c.stgBtnReleaseManagement";
 import stgBtnReleaseManagementA11y from "@salesforce/label/c.stgBtnReleaseManagementA11y";
@@ -13,7 +13,7 @@ export default class EdcReleaseManagementCard extends NavigationMixin(LightningE
     labelReference = {
         releaseManagementButton: stgBtnReleaseManagement,
         releaseManagementButtonA11y: stgBtnReleaseManagementA11y,
-        releaseManagementTitle: stgReleaseManagementTitle,
+        releaseManagementTitle: stgReleaseManagementCardTitle,
         releaseManagementDescription: stgReleaseManagementDescription,
     };
 
