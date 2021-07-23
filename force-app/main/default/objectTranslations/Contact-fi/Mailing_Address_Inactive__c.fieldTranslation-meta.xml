@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Indicates that the mailing address for this Contact is inactive --></help>
+    <label><!-- Mailing Address Inactive --></label>
+    <name>Mailing_Address_Inactive__c</name>
+</CustomFieldTranslation>
