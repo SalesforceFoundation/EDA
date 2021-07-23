@@ -209,6 +209,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         hs.Household_Addresses_RecType__c = UTIL_Describe.getHHAccRecTypeID();
         hs.Reciprocal_Method__c = 'List Setting';
         hs.Store_Errors_On__c = true;
+        hs.Application_Window_Validation__c = true;
     }
 
     /*******************************************************************************************************
