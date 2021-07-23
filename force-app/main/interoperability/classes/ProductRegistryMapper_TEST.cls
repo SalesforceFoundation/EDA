@@ -35,7 +35,7 @@ private class ProductRegistryMapper_TEST {
     }
 
     private class ProductRegistryMapperStub extends ProductRegistryMapper {
-        public override List<Product_Registry__mdt> getProductRegistriesByAction(String action) {
+        private override List<Product_Registry__mdt> getProductRegistriesByAction(String action) {
             Product_Registry__mdt prodRegistryCMT = new Product_Registry__mdt();
             prodRegistryCMT.Action__c = 'testAction';
             prodRegistryCMT.Namespace__c = 'testNamespace';
