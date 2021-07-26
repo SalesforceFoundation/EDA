@@ -12,18 +12,20 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
     }
 
     public Object call(String action, Map<String, Object> args) {
+        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult;
         String result;
-
         if (args.get('Api Version') == null) {
-            throw new IllegalArgumentException('You gotta have an API version!');
+            actionResult = this.createErrorActionResult(400, 'You gotta have an API version!');
+        } else {
+            if (action == PRODUCT_INFORMATION_ACTION) {
+                actionResult = this.getSettingsProductInformation();
+            } else {
+                system.debug('entered where method is no implemented');
+                actionResult = this.createErrorActionResult(400, 'Method: ' + action + ' not implemented');
+            }
         }
 
-        if (action == PRODUCT_INFORMATION_ACTION) {
-            EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = this.getSettingsProductInformation();
-            result = JSON.serialize(actionResult);
-        } else {
-            throw new IllegalArgumentException('Method: ' + action + ' not implemented');
-        }
+        result = JSON.serialize(actionResult);
         return result;
     }
 
@@ -48,6 +50,20 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
             null
         );
 
+        return actionResult;
+    }
+
+    private virtual EDCSettingsProductAPIModel.SettingsProductInformationActionResult createErrorActionResult(
+        Integer code,
+        String errorMessage
+    ) {
+        CallableError error = new CallableError(code, errorMessage);
+
+        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = new EDCSettingsProductAPIModel.SettingsProductInformationActionResult(
+            null,
+            false,
+            error
+        );
         return actionResult;
     }
 }

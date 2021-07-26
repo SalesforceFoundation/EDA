@@ -52,7 +52,7 @@ public virtual with sharing class EDCSettingsProductAPIService {
                 'Class: ' +
                 className +
                 ' with namespace: ' +
-                nonEDANamespace +
+                (String.isBlank(nonEDANamespace) ? 'hed' : nonEDANamespace) +
                 ' could not get loaded',
                 e
             );
@@ -61,8 +61,8 @@ public virtual with sharing class EDCSettingsProductAPIService {
                 'Class: ' +
                 className +
                 ' with namespace: ' +
-                nonEDANamespace +
-                ' could not get loaded',
+                (String.isBlank(nonEDANamespace) ? 'hed' : nonEDANamespace) +
+                +' could not get loaded',
                 e
             );
         }

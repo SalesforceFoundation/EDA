@@ -1,4 +1,4 @@
-public virtual class EDCSettingsProductVModel implements Comparable {
+public virtual class EDCSettingsProductVModel {
     @AuraEnabled
     public String initials { get; private set; }
     @AuraEnabled
@@ -30,18 +30,5 @@ public virtual class EDCSettingsProductVModel implements Comparable {
         this.documentationUrl = documentationUrl;
         this.trailheadUrl = trailheadUrl;
         this.icon = icon;
-    }
-
-    public Integer compareTo(Object compareTo) {
-        EDCSettingsProductVModel productVModel = (EDCSettingsProductVModel) compareTo;
-        if (this.name > productVModel.name) {
-            return 1;
-        }
-
-        if (this.name == productVModel.name) {
-            return 0;
-        }
-
-        return -1;
     }
 }

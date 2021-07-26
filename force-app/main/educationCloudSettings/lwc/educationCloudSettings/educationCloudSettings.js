@@ -73,6 +73,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
 
     @wire(getProductRegistrySettingsProductInformationVModels)
     edcSettingsProductModels({ error, data }) {
+        let tempProductModels = [];
         if (data) {
             //For each product registry 'product information' call the API to get the Product Information
             data.forEach((prodRegistry) => {
@@ -82,6 +83,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
                 .then((result) => {
                     if (result) {
                         this.edcProductModels.push(result);
+                        this.edcProductModels.sort(this.sortByNameAsc);
                     }
                 })
                 .catch((error) => {
@@ -133,8 +135,12 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         let errorMessage = 'Unknown error';
         if (Array.isArray(error.body)) {
             errorMessage = error.body.map(e => e.message).join(', ');
-        } else if (typeof error.body.message === 'string') {
-            errorMessage = error.body.message;
+        } else {
+            if (error.body && typeof error.body.message === 'string') {
+                errorMessage = error.body.message;
+            } else {
+                errorMessage = error.message;     
+            }
         }
 
         const evt = new ShowToastEvent({
@@ -144,5 +150,15 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
             mode: 'sticky'
         });
         this.dispatchEvent(evt);
+    }
+
+    sortByNameAsc(a, b) {
+        if (a.name > b.name) {
+            return 1;
+          }
+        if (a.name === b.name) {
+          return 0;
+        }
+        return -1;
     }
 }
