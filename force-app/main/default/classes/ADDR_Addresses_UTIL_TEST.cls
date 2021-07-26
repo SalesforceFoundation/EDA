@@ -29,10 +29,10 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Test class for ADDR_Account_TDTM.
+ * @description Test class for ADDR_Addresses_UTIL.
  */
 @isTest
-private with sharing class ADDR_Account_TEST {
+private with sharing class ADDR_Addresses_UTIL_TEST {
     /**************************************************************************************************************************
      ****************************************************** Main Methods ******************************************************
      **************************************************************************************************************************/

@@ -37,7 +37,7 @@ private with sharing class ADDR_Account_TEST {
      ****************************************************** Recursion Flags ***************************************************
      **************************************************************************************************************************/
 
-    @testSetup
+    @isTest
     static void testTurnOffRecursionFlag() {
         TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert);
         TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Update);
@@ -57,7 +57,7 @@ private with sharing class ADDR_Account_TEST {
         );
     }
 
-    @testSetup
+    @isTest
     static void testTurnOnRecursionFlag() {
     }
 
@@ -65,18 +65,18 @@ private with sharing class ADDR_Account_TEST {
      ****************************************************** Main Method *******************************************************
      **************************************************************************************************************************/
 
-    @testSetup
+    @isTest
     static void testRunDMLWrapperSingleObjectType() {
         /* To Refactor:
          * 1. This method is handling too many things. Ideally we should mock other building dml wrappers methods.
          */
     }
 
-    @testSetup
+    @isTest
     static void testRunDMLWrapperMixedTypes() {
     }
 
-    @testSetup
+    @isTest
     static void testRunDMLWrapperEmpty() {
     }
 
@@ -84,15 +84,15 @@ private with sharing class ADDR_Account_TEST {
      ****************************************************** DMLWrapper Method *************************************************
      **************************************************************************************************************************/
 
-    @testSetup
+    @isTest
     static void testProcessAccsWithNewInfo() {
     }
 
-    @testSetup
+    @isTest
     static void testUpdateChildContacts() {
     }
 
-    @testSetup
+    @isTest
     static void testAddrInfoDeleted() {
     }
 }
