@@ -46,7 +46,25 @@ private with sharing class ADDR_Account_TEST {
         ADDR_Account_TDTM.turnOff();
         Test.stopTest();
 
-        //assert
+        System.assertEquals(
+            true,
+            TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert)
+        );
+        System.assertEquals(
+            true,
+            TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Update)
+        );
+    }
+
+    @isTest
+    static void testTurnOnRecursionFlag() {
+        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert);
+        TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Update);
+
+        Test.startTest();
+        ADDR_Account_TDTM.turnOn();
+        Test.stopTest();
+
         System.assertEquals(
             false,
             TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert)
@@ -57,14 +75,9 @@ private with sharing class ADDR_Account_TEST {
         );
     }
 
-    @isTest
-    static void testTurnOnRecursionFlag() {
-    }
-
     /**************************************************************************************************************************
      ****************************************************** Main Method *******************************************************
      **************************************************************************************************************************/
-
     @isTest
     static void testRunDMLWrapperSingleObjectType() {
         /* To Refactor:
@@ -81,11 +94,18 @@ private with sharing class ADDR_Account_TEST {
     }
 
     /**************************************************************************************************************************
-     ****************************************************** DMLWrapper Method *************************************************
+     ****************************************************** DMLWrapper Helper Method ******************************************
      **************************************************************************************************************************/
 
     @isTest
     static void testProcessAccsWithNewInfo() {
+        /* To Refactor:
+         * 1. Break the methods chaining, which makes it almost impossible to test.
+         */
+    }
+
+    @isTest
+    static void testProcessAccsWithNewInfoEmptyListAcc() {
     }
 
     @isTest
