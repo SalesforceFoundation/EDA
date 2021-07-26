@@ -39,6 +39,22 @@ private with sharing class ADDR_Account_TEST {
 
     @testSetup
     static void testTurnOffRecursionFlag() {
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert);
+        TDTM_ProcessControl.resetRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Update);
+
+        Test.startTest();
+        ADDR_Account_TDTM.turnOff();
+        Test.stopTest();
+
+        //assert
+        System.assertEquals(
+            false,
+            TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert)
+        );
+        System.assertEquals(
+            false,
+            TDTM_ProcessControl.getRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Update)
+        );
     }
 
     @testSetup
