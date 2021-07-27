@@ -226,4 +226,16 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
 
         System.assertEquals(false, isAddressChanged);
     }
+
+    /**************************************************************************************************************************
+     ****************************************************** isContactAddressChanged *******************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void isContactAddressChangedBothNull() {
+        Test.startTest();
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(null, null);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAddressChanged);
+    }
 }
