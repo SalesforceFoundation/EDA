@@ -37,6 +37,7 @@ import getProductRegistrySettingsProductInformationVModels from "@salesforce/ape
 import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
 
 const HealthCheckContainerComponentName = "HealthCheckContainer";
+const ReleaseManagementContainerComponentName = "releaseManagementContainer";
 
 const EDADocumentationUrl = "https://powerofus.force.com/s/article/EDA-Documentation";
 const EDATrailheadUrl = "https://trailhead.salesforce.com/en/content/learn/trails/highered_heda";
@@ -68,6 +69,10 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
 
     get healthCheckContainerComponentNavigation() {
         return this.edaComponentNavigationPrefix + HealthCheckContainerComponentName;
+    }
+
+    get releaseManagementContainerComponentNavigation() {
+        return this.edaComponentNavigationPrefix + ReleaseManagementContainerComponentName;
     }
 
     @wire(getProductRegistrySettingsProductInformationVModels)
