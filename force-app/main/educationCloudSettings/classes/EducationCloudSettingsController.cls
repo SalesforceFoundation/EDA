@@ -35,7 +35,7 @@ public with sharing class EducationCloudSettingsController {
     /********************************************************************************************
      * @description Returns the EDCSettingsProductVModel information based on the product registry information
      * @param  productRegistry productRegistry the serialized product registry information
-     * @return                 The EDCSettingsProductVModel with all the properties populated
+     * @return A EDCSettingsProductVModel with all the properties populated
      ********************************************************************************************/
     @AuraEnabled(cacheable=true)
     public static EDCSettingsProductVModel getEDCSettingsProductVModel(String productRegistry) {
@@ -49,7 +49,7 @@ public with sharing class EducationCloudSettingsController {
 
     /********************************************************************************************
      * @description Returns the list of ProductRegistryVModel based on the Product Registry CMT records
-     * @return   List<ProductRegistryVModel> the list of ProductRegistryVModel with all the properties populated
+     * @return A list of ProductRegistryVModel with all the properties populated
      ********************************************************************************************/
     @AuraEnabled(cacheable=true)
     public static List<ProductRegistryVModel> getProductRegistrySettingsProductInformationVModels() {
