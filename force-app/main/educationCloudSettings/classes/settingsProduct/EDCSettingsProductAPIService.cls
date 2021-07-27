@@ -1,11 +1,51 @@
+/*
+    Copyright (c) 2021, Salesforce.org
+    All rights reserved.
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+    * Neither the name of Salesforce.org nor the names of
+    its contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+*/
+/**
+ * @author Salesforce.org
+ * @date 2021
+ * @group
+ * @group-content
+ * @description Service class which instantiates a class implementing the Callable interface and calls its call method, it returns
+ * an instance of EDCSettingsProductAPIModel.SettingsProductInformationActionResult
+ */
 public virtual with sharing class EDCSettingsProductAPIService {
     public static final string PRODUCT_INFORMATION_ACTION = 'Settings Product Information';
     @TestVisible
     private static EDCSettingsProductAPIService instance;
 
+    /*********************************************************************
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
     protected EDCSettingsProductAPIService() {
     }
 
+    /*********************************************
+     * @description Instance for Singleton Pattern
+     **********************************************/
     public static EDCSettingsProductAPIService getInstance() {
         if (instance == null) {
             instance = new EDCSettingsProductAPIService();
@@ -14,6 +54,14 @@ public virtual with sharing class EDCSettingsProductAPIService {
         return instance;
     }
 
+    /********************************************************************************************
+     * @description Returns a EDCSettingsProductAPIModel.SettingsProductInformationActionResult by making a call
+     * to a callable class given the provided namespace and apiVersion
+     * @param  className  A string representing the classname to call
+     * @param  namespace  A string representing the the product namespace
+     * @param  apiVersion A decimal representing the specific api version to use
+     * @return A EDCSettingsProductAPIModel.SettingsProductInformationActionResult with its properties populated
+     ********************************************************************************************/
     public virtual EDCSettingsProductAPIModel.SettingsProductInformationActionResult getSettingsProductInformation(
         String className,
         String namespace,
@@ -33,6 +81,12 @@ public virtual with sharing class EDCSettingsProductAPIService {
         return actionResult;
     }
 
+    /********************************************************************************************
+     * @description Returns a Callable instance based on the provided namespace and classname
+     * @param  className A string representing the class to instantiate
+     * @param  namespace A string representing the product namespace
+     * @return A Callable instance
+     ********************************************************************************************/
     @TestVisible
     private Callable locateSettingsProductInformationAPIService(String className, String namespace) {
         Callable settingsProductInformationAPIService;
@@ -58,6 +112,12 @@ public virtual with sharing class EDCSettingsProductAPIService {
         return settingsProductInformationAPIService;
     }
 
+    /********************************************************************************************
+     * @description Returns a serialized string representing the Callable result
+     * @param  settingsProductInformationAPIService A Callable instance to call
+     * @param  apiVersion A string representing the apiVersion to use
+     * @return A string representing the serialized Callable response
+     ********************************************************************************************/
     @TestVisible
     private virtual String makeCall(Callable settingsProductInformationAPIService, Decimal apiVersion) {
         String settingsInformationJSON = (String) settingsProductInformationAPIService.call(
