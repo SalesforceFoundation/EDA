@@ -47,4 +47,8 @@
         <masterLabel>Declined Offer</masterLabel>
         <translation>却下された提案</translation>
     </picklistValues>
+    <picklistValues>
+        <masterLabel>Started</masterLabel>
+        <translation><!-- Started --></translation>
+    </picklistValues>
 </CustomFieldTranslation>
