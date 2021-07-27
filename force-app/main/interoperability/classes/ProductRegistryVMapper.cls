@@ -13,7 +13,7 @@ public virtual with sharing class ProductRegistryVMapper {
         return instance;
     }
 
-    public List<ProductRegistryVModel> getProductRegistrySettingsProductInformation() {
+    public virtual List<ProductRegistryVModel> getProductRegistrySettingsProductInformation() {
         List<ProductRegistryVModel> productRegistryVModelList = new List<ProductRegistryVModel>();
         List<ProductRegistryModel> productRegistryModelList = new List<ProductRegistryModel>();
 

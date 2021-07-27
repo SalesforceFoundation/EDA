@@ -19,12 +19,10 @@ public with sharing class EducationCloudSettingsController {
         }
     }
 
-    @TestVisible
     private static EDCSettingsProductVMapper locateSettingsProductVMapper() {
         return EDCSettingsProductVMapper.getInstance();
     }
 
-    @TestVisible
     private static ProductRegistryVMapper locateProductRegistryVMapper() {
         return ProductRegistryVMapper.getInstance();
     }
