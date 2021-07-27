@@ -246,6 +246,7 @@ public without sharing class UTIL_CustomSettingsFacade {
         settings.Affl_ProgEnroll_Set_Role__c = mySettings.Affl_ProgEnroll_Set_Role__c;
         settings.Affl_ProgEnroll_Status_Map__c = mySettings.Affl_ProgEnroll_Status_Map__c;
         settings.Allow_AutoCreated_Duplicates__c = mySettings.Allow_AutoCreated_Duplicates__c;
+        settings.Application_Window_Validation__c = mySettings.Application_Window_Validation__c;
         settings.Async_Error_Check_Last_Run__c = mySettings.Async_Error_Check_Last_Run__c;
         settings.Automatic_Household_Naming__c = mySettings.Automatic_Household_Naming__c;
         settings.Contacts_Addresses_Enabled__c = mySettings.Contacts_Addresses_Enabled__c;
