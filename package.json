@@ -1,23 +1,17 @@
 {
-  "devDependencies": {
-    "@sa11y/jest": "^0.4.2",
-    "@salesforce/sfdx-lwc-jest": "^0.12.6",
-    "husky": "=4",
-    "lint-staged": ">=10",
-    "prettier": "^2.2.1",
-    "prettier-plugin-apex": "^1.8.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+    "devDependencies": {
+        "@sa11y/jest": "^0.4.2",
+        "@salesforce/sfdx-lwc-jest": "^0.12.6",
+        "husky": "=4",
+        "lint-staged": ">=10",
+        "prettier": "^2.2.1",
+        "prettier-plugin-apex": "^1.8.0",
+        "hasha-cli": "^4.1.0",
+        "lockfile-lint": "^4.3.6"
+    },
+    "scripts": {
+        "test:unit": "sfdx-lwc-jest",
+        "test:unit:debug": "sfdx-lwc-jest --debug",
+        "test:unit:watch": "sfdx-lwc-jest --watch"
     }
-  },
-  "lint-staged": {
-    "**/*.{html,js,css,yml,cls,apex,trigger}": "prettier --check"
-  },
-  "scripts": {
-    "test:unit": "sfdx-lwc-jest",
-    "test:unit:debug": "sfdx-lwc-jest --debug",
-    "test:unit:watch": "sfdx-lwc-jest --watch"
-  }
 }
