@@ -20,7 +20,6 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
             if (action == PRODUCT_INFORMATION_ACTION) {
                 actionResult = this.getSettingsProductInformation();
             } else {
-                system.debug('entered where method is no implemented');
                 actionResult = this.createErrorActionResult(400, 'Method: ' + action + ' not implemented');
             }
         }

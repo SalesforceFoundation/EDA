@@ -24,10 +24,7 @@ public virtual with sharing class EDCSettingsProductAPIService {
             namespace
         );
 
-        String settingsInformationJSON = (String) settingsProductInformationAPIService.call(
-            PRODUCT_INFORMATION_ACTION,
-            new Map<String, Object>{ 'Api Version' => apiVersion }
-        );
+        String settingsInformationJSON = this.makeCall(settingsProductInformationAPIService, apiVersion);
 
         EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = (EDCSettingsProductAPIModel.SettingsProductInformationActionResult) JSON.deserialize(
             settingsInformationJSON,
@@ -36,7 +33,8 @@ public virtual with sharing class EDCSettingsProductAPIService {
         return actionResult;
     }
 
-    private virtual Callable locateSettingsProductInformationAPIService(String className, String namespace) {
+    @TestVisible
+    private Callable locateSettingsProductInformationAPIService(String className, String namespace) {
         Callable settingsProductInformationAPIService;
         String nonEDANamespace = namespace;
 
@@ -56,17 +54,17 @@ public virtual with sharing class EDCSettingsProductAPIService {
                 ' could not get loaded',
                 e
             );
-        } catch (System.TypeException e) {
-            throw new SettingsProductNotFoundException(
-                'Class: ' +
-                className +
-                ' with namespace: ' +
-                (String.isBlank(nonEDANamespace) ? 'hed' : nonEDANamespace) +
-                +' could not get loaded',
-                e
-            );
         }
         return settingsProductInformationAPIService;
+    }
+
+    @TestVisible
+    private virtual String makeCall(Callable settingsProductInformationAPIService, Decimal apiVersion) {
+        String settingsInformationJSON = (String) settingsProductInformationAPIService.call(
+            PRODUCT_INFORMATION_ACTION,
+            new Map<String, Object>{ 'Api Version' => apiVersion }
+        );
+        return settingsInformationJSON;
     }
 
     public class SettingsProductNotFoundException extends Exception {

@@ -46,7 +46,6 @@ const TrailblazerCommunityUrl = "https://trailblazers.salesforce.com/successHome
 const YoutubeUrl = "https://www.youtube.com/user/SalesforceFoundation";
 
 export default class EducationCloudSettings extends NavigationMixin(LightningElement) {
-
     @track
     edcProductModels = [];
 
@@ -77,7 +76,6 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         if (data) {
             //For each product registry 'product information' call the API to get the Product Information
             data.forEach((prodRegistry) => {
-
                 let prodRegistrySerialized = JSON.stringify(prodRegistry);
                 getEDCSettingsProductVModel({ productRegistry: prodRegistrySerialized })
                 .then((result) => {
