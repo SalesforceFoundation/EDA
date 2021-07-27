@@ -1,0 +1,4 @@
+path: yarn.lock
+type: yarn
+allowed-hosts: yarn
+validate-https: true

@@ -1,0 +1,24 @@
+name: Lockfile
+on: [push]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '14'
+      - name: Determine Node Version
+        id: node-version
+        run: |
+          echo "::set-output name=ver::$(node --version)"
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ steps.node-version.outputs.ver }}-${{ hashFiles('package.json', 'yarn.lock') }}
+      - name: Install Packages
+        run: |
+          yarn install
+      - name: lockfile-lint
+        run: |
+          npx lockfile-lint --path yarn.lock --allowed-hosts registry.yarnpkg.com --validate-https
