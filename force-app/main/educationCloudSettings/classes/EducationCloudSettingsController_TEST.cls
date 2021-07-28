@@ -145,14 +145,14 @@ private class EducationCloudSettingsController_TEST {
         EDCSettingsProductVModel productVModel;
         EDCSettingsProductVMapper.instance = new EDCSettingsProductVMapperExceptionStub();
 
-        Test.startTest();
         try {
+            Test.startTest();
             productVModel = EducationCloudSettingsController.getEDCSettingsProductVModel(productRegistry);
+            Test.stopTest();
             System.assert(true, 'this should not happen');
         } catch (AuraHandledException e) {
             exceptionMessage = e.getMessage();
         }
-        Test.stopTest();
 
         System.assert(String.isNotBlank(exceptionMessage), 'exceptionMessage should be not be blank');
     }
