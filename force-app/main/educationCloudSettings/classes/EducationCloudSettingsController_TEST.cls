@@ -42,7 +42,7 @@ private class EducationCloudSettingsController_TEST {
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
-        Decimal apiVersion = 50.0;
+        Decimal apiVersion = 52.0;
         ProductRegistryVMapper.instance = new ProductRegistryVMapperStub();
 
         Test.startTest();
@@ -67,7 +67,7 @@ private class EducationCloudSettingsController_TEST {
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
-        Decimal apiVersion = 50.0;
+        Decimal apiVersion = 52.0;
         String exceptionMessage;
         ProductRegistryVMapper.instance = new ProductRegistryVMapperExceptionStub();
 
@@ -99,7 +99,7 @@ private class EducationCloudSettingsController_TEST {
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
-        Decimal apiVersion = 50.0;
+        Decimal apiVersion = 52.0;
 
         ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
         String productRegistry = JSON.serialize(registryModel);
@@ -137,7 +137,7 @@ private class EducationCloudSettingsController_TEST {
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
-        Decimal apiVersion = 50.0;
+        Decimal apiVersion = 52.0;
         String exceptionMessage;
         ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
         String productRegistry = JSON.serialize(registryModel);
@@ -166,7 +166,7 @@ private class EducationCloudSettingsController_TEST {
                 'testAction',
                 'testNamespace',
                 'testClassname',
-                50.0
+                52.0
             );
             return new List<ProductRegistryVModel>{ model };
         }
