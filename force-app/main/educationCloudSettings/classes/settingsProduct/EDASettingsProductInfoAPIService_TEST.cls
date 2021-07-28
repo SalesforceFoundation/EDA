@@ -45,13 +45,12 @@ private class EDASettingsProductInfoAPIService_TEST {
         Decimal apiVersion = 50.0;
         Map<String, Object> args = new Map<String, Object>{ 'Api Version' => apiVersion };
 
-        Test.startTest();
 
         Type settingsProductInformationAPIServiceType = Type.forName('', classname);
         Callable settingsProductInformationAPIService = (Callable) settingsProductInformationAPIServiceType.newInstance();
 
+        Test.startTest();
         settingsInformationJSON = (String) settingsProductInformationAPIService.call(action, args);
-
         Test.stopTest();
 
         EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = (EDCSettingsProductAPIModel.SettingsProductInformationActionResult) JSON.deserialize(
