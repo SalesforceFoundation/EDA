@@ -36,6 +36,12 @@
  */
 public with sharing class Application_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
+     * @description If the application window validation trigger is enabled via custom settings
+     */
+    private static Boolean isApplicationWindowValidationEnabled = UTIL_CustomSettingsFacade.getSettings()
+        .Application_Window_Validation__c;
+
+    /*******************************************************************************************************
      * @description Prevent an Application from being inserted when the Due Date is prior to the Open Date.
      * @param listNew the list of Applications from trigger new.
      * @param listOld the list of Applications from trigger old.
@@ -71,6 +77,9 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
      ********************************************************************************************************/
     @TestVisible
     private void handleBeforeInsert(List<SObject> newSObjectList) {
+        if (!isApplicationWindowValidationEnabled) {
+            return;
+        }
         List<Application__c> newApplications = (List<Application__c>) newSObjectList;
 
         for (Application__c newApplication : newApplications) {
@@ -88,6 +97,9 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
      ********************************************************************************************************/
     @TestVisible
     private void handleBeforeUpdate(List<SObject> oldSObjectList, List<SObject> newSObjectList) {
+        if (!isApplicationWindowValidationEnabled) {
+            return;
+        }
         List<Application__c> updatedApplications = (List<Application__c>) newSObjectList;
         Map<Id, Application__c> oldApplicationsById = new Map<Id, Application__c>(
             (List<Application__c>) oldSObjectList

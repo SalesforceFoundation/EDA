@@ -45,6 +45,9 @@ private with sharing class Application_TEST {
      *********************************************************/
     @isTest
     static void shouldFailInsertWhenApplicationDueDateIsBeforeOpenDate() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Application_Window_Validation__c = true)
+        );
         Account academicAccount = getAcademicAccount();
         Contact student = getStudent();
 
@@ -72,6 +75,9 @@ private with sharing class Application_TEST {
      *********************************************************/
     @isTest
     static void shouldFailUpdateWhenApplicationDueDateIsBeforeOpenDate() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Application_Window_Validation__c = true)
+        );
         Account academicAccount = getAcademicAccount();
         Contact student = getStudent();
 
@@ -101,6 +107,9 @@ private with sharing class Application_TEST {
      *********************************************************/
     @isTest
     static void shouldSucceedWhenApplicationHasOnlyDueDate() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Application_Window_Validation__c = true)
+        );
         Account academicAccount = getAcademicAccount();
         Contact student = getStudent();
 
@@ -126,6 +135,9 @@ private with sharing class Application_TEST {
      *********************************************************/
     @isTest
     static void shouldSucceedWhenApplicationHasOnlyOpenDate() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Application_Window_Validation__c = true)
+        );
         Account academicAccount = getAcademicAccount();
         Contact student = getStudent();
 
@@ -143,6 +155,35 @@ private with sharing class Application_TEST {
             true,
             insertResult.isSuccess(),
             'Insert should succeed since date fields are not compared due to only one of them being set'
+        );
+    }
+
+    /********************************************************
+     * @description Should succeed to insert an application with a due date prior to the open date when the trigger is disabled
+     *********************************************************/
+    @isTest
+    static void shouldSucceedInsertWhenTriggerDisabled() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Application_Window_Validation__c = false)
+        );
+        Account academicAccount = getAcademicAccount();
+        Contact student = getStudent();
+
+        Application__c invalidApplication = new Application__c(
+            Applicant__c = student.Id,
+            Applying_To__c = academicAccount.Id,
+            Due_Date__c = System.today().addDays(-10),
+            Open_Date__c = System.today()
+        );
+
+        Test.startTest();
+        Database.SaveResult insertResult = Database.insert(invalidApplication, false);
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            insertResult.isSuccess(),
+            'Insert should have succeeded due to trigger being disabled'
         );
     }
 
