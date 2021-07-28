@@ -47,4 +47,8 @@
         <masterLabel>Declined Offer</masterLabel>
         <translation>Offre refusée</translation>
     </picklistValues>
+    <picklistValues>
+        <masterLabel>Started</masterLabel>
+        <translation><!-- Started --></translation>
+    </picklistValues>
 </CustomFieldTranslation>

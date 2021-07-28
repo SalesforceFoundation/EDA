@@ -129,15 +129,34 @@ Get Affiliation Mappings Value
     &{Id} =                 Get From List  ${result['records']}  0
     [return]                ${Id}[${NS}${field_name}]
 
-Get Records Count
-    [Documentation]         Returns the no of record identified by the given field_name and
-    ...                     field_value input for a specific object
+Get Affiliation Mappings
+    [Documentation]         Returns the value of the field in affiliation mappings by accepting the
+    ...                     name of the value as a parameter
     ${NS} =                 Get EDA namespace prefix
-    [Arguments]             ${obj_name}             ${field_name}       ${field_value}
+    [Arguments]             ${field_name}
     ${result} =             SOQL Query
-    ...                     SELECT COUNT(Name) FROM ${NS}${obj_name} where ${NS}${field_name}=${field_value}
-    &{Id} =                 Get From List  ${result['records']}  0
-    [return]                ${Id}[expr0]
+    ...                     SELECT ${NS}${field_name} FROM ${NS}Affl_Mappings__c
+    ${count} =              Get Affl Records Count       ${field_name}
+    @{ValueList}=           Create List
+    FOR     ${index}        IN RANGE    ${count}
+        ${name} =               Set variable    ${result}[records][${index}][${NS}${field_name}]
+        Append To List          ${ValueList}    ${name}
+    END
+    [return]                ${ValueList}
+
+Get Relationship Type Values
+    [Documentation]         Returns the list of active picklist values for relationship type field
+    ${NS} =                 Get EDA namespace prefix
+    [Arguments]             ${obj_name}             ${field_name}
+    ${result} =             SOQL Query
+    ...                     SELECT Name FROM ${NS}${obj_name} where ${NS}${field_name}=true
+    ${count} =              Get Records Count       ${obj_name}     ${field_name}       true
+    @{ValueList}=           Create List
+    FOR     ${index}    IN RANGE    ${count}
+        ${name} =               Set variable    ${result}[records][${index}][Name]
+        Append To List          ${ValueList}    ${name}
+    END
+    [return]                ${ValueList}
 
 Get Custom Settings Value
     [Documentation]         Returns the value of the field in hierarch settings by accepting the
@@ -148,6 +167,16 @@ Get Custom Settings Value
     ...                     SELECT ${NS}${field_name} FROM ${NS}Hierarchy_Settings__c
     &{Id} =                 Get From List  ${result['records']}  0
     [return]                ${Id}[${NS}${field_name}]
+
+Get Affl Records Count
+    [Documentation]         Returns the no of affl record identified by the given field_name and
+    ...                     field_value input for a specific object
+    ${NS} =                 Get EDA namespace prefix
+    [Arguments]             ${field_name}
+    ${result} =             SOQL Query
+    ...                     SELECT COUNT(${NS}${field_name}) FROM ${NS}Affl_Mappings__c
+    &{Id} =                 Get From List  ${result['records']}  0
+    [return]                ${Id}[expr0]
 
 Get Record Type Id
     [Documentation]         Returns the Id of the record type by accepting the name of the record
