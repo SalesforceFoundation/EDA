@@ -42,7 +42,7 @@ private class EDCSettingsProductVMapper_TEST {
         String initials = 'testInitials';
         String name = 'testName';
         String description = 'testDescription';
-        String settingsComponent = 'c__testSettingsComponent';
+        String settingsComponent = 'testSettingsComponent';
         String documentationUrl = 'testDocumentationUrl';
         String trailheadUrl = 'testTrailheadUrl';
         String icon = 'testIcon';
@@ -64,10 +64,9 @@ private class EDCSettingsProductVMapper_TEST {
         System.assertEquals(initials, productVModel.initials, 'initials should be set to ' + initials);
         System.assertEquals(name, productVModel.name, 'name should be set to ' + name);
         System.assertEquals(description, productVModel.description, 'description should be set to ' + description);
-        System.assertEquals(
-            settingsComponent,
-            productVModel.settingsComponent,
-            'settingsComponent should be set to ' + settingsComponent
+        System.assert(
+            productVModel.settingsComponent.contains(settingsComponent),
+            'settingsComponent should contains ' + settingsComponent
         );
         System.assertEquals(
             documentationUrl,
