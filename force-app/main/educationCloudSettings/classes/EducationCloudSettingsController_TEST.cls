@@ -71,14 +71,14 @@ private class EducationCloudSettingsController_TEST {
         String exceptionMessage;
         ProductRegistryVMapper.instance = new ProductRegistryVMapperExceptionStub();
 
-        Test.startTest();
         try {
+            Test.startTest();
             List<ProductRegistryVModel> productRegistryList = EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels();
+            Test.stopTest();
             System.assert(true, 'this should not happen');
         } catch (AuraHandledException e) {
             exceptionMessage = e.getMessage();
         }
-        Test.stopTest();
 
         System.assert(String.isNotBlank(exceptionMessage), 'exceptionMessage should be not be blank');
     }
