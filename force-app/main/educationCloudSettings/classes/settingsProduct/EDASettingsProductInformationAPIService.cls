@@ -44,22 +44,30 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
     /********************************************************************************************
      * @description Returns an object which is a serialized version of
      * EDCSettingsProductAPIModel.SettingsProductInformationActionResult
-     * @param  action a string representing the specific action or method to execute
-     * @param  args   a map of String and Object representing the parameters provided for this call
+     * @param  action A string representing the specific action or method to execute
+     * @param  args   A map of String and Object representing the parameters provided for this call
      * @return An object which is a serialized version of
      * EDCSettingsProductAPIModel.SettingsProductInformationActionResult
      ********************************************************************************************/
     public Object call(String action, Map<String, Object> args) {
         EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult;
         String result;
-        if (args.get('Api Version') == null) {
-            actionResult = this.createErrorActionResult(400, 'You gotta have an API version!');
-        } else {
-            if (action == PRODUCT_INFORMATION_ACTION) {
-                actionResult = this.getSettingsProductInformation();
-            } else {
-                actionResult = this.createErrorActionResult(400, 'Method: ' + action + ' not implemented');
-            }
+        Decimal apiVersion;
+
+        try {
+            apiVersion = this.getApiVersion(args);
+        } catch (ApiVersionNotFoundException avnfe) {
+            actionResult = this.createErrorActionResult(400, avnfe.getMessage());
+            result = JSON.serialize(actionResult);
+            return result;
+        }
+
+        try {
+            actionResult = this.handleAction(action, apiVersion);
+        } catch (InvalidActionException iae) {
+            actionResult = this.createErrorActionResult(400, iae.getMessage());
+            result = JSON.serialize(actionResult);
+            return result;
         }
 
         result = JSON.serialize(actionResult);
@@ -114,5 +122,40 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
             error
         );
         return actionResult;
+    }
+
+    /********************************************************************************************
+     * @description Returns the decimal Api Version provided as parameter, otherwise it throws
+     * an ApiVersionNotFoundException
+     * @param  args A map of String and Object which contain the parameters needed for this call
+     * @return A decimal Api Version retrieved from the parameters
+     ********************************************************************************************/
+    private Decimal getApiVersion(Map<String, Object> args) {
+        if (args.containsKey('Api Version') == false || args.get('Api Version') == null) {
+            throw new ApiVersionNotFoundException('You gotta have an API version!');
+        }
+        return (Decimal) args.get('Api Version');
+    }
+
+    /********************************************************************************************
+     * @description Returns the EDCSettingsProductAPIModel.SettingsProductInformationActionResult
+     * for the specified action, if the action is not valid an InvalidActionException is thrown
+     * @param  action     A string representing the specific action or method to execute
+     * @param  apiVersion A decimal representing the api version needed for this call
+     * @return            return description
+     ********************************************************************************************/
+    private EDCSettingsProductAPIModel.SettingsProductInformationActionResult handleAction(
+        String action,
+        Decimal apiVersion
+    ) {
+        if (action == PRODUCT_INFORMATION_ACTION) {
+            return this.getSettingsProductInformation();
+        }
+        throw new InvalidActionException('Method: ' + action + ' not implemented');
+    }
+
+    private class ApiVersionNotFoundException extends Exception {
+    }
+    private class InvalidActionException extends Exception {
     }
 }
