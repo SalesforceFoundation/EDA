@@ -64,6 +64,33 @@ private class ProductRegistryVMapper_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify the getProductRegistrySettingsProductInformation method returns null
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testNullProductRegistryModelList() {
+        ProductRegistryService.instance = new ProductRegistryServiceNullProductRegistriesStub();
+
+        Test.startTest();
+        List<ProductRegistryVModel> prodRegistryModelList = ProductRegistryVMapper.getInstance()
+            .getProductRegistrySettingsProductInformation();
+        Test.stopTest();
+
+        System.assertEquals(null, prodRegistryModelList, 'prodRegistryModelList should  be null');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify the LocateProductRegistryService returns an instance
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testLocateProductRegistryService() {
+        Test.startTest();
+        ProductRegistryService instance = ProductRegistryService.getInstance();
+        Test.stopTest();
+
+        System.assertNotEquals(null, instance, 'instance should not be null');
+    }
+
+    /**************************************************************************************************************************
      * @description Stub class for ProductRegistryService where the getProductRegistrySettingsProductInformation method
      * returns some ProductRegistryModel sample data
      ***************************************************************************************************************************/
@@ -76,6 +103,15 @@ private class ProductRegistryVMapper_TEST {
                 52.0
             );
             return new List<ProductRegistryModel>{ prodRegistryModel };
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Stub class for ProductRegistryService which returns a null list of ProductRegistryModel
+     ***************************************************************************************************************************/
+    private class ProductRegistryServiceNullProductRegistriesStub extends ProductRegistryService {
+        public override List<ProductRegistryModel> getProductRegistrySettingsProductInformation() {
+            return null;
         }
     }
 }
