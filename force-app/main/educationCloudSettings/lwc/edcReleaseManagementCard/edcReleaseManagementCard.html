@@ -1,0 +1,25 @@
+<template>
+    <lightning-card>
+        <!-- Card Header -->
+        <h3 slot="title" id="cardTitle">
+            <div class="slds-align-bottom">
+                <lightning-icon icon-name="standard:activations" size="medium" aria-hidden="true"></lightning-icon>
+                <span class="slds-text-heading_small slds-var-p-left_small"
+                    >{labelReference.releaseManagementTitle}</span
+                >
+            </div>
+        </h3>
+        <div class="slds-grid slds-grid_vertical">
+            <div class="slds-col slds-var-m-horizontal_small"><p>{labelReference.releaseManagementDescription}</p></div>
+            <div class="slds-col slds-var-m-horizontal_small slds-var-m-top_small">
+                <lightning-button
+                    label={labelReference.releaseManagementButton}
+                    title={labelReference.releaseManagementButtonA11y}
+                    aria-described-by="cardTitle"
+                    class="btnGoToReleaseManagement"
+                    onclick={handleNavigationClick}
+                ></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>
