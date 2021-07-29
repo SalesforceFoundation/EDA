@@ -114,6 +114,9 @@ private class EDCSettingsProductVMapper_TEST {
         System.assertNotEquals(null, exceptionMessage, 'exception message should not be null');
     }
 
+    /**************************************************************************************************************************
+     * @description Test method to assess the scenario when a getEDCSettingsProductVModel returns null
+     ***************************************************************************************************************************/
     @isTest
     private static void TestNullProductInformation() {
         String action = 'testAction';
@@ -133,6 +136,9 @@ private class EDCSettingsProductVMapper_TEST {
         System.assertEquals(null, productVModel, 'productVModel should be null');
     }
 
+    /**************************************************************************************************************************
+     * @description Test method to assess the scenario when a getSettingsProductInformation returns null
+     ***************************************************************************************************************************/
     @isTest
     private static void TestNullActionResult() {
         String namespace = 'testNamespace';
@@ -198,6 +204,9 @@ private class EDCSettingsProductVMapper_TEST {
         }
     }
 
+    /**************************************************************************************************************************
+     * @description Stub class for EDCSettingsProductVMapper, where the getSettingsProductInformation method returns null
+     ***************************************************************************************************************************/
     private class EDCSettingsProductVMapperNullProductInformationStub extends EDCSettingsProductVMapper {
         private override EDCSettingsProductInformationModel getSettingsProductInformation(
             String className,
@@ -208,6 +217,9 @@ private class EDCSettingsProductVMapper_TEST {
         }
     }
 
+    /**************************************************************************************************************************
+     * @description Stub class for EDCSettingsProductAPIService, where the getSettingsProductInformation method returns null
+     ***************************************************************************************************************************/
     private class EDCSettingsProductAPIServiceNullAction extends EDCSettingsProductAPIService {
         public override EDCSettingsProdInfoActionResultModel getSettingsProductInformation(
             String className,
