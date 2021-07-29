@@ -32,7 +32,7 @@ export default class ApplicationSettings extends LightningElement {
             this.applicationSettingsVModel = response.data;
         }
         if (response.error) {
-            console.error(response.error);
+            //console.error(response.error);
         }
     }
 
