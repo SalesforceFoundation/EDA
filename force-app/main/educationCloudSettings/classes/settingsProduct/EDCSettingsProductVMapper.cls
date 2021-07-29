@@ -105,14 +105,15 @@ public virtual with sharing class EDCSettingsProductVMapper {
 
         EDCSettingsProductInformationModel result;
 
-        if (actionResult != null) {
-            if (actionResult.success) {
-                result = actionResult.result;
-            } else {
-                throw new SettingsProductException(actionResult.error.message);
-            }
+        if (actionResult == null) {
+            return null;
         }
-        return result;
+
+        if (actionResult.success == false) {
+            throw new SettingsProductException(actionResult.error.message);
+        }
+
+        return actionResult.result;
     }
 
     /**********************************************************************************
