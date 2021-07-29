@@ -36,12 +36,6 @@
  */
 public with sharing class Application_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
-     * @description If the application window validation trigger is enabled via custom settings
-     */
-    private static Boolean isApplicationWindowValidationEnabled = UTIL_CustomSettingsFacade.getSettings()
-        .Application_Window_Validation__c;
-
-    /*******************************************************************************************************
      * @description Prevent an Application from being inserted when the Due Date is prior to the Open Date.
      * @param listNew the list of Applications from trigger new.
      * @param listOld the list of Applications from trigger old.
@@ -77,7 +71,7 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
      ********************************************************************************************************/
     @TestVisible
     private void handleBeforeInsert(List<SObject> newSObjectList) {
-        if (!isApplicationWindowValidationEnabled) {
+        if (!applicationWindowValidationIsEnabled()) {
             return;
         }
         List<Application__c> newApplications = (List<Application__c>) newSObjectList;
@@ -97,7 +91,7 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
      ********************************************************************************************************/
     @TestVisible
     private void handleBeforeUpdate(List<SObject> oldSObjectList, List<SObject> newSObjectList) {
-        if (!isApplicationWindowValidationEnabled) {
+        if (!applicationWindowValidationIsEnabled()) {
             return;
         }
         List<Application__c> updatedApplications = (List<Application__c>) newSObjectList;
@@ -137,5 +131,12 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
     private Boolean openOrDueDateHasChanged(Application__c newApplication, Application__c oldApplication) {
         return newApplication.Open_Date__c != oldApplication.Open_Date__c ||
             newApplication.Due_Date__c != oldApplication.Due_Date__c;
+    }
+
+    /*******************************************************************************************************
+     * @description Returns true when the application window validation trigger is enabled via custom settings
+     ******************************************************************************************************/
+    private Boolean applicationWindowValidationIsEnabled() {
+        return UTIL_CustomSettingsFacade.getSettings().Application_Window_Validation__c;
     }
 }
