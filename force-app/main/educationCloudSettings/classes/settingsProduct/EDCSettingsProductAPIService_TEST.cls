@@ -181,6 +181,7 @@ private class EDCSettingsProductAPIService_TEST {
         } catch (EDCSettingsProductApiService.SettingsProductNotFoundException e) {
             exceptionMessage = e.getMessage();
         }
+
         System.assertNotEquals(null, exceptionMessage, 'exception message should not be null');
     }
 

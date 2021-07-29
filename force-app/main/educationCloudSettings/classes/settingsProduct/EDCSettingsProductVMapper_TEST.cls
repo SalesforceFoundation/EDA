@@ -102,14 +102,15 @@ private class EDCSettingsProductVMapper_TEST {
         EDCSettingsProductAPIService.instance = new EDCSettingsProductAPIServiceErrorStub();
         EDCSettingsProductVModel productVModel;
 
-        Test.startTest();
         try {
+            Test.startTest();
             productVModel = EDCSettingsProductVMapper.getInstance().getEDCSettingsProductVModel(productRegistry);
+            Test.stopTest();
             System.assert(true, 'this should not happen');
         } catch (EDCSettingsProductVMapper.SettingsProductException e) {
             exceptionMessage = e.getMessage();
         }
-        Test.stopTest();
+
         System.assertNotEquals(null, exceptionMessage, 'exception message should not be null');
     }
 
