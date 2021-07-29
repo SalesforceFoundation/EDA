@@ -62,16 +62,18 @@ public virtual with sharing class ProductRegistryVMapper {
 
         productRegistryModelList = this.locateProductRegistryService().getProductRegistrySettingsProductInformation();
 
-        if (productRegistryModelList != null && !productRegistryModelList.isEmpty()) {
-            for (ProductRegistryModel prodRegistryModel : productRegistryModelList) {
-                ProductRegistryVModel prodRegistryVModel = new ProductRegistryVModel(
-                    prodRegistryModel.action,
-                    prodRegistryModel.namespace,
-                    prodRegistryModel.classname,
-                    prodRegistryModel.apiVersion
-                );
-                productRegistryVModelList.add(prodRegistryVModel);
-            }
+        if (productRegistryModelList == null) {
+            return null;
+        }
+
+        for (ProductRegistryModel prodRegistryModel : productRegistryModelList) {
+            ProductRegistryVModel prodRegistryVModel = new ProductRegistryVModel(
+                prodRegistryModel.action,
+                prodRegistryModel.namespace,
+                prodRegistryModel.classname,
+                prodRegistryModel.apiVersion
+            );
+            productRegistryVModelList.add(prodRegistryVModel);
         }
 
         return productRegistryVModelList;
