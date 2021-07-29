@@ -338,7 +338,7 @@ export default class EdaSettingsNavigation extends LightningElement {
                 menuItems: [
                     {
                         label: this.labelReference.applicationSettings.applicationWindowValidation,
-                        id: "applicationWindowValidation",
+                        id: "enableApplicationWindowValidation",
                     },
                 ],
             },
