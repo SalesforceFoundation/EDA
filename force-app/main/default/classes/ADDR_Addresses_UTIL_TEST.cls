@@ -1253,7 +1253,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void testClearAddrInfo() {
+    static void testClearAddrInfoAccount() {
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,
             UTIL_Describe_API.getBizAccRecTypeID()
@@ -1273,5 +1273,69 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         System.assertEquals(null, accounts[0].BillingLatitude);
         System.assertEquals(null, accounts[0].BillingLongitude);
         System.assertEquals(null, accounts[0].BillingState);
+    }
+
+    @isTest
+    static void testClearAddrInfoContact() {
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.clearAddrInfo(contacts[0]);
+        Test.stopTest();
+
+        System.assertEquals(null, contacts[0].MailingStreet);
+        System.assertEquals(null, contacts[0].MailingCity);
+        System.assertEquals(null, contacts[0].Mailing_County__c);
+        System.assertEquals(null, contacts[0].MailingState);
+        System.assertEquals(null, contacts[0].MailingPostalCode);
+        System.assertEquals(null, contacts[0].MailingCountry);
+        System.assertEquals(null, contacts[0].MailingLatitude);
+        System.assertEquals(null, contacts[0].MailingLongitude);
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** getParentAccsWithChildrenQuery ************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testGetParentAccsWithChildrenQueryPicklistEnabled() {
+        //Placeholder for now until we make the enable check virtual
+        /*Test.startTest();
+        String parentAccsWithChildrenQuery = ADDR_Addresses_UTIL.getParentAccsWithChildrenQuery();
+        Test.stopTest();
+
+        String assertString =
+            'SELECT recordTypeId, Current_Address__c, BillingStreet, ' +
+            'BillingCity, Billing_County__c, BillingState, ' +
+            'BillingPostalCode, BillingCountry, BillingLatitude, ' +
+            'BillingLongitude';
+
+        assertString += ', BillingCountryCode, BillingStateCode';
+        assertString += ', (SELECT Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, Mailing_County__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude';
+        assertString += ', MailingCountryCode, MailingStateCode';
+        assertString += ' FROM Account.Contacts)';
+        assertString += ', (SELECT Default_Address__c, Parent_Account__c, Parent_Contact__c, MailingCounty__c, Latest_Start_Date__c, Latest_End_Date__c FROM Account.Addresses__r)';
+        assertString += ' FROM Account WHERE Id IN ';
+
+        System.assertEquals(parentAccsWithChildrenQuery, assertString);*/
+    }
+
+    @isTest
+    static void testGetParentAccsWithChildrenQueryPicklistDisabled() {
+        Test.startTest();
+        String parentAccsWithChildrenQuery = ADDR_Addresses_UTIL.getParentAccsWithChildrenQuery();
+        Test.stopTest();
+
+        String assertString =
+            'SELECT recordTypeId, Current_Address__c, BillingStreet, ' +
+            'BillingCity, Billing_County__c, BillingState, ' +
+            'BillingPostalCode, BillingCountry, BillingLatitude, ' +
+            'BillingLongitude';
+
+        assertString += ', (SELECT Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, Mailing_County__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude';
+        assertString += ' FROM Account.Contacts)';
+        assertString += ', (SELECT Default_Address__c, Parent_Account__c, Parent_Contact__c, MailingCounty__c, Latest_Start_Date__c, Latest_End_Date__c FROM Account.Addresses__r)';
+        assertString += ' FROM Account WHERE Id IN ';
+
+        System.assertEquals(parentAccsWithChildrenQuery, assertString);
     }
 }
