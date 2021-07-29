@@ -231,11 +231,1047 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
      ****************************************************** isContactAddressChanged *******************************************
      **************************************************************************************************************************/
     @isTest
-    static void isContactAddressChangedBothNull() {
+    static void testIsContactAddressChangedBothNull() {
         Test.startTest();
         Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(null, null);
         Test.stopTest();
 
         System.assertEquals(false, isContactAddressChanged);
+    }
+
+    @isTest
+    static void testIsContactAddressChangedCon1Null() {
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
+        con2.MailingStreet = 'Some Street';
+
+        Test.startTest();
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(null, con2);
+        Test.stopTest();
+
+        System.assertEquals(true, isContactAddressChanged);
+    }
+
+    @isTest
+    static void testIsContactAddressChangedCon1NullCon2EmptyTypeEmpty() {
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
+
+        Test.startTest();
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(null, con2);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAddressChanged);
+    }
+
+    @isTest
+    static void testIsContactAddressChangedCon2NullCon1NotEmptyTypeNotEmpty() {
+        Contact con1 = UTIL_UnitTestData_TEST.getContact();
+        con1.Primary_Address_Type__c = 'Some Type';
+
+        Test.startTest();
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, null);
+        Test.stopTest();
+
+        System.assertEquals(true, isContactAddressChanged);
+    }
+
+    @isTest
+    static void testIsContactAddressChangedBothNotNullSameAddressInfo() {
+        Contact con1 = UTIL_UnitTestData_TEST.getContact();
+
+        Test.startTest();
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, null);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAddressChanged);
+    }
+
+    @isTest
+    static void testIsContactAddressChangedBothNotNullDifferentAddressInfo() {
+        Contact con1 = UTIL_UnitTestData_TEST.getContact();
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
+        con1.MailingStreet = 'Some Street';
+
+        Test.startTest();
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
+        Test.stopTest();
+
+        System.assertEquals(true, isContactAddressChanged);
+    }
+
+    @isTest
+    static void testIsContactAddressChanged() {
+        /* return (!isContactAddressEmpty(con1) || String.isNotBlank(con1.Primary_Address_Type__c)); does not make any sense
+         or hardly readable. We need to refactor this so that it is readable from first glance */
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** isAccountAddressChanged *******************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testIsAccountAddressChangedAcc2NullFalse() {
+        Account acc1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+
+        Test.startTest();
+        Boolean isAccountAddressChanged = ADDR_Addresses_UTIL.isAccountAddressChanged(acc1, null);
+        Test.stopTest();
+
+        System.assertEquals(false, isAccountAddressChanged);
+    }
+
+    @isTest
+    static void testIsAccountAddressChangedAcc1NullFalse() {
+        Account acc2 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+
+        Test.startTest();
+        Boolean isAccountAddressChanged = ADDR_Addresses_UTIL.isAccountAddressChanged(null, acc2);
+        Test.stopTest();
+
+        System.assertEquals(false, isAccountAddressChanged);
+    }
+
+    @isTest
+    static void testIsAccountAddressChangedNotNullSameAddressInfoFalse() {
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            2,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+
+        Test.startTest();
+        Boolean isAccountAddressChanged = ADDR_Addresses_UTIL.isAccountAddressChanged(accounts[0], accounts[1]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAccountAddressChanged);
+    }
+
+    @isTest
+    static void testIsAccountAddressChangedNotNullDifferentAddressInfoTrue() {
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            2,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        accounts[0].BillingStreet = 'some other billing street';
+
+        Test.startTest();
+        Boolean isAccountAddressChanged = ADDR_Addresses_UTIL.isAccountAddressChanged(accounts[0], accounts[1]);
+        Test.stopTest();
+
+        System.assertEquals(true, isAccountAddressChanged);
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** isContactAddressEmpty *********************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testIsContactAddressEmptyNullTrue() {
+        Test.startTest();
+        Boolean isContactAddressEmpty = ADDR_Addresses_UTIL.isContactAddressEmpty(null);
+        Test.stopTest();
+
+        System.assertEquals(true, isContactAddressEmpty);
+    }
+
+    @isTest
+    static void testIsContactAddressEmptyNotNullEmptyTrue() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+
+        Test.startTest();
+        Boolean isContactAddressEmpty = ADDR_Addresses_UTIL.isContactAddressEmpty(contact);
+        Test.stopTest();
+
+        System.assertEquals(true, isContactAddressEmpty);
+    }
+
+    @isTest
+    static void testIsContactAddressEmptyNotNullNotEmptyFalse() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        contact.MailingStreet = 'Some random mailing street';
+
+        Test.startTest();
+        Boolean isContactAddressEmpty = ADDR_Addresses_UTIL.isContactAddressEmpty(contact);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAddressEmpty);
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** isAccAddressEmpty *************************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testIsAccAddressEmptyNullTrue() {
+        Test.startTest();
+        Boolean isAccAddressEmpty = ADDR_Addresses_UTIL.isAccAddressEmpty(null);
+        Test.stopTest();
+
+        System.assertEquals(true, isAccAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAccAddressEmptyNotNullEmptyTrue() {
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+
+        Test.startTest();
+        Boolean isAccAddressEmpty = ADDR_Addresses_UTIL.isAccAddressEmpty(account);
+        Test.stopTest();
+
+        System.assertEquals(true, isAccAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAccAddressEmptyNotNullNotEmptyFalse() {
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        account.BillingStreet = 'Some random billing street';
+
+        Test.startTest();
+        Boolean isAccAddressEmpty = ADDR_Addresses_UTIL.isAccAddressEmpty(account);
+        Test.stopTest();
+
+        System.assertEquals(false, isAccAddressEmpty);
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** equalsCaseSensitive ***********************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testEqualsCaseSensitiveBothNullTrue() {
+        Test.startTest();
+        Boolean stringEquals = ADDR_Addresses_UTIL.equalsCaseSensitive(null, null);
+        Test.stopTest();
+
+        System.assertEquals(true, stringEquals);
+    }
+
+    @isTest
+    static void testEqualsCaseSensitiveOnlyStr1NullFalse() {
+        Test.startTest();
+        Boolean stringEquals = ADDR_Addresses_UTIL.equalsCaseSensitive(null, 'test string');
+        Test.stopTest();
+
+        System.assertEquals(false, stringEquals);
+    }
+
+    @isTest
+    static void testEqualsCaseSensitiveOnlyStr2NullFalse() {
+        Test.startTest();
+        Boolean stringEquals = ADDR_Addresses_UTIL.equalsCaseSensitive('test string', null);
+        Test.stopTest();
+
+        System.assertEquals(false, stringEquals);
+    }
+
+    @isTest
+    static void testEqualsCaseSensitiveNotNullEqualsTrue() {
+        Test.startTest();
+        Boolean stringEquals = ADDR_Addresses_UTIL.equalsCaseSensitive('test string', 'test string');
+        Test.stopTest();
+
+        System.assertEquals(true, stringEquals);
+    }
+
+    @isTest
+    static void testEqualsCaseSensitiveNotNullEqualsFalse() {
+        Test.startTest();
+        Boolean stringEquals = ADDR_Addresses_UTIL.equalsCaseSensitive('test string', '!test string');
+        Test.stopTest();
+
+        System.assertEquals(false, stringEquals);
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** isAddressMatchFuzzy ***********************************************
+     **************************************************************************************************************************/
+    //TODO: The method is not test visible.
+    /*@isTest
+    static void testisAddressMatchFuzzyAddrNewNullFalse() {
+        Test.startTest();
+        Boolean isAddressMatchFuzzy = ADDR_Addresses_UTIL.isAddressMatchFuzzy(null, null, null);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressMatchFuzzy);
+    }*/
+
+    /**************************************************************************************************************************
+     ****************************************************** strCleanup ********************************************************
+     **************************************************************************************************************************/
+    //TODO: The method is not test visible.
+
+    /**************************************************************************************************************************
+     ****************************************************** copyAddressObj ****************************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testCopyAddressObjBothNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressObj(null, null);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testCopyAddressObjSourceNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Address__c addressSource = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressObj(addressSource, null);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testCopyAddressObjDestinationNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Address__c addressDestination = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressObj(null, addressDestination);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testCopyAddressObjNotNullSourceTypeNotBlank() {
+        Address__c addressSource = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        Address__c addressDestination = new Address__c();
+        addressDestination.Address_Type__c = 'Work';
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressObj(addressSource, addressDestination);
+        Test.stopTest();
+
+        System.assertEquals(addressSource.Default_Address__c, addressDestination.Default_Address__c);
+        System.assertEquals(addressSource.MailingStreet__c, addressDestination.MailingStreet__c);
+        System.assertEquals(addressSource.MailingStreet2__c, addressDestination.MailingStreet2__c);
+        System.assertEquals(addressSource.MailingCity__c, addressDestination.MailingCity__c);
+        System.assertEquals(addressSource.MailingCounty__c, addressDestination.MailingCounty__c);
+        System.assertEquals(addressSource.MailingState__c, addressDestination.MailingState__c);
+        System.assertEquals(addressSource.MailingPostalCode__c, addressDestination.MailingPostalCode__c);
+        System.assertEquals(addressSource.MailingCountry__c, addressDestination.MailingCountry__c);
+        System.assertEquals(addressSource.Geolocation__Latitude__s, addressDestination.Geolocation__Latitude__s);
+        System.assertEquals(addressSource.Geolocation__Longitude__s, addressDestination.Geolocation__Longitude__s);
+        System.assertEquals('Home', addressDestination.Address_Type__c);
+    }
+
+    @isTest
+    static void testCopyAddressObjNotNullSourceTypeBlank() {
+        Address__c addressSource = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        Address__c addressDestination = new Address__c();
+        addressSource.Address_Type__c = '';
+        addressDestination.Address_Type__c = 'Work';
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressObj(addressSource, addressDestination);
+        Test.stopTest();
+
+        System.assertEquals(addressSource.Default_Address__c, addressDestination.Default_Address__c);
+        System.assertEquals(addressSource.MailingStreet__c, addressDestination.MailingStreet__c);
+        System.assertEquals(addressSource.MailingStreet2__c, addressDestination.MailingStreet2__c);
+        System.assertEquals(addressSource.MailingCity__c, addressDestination.MailingCity__c);
+        System.assertEquals(addressSource.MailingCounty__c, addressDestination.MailingCounty__c);
+        System.assertEquals(addressSource.MailingState__c, addressDestination.MailingState__c);
+        System.assertEquals(addressSource.MailingPostalCode__c, addressDestination.MailingPostalCode__c);
+        System.assertEquals(addressSource.MailingCountry__c, addressDestination.MailingCountry__c);
+        System.assertEquals(addressSource.Geolocation__Latitude__s, addressDestination.Geolocation__Latitude__s);
+        System.assertEquals(addressSource.Geolocation__Longitude__s, addressDestination.Geolocation__Longitude__s);
+        System.assertEquals('Work', addressDestination.Address_Type__c);
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** copyAddressStdSObj ************************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testCopyAddressObjSobjSourceRecordNull() {
+        //To Refactor: we don't have guard clause for this.
+        //To Refactor: terrible method name.
+        //To Refactor: Have to define the Address prefix is a loophole
+        /*Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObj(null, 'Mailing', account, 'Billing');
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjSourceFieldPrefixNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Contact contact = UTIL_UnitTestData_TEST.getContact();
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObj(contact, null, account, 'Billing');
+        Test.stopTest();*/
+
+        //Expecting invalid field error
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjDestinationRecordNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Contact contact = UTIL_UnitTestData_TEST.getContact();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObj(contact, 'Mailing', null, 'Billing');
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjDestinationFieldPrefixNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Contact contact = UTIL_UnitTestData_TEST.getContact();
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObj(contact, 'Mailing', account, null);
+        Test.stopTest();*/
+
+        //Expecting invalid field error
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjValidField() {
+        //To Refactor: we don't have guard clause for this.
+        //To Refactor: No way we can test isStateCountryPicklistsEnabled.
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObj(account, 'Billing', contact, 'Mailing');
+        Test.stopTest();
+
+        System.assertEquals(account.BillingStreet, contact.MailingStreet);
+        System.assertEquals(account.BillingCity, contact.MailingCity);
+        System.assertEquals(account.Billing_County__c, contact.Mailing_County__c);
+        System.assertEquals(account.BillingPostalCode, contact.MailingPostalCode);
+        System.assertEquals(account.BillingState, contact.MailingState);
+        System.assertEquals(account.BillingCountry, contact.MailingCountry);
+        System.assertEquals(account.BillingLatitude, contact.MailingLatitude);
+        System.assertEquals(account.BillingLongitude, contact.MailingLongitude);
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjInvalidField() {
+        //To Refactor: we don't have guard clause for this.
+        /*Contact contact = UTIL_UnitTestData_TEST.getContact();
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObj(account, 'Mailing', contact, 'Billing');
+        Test.stopTest();*/
+
+        //Expecting invalid field error
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** copyAddressStdSObjAddr ********************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testCopyAddressObjSobjAddrAddressNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Billing', null, 'Home');
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjAddrSourceFieldPrefixNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, null, address, 'Home');
+        Test.stopTest();*/
+
+        //Expecting invalid field error
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjAddrSourceRecordNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(null, 'Billing', address, 'Home');
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjAddrValidField() {
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Address__c address = new Address__c();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Billing', address, 'Home');
+        Test.stopTest();
+
+        System.assertEquals(account.BillingStreet, address.MailingStreet__c);
+        System.assertEquals(account.BillingCity, address.MailingCity__c);
+        System.assertEquals(account.Billing_County__c, address.MailingCounty__c);
+        System.assertEquals(account.BillingPostalCode, address.MailingPostalCode__c);
+        System.assertEquals(account.BillingState, address.MailingState__c);
+        System.assertEquals(account.BillingCountry, address.MailingCountry__c);
+        System.assertEquals(account.BillingLatitude, address.Geolocation__Latitude__s);
+        System.assertEquals(account.BillingLongitude, address.Geolocation__Longitude__s);
+        System.assertEquals('Home', address.Address_Type__c);
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjAddrInvalidField() {
+        //To Refactor: we don't have guard clause for this.
+        /*Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Address__c address = new Address__c();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Mailing', address, 'Home');
+        Test.stopTest();*/
+
+        //Expecting invalid field error
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** copyAddressAddrSObj ***********************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testCopyAddressAddrSObjAddressNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressAddrSObj(null, account, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testCopyAddressAddrSObjSourceRecordNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressAddrSObj(address, null, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testCopyAddressAddrSObjSourceRecordPrefixNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressAddrSObj(address, account, null, 'Primary_Address_Type__c', dmlWrapper);
+        Test.stopTest();*/
+
+        //Expecting invalid field error
+    }
+
+    @isTest
+    static void testCopyAddressAddrSObjValidField() {
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        Contact contact = new Contact();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressAddrSObj(address, contact, 'Mailing', 'Primary_Address_Type__c', dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(address.MailingStreet__c, contact.MailingStreet);
+        System.assertEquals(address.MailingCity__c, contact.MailingCity);
+        System.assertEquals(address.MailingCounty__c, contact.Mailing_County__c);
+        System.assertEquals(address.MailingPostalCode__c, contact.MailingPostalCode);
+        System.assertEquals(address.MailingState__c, contact.MailingState);
+        System.assertEquals(address.MailingCountry__c, contact.MailingCountry);
+        System.assertEquals(address.Geolocation__Latitude__s, contact.MailingLatitude);
+        System.assertEquals(address.Geolocation__Longitude__s, contact.MailingLongitude);
+        System.assertEquals(address.Address_Type__c, contact.get('Primary_Address_Type__c'));
+        System.assertEquals(true, dmlWrapper.objectsToUpdate.size() > 0);
+        System.assertEquals(address.MailingStreet__c, dmlWrapper.objectsToUpdate[0].get('MailingStreet'));
+    }
+
+    @isTest
+    static void testCopyAddressAddrSObjInvalidSourceRecordField() {
+        //To Refactor: we don't have guard clause for this.
+        /*Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        Contact contact = new Contact();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressAddrSObj(address, contact, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
+        Test.stopTest();*/
+
+        //Expecting invalid field error
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** initValidStateCountryCodes ****************************************
+     **************************************************************************************************************************/
+
+    //This method is not quite testable as it is using schema describe.
+
+    /**************************************************************************************************************************
+     ****************************************************** handleMultilineStreet *********************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testHandleMultilineStreetNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Test.startTest();
+        ADDR_Addresses_UTIL.handleMultilineStreet(null);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testHandleMultilineStreetRN() {
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        address.MailingStreet__c = 'test\r\nmultiple line street';
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.handleMultilineStreet(address);
+        Test.stopTest();
+
+        System.assertEquals('test', address.MailingStreet__c);
+        System.assertEquals('multiple line street', address.MailingStreet2__c);
+    }
+
+    @isTest
+    static void testHandleMultilineStreetN() {
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        address.MailingStreet__c = 'test\nmultiple line street';
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.handleMultilineStreet(address);
+        Test.stopTest();
+
+        System.assertEquals('test', address.MailingStreet__c);
+        System.assertEquals('multiple line street', address.MailingStreet2__c);
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** getMultilineStreet ************************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testGetMultilineStreetNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Test.startTest();
+        ADDR_Addresses_UTIL.getMultilineStreet(null);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testGetMultilineStreetStreet2NotBlank() {
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        address.MailingStreet__c = 'test';
+        address.MailingStreet2__c = 'multiple line street';
+        Test.startTest();
+        String multilineStreet = ADDR_Addresses_UTIL.getMultilineStreet(address);
+        Test.stopTest();
+
+        System.assertEquals('test\r\nmultiple line street', multilineStreet);
+    }
+
+    @isTest
+    static void testGetMultilineStreetStreet2Blank() {
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        address.MailingStreet__c = 'test';
+        address.MailingStreet2__c = null;
+        Test.startTest();
+        String multilineStreet = ADDR_Addresses_UTIL.getMultilineStreet(address);
+        Test.stopTest();
+
+        System.assertEquals('test', multilineStreet);
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** isStateCountryPicklistsEnabled ************************************
+     **************************************************************************************************************************/
+
+    //At this moment, it is really hard to test this method. We may consider make the methods virtual to override.
+
+    /**************************************************************************************************************************
+     ****************************************************** getNonDuplicateAddresses ******************************************
+     **************************************************************************************************************************/
+
+    //Skipped for this release. TODO: Break down the methods so that it is not handling a hundred things.
+
+    /**************************************************************************************************************************
+     ****************************************************** findDuplicateAddresses ********************************************
+     **************************************************************************************************************************/
+
+    //Skipped for this release. TODO: Break down the methods so that it is not handling a hundred things.
+
+    /**************************************************************************************************************************
+     ****************************************************** getParentIdToAddrs ************************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testGetParentIdToAddrsNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Test.startTest();
+        Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getParentIdToAddrs(null);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testGetParentIdToAddrsAccount() {
+        //To Refactor: Make the getMapParentIdListAddrs() virtual so that we can override it.
+        //To Refactor: Use set of ids instead.
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            10,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        insert accounts;
+
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(10);
+        for (Integer i = 0; i < addresses.size(); i++) {
+            addresses[i].Parent_Account__c = accounts[i].Id;
+        }
+        insert addresses;
+
+        Test.startTest();
+        Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getParentIdToAddrs(addresses);
+        Test.stopTest();
+
+        System.assertEquals(accounts.size(), parentIdToAddrs.keySet().size());
+        for (Integer i = 0; i < addresses.size(); i++) {
+            System.assertEquals(true, parentIdToAddrs.keySet().contains(accounts[i].Id));
+            System.assertEquals(1, parentIdToAddrs.get(accounts[i].Id).size());
+            System.assertEquals(addresses[i].Id, parentIdToAddrs.get(accounts[i].Id)[0].Id);
+        }
+    }
+
+    @isTest
+    static void testGetParentIdToAddrsContact() {
+        //To Refactor: Make the getMapParentIdListAddrs() virtual so that we can override it.
+        //To Refactor: Use set of ids instead.
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        insert contacts;
+
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(10);
+        for (Integer i = 0; i < addresses.size(); i++) {
+            addresses[i].Parent_Contact__c = contacts[i].Id;
+        }
+        insert addresses;
+
+        Test.startTest();
+        Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getParentIdToAddrs(addresses);
+        Test.stopTest();
+
+        System.assertEquals(contacts.size(), parentIdToAddrs.keySet().size());
+        for (Integer i = 0; i < addresses.size(); i++) {
+            System.assertEquals(true, parentIdToAddrs.keySet().contains(contacts[i].Id));
+            System.assertEquals(1, parentIdToAddrs.get(contacts[i].Id).size());
+            System.assertEquals(addresses[i].Id, parentIdToAddrs.get(contacts[i].Id)[0].Id);
+        }
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** getMapParentIdListAddrs *******************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testGetMapParentIdListAddrsNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Test.startTest();
+        Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getMapParentIdListAddrs(null);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testGetMapParentIdListAddrsEmptyIdList() {
+        Test.startTest();
+        Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getMapParentIdListAddrs(new List<Id>());
+        Test.stopTest();
+
+        System.assertEquals(0, parentIdToAddrs.keySet().size());
+    }
+
+    @isTest
+    static void testGetMapParentIdListAddrsAccount() {
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            10,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        insert accounts;
+
+        List<Id> parentIds = new List<Id>();
+        for (Account account : accounts) {
+            parentIds.add(account.Id);
+        }
+
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(10);
+        for (Integer i = 0; i < addresses.size(); i++) {
+            addresses[i].Parent_Account__c = accounts[i].Id;
+        }
+        insert addresses;
+
+        Test.startTest();
+        Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getMapParentIdListAddrs(parentIds);
+        Test.stopTest();
+
+        System.assertEquals(accounts.size(), parentIdToAddrs.keySet().size());
+        for (Integer i = 0; i < addresses.size(); i++) {
+            System.assertEquals(true, parentIdToAddrs.keySet().contains(accounts[i].Id));
+            System.assertEquals(1, parentIdToAddrs.get(accounts[i].Id).size());
+            System.assertEquals(addresses[i].Id, parentIdToAddrs.get(accounts[i].Id)[0].Id);
+        }
+    }
+
+    @isTest
+    static void testGetMapParentIdListAddrsContact() {
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(10);
+        insert contacts;
+
+        List<Id> parentIds = new List<Id>();
+        for (Contact contact : contacts) {
+            parentIds.add(contact.Id);
+        }
+
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(10);
+        for (Integer i = 0; i < addresses.size(); i++) {
+            addresses[i].Parent_Contact__c = contacts[i].Id;
+        }
+        insert addresses;
+
+        Test.startTest();
+        Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getMapParentIdListAddrs(parentIds);
+        Test.stopTest();
+
+        System.assertEquals(contacts.size(), parentIdToAddrs.keySet().size());
+        for (Integer i = 0; i < addresses.size(); i++) {
+            System.assertEquals(true, parentIdToAddrs.keySet().contains(contacts[i].Id));
+            System.assertEquals(1, parentIdToAddrs.get(contacts[i].Id).size());
+            System.assertEquals(addresses[i].Id, parentIdToAddrs.get(contacts[i].Id)[0].Id);
+        }
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** updateAddrIsOverride **********************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testUpdateAddrIsOverrideMapNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.updateAddrIsOverride(null, dmlWrapper);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testUpdateAddrIsOverrideDMWrapperNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*Map<Id, Boolean> mapAddrIdIsOverride = new Map<Id, Boolean>();
+
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            10,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        insert accounts;
+
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(10);
+        for (Integer i = 0; i < addresses.size(); i++) {
+            addresses[i].Parent_Account__c = accounts[i].Id;
+        }
+        insert addresses;
+
+        for (Integer i = 0; i < addresses.size(); i++) {
+            if (i < 5) {
+                mapAddrIdIsOverride.put(addresses[i].Id, true);
+            } else {
+                mapAddrIdIsOverride.put(addresses[i].Id, false);
+            }
+        }
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.updateAddrIsOverride(mapAddrIdIsOverride, null);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testUpdateAddrIsOverride() {
+        //To Refactor: we don't have guard clause for this.
+        Map<Id, Boolean> mapAddrIdIsOverride = new Map<Id, Boolean>();
+
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            10,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        insert accounts;
+
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(10);
+        for (Integer i = 0; i < addresses.size(); i++) {
+            addresses[i].Parent_Account__c = accounts[i].Id;
+        }
+        insert addresses;
+        Set<Id> overridedAddresseIds = new Set<Id>();
+
+        for (Integer i = 0; i < addresses.size(); i++) {
+            if (i < 5) {
+                mapAddrIdIsOverride.put(addresses[i].Id, true);
+                overridedAddresseIds.add(addresses[i].Id);
+            } else {
+                mapAddrIdIsOverride.put(addresses[i].Id, false);
+            }
+        }
+
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.updateAddrIsOverride(mapAddrIdIsOverride, dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(10, dmlWrapper.objectsToUpdate.size());
+        for (SObject objectToUpdate : dmlWrapper.objectsToUpdate) {
+            Address__c address = (Address__c) objectToUpdate;
+            if (overridedAddresseIds.contains(address.Id)) {
+                //Will this break if time zone or maybe test running delay
+                System.assertEquals(true, address.Latest_Start_Date__c.isSameDay(System.Today()));
+                System.assertEquals(null, address.Latest_End_Date__c);
+            } else {
+                System.assertEquals(true, address.Latest_End_Date__c.isSameDay(System.Today()));
+            }
+        }
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** uncheckDefaultOtherAddrs ******************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testUncheckDefaultOtherAddrsNewAddrNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(10);
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(null, addresses, dmlWrapper);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testUncheckDefaultOtherAddrsAllAddrsNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(addresses[0], null, dmlWrapper);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testUncheckDefaultOtherAddrsDMLWrapperNull() {
+        //To Refactor: we don't have guard clause for this.
+        /*List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            10,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        insert accounts;
+
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(10);
+        for (Integer i = 0; i < addresses.size(); i++) {
+            addresses[i].Parent_Account__c = accounts[i].Id;
+        }
+        insert addresses;
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(addresses[0], addresses, null);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testUncheckDefaultOtherAddrs() {
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            10,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        insert accounts;
+
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(10);
+        for (Integer i = 0; i < addresses.size(); i++) {
+            addresses[i].Parent_Account__c = accounts[i].Id;
+        }
+        insert addresses;
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(addresses[0], addresses, dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(9, dmlWrapper.objectsToUpdate.size());
+        for (SObject objectToUpdate : dmlWrapper.objectsToUpdate) {
+            Address__c address = (Address__c) objectToUpdate;
+            System.assertEquals(false, address.Default_Address__c);
+        }
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** clearAddrInfo *****************************************************
+     **************************************************************************************************************************/
+    @isTest
+    static void testClearAddrInfoNull() {
+        //To Refactor: No need to overload here. Passing null will cause Ambiguous method signature error.
+
+        /*Test.startTest();
+        ADDR_Addresses_UTIL.clearAddrInfo(null);
+        Test.stopTest();*/
+
+        //Expecting null pointer
+    }
+
+    @isTest
+    static void testClearAddrInfo() {
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.clearAddrInfo(accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(null, accounts[0].BillingStreet);
+        System.assertEquals(null, accounts[0].BillingCity);
+        System.assertEquals(null, accounts[0].Billing_County__c);
+        System.assertEquals(null, accounts[0].BillingState);
+        System.assertEquals(null, accounts[0].BillingPostalCode);
+        //To Refactor, we are setting coutnry to null whether the state picklist is enabled or not.
+        System.assertEquals(null, accounts[0].BillingCountry);
+        System.assertEquals(null, accounts[0].BillingLatitude);
+        System.assertEquals(null, accounts[0].BillingLongitude);
+        System.assertEquals(null, accounts[0].BillingState);
     }
 }
