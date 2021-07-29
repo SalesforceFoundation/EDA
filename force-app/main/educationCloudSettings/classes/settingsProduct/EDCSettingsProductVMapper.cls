@@ -70,22 +70,20 @@ public virtual with sharing class EDCSettingsProductVMapper {
             prodRegistryVModel.apiVersion
         );
 
-        EDCSettingsProductVModel settingsProductVModel;
-
-        if (productInformation != null) {
-            String navigationPrefix = this.getEDAComponentNavigationPrefix();
-            settingsProductVModel = new EDCSettingsProductVModel(
-                productInformation.initials,
-                productInformation.name,
-                productInformation.description,
-                navigationPrefix + productInformation.settingsComponent,
-                productInformation.documentationUrl,
-                productInformation.trailheadUrl,
-                productInformation.icon
-            );
+        if (productInformation == null) {
+            return null;
         }
 
-        return settingsProductVModel;
+        String navigationPrefix = this.getEDAComponentNavigationPrefix();
+        return new EDCSettingsProductVModel(
+            productInformation.initials,
+            productInformation.name,
+            productInformation.description,
+            navigationPrefix + productInformation.settingsComponent,
+            productInformation.documentationUrl,
+            productInformation.trailheadUrl,
+            productInformation.icon
+        );
     }
 
     /********************************************************************************************
