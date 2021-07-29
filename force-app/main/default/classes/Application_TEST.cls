@@ -159,7 +159,7 @@ private with sharing class Application_TEST {
     }
 
     /********************************************************
-     * @description Should succeed to insert an application with a due date prior to the open date when the trigger is disabled
+     * @description Should succeed in inserting an application with a due date prior to the open date when the trigger is disabled
      *********************************************************/
     @isTest
     static void shouldSucceedInsertWhenTriggerDisabled() {
@@ -184,6 +184,37 @@ private with sharing class Application_TEST {
             true,
             insertResult.isSuccess(),
             'Insert should have succeeded due to trigger being disabled'
+        );
+    }
+
+    /********************************************************
+     * @description Should succeed in updating an application when setting the due date prior to the open date when the trigger is disabled
+     *********************************************************/
+    @isTest
+    static void shouldSucceedUpdateWhenTriggerDisabled() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Application_Window_Validation__c = false)
+        );
+        Account academicAccount = getAcademicAccount();
+        Contact student = getStudent();
+
+        Application__c openEndedApplication = new Application__c(
+            Applicant__c = student.Id,
+            Applying_To__c = academicAccount.Id,
+            Open_Date__c = System.today()
+        );
+        insert openEndedApplication;
+
+        openEndedApplication.Due_Date__c = System.today().addDays(-10);
+
+        Test.startTest();
+        Database.SaveResult updateResult = Database.update(openEndedApplication, false);
+        Test.stopTest();
+
+        System.assertEquals(
+            true,
+            updateResult.isSuccess(),
+            'Update should have succeeded due to trigger being disabled'
         );
     }
 
