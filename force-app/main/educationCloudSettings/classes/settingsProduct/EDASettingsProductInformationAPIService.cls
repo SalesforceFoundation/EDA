@@ -34,20 +34,6 @@
 public virtual with sharing class EDASettingsProductInformationAPIService implements Callable {
     @TestVisible
     private static final String PRODUCT_INFORMATION_ACTION = 'Settings Product Information';
-    @TestVisible
-    private static final String PRODUCT_EDA_INITIALS = 'EDA';
-    @TestVisible
-    private static final String PRODUCT_EDA_NAME = 'Education Data Architecture';
-    @TestVisible
-    private static final String PRODUCT_EDA_DESCRIPTION = 'Education Data Architecture (EDA) is the foundation of the Education Cloud. Its flexible data architecture is designed to configure Salesforce for education.';
-    @TestVisible
-    private static final String PRODUCT_EDA_SETTINGSCOMPONENT = 'EdaSettingsContainer';
-    @TestVisible
-    private static final String PRODUCT_EDA_DOCUMENTATIONURL = 'https://powerofus.force.com/s/article/EDA-Documentation';
-    @TestVisible
-    private static final String PRODUCT_EDA_TRAILHEADURL = 'https://trailhead.salesforce.com/en/content/learn/trails/highered_heda';
-    @TestVisible
-    private static final String PRODUCT_EDA_ICON = 'standard:avatar';
 
     /********************************************************************************************
      * @description Returns an object which is a serialized version of
@@ -84,22 +70,13 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
      * @return An instance of EDCSettingsProdInfoActionResultModel
      ********************************************************************************************/
     public EDCSettingsProdInfoActionResultModel getSettingsProductInformation() {
-        EDCSettingsProductInformationModel productInformation = new EDCSettingsProductInformationModel(
-            PRODUCT_EDA_INITIALS,
-            PRODUCT_EDA_NAME,
-            PRODUCT_EDA_DESCRIPTION,
-            PRODUCT_EDA_SETTINGSCOMPONENT,
-            PRODUCT_EDA_DOCUMENTATIONURL,
-            PRODUCT_EDA_TRAILHEADURL,
-            PRODUCT_EDA_ICON
-        );
-
+        EDCSettingsProductInformationModel productInformationModel = this.locateEDCSettingsProductInformationMapper()
+            .getProductInformationModel();
         EDCSettingsProdInfoActionResultModel actionResult = new EDCSettingsProdInfoActionResultModel(
-            productInformation,
+            productInformationModel,
             true,
             null
         );
-
         return actionResult;
     }
 
@@ -146,6 +123,13 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
             return this.getSettingsProductInformation();
         }
         throw new InvalidActionException('Method: ' + action + ' not implemented');
+    }
+
+    /**********************************************************************************
+     * @description Locates and returns an instance of ProductRegistryMapper.
+     **********************************************************************************/
+    private EDCSettingsProductInformationMapper locateEDCSettingsProductInformationMapper() {
+        return EDCSettingsProductInformationMapper.getInstance();
     }
 
     private class ApiVersionNotFoundException extends Exception {

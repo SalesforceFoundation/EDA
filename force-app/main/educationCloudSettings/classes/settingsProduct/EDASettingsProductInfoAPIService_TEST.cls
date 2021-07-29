@@ -43,8 +43,16 @@ private class EDASettingsProductInfoAPIService_TEST {
         String classname = 'EDASettingsProductInformationAPIService';
         String action = 'Settings Product Information';
         Decimal apiVersion = 50.0;
+        String initials = 'testInitials';
+        String name = 'testName';
+        String description = 'testDescription';
+        String settingsComponent = 'testSettingsComponent';
+        String documentationUrl = 'testDocumentationUrl';
+        String trailheadUrl = 'testTrailheadUrl';
+        String icon = 'testIcon';
         Map<String, Object> args = new Map<String, Object>{ 'Api Version' => apiVersion };
 
+        EDCSettingsProductInformationMapper.instance = new EDCSettingsProductInformationMapperStub();
         Type settingsProductInformationAPIServiceType = Type.forName('', classname);
         Callable settingsProductInformationAPIService = (Callable) settingsProductInformationAPIServiceType.newInstance();
 
@@ -62,42 +70,21 @@ private class EDASettingsProductInfoAPIService_TEST {
         System.assertNotEquals(null, actionResult.result, 'result should not be null');
 
         EDCSettingsProductInformationModel product = actionResult.result;
+        System.assertEquals(description, product.description, 'description should be set to ' + description);
+        System.assertEquals(initials, product.initials, 'initials should be set to ' + initials);
+        System.assertEquals(name, product.name, 'name should be set to ' + name);
         System.assertEquals(
-            EDASettingsProductInformationAPIService.PRODUCT_EDA_DESCRIPTION,
-            product.description,
-            'description should be set to ' + EDASettingsProductInformationAPIService.PRODUCT_EDA_DESCRIPTION
-        );
-        System.assertEquals(
-            EDASettingsProductInformationAPIService.PRODUCT_EDA_INITIALS,
-            product.initials,
-            'initials should be set to ' + EDASettingsProductInformationAPIService.PRODUCT_EDA_INITIALS
-        );
-        System.assertEquals(
-            EDASettingsProductInformationAPIService.PRODUCT_EDA_NAME,
-            product.name,
-            'name should be set to ' + EDASettingsProductInformationAPIService.PRODUCT_EDA_NAME
-        );
-        System.assertEquals(
-            EDASettingsProductInformationAPIService.PRODUCT_EDA_SETTINGSCOMPONENT,
+            settingsComponent,
             product.settingsComponent,
-            'settingsComponent should be set to ' +
-            EDASettingsProductInformationAPIService.PRODUCT_EDA_SETTINGSCOMPONENT
+            'settingsComponent should be set to ' + settingsComponent
         );
         System.assertEquals(
-            EDASettingsProductInformationAPIService.PRODUCT_EDA_DOCUMENTATIONURL,
+            documentationUrl,
             product.documentationUrl,
-            'documentationUrl should be set to ' + EDASettingsProductInformationAPIService.PRODUCT_EDA_DOCUMENTATIONURL
+            'documentationUrl should be set to ' + documentationUrl
         );
-        System.assertEquals(
-            EDASettingsProductInformationAPIService.PRODUCT_EDA_TRAILHEADURL,
-            product.trailheadUrl,
-            'trailheadUrl should be set to ' + EDASettingsProductInformationAPIService.PRODUCT_EDA_TRAILHEADURL
-        );
-        System.assertEquals(
-            EDASettingsProductInformationAPIService.PRODUCT_EDA_ICON,
-            product.icon,
-            'icon should be set to ' + EDASettingsProductInformationAPIService.PRODUCT_EDA_ICON
-        );
+        System.assertEquals(trailheadUrl, product.trailheadUrl, 'trailheadUrl should be set to ' + trailheadUrl);
+        System.assertEquals(icon, product.icon, 'icon should be set to ' + icon);
     }
 
     /**************************************************************************************************************************
@@ -174,5 +161,20 @@ private class EDASettingsProductInfoAPIService_TEST {
             actionResult.error.message,
             'the error message is incorrect'
         );
+    }
+
+    private class EDCSettingsProductInformationMapperStub extends EDCSettingsProductInformationMapper {
+        public override EDCSettingsProductInformationModel getProductInformationModel() {
+            EDCSettingsProductInformationModel productInformation = new EDCSettingsProductInformationModel(
+                'testInitials',
+                'testName',
+                'testDescription',
+                'testSettingsComponent',
+                'testDocumentationUrl',
+                'testTrailheadUrl',
+                'testIcon'
+            );
+            return productInformation;
+        }
     }
 }
