@@ -157,7 +157,6 @@ tasks:
             unmanaged: True
 
     deploy_unpackaged_test_metadata:
-        group: "EDA: Unpackaged Tests"
         description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
         class_path: cumulusci.tasks.salesforce.DeployBundles
         group: "EDA: Unpackaged Tests"
