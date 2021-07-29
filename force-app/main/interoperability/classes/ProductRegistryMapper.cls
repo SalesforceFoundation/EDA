@@ -63,16 +63,18 @@ public virtual with sharing class ProductRegistryMapper {
             PRODUCT_INFORMATION_ACTION
         );
 
-        if (productRegistrySettingsProductInformationList != null) {
-            for (Product_Registry__mdt productRegistry : productRegistrySettingsProductInformationList) {
-                ProductRegistryModel prodRegistryModel = new ProductRegistryModel(
-                    productRegistry.Action__c,
-                    productRegistry.Namespace__c,
-                    productRegistry.Class_Name__c,
-                    productRegistry.API_Version__c
-                );
-                productRegistryModelList.add(prodRegistryModel);
-            }
+        if (productRegistrySettingsProductInformationList == null) {
+            return null;
+        }
+
+        for (Product_Registry__mdt productRegistry : productRegistrySettingsProductInformationList) {
+            ProductRegistryModel prodRegistryModel = new ProductRegistryModel(
+                productRegistry.Action__c,
+                productRegistry.Namespace__c,
+                productRegistry.Class_Name__c,
+                productRegistry.API_Version__c
+            );
+            productRegistryModelList.add(prodRegistryModel);
         }
         return productRegistryModelList;
     }
