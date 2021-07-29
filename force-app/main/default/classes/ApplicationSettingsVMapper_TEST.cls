@@ -113,7 +113,7 @@ private with sharing class ApplicationSettingsVMapper_TEST {
         System.assertEquals(
             true,
             applicationSettingsVModel.enableApplicationWindowValidation,
-            'Inverted value for Application Window Validation should be retreived.'
+            'Correct value for Application Window Validation should be retreived.'
         );
     }
 
