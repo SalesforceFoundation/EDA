@@ -91,15 +91,16 @@ private class EDCSettingsProductAPIService_TEST {
         Callable edaCallable;
         String exceptionMessage;
 
-        Test.startTest();
         try {
+            Test.startTest();
             edaCallable = EDCSettingsProductAPIService.getInstance()
                 .locateSettingsProductInformationAPIService(classname, namespace);
+            Test.stopTest();
             System.assert(true, 'this should not happen');
         } catch (EDCSettingsProductApiService.SettingsProductNotFoundException e) {
             exceptionMessage = e.getMessage();
         }
-        Test.stopTest();
+
         System.assertNotEquals(null, exceptionMessage, 'exception message should not be null');
     }
 
