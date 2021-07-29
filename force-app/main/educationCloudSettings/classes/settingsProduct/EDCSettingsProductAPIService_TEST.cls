@@ -34,6 +34,48 @@
 @isTest
 private class EDCSettingsProductAPIService_TEST {
     /**************************************************************************************************************************
+     * @description Test method to verify that the getInstance method returns a new instance of the
+     * EDCSettingsProductAPIService class when one does not already exist.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceNew() {
+        Test.startTest();
+        EDCSettingsProductAPIService serviceInstance = EDCSettingsProductAPIService.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(
+            EDCSettingsProductAPIService.instance,
+            serviceInstance,
+            'Instance of service class returned should match static instance variable.'
+        );
+        System.assertEquals(true, serviceInstance != null, 'Instance of service class should not be null.');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getInstance method returns the existing instance of the
+     * EDCSettingsProductAPIService class when one already exists.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getInstanceExisting() {
+        EDCSettingsProductAPIService serviceInstance1 = EDCSettingsProductAPIService.getInstance();
+        Test.startTest();
+        EDCSettingsProductAPIService serviceInstance2 = EDCSettingsProductAPIService.getInstance();
+        Test.stopTest();
+
+        System.assertEquals(
+            EDCSettingsProductAPIService.instance,
+            serviceInstance1,
+            'Instance of service class returned should match static instance variable.'
+        );
+        System.assertEquals(
+            serviceInstance1,
+            serviceInstance2,
+            'Subsequent retrievals of service class instance should return existing instance.'
+        );
+        System.assertEquals(true, serviceInstance2 != null, 'Instance of service class should not be null.');
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify the getSettingsProductInformation method returns the instance
      * of EDCSettingsProdInfoActionResultModel correctly
      ***************************************************************************************************************************/
@@ -81,25 +123,64 @@ private class EDCSettingsProductAPIService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify a callable class is found when a valid classname is provided.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testExceptionLocateSettingsProductInfoApiService() {
+        String classname = 'EDASettingsProductInformationAPIService';
+        String namespace = 'hed';
+        Callable edaCallable;
+
+        Test.startTest();
+        edaCallable = EDCSettingsProductAPIService.getInstance()
+            .locateSettingsProductInformationAPIService(classname, namespace);
+        Test.stopTest();
+
+        System.assertNotEquals(null, edaCallable, 'The callable should not be appropriately instantiated.');
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify a EDCSettingsProductApiService.SettingsProductNotFoundException is thrown when an invalid
      * classname has been provided, or the class could not get instantiated correctly.
      ***************************************************************************************************************************/
     @isTest
-    private static void testExceptionLocateSettingsProductInfoApiService() {
+    private static void testExceptionLocateSettingsProductInfoApiServiceNonExistence() {
         String classname = 'ABadClass';
         String namespace = 'hed';
         Callable edaCallable;
         String exceptionMessage;
 
-        Test.startTest();
         try {
+            Test.startTest();
             edaCallable = EDCSettingsProductAPIService.getInstance()
                 .locateSettingsProductInformationAPIService(classname, namespace);
+            Test.stopTest();
             System.assert(true, 'this should not happen');
         } catch (EDCSettingsProductApiService.SettingsProductNotFoundException e) {
             exceptionMessage = e.getMessage();
         }
-        Test.stopTest();
+        System.assertNotEquals(null, exceptionMessage, 'exception message should not be null');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the behavior for providing a noncallable class is respected
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testExceptionLocateSettingsProductInfoApiServiceNotCallable() {
+        String classname = 'EDCSettingsProductAPIService';
+        String namespace = 'hed';
+        Callable edaCallable;
+        String exceptionMessage;
+
+        try {
+            Test.startTest();
+            edaCallable = EDCSettingsProductAPIService.getInstance()
+                .locateSettingsProductInformationAPIService(classname, namespace);
+            Test.stopTest();
+            System.assert(true, 'this should not happen');
+        } catch (EDCSettingsProductApiService.SettingsProductNotFoundException e) {
+            exceptionMessage = e.getMessage();
+        }
         System.assertNotEquals(null, exceptionMessage, 'exception message should not be null');
     }
 
@@ -113,14 +194,12 @@ private class EDCSettingsProductAPIService_TEST {
         Decimal apiVersion = 52.0;
         Map<String, Object> args = new Map<String, Object>{ 'Api Version' => apiVersion };
 
-        Test.startTest();
-
         Type settingsProductInformationAPIServiceType = Type.forName('', classname);
         Callable settingsProductInformationAPIService = (Callable) settingsProductInformationAPIServiceType.newInstance();
 
+        Test.startTest();
         settingsInformationJSON = EDCSettingsProductAPIService.getInstance()
             .makeCall(settingsProductInformationAPIService, apiVersion);
-
         Test.stopTest();
 
         EDCSettingsProdInfoActionResultModel actionResult = (EDCSettingsProdInfoActionResultModel) JSON.deserialize(

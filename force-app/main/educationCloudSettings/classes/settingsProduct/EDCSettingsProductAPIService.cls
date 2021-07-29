@@ -74,6 +74,7 @@ public virtual with sharing class EDCSettingsProductAPIService {
 
         String settingsInformationJSON = this.makeCall(settingsProductInformationAPIService, apiVersion);
 
+        //TODO: Write error handling for serializaiton exceptions
         EDCSettingsProdInfoActionResultModel actionResult = (EDCSettingsProdInfoActionResultModel) JSON.deserialize(
             settingsInformationJSON,
             EDCSettingsProdInfoActionResultModel.class
