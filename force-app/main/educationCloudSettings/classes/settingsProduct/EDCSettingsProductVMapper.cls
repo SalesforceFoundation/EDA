@@ -95,6 +95,7 @@ public virtual with sharing class EDCSettingsProductVMapper {
      * @param  apiVersion A decimal representing the specific api version to use
      * @return A EDCSettingsProductInformationModel with all its values populated
      ********************************************************************************************/
+    @TestVisible
     private virtual EDCSettingsProductInformationModel getSettingsProductInformation(
         String className,
         String namespace,

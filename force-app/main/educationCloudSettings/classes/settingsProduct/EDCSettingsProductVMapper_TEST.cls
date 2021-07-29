@@ -114,6 +114,43 @@ private class EDCSettingsProductVMapper_TEST {
         System.assertNotEquals(null, exceptionMessage, 'exception message should not be null');
     }
 
+    @isTest
+    private static void TestNullProductInformation() {
+        String action = 'testAction';
+        String namespace = 'testNamespace';
+        String classname = 'testClassname';
+        Decimal apiVersion = 52.0;
+
+        ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
+        String productRegistry = JSON.serialize(registryModel);
+        EDCSettingsProductVMapper.instance = new EDCSettingsProductVMapperNullProductInformationStub();
+        EDCSettingsProductVModel productVModel;
+
+        Test.startTest();
+        productVModel = EDCSettingsProductVMapper.getInstance().getEDCSettingsProductVModel(productRegistry);
+        Test.stopTest();
+
+        System.assertEquals(null, productVModel, 'productVModel should be null');
+    }
+
+    @isTest
+    private static void TestNullActionResult() {
+        String namespace = 'testNamespace';
+        String classname = 'testClassname';
+        Decimal apiVersion = 52.0;
+
+        EDCSettingsProductAPIService.instance = new EDCSettingsProductAPIServiceNullAction();
+
+        EDCSettingsProductInformationModel productVModel;
+
+        Test.startTest();
+        productVModel = EDCSettingsProductVMapper.getInstance()
+            .getSettingsProductInformation(classname, namespace, apiVersion);
+        Test.stopTest();
+
+        System.assertEquals(null, productVModel, 'productVModel should be null');
+    }
+
     /**************************************************************************************************************************
      * @description Stub class for EDCSettingsProductAPIService, where the getSettingsProductInformation method returns some
      * EDCSettingsProdInfoActionResultModel sample data
@@ -158,6 +195,26 @@ private class EDCSettingsProductVMapper_TEST {
                 error
             );
             return actionResult;
+        }
+    }
+
+    private class EDCSettingsProductVMapperNullProductInformationStub extends EDCSettingsProductVMapper {
+        private override EDCSettingsProductInformationModel getSettingsProductInformation(
+            String className,
+            String namespace,
+            Decimal apiVersion
+        ) {
+            return null;
+        }
+    }
+
+    private class EDCSettingsProductAPIServiceNullAction extends EDCSettingsProductAPIService {
+        public override EDCSettingsProdInfoActionResultModel getSettingsProductInformation(
+            String className,
+            String namespace,
+            Decimal apiVersion
+        ) {
+            return null;
         }
     }
 }
