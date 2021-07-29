@@ -67,7 +67,6 @@ public virtual with sharing class ApplicationSettingsVMapper {
         ApplicationSettingsModel currentApplicationSettingsModel = this.locateApplicationSettingsService()
             .getApplicationSettingsModel();
 
-        // Create a VModel with an inverse of boolean for the value in Application_Window_Validation__c as UI displays inverse
         return new ApplicationSettingsVModel(currentApplicationSettingsModel.applicationWindowValidation);
     }
 
