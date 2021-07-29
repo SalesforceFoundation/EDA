@@ -79,7 +79,7 @@ private class EDCSettingsProductVMapper_TEST {
 
     /**************************************************************************************************************************
      * @description Test method to verify a SettingsProductException is throw when
-     * EDCSettingsProductAPIModel.SettingsProductInformationActionResult is not successful
+     * EDCSettingsProdInfoActionResultModel is not successful
      ***************************************************************************************************************************/
     @isTest
     private static void testExceptionGetEDCSettingsProductVModel() {
@@ -115,15 +115,15 @@ private class EDCSettingsProductVMapper_TEST {
 
     /**************************************************************************************************************************
      * @description Stub class for EDCSettingsProductAPIService, where the getSettingsProductInformation method returns some
-     * EDCSettingsProductAPIModel.SettingsProductInformationActionResult sample data
+     * EDCSettingsProdInfoActionResultModel sample data
      ***************************************************************************************************************************/
     private class EDCSettingsProductAPIServiceStub extends EDCSettingsProductAPIService {
-        public override EDCSettingsProductAPIModel.SettingsProductInformationActionResult getSettingsProductInformation(
+        public override EDCSettingsProdInfoActionResultModel getSettingsProductInformation(
             String className,
             String namespace,
             Decimal apiVersion
         ) {
-            EDCSettingsProductAPIModel.SettingsProductInformation productInformation = new EDCSettingsProductAPIModel.SettingsProductInformation(
+            EDCSettingsProductInformationModel productInformation = new EDCSettingsProductInformationModel(
                 'testInitials',
                 'testName',
                 'testDescription',
@@ -132,11 +132,8 @@ private class EDCSettingsProductVMapper_TEST {
                 'testTrailheadUrl',
                 'testIcon'
             );
-            EDCSettingsProductAPIModel.SettingsProductinformationResult productInformationResult = new EDCSettingsProductAPIModel.SettingsProductinformationResult(
-                productInformation
-            );
-            EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = new EDCSettingsProductAPIModel.SettingsProductInformationActionResult(
-                productInformationResult,
+            EDCSettingsProdInfoActionResultModel actionResult = new EDCSettingsProdInfoActionResultModel(
+                productInformation,
                 true,
                 null
             );
@@ -145,16 +142,16 @@ private class EDCSettingsProductVMapper_TEST {
     }
     /**************************************************************************************************************************
      * @description Stub class for EDCSettingsProductAPIService, where the getSettingsProductInformation method returns a
-     * EDCSettingsProductAPIModel.SettingsProductInformationActionResult with success = false and an CallableError instance
+     * EDCSettingsProdInfoActionResultModel with success = false and an CallableError instance
      ***************************************************************************************************************************/
     private class EDCSettingsProductAPIServiceErrorStub extends EDCSettingsProductAPIService {
-        public override EDCSettingsProductAPIModel.SettingsProductInformationActionResult getSettingsProductInformation(
+        public override EDCSettingsProdInfoActionResultModel getSettingsProductInformation(
             String className,
             String namespace,
             Decimal apiVersion
         ) {
             CallableError error = new CallableError(400, 'testErrorMessage');
-            EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = new EDCSettingsProductAPIModel.SettingsProductInformationActionResult(
+            EDCSettingsProdInfoActionResultModel actionResult = new EDCSettingsProdInfoActionResultModel(
                 null,
                 false,
                 error

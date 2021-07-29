@@ -32,55 +32,59 @@
  * @description Service class to simulate an API which provides the Settings Product Information for EDA
  */
 public virtual with sharing class EDASettingsProductInformationAPIService implements Callable {
-    public static final String PRODUCT_INFORMATION_ACTION = 'Settings Product Information';
-    public static final String PRODUCT_EDA_INITIALS = 'EDA';
-    public static final String PRODUCT_EDA_NAME = 'Education Data Architecture';
-    public static final String PRODUCT_EDA_DESCRIPTION = 'Education Data Architecture (EDA) is the foundation of the Education Cloud. Its flexible data architecture is designed to configure Salesforce for education.';
-    public static final String PRODUCT_EDA_SETTINGSCOMPONENT = 'EdaSettingsContainer';
-    public static final String PRODUCT_EDA_DOCUMENTATIONURL = 'https://powerofus.force.com/s/article/EDA-Documentation';
-    public static final String PRODUCT_EDA_TRAILHEADURL = 'https://trailhead.salesforce.com/en/content/learn/trails/highered_heda';
-    public static final String PRODUCT_EDA_ICON = 'standard:avatar';
+    @TestVisible
+    private static final String PRODUCT_INFORMATION_ACTION = 'Settings Product Information';
+    @TestVisible
+    private static final String PRODUCT_EDA_INITIALS = 'EDA';
+    @TestVisible
+    private static final String PRODUCT_EDA_NAME = 'Education Data Architecture';
+    @TestVisible
+    private static final String PRODUCT_EDA_DESCRIPTION = 'Education Data Architecture (EDA) is the foundation of the Education Cloud. Its flexible data architecture is designed to configure Salesforce for education.';
+    @TestVisible
+    private static final String PRODUCT_EDA_SETTINGSCOMPONENT = 'EdaSettingsContainer';
+    @TestVisible
+    private static final String PRODUCT_EDA_DOCUMENTATIONURL = 'https://powerofus.force.com/s/article/EDA-Documentation';
+    @TestVisible
+    private static final String PRODUCT_EDA_TRAILHEADURL = 'https://trailhead.salesforce.com/en/content/learn/trails/highered_heda';
+    @TestVisible
+    private static final String PRODUCT_EDA_ICON = 'standard:avatar';
 
     /********************************************************************************************
      * @description Returns an object which is a serialized version of
-     * EDCSettingsProductAPIModel.SettingsProductInformationActionResult
+     * EDCSettingsProdInfoActionResultModel
      * @param  action A string representing the specific action or method to execute
      * @param  args   A map of String and Object representing the parameters provided for this call
      * @return An object which is a serialized version of
-     * EDCSettingsProductAPIModel.SettingsProductInformationActionResult
+     * EDCSettingsProdInfoActionResultModel
      ********************************************************************************************/
     public Object call(String action, Map<String, Object> args) {
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult;
-        String result;
+        EDCSettingsProdInfoActionResultModel actionResult;
         Decimal apiVersion;
 
         try {
             apiVersion = this.getApiVersion(args);
         } catch (ApiVersionNotFoundException avnfe) {
             actionResult = this.createErrorActionResult(400, avnfe.getMessage());
-            result = JSON.serialize(actionResult);
-            return result;
+            return JSON.serialize(actionResult);
         }
 
         try {
             actionResult = this.handleAction(action, apiVersion);
         } catch (InvalidActionException iae) {
             actionResult = this.createErrorActionResult(400, iae.getMessage());
-            result = JSON.serialize(actionResult);
-            return result;
+            return JSON.serialize(actionResult);
         }
 
-        result = JSON.serialize(actionResult);
-        return result;
+        return JSON.serialize(actionResult);
     }
 
     /********************************************************************************************
-     * @description Returns an instance of EDCSettingsProductAPIModel.SettingsProductInformationActionResult
+     * @description Returns an instance of EDCSettingsProdInfoActionResultModel
      * containing the product information related to EDA
-     * @return An instance of EDCSettingsProductAPIModel.SettingsProductInformationActionResult
+     * @return An instance of EDCSettingsProdInfoActionResultModel
      ********************************************************************************************/
-    public EDCSettingsProductAPIModel.SettingsProductInformationActionResult getSettingsProductInformation() {
-        EDCSettingsProductAPIModel.SettingsProductInformation productInformation = new EDCSettingsProductAPIModel.SettingsProductInformation(
+    public EDCSettingsProdInfoActionResultModel getSettingsProductInformation() {
+        EDCSettingsProductInformationModel productInformation = new EDCSettingsProductInformationModel(
             PRODUCT_EDA_INITIALS,
             PRODUCT_EDA_NAME,
             PRODUCT_EDA_DESCRIPTION,
@@ -90,12 +94,8 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
             PRODUCT_EDA_ICON
         );
 
-        EDCSettingsProductAPIModel.SettingsProductinformationResult productInformationResult = new EDCSettingsProductAPIModel.SettingsProductinformationResult(
-            productInformation
-        );
-
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = new EDCSettingsProductAPIModel.SettingsProductInformationActionResult(
-            productInformationResult,
+        EDCSettingsProdInfoActionResultModel actionResult = new EDCSettingsProdInfoActionResultModel(
+            productInformation,
             true,
             null
         );
@@ -104,19 +104,16 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
     }
 
     /********************************************************************************************
-     * @description Constructs and returns an instance of EDCSettingsProductAPIModel.SettingsProductInformationActionResult
+     * @description Constructs and returns an instance of EDCSettingsProdInfoActionResultModel
      * with success set to false and a CallableError instance to provide details about the error
      * @param  code         code description
      * @param  errorMessage errorMessage description
      * @return              return description
      ********************************************************************************************/
-    private virtual EDCSettingsProductAPIModel.SettingsProductInformationActionResult createErrorActionResult(
-        Integer code,
-        String errorMessage
-    ) {
+    private virtual EDCSettingsProdInfoActionResultModel createErrorActionResult(Integer code, String errorMessage) {
         CallableError error = new CallableError(code, errorMessage);
 
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = new EDCSettingsProductAPIModel.SettingsProductInformationActionResult(
+        EDCSettingsProdInfoActionResultModel actionResult = new EDCSettingsProdInfoActionResultModel(
             null,
             false,
             error
@@ -138,16 +135,13 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
     }
 
     /********************************************************************************************
-     * @description Returns the EDCSettingsProductAPIModel.SettingsProductInformationActionResult
+     * @description Returns the EDCSettingsProdInfoActionResultModel
      * for the specified action, if the action is not valid an InvalidActionException is thrown
      * @param  action     A string representing the specific action or method to execute
      * @param  apiVersion A decimal representing the api version needed for this call
      * @return            return description
      ********************************************************************************************/
-    private EDCSettingsProductAPIModel.SettingsProductInformationActionResult handleAction(
-        String action,
-        Decimal apiVersion
-    ) {
+    private EDCSettingsProdInfoActionResultModel handleAction(String action, Decimal apiVersion) {
         if (action == PRODUCT_INFORMATION_ACTION) {
             return this.getSettingsProductInformation();
         }

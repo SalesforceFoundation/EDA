@@ -30,7 +30,7 @@
  * @group
  * @group-content
  * @description Service class which instantiates a class implementing the Callable interface and calls its call method, it returns
- * an instance of EDCSettingsProductAPIModel.SettingsProductInformationActionResult
+ * an instance of EDCSettingsProdInfoActionResultModel
  */
 public virtual with sharing class EDCSettingsProductAPIService {
     public static final string PRODUCT_INFORMATION_ACTION = 'Settings Product Information';
@@ -55,14 +55,14 @@ public virtual with sharing class EDCSettingsProductAPIService {
     }
 
     /********************************************************************************************
-     * @description Returns a EDCSettingsProductAPIModel.SettingsProductInformationActionResult by making a call
+     * @description Returns a EDCSettingsProdInfoActionResultModel by making a call
      * to a callable class given the provided namespace and apiVersion
      * @param  className  A string representing the classname to call
      * @param  namespace  A string representing the the product namespace
      * @param  apiVersion A decimal representing the specific api version to use
-     * @return A EDCSettingsProductAPIModel.SettingsProductInformationActionResult with its properties populated
+     * @return A EDCSettingsProdInfoActionResultModel with its properties populated
      ********************************************************************************************/
-    public virtual EDCSettingsProductAPIModel.SettingsProductInformationActionResult getSettingsProductInformation(
+    public virtual EDCSettingsProdInfoActionResultModel getSettingsProductInformation(
         String className,
         String namespace,
         Decimal apiVersion
@@ -74,9 +74,9 @@ public virtual with sharing class EDCSettingsProductAPIService {
 
         String settingsInformationJSON = this.makeCall(settingsProductInformationAPIService, apiVersion);
 
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = (EDCSettingsProductAPIModel.SettingsProductInformationActionResult) JSON.deserialize(
+        EDCSettingsProdInfoActionResultModel actionResult = (EDCSettingsProdInfoActionResultModel) JSON.deserialize(
             settingsInformationJSON,
-            EDCSettingsProductAPIModel.SettingsProductInformationActionResult.class
+            EDCSettingsProdInfoActionResultModel.class
         );
         return actionResult;
     }

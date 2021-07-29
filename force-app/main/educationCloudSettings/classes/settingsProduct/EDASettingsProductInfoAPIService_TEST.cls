@@ -35,7 +35,7 @@
 private class EDASettingsProductInfoAPIService_TEST {
     /**************************************************************************************************************************
      * @description Test method to verify the call method of EDASettingsProductInformationAPIService
-     * returns the EDCSettingsProductAPIModel.SettingsProductInformationActionResult instance correctly
+     * returns the EDCSettingsProdInfoActionResultModel instance correctly
      ***************************************************************************************************************************/
     @isTest
     private static void testCallable() {
@@ -45,7 +45,6 @@ private class EDASettingsProductInfoAPIService_TEST {
         Decimal apiVersion = 50.0;
         Map<String, Object> args = new Map<String, Object>{ 'Api Version' => apiVersion };
 
-
         Type settingsProductInformationAPIServiceType = Type.forName('', classname);
         Callable settingsProductInformationAPIService = (Callable) settingsProductInformationAPIServiceType.newInstance();
 
@@ -53,17 +52,16 @@ private class EDASettingsProductInfoAPIService_TEST {
         settingsInformationJSON = (String) settingsProductInformationAPIService.call(action, args);
         Test.stopTest();
 
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = (EDCSettingsProductAPIModel.SettingsProductInformationActionResult) JSON.deserialize(
+        EDCSettingsProdInfoActionResultModel actionResult = (EDCSettingsProdInfoActionResultModel) JSON.deserialize(
             settingsInformationJSON,
-            EDCSettingsProductAPIModel.SettingsProductInformationActionResult.class
+            EDCSettingsProdInfoActionResultModel.class
         );
 
         System.assertEquals(true, actionResult.success, 'success should be true');
         System.assertEquals(null, actionResult.error, 'error should be null');
         System.assertNotEquals(null, actionResult.result, 'result should not be null');
-        System.assertNotEquals(null, actionResult.result.productInformation, 'productInformation should not be null');
 
-        EDCSettingsProductAPIModel.SettingsProductInformation product = actionResult.result.productInformation;
+        EDCSettingsProductInformationModel product = actionResult.result;
         System.assertEquals(
             EDASettingsProductInformationAPIService.PRODUCT_EDA_DESCRIPTION,
             product.description,
@@ -103,7 +101,7 @@ private class EDASettingsProductInfoAPIService_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify an instance of EDCSettingsProductAPIModel.SettingsProductInformationActionResult
+     * @description Test method to verify an instance of EDCSettingsProdInfoActionResultModel
      * is returned with the success property set to false and the error property populated, when the provided Action is incorrect
      ***************************************************************************************************************************/
     @isTest
@@ -123,9 +121,9 @@ private class EDASettingsProductInfoAPIService_TEST {
 
         Test.stopTest();
 
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = (EDCSettingsProductAPIModel.SettingsProductInformationActionResult) JSON.deserialize(
+        EDCSettingsProdInfoActionResultModel actionResult = (EDCSettingsProdInfoActionResultModel) JSON.deserialize(
             settingsInformationJSON,
-            EDCSettingsProductAPIModel.SettingsProductInformationActionResult.class
+            EDCSettingsProdInfoActionResultModel.class
         );
 
         System.assertEquals(false, actionResult.success, 'success should be false');
@@ -142,7 +140,7 @@ private class EDASettingsProductInfoAPIService_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify an instance of EDCSettingsProductAPIModel.SettingsProductInformationActionResult
+     * @description Test method to verify an instance of EDCSettingsProdInfoActionResultModel
      * is returned with the success property set to false and the error property populated, when the provided apiVesrion is null
      ***************************************************************************************************************************/
     @isTest
@@ -162,9 +160,9 @@ private class EDASettingsProductInfoAPIService_TEST {
 
         Test.stopTest();
 
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = (EDCSettingsProductAPIModel.SettingsProductInformationActionResult) JSON.deserialize(
+        EDCSettingsProdInfoActionResultModel actionResult = (EDCSettingsProdInfoActionResultModel) JSON.deserialize(
             settingsInformationJSON,
-            EDCSettingsProductAPIModel.SettingsProductInformationActionResult.class
+            EDCSettingsProdInfoActionResultModel.class
         );
 
         System.assertEquals(false, actionResult.success, 'success should be false');

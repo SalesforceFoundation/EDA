@@ -35,7 +35,7 @@
 private class EDCSettingsProductAPIService_TEST {
     /**************************************************************************************************************************
      * @description Test method to verify the getSettingsProductInformation method returns the instance
-     * of EDCSettingsProductAPIModel.SettingsProductInformationActionResult correctly
+     * of EDCSettingsProdInfoActionResultModel correctly
      ***************************************************************************************************************************/
     @isTest
     private static void testGetSettingsProductInformation() {
@@ -51,7 +51,7 @@ private class EDCSettingsProductAPIService_TEST {
         String icon = 'testIcon';
 
         EDCSettingsProductAPIService.instance = new EDCSettingsProductAPIServiceStub();
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult;
+        EDCSettingsProdInfoActionResultModel actionResult;
 
         Test.startTest();
         actionResult = EDCSettingsProductAPIService.getInstance()
@@ -61,9 +61,8 @@ private class EDCSettingsProductAPIService_TEST {
         System.assertEquals(true, actionResult.success, 'success should be true');
         System.assertEquals(null, actionResult.error, 'error should be null');
         System.assertNotEquals(null, actionResult.result, 'result should not be null');
-        System.assertNotEquals(null, actionResult.result.productInformation, 'productInformation should not be null');
 
-        EDCSettingsProductAPIModel.SettingsProductInformation product = actionResult.result.productInformation;
+        EDCSettingsProductInformationModel product = actionResult.result;
         System.assertEquals(initials, product.initials, 'initials should be set to ' + initials);
         System.assertEquals(name, product.name, 'name should be set to ' + name);
         System.assertEquals(description, product.description, 'description should be set to ' + description);
@@ -124,24 +123,23 @@ private class EDCSettingsProductAPIService_TEST {
 
         Test.stopTest();
 
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = (EDCSettingsProductAPIModel.SettingsProductInformationActionResult) JSON.deserialize(
+        EDCSettingsProdInfoActionResultModel actionResult = (EDCSettingsProdInfoActionResultModel) JSON.deserialize(
             settingsInformationJSON,
-            EDCSettingsProductAPIModel.SettingsProductInformationActionResult.class
+            EDCSettingsProdInfoActionResultModel.class
         );
 
         System.assertEquals(true, actionResult.success, 'success should be true');
         System.assertEquals(null, actionResult.error, 'error should be null');
         System.assertNotEquals(null, actionResult.result, 'result should not be null');
-        System.assertNotEquals(null, actionResult.result.productInformation, 'productInformation should not be null');
     }
 
     /**************************************************************************************************************************
-     * @description Stub class for EDCSettingsProductAPIService returning some 
-     * EDCSettingsProductAPIModel.SettingsProductInformationActionResult sample data
+     * @description Stub class for EDCSettingsProductAPIService returning some
+     * EDCSettingsProdInfoActionResultModel sample data
      ***************************************************************************************************************************/
     private class EDCSettingsProductAPIServiceStub extends EDCSettingsProductAPIService {
         private override String makeCall(Callable settingsProductInformationAPIService, Decimal apiVersion) {
-            EDCSettingsProductAPIModel.SettingsProductInformation productInformation = new EDCSettingsProductAPIModel.SettingsProductInformation(
+            EDCSettingsProductInformationModel productInformation = new EDCSettingsProductInformationModel(
                 'testInitials',
                 'testName',
                 'testDescription',
@@ -150,11 +148,8 @@ private class EDCSettingsProductAPIService_TEST {
                 'testTrailheadUrl',
                 'testIcon'
             );
-            EDCSettingsProductAPIModel.SettingsProductinformationResult productInformationResult = new EDCSettingsProductAPIModel.SettingsProductinformationResult(
-                productInformation
-            );
-            EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = new EDCSettingsProductAPIModel.SettingsProductInformationActionResult(
-                productInformationResult,
+            EDCSettingsProdInfoActionResultModel actionResult = new EDCSettingsProdInfoActionResultModel(
+                productInformation,
                 true,
                 null
             );

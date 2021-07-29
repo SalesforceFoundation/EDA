@@ -54,7 +54,7 @@ public virtual with sharing class EDCSettingsProductVMapper {
 
     /********************************************************************************************
      * @description Returns an EDCSettingsProductVModel based on the information from an
-     * EDCSettingsProductAPIModel.SettingsProductInformationResult for an specific product registry
+     * EDCSettingsProductInformationModel for an specific product registry
      * @param  productRegistry A string representing the serialized product registry information
      * @return An instance of EDCSettingsProductVModel with all its properties populated
      ********************************************************************************************/
@@ -64,7 +64,7 @@ public virtual with sharing class EDCSettingsProductVMapper {
             ProductRegistryVModel.class
         );
 
-        EDCSettingsProductAPIModel.SettingsProductInformationResult productInformationResult = this.getSettingsProductInformation(
+        EDCSettingsProductInformationModel productInformation = this.getSettingsProductInformation(
             prodRegistryVModel.classname,
             prodRegistryVModel.namespace,
             prodRegistryVModel.apiVersion
@@ -72,16 +72,16 @@ public virtual with sharing class EDCSettingsProductVMapper {
 
         EDCSettingsProductVModel settingsProductVModel;
 
-        if (productInformationResult != null) {
+        if (productInformation != null) {
             String navigationPrefix = this.getEDAComponentNavigationPrefix();
             settingsProductVModel = new EDCSettingsProductVModel(
-                productInformationResult.productInformation.initials,
-                productInformationResult.productInformation.name,
-                productInformationResult.productInformation.description,
-                navigationPrefix + productInformationResult.productInformation.settingsComponent,
-                productInformationResult.productInformation.documentationUrl,
-                productInformationResult.productInformation.trailheadUrl,
-                productInformationResult.productInformation.icon
+                productInformation.initials,
+                productInformation.name,
+                productInformation.description,
+                navigationPrefix + productInformation.settingsComponent,
+                productInformation.documentationUrl,
+                productInformation.trailheadUrl,
+                productInformation.icon
             );
         }
 
@@ -89,29 +89,29 @@ public virtual with sharing class EDCSettingsProductVMapper {
     }
 
     /********************************************************************************************
-     * @description Returns an EDCSettingsProductAPIModel.SettingsProductInformationResult based on an
-     * EDCSettingsProductAPIModel.SettingsProductInformationActionResult, if the SettingsProductInformationActionResult
+     * @description Returns an EDCSettingsProductInformationModel based on an
+     * EDCSettingsProdInfoActionResultModel, if the SettingsProductInformationActionResult
      * is successful, then it returns the SettingsProductInformationResult, otherwise it throws a SettingsProductException
      * @param  className  A string representing the classname to call
      * @param  namespace  A string representing the the product namespace
      * @param  apiVersion A decimal representing the specific api version to use
-     * @return A EDCSettingsProductAPIModel.SettingsProductInformationResult with all its values populated
+     * @return A EDCSettingsProductInformationModel with all its values populated
      ********************************************************************************************/
-    private virtual EDCSettingsProductAPIModel.SettingsProductInformationResult getSettingsProductInformation(
+    private virtual EDCSettingsProductInformationModel getSettingsProductInformation(
         String className,
         String namespace,
         Decimal apiVersion
     ) {
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult settingsProductInformationActionResult = this.locateSettingsProductAPIService()
+        EDCSettingsProdInfoActionResultModel actionResult = this.locateSettingsProductAPIService()
             .getSettingsProductInformation(className, namespace, apiVersion);
 
-        EDCSettingsProductAPIModel.SettingsProductInformationResult result;
+        EDCSettingsProductInformationModel result;
 
-        if (settingsProductInformationActionResult != null) {
-            if (settingsProductInformationActionResult.success) {
-                result = settingsProductInformationActionResult.result;
+        if (actionResult != null) {
+            if (actionResult.success) {
+                result = actionResult.result;
             } else {
-                throw new SettingsProductException(settingsProductInformationActionResult.error.message);
+                throw new SettingsProductException(actionResult.error.message);
             }
         }
         return result;

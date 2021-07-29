@@ -32,7 +32,7 @@
  * @description Test class for EDCSettingsProductAPIModel
  */
 @isTest
-private class EDCSettingsProductAPIModel_TEST {
+private class EDCSettingsProdInfoActionResModel_TEST {
     /**************************************************************************************************************************
      * @description Test method to verify the constructor is setting the properties correctly
      ***************************************************************************************************************************/
@@ -46,11 +46,7 @@ private class EDCSettingsProductAPIModel_TEST {
         String trailheadUrl = 'testTrailheadUrl';
         String icon = 'testIcon';
 
-        EDCSettingsProductAPIModel.SettingsProductInformation model;
-
-        Test.startTest();
-
-        model = new EDCSettingsProductAPIModel.SettingsProductInformation(
+        EDCSettingsProductInformationModel model = new EDCSettingsProductInformationModel(
             initials,
             name,
             description,
@@ -60,45 +56,12 @@ private class EDCSettingsProductAPIModel_TEST {
             icon
         );
 
-        EDCSettingsProductAPIModel.SettingsProductInformationResult productResult = new EDCSettingsProductAPIModel.SettingsProductInformationResult(
-            model
-        );
-
-        EDCSettingsProductAPIModel.SettingsProductInformationActionResult actionResult = new EDCSettingsProductAPIModel.SettingsProductInformationActionResult(
-            productResult,
-            true,
-            null
-        );
-
+        Test.startTest();
+        EDCSettingsProdInfoActionResultModel actionResult = new EDCSettingsProdInfoActionResultModel(model, true, null);
         Test.stopTest();
 
-        //assert the data got mapped correctly to the model (product)
-        System.assertEquals(initials, model.initials, 'initials should be set with the value it is passed');
-        System.assertEquals(name, model.name, 'name should be set with the value it is passed');
-        System.assertEquals(description, model.description, 'description should be set with the value it is passed');
-        System.assertEquals(
-            settingsComponent,
-            model.settingsComponent,
-            'settingsComponent should be set with the value it is passed'
-        );
-        System.assertEquals(
-            documentationUrl,
-            model.documentationUrl,
-            'documentationUrl should be set with the value it is passed'
-        );
-        System.assertEquals(
-            trailheadUrl,
-            model.trailheadUrl,
-            'settingsComponent should be set with the value it is passed'
-        );
-        System.assertEquals(icon, model.icon, 'settingsComponent should be set with the value it is passed');
-        System.assertEquals(
-            model,
-            productResult.productInformation,
-            'the model is not correct for this product information'
-        );
         System.assertEquals(true, actionResult.success, 'success should be true');
         System.assertEquals(null, actionResult.error, 'error should be null');
-        System.assertEquals(productResult, actionResult.result, 'result is not correct');
+        System.assertEquals(model, actionResult.result, 'result is not correct');
     }
 }
