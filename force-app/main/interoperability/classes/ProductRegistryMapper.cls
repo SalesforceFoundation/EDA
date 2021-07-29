@@ -32,7 +32,7 @@
  * @description Mapper class to transform Product_Registry__mdt into ProductRegistryModel
  */
 public virtual with sharing class ProductRegistryMapper {
-    public static final string PRODUCT_INFORMATION_ACTION = 'Settings Product Information';
+    public static final string SETTINGS_INFORMATION_ACTION = 'Settings Product Information';
 
     @TestVisible
     private static ProductRegistryMapper instance;
@@ -60,7 +60,7 @@ public virtual with sharing class ProductRegistryMapper {
     public virtual List<ProductRegistryModel> getProductRegistrySettingsProductInformation() {
         List<ProductRegistryModel> productRegistryModelList = new List<ProductRegistryModel>();
         List<Product_Registry__mdt> productRegistrySettingsProductInformationList = this.getProductRegistriesByAction(
-            PRODUCT_INFORMATION_ACTION
+            SETTINGS_INFORMATION_ACTION
         );
 
         if (productRegistrySettingsProductInformationList == null) {
