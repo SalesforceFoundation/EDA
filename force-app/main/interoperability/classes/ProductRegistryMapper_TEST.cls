@@ -42,7 +42,7 @@ private class ProductRegistryMapper_TEST {
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
-        Decimal apiVersion = 50.0;
+        Decimal apiVersion = 52.0;
 
         ProductRegistryMapper.instance = new ProductRegistryMapperStub();
         List<ProductRegistryModel> prodRegistryModelList;
@@ -83,7 +83,7 @@ private class ProductRegistryMapper_TEST {
             prodRegistryCMT.Action__c = 'testAction';
             prodRegistryCMT.Namespace__c = 'testNamespace';
             prodRegistryCMT.Class_Name__c = 'testClassname';
-            prodRegistryCMT.API_Version__c = 50.0;
+            prodRegistryCMT.API_Version__c = 52.0;
             return new List<Product_Registry__mdt>{ prodRegistryCMT };
         }
     }

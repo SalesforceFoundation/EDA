@@ -41,7 +41,7 @@ private class EDCSettingsProductAPIService_TEST {
     private static void testGetSettingsProductInformation() {
         String classname = 'EDASettingsProductInformationAPIService';
         String namespace = 'hed';
-        Decimal apiVersion = 50.0;
+        Decimal apiVersion = 52.0;
         String initials = 'testInitials';
         String name = 'testName';
         String description = 'testDescription';
@@ -110,7 +110,7 @@ private class EDCSettingsProductAPIService_TEST {
     private static void testMakeCallForCoverage() {
         String settingsInformationJSON;
         String classname = 'EDASettingsProductInformationAPIService';
-        Decimal apiVersion = 50.0;
+        Decimal apiVersion = 52.0;
         Map<String, Object> args = new Map<String, Object>{ 'Api Version' => apiVersion };
 
         Test.startTest();

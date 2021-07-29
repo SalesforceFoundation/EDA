@@ -41,7 +41,7 @@ private class ProductRegistryModel_TEST {
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
-        Decimal apiVersion = 50.0;
+        Decimal apiVersion = 52.0;
 
         ProductRegistryModel model;
 

@@ -42,7 +42,7 @@ private class EDASettingsProductInfoAPIService_TEST {
         String settingsInformationJSON;
         String classname = 'EDASettingsProductInformationAPIService';
         String action = 'Settings Product Information';
-        Decimal apiVersion = 50.0;
+        Decimal apiVersion = 52.0;
         String initials = 'testInitials';
         String name = 'testName';
         String description = 'testDescription';
@@ -96,7 +96,7 @@ private class EDASettingsProductInfoAPIService_TEST {
         String settingsInformationJSON;
         String classname = 'EDASettingsProductInformationAPIService';
         String action = 'Edit Info';
-        Decimal apiVersion = 50.0;
+        Decimal apiVersion = 52.0;
         Map<String, Object> args = new Map<String, Object>{ 'Api Version' => apiVersion };
 
         Test.startTest();

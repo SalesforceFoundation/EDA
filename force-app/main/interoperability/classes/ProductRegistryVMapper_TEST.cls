@@ -42,7 +42,7 @@ private class ProductRegistryVMapper_TEST {
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
-        Decimal apiVersion = 50.0;
+        Decimal apiVersion = 52.0;
 
         ProductRegistryService.instance = new ProductRegistryServiceStub();
         List<ProductRegistryVModel> prodRegistryModelList;
@@ -73,7 +73,7 @@ private class ProductRegistryVMapper_TEST {
                 'testAction',
                 'testNamespace',
                 'testClassname',
-                50.0
+                52.0
             );
             return new List<ProductRegistryModel>{ prodRegistryModel };
         }
