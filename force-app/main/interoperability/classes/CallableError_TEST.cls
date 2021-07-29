@@ -41,10 +41,8 @@ private class CallableError_TEST {
         String errorMessage = 'testErrorMessage';
         Integer code = 1;
 
-        CallableError error;
-
         Test.startTest();
-        error = new CallableError(code, errorMessage);
+        CallableError error = new CallableError(code, errorMessage);
         Test.stopTest();
 
         System.assertEquals(errorMessage, error.message, 'error.message should be: ' + errorMessage);
