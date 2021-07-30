@@ -71,7 +71,7 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
      ********************************************************************************************************/
     @TestVisible
     private void handleBeforeInsert(List<SObject> newSObjectList) {
-        if (!applicationWindowValidationIsEnabled()) {
+        if (this.applicationWindowValidationIsEnabled() == false) {
             return;
         }
         List<Application__c> newApplications = (List<Application__c>) newSObjectList;
@@ -91,7 +91,7 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
      ********************************************************************************************************/
     @TestVisible
     private void handleBeforeUpdate(List<SObject> oldSObjectList, List<SObject> newSObjectList) {
-        if (!applicationWindowValidationIsEnabled()) {
+        if (this.applicationWindowValidationIsEnabled() == false) {
             return;
         }
         List<Application__c> updatedApplications = (List<Application__c>) newSObjectList;
