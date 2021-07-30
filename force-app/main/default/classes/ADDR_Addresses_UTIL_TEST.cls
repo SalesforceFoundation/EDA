@@ -1169,6 +1169,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressAddrSObj(address, contact, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
             Test.stopTest();
+            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field BillingStreet for Contact',
