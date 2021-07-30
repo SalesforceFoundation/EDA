@@ -95,7 +95,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void isContactAccAddrInfoSameFalseDifferentAddressField() {
+    static void testIsContactAccAddrInfoSameFalseDifferentAddressField() {
         Contact contact = UTIL_UnitTestData_TEST.getContact();
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,
@@ -111,14 +111,14 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void isContactAccAddrInfoSameFalseDifferentStateCode() {
+    static void testIsContactAccAddrInfoSameFalseDifferentStateCode() {
         /*Almost no way we can test state code/country code here
          This need to be refactored so that we can override the returned result*/
         //TODO(Refactor): Make isStateCountryPicklistsEnabled overridable
     }
 
     @isTest
-    static void isContactAccAddrInfoSameNotNullContactNullAccount() {
+    static void testIsContactAccAddrInfoSameNotNullContactNullAccount() {
         Contact contact = UTIL_UnitTestData_TEST.getContact();
 
         Test.startTest();
@@ -129,7 +129,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void isContactAccAddrInfoSameNullContactNotNullAccount() {
+    static void testIsContactAccAddrInfoSameNullContactNotNullAccount() {
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,
             UTIL_Describe_API.getBizAccRecTypeID()
@@ -143,7 +143,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void isContactAccAddrInfoSameNullContactNullAccount() {
+    static void testIsContactAccAddrInfoSameNullContactNullAccount() {
         //We don't have guard clause for the scenario when both contact and account are null
         //Thus this will hit null pointer exception. Given the static method, we should refactor this.
         //TODO(Refactor): add guard clause for contact == null $$ account == null
@@ -159,7 +159,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
      ****************************************************** isAddressChanged **************************************************
      **************************************************************************************************************************/
     @isTest
-    static void isAddressChangedTrue() {
+    static void testIsAddressChangedTrue() {
         List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
 
         Test.startTest();
@@ -170,7 +170,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void isAddressChangedTrueIncludingType() {
+    static void testIsAddressChangedTrueIncludingType() {
         List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         addresses[1].Address_Type__c = 'Work';
         addresses[1].MailingStreet__c = 'Street' + 0;
@@ -186,7 +186,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void isAddressChangedFalse() {
+    static void testIsAddressChangedFalse() {
         List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         addresses[1].MailingStreet__c = 'Street' + 0;
         addresses[1].MailingCity__c = 'City' + 0;
@@ -201,7 +201,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void isAddressChangedFalseExcludingType() {
+    static void testIsAddressChangedFalseExcludingType() {
         List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
         addresses[1].Address_Type__c = 'Work';
         addresses[1].MailingStreet__c = 'Street' + 0;
@@ -217,7 +217,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void isAddressChangedNewAddressNull() {
+    static void testIsAddressChangedNewAddressNull() {
         List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
 
         Test.startTest();
@@ -489,20 +489,224 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     /**************************************************************************************************************************
      ****************************************************** isAddressMatchFuzzy ***********************************************
      **************************************************************************************************************************/
-    //TODO: The method is not test visible.
-    /*@isTest
-    static void testisAddressMatchFuzzyAddrNewNullFalse() {
+    @isTest
+    static void testIsAddressMatchFuzzyAddrNewNullFalse() {
+        Address__c oldAddress = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+
         Test.startTest();
-        Boolean isAddressMatchFuzzy = ADDR_Addresses_UTIL.isAddressMatchFuzzy(null, null, null);
+        Boolean isAddressMatchFuzzy = ADDR_Addresses_UTIL.isAddressMatchFuzzy(null, oldAddress, true);
         Test.stopTest();
 
         System.assertEquals(false, isAddressMatchFuzzy);
-    }*/
+    }
+
+    @isTest
+    static void testIsAddressMatchFuzzyAddrOldNullFalse() {
+        Address__c newAddress = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+
+        Test.startTest();
+        Boolean isAddressMatchFuzzy = ADDR_Addresses_UTIL.isAddressMatchFuzzy(newAddress, null, true);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressMatchFuzzy);
+    }
+
+    @isTest
+    static void testIsAddressMatchFuzzyIncludeAddressTypeNullFalse() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+
+        //To Refactor: add guard clause.
+        try {
+            Test.startTest();
+            Boolean isAddressMatchFuzzy = ADDR_Addresses_UTIL.isAddressMatchFuzzy(addresses[0], addresses[1], null);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
+    }
+
+    @isTest
+    static void testIsAddressMatchCompletelySameFuzzyMatching() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[0].MailingStreet__c = 'some random street';
+        addresses[0].MailingStreet2__c = 'some random street 2';
+        addresses[0].MailingCity__c = 'some random city';
+        addresses[0].MailingCounty__c = 'some random county';
+        addresses[0].MailingState__c = 'some random state';
+        addresses[0].MailingPostalCode__c = 'some random postal code';
+        addresses[0].MailingCountry__c = 'some random country';
+        addresses[0].Address_Type__c = 'some random type';
+
+        addresses[1].MailingStreet__c = 'SOME RANDOM STREET';
+        addresses[1].MailingStreet2__c = 'SOME RANDOM STREET 2';
+        addresses[1].MailingCity__c = 'SOME RANDOM CITY';
+        addresses[1].MailingCounty__c = 'SOME RANDOM COUNTY';
+        addresses[1].MailingState__c = 'SOME RANDOM STATE';
+        addresses[1].MailingPostalCode__c = 'SOME RANDOM POSTAL CODE';
+        addresses[1].MailingCountry__c = 'SOME RANDOM COUNTRY';
+        addresses[1].Address_Type__c = 'SOME RANDOM TYPES';
+
+        Test.startTest();
+        Boolean isAddressMatchFuzzy = ADDR_Addresses_UTIL.isAddressMatchFuzzy(addresses[0], addresses[1], true);
+        Test.stopTest();
+
+        system.assertEquals(true, isAddressMatchFuzzy);
+    }
+
+    @isTest
+    static void testIsAddressMatchFuzzyOneFieldDifferentFuzzyMatching() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[0].MailingStreet__c = 'some random street';
+        addresses[0].MailingStreet2__c = 'some random street 2';
+        addresses[0].MailingCity__c = 'some random city';
+        addresses[0].MailingCounty__c = 'some random county';
+        addresses[0].MailingState__c = 'some random state';
+        addresses[0].MailingPostalCode__c = 'some random postal code';
+        addresses[0].MailingCountry__c = 'some random country';
+        addresses[0].Address_Type__c = 'some random type';
+
+        addresses[1].MailingStreet__c = 'SOME OTHER STREET';
+        addresses[1].MailingStreet2__c = 'SOME RANDOM STREET 2';
+        addresses[1].MailingCity__c = 'SOME RANDOM CITY';
+        addresses[1].MailingCounty__c = 'SOME RANDOM COUNTY';
+        addresses[1].MailingState__c = 'SOME RANDOM STATE';
+        addresses[1].MailingPostalCode__c = 'SOME RANDOM POSTAL CODE';
+        addresses[1].MailingCountry__c = 'SOME RANDOM COUNTRY';
+        addresses[1].Address_Type__c = 'SOME RANDOM TYPES';
+
+        Test.startTest();
+        Boolean isAddressMatchFuzzy = ADDR_Addresses_UTIL.isAddressMatchFuzzy(addresses[0], addresses[1], true);
+        Test.stopTest();
+
+        system.assertEquals(true, isAddressMatchFuzzy);
+    }
+
+    @isTest
+    static void testIsAddressMatchFuzzyOneFieldAndTypeDifferentIncludingTypeFuzzyMatching() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[0].MailingStreet__c = 'some random street';
+        addresses[0].MailingStreet2__c = 'some random street 2';
+        addresses[0].MailingCity__c = 'some random city';
+        addresses[0].MailingCounty__c = 'some random county';
+        addresses[0].MailingState__c = 'some random state';
+        addresses[0].MailingPostalCode__c = 'some random postal code';
+        addresses[0].MailingCountry__c = 'some random country';
+        addresses[0].Address_Type__c = 'some random type';
+
+        addresses[1].MailingStreet__c = 'SOME OTHER STREET';
+        addresses[1].MailingStreet2__c = 'SOME RANDOM STREET 2';
+        addresses[1].MailingCity__c = 'SOME RANDOM CITY';
+        addresses[1].MailingCounty__c = 'SOME RANDOM COUNTY';
+        addresses[1].MailingState__c = 'SOME RANDOM STATE';
+        addresses[1].MailingPostalCode__c = 'SOME RANDOM POSTAL CODE';
+        addresses[1].MailingCountry__c = 'SOME RANDOM COUNTRY';
+        addresses[1].Address_Type__c = 'SOME OTHER TYPES';
+
+        Test.startTest();
+        Boolean isAddressMatchFuzzy = ADDR_Addresses_UTIL.isAddressMatchFuzzy(addresses[0], addresses[1], true);
+        Test.stopTest();
+
+        system.assertEquals(false, isAddressMatchFuzzy);
+    }
+
+    @isTest
+    static void testIsAddressMatchFuzzyOneFieldAndTypeDifferentExcludingTypeFuzzyMatching() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[0].MailingStreet__c = 'some random street';
+        addresses[0].MailingStreet2__c = 'some random street 2';
+        addresses[0].MailingCity__c = 'some random city';
+        addresses[0].MailingCounty__c = 'some random county';
+        addresses[0].MailingState__c = 'some random state';
+        addresses[0].MailingPostalCode__c = 'some random postal code';
+        addresses[0].MailingCountry__c = 'some random country';
+        addresses[0].Address_Type__c = 'some random type';
+
+        addresses[1].MailingStreet__c = 'SOME OTHER STREET';
+        addresses[1].MailingStreet2__c = 'SOME RANDOM STREET 2';
+        addresses[1].MailingCity__c = 'SOME RANDOM CITY';
+        addresses[1].MailingCounty__c = 'SOME RANDOM COUNTY';
+        addresses[1].MailingState__c = 'SOME RANDOM STATE';
+        addresses[1].MailingPostalCode__c = 'SOME RANDOM POSTAL CODE';
+        addresses[1].MailingCountry__c = 'SOME RANDOM COUNTRY';
+        addresses[1].Address_Type__c = 'SOME OTHER TYPES';
+
+        Test.startTest();
+        Boolean isAddressMatchFuzzy = ADDR_Addresses_UTIL.isAddressMatchFuzzy(addresses[0], addresses[1], false);
+        Test.stopTest();
+
+        system.assertEquals(true, isAddressMatchFuzzy);
+    }
+
+    @isTest
+    static void testIsAddressMatchFuzzyMoreThanOneFieldDifferentExcludingTypeFuzzyMatching() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[0].MailingStreet__c = 'some random street';
+        addresses[0].MailingStreet2__c = 'some random street 2';
+        addresses[0].MailingCity__c = 'some random city';
+        addresses[0].MailingCounty__c = 'some random county';
+        addresses[0].MailingState__c = 'some random state';
+        addresses[0].MailingPostalCode__c = 'some random postal code';
+        addresses[0].MailingCountry__c = 'some random country';
+        addresses[0].Address_Type__c = 'some random type';
+
+        addresses[1].MailingStreet__c = 'SOME OTHER STREET';
+        addresses[1].MailingStreet2__c = 'SOME OTHER STREET 2';
+        addresses[1].MailingCity__c = 'SOME RANDOM CITY';
+        addresses[1].MailingCounty__c = 'SOME RANDOM COUNTY';
+        addresses[1].MailingState__c = 'SOME RANDOM STATE';
+        addresses[1].MailingPostalCode__c = 'SOME RANDOM POSTAL CODE';
+        addresses[1].MailingCountry__c = 'SOME RANDOM COUNTRY';
+        addresses[1].Address_Type__c = 'SOME OTHER TYPES';
+
+        Test.startTest();
+        Boolean isAddressMatchFuzzy = ADDR_Addresses_UTIL.isAddressMatchFuzzy(addresses[0], addresses[1], false);
+        Test.stopTest();
+
+        system.assertEquals(false, isAddressMatchFuzzy);
+    }
 
     /**************************************************************************************************************************
      ****************************************************** strCleanup ********************************************************
      **************************************************************************************************************************/
-    //TODO: The method is not test visible.
+    @isTest
+    static void testStrCleanupNull() {
+        Test.startTest();
+        String cleanedString = ADDR_Addresses_UTIL.strCleanup(null);
+        Test.stopTest();
+
+        System.assertEquals('', cleanedString);
+    }
+
+    @isTest
+    static void testStrCleanupEmpty() {
+        Test.startTest();
+        String cleanedString = ADDR_Addresses_UTIL.strCleanup('');
+        Test.stopTest();
+
+        System.assertEquals('', cleanedString);
+    }
+
+    @isTest
+    static void testStrCleanupStringWithSpaces() {
+        Test.startTest();
+        String cleanedString = ADDR_Addresses_UTIL.strCleanup(' a ');
+        Test.stopTest();
+
+        System.assertEquals('a', cleanedString);
+    }
+
+    @isTest
+    static void testStrCleanupStringUpperCase() {
+        Test.startTest();
+        String cleanedString = ADDR_Addresses_UTIL.strCleanup('A');
+        Test.stopTest();
+
+        System.assertEquals('a', cleanedString);
+    }
 
     /**************************************************************************************************************************
      ****************************************************** copyAddressObj ****************************************************

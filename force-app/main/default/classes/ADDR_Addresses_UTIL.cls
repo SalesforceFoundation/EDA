@@ -275,6 +275,7 @@ public with sharing class ADDR_Addresses_UTIL {
      * @param includeAddressType whether to include comparing the AddressType field.
      * @return Boolean. True if no more than one of the fields have changed on the Address, ignoring whitespace and case changes.
      ********************************************************************************************************/
+    @TestVisible
     private static Boolean isAddressMatchFuzzy(Address__c addrNew, Address__c addrOld, Boolean includeAddressType) {
         if (addrNew == null || addrOld == null) {
             return false;
@@ -347,6 +348,7 @@ public with sharing class ADDR_Addresses_UTIL {
      * @param str the string to clean up.
      * @return String.
      ********************************************************************************************************/
+    @TestVisible
     private static String strCleanup(String str) {
         if (String.isNotBlank(str)) {
             return str.replace(' ', '').toLowerCase();
