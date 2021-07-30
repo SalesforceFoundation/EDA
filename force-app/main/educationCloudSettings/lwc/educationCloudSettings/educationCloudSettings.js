@@ -1,5 +1,6 @@
-import { LightningElement, track } from "lwc";
+import { LightningElement, track, wire } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 //Column Header Labels
 import stgColProducts from "@salesforce/label/c.stgColProducts";
@@ -29,7 +30,12 @@ import stgBtnVideos from "@salesforce/label/c.stgBtnVideos";
 import stgBtnVideosActionA11y from "@salesforce/label/c.stgBtnVideosActionA11y";
 
 import namespacedEDAField from "@salesforce/schema/Course_Offering_Schedule__c.Course_Offering__c";
-const EDASettingsContainerComponentName = "EdaSettingsContainer";
+
+import getEDCSettingsProductVModel from "@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModel";
+import getProductRegistrySettingsProductInformationVModels from "@salesforce/apex/EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels";
+
+import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
+
 const HealthCheckContainerComponentName = "HealthCheckContainer";
 const ReleaseManagementContainerComponentName = "releaseManagementContainer";
 
@@ -41,6 +47,9 @@ const TrailblazerCommunityUrl = "https://trailblazers.salesforce.com/successHome
 const YoutubeUrl = "https://www.youtube.com/user/SalesforceFoundation";
 
 export default class EducationCloudSettings extends NavigationMixin(LightningElement) {
+    @track
+    edcProductModels = [];
+
     labelReference = {
         productsTitle: stgColProducts,
         resourcesTitle: stgColResources,
@@ -58,10 +67,6 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         return navigationPrefix;
     }
 
-    get edaSettingsContainerComponentNavigation() {
-        return this.edaComponentNavigationPrefix + EDASettingsContainerComponentName;
-    }
-
     get healthCheckContainerComponentNavigation() {
         return this.edaComponentNavigationPrefix + HealthCheckContainerComponentName;
     }
@@ -70,17 +75,28 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         return this.edaComponentNavigationPrefix + ReleaseManagementContainerComponentName;
     }
 
-    @track edcProductModels = [
-        {
-            title: stgEDAAppTitle,
-            description: stgEDAAppDesc,
-            iconInitials: stgEDAAppInitials,
-            iconFallbackName: "standard:avatar",
-            settingsComponent: this.edaSettingsContainerComponentNavigation,
-            documentationUrl: EDADocumentationUrl,
-            trailheadUrl: EDATrailheadUrl,
-        },
-    ];
+    @wire(getProductRegistrySettingsProductInformationVModels)
+    edcSettingsProductModels({ error, data }) {
+        let tempProductModels = [];
+        if (data) {
+            //For each product registry 'product information' call the API to get the Product Information
+            data.forEach((prodRegistry) => {
+                let prodRegistrySerialized = JSON.stringify(prodRegistry);
+                getEDCSettingsProductVModel({ productRegistry: prodRegistrySerialized })
+                .then((result) => {
+                    if (result) {
+                        this.edcProductModels.push(result);
+                        this.edcProductModels.sort(this.sortByNameAsc);
+                    }
+                })
+                .catch((error) => {
+                    this.showErrorToast(error);
+                });
+            });
+        } else if (error) {
+            this.showErrorToast(error);
+        }
+    }
 
     @track edcToolModels = [
         {
@@ -117,4 +133,35 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
             navigationTarget: YoutubeUrl,
         },
     ];
+
+    showErrorToast(error) {
+        let errorMessage = 'Unknown error';
+        if (Array.isArray(error.body)) {
+            errorMessage = error.body.map(e => e.message).join(', ');
+        } else {
+            if (error.body && typeof error.body.message === 'string') {
+                errorMessage = error.body.message;
+            } else {
+                errorMessage = error.message;     
+            }
+        }
+
+        const evt = new ShowToastEvent({
+            title: 'Error',
+            message: errorMessage,
+            variant: 'error',
+            mode: 'sticky'
+        });
+        this.dispatchEvent(evt);
+    }
+
+    sortByNameAsc(a, b) {
+        if (a.name > b.name) {
+            return 1;
+          }
+        if (a.name === b.name) {
+          return 0;
+        }
+        return -1;
+    }
 }
