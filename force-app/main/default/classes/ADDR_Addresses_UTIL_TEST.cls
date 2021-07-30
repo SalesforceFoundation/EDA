@@ -923,9 +923,9 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObj(account, 'Mailing', contact, 'Billing');
             Test.stopTest();
-        } catch (NullPointerException e) {
+        } catch (SObjectException e) {
             System.assertEquals(
-                'Attempt to de-reference a null object',
+                'Invalid field MailingStreet for Account',
                 e.getMessage(),
                 'Should throw null pointer exception.'
             );
@@ -1020,9 +1020,9 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Mailing', address, 'Home');
             Test.stopTest();
-        } catch (NullPointerException e) {
+        } catch (SObjectException e) {
             System.assertEquals(
-                'Attempt to de-reference a null object',
+                'Invalid field MailingStreet for Account',
                 e.getMessage(),
                 'Should throw null pointer exception.'
             );
@@ -1124,9 +1124,9 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressAddrSObj(address, contact, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
             Test.stopTest();
-        } catch (NullPointerException e) {
+        } catch (SObjectException e) {
             System.assertEquals(
-                'Attempt to de-reference a null object',
+                'Invalid field BillingStreet for Contact',
                 e.getMessage(),
                 'Should throw null pointer exception.'
             );
@@ -1611,18 +1611,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testClearAddrInfoNull() {
         //To Refactor: No need to overload here. Passing null will cause Ambiguous method signature error.
-
-        try {
-            Test.startTest();
-            ADDR_Addresses_UTIL.clearAddrInfo(null);
-            Test.stopTest();
-        } catch (NullPointerException e) {
-            System.assertEquals(
-                'Attempt to de-reference a null object',
-                e.getMessage(),
-                'Should throw null pointer exception.'
-            );
-        }
+        //No way to test null parameters now.
     }
 
     @isTest
