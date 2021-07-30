@@ -834,7 +834,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
      ****************************************************** initValidStateCountryCodes ****************************************
      **************************************************************************************************************************/
 
-    //This method is not quite testable as it is using schema describe.
+    //This method is not quite testable as it is using schema describe. Potentially we can use unmanaged tests.
 
     /**************************************************************************************************************************
      ****************************************************** handleMultilineStreet *********************************************
