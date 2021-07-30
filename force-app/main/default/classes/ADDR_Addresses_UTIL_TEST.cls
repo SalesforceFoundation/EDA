@@ -144,15 +144,19 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
 
     @isTest
     static void testIsContactAccAddrInfoSameNullContactNullAccount() {
-        //We don't have guard clause for the scenario when both contact and account are null
-        //Thus this will hit null pointer exception. Given the static method, we should refactor this.
         //TODO(Refactor): add guard clause for contact == null $$ account == null
 
-        /*Test.startTest();
-        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(null, null);
-        Test.stopTest();
-
-        System.assertEquals(true, isContactAccAddrInfoSame);*/
+        try {
+            Test.startTest();
+            Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(null, null);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     /**************************************************************************************************************************
@@ -714,35 +718,53 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testCopyAddressObjBothNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressObj(null, null);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressObj(null, null);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testCopyAddressObjSourceNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Address__c addressSource = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        Address__c addressSource = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressObj(addressSource, null);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressObj(addressSource, null);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testCopyAddressObjDestinationNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Address__c addressDestination = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        Address__c addressDestination = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressObj(null, addressDestination);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressObj(null, addressDestination);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
@@ -800,56 +822,79 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         //To Refactor: we don't have guard clause for this.
         //To Refactor: terrible method name.
         //To Refactor: Have to define the Address prefix is a loophole
-        /*Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressStdSObj(null, 'Mailing', account, 'Billing');
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressStdSObj(null, 'Mailing', account, 'Billing');
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testCopyAddressObjSobjSourceFieldPrefixNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Contact contact = UTIL_UnitTestData_TEST.getContact();
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
         Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressStdSObj(contact, null, account, 'Billing');
-        Test.stopTest();*/
-
-        //Expecting invalid field error
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressStdSObj(contact, null, account, 'Billing');
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testCopyAddressObjSobjDestinationRecordNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Contact contact = UTIL_UnitTestData_TEST.getContact();
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressStdSObj(contact, 'Mailing', null, 'Billing');
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressStdSObj(contact, 'Mailing', null, 'Billing');
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testCopyAddressObjSobjDestinationFieldPrefixNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Contact contact = UTIL_UnitTestData_TEST.getContact();
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
         Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressStdSObj(contact, 'Mailing', account, null);
-        Test.stopTest();*/
-
-        //Expecting invalid field error
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressStdSObj(contact, 'Mailing', account, null);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testCopyAddressObjSobjValidField() {
-        //To Refactor: we don't have guard clause for this.
         //To Refactor: No way we can test isStateCountryPicklistsEnabled.
         Contact contact = UTIL_UnitTestData_TEST.getContact();
         Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
@@ -871,14 +916,20 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testCopyAddressObjSobjInvalidField() {
         //To Refactor: we don't have guard clause for this.
-        /*Contact contact = UTIL_UnitTestData_TEST.getContact();
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
         Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressStdSObj(account, 'Mailing', contact, 'Billing');
-        Test.stopTest();*/
-
-        //Expecting invalid field error
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressStdSObj(account, 'Mailing', contact, 'Billing');
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     /**************************************************************************************************************************
@@ -887,38 +938,56 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testCopyAddressObjSobjAddrAddressNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Billing', null, 'Home');
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Billing', null, 'Home');
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testCopyAddressObjSobjAddrSourceFieldPrefixNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, null, address, 'Home');
-        Test.stopTest();*/
-
-        //Expecting invalid field error
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, null, address, 'Home');
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testCopyAddressObjSobjAddrSourceRecordNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(null, 'Billing', address, 'Home');
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressStdSObjAddr(null, 'Billing', address, 'Home');
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
@@ -944,14 +1013,20 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testCopyAddressObjSobjAddrInvalidField() {
         //To Refactor: we don't have guard clause for this.
-        /*Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         Address__c address = new Address__c();
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Mailing', address, 'Home');
-        Test.stopTest();*/
-
-        //Expecting invalid field error
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Mailing', address, 'Home');
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     /**************************************************************************************************************************
@@ -960,41 +1035,59 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testCopyAddressAddrSObjAddressNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressAddrSObj(null, account, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressAddrSObj(null, account, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testCopyAddressAddrSObjSourceRecordNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
         TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressAddrSObj(address, null, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressAddrSObj(address, null, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testCopyAddressAddrSObjSourceRecordPrefixNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
         Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
         TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressAddrSObj(address, account, null, 'Primary_Address_Type__c', dmlWrapper);
-        Test.stopTest();*/
-
-        //Expecting invalid field error
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressAddrSObj(address, account, null, 'Primary_Address_Type__c', dmlWrapper);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
@@ -1023,15 +1116,21 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testCopyAddressAddrSObjInvalidSourceRecordField() {
         //To Refactor: we don't have guard clause for this.
-        /*Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
         Contact contact = new Contact();
         TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.copyAddressAddrSObj(address, contact, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
-        Test.stopTest();*/
-
-        //Expecting invalid field error
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.copyAddressAddrSObj(address, contact, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     /**************************************************************************************************************************
@@ -1046,11 +1145,17 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testHandleMultilineStreetNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Test.startTest();
-        ADDR_Addresses_UTIL.handleMultilineStreet(null);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.handleMultilineStreet(null);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
@@ -1085,11 +1190,17 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testGetMultilineStreetNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Test.startTest();
-        ADDR_Addresses_UTIL.getMultilineStreet(null);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.getMultilineStreet(null);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
@@ -1140,11 +1251,17 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testGetParentIdToAddrsNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Test.startTest();
-        Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getParentIdToAddrs(null);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getParentIdToAddrs(null);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
@@ -1206,11 +1323,17 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testGetMapParentIdListAddrsNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Test.startTest();
-        Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getMapParentIdListAddrs(null);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getMapParentIdListAddrs(null);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
@@ -1287,19 +1410,25 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testUpdateAddrIsOverrideMapNull() {
         //To Refactor: we don't have guard clause for this.
-        /*TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.updateAddrIsOverride(null, dmlWrapper);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.updateAddrIsOverride(null, dmlWrapper);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testUpdateAddrIsOverrideDMWrapperNull() {
         //To Refactor: we don't have guard clause for this.
-        /*Map<Id, Boolean> mapAddrIdIsOverride = new Map<Id, Boolean>();
+        Map<Id, Boolean> mapAddrIdIsOverride = new Map<Id, Boolean>();
 
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             10,
@@ -1321,11 +1450,17 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             }
         }
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.updateAddrIsOverride(mapAddrIdIsOverride, null);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.updateAddrIsOverride(mapAddrIdIsOverride, null);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
@@ -1380,33 +1515,45 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testUncheckDefaultOtherAddrsNewAddrNull() {
         //To Refactor: we don't have guard clause for this.
-        /*List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(10);
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(10);
         TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(null, addresses, dmlWrapper);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(null, addresses, dmlWrapper);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testUncheckDefaultOtherAddrsAllAddrsNull() {
         //To Refactor: we don't have guard clause for this.
-        /*List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
         TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(addresses[0], null, dmlWrapper);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(addresses[0], null, dmlWrapper);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
     static void testUncheckDefaultOtherAddrsDMLWrapperNull() {
         //To Refactor: we don't have guard clause for this.
-        /*List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             10,
             UTIL_Describe_API.getBizAccRecTypeID()
         );
@@ -1419,11 +1566,17 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         insert addresses;
         TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
 
-        Test.startTest();
-        ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(addresses[0], addresses, null);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(addresses[0], addresses, null);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
@@ -1459,11 +1612,17 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     static void testClearAddrInfoNull() {
         //To Refactor: No need to overload here. Passing null will cause Ambiguous method signature error.
 
-        /*Test.startTest();
-        ADDR_Addresses_UTIL.clearAddrInfo(null);
-        Test.stopTest();*/
-
-        //Expecting null pointer
+        try {
+            Test.startTest();
+            ADDR_Addresses_UTIL.clearAddrInfo(null);
+            Test.stopTest();
+        } catch (NullPointerException e) {
+            System.assertEquals(
+                'Attempt to de-reference a null object',
+                e.getMessage(),
+                'Should throw null pointer exception.'
+            );
+        }
     }
 
     @isTest
