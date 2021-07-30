@@ -74,7 +74,7 @@ public virtual with sharing class EDCSettingsProductVMapper {
             return null;
         }
 
-        String navigationPrefix = this.getEDAComponentNavigationPrefix();
+        String navigationPrefix = UTIL_Namespace.StrTokenNSPrefixComponent();
         return new EDCSettingsProductVModel(
             productInformation.initials,
             productInformation.name,
@@ -95,6 +95,7 @@ public virtual with sharing class EDCSettingsProductVMapper {
      * @param  apiVersion A decimal representing the specific api version to use
      * @return A EDCSettingsProductInformationModel with all its values populated
      ********************************************************************************************/
+    @TestVisible
     private virtual EDCSettingsProductInformationModel getSettingsProductInformation(
         String className,
         String namespace,
@@ -122,21 +123,6 @@ public virtual with sharing class EDCSettingsProductVMapper {
     @TestVisible
     private EDCSettingsProductAPIService locateSettingsProductAPIService() {
         return EDCSettingsProductAPIService.getInstance();
-    }
-
-    /**********************************************************************************
-     * @description Returns a string representing the prefix needed for the settings component
-     **********************************************************************************/
-    private virtual String getEDAComponentNavigationPrefix() {
-        String courseOfferingName = Course_Offering_Schedule__c.Course_Offering__c.getDescribe().getName();
-        String navigationPrefix = courseOfferingName.replace('Course_Offering__c', '');
-        String prefix;
-
-        if (String.isBlank(navigationPrefix)) {
-            navigationPrefix = 'c__';
-        }
-
-        return navigationPrefix;
     }
 
     public class SettingsProductException extends Exception {

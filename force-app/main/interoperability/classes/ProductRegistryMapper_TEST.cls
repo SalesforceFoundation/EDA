@@ -64,14 +64,71 @@ private class ProductRegistryMapper_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to comply test coverage because of with the lines not touched because of our mocked classes
+     * @description Test method to assert getProductRegistriesByAction method returns a valid response
      ***************************************************************************************************************************/
     @isTest
-    private static void testJustForCoverage() {
+    private static void testGetProductRegistriesByAction() {
+        String action = 'Settings Product Information';
+        List<Product_Registry__mdt> prodRegistryModelList;
+
+        List<Product_Registry__mdt> registriesFromTestList = [
+            SELECT Action__c, API_Version__c, Class_Name__c, Enabled__c, Namespace__c
+            FROM Product_Registry__mdt
+            WHERE Action__c = :action AND Enabled__c = TRUE
+        ];
+
+        Test.startTest();
+        prodRegistryModelList = ProductRegistryMapper.getInstance().getProductRegistriesByAction(action);
+        Test.stopTest();
+
+        System.assertEquals(registriesFromTestList.size(), prodRegistryModelList.size());
+
+        Map<String, Product_Registry__mdt> registriesByClassnameAction = new Map<String, Product_Registry__mdt>();
+
+        if (!registriesFromTestList.isEmpty()) {
+            //Store in a map the registries by classname+action as key
+            for (Product_Registry__mdt registry : registriesFromTestList) {
+                String registryKey = registry.Class_Name__c + registry.Action__c;
+                registriesByClassnameAction.put(registryKey, registry);
+            }
+            //For each registry value returned by getProductRegistriesByAction verify the properties are the same
+            for (Product_Registry__mdt registry : prodRegistryModelList) {
+                String registryKey = registry.Class_Name__c + registry.Action__c;
+                if (registriesByClassnameAction.containsKey(registryKey)) {
+                    Product_Registry__mdt registryFromTest = registriesByClassnameAction.get(registryKey);
+                    System.assertEquals(
+                        registryFromTest.API_Version__c,
+                        registry.API_Version__c,
+                        'Api version should be: ' + registryFromTest.API_Version__c
+                    );
+                    System.assertEquals(
+                        registryFromTest.Enabled__c,
+                        registry.Enabled__c,
+                        'Enabled should be: ' + registryFromTest.Enabled__c
+                    );
+                    System.assertEquals(
+                        registryFromTest.Namespace__c,
+                        registry.Namespace__c,
+                        'Namespace should be: ' + registryFromTest.Namespace__c
+                    );
+                }
+            }
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to assess a scenraio where getProductRegistrySettingsProductInformation method returns null
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testGetProductRegistrySettingsProductInformationNullRegistries() {
+        ProductRegistryMapper.instance = new ProductRegistryMapperNullRegistriesStub();
         List<ProductRegistryModel> prodRegistryModelList;
+
         Test.startTest();
         prodRegistryModelList = ProductRegistryMapper.getInstance().getProductRegistrySettingsProductInformation();
         Test.stopTest();
+
+        System.assertEquals(null, prodRegistryModelList, 'prodRegistryModelList should be null');
     }
 
     /**************************************************************************************************************************
@@ -85,6 +142,15 @@ private class ProductRegistryMapper_TEST {
             prodRegistryCMT.Class_Name__c = 'testClassname';
             prodRegistryCMT.API_Version__c = 52.0;
             return new List<Product_Registry__mdt>{ prodRegistryCMT };
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Stub class for ProductRegistryMapper, where getProductRegistriesByAction returns null
+     ***************************************************************************************************************************/
+    private class ProductRegistryMapperNullRegistriesStub extends ProductRegistryMapper {
+        private override List<Product_Registry__mdt> getProductRegistriesByAction(String action) {
+            return null;
         }
     }
 }

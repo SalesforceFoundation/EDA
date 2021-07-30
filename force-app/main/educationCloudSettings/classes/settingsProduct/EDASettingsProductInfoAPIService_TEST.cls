@@ -163,6 +163,150 @@ private class EDASettingsProductInfoAPIService_TEST {
         );
     }
 
+    /**************************************************************************************************************************
+     * @description Test method to verify an getApiVersion returns a decimal provided as parameter
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testGetApiVersion() {
+        Decimal paramApiVersion = 52.0;
+        Map<String, Object> args = new Map<String, Object>{ 'Api Version' => paramApiVersion };
+        EDASettingsProductInformationAPIService service = new EDASettingsProductInformationAPIService();
+
+        Test.startTest();
+        Decimal apiVersion = service.getApiVersion(args);
+        Test.stopTest();
+
+        System.assertEquals(paramApiVersion, apiVersion, 'api version should be ' + paramApiVersion);
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to assess an scenario when getApiVersion returns a null
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testNullGetApiVersion() {
+        Map<String, Object> args = new Map<String, Object>{ 'Api Version' => null };
+        EDASettingsProductInformationAPIService service = new EDASettingsProductInformationAPIService();
+        String exceptionMessage;
+
+        try {
+            Test.startTest();
+            Decimal apiVersion = service.getApiVersion(args);
+            Test.stopTest();
+            System.assert(true, 'this should not happen');
+        } catch (EDASettingsProductInformationAPIService.ApiVersionNotFoundException ex) {
+            exceptionMessage = ex.getMessage();
+        }
+
+        System.assertEquals(
+            'You gotta have an API version!',
+            exceptionMessage,
+            'error message should be ' + exceptionMessage
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to assess an scenario when handleAction returns a valid EDCSettingsProdInfoActionResultModel
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testGoodCaseHandleAction() {
+        String action = EDASettingsProductInformationAPIService.PRODUCT_INFORMATION_ACTION;
+        Decimal apiVersion = 52.0;
+        String initials = 'testInitials';
+        String name = 'testName';
+        String description = 'testDescription';
+        String settingsComponent = 'testSettingsComponent';
+        String documentationUrl = 'testDocumentationUrl';
+        String trailheadUrl = 'testTrailheadUrl';
+        String icon = 'testIcon';
+
+        EDCSettingsProductInformationMapper.instance = new EDCSettingsProductInformationMapperStub();
+        EDASettingsProductInformationAPIService service = new EDASettingsProductInformationAPIService();
+        EDCSettingsProdInfoActionResultModel actionResult;
+
+        try {
+            Test.startTest();
+            actionResult = service.handleAction(action, apiVersion);
+            Test.stopTest();
+        } catch (EDASettingsProductInformationAPIService.InvalidActionException ex) {
+            System.assert(true, 'this should not happen');
+        }
+
+        System.assertEquals(true, actionResult.success, 'success should be true');
+        System.assertEquals(null, actionResult.error, 'error should be null');
+        System.assertNotEquals(null, actionResult.result, 'result should not be null');
+
+        EDCSettingsProductInformationModel product = actionResult.result;
+        System.assertEquals(description, product.description, 'description should be set to ' + description);
+        System.assertEquals(initials, product.initials, 'initials should be set to ' + initials);
+        System.assertEquals(name, product.name, 'name should be set to ' + name);
+        System.assertEquals(
+            settingsComponent,
+            product.settingsComponent,
+            'settingsComponent should be set to ' + settingsComponent
+        );
+        System.assertEquals(
+            documentationUrl,
+            product.documentationUrl,
+            'documentationUrl should be set to ' + documentationUrl
+        );
+        System.assertEquals(trailheadUrl, product.trailheadUrl, 'trailheadUrl should be set to ' + trailheadUrl);
+        System.assertEquals(icon, product.icon, 'icon should be set to ' + icon);
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to assess an scenario when handleAction throws an exception
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testExceptionHandleAction() {
+        String action = 'a bad action';
+        Decimal apiVersion = 52.0;
+
+        EDASettingsProductInformationAPIService service = new EDASettingsProductInformationAPIService();
+        String exceptionMessage;
+
+        try {
+            Test.startTest();
+            EDCSettingsProdInfoActionResultModel actionResult = service.handleAction(action, apiVersion);
+            Test.stopTest();
+            System.assert(true, 'this should not happen');
+        } catch (EDASettingsProductInformationAPIService.InvalidActionException ex) {
+            exceptionMessage = ex.getMessage();
+        }
+
+        System.assertEquals(
+            'Method: ' +
+            action +
+            ' not implemented',
+            exceptionMessage,
+            'error message should be ' + exceptionMessage
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to assess an scenario when createErrorActionResult returns an instance of EDCSettingsProdInfoActionResultModel
+     * with the error message and code populated
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testCreateErrorActionResult() {
+        Integer code = 400;
+        String errorMessage = 'testErrorMessage';
+        EDASettingsProductInformationAPIService service = new EDASettingsProductInformationAPIService();
+
+        Test.startTest();
+        EDCSettingsProdInfoActionResultModel actionResult = service.createErrorActionResult(code, errorMessage);
+        Test.stopTest();
+
+        System.assertEquals(false, actionResult.success, 'success should be false');
+        System.assertEquals(null, actionResult.result, 'result should be null');
+        System.assertNotEquals(null, actionResult.error, 'error should not be null');
+        System.assertEquals(400, actionResult.error.code, 'error code should be 400');
+        System.assertEquals(errorMessage, actionResult.error.message, errorMessage);
+    }
+
+    /**************************************************************************************************************************
+     * @description Stub class for EDCSettingsProductInformationMapper where getProductInformationModel method
+     * provides sample data for testing
+     ***************************************************************************************************************************/
     private class EDCSettingsProductInformationMapperStub extends EDCSettingsProductInformationMapper {
         public override EDCSettingsProductInformationModel getProductInformationModel() {
             EDCSettingsProductInformationModel productInformation = new EDCSettingsProductInformationModel(

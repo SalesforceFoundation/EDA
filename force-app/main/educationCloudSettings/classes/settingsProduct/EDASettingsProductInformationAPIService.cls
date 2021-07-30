@@ -87,6 +87,7 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
      * @param  errorMessage errorMessage description
      * @return              return description
      ********************************************************************************************/
+    @TestVisible
     private virtual EDCSettingsProdInfoActionResultModel createErrorActionResult(Integer code, String errorMessage) {
         CallableError error = new CallableError(code, errorMessage);
 
@@ -104,6 +105,7 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
      * @param  args A map of String and Object which contain the parameters needed for this call
      * @return A decimal Api Version retrieved from the parameters
      ********************************************************************************************/
+    @TestVisible
     private Decimal getApiVersion(Map<String, Object> args) {
         if (args.containsKey('Api Version') == false || args.get('Api Version') == null) {
             throw new ApiVersionNotFoundException('You gotta have an API version!');
@@ -118,6 +120,7 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
      * @param  apiVersion A decimal representing the api version needed for this call
      * @return            return description
      ********************************************************************************************/
+    @TestVisible
     private EDCSettingsProdInfoActionResultModel handleAction(String action, Decimal apiVersion) {
         if (action == PRODUCT_INFORMATION_ACTION) {
             return this.getSettingsProductInformation();
@@ -132,8 +135,10 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
         return EDCSettingsProductInformationMapper.getInstance();
     }
 
+    @TestVisible
     private class ApiVersionNotFoundException extends Exception {
     }
+    @TestVisible
     private class InvalidActionException extends Exception {
     }
 }
