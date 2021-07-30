@@ -80,6 +80,7 @@ private with sharing class ApplicationSettingsController_TEST {
             Test.startTest();
             ApplicationSettingsVModel applicationSettingsVModel = ApplicationSettingsController.getApplicationSettingsVModel();
             Test.stopTest();
+            System.assert(false, 'Should have thrown an AuraHandledException.');
         } catch (AuraHandledException e) {
             System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
         }
