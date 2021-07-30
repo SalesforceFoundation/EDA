@@ -917,6 +917,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObj(contact, 'Mailing', account, null);
             Test.stopTest();
+            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field nullStreet for Account',
