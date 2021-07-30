@@ -33,10 +33,10 @@
  */
 @isTest
 private with sharing class ADDR_Account_TEST {
-    //This test class stays as placeholder for future refactoring as we are not making changes to the ADDR_Account_TDTM atm.
+    //This test class stays as placeholder for future refactoring as we are not making changes to the ADDR_Account_TDTM at this moment.
 
     /**************************************************************************************************************************
-     ****************************************************** Recursion Flags ***************************************************
+     ****************************************************** turnOff ***********************************************************
      **************************************************************************************************************************/
 
     @isTest
@@ -58,6 +58,9 @@ private with sharing class ADDR_Account_TEST {
         );
     }
 
+    /**************************************************************************************************************************
+     ****************************************************** turnOn ***********************************************************
+     **************************************************************************************************************************/
     @isTest
     static void testTurnOnRecursionFlag() {
         TDTM_ProcessControl.turnOffRecursionFlag(TDTM_ProcessControl.registeredTrigger.ADDR_Account_TDTM_After_Insert);
@@ -78,13 +81,13 @@ private with sharing class ADDR_Account_TEST {
     }
 
     /**************************************************************************************************************************
-     ****************************************************** Main Method *******************************************************
+     ****************************************************** Run ***************************************************************
      **************************************************************************************************************************/
+    /* To Refactor:
+     * 1. This method is handling too many things. Ideally we should mock other building dml wrappers methods.
+     */
     @isTest
     static void testRunDMLWrapperSingleObjectType() {
-        /* To Refactor:
-         * 1. This method is handling too many things. Ideally we should mock other building dml wrappers methods.
-         */
     }
 
     @isTest
@@ -96,24 +99,29 @@ private with sharing class ADDR_Account_TEST {
     }
 
     /**************************************************************************************************************************
-     ****************************************************** DMLWrapper Helper Method ******************************************
+     ****************************************************** processAccsWithNewInfo ********************************************
      **************************************************************************************************************************/
-
+    /* To Refactor:
+     * 1. Break the methods chaining, which makes it almost impossible to test.
+     */
     @isTest
     static void testProcessAccsWithNewInfo() {
-        /* To Refactor:
-         * 1. Break the methods chaining, which makes it almost impossible to test.
-         */
     }
 
     @isTest
     static void testProcessAccsWithNewInfoEmptyListAcc() {
     }
 
+    /**************************************************************************************************************************
+     ****************************************************** updateChildContacts ***********************************************
+     **************************************************************************************************************************/
     @isTest
     static void testUpdateChildContacts() {
     }
 
+    /**************************************************************************************************************************
+     ****************************************************** addrInfoDeleted ***********************************************
+     **************************************************************************************************************************/
     @isTest
     static void testAddrInfoDeleted() {
     }
