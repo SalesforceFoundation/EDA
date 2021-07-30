@@ -87,6 +87,7 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
      * @param  errorMessage errorMessage description
      * @return              return description
      ********************************************************************************************/
+    @TestVisible
     private virtual EDCSettingsProdInfoActionResultModel createErrorActionResult(Integer code, String errorMessage) {
         CallableError error = new CallableError(code, errorMessage);
 

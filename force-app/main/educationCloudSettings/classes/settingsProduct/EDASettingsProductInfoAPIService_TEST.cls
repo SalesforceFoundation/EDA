@@ -282,6 +282,31 @@ private class EDASettingsProductInfoAPIService_TEST {
         );
     }
 
+    /**************************************************************************************************************************
+     * @description Test method to assess an scenario when createErrorActionResult returns an instance of EDCSettingsProdInfoActionResultModel
+     * with the error message and code populated
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testCreateErrorActionResult() {
+        Integer code = 400;
+        String errorMessage = 'testErrorMessage';
+        EDASettingsProductInformationAPIService service = new EDASettingsProductInformationAPIService();
+
+        Test.startTest();
+        EDCSettingsProdInfoActionResultModel actionResult = service.createErrorActionResult(code, errorMessage);
+        Test.stopTest();
+
+        System.assertEquals(false, actionResult.success, 'success should be false');
+        System.assertEquals(null, actionResult.result, 'result should be null');
+        System.assertNotEquals(null, actionResult.error, 'error should not be null');
+        System.assertEquals(400, actionResult.error.code, 'error code should be 400');
+        System.assertEquals(errorMessage, actionResult.error.message, errorMessage);
+    }
+
+    /**************************************************************************************************************************
+     * @description Stub class for EDCSettingsProductInformationMapper where getProductInformationModel method
+     * provides sample data for testing
+     ***************************************************************************************************************************/
     private class EDCSettingsProductInformationMapperStub extends EDCSettingsProductInformationMapper {
         public override EDCSettingsProductInformationModel getProductInformationModel() {
             EDCSettingsProductInformationModel productInformation = new EDCSettingsProductInformationModel(
