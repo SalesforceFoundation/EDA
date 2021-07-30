@@ -78,7 +78,7 @@ public class UTIL_Namespace {
     public static String StrTokenNSPrefixComponent() {
         if (getNamespace() == '')
             return 'c__';
-        return getNamespace();
+        return getNamespace() + '__';
     }
 
     /*******************************************************************************************************

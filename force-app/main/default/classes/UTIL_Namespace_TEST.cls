@@ -69,7 +69,7 @@ public with sharing class UTIL_Namespace_TEST {
                 '__c',
                 UTIL_Namespace.StrTokenRemoveNSPrefix('foo_' + UTIL_Namespace.getNamespace() + '__c')
             );
-            system.assertEquals(UTIL_Namespace.getNamespace(), UTIL_Namespace.StrTokenNSPrefixComponent());
+            system.assertEquals(UTIL_Namespace.getNamespace() + '__', UTIL_Namespace.StrTokenNSPrefixComponent());
         } else {
             system.assertEquals('foo', UTIL_Namespace.StrTokenNSPrefix('foo'));
             system.assertEquals('foo__c', UTIL_Namespace.StrTokenNSPrefix('foo__c'));
