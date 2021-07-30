@@ -1104,6 +1104,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressAddrSObj(address, null, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
             Test.stopTest();
+            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
