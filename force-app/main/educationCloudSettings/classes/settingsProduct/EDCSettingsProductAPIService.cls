@@ -100,14 +100,23 @@ public virtual with sharing class EDCSettingsProductAPIService {
         try {
             Type settingsProductInformationAPIServiceType = Type.forName(nonEDANamespace, className);
             settingsProductInformationAPIService = (Callable) settingsProductInformationAPIServiceType.newInstance();
-        } catch (System.NullPointerException e) {
+        } catch (System.NullPointerException npe) {
             throw new SettingsProductNotFoundException(
                 'Class: ' +
                 className +
                 ' with namespace: ' +
                 (String.isBlank(nonEDANamespace) ? 'hed' : nonEDANamespace) +
                 ' could not get loaded',
-                e
+                npe
+            );
+        } catch (System.TypeException te) {
+            throw new SettingsProductNotFoundException(
+                'Class: ' +
+                className +
+                ' with namespace: ' +
+                (String.isBlank(nonEDANamespace) ? 'hed' : nonEDANamespace) +
+                ' could not get loaded',
+                te
             );
         }
         return settingsProductInformationAPIService;
