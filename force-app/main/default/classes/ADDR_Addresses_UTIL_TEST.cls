@@ -298,12 +298,6 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         System.assertEquals(true, isContactAddressChanged);
     }
 
-    @isTest
-    static void testIsContactAddressChanged() {
-        /* return (!isContactAddressEmpty(con1) || String.isNotBlank(con1.Primary_Address_Type__c)); does not make any sense
-         or hardly readable. We need to refactor this so that it is readable from first glance */
-    }
-
     /**************************************************************************************************************************
      ****************************************************** isAccountAddressChanged *******************************************
      **************************************************************************************************************************/
@@ -341,6 +335,22 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         Test.stopTest();
 
         System.assertEquals(false, isAccountAddressChanged);
+    }
+
+    @isTest
+    static void testIsAccountAddressChangedNotNullDifferentAddressInfoCaseTrue() {
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            2,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        accounts[0].BillingStreet = 'some random billing street';
+        accounts[1].BillingStreet = accounts[0].BillingStreet.toUppercase();
+
+        Test.startTest();
+        Boolean isAccountAddressChanged = ADDR_Addresses_UTIL.isAccountAddressChanged(accounts[0], accounts[1]);
+        Test.stopTest();
+
+        System.assertEquals(true, isAccountAddressChanged);
     }
 
     @isTest
