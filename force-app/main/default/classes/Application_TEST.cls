@@ -218,6 +218,21 @@ private with sharing class Application_TEST {
         );
     }
 
+    /********************************************************
+     * @description Should succeed in updating an application when setting the due date prior to the open date when the trigger is disabled
+     *********************************************************/
+    @isTest
+    static void shouldNotProceedWithEmptyList() {
+        Application_TDTM handler = new Application_TDTM();
+        TDTM_Runnable.DmlWrapper result = handler.run(
+            new List<Application__c>(),
+            null,
+            TDTM_Runnable.Action.BeforeInsert,
+            Application__c.getSobjectType().getDescribe()
+        );
+        System.assertNotEquals(null, result, 'Handler should have returned an empty DmlWrapper instance');
+    }
+
     private static Account getAcademicAccount() {
         Account academicAccount = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,

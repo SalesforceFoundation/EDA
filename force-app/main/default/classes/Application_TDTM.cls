@@ -50,7 +50,7 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
         Schema.DescribeSObjectResult objResult
     ) {
         if (newList == null || newList.isEmpty()) {
-            return null;
+            return new DmlWrapper();
         }
 
         if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
