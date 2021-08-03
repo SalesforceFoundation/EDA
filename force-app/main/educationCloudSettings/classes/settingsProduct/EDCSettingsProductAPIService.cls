@@ -93,7 +93,7 @@ public virtual with sharing class EDCSettingsProductAPIService {
         Callable settingsProductInformationAPIService;
         String nonEDANamespace = namespace;
 
-        if (namespace.equalsIgnoreCase('hed')) {
+        if (String.isNotBlank(namespace) && namespace.equalsIgnoreCase('hed')) {
             nonEDANamespace = '';
         }
 

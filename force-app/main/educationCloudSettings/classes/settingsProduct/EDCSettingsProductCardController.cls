@@ -29,27 +29,32 @@
  * @date 2021
  * @group
  * @group-content
- * @description Controller used in the EducationCloudSettings component
+ * @description Controller used in the edcSettingsProductCard component
  */
-public with sharing class EducationCloudSettingsController {
+public with sharing class EDCSettingsProductCardController {
     /********************************************************************************************
-     * @description Returns the list of ProductRegistryVModel based on the Product Registry CMT records
-     * @return A list of ProductRegistryVModel with all the properties populated
+     * @description Returns the EDCSettingsProductVModel information based on the product registry information
+     * @param  productRegistry productRegistry the serialized product registry information
+     * @return A EDCSettingsProductVModel with all the properties populated
      ********************************************************************************************/
     @AuraEnabled(cacheable=true)
-    public static List<ProductRegistryVModel> getProductRegistrySettingsProductInformationVModels() {
+    public static EDCSettingsProductVModel getEDCSettingsProductVModel(
+        String classname,
+        String namespace,
+        Decimal apiVersion
+    ) {
         try {
-            return EducationCloudSettingsController.locateProductRegistryVMapper()
-                .getProductRegistrySettingsProductInformation();
+            return EDCSettingsProductCardController.locateSettingsProductVMapper()
+                .getEDCSettingsProductVModel(classname, namespace, apiVersion);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
 
     /**********************************************************************************
-     * @description Locates and returns an instance of ProductRegistryVMapper.
+     * @description Locates and returns an instance of EDCSettingsProductVMapper.
      **********************************************************************************/
-    private static ProductRegistryVMapper locateProductRegistryVMapper() {
-        return ProductRegistryVMapper.getInstance();
+    private static EDCSettingsProductVMapper locateSettingsProductVMapper() {
+        return EDCSettingsProductVMapper.getInstance();
     }
 }
