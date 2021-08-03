@@ -277,7 +277,14 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     numOfContactsLeft = accountIdNumOfCons.get(con.AccountId);
                 }
 
-                updateWrapper.handleUpdateData(con, oldContacts[conProcessed], triggerAction, numOfContactsLeft);
+                Map<Id, Contact> oldContactByContactId = new Map<Id, Contact>(oldContacts);
+
+                updateWrapper.handleUpdateData(
+                    con,
+                    oldContactByContactId.get(con.Id),
+                    triggerAction,
+                    numOfContactsLeft
+                );
             }
 
             conProcessed += 1;
