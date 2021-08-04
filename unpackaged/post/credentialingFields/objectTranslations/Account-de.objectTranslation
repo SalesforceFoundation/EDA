@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+  <fields>
+    <name>Credentialing_Identifier__c</name>
+    <help><!--An International Resource Identifier that uniquely identifies an Account for credentialing purposes.--></help>
+    <label><!--Credentialing Identifier--></label>
+  </fields>
+</CustomObjectTranslation>
