@@ -246,8 +246,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         List<Contact> contactsNeedAccounts = new List<Contact>();
         HandleUpdateWrapperLogic updateWrapper;
         HandleInsertWrapperLogic insertWrapper;
-
+        Map<Id, Contact> oldContactByContactId = new Map<Id, Contact>(oldContacts);
         Integer conProcessed = 0;
+
         for (Contact con : newContacts) {
             //Account needs to be created if (1) Account does not exist or (2) Account model is not blank
             if (con.AccountId == null && defaultRecTypeId != null) {
@@ -276,8 +277,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 if (accountIdNumOfCons.containsKey(con.AccountId)) {
                     numOfContactsLeft = accountIdNumOfCons.get(con.AccountId);
                 }
-
-                Map<Id, Contact> oldContactByContactId = new Map<Id, Contact>(oldContacts);
 
                 updateWrapper.handleUpdateData(
                     con,
