@@ -1887,6 +1887,39 @@
         <value>Errors</value>
     </labels>
     <labels>
+        <fullName>stgErrorSettingsProductInvalidAction</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message when the EDA product registry has an incorrect or missing Action value</shortDescription>
+        <value>We couldn&apos;t access EDA because the product registry has an incorrect or missing Action value. Contact Salesforce Customer Support for help.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorSettingsProductInvalidApiVersion</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message when the EDA product registry has an incorrect or missing API name</shortDescription>
+        <value>We couldn&apos;t access EDA because the product registry has an incorrect or missing API name. Contact Salesforce Customer Support for help.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorSettingsProductInvalidClass</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message when the product registry has an incorrect or missing class name</shortDescription>
+        <value>We couldn&apos;t access {0} because the product registry has an incorrect or missing class name. Contact Salesforce Customer Support for help.</value>
+    </labels>
+    <labels>
+        <fullName>stgErrorSettingsProductInvalidResponse</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message when EDA can&apos;t access valid product information</shortDescription>
+        <value>We couldn&apos;t access valid product information for {0}. Contact Salesforce Customer Support for help.</value>
+    </labels>
+
+    <labels>
         <fullName>stgErrorSettingsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>

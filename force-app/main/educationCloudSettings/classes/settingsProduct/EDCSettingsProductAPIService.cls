@@ -73,12 +73,23 @@ public virtual with sharing class EDCSettingsProductAPIService {
         );
 
         String settingsInformationJSON = this.makeCall(settingsProductInformationAPIService, apiVersion);
+        EDCSettingsProdInfoActionResultModel actionResult;
 
-        //TODO: Write error handling for serializaiton exceptions
-        EDCSettingsProdInfoActionResultModel actionResult = (EDCSettingsProdInfoActionResultModel) JSON.deserialize(
-            settingsInformationJSON,
-            EDCSettingsProdInfoActionResultModel.class
-        );
+        try {
+            actionResult = (EDCSettingsProdInfoActionResultModel) JSON.deserialize(
+                settingsInformationJSON,
+                EDCSettingsProdInfoActionResultModel.class
+            );
+        } catch (System.JSONException je) {
+            throw new SettingsInvalidResponseException(
+                this.locateStringHandlingService()
+                    .formatStringWithApostrophesAndParameters(
+                        Label.stgErrorSettingsProductInvalidResponse,
+                        new List<Object>{ namespace }
+                    ),
+                je
+            );
+        }
         return actionResult;
     }
 
@@ -102,20 +113,20 @@ public virtual with sharing class EDCSettingsProductAPIService {
             settingsProductInformationAPIService = (Callable) settingsProductInformationAPIServiceType.newInstance();
         } catch (System.NullPointerException npe) {
             throw new SettingsProductNotFoundException(
-                'Class: ' +
-                className +
-                ' with namespace: ' +
-                (String.isBlank(nonEDANamespace) ? 'hed' : nonEDANamespace) +
-                ' could not get loaded',
+                this.locateStringHandlingService()
+                    .formatStringWithApostrophesAndParameters(
+                        Label.stgErrorSettingsProductInvalidClass,
+                        new List<Object>{ (String.isBlank(nonEDANamespace) ? 'hed' : nonEDANamespace) }
+                    ),
                 npe
             );
         } catch (System.TypeException te) {
             throw new SettingsProductNotFoundException(
-                'Class: ' +
-                className +
-                ' with namespace: ' +
-                (String.isBlank(nonEDANamespace) ? 'hed' : nonEDANamespace) +
-                ' could not get loaded',
+                this.locateStringHandlingService()
+                    .formatStringWithApostrophesAndParameters(
+                        Label.stgErrorSettingsProductInvalidClass,
+                        new List<Object>{ (String.isBlank(nonEDANamespace) ? 'hed' : nonEDANamespace) }
+                    ),
                 te
             );
         }
@@ -137,6 +148,17 @@ public virtual with sharing class EDCSettingsProductAPIService {
         return settingsInformationJSON;
     }
 
+    /***************************************************************************
+     * @description Retrieves an instance of StringHandlingService.
+     * @return An instance of StringHandlingService.
+     ***************************************************************************/
+    @TestVisible
+    private StringHandlingService locateStringHandlingService() {
+        return StringHandlingService.getInstance();
+    }
+
     public class SettingsProductNotFoundException extends Exception {
+    }
+    public class SettingsInvalidResponseException extends Exception {
     }
 }
