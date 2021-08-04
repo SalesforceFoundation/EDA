@@ -250,7 +250,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
             for (Contact con : newContacts) {
-                //Account needs to be created if (1) Account does not exist or (2) Account model is not blank
                 if (con.AccountId == null && defaultRecTypeId != null) {
                     contactsNeedAccounts.add(con);
                 }
@@ -277,7 +276,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             Map<Id, Contact> oldContactByContactId = new Map<Id, Contact>(oldContacts);
 
             for (Contact con : newContacts) {
-                //Account needs to be created if (1) Account does not exist or (2) Account model is not blank
                 if (con.AccountId == null && defaultRecTypeId != null) {
                     contactsNeedAccounts.add(con);
                 }
@@ -314,7 +312,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         }
 
         for (Contact con : newContacts) {
-            //Account needs to be created if (1) Account does not exist or (2) Account model is not blank
             if (con.AccountId == null && defaultRecTypeId != null) {
                 contactsNeedAccounts.add(con);
             }
