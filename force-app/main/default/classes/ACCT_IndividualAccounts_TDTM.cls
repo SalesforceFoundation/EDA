@@ -246,26 +246,42 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         List<Contact> contactsNeedAccounts = new List<Contact>();
         HandleUpdateWrapperLogic updateWrapper;
         HandleInsertWrapperLogic insertWrapper;
-        Map<Id, Contact> oldContactByContactId = new Map<Id, Contact>(oldContacts);
         Integer conProcessed = 0;
 
-        for (Contact con : newContacts) {
-            //Account needs to be created if (1) Account does not exist or (2) Account model is not blank
-            if (con.AccountId == null && defaultRecTypeId != null) {
-                contactsNeedAccounts.add(con);
-            }
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+            for (Contact con : newContacts) {
+                //Account needs to be created if (1) Account does not exist or (2) Account model is not blank
+                if (con.AccountId == null && defaultRecTypeId != null) {
+                    contactsNeedAccounts.add(con);
+                }
 
-            //AFTER INSERT
-            if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
                 if (insertWrapper == null) {
                     insertWrapper = new HandleInsertWrapperLogic();
                 }
 
                 insertWrapper.handleInsertData(con);
+
+                conProcessed += 1;
             }
 
-            //AFTER UPDATE
-            if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+            TDTM_ProcessControl.setRecursionFlag(
+                TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert,
+                true
+            );
+            handleInsertProcessing(insertWrapper, contactsNeedAccounts);
+            handleUpdateProcessing(updateWrapper, contactsNeedAccounts);
+            return;
+        }
+
+        if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+            Map<Id, Contact> oldContactByContactId = new Map<Id, Contact>(oldContacts);
+
+            for (Contact con : newContacts) {
+                //Account needs to be created if (1) Account does not exist or (2) Account model is not blank
+                if (con.AccountId == null && defaultRecTypeId != null) {
+                    contactsNeedAccounts.add(con);
+                }
+
                 if (updateWrapper == null) {
                     updateWrapper = new HandleUpdateWrapperLogic();
                 }
@@ -284,24 +300,26 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                     triggerAction,
                     numOfContactsLeft
                 );
+
+                conProcessed += 1;
             }
 
-            conProcessed += 1;
-        }
-
-        //Set recursion flag
-        if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
-            TDTM_ProcessControl.setRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Insert,
-                true
-            );
-        }
-
-        if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
             TDTM_ProcessControl.setRecursionFlag(
                 TDTM_ProcessControl.registeredTrigger.ACCT_IndividualAccounts_TDTM_After_Update,
                 true
             );
+            handleInsertProcessing(insertWrapper, contactsNeedAccounts);
+            handleUpdateProcessing(updateWrapper, contactsNeedAccounts);
+            return;
+        }
+
+        for (Contact con : newContacts) {
+            //Account needs to be created if (1) Account does not exist or (2) Account model is not blank
+            if (con.AccountId == null && defaultRecTypeId != null) {
+                contactsNeedAccounts.add(con);
+            }
+
+            conProcessed += 1;
         }
 
         if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
