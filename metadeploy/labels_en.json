@@ -63,6 +63,10 @@
         "EDA - Education Data Architecture App": {
             "message": "EDA - Education Data Architecture App",
             "description": "title of installation step"
+        },
+        "EDA - Credentialing Ids": {
+            "message": "EDA - Credentialing Ids",
+            "description": "title of installation step"
         }
     },
     "plan:ra_einstein_template": {

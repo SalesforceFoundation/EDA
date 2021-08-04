@@ -121,6 +121,8 @@ tasks:
                 name: EDA - Case Behavior Record Types
             eda_app:
                 name: EDA - Education Data Architecture App
+            credentialing_fields:
+                name: EDA - Credentialing Ids
 
     deploy_pre:
         ui_options:
