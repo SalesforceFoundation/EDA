@@ -80,7 +80,8 @@ public with sharing class ADDR_Addresses_UTIL {
             !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.Mailing_County__c, acc.Billing_County__c) ||
             !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingState, acc.BillingState) ||
             !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingPostalCode, acc.BillingPostalCode) ||
-            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCountry, acc.BillingCountry);
+            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCountry, acc.BillingCountry) ||
+            contact.Mailing_Address_Inactive__c != acc.Billing_Address_Inactive__c;
 
         if (isChanged == false && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             isChanged =
@@ -118,6 +119,7 @@ public with sharing class ADDR_Addresses_UTIL {
         !equalsCaseSensitive(addrNew.MailingState__c, addrOld.MailingState__c) ||
         !equalsCaseSensitive(addrNew.MailingPostalCode__c, addrOld.MailingPostalCode__c) ||
         !equalsCaseSensitive(addrNew.MailingCountry__c, addrOld.MailingCountry__c) ||
+        addrNew.Inactive__c != addrOld.Inactive__c ||
         (includeAddressType && (!equalsCaseSensitive(addrNew.Address_Type__c, addrOld.Address_Type__c))));
     }
 
@@ -151,7 +153,8 @@ public with sharing class ADDR_Addresses_UTIL {
             !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingState, con2.MailingState) ||
             !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingPostalCode, con2.MailingPostalCode) ||
             !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCountry, con2.MailingCountry) ||
-            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.Primary_Address_Type__c, con2.Primary_Address_Type__c);
+            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.Primary_Address_Type__c, con2.Primary_Address_Type__c) ||
+            con1.Mailing_Address_Inactive__c != con2.Mailing_Address_Inactive__c;
 
         if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             isChanged =
@@ -185,7 +188,8 @@ public with sharing class ADDR_Addresses_UTIL {
             !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.Billing_County__c, acc2.Billing_County__c) ||
             !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingState, acc2.BillingState) ||
             !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingPostalCode, acc2.BillingPostalCode) ||
-            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry);
+            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry) ||
+            acc1.Billing_Address_Inactive__c != acc2.Billing_Address_Inactive__c;
 
         if (isChanged == false && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             isChanged =
@@ -308,6 +312,10 @@ public with sharing class ADDR_Addresses_UTIL {
             strCleanup(addrNew.MailingCounty__c) != strCleanup(addrOld.MailingCounty__c) &&
             String.isNotBlank(addrOld.MailingCounty__c)
         ) {
+            cChange++;
+        }
+
+        if (addrNew.Inactive__c != addrOld.Inactive__c && addrOld.Inactive__c != false) {
             cChange++;
         }
 
