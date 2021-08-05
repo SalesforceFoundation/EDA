@@ -11,13 +11,14 @@
                             initials={iconInitials}
                             fallback-icon-name={iconFallbackName}
                             aria-hidden="true"
+                            class="productIcon"
                         ></lightning-avatar>
-                        <span class="slds-text-heading_small slds-var-p-left_small">{title}</span>
+                        <span class="slds-text-heading_small slds-var-p-left_small productTitle">{title}</span>
                     </div>
                 </h3>
                 <!-- Card Body -->
                 <div class="slds-grid slds-grid_vertical">
-                    <div class="slds-col slds-var-m-horizontal_small"><p>{description}</p></div>
+                    <div class="slds-col slds-var-m-horizontal_small productDescription"><p>{description}</p></div>
                     <div class="slds-col slds-var-m-horizontal_small slds-var-m-top_small slds-scrollable_x">
                         <lightning-button-group>
                             <lightning-button
@@ -26,6 +27,7 @@
                                 title={labelReference.settingsButtonA11y}
                                 aria-described-by="cardTitle"
                                 onclick={handleSettingsClick}
+                                class="btnSettingsComponent"
                             ></lightning-button>
                             <lightning-button
                                 if:true={documentationUrl}
@@ -33,6 +35,7 @@
                                 title={labelReference.documentationButtonA11y}
                                 aria-described-by="cardTitle"
                                 onclick={handleDocumentationClick}
+                                class="btnDocumentationUrl"
                             ></lightning-button>
                             <lightning-button
                                 if:true={trailheadUrl}
@@ -40,6 +43,7 @@
                                 title={labelReference.trailheadButtonA11y}
                                 aria-described-by="cardTitle"
                                 onclick={handleTrailheadClick}
+                                class="btnTrailheadUrl"
                             ></lightning-button>
                         </lightning-button-group>
                     </div>
