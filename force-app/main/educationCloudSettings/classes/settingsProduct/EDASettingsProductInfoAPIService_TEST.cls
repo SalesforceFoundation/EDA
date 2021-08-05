@@ -118,11 +118,9 @@ private class EDASettingsProductInfoAPIService_TEST {
         System.assertNotEquals(null, actionResult.error, 'error should not be null');
         System.assertEquals(400, actionResult.error.code, 'error code should be 400');
         System.assertEquals(
-            'Method: ' +
-            action +
-            ' not implemented',
+            Label.stgErrorSettingsProductInvalidAction,
             actionResult.error.message,
-            'the error message is incorrect'
+            'the error message is incorrect, it should be: ' + Label.stgErrorSettingsProductInvalidAction
         );
     }
 
@@ -157,9 +155,9 @@ private class EDASettingsProductInfoAPIService_TEST {
         System.assertNotEquals(null, actionResult.error, 'error should not be null');
         System.assertEquals(400, actionResult.error.code, 'error code should be 400');
         System.assertEquals(
-            'You gotta have an API version!',
+            Label.stgErrorSettingsProductInvalidApiVersion,
             actionResult.error.message,
-            'the error message is incorrect'
+            'the error message is incorrect, it should be: ' + Label.stgErrorSettingsProductInvalidApiVersion
         );
     }
 
@@ -198,9 +196,9 @@ private class EDASettingsProductInfoAPIService_TEST {
         }
 
         System.assertEquals(
-            'You gotta have an API version!',
+            Label.stgErrorSettingsProductInvalidApiVersion,
             exceptionMessage,
-            'error message should be ' + exceptionMessage
+            'the error message is incorrect, it should be: ' + Label.stgErrorSettingsProductInvalidApiVersion
         );
     }
 
@@ -274,11 +272,9 @@ private class EDASettingsProductInfoAPIService_TEST {
         }
 
         System.assertEquals(
-            'Method: ' +
-            action +
-            ' not implemented',
+            Label.stgErrorSettingsProductInvalidAction,
             exceptionMessage,
-            'error message should be ' + exceptionMessage
+            'the error message is incorrect, it should be: ' + Label.stgErrorSettingsProductInvalidAction
         );
     }
 

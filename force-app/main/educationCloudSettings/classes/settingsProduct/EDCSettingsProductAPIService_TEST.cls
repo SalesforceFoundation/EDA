@@ -123,6 +123,38 @@ private class EDCSettingsProductAPIService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify a EDCSettingsProductApiService.SettingsInvalidResponseException is thrown when an
+     * invalid JSON response is received
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testExceptionGetSettingsProductInformationBadResponse() {
+        String classname = 'EDASettingsProductInformationAPIService';
+        String namespace = 'hed';
+        Decimal apiVersion = 52.0;
+        String exceptionMessage;
+        EDCSettingsProdInfoActionResultModel actionResult;
+        EDCSettingsProductAPIService.instance = new EDCSettingsProductAPIServiceBadResponseStub();
+
+        try {
+            Test.startTest();
+            actionResult = EDCSettingsProductAPIService.getInstance()
+                .getSettingsProductInformation(classname, namespace, apiVersion);
+            Test.stopTest();
+            System.assert(true, 'this should not happen');
+        } catch (EDCSettingsProductApiService.SettingsInvalidResponseException e) {
+            exceptionMessage = e.getMessage();
+        }
+        System.assertNotEquals(null, exceptionMessage, 'exception message should not be null');
+
+        String expectedMessage = StringHandlingService.getInstance()
+            .formatStringWithApostrophesAndParameters(
+                Label.stgErrorSettingsProductInvalidResponse,
+                new List<String>{ namespace }
+            );
+        System.assertEquals(expectedMessage, exceptionMessage, 'exception message should be: ' + expectedMessage);
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify a callable class is found when a valid classname is provided.
      ***************************************************************************************************************************/
     @isTest
@@ -160,6 +192,13 @@ private class EDCSettingsProductAPIService_TEST {
             exceptionMessage = e.getMessage();
         }
         System.assertNotEquals(null, exceptionMessage, 'exception message should not be null');
+
+        String expectedMessage = StringHandlingService.getInstance()
+            .formatStringWithApostrophesAndParameters(
+                Label.stgErrorSettingsProductInvalidClass,
+                new List<String>{ namespace }
+            );
+        System.assertEquals(expectedMessage, exceptionMessage, 'exception message should be: ' + expectedMessage);
     }
 
     /**************************************************************************************************************************
@@ -183,6 +222,13 @@ private class EDCSettingsProductAPIService_TEST {
         }
 
         System.assertNotEquals(null, exceptionMessage, 'exception message should not be null');
+
+        String expectedMessage = StringHandlingService.getInstance()
+            .formatStringWithApostrophesAndParameters(
+                Label.stgErrorSettingsProductInvalidClass,
+                new List<String>{ namespace }
+            );
+        System.assertEquals(expectedMessage, exceptionMessage, 'exception message should be: ' + expectedMessage);
     }
 
     /**************************************************************************************************************************
@@ -213,6 +259,28 @@ private class EDCSettingsProductAPIService_TEST {
         System.assertNotEquals(null, actionResult.result, 'result should not be null');
     }
 
+    /***************************************************************************
+     * @description Test method to verify that a
+     * StringHandlingService is retrieved by the locator method.
+     ***************************************************************************/
+    @isTest
+    private static void locateStringHandlingService() {
+        StringHandlingService expectedStringHandlingService = StringHandlingService.getInstance();
+        EDCSettingsProductAPIService productApiService = EDCSettingsProductAPIService.getInstance();
+
+        Test.startTest();
+        StringHandlingService StringHandlingService = productApiService.locateStringHandlingService();
+        Test.stopTest();
+
+        System.assertNotEquals(null, StringHandlingService, 'Instance of service class should not be null.');
+
+        System.assertEquals(
+            expectedStringHandlingService,
+            StringHandlingService,
+            'Instance of service class from view model mapper should match the singleton instance.'
+        );
+    }
+
     /**************************************************************************************************************************
      * @description Stub class for EDCSettingsProductAPIService returning some
      * EDCSettingsProdInfoActionResultModel sample data
@@ -234,6 +302,15 @@ private class EDCSettingsProductAPIService_TEST {
                 null
             );
             return JSON.serialize(actionResult);
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Stub class for EDCSettingsProductAPIService, where the makeCall method returns a bad response
+     ***************************************************************************************************************************/
+    private class EDCSettingsProductAPIServiceBadResponseStub extends EDCSettingsProductAPIService {
+        private override String makeCall(Callable settingsProductInformationAPIService, Decimal apiVersion) {
+            return '{someBadText';
         }
     }
 }
