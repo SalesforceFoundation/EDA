@@ -11,7 +11,7 @@ import stgBtnTrailheadActionA11y from "@salesforce/label/c.stgBtnTrailheadAction
 
 import getEDCSettingsProductVModel from "@salesforce/apex/EDCSettingsProductCardController.getEDCSettingsProductVModel";
 
-export default class EdcSettingsCard extends NavigationMixin(LightningElement) {
+export default class EdcSettingsProductCard extends NavigationMixin(LightningElement) {
 
     @api isDisplayProduct;
     @api productRegistry;

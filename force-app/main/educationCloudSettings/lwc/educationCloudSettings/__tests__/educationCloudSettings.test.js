@@ -1,5 +1,6 @@
 import { createElement } from "lwc";
-import EducationCloudSettings from "c/educationCloudSettings";
+import { ShowToastEventName } from 'lightning/platformShowToastEvent';
+import EducationCloudSettings from "c/EducationCloudSettings";
 import getProductRegistrySettingsProductInformationVModels from "@salesforce/apex/EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels";
 
 // Import mock data for c-edc-settings-product-display
@@ -84,6 +85,60 @@ describe("c-education-cloud-settings", () => {
                 expect(apiVersion).toBe(2);
                 return;
             }
+        });
+    });
+
+    it("Check if EDC Settings Product Display shows an error when an error ocurred", async() => {
+
+        const mockError = {
+            message : "error message"
+        }
+        const element = createElement("c-education-cloud-settings", {
+            is: EducationCloudSettings,
+        });
+
+        document.body.appendChild(element);
+
+        // Mock handler for toast event
+        const toastHandler = jest.fn();
+
+        // Add event listener to catch toast event
+        element.addEventListener(ShowToastEventName, toastHandler);
+
+        // Emit error from @wire
+        getProductRegistrySettingsProductInformationVModels.error(mockError, 400);
+
+        await flushPromises();
+
+        const edcSettingsProductCardElement = element.shadowRoot.querySelector(
+            "c-edc-settings-product-display"
+        );
+        expect(edcSettingsProductCardElement).not.toBeNull();
+        const productRegistryVModels = edcSettingsProductCardElement.productRegistryVModels;
+        expect(productRegistryVModels.length).toBe(0);
+
+        expect(toastHandler).toHaveBeenCalled();
+        expect(toastHandler.mock.calls[0][0].detail.title).toBe("Error");
+        expect(toastHandler.mock.calls[0][0].detail.message).toBe(mockError.message);
+    });
+
+    it("Check if the edcToolsCard section is shown correctly", () => {
+        const element = createElement("c-education-cloud-settings", {
+            is: EducationCloudSettings,
+        });
+        document.body.appendChild(element);
+
+        return Promise.resolve().then(async () => {
+            const edcToolsCardLI = element.shadowRoot.querySelector(".edcToolsCard");
+            expect(edcToolsCardLI).not.toBeNull();
+            const edcToolsCardElement = edcToolsCardLI.querySelector(
+                "c-edc-settings-card"
+            );
+            expect(edcToolsCardElement).not.toBeNull();
+
+            const containerName = edcToolsCardElement.navigationTarget;
+            expect(containerName).not.toBeNull();
+            expect(containerName.endsWith("HealthCheckContainer")).toBeTruthy();
         });
     });
 });

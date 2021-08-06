@@ -1,6 +1,6 @@
 import { createElement } from "lwc";
-import EdcSettingsCard from "c/edcSettingsProductCard";
-
+import EdcSettingsProductCard from "c/EdcSettingsProductCard";
+import { getNavigateCalledWith } from 'lightning/navigation';
 import getEDCSettingsProductVModel from "@salesforce/apex/EDCSettingsProductCardController.getEDCSettingsProductVModel";
 
 // Import mock data for edcSettingsProductCard
@@ -83,7 +83,7 @@ describe("c-edc-settings-product-card", () => {
         getEDCSettingsProductVModel.mockResolvedValue(mockGetEDCSettingsProductVModel);
 
         const element = createElement("c-edc-settings-product-card", {
-            is: EdcSettingsCard,
+            is: EdcSettingsProductCard,
         });
 
         element.productRegistry = {
@@ -126,4 +126,92 @@ describe("c-edc-settings-product-card", () => {
         expect(btnTrailheadUrl.title).toBe(trailheadButtonA11yTitle);
         expect(btnTrailheadUrl.label).toBe(trailheadButtonLabel);
     });
+
+    it("Check the button btnSettingsComponent works and navigates correctly", async() => {
+        // Assign mock value for resolved Apex promise
+        getEDCSettingsProductVModel.mockResolvedValue(mockGetEDCSettingsProductVModel);
+
+        const element = createElement("c-edc-settings-product-card", {
+            is: EdcSettingsProductCard,
+        });
+
+        element.productRegistry = {
+            classname: "testClassName",
+            namespace: "testNamespace",
+            apiVersion: 2.0
+        }
+        element.isDisplayProduct = true;
+
+        document.body.appendChild(element);
+
+        await flushPromises();
+
+        const btnSettingsComponent = element.shadowRoot.querySelector(".btnSettingsComponent");
+        expect(btnSettingsComponent).not.toBeNull();
+        btnSettingsComponent.click();
+        const { pageReference } = getNavigateCalledWith();
+
+        //Get the details
+        expect(pageReference.type).toBe('standard__component');
+        expect(pageReference.attributes.componentName).toBe('testSettingsComponent');
+    });
+
+    it("Check the button btnDocumentationUrl works and navigates correctly", async() => {
+        // Assign mock value for resolved Apex promise
+        getEDCSettingsProductVModel.mockResolvedValue(mockGetEDCSettingsProductVModel);
+
+        const element = createElement("c-edc-settings-product-card", {
+            is: EdcSettingsProductCard,
+        });
+
+        element.productRegistry = {
+            classname: "testClassName",
+            namespace: "testNamespace",
+            apiVersion: 2.0
+        }
+        element.isDisplayProduct = true;
+
+        document.body.appendChild(element);
+
+        await flushPromises();
+
+        const btnDocumentationUrl = element.shadowRoot.querySelector(".btnDocumentationUrl");
+        expect(btnDocumentationUrl).not.toBeNull();
+        btnDocumentationUrl.click();
+        const { pageReference } = getNavigateCalledWith();
+
+        //Get the details
+        expect(pageReference.type).toBe('standard__webPage');
+        expect(pageReference.attributes.url).toBe('testDocumentationUrl');
+    });
+
+    it("Check the button btnTrailheadUrl works and navigates correctly", async() => {
+        // Assign mock value for resolved Apex promise
+        getEDCSettingsProductVModel.mockResolvedValue(mockGetEDCSettingsProductVModel);
+
+        const element = createElement("c-edc-settings-product-card", {
+            is: EdcSettingsProductCard,
+        });
+
+        element.productRegistry = {
+            classname: "testClassName",
+            namespace: "testNamespace",
+            apiVersion: 2.0
+        }
+        element.isDisplayProduct = true;
+
+        document.body.appendChild(element);
+
+        await flushPromises();
+
+        const btnTrailheadUrl = element.shadowRoot.querySelector(".btnTrailheadUrl");
+        expect(btnTrailheadUrl).not.toBeNull();
+        btnTrailheadUrl.click();
+        const { pageReference } = getNavigateCalledWith();
+
+        //Get the details
+        expect(pageReference.type).toBe('standard__webPage');
+        expect(pageReference.attributes.url).toBe('testTrailheadUrl');
+    });
+
 });
