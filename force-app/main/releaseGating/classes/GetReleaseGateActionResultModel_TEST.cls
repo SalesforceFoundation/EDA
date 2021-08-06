@@ -4,13 +4,13 @@
     Redistribution and use in source and binary forms, with or without
     modification, are permitted provided that the following conditions are met:
     * Redistributions of source code must retain the above copyright
-    notice, this list of conditions and the following disclaimer.
+      notice, this List of conditions and the following disclaimer.
     * Redistributions in binary form must reproduce the above copyright
-    notice, this list of conditions and the following disclaimer in the
-    documentation and/or other materials provided with the distribution.
+      notice, this List of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
     * Neither the name of Salesforce.org nor the names of
-    its contributors may be used to endorse or promote products derived
-    from this software without specific prior written permission.
+      its contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
     "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
     LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
@@ -28,32 +28,33 @@
  * @author Salesforce.org
  * @date 2021
  * @group
- * @group-content
- * @description Test class for ProductRegistryVModel
+ * @group-content ../../ApexDocContent/
+ * @description Test class for GetReleaseGateActionResultModel
  */
 @isTest
-private class ProductRegistryVModel_TEST {
+public with sharing class GetReleaseGateActionResultModel_TEST {
     /**************************************************************************************************************************
      * @description Test method to verify the constructor is setting the properties correctly
      ***************************************************************************************************************************/
     @isTest
     private static void testConstructor() {
-        String name = 'testName';
-        String action = 'testAction';
-        String namespace = 'testNamespace';
-        String classname = 'testClassname';
-        Decimal apiVersion = 52.0;
+        String productName = 'testproduct';
+        String productLabel = 'test product';
 
-        ProductRegistryVModel model;
+        List<GetReleaseGateActionResultModel.GetReleaseGateResult> resultList = new List<GetReleaseGateActionResultModel.GetReleaseGateResult>();
+        GetReleaseGateActionResultModel.GetReleaseGateResult releaseGate = new GetReleaseGateActionResultModel.GetReleaseGateResult();
+        releaseGate.product = new GetReleaseGateActionResultModel.ReleaseGateProduct();
+        releaseGate.product.label = productLabel;
+        releaseGate.product.name = productName;
+        releaseGate.gates = new List<GetReleaseGateActionResultModel.ReleaseGate>();
+        resultList.add(releaseGate);
 
         Test.startTest();
-        model = new ProductRegistryVModel(name, action, namespace, classname, apiVersion);
+        GetReleaseGateActionResultModel releaseGateModel = new GetReleaseGateActionResultModel(resultList, true, null);
         Test.stopTest();
 
-        System.assertEquals(name, model.name, 'name should be set with the value it is passed');
-        System.assertEquals(action, model.action, 'action should be set with the value it is passed');
-        System.assertEquals(namespace, model.namespace, 'namespace should be set with the value it is passed');
-        System.assertEquals(classname, model.classname, 'classname should be set with the value it is passed');
-        System.assertEquals(apiVersion, model.apiVersion, 'apiVersion should be set with the value it is passed');
+        System.assertEquals(true, releaseGateModel.success, 'success should be true');
+        System.assertEquals(null, releaseGateModel.error, 'error should be null');
+        System.assertEquals(resultList, releaseGateModel.result, 'result is not correct');
     }
 }

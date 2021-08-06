@@ -39,6 +39,7 @@ private class EducationCloudSettingsController_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void testGetProductRegistrySettingsProductInformationVModels() {
+        String name = 'testName';
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
@@ -52,6 +53,7 @@ private class EducationCloudSettingsController_TEST {
         System.assertEquals(1, productRegistryList.size(), 'productRegistryList size should be 1');
 
         ProductRegistryVModel model = productRegistryList.get(0);
+        System.assertEquals(name, model.name, 'name should be set with the value: ' + name);
         System.assertEquals(action, model.action, 'action should be set with the value: ' + action);
         System.assertEquals(namespace, model.namespace, 'namespace should be set with the value: ' + namespace);
         System.assertEquals(classname, model.classname, 'classname should be set with the value: ' + classname);
@@ -101,7 +103,7 @@ private class EducationCloudSettingsController_TEST {
         String classname = 'testClassname';
         Decimal apiVersion = 52.0;
 
-        ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
+        ProductRegistryVModel registryModel = new ProductRegistryVModel(name, action, namespace, classname, apiVersion);
         String productRegistry = JSON.serialize(registryModel);
 
         EDCSettingsProductVModel productVModel;
@@ -134,12 +136,13 @@ private class EducationCloudSettingsController_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void testExceptionGetEDCSettingsProductVModel() {
+        String name = 'testName';
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
         Decimal apiVersion = 52.0;
         String exceptionMessage;
-        ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
+        ProductRegistryVModel registryModel = new ProductRegistryVModel(name, action, namespace, classname, apiVersion);
         String productRegistry = JSON.serialize(registryModel);
 
         EDCSettingsProductVModel productVModel;
@@ -163,6 +166,7 @@ private class EducationCloudSettingsController_TEST {
     private class ProductRegistryVMapperStub extends ProductRegistryVMapper {
         public override List<ProductRegistryVModel> getProductRegistrySettingsProductInformation() {
             ProductRegistryVModel model = new ProductRegistryVModel(
+                'testName',
                 'testAction',
                 'testNamespace',
                 'testClassname',

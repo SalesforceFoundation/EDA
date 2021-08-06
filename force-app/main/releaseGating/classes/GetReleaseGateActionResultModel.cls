@@ -27,31 +27,45 @@
 /**
  * @author Salesforce.org
  * @date 2021
- * @group
- * @group-content
- * @description Model to abstract data needed to populate Product Registries
+ * @group EDA Settings
+ * @group-content ../../ApexDocContent/EdaSettings.htm
+ * @description Model to represent Release gate get action result
  */
-public virtual class ProductRegistryModel {
-    public String name { get; private set; }
-    public String action { get; private set; }
-    public String namespace { get; private set; }
-    public String classname { get; private set; }
-    public Decimal apiVersion { get; private set; }
+public with sharing class GetReleaseGateActionResultModel extends CallableResult {
+    public GetReleaseGateResult[] result;
 
-    /********************************************************************************************
-     * @description Five argument constructor
-     * @param  name A string representing the developer name of the record
-     * @param  action A string representing the action or method this registry is about
-     * @param  namespace A string representing the product namespace
-     * @param  classname A string representing the class name to invoke
-     * @param  apiVersion A decimal representing the apiVersion to request in the call
-     * @return A ProductRegistryModel with all properties populated.
-     ********************************************************************************************/
-    public ProductRegistryModel(String name, String action, String namespace, String classname, Decimal apiVersion) {
-        this.name = name;
-        this.action = action;
-        this.namespace = namespace;
-        this.classname = classname;
-        this.apiVersion = apiVersion;
+    public GetReleaseGateActionResultModel(GetReleaseGateResult[] result, Boolean success, CallableError error) {
+        super(success, error);
+        this.result = result;
+    }
+
+    public class GetReleaseGateResult {
+        public ReleaseGateProduct product;
+        public ReleaseGate[] gates;
+    }
+
+    public class ReleaseGateProduct {
+        public String name;
+        public String label;
+        public String nextReleaseDate;
+    }
+
+    public class ReleaseGate {
+        public String name;
+        public String label;
+        public String description;
+        public Date releaseDate;
+        public Date dueDate;
+        public DateTime activationDate;
+        public ReleaseGateFeature[] items;
+        public String status;
+    }
+
+    public class ReleaseGateFeature {
+        public String name;
+        public String label;
+        public String description;
+        public String helpLink;
+        public String helpLinkLabel;
     }
 }

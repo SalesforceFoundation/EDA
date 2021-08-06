@@ -39,6 +39,7 @@ private class ProductRegistryService_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void testGetProductRegistrySettingsProductInformation() {
+        String name = 'testName';
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
@@ -57,6 +58,7 @@ private class ProductRegistryService_TEST {
 
         ProductRegistryModel model = prodRegistryModelList.get(0);
 
+        System.assertEquals(name, model.name, 'name should be set with the value: ' + name);
         System.assertEquals(action, model.action, 'action should be set with the value: ' + action);
         System.assertEquals(namespace, model.namespace, 'namespace should be set with the value: ' + namespace);
         System.assertEquals(classname, model.classname, 'classname should be set with the value: ' + classname);
@@ -69,6 +71,7 @@ private class ProductRegistryService_TEST {
     private class ProductRegistryMapperStub extends ProductRegistryMapper {
         public override List<ProductRegistryModel> getProductRegistrySettingsProductInformation() {
             ProductRegistryModel prodRegistryModel = new ProductRegistryModel(
+                'testName',
                 'testAction',
                 'testNamespace',
                 'testClassname',

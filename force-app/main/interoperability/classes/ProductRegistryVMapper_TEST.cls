@@ -97,6 +97,7 @@ private class ProductRegistryVMapper_TEST {
     private class ProductRegistryServiceStub extends ProductRegistryService {
         public override List<ProductRegistryModel> getProductRegistrySettingsProductInformation() {
             ProductRegistryModel prodRegistryModel = new ProductRegistryModel(
+                'testName',
                 'testAction',
                 'testNamespace',
                 'testClassname',

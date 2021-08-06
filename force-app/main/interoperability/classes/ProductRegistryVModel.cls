@@ -33,6 +33,8 @@
  */
 public virtual class ProductRegistryVModel {
     @AuraEnabled
+    public String name { get; private set; }
+    @AuraEnabled
     public String action { get; private set; }
     @AuraEnabled
     public String namespace { get; private set; }
@@ -42,14 +44,16 @@ public virtual class ProductRegistryVModel {
     public Decimal apiVersion { get; private set; }
 
     /********************************************************************************************
-     * @description Four argument constructor
+     * @description Five argument constructor
+     * @param  name A string representing the developer name of the record
      * @param  action An string representing the action or method this registry is about
      * @param  namespace A string representing the product namespace
      * @param  classname A string representing the class name to invoke
      * @param  apiVersion A decimal representing the apiVersion to request in the call
      * @return A ProductRegistryVModel with all properties populated.
      ********************************************************************************************/
-    public ProductRegistryVModel(String action, String namespace, String classname, Decimal apiVersion) {
+    public ProductRegistryVModel(String name, String action, String namespace, String classname, Decimal apiVersion) {
+        this.name = name;
         this.action = action;
         this.namespace = namespace;
         this.classname = classname;

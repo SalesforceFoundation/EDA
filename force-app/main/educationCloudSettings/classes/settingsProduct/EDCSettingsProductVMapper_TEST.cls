@@ -51,7 +51,7 @@ private class EDCSettingsProductVMapper_TEST {
         String classname = 'testClassname';
         Decimal apiVersion = 52.0;
 
-        ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
+        ProductRegistryVModel registryModel = new ProductRegistryVModel(name, action, namespace, classname, apiVersion);
         String productRegistry = JSON.serialize(registryModel);
 
         EDCSettingsProductAPIService.instance = new EDCSettingsProductAPIServiceStub();
@@ -96,7 +96,7 @@ private class EDCSettingsProductVMapper_TEST {
         Decimal apiVersion = 52.0;
         String exceptionMessage;
 
-        ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
+        ProductRegistryVModel registryModel = new ProductRegistryVModel(name, action, namespace, classname, apiVersion);
         String productRegistry = JSON.serialize(registryModel);
 
         EDCSettingsProductAPIService.instance = new EDCSettingsProductAPIServiceErrorStub();
@@ -119,12 +119,13 @@ private class EDCSettingsProductVMapper_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void TestNullProductInformation() {
+        String name = 'testName';
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
         Decimal apiVersion = 52.0;
 
-        ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
+        ProductRegistryVModel registryModel = new ProductRegistryVModel(name, action, namespace, classname, apiVersion);
         String productRegistry = JSON.serialize(registryModel);
         EDCSettingsProductVMapper.instance = new EDCSettingsProductVMapperNullProductInformationStub();
         EDCSettingsProductVModel productVModel;
