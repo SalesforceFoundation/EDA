@@ -56,12 +56,6 @@
             ],
             "c/systemTools": [
                 "systemTools/systemTools.js"
-            ],
-            "c/EducationCloudSettings": [
-                "educationCloudSettings/educationCloudSettings.js"
-            ],
-            "c/EdcSettingsProductCard": [
-                "edcSettingsProductCard/edcSettingsProductCard.js"
             ]
         }
     },
