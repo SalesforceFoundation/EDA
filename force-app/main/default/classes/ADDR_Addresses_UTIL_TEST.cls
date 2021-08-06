@@ -37,8 +37,130 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
      ****************************************************** isAddressEmpty ****************************************************
      **************************************************************************************************************************/
     @isTest
-    static void testIsAddressEmptyFalse() {
+    static void testIsAddressEmptyFalseMailingStreetNotEmpty() {
         List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingStreet__c = 'Some random mailing street';
+
+        Test.startTest();
+        Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAddressEmptyFalseMailingStreet2NotEmpty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingStreet2__c = 'Some random mailing street 2';
+
+        Test.startTest();
+        Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAddressEmptyFalseMailingCityNotEmpty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingCity__c = 'Some random mailing city';
+
+        Test.startTest();
+        Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAddressEmptyFalseMailingCountyNotEmpty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingCounty__c = 'Some random mailing county';
+
+        Test.startTest();
+        Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAddressEmptyFalseMailingStateNotEmpty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingState__c = 'Some random mailing state';
+
+        Test.startTest();
+        Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAddressEmptyFalseMailingPostCodeNotEmpty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingPostalCode__c = 'Some random mailing postcode';
+
+        Test.startTest();
+        Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAddressEmptyFalseMailingCountryNotEmpty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingCountry__c = 'Some random mailing country';
 
         Test.startTest();
         Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
@@ -150,7 +272,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(null, null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -525,7 +647,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             Boolean isAddressMatchFuzzy = ADDR_Addresses_UTIL.isAddressMatchFuzzy(addresses[0], addresses[1], null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -752,7 +874,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressObj(null, null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -771,7 +893,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressObj(addressSource, null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -790,7 +912,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressObj(null, addressDestination);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -861,7 +983,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObj(null, 'Mailing', account, 'Billing');
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -881,7 +1003,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObj(contact, null, account, 'Billing');
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field nullStreet for Contact',
@@ -900,7 +1022,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObj(contact, 'Mailing', null, 'Billing');
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -920,7 +1042,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObj(contact, 'Mailing', account, null);
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field nullStreet for Account',
@@ -960,7 +1082,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObj(account, 'Mailing', contact, 'Billing');
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field MailingStreet for Account',
@@ -982,7 +1104,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Billing', null, 'Home');
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1002,7 +1124,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, null, address, 'Home');
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field nullStreet for Account',
@@ -1021,7 +1143,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(null, 'Billing', address, 'Home');
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1061,7 +1183,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Mailing', address, 'Home');
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field MailingStreet for Account',
@@ -1084,7 +1206,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressAddrSObj(null, account, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1104,7 +1226,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressAddrSObj(address, null, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1125,7 +1247,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressAddrSObj(address, account, null, 'Primary_Address_Type__c', dmlWrapper);
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field nullStreet for Account',
@@ -1169,7 +1291,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressAddrSObj(address, contact, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field BillingStreet for Contact',
@@ -1195,7 +1317,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.handleMultilineStreet(null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1241,7 +1363,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.getMultilineStreet(null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1303,7 +1425,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getParentIdToAddrs(null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1376,7 +1498,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getMapParentIdListAddrs(null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1466,7 +1588,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.updateAddrIsOverride(null, dmlWrapper);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1505,7 +1627,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.updateAddrIsOverride(mapAddrIdIsOverride, null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1574,7 +1696,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(null, addresses, dmlWrapper);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1594,7 +1716,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(addresses[0], null, dmlWrapper);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1624,7 +1746,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(addresses[0], addresses, null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
