@@ -217,13 +217,93 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void testIsContactAccAddrInfoSameFalseDifferentAddressField() {
+    static void testIsContactAccAddrInfoSameDifferentMailingCity() {
         Contact contact = UTIL_UnitTestData_TEST.getContact();
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,
             UTIL_Describe_API.getBizAccRecTypeID()
         );
         contact.MailingCity = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingCounty() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.Mailing_County__c = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingState() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.MailingState = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingPostalCode() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.MailingPostalCode = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingCountry() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.MailingCountry = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingAddressInactive() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.Mailing_Address_Inactive__c = true;
 
         Test.startTest();
         Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
