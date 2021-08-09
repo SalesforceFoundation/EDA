@@ -1,0 +1,216 @@
+public with sharing class EDADemoReleaseGate implements Callable {
+    public EDADemoReleaseGate() {
+    }
+
+    public String getReleaseGates(Decimal version) {
+        List<GetReleaseGateActionResultModel.GetReleaseGateResult> resultList = new List<GetReleaseGateActionResultModel.GetReleaseGateResult>{
+            new GetReleaseGateActionResultModel.GetReleaseGateResult(
+                new GetReleaseGateActionResultModel.ReleaseGateProduct('SAL', 'Advisor Link', 'January 2022'),
+                new List<GetReleaseGateActionResultModel.ReleaseGate>{
+                    new GetReleaseGateActionResultModel.ReleaseGate(
+                        'summer21',
+                        'Summer \'21',
+                        'Here\'s what\'s new in Summer \'21. See the documentation for instructions on setting up these features, and then activate the release.',
+                        null,
+                        Date.today().addMonths(3),
+                        'On this date, we activate the current release on all sandboxes that are still on the previous release.',
+                        null,
+                        'inactive',
+                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'FlexibleAdviseeSnapshot',
+                                'Flexible Advisee Snapshot',
+                                'We\'ve redesigned the Advisee Snapshot. If desired, customize it to show up to four counters, upload advisee photos, and add the Snapshot to other Case pages.',
+                                'https://powerofus.force.com/s/article/SAL-Advisor-App-Snapshot-Contact',
+                                'Set Up the Advisee Snapshot and Contact Details'
+                            ),
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'FlexibleStudentSnapshot',
+                                'Flexible Student Snapshot',
+                                'Student Success Hub customers also enjoy the redesigned Student Snapshot. Configure the counters to show data relevant to K-12 schools, including Alerts and Success Plans, and, if desired, upload student photos and add the Snapshot to other Case pages.',
+                                'https://powerofus.force.com/s/article/SSH-Set-Up-Student-Snapshot-and-Details',
+                                'Set Up the Student Snapshot and Student Details'
+                            ),
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'FrontDeskAppointmentScheduling',
+                                'Front Desk Appointment Scheduling',
+                                'Front desk staff can now schedule individual appointments between advisors or members of an Advising Pool and an advisee. To set up front desk scheduling, create a profile with the necessary permissions for those users, and add the Appointment Scheduler component to a Lightning page so they can access the front desk New Appointment form.',
+                                'https://powerofus.force.com/s/article/SAL-Set-Up-Front-Desk-Appointment-Scheduling',
+                                'Set Up Front Desk Appointment Scheduling'
+                            )
+                        }
+                    ),
+                    new GetReleaseGateActionResultModel.ReleaseGate(
+                        'spring21',
+                        'Spring \'21',
+                        'Spring \'21 is now activated for all orgs',
+                        null,
+                        Date.today().addMonths(6),
+                        'On this date, we activate the current release on all sandboxes that are still on the previous release.',
+                        Datetime.now().addMonths(-1),
+                        'active',
+                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'flexscheduling',
+                                'Flex Scheduling',
+                                'Flexible scheduling is activated in all orgs. If you haven\'t already done so, configure location- and topic-based advising availability for your users.',
+                                'https://powerofus.force.com/s/article/SAL-Set-Up-Location-Based-Advising-Availability',
+                                'Set Up Location-Based Advising Availability'
+                            ),
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'groupavailability',
+                                'Group Availability',
+                                'Group availability allows advisees to reserve a spot in a group advising appointment. Even if you\'re not using group availability yet, be sure you\'ve set up permissions on the Attendee Limit and Discoverable fields.',
+                                'https://powerofus.force.com/s/article/SAL-Set-Up-Group-Availability',
+                                'Set Up Group Advising Availability'
+                            )
+                        }
+                    )
+                }
+            ),
+            new GetReleaseGateActionResultModel.GetReleaseGateResult(
+                new GetReleaseGateActionResultModel.ReleaseGateProduct(
+                    'EDA',
+                    'Education Data Architecture',
+                    'January 2022'
+                ),
+                new List<GetReleaseGateActionResultModel.ReleaseGate>{
+                    new GetReleaseGateActionResultModel.ReleaseGate(
+                        'sampledisabled',
+                        'Sample Disabled Release Gate',
+                        'This is an example release gate in disabled state',
+                        null,
+                        Date.today().addMonths(3),
+                        'On this date, we activate the current release on all sandboxes that are still on the previous release.',
+                        null,
+                        'disabled',
+                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'ExampleFeature1',
+                                'Example disabled feature 1',
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                                'https://www.salesforce.com',
+                                'See example feature 1'
+                            ),
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'ExampleFeature2',
+                                'Example disabled feature 2',
+                                'Bibendum arcu vitae elementum curabitur. Vitae ultricies leo integer malesuada nunc. Donec ac odio tempor orci dapibus ultrices. Penatibus et magnis dis parturient montes nascetur ridiculus. Dolor sit amet consectetur adipiscing elit ut aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Lacus laoreet non curabitur gravida arcu ac tortor. Ullamcorper a lacus vestibulum sed arcu non odio.',
+                                'https://www.salesforce.com',
+                                'See example feature 2'
+                            )
+                        }
+                    ),
+                    new GetReleaseGateActionResultModel.ReleaseGate(
+                        'sampleinprogress',
+                        'Sample InProgress Release Gate',
+                        'This is an example release gate in InProgress state',
+                        null,
+                        Date.today().addMonths(6),
+                        'On this date, we activate the current release on all sandboxes that are still on the previous release.',
+                        null,
+                        'inprogress',
+                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'ExampleFeature1',
+                                'Example inprogress feature 1',
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                                'https://www.salesforce.com',
+                                'See example feature 1'
+                            ),
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'ExampleFeature2',
+                                'Example inprogress feature 2',
+                                'Bibendum arcu vitae elementum curabitur. Vitae ultricies leo integer malesuada nunc. Donec ac odio tempor orci dapibus ultrices. Penatibus et magnis dis parturient montes nascetur ridiculus. Dolor sit amet consectetur adipiscing elit ut aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Lacus laoreet non curabitur gravida arcu ac tortor. Ullamcorper a lacus vestibulum sed arcu non odio.',
+                                'https://www.salesforce.com',
+                                'See example feature 2'
+                            )
+                        }
+                    ),
+                    new GetReleaseGateActionResultModel.ReleaseGate(
+                        'sampleactive',
+                        'Sample Active Release Gate',
+                        'This is an example release gate in active state',
+                        null,
+                        Date.today().addMonths(6),
+                        'On this date, we activate the current release on all sandboxes that are still on the previous release.',
+                        Datetime.now().addMonths(-1),
+                        'active',
+                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'ExampleFeature1',
+                                'Example active feature 1',
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                                'https://www.salesforce.com',
+                                'See example feature 1'
+                            ),
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'ExampleFeature2',
+                                'Example active feature 2',
+                                'Bibendum arcu vitae elementum curabitur. Vitae ultricies leo integer malesuada nunc. Donec ac odio tempor orci dapibus ultrices. Penatibus et magnis dis parturient montes nascetur ridiculus. Dolor sit amet consectetur adipiscing elit ut aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Lacus laoreet non curabitur gravida arcu ac tortor. Ullamcorper a lacus vestibulum sed arcu non odio.',
+                                'https://www.salesforce.com',
+                                'See example feature 2'
+                            )
+                        }
+                    ),
+                    new GetReleaseGateActionResultModel.ReleaseGate(
+                        'sampleinactive',
+                        'Sample Inactive Release Gate',
+                        'This is an example release gate in inactive state',
+                        null,
+                        Date.today().addMonths(6),
+                        'On this date, we activate the current release on all sandboxes that are still on the previous release.',
+                        null,
+                        'inactive',
+                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'ExampleFeature1',
+                                'Example inactive feature 1',
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                                'https://www.salesforce.com',
+                                'See example feature 1'
+                            ),
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                'ExampleFeature2',
+                                'Example inactive feature 2',
+                                'Bibendum arcu vitae elementum curabitur. Vitae ultricies leo integer malesuada nunc. Donec ac odio tempor orci dapibus ultrices. Penatibus et magnis dis parturient montes nascetur ridiculus. Dolor sit amet consectetur adipiscing elit ut aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Lacus laoreet non curabitur gravida arcu ac tortor. Ullamcorper a lacus vestibulum sed arcu non odio.',
+                                'https://www.salesforce.com',
+                                'See example feature 2'
+                            )
+                        }
+                    )
+                }
+            )
+        };
+
+        GetReleaseGateActionResultModel releaseGateResultModel = new GetReleaseGateActionResultModel(
+            resultList,
+            true,
+            null
+        );
+        return JSON.serialize(releaseGateResultModel);
+    }
+
+    public String activateReleaseGate(Decimal version, String productName, String gateName) {
+        //TODO: This will be implemented in another user story
+        throw new IllegalArgumentException('Method not implemented');
+    }
+
+    public Object call(String action, Map<String, Object> args) {
+        System.debug('Executing callable action: ' + action);
+        String result;
+        if (action == ReleaseGateAPIService.GET_ACTION) {
+            result = this.getReleaseGates((Decimal) args.get('version'));
+        } else if (action == ReleaseGateAPIService.ACTIVATE_ACTION) {
+            result = this.activateReleaseGate(
+                (Decimal) args.get('version'),
+                (String) args.get('product'),
+                (String) args.get('gate')
+            );
+        } else {
+            throw new IllegalArgumentException('Method not implemented');
+        }
+        System.debug('Action finished, result: \r\n' + result);
+        return result;
+    }
+}

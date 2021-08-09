@@ -102,8 +102,8 @@ public virtual with sharing class ReleaseGateAPIService {
      * @return   A new Callable instance
      */
     private Callable createReleaseGateCallableInstance() {
-        return (Callable) Type.forName(this.releaseGateRegistry.namespace, this.releaseGateRegistry.classname)
-            .newInstance();
+        String namespace = this.releaseGateRegistry.namespace == null ? '' : this.releaseGateRegistry.namespace;
+        return (Callable) Type.forName(namespace, this.releaseGateRegistry.classname).newInstance();
     }
 
     /**
@@ -131,9 +131,34 @@ public virtual with sharing class ReleaseGateAPIService {
      */
     protected virtual Object makeCall(String action, Map<String, Object> parameters) {
         Callable callableInstance = this.locateReleaseGateCallable();
-        UTIL_Debug.debug('Calling ' + action + ' action, version ' + parameters.get(VERSION_PARAMETER));
-        Object result = callableInstance.call(action, parameters);
-        UTIL_Debug.debug('Finished ' + action + ', got the following response: \r\n ' + result);
+        UTIL_Debug.debug(
+            String.format(
+                'Calling {0}.{1} action, version {2}',
+                new List<Object>{ this.releaseGateRegistry.name, action, parameters.get(VERSION_PARAMETER) }
+            )
+        );
+        Object result;
+        try {
+            result = callableInstance.call(action, parameters);
+        } catch (Exception ex) {
+            String errorMessage = String.format(
+                'An unhandled exception occurred during execution of {0}.{1}: {2}',
+                new List<Object>{ this.releaseGateRegistry.name, action, ex.getMessage() }
+            );
+            UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
+            throw new ReleaseGateCallableException(
+                'An unhandled exception occurred during execution: ' + errorMessage,
+                ex,
+                this.releaseGateRegistry,
+                null
+            );
+        }
+        UTIL_Debug.debug(
+            String.format(
+                'Finished {0}.{1}, got the following response: \r\n {2}',
+                new List<Object>{ this.releaseGateRegistry.name, action, result }
+            )
+        );
         return result;
     }
 
@@ -154,6 +179,7 @@ public virtual with sharing class ReleaseGateAPIService {
                 this.releaseGateRegistry.classname +
                 ', namespace: ' +
                 this.releaseGateRegistry.namespace;
+            UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
             throw new ReleaseGateCallableException(errorMessage, null, this.releaseGateRegistry, resultModel);
         }
     }

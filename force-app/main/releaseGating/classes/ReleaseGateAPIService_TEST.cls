@@ -57,6 +57,28 @@ public with sharing class ReleaseGateAPIService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify that the constructor is throwing ReleaseGateProductNotFoundException exception
+     ***************************************************************************************************************************/
+    @isTest
+    private static void createInstanceException() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.SETTINGS_INFORMATION_ACTION,
+            'testNamespace',
+            'testClass',
+            1
+        );
+        Test.startTest();
+        try {
+            ReleaseGateAPIService releaseGateApiServiceInstance = new ReleaseGateAPIService(releaseGateRegistry);
+            System.assert(false, 'Should always throw an exception');
+        } catch (ReleaseGateAPIService.ReleaseGateProductNotFoundException ex) {
+            System.assertEquals(releaseGateRegistry, ex.productRegistry, 'Exception productRegistry is not valid');
+        }
+        Test.stopTest();
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify that the getReleaseGateAPIModel method returns a ReleaseGateAPIModel
      * from the current package
      ***************************************************************************************************************************/
@@ -123,7 +145,7 @@ public with sharing class ReleaseGateAPIService_TEST {
      * @description Test method to verify that the getReleaseGateAPIModel method throws ReleaseGateCallableException
      ***************************************************************************************************************************/
     @isTest
-    private static void getReleaseGatesErrorCurrentPackage() {
+    private static void getReleaseGatesErrorResponseCurrentPackage() {
         ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
             'testName',
             ProductRegistryMapper.RELEASE_GATING_ACTION,
@@ -153,6 +175,57 @@ public with sharing class ReleaseGateAPIService_TEST {
      * @description Test method to verify that the getReleaseGateAPIModel method throws ReleaseGateCallableException
      ***************************************************************************************************************************/
     @isTest
+    private static void getReleaseGatesNullErrorResponseCurrentPackage() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            '',
+            'ReleaseGateAPIService_TEST.TestReleaseGateCallableNullErrorImpl',
+            1
+        );
+        ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
+
+        try {
+            Test.startTest();
+            GetReleaseGateActionResultModel getReleaseGatesResult = callableService.getReleaseGates();
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (ReleaseGateAPIService.ReleaseGateCallableException ex) {
+            System.assertEquals(false, ex.result.success, 'Expected success to be false');
+
+            System.assertEquals(null, ex.result.error, 'Expected error should be null');
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getReleaseGateAPIModel method handles exceptions and throws ReleaseGateCallableException
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getReleaseGatesUnhandledExceptionCurrentPackage() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            '',
+            'ReleaseGateAPIService_TEST.TestReleaseGateExceptionCallableImpl',
+            1
+        );
+        ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
+
+        try {
+            Test.startTest();
+            GetReleaseGateActionResultModel getReleaseGatesResult = callableService.getReleaseGates();
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (ReleaseGateAPIService.ReleaseGateCallableException ex) {
+            System.assertEquals(true, ex.getCause() != null, 'Exception cause should not be null');
+            System.assertEquals(releaseGateRegistry, ex.productRegistry, 'Exception product registry should match');
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getReleaseGateAPIModel method throws ReleaseGateProductNotFoundException
+     ***************************************************************************************************************************/
+    @isTest
     private static void getReleaseGatesNotFoundCurrentPackage() {
         ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
             'testName',
@@ -179,6 +252,31 @@ public with sharing class ReleaseGateAPIService_TEST {
         }
     }
 
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getReleaseGateAPIModel method throws ReleaseGateProductNotFoundException
+     * when non Callable class is specified
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getReleaseGatesNotFoundNonCallable() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            '',
+            'ReleaseGateAPIService',
+            1
+        );
+        ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
+
+        try {
+            Test.startTest();
+            GetReleaseGateActionResultModel getReleaseGatesResult = callableService.getReleaseGates();
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (ReleaseGateAPIService.ReleaseGateProductNotFoundException ex) {
+            System.assertEquals(releaseGateRegistry, ex.productRegistry, 'Exception product registry should match');
+        }
+    }
+
     /***********************************************************************************************************************************
      ************************************************* Test Callable classes ***********************************************************
      ***********************************************************************************************************************************/
@@ -187,26 +285,37 @@ public with sharing class ReleaseGateAPIService_TEST {
      * Test Callable class with successful response
      */
     public class TestReleaseGateCallableImpl implements Callable {
-        public TestReleaseGateCallableImpl() {
-        }
-
         public String getReleaseGates(Decimal version) {
-            List<GetReleaseGateActionResultModel.GetReleaseGateResult> resultList = new List<GetReleaseGateActionResultModel.GetReleaseGateResult>();
-            GetReleaseGateActionResultModel.GetReleaseGateResult releaseGate = new GetReleaseGateActionResultModel.GetReleaseGateResult();
-            releaseGate.product = new GetReleaseGateActionResultModel.ReleaseGateProduct();
-            releaseGate.product.label = 'test product';
-            releaseGate.product.name = 'testproduct';
-            releaseGate.gates = new List<GetReleaseGateActionResultModel.ReleaseGate>();
-            GetReleaseGateActionResultModel.ReleaseGate gate = new GetReleaseGateActionResultModel.ReleaseGate();
-            gate.name = 'testgate';
-            gate.label = 'test gate';
-            gate.items = new List<GetReleaseGateActionResultModel.ReleaseGateFeature>();
-            GetReleaseGateActionResultModel.ReleaseGateFeature feature = new GetReleaseGateActionResultModel.ReleaseGateFeature();
-            feature.name = 'testfeature';
-            feature.label = 'test feature';
-            gate.items.add(feature);
-            releaseGate.gates.add(gate);
-            resultList.add(releaseGate);
+            List<GetReleaseGateActionResultModel.GetReleaseGateResult> resultList = new List<GetReleaseGateActionResultModel.GetReleaseGateResult>{
+                new GetReleaseGateActionResultModel.GetReleaseGateResult(
+                    new GetReleaseGateActionResultModel.ReleaseGateProduct(
+                        'testproduct',
+                        'test product',
+                        'January 2022'
+                    ),
+                    new List<GetReleaseGateActionResultModel.ReleaseGate>{
+                        new GetReleaseGateActionResultModel.ReleaseGate(
+                            'testgate',
+                            'test gate',
+                            'test gate description',
+                            null,
+                            Date.today().addMonths(6),
+                            'On this date, we activate the current release on all sandboxes that are still on the previous release.',
+                            null,
+                            'inactive',
+                            new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
+                                new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                    'testfeature',
+                                    'test feature',
+                                    'test feature description',
+                                    'https://www.google.com',
+                                    'help link label'
+                                )
+                            }
+                        )
+                    }
+                )
+            };
             GetReleaseGateActionResultModel releaseGateResultModel = new GetReleaseGateActionResultModel(
                 resultList,
                 true,
@@ -221,7 +330,7 @@ public with sharing class ReleaseGateAPIService_TEST {
         }
 
         public Object call(String action, Map<String, Object> args) {
-            System.debug('Execution callable action: ' + action);
+            System.debug('Executing callable action: ' + action);
             String result;
             if (action == ReleaseGateAPIService.GET_ACTION) {
                 result = this.getReleaseGates((Decimal) args.get('version'));
@@ -243,9 +352,6 @@ public with sharing class ReleaseGateAPIService_TEST {
      * Test Callable class with error response
      */
     public class TestReleaseGateCallableErrorImpl implements Callable {
-        public TestReleaseGateCallableErrorImpl() {
-        }
-
         public String getReleaseGates(Decimal version) {
             GetReleaseGateActionResultModel releaseGateResultModel = new GetReleaseGateActionResultModel(
                 null,
@@ -261,7 +367,7 @@ public with sharing class ReleaseGateAPIService_TEST {
         }
 
         public Object call(String action, Map<String, Object> args) {
-            System.debug('Execution callable action: ' + action);
+            System.debug('Executing callable action: ' + action);
             String result;
             if (action == ReleaseGateAPIService.GET_ACTION) {
                 result = this.getReleaseGates((Decimal) args.get('version'));
@@ -276,6 +382,53 @@ public with sharing class ReleaseGateAPIService_TEST {
             }
             System.debug('Action finished, result: \r\n' + result);
             return result;
+        }
+    }
+
+    /**
+     * Test Callable class with error response and null error
+     */
+    public class TestReleaseGateCallableNullErrorImpl implements Callable {
+        public String getReleaseGates(Decimal version) {
+            GetReleaseGateActionResultModel releaseGateResultModel = new GetReleaseGateActionResultModel(
+                null,
+                false,
+                null
+            );
+            return JSON.serialize(releaseGateResultModel);
+        }
+
+        public String activateReleaseGate(Decimal version, String productName, String gateName) {
+            //TODO: This will be implemented in another user story
+            throw new IllegalArgumentException('Method not implemented');
+        }
+
+        public Object call(String action, Map<String, Object> args) {
+            System.debug('Executing callable action: ' + action);
+            String result;
+            if (action == ReleaseGateAPIService.GET_ACTION) {
+                result = this.getReleaseGates((Decimal) args.get('version'));
+            } else if (action == ReleaseGateAPIService.ACTIVATE_ACTION) {
+                result = this.activateReleaseGate(
+                    (Decimal) args.get('version'),
+                    (String) args.get('product'),
+                    (String) args.get('gate')
+                );
+            } else {
+                throw new IllegalArgumentException('Method not implemented');
+            }
+            System.debug('Action finished, result: \r\n' + result);
+            return result;
+        }
+    }
+
+    /**
+     * Test Callable class with unhandled exception
+     */
+    public class TestReleaseGateExceptionCallableImpl implements Callable {
+        public Object call(String action, Map<String, Object> args) {
+            System.debug('Executing callable action: ' + action);
+            throw new IllegalArgumentException('Throwing an unhandled exception');
         }
     }
 }

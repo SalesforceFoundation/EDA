@@ -103,7 +103,9 @@ public virtual with sharing class ReleaseGateVMapper {
                         releaseGate.description,
                         releaseGate.releaseDate,
                         releaseGate.dueDate,
+                        releaseGate.dueDateInfoText,
                         releaseGate.activationDate,
+                        releaseGate.status,
                         features
                     )
                 );

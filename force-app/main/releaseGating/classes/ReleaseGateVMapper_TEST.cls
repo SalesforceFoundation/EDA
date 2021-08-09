@@ -168,28 +168,42 @@ public with sharing class ReleaseGateVMapper_TEST {
      **************************************************************************************************************************************/
     private class STUB_ReleaseGateService extends ReleaseGateService {
         public override GetReleaseGateActionResultModel getReleaseGateModel(String productRegistryName) {
-            List<GetReleaseGateActionResultModel.GetReleaseGateResult> resultList = new List<GetReleaseGateActionResultModel.GetReleaseGateResult>();
-            GetReleaseGateActionResultModel.GetReleaseGateResult releaseGate = new GetReleaseGateActionResultModel.GetReleaseGateResult();
-            releaseGate.product = new GetReleaseGateActionResultModel.ReleaseGateProduct();
-            releaseGate.product.label = 'test product';
-            releaseGate.product.name = 'testproduct';
-            releaseGate.gates = new List<GetReleaseGateActionResultModel.ReleaseGate>();
-            GetReleaseGateActionResultModel.ReleaseGate gate = new GetReleaseGateActionResultModel.ReleaseGate();
-            gate.name = 'testgate';
-            gate.label = 'test gate';
-            gate.items = new List<GetReleaseGateActionResultModel.ReleaseGateFeature>();
-            GetReleaseGateActionResultModel.ReleaseGateFeature feature = new GetReleaseGateActionResultModel.ReleaseGateFeature();
-            feature.name = 'testfeature';
-            feature.label = 'test feature';
-            gate.items.add(feature);
-            releaseGate.gates.add(gate);
-            resultList.add(releaseGate);
-            GetReleaseGateActionResultModel releaseGateModel = new GetReleaseGateActionResultModel(
+            List<GetReleaseGateActionResultModel.GetReleaseGateResult> resultList = new List<GetReleaseGateActionResultModel.GetReleaseGateResult>{
+                new GetReleaseGateActionResultModel.GetReleaseGateResult(
+                    new GetReleaseGateActionResultModel.ReleaseGateProduct(
+                        'testproduct',
+                        'test product',
+                        'January 2022'
+                    ),
+                    new List<GetReleaseGateActionResultModel.ReleaseGate>{
+                        new GetReleaseGateActionResultModel.ReleaseGate(
+                            'testgate',
+                            'test gate',
+                            'test gate description',
+                            null,
+                            Date.today().addMonths(6),
+                            'On this date, we activate the current release on all sandboxes that are still on the previous release.',
+                            null,
+                            'inactive',
+                            new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
+                                new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                    'testfeature',
+                                    'test feature',
+                                    'test feature description',
+                                    'https://www.google.com',
+                                    'help link label'
+                                )
+                            }
+                        )
+                    }
+                )
+            };
+            GetReleaseGateActionResultModel releaseGateResultModel = new GetReleaseGateActionResultModel(
                 resultList,
                 true,
                 null
             );
-            return releaseGateModel;
+            return releaseGateResultModel;
         }
     }
 }

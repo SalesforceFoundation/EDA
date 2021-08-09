@@ -82,6 +82,7 @@ public virtual with sharing class ReleaseGateService {
      * @param  productRegistry product registry meta data
      * @return                 a ReleaseGateAPIService instance
      */
+    @TestVisible
     protected virtual ReleaseGateAPIService locateReleaseGateAPIService(ProductRegistryModel productRegistry) {
         return new ReleaseGateAPIService(productRegistry);
     }
@@ -93,14 +94,5 @@ public virtual with sharing class ReleaseGateService {
     @TestVisible
     private ProductRegistryService locateProductRegistryService() {
         return ProductRegistryService.getInstance();
-    }
-
-    /*****************************************************************************
-     * @description Retrieves an instance of the UserPermissionService.
-     * @return The instance of UserPermissionService.
-     ******************************************************************************/
-    @TestVisible
-    private UserPermissionService locateUserPermissionService() {
-        return UserPermissionService.getInstance();
     }
 }

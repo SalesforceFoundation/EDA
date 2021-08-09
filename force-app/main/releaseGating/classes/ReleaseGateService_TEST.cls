@@ -98,6 +98,35 @@ public with sharing class ReleaseGateService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify that the locateReleaseGateAPIService method returns an instance
+     * of the ReleaseGateAPIService class.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void locateReleaseGateAPIServiceValid() {
+        ReleaseGateService releaseGateServiceInstance = ReleaseGateService.getInstance();
+        ProductRegistryModel productRegistryModelInstance = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            'testNamespace',
+            'testClass',
+            1
+        );
+
+        Test.startTest();
+        ReleaseGateAPIService releaseGateAPIServiceInstance = releaseGateServiceInstance.locateReleaseGateAPIService(
+            productRegistryModelInstance
+        );
+        Test.stopTest();
+
+        System.assertNotEquals(null, releaseGateAPIServiceInstance, 'releaseGateAPIServiceInstance should not be null');
+        System.assertEquals(
+            productRegistryModelInstance,
+            releaseGateAPIServiceInstance.releaseGateRegistry,
+            'releaseGateRegistry should be assigned to the provided parameter'
+        );
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify that the getReleaseGateModel method returns a ReleaseGateModel
      ***************************************************************************************************************************/
     @isTest
@@ -125,6 +154,31 @@ public with sharing class ReleaseGateService_TEST {
             getReleaseGatesResult.result.get(0).product.label,
             'Expected product label should be \'test product\''
         );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getReleaseGateModel method throws an exception if prod registry not found
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getReleaseGateModelNotFound() {
+        ReleaseGateService.instance = new STUB_ReleaseGateService();
+
+        ReleaseGateService releaseGateServiceInstance = ReleaseGateService.getInstance();
+
+        Test.startTest();
+        try {
+            GetReleaseGateActionResultModel getReleaseGatesResult = releaseGateServiceInstance.getReleaseGateModel(
+                'testName'
+            );
+            System.assert(false, 'Should always throw an exception');
+        } catch (ReleaseGateAPIService.ReleaseGateProductNotFoundException ex) {
+            System.assertEquals(
+                true,
+                ex.getMessage().contains('testName'),
+                'The exception should contain product registry name'
+            );
+        }
+        Test.stopTest();
     }
 
     /***********************************************************************************************************************************
@@ -167,19 +221,42 @@ public with sharing class ReleaseGateService_TEST {
         }
 
         public override GetReleaseGateActionResultModel getReleaseGates() {
-            List<GetReleaseGateActionResultModel.GetReleaseGateResult> resultList = new List<GetReleaseGateActionResultModel.GetReleaseGateResult>();
-            GetReleaseGateActionResultModel.GetReleaseGateResult releaseGate = new GetReleaseGateActionResultModel.GetReleaseGateResult();
-            releaseGate.product = new GetReleaseGateActionResultModel.ReleaseGateProduct();
-            releaseGate.product.label = 'test product';
-            releaseGate.product.name = 'testproduct';
-            releaseGate.gates = new List<GetReleaseGateActionResultModel.ReleaseGate>();
-            resultList.add(releaseGate);
-            GetReleaseGateActionResultModel releaseGateModel = new GetReleaseGateActionResultModel(
+            List<GetReleaseGateActionResultModel.GetReleaseGateResult> resultList = new List<GetReleaseGateActionResultModel.GetReleaseGateResult>{
+                new GetReleaseGateActionResultModel.GetReleaseGateResult(
+                    new GetReleaseGateActionResultModel.ReleaseGateProduct(
+                        'testproduct',
+                        'test product',
+                        'January 2022'
+                    ),
+                    new List<GetReleaseGateActionResultModel.ReleaseGate>{
+                        new GetReleaseGateActionResultModel.ReleaseGate(
+                            'testgate',
+                            'test gate',
+                            'test gate description',
+                            null,
+                            Date.today().addMonths(6),
+                            'On this date, we activate the current release on all sandboxes that are still on the previous release.',
+                            null,
+                            'inactive',
+                            new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
+                                new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                    'testfeature',
+                                    'test feature',
+                                    'test feature description',
+                                    'https://www.google.com',
+                                    'help link label'
+                                )
+                            }
+                        )
+                    }
+                )
+            };
+            GetReleaseGateActionResultModel releaseGateResultModel = new GetReleaseGateActionResultModel(
                 resultList,
                 true,
                 null
             );
-            return releaseGateModel;
+            return releaseGateResultModel;
         }
     }
 }

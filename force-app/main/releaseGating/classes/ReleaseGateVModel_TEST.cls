@@ -42,17 +42,111 @@ public with sharing class ReleaseGateVModel_TEST {
      ***********************************************************************************************************/
     @isTest
     private static void constructorValid() {
+        String productName = 'testproduct';
+        String productLabel = 'test product';
+        String nextRelease = 'January 2022';
+        String gateName = 'testgate';
+        String gateLabel = 'test gate';
+        String gateDescription = 'test gate description';
+        Date releaseDate = Date.today();
+        Date dueDate = Date.today().addMonths(6);
+        String dueDateInfoText = 'Due date info text';
+        Datetime activationDate = Datetime.now();
+        String status = 'inactive';
+        String featureName = 'testfeature';
+        String featureLabel = 'test feature';
+        String featureDescription = 'test gate description';
+        String helpLink = 'https://www.salesforce.com';
+        String helpLinkLabel = 'Test help link label';
+
         Test.startTest();
-        //ReleaseGateVModel releaseGateVModelInstance = new ReleaseGateVModel(/*TODO: specify initial property values */);
+        ReleaseGateVModel releaseGateViewModel = new ReleaseGateVModel(
+            new ReleaseGateVModel.ReleaseGateProduct(productName, productLabel, nextRelease),
+            new List<ReleaseGateVModel.ReleaseGate>{
+                new ReleaseGateVModel.ReleaseGate(
+                    gateName,
+                    gateLabel,
+                    gateDescription,
+                    releaseDate,
+                    dueDate,
+                    dueDateInfoText,
+                    activationDate,
+                    status,
+                    new List<ReleaseGateVModel.ReleaseGateFeature>{
+                        new ReleaseGateVModel.ReleaseGateFeature(
+                            featureName,
+                            featureLabel,
+                            featureDescription,
+                            helpLink,
+                            helpLinkLabel
+                        )
+                    }
+                )
+            }
+        );
         Test.stopTest();
 
-        //TODO: write assertions for each view model property, for example
-        /*
+        System.assertEquals(productName, releaseGateViewModel.product.name, 'Product name should be ' + productName);
         System.assertEquals(
-            initialPropertyValue,
-            releaseGateVModelInstance.propertyName,
-            'PropertyName should return initialPropertyValue'
+            productLabel,
+            releaseGateViewModel.product.label,
+            'Product label should be ' + productLabel
         );
-        */
+        System.assertEquals(
+            nextRelease,
+            releaseGateViewModel.product.nextReleaseDate,
+            'Product nextReleaseDate should be ' + nextRelease
+        );
+        System.assertEquals(1, releaseGateViewModel.gates.size(), 'Gates size should be 1');
+        System.assertEquals(gateName, releaseGateViewModel.gates[0].name, 'Gate name should be ' + gateName);
+        System.assertEquals(gateLabel, releaseGateViewModel.gates[0].label, 'Gate label should be ' + gateLabel);
+        System.assertEquals(
+            gateDescription,
+            releaseGateViewModel.gates[0].description,
+            'Gate description should be ' + gateDescription
+        );
+        System.assertEquals(
+            releaseDate,
+            releaseGateViewModel.gates[0].releaseDate,
+            'Gate releaseDate should be ' + releaseDate
+        );
+        System.assertEquals(dueDate, releaseGateViewModel.gates[0].dueDate, 'Gate dueDate should be ' + dueDate);
+        System.assertEquals(
+            dueDateInfoText,
+            releaseGateViewModel.gates[0].dueDateInfoText,
+            'Gate dueDateInfoText should be ' + dueDateInfoText
+        );
+        System.assertEquals(
+            activationDate,
+            releaseGateViewModel.gates[0].activationDate,
+            'Gate activationDate should be ' + activationDate
+        );
+        System.assertEquals(status, releaseGateViewModel.gates[0].status, 'Gate status should be ' + status);
+        System.assertEquals(1, releaseGateViewModel.gates[0].features.size(), 'Gate feature size should be 1');
+        System.assertEquals(
+            featureName,
+            releaseGateViewModel.gates[0].features[0].name,
+            'Feature name should be ' + featureName
+        );
+        System.assertEquals(
+            featureLabel,
+            releaseGateViewModel.gates[0].features[0].label,
+            'Feature label should be ' + featureLabel
+        );
+        System.assertEquals(
+            featureDescription,
+            releaseGateViewModel.gates[0].features[0].description,
+            'Feature description should be ' + featureDescription
+        );
+        System.assertEquals(
+            helpLink,
+            releaseGateViewModel.gates[0].features[0].helpLink,
+            'Feature helpLink should be ' + helpLink
+        );
+        System.assertEquals(
+            helpLinkLabel,
+            releaseGateViewModel.gates[0].features[0].helpLinkLabel,
+            'Feature helpLinkLabel should be ' + helpLinkLabel
+        );
     }
 }

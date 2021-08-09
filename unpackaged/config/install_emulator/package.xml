@@ -8,5 +8,13 @@
         <members>ArbitraryInstallContext</members>
         <name>ApexClass</name>
     </types>
+    <types>
+        <members>EDADemoReleaseGate</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Product_Registry.EDADemoReleaseGate</members>
+        <name>CustomMetadata</name>
+    </types>    
     <version>50.0</version>
 </Package>

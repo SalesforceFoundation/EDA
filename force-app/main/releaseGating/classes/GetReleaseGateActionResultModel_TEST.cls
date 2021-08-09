@@ -40,21 +40,120 @@ public with sharing class GetReleaseGateActionResultModel_TEST {
     private static void testConstructor() {
         String productName = 'testproduct';
         String productLabel = 'test product';
-
-        List<GetReleaseGateActionResultModel.GetReleaseGateResult> resultList = new List<GetReleaseGateActionResultModel.GetReleaseGateResult>();
-        GetReleaseGateActionResultModel.GetReleaseGateResult releaseGate = new GetReleaseGateActionResultModel.GetReleaseGateResult();
-        releaseGate.product = new GetReleaseGateActionResultModel.ReleaseGateProduct();
-        releaseGate.product.label = productLabel;
-        releaseGate.product.name = productName;
-        releaseGate.gates = new List<GetReleaseGateActionResultModel.ReleaseGate>();
-        resultList.add(releaseGate);
+        String nextRelease = 'January 2022';
+        String gateName = 'testgate';
+        String gateLabel = 'test gate';
+        String gateDescription = 'test gate description';
+        Date releaseDate = Date.today();
+        Date dueDate = Date.today().addMonths(6);
+        String dueDateInfoText = 'Due date info text';
+        Datetime activationDate = Datetime.now();
+        String status = 'inactive';
+        String featureName = 'testfeature';
+        String featureLabel = 'test feature';
+        String featureDescription = 'test gate description';
+        String helpLink = 'https://www.salesforce.com';
+        String helpLinkLabel = 'Test help link label';
 
         Test.startTest();
+        List<GetReleaseGateActionResultModel.GetReleaseGateResult> resultList = new List<GetReleaseGateActionResultModel.GetReleaseGateResult>{
+            new GetReleaseGateActionResultModel.GetReleaseGateResult(
+                new GetReleaseGateActionResultModel.ReleaseGateProduct(productName, productLabel, nextRelease),
+                new List<GetReleaseGateActionResultModel.ReleaseGate>{
+                    new GetReleaseGateActionResultModel.ReleaseGate(
+                        gateName,
+                        gateLabel,
+                        gateDescription,
+                        releaseDate,
+                        dueDate,
+                        dueDateInfoText,
+                        activationDate,
+                        status,
+                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
+                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                                featureName,
+                                featureLabel,
+                                featureDescription,
+                                helpLink,
+                                helpLinkLabel
+                            )
+                        }
+                    )
+                }
+            )
+        };
         GetReleaseGateActionResultModel releaseGateModel = new GetReleaseGateActionResultModel(resultList, true, null);
         Test.stopTest();
 
         System.assertEquals(true, releaseGateModel.success, 'success should be true');
         System.assertEquals(null, releaseGateModel.error, 'error should be null');
         System.assertEquals(resultList, releaseGateModel.result, 'result is not correct');
+        System.assertEquals(1, releaseGateModel.result.size(), 'result size should be 1');
+        System.assertEquals(
+            productName,
+            releaseGateModel.result[0].product.name,
+            'Product name should be ' + productName
+        );
+        System.assertEquals(
+            productLabel,
+            releaseGateModel.result[0].product.label,
+            'Product label should be ' + productLabel
+        );
+        System.assertEquals(
+            nextRelease,
+            releaseGateModel.result[0].product.nextReleaseDate,
+            'Product nextReleaseDate should be ' + nextRelease
+        );
+        System.assertEquals(1, releaseGateModel.result[0].gates.size(), 'Gates size should be 1');
+        System.assertEquals(gateName, releaseGateModel.result[0].gates[0].name, 'Gate name should be ' + gateName);
+        System.assertEquals(gateLabel, releaseGateModel.result[0].gates[0].label, 'Gate label should be ' + gateLabel);
+        System.assertEquals(
+            gateDescription,
+            releaseGateModel.result[0].gates[0].description,
+            'Gate description should be ' + gateDescription
+        );
+        System.assertEquals(
+            releaseDate,
+            releaseGateModel.result[0].gates[0].releaseDate,
+            'Gate releaseDate should be ' + releaseDate
+        );
+        System.assertEquals(dueDate, releaseGateModel.result[0].gates[0].dueDate, 'Gate dueDate should be ' + dueDate);
+        System.assertEquals(
+            dueDateInfoText,
+            releaseGateModel.result[0].gates[0].dueDateInfoText,
+            'Gate dueDateInfoText should be ' + dueDateInfoText
+        );
+        System.assertEquals(
+            activationDate,
+            releaseGateModel.result[0].gates[0].activationDate,
+            'Gate activationDate should be ' + activationDate
+        );
+        System.assertEquals(status, releaseGateModel.result[0].gates[0].status, 'Gate status should be ' + status);
+        System.assertEquals(1, releaseGateModel.result[0].gates[0].items.size(), 'Gate feature size should be 1');
+        System.assertEquals(
+            featureName,
+            releaseGateModel.result[0].gates[0].items[0].name,
+            'Feature name should be ' + featureName
+        );
+        System.assertEquals(
+            featureLabel,
+            releaseGateModel.result[0].gates[0].items[0].label,
+            'Feature label should be ' + featureLabel
+        );
+        System.assertEquals(
+            featureDescription,
+            releaseGateModel.result[0].gates[0].items[0].description,
+            'Feature description should be ' + featureDescription
+        );
+        System.assertEquals(
+            helpLink,
+            releaseGateModel.result[0].gates[0].items[0].helpLink,
+            'Feature helpLink should be ' + helpLink
+        );
+        System.assertEquals(
+            helpLinkLabel,
+            releaseGateModel.result[0].gates[0].items[0].helpLinkLabel,
+            'Feature helpLinkLabel should be ' + helpLinkLabel
+        );
     }
 }

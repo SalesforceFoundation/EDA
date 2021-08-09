@@ -75,12 +75,16 @@ public with sharing class ReleaseGateVModel {
         @AuraEnabled
         public Date dueDate { get; private set; }
         @AuraEnabled
+        public String dueDateInfoText { get; private set; }
+        @AuraEnabled
         public Datetime activationDate { get; private set; }
+        @AuraEnabled
+        public String status { get; private set; }
         @AuraEnabled
         public List<ReleaseGateFeature> features { get; private set; }
 
         /*****************************************************************************************************************
-         * @description Seven argument constructor
+         * @description Nine argument constructor
          *****************************************************************************************************************/
         public ReleaseGate(
             String name,
@@ -88,7 +92,9 @@ public with sharing class ReleaseGateVModel {
             String description,
             Date releaseDate,
             Date dueDate,
+            String dueDateInfoText,
             Datetime activationDate,
+            String status,
             List<ReleaseGateFeature> features
         ) {
             this.name = name;
@@ -96,7 +102,9 @@ public with sharing class ReleaseGateVModel {
             this.description = description;
             this.releaseDate = releaseDate;
             this.dueDate = dueDate;
+            this.dueDateInfoText = dueDateInfoText;
             this.activationDate = activationDate;
+            this.status = status;
             this.features = features;
         }
     }
