@@ -4,7 +4,6 @@ import stgReleaseGateActivatedOn from "@salesforce/label/c.stgReleaseGateActivat
 import stgReleaseGateActivate from "@salesforce/label/c.stgReleaseGateActivate";
 import stgBtnReleaseGateActivate from "@salesforce/label/c.stgBtnReleaseGateActivate";
 import stgReleaseGateInProgress from "@salesforce/label/c.stgReleaseGateInProgress";
-import stgReleaseGateDueDateInfoText from "@salesforce/label/c.stgReleaseGateDueDateInfoText";
 import stgNewWindowA11y from "@salesforce/label/c.stgNewWindowA11y";
 
 export default class ReleaseGateItem extends LightningElement {
@@ -19,7 +18,6 @@ export default class ReleaseGateItem extends LightningElement {
         releaseGateActivateButton: stgBtnReleaseGateActivate,
         releaseGateInProgress: stgReleaseGateInProgress,
         newWindowLinkAlt: stgNewWindowA11y,
-        releaseGateDueDateInfoText: stgReleaseGateDueDateInfoText,
     };
 
     get gateActive() {
