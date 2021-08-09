@@ -66,6 +66,77 @@ private class ProductRegistryService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify the getProductRegistryReleaseGates method returns the list
+     * of ProductRegistryModel correctly
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testGetProductRegistryReleaseGates() {
+        String name = 'testName';
+        String action = 'testAction';
+        String namespace = 'testNamespace';
+        String classname = 'testClassname';
+        Decimal apiVersion = 52.0;
+
+        ProductRegistryMapper.instance = new ProductRegistryMapperStub();
+        List<ProductRegistryModel> prodRegistryModelList;
+
+        Test.startTest();
+        prodRegistryModelList = ProductRegistryService.getInstance().getProductRegistryReleaseGates();
+        Test.stopTest();
+
+        System.assert(prodRegistryModelList != null, 'prodRegistryModelList should not be null');
+        System.assert(!prodRegistryModelList.isEmpty(), 'prodRegistryModelList should not be empty');
+        System.assertEquals(1, prodRegistryModelList.size(), 'prodRegistryModelList should have 1 element');
+
+        ProductRegistryModel model = prodRegistryModelList.get(0);
+
+        System.assertEquals(name, model.name, 'name should be set with the value: ' + name);
+        System.assertEquals(action, model.action, 'action should be set with the value: ' + action);
+        System.assertEquals(namespace, model.namespace, 'namespace should be set with the value: ' + namespace);
+        System.assertEquals(classname, model.classname, 'classname should be set with the value: ' + classname);
+        System.assertEquals(apiVersion, model.apiVersion, 'apiVersion should be set with the value: ' + apiVersion);
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify the getProductRegistryModelByName method returns an instance
+     * of ProductRegistryModel correctly
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testGetProductRegistryModelByName() {
+        String name = 'testName';
+        String action = 'testAction';
+        String namespace = 'testNamespace';
+        String classname = 'testClassname';
+        Decimal apiVersion = 52.0;
+
+        ProductRegistryMapper.instance = new ProductRegistryMapperStub();
+        ProductRegistryModel prodRegistryModel;
+
+        Test.startTest();
+        prodRegistryModel = ProductRegistryService.getInstance().getProductRegistryModelByName('testName');
+        Test.stopTest();
+
+        System.assert(prodRegistryModel != null, 'prodRegistryModel should not be null');
+        System.assertEquals(name, prodRegistryModel.name, 'name should be set with the value: ' + name);
+        System.assertEquals(action, prodRegistryModel.action, 'action should be set with the value: ' + action);
+        System.assertEquals(
+            namespace,
+            prodRegistryModel.namespace,
+            'namespace should be set with the value: ' + namespace
+        );
+        System.assertEquals(
+            classname,
+            prodRegistryModel.classname,
+            'classname should be set with the value: ' + classname
+        );
+        System.assertEquals(
+            apiVersion,
+            prodRegistryModel.apiVersion,
+            'apiVersion should be set with the value: ' + apiVersion
+        );
+    }
+
+    /**************************************************************************************************************************
      * @description Stub class for ProductRegistryMapper returning some sample data
      ***************************************************************************************************************************/
     private class ProductRegistryMapperStub extends ProductRegistryMapper {
@@ -78,6 +149,21 @@ private class ProductRegistryService_TEST {
                 52.0
             );
             return new List<ProductRegistryModel>{ prodRegistryModel };
+        }
+
+        public override List<ProductRegistryModel> getProductRegistryReleaseGates() {
+            ProductRegistryModel prodRegistryModel = new ProductRegistryModel(
+                'testName',
+                'testAction',
+                'testNamespace',
+                'testClassname',
+                52.0
+            );
+            return new List<ProductRegistryModel>{ prodRegistryModel };
+        }
+
+        public override ProductRegistryModel getProductRegistryModelByName(String developerName) {
+            return new ProductRegistryModel('testName', 'testAction', 'testNamespace', 'testClassname', 52.0);
         }
     }
 }

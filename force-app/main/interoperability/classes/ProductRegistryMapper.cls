@@ -91,6 +91,7 @@ public virtual with sharing class ProductRegistryMapper {
      * @param  productRegistryList list of Product Registry mdt
      * @return                     A list of ProductRegistryModel with all its properties populated
      */
+    @TestVisible
     private List<ProductRegistryModel> mapProductRegistryModelList(List<Product_Registry__mdt> productRegistryList) {
         if (productRegistryList == null) {
             return null;
@@ -144,7 +145,7 @@ public virtual with sharing class ProductRegistryMapper {
      * @return               A Product_Registry__mdt record retrieved from DB
      ********************************************************************************************/
     @TestVisible
-    private virtual Product_Registry__mdt getProductRegistryByName(String developerName) {
+    private Product_Registry__mdt getProductRegistryByName(String developerName) {
         List<Product_Registry__mdt> registriesList = [
             SELECT DeveloperName, Action__c, API_Version__c, Class_Name__c, Enabled__c, Namespace__c
             FROM Product_Registry__mdt
