@@ -366,8 +366,82 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
      ****************************************************** isAddressChanged **************************************************
      **************************************************************************************************************************/
     @isTest
-    static void testIsAddressChangedTrue() {
+    static void testIsAddressChangedTrueDifferentMailingStreet() {
         List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    @isTest
+    static void testIsAddressChangedTrueDifferentMailingStreet2() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingStreet2__c = 'Street' + 1;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    @isTest
+    static void testIsAddressChangedTrueDifferentMailingCity() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    static void testIsAddressChangedTrueDifferentMailingCounty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    static void testIsAddressChangedTrueDifferentPostalCode() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    static void testIsAddressChangedTrueDifferentInactive() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+        addresses[1].Inactive__c = true;
 
         Test.startTest();
         Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
@@ -484,9 +558,10 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testIsContactAddressChangedBothNotNullSameAddressInfo() {
         Contact con1 = UTIL_UnitTestData_TEST.getContact();
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
 
         Test.startTest();
-        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, null);
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
         Test.stopTest();
 
         System.assertEquals(false, isContactAddressChanged);
