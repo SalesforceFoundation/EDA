@@ -140,7 +140,7 @@ private class EDCSettingsProductAPIService_TEST {
             actionResult = EDCSettingsProductAPIService.getInstance()
                 .getSettingsProductInformation(classname, namespace, apiVersion);
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (EDCSettingsProductApiService.SettingsInvalidResponseException e) {
             exceptionMessage = e.getMessage();
         }
@@ -187,7 +187,7 @@ private class EDCSettingsProductAPIService_TEST {
             edaCallable = EDCSettingsProductAPIService.getInstance()
                 .locateSettingsProductInformationAPIService(classname, namespace);
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (EDCSettingsProductApiService.SettingsProductNotFoundException e) {
             exceptionMessage = e.getMessage();
         }
@@ -216,7 +216,7 @@ private class EDCSettingsProductAPIService_TEST {
             edaCallable = EDCSettingsProductAPIService.getInstance()
                 .locateSettingsProductInformationAPIService(classname, namespace);
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (EDCSettingsProductApiService.SettingsProductNotFoundException e) {
             exceptionMessage = e.getMessage();
         }

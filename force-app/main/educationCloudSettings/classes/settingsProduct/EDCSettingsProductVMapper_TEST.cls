@@ -94,7 +94,7 @@ private class EDCSettingsProductVMapper_TEST {
             productVModel = EDCSettingsProductVMapper.getInstance()
                 .getEDCSettingsProductVModel(classname, namespace, apiVersion);
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (EDCSettingsProductVMapper.SettingsProductException e) {
             exceptionMessage = e.getMessage();
         }

@@ -190,7 +190,7 @@ private class EDASettingsProductInfoAPIService_TEST {
             Test.startTest();
             Decimal apiVersion = service.getApiVersion(args);
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (EDASettingsProductInformationAPIService.ApiVersionNotFoundException ex) {
             exceptionMessage = ex.getMessage();
         }
@@ -226,7 +226,7 @@ private class EDASettingsProductInfoAPIService_TEST {
             actionResult = service.handleAction(action, apiVersion);
             Test.stopTest();
         } catch (EDASettingsProductInformationAPIService.InvalidActionException ex) {
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         }
 
         System.assertEquals(true, actionResult.success, 'success should be true');
@@ -266,7 +266,7 @@ private class EDASettingsProductInfoAPIService_TEST {
             Test.startTest();
             EDCSettingsProdInfoActionResultModel actionResult = service.handleAction(action, apiVersion);
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (EDASettingsProductInformationAPIService.InvalidActionException ex) {
             exceptionMessage = ex.getMessage();
         }

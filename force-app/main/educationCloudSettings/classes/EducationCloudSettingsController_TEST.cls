@@ -75,7 +75,7 @@ private class EducationCloudSettingsController_TEST {
             Test.startTest();
             List<ProductRegistryVModel> productRegistryList = EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels();
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (AuraHandledException e) {
             exceptionMessage = e.getMessage();
         }
@@ -146,7 +146,7 @@ private class EducationCloudSettingsController_TEST {
                 apiVersion
             );
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (AuraHandledException e) {
             exceptionMessage = e.getMessage();
         }
