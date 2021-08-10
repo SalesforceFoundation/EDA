@@ -123,6 +123,8 @@ tasks:
                 name: EDA - Education Data Architecture App
             credentialing_fields:
                 name: EDA - Credentialing Ids
+                checked: True
+                optional: True
 
     deploy_pre:
         ui_options:
