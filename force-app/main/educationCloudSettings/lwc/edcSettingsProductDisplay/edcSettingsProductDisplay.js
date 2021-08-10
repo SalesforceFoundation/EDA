@@ -26,13 +26,15 @@ export default class EdcSettingsProductDisplay extends LightningElement {
     }
 
     areAllProductsLoaded(){
-        if (this.loadedSettingsProductCount == this.productRegistryVModels.length) {
-            this.displaySettingsProduct = true;
-            if (this.errorList && this.errorList.length > 0){
-                this.errorList.forEach(error => {
-                    this.createShowToast(error);
-                });
-            }
+        if (this.loadedSettingsProductCount !== this.productRegistryVModels.length) {
+            return;
+        }
+        
+        this.displaySettingsProduct = true;
+        if (this.errorList && this.errorList.length > 0){
+            this.errorList.forEach(error => {
+                this.createShowToast(error);
+            });
         }
     }
 

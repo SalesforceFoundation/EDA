@@ -1,7 +1,7 @@
 import { createElement } from "lwc";
 import EdcSettingsProductCard from "c/EdcSettingsProductCard";
 import { getNavigateCalledWith } from 'lightning/navigation';
-import getEDCSettingsProductVModel from "@salesforce/apex/EDCSettingsProductCardController.getEDCSettingsProductVModel";
+import getEDCSettingsProductVModel from "@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModel";
 
 // Import mock data for edcSettingsProductCard
 const mockGetEDCSettingsProductVModel = require("./data/getEDCSettingsProductVModel.json");
@@ -55,7 +55,7 @@ jest.mock(
     { virtual: true }
 );
 jest.mock(
-    '@salesforce/apex/EDCSettingsProductCardController.getEDCSettingsProductVModel',
+    '@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModel',
     () => {
         const {
             createApexTestWireAdapter
@@ -91,7 +91,7 @@ describe("c-edc-settings-product-card", () => {
             namespace: "testNamespace",
             apiVersion: 2.0
         }
-        element.isDisplayProduct = true;
+        element.displayProductCards = true;
 
         document.body.appendChild(element);
 
@@ -140,7 +140,7 @@ describe("c-edc-settings-product-card", () => {
             namespace: "testNamespace",
             apiVersion: 2.0
         }
-        element.isDisplayProduct = true;
+        element.displayProductCards = true;
 
         document.body.appendChild(element);
 
@@ -169,7 +169,7 @@ describe("c-edc-settings-product-card", () => {
             namespace: "testNamespace",
             apiVersion: 2.0
         }
-        element.isDisplayProduct = true;
+        element.displayProductCards = true;
 
         document.body.appendChild(element);
 
@@ -198,7 +198,7 @@ describe("c-edc-settings-product-card", () => {
             namespace: "testNamespace",
             apiVersion: 2.0
         }
-        element.isDisplayProduct = true;
+        element.displayProductCards = true;
 
         document.body.appendChild(element);
 

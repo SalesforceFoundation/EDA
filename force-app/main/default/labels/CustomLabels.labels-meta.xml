@@ -1918,7 +1918,6 @@
         <shortDescription>Message when EDA can&apos;t access valid product information</shortDescription>
         <value>We couldn&apos;t access valid product information for {0}. Contact Salesforce Customer Support for help.</value>
     </labels>
-
     <labels>
         <fullName>stgErrorSettingsTitle</fullName>
         <categories>Settings</categories>

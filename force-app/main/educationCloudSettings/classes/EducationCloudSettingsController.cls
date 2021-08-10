@@ -46,6 +46,32 @@ public with sharing class EducationCloudSettingsController {
         }
     }
 
+    /********************************************************************************************
+     * @description Returns the EDCSettingsProductVModel information based on the product registry information
+     * @param  productRegistry productRegistry the serialized product registry information
+     * @return A EDCSettingsProductVModel with all the properties populated
+     ********************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static EDCSettingsProductVModel getEDCSettingsProductVModel(
+        String classname,
+        String namespace,
+        Decimal apiVersion
+    ) {
+        try {
+            return EducationCloudSettingsController.locateSettingsProductVMapper()
+                .getEDCSettingsProductVModel(classname, namespace, apiVersion);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /**********************************************************************************
+     * @description Locates and returns an instance of EDCSettingsProductVMapper.
+     **********************************************************************************/
+    private static EDCSettingsProductVMapper locateSettingsProductVMapper() {
+        return EDCSettingsProductVMapper.getInstance();
+    }
+
     /**********************************************************************************
      * @description Locates and returns an instance of ProductRegistryVMapper.
      **********************************************************************************/

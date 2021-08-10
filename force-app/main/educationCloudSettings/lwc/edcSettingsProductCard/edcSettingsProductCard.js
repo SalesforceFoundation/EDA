@@ -9,15 +9,14 @@ import stgBtnDocumentationActionA11y from "@salesforce/label/c.stgBtnDocumentati
 import stgBtnTrailhead from "@salesforce/label/c.stgBtnTrailhead";
 import stgBtnTrailheadActionA11y from "@salesforce/label/c.stgBtnTrailheadActionA11y";
 
-import getEDCSettingsProductVModel from "@salesforce/apex/EDCSettingsProductCardController.getEDCSettingsProductVModel";
+import getEDCSettingsProductVModel from "@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModel";
 
 export default class EdcSettingsProductCard extends NavigationMixin(LightningElement) {
 
-    @api isDisplayProduct;
+    @api displayProductCards;
     @api productRegistry;
     
-    @track
-    showThisProduct = false;
+    @track showThisProduct = false;
 
     iconSize = "medium";
 
@@ -80,7 +79,7 @@ export default class EdcSettingsProductCard extends NavigationMixin(LightningEle
     }
 
     get showProductCard() {
-        if (this.isDisplayProduct && 
+        if (this.displayProductCards && 
             this.showThisProduct) {
             return true;
         }

@@ -937,6 +937,22 @@
         <name>stgErrorSettingsNav</name>
     </customLabels>
     <customLabels>
+        <label><!-- Message when the EDA product registry has an incorrect or missing Action value --></label>
+        <name>stgErrorSettingsProductInvalidAction</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Message when the EDA product registry has an incorrect or missing API name --></label>
+        <name>stgErrorSettingsProductInvalidApiVersion</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Message when the product registry has an incorrect or missing class name --></label>
+        <name>stgErrorSettingsProductInvalidClass</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Message when EDA can&apos;t access valid product information --></label>
+        <name>stgErrorSettingsProductInvalidResponse</name>
+    </customLabels>
+    <customLabels>
         <label>Foutinstellingen</label>
         <name>stgErrorSettingsTitle</name>
     </customLabels>
