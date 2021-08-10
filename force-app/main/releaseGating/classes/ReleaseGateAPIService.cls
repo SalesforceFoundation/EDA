@@ -162,7 +162,9 @@ public virtual with sharing class ReleaseGateAPIService {
      * @param  action      Callable action name
      */
     private void verifyCallableResult(CallableResult resultModel, String action) {
-        if (!resultModel.success) {
+        if (resultModel.success) {
+            return;
+        } else {
             String errorMessage = resultModel.error != null
                 ? String.valueOf(resultModel.error.code) + ': ' + resultModel.error.message
                 : 'Unspecified error';

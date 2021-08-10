@@ -110,17 +110,16 @@ public virtual with sharing class ProductRegistryMapper {
      * @return                 a ProductRegistryModel instance
      */
     private ProductRegistryModel mapProductRegistryModel(Product_Registry__mdt productRegistry) {
-        ProductRegistryModel prodRegistryModel = null;
-        if (productRegistry != null) {
-            prodRegistryModel = new ProductRegistryModel(
-                productRegistry.DeveloperName,
-                productRegistry.Action__c,
-                productRegistry.Namespace__c,
-                productRegistry.Class_Name__c,
-                productRegistry.API_Version__c
-            );
+        if (productRegistry == null) {
+            return null;
         }
-        return prodRegistryModel;
+        return new ProductRegistryModel(
+            productRegistry.DeveloperName,
+            productRegistry.Action__c,
+            productRegistry.Namespace__c,
+            productRegistry.Class_Name__c,
+            productRegistry.API_Version__c
+        );
     }
 
     /********************************************************************************************
@@ -151,6 +150,6 @@ public virtual with sharing class ProductRegistryMapper {
             FROM Product_Registry__mdt
             WHERE DeveloperName = :developerName AND Enabled__c = TRUE
         ];
-        return registriesList.size() == 0 ? null : registriesList[0];
+        return registriesList.isEmpty() ? null : registriesList[0];
     }
 }

@@ -49,10 +49,10 @@ public virtual with sharing class ReleaseGateService {
      * @return The instance of ReleaseGateService.
      **********************************************************************************/
     public static ReleaseGateService getInstance() {
-        if (instance == null) {
-            instance = new ReleaseGateService();
+        if (instance != null) {
+            return instance;
         }
-
+        instance = new ReleaseGateService();
         return instance;
     }
 

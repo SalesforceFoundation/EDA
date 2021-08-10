@@ -189,6 +189,32 @@ private class ProductRegistryMapper_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to assert getProductRegistryByName method returns null for nonexistent name
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testGetProductRegistryByNameNonexistent() {
+        Test.startTest();
+        Product_Registry__mdt registryByName = ProductRegistryMapper.getInstance()
+            .getProductRegistryByName('nonexistent name');
+        Test.stopTest();
+
+        System.assertEquals(null, registryByName, 'registryByName should be null');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to assert getProductRegistryModelByName method returns null for nonexistent name
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testGetProductRegistryModelByNameNonexistent() {
+        Test.startTest();
+        ProductRegistryModel registryModel = ProductRegistryMapper.getInstance()
+            .getProductRegistryModelByName('nonexistent name');
+        Test.stopTest();
+
+        System.assertEquals(null, registryModel, 'registryModel should be null');
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to assert getProductRegistryModelByName method returns a valid model
      ***************************************************************************************************************************/
     @isTest

@@ -49,10 +49,10 @@ public virtual with sharing class ReleaseGateVMapper {
      * @return The instance of ReleaseGateVMapper.
      **********************************************************************************/
     public static ReleaseGateVMapper getInstance() {
-        if (instance == null) {
-            instance = new ReleaseGateVMapper();
+        if (instance != null) {
+            return instance;
         }
-
+        instance = new ReleaseGateVMapper();
         return instance;
     }
 
@@ -82,37 +82,51 @@ public virtual with sharing class ReleaseGateVMapper {
                 releaseGateResult.product.label,
                 releaseGateResult.product.nextReleaseDate
             );
-            List<ReleaseGateVModel.ReleaseGate> gates = new List<ReleaseGateVModel.ReleaseGate>();
-            for (GetReleaseGateActionResultModel.ReleaseGate releaseGate : releaseGateResult.gates) {
-                List<ReleaseGateVModel.ReleaseGateFeature> features = new List<ReleaseGateVModel.ReleaseGateFeature>();
-                for (GetReleaseGateActionResultModel.ReleaseGateFeature feature : releaseGate.items) {
-                    features.add(
-                        new ReleaseGateVModel.ReleaseGateFeature(
-                            feature.name,
-                            feature.label,
-                            feature.description,
-                            feature.helpLink,
-                            feature.helpLinkLabel
-                        )
-                    );
-                }
-                gates.add(
-                    new ReleaseGateVModel.ReleaseGate(
-                        releaseGate.name,
-                        releaseGate.label,
-                        releaseGate.description,
-                        releaseGate.releaseDate,
-                        releaseGate.dueDate,
-                        releaseGate.dueDateInfoText,
-                        releaseGate.activationDate,
-                        releaseGate.status,
-                        features
-                    )
-                );
-            }
-            releaseGateVModelList.add(new ReleaseGateVModel(releaseProduct, gates));
+            releaseGateVModelList.add(
+                new ReleaseGateVModel(releaseProduct, this.mapReleaseGateList(releaseGateResult.gates))
+            );
         }
         return releaseGateVModelList;
+    }
+
+    private List<ReleaseGateVModel.ReleaseGate> mapReleaseGateList(
+        List<GetReleaseGateActionResultModel.ReleaseGate> releaseGateModelList
+    ) {
+        List<ReleaseGateVModel.ReleaseGate> releaseGateVModelList = new List<ReleaseGateVModel.ReleaseGate>();
+        for (GetReleaseGateActionResultModel.ReleaseGate releaseGate : releaseGateModelList) {
+            releaseGateVModelList.add(
+                new ReleaseGateVModel.ReleaseGate(
+                    releaseGate.name,
+                    releaseGate.label,
+                    releaseGate.description,
+                    releaseGate.releaseDate,
+                    releaseGate.dueDate,
+                    releaseGate.dueDateInfoText,
+                    releaseGate.activationDate,
+                    releaseGate.status,
+                    this.mapReleaseGateFeatureList(releaseGate.items)
+                )
+            );
+        }
+        return releaseGateVModelList;
+    }
+
+    private List<ReleaseGateVModel.ReleaseGateFeature> mapReleaseGateFeatureList(
+        List<GetReleaseGateActionResultModel.ReleaseGateFeature> featureModelList
+    ) {
+        List<ReleaseGateVModel.ReleaseGateFeature> featureVModelList = new List<ReleaseGateVModel.ReleaseGateFeature>();
+        for (GetReleaseGateActionResultModel.ReleaseGateFeature feature : featureModelList) {
+            featureVModelList.add(
+                new ReleaseGateVModel.ReleaseGateFeature(
+                    feature.name,
+                    feature.label,
+                    feature.description,
+                    feature.helpLink,
+                    feature.helpLinkLabel
+                )
+            );
+        }
+        return featureVModelList;
     }
 
     /*****************************************************************************
