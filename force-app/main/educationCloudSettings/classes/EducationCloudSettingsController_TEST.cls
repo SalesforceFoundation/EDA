@@ -79,7 +79,6 @@ private class EducationCloudSettingsController_TEST {
         } catch (AuraHandledException e) {
             exceptionMessage = e.getMessage();
         }
-
         System.assert(String.isNotBlank(exceptionMessage), 'exceptionMessage should be not be blank');
     }
 
