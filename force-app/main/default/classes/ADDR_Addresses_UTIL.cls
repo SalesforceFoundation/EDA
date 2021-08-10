@@ -794,7 +794,8 @@ public with sharing class ADDR_Addresses_UTIL {
                 Seasonal_End_Month__c,
                 Seasonal_End_Day__c,
                 Geolocation__Latitude__s,
-                Geolocation__Longitude__s
+                Geolocation__Longitude__s,
+                Inactive__c
             FROM Address__c
             WHERE Parent_Account__c IN :listParentId OR Parent_Contact__c IN :listParentId
             ORDER BY Default_Address__c DESC, LastModifiedDate ASC
