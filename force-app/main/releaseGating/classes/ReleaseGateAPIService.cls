@@ -29,7 +29,7 @@
  * @date 2021
  * @group EDA Settings
  * @group-content ../../ApexDocContent/EdaSettings.htm
- * @description Service class to handle business logic associated with ReleaseGateAPI
+ * @description Service class to call Release Gate Callable API classes
  */
 public virtual with sharing class ReleaseGateAPIService {
     public static final String GET_ACTION = 'releasegate.get';
@@ -66,32 +66,26 @@ public virtual with sharing class ReleaseGateAPIService {
         if (this.callableInstance == null) {
             try {
                 UTIL_Debug.debug(
-                    'Creating release gate API callable instance, namespace: ' +
-                    this.releaseGateRegistry.namespace +
-                    ', class name: ' +
-                    this.releaseGateRegistry.classname
+                    String.format(
+                        'Creating release gate API callable instance, namespace: {0}, class name {1}',
+                        new List<Object>{ this.releaseGateRegistry.namespace, this.releaseGateRegistry.classname }
+                    )
                 );
                 this.callableInstance = this.createReleaseGateCallableInstance();
             } catch (System.NullPointerException npe) {
-                throw new ReleaseGateProductNotFoundException(
-                    'Class: ' +
-                    this.releaseGateRegistry.classname +
-                    ' with namespace: ' +
-                    this.releaseGateRegistry.namespace +
-                    ' could not get loaded',
-                    npe,
-                    this.releaseGateRegistry
+                String errorMessage = String.format(
+                    'Class: {0} with namespace {1} could not get loaded',
+                    new List<object>{ this.releaseGateRegistry.classname, this.releaseGateRegistry.namespace }
                 );
+                UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
+                throw new ReleaseGateProductNotFoundException(errorMessage, npe, this.releaseGateRegistry);
             } catch (System.TypeException te) {
-                throw new ReleaseGateProductNotFoundException(
-                    'Class: ' +
-                    this.releaseGateRegistry.classname +
-                    ' with namespace: ' +
-                    this.releaseGateRegistry.namespace +
-                    ' could not get loaded',
-                    te,
-                    this.releaseGateRegistry
+                String errorMessage = String.format(
+                    'Class: {0} with namespace {1} could not get loaded',
+                    new List<object>{ this.releaseGateRegistry.classname, this.releaseGateRegistry.namespace }
                 );
+                UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
+                throw new ReleaseGateProductNotFoundException(errorMessage, te, this.releaseGateRegistry);
             }
         }
         return this.callableInstance;
@@ -172,13 +166,10 @@ public virtual with sharing class ReleaseGateAPIService {
             String errorMessage = resultModel.error != null
                 ? String.valueOf(resultModel.error.code) + ': ' + resultModel.error.message
                 : 'Unspecified error';
-            errorMessage +=
-                ', action: ' +
-                action +
-                ', class: ' +
-                this.releaseGateRegistry.classname +
-                ', namespace: ' +
-                this.releaseGateRegistry.namespace;
+            errorMessage += String.format(
+                ', action: {0}, class {1}, namespace {2}',
+                new List<Object>{ action, this.releaseGateRegistry.classname, this.releaseGateRegistry.namespace }
+            );
             UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
             throw new ReleaseGateCallableException(errorMessage, null, this.releaseGateRegistry, resultModel);
         }
@@ -220,6 +211,7 @@ public virtual with sharing class ReleaseGateAPIService {
          * @param  message         Exception message
          * @param  cause           Exception cause
          * @param  productRegistry product registry associated with the exception
+         * @param  result          CallableResult associated with the exception
          */
         public ReleaseGateCallableException(
             String message,
