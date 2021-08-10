@@ -181,7 +181,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             'MailingPostalCode, MailingCountry, MailingLatitude, ' +
             'MailingLongitude, OtherStreet, OtherCity, ' +
             'Other_County__c, OtherState, OtherPostalCode, OtherCountry, ' +
-            'OtherLatitude, OtherLongitude, Deceased__c, Exclude_from_Household_Name__c,';
+            'OtherLatitude, OtherLongitude, Deceased__c, Exclude_from_Household_Name__c, Mailing_Address_Inactive__c,';
 
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             dynamicSoql += 'MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode, ';

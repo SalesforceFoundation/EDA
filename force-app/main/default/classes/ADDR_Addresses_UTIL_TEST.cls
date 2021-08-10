@@ -568,10 +568,36 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void testIsContactAddressChangedBothNotNullDifferentAddressInfo() {
+    static void testIsContactAddressChangedBothNotNullDifferentMailingStreet() {
         Contact con1 = UTIL_UnitTestData_TEST.getContact();
         Contact con2 = UTIL_UnitTestData_TEST.getContact();
         con1.MailingStreet = 'Some Street';
+
+        Test.startTest();
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
+        Test.stopTest();
+
+        System.assertEquals(true, isContactAddressChanged);
+    }
+
+    @isTest
+    static void testIsContactAddressChangedBothNotNullDifferentMailingCity() {
+        Contact con1 = UTIL_UnitTestData_TEST.getContact();
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
+        con1.MailingStreet = 'Some City';
+
+        Test.startTest();
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
+        Test.stopTest();
+
+        System.assertEquals(true, isContactAddressChanged);
+    }
+
+    @isTest
+    static void testIsContactAddressChangedBothNotNullDifferentMailingCounty() {
+        Contact con1 = UTIL_UnitTestData_TEST.getContact();
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
+        con1.MailingStreet = 'Some County';
 
         Test.startTest();
         Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
