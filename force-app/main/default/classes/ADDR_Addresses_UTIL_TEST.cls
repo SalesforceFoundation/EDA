@@ -2049,11 +2049,11 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             'SELECT recordTypeId, Current_Address__c, BillingStreet, ' +
             'BillingCity, Billing_County__c, BillingState, ' +
             'BillingPostalCode, BillingCountry, BillingLatitude, ' +
-            'BillingLongitude';
+            'BillingLongitude, Billing_Address_Inactive__c';
 
-        assertString += ', (SELECT Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, Mailing_County__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude';
+        assertString += ', (SELECT Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, Mailing_County__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, Mailing_Address_Inactive__c';
         assertString += ' FROM Account.Contacts)';
-        assertString += ', (SELECT Default_Address__c, Parent_Account__c, Parent_Contact__c, MailingCounty__c, Latest_Start_Date__c, Latest_End_Date__c FROM Account.Addresses__r)';
+        assertString += ', (SELECT Default_Address__c, Parent_Account__c, Parent_Contact__c, MailingCounty__c, Latest_Start_Date__c, Latest_End_Date__c, Inactive__c FROM Account.Addresses__r)';
         assertString += ' FROM Account WHERE Id IN ';
 
         System.assertEquals(parentAccsWithChildrenQuery, assertString);
