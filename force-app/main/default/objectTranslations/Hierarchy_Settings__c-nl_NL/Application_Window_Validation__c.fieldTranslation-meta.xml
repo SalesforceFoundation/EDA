@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Verify that the Due Date is after the Open Date --></help>
+    <label><!-- Application Window Validation --></label>
+    <name>Application_Window_Validation__c</name>
+</CustomFieldTranslation>
