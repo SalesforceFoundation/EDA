@@ -9,11 +9,7 @@
         title={learnerCourseViewModel.schemaLabels.achievement.achievementType}
         if:true={shouldDisplayCourses}
     >
-        <lightning-accordion
-            allow-multiple-sections-open
-            onsectiontoggle={handleSectionToggle}
-            active-section-name={activeSections}
-        >
+        <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}>
             <template for:each={learnerCourseViewModel.courses} for:item="learnerCourse">
                 <c-learner-course-visualization
                     key={learnerCourse.courseConnectionId}

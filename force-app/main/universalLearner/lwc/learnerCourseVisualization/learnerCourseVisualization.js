@@ -11,11 +11,20 @@ export default class LearnerCourseVisualization extends LightningElement {
     @api learnerCourseViewModel;
     @api schemaLabels;
 
+    get vModelDebug() {
+        return JSON.stringify(this.learnerCourseViewModel);
+    }
+
+    get schemaLabelDebug() {
+        return JSON.stringify(this.schemaLabels);
+    }
+
     get fieldsToDisplay() {
         let fieldsToDisplayArray = [];
 
-        fieldDefinitions.forEach((fieldDefinition) => {
+        FIELD_DEFINITIONS.forEach((fieldDefinition) => {
             let fieldToDisplay = { fieldKey: fieldDefinition.source + fieldDefinition.fieldName };
+            console.log("Field To Display is: " + fieldToDisplay.fieldKey);
             switch (fieldToDisplay.source) {
                 //Handle achievements
                 case "achievement": {
@@ -37,8 +46,10 @@ export default class LearnerCourseVisualization extends LightningElement {
                 }
             }
             if (fieldToDisplay.fieldValue === undefined) {
+                console.log("Skipping. Field Value undefined for: " + fieldToDisplay.fieldKey);
                 return;
             }
+            console.log("Pushing. Field is: " + JSON.stringify(fieldToDisplay));
 
             fieldsToDisplayArray.push(fieldToDisplay);
         });
