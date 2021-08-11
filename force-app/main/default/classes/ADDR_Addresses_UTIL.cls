@@ -315,10 +315,6 @@ public with sharing class ADDR_Addresses_UTIL {
             cChange++;
         }
 
-        if (addrNew.Inactive__c != addrOld.Inactive__c && addrOld.Inactive__c != false) {
-            cChange++;
-        }
-
         if (
             strCleanup(addrNew.MailingState__c) != strCleanup(addrOld.MailingState__c) &&
             String.isNotBlank(addrOld.MailingState__c)
@@ -885,6 +881,7 @@ public with sharing class ADDR_Addresses_UTIL {
         acc.BillingCountry = null;
         acc.BillingLatitude = null;
         acc.BillingLongitude = null;
+        acc.Billing_Address_Inactive__c = false;
 
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             acc.BillingCountry = null;
@@ -906,6 +903,7 @@ public with sharing class ADDR_Addresses_UTIL {
         contact.MailingCountry = null;
         contact.MailingLatitude = null;
         contact.MailingLongitude = null;
+        contact.Mailing_Address_Inactive__c = false;
     }
 
     /*******************************************************************************************************
