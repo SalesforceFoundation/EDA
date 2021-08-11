@@ -97,7 +97,7 @@ tasks:
 
     deploy_release_gating:
         group: "EDA: Metadata"
-        description: Deploys an install context class, allowing for batch jobs from the installer to resolve.
+        description: mocked release gating metadata to display the variety of permutations EDA supports.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: unpackaged/config/release_gating
@@ -408,7 +408,6 @@ flows:
                 flow: eda_settings
             8:
                 task: deploy_release_gating
-                when: "'hed' not in org_config.installed_packages"
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -433,7 +432,6 @@ flows:
                 flow: eda_settings
             7:
                 task: deploy_release_gating
-                when: "'hed' not in org_config.installed_packages"
 
     config_managed:
         # description: Configure an org for use as a dev org after package metadata is deployed.
@@ -478,6 +476,8 @@ flows:
                 task: deploy_qa_config
             8:
                 flow: eda_settings
+            9:
+                task: deploy_release_gating
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.

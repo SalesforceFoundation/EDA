@@ -5,7 +5,7 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>Product_Registry.EDADemoReleaseGate</members>
+        <members>%%%NAMESPACE%%%Product_Registry.EDADemoReleaseGate</members>
         <name>CustomMetadata</name>
     </types>    
     <version>52.0</version>

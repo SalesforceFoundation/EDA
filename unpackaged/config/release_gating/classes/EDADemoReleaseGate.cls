@@ -32,15 +32,149 @@
  * @description A demo release gating class to simulate EDA release gates
  */
 public with sharing class EDADemoReleaseGate implements Callable {
+    public class CallableError {
+        public Integer code;
+        public String message;
+
+        /********************************************************************************************
+         * @description Two argument constructor
+         * @param  code An Integer representing the error code
+         * @param  message A string representing the error message
+         * @return A CallableError with all properties populated.
+         ********************************************************************************************/
+        public CallableError(Integer code, String message) {
+            this.code = code;
+            this.message = message;
+        }
+    }
+
+    public virtual class CallableResult {
+        public Boolean success;
+        public CallableError error;
+
+        /********************************************************************************************
+         * @description Two argument constructor
+         * @param  success A boolean representing if the call was successful or not
+         * @param  error A CallableError representing the error in case the call was not successful
+         * @return A CallableResult with all properties populated.
+         ********************************************************************************************/
+        public CallableResult(Boolean success, CallableError error) {
+            this.success = success;
+            this.error = error;
+        }
+    }
+
+    public class GetReleaseGateActionResult extends CallableResult {
+        public GetReleaseGateResult[] result;
+
+        /*****************************************************************************************************************
+         * @description Three argument constructor
+         *****************************************************************************************************************/
+        public GetReleaseGateActionResult(GetReleaseGateResult[] result, Boolean success, CallableError error) {
+            super(success, error);
+            this.result = result;
+        }
+    }
+
+    public class GetReleaseGateResult {
+        public ReleaseGateProduct product;
+        public ReleaseGate[] gates;
+
+        /*****************************************************************************************************************
+         * @description Two argument constructor
+         *****************************************************************************************************************/
+        public GetReleaseGateResult(ReleaseGateProduct product, ReleaseGate[] gates) {
+            this.product = product;
+            this.gates = gates;
+        }
+    }
+
+    public class ReleaseGateProduct {
+        public String name;
+        public String label;
+        public String nextReleaseDate;
+
+        /*****************************************************************************************************************
+         * @description Three argument constructor
+         *****************************************************************************************************************/
+        public ReleaseGateProduct(String name, String label, String nextReleaseDate) {
+            this.name = name;
+            this.label = label;
+            this.nextReleaseDate = nextReleaseDate;
+        }
+    }
+
+    public class ReleaseGate {
+        public String name;
+        public String label;
+        public String description;
+        public Date releaseDate;
+        public Date dueDate;
+        public String dueDateInfoText;
+        public DateTime activationDate;
+        public ReleaseGateFeature[] items;
+        public String status;
+
+        /*****************************************************************************************************************
+         * @description Nine argument constructor
+         *****************************************************************************************************************/
+        public ReleaseGate(
+            String name,
+            String label,
+            String description,
+            Date releaseDate,
+            Date dueDate,
+            String dueDateInfoText,
+            Datetime activationDate,
+            String status,
+            List<ReleaseGateFeature> features
+        ) {
+            this.name = name;
+            this.label = label;
+            this.description = description;
+            this.releaseDate = releaseDate;
+            this.dueDate = dueDate;
+            this.dueDateInfoText = dueDateInfoText;
+            this.activationDate = activationDate;
+            this.status = status;
+            this.items = features;
+        }
+    }
+
+    public class ReleaseGateFeature {
+        public String name;
+        public String label;
+        public String description;
+        public String helpLink;
+        public String helpLinkLabel;
+
+        /*****************************************************************************************************************
+         * @description Five argument constructor
+         *****************************************************************************************************************/
+        public ReleaseGateFeature(
+            String name,
+            String label,
+            String description,
+            String helpLink,
+            String helpLinkLabel
+        ) {
+            this.name = name;
+            this.label = label;
+            this.description = description;
+            this.helpLink = helpLink;
+            this.helpLinkLabel = helpLinkLabel;
+        }
+    }
+
     public EDADemoReleaseGate() {
     }
 
     public String getReleaseGates(Decimal version) {
-        List<GetReleaseGateActionResultModel.GetReleaseGateResult> resultList = new List<GetReleaseGateActionResultModel.GetReleaseGateResult>{
-            new GetReleaseGateActionResultModel.GetReleaseGateResult(
-                new GetReleaseGateActionResultModel.ReleaseGateProduct('SAL', 'Advisor Link', 'January 2022'),
-                new List<GetReleaseGateActionResultModel.ReleaseGate>{
-                    new GetReleaseGateActionResultModel.ReleaseGate(
+        List<EDADemoReleaseGate.GetReleaseGateResult> resultList = new List<EDADemoReleaseGate.GetReleaseGateResult>{
+            new EDADemoReleaseGate.GetReleaseGateResult(
+                new EDADemoReleaseGate.ReleaseGateProduct('SAL', 'Advisor Link', 'January 2022'),
+                new List<EDADemoReleaseGate.ReleaseGate>{
+                    new EDADemoReleaseGate.ReleaseGate(
                         'summer21',
                         'Summer \'21',
                         'Here\'s what\'s new in Summer \'21. See the documentation for instructions on setting up these features, and then activate the release.',
@@ -49,22 +183,22 @@ public with sharing class EDADemoReleaseGate implements Callable {
                         'On this date, we activate the current release on all sandboxes that are still on the previous release.',
                         null,
                         'inactive',
-                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                        new List<EDADemoReleaseGate.ReleaseGateFeature>{
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'FlexibleAdviseeSnapshot',
                                 'Flexible Advisee Snapshot',
                                 'We\'ve redesigned the Advisee Snapshot. If desired, customize it to show up to four counters, upload advisee photos, and add the Snapshot to other Case pages.',
                                 'https://powerofus.force.com/s/article/SAL-Advisor-App-Snapshot-Contact',
                                 'Set Up the Advisee Snapshot and Contact Details'
                             ),
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'FlexibleStudentSnapshot',
                                 'Flexible Student Snapshot',
                                 'Student Success Hub customers also enjoy the redesigned Student Snapshot. Configure the counters to show data relevant to K-12 schools, including Alerts and Success Plans, and, if desired, upload student photos and add the Snapshot to other Case pages.',
                                 'https://powerofus.force.com/s/article/SSH-Set-Up-Student-Snapshot-and-Details',
                                 'Set Up the Student Snapshot and Student Details'
                             ),
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'FrontDeskAppointmentScheduling',
                                 'Front Desk Appointment Scheduling',
                                 'Front desk staff can now schedule individual appointments between advisors or members of an Advising Pool and an advisee. To set up front desk scheduling, create a profile with the necessary permissions for those users, and add the Appointment Scheduler component to a Lightning page so they can access the front desk New Appointment form.',
@@ -73,7 +207,7 @@ public with sharing class EDADemoReleaseGate implements Callable {
                             )
                         }
                     ),
-                    new GetReleaseGateActionResultModel.ReleaseGate(
+                    new EDADemoReleaseGate.ReleaseGate(
                         'spring21',
                         'Spring \'21',
                         'Spring \'21 is now activated for all orgs',
@@ -82,15 +216,15 @@ public with sharing class EDADemoReleaseGate implements Callable {
                         'On this date, we activate the current release on all sandboxes that are still on the previous release.',
                         Datetime.now().addMonths(-1),
                         'active',
-                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                        new List<EDADemoReleaseGate.ReleaseGateFeature>{
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'flexscheduling',
                                 'Flex Scheduling',
                                 'Flexible scheduling is activated in all orgs. If you haven\'t already done so, configure location- and topic-based advising availability for your users.',
                                 'https://powerofus.force.com/s/article/SAL-Set-Up-Location-Based-Advising-Availability',
                                 'Set Up Location-Based Advising Availability'
                             ),
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'groupavailability',
                                 'Group Availability',
                                 'Group availability allows advisees to reserve a spot in a group advising appointment. Even if you\'re not using group availability yet, be sure you\'ve set up permissions on the Attendee Limit and Discoverable fields.',
@@ -101,14 +235,10 @@ public with sharing class EDADemoReleaseGate implements Callable {
                     )
                 }
             ),
-            new GetReleaseGateActionResultModel.GetReleaseGateResult(
-                new GetReleaseGateActionResultModel.ReleaseGateProduct(
-                    'EDA',
-                    'Education Data Architecture',
-                    'January 2022'
-                ),
-                new List<GetReleaseGateActionResultModel.ReleaseGate>{
-                    new GetReleaseGateActionResultModel.ReleaseGate(
+            new EDADemoReleaseGate.GetReleaseGateResult(
+                new EDADemoReleaseGate.ReleaseGateProduct('EDA', 'Education Data Architecture', 'January 2022'),
+                new List<EDADemoReleaseGate.ReleaseGate>{
+                    new EDADemoReleaseGate.ReleaseGate(
                         'sampledisabled',
                         'Sample Disabled Release Gate',
                         'This is an example release gate in disabled state',
@@ -117,15 +247,15 @@ public with sharing class EDADemoReleaseGate implements Callable {
                         'On this date, we activate the current release on all sandboxes that are still on the previous release.',
                         null,
                         'disabled',
-                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                        new List<EDADemoReleaseGate.ReleaseGateFeature>{
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'ExampleFeature1',
                                 'Example disabled feature 1',
                                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
                                 'https://www.salesforce.com',
                                 'See example feature 1'
                             ),
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'ExampleFeature2',
                                 'Example disabled feature 2',
                                 'Bibendum arcu vitae elementum curabitur. Vitae ultricies leo integer malesuada nunc. Donec ac odio tempor orci dapibus ultrices. Penatibus et magnis dis parturient montes nascetur ridiculus. Dolor sit amet consectetur adipiscing elit ut aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Lacus laoreet non curabitur gravida arcu ac tortor. Ullamcorper a lacus vestibulum sed arcu non odio.',
@@ -134,7 +264,7 @@ public with sharing class EDADemoReleaseGate implements Callable {
                             )
                         }
                     ),
-                    new GetReleaseGateActionResultModel.ReleaseGate(
+                    new EDADemoReleaseGate.ReleaseGate(
                         'sampleinprogress',
                         'Sample InProgress Release Gate',
                         'This is an example release gate in InProgress state',
@@ -143,15 +273,15 @@ public with sharing class EDADemoReleaseGate implements Callable {
                         'On this date, we activate the current release on all sandboxes that are still on the previous release.',
                         null,
                         'inprogress',
-                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                        new List<EDADemoReleaseGate.ReleaseGateFeature>{
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'ExampleFeature1',
                                 'Example inprogress feature 1',
                                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
                                 'https://www.salesforce.com',
                                 'See example feature 1'
                             ),
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'ExampleFeature2',
                                 'Example inprogress feature 2',
                                 'Bibendum arcu vitae elementum curabitur. Vitae ultricies leo integer malesuada nunc. Donec ac odio tempor orci dapibus ultrices. Penatibus et magnis dis parturient montes nascetur ridiculus. Dolor sit amet consectetur adipiscing elit ut aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Lacus laoreet non curabitur gravida arcu ac tortor. Ullamcorper a lacus vestibulum sed arcu non odio.',
@@ -160,7 +290,7 @@ public with sharing class EDADemoReleaseGate implements Callable {
                             )
                         }
                     ),
-                    new GetReleaseGateActionResultModel.ReleaseGate(
+                    new EDADemoReleaseGate.ReleaseGate(
                         'sampleactive',
                         'Sample Active Release Gate',
                         'This is an example release gate in active state',
@@ -169,15 +299,15 @@ public with sharing class EDADemoReleaseGate implements Callable {
                         'On this date, we activate the current release on all sandboxes that are still on the previous release.',
                         Datetime.now().addMonths(-1),
                         'active',
-                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                        new List<EDADemoReleaseGate.ReleaseGateFeature>{
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'ExampleFeature1',
                                 'Example active feature 1',
                                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
                                 'https://www.salesforce.com',
                                 'See example feature 1'
                             ),
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'ExampleFeature2',
                                 'Example active feature 2',
                                 'Bibendum arcu vitae elementum curabitur. Vitae ultricies leo integer malesuada nunc. Donec ac odio tempor orci dapibus ultrices. Penatibus et magnis dis parturient montes nascetur ridiculus. Dolor sit amet consectetur adipiscing elit ut aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Lacus laoreet non curabitur gravida arcu ac tortor. Ullamcorper a lacus vestibulum sed arcu non odio.',
@@ -186,7 +316,7 @@ public with sharing class EDADemoReleaseGate implements Callable {
                             )
                         }
                     ),
-                    new GetReleaseGateActionResultModel.ReleaseGate(
+                    new EDADemoReleaseGate.ReleaseGate(
                         'sampleinactive',
                         'Sample Inactive Release Gate',
                         'This is an example release gate in inactive state',
@@ -195,15 +325,15 @@ public with sharing class EDADemoReleaseGate implements Callable {
                         'On this date, we activate the current release on all sandboxes that are still on the previous release.',
                         null,
                         'inactive',
-                        new List<GetReleaseGateActionResultModel.ReleaseGateFeature>{
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                        new List<EDADemoReleaseGate.ReleaseGateFeature>{
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'ExampleFeature1',
                                 'Example inactive feature 1',
                                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
                                 'https://www.salesforce.com',
                                 'See example feature 1'
                             ),
-                            new GetReleaseGateActionResultModel.ReleaseGateFeature(
+                            new EDADemoReleaseGate.ReleaseGateFeature(
                                 'ExampleFeature2',
                                 'Example inactive feature 2',
                                 'Bibendum arcu vitae elementum curabitur. Vitae ultricies leo integer malesuada nunc. Donec ac odio tempor orci dapibus ultrices. Penatibus et magnis dis parturient montes nascetur ridiculus. Dolor sit amet consectetur adipiscing elit ut aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Lacus laoreet non curabitur gravida arcu ac tortor. Ullamcorper a lacus vestibulum sed arcu non odio.',
@@ -216,7 +346,7 @@ public with sharing class EDADemoReleaseGate implements Callable {
             )
         };
 
-        GetReleaseGateActionResultModel releaseGateResultModel = new GetReleaseGateActionResultModel(
+        EDADemoReleaseGate.GetReleaseGateActionResult releaseGateResultModel = new EDADemoReleaseGate.GetReleaseGateActionResult(
             resultList,
             true,
             null
