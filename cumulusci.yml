@@ -300,6 +300,16 @@ tasks:
                 - EinsteinAnalyticsPlusAdmin
                 - EinsteinAnalyticsPlusUser
 
+    qa_create_student_portal_community:
+        group: "EDA: Community Config"
+        description: Creates the student portal community community
+        class_path: cumulusci.tasks.salesforce.CreateCommunity
+        options:
+            template: "Customer Service"
+            url_path_prefix: "StudentPortal"
+            name: "StudentPortalCommunity"
+            timeout: 600
+
     retrieve_config_dev:
         description: Retrieves the current changes in the scratch org into unpackaged/config/dev.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
@@ -590,6 +600,25 @@ flows:
                 flow: eda_settings
             5:
                 flow: eda_picklists
+
+    qa_student_portal_setup:
+        group: "EDA: Community Config"
+        description: Create, deploy, and publish a community in an unmanaged org.
+        steps:
+            1:
+                task: qa_create_student_portal_community
+    #            2:
+    #                task: qa_deploy_community_config
+    #            3:
+    #                task: qa_deploy_kiosk_sharing_rules
+    #            4:
+    #                task: util_sleep
+    #                options:
+    #                    seconds: 20
+    #            5:
+    #                task: qa_publish_advisee_community
+    #            6:
+    #                task: qa_post_community_guest_user_permissionset
 
     translations:
         description: Enables Translation workbench, platform language settings and sets languages as active.
