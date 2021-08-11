@@ -23,34 +23,32 @@ export default class LearnerCourseVisualization extends LightningElement {
         let fieldsToDisplayArray = [];
 
         FIELD_DEFINITIONS.forEach((fieldDefinition) => {
-            let fieldToDisplay = { fieldKey: fieldDefinition.source + fieldDefinition.fieldName };
-            console.log("Field To Display is: " + fieldToDisplay.fieldKey);
-            switch (fieldToDisplay.source) {
+            let fieldName = fieldDefinition.fieldName;
+            //Field key is an obnoxious requirement for loops
+            let fieldToDisplay = { fieldKey: fieldDefinition.source + fieldName };
+            switch (fieldDefinition.source) {
                 //Handle achievements
                 case "achievement": {
-                    fieldToDisplay.fieldLabel = this.schemaLabels.achievement[fieldToDisplay];
-                    fieldToDisplay.fieldValue = this.learnerCourseViewModel.assertion.achievement[fieldToDisplay];
+                    fieldToDisplay.fieldLabel = this.schemaLabels.achievement[fieldName];
+                    fieldToDisplay.fieldValue = this.learnerCourseViewModel.assertion.achievement[fieldName];
                     break;
                 }
                 //Handle assertions
                 case "assertion": {
-                    fieldToDisplay.fieldLabel = this.schemaLabels.assertion[fieldToDisplay];
-                    fieldToDisplay.fieldValue = this.learnerCourseViewModel.assertion[fieldToDisplay];
+                    fieldToDisplay.fieldLabel = this.schemaLabels.assertion[fieldName];
+                    fieldToDisplay.fieldValue = this.learnerCourseViewModel.assertion[fieldName];
                     break;
                 }
                 //Handle custom fields
                 case "custom": {
-                    fieldToDisplay.fieldLabel = this.schemaLabels.custom[fieldToDisplay];
-                    fieldToDisplay.fieldValue = this.learnerCourseViewModel[fieldToDisplay];
+                    fieldToDisplay.fieldLabel = this.schemaLabels.custom[fieldName];
+                    fieldToDisplay.fieldValue = this.learnerCourseViewModel[fieldName];
                     break;
                 }
             }
             if (fieldToDisplay.fieldValue === undefined) {
-                console.log("Skipping. Field Value undefined for: " + fieldToDisplay.fieldKey);
                 return;
             }
-            console.log("Pushing. Field is: " + JSON.stringify(fieldToDisplay));
-
             fieldsToDisplayArray.push(fieldToDisplay);
         });
 
