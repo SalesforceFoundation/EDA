@@ -50,7 +50,7 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
         Schema.DescribeSObjectResult objResult
     ) {
         if (newList == null || newList.isEmpty()) {
-            return null;
+            return new DmlWrapper();
         }
 
         if (triggerAction == TDTM_Runnable.Action.BeforeInsert) {
@@ -71,6 +71,9 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
      ********************************************************************************************************/
     @TestVisible
     private void handleBeforeInsert(List<SObject> newSObjectList) {
+        if (this.applicationWindowValidationIsEnabled() == false) {
+            return;
+        }
         List<Application__c> newApplications = (List<Application__c>) newSObjectList;
 
         for (Application__c newApplication : newApplications) {
@@ -88,6 +91,9 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
      ********************************************************************************************************/
     @TestVisible
     private void handleBeforeUpdate(List<SObject> oldSObjectList, List<SObject> newSObjectList) {
+        if (this.applicationWindowValidationIsEnabled() == false) {
+            return;
+        }
         List<Application__c> updatedApplications = (List<Application__c>) newSObjectList;
         Map<Id, Application__c> oldApplicationsById = new Map<Id, Application__c>(
             (List<Application__c>) oldSObjectList
@@ -125,5 +131,12 @@ public with sharing class Application_TDTM extends TDTM_Runnable {
     private Boolean openOrDueDateHasChanged(Application__c newApplication, Application__c oldApplication) {
         return newApplication.Open_Date__c != oldApplication.Open_Date__c ||
             newApplication.Due_Date__c != oldApplication.Due_Date__c;
+    }
+
+    /*******************************************************************************************************
+     * @description Returns true when the application window validation trigger is enabled via custom settings
+     ******************************************************************************************************/
+    private Boolean applicationWindowValidationIsEnabled() {
+        return UTIL_CustomSettingsFacade.getSettings().Application_Window_Validation__c;
     }
 }

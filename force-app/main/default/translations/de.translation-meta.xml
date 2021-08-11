@@ -493,6 +493,22 @@
         <name>stgApiNameLabel</name>
     </customLabels>
     <customLabels>
+        <label><!-- Section title for Application Settings --></label>
+        <name>stgApplicationSettingsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the Application Window Validation setting --></label>
+        <name>stgApplicationWindowValidation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Description of the Application Window Validation setting --></label>
+        <name>stgApplicationWindowValidationDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation title for Applications --></label>
+        <name>stgApplicationsNav</name>
+    </customLabels>
+    <customLabels>
         <label>Beginnen Sie die Suche mit der Eingabe des Namens der Chatter-Gruppe.</label>
         <name>stgAutoCompleteEnterChatterGroupName</name>
     </customLabels>

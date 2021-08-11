@@ -975,6 +975,38 @@
         <value>API Name: {0}</value>
     </labels>
     <labels>
+        <fullName>stgApplicationSettingsTitle</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Section title for Application Settings</shortDescription>
+        <value>Application Settings</value>
+    </labels>
+    <labels>
+        <fullName>stgApplicationWindowValidation</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for the Application Window Validation setting</shortDescription>
+        <value>Application Window Validation</value>
+    </labels>
+    <labels>
+        <fullName>stgApplicationWindowValidationDescription</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description of the Application Window Validation setting</shortDescription>
+        <value>Verify that the Due Date is after the Open Date.</value>
+    </labels>
+    <labels>
+        <fullName>stgApplicationsNav</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Navigation title for Applications</shortDescription>
+        <value>Applications</value>
+    </labels>
+    <labels>
         <fullName>stgAutoCompleteEnterChatterGroupName</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
