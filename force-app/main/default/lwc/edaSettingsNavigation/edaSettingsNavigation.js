@@ -65,6 +65,9 @@ import stgErrorNotifRecipientsTitle from "@salesforce/label/c.stgErrorNotifRecip
 import stgEnableDebugTitle from "@salesforce/label/c.stgEnableDebugTitle";
 import stgDisableErrorHandlingTitle from "@salesforce/label/c.stgDisableErrorHandlingTitle";
 import stgSendErrorsTitle from "@salesforce/label/c.stgSendErrorsTitle";
+// Application Settings Labels
+import stgApplicationsNav from "@salesforce/label/c.stgApplicationsNav";
+import stgApplicationWindowValidation from "@salesforce/label/c.stgApplicationWindowValidation";
 
 export default class EdaSettingsNavigation extends LightningElement {
     labelReference = {
@@ -142,6 +145,10 @@ export default class EdaSettingsNavigation extends LightningElement {
             systemToolsNav: stgSystemToolsNav,
             refreshAdministrativeAccountNames: stgRefreshAdminAcctNameTitle,
             refreshHouseholdAccountNames: stgRefreshHHAcctNameTitle,
+        },
+        applicationSettings: {
+            applicationsNav: stgApplicationsNav,
+            applicationWindowValidation: stgApplicationWindowValidation,
         },
     };
 
@@ -321,6 +328,17 @@ export default class EdaSettingsNavigation extends LightningElement {
                                 id: "defaultFacultyRecType",
                             },
                         ],
+                    },
+                ],
+            },
+            {
+                label: this.labelReference.applicationSettings.applicationsNav,
+                id: "applicationSettings",
+                page: "applicationSettings",
+                menuItems: [
+                    {
+                        label: this.labelReference.applicationSettings.applicationWindowValidation,
+                        id: "enableApplicationWindowValidation",
                     },
                 ],
             },
