@@ -32,6 +32,12 @@
  * @description A demo release gating class to simulate EDA release gates
  */
 public with sharing class EDADemoReleaseGate implements Callable {
+    public static final String GET_ACTION = 'releasegate.get';
+    public static final String ACTIVATE_ACTION = 'releasegate.activate';
+    public static final String VERSION_PARAMETER = 'version';
+    public static final String PRODUCT_PARAMETER = 'product';
+    public static final String GATE_PARAMETER = 'gate';
+
     public class CallableError {
         public Integer code;
         public String message;
@@ -362,13 +368,13 @@ public with sharing class EDADemoReleaseGate implements Callable {
     public Object call(String action, Map<String, Object> args) {
         System.debug('Executing callable action: ' + action);
         String result;
-        if (action == ReleaseGateAPIService.GET_ACTION) {
-            result = this.getReleaseGates((Decimal) args.get('version'));
-        } else if (action == ReleaseGateAPIService.ACTIVATE_ACTION) {
+        if (action == GET_ACTION) {
+            result = this.getReleaseGates((Decimal) args.get(VERSION_PARAMETER));
+        } else if (action == ACTIVATE_ACTION) {
             result = this.activateReleaseGate(
-                (Decimal) args.get('version'),
-                (String) args.get('product'),
-                (String) args.get('gate')
+                (Decimal) args.get(VERSION_PARAMETER),
+                (String) args.get(PRODUCT_PARAMETER),
+                (String) args.get(GATE_PARAMETER)
             );
         } else {
             throw new IllegalArgumentException('Method not implemented');
