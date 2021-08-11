@@ -4,14 +4,17 @@
     "instance": "CS46",
     "features": ["DevelopmentWave"],
     "settings": {
-        "lightningExperienceSettings": {
-            "enableS1DesktopEnabled": true
+        "chatterSettings": {
+            "enableChatter": true
+        },
+        "communitiesSettings": {
+            "enableNetworksEnabled": true
         },
         "languageSettings": {
             "enableTranslationWorkbench": true
         },
-        "chatterSettings": {
-            "enableChatter": true
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
         }
     }
 }
