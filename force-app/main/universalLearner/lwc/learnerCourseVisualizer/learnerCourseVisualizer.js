@@ -13,17 +13,31 @@ export default class LearnerCourseVisualizer extends LightningElement {
     @track learnerCourseViewModel = {
         schemaLabels: {
             assertion: {
+                achievement: {
+                    achievementType: "Courses",
+                    creditsAvailable: "Credits Hours",
+                    description: "Extended Description",
+                    fieldOfStudy: "Subject",
+                    humanCode: "Course Id",
+                    issuer: {
+                        name: "Department",
+                    },
+                    level: "Academic Level",
+                },
+                activityEndDate: "End Date",
+                activityStartDate: "Start Date",
+                creditsEarned: "Credits Earned",
                 term: "Term",
             },
-            achievement: {
-                achievementType: "Courses",
+            custom: {
+                grade: "Grade",
+                status: "Status",
+                verificationDate: "Verification Date",
+                verificationStatus: "Verification Status",
             },
         },
         courses: [
             {
-                courseConnectionId: "000000000000000000",
-                displayGrade: "A",
-                status: "Completed",
                 assertion: {
                     id: "728eb95d-f081-45fa-924c-41e9af805d13",
                     type: "Assertion",
@@ -60,12 +74,16 @@ export default class LearnerCourseVisualizer extends LightningElement {
                     },
                     term: "Spring 2021",
                 },
+                custom: {
+                    courseConnectionId: "000000000000000000",
+                    displayGrade: "A",
+                    status: "Completed",
+                    verificationDate: "2021-07-01",
+                    verificationStatus: "Verified",
+                },
             },
 
             {
-                courseConnectionId: "000000000000000001",
-                displayGrade: "A",
-                status: "Completed",
                 assertion: {
                     id: "728eb95d-f081-45fa-924c-41e9af805d10",
                     type: "Assertion",
@@ -102,12 +120,16 @@ export default class LearnerCourseVisualizer extends LightningElement {
                     },
                     term: "Spring 2021",
                 },
+                custom: {
+                    courseConnectionId: "000000000000000001",
+                    displayGrade: "A",
+                    status: "Completed",
+                    verificationDate: "2021-07-01",
+                    verificationStatus: "Verified",
+                },
             },
 
             {
-                courseConnectionId: "000000000000000002",
-                displayGrade: "C",
-                status: "Completed",
                 assertion: {
                     id: "728eb95d-f081-45fa-924c-41e9af805d08",
                     type: "Assertion",
@@ -143,6 +165,13 @@ export default class LearnerCourseVisualizer extends LightningElement {
                         name: "Connected Campus University",
                     },
                     term: "Spring 2021",
+                },
+                custom: {
+                    courseConnectionId: "000000000000000002",
+                    displayGrade: "C",
+                    status: "Completed",
+                    verificationDate: "2021-07-01",
+                    verificationStatus: "Verified",
                 },
             },
         ],

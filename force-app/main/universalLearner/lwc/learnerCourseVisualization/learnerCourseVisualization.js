@@ -1,10 +1,21 @@
 import { LightningElement, api } from "lwc";
 
+//Note, this is repeatable, but the future state of individual learner achievements with actions means we want to separate them for now.
 const FIELD_DEFINITIONS = [
-    {
-        source: "assertion",
-        fieldName: "term",
-    },
+    "assertion.achievement.humanCode",
+    "custom.status",
+    "custom.grade",
+    "assertion.creditsEarned",
+    "assertion.achievement.creditsAvailable",
+    "assertion.achievement.fieldOfStudy",
+    "assertion.achievement.level",
+    "assertion.term",
+    "assertion.activityStartDate",
+    "assertion.activityEndDate",
+    "custom.verificationStatus",
+    "custom.verificationDate",
+    "assertion.achievement.issuer.name",
+    "assertion.achievement.description",
 ];
 
 export default class LearnerCourseVisualization extends LightningElement {
@@ -20,38 +31,45 @@ export default class LearnerCourseVisualization extends LightningElement {
     }
 
     get fieldsToDisplay() {
+        //Consider moving this to a shared JS library for other components
         let fieldsToDisplayArray = [];
 
+        console.log("Processing field definitions");
+
         FIELD_DEFINITIONS.forEach((fieldDefinition) => {
-            let fieldName = fieldDefinition.fieldName;
             //Field key is an obnoxious requirement for loops
-            let fieldToDisplay = { fieldKey: fieldDefinition.source + fieldName };
-            switch (fieldDefinition.source) {
-                //Handle achievements
-                case "achievement": {
-                    fieldToDisplay.fieldLabel = this.schemaLabels.achievement[fieldName];
-                    fieldToDisplay.fieldValue = this.learnerCourseViewModel.assertion.achievement[fieldName];
-                    break;
-                }
-                //Handle assertions
-                case "assertion": {
-                    fieldToDisplay.fieldLabel = this.schemaLabels.assertion[fieldName];
-                    fieldToDisplay.fieldValue = this.learnerCourseViewModel.assertion[fieldName];
-                    break;
-                }
-                //Handle custom fields
-                case "custom": {
-                    fieldToDisplay.fieldLabel = this.schemaLabels.custom[fieldName];
-                    fieldToDisplay.fieldValue = this.learnerCourseViewModel[fieldName];
-                    break;
-                }
-            }
+            console.log("Processing field: " + fieldDefinition);
+            let fieldToDisplay = { fieldKey: fieldDefinition };
+            let parsedFieldName = this.parseFieldName(fieldDefinition);
+
+            fieldToDisplay.fieldValue = this.getNestedStringFromViewModel(this.learnerCourseViewModel, parsedFieldName);
+
             if (fieldToDisplay.fieldValue === undefined) {
                 return;
             }
+
+            fieldToDisplay.fieldLabel = this.getNestedStringFromViewModel(this.schemaLabels, parsedFieldName);
             fieldsToDisplayArray.push(fieldToDisplay);
         });
 
         return fieldsToDisplayArray;
+    }
+
+    parseFieldName(fieldName) {
+        if (fieldName.indexOf(".") === -1) {
+            return [fieldName];
+        }
+
+        return fieldName.split(".");
+    }
+
+    getNestedStringFromViewModel(viewModel, fieldNameArray) {
+        let nestedValue = viewModel;
+
+        fieldNameArray.forEach((nestedFieldName) => {
+            nestedValue = nestedValue[nestedFieldName];
+        });
+
+        return nestedValue;
     }
 }
