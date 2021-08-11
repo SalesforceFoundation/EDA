@@ -47,4 +47,8 @@
         <masterLabel>Waitlist</masterLabel>
         <translation><!-- Waitlist --></translation>
     </picklistValues>
+    <picklistValues>
+        <masterLabel>Started</masterLabel>
+        <translation><!-- Started --></translation>
+    </picklistValues>
 </CustomFieldTranslation>

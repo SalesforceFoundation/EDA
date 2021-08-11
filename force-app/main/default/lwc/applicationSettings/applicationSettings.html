@@ -1,0 +1,22 @@
+<template>
+    <c-settings-save-canvas
+        component-title={labelReference.applicationPageTitle}
+        onsettingseditmodechange={handleSettingsEditModeChange}
+        onsettingssaving={handleSettingsSaving}
+        onsettingssavecancel={handleSettingsSaveCancel}
+        onsettingssavecompleted={handleSettingsSaveCompleted}
+    >
+        <template if:true={applicationSettingsVModel}>
+            <c-settings-row-input
+                class="slds-col"
+                title={labelReference.applicationWindowValidationTitle}
+                description={labelReference.applicationWindowValidationDescription}
+                input-id={inputAttributeReference.enableApplicationWindowValidationId}
+                type="toggle"
+                value={applicationSettingsVModel.enableApplicationWindowValidation}
+                onsettingsinputchange={handleWindowValidationTriggerChanged}
+                disabled={affordancesDisabled}
+            ></c-settings-row-input>
+        </template>
+    </c-settings-save-canvas>
+</template>
