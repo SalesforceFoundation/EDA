@@ -2,13 +2,16 @@
     "orgName": "EDA - Prerelease Dev Workspace",
     "edition": "Developer",
     "instance": "CS46",
-    "features": ["DevelopmentWave"],
+    "features": ["Communities", "DevelopmentWave"],
     "settings": {
         "chatterSettings": {
             "enableChatter": true
         },
         "communitiesSettings": {
             "enableNetworksEnabled": true
+        },
+        "experienceBundleSettings": {
+            "enableExperienceBundleMetadata": true
         },
         "languageSettings": {
             "enableTranslationWorkbench": true

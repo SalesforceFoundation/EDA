@@ -1,13 +1,16 @@
 {
     "orgName": "EDA - Dev Workspace",
     "edition": "Developer",
-    "features": ["DevelopmentWave"],
+    "features": ["Communities", "DevelopmentWave"],
     "settings": {
         "chatterSettings": {
             "enableChatter": true
         },
         "communitiesSettings": {
             "enableNetworksEnabled": true
+        },
+        "experienceBundleSettings": {
+            "enableExperienceBundleMetadata": true
         },
         "languageSettings": {
             "enableTranslationWorkbench": true
