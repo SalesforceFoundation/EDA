@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+	<fields>
+        <fullName>Credentialing_Identifier__c</fullName>
+        <description>An International Resource Identifier that uniquely identifies a Contact who received a credential.</description>
+        <externalId>true</externalId>
+        <inlineHelpText>An International Resource Identifier that uniquely identifies a Contact who received a credential.</inlineHelpText>
+        <label>Credentialing Identifier</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+</CustomObject>
