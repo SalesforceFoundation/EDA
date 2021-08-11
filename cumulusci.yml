@@ -317,6 +317,13 @@ tasks:
                 - EinsteinAnalyticsPlusAdmin
                 - EinsteinAnalyticsPlusUser
 
+    publish_learner_portal:
+        group: "EDA: Community Config"
+        description: Publishes the learner portal
+        class_path: cumulusci.tasks.salesforce.PublishCommunity
+        options:
+            name: "LearnerPortalCommunity"
+
     retrieve_config_dev:
         description: Retrieves the current changes in the scratch org into unpackaged/config/dev.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
@@ -614,18 +621,14 @@ flows:
         steps:
             1:
                 task: create_learner_portal_community
-    #            2:
-    #                task: qa_deploy_community_config
-    #            3:
-    #                task: qa_deploy_kiosk_sharing_rules
-    #            4:
-    #                task: util_sleep
-    #                options:
-    #                    seconds: 20
-    #            5:
-    #                task: qa_publish_advisee_community
-    #            6:
-    #                task: qa_post_community_guest_user_permissionset
+            2:
+                task: deploy_learner_portal
+            3:
+                task: util_sleep
+                options:
+                    seconds: 20
+            4:
+                task: publish_learner_portal
 
     translations:
         description: Enables Translation workbench, platform language settings and sets languages as active.
