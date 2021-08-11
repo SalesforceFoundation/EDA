@@ -4,7 +4,7 @@ project:
     package:
         name: EDA
         namespace: hed
-        api_version: 48.0
+        api_version: 52.0
         install_class: STG_InstallScript
     git:
         prefix_release: rel/
@@ -55,6 +55,16 @@ tasks:
                   label: "Temporary Resident"
                   add_before: "Other (Non-U.S.)"
 
+    create_learner_portal_community:
+        group: "EDA: Community Config"
+        description: Creates the learner portal community
+        class_path: cumulusci.tasks.salesforce.CreateCommunity
+        options:
+            template: "Customer Service"
+            url_path_prefix: "LearnerPortal"
+            name: "LearnerPortalCommunity"
+            timeout: 600
+
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -94,6 +104,13 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: unpackaged/config/install_emulator
+
+    deploy_learner_portal:
+        group: "EDA: Community Config"
+        description: Deploys the learner portal community
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: unpackaged/config/learner_community
 
     deploy_workbench_translation_settings:
         description: Deploys settings to enable Translation Workbench, end user languages, and platform languages.
@@ -299,16 +316,6 @@ tasks:
                 - EinsteinAnalyticsAdmin
                 - EinsteinAnalyticsPlusAdmin
                 - EinsteinAnalyticsPlusUser
-
-    qa_create_student_portal_community:
-        group: "EDA: Community Config"
-        description: Creates the student portal community community
-        class_path: cumulusci.tasks.salesforce.CreateCommunity
-        options:
-            template: "Customer Service"
-            url_path_prefix: "StudentPortal"
-            name: "StudentPortalCommunity"
-            timeout: 600
 
     retrieve_config_dev:
         description: Retrieves the current changes in the scratch org into unpackaged/config/dev.
@@ -601,12 +608,12 @@ flows:
             5:
                 flow: eda_picklists
 
-    qa_student_portal_setup:
+    qa_learner_portal_setup:
         group: "EDA: Community Config"
         description: Create, deploy, and publish a community in an unmanaged org.
         steps:
             1:
-                task: qa_create_student_portal_community
+                task: create_learner_portal_community
     #            2:
     #                task: qa_deploy_community_config
     #            3:
