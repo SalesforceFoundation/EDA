@@ -9,7 +9,8 @@
         title={learnerCourseViewModel.schemaLabels.assertion.achievement.achievementType}
         if:true={shouldDisplayCourses}
     >
-        <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}>
+        <!--<lightning-accordion allow-multiple-sections-open active-section-name={activeSections}>-->
+        <ul class="slds-accordion">
             <template for:each={learnerCourseViewModel.courses} for:item="learnerCourse">
                 <c-learner-course-visualization
                     key={learnerCourse.custom.courseConnectionId}
@@ -18,6 +19,7 @@
                 >
                 </c-learner-course-visualization>
             </template>
-        </lightning-accordion>
+        </ul>
+        <!--</lightning-accordion>-->
     </lightning-card>
 </template>
