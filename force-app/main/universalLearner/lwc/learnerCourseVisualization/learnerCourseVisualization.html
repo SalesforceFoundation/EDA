@@ -1,0 +1,21 @@
+<template>
+    <lightning-accordion-section
+        name={learnerCourseViewModel.courseConnectionId}
+        label={learnerCourseViewModel.assertion.achievement.name}
+    >
+        <dl class="slds-list_horizontal slds-wrap">
+            <template for:each={fieldsToDisplay} for:item="fieldKey">
+                <dt
+                    key={fieldKey.fieldKey}
+                    title={fieldToDisplay.fieldLabel}
+                    class="slds-item_label slds-text-color_weak slds-truncate"
+                >
+                    {fieldToDisplay.fieldLabel}:
+                </dt>
+                <dd key={fieldKey.fieldKey} class="slds-item_detail slds-truncate">
+                    {learnerCourseViewModel.fieldValue}
+                </dd>
+            </template>
+        </dl>
+    </lightning-accordion-section>
+</template>

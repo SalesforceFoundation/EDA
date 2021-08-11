@@ -1,4 +1,5 @@
 <aura:component
     implements="flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
 >
+    <c:learnerCourseVisualizer></c:learnerCourseVisualizer>
 </aura:component>

@@ -1,0 +1,27 @@
+<template>
+    <template if:false={shouldDisplayCourses}>
+        <!-- Display spinner -->
+        <lightning-spinner alternative-text={labelReference.spinnerLoadingAltText} variant="brand" size="medium">
+        </lightning-spinner>
+    </template>
+    <lightning-card
+        icon-name="custom:custom83"
+        title={learnerCourseViewModel.schemaLabels.achievement.achievementType}
+        if:true={shouldDisplayCourses}
+    >
+        <lightning-accordion
+            allow-multiple-sections-open
+            onsectiontoggle={handleSectionToggle}
+            active-section-name={activeSections}
+        >
+            <template for:each={learnerCourseViewModel.courses} for:item="learnerCourse">
+                <c-learner-course-visualization
+                    key={learnerCourse.courseConnectionId}
+                    learner-course-view-model={learnerCourse}
+                    schema-labels={learnerCourseViewModel.schemaLabels}
+                >
+                </c-learner-course-visualization>
+            </template>
+        </lightning-accordion>
+    </lightning-card>
+</template>
