@@ -31,7 +31,6 @@ import stgBtnVideosActionA11y from "@salesforce/label/c.stgBtnVideosActionA11y";
 
 import namespacedEDAField from "@salesforce/schema/Course_Offering_Schedule__c.Course_Offering__c";
 
-import getEDCSettingsProductVModel from "@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModel";
 import getProductRegistrySettingsProductInformationVModels from "@salesforce/apex/EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels";
 
 import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
@@ -48,7 +47,7 @@ const YoutubeUrl = "https://www.youtube.com/user/SalesforceFoundation";
 
 export default class EducationCloudSettings extends NavigationMixin(LightningElement) {
     @track
-    edcProductModels = [];
+    edcProductRegistryVModels = [];
 
     labelReference = {
         productsTitle: stgColProducts,
@@ -76,23 +75,9 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
     }
 
     @wire(getProductRegistrySettingsProductInformationVModels)
-    edcSettingsProductModels({ error, data }) {
-        let tempProductModels = [];
+    edcSettingsProductRegistryVModels({ error, data }) {
         if (data) {
-            //For each product registry 'product information' call the API to get the Product Information
-            data.forEach((prodRegistry) => {
-                let prodRegistrySerialized = JSON.stringify(prodRegistry);
-                getEDCSettingsProductVModel({ productRegistry: prodRegistrySerialized })
-                .then((result) => {
-                    if (result) {
-                        this.edcProductModels.push(result);
-                        this.edcProductModels.sort(this.sortByNameAsc);
-                    }
-                })
-                .catch((error) => {
-                    this.showErrorToast(error);
-                });
-            });
+            this.edcProductRegistryVModels = data;
         } else if (error) {
             this.showErrorToast(error);
         }
@@ -135,33 +120,23 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
     ];
 
     showErrorToast(error) {
-        let errorMessage = 'Unknown error';
+        let errorMessage = "Unknown error";
         if (Array.isArray(error.body)) {
-            errorMessage = error.body.map(e => e.message).join(', ');
+            errorMessage = error.body.map((e) => e.message).join(", ");
         } else {
-            if (error.body && typeof error.body.message === 'string') {
+            if (error.body && typeof error.body.message === "string") {
                 errorMessage = error.body.message;
             } else {
-                errorMessage = error.message;     
+                errorMessage = error.message;
             }
         }
 
         const evt = new ShowToastEvent({
-            title: 'Error',
+            title: "Error",
             message: errorMessage,
-            variant: 'error',
-            mode: 'sticky'
+            variant: "error",
+            mode: "sticky",
         });
         this.dispatchEvent(evt);
-    }
-
-    sortByNameAsc(a, b) {
-        if (a.name > b.name) {
-            return 1;
-          }
-        if (a.name === b.name) {
-          return 0;
-        }
-        return -1;
     }
 }

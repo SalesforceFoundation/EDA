@@ -55,19 +55,20 @@ public virtual with sharing class EDCSettingsProductVMapper {
     /********************************************************************************************
      * @description Returns an EDCSettingsProductVModel based on the information from an
      * EDCSettingsProductInformationModel for an specific product registry
-     * @param  productRegistry A string representing the serialized product registry information
+     * @param  classname A string representing the product class name to call
+     * @param  namespace A string representing the product namespace
+     * @param  apiVersion A decimal representing the api version
      * @return An instance of EDCSettingsProductVModel with all its properties populated
      ********************************************************************************************/
-    public virtual EDCSettingsProductVModel getEDCSettingsProductVModel(String productRegistry) {
-        ProductRegistryVModel prodRegistryVModel = (ProductRegistryVModel) JSON.deserialize(
-            productRegistry,
-            ProductRegistryVModel.class
-        );
-
+    public virtual EDCSettingsProductVModel getEDCSettingsProductVModel(
+        String classname,
+        String namespace,
+        Decimal apiVersion
+    ) {
         EDCSettingsProductInformationModel productInformation = this.getSettingsProductInformation(
-            prodRegistryVModel.classname,
-            prodRegistryVModel.namespace,
-            prodRegistryVModel.apiVersion
+            classname,
+            namespace,
+            apiVersion
         );
 
         if (productInformation == null) {

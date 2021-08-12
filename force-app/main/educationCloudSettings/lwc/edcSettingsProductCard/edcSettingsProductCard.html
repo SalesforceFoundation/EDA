@@ -1,46 +1,54 @@
 <template>
-    <lightning-card>
-        <!-- Card Header -->
-        <h3 slot="title" id="cardTitle">
-            <div class="slds-align-bottom">
-                <lightning-avatar
-                    src={iconSrc}
-                    size={iconSize}
-                    initials={iconInitials}
-                    fallback-icon-name={iconFallbackName}
-                    aria-hidden="true"
-                ></lightning-avatar>
-                <span class="slds-text-heading_small slds-var-p-left_small">{title}</span>
-            </div>
-        </h3>
-        <!-- Card Body -->
-        <div class="slds-grid slds-grid_vertical">
-            <div class="slds-col slds-var-m-horizontal_small"><p>{description}</p></div>
-            <div class="slds-col slds-var-m-horizontal_small slds-var-m-top_small slds-scrollable_x">
-                <lightning-button-group>
-                    <lightning-button
-                        if:true={settingsComponent}
-                        label={labelReference.settingsButton}
-                        title={labelReference.settingsButtonA11y}
-                        aria-described-by="cardTitle"
-                        onclick={handleSettingsClick}
-                    ></lightning-button>
-                    <lightning-button
-                        if:true={documentationUrl}
-                        label={labelReference.documentationButton}
-                        title={labelReference.documentationButtonA11y}
-                        aria-described-by="cardTitle"
-                        onclick={handleDocumentationClick}
-                    ></lightning-button>
-                    <lightning-button
-                        if:true={trailheadUrl}
-                        label={labelReference.trailheadButton}
-                        title={labelReference.trailheadButtonA11y}
-                        aria-described-by="cardTitle"
-                        onclick={handleTrailheadClick}
-                    ></lightning-button>
-                </lightning-button-group>
-            </div>
-        </div>
-    </lightning-card>
+    <template if:true={showProductCard}>
+        <li class="slds-col slds-var-m-horizontal_small slds-var-m-vertical_small edcSettingsProductCard">
+            <lightning-card>
+                <!-- Card Header -->
+                <h3 slot="title" id="cardTitle">
+                    <div class="slds-align-bottom">
+                        <lightning-avatar
+                            src={iconSrc}
+                            size={iconSize}
+                            initials={iconInitials}
+                            fallback-icon-name={iconFallbackName}
+                            aria-hidden="true"
+                            class="productIcon"
+                        ></lightning-avatar>
+                        <span class="slds-text-heading_small slds-var-p-left_small productTitle">{title}</span>
+                    </div>
+                </h3>
+                <!-- Card Body -->
+                <div class="slds-grid slds-grid_vertical">
+                    <div class="slds-col slds-var-m-horizontal_small productDescription"><p>{description}</p></div>
+                    <div class="slds-col slds-var-m-horizontal_small slds-var-m-top_small slds-scrollable_x">
+                        <lightning-button-group>
+                            <lightning-button
+                                if:true={settingsComponent}
+                                label={labelReference.settingsButton}
+                                title={labelReference.settingsButtonA11y}
+                                aria-described-by="cardTitle"
+                                onclick={handleSettingsClick}
+                                class="btnSettingsComponent"
+                            ></lightning-button>
+                            <lightning-button
+                                if:true={documentationUrl}
+                                label={labelReference.documentationButton}
+                                title={labelReference.documentationButtonA11y}
+                                aria-described-by="cardTitle"
+                                onclick={handleDocumentationClick}
+                                class="btnDocumentationUrl"
+                            ></lightning-button>
+                            <lightning-button
+                                if:true={trailheadUrl}
+                                label={labelReference.trailheadButton}
+                                title={labelReference.trailheadButtonA11y}
+                                aria-described-by="cardTitle"
+                                onclick={handleTrailheadClick}
+                                class="btnTrailheadUrl"
+                            ></lightning-button>
+                        </lightning-button-group>
+                    </div>
+                </div>
+            </lightning-card>
+        </li>
+    </template>
 </template>

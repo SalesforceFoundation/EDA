@@ -118,11 +118,9 @@ private class EDASettingsProductInfoAPIService_TEST {
         System.assertNotEquals(null, actionResult.error, 'error should not be null');
         System.assertEquals(400, actionResult.error.code, 'error code should be 400');
         System.assertEquals(
-            'Method: ' +
-            action +
-            ' not implemented',
+            Label.stgErrorSettingsProductInvalidAction,
             actionResult.error.message,
-            'the error message is incorrect'
+            'the error message is incorrect, it should be: ' + Label.stgErrorSettingsProductInvalidAction
         );
     }
 
@@ -157,9 +155,9 @@ private class EDASettingsProductInfoAPIService_TEST {
         System.assertNotEquals(null, actionResult.error, 'error should not be null');
         System.assertEquals(400, actionResult.error.code, 'error code should be 400');
         System.assertEquals(
-            'You gotta have an API version!',
+            Label.stgErrorSettingsProductInvalidApiVersion,
             actionResult.error.message,
-            'the error message is incorrect'
+            'the error message is incorrect, it should be: ' + Label.stgErrorSettingsProductInvalidApiVersion
         );
     }
 
@@ -192,15 +190,15 @@ private class EDASettingsProductInfoAPIService_TEST {
             Test.startTest();
             Decimal apiVersion = service.getApiVersion(args);
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (EDASettingsProductInformationAPIService.ApiVersionNotFoundException ex) {
             exceptionMessage = ex.getMessage();
         }
 
         System.assertEquals(
-            'You gotta have an API version!',
+            Label.stgErrorSettingsProductInvalidApiVersion,
             exceptionMessage,
-            'error message should be ' + exceptionMessage
+            'the error message is incorrect, it should be: ' + Label.stgErrorSettingsProductInvalidApiVersion
         );
     }
 
@@ -228,7 +226,7 @@ private class EDASettingsProductInfoAPIService_TEST {
             actionResult = service.handleAction(action, apiVersion);
             Test.stopTest();
         } catch (EDASettingsProductInformationAPIService.InvalidActionException ex) {
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         }
 
         System.assertEquals(true, actionResult.success, 'success should be true');
@@ -268,17 +266,15 @@ private class EDASettingsProductInfoAPIService_TEST {
             Test.startTest();
             EDCSettingsProdInfoActionResultModel actionResult = service.handleAction(action, apiVersion);
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (EDASettingsProductInformationAPIService.InvalidActionException ex) {
             exceptionMessage = ex.getMessage();
         }
 
         System.assertEquals(
-            'Method: ' +
-            action +
-            ' not implemented',
+            Label.stgErrorSettingsProductInvalidAction,
             exceptionMessage,
-            'error message should be ' + exceptionMessage
+            'the error message is incorrect, it should be: ' + Label.stgErrorSettingsProductInvalidAction
         );
     }
 
