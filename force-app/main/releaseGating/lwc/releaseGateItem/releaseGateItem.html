@@ -9,24 +9,7 @@
                                 <div class="slds-setup-assistant__step-summary">
                                     <div class="slds-media">
                                         <div class="slds-media__figure gateIcon">
-                                            <lightning-icon
-                                                icon-name="action:announcement"
-                                                if:true={gateDisabledOrInactive}
-                                                size="x-small"
-                                            >
-                                            </lightning-icon>
-                                            <lightning-icon
-                                                icon-name="action:approval"
-                                                if:true={gateActive}
-                                                size="x-small"
-                                            >
-                                            </lightning-icon>
-                                            <lightning-icon
-                                                icon-name="action:more"
-                                                if:true={gateInProgress}
-                                                size="x-small"
-                                            >
-                                            </lightning-icon>
+                                            <lightning-icon icon-name={gateIconName} size="x-small"> </lightning-icon>
                                         </div>
                                         <div class="slds-media__body slds-var-m-top_x-small">
                                             <div class="slds-media">

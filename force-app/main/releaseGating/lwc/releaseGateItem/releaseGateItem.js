@@ -32,12 +32,28 @@ export default class ReleaseGateItem extends LightningElement {
         return this.gate.status === "disabled";
     }
 
-    get gateDisabledOrInactive() {
-        return this.gateDisabled || this.gateInactive;
-    }
-
     get gateInProgress() {
         return this.gate.status === "inprogress";
+    }
+
+    get gateIconName() {
+        let iconName;
+        switch (this.gate.status) {
+            case "active":
+                iconName = "action:approval";
+                break;
+            case "inactive":
+                iconName = "action:announcement";
+                break;
+            case "inprogress":
+                iconName = "action:more";
+                break;
+            case "disabled":
+            default:
+                iconName = "action:info";
+                break;
+        }
+        return iconName;
     }
 
     get activatedOnLabel() {
