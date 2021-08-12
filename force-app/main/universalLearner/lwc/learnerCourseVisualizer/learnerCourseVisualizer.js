@@ -213,6 +213,14 @@ export default class LearnerCourseVisualizer extends LightningElement {
     }
 
     handleMenuSelect(event) {
-        console.log(handleMenuSelect());
+        const selectedAction = event.detail.value;
+        const assertionViewModel = this.getAssertionViewModelFromAccordionSection(event.target);
+        const assertionCourseConnectionId = assertionViewModel.custom.courseConnectionId;
+        //This is a stub for lightning navigation in future work
+    }
+
+    getAssertionViewModelFromAccordionSection(accordionSection) {
+        const assertionElement = accordionSection.querySelector("c-learner-assertion-visualization");
+        return assertionElement.learnerAssertionViewModel;
     }
 }

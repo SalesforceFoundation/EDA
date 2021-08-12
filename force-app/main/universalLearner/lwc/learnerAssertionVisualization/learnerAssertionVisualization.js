@@ -10,7 +10,6 @@ export default class LearnerAssertionVisualization extends LightningElement {
 
         this.fieldDefinitions.forEach((fieldDefinition) => {
             //Field key is an obnoxious requirement for loops
-            console.log("Processing field: " + fieldDefinition);
             let fieldToDisplay = { fieldKey: fieldDefinition };
             let parsedFieldName = this.parseFieldName(fieldDefinition);
 
