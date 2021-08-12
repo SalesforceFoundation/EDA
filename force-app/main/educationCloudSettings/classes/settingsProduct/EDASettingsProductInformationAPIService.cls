@@ -108,7 +108,7 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
     @TestVisible
     private Decimal getApiVersion(Map<String, Object> args) {
         if (args.containsKey('Api Version') == false || args.get('Api Version') == null) {
-            throw new ApiVersionNotFoundException('You gotta have an API version!');
+            throw new ApiVersionNotFoundException(Label.stgErrorSettingsProductInvalidApiVersion);
         }
         return (Decimal) args.get('Api Version');
     }
@@ -125,7 +125,7 @@ public virtual with sharing class EDASettingsProductInformationAPIService implem
         if (action == PRODUCT_INFORMATION_ACTION) {
             return this.getSettingsProductInformation();
         }
-        throw new InvalidActionException('Method: ' + action + ' not implemented');
+        throw new InvalidActionException(Label.stgErrorSettingsProductInvalidAction);
     }
 
     /**********************************************************************************

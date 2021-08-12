@@ -75,11 +75,10 @@ private class EducationCloudSettingsController_TEST {
             Test.startTest();
             List<ProductRegistryVModel> productRegistryList = EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels();
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (AuraHandledException e) {
             exceptionMessage = e.getMessage();
         }
-
         System.assert(String.isNotBlank(exceptionMessage), 'exceptionMessage should be not be blank');
     }
 
@@ -96,19 +95,15 @@ private class EducationCloudSettingsController_TEST {
         String documentationUrl = 'testDocumentationUrl';
         String trailheadUrl = 'testTrailheadUrl';
         String icon = 'testIcon';
-        String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
         Decimal apiVersion = 52.0;
-
-        ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
-        String productRegistry = JSON.serialize(registryModel);
 
         EDCSettingsProductVModel productVModel;
         EDCSettingsProductVMapper.instance = new EDCSettingsProductVMapperStub();
 
         Test.startTest();
-        productVModel = EducationCloudSettingsController.getEDCSettingsProductVModel(productRegistry);
+        productVModel = EducationCloudSettingsController.getEDCSettingsProductVModel(classname, namespace, apiVersion);
         Test.stopTest();
 
         System.assertEquals(initials, productVModel.initials, 'initials should be set to ' + initials);
@@ -134,27 +129,64 @@ private class EducationCloudSettingsController_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void testExceptionGetEDCSettingsProductVModel() {
-        String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
         Decimal apiVersion = 52.0;
         String exceptionMessage;
-        ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
-        String productRegistry = JSON.serialize(registryModel);
 
         EDCSettingsProductVModel productVModel;
         EDCSettingsProductVMapper.instance = new EDCSettingsProductVMapperExceptionStub();
 
         try {
             Test.startTest();
-            productVModel = EducationCloudSettingsController.getEDCSettingsProductVModel(productRegistry);
+            productVModel = EducationCloudSettingsController.getEDCSettingsProductVModel(
+                classname,
+                namespace,
+                apiVersion
+            );
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (AuraHandledException e) {
             exceptionMessage = e.getMessage();
         }
 
         System.assert(String.isNotBlank(exceptionMessage), 'exceptionMessage should be not be blank');
+    }
+
+    /**************************************************************************************************************************
+     * @description Stub class for EDCSettingsProductVMapper returning some sample data
+     ***************************************************************************************************************************/
+    private class EDCSettingsProductVMapperStub extends EDCSettingsProductVMapper {
+        public override EDCSettingsProductVModel getEDCSettingsProductVModel(
+            String classname,
+            String namespace,
+            Decimal apiVersion
+        ) {
+            EDCSettingsProductVModel model = new EDCSettingsProductVModel(
+                'testInitials',
+                'testName',
+                'testDescription',
+                'c__testSettingsComponent',
+                'testDocumentationUrl',
+                'testTrailheadUrl',
+                'testIcon'
+            );
+            return model;
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Stub class for EDCSettingsProductVMapper, where the method getEDCSettingsProductVModel
+     * throws an AuraHandledException
+     ***************************************************************************************************************************/
+    private class EDCSettingsProductVMapperExceptionStub extends EDCSettingsProductVMapper {
+        public override EDCSettingsProductVModel getEDCSettingsProductVModel(
+            String classname,
+            String namespace,
+            Decimal apiVersion
+        ) {
+            throw new AuraHandledException('testExceptionMessage');
+        }
     }
 
     /**************************************************************************************************************************
@@ -178,34 +210,6 @@ private class EducationCloudSettingsController_TEST {
      ***************************************************************************************************************************/
     private class ProductRegistryVMapperExceptionStub extends ProductRegistryVMapper {
         public override List<ProductRegistryVModel> getProductRegistrySettingsProductInformation() {
-            throw new AuraHandledException('testExceptionMessage');
-        }
-    }
-
-    /**************************************************************************************************************************
-     * @description Stub class for EDCSettingsProductVMapper returning some sample data
-     ***************************************************************************************************************************/
-    private class EDCSettingsProductVMapperStub extends EDCSettingsProductVMapper {
-        public override EDCSettingsProductVModel getEDCSettingsProductVModel(String productRegistry) {
-            EDCSettingsProductVModel model = new EDCSettingsProductVModel(
-                'testInitials',
-                'testName',
-                'testDescription',
-                'c__testSettingsComponent',
-                'testDocumentationUrl',
-                'testTrailheadUrl',
-                'testIcon'
-            );
-            return model;
-        }
-    }
-
-    /**************************************************************************************************************************
-     * @description Stub class for EDCSettingsProductVMapper, where the method getEDCSettingsProductVModel
-     * throws an AuraHandledException
-     ***************************************************************************************************************************/
-    private class EDCSettingsProductVMapperExceptionStub extends EDCSettingsProductVMapper {
-        public override EDCSettingsProductVModel getEDCSettingsProductVModel(String productRegistry) {
             throw new AuraHandledException('testExceptionMessage');
         }
     }

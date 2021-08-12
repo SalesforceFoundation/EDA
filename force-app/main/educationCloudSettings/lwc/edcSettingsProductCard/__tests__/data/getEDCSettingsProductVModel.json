@@ -1,0 +1,9 @@
+{
+    "initials" : "testInitials",
+    "name" : "testName",
+    "description" : "testDescription",
+    "settingsComponent" : "testSettingsComponent",
+    "documentationUrl" : "testDocumentationUrl",
+    "trailheadUrl" : "testTrailheadUrl",
+    "icon" : "testIcon"
+}
