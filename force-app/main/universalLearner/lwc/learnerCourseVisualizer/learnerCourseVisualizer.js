@@ -47,7 +47,7 @@ export default class LearnerCourseVisualizer extends LightningElement {
                     fieldOfStudy: "Subject",
                     humanCode: "Course Id",
                     issuer: {
-                        name: "Department",
+                        name: "Issuer",
                     },
                     level: "Academic Level",
                 },
