@@ -6,6 +6,8 @@ const SECTION_OPEN_CLASS = "slds-accordion__section  slds-is-open";
 export default class CustomLightningAccordionSection extends LightningElement {
     expanded;
     @api label;
+    @api menuActions;
+    @api menuAlternativeText;
     @api title;
 
     get sectionIsHidden() {
@@ -34,5 +36,16 @@ export default class CustomLightningAccordionSection extends LightningElement {
 
     handleSectionHeaderClick() {
         this.expanded = !this.expanded;
+    }
+
+    handleMenuSelect(event) {
+        this.dispatchMenuSelectEvent(event.detail.value);
+    }
+
+    dispatchMenuSelectEvent(selectedValue) {
+        const menuSelectEvent = new CustomEvent("menuselect", {
+            detail: { value: selectedValue },
+        });
+        this.dispatchEvent(menuSelectEvent);
     }
 }

@@ -2,13 +2,20 @@ import { LightningElement, track } from "lwc";
 
 import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
 
+const MENU_ACTIONS = [{ label: "Show More", value: "showmore" }];
+
 export default class LearnerCourseVisualizer extends LightningElement {
     shouldDisplayCourses = true;
     activeSections = ["000000000000000000"];
 
     labelReference = {
         spinnerLoadingAltText: stgHealthCheckLoadingIndicator,
+        menuAlternativeText: "Show more",
     };
+
+    get menuActions() {
+        return MENU_ACTIONS;
+    }
 
     @track learnerCourseViewModel = {
         schemaLabels: {
@@ -183,5 +190,9 @@ export default class LearnerCourseVisualizer extends LightningElement {
 
     get sectionTitle() {
         return "Courses";
+    }
+
+    handleMenuSelect(event) {
+        console.log(handleMenuSelect());
     }
 }

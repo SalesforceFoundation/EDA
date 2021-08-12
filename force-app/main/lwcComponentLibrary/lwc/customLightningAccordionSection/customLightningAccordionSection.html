@@ -19,6 +19,21 @@
                         <span class="slds-accordion__summary-content">{label}</span>
                     </button>
                 </h2>
+                <lightning-button-menu
+                    if:true={menuActions}
+                    alternative-text={menuAlternativeText}
+                    icon-size="x-small"
+                    menu-alignment="right"
+                    onselect={handleMenuSelect}
+                >
+                    <template for:each={menuActions} for:item="menuAction">
+                        <lightning-menu-item
+                            key={menuAction.value}
+                            value={menuAction.value}
+                            label={menuAction.label}
+                        ></lightning-menu-item>
+                    </template>
+                </lightning-button-menu>
             </div>
             <div class="slds-accordion__content" hidden={sectionIsHidden} id="sectionDetails">
                 <slot></slot>

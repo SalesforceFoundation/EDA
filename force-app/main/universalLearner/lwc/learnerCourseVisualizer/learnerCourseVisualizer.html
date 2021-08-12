@@ -15,6 +15,9 @@
                     key={learnerCourse.custom.courseConnectionId}
                     title={learnerCourse.assertion.achievement.name}
                     label={learnerCourse.assertion.achievement.name}
+                    menu-actions={menuActions}
+                    menu-alternative-text={labelReferencemenuAlternativeText}
+                    onmenuselect={handleMenuSelect}
                 >
                     <c-learner-course-visualization
                         learner-course-view-model={learnerCourse}
