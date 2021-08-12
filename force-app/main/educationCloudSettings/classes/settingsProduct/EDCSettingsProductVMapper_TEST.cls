@@ -51,14 +51,12 @@ private class EDCSettingsProductVMapper_TEST {
         String classname = 'testClassname';
         Decimal apiVersion = 52.0;
 
-        ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
-        String productRegistry = JSON.serialize(registryModel);
-
         EDCSettingsProductAPIService.instance = new EDCSettingsProductAPIServiceStub();
         EDCSettingsProductVModel productVModel;
 
         Test.startTest();
-        productVModel = EDCSettingsProductVMapper.getInstance().getEDCSettingsProductVModel(productRegistry);
+        productVModel = EDCSettingsProductVMapper.getInstance()
+            .getEDCSettingsProductVModel(classname, namespace, apiVersion);
         Test.stopTest();
 
         System.assertEquals(initials, productVModel.initials, 'initials should be set to ' + initials);
@@ -83,30 +81,20 @@ private class EDCSettingsProductVMapper_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void testExceptionGetEDCSettingsProductVModel() {
-        String initials = 'testInitials';
-        String name = 'testName';
-        String description = 'testDescription';
-        String settingsComponent = 'c__testSettingsComponent';
-        String documentationUrl = 'testDocumentationUrl';
-        String trailheadUrl = 'testTrailheadUrl';
-        String icon = 'testIcon';
-        String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
         Decimal apiVersion = 52.0;
         String exceptionMessage;
-
-        ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
-        String productRegistry = JSON.serialize(registryModel);
 
         EDCSettingsProductAPIService.instance = new EDCSettingsProductAPIServiceErrorStub();
         EDCSettingsProductVModel productVModel;
 
         try {
             Test.startTest();
-            productVModel = EDCSettingsProductVMapper.getInstance().getEDCSettingsProductVModel(productRegistry);
+            productVModel = EDCSettingsProductVMapper.getInstance()
+                .getEDCSettingsProductVModel(classname, namespace, apiVersion);
             Test.stopTest();
-            System.assert(true, 'this should not happen');
+            System.assert(false, 'this should not happen');
         } catch (EDCSettingsProductVMapper.SettingsProductException e) {
             exceptionMessage = e.getMessage();
         }
@@ -119,18 +107,16 @@ private class EDCSettingsProductVMapper_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void TestNullProductInformation() {
-        String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
         Decimal apiVersion = 52.0;
 
-        ProductRegistryVModel registryModel = new ProductRegistryVModel(action, namespace, classname, apiVersion);
-        String productRegistry = JSON.serialize(registryModel);
         EDCSettingsProductVMapper.instance = new EDCSettingsProductVMapperNullProductInformationStub();
         EDCSettingsProductVModel productVModel;
 
         Test.startTest();
-        productVModel = EDCSettingsProductVMapper.getInstance().getEDCSettingsProductVModel(productRegistry);
+        productVModel = EDCSettingsProductVMapper.getInstance()
+            .getEDCSettingsProductVModel(classname, namespace, apiVersion);
         Test.stopTest();
 
         System.assertEquals(null, productVModel, 'productVModel should be null');

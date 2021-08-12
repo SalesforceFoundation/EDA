@@ -90,6 +90,7 @@ public virtual with sharing class ProductRegistryMapper {
             SELECT Action__c, API_Version__c, Class_Name__c, Enabled__c, Namespace__c
             FROM Product_Registry__mdt
             WHERE Action__c = :action AND Enabled__c = TRUE
+            ORDER BY Namespace__c ASC
         ];
         return registriesList;
     }
