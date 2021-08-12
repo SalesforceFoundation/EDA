@@ -4,10 +4,10 @@
     <containerType>Network</containerType>
     <label>Default Navigation</label>
     <navigationMenuItem>
-        <label>Topics</label>
-        <position>0</position>
-        <publiclyAvailable>true</publiclyAvailable>
-        <target>ShowMoreTopics</target>
-        <type>NavigationalTopic</type>
+        <label>Learner Record</label>
+        <position>1</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/learner-record</target>
+        <type>InternalLink</type>
     </navigationMenuItem>
 </NavigationMenu>

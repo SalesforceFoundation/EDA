@@ -559,6 +559,21 @@ flows:
                 options:
                     namespaced: False
 
+    learner_portal_setup:
+        group: "EDA: Community Config"
+        description: Create, deploy, and publish a community in an unmanaged org.
+        steps:
+            1:
+                task: create_learner_portal_community
+            2:
+                task: deploy_learner_portal
+            3:
+                task: util_sleep
+                options:
+                    seconds: 20
+            4:
+                task: publish_learner_portal
+
     run_unmanaged_unit_tests:
         # description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
@@ -618,21 +633,6 @@ flows:
                 flow: eda_settings
             5:
                 flow: eda_picklists
-
-    qa_learner_portal_setup:
-        group: "EDA: Community Config"
-        description: Create, deploy, and publish a community in an unmanaged org.
-        steps:
-            1:
-                task: create_learner_portal_community
-            2:
-                task: deploy_learner_portal
-            3:
-                task: util_sleep
-                options:
-                    seconds: 20
-            4:
-                task: publish_learner_portal
 
     translations:
         description: Enables Translation workbench, platform language settings and sets languages as active.

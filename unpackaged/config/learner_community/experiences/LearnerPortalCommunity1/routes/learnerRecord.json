@@ -1,0 +1,11 @@
+{
+    "activeViewId": "166bdecf-067c-4ec4-be7f-eb7725243e26",
+    "appPageId": "4bb92900-b3fd-4085-9c29-e01a6ea6256c",
+    "configurationTags": [],
+    "id": "bf8db23b-029f-470b-8e55-5b348a79fe50",
+    "label": "Learner Record",
+    "pageAccess": "UseParent",
+    "routeType": "custom-learner-record",
+    "type": "route",
+    "urlPrefix": "learner-record"
+}

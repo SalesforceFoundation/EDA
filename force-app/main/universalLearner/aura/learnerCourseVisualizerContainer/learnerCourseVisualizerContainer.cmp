@@ -1,0 +1,6 @@
+<aura:component
+    implements="flexipage:availableForRecordHome,forceCommunity:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName"
+    access="global"
+>
+    <c:learnerCourseVisualizer></c:learnerCourseVisualizer>
+</aura:component>
