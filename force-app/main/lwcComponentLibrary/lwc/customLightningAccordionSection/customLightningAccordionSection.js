@@ -26,14 +26,6 @@ export default class CustomLightningAccordionSection extends LightningElement {
         return SECTION_OPEN_CLASS;
     }
 
-    get sectionIcon() {
-        if (!this.expanded) {
-            return this.iconReference.collapsedIcon;
-        }
-
-        return this.iconReference.expandedIcon;
-    }
-
     handleSectionHeaderClick() {
         this.expanded = !this.expanded;
     }

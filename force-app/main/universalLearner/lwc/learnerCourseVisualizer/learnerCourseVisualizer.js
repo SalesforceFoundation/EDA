@@ -103,13 +103,12 @@ export default class LearnerCourseVisualizer extends LightningElement {
                 },
                 custom: {
                     courseConnectionId: "000000000000000000",
-                    displayGrade: "A",
+                    grade: "A",
                     status: "Completed",
                     verificationDate: "2021-07-01",
                     verificationStatus: "Verified",
                 },
             },
-
             {
                 assertion: {
                     id: "728eb95d-f081-45fa-924c-41e9af805d10",
@@ -149,13 +148,12 @@ export default class LearnerCourseVisualizer extends LightningElement {
                 },
                 custom: {
                     courseConnectionId: "000000000000000001",
-                    displayGrade: "A",
+                    grade: "A",
                     status: "Completed",
                     verificationDate: "2021-07-01",
                     verificationStatus: "Verified",
                 },
             },
-
             {
                 assertion: {
                     id: "728eb95d-f081-45fa-924c-41e9af805d08",
@@ -195,7 +193,7 @@ export default class LearnerCourseVisualizer extends LightningElement {
                 },
                 custom: {
                     courseConnectionId: "000000000000000002",
-                    displayGrade: "C",
+                    grade: "C",
                     status: "Completed",
                     verificationDate: "2021-07-01",
                     verificationStatus: "Verified",
