@@ -38,6 +38,12 @@ export default class EdcSettingsProductDisplay extends LightningElement {
         }
     }
 
+    connectedCallback(){
+        if (this.productRegistryVModels.length == 0) {
+            this.displaySettingsProduct = true;
+        }
+    }
+
     createShowToast(errorMessage) {
         const evt = new ShowToastEvent({
             title: 'Error',
