@@ -9,17 +9,20 @@
         title={learnerCourseViewModel.schemaLabels.assertion.achievement.achievementType}
         if:true={shouldDisplayCourses}
     >
-        <!--<lightning-accordion allow-multiple-sections-open active-section-name={activeSections}>-->
         <ul class="slds-accordion">
             <template for:each={learnerCourseViewModel.courses} for:item="learnerCourse">
-                <c-learner-course-visualization
+                <c-custom-lightning-accordion-section
                     key={learnerCourse.custom.courseConnectionId}
-                    learner-course-view-model={learnerCourse}
-                    schema-labels={learnerCourseViewModel.schemaLabels}
+                    title={learnerCourse.assertion.achievement.name}
+                    label={learnerCourse.assertion.achievement.name}
                 >
-                </c-learner-course-visualization>
+                    <c-learner-course-visualization
+                        learner-course-view-model={learnerCourse}
+                        schema-labels={learnerCourseViewModel.schemaLabels}
+                    >
+                    </c-learner-course-visualization>
+                </c-custom-lightning-accordion-section>
             </template>
         </ul>
-        <!--</lightning-accordion>-->
     </lightning-card>
 </template>

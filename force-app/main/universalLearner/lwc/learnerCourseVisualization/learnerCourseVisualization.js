@@ -18,37 +18,9 @@ const FIELD_DEFINITIONS = [
     "assertion.achievement.description",
 ];
 
-const SECTION_CLOSED_CLASS = "slds-accordion__section";
-const SECTION_OPEN_CLASS = "slds-accordion__section  slds-is-open";
-
 export default class LearnerCourseVisualization extends LightningElement {
     @api learnerCourseViewModel;
     @api schemaLabels;
-    sectionIsOpen = false;
-
-    get sectionIsHidden() {
-        if (!this.sectionIsOpen) {
-            return true;
-        }
-
-        return undefined;
-    }
-
-    get sectionClass() {
-        if (!this.sectionIsOpen) {
-            return SECTION_CLOSED_CLASS;
-        }
-
-        return SECTION_OPEN_CLASS;
-    }
-
-    get sectionIcon() {
-        if (!this.sectionIsOpen) {
-            return this.iconReference.collapsedIcon;
-        }
-
-        return this.iconReference.expandedIcon;
-    }
 
     get fieldsToDisplay() {
         //Consider moving this to a shared JS library for other components
@@ -91,9 +63,5 @@ export default class LearnerCourseVisualization extends LightningElement {
         });
 
         return nestedValue;
-    }
-
-    handleSectionHeaderButtonClick() {
-        this.sectionIsOpen = !this.sectionIsOpen;
     }
 }
