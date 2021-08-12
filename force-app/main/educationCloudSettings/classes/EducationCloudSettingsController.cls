@@ -33,21 +33,6 @@
  */
 public with sharing class EducationCloudSettingsController {
     /********************************************************************************************
-     * @description Returns the EDCSettingsProductVModel information based on the product registry information
-     * @param  productRegistry productRegistry the serialized product registry information
-     * @return A EDCSettingsProductVModel with all the properties populated
-     ********************************************************************************************/
-    @AuraEnabled(cacheable=true)
-    public static EDCSettingsProductVModel getEDCSettingsProductVModel(String productRegistry) {
-        try {
-            return EducationCloudSettingsController.locateSettingsProductVMapper()
-                .getEDCSettingsProductVModel(productRegistry);
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
-        }
-    }
-
-    /********************************************************************************************
      * @description Returns the list of ProductRegistryVModel based on the Product Registry CMT records
      * @return A list of ProductRegistryVModel with all the properties populated
      ********************************************************************************************/
@@ -56,6 +41,25 @@ public with sharing class EducationCloudSettingsController {
         try {
             return EducationCloudSettingsController.locateProductRegistryVMapper()
                 .getProductRegistrySettingsProductInformation();
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    /********************************************************************************************
+     * @description Returns the EDCSettingsProductVModel information based on the product registry information
+     * @param  productRegistry productRegistry the serialized product registry information
+     * @return A EDCSettingsProductVModel with all the properties populated
+     ********************************************************************************************/
+    @AuraEnabled(cacheable=true)
+    public static EDCSettingsProductVModel getEDCSettingsProductVModel(
+        String classname,
+        String namespace,
+        Decimal apiVersion
+    ) {
+        try {
+            return EducationCloudSettingsController.locateSettingsProductVMapper()
+                .getEDCSettingsProductVModel(classname, namespace, apiVersion);
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
