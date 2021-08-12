@@ -33,6 +33,7 @@
  */
 public virtual with sharing class ProductRegistryMapper {
     public static final string SETTINGS_INFORMATION_ACTION = 'Settings Product Information';
+    public static final string RELEASE_GATING_ACTION = 'Release Gating';
 
     @TestVisible
     private static ProductRegistryMapper instance;
@@ -53,31 +54,74 @@ public virtual with sharing class ProductRegistryMapper {
 
         return instance;
     }
+
+    /********************************************************************************************
+     * @description Returns the list of ProductRegistryModel based on the release gating Product Registries
+     * @return   A list of ProductRegistryModel with all its properties populated
+     ********************************************************************************************/
+    public virtual List<ProductRegistryModel> getProductRegistryReleaseGates() {
+        List<Product_Registry__mdt> productRegistryReleaseGatingList = this.getProductRegistriesByAction(
+            RELEASE_GATING_ACTION
+        );
+        return this.mapProductRegistryModelList(productRegistryReleaseGatingList);
+    }
+
     /********************************************************************************************
      * @description Returns the list of ProductRegistryModel based on the Product Registries loaded by DB
      * @return   A list of ProductRegistryModel with all its properties populated
      ********************************************************************************************/
     public virtual List<ProductRegistryModel> getProductRegistrySettingsProductInformation() {
-        List<ProductRegistryModel> productRegistryModelList = new List<ProductRegistryModel>();
         List<Product_Registry__mdt> productRegistrySettingsProductInformationList = this.getProductRegistriesByAction(
             SETTINGS_INFORMATION_ACTION
         );
+        return this.mapProductRegistryModelList(productRegistrySettingsProductInformationList);
+    }
 
-        if (productRegistrySettingsProductInformationList == null) {
+    /********************************************************************************************
+     * @description Returns the ProductRegistryModel instance with the specified name
+     * @param  developerName product registry developer name
+     * @return   A list of ProductRegistryModel with all its properties populated
+     ********************************************************************************************/
+    public virtual ProductRegistryModel getProductRegistryModelByName(String developerName) {
+        return this.mapProductRegistryModel(this.getProductRegistryByName(developerName));
+    }
+
+    /**
+     * @description Returns the list of ProductRegistryModel based on the list of Product Registry mdt
+     * @param  productRegistryList list of Product Registry mdt
+     * @return                     A list of ProductRegistryModel with all its properties populated
+     */
+    @TestVisible
+    private List<ProductRegistryModel> mapProductRegistryModelList(List<Product_Registry__mdt> productRegistryList) {
+        if (productRegistryList == null) {
             return null;
         }
+        List<ProductRegistryModel> productRegistryModelList = new List<ProductRegistryModel>();
 
-        for (Product_Registry__mdt productRegistry : productRegistrySettingsProductInformationList) {
-            ProductRegistryModel prodRegistryModel = new ProductRegistryModel(
-                productRegistry.Action__c,
-                productRegistry.Namespace__c,
-                productRegistry.Class_Name__c,
-                productRegistry.API_Version__c
-            );
-            productRegistryModelList.add(prodRegistryModel);
+        for (Product_Registry__mdt productRegistry : productRegistryList) {
+            productRegistryModelList.add(this.mapProductRegistryModel(productRegistry));
         }
         return productRegistryModelList;
     }
+
+    /**
+     * @description Creates a ProductRegistryModel instance from Product_Registry__mdt instance
+     * @param  productRegistry Product_Registry__mdt instance to map
+     * @return                 a ProductRegistryModel instance
+     */
+    private ProductRegistryModel mapProductRegistryModel(Product_Registry__mdt productRegistry) {
+        if (productRegistry == null) {
+            return null;
+        }
+        return new ProductRegistryModel(
+            productRegistry.DeveloperName,
+            productRegistry.Action__c,
+            productRegistry.Namespace__c,
+            productRegistry.Class_Name__c,
+            productRegistry.API_Version__c
+        );
+    }
+
     /********************************************************************************************
      * @description Retrieves the list of Product_Registry__mdt where the record is enabled and the action patches
      * the provided parameter
@@ -87,11 +131,26 @@ public virtual with sharing class ProductRegistryMapper {
     @TestVisible
     private virtual List<Product_Registry__mdt> getProductRegistriesByAction(String action) {
         List<Product_Registry__mdt> registriesList = [
-            SELECT Action__c, API_Version__c, Class_Name__c, Enabled__c, Namespace__c
+            SELECT DeveloperName, Action__c, API_Version__c, Class_Name__c, Enabled__c, Namespace__c
             FROM Product_Registry__mdt
             WHERE Action__c = :action AND Enabled__c = TRUE
             ORDER BY Namespace__c ASC
         ];
         return registriesList;
+    }
+
+    /********************************************************************************************
+     * @description Retrieves the enabled Product_Registry__mdt record by name
+     * @param  developerName A record's developer name
+     * @return               A Product_Registry__mdt record retrieved from DB
+     ********************************************************************************************/
+    @TestVisible
+    private Product_Registry__mdt getProductRegistryByName(String developerName) {
+        List<Product_Registry__mdt> registriesList = [
+            SELECT DeveloperName, Action__c, API_Version__c, Class_Name__c, Enabled__c, Namespace__c
+            FROM Product_Registry__mdt
+            WHERE DeveloperName = :developerName AND Enabled__c = TRUE
+        ];
+        return registriesList.isEmpty() ? null : registriesList[0];
     }
 }

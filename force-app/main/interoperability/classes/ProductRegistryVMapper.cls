@@ -53,21 +53,41 @@ public virtual with sharing class ProductRegistryVMapper {
     }
 
     /********************************************************************************************
+     * @description Returns the list of release gates ProductRegistryVModel based on the list of ProductRegistryModel
+     * @return   A list of release gates ProductRegistryVModel with all its properties populated
+     ********************************************************************************************/
+    public virtual List<ProductRegistryVModel> getProductRegistryReleaseGates() {
+        List<ProductRegistryModel> productRegistryModelList = this.locateProductRegistryService()
+            .getProductRegistryReleaseGates();
+        return this.getProductRegistryVModelList(productRegistryModelList);
+    }
+
+    /********************************************************************************************
      * @description Returns the list of ProductRegistryVModel based on the list of ProductRegistryModel
      * @return   A list of ProductRegistryVModel with all its properties populated
      ********************************************************************************************/
     public virtual List<ProductRegistryVModel> getProductRegistrySettingsProductInformation() {
+        List<ProductRegistryModel> productRegistryModelList = this.locateProductRegistryService()
+            .getProductRegistrySettingsProductInformation();
+        return this.getProductRegistryVModelList(productRegistryModelList);
+    }
+
+    /**
+     * @description Maps a List<ProductRegistryModel> to List<ProductRegistryVModel>
+     * @param  productRegistryModelList A list of ProductRegistryModel items
+     * @return                          A list of ProductRegistryVModel items
+     */
+    private List<ProductRegistryVModel> getProductRegistryVModelList(
+        List<ProductRegistryModel> productRegistryModelList
+    ) {
         List<ProductRegistryVModel> productRegistryVModelList = new List<ProductRegistryVModel>();
-        List<ProductRegistryModel> productRegistryModelList = new List<ProductRegistryModel>();
-
-        productRegistryModelList = this.locateProductRegistryService().getProductRegistrySettingsProductInformation();
-
         if (productRegistryModelList == null) {
             return null;
         }
 
         for (ProductRegistryModel prodRegistryModel : productRegistryModelList) {
             ProductRegistryVModel prodRegistryVModel = new ProductRegistryVModel(
+                prodRegistryModel.name,
                 prodRegistryModel.action,
                 prodRegistryModel.namespace,
                 prodRegistryModel.classname,

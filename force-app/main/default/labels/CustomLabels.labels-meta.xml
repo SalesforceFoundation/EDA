@@ -3935,4 +3935,52 @@
         <shortDescription>Error when Start Time and Time Block are mismatched</shortDescription>
         <value>We can&apos;t save the Course Offering Schedule because its Start Time doesn&apos;t match the Start Time of its associated Time Block. Either edit the Start Time, specify a different Time Block, or don&apos;t specify a Time Block.</value>
     </labels>
+    <labels>
+        <fullName>stgReleaseGateActivateBy</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The date when the release must be activated.</shortDescription>
+        <value>Activate by:</value>
+    </labels>
+    <labels>
+        <fullName>stgReleaseGateActivatedOn</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>The release activation date</shortDescription>
+        <value>Activated on: {0}</value>
+    </labels>
+    <labels>
+        <fullName>stgReleaseGateActivate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for a specific release</shortDescription>
+        <value>Activate {0}</value>
+    </labels>
+    <labels>
+        <fullName>stgBtnReleaseGateActivate</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Button that activates a release</shortDescription>
+        <value>Activate</value>
+    </labels>
+    <labels>
+        <fullName>stgReleaseGateInProgress</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label that indicates that activation is in progress</shortDescription>
+        <value>Activating {0}...</value>
+    </labels>
+    <labels>
+        <fullName>stgNewWindowA11y</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Text for screen reader to indicate a link opens in a new window</shortDescription>
+        <value>Opens in a new window</value>
+    </labels>
 </CustomLabels>

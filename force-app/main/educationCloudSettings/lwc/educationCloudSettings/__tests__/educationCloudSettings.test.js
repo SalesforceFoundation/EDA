@@ -1,5 +1,5 @@
 import { createElement } from "lwc";
-import { ShowToastEventName } from 'lightning/platformShowToastEvent';
+import { ShowToastEventName } from "lightning/platformShowToastEvent";
 import EducationCloudSettings from "c/EducationCloudSettings";
 import getProductRegistrySettingsProductInformationVModels from "@salesforce/apex/EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels";
 
@@ -7,18 +7,15 @@ import getProductRegistrySettingsProductInformationVModels from "@salesforce/ape
 const mockGetProductRegistrySettingsProductInformationVModels = require("./data/getProductRegistrySettingsProductInformationVModels.json");
 
 jest.mock(
-    '@salesforce/apex/EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels',
+    "@salesforce/apex/EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels",
     () => {
-        const {
-            createApexTestWireAdapter
-        } = require('@salesforce/sfdx-lwc-jest');
+        const { createApexTestWireAdapter } = require("@salesforce/sfdx-lwc-jest");
         return {
-            default: createApexTestWireAdapter(jest.fn())
+            default: createApexTestWireAdapter(jest.fn()),
         };
     },
     { virtual: true }
 );
-
 
 describe("c-education-cloud-settings", () => {
     afterEach(() => {
@@ -49,50 +46,49 @@ describe("c-education-cloud-settings", () => {
         });
     });
 
-    it("Check if EDC Settings Product Display is shown and it has the parameter data", async() => {
+    it("Check if EDC Settings Product Display is shown and it has the parameter data", async () => {
         const element = createElement("c-education-cloud-settings", {
             is: EducationCloudSettings,
         });
 
         document.body.appendChild(element);
-        getProductRegistrySettingsProductInformationVModels.emit(mockGetProductRegistrySettingsProductInformationVModels);
+        getProductRegistrySettingsProductInformationVModels.emit(
+            mockGetProductRegistrySettingsProductInformationVModels
+        );
 
         await flushPromises();
 
-        const edcSettingsProductCardElement = element.shadowRoot.querySelector(
-            "c-edc-settings-product-display"
-        );
+        const edcSettingsProductCardElement = element.shadowRoot.querySelector("c-edc-settings-product-display");
         expect(edcSettingsProductCardElement).not.toBeNull();
         const productRegistryVModels = edcSettingsProductCardElement.productRegistryVModels;
         expect(productRegistryVModels).not.toBeNull();
         expect(productRegistryVModels.length).toBe(2);
 
-        productRegistryVModels.forEach(productRegistry=> {
+        productRegistryVModels.forEach((productRegistry) => {
             const action = productRegistry.action;
             const namespace = productRegistry.namespace;
             const classname = productRegistry.classname;
             const apiVersion = productRegistry.apiVersion;
 
-            if(action === 'testAction1') {
-                expect(namespace).toBe('testNamespace1');
-                expect(classname).toBe('testClassname1');
+            if (action === "testAction1") {
+                expect(namespace).toBe("testNamespace1");
+                expect(classname).toBe("testClassname1");
                 expect(apiVersion).toBe(1);
                 return;
             }
-            if(action === 'testAction2') {
-                expect(namespace).toBe('testNamespace2');
-                expect(classname).toBe('testClassname2');
+            if (action === "testAction2") {
+                expect(namespace).toBe("testNamespace2");
+                expect(classname).toBe("testClassname2");
                 expect(apiVersion).toBe(2);
                 return;
             }
         });
     });
 
-    it("Check if EDC Settings Product Display shows an error when an error ocurred", async() => {
-
+    it("Check if EDC Settings Product Display shows an error when an error ocurred", async () => {
         const mockError = {
-            message : "error message"
-        }
+            message: "error message",
+        };
         const element = createElement("c-education-cloud-settings", {
             is: EducationCloudSettings,
         });
@@ -110,9 +106,7 @@ describe("c-education-cloud-settings", () => {
 
         await flushPromises();
 
-        const edcSettingsProductCardElement = element.shadowRoot.querySelector(
-            "c-edc-settings-product-display"
-        );
+        const edcSettingsProductCardElement = element.shadowRoot.querySelector("c-edc-settings-product-display");
         expect(edcSettingsProductCardElement).not.toBeNull();
         const productRegistryVModels = edcSettingsProductCardElement.productRegistryVModels;
         expect(productRegistryVModels.length).toBe(0);
@@ -131,9 +125,7 @@ describe("c-education-cloud-settings", () => {
         return Promise.resolve().then(async () => {
             const edcToolsCardLI = element.shadowRoot.querySelector(".edcToolsCard");
             expect(edcToolsCardLI).not.toBeNull();
-            const edcToolsCardElement = edcToolsCardLI.querySelector(
-                "c-edc-settings-card"
-            );
+            const edcToolsCardElement = edcToolsCardLI.querySelector("c-edc-settings-card");
             expect(edcToolsCardElement).not.toBeNull();
 
             const containerName = edcToolsCardElement.navigationTarget;

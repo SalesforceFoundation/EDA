@@ -60,6 +60,22 @@ public virtual with sharing class ProductRegistryService {
     }
 
     /**********************************************************************************
+     * @description Returns the list of release gates
+     **********************************************************************************/
+    public virtual List<ProductRegistryModel> getProductRegistryReleaseGates() {
+        return this.locateProductRegistryMapper().getProductRegistryReleaseGates();
+    }
+
+    /********************************************************************************************
+     * @description Returns the ProductRegistryModel instance with the specified name
+     * @param  developerName product registry developer name
+     * @return   A list of ProductRegistryModel with all its properties populated
+     ********************************************************************************************/
+    public virtual ProductRegistryModel getProductRegistryModelByName(String developerName) {
+        return this.locateProductRegistryMapper().getProductRegistryModelByName(developerName);
+    }
+
+    /**********************************************************************************
      * @description Locates and returns an instance of ProductRegistryMapper.
      **********************************************************************************/
     private ProductRegistryMapper locateProductRegistryMapper() {
