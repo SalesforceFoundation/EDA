@@ -217,13 +217,93 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void testIsContactAccAddrInfoSameFalseDifferentAddressField() {
+    static void testIsContactAccAddrInfoSameDifferentMailingCity() {
         Contact contact = UTIL_UnitTestData_TEST.getContact();
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,
             UTIL_Describe_API.getBizAccRecTypeID()
         );
         contact.MailingCity = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingCounty() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.Mailing_County__c = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingState() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.MailingState = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingPostalCode() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.MailingPostalCode = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingCountry() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.MailingCountry = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingAddressInactive() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.Mailing_Address_Inactive__c = true;
 
         Test.startTest();
         Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
@@ -286,8 +366,82 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
      ****************************************************** isAddressChanged **************************************************
      **************************************************************************************************************************/
     @isTest
-    static void testIsAddressChangedTrue() {
+    static void testIsAddressChangedTrueDifferentMailingStreet() {
         List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    @isTest
+    static void testIsAddressChangedTrueDifferentMailingStreet2() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingStreet2__c = 'Street' + 1;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    @isTest
+    static void testIsAddressChangedTrueDifferentMailingCity() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    static void testIsAddressChangedTrueDifferentMailingCounty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    static void testIsAddressChangedTrueDifferentPostalCode() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    static void testIsAddressChangedTrueDifferentInactive() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+        addresses[1].Inactive__c = true;
 
         Test.startTest();
         Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
@@ -404,19 +558,46 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testIsContactAddressChangedBothNotNullSameAddressInfo() {
         Contact con1 = UTIL_UnitTestData_TEST.getContact();
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
 
         Test.startTest();
-        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, null);
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
         Test.stopTest();
 
         System.assertEquals(false, isContactAddressChanged);
     }
 
     @isTest
-    static void testIsContactAddressChangedBothNotNullDifferentAddressInfo() {
+    static void testIsContactAddressChangedBothNotNullDifferentMailingStreet() {
         Contact con1 = UTIL_UnitTestData_TEST.getContact();
         Contact con2 = UTIL_UnitTestData_TEST.getContact();
         con1.MailingStreet = 'Some Street';
+
+        Test.startTest();
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
+        Test.stopTest();
+
+        System.assertEquals(true, isContactAddressChanged);
+    }
+
+    @isTest
+    static void testIsContactAddressChangedBothNotNullDifferentMailingCity() {
+        Contact con1 = UTIL_UnitTestData_TEST.getContact();
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
+        con1.MailingStreet = 'Some City';
+
+        Test.startTest();
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
+        Test.stopTest();
+
+        System.assertEquals(true, isContactAddressChanged);
+    }
+
+    @isTest
+    static void testIsContactAddressChangedBothNotNullDifferentMailingCounty() {
+        Contact con1 = UTIL_UnitTestData_TEST.getContact();
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
+        con1.MailingStreet = 'Some County';
 
         Test.startTest();
         Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
@@ -1868,11 +2049,11 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             'SELECT recordTypeId, Current_Address__c, BillingStreet, ' +
             'BillingCity, Billing_County__c, BillingState, ' +
             'BillingPostalCode, BillingCountry, BillingLatitude, ' +
-            'BillingLongitude';
+            'BillingLongitude, Billing_Address_Inactive__c';
 
-        assertString += ', (SELECT Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, Mailing_County__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude';
+        assertString += ', (SELECT Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, Mailing_County__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, Mailing_Address_Inactive__c';
         assertString += ' FROM Account.Contacts)';
-        assertString += ', (SELECT Default_Address__c, Parent_Account__c, Parent_Contact__c, MailingCounty__c, Latest_Start_Date__c, Latest_End_Date__c FROM Account.Addresses__r)';
+        assertString += ', (SELECT Default_Address__c, Parent_Account__c, Parent_Contact__c, MailingCounty__c, Latest_Start_Date__c, Latest_End_Date__c, Inactive__c FROM Account.Addresses__r)';
         assertString += ' FROM Account WHERE Id IN ';
 
         System.assertEquals(parentAccsWithChildrenQuery, assertString);
