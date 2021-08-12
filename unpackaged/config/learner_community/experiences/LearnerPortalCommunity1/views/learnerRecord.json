@@ -13,7 +13,7 @@
             "components": [
                 {
                     "componentAttributes": {},
-                    "componentName": "c:learnerCourseVisualizerContainer",
+                    "componentName": "%%%NAMESPACE_OR_C%%%:learnerCourseVisualizerContainer",
                     "id": "d2f6e491-fea9-4a9c-9c22-d22a076a6b38",
                     "renderPriority": "NEUTRAL",
                     "renditionMap": {},
