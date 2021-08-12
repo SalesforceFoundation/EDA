@@ -1,40 +1,23 @@
 import { LightningElement, api } from "lwc";
 
-//Note, this is repeatable, but the future state of individual learner achievements with actions means we want to separate them for now.
-const FIELD_DEFINITIONS = [
-    "assertion.achievement.humanCode",
-    "custom.status",
-    "custom.grade",
-    "assertion.creditsEarned",
-    "assertion.achievement.creditsAvailable",
-    "assertion.achievement.fieldOfStudy",
-    "assertion.achievement.level",
-    "assertion.term",
-    "assertion.activityStartDate",
-    "assertion.activityEndDate",
-    "custom.verificationStatus",
-    "custom.verificationDate",
-    "assertion.achievement.issuer.name",
-    "assertion.achievement.description",
-];
-
-export default class LearnerCourseVisualization extends LightningElement {
-    @api learnerCourseViewModel;
+export default class LearnerAssertionVisualization extends LightningElement {
+    @api fieldDefinitions;
+    @api learnerAssertionViewModel;
     @api schemaLabels;
 
     get fieldsToDisplay() {
-        //Consider moving this to a shared JS library for other components
         let fieldsToDisplayArray = [];
 
-        console.log("Processing field definitions");
-
-        FIELD_DEFINITIONS.forEach((fieldDefinition) => {
+        this.fieldDefinitions.forEach((fieldDefinition) => {
             //Field key is an obnoxious requirement for loops
             console.log("Processing field: " + fieldDefinition);
             let fieldToDisplay = { fieldKey: fieldDefinition };
             let parsedFieldName = this.parseFieldName(fieldDefinition);
 
-            fieldToDisplay.fieldValue = this.getNestedStringFromViewModel(this.learnerCourseViewModel, parsedFieldName);
+            fieldToDisplay.fieldValue = this.getNestedStringFromViewModel(
+                this.learnerAssertionViewModel,
+                parsedFieldName
+            );
 
             if (fieldToDisplay.fieldValue === undefined) {
                 return;

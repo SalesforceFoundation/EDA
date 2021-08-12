@@ -3,6 +3,22 @@ import { LightningElement, track } from "lwc";
 import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
 
 const MENU_ACTIONS = [{ label: "Show More", value: "showmore" }];
+const FIELD_DEFINITIONS = [
+    "assertion.achievement.humanCode",
+    "custom.status",
+    "custom.grade",
+    "assertion.creditsEarned",
+    "assertion.achievement.creditsAvailable",
+    "assertion.achievement.fieldOfStudy",
+    "assertion.achievement.level",
+    "assertion.term",
+    "assertion.activityStartDate",
+    "assertion.activityEndDate",
+    "custom.verificationStatus",
+    "custom.verificationDate",
+    "assertion.achievement.issuer.name",
+    "assertion.achievement.description",
+];
 
 export default class LearnerCourseVisualizer extends LightningElement {
     shouldDisplayCourses = true;
@@ -15,6 +31,10 @@ export default class LearnerCourseVisualizer extends LightningElement {
 
     get menuActions() {
         return MENU_ACTIONS;
+    }
+
+    get fieldDefinitions() {
+        return FIELD_DEFINITIONS;
     }
 
     @track learnerCourseViewModel = {

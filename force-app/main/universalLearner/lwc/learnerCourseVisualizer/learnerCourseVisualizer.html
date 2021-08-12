@@ -4,6 +4,7 @@
         <lightning-spinner alternative-text={labelReference.spinnerLoadingAltText} variant="brand" size="medium">
         </lightning-spinner>
     </template>
+    {jsonDebug}
     <lightning-card
         icon-name="custom:custom83"
         title={learnerCourseViewModel.schemaLabels.assertion.achievement.achievementType}
@@ -19,11 +20,17 @@
                     menu-alternative-text={labelReferencemenuAlternativeText}
                     onmenuselect={handleMenuSelect}
                 >
-                    <c-learner-course-visualization
+                    <!--<c-learner-course-visualization
                         learner-course-view-model={learnerCourse}
                         schema-labels={learnerCourseViewModel.schemaLabels}
                     >
-                    </c-learner-course-visualization>
+                    </c-learner-course-visualization>-->
+                    <c-learner-assertion-visualization
+                        field-definitions={fieldDefinitions}
+                        learner-assertion-view-model={learnerCourse}
+                        schema-labels={learnerCourseViewModel.schemaLabels}
+                    >
+                    </c-learner-assertion-visualization>
                 </c-custom-lightning-accordion-section>
             </template>
         </ul>
