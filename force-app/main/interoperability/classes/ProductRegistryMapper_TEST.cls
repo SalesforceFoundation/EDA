@@ -39,6 +39,7 @@ private class ProductRegistryMapper_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void testGetProductRegistrySettingsProductInformation() {
+        String name = 'testName';
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
@@ -57,6 +58,39 @@ private class ProductRegistryMapper_TEST {
 
         ProductRegistryModel model = prodRegistryModelList.get(0);
 
+        System.assertEquals(name, model.name, 'name should be set with the value: ' + name);
+        System.assertEquals(action, model.action, 'action should be set with the value: ' + action);
+        System.assertEquals(namespace, model.namespace, 'namespace should be set with the value: ' + namespace);
+        System.assertEquals(classname, model.classname, 'classname should be set with the value: ' + classname);
+        System.assertEquals(apiVersion, model.apiVersion, 'apiVersion should be set with the value: ' + apiVersion);
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify the getProductRegistrySettingsProductInformation method returns the list
+     * of ProductRegistryModel correctly
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testGetProductRegistryReleaseGates() {
+        String name = 'testName';
+        String action = 'testAction';
+        String namespace = 'testNamespace';
+        String classname = 'testClassname';
+        Decimal apiVersion = 52.0;
+
+        ProductRegistryMapper.instance = new ProductRegistryMapperStub();
+        List<ProductRegistryModel> prodRegistryModelList;
+
+        Test.startTest();
+        prodRegistryModelList = ProductRegistryMapper.getInstance().getProductRegistryReleaseGates();
+        Test.stopTest();
+
+        System.assert(prodRegistryModelList != null, 'prodRegistryModelList should not be null');
+        System.assert(!prodRegistryModelList.isEmpty(), 'prodRegistryModelList should not be empty');
+        System.assertEquals(1, prodRegistryModelList.size(), 'prodRegistryModelList should have 1 element');
+
+        ProductRegistryModel model = prodRegistryModelList.get(0);
+
+        System.assertEquals(name, model.name, 'name should be set with the value: ' + name);
         System.assertEquals(action, model.action, 'action should be set with the value: ' + action);
         System.assertEquals(namespace, model.namespace, 'namespace should be set with the value: ' + namespace);
         System.assertEquals(classname, model.classname, 'classname should be set with the value: ' + classname);
@@ -117,6 +151,116 @@ private class ProductRegistryMapper_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to assert getProductRegistryByName method returns a valid response
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testGetProductRegistriesByName() {
+        String action = 'Settings Product Information';
+        List<Product_Registry__mdt> prodRegistryModelList;
+
+        List<Product_Registry__mdt> registriesFromTestList = [
+            SELECT DeveloperName, Action__c, API_Version__c, Class_Name__c, Enabled__c, Namespace__c
+            FROM Product_Registry__mdt
+            WHERE Action__c = :action AND Enabled__c = TRUE
+        ];
+
+        prodRegistryModelList = ProductRegistryMapper.getInstance().getProductRegistriesByAction(action);
+
+        Test.startTest();
+        Product_Registry__mdt registryByName = ProductRegistryMapper.getInstance()
+            .getProductRegistryByName(registriesFromTestList[0].DeveloperName);
+        Test.stopTest();
+
+        System.assertEquals(
+            registriesFromTestList[0].API_Version__c,
+            registryByName.API_Version__c,
+            'Api version should be: ' + registryByName.API_Version__c
+        );
+        System.assertEquals(
+            registriesFromTestList[0].Enabled__c,
+            registryByName.Enabled__c,
+            'Enabled should be: ' + registryByName.Enabled__c
+        );
+        System.assertEquals(
+            registriesFromTestList[0].Namespace__c,
+            registryByName.Namespace__c,
+            'Namespace should be: ' + registryByName.Namespace__c
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to assert getProductRegistryByName method returns null for nonexistent name
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testGetProductRegistryByNameNonexistent() {
+        Test.startTest();
+        Product_Registry__mdt registryByName = ProductRegistryMapper.getInstance()
+            .getProductRegistryByName('nonexistent name');
+        Test.stopTest();
+
+        System.assertEquals(null, registryByName, 'registryByName should be null');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to assert getProductRegistryModelByName method returns null for nonexistent name
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testGetProductRegistryModelByNameNonexistent() {
+        Test.startTest();
+        ProductRegistryModel registryModel = ProductRegistryMapper.getInstance()
+            .getProductRegistryModelByName('nonexistent name');
+        Test.stopTest();
+
+        System.assertEquals(null, registryModel, 'registryModel should be null');
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to assert getProductRegistryModelByName method returns a valid model
+     ***************************************************************************************************************************/
+    @isTest
+    private static void testGetProductRegistryModelByName() {
+        String action = 'Settings Product Information';
+
+        List<Product_Registry__mdt> registriesFromTestList = [
+            SELECT DeveloperName, Action__c, API_Version__c, Class_Name__c, Enabled__c, Namespace__c
+            FROM Product_Registry__mdt
+            WHERE Action__c = :action AND Enabled__c = TRUE
+        ];
+        Product_Registry__mdt prodRegistryCMT = registriesFromTestList[0];
+
+        Test.startTest();
+        ProductRegistryModel registryModel = ProductRegistryMapper.getInstance()
+            .getProductRegistryModelByName(prodRegistryCMT.DeveloperName);
+        Test.stopTest();
+
+        System.assertEquals(
+            prodRegistryCMT.DeveloperName,
+            registryModel.name,
+            'name should be set with the value: ' + prodRegistryCMT.DeveloperName
+        );
+        System.assertEquals(
+            prodRegistryCMT.Action__c,
+            registryModel.action,
+            'action should be set with the value: ' + prodRegistryCMT.Action__c
+        );
+        System.assertEquals(
+            prodRegistryCMT.Namespace__c,
+            registryModel.namespace,
+            'namespace should be set with the value: ' + prodRegistryCMT.Namespace__c
+        );
+        System.assertEquals(
+            prodRegistryCMT.Class_Name__c,
+            registryModel.classname,
+            'classname should be set with the value: ' + prodRegistryCMT.Class_Name__c
+        );
+        System.assertEquals(
+            prodRegistryCMT.API_Version__c,
+            registryModel.apiVersion,
+            'apiVersion should be set with the value: ' + prodRegistryCMT.API_Version__c
+        );
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to assess a scenraio where getProductRegistrySettingsProductInformation method returns null
      ***************************************************************************************************************************/
     @isTest
@@ -137,6 +281,7 @@ private class ProductRegistryMapper_TEST {
     private class ProductRegistryMapperStub extends ProductRegistryMapper {
         private override List<Product_Registry__mdt> getProductRegistriesByAction(String action) {
             Product_Registry__mdt prodRegistryCMT = new Product_Registry__mdt();
+            prodRegistryCMT.DeveloperName = 'testName';
             prodRegistryCMT.Action__c = 'testAction';
             prodRegistryCMT.Namespace__c = 'testNamespace';
             prodRegistryCMT.Class_Name__c = 'testClassname';

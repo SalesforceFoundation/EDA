@@ -1,6 +1,6 @@
 import { createElement } from "lwc";
 import EdcSettingsProductCard from "c/EdcSettingsProductCard";
-import { getNavigateCalledWith } from 'lightning/navigation';
+import { getNavigateCalledWith } from "lightning/navigation";
 import getEDCSettingsProductVModel from "@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModel";
 
 // Import mock data for edcSettingsProductCard
@@ -55,18 +55,15 @@ jest.mock(
     { virtual: true }
 );
 jest.mock(
-    '@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModel',
+    "@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModel",
     () => {
-        const {
-            createApexTestWireAdapter
-        } = require('@salesforce/sfdx-lwc-jest');
+        const { createApexTestWireAdapter } = require("@salesforce/sfdx-lwc-jest");
         return {
-            default: createApexTestWireAdapter(jest.fn())
+            default: createApexTestWireAdapter(jest.fn()),
         };
     },
     { virtual: true }
 );
-
 
 describe("c-edc-settings-product-card", () => {
     afterEach(() => {
@@ -77,8 +74,7 @@ describe("c-edc-settings-product-card", () => {
         return Promise.resolve();
     }
 
-    it("Check if EDC Settings Product Card is shown and it has the parameter data", async() => {
-
+    it("Check if EDC Settings Product Card is shown and it has the parameter data", async () => {
         // Assign mock value for resolved Apex promise
         getEDCSettingsProductVModel.mockResolvedValue(mockGetEDCSettingsProductVModel);
 
@@ -89,14 +85,14 @@ describe("c-edc-settings-product-card", () => {
         element.productRegistry = {
             classname: "testClassName",
             namespace: "testNamespace",
-            apiVersion: 2.0
-        }
+            apiVersion: 2.0,
+        };
         element.displayProductCards = true;
 
         document.body.appendChild(element);
 
         await flushPromises();
-        
+
         //Assert the data is populated correctly on the product card
         const productTitleSpan = element.shadowRoot.querySelector(".productTitle");
         expect(productTitleSpan).not.toBeNull();
@@ -127,7 +123,7 @@ describe("c-edc-settings-product-card", () => {
         expect(btnTrailheadUrl.label).toBe(trailheadButtonLabel);
     });
 
-    it("Check the button btnSettingsComponent works and navigates correctly", async() => {
+    it("Check the button btnSettingsComponent works and navigates correctly", async () => {
         // Assign mock value for resolved Apex promise
         getEDCSettingsProductVModel.mockResolvedValue(mockGetEDCSettingsProductVModel);
 
@@ -138,8 +134,8 @@ describe("c-edc-settings-product-card", () => {
         element.productRegistry = {
             classname: "testClassName",
             namespace: "testNamespace",
-            apiVersion: 2.0
-        }
+            apiVersion: 2.0,
+        };
         element.displayProductCards = true;
 
         document.body.appendChild(element);
@@ -152,11 +148,11 @@ describe("c-edc-settings-product-card", () => {
         const { pageReference } = getNavigateCalledWith();
 
         //Get the details
-        expect(pageReference.type).toBe('standard__component');
-        expect(pageReference.attributes.componentName).toBe('testSettingsComponent');
+        expect(pageReference.type).toBe("standard__component");
+        expect(pageReference.attributes.componentName).toBe("testSettingsComponent");
     });
 
-    it("Check the button btnDocumentationUrl works and navigates correctly", async() => {
+    it("Check the button btnDocumentationUrl works and navigates correctly", async () => {
         // Assign mock value for resolved Apex promise
         getEDCSettingsProductVModel.mockResolvedValue(mockGetEDCSettingsProductVModel);
 
@@ -167,8 +163,8 @@ describe("c-edc-settings-product-card", () => {
         element.productRegistry = {
             classname: "testClassName",
             namespace: "testNamespace",
-            apiVersion: 2.0
-        }
+            apiVersion: 2.0,
+        };
         element.displayProductCards = true;
 
         document.body.appendChild(element);
@@ -181,11 +177,11 @@ describe("c-edc-settings-product-card", () => {
         const { pageReference } = getNavigateCalledWith();
 
         //Get the details
-        expect(pageReference.type).toBe('standard__webPage');
-        expect(pageReference.attributes.url).toBe('testDocumentationUrl');
+        expect(pageReference.type).toBe("standard__webPage");
+        expect(pageReference.attributes.url).toBe("testDocumentationUrl");
     });
 
-    it("Check the button btnTrailheadUrl works and navigates correctly", async() => {
+    it("Check the button btnTrailheadUrl works and navigates correctly", async () => {
         // Assign mock value for resolved Apex promise
         getEDCSettingsProductVModel.mockResolvedValue(mockGetEDCSettingsProductVModel);
 
@@ -196,8 +192,8 @@ describe("c-edc-settings-product-card", () => {
         element.productRegistry = {
             classname: "testClassName",
             namespace: "testNamespace",
-            apiVersion: 2.0
-        }
+            apiVersion: 2.0,
+        };
         element.displayProductCards = true;
 
         document.body.appendChild(element);
@@ -210,8 +206,7 @@ describe("c-edc-settings-product-card", () => {
         const { pageReference } = getNavigateCalledWith();
 
         //Get the details
-        expect(pageReference.type).toBe('standard__webPage');
-        expect(pageReference.attributes.url).toBe('testTrailheadUrl');
+        expect(pageReference.type).toBe("standard__webPage");
+        expect(pageReference.attributes.url).toBe("testTrailheadUrl");
     });
-
 });

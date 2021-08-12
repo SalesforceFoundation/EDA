@@ -38,6 +38,7 @@ private class ProductRegistryVModel_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void testConstructor() {
+        String name = 'testName';
         String action = 'testAction';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
@@ -46,9 +47,10 @@ private class ProductRegistryVModel_TEST {
         ProductRegistryVModel model;
 
         Test.startTest();
-        model = new ProductRegistryVModel(action, namespace, classname, apiVersion);
+        model = new ProductRegistryVModel(name, action, namespace, classname, apiVersion);
         Test.stopTest();
 
+        System.assertEquals(name, model.name, 'name should be set with the value it is passed');
         System.assertEquals(action, model.action, 'action should be set with the value it is passed');
         System.assertEquals(namespace, model.namespace, 'namespace should be set with the value it is passed');
         System.assertEquals(classname, model.classname, 'classname should be set with the value it is passed');

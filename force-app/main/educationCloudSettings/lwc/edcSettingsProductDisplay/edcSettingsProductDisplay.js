@@ -1,4 +1,4 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api, track } from "lwc";
 import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLoadingIndicator";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
@@ -18,27 +18,27 @@ export default class EdcSettingsProductDisplay extends LightningElement {
         this.areAllProductsLoaded();
     }
 
-    handleSettingsProductError(evt){
+    handleSettingsProductError(evt) {
         const errorMessage = evt.detail.errorMessage;
         this.errorList.push(errorMessage);
         this.loadedSettingsProductCount++;
         this.areAllProductsLoaded();
     }
 
-    areAllProductsLoaded(){
+    areAllProductsLoaded() {
         if (this.loadedSettingsProductCount !== this.productRegistryVModels.length) {
             return;
         }
-        
+
         this.displaySettingsProduct = true;
-        if (this.errorList && this.errorList.length > 0){
-            this.errorList.forEach(error => {
+        if (this.errorList && this.errorList.length > 0) {
+            this.errorList.forEach((error) => {
                 this.createShowToast(error);
             });
         }
     }
 
-    connectedCallback(){
+    connectedCallback() {
         if (this.productRegistryVModels.length == 0) {
             this.displaySettingsProduct = true;
         }
@@ -46,10 +46,10 @@ export default class EdcSettingsProductDisplay extends LightningElement {
 
     createShowToast(errorMessage) {
         const evt = new ShowToastEvent({
-            title: 'Error',
+            title: "Error",
             message: errorMessage,
-            variant: 'error',
-            mode: 'sticky'
+            variant: "error",
+            mode: "sticky",
         });
         this.dispatchEvent(evt);
     }

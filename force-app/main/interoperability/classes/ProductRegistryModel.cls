@@ -32,20 +32,23 @@
  * @description Model to abstract data needed to populate Product Registries
  */
 public virtual class ProductRegistryModel {
+    public String name { get; private set; }
     public String action { get; private set; }
     public String namespace { get; private set; }
     public String classname { get; private set; }
     public Decimal apiVersion { get; private set; }
 
     /********************************************************************************************
-     * @description Four argument constructor
+     * @description Five argument constructor
+     * @param  name A string representing the developer name of the record
      * @param  action A string representing the action or method this registry is about
      * @param  namespace A string representing the product namespace
      * @param  classname A string representing the class name to invoke
      * @param  apiVersion A decimal representing the apiVersion to request in the call
      * @return A ProductRegistryModel with all properties populated.
      ********************************************************************************************/
-    public ProductRegistryModel(String action, String namespace, String classname, Decimal apiVersion) {
+    public ProductRegistryModel(String name, String action, String namespace, String classname, Decimal apiVersion) {
+        this.name = name;
         this.action = action;
         this.namespace = namespace;
         this.classname = classname;
