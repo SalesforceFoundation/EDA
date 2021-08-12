@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Application_Window_Validation__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description>Verify that the Due Date is after the Open Date</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Verify that the Due Date is after the Open Date</inlineHelpText>
+    <label>Application Window Validation</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
