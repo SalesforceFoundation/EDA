@@ -75,12 +75,11 @@ public virtual with sharing class EDCSettingsProductVMapper {
             return null;
         }
 
-        String navigationPrefix = UTIL_Namespace.StrTokenNSPrefixComponent();
         return new EDCSettingsProductVModel(
             productInformation.initials,
             productInformation.name,
             productInformation.description,
-            navigationPrefix + productInformation.settingsComponent,
+            productInformation.settingsComponent,
             productInformation.documentationUrl,
             productInformation.trailheadUrl,
             productInformation.icon

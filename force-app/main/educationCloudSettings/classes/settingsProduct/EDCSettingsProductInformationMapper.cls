@@ -70,11 +70,12 @@ public virtual with sharing class EDCSettingsProductInformationMapper {
      * @description Returns an instance of EDCSettingsProductInformationModel
      ********************************************************************************************/
     public virtual EDCSettingsProductInformationModel getProductInformationModel() {
+        String navigationPrefix = UTIL_Namespace.StrTokenNSPrefixComponent();
         EDCSettingsProductInformationModel productInformation = new EDCSettingsProductInformationModel(
             PRODUCT_EDA_INITIALS,
             PRODUCT_EDA_NAME,
             PRODUCT_EDA_DESCRIPTION,
-            PRODUCT_EDA_SETTINGSCOMPONENT,
+            navigationPrefix + PRODUCT_EDA_SETTINGSCOMPONENT,
             PRODUCT_EDA_DOCUMENTATIONURL,
             PRODUCT_EDA_TRAILHEADURL,
             PRODUCT_EDA_ICON

@@ -60,8 +60,10 @@ private class EDCSettingsProductInformationMapper_TEST {
             productInformationModel.name,
             'name should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_NAME
         );
+
+        String navigationPrefix = UTIL_Namespace.StrTokenNSPrefixComponent();
         System.assertEquals(
-            EDCSettingsProductInformationMapper.PRODUCT_EDA_SETTINGSCOMPONENT,
+            navigationPrefix + EDCSettingsProductInformationMapper.PRODUCT_EDA_SETTINGSCOMPONENT,
             productInformationModel.settingsComponent,
             'settingsComponent should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_SETTINGSCOMPONENT
         );

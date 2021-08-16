@@ -62,9 +62,10 @@ private class EDCSettingsProductVMapper_TEST {
         System.assertEquals(initials, productVModel.initials, 'initials should be set to ' + initials);
         System.assertEquals(name, productVModel.name, 'name should be set to ' + name);
         System.assertEquals(description, productVModel.description, 'description should be set to ' + description);
-        System.assert(
-            productVModel.settingsComponent.contains(settingsComponent),
-            'settingsComponent should contains ' + settingsComponent
+        System.assertEquals(
+            settingsComponent,
+            productVModel.settingsComponent,
+            'settingsComponent should be ' + settingsComponent
         );
         System.assertEquals(
             documentationUrl,
