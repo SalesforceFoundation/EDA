@@ -12,10 +12,9 @@ import stgBtnTrailheadActionA11y from "@salesforce/label/c.stgBtnTrailheadAction
 import getEDCSettingsProductVModel from "@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModel";
 
 export default class EdcSettingsProductCard extends NavigationMixin(LightningElement) {
-
     @api displayProductCards;
     @api productRegistry;
-    
+
     @track showThisProduct = false;
 
     iconSize = "medium";
@@ -79,51 +78,45 @@ export default class EdcSettingsProductCard extends NavigationMixin(LightningEle
     }
 
     get showProductCard() {
-        if (this.displayProductCards && 
-            this.showThisProduct) {
+        if (this.displayProductCards && this.showThisProduct) {
             return true;
         }
         return false;
     }
 
-    connectedCallback(){
+    connectedCallback() {
         getEDCSettingsProductVModel({
             classname: this.productRegistry.classname,
             namespace: this.productRegistry.namespace,
-            apiVersion: this.productRegistry.apiVersion
+            apiVersion: this.productRegistry.apiVersion,
         })
-        .then((result) => {
-            this.title = result.name;
-            this.description = result.description;
-            this.iconInitials = result.initials;
-            this.iconFallbackName = result.icon;
-            this.settingsComponent = result.settingsComponent;
-            this.documentationUrl = result.documentationUrl;
-            this.trailheadUrl = result.trailheadUrl;
-            this.showThisProduct = true;
-            this.dispatchEvent(new CustomEvent("settingsproductloaded"));
-        })
-        .catch((error) => {
-            this.showThisProduct = false;
-            let errorMessage = this.getErrorMessage(error);
-            this.dispatchEvent(
-                new CustomEvent("settingsproducterror",
-                { detail : 
-                    { errorMessage : errorMessage }
-                }
-            ));
-        });
+            .then((result) => {
+                this.title = result.name;
+                this.description = result.description;
+                this.iconInitials = result.initials;
+                this.iconFallbackName = result.icon;
+                this.settingsComponent = result.settingsComponent;
+                this.documentationUrl = result.documentationUrl;
+                this.trailheadUrl = result.trailheadUrl;
+                this.showThisProduct = true;
+                this.dispatchEvent(new CustomEvent("settingsproductloaded"));
+            })
+            .catch((error) => {
+                this.showThisProduct = false;
+                let errorMessage = this.getErrorMessage(error);
+                this.dispatchEvent(new CustomEvent("settingsproducterror", { detail: { errorMessage: errorMessage } }));
+            });
     }
 
     getErrorMessage(error) {
-        let errorMessage = 'Unknown error';
+        let errorMessage = "Unknown error";
         if (Array.isArray(error.body)) {
-            errorMessage = error.body.map(e => e.message).join(', ');
+            errorMessage = error.body.map((e) => e.message).join(", ");
         } else {
-            if (error.body && typeof error.body.message === 'string') {
+            if (error.body && typeof error.body.message === "string") {
                 errorMessage = error.body.message;
             } else {
-                errorMessage = error.message;     
+                errorMessage = error.message;
             }
         }
         return errorMessage;

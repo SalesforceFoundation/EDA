@@ -46,7 +46,6 @@ const TrailblazerCommunityUrl = "https://trailblazers.salesforce.com/successHome
 const YoutubeUrl = "https://www.youtube.com/user/SalesforceFoundation";
 
 export default class EducationCloudSettings extends NavigationMixin(LightningElement) {
-
     @track
     edcProductRegistryVModels = [];
 
@@ -121,22 +120,22 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
     ];
 
     showErrorToast(error) {
-        let errorMessage = 'Unknown error';
+        let errorMessage = "Unknown error";
         if (Array.isArray(error.body)) {
-            errorMessage = error.body.map(e => e.message).join(', ');
+            errorMessage = error.body.map((e) => e.message).join(", ");
         } else {
-            if (error.body && typeof error.body.message === 'string') {
+            if (error.body && typeof error.body.message === "string") {
                 errorMessage = error.body.message;
             } else {
-                errorMessage = error.message;     
+                errorMessage = error.message;
             }
         }
 
         const evt = new ShowToastEvent({
-            title: 'Error',
+            title: "Error",
             message: errorMessage,
-            variant: 'error',
-            mode: 'sticky'
+            variant: "error",
+            mode: "sticky",
         });
         this.dispatchEvent(evt);
     }

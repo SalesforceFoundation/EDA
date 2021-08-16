@@ -1974,6 +1974,30 @@
         <label><!-- Alt text for button that launches Release Management --></label>
         <name>stgBtnReleaseManagementA11y</name>
     </customLabels>
+    <customLabels>
+        <label><!-- Label for the date when the release must be activated. --></label>
+        <name>stgReleaseGateActivateBy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for the release activation date --></label>
+        <name>stgReleaseGateActivatedOn</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Release gate activate label --></label>
+        <name>stgReleaseGateActivate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label for activate release gate button --></label>
+        <name>stgBtnReleaseGateActivate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Label that indicates that activation is in progress --></label>
+        <name>stgReleaseGateInProgress</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Text for screen reader to indicate a link opens in a new window --></label>
+        <name>stgNewWindowA11y</name>
+    </customLabels>
     <customTabs>
         <label>Education Cloud -asetukset</label>
         <name>Education_Cloud_Settings</name>
