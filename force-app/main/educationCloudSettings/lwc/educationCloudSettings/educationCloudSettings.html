@@ -1,14 +1,19 @@
 <template>
     <div class="slds-theme_default eda-height_full">
-        <ul class="slds-grid">
-            <li class="slds-col slds-size_4-of-12">
+        <ul class="slds-grid slds-wrap">
+            <li class="slds-col slds-size_12-of-12">
                 <h2 class="slds-text-heading_medium eda-text_heading_bold slds-var-m-left_small slds-var-m-top_small">
-                    {labelReference.productsTitle}
+                    Release Gating
                 </h2>
-                <c-edc-settings-product-display
-                    product-registry-v-models={edcProductRegistryVModels}
-                ></c-edc-settings-product-display>
+                <ul class="slds-grid slds-grid_vertical">
+                    <li class="slds-col slds-var-m-horizontal_small slds-var-m-vertical_small edcReleaseManagementCard">
+                        <c-edc-release-management-card
+                            navigation-target={releaseManagementContainerComponentNavigation}
+                        ></c-edc-release-management-card>
+                    </li>
+                </ul>
             </li>
+
             <li class="slds-col slds-size_4-of-12">
                 <h2 class="slds-text-heading_medium eda-text_heading_bold slds-var-m-left_small slds-var-m-top_small">
                     {labelReference.toolsTitle}
@@ -30,12 +35,15 @@
                             ></c-edc-settings-card>
                         </li>
                     </template>
-                    <li class="slds-col slds-var-m-horizontal_small slds-var-m-vertical_small edcReleaseManagementCard">
-                        <c-edc-release-management-card
-                            navigation-target={releaseManagementContainerComponentNavigation}
-                        ></c-edc-release-management-card>
-                    </li>
                 </ul>
+            </li>
+            <li class="slds-col slds-size_4-of-12">
+                <h2 class="slds-text-heading_medium eda-text_heading_bold slds-var-m-left_small slds-var-m-top_small">
+                    {labelReference.productsTitle}
+                </h2>
+                <c-edc-settings-product-display
+                    product-registry-v-models={edcProductRegistryVModels}
+                ></c-edc-settings-product-display>
             </li>
             <li class="slds-col slds-size_4-of-12">
                 <h2 class="slds-text-heading_medium eda-text_heading_bold slds-var-m-left_small slds-var-m-top_small">
