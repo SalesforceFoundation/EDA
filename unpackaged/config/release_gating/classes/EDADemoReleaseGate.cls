@@ -172,6 +172,31 @@ global with sharing class EDADemoReleaseGate implements Callable {
         }
     }
 
+    public class ActivateReleaseGateResult {
+        public String productName;
+        public String gateName;
+        public String status;
+
+        public ActivateReleaseGateResult(String productName, String gateName, String status) {
+            this.productName = productName;
+            this.gateName = gateName;
+            this.status = status;
+        }
+    }
+
+    public class ActivateReleaseGateActionResult extends CallableResult {
+        public ActivateReleaseGateResult[] result;
+
+        public ActivateReleaseGateActionResult(
+            ActivateReleaseGateResult[] result,
+            Boolean success,
+            CallableError error
+        ) {
+            super(success, error);
+            this.result = result;
+        }
+    }
+
     public EDADemoReleaseGate() {
     }
 
@@ -351,7 +376,8 @@ global with sharing class EDADemoReleaseGate implements Callable {
                 }
             )
         };
-
+        this.loadReleaseGateStateFromDb(resultList[0].gates[0]);
+        this.loadReleaseGateStateFromDb(resultList[1].gates[3]);
         EDADemoReleaseGate.GetReleaseGateActionResult releaseGateResultModel = new EDADemoReleaseGate.GetReleaseGateActionResult(
             resultList,
             true,
@@ -361,8 +387,22 @@ global with sharing class EDADemoReleaseGate implements Callable {
     }
 
     public String activateReleaseGate(Decimal version, String productName, String gateName) {
-        //TODO: This will be implemented in another user story
-        throw new IllegalArgumentException('Method not implemented');
+        //We will create a contact to emulate gate activation
+        //If a contact with the LastName=gateName exists it means the gate is active
+        List<Contact> stateContacts = [SELECT Id, CreatedDate, LastName FROM Contact WHERE LastName = :gateName];
+        if (stateContacts.isEmpty()) {
+            Contact stateContact = new Contact();
+            stateContact.LastName = gateName;
+            insert stateContact;
+        }
+        String status = gateName == 'sampleinactive' ? 'inprogress' : 'active';
+        return JSON.serialize(
+            new ActivateReleaseGateActionResult(
+                new List<ActivateReleaseGateResult>{ new ActivateReleaseGateResult(productName, gateName, status) },
+                true,
+                null
+            )
+        );
     }
 
     public Object call(String action, Map<String, Object> args) {
@@ -381,5 +421,15 @@ global with sharing class EDADemoReleaseGate implements Callable {
         }
         System.debug('Action finished, result: \r\n' + result);
         return result;
+    }
+
+    private void loadReleaseGateStateFromDb(EDADemoReleaseGate.ReleaseGate gate) {
+        //For our mock gates we store their states in contact records
+        List<Contact> stateContacts = [SELECT Id, CreatedDate, LastName FROM Contact WHERE LastName = :gate.name];
+        if (!stateContacts.isEmpty()) {
+            //Just hardcode sampleinactive release gate to be always inprogress
+            gate.status = gate.name == 'sampleinactive' ? 'inprogress' : 'active';
+            gate.activationDate = stateContacts[0].CreatedDate;
+        }
     }
 }

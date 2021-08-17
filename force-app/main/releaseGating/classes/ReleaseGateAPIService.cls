@@ -118,6 +118,29 @@ public virtual with sharing class ReleaseGateAPIService {
     }
 
     /**
+     * @description Activate a release gate
+     * @param  productName Release gate product name
+     * @param  gateName    Release gate name
+     * @return             A ActivateReleaseGateActionResultModel instance
+     */
+    public virtual ActivateReleaseGateActionResultModel activateReleaseGate(String productName, String gateName) {
+        Object result = this.makeCall(
+            ACTIVATE_ACTION,
+            new Map<String, Object>{
+                VERSION_PARAMETER => this.releaseGateRegistry.apiVersion,
+                PRODUCT_PARAMETER => productName,
+                GATE_PARAMETER => gateName
+            }
+        );
+        ActivateReleaseGateActionResultModel resultModel = (ActivateReleaseGateActionResultModel) JSON.deserialize(
+            (String) result,
+            ActivateReleaseGateActionResultModel.class
+        );
+        this.verifyCallableResult(resultModel, ACTIVATE_ACTION);
+        return resultModel;
+    }
+
+    /**
      * @description Calls the specified callable action
      * @param  action     action name to call
      * @param  parameters action parameters

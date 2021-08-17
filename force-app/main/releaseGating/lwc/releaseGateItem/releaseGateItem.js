@@ -84,16 +84,22 @@ export default class ReleaseGateItem extends LightningElement {
     }
 
     handleEnableGate(event) {
+        event.stopPropagation();
         let payload = {
+            releaseGateAction: "activate",
             productRegistryName: this.productRegistryName,
-            product: this.product,
-            gate: this.gate,
+            productName: this.product.name,
+            productLabel: this.product.label,
+            releaseGateName: this.gate.name,
+            releaseGateLabel: this.gate.label,
         };
 
-        const enableEvent = new CustomEvent("enablegate", {
+        const releaseGateModalConfirmEvent = new CustomEvent("releasegatemodalrequest", {
             detail: payload,
+            bubbles: true,
+            composed: true,
         });
 
-        this.dispatchEvent(enableEvent);
+        this.dispatchEvent(releaseGateModalConfirmEvent);
     }
 }

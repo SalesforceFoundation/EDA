@@ -1,9 +1,9 @@
 import { LightningElement, track, wire, api } from "lwc";
+import { refreshApex } from "@salesforce/apex";
 import getReleaseGateVModel from "@salesforce/apex/ReleaseGateController.getReleaseGateVModel";
 
 export default class ReleaseGateProduct extends LightningElement {
-    @api
-    productRegistryName;
+    @api productRegistryName;
 
     @track releaseGateVModel;
     @track releaseGateVModelWireResult;
@@ -16,5 +16,13 @@ export default class ReleaseGateProduct extends LightningElement {
         } else if (result.error) {
             //console.log("error retrieving releaseGateVModel");
         }
+    }
+
+    @api refresh() {
+        this.refreshAllApex();
+    }
+
+    refreshAllApex() {
+        Promise.all([refreshApex(this.releaseGateVModelWireResult)]).then(() => {});
     }
 }
