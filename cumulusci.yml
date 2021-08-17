@@ -101,6 +101,12 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: unpackaged/config/release_gating
+    deploy_settings_product:
+        group: "EDA: Metadata"
+        description: mocked settings product information metadata to display a demo product.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: unpackaged/config/settings_product
 
     deploy_workbench_translation_settings:
         description: Deploys settings to enable Translation Workbench, end user languages, and platform languages.
@@ -412,6 +418,8 @@ flows:
                 flow: eda_settings
             8:
                 task: deploy_release_gating
+            9:
+                task: deploy_settings_product
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -436,6 +444,8 @@ flows:
                 flow: eda_settings
             7:
                 task: deploy_release_gating
+            8:
+                task: deploy_settings_product
 
     config_managed:
         # description: Configure an org for use as a dev org after package metadata is deployed.
@@ -482,6 +492,8 @@ flows:
                 flow: eda_settings
             9:
                 task: deploy_release_gating
+            10:
+                task: deploy_settings_product
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.
