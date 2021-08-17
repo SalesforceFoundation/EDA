@@ -6,7 +6,7 @@ export default class EdcSettingsProductDisplay extends LightningElement {
 
     _productRegistryVModels;
     @api 
-    set productRegistryVModels(value){
+    set productRegistryVModels(value) {
         if (value) {
             this._productRegistryVModels = value;
             if (value.length == 0) {
