@@ -91,8 +91,8 @@ global virtual with sharing class TALDemoSettingsProductInfoAPIService implement
         //Instead of building the model directly, use a mapper for building the model
         TALDemoSettingsProductInfoAPIService.EDCSettingsProductInformationModel productInformation = new TALDemoSettingsProductInfoAPIService.EDCSettingsProductInformationModel(
             'TAL',
-            'Test Advisor Link',
-            'Test Advisor Link gives advisors and advisees new tools to help foster focused conversations about education success. With Advisor Link, advisees can book advising appointments online, right from their smartphones. While advisors can spend more time on strategic engagement, support, and follow-up, and less time on getting advisees in the door.',
+            'Advisor Link (Mocked)',
+            'Advisor Link (Mocked) gives advisors and advisees new tools to help foster focused conversations about education success. With Advisor Link, advisees can book advising appointments online, right from their smartphones. While advisors can spend more time on strategic engagement, support, and follow-up, and less time on getting advisees in the door.',
             settingsContainerPrefix + 'EdaSettingsContainer',
             'https://powerofus.force.com/s/article/SAL-Documentation',
             'https://trailhead.salesforce.com/en/content/learn/modules/student-advising-with-salesforce-advisor-link',
