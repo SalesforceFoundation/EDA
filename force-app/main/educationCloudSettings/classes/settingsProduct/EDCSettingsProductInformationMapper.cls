@@ -41,9 +41,15 @@ public virtual with sharing class EDCSettingsProductInformationMapper {
     @TestVisible
     private static final String PRODUCT_EDA_SETTINGSCOMPONENT = 'EdaSettingsContainer';
     @TestVisible
+    private static final String PRODUCT_EDA_SETTINGSBUTTONA11Y = Label.stgBtnSettingsActionA11y;
+    @TestVisible
     private static final String PRODUCT_EDA_DOCUMENTATIONURL = 'https://powerofus.force.com/s/article/EDA-Documentation';
     @TestVisible
+    private static final String PRODUCT_EDA_DOCUMENTATIONBUTTONA11Y = Label.stgBtnDocumentationActionA11y;
+    @TestVisible
     private static final String PRODUCT_EDA_TRAILHEADURL = 'https://trailhead.salesforce.com/en/content/learn/trails/highered_heda';
+    @TestVisible
+    private static final String PRODUCT_EDA_TRAILHEADBUTTONA11Y = Label.stgBtnTrailheadActionA11y;
     @TestVisible
     private static final String PRODUCT_EDA_ICON = 'standard:avatar';
     @TestVisible
@@ -76,8 +82,11 @@ public virtual with sharing class EDCSettingsProductInformationMapper {
             PRODUCT_EDA_NAME,
             PRODUCT_EDA_DESCRIPTION,
             navigationPrefix + PRODUCT_EDA_SETTINGSCOMPONENT,
+            PRODUCT_EDA_SETTINGSBUTTONA11Y,
             PRODUCT_EDA_DOCUMENTATIONURL,
+            PRODUCT_EDA_DOCUMENTATIONBUTTONA11Y,
             PRODUCT_EDA_TRAILHEADURL,
+            PRODUCT_EDA_TRAILHEADBUTTONA11Y,
             PRODUCT_EDA_ICON
         );
         return productInformation;

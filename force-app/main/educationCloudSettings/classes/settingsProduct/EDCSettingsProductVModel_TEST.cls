@@ -42,8 +42,11 @@ private class EDCSettingsProductVModel_TEST {
         String name = 'testName';
         String description = 'testDescription';
         String settingsComponent = 'testSettingsComponent';
+        String settingsButtonA11y = 'testSettingsButtonA11y';
         String documentationUrl = 'testDocumentationUrl';
+        String documentationButtonA11y = 'testDocumentationButtonA11y';
         String trailheadUrl = 'testTrailheadUrl';
+        String trailheadButtonA11y = 'testTrailheadButtonA11y';
         String icon = 'testIcon';
 
         EDCSettingsProductVModel model;
@@ -54,8 +57,11 @@ private class EDCSettingsProductVModel_TEST {
             name,
             description,
             settingsComponent,
+            settingsButtonA11y,
             documentationUrl,
+            documentationButtonA11y,
             trailheadUrl,
+            trailheadButtonA11y,
             icon
         );
         Test.stopTest();
@@ -69,15 +75,30 @@ private class EDCSettingsProductVModel_TEST {
             'settingsComponent should be set with the value it is passed'
         );
         System.assertEquals(
+            settingsButtonA11y,
+            model.settingsButtonA11y,
+            'settingsButtonA11y should be set with the value it is passed'
+        );
+        System.assertEquals(
             documentationUrl,
             model.documentationUrl,
             'documentationUrl should be set with the value it is passed'
+        );
+        System.assertEquals(
+            documentationButtonA11y,
+            model.documentationButtonA11y,
+            'documentationButtonA11y should be set with the value it is passed'
         );
         System.assertEquals(
             trailheadUrl,
             model.trailheadUrl,
             'settingsComponent should be set with the value it is passed'
         );
-        System.assertEquals(icon, model.icon, 'settingsComponent should be set with the value it is passed');
+        System.assertEquals(
+            trailheadButtonA11y,
+            model.trailheadButtonA11y,
+            'trailheadButtonA11y should be set with the value it is passed'
+        );
+        System.assertEquals(icon, model.icon, 'icon should be set with the value it is passed');
     }
 }

@@ -3,11 +3,8 @@ import { NavigationMixin } from "lightning/navigation";
 
 //Settings Card Labels
 import stgBtnSettings from "@salesforce/label/c.stgBtnSettings";
-import stgBtnSettingsActionA11y from "@salesforce/label/c.stgBtnSettingsActionA11y";
 import stgBtnDocumentation from "@salesforce/label/c.stgBtnDocumentation";
-import stgBtnDocumentationActionA11y from "@salesforce/label/c.stgBtnDocumentationActionA11y";
 import stgBtnTrailhead from "@salesforce/label/c.stgBtnTrailhead";
-import stgBtnTrailheadActionA11y from "@salesforce/label/c.stgBtnTrailheadActionA11y";
 
 import getEDCSettingsProductVModel from "@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModel";
 
@@ -31,14 +28,15 @@ export default class EdcSettingsProductCard extends NavigationMixin(LightningEle
     @track settingsComponent;
     @track documentationUrl;
     @track trailheadUrl;
+    //Titles for Links
+    @track settingsButtonA11y;
+    @track documentationButtonA11y;
+    @track trailheadButtonA11y;
 
     labelReference = {
         settingsButton: stgBtnSettings,
-        settingsButtonA11y: stgBtnSettingsActionA11y,
         documentationButton: stgBtnDocumentation,
-        documentationButtonA11y: stgBtnDocumentationActionA11y,
-        trailheadButton: stgBtnTrailhead,
-        trailheadButtonA11y: stgBtnTrailheadActionA11y,
+        trailheadButton: stgBtnTrailhead
     };
 
     handleSettingsClick(event) {
@@ -96,8 +94,11 @@ export default class EdcSettingsProductCard extends NavigationMixin(LightningEle
                 this.iconInitials = result.initials;
                 this.iconFallbackName = result.icon;
                 this.settingsComponent = result.settingsComponent;
+                this.settingsButtonA11y = result.settingsButtonA11y;
                 this.documentationUrl = result.documentationUrl;
+                this.documentationButtonA11y = result.documentationButtonA11y;
                 this.trailheadUrl = result.trailheadUrl;
+                this.trailheadButtonA11y = result.trailheadButtonA11y;
                 this.showThisProduct = true;
                 this.dispatchEvent(new CustomEvent("settingsproductloaded"));
             })

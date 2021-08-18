@@ -68,14 +68,31 @@ private class EDCSettingsProductInformationMapper_TEST {
             'settingsComponent should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_SETTINGSCOMPONENT
         );
         System.assertEquals(
+            EDCSettingsProductInformationMapper.PRODUCT_EDA_SETTINGSBUTTONA11Y,
+            productInformationModel.settingsButtonA11y,
+            'settingsButtonA11y should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_SETTINGSBUTTONA11Y
+        );
+        System.assertEquals(
             EDCSettingsProductInformationMapper.PRODUCT_EDA_DOCUMENTATIONURL,
             productInformationModel.documentationUrl,
             'documentationUrl should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_DOCUMENTATIONURL
         );
         System.assertEquals(
+            EDCSettingsProductInformationMapper.PRODUCT_EDA_DOCUMENTATIONBUTTONA11Y,
+            productInformationModel.documentationButtonA11y,
+            'documentationButtonA11y should be set to ' +
+            EDCSettingsProductInformationMapper.PRODUCT_EDA_DOCUMENTATIONBUTTONA11Y
+        );
+        System.assertEquals(
             EDCSettingsProductInformationMapper.PRODUCT_EDA_TRAILHEADURL,
             productInformationModel.trailheadUrl,
             'trailheadUrl should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_TRAILHEADURL
+        );
+        System.assertEquals(
+            EDCSettingsProductInformationMapper.PRODUCT_EDA_TRAILHEADBUTTONA11Y,
+            productInformationModel.trailheadButtonA11y,
+            'trailheadButtonA11y should be set to ' +
+            EDCSettingsProductInformationMapper.PRODUCT_EDA_TRAILHEADBUTTONA11Y
         );
         System.assertEquals(
             EDCSettingsProductInformationMapper.PRODUCT_EDA_ICON,

@@ -80,8 +80,11 @@ public virtual with sharing class EDCSettingsProductVMapper {
             productInformation.name,
             productInformation.description,
             productInformation.settingsComponent,
+            productInformation.settingsButtonA11y,
             productInformation.documentationUrl,
+            productInformation.documentationButtonA11y,
             productInformation.trailheadUrl,
+            productInformation.trailheadButtonA11y,
             productInformation.icon
         );
     }
