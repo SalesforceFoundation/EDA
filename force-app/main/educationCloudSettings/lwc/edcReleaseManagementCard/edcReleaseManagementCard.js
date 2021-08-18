@@ -9,6 +9,7 @@ import stgBtnReleaseManagementA11y from "@salesforce/label/c.stgBtnReleaseManage
 
 export default class EdcReleaseManagementCard extends NavigationMixin(LightningElement) {
     @api navigationTarget;
+    alarm = false;
 
     labelReference = {
         releaseManagementButton: stgBtnReleaseManagement,
@@ -32,5 +33,13 @@ export default class EdcReleaseManagementCard extends NavigationMixin(LightningE
             },
         };
         this[NavigationMixin.Navigate](pageReference);
+    }
+
+    get notificationIcon() {
+        if (this.alarm) {
+            return "utility:notification";
+        }
+
+        return "utility:alert";
     }
 }
