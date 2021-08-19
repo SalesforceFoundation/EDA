@@ -1150,6 +1150,32 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         System.assertEquals('Work', addressDestination.Address_Type__c);
     }
 
+    @isTest
+    static void testCopyAddressObjNotNullSourceTypeNotBlankInactive() {
+        Address__c addressSource = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        addressSource.Inactive__c = true;
+        Address__c addressDestination = new Address__c();
+        addressDestination.Address_Type__c = 'Work';
+        addressDestination.Inactive__c = false;
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressObj(addressSource, addressDestination);
+        Test.stopTest();
+
+        System.assertEquals(addressSource.Default_Address__c, addressDestination.Default_Address__c);
+        System.assertEquals(addressSource.MailingStreet__c, addressDestination.MailingStreet__c);
+        System.assertEquals(addressSource.MailingStreet2__c, addressDestination.MailingStreet2__c);
+        System.assertEquals(addressSource.MailingCity__c, addressDestination.MailingCity__c);
+        System.assertEquals(addressSource.MailingCounty__c, addressDestination.MailingCounty__c);
+        System.assertEquals(addressSource.MailingState__c, addressDestination.MailingState__c);
+        System.assertEquals(addressSource.MailingPostalCode__c, addressDestination.MailingPostalCode__c);
+        System.assertEquals(addressSource.MailingCountry__c, addressDestination.MailingCountry__c);
+        System.assertEquals(addressSource.Geolocation__Latitude__s, addressDestination.Geolocation__Latitude__s);
+        System.assertEquals(addressSource.Geolocation__Longitude__s, addressDestination.Geolocation__Longitude__s);
+        System.assertEquals('Home', addressDestination.Address_Type__c);
+        System.assertEquals(true, addressDestination.Inactive__c);
+    }
+
     /**************************************************************************************************************************
      ****************************************************** copyAddressStdSObj ************************************************
      **************************************************************************************************************************/
@@ -1254,6 +1280,29 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
+    static void testCopyAddressObjSobjValidFieldInactiveAddressFields() {
+        //To Refactor: No way we can test isStateCountryPicklistsEnabled.
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        contact.Mailing_Address_Inactive__c = false;
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        account.Billing_Address_Inactive__c = true;
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObj(account, 'Billing', contact, 'Mailing');
+        Test.stopTest();
+
+        System.assertEquals(account.BillingStreet, contact.MailingStreet);
+        System.assertEquals(account.BillingCity, contact.MailingCity);
+        System.assertEquals(account.Billing_County__c, contact.Mailing_County__c);
+        System.assertEquals(account.BillingPostalCode, contact.MailingPostalCode);
+        System.assertEquals(account.BillingState, contact.MailingState);
+        System.assertEquals(account.BillingCountry, contact.MailingCountry);
+        System.assertEquals(account.BillingLatitude, contact.MailingLatitude);
+        System.assertEquals(account.BillingLongitude, contact.MailingLongitude);
+        System.assertEquals(true, account.Billing_Address_Inactive__c);
+    }
+
+    @isTest
     static void testCopyAddressObjSobjInvalidField() {
         //To Refactor: we don't have guard clause for this.
         Contact contact = UTIL_UnitTestData_TEST.getContact();
@@ -1352,6 +1401,52 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         System.assertEquals(account.BillingLatitude, address.Geolocation__Latitude__s);
         System.assertEquals(account.BillingLongitude, address.Geolocation__Longitude__s);
         System.assertEquals('Home', address.Address_Type__c);
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjAddrValidFieldAccountInactiveAddressFields() {
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        account.Billing_Address_Inactive__c = true;
+        Address__c address = new Address__c();
+        address.Inactive__c = false;
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Billing', address, 'Home');
+        Test.stopTest();
+
+        System.assertEquals(account.BillingStreet, address.MailingStreet__c);
+        System.assertEquals(account.BillingCity, address.MailingCity__c);
+        System.assertEquals(account.Billing_County__c, address.MailingCounty__c);
+        System.assertEquals(account.BillingPostalCode, address.MailingPostalCode__c);
+        System.assertEquals(account.BillingState, address.MailingState__c);
+        System.assertEquals(account.BillingCountry, address.MailingCountry__c);
+        System.assertEquals(account.BillingLatitude, address.Geolocation__Latitude__s);
+        System.assertEquals(account.BillingLongitude, address.Geolocation__Longitude__s);
+        System.assertEquals('Home', address.Address_Type__c);
+        System.assertEquals(true, address.Inactive__c);
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjAddrValidFieldContactInactiveAddressFields() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        contact.Mailing_Address_Inactive__c = true;
+        Address__c address = new Address__c();
+        address.Inactive__c = false;
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(contact, 'Mailing', address, 'Home');
+        Test.stopTest();
+
+        System.assertEquals(contact.MailingStreet, address.MailingStreet__c);
+        System.assertEquals(contact.MailingCity, address.MailingCity__c);
+        System.assertEquals(contact.Mailing_County__c, address.MailingCounty__c);
+        System.assertEquals(contact.MailingPostalCode, address.MailingPostalCode__c);
+        System.assertEquals(contact.MailingState, address.MailingState__c);
+        System.assertEquals(contact.MailingCountry, address.MailingCountry__c);
+        System.assertEquals(contact.MailingLatitude, address.Geolocation__Latitude__s);
+        System.assertEquals(contact.MailingLongitude, address.Geolocation__Longitude__s);
+        System.assertEquals('Home', address.Address_Type__c);
+        System.assertEquals(true, address.Inactive__c);
     }
 
     @isTest
@@ -1459,6 +1554,31 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         System.assertEquals(address.Address_Type__c, contact.get('Primary_Address_Type__c'));
         System.assertEquals(true, dmlWrapper.objectsToUpdate.size() > 0);
         System.assertEquals(address.MailingStreet__c, dmlWrapper.objectsToUpdate[0].get('MailingStreet'));
+    }
+
+    @isTest
+    static void testCopyAddressAddrSObjValidFieldInactiveAddressFields() {
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        address.Inactive__c = true;
+        Contact contact = new Contact();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressAddrSObj(address, contact, 'Mailing', 'Primary_Address_Type__c', dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(address.MailingStreet__c, contact.MailingStreet);
+        System.assertEquals(address.MailingCity__c, contact.MailingCity);
+        System.assertEquals(address.MailingCounty__c, contact.Mailing_County__c);
+        System.assertEquals(address.MailingPostalCode__c, contact.MailingPostalCode);
+        System.assertEquals(address.MailingState__c, contact.MailingState);
+        System.assertEquals(address.MailingCountry__c, contact.MailingCountry);
+        System.assertEquals(address.Geolocation__Latitude__s, contact.MailingLatitude);
+        System.assertEquals(address.Geolocation__Longitude__s, contact.MailingLongitude);
+        System.assertEquals(address.Address_Type__c, contact.get('Primary_Address_Type__c'));
+        System.assertEquals(true, dmlWrapper.objectsToUpdate.size() > 0);
+        System.assertEquals(address.MailingStreet__c, dmlWrapper.objectsToUpdate[0].get('MailingStreet'));
+        System.assertEquals(true, contact.Mailing_Address_Inactive__c);
     }
 
     @isTest
