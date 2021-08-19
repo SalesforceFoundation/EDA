@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>EDADemoReleaseGate</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>%%%NAMESPACE%%%Product_Registry.EDADemoReleaseGate</members>
+        <name>CustomMetadata</name>
+    </types>    
+    <version>52.0</version>
+</Package>

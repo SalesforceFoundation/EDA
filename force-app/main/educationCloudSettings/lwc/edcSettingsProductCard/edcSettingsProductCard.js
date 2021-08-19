@@ -1,4 +1,4 @@
-import { LightningElement, api } from "lwc";
+import { LightningElement, track, api } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 
 //Settings Card Labels
@@ -8,21 +8,29 @@ import stgBtnDocumentation from "@salesforce/label/c.stgBtnDocumentation";
 import stgBtnDocumentationActionA11y from "@salesforce/label/c.stgBtnDocumentationActionA11y";
 import stgBtnTrailhead from "@salesforce/label/c.stgBtnTrailhead";
 import stgBtnTrailheadActionA11y from "@salesforce/label/c.stgBtnTrailheadActionA11y";
-export default class EdcSettingsCard extends NavigationMixin(LightningElement) {
+
+import getEDCSettingsProductVModel from "@salesforce/apex/EducationCloudSettingsController.getEDCSettingsProductVModel";
+
+export default class EdcSettingsProductCard extends NavigationMixin(LightningElement) {
+    @api displayProductCards;
+    @api productRegistry;
+
+    @track showThisProduct = false;
+
     iconSize = "medium";
 
     //Avatar
-    @api iconSrc;
-    @api iconInitials;
-    @api iconFallbackName;
+    @track iconSrc;
+    @track iconInitials;
+    @track iconFallbackName;
 
     //Body
-    @api title;
-    @api description;
+    @track title;
+    @track description;
     //Links
-    @api settingsComponent;
-    @api documentationUrl;
-    @api trailheadUrl;
+    @track settingsComponent;
+    @track documentationUrl;
+    @track trailheadUrl;
 
     labelReference = {
         settingsButton: stgBtnSettings,
@@ -67,5 +75,50 @@ export default class EdcSettingsCard extends NavigationMixin(LightningElement) {
             },
         };
         this[NavigationMixin.Navigate](pageReference);
+    }
+
+    get showProductCard() {
+        if (this.displayProductCards && this.showThisProduct) {
+            return true;
+        }
+        return false;
+    }
+
+    connectedCallback() {
+        getEDCSettingsProductVModel({
+            classname: this.productRegistry.classname,
+            namespace: this.productRegistry.namespace,
+            apiVersion: this.productRegistry.apiVersion,
+        })
+            .then((result) => {
+                this.title = result.name;
+                this.description = result.description;
+                this.iconInitials = result.initials;
+                this.iconFallbackName = result.icon;
+                this.settingsComponent = result.settingsComponent;
+                this.documentationUrl = result.documentationUrl;
+                this.trailheadUrl = result.trailheadUrl;
+                this.showThisProduct = true;
+                this.dispatchEvent(new CustomEvent("settingsproductloaded"));
+            })
+            .catch((error) => {
+                this.showThisProduct = false;
+                let errorMessage = this.getErrorMessage(error);
+                this.dispatchEvent(new CustomEvent("settingsproducterror", { detail: { errorMessage: errorMessage } }));
+            });
+    }
+
+    getErrorMessage(error) {
+        let errorMessage = "Unknown error";
+        if (Array.isArray(error.body)) {
+            errorMessage = error.body.map((e) => e.message).join(", ");
+        } else {
+            if (error.body && typeof error.body.message === "string") {
+                errorMessage = error.body.message;
+            } else {
+                errorMessage = error.message;
+            }
+        }
+        return errorMessage;
     }
 }

@@ -95,6 +95,13 @@ tasks:
         options:
             path: unpackaged/config/install_emulator
 
+    deploy_release_gating:
+        group: "EDA: Metadata"
+        description: mocked release gating metadata to display the variety of permutations EDA supports.
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: unpackaged/config/release_gating
+
     deploy_workbench_translation_settings:
         description: Deploys settings to enable Translation Workbench, end user languages, and platform languages.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -121,6 +128,10 @@ tasks:
                 name: EDA - Case Behavior Record Types
             eda_app:
                 name: EDA - Education Data Architecture App
+            credentialing_fields:
+                name: EDA - Credentialing Ids
+                checked: True
+                optional: True
 
     deploy_pre:
         ui_options:
@@ -130,6 +141,7 @@ tasks:
                 name: EDA - Contact Key Affiliation Fields
 
     deploy_preferred_email_config:
+        group: "EDA: Unpackaged Tests"
         description: Deploys Preferred Email configuration(custom email fields, translations, apex unit tests and sets Admin profile access to Email fields) for testing.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -138,6 +150,7 @@ tasks:
             namespaced_org: True
 
     deploy_unpackaged_primary_affiliations_config:
+        group: "EDA: Unpackaged Tests"
         description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -146,6 +159,7 @@ tasks:
             unmanaged: True
 
     deploy_unpackaged_relationship_autocreate_config:
+        group: "EDA: Unpackaged Tests"
         description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -180,6 +194,7 @@ tasks:
             command: "force:user:permset:assign -n Encryption"
 
     cancel_eda_scheduled_jobs:
+        group: "EDA: Dev Config"
         description: Unscheduleds EDA Apex jobs
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
@@ -395,6 +410,8 @@ flows:
                 task: deploy_dev_config
             7:
                 flow: eda_settings
+            8:
+                task: deploy_release_gating
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -417,6 +434,8 @@ flows:
                 task: deploy_dev_config
             6:
                 flow: eda_settings
+            7:
+                task: deploy_release_gating
 
     config_managed:
         # description: Configure an org for use as a dev org after package metadata is deployed.
@@ -461,6 +480,8 @@ flows:
                 task: deploy_qa_config
             8:
                 flow: eda_settings
+            9:
+                task: deploy_release_gating
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.

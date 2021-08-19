@@ -28,43 +28,77 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2014 
-* @group Utilities
-* @group-content ../../ApexDocContent/Utilities.htm
-* @description test Class which holds test methods for common utilities, 
-* such as detecting whether we are in a managed package, and some string helpers.
-*/
+ * @author Salesforce.org
+ * @date 2014
+ * @group Utilities
+ * @group-content ../../ApexDocContent/Utilities.htm
+ * @description test Class which holds test methods for common utilities,
+ * such as detecting whether we are in a managed package, and some string helpers.
+ */
 @isTest
 public with sharing class UTIL_Namespace_TEST {
-
-    static testmethod void TestNamespacePrefixFixups() {
+    static testMethod void TestNamespacePrefixFixups() {
         UTIL_UnitTestData_API.isSandbox();
-        if (UTIL_Namespace.getNamespace()!='') {
-            system.assertNotEquals('',UTIL_Namespace.getNamespace());
+        if (UTIL_Namespace.getNamespace() != '') {
+            system.assertNotEquals('', UTIL_Namespace.getNamespace());
             system.assertEquals(UTIL_Namespace.getNamespace() + '__foo', UTIL_Namespace.StrTokenNSPrefix('foo'));
-            system.assertEquals(UTIL_Namespace.getNamespace() + '__foo__c', UTIL_Namespace.StrTokenNSPrefix('foo__c'));     
+            system.assertEquals(UTIL_Namespace.getNamespace() + '__foo__c', UTIL_Namespace.StrTokenNSPrefix('foo__c'));
             system.assertEquals('foo', UTIL_Namespace.StrAllNSPrefix('foo'));
             system.assertEquals(UTIL_Namespace.getNamespace() + '__foo__c', UTIL_Namespace.StrAllNSPrefix('foo__c'));
-            system.assertEquals(UTIL_Namespace.getNamespace() + '__foo_bar_baz__c', UTIL_Namespace.StrAllNSPrefix('foo_bar_baz__c'));
-            system.assertEquals('select ' + UTIL_Namespace.getNamespace() + '__foo__c, bar, ' + UTIL_Namespace.getNamespace() + '__baz1__c, ' + UTIL_Namespace.getNamespace() + '__biz_buz__c from Contact', UTIL_Namespace.StrAllNSPrefix('select foo__c, bar, baz1__c, biz_buz__c from Contact'));
-            system.assertEquals('foo__c', UTIL_Namespace.StrTokenRemoveNSPrefix(UTIL_Namespace.getNamespace()  +  '__foo__c'));
-            system.assertEquals('foo_'  +  UTIL_Namespace.getNamespace() + '__c', UTIL_Namespace.StrTokenRemoveNSPrefix('foo_' + UTIL_Namespace.getNamespace() + '__c'));
+            system.assertEquals(
+                UTIL_Namespace.getNamespace() + '__foo_bar_baz__c',
+                UTIL_Namespace.StrAllNSPrefix('foo_bar_baz__c')
+            );
+            system.assertEquals(
+                'select ' +
+                UTIL_Namespace.getNamespace() +
+                '__foo__c, bar, ' +
+                UTIL_Namespace.getNamespace() +
+                '__baz1__c, ' +
+                UTIL_Namespace.getNamespace() +
+                '__biz_buz__c from Contact',
+                UTIL_Namespace.StrAllNSPrefix('select foo__c, bar, baz1__c, biz_buz__c from Contact')
+            );
+            system.assertEquals(
+                'foo__c',
+                UTIL_Namespace.StrTokenRemoveNSPrefix(UTIL_Namespace.getNamespace() + '__foo__c')
+            );
+            system.assertEquals(
+                'foo_' +
+                UTIL_Namespace.getNamespace() +
+                '__c',
+                UTIL_Namespace.StrTokenRemoveNSPrefix('foo_' + UTIL_Namespace.getNamespace() + '__c')
+            );
+            system.assertEquals(UTIL_Namespace.getNamespace() + '__', UTIL_Namespace.StrTokenNSPrefixComponent());
         } else {
             system.assertEquals('foo', UTIL_Namespace.StrTokenNSPrefix('foo'));
-            system.assertEquals('foo__c', UTIL_Namespace.StrTokenNSPrefix('foo__c'));     
+            system.assertEquals('foo__c', UTIL_Namespace.StrTokenNSPrefix('foo__c'));
             system.assertEquals('foo', UTIL_Namespace.StrAllNSPrefix('foo'));
             system.assertEquals('foo__c', UTIL_Namespace.StrAllNSPrefix('foo__c'));
             system.assertEquals('foo_bar_baz__c', UTIL_Namespace.StrAllNSPrefix('foo_bar_baz__c'));
-            system.assertEquals('select foo__c, bar, baz1__c, biz_buz__c from Contact', UTIL_Namespace.StrAllNSPrefix('select foo__c, bar, baz1__c, biz_buz__c from Contact'));           
-            system.assertEquals('foo__c', UTIL_Namespace.StrTokenRemoveNSPrefix(UTIL_Namespace.getNamespace()  +  '__foo__c'));
-            system.assertEquals('foo_'  +  UTIL_Namespace.getNamespace() + '__c', UTIL_Namespace.StrTokenRemoveNSPrefix('foo_' + UTIL_Namespace.getNamespace() + '__c'));
+            system.assertEquals(
+                'select foo__c, bar, baz1__c, biz_buz__c from Contact',
+                UTIL_Namespace.StrAllNSPrefix('select foo__c, bar, baz1__c, biz_buz__c from Contact')
+            );
+            system.assertEquals(
+                'foo__c',
+                UTIL_Namespace.StrTokenRemoveNSPrefix(UTIL_Namespace.getNamespace() + '__foo__c')
+            );
+            system.assertEquals(
+                'foo_' +
+                UTIL_Namespace.getNamespace() +
+                '__c',
+                UTIL_Namespace.StrTokenRemoveNSPrefix('foo_' + UTIL_Namespace.getNamespace() + '__c')
+            );
             system.assertEquals('foo', UTIL_Namespace.StrTokenNSPrefixDotNotation('foo'));
+            system.assertEquals('c__', UTIL_Namespace.StrTokenNSPrefixComponent());
         }
-    }               
+    }
 
-    static testmethod void testSandboxEmailToRealEmail() {
-        String fixedEmail = UTIL_UnitTestData_API.sandboxEmailToRealEmail('awheeler=universalcontainers.com@example.com');	
+    static testMethod void testSandboxEmailToRealEmail() {
+        String fixedEmail = UTIL_UnitTestData_API.sandboxEmailToRealEmail(
+            'awheeler=universalcontainers.com@example.com'
+        );
         System.assertEquals('awheeler@universalcontainers.com', fixedEmail);
     }
 }

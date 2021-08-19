@@ -1,5 +1,6 @@
-import { LightningElement, track } from "lwc";
+import { LightningElement, track, wire } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
+import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 //Column Header Labels
 import stgColProducts from "@salesforce/label/c.stgColProducts";
@@ -29,8 +30,13 @@ import stgBtnVideos from "@salesforce/label/c.stgBtnVideos";
 import stgBtnVideosActionA11y from "@salesforce/label/c.stgBtnVideosActionA11y";
 
 import namespacedEDAField from "@salesforce/schema/Course_Offering_Schedule__c.Course_Offering__c";
-const EDASettingsContainerComponentName = "EdaSettingsContainer";
+
+import getProductRegistrySettingsProductInformationVModels from "@salesforce/apex/EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels";
+
+import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
+
 const HealthCheckContainerComponentName = "HealthCheckContainer";
+const ReleaseManagementContainerComponentName = "releaseManagementContainer";
 
 const EDADocumentationUrl = "https://powerofus.force.com/s/article/EDA-Documentation";
 const EDATrailheadUrl = "https://trailhead.salesforce.com/en/content/learn/trails/highered_heda";
@@ -40,6 +46,9 @@ const TrailblazerCommunityUrl = "https://trailblazers.salesforce.com/successHome
 const YoutubeUrl = "https://www.youtube.com/user/SalesforceFoundation";
 
 export default class EducationCloudSettings extends NavigationMixin(LightningElement) {
+    @track
+    edcProductRegistryVModels = [];
+
     labelReference = {
         productsTitle: stgColProducts,
         resourcesTitle: stgColResources,
@@ -57,25 +66,22 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         return navigationPrefix;
     }
 
-    get edaSettingsContainerComponentNavigation() {
-        return this.edaComponentNavigationPrefix + EDASettingsContainerComponentName;
-    }
-
     get healthCheckContainerComponentNavigation() {
         return this.edaComponentNavigationPrefix + HealthCheckContainerComponentName;
     }
 
-    @track edcProductModels = [
-        {
-            title: stgEDAAppTitle,
-            description: stgEDAAppDesc,
-            iconInitials: stgEDAAppInitials,
-            iconFallbackName: "standard:avatar",
-            settingsComponent: this.edaSettingsContainerComponentNavigation,
-            documentationUrl: EDADocumentationUrl,
-            trailheadUrl: EDATrailheadUrl,
-        },
-    ];
+    get releaseManagementContainerComponentNavigation() {
+        return this.edaComponentNavigationPrefix + ReleaseManagementContainerComponentName;
+    }
+
+    @wire(getProductRegistrySettingsProductInformationVModels)
+    edcSettingsProductRegistryVModels({ error, data }) {
+        if (data) {
+            this.edcProductRegistryVModels = data;
+        } else if (error) {
+            this.showErrorToast(error);
+        }
+    }
 
     @track edcToolModels = [
         {
@@ -112,4 +118,25 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
             navigationTarget: YoutubeUrl,
         },
     ];
+
+    showErrorToast(error) {
+        let errorMessage = "Unknown error";
+        if (Array.isArray(error.body)) {
+            errorMessage = error.body.map((e) => e.message).join(", ");
+        } else {
+            if (error.body && typeof error.body.message === "string") {
+                errorMessage = error.body.message;
+            } else {
+                errorMessage = error.message;
+            }
+        }
+
+        const evt = new ShowToastEvent({
+            title: "Error",
+            message: errorMessage,
+            variant: "error",
+            mode: "sticky",
+        });
+        this.dispatchEvent(evt);
+    }
 }
