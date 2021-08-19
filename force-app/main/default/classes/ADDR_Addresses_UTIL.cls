@@ -44,6 +44,8 @@ public with sharing class ADDR_Addresses_UTIL {
     /* @description map from Country Code to Country Name */
     private static Map<String, String> validCountriesByCode = new Map<String, String>();
 
+    private final static Set<String> INACTIVE_ADDRESS_FIELDS_PREFIX = new Set<String>{ 'Mailing', 'Billing' };
+
     /*******************************************************************************************************
      * @description Returns whether the Address's mailing fields are null.
      * @param addr the Address record.
@@ -408,10 +410,16 @@ public with sharing class ADDR_Addresses_UTIL {
         sobjDst.put(strFieldPrefixDst + 'Country', sobjSrc.get(strFieldPrefixSrc + 'Country'));
         sobjDst.put(strFieldPrefixDst + 'Latitude', sobjSrc.get(strFieldPrefixSrc + 'Latitude'));
         sobjDst.put(strFieldPrefixDst + 'Longitude', sobjSrc.get(strFieldPrefixSrc + 'Longitude'));
-        sobjDst.put(
-            strFieldPrefixDst + '_Address_Inactive__c',
-            sobjSrc.get(strFieldPrefixSrc + '_Address_Inactive__c')
-        );
+
+        if (
+            INACTIVE_ADDRESS_FIELDS_PREFIX.contains(strFieldPrefixDst) &&
+            INACTIVE_ADDRESS_FIELDS_PREFIX.contains(strFieldPrefixDst)
+        ) {
+            sobjDst.put(
+                strFieldPrefixDst + '_Address_Inactive__c',
+                sobjSrc.get(strFieldPrefixSrc + '_Address_Inactive__c')
+            );
+        }
 
         if (isStateCountryPicklistsEnabled) {
             sobjDst.put(strFieldPrefixDst + 'StateCode', sobjSrc.get(strFieldPrefixSrc + 'StateCode'));
@@ -443,7 +451,10 @@ public with sharing class ADDR_Addresses_UTIL {
         addr.MailingCountry__c = (String) sobjSrc.get(strFieldPrefixSrc + 'Country');
         addr.Geolocation__Latitude__s = (Decimal) sobjSrc.get(strFieldPrefixSrc + 'Latitude');
         addr.Geolocation__Longitude__s = (Decimal) sobjSrc.get(strFieldPrefixSrc + 'Longitude');
-        addr.Inactive__c = (Boolean) sobjSrc.get(strFieldPrefixSrc + '_Address_Inactive__c');
+
+        if (INACTIVE_ADDRESS_FIELDS_PREFIX.contains(strFieldPrefixSrc)) {
+            addr.Inactive__c = (Boolean) sobjSrc.get(strFieldPrefixSrc + '_Address_Inactive__c');
+        }
 
         //Try to find state and country by code if they aren't specified?
         if (isStateCountryPicklistsEnabled) {
@@ -493,7 +504,10 @@ public with sharing class ADDR_Addresses_UTIL {
         sobjDst.put(strFieldPrefix + 'Latitude', addr.Geolocation__Latitude__s);
         sobjDst.put(strFieldPrefix + 'Longitude', addr.Geolocation__Longitude__s);
         sobjDst.put('Current_Address__c', addr.Id);
-        sobjDst.put(strFieldPrefix + '_Address_Inactive__c', addr.Inactive__c);
+
+        if (INACTIVE_ADDRESS_FIELDS_PREFIX.contains(strFieldPrefix)) {
+            sobjDst.put(strFieldPrefix + '_Address_Inactive__c', addr.Inactive__c);
+        }
 
         if (!isStateCountryPicklistsEnabled) {
             sobjDst.put(strFieldPrefix + 'State', addr.MailingState__c);
