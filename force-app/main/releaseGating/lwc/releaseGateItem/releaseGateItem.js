@@ -9,7 +9,21 @@ import stgNewWindowA11y from "@salesforce/label/c.stgNewWindowA11y";
 export default class ReleaseGateItem extends LightningElement {
     @api productRegistryName;
     @api product;
-    @api gate;
+    @api get gate() {
+        return this.gateInternal;
+    }
+    set gate(value) {
+        this.gateInternal = value;
+        this.gateStatusOverride = value ? value.status : undefined;
+    }
+    @api get gateStatus() {
+        return this.gateStatusOverride ? this.gateStatusOverride : this.gate.status;
+    }
+    set gateStatus(value) {
+        this.gateStatusOverride = value;
+    }
+    gateStatusOverride;
+    gateInternal;
 
     labelReference = {
         releaseGateActivateBy: stgReleaseGateActivateBy,
@@ -21,24 +35,24 @@ export default class ReleaseGateItem extends LightningElement {
     };
 
     get gateActive() {
-        return this.gate.status === "active";
+        return this.gateStatus === "active";
     }
 
     get gateInactive() {
-        return this.gate.status === "inactive";
+        return this.gateStatus === "inactive";
     }
 
     get gateDisabled() {
-        return this.gate.status === "disabled";
+        return this.gateStatus === "disabled";
     }
 
     get gateInProgress() {
-        return this.gate.status === "inprogress";
+        return this.gateStatus === "inprogress";
     }
 
     get gateIconName() {
         let iconName;
-        switch (this.gate.status) {
+        switch (this.gateStatus) {
             case "active":
                 iconName = "action:approval";
                 break;

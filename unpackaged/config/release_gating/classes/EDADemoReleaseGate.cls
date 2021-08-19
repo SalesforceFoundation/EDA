@@ -200,6 +200,11 @@ global with sharing class EDADemoReleaseGate implements Callable {
     public EDADemoReleaseGate() {
     }
 
+    /**
+     * @description Get a list of products with release gates
+     * @param  version Callable API version
+     * @return         A list of products and release gates in json format
+     */
     public String getReleaseGates(Decimal version) {
         List<EDADemoReleaseGate.GetReleaseGateResult> resultList = new List<EDADemoReleaseGate.GetReleaseGateResult>{
             new EDADemoReleaseGate.GetReleaseGateResult(
@@ -376,8 +381,10 @@ global with sharing class EDADemoReleaseGate implements Callable {
                 }
             )
         };
+        //Loading states for 'summer21' and 'sampleinactive' release gates from the db
         this.loadReleaseGateStateFromDb(resultList[0].gates[0]);
         this.loadReleaseGateStateFromDb(resultList[1].gates[3]);
+
         EDADemoReleaseGate.GetReleaseGateActionResult releaseGateResultModel = new EDADemoReleaseGate.GetReleaseGateActionResult(
             resultList,
             true,
@@ -386,6 +393,13 @@ global with sharing class EDADemoReleaseGate implements Callable {
         return JSON.serialize(releaseGateResultModel);
     }
 
+    /**
+     * @description Activate a release gate
+     * @param  version     Callable API version
+     * @param  productName Release gate product name
+     * @param  gateName    Release gate name
+     * @return             Activate release gate result in json format
+     */
     public String activateReleaseGate(Decimal version, String productName, String gateName) {
         //We will create a contact to emulate gate activation
         //If a contact with the LastName=gateName exists it means the gate is active
@@ -395,6 +409,7 @@ global with sharing class EDADemoReleaseGate implements Callable {
             stateContact.LastName = gateName;
             insert stateContact;
         }
+        //Emulating 'inprogress' status for the 'sampleinactive' release gate
         String status = gateName == 'sampleinactive' ? 'inprogress' : 'active';
         return JSON.serialize(
             new ActivateReleaseGateActionResult(

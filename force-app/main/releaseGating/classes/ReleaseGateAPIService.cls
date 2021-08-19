@@ -147,6 +147,8 @@ public virtual with sharing class ReleaseGateAPIService {
      * @return            Callable return result
      */
     protected virtual Object makeCall(String action, Map<String, Object> parameters) {
+        //Customize application perm is required for all release gating actions
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         Callable callableInstance = this.locateReleaseGateCallable();
         UTIL_Debug.debug(
             String.format(
@@ -198,6 +200,15 @@ public virtual with sharing class ReleaseGateAPIService {
             UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
             throw new ReleaseGateCallableException(errorMessage, null, this.releaseGateRegistry, resultModel);
         }
+    }
+
+    /*****************************************************************************
+     * @description Retrieves an instance of the UserPermissionService.
+     * @return The instance of UserPermissionService.
+     ******************************************************************************/
+    @TestVisible
+    private UserPermissionService locateUserPermissionService() {
+        return UserPermissionService.getInstance();
     }
 
     /**

@@ -36,6 +36,14 @@ export default class ReleaseGates extends LightningElement {
     }
 
     executeActivateReleaseGate(saveModel) {
+        Array.prototype.filter
+            .call(
+                this.template.querySelectorAll("c-release-gate-product"),
+                (product) => product.productRegistryName == saveModel.productRegistryName
+            )
+            .forEach((releaseGateProduct) => {
+                releaseGateProduct.setReleaseGateStatus(saveModel.productName, saveModel.releaseGateName, "inprogress");
+            });
         activateReleaseGate({
             productRegistryName: saveModel.productRegistryName,
             productName: saveModel.productName,
@@ -43,18 +51,20 @@ export default class ReleaseGates extends LightningElement {
         })
             .then((result) => {
                 if (result) {
-                    let message, title, toastType;
+                    let message, title, toastType, toastMode;
                     let releaseGateLabel = saveModel.productLabel + " " + saveModel.releaseGateLabel;
                     if (result.some((activateResult) => activateResult.status === "inprogress")) {
                         title = this.labelReference.releaseGateInProgress.replace("{0}", releaseGateLabel);
                         message = "";
                         toastType = "info";
+                        toastMode = "dismissable";
                     } else {
                         message = this.labelReference.releaseGateActivateSuccess.replace("{0}", releaseGateLabel);
                         title = this.labelReference.success;
                         toastType = "success";
+                        toastMode = "sticky";
                     }
-                    this.showToast(toastType, title, message);
+                    this.showToast(toastType, title, message, toastMode);
                 } else {
                     //console.log("Activate error: the mapping was not found");
                 }
@@ -62,6 +72,7 @@ export default class ReleaseGates extends LightningElement {
             })
             .catch((error) => {
                 //console.log("Inside error");
+                this.refreshAllApex();
             });
     }
 
@@ -73,12 +84,12 @@ export default class ReleaseGates extends LightningElement {
         });
     }
 
-    showToast(toastType, toastTitle, toastMessage) {
+    showToast(toastType, toastTitle, toastMessage, toastMode) {
         const showToastEvent = new ShowToastEvent({
             title: toastTitle,
             message: toastMessage,
             variant: toastType,
-            mode: "sticky",
+            mode: toastMode,
         });
         this.dispatchEvent(showToastEvent);
     }

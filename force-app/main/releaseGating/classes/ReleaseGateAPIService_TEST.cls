@@ -79,7 +79,7 @@ public with sharing class ReleaseGateAPIService_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that the getReleaseGateAPIModel method returns a ReleaseGateAPIModel
+     * @description Test method to verify that the getReleaseGateAPIModel method returns a GetReleaseGateActionResultModel
      * from the current package
      ***************************************************************************************************************************/
     @isTest
@@ -142,6 +142,49 @@ public with sharing class ReleaseGateAPIService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify that the activateReleaseGate method returns a ActivateReleaseGateActionResultModel
+     * from the current package
+     ***************************************************************************************************************************/
+    @isTest
+    private static void activateReleaseGateCurrentPackage() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            '',
+            'ReleaseGateAPIService_TEST.TestReleaseGateCallableImpl',
+            1
+        );
+        ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
+        String productName = 'productName1';
+        String gateName = 'gateName1';
+
+        Test.startTest();
+        ActivateReleaseGateActionResultModel activateReleaseGatesResult = callableService.activateReleaseGate(
+            productName,
+            gateName
+        );
+        Test.stopTest();
+
+        System.assertEquals(true, activateReleaseGatesResult.success, 'The result should be successful');
+        System.assertEquals(1, activateReleaseGatesResult.result.size(), 'There should be 1 result');
+        System.assertEquals(
+            productName,
+            activateReleaseGatesResult.result[0].productName,
+            'Expected product name should be ' + productName
+        );
+        System.assertEquals(
+            gateName,
+            activateReleaseGatesResult.result[0].gateName,
+            'Expected gate name should be ' + gateName
+        );
+        System.assertEquals(
+            'active',
+            activateReleaseGatesResult.result[0].status,
+            'Expected gate status should be active'
+        );
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify that the getReleaseGateAPIModel method throws ReleaseGateCallableException
      ***************************************************************************************************************************/
     @isTest
@@ -158,6 +201,39 @@ public with sharing class ReleaseGateAPIService_TEST {
         try {
             Test.startTest();
             GetReleaseGateActionResultModel getReleaseGatesResult = callableService.getReleaseGates();
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (ReleaseGateAPIService.ReleaseGateCallableException ex) {
+            System.assertEquals(false, ex.result.success, 'Expected success to be false');
+
+            System.assertEquals(
+                'Test callable error',
+                ex.result.error.message,
+                'Expected error message should be \'Test callable error\''
+            );
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the activateReleaseGate method throws ReleaseGateCallableException
+     ***************************************************************************************************************************/
+    @isTest
+    private static void activateReleaseGatesErrorResponseCurrentPackage() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            '',
+            'ReleaseGateAPIService_TEST.TestReleaseGateCallableErrorImpl',
+            1
+        );
+        ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
+
+        try {
+            Test.startTest();
+            ActivateReleaseGateActionResultModel getReleaseGatesResult = callableService.activateReleaseGate(
+                'testProduct',
+                'testGate'
+            );
             Test.stopTest();
             System.assert(false, 'should always throw an exception');
         } catch (ReleaseGateAPIService.ReleaseGateCallableException ex) {
@@ -277,6 +353,87 @@ public with sharing class ReleaseGateAPIService_TEST {
         }
     }
 
+    /**************************************************************************************************************************
+     * @description Test method to verify that the locateUserPermissionService method returns a valid instance of
+     * UserPermissionService.
+     ***************************************************************************************************************************/
+    @isTest
+    private static void locateUserPermissionServiceValid() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            '',
+            'ReleaseGateAPIService',
+            1
+        );
+        ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
+
+        Test.startTest();
+        UserPermissionService userPermissionServiceInstance = callableService.locateUserPermissionService();
+        Test.stopTest();
+
+        System.assertEquals(
+            UserPermissionService.getInstance(),
+            userPermissionServiceInstance,
+            'Should return instance of UserPermissionService.'
+        );
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that getReleaseGates throws NoAccessException under a standard user
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getReleaseGatesStandardUser() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            '',
+            'ReleaseGateAPIService_TEST.TestReleaseGateCallableImpl',
+            1
+        );
+        ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
+
+        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
+        System.runAs(stdUser) {
+            try {
+                Test.startTest();
+                GetReleaseGateActionResultModel getReleaseGatesResult = callableService.getReleaseGates();
+                Test.stopTest();
+                System.assert(false, 'should always throw an exception');
+            } catch (NoAccessException ex) {
+            }
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that activateReleaseGate throws NoAccessException under a standard user
+     ***************************************************************************************************************************/
+    @isTest
+    private static void activateReleaseGateStandardUser() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            '',
+            'ReleaseGateAPIService_TEST.TestReleaseGateCallableImpl',
+            1
+        );
+        ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
+
+        User stdUser = UTIL_UnitTestData_TEST.getStandardUser();
+        System.runAs(stdUser) {
+            try {
+                Test.startTest();
+                ActivateReleaseGateActionResultModel activateReleaseGateResult = callableService.activateReleaseGate(
+                    'productName',
+                    'gateName'
+                );
+                Test.stopTest();
+                System.assert(false, 'should always throw an exception');
+            } catch (NoAccessException ex) {
+            }
+        }
+    }
+
     /***********************************************************************************************************************************
      ************************************************* Test Callable classes ***********************************************************
      ***********************************************************************************************************************************/
@@ -325,8 +482,19 @@ public with sharing class ReleaseGateAPIService_TEST {
         }
 
         public String activateReleaseGate(Decimal version, String productName, String gateName) {
-            //TODO: This will be implemented in another user story
-            throw new IllegalArgumentException('Method not implemented');
+            return JSON.serialize(
+                new ActivateReleaseGateActionResultModel(
+                    new List<ActivateReleaseGateActionResultModel.ActivateReleaseGateResult>{
+                        new ActivateReleaseGateActionResultModel.ActivateReleaseGateResult(
+                            productName,
+                            gateName,
+                            'active'
+                        )
+                    },
+                    true,
+                    null
+                )
+            );
         }
 
         public Object call(String action, Map<String, Object> args) {
@@ -362,8 +530,9 @@ public with sharing class ReleaseGateAPIService_TEST {
         }
 
         public String activateReleaseGate(Decimal version, String productName, String gateName) {
-            //TODO: This will be implemented in another user story
-            throw new IllegalArgumentException('Method not implemented');
+            return JSON.serialize(
+                new ActivateReleaseGateActionResultModel(null, false, new CallableError(400, 'Test callable error'))
+            );
         }
 
         public Object call(String action, Map<String, Object> args) {
@@ -399,8 +568,7 @@ public with sharing class ReleaseGateAPIService_TEST {
         }
 
         public String activateReleaseGate(Decimal version, String productName, String gateName) {
-            //TODO: This will be implemented in another user story
-            throw new IllegalArgumentException('Method not implemented');
+            return JSON.serialize(new ActivateReleaseGateActionResultModel(null, false, null));
         }
 
         public Object call(String action, Map<String, Object> args) {

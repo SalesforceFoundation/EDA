@@ -22,6 +22,18 @@ export default class ReleaseGateProduct extends LightningElement {
         this.refreshAllApex();
     }
 
+    @api setReleaseGateStatus(productName, gateName, status) {
+        Array.prototype.filter
+            .call(
+                this.template.querySelectorAll("c-release-gate-item"),
+                (releaseGateItem) =>
+                    releaseGateItem.product.name == productName && releaseGateItem.gate.name == gateName
+            )
+            .forEach((releaseGateItem) => {
+                releaseGateItem.gateStatus = status;
+            });
+    }
+
     refreshAllApex() {
         Promise.all([refreshApex(this.releaseGateVModelWireResult)]).then(() => {});
     }
