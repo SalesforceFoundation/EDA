@@ -1,0 +1,52 @@
+{
+    "appPageId": "4bb92900-b3fd-4085-9c29-e01a6ea6256c",
+    "componentName": "siteforce:sldsOneColLayout",
+    "id": "b933d52d-7612-4784-bd50-ba9f47af21d9",
+    "label": "User Settings",
+    "regions": [
+        {
+            "id": "104b81ae-4e6f-4918-bc1c-548c6c7a7f08",
+            "regionName": "header",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "accountSectionTitle": "Account",
+                        "accountTabName": "Account Details",
+                        "connectedSourcesTabName": "Connected Sources",
+                        "emailNotificationsTitle": "Email Notifications",
+                        "emailSectionDescText": "When email notifications are enabled, email me when someone:",
+                        "hideChatterNotificationSettings": false,
+                        "hideConnectedSources": false,
+                        "hideEmailNotificationSettings": false,
+                        "hideProfileVisibilitySettings": false,
+                        "id": "{!recordId}",
+                        "locationTitle": "Location",
+                        "profileSectionDescText": "Customize who is able to see what on your profile page",
+                        "profileSectionToolTipText": "Restricted: Visible to the employees of the company that created the site. Members: Visible to logged-in members. Public: Visible to anyone viewing pages that don't require login.",
+                        "profileVisibilityTitle": "Profile Visibility",
+                        "settingsPageTitle": "My Settings"
+                    },
+                    "componentName": "forceCommunity:userSettingsCustomizable",
+                    "id": "01e24f80-480c-46d9-bd58-aacee079d8e4",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "c08cd229-d4c4-42d5-a2e4-7c31f80a3cf3",
+            "regionName": "content",
+            "type": "region"
+        },
+        {
+            "id": "f1570701-a756-41f1-8dd6-2abb3b3d2581",
+            "regionName": "footer",
+            "type": "region"
+        }
+    ],
+    "themeLayoutType": "Inner",
+    "type": "view",
+    "viewType": "usersettings"
+}

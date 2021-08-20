@@ -1,0 +1,58 @@
+{
+    "appPageId": "4bb92900-b3fd-4085-9c29-e01a6ea6256c",
+    "componentName": "siteforce:sldsOneColLayout",
+    "id": "52a859ab-6f56-4f79-b3a8-170785ab8d99",
+    "label": "Search",
+    "regions": [
+        {
+            "id": "14ca5404-6354-4554-a08e-ef7648318cfd",
+            "regionName": "header",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "scopes": [
+                            {
+                                "isPublic": true,
+                                "name": "FeedPost"
+                            },
+                            {
+                                "isPublic": true,
+                                "name": "KnowledgeArticleVersion"
+                            },
+                            {
+                                "isPublic": false,
+                                "name": "Case"
+                            },
+                            {
+                                "isPublic": true,
+                                "name": "CollaborationGroup"
+                            }
+                        ],
+                        "searchResultFiltering": true,
+                        "searchTerm": "{!term}",
+                        "showTopResults": true
+                    },
+                    "componentName": "forceCommunity:search",
+                    "id": "77b99bfc-11b0-4dfa-ae9c-ab5046c0c67f",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "a9736884-91a5-4ef1-b2be-08edf63187ad",
+            "regionName": "content",
+            "type": "region"
+        },
+        {
+            "id": "4819569b-f2f1-494d-9eb9-b6f237715db7",
+            "regionName": "footer",
+            "type": "region"
+        }
+    ],
+    "themeLayoutType": "Inner",
+    "type": "view",
+    "viewType": "global-search"
+}

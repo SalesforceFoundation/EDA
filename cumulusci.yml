@@ -4,7 +4,7 @@ project:
     package:
         name: EDA
         namespace: hed
-        api_version: 48.0
+        api_version: 52.0
         install_class: STG_InstallScript
     git:
         prefix_release: rel/
@@ -55,6 +55,16 @@ tasks:
                   label: "Temporary Resident"
                   add_before: "Other (Non-U.S.)"
 
+    create_learner_portal_community:
+        group: "EDA: Community Config"
+        description: Creates the learner portal community
+        class_path: cumulusci.tasks.salesforce.CreateCommunity
+        options:
+            template: "Customer Service"
+            url_path_prefix: "LearnerPortal"
+            name: "LearnerPortalCommunity"
+            timeout: 600
+
     deploy_dev_config:
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
         class_path: cumulusci.tasks.salesforce.Deploy
@@ -94,6 +104,13 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: unpackaged/config/install_emulator
+
+    deploy_learner_portal:
+        group: "EDA: Community Config"
+        description: Deploys the learner portal community
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            path: unpackaged/config/learner_community
 
     deploy_release_gating:
         group: "EDA: Metadata"
@@ -316,6 +333,13 @@ tasks:
                 - EinsteinAnalyticsAdmin
                 - EinsteinAnalyticsPlusAdmin
                 - EinsteinAnalyticsPlusUser
+
+    publish_learner_portal:
+        group: "EDA: Community Config"
+        description: Publishes the learner portal
+        class_path: cumulusci.tasks.salesforce.PublishCommunity
+        options:
+            name: "LearnerPortalCommunity"
 
     retrieve_config_dev:
         description: Retrieves the current changes in the scratch org into unpackaged/config/dev.
@@ -559,6 +583,21 @@ flows:
                 task: execute_enable_course_connections
                 options:
                     namespaced: False
+
+    learner_portal_setup:
+        group: "EDA: Community Config"
+        description: Create, deploy, and publish a community in an unmanaged org.
+        steps:
+            1:
+                task: create_learner_portal_community
+            2:
+                task: deploy_learner_portal
+            3:
+                task: util_sleep
+                options:
+                    seconds: 20
+            4:
+                task: publish_learner_portal
 
     run_unmanaged_unit_tests:
         # description: Configure an org for use as a dev org after package metadata is deployed.
