@@ -291,6 +291,7 @@ public with sharing class ADDR_Contact_TEST {
             addr.MailingStreet__c = 'New Street' + i;
             addr.MailingCity__c = 'New City' + i;
             addr.MailingCounty__c = 'New County' + i;
+            addr.Inactive__c = true;
         }
         Test.startTest();
         update contactsAddrs.addrs;
@@ -305,7 +306,8 @@ public with sharing class ADDR_Contact_TEST {
                     MailingCity,
                     Mailing_County__c,
                     is_Address_Override__c,
-                    Current_Address__c
+                    Current_Address__c,
+                    Mailing_Address_Inactive__c
                 FROM Contact
             ]
         );
@@ -315,6 +317,7 @@ public with sharing class ADDR_Contact_TEST {
             System.assert(contact.Mailing_County__c.contains('New County'));
             System.assertEquals(false, contact.is_Address_Override__c);
             System.assertNotEquals(null, contact.Current_Address__c);
+            System.assertEquals(true, contact.Mailing_Address_Inactive__c);
         }
     }
 
@@ -626,6 +629,29 @@ public with sharing class ADDR_Contact_TEST {
         }
     }
 
+    @isTest
+    private static void insertNewDefaultAddressInactive() {
+        configSettings();
+
+        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
+
+        List<Address__c> addrs = UTIL_UnitTestData_API.getMultipleTestAddresses(2);
+        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
+            addrs[i].Parent_Contact__c = contactsAddrs.contacts[i].Id;
+            addrs[i].Inactive__c = true;
+        }
+        turnOnAllAddrTriggers();
+        Test.startTest();
+        insert addrs;
+        turnOnAllAddrTriggers();
+        Test.stopTest();
+
+        Map<Id, Contact> contactsById = new Map<Id, Contact>([SELECT Id, Mailing_Address_Inactive__c FROM Contact]);
+        for (Contact contact : contactsById.values()) {
+            System.assertNotEquals(true, contact.Mailing_Address_Inactive__c);
+        }
+    }
+
     /*********************************************************************************************************
     @description Insert new default Address record to existing Contact with existing default Address record. 
     * Update/reset previous old default Address record Default_Address__c to true and update its mailing fields.
@@ -742,6 +768,32 @@ public with sharing class ADDR_Contact_TEST {
             } else {
                 System.assertEquals(false, addr.Default_Address__c);
             }
+        }
+    }
+
+    @isTest
+    private static void updateExistingContactMailingFieldsInactiveAddress() {
+        configSettings();
+
+        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(4);
+
+        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
+            contactsAddrs.contacts[i].Mailing_Address_Inactive__c = true;
+        }
+        turnOnAllAddrTriggers();
+        Test.startTest();
+        update contactsAddrs.contacts;
+        Test.stopTest();
+
+        //Verify the previous Address records Default_Address__c is cleared
+        List<Address__c> addrList = [
+            SELECT Id, Default_Address__c, MailingStreet__c, Parent_Contact__c, Inactive__c
+            FROM Address__c
+        ];
+        //Each set of edits creates a new Address record
+        System.assertEquals(8, addrList.size());
+        for (Address__c addr : addrList) {
+            System.assertEquals(true, addr.Inactive__c);
         }
     }
 
