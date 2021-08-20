@@ -237,7 +237,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         Contact contact = UTIL_UnitTestData_TEST.getContact();
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,
-            UTIL_Describe_API.getBizAccRecTypeID()
+            UTIL_Describe.getBizAccRecTypeID()
         );
         contact.Mailing_County__c = 'Something else';
 
