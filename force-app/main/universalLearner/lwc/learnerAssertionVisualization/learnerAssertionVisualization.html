@@ -1,0 +1,14 @@
+<template>
+    <dl class="slds-list_horizontal slds-wrap">
+        <template for:each={fieldsToDisplay} for:item="fieldToDisplay">
+            <dt
+                key={fieldToDisplay.fieldKey}
+                title={fieldToDisplay.fieldLabel}
+                class="slds-item_label slds-text-color_weak slds-truncate"
+            >
+                {fieldToDisplay.fieldLabel}:
+            </dt>
+            <dd key={fieldToDisplay.fieldKey} class="slds-item_detail slds-truncate">{fieldToDisplay.fieldValue}</dd>
+        </template>
+    </dl>
+</template>

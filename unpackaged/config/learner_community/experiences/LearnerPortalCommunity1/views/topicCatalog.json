@@ -1,0 +1,109 @@
+{
+    "appPageId": "4bb92900-b3fd-4085-9c29-e01a6ea6256c",
+    "componentName": "siteforce:sldsOneColLayout",
+    "id": "ba4f3486-e08b-401a-bb10-4c5ed8728bec",
+    "label": "Topic Catalog",
+    "regions": [
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "bannerText": "",
+                        "bannerTextWithKnowledge": "Explore other <a href=\"javascript:void(0)\" class=\"headlineArticles\">articles</a> and <a href=\"javascript:void(0)\" class=\"headlineDiscussions\">discussions</a> on this topic.",
+                        "bannerTextWithoutKnowledge": "Explore other <a href=\"javascript:void(0)\" class=\"headlineDiscussions\">discussions</a> on this topic.",
+                        "pageType": "",
+                        "showSubTopics": true,
+                        "title": "Topics",
+                        "uniqueNameOrId": ""
+                    },
+                    "componentName": "forceCommunity:headline",
+                    "id": "f6e13df8-19ff-4654-811f-04b596b6e4d4",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "05e3c3fe-7a1a-47f7-99da-cf9d3f7fbb2b",
+            "regionName": "header",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {},
+                    "componentName": "forceCommunity:topicCatalog",
+                    "id": "cdee40ea-59f3-4dec-880a-684ccbc1e844",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "44565abd-d90f-4166-a468-34ae53853694",
+            "regionName": "content",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "askCommunityLabel": "Ask a Question",
+                        "buttonBgColor": "",
+                        "buttonBgHoverColor": "",
+                        "buttonBorderColor": "",
+                        "buttonRadius": 0,
+                        "buttonTextColor": "",
+                        "buttonTextHoverColor": "",
+                        "buttonTwoBgColor": "",
+                        "buttonTwoBgHoverColor": "",
+                        "buttonTwoBorderColor": "",
+                        "buttonTwoRadius": 0,
+                        "buttonTwoTextColor": "",
+                        "buttonTwoTextHoverColor": "",
+                        "confirmationMessage": "Got it!",
+                        "contactSupportLabel": "Contact Support",
+                        "followUpPromptLabel": "Can we close your question?",
+                        "headerLabel": "Don't see what you're looking for?",
+                        "isAskFollowPromptEnabled": true,
+                        "isIncludeArticlesEnabled": false,
+                        "isIncludeDiscussionsEnabled": true,
+                        "isInitialSatisfactionPromptEnabled": true,
+                        "isPublisherDeflectionEnabled": true,
+                        "maxSuggestions": 5,
+                        "satisfactionPromptLabel": "Did we help to answer your question?",
+                        "showDetails": false,
+                        "showTopics": true
+                    },
+                    "componentName": "siteforce:napiliFooter",
+                    "id": "5c59d0e4-9eb9-44cc-8a60-f017dee4684c",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "53cfc7c2-f9e0-4c26-821e-d0655cf72753",
+            "regionName": "footer",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "customHeadTags": "",
+                        "description": "",
+                        "title": "Topic Catalog"
+                    },
+                    "componentName": "forceCommunity:seoAssistant",
+                    "id": "4166b2b4-a815-4d02-a7fb-85844c060870",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "73fc1e59-a78f-488e-bdc4-f9946e51cb53",
+            "regionName": "sfdcHiddenRegion",
+            "type": "region"
+        }
+    ],
+    "themeLayoutType": "Inner",
+    "type": "view",
+    "viewType": "topic-catalog"
+}

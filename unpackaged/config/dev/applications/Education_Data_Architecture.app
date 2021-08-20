@@ -29,10 +29,5 @@
     <tabs>%%%NAMESPACE%%%Program_Plan__c</tabs>
     <tabs>%%%NAMESPACE%%%Trigger_Handler__c</tabs>
     <tabs>%%%NAMESPACE%%%Education_Cloud_Settings</tabs>
-    <tabs>%%%NAMESPACE%%%Error__c</tabs>
-    <tabs>%%%NAMESPACE%%%Language__c</tabs>
-    <tabs>%%%NAMESPACE%%%Contact_Language__c</tabs>
-    <tabs>%%%NAMESPACE%%%Facility__c</tabs>
-    <tabs>%%%NAMESPACE%%%Term_Grade__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

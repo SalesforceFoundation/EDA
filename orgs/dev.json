@@ -1,16 +1,22 @@
 {
     "orgName": "EDA - Dev Workspace",
     "edition": "Developer",
-    "features": ["DevelopmentWave"],
+    "features": ["Communities", "DevelopmentWave"],
     "settings": {
-        "lightningExperienceSettings": {
-            "enableS1DesktopEnabled": true
+        "chatterSettings": {
+            "enableChatter": true
+        },
+        "communitiesSettings": {
+            "enableNetworksEnabled": true
+        },
+        "experienceBundleSettings": {
+            "enableExperienceBundleMetadata": true
         },
         "languageSettings": {
             "enableTranslationWorkbench": true
         },
-        "chatterSettings": {
-            "enableChatter": true
+        "lightningExperienceSettings": {
+            "enableS1DesktopEnabled": true
         }
     }
 }

@@ -1,0 +1,93 @@
+{
+    "appPageId": "4bb92900-b3fd-4085-9c29-e01a6ea6256c",
+    "componentName": "siteforce:sldsOneColLayout",
+    "id": "7733c4e2-a0a4-4610-85bd-83694c66fd39",
+    "label": "Report Detail",
+    "regions": [
+        {
+            "id": "5f1e8c76-b755-4f4b-89ac-471fb040a0b5",
+            "regionName": "header",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "recordId": "{!recordId}"
+                    },
+                    "componentName": "forceCommunity:reportPage",
+                    "id": "d37233f4-11cc-499b-89b9-f61dfff1df4b",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "ae910597-f385-4b0c-b492-7f8341889792",
+            "regionName": "content",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "askCommunityLabel": "Ask a Question",
+                        "buttonBgColor": "",
+                        "buttonBgHoverColor": "",
+                        "buttonBorderColor": "",
+                        "buttonRadius": 0,
+                        "buttonTextColor": "",
+                        "buttonTextHoverColor": "",
+                        "buttonTwoBgColor": "",
+                        "buttonTwoBgHoverColor": "",
+                        "buttonTwoBorderColor": "",
+                        "buttonTwoRadius": 0,
+                        "buttonTwoTextColor": "",
+                        "buttonTwoTextHoverColor": "",
+                        "confirmationMessage": "Got it!",
+                        "contactSupportLabel": "Contact Support",
+                        "followUpPromptLabel": "Can we close your question?",
+                        "headerLabel": "Don't see what you're looking for?",
+                        "isAskFollowPromptEnabled": true,
+                        "isIncludeArticlesEnabled": false,
+                        "isIncludeDiscussionsEnabled": true,
+                        "isInitialSatisfactionPromptEnabled": true,
+                        "isPublisherDeflectionEnabled": true,
+                        "maxSuggestions": 5,
+                        "satisfactionPromptLabel": "Did we help to answer your question?",
+                        "showDetails": false,
+                        "showTopics": true
+                    },
+                    "componentName": "siteforce:napiliFooter",
+                    "id": "cb704560-a450-40d4-b26f-1964bba238fe",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "9b896548-0106-4310-ac8c-f25c0e437065",
+            "regionName": "footer",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "customHeadTags": "",
+                        "description": "",
+                        "title": "{!Record._Object}: {!Record._Title}"
+                    },
+                    "componentName": "forceCommunity:seoAssistant",
+                    "id": "5627bf23-d6e5-4a70-97fa-f8cd9c9fb91c",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "3cb23eca-4d33-44f9-8820-3b39ed42a135",
+            "regionName": "sfdcHiddenRegion",
+            "type": "region"
+        }
+    ],
+    "themeLayoutType": "Inner",
+    "type": "view",
+    "viewType": "detail-00O"
+}
