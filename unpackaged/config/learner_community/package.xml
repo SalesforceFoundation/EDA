@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>LearnerPortalCommunity</members>
+        <name>CustomSite</name>
+    </types>
+    <types>
+        <members>LearnerPortalCommunity1</members>
+        <name>ExperienceBundle</name>
+    </types>
+    <types>
+        <members>Default_Navigation</members>
+        <name>NavigationMenu</name>
+    </types>
+    <types>
+        <members>LearnerPortalCommunity</members>
+        <name>Network</name>
+    </types>
+    <version>52.0</version>
+</Package>
