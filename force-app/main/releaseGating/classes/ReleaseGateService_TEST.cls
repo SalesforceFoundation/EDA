@@ -181,6 +181,45 @@ public with sharing class ReleaseGateService_TEST {
         Test.stopTest();
     }
 
+    /**************************************************************************************************************************
+     * @description Test method to verify that the activateReleaseGate method returns a successful result
+     ***************************************************************************************************************************/
+    @isTest
+    private static void activateReleaseGate() {
+        ReleaseGateService.instance = new STUB_ReleaseGateService();
+        ProductRegistryService.instance = new STUB_ProductRegistryService();
+
+        ReleaseGateService releaseGateServiceInstance = ReleaseGateService.getInstance();
+        String productName = 'testProduct';
+        String gateName = 'testGate';
+        String productRegistryName = 'testName';
+
+        Test.startTest();
+        ActivateReleaseGateActionResultModel activateReleaseGatesResult = releaseGateServiceInstance.activateReleaseGate(
+            productRegistryName,
+            productName,
+            gateName
+        );
+        Test.stopTest();
+        System.assertEquals(true, activateReleaseGatesResult.success, 'The result should be successful');
+        System.assertEquals(1, activateReleaseGatesResult.result.size(), 'There should be 1 result');
+        System.assertEquals(
+            productName,
+            activateReleaseGatesResult.result.get(0).productName,
+            'Expected product name should be ' + productName
+        );
+        System.assertEquals(
+            gateName,
+            activateReleaseGatesResult.result.get(0).gateName,
+            'Expected gate name should be ' + gateName
+        );
+        System.assertEquals(
+            'active',
+            activateReleaseGatesResult.result.get(0).status,
+            'Expected status should be active'
+        );
+    }
+
     /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
@@ -257,6 +296,16 @@ public with sharing class ReleaseGateService_TEST {
                 null
             );
             return releaseGateResultModel;
+        }
+
+        public override ActivateReleaseGateActionResultModel activateReleaseGate(String productName, String gateName) {
+            return new ActivateReleaseGateActionResultModel(
+                new List<ActivateReleaseGateActionResultModel.ActivateReleaseGateResult>{
+                    new ActivateReleaseGateActionResultModel.ActivateReleaseGateResult(productName, gateName, 'active')
+                },
+                true,
+                null
+            );
         }
     }
 }
