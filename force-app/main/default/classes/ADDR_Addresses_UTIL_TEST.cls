@@ -1299,7 +1299,30 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         System.assertEquals(account.BillingCountry, contact.MailingCountry);
         System.assertEquals(account.BillingLatitude, contact.MailingLatitude);
         System.assertEquals(account.BillingLongitude, contact.MailingLongitude);
-        System.assertEquals(true, account.Billing_Address_Inactive__c);
+        System.assertEquals(true, contact.Mailing_Address_Inactive__c);
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjValidFieldInvalidInactiveAddressFields() {
+        //To Refactor: No way we can test isStateCountryPicklistsEnabled.
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        contact.Mailing_Address_Inactive__c = false;
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        account.Billing_Address_Inactive__c = true;
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObj(account, 'Billing', contact, 'Other');
+        Test.stopTest();
+
+        System.assertEquals(account.BillingStreet, contact.MailingStreet);
+        System.assertEquals(account.BillingCity, contact.MailingCity);
+        System.assertEquals(account.Billing_County__c, contact.Mailing_County__c);
+        System.assertEquals(account.BillingPostalCode, contact.MailingPostalCode);
+        System.assertEquals(account.BillingState, contact.MailingState);
+        System.assertEquals(account.BillingCountry, contact.MailingCountry);
+        System.assertEquals(account.BillingLatitude, contact.MailingLatitude);
+        System.assertEquals(account.BillingLongitude, contact.MailingLongitude);
+        System.assertEquals(false, contact.Mailing_Address_Inactive__c);
     }
 
     @isTest
@@ -1450,6 +1473,20 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
+    static void testCopyAddressObjSobjAddrValidFieldContactInactiveAddressFieldsInvalid() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        contact.Mailing_Address_Inactive__c = true;
+        Address__c address = new Address__c();
+        address.Inactive__c = false;
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(contact, 'Other', address, 'Home');
+        Test.stopTest();
+
+        System.assertEquals(false, address.Inactive__c);
+    }
+
+    @isTest
     static void testCopyAddressObjSobjAddrInvalidField() {
         //To Refactor: we don't have guard clause for this.
         Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
@@ -1579,6 +1616,20 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         System.assertEquals(true, dmlWrapper.objectsToUpdate.size() > 0);
         System.assertEquals(address.MailingStreet__c, dmlWrapper.objectsToUpdate[0].get('MailingStreet'));
         System.assertEquals(true, contact.Mailing_Address_Inactive__c);
+    }
+
+    @isTest
+    static void testCopyAddressAddrSObjValidFieldInactiveAddressFieldsInvalid() {
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        address.Inactive__c = true;
+        Contact contact = new Contact();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressAddrSObj(address, contact, 'Other', 'Primary_Address_Type__c', dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(false, contact.Mailing_Address_Inactive__c);
     }
 
     @isTest

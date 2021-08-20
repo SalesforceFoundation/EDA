@@ -413,7 +413,7 @@ public with sharing class ADDR_Addresses_UTIL {
 
         if (
             INACTIVE_ADDRESS_FIELDS_PREFIX.contains(strFieldPrefixDst) &&
-            INACTIVE_ADDRESS_FIELDS_PREFIX.contains(strFieldPrefixDst)
+            INACTIVE_ADDRESS_FIELDS_PREFIX.contains(strFieldPrefixSrc)
         ) {
             sobjDst.put(
                 strFieldPrefixDst + '_Address_Inactive__c',
