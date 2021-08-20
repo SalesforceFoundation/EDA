@@ -1,0 +1,32 @@
+<template>
+    <template if:false={shouldDisplayCourses}>
+        <!-- Display spinner -->
+        <lightning-spinner alternative-text={labelReference.spinnerLoadingAltText} variant="brand" size="medium">
+        </lightning-spinner>
+    </template>
+    <lightning-card
+        icon-name="custom:custom83"
+        title={learnerCourseViewModel.schemaLabels.assertion.achievement.achievementType}
+        if:true={shouldDisplayCourses}
+    >
+        <ul class="slds-accordion">
+            <template for:each={learnerCourseViewModel.courses} for:item="learnerCourse">
+                <c-custom-lightning-accordion-section
+                    key={learnerCourse.custom.courseConnectionId}
+                    title={learnerCourse.assertion.achievement.name}
+                    label={learnerCourse.assertion.achievement.name}
+                    menu-actions={menuActions}
+                    menu-alternative-text={labelReferencemenuAlternativeText}
+                    onmenuselect={handleMenuSelect}
+                >
+                    <c-learner-assertion-visualization
+                        field-definitions={fieldDefinitions}
+                        learner-assertion-view-model={learnerCourse}
+                        schema-labels={learnerCourseViewModel.schemaLabels}
+                    >
+                    </c-learner-assertion-visualization>
+                </c-custom-lightning-accordion-section>
+            </template>
+        </ul>
+    </lightning-card>
+</template>
