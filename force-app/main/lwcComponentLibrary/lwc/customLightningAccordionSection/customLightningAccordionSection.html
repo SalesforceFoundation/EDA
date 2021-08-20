@@ -1,0 +1,43 @@
+<template>
+    <li class="slds-accordion__list-item">
+        <section class={sectionClass}>
+            <div class="slds-accordion__summary">
+                <h2 class="slds-accordion__summary-heading">
+                    <button
+                        class="slds-button slds-button_reset slds-accordion__summary-action"
+                        aria-controls="sectionDetails"
+                        aria-expanded={expanded}
+                        title={title}
+                        onclick={handleSectionHeaderClick}
+                    >
+                        <lightning-icon
+                            icon-name="utility:switch"
+                            size="x-small"
+                            class="slds-accordion__summary-action-icon slds-button__icon slds-button__icon_left"
+                            aria-hidden="true"
+                        ></lightning-icon>
+                        <span class="slds-accordion__summary-content">{label}</span>
+                    </button>
+                </h2>
+                <lightning-button-menu
+                    if:true={menuActions}
+                    alternative-text={menuAlternativeText}
+                    icon-size="x-small"
+                    menu-alignment="right"
+                    onselect={handleMenuSelect}
+                >
+                    <template for:each={menuActions} for:item="menuAction">
+                        <lightning-menu-item
+                            key={menuAction.value}
+                            value={menuAction.value}
+                            label={menuAction.label}
+                        ></lightning-menu-item>
+                    </template>
+                </lightning-button-menu>
+            </div>
+            <div class="slds-accordion__content" hidden={sectionIsHidden} id="sectionDetails">
+                <slot></slot>
+            </div>
+        </section>
+    </li>
+</template>

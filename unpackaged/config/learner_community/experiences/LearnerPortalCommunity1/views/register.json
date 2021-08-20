@@ -1,0 +1,95 @@
+{
+    "appPageId": "1122096e-acca-4da0-ac0b-302423c0eb95",
+    "componentName": "siteforce:sldsOneColLayout",
+    "id": "1595d267-d8ab-475c-8fb5-6137c18c0f06",
+    "label": "Register",
+    "regions": [
+        {
+            "components": [
+                {
+                    "componentAttributes": {},
+                    "componentName": "salesforceIdentity:communityLogo2",
+                    "id": "7963400b-e9fc-410f-be7e-3477a9412133",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                },
+                {
+                    "componentAttributes": {
+                        "richTextValue": "<div style=\"text-align: center;\" class=\"inverseTextColor\">Join the community to receive personalized information and customer support.</div>"
+                    },
+                    "componentName": "forceCommunity:richTextInline",
+                    "id": "1c621978-5628-482b-b3fc-6c12f88f4236",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                },
+                {
+                    "componentAttributes": {
+                        "confirmPasswordLabel": "Confirm Password",
+                        "emailLabel": "Email",
+                        "extraFieldsFieldSet": "",
+                        "firstnameLabel": "First Name",
+                        "includePasswordField": false,
+                        "lastnameLabel": "Last Name",
+                        "passwordLabel": "Create Password",
+                        "regConfirmUrl": "./CheckPasswordResetEmail",
+                        "startUrl": "",
+                        "submitButtonLabel": "Sign Up"
+                    },
+                    "componentName": "salesforceIdentity:selfRegister2",
+                    "id": "6c576c4b-b9c8-47e5-b36b-d4d037ba369a",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                },
+                {
+                    "componentAttributes": {
+                        "headerText": "",
+                        "showHeader": false,
+                        "useCommunityDomainSso": false
+                    },
+                    "componentName": "salesforceIdentity:socialLogin2",
+                    "id": "4152aefd-30e5-4876-93d1-7df800a14137",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                },
+                {
+                    "componentAttributes": {
+                        "richTextValue": "<div style=\"text-align: center;\"><a class=\"inverseTextColor\" href=\"./\">Already have an account?</a></div>"
+                    },
+                    "componentName": "forceCommunity:richTextInline",
+                    "id": "9594e29a-a4cc-4a57-adef-a1f8478b1ef8",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "dc6e6d6a-42ac-45e9-9a55-66f52360ee3d",
+            "regionName": "content",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "customHeadTags": "",
+                        "description": "",
+                        "title": "Register"
+                    },
+                    "componentName": "forceCommunity:seoAssistant",
+                    "id": "11649418-e0c5-40f0-bcd1-0095df32cb96",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "4d7428bd-7677-4491-825e-df22633addf5",
+            "regionName": "sfdcHiddenRegion",
+            "type": "region"
+        }
+    ],
+    "themeLayoutType": "Login",
+    "type": "view",
+    "viewType": "self-register"
+}
