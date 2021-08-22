@@ -44,6 +44,7 @@ public with sharing class ADDR_Addresses_UTIL {
     /* @description map from Country Code to Country Name */
     private static Map<String, String> validCountriesByCode = new Map<String, String>();
 
+    /* @description Constant set of prefix string for inactive address fields since methods are static*/
     private final static Set<String> INACTIVE_ADDRESS_FIELDS_PREFIX = new Set<String>{ 'Mailing', 'Billing' };
 
     /*******************************************************************************************************
@@ -125,6 +126,13 @@ public with sharing class ADDR_Addresses_UTIL {
         (includeAddressType && (!equalsCaseSensitive(addrNew.Address_Type__c, addrOld.Address_Type__c))));
     }
 
+    /*******************************************************************************************************
+     * @description Utility to compare two Address records' address fields excluding inactive fields.
+     * @param addrNew the new version of the Address record.
+     * @param addrOld the old version of the Address record.
+     * @param includeAddressType a boolean that checks whether to include comparing the AddressType field.
+     * @return Boolean. True if any of the fields fields are the same.
+     ********************************************************************************************************/
     public static Boolean isAddressInfoSame(Address__c addrNew, Address__c addrOld, Boolean includeAddressType) {
         if (addrNew == null || addrOld == null) {
             return false;

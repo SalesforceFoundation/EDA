@@ -235,10 +235,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testIsContactAccAddrInfoSameDifferentMailingCounty() {
         Contact contact = UTIL_UnitTestData_TEST.getContact();
-        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
-            1,
-            UTIL_Describe.getBizAccRecTypeID()
-        );
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
         contact.Mailing_County__c = 'Something else';
 
         Test.startTest();
@@ -506,6 +503,138 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         Test.stopTest();
 
         System.assertEquals(false, isAddressChanged);
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** isAddressInfoSame *******************************************
+     **************************************************************************************************************************/
+
+    @isTest
+    static void testIsAddressInfoSamedTrueDifferentMailingStreet() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSamed = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressInfoSamed);
+    }
+
+    @isTest
+    static void testIsAddressInfoSamedTrueDifferentMailingStreet2() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingStreet2__c = 'Street' + 1;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSamed = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressInfoSamed);
+    }
+
+    @isTest
+    static void testIsAddressInfoSamedTrueDifferentMailingCity() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSamed = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressInfoSamed);
+    }
+
+    static void testIsAddressInfoSamedTrueDifferentMailingCounty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSamed = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressInfoSamed);
+    }
+
+    static void testIsAddressInfoSamedTrueDifferentPostalCode() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSamed = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressInfoSamed);
+    }
+
+    @isTest
+    static void testIsAddressInfoSamedTrueIncludingType() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].Address_Type__c = 'Work';
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSame = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], true);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressInfoSame);
+    }
+
+    @isTest
+    static void testIsAddressInfoSameFalse() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSame = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], true);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressInfoSame);
+    }
+
+    @isTest
+    static void testIsAddressInfoSameFalseExcludingType() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].Address_Type__c = 'Work';
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSame = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressInfoSame);
+    }
+
+    @isTest
+    static void testIsAddressInfoSameNewAddressNull() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+
+        Test.startTest();
+        Boolean isAddressInfoSame = ADDR_Addresses_UTIL.isAddressInfoSame(null, addresses[0], null);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressInfoSame);
     }
 
     /**************************************************************************************************************************
