@@ -125,6 +125,22 @@ public with sharing class ADDR_Addresses_UTIL {
         (includeAddressType && (!equalsCaseSensitive(addrNew.Address_Type__c, addrOld.Address_Type__c))));
     }
 
+    public static Boolean isAddressInfoSame(Address__c addrNew, Address__c addrOld, Boolean includeAddressType) {
+        if (addrNew == null || addrOld == null) {
+            return false;
+        }
+
+        return (addrNew.Default_Address__c != addrOld.Default_Address__c ||
+        !equalsCaseSensitive(addrNew.MailingStreet__c, addrOld.MailingStreet__c) ||
+        !equalsCaseSensitive(addrNew.MailingStreet2__c, addrOld.MailingStreet2__c) ||
+        !equalsCaseSensitive(addrNew.MailingCity__c, addrOld.MailingCity__c) ||
+        !equalsCaseSensitive(addrNew.MailingCounty__c, addrOld.MailingCounty__c) ||
+        !equalsCaseSensitive(addrNew.MailingState__c, addrOld.MailingState__c) ||
+        !equalsCaseSensitive(addrNew.MailingPostalCode__c, addrOld.MailingPostalCode__c) ||
+        !equalsCaseSensitive(addrNew.MailingCountry__c, addrOld.MailingCountry__c) ||
+        (includeAddressType && (!equalsCaseSensitive(addrNew.Address_Type__c, addrOld.Address_Type__c))));
+    }
+
     /*******************************************************************************************************
      * @description Compares two Contact records' address fields.
      * @param con1 Contact record from trigger new.
@@ -740,7 +756,7 @@ public with sharing class ADDR_Addresses_UTIL {
                 Address__c addrMatch = null;
                 for (Address__c childAddr : childAddrs) {
                     //Only include address type in the test if the new one isn't empty.
-                    if (!isAddressChanged(addr, childAddr, addr.Address_Type__c != null)) {
+                    if (!isAddressInfoSame(addr, childAddr, addr.Address_Type__c != null)) {
                         //Found exact match, record it and bail out
                         addrMatch = childAddr;
                         break;
