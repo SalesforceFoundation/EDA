@@ -883,7 +883,7 @@ public with sharing class ADDR_Contact_TEST {
 
         //Verify the previous default Address records are still marked default Address
         List<Address__c> addrList = [
-            SELECT Id, Default_Address__c, MailingStreet__c, Parent_Contact__c
+            SELECT Id, Default_Address__c, MailingStreet__c, Parent_Contact__c, Inactive__c
             FROM Address__c
         ];
         System.assertEquals(2, addrList.size());
@@ -1009,7 +1009,7 @@ public with sharing class ADDR_Contact_TEST {
 
         //Verify that no new Address record was created
         List<Address__c> addrList = [
-            SELECT Id, Default_Address__c, MailingStreet__c, Parent_Contact__c
+            SELECT Id, Default_Address__c, MailingStreet__c, Parent_Contact__c, Inactive__c, MailingCity__c
             FROM Address__c
         ];
         System.assertEquals(2, addrList.size());
