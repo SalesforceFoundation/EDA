@@ -791,7 +791,8 @@ public with sharing class ADDR_Contact_TEST {
             FROM Address__c
         ];
         //Each set of edits creates a new Address record
-        System.assertEquals(8, addrList.size());
+        //For inactive address, only 4 records will be created as updating inactivenss won't create new records
+        System.assertEquals(4, addrList.size());
         for (Address__c addr : addrList) {
             System.assertEquals(true, addr.Inactive__c);
         }
@@ -855,6 +856,39 @@ public with sharing class ADDR_Contact_TEST {
             } else {
                 System.assertEquals(true, addr.Default_Address__c);
             }
+        }
+    }
+
+    /*********************************************************************************************************
+    @description Update existing Contact's mailing fields and enable is_Address_Override__c. 
+    * Verify:
+    * - New non default Address record is created. 
+    * - Contact's mailing fields are updated to match the mailing fields of the newly created non default Address record. 
+    * - Existing default Address record is still marked as default. 
+    **********************************************************************************************************/
+    @isTest
+    private static void updateContactInactiveAddressAndMarkedOverride() {
+        configSettings();
+
+        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
+
+        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
+            contactsAddrs.contacts[i].Mailing_Address_Inactive__c = true;
+            contactsAddrs.contacts[i].is_Address_Override__c = true;
+        }
+        turnOnAllAddrTriggers();
+        Test.startTest();
+        update contactsAddrs.contacts;
+        Test.stopTest();
+
+        //Verify the previous default Address records are still marked default Address
+        List<Address__c> addrList = [
+            SELECT Id, Default_Address__c, MailingStreet__c, Parent_Contact__c
+            FROM Address__c
+        ];
+        System.assertEquals(2, addrList.size());
+        for (Address__c addr : addrList) {
+            System.assertEquals(false, addr.Inactive__c);
         }
     }
 
@@ -953,6 +987,35 @@ public with sharing class ADDR_Contact_TEST {
         System.assertEquals(2, addrList.size());
         for (Address__c addr : addrList) {
             System.assert(addr.MailingStreet__c.equals('direct street  edit'));
+        }
+    }
+
+    @isTest
+    private static void updateContactInactiveAddressForSimpleAddrChangeTreatedAsUpdate() {
+        configSettings();
+
+        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
+
+        //NOTE: we only modify 1 field, so it will be treated as an update to an existing address!
+        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
+            contactsAddrs.contacts[i].MailingCity = 'Random City';
+            contactsAddrs.contacts[i].Mailing_Address_Inactive__c = true;
+        }
+        turnOnAllAddrTriggers();
+
+        Test.startTest();
+        update contactsAddrs.contacts;
+        Test.stopTest();
+
+        //Verify that no new Address record was created
+        List<Address__c> addrList = [
+            SELECT Id, Default_Address__c, MailingStreet__c, Parent_Contact__c
+            FROM Address__c
+        ];
+        System.assertEquals(2, addrList.size());
+        for (Address__c addr : addrList) {
+            System.assertEquals('Random City', addr.MailingCity__c);
+            System.assertEquals(true, addr.Inactive__c);
         }
     }
 
