@@ -860,39 +860,6 @@ public with sharing class ADDR_Contact_TEST {
     }
 
     /*********************************************************************************************************
-    @description Update existing Contact's mailing fields and enable is_Address_Override__c. 
-    * Verify:
-    * - New non default Address record is created. 
-    * - Contact's mailing fields are updated to match the mailing fields of the newly created non default Address record. 
-    * - Existing default Address record is still marked as default. 
-    **********************************************************************************************************/
-    @isTest
-    private static void updateContactInactiveAddressAndMarkedOverride() {
-        configSettings();
-
-        UTIL_UnitTestData_TEST.ContactsWithAddrs contactsAddrs = UTIL_UnitTestData_TEST.createTestContactsAddrs(2);
-
-        for (Integer i = 0; i < contactsAddrs.contacts.size(); i++) {
-            contactsAddrs.contacts[i].Mailing_Address_Inactive__c = true;
-            contactsAddrs.contacts[i].is_Address_Override__c = true;
-        }
-        turnOnAllAddrTriggers();
-        Test.startTest();
-        update contactsAddrs.contacts;
-        Test.stopTest();
-
-        //Verify the previous default Address records are still marked default Address
-        List<Address__c> addrList = [
-            SELECT Id, Default_Address__c, MailingStreet__c, Parent_Contact__c, Inactive__c
-            FROM Address__c
-        ];
-        System.assertEquals(2, addrList.size());
-        for (Address__c addr : addrList) {
-            System.assertEquals(false, addr.Inactive__c);
-        }
-    }
-
-    /*********************************************************************************************************
     @description Update Contact's mailing fields format only or update single mailing field. 
     * Verify: 
     * - No new default or non default Addres records created. 
