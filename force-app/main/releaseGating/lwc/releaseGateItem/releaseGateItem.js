@@ -1,10 +1,17 @@
-import { LightningElement, track, wire, api } from "lwc";
+import { LightningElement, api } from "lwc";
 import stgReleaseGateActivateBy from "@salesforce/label/c.stgReleaseGateActivateBy";
 import stgReleaseGateActivatedOn from "@salesforce/label/c.stgReleaseGateActivatedOn";
 import stgReleaseGateActivate from "@salesforce/label/c.stgReleaseGateActivate";
 import stgBtnReleaseGateActivate from "@salesforce/label/c.stgBtnReleaseGateActivate";
 import stgReleaseGateInProgress from "@salesforce/label/c.stgReleaseGateInProgress";
 import stgNewWindowA11y from "@salesforce/label/c.stgNewWindowA11y";
+
+const ReleaseGateStatus = {
+    ACTIVE: "active",
+    INACTIVE: "inactive",
+    DISABLED: "disabled",
+    INPROGRESS: "inprogress",
+};
 
 export default class ReleaseGateItem extends LightningElement {
     @api productRegistryName;
@@ -35,34 +42,34 @@ export default class ReleaseGateItem extends LightningElement {
     };
 
     get gateActive() {
-        return this.gateStatus === "active";
+        return this.gateStatus === ReleaseGateStatus.ACTIVE;
     }
 
     get gateInactive() {
-        return this.gateStatus === "inactive";
+        return this.gateStatus === ReleaseGateStatus.INACTIVE;
     }
 
     get gateDisabled() {
-        return this.gateStatus === "disabled";
+        return this.gateStatus === ReleaseGateStatus.DISABLED;
     }
 
     get gateInProgress() {
-        return this.gateStatus === "inprogress";
+        return this.gateStatus === ReleaseGateStatus.INPROGRESS;
     }
 
     get gateIconName() {
         let iconName;
         switch (this.gateStatus) {
-            case "active":
+            case ReleaseGateStatus.ACTIVE:
                 iconName = "action:approval";
                 break;
-            case "inactive":
+            case ReleaseGateStatus.INACTIVE:
                 iconName = "action:announcement";
                 break;
-            case "inprogress":
+            case ReleaseGateStatus.INPROGRESS:
                 iconName = "action:more";
                 break;
-            case "disabled":
+            case ReleaseGateStatus.DISABLED:
             default:
                 iconName = "action:info";
                 break;

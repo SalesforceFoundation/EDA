@@ -16,7 +16,6 @@
 
         let modalBody;
         let modalFooter;
-
         let modalHeaderLabel;
         let confirmButton;
         let cancelButton;
