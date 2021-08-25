@@ -172,9 +172,39 @@ global with sharing class EDADemoReleaseGate implements Callable {
         }
     }
 
+    public class ActivateReleaseGateResult {
+        public String productName;
+        public String gateName;
+        public String status;
+
+        public ActivateReleaseGateResult(String productName, String gateName, String status) {
+            this.productName = productName;
+            this.gateName = gateName;
+            this.status = status;
+        }
+    }
+
+    public class ActivateReleaseGateActionResult extends CallableResult {
+        public ActivateReleaseGateResult[] result;
+
+        public ActivateReleaseGateActionResult(
+            ActivateReleaseGateResult[] result,
+            Boolean success,
+            CallableError error
+        ) {
+            super(success, error);
+            this.result = result;
+        }
+    }
+
     public EDADemoReleaseGate() {
     }
 
+    /**
+     * @description Get a list of products with release gates
+     * @param  version Callable API version
+     * @return         A list of products and release gates in json format
+     */
     public String getReleaseGates(Decimal version) {
         List<EDADemoReleaseGate.GetReleaseGateResult> resultList = new List<EDADemoReleaseGate.GetReleaseGateResult>{
             new EDADemoReleaseGate.GetReleaseGateResult(
@@ -351,6 +381,9 @@ global with sharing class EDADemoReleaseGate implements Callable {
                 }
             )
         };
+        //Loading states for 'summer21' and 'sampleinactive' release gates from the db
+        this.loadReleaseGateStateFromDb(resultList[0].gates[0]);
+        this.loadReleaseGateStateFromDb(resultList[1].gates[3]);
 
         EDADemoReleaseGate.GetReleaseGateActionResult releaseGateResultModel = new EDADemoReleaseGate.GetReleaseGateActionResult(
             resultList,
@@ -360,9 +393,31 @@ global with sharing class EDADemoReleaseGate implements Callable {
         return JSON.serialize(releaseGateResultModel);
     }
 
+    /**
+     * @description Activate a release gate
+     * @param  version     Callable API version
+     * @param  productName Release gate product name
+     * @param  gateName    Release gate name
+     * @return             Activate release gate result in json format
+     */
     public String activateReleaseGate(Decimal version, String productName, String gateName) {
-        //TODO: This will be implemented in another user story
-        throw new IllegalArgumentException('Method not implemented');
+        //We will create a contact to emulate gate activation
+        //If a contact with the LastName=gateName exists it means the gate is active
+        List<Contact> stateContacts = [SELECT Id, CreatedDate, LastName FROM Contact WHERE LastName = :gateName];
+        if (stateContacts.isEmpty()) {
+            Contact stateContact = new Contact();
+            stateContact.LastName = gateName;
+            insert stateContact;
+        }
+        //Emulating 'inprogress' status for the 'sampleinactive' release gate
+        String status = gateName == 'sampleinactive' ? 'inprogress' : 'active';
+        return JSON.serialize(
+            new ActivateReleaseGateActionResult(
+                new List<ActivateReleaseGateResult>{ new ActivateReleaseGateResult(productName, gateName, status) },
+                true,
+                null
+            )
+        );
     }
 
     public Object call(String action, Map<String, Object> args) {
@@ -381,5 +436,15 @@ global with sharing class EDADemoReleaseGate implements Callable {
         }
         System.debug('Action finished, result: \r\n' + result);
         return result;
+    }
+
+    private void loadReleaseGateStateFromDb(EDADemoReleaseGate.ReleaseGate gate) {
+        //For our mock gates we store their states in contact records
+        List<Contact> stateContacts = [SELECT Id, CreatedDate, LastName FROM Contact WHERE LastName = :gate.name];
+        if (!stateContacts.isEmpty()) {
+            //Just hardcode sampleinactive release gate to be always inprogress
+            gate.status = gate.name == 'sampleinactive' ? 'inprogress' : 'active';
+            gate.activationDate = stateContacts[0].CreatedDate;
+        }
     }
 }

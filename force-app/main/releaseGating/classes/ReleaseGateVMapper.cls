@@ -68,6 +68,33 @@ public virtual with sharing class ReleaseGateVMapper {
     }
 
     /**
+     * @description Activate a release gate
+     * @param  productRegistryName Product registry name
+     * @param  productName         Release gate product name
+     * @param  gateName            Release gate name
+     * @return                     A list of ActivateReleaseGateVModel instances
+     */
+    public virtual List<ActivateReleaseGateVModel> activateReleaseGate(
+        String productRegistryName,
+        String productName,
+        String gateName
+    ) {
+        List<ActivateReleaseGateVModel> activateReleaseGateVModelList = new List<ActivateReleaseGateVModel>();
+        ActivateReleaseGateActionResultModel activateModel = locateReleaseGateService()
+            .activateReleaseGate(productRegistryName, productName, gateName);
+        for (ActivateReleaseGateActionResultModel.ActivateReleaseGateResult activateResult : activateModel.result) {
+            activateReleaseGateVModelList.add(
+                new ActivateReleaseGateVModel(
+                    activateResult.productName,
+                    activateResult.gateName,
+                    activateResult.status
+                )
+            );
+        }
+        return activateReleaseGateVModelList;
+    }
+
+    /**
      * @description maps GetReleaseGateActionResultModel to List<ReleaseGateVModel>
      * @param  getReleaseGateModel source GetReleaseGateActionResultModel instance
      * @return                     a list of ReleaseGateVModel instances
