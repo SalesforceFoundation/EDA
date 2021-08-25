@@ -1,4 +1,4 @@
-import { LightningElement, track, wire, api } from "lwc";
+import { LightningElement, api } from "lwc";
 import stgReleaseGateActivateBy from "@salesforce/label/c.stgReleaseGateActivateBy";
 import stgReleaseGateActivatedOn from "@salesforce/label/c.stgReleaseGateActivatedOn";
 import stgReleaseGateActivate from "@salesforce/label/c.stgReleaseGateActivate";
@@ -6,10 +6,31 @@ import stgBtnReleaseGateActivate from "@salesforce/label/c.stgBtnReleaseGateActi
 import stgReleaseGateInProgress from "@salesforce/label/c.stgReleaseGateInProgress";
 import stgNewWindowA11y from "@salesforce/label/c.stgNewWindowA11y";
 
+const ReleaseGateStatus = {
+    ACTIVE: "active",
+    INACTIVE: "inactive",
+    DISABLED: "disabled",
+    INPROGRESS: "inprogress",
+};
+
 export default class ReleaseGateItem extends LightningElement {
     @api productRegistryName;
     @api product;
-    @api gate;
+    @api get gate() {
+        return this.gateInternal;
+    }
+    set gate(value) {
+        this.gateInternal = value;
+        this.gateStatusOverride = value ? value.status : undefined;
+    }
+    @api get gateStatus() {
+        return this.gateStatusOverride ? this.gateStatusOverride : this.gate.status;
+    }
+    set gateStatus(value) {
+        this.gateStatusOverride = value;
+    }
+    gateStatusOverride;
+    gateInternal;
 
     labelReference = {
         releaseGateActivateBy: stgReleaseGateActivateBy,
@@ -21,34 +42,34 @@ export default class ReleaseGateItem extends LightningElement {
     };
 
     get gateActive() {
-        return this.gate.status === "active";
+        return this.gateStatus === ReleaseGateStatus.ACTIVE;
     }
 
     get gateInactive() {
-        return this.gate.status === "inactive";
+        return this.gateStatus === ReleaseGateStatus.INACTIVE;
     }
 
     get gateDisabled() {
-        return this.gate.status === "disabled";
+        return this.gateStatus === ReleaseGateStatus.DISABLED;
     }
 
     get gateInProgress() {
-        return this.gate.status === "inprogress";
+        return this.gateStatus === ReleaseGateStatus.INPROGRESS;
     }
 
     get gateIconName() {
         let iconName;
-        switch (this.gate.status) {
-            case "active":
+        switch (this.gateStatus) {
+            case ReleaseGateStatus.ACTIVE:
                 iconName = "action:approval";
                 break;
-            case "inactive":
+            case ReleaseGateStatus.INACTIVE:
                 iconName = "action:announcement";
                 break;
-            case "inprogress":
+            case ReleaseGateStatus.INPROGRESS:
                 iconName = "action:more";
                 break;
-            case "disabled":
+            case ReleaseGateStatus.DISABLED:
             default:
                 iconName = "action:info";
                 break;
@@ -84,16 +105,22 @@ export default class ReleaseGateItem extends LightningElement {
     }
 
     handleEnableGate(event) {
+        event.stopPropagation();
         let payload = {
+            releaseGateAction: "activate",
             productRegistryName: this.productRegistryName,
-            product: this.product,
-            gate: this.gate,
+            productName: this.product.name,
+            productLabel: this.product.label,
+            releaseGateName: this.gate.name,
+            releaseGateLabel: this.gate.label,
         };
 
-        const enableEvent = new CustomEvent("enablegate", {
+        const releaseGateModalConfirmEvent = new CustomEvent("releasegatemodalrequest", {
             detail: payload,
+            bubbles: true,
+            composed: true,
         });
 
-        this.dispatchEvent(enableEvent);
+        this.dispatchEvent(releaseGateModalConfirmEvent);
     }
 }

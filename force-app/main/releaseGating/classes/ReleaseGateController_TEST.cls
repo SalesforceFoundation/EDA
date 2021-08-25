@@ -163,6 +163,61 @@ private with sharing class ReleaseGateController_TEST {
         }
     }
 
+    /****************************************************************************************
+     * @description Test method to verify activateReleaseGate()
+     * returns an instance of ReleaseGateVModel with valid values from valid stub.
+     ****************************************************************************************/
+    @isTest
+    private static void activateReleaseGateValid() {
+        ReleaseGateVMapper.instance = new STUB_ReleaseGateVMapperValid();
+        String productRegistryName = 'testName';
+        String productName = 'testProduct';
+        String gateName = 'testGate';
+
+        Test.startTest();
+        List<ActivateReleaseGateVModel> activateReleaseGateVModelList = ReleaseGateController.activateReleaseGate(
+            productRegistryName,
+            productName,
+            gateName
+        );
+        Test.stopTest();
+
+        System.assertEquals(1, activateReleaseGateVModelList.size(), 'There should be 1 result in the list');
+        System.assertEquals(
+            productName,
+            activateReleaseGateVModelList[0].productName,
+            'Expected product name should be ' + productName
+        );
+        System.assertEquals(
+            gateName,
+            activateReleaseGateVModelList[0].gateName,
+            'Expected gate name should be ' + gateName
+        );
+        System.assertEquals('active', activateReleaseGateVModelList[0].status, 'Expected status should be active');
+    }
+
+    /****************************************************************************************
+     * @description Test method to verify activateReleaseGate()
+     * throws an exception when exception occurs.
+     ****************************************************************************************/
+    @isTest
+    private static void activateReleaseGateVModelException() {
+        ReleaseGateVMapper.instance = new STUB_ExceptionReleaseGateVMapper();
+
+        try {
+            Test.startTest();
+            List<ActivateReleaseGateVModel> activateReleaseGateVModelList = ReleaseGateController.activateReleaseGate(
+                'testProductRegistry',
+                'testProduct',
+                'testGate'
+            );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (AuraHandledException e) {
+            System.assertEquals('Script-thrown exception', e.getMessage(), 'Should throw exception.');
+        }
+    }
+
     /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
@@ -181,6 +236,16 @@ private with sharing class ReleaseGateController_TEST {
             );
             return releaseGateVModelList;
         }
+
+        public override List<ActivateReleaseGateVModel> activateReleaseGate(
+            String productRegistryName,
+            String productName,
+            String gateName
+        ) {
+            return new List<ActivateReleaseGateVModel>{
+                new ActivateReleaseGateVModel('testProduct', 'testGate', 'active')
+            };
+        }
     }
 
     /**************************************************************************************************************************************
@@ -188,6 +253,14 @@ private with sharing class ReleaseGateController_TEST {
      **************************************************************************************************************************************/
     private class STUB_ExceptionReleaseGateVMapper extends ReleaseGateVMapper {
         public override List<ReleaseGateVModel> getReleaseGateVModel(String productRegistryName) {
+            throw new TestException('Exception encountered!');
+        }
+
+        public override List<ActivateReleaseGateVModel> activateReleaseGate(
+            String productRegistryName,
+            String productName,
+            String gateName
+        ) {
             throw new TestException('Exception encountered!');
         }
     }
