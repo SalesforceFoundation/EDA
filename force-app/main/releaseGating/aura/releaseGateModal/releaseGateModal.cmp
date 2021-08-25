@@ -1,0 +1,17 @@
+<aura:component>
+    <aura:attribute name="releaseGateAction" type="String" />
+    <aura:attribute name="productRegistryName" type="String" />
+    <aura:attribute name="productName" type="String" />
+    <aura:attribute name="productLabel" type="String" />
+    <aura:attribute name="releaseGateName" type="String" />
+    <aura:attribute name="releaseGateLabel" type="String" />
+
+    <c:releaseGateModalBody
+        releaseGateAction="{!v.releaseGateAction}"
+        productRegistryName="{!v.productRegistryName}"
+        productName="{!v.productName}"
+        productLabel="{!v.productLabel}"
+        releaseGateName="{!v.releaseGateName}"
+        releaseGateLabel="{!v.releaseGateLabel}"
+    ></c:releaseGateModalBody>
+</aura:component>

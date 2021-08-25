@@ -63,6 +63,33 @@ public virtual with sharing class ReleaseGateService {
      * @return A GetReleaseGateActionResultModel
      ************************************************************************************************************/
     public virtual GetReleaseGateActionResultModel getReleaseGateModel(String productRegistryName) {
+        ProductRegistryModel productRegistry = this.getProductRegistryModel(productRegistryName);
+        return this.locateReleaseGateAPIService(productRegistry).getReleaseGates();
+    }
+
+    /**
+     * @description Activate a release gate
+     * @param  productRegistryName Product registry name
+     * @param  productName         Release gate product name
+     * @param  gateName            Release gate name
+     * @return                     An ActivateReleaseGateActionResultModel instance
+     */
+    public virtual ActivateReleaseGateActionResultModel activateReleaseGate(
+        String productRegistryName,
+        String productName,
+        String gateName
+    ) {
+        ProductRegistryModel productRegistry = this.getProductRegistryModel(productRegistryName);
+        return this.locateReleaseGateAPIService(productRegistry).activateReleaseGate(productName, gateName);
+    }
+
+    /**
+     * @description returns ProductRegistryModel from a product registry name
+     * @throws ReleaseGateAPIService.ReleaseGateProductNotFoundException if product registry doesn't exist
+     * @param  productRegistryName product registry developer name
+     * @return                     A ProductRegistryModel
+     */
+    private ProductRegistryModel getProductRegistryModel(String productRegistryName) {
         ProductRegistryModel productRegistry = this.locateProductRegistryService()
             .getProductRegistryModelByName(productRegistryName);
         if (productRegistry == null) {
@@ -75,7 +102,7 @@ public virtual with sharing class ReleaseGateService {
                 null
             );
         }
-        return this.locateReleaseGateAPIService(productRegistry).getReleaseGates();
+        return productRegistry;
     }
 
     /**

@@ -1,3 +1,5 @@
 <aura:component implements="lightning:isUrlAddressable" access="global">
-    <c:releaseManagement />
+    <aura:handler name="modalSaveEvent" event="c:modalSaveEvent" action="{!c.handleModalSaveEvent}" />
+    <c:releaseGateModalOpener aura:id="releaseGateModal"></c:releaseGateModalOpener>
+    <c:releaseManagement aura:id="releaseManagement" onreleasegatemodalrequest="{!c.releaseGateModalRequestHandler}" />
 </aura:component>
