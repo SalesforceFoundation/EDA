@@ -1,0 +1,25 @@
+<aura:component>
+    <aura:attribute name="releaseGateAction" type="String" />
+    <aura:attribute name="productRegistryName" type="String" />
+    <aura:attribute name="productName" type="String" />
+    <aura:attribute name="productLabel" type="String" />
+    <aura:attribute name="releaseGateName" type="String" />
+    <aura:attribute name="releaseGateLabel" type="String" />
+
+    <aura:handler
+        name="modalFooterEventHandler"
+        event="c:customModalFooterEvent"
+        action="{!c.handleModalFooterEvent}"
+    />
+    <aura:registerEvent name="modalSaveEvent" type="c:modalSaveEvent" />
+    <lightning:overlayLibrary aura:id="edaOverlayLibrary" />
+
+    <aura:method name="openReleaseGateModal" action="{!c.openReleaseGateModal}">
+        <aura:attribute name="releaseGateAction" type="String" />
+        <aura:attribute name="productRegistryName" type="String" />
+        <aura:attribute name="productName" type="String" />
+        <aura:attribute name="productLabel" type="String" />
+        <aura:attribute name="releaseGateName" type="String" />
+        <aura:attribute name="releaseGateLabel" type="String" />
+    </aura:method>
+</aura:component>
