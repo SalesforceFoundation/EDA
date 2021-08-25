@@ -59,6 +59,27 @@ public with sharing class ReleaseGateController {
         }
     }
 
+    /**
+     * @description Activate a release gate
+     * @param  productRegistryName Product registry name
+     * @param  productName         Release gate product name
+     * @param  gateName            Release gate name
+     * @return                     A list of ActivateReleaseGateVModel instances
+     */
+    @AuraEnabled
+    public static List<ActivateReleaseGateVModel> activateReleaseGate(
+        String productRegistryName,
+        String productName,
+        String gateName
+    ) {
+        try {
+            return ReleaseGateController.locateReleaseGateVMapper()
+                .activateReleaseGate(productRegistryName, productName, gateName);
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /*****************************************************************************
      * @description Retrieve an instance of the ReleaseGateService class.
      * @return An instance of ReleaseGateService.

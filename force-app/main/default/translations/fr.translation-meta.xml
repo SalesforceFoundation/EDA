@@ -1996,6 +1996,18 @@
         <label><!-- Text for screen reader to indicate a link opens in a new window --></label>
         <name>stgNewWindowA11y</name>
     </customLabels>
+    <customLabels>
+        <label><!-- Release Gate Activation Confirmation Modal Body --></label>
+        <name>stgReleaseGateActivateModalBody</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Release gate successful activation toast message --></label>
+        <name>stgReleaseGateActivateSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Release gate in progress activation toast message --></label>
+        <name>stgReleaseGateActivateInProgress</name>
+    </customLabels>
     <customTabs>
         <label>Paramètres Education Cloud</label>
         <name>Education_Cloud_Settings</name>

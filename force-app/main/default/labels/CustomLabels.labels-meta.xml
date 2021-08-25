@@ -3983,4 +3983,28 @@
         <shortDescription>Text for screen reader to indicate a link opens in a new window</shortDescription>
         <value>Opens in a new window</value>
     </labels>
+    <labels>
+        <fullName>stgReleaseGateActivateModalBody</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Release Gate Activation Confirmation Modal Body</shortDescription>
+        <value>Are you sure you want to activate {0}? Once activated, you can't deactivate it.</value>
+    </labels>
+    <labels>
+        <fullName>stgReleaseGateActivateSuccess</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Release gate successful activation toast message</shortDescription>
+        <value>{0} activated successfully</value>
+    </labels>
+    <labels>
+        <fullName>stgReleaseGateActivateInProgress</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Release gate in progress activation toast message</shortDescription>
+        <value>We are activating {0}. This process might take some time, please check back later.</value>
+    </labels>    
 </CustomLabels>

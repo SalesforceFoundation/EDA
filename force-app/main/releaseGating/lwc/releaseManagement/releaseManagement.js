@@ -1,4 +1,4 @@
-import { LightningElement } from "lwc";
+import { LightningElement, api } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 //Release Management Labels
 import stgReleaseManagementTitle from "@salesforce/label/c.stgReleaseManagementTitle";
@@ -42,5 +42,13 @@ export default class EdcReleaseManagement extends NavigationMixin(LightningEleme
             },
         };
         this[NavigationMixin.Navigate](pageReference);
+    }
+
+    @api modalSave(saveModel) {
+        switch (saveModel.modalType) {
+            case "releasegate":
+                this.template.querySelector("c-release-gates").modalSave(saveModel);
+                break;
+        }
     }
 }

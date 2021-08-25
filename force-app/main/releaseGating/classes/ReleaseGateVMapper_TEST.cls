@@ -159,6 +159,45 @@ public with sharing class ReleaseGateVMapper_TEST {
         );
     }
 
+    /************************************************************************************************************************************
+     * @description Test method to verify activateReleaseGate returns a List<ActivateReleaseGateVModel>
+     ************************************************************************************************************************************/
+    @isTest
+    private static void activateReleaseGateVModelValid() {
+        ReleaseGateService.instance = new STUB_ReleaseGateService();
+
+        ReleaseGateVMapper releaseGateVMapperInstance = ReleaseGateVMapper.getInstance();
+
+        String productName = 'testProduct';
+        String gateName = 'testGate';
+        String productRegistryName = 'testName';
+
+        Test.startTest();
+        List<ActivateReleaseGateVModel> activateReleaseGateVModelList = releaseGateVMapperInstance.activateReleaseGate(
+            productRegistryName,
+            productName,
+            gateName
+        );
+        Test.stopTest();
+
+        System.assertEquals(
+            1,
+            activateReleaseGateVModelList.size(),
+            'There should be 1 item in the list of release gate products'
+        );
+        System.assertEquals(
+            productName,
+            activateReleaseGateVModelList[0].productName,
+            'Expected product name should be ' + productName
+        );
+        System.assertEquals(
+            gateName,
+            activateReleaseGateVModelList[0].gateName,
+            'Expected gate name should be ' + gateName
+        );
+        System.assertEquals('active', activateReleaseGateVModelList[0].status, 'Expected status should be active');
+    }
+
     /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
@@ -204,6 +243,20 @@ public with sharing class ReleaseGateVMapper_TEST {
                 null
             );
             return releaseGateResultModel;
+        }
+
+        public override ActivateReleaseGateActionResultModel activateReleaseGate(
+            String productRegistryName,
+            String productName,
+            String gateName
+        ) {
+            return new ActivateReleaseGateActionResultModel(
+                new List<ActivateReleaseGateActionResultModel.ActivateReleaseGateResult>{
+                    new ActivateReleaseGateActionResultModel.ActivateReleaseGateResult(productName, gateName, 'active')
+                },
+                true,
+                null
+            );
         }
     }
 }
