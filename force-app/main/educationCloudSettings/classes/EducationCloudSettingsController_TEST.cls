@@ -94,8 +94,11 @@ private class EducationCloudSettingsController_TEST {
         String name = 'testName';
         String description = 'testDescription';
         String settingsComponent = 'c__testSettingsComponent';
+        String settingsButtonA11y = 'testSettingsButtonA11y';
         String documentationUrl = 'testDocumentationUrl';
+        String documentationButtonA11y = 'testDocumentationButtonA11y';
         String trailheadUrl = 'testTrailheadUrl';
+        String trailheadButtonA11y = 'testTrailheadButtonA11y';
         String icon = 'testIcon';
         String namespace = 'testNamespace';
         String classname = 'testClassname';
@@ -117,11 +120,26 @@ private class EducationCloudSettingsController_TEST {
             'settingsComponent should be set to ' + settingsComponent
         );
         System.assertEquals(
+            settingsButtonA11y,
+            productVModel.settingsButtonA11y,
+            'settingsButtonA11y should be set to ' + settingsButtonA11y
+        );
+        System.assertEquals(
             documentationUrl,
             productVModel.documentationUrl,
             'documentationUrl should be set to ' + documentationUrl
         );
+        System.assertEquals(
+            documentationButtonA11y,
+            productVModel.documentationButtonA11y,
+            'documentationButtonA11y should be set to ' + documentationButtonA11y
+        );
         System.assertEquals(trailheadUrl, productVModel.trailheadUrl, 'trailheadUrl should be set to ' + trailheadUrl);
+        System.assertEquals(
+            trailheadButtonA11y,
+            productVModel.trailheadButtonA11y,
+            'trailheadButtonA11y should be set to ' + trailheadButtonA11y
+        );
         System.assertEquals(icon, productVModel.icon, 'icon should be set to ' + icon);
     }
 
@@ -169,8 +187,11 @@ private class EducationCloudSettingsController_TEST {
                 'testName',
                 'testDescription',
                 'c__testSettingsComponent',
+                'testSettingsButtonA11y',
                 'testDocumentationUrl',
+                'testDocumentationButtonA11y',
                 'testTrailheadUrl',
+                'testTrailheadButtonA11y',
                 'testIcon'
             );
             return model;

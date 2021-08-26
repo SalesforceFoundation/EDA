@@ -46,8 +46,7 @@ const TrailblazerCommunityUrl = "https://trailblazers.salesforce.com/successHome
 const YoutubeUrl = "https://www.youtube.com/user/SalesforceFoundation";
 
 export default class EducationCloudSettings extends NavigationMixin(LightningElement) {
-    @track
-    edcProductRegistryVModels = [];
+    @track edcProductRegistryVModels;
 
     labelReference = {
         productsTitle: stgColProducts,

@@ -42,38 +42,53 @@ public virtual class EDCSettingsProductVModel {
     @AuraEnabled
     public String settingsComponent { get; private set; }
     @AuraEnabled
+    public String settingsButtonA11y { get; private set; }
+    @AuraEnabled
     public String documentationUrl { get; private set; }
     @AuraEnabled
+    public String documentationButtonA11y { get; private set; }
+    @AuraEnabled
     public String trailheadUrl { get; private set; }
+    @AuraEnabled
+    public String trailheadButtonA11y { get; private set; }
     @AuraEnabled
     public String icon { get; private set; }
 
     /********************************************************************************************
-     * @description Seven argument constructor
-     * @param  initials          A string representing the product initials
-     * @param  name              A string representing the product name
-     * @param  description       A string representing the product description
-     * @param  settingsComponent A string representing the component the Settings link will redirect to
-     * @param  documentationUrl  A string representing the url to the documentation
-     * @param  trailheadUrl      A string representing the trailhead url
-     * @param  icon              A string representing the icon to use
-     * @return                   A EDCSettingsProductVModel with all its properties populated
+     * @description Ten argument constructor
+     * @param  initials             A string representing the product initials
+     * @param  name                 A string representing the product name
+     * @param  description          A string representing the product description
+     * @param  settingsComponent    A string representing the component the Settings link will redirect to
+     * @param  settingsButtonA11y   A string representing the title property value for the settings button
+     * @param  documentationUrl     A string representing the url to the documentation
+     * @param  documentationButtonA11y A string representing the title property value for the documentation button
+     * @param  trailheadUrl         A string representing the trailhead url
+     * @param  trailheadButtonA11y  A string representing the title property value for the trailhead button
+     * @param  icon                 A string representing the icon to use
+     * @return                      A EDCSettingsProductVModel with all its properties populated
      ********************************************************************************************/
     public EDCSettingsProductVModel(
         String initials,
         String name,
         String description,
         String settingsComponent,
+        String settingsButtonA11y,
         String documentationUrl,
+        String documentationButtonA11y,
         String trailheadUrl,
+        String trailheadButtonA11y,
         String icon
     ) {
         this.initials = initials;
         this.name = name;
         this.description = description;
         this.settingsComponent = settingsComponent;
+        this.settingsButtonA11y = settingsButtonA11y;
         this.documentationUrl = documentationUrl;
+        this.documentationButtonA11y = documentationButtonA11y;
         this.trailheadUrl = trailheadUrl;
+        this.trailheadButtonA11y = trailheadButtonA11y;
         this.icon = icon;
     }
 }

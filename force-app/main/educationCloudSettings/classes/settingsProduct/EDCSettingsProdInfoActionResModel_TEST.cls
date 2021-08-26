@@ -42,8 +42,11 @@ private class EDCSettingsProdInfoActionResModel_TEST {
         String name = 'testName';
         String description = 'testDescription';
         String settingsComponent = 'testSettingsComponent';
+        String settingsButtonA11y = 'testSettingsButtonA11y';
         String documentationUrl = 'testDocumentationUrl';
+        String documentationButtonA11y = 'testDocumentationButtonA11y';
         String trailheadUrl = 'testTrailheadUrl';
+        String trailheadButtonA11y = 'testTrailheadButtonA11y';
         String icon = 'testIcon';
 
         EDCSettingsProductInformationModel model = new EDCSettingsProductInformationModel(
@@ -51,8 +54,11 @@ private class EDCSettingsProdInfoActionResModel_TEST {
             name,
             description,
             settingsComponent,
+            settingsButtonA11y,
             documentationUrl,
+            documentationButtonA11y,
             trailheadUrl,
+            trailheadButtonA11y,
             icon
         );
 

@@ -6,23 +6,13 @@ import getEDCSettingsProductVModel from "@salesforce/apex/EducationCloudSettings
 // Import mock data for edcSettingsProductCard
 const mockGetEDCSettingsProductVModel = require("./data/getEDCSettingsProductVModel.json");
 const settingsButtonLabel = "settingsButtonLabel";
-const settingsButtonA11yTitle = "settingsButtonA11y";
 const documentationButtonLabel = "documentationButtonLabel";
-const documentationButtonA11yTitle = "documentationButtonA11yTitle";
 const trailheadButtonLabel = "trailheadButtonLabel";
-const trailheadButtonA11yTitle = "trailheadButtonA11yTitle";
 
 jest.mock(
     "@salesforce/label/c.stgBtnSettings",
     () => {
         return { default: settingsButtonLabel };
-    },
-    { virtual: true }
-);
-jest.mock(
-    "@salesforce/label/c.stgBtnSettingsActionA11y",
-    () => {
-        return { default: settingsButtonA11yTitle };
     },
     { virtual: true }
 );
@@ -34,23 +24,9 @@ jest.mock(
     { virtual: true }
 );
 jest.mock(
-    "@salesforce/label/c.stgBtnDocumentationActionA11y",
-    () => {
-        return { default: documentationButtonA11yTitle };
-    },
-    { virtual: true }
-);
-jest.mock(
     "@salesforce/label/c.stgBtnTrailhead",
     () => {
         return { default: trailheadButtonLabel };
-    },
-    { virtual: true }
-);
-jest.mock(
-    "@salesforce/label/c.stgBtnTrailheadActionA11y",
-    () => {
-        return { default: trailheadButtonA11yTitle };
     },
     { virtual: true }
 );
@@ -109,17 +85,17 @@ describe("c-edc-settings-product-card", () => {
 
         const btnSettingsComponent = element.shadowRoot.querySelector(".btnSettingsComponent");
         expect(btnSettingsComponent).not.toBeNull();
-        expect(btnSettingsComponent.title).toBe(settingsButtonA11yTitle);
+        expect(btnSettingsComponent.title).toBe('testSettingsButtonA11y');
         expect(btnSettingsComponent.label).toBe(settingsButtonLabel);
 
         const btnDocumentationUrl = element.shadowRoot.querySelector(".btnDocumentationUrl");
         expect(btnDocumentationUrl).not.toBeNull();
-        expect(btnDocumentationUrl.title).toBe(documentationButtonA11yTitle);
+        expect(btnDocumentationUrl.title).toBe('testDocumentationButtonA11y');
         expect(btnDocumentationUrl.label).toBe(documentationButtonLabel);
 
         const btnTrailheadUrl = element.shadowRoot.querySelector(".btnTrailheadUrl");
         expect(btnTrailheadUrl).not.toBeNull();
-        expect(btnTrailheadUrl.title).toBe(trailheadButtonA11yTitle);
+        expect(btnTrailheadUrl.title).toBe('testTrailheadButtonA11y');
         expect(btnTrailheadUrl.label).toBe(trailheadButtonLabel);
     });
 
