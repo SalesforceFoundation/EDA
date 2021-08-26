@@ -60,10 +60,17 @@ private class EDCSettingsProductInformationMapper_TEST {
             productInformationModel.name,
             'name should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_NAME
         );
+
+        String navigationPrefix = UTIL_Namespace.StrTokenNSPrefixComponent();
         System.assertEquals(
-            EDCSettingsProductInformationMapper.PRODUCT_EDA_SETTINGSCOMPONENT,
+            navigationPrefix + EDCSettingsProductInformationMapper.PRODUCT_EDA_SETTINGSCOMPONENT,
             productInformationModel.settingsComponent,
             'settingsComponent should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_SETTINGSCOMPONENT
+        );
+        System.assertEquals(
+            EDCSettingsProductInformationMapper.PRODUCT_EDA_SETTINGSBUTTONA11Y,
+            productInformationModel.settingsButtonA11y,
+            'settingsButtonA11y should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_SETTINGSBUTTONA11Y
         );
         System.assertEquals(
             EDCSettingsProductInformationMapper.PRODUCT_EDA_DOCUMENTATIONURL,
@@ -71,9 +78,21 @@ private class EDCSettingsProductInformationMapper_TEST {
             'documentationUrl should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_DOCUMENTATIONURL
         );
         System.assertEquals(
+            EDCSettingsProductInformationMapper.PRODUCT_EDA_DOCUMENTATIONBUTTONA11Y,
+            productInformationModel.documentationButtonA11y,
+            'documentationButtonA11y should be set to ' +
+            EDCSettingsProductInformationMapper.PRODUCT_EDA_DOCUMENTATIONBUTTONA11Y
+        );
+        System.assertEquals(
             EDCSettingsProductInformationMapper.PRODUCT_EDA_TRAILHEADURL,
             productInformationModel.trailheadUrl,
             'trailheadUrl should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_TRAILHEADURL
+        );
+        System.assertEquals(
+            EDCSettingsProductInformationMapper.PRODUCT_EDA_TRAILHEADBUTTONA11Y,
+            productInformationModel.trailheadButtonA11y,
+            'trailheadButtonA11y should be set to ' +
+            EDCSettingsProductInformationMapper.PRODUCT_EDA_TRAILHEADBUTTONA11Y
         );
         System.assertEquals(
             EDCSettingsProductInformationMapper.PRODUCT_EDA_ICON,

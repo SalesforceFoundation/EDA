@@ -24,7 +24,7 @@
                             <lightning-button
                                 if:true={settingsComponent}
                                 label={labelReference.settingsButton}
-                                title={labelReference.settingsButtonA11y}
+                                title={settingsButtonA11y}
                                 aria-described-by="cardTitle"
                                 onclick={handleSettingsClick}
                                 class="btnSettingsComponent"
@@ -32,7 +32,7 @@
                             <lightning-button
                                 if:true={documentationUrl}
                                 label={labelReference.documentationButton}
-                                title={labelReference.documentationButtonA11y}
+                                title={documentationButtonA11y}
                                 aria-described-by="cardTitle"
                                 onclick={handleDocumentationClick}
                                 class="btnDocumentationUrl"
@@ -40,7 +40,7 @@
                             <lightning-button
                                 if:true={trailheadUrl}
                                 label={labelReference.trailheadButton}
-                                title={labelReference.trailheadButtonA11y}
+                                title={trailheadButtonA11y}
                                 aria-described-by="cardTitle"
                                 onclick={handleTrailheadClick}
                                 class="btnTrailheadUrl"
