@@ -3,7 +3,21 @@ import stgHealthCheckLoadingIndicator from "@salesforce/label/c.stgHealthCheckLo
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 export default class EdcSettingsProductDisplay extends LightningElement {
-    @api productRegistryVModels;
+
+    _productRegistryVModels;
+    @api 
+    set productRegistryVModels(value) {
+        if (value) {
+            this._productRegistryVModels = value;
+            if (value.length == 0) {
+                this.displaySettingsProduct = true;
+            }
+        }
+    }
+
+    get productRegistryVModels() {
+        return this._productRegistryVModels;
+    }
 
     @track loadedSettingsProductCount = 0;
     @track displaySettingsProduct = false;
@@ -35,12 +49,6 @@ export default class EdcSettingsProductDisplay extends LightningElement {
             this.errorList.forEach((error) => {
                 this.createShowToast(error);
             });
-        }
-    }
-
-    connectedCallback() {
-        if (this.productRegistryVModels.length == 0) {
-            this.displaySettingsProduct = true;
         }
     }
 

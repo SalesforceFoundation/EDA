@@ -109,7 +109,7 @@ describe("c-education-cloud-settings", () => {
         const edcSettingsProductCardElement = element.shadowRoot.querySelector("c-edc-settings-product-display");
         expect(edcSettingsProductCardElement).not.toBeNull();
         const productRegistryVModels = edcSettingsProductCardElement.productRegistryVModels;
-        expect(productRegistryVModels.length).toBe(0);
+        expect(productRegistryVModels).toBeNull;
 
         expect(toastHandler).toHaveBeenCalled();
         expect(toastHandler.mock.calls[0][0].detail.title).toBe("Error");

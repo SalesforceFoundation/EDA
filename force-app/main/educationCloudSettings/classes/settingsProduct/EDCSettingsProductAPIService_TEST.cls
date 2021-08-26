@@ -88,8 +88,11 @@ private class EDCSettingsProductAPIService_TEST {
         String name = 'testName';
         String description = 'testDescription';
         String settingsComponent = 'testSettingsComponent';
+        String settingsButtonA11y = 'testSettingsButtonA11y';
         String documentationUrl = 'testDocumentationUrl';
+        String documentationButtonA11y = 'testDocumentationButtonA11y';
         String trailheadUrl = 'testTrailheadUrl';
+        String trailheadButtonA11y = 'testTrailheadButtonA11y';
         String icon = 'testIcon';
 
         EDCSettingsProductAPIService.instance = new EDCSettingsProductAPIServiceStub();
@@ -114,11 +117,26 @@ private class EDCSettingsProductAPIService_TEST {
             'settingsComponent should be set to ' + settingsComponent
         );
         System.assertEquals(
+            settingsButtonA11y,
+            product.settingsButtonA11y,
+            'settingsButtonA11y should be set to ' + settingsButtonA11y
+        );
+        System.assertEquals(
             documentationUrl,
             product.documentationUrl,
             'documentationUrl should be set to ' + documentationUrl
         );
+        System.assertEquals(
+            documentationButtonA11y,
+            product.documentationButtonA11y,
+            'documentationButtonA11y should be set to ' + documentationButtonA11y
+        );
         System.assertEquals(trailheadUrl, product.trailheadUrl, 'trailheadUrl should be set to ' + trailheadUrl);
+        System.assertEquals(
+            trailheadButtonA11y,
+            product.trailheadButtonA11y,
+            'trailheadButtonA11y should be set to ' + trailheadButtonA11y
+        );
         System.assertEquals(icon, product.icon, 'icon should be set to ' + icon);
     }
 
@@ -292,8 +310,11 @@ private class EDCSettingsProductAPIService_TEST {
                 'testName',
                 'testDescription',
                 'testSettingsComponent',
+                'testSettingsButtonA11y',
                 'testDocumentationUrl',
+                'testDocumentationButtonA11y',
                 'testTrailheadUrl',
+                'testTrailheadButtonA11y',
                 'testIcon'
             );
             EDCSettingsProdInfoActionResultModel actionResult = new EDCSettingsProdInfoActionResultModel(
