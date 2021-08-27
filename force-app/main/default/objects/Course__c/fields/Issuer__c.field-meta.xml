@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Issuer__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The issuing organization of the Course.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The issuing organization of the Course.</inlineHelpText>
+    <label>Issuer</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Courses (Issuer)</relationshipLabel>
+    <relationshipName>Issued_Courses</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

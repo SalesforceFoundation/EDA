@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Academic_Level__c</fullName>
+    <description>The grade-level, developmental level, or age-level of the Course.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Academic Level of the Course. For example, the Course was offered in high school.</inlineHelpText>
+    <label>Academic Level</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pre-K/Preschool</fullName>
+                <default>false</default>
+                <label>Pre-K/Preschool</label>
+            </value>
+            <value>
+                <fullName>Elementary</fullName>
+                <default>false</default>
+                <label>Elementary</label>
+            </value>
+            <value>
+                <fullName>Middle School</fullName>
+                <default>false</default>
+                <label>Middle School</label>
+            </value>
+            <value>
+                <fullName>High School</fullName>
+                <default>false</default>
+                <label>High School</label>
+            </value>
+            <value>
+                <fullName>Undergraduate</fullName>
+                <default>false</default>
+                <label>Undergraduate</label>
+            </value>
+            <value>
+                <fullName>Graduate</fullName>
+                <default>false</default>
+                <label>Graduate</label>
+            </value>
+            <value>
+                <fullName>Doctoral</fullName>
+                <default>false</default>
+                <label>Doctoral</label>
+            </value>
+            <value>
+                <fullName>Post-Baccalaureate Certificate</fullName>
+                <default>false</default>
+                <label>Post-Baccalaureate Certificate</label>
+            </value>
+            <value>
+                <fullName>Adult Education</fullName>
+                <default>false</default>
+                <label>Adult Education</label>
+            </value>
+            <value>
+                <fullName>Professional Education</fullName>
+                <default>false</default>
+                <label>Professional Education</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
