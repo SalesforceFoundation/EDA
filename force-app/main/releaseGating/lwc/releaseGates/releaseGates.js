@@ -13,6 +13,8 @@ import activateReleaseGate from "@salesforce/apex/ReleaseGateController.activate
 export default class ReleaseGates extends LightningElement {
     @track productRegistryReleaseGateVModels;
     @track productRegistryReleaseGateWireResult;
+    releaseGateLoadCount;
+    releaseGateErrorList;
 
     labelReference = {
         releaseGateActivateSuccess: stgReleaseGateActivateSuccess,
@@ -23,6 +25,8 @@ export default class ReleaseGates extends LightningElement {
 
     @wire(getProductRegistryReleaseGateVModels)
     productRegistryReleaseGateWire(result) {
+        this.releaseGateLoadCount = 0;
+        this.releaseGateErrorList = [];
         this.productRegistryReleaseGateWireResult = result;
         if (result.data) {
             this.productRegistryReleaseGateVModels = result.data;
@@ -54,31 +58,41 @@ export default class ReleaseGates extends LightningElement {
             gateName: saveModel.releaseGateName,
         })
             .then((result) => {
-                if (result) {
-                    let message, title, toastType, toastMode;
-                    let releaseGateLabel = saveModel.productLabel + " " + saveModel.releaseGateLabel;
-                    let isInProgress = result.some((activateResult) => activateResult.status === "inprogress");
-                    if (isInProgress) {
-                        title = this.labelReference.inProgressTitle.replace("{0}", releaseGateLabel);
-                        message = this.labelReference.releaseGateActivateInProgress.replace("{0}", releaseGateLabel);
-                        toastType = "info";
-                        toastMode = "sticky";
-                    } else {
-                        message = this.labelReference.releaseGateActivateSuccess.replace("{0}", releaseGateLabel);
-                        title = this.labelReference.successTitle;
-                        toastType = "success";
-                        toastMode = "sticky";
-                    }
-                    this.showToast(toastType, title, message, toastMode);
+                let message, title, toastType, toastMode;
+                let releaseGateLabel = saveModel.productLabel + " " + saveModel.releaseGateLabel;
+                let isInProgress = !result || result.some((activateResult) => activateResult.status === "inprogress");
+                if (isInProgress) {
+                    title = this.labelReference.inProgressTitle.replace("{0}", releaseGateLabel);
+                    message = this.labelReference.releaseGateActivateInProgress.replace("{0}", releaseGateLabel);
+                    toastType = "info";
+                    toastMode = "sticky";
                 } else {
-                    //console.log("Activate error: the mapping was not found");
+                    message = this.labelReference.releaseGateActivateSuccess.replace("{0}", releaseGateLabel);
+                    title = this.labelReference.successTitle;
+                    toastType = "success";
+                    toastMode = "sticky";
                 }
+                this.showToast(toastType, title, message, toastMode);
                 this.refreshAllApex();
             })
             .catch((error) => {
-                //console.log("Inside error");
+                this.sendErrorMessage(error);
                 this.refreshAllApex();
             });
+    }
+
+    handleReleaseGateLoadSuccess(event) {
+        this.releaseGateLoadCount++;
+    }
+
+    handleReleaseGateLoadError(event) {
+        this.releaseGateLoadCount++;
+        if (event && event.detail) {
+            this.releaseGateErrorList.push(event.detail);
+        }
+        if (this.releaseGateLoadCount == this.productRegistryReleaseGateVModels.length) {
+            this.sendErrorMessage(this.releaseGateErrorList);
+        }
     }
 
     refreshAllApex() {
@@ -87,6 +101,11 @@ export default class ReleaseGates extends LightningElement {
                 .querySelectorAll("c-release-gate-product")
                 .forEach((releaseGateProduct) => releaseGateProduct.refresh());
         });
+    }
+
+    sendErrorMessage(error) {
+        const errorMessageEvent = new CustomEvent("errormessage", { detail: error });
+        this.dispatchEvent(errorMessageEvent);
     }
 
     showToast(toastType, toastTitle, toastMessage, toastMode) {

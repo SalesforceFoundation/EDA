@@ -13,8 +13,9 @@ export default class ReleaseGateProduct extends LightningElement {
         this.releaseGateVModelWireResult = result;
         if (result.data) {
             this.releaseGateVModel = result.data;
+            this.dispatchEvent(new CustomEvent("releasegateloadsuccess"));
         } else if (result.error) {
-            //console.log("error retrieving releaseGateVModel");
+            this.dispatchEvent(new CustomEvent("releasegateloaderror", { detail: result.error }));
         }
     }
 

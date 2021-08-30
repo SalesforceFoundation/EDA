@@ -64,6 +64,7 @@ public virtual with sharing class ReleaseGateVMapper {
     public virtual List<ReleaseGateVModel> getReleaseGateVModel(String productRegistryName) {
         GetReleaseGateActionResultModel releaseGateModel = locateReleaseGateService()
             .getReleaseGateModel(productRegistryName);
+        this.verifyCallableResult(releaseGateModel);
         return this.mapReleaseGateVModel(releaseGateModel);
     }
 
@@ -82,6 +83,7 @@ public virtual with sharing class ReleaseGateVMapper {
         List<ActivateReleaseGateVModel> activateReleaseGateVModelList = new List<ActivateReleaseGateVModel>();
         ActivateReleaseGateActionResultModel activateModel = locateReleaseGateService()
             .activateReleaseGate(productRegistryName, productName, gateName);
+        this.verifyCallableResult(activateModel);
         for (ActivateReleaseGateActionResultModel.ActivateReleaseGateResult activateResult : activateModel.result) {
             activateReleaseGateVModelList.add(
                 new ActivateReleaseGateVModel(
@@ -156,6 +158,22 @@ public virtual with sharing class ReleaseGateVMapper {
         return featureVModelList;
     }
 
+    /**
+     * @description Verify if the result is successful, throw ReleaseGateCallableException if not
+     * @param  resultModel Callable action result
+     */
+    private void verifyCallableResult(CallableResult resultModel) {
+        if (resultModel.success) {
+            return;
+        } else {
+            String errorMessage = resultModel.error != null
+                ? String.format('{0} ({1})', new List<Object>{ resultModel.error.message, resultModel.error.code })
+                : 'Unspecified error';
+            UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
+            throw new ReleaseGateResultException(errorMessage);
+        }
+    }
+
     /*****************************************************************************
      * @description Retrieve an instance of the ReleaseGateService class.
      * @return An instance of ReleaseGateService.
@@ -163,5 +181,8 @@ public virtual with sharing class ReleaseGateVMapper {
     @TestVisible
     private ReleaseGateService locateReleaseGateService() {
         return ReleaseGateService.getInstance();
+    }
+
+    public class ReleaseGateResultException extends Exception {
     }
 }

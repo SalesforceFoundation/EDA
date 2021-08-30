@@ -1951,6 +1951,14 @@
         <value>We couldn&apos;t access valid product information for {0}. Contact Salesforce Customer Support for help.</value>
     </labels>
     <labels>
+        <fullName>stgErrorReleaseGateActivateErrorResponse</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Message when there was an error during the release gate activation</shortDescription>
+        <value>We coudn&apos;t activate the release gate {0}. Contact Salesforce Customer Support for help. Additional details: {1}</value>
+    </labels>
+    <labels>
         <fullName>stgErrorSettingsTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -4005,6 +4013,6 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Release gate in progress activation toast message</shortDescription>
-        <value>We are activating {0}. This process might take some time, please check back later.</value>
+        <value>We are activating {0}. This process can take some time. Check back in a bit.</value>
     </labels>    
 </CustomLabels>
