@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Status_Date__c</fullName>
+    <description>The most recent date Verification Status changed.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The most recent date Verification Status changed.</inlineHelpText>
+    <label>Verification Status Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>
