@@ -48,7 +48,13 @@
                                                 </template>
                                                 <template if:true={hasActivationDate}>
                                                     <div class="slds-media__figure slds-media__figure_reverse">
-                                                        <p class="slds-text-align_right slds-text-color_weak">
+                                                        <p
+                                                            class="
+                                                                slds-text-align_right
+                                                                slds-text-color_weak
+                                                                activatedOnClass
+                                                            "
+                                                        >
                                                             {activatedOnLabel}
                                                         </p>
                                                     </div>
@@ -105,7 +111,7 @@
                                             </li>
 
                                             <!-- PRIMARY REQUIREMENT -->
-                                            <li class="slds-progress__item" if:false={gateDisabled}>
+                                            <li class="slds-progress__item gateStatusRow" if:false={gateDisabled}>
                                                 <div class="slds-progress__marker"></div>
                                                 <div
                                                     class="slds-progress__item_content slds-grid slds-grid_align-spread"
@@ -133,7 +139,11 @@
                                                         </lightning-icon>
 
                                                         <p
-                                                            class="slds-text-align_right slds-text-color_weak"
+                                                            class="
+                                                                slds-text-align_right
+                                                                slds-text-color_weak
+                                                                inProgressClass
+                                                            "
                                                             if:true={gateInProgress}
                                                         >
                                                             {inProgressLabel}

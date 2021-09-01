@@ -75,7 +75,7 @@ export default class EdcReleaseManagement extends NavigationMixin(LightningEleme
     getErrorMessage(error) {
         let errorMessage = "Unknown error";
         if (Array.isArray(error)) {
-            errorMessage = error.map((e) => this.getErrorMessage(e)).join("\r\n");
+            errorMessage = error.map((e) => this.getErrorMessage(e)).join(";\r\n");
         } else if (Array.isArray(error.body)) {
             errorMessage = error.body.map((e) => e.message).join(", ");
         } else if (typeof error === "string" || error instanceof String) {

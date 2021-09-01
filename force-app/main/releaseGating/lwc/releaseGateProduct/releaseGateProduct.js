@@ -19,7 +19,12 @@ export default class ReleaseGateProduct extends LightningElement {
         }
     }
 
-    @api refresh() {
+    @api refresh(resetGateStatus) {
+        if (resetGateStatus) {
+            this.template.querySelectorAll("c-release-gate-item").forEach((releaseGateItem) => {
+                releaseGateItem.gateStatus = undefined;
+            });
+        }
         this.refreshAllApex();
     }
 
@@ -36,6 +41,8 @@ export default class ReleaseGateProduct extends LightningElement {
     }
 
     refreshAllApex() {
-        Promise.all([refreshApex(this.releaseGateVModelWireResult)]).then(() => {});
+        refreshApex(this.releaseGateVModelWireResult).catch((error) => {
+            console.error(error);
+        });
     }
 }

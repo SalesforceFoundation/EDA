@@ -31,7 +31,7 @@ export default class ReleaseGates extends LightningElement {
         if (result.data) {
             this.productRegistryReleaseGateVModels = result.data;
         } else if (result.error) {
-            //console.log("error retrieving productRegistryReleaseGateVModels");
+            this.sendErrorMessage(result.error);
         }
     }
 
@@ -73,16 +73,17 @@ export default class ReleaseGates extends LightningElement {
                     toastMode = "sticky";
                 }
                 this.showToast(toastType, title, message, toastMode);
-                this.refreshAllApex();
+                this.refreshAllApex(saveModel.productRegistryName, false);
             })
             .catch((error) => {
                 this.sendErrorMessage(error);
-                this.refreshAllApex();
+                this.refreshAllApex(saveModel.productRegistryName, true);
             });
     }
 
     handleReleaseGateLoadSuccess(event) {
         this.releaseGateLoadCount++;
+        this.showErrorsIfLoadComplete();
     }
 
     handleReleaseGateLoadError(event) {
@@ -90,16 +91,26 @@ export default class ReleaseGates extends LightningElement {
         if (event && event.detail) {
             this.releaseGateErrorList.push(event.detail);
         }
-        if (this.releaseGateLoadCount == this.productRegistryReleaseGateVModels.length) {
+        this.showErrorsIfLoadComplete();
+    }
+
+    showErrorsIfLoadComplete() {
+        if (
+            this.releaseGateLoadCount == this.productRegistryReleaseGateVModels.length &&
+            this.releaseGateErrorList &&
+            this.releaseGateErrorList.length > 0
+        ) {
             this.sendErrorMessage(this.releaseGateErrorList);
         }
     }
 
-    refreshAllApex() {
+    refreshAllApex(productRegistryName, resetGateStatus) {
         Promise.all([refreshApex(this.productRegistryReleaseGateWireResult)]).then(() => {
-            this.template
-                .querySelectorAll("c-release-gate-product")
-                .forEach((releaseGateProduct) => releaseGateProduct.refresh());
+            this.template.querySelectorAll("c-release-gate-product").forEach((releaseGateProduct) => {
+                if (releaseGateProduct.productRegistryName == productRegistryName) {
+                    releaseGateProduct.refresh(resetGateStatus);
+                }
+            });
         });
     }
 
