@@ -37,8 +37,130 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
      ****************************************************** isAddressEmpty ****************************************************
      **************************************************************************************************************************/
     @isTest
-    static void testIsAddressEmptyFalse() {
+    static void testIsAddressEmptyFalseMailingStreetNotEmpty() {
         List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingStreet__c = 'Some random mailing street';
+
+        Test.startTest();
+        Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAddressEmptyFalseMailingStreet2NotEmpty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingStreet2__c = 'Some random mailing street 2';
+
+        Test.startTest();
+        Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAddressEmptyFalseMailingCityNotEmpty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingCity__c = 'Some random mailing city';
+
+        Test.startTest();
+        Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAddressEmptyFalseMailingCountyNotEmpty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingCounty__c = 'Some random mailing county';
+
+        Test.startTest();
+        Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAddressEmptyFalseMailingStateNotEmpty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingState__c = 'Some random mailing state';
+
+        Test.startTest();
+        Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAddressEmptyFalseMailingPostCodeNotEmpty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingPostalCode__c = 'Some random mailing postcode';
+
+        Test.startTest();
+        Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressEmpty);
+    }
+
+    @isTest
+    static void testIsAddressEmptyFalseMailingCountryNotEmpty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addresses[0].MailingStreet__c = null;
+        addresses[0].MailingStreet2__c = null;
+        addresses[0].MailingCity__c = null;
+        addresses[0].MailingCounty__c = null;
+        addresses[0].MailingState__c = null;
+        addresses[0].MailingPostalCode__c = null;
+        addresses[0].MailingCountry__c = null;
+        addresses[0].MailingCountry__c = 'Some random mailing country';
 
         Test.startTest();
         Boolean isAddressEmpty = ADDR_Addresses_UTIL.isAddressEmpty(addresses[0]);
@@ -95,13 +217,90 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
-    static void testIsContactAccAddrInfoSameFalseDifferentAddressField() {
+    static void testIsContactAccAddrInfoSameDifferentMailingCity() {
         Contact contact = UTIL_UnitTestData_TEST.getContact();
         List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,
             UTIL_Describe_API.getBizAccRecTypeID()
         );
         contact.MailingCity = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingCounty() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe.getBizAccRecTypeID());
+        contact.Mailing_County__c = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingState() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.MailingState = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingPostalCode() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.MailingPostalCode = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingCountry() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.MailingCountry = 'Something else';
+
+        Test.startTest();
+        Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
+        Test.stopTest();
+
+        System.assertEquals(false, isContactAccAddrInfoSame);
+    }
+
+    @isTest
+    static void testIsContactAccAddrInfoSameDifferentMailingAddressInactive() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        contact.Mailing_Address_Inactive__c = true;
 
         Test.startTest();
         Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(contact, accounts[0]);
@@ -150,7 +349,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             Boolean isContactAccAddrInfoSame = ADDR_Addresses_UTIL.isContactAccAddrInfoSame(null, null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -164,8 +363,82 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
      ****************************************************** isAddressChanged **************************************************
      **************************************************************************************************************************/
     @isTest
-    static void testIsAddressChangedTrue() {
+    static void testIsAddressChangedTrueDifferentMailingStreet() {
         List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    @isTest
+    static void testIsAddressChangedTrueDifferentMailingStreet2() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingStreet2__c = 'Street' + 1;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    @isTest
+    static void testIsAddressChangedTrueDifferentMailingCity() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    static void testIsAddressChangedTrueDifferentMailingCounty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    static void testIsAddressChangedTrueDifferentPostalCode() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+
+        Test.startTest();
+        Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressChanged);
+    }
+
+    static void testIsAddressChangedTrueDifferentInactive() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+        addresses[1].Inactive__c = true;
 
         Test.startTest();
         Boolean isAddressChanged = ADDR_Addresses_UTIL.isAddressChanged(addresses[1], addresses[0], false);
@@ -233,6 +506,138 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     /**************************************************************************************************************************
+     ****************************************************** isAddressInfoSame *******************************************
+     **************************************************************************************************************************/
+
+    @isTest
+    static void testIsAddressInfoSamedTrueDifferentMailingStreet() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSamed = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressInfoSamed);
+    }
+
+    @isTest
+    static void testIsAddressInfoSamedTrueDifferentMailingStreet2() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingStreet2__c = 'Street' + 1;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSamed = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressInfoSamed);
+    }
+
+    @isTest
+    static void testIsAddressInfoSamedTrueDifferentMailingCity() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSamed = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressInfoSamed);
+    }
+
+    static void testIsAddressInfoSamedTrueDifferentMailingCounty() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSamed = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressInfoSamed);
+    }
+
+    static void testIsAddressInfoSamedTrueDifferentPostalCode() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSamed = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressInfoSamed);
+    }
+
+    @isTest
+    static void testIsAddressInfoSamedTrueIncludingType() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].Address_Type__c = 'Work';
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSame = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], true);
+        Test.stopTest();
+
+        System.assertEquals(true, isAddressInfoSame);
+    }
+
+    @isTest
+    static void testIsAddressInfoSameFalse() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSame = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], true);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressInfoSame);
+    }
+
+    @isTest
+    static void testIsAddressInfoSameFalseExcludingType() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        addresses[1].Address_Type__c = 'Work';
+        addresses[1].MailingStreet__c = 'Street' + 0;
+        addresses[1].MailingCity__c = 'City' + 0;
+        addresses[1].MailingCounty__c = 'County' + 0;
+        addresses[1].MailingPostalCode__c = 'Zip' + 0;
+
+        Test.startTest();
+        Boolean isAddressInfoSame = ADDR_Addresses_UTIL.isAddressInfoSame(addresses[1], addresses[0], false);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressInfoSame);
+    }
+
+    @isTest
+    static void testIsAddressInfoSameNewAddressNull() {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+
+        Test.startTest();
+        Boolean isAddressInfoSame = ADDR_Addresses_UTIL.isAddressInfoSame(null, addresses[0], null);
+        Test.stopTest();
+
+        System.assertEquals(false, isAddressInfoSame);
+    }
+
+    /**************************************************************************************************************************
      ****************************************************** isContactAddressChanged *******************************************
      **************************************************************************************************************************/
     @isTest
@@ -282,19 +687,46 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     @isTest
     static void testIsContactAddressChangedBothNotNullSameAddressInfo() {
         Contact con1 = UTIL_UnitTestData_TEST.getContact();
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
 
         Test.startTest();
-        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, null);
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
         Test.stopTest();
 
         System.assertEquals(false, isContactAddressChanged);
     }
 
     @isTest
-    static void testIsContactAddressChangedBothNotNullDifferentAddressInfo() {
+    static void testIsContactAddressChangedBothNotNullDifferentMailingStreet() {
         Contact con1 = UTIL_UnitTestData_TEST.getContact();
         Contact con2 = UTIL_UnitTestData_TEST.getContact();
         con1.MailingStreet = 'Some Street';
+
+        Test.startTest();
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
+        Test.stopTest();
+
+        System.assertEquals(true, isContactAddressChanged);
+    }
+
+    @isTest
+    static void testIsContactAddressChangedBothNotNullDifferentMailingCity() {
+        Contact con1 = UTIL_UnitTestData_TEST.getContact();
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
+        con1.MailingStreet = 'Some City';
+
+        Test.startTest();
+        Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
+        Test.stopTest();
+
+        System.assertEquals(true, isContactAddressChanged);
+    }
+
+    @isTest
+    static void testIsContactAddressChangedBothNotNullDifferentMailingCounty() {
+        Contact con1 = UTIL_UnitTestData_TEST.getContact();
+        Contact con2 = UTIL_UnitTestData_TEST.getContact();
+        con1.MailingStreet = 'Some County';
 
         Test.startTest();
         Boolean isContactAddressChanged = ADDR_Addresses_UTIL.isContactAddressChanged(con1, con2);
@@ -525,7 +957,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             Boolean isAddressMatchFuzzy = ADDR_Addresses_UTIL.isAddressMatchFuzzy(addresses[0], addresses[1], null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -752,7 +1184,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressObj(null, null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -771,7 +1203,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressObj(addressSource, null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -790,7 +1222,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressObj(null, addressDestination);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -847,6 +1279,32 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
         System.assertEquals('Work', addressDestination.Address_Type__c);
     }
 
+    @isTest
+    static void testCopyAddressObjNotNullSourceTypeNotBlankInactive() {
+        Address__c addressSource = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        addressSource.Inactive__c = true;
+        Address__c addressDestination = new Address__c();
+        addressDestination.Address_Type__c = 'Work';
+        addressDestination.Inactive__c = false;
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressObj(addressSource, addressDestination);
+        Test.stopTest();
+
+        System.assertEquals(addressSource.Default_Address__c, addressDestination.Default_Address__c);
+        System.assertEquals(addressSource.MailingStreet__c, addressDestination.MailingStreet__c);
+        System.assertEquals(addressSource.MailingStreet2__c, addressDestination.MailingStreet2__c);
+        System.assertEquals(addressSource.MailingCity__c, addressDestination.MailingCity__c);
+        System.assertEquals(addressSource.MailingCounty__c, addressDestination.MailingCounty__c);
+        System.assertEquals(addressSource.MailingState__c, addressDestination.MailingState__c);
+        System.assertEquals(addressSource.MailingPostalCode__c, addressDestination.MailingPostalCode__c);
+        System.assertEquals(addressSource.MailingCountry__c, addressDestination.MailingCountry__c);
+        System.assertEquals(addressSource.Geolocation__Latitude__s, addressDestination.Geolocation__Latitude__s);
+        System.assertEquals(addressSource.Geolocation__Longitude__s, addressDestination.Geolocation__Longitude__s);
+        System.assertEquals('Home', addressDestination.Address_Type__c);
+        System.assertEquals(true, addressDestination.Inactive__c);
+    }
+
     /**************************************************************************************************************************
      ****************************************************** copyAddressStdSObj ************************************************
      **************************************************************************************************************************/
@@ -861,7 +1319,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObj(null, 'Mailing', account, 'Billing');
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -881,7 +1339,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObj(contact, null, account, 'Billing');
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field nullStreet for Contact',
@@ -900,7 +1358,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObj(contact, 'Mailing', null, 'Billing');
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -920,7 +1378,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObj(contact, 'Mailing', account, null);
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field nullStreet for Account',
@@ -951,6 +1409,52 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
+    static void testCopyAddressObjSobjValidFieldInactiveAddressFields() {
+        //To Refactor: No way we can test isStateCountryPicklistsEnabled.
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        contact.Mailing_Address_Inactive__c = false;
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        account.Billing_Address_Inactive__c = true;
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObj(account, 'Billing', contact, 'Mailing');
+        Test.stopTest();
+
+        System.assertEquals(account.BillingStreet, contact.MailingStreet);
+        System.assertEquals(account.BillingCity, contact.MailingCity);
+        System.assertEquals(account.Billing_County__c, contact.Mailing_County__c);
+        System.assertEquals(account.BillingPostalCode, contact.MailingPostalCode);
+        System.assertEquals(account.BillingState, contact.MailingState);
+        System.assertEquals(account.BillingCountry, contact.MailingCountry);
+        System.assertEquals(account.BillingLatitude, contact.MailingLatitude);
+        System.assertEquals(account.BillingLongitude, contact.MailingLongitude);
+        System.assertEquals(true, contact.Mailing_Address_Inactive__c);
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjValidFieldInvalidInactiveAddressFields() {
+        //To Refactor: No way we can test isStateCountryPicklistsEnabled.
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        contact.Mailing_Address_Inactive__c = false;
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        account.Billing_Address_Inactive__c = true;
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObj(account, 'Billing', contact, 'Other');
+        Test.stopTest();
+
+        System.assertEquals(account.BillingStreet, contact.MailingStreet);
+        System.assertEquals(account.BillingCity, contact.MailingCity);
+        System.assertEquals(account.Billing_County__c, contact.Mailing_County__c);
+        System.assertEquals(account.BillingPostalCode, contact.MailingPostalCode);
+        System.assertEquals(account.BillingState, contact.MailingState);
+        System.assertEquals(account.BillingCountry, contact.MailingCountry);
+        System.assertEquals(account.BillingLatitude, contact.MailingLatitude);
+        System.assertEquals(account.BillingLongitude, contact.MailingLongitude);
+        System.assertEquals(false, contact.Mailing_Address_Inactive__c);
+    }
+
+    @isTest
     static void testCopyAddressObjSobjInvalidField() {
         //To Refactor: we don't have guard clause for this.
         Contact contact = UTIL_UnitTestData_TEST.getContact();
@@ -960,7 +1464,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObj(account, 'Mailing', contact, 'Billing');
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field MailingStreet for Account',
@@ -982,7 +1486,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Billing', null, 'Home');
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1002,7 +1506,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, null, address, 'Home');
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field nullStreet for Account',
@@ -1021,7 +1525,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(null, 'Billing', address, 'Home');
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1052,6 +1556,66 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
+    static void testCopyAddressObjSobjAddrValidFieldAccountInactiveAddressFields() {
+        Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        account.Billing_Address_Inactive__c = true;
+        Address__c address = new Address__c();
+        address.Inactive__c = false;
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Billing', address, 'Home');
+        Test.stopTest();
+
+        System.assertEquals(account.BillingStreet, address.MailingStreet__c);
+        System.assertEquals(account.BillingCity, address.MailingCity__c);
+        System.assertEquals(account.Billing_County__c, address.MailingCounty__c);
+        System.assertEquals(account.BillingPostalCode, address.MailingPostalCode__c);
+        System.assertEquals(account.BillingState, address.MailingState__c);
+        System.assertEquals(account.BillingCountry, address.MailingCountry__c);
+        System.assertEquals(account.BillingLatitude, address.Geolocation__Latitude__s);
+        System.assertEquals(account.BillingLongitude, address.Geolocation__Longitude__s);
+        System.assertEquals('Home', address.Address_Type__c);
+        System.assertEquals(true, address.Inactive__c);
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjAddrValidFieldContactInactiveAddressFields() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        contact.Mailing_Address_Inactive__c = true;
+        Address__c address = new Address__c();
+        address.Inactive__c = false;
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(contact, 'Mailing', address, 'Home');
+        Test.stopTest();
+
+        System.assertEquals(contact.MailingStreet, address.MailingStreet__c);
+        System.assertEquals(contact.MailingCity, address.MailingCity__c);
+        System.assertEquals(contact.Mailing_County__c, address.MailingCounty__c);
+        System.assertEquals(contact.MailingPostalCode, address.MailingPostalCode__c);
+        System.assertEquals(contact.MailingState, address.MailingState__c);
+        System.assertEquals(contact.MailingCountry, address.MailingCountry__c);
+        System.assertEquals(contact.MailingLatitude, address.Geolocation__Latitude__s);
+        System.assertEquals(contact.MailingLongitude, address.Geolocation__Longitude__s);
+        System.assertEquals('Home', address.Address_Type__c);
+        System.assertEquals(true, address.Inactive__c);
+    }
+
+    @isTest
+    static void testCopyAddressObjSobjAddrValidFieldContactInactiveAddressFieldsInvalid() {
+        Contact contact = UTIL_UnitTestData_TEST.getContact();
+        contact.Mailing_Address_Inactive__c = true;
+        Address__c address = new Address__c();
+        address.Inactive__c = false;
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressStdSObjAddr(contact, 'Other', address, 'Home');
+        Test.stopTest();
+
+        System.assertEquals(false, address.Inactive__c);
+    }
+
+    @isTest
     static void testCopyAddressObjSobjAddrInvalidField() {
         //To Refactor: we don't have guard clause for this.
         Account account = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
@@ -1061,7 +1625,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressStdSObjAddr(account, 'Mailing', address, 'Home');
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field MailingStreet for Account',
@@ -1084,7 +1648,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressAddrSObj(null, account, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1104,7 +1668,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressAddrSObj(address, null, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1125,7 +1689,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressAddrSObj(address, account, null, 'Primary_Address_Type__c', dmlWrapper);
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field nullStreet for Account',
@@ -1159,6 +1723,45 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
     }
 
     @isTest
+    static void testCopyAddressAddrSObjValidFieldInactiveAddressFields() {
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        address.Inactive__c = true;
+        Contact contact = new Contact();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressAddrSObj(address, contact, 'Mailing', 'Primary_Address_Type__c', dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(address.MailingStreet__c, contact.MailingStreet);
+        System.assertEquals(address.MailingCity__c, contact.MailingCity);
+        System.assertEquals(address.MailingCounty__c, contact.Mailing_County__c);
+        System.assertEquals(address.MailingPostalCode__c, contact.MailingPostalCode);
+        System.assertEquals(address.MailingState__c, contact.MailingState);
+        System.assertEquals(address.MailingCountry__c, contact.MailingCountry);
+        System.assertEquals(address.Geolocation__Latitude__s, contact.MailingLatitude);
+        System.assertEquals(address.Geolocation__Longitude__s, contact.MailingLongitude);
+        System.assertEquals(address.Address_Type__c, contact.get('Primary_Address_Type__c'));
+        System.assertEquals(true, dmlWrapper.objectsToUpdate.size() > 0);
+        System.assertEquals(address.MailingStreet__c, dmlWrapper.objectsToUpdate[0].get('MailingStreet'));
+        System.assertEquals(true, contact.Mailing_Address_Inactive__c);
+    }
+
+    @isTest
+    static void testCopyAddressAddrSObjValidFieldInactiveAddressFieldsInvalid() {
+        Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
+        address.Inactive__c = true;
+        Contact contact = new Contact();
+        TDTM_Runnable.DmlWrapper dmlWrapper = new TDTM_Runnable.DmlWrapper();
+
+        Test.startTest();
+        ADDR_Addresses_UTIL.copyAddressAddrSObj(address, contact, 'Other', 'Primary_Address_Type__c', dmlWrapper);
+        Test.stopTest();
+
+        System.assertEquals(false, contact.Mailing_Address_Inactive__c);
+    }
+
+    @isTest
     static void testCopyAddressAddrSObjInvalidSourceRecordField() {
         //To Refactor: we don't have guard clause for this.
         Address__c address = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1)[0];
@@ -1169,7 +1772,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.copyAddressAddrSObj(address, contact, 'Billing', 'Primary_Address_Type__c', dmlWrapper);
             Test.stopTest();
-            System.assert(false,'An SObject Exception should be thrown as we do not handle it in the method.');
+            System.assert(false, 'An SObject Exception should be thrown as we do not handle it in the method.');
         } catch (SObjectException e) {
             System.assertEquals(
                 'Invalid field BillingStreet for Contact',
@@ -1195,7 +1798,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.handleMultilineStreet(null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1241,7 +1844,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.getMultilineStreet(null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1303,7 +1906,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getParentIdToAddrs(null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1376,7 +1979,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             Map<ID, List<Address__c>> parentIdToAddrs = ADDR_Addresses_UTIL.getMapParentIdListAddrs(null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1466,7 +2069,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.updateAddrIsOverride(null, dmlWrapper);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1505,7 +2108,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.updateAddrIsOverride(mapAddrIdIsOverride, null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1574,7 +2177,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(null, addresses, dmlWrapper);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1594,7 +2197,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(addresses[0], null, dmlWrapper);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1624,7 +2227,7 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             Test.startTest();
             ADDR_Addresses_UTIL.uncheckDefaultOtherAddrs(addresses[0], addresses, null);
             Test.stopTest();
-            System.assert(false,'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
+            System.assert(false, 'A Null Pointer Exception should be thrown as we do not handle nulls in the method.');
         } catch (NullPointerException e) {
             System.assertEquals(
                 'Attempt to de-reference a null object',
@@ -1746,11 +2349,11 @@ private with sharing class ADDR_Addresses_UTIL_TEST {
             'SELECT recordTypeId, Current_Address__c, BillingStreet, ' +
             'BillingCity, Billing_County__c, BillingState, ' +
             'BillingPostalCode, BillingCountry, BillingLatitude, ' +
-            'BillingLongitude';
+            'BillingLongitude, Billing_Address_Inactive__c';
 
-        assertString += ', (SELECT Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, Mailing_County__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude';
+        assertString += ', (SELECT Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, Mailing_County__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, Mailing_Address_Inactive__c';
         assertString += ' FROM Account.Contacts)';
-        assertString += ', (SELECT Default_Address__c, Parent_Account__c, Parent_Contact__c, MailingCounty__c, Latest_Start_Date__c, Latest_End_Date__c FROM Account.Addresses__r)';
+        assertString += ', (SELECT Default_Address__c, Parent_Account__c, Parent_Contact__c, MailingCounty__c, Latest_Start_Date__c, Latest_End_Date__c, Inactive__c FROM Account.Addresses__r)';
         assertString += ' FROM Account WHERE Id IN ';
 
         System.assertEquals(parentAccsWithChildrenQuery, assertString);

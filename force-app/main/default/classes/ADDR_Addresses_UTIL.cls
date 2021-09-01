@@ -44,6 +44,9 @@ public with sharing class ADDR_Addresses_UTIL {
     /* @description map from Country Code to Country Name */
     private static Map<String, String> validCountriesByCode = new Map<String, String>();
 
+    /* @description Constant set of prefix string for inactive address fields since methods are static*/
+    private final static Set<String> INACTIVE_ADDRESS_FIELDS_PREFIX = new Set<String>{ 'Mailing', 'Billing' };
+
     /*******************************************************************************************************
      * @description Returns whether the Address's mailing fields are null.
      * @param addr the Address record.
@@ -80,7 +83,8 @@ public with sharing class ADDR_Addresses_UTIL {
             !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.Mailing_County__c, acc.Billing_County__c) ||
             !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingState, acc.BillingState) ||
             !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingPostalCode, acc.BillingPostalCode) ||
-            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCountry, acc.BillingCountry);
+            !ADDR_Addresses_UTIL.equalsCaseSensitive(contact.MailingCountry, acc.BillingCountry) ||
+            contact.Mailing_Address_Inactive__c != acc.Billing_Address_Inactive__c;
 
         if (isChanged == false && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             isChanged =
@@ -106,6 +110,30 @@ public with sharing class ADDR_Addresses_UTIL {
      * @return Boolean. True if any of the fields fields have changed on the Address record.
      ********************************************************************************************************/
     public static Boolean isAddressChanged(Address__c addrNew, Address__c addrOld, Boolean includeAddressType) {
+        if (addrNew == null || addrOld == null) {
+            return false;
+        }
+
+        return (addrNew.Default_Address__c != addrOld.Default_Address__c ||
+        !equalsCaseSensitive(addrNew.MailingStreet__c, addrOld.MailingStreet__c) ||
+        !equalsCaseSensitive(addrNew.MailingStreet2__c, addrOld.MailingStreet2__c) ||
+        !equalsCaseSensitive(addrNew.MailingCity__c, addrOld.MailingCity__c) ||
+        !equalsCaseSensitive(addrNew.MailingCounty__c, addrOld.MailingCounty__c) ||
+        !equalsCaseSensitive(addrNew.MailingState__c, addrOld.MailingState__c) ||
+        !equalsCaseSensitive(addrNew.MailingPostalCode__c, addrOld.MailingPostalCode__c) ||
+        !equalsCaseSensitive(addrNew.MailingCountry__c, addrOld.MailingCountry__c) ||
+        addrNew.Inactive__c != addrOld.Inactive__c ||
+        (includeAddressType && (!equalsCaseSensitive(addrNew.Address_Type__c, addrOld.Address_Type__c))));
+    }
+
+    /*******************************************************************************************************
+     * @description Utility to compare two Address records' address fields excluding inactive fields.
+     * @param addrNew the new version of the Address record.
+     * @param addrOld the old version of the Address record.
+     * @param includeAddressType a boolean that checks whether to include comparing the AddressType field.
+     * @return Boolean. True if any of the fields fields are the same.
+     ********************************************************************************************************/
+    public static Boolean isAddressInfoSame(Address__c addrNew, Address__c addrOld, Boolean includeAddressType) {
         if (addrNew == null || addrOld == null) {
             return false;
         }
@@ -151,7 +179,8 @@ public with sharing class ADDR_Addresses_UTIL {
             !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingState, con2.MailingState) ||
             !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingPostalCode, con2.MailingPostalCode) ||
             !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.MailingCountry, con2.MailingCountry) ||
-            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.Primary_Address_Type__c, con2.Primary_Address_Type__c);
+            !ADDR_Addresses_UTIL.equalsCaseSensitive(con1.Primary_Address_Type__c, con2.Primary_Address_Type__c) ||
+            con1.Mailing_Address_Inactive__c != con2.Mailing_Address_Inactive__c;
 
         if (!isChanged && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             isChanged =
@@ -185,7 +214,8 @@ public with sharing class ADDR_Addresses_UTIL {
             !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.Billing_County__c, acc2.Billing_County__c) ||
             !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingState, acc2.BillingState) ||
             !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingPostalCode, acc2.BillingPostalCode) ||
-            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry);
+            !ADDR_Addresses_UTIL.equalsCaseSensitive(acc1.BillingCountry, acc2.BillingCountry) ||
+            acc1.Billing_Address_Inactive__c != acc2.Billing_Address_Inactive__c;
 
         if (isChanged == false && ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             isChanged =
@@ -374,6 +404,7 @@ public with sharing class ADDR_Addresses_UTIL {
         addrDst.MailingCountry__c = addrSrc.MailingCountry__c;
         addrDst.Geolocation__Latitude__s = addrSrc.Geolocation__Latitude__s;
         addrDst.Geolocation__Longitude__s = addrSrc.Geolocation__Longitude__s;
+        addrDst.Inactive__c = addrSrc.Inactive__c;
 
         if (String.isNotBlank(addrSrc.Address_Type__c)) {
             addrDst.Address_Type__c = addrSrc.Address_Type__c;
@@ -403,6 +434,16 @@ public with sharing class ADDR_Addresses_UTIL {
         sobjDst.put(strFieldPrefixDst + 'Country', sobjSrc.get(strFieldPrefixSrc + 'Country'));
         sobjDst.put(strFieldPrefixDst + 'Latitude', sobjSrc.get(strFieldPrefixSrc + 'Latitude'));
         sobjDst.put(strFieldPrefixDst + 'Longitude', sobjSrc.get(strFieldPrefixSrc + 'Longitude'));
+
+        if (
+            INACTIVE_ADDRESS_FIELDS_PREFIX.contains(strFieldPrefixDst) &&
+            INACTIVE_ADDRESS_FIELDS_PREFIX.contains(strFieldPrefixSrc)
+        ) {
+            sobjDst.put(
+                strFieldPrefixDst + '_Address_Inactive__c',
+                sobjSrc.get(strFieldPrefixSrc + '_Address_Inactive__c')
+            );
+        }
 
         if (isStateCountryPicklistsEnabled) {
             sobjDst.put(strFieldPrefixDst + 'StateCode', sobjSrc.get(strFieldPrefixSrc + 'StateCode'));
@@ -434,6 +475,11 @@ public with sharing class ADDR_Addresses_UTIL {
         addr.MailingCountry__c = (String) sobjSrc.get(strFieldPrefixSrc + 'Country');
         addr.Geolocation__Latitude__s = (Decimal) sobjSrc.get(strFieldPrefixSrc + 'Latitude');
         addr.Geolocation__Longitude__s = (Decimal) sobjSrc.get(strFieldPrefixSrc + 'Longitude');
+
+        if (INACTIVE_ADDRESS_FIELDS_PREFIX.contains(strFieldPrefixSrc)) {
+            addr.Inactive__c = (Boolean) sobjSrc.get(strFieldPrefixSrc + '_Address_Inactive__c');
+        }
+
         //Try to find state and country by code if they aren't specified?
         if (isStateCountryPicklistsEnabled) {
             //Lookup country if needed, by country code
@@ -482,6 +528,10 @@ public with sharing class ADDR_Addresses_UTIL {
         sobjDst.put(strFieldPrefix + 'Latitude', addr.Geolocation__Latitude__s);
         sobjDst.put(strFieldPrefix + 'Longitude', addr.Geolocation__Longitude__s);
         sobjDst.put('Current_Address__c', addr.Id);
+
+        if (INACTIVE_ADDRESS_FIELDS_PREFIX.contains(strFieldPrefix)) {
+            sobjDst.put(strFieldPrefix + '_Address_Inactive__c', addr.Inactive__c);
+        }
 
         if (!isStateCountryPicklistsEnabled) {
             sobjDst.put(strFieldPrefix + 'State', addr.MailingState__c);
@@ -714,7 +764,7 @@ public with sharing class ADDR_Addresses_UTIL {
                 Address__c addrMatch = null;
                 for (Address__c childAddr : childAddrs) {
                     //Only include address type in the test if the new one isn't empty.
-                    if (!isAddressChanged(addr, childAddr, addr.Address_Type__c != null)) {
+                    if (!isAddressInfoSame(addr, childAddr, addr.Address_Type__c != null)) {
                         //Found exact match, record it and bail out
                         addrMatch = childAddr;
                         break;
@@ -786,7 +836,8 @@ public with sharing class ADDR_Addresses_UTIL {
                 Seasonal_End_Month__c,
                 Seasonal_End_Day__c,
                 Geolocation__Latitude__s,
-                Geolocation__Longitude__s
+                Geolocation__Longitude__s,
+                Inactive__c
             FROM Address__c
             WHERE Parent_Account__c IN :listParentId OR Parent_Contact__c IN :listParentId
             ORDER BY Default_Address__c DESC, LastModifiedDate ASC
@@ -876,6 +927,7 @@ public with sharing class ADDR_Addresses_UTIL {
         acc.BillingCountry = null;
         acc.BillingLatitude = null;
         acc.BillingLongitude = null;
+        acc.Billing_Address_Inactive__c = false;
 
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             acc.BillingCountry = null;
@@ -897,6 +949,7 @@ public with sharing class ADDR_Addresses_UTIL {
         contact.MailingCountry = null;
         contact.MailingLatitude = null;
         contact.MailingLongitude = null;
+        contact.Mailing_Address_Inactive__c = false;
     }
 
     /*******************************************************************************************************
@@ -909,20 +962,20 @@ public with sharing class ADDR_Addresses_UTIL {
             'SELECT recordTypeId, Current_Address__c, BillingStreet, ' +
             'BillingCity, Billing_County__c, BillingState, ' +
             'BillingPostalCode, BillingCountry, BillingLatitude, ' +
-            'BillingLongitude';
+            'BillingLongitude, Billing_Address_Inactive__c';
 
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             query += ', BillingCountryCode, BillingStateCode';
         }
 
-        query += ', (SELECT Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, Mailing_County__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude';
+        query += ', (SELECT Current_Address__c, is_Address_Override__c, Primary_Address_Type__c, MailingStreet, MailingCity, Mailing_County__c, MailingState, MailingPostalCode, MailingCountry, MailingLatitude, MailingLongitude, Mailing_Address_Inactive__c';
 
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             query += ', MailingCountryCode, MailingStateCode';
         }
 
         query += ' FROM Account.Contacts)';
-        query += ', (SELECT Default_Address__c, Parent_Account__c, Parent_Contact__c, MailingCounty__c, Latest_Start_Date__c, Latest_End_Date__c FROM Account.Addresses__r)';
+        query += ', (SELECT Default_Address__c, Parent_Account__c, Parent_Contact__c, MailingCounty__c, Latest_Start_Date__c, Latest_End_Date__c, Inactive__c FROM Account.Addresses__r)';
         query += ' FROM Account WHERE Id IN ';
 
         return query;
