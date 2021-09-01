@@ -1956,7 +1956,7 @@
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Message when there was an error during the release gate activation</shortDescription>
-        <value>We coudn&apos;t activate the release gate {0}. Contact Salesforce Customer Support for help. Additional details: {1}</value>
+        <value>We couldn&apos;t activate {0}. See Additional details for more information, or contact Salesforce Support for help.&#13;&#10;&#13;&#10;Additional details: {1}</value>
     </labels>
     <labels>
         <fullName>stgErrorSettingsTitle</fullName>
