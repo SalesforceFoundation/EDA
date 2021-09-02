@@ -1,6 +1,7 @@
 import { createElement } from "lwc";
 import ReleaseManagement from "c/releaseManagement";
 import { ShowToastEventName } from "lightning/platformShowToastEvent";
+import { getNavigateCalledWith } from "lightning/navigation";
 import getProductRegistryReleaseGateVModels from "@salesforce/apex/ReleaseGateController.getProductRegistryReleaseGateVModels";
 
 const PRODUCT_REGISTRIES = [
@@ -84,6 +85,23 @@ describe("c-release-management", () => {
             expect(toastHandler).toHaveBeenCalled();
             expect(toastHandler.mock.calls[0][0].detail.title).toBe(stgToastError);
             expect(toastHandler.mock.calls[0][0].detail.variant).toBe("error");
+        });
+    });
+
+    it("Check if navigation to settings page is correct", () => {
+        const element = createElement("c-release-management", {
+            is: ReleaseManagement,
+        });
+        document.body.appendChild(element);
+        getProductRegistryReleaseGateVModels.emit(PRODUCT_REGISTRIES);
+
+        return Promise.resolve().then(async () => {
+            const edcNavLink = element.shadowRoot.querySelector(".edcNavLink");
+            expect(edcNavLink).not.toBeNull();
+            edcNavLink.click();
+            const { pageReference } = getNavigateCalledWith();
+            expect(pageReference.type).toBe("standard__component");
+            expect(pageReference.attributes.componentName).toContain("EducationCloudSettingsContainer");
         });
     });
 });

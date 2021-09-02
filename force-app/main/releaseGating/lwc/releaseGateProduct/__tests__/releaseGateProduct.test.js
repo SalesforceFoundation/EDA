@@ -32,19 +32,32 @@ describe("c-release-gate-product", () => {
         getReleaseGateVModel.emit(RELEASE_GATES);
         const releaseProduct = RELEASE_GATES[0];
 
-        return Promise.resolve().then(async () => {
-            await expect(element).toBeAccessible();
+        return Promise.resolve()
+            .then(async () => {
+                await expect(element).toBeAccessible();
 
-            const headingSpan = element.shadowRoot.querySelector(".releaseGateProductTitle");
-            expect(headingSpan).not.toBeNull();
-            expect(headingSpan.textContent).toBe(releaseProduct.product.label);
+                const headingSpan = element.shadowRoot.querySelector(".releaseGateProductTitle");
+                expect(headingSpan).not.toBeNull();
+                expect(headingSpan.textContent).toBe(releaseProduct.product.label);
 
-            const releaseGateItems = element.shadowRoot.querySelectorAll(".releaseGateList");
-            expect(releaseGateItems).not.toBeNull();
-            expect(releaseGateItems.length).toBe(2);
+                const releaseGateItems = element.shadowRoot.querySelectorAll(".releaseGateList");
+                expect(releaseGateItems).not.toBeNull();
+                expect(releaseGateItems.length).toBe(RELEASE_GATES.length);
 
-            expect(handler).toHaveBeenCalled();
-        });
+                expect(handler).toHaveBeenCalled();
+            })
+            .then(() => {
+                //Testing setReleaseGateStatus
+                const releaseGateItems = element.shadowRoot.querySelectorAll("c-release-gate-item");
+                expect(releaseGateItems.length).toBe(
+                    RELEASE_GATES.reduce((a, b) => {
+                        return a + b.gates.length;
+                    }, 0)
+                );
+                expect(releaseGateItems[0].gateStatus).toBe("inactive");
+                element.setReleaseGateStatus("SAL", "summer21", "inprogress");
+                expect(releaseGateItems[0].gateStatus).toBe("inprogress");
+            });
     });
 
     it("Check if component is handling an error response", () => {
