@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Score__c</name>
     <help>La valeur numérique du score reçu.</help>
     <label>Score</label>
+    <name>Score__c</name>
 </CustomFieldTranslation>

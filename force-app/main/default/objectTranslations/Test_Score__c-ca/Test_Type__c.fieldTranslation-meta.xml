@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Test_Type__c</name>
     <help>Mostra el nom del tipus de prova del registre de prova associat. Per exemple, SAT o GRE.</help>
     <label>Tipus de prova</label>
+    <name>Test_Type__c</name>
 </CustomFieldTranslation>
