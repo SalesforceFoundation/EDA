@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Source__c</name>
     <help>Geeft aan of deze toets is gerapporteerd door de aanvrager of door een officiële bron.</help>
     <label>Bron</label>
-    <picklistValues>
-        <masterLabel>Self Reported</masterLabel>
-        <translation>Zelf gerapporteerd</translation>
-    </picklistValues>
+    <name>Source__c</name>
     <picklistValues>
         <masterLabel>Official</masterLabel>
         <translation>Officieel</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Self Reported</masterLabel>
+        <translation>Zelf gerapporteerd</translation>
     </picklistValues>
 </CustomFieldTranslation>

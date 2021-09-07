@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Date_Received__c</name>
     <help>テストスコアがシステムに手動アップロードにより追加されたか、公式ソースから直接追加された日付。</help>
     <label>受領日</label>
+    <name>Date_Received__c</name>
 </CustomFieldTranslation>
