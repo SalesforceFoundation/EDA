@@ -6,11 +6,7 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import stgColProducts from "@salesforce/label/c.stgColProducts";
 import stgColResources from "@salesforce/label/c.stgColResources";
 import stgColTools from "@salesforce/label/c.stgColTools";
-
-//EDA Labels
-import stgEDAAppDesc from "@salesforce/label/c.stgEDAAppDesc";
-import stgEDAAppTitle from "@salesforce/label/c.stgEDAAppTitle";
-import stgEDAAppInitials from "@salesforce/label/c.stgEDAAppInitials";
+import stgReleaseManagementCardTitle from "@salesforce/label/c.stgReleaseManagementCardTitle";
 
 //EDA Services Labels
 import stgHealthCheckTitle from "@salesforce/label/c.stgHealthCheckTitle";
@@ -46,6 +42,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
     labelReference = {
         productsTitle: stgColProducts,
         resourcesTitle: stgColResources,
+        releaseManagementTitle: stgReleaseManagementCardTitle,
         toolsTitle: stgColTools,
     };
 
