@@ -97,6 +97,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
     @track edcResourceModels = [
         {
             title: stgTrailheadTitle,
+            iconName: "standard:trailhead",
             buttonLabel: stgBtnEDCTrailhead,
             buttonTitle: stgBtnEDCTrailheadActionA11y,
             navigationType: "standard__webPage",
@@ -104,6 +105,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         },
         {
             title: stgCommunityTitle,
+            iconName: "standard:groups",
             buttonLabel: stgBtnCommunity,
             buttonTitle: stgBtnCommunityActionA11y,
             navigationType: "standard__webPage",
@@ -111,6 +113,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         },
         {
             title: stgVideosTitle,
+            iconName: "standard:video",
             buttonLabel: stgBtnVideos,
             buttonTitle: stgBtnVideosActionA11y,
             navigationType: "standard__webPage",
