@@ -33,13 +33,8 @@ import namespacedEDAField from "@salesforce/schema/Course_Offering_Schedule__c.C
 
 import getProductRegistrySettingsProductInformationVModels from "@salesforce/apex/EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels";
 
-import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
-
 const HealthCheckContainerComponentName = "HealthCheckContainer";
 const ReleaseManagementContainerComponentName = "releaseManagementContainer";
-
-const EDADocumentationUrl = "https://powerofus.force.com/s/article/EDA-Documentation";
-const EDATrailheadUrl = "https://trailhead.salesforce.com/en/content/learn/trails/highered_heda";
 
 const EDCTrailheadUrl = "https://trailhead.salesforce.com/en/users/sfdo/trailmixes/get-started-with-education-cloud";
 const TrailblazerCommunityUrl = "https://trailblazers.salesforce.com/successHome";
