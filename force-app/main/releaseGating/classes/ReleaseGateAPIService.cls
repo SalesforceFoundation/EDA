@@ -149,10 +149,20 @@ public virtual with sharing class ReleaseGateAPIService {
                     GATE_PARAMETER => gateName
                 }
             );
-            ActivateReleaseGateActionResultModel resultModel = (ActivateReleaseGateActionResultModel) JSON.deserialize(
-                (String) result,
-                ActivateReleaseGateActionResultModel.class
-            );
+            ActivateReleaseGateActionResultModel resultModel;
+            try {
+                resultModel = (ActivateReleaseGateActionResultModel) JSON.deserialize(
+                    (String) result,
+                    ActivateReleaseGateActionResultModel.class
+                );
+            } catch (System.JSONException je) {
+                String errorMessage = String.format(
+                    Label.stgErrorReleaseGateActivateErrorResponse,
+                    new List<Object>{ gateName + ' (' + productName + ')', je.getMessage() }
+                );
+                UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
+                throw new ReleaseGateCallableException(errorMessage, je, this.releaseGateRegistry, null);
+            }
             if (!resultModel.success) {
                 if (resultModel.error != null) {
                     resultModel.error.message = String.format(
