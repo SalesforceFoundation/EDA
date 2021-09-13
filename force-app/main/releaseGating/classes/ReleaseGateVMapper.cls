@@ -165,13 +165,12 @@ public virtual with sharing class ReleaseGateVMapper {
     private void verifyCallableResult(CallableResult resultModel) {
         if (resultModel.success) {
             return;
-        } else {
-            String errorMessage = resultModel.error != null
-                ? String.format('{0} ({1})', new List<Object>{ resultModel.error.message, resultModel.error.code })
-                : 'Unspecified error';
-            UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
-            throw new ReleaseGateResultException(errorMessage);
         }
+        String errorMessage = resultModel.error != null
+            ? String.format('{0} ({1})', new List<Object>{ resultModel.error.message, resultModel.error.code })
+            : 'Unspecified error';
+        UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
+        throw new ReleaseGateResultException(errorMessage);
     }
 
     /*****************************************************************************
