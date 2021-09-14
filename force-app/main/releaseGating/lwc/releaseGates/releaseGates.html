@@ -5,6 +5,8 @@
             for:item="releaseGate"
             key={releaseGate.name}
             product-registry-name={releaseGate.name}
+            onreleasegateloadsuccess={handleReleaseGateLoadSuccess}
+            onreleasegateloaderror={handleReleaseGateLoadError}
         >
         </c-release-gate-product>
     </section>

@@ -94,10 +94,7 @@ public virtual with sharing class ReleaseGateService {
             .getProductRegistryModelByName(productRegistryName);
         if (productRegistry == null) {
             throw new ReleaseGateAPIService.ReleaseGateProductNotFoundException(
-                String.format(
-                    'Release gate product registry with name {0} was not found',
-                    new List<Object>{ productRegistryName }
-                ),
+                String.format(Label.stgErrorSettingsProductInvalidClass, new List<Object>{ productRegistryName }),
                 null,
                 null
             );
