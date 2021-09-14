@@ -198,6 +198,52 @@ public with sharing class ReleaseGateVMapper_TEST {
         System.assertEquals('active', activateReleaseGateVModelList[0].status, 'Expected status should be active');
     }
 
+    /************************************************************************************************************************************
+     * @description Test method to verify getReleaseGateVModel throws a ReleaseGateResultException
+     ************************************************************************************************************************************/
+    @isTest
+    private static void getReleaseGateVModelException() {
+        ReleaseGateService.instance = new STUB_ReleaseGateServiceErrorResponse();
+
+        ReleaseGateVMapper releaseGateVMapperInstance = ReleaseGateVMapper.getInstance();
+
+        Boolean hasException = false;
+        Test.startTest();
+        try {
+            List<ReleaseGateVModel> releaseGateVModelList = releaseGateVMapperInstance.getReleaseGateVModel(
+                'testProductRegistry'
+            );
+        } catch (ReleaseGateVMapper.ReleaseGateResultException ex) {
+            hasException = true;
+        }
+        Test.stopTest();
+        System.assertEquals(true, hasException, 'Should always throw an exception');
+    }
+
+    /************************************************************************************************************************************
+     * @description Test method to verify activateReleaseGate throws a ReleaseGateResultException
+     ************************************************************************************************************************************/
+    @isTest
+    private static void activateReleaseGateException() {
+        ReleaseGateService.instance = new STUB_ReleaseGateServiceErrorResponse();
+
+        ReleaseGateVMapper releaseGateVMapperInstance = ReleaseGateVMapper.getInstance();
+
+        Boolean hasException = false;
+        Test.startTest();
+        try {
+            List<ActivateReleaseGateVModel> activateReleaseGateVModelList = releaseGateVMapperInstance.activateReleaseGate(
+                'productRegistryName',
+                'productName',
+                'gateName'
+            );
+        } catch (ReleaseGateVMapper.ReleaseGateResultException ex) {
+            hasException = true;
+        }
+        Test.stopTest();
+        System.assertEquals(true, hasException, 'Should always throw an exception');
+    }
+
     /***********************************************************************************************************************************
      ****************************************************** STUBS ***********************************************************************
      ***********************************************************************************************************************************/
@@ -257,6 +303,28 @@ public with sharing class ReleaseGateVMapper_TEST {
                 true,
                 null
             );
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from ReleaseGateService to return an error respose
+     **************************************************************************************************************************************/
+    private class STUB_ReleaseGateServiceErrorResponse extends ReleaseGateService {
+        public override GetReleaseGateActionResultModel getReleaseGateModel(String productRegistryName) {
+            GetReleaseGateActionResultModel releaseGateResultModel = new GetReleaseGateActionResultModel(
+                null,
+                false,
+                new CallableError(400, 'test get error')
+            );
+            return releaseGateResultModel;
+        }
+
+        public override ActivateReleaseGateActionResultModel activateReleaseGate(
+            String productRegistryName,
+            String productName,
+            String gateName
+        ) {
+            return new ActivateReleaseGateActionResultModel(null, false, null);
         }
     }
 }

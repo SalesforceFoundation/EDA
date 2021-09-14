@@ -49,9 +49,8 @@ public virtual with sharing class ReleaseGateAPIService {
      */
     public ReleaseGateAPIService(ProductRegistryModel releaseGateRegistry) {
         if (releaseGateRegistry.action != ProductRegistryMapper.RELEASE_GATING_ACTION) {
-            throw new ReleaseGateProductNotFoundException(
-                'Incorrect release gate action specified in product registry: ' + releaseGateRegistry.action,
-                null,
+            throw new ReleaseGateProductRegistryException(
+                Label.stgErrorSettingsProductInvalidAction,
                 releaseGateRegistry
             );
         }
@@ -74,14 +73,14 @@ public virtual with sharing class ReleaseGateAPIService {
                 this.callableInstance = this.createReleaseGateCallableInstance();
             } catch (System.NullPointerException npe) {
                 String errorMessage = String.format(
-                    'Class: {0} with namespace {1} could not get loaded',
+                    Label.stgErrorSettingsProductInvalidClass,
                     new List<object>{ this.releaseGateRegistry.classname, this.releaseGateRegistry.namespace }
                 );
                 UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
                 throw new ReleaseGateProductNotFoundException(errorMessage, npe, this.releaseGateRegistry);
             } catch (System.TypeException te) {
                 String errorMessage = String.format(
-                    'Class: {0} with namespace {1} could not get loaded',
+                    Label.stgErrorSettingsProductInvalidClass,
                     new List<object>{ this.releaseGateRegistry.classname, this.releaseGateRegistry.namespace }
                 );
                 UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
@@ -105,16 +104,31 @@ public virtual with sharing class ReleaseGateAPIService {
      * @return           A GetReleaseGateActionResultModel
      */
     public virtual GetReleaseGateActionResultModel getReleaseGates() {
-        Object result = this.makeCall(
-            GET_ACTION,
-            new Map<String, Object>{ VERSION_PARAMETER => this.releaseGateRegistry.apiVersion }
-        );
-        GetReleaseGateActionResultModel resultModel = (GetReleaseGateActionResultModel) JSON.deserialize(
-            (String) result,
-            GetReleaseGateActionResultModel.class
-        );
-        this.verifyCallableResult(resultModel, GET_ACTION);
-        return resultModel;
+        //Customize application perm is required for all release gating actions
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
+        try {
+            Object result = this.makeCall(
+                GET_ACTION,
+                new Map<String, Object>{ VERSION_PARAMETER => this.releaseGateRegistry.apiVersion }
+            );
+            GetReleaseGateActionResultModel resultModel = (GetReleaseGateActionResultModel) JSON.deserialize(
+                (String) result,
+                GetReleaseGateActionResultModel.class
+            );
+            return resultModel;
+        } catch (System.JSONException je) {
+            String errorMessage = String.format(
+                Label.stgErrorSettingsProductInvalidResponse,
+                new List<Object>{ this.releaseGateRegistry.name }
+            );
+            UTIL_Debug.debug(System.LoggingLevel.ERROR, je.getMessage());
+            throw new ReleaseGateCallableException(errorMessage, je, this.releaseGateRegistry, null);
+        } catch (ReleaseGateException rge) {
+            throw rge;
+        } catch (Exception ex) {
+            UTIL_Debug.debug(System.LoggingLevel.ERROR, ex.getMessage());
+            throw new ReleaseGateCallableException(ex.getMessage(), ex, this.releaseGateRegistry, null);
+        }
     }
 
     /**
@@ -124,20 +138,50 @@ public virtual with sharing class ReleaseGateAPIService {
      * @return             A ActivateReleaseGateActionResultModel instance
      */
     public virtual ActivateReleaseGateActionResultModel activateReleaseGate(String productName, String gateName) {
-        Object result = this.makeCall(
-            ACTIVATE_ACTION,
-            new Map<String, Object>{
-                VERSION_PARAMETER => this.releaseGateRegistry.apiVersion,
-                PRODUCT_PARAMETER => productName,
-                GATE_PARAMETER => gateName
+        //Customize application perm is required for all release gating actions
+        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
+        try {
+            Object result = this.makeCall(
+                ACTIVATE_ACTION,
+                new Map<String, Object>{
+                    VERSION_PARAMETER => this.releaseGateRegistry.apiVersion,
+                    PRODUCT_PARAMETER => productName,
+                    GATE_PARAMETER => gateName
+                }
+            );
+            ActivateReleaseGateActionResultModel resultModel;
+            try {
+                resultModel = (ActivateReleaseGateActionResultModel) JSON.deserialize(
+                    (String) result,
+                    ActivateReleaseGateActionResultModel.class
+                );
+            } catch (System.JSONException je) {
+                String errorMessage = String.format(
+                    Label.stgErrorReleaseGateActivateErrorResponse,
+                    new List<Object>{ gateName + ' (' + productName + ')', je.getMessage() }
+                );
+                UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
+                throw new ReleaseGateCallableException(errorMessage, je, this.releaseGateRegistry, null);
             }
-        );
-        ActivateReleaseGateActionResultModel resultModel = (ActivateReleaseGateActionResultModel) JSON.deserialize(
-            (String) result,
-            ActivateReleaseGateActionResultModel.class
-        );
-        this.verifyCallableResult(resultModel, ACTIVATE_ACTION);
-        return resultModel;
+            if (!resultModel.success) {
+                if (resultModel.error != null) {
+                    resultModel.error.message = String.format(
+                        Label.stgErrorReleaseGateActivateErrorResponse,
+                        new List<Object>{ gateName + ' (' + productName + ')', resultModel.error.message }
+                    );
+                }
+            }
+            return resultModel;
+        } catch (ReleaseGateException rge) {
+            throw rge;
+        } catch (Exception ex) {
+            String errorMessage = String.format(
+                Label.stgErrorReleaseGateActivateErrorResponse,
+                new List<Object>{ gateName + ' (' + productName + ')', ex.getMessage() }
+            );
+            UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
+            throw new ReleaseGateCallableException(errorMessage, ex, this.releaseGateRegistry, null);
+        }
     }
 
     /**
@@ -147,8 +191,6 @@ public virtual with sharing class ReleaseGateAPIService {
      * @return            Callable return result
      */
     protected virtual Object makeCall(String action, Map<String, Object> parameters) {
-        //Customize application perm is required for all release gating actions
-        this.locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         Callable callableInstance = this.locateReleaseGateCallable();
         UTIL_Debug.debug(
             String.format(
@@ -157,21 +199,7 @@ public virtual with sharing class ReleaseGateAPIService {
             )
         );
         Object result;
-        try {
-            result = callableInstance.call(action, parameters);
-        } catch (Exception ex) {
-            String errorMessage = String.format(
-                'An unhandled exception occurred during execution of {0}.{1}: {2}',
-                new List<Object>{ this.releaseGateRegistry.name, action, ex.getMessage() }
-            );
-            UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
-            throw new ReleaseGateCallableException(
-                'An unhandled exception occurred during execution: ' + errorMessage,
-                ex,
-                this.releaseGateRegistry,
-                null
-            );
-        }
+        result = callableInstance.call(action, parameters);
         UTIL_Debug.debug(
             String.format(
                 'Finished {0}.{1}, got the following response: \r\n {2}',
@@ -179,27 +207,6 @@ public virtual with sharing class ReleaseGateAPIService {
             )
         );
         return result;
-    }
-
-    /**
-     * @description Verify if the result is successful, throw ReleaseGateCallableException if not
-     * @param  resultModel Callable action result
-     * @param  action      Callable action name
-     */
-    private void verifyCallableResult(CallableResult resultModel, String action) {
-        if (resultModel.success) {
-            return;
-        } else {
-            String errorMessage = resultModel.error != null
-                ? String.valueOf(resultModel.error.code) + ': ' + resultModel.error.message
-                : 'Unspecified error';
-            errorMessage += String.format(
-                ', action: {0}, class {1}, namespace {2}',
-                new List<Object>{ action, this.releaseGateRegistry.classname, this.releaseGateRegistry.namespace }
-            );
-            UTIL_Debug.debug(System.LoggingLevel.ERROR, errorMessage);
-            throw new ReleaseGateCallableException(errorMessage, null, this.releaseGateRegistry, resultModel);
-        }
     }
 
     /*****************************************************************************
@@ -212,10 +219,31 @@ public virtual with sharing class ReleaseGateAPIService {
     }
 
     /**
+     * Base release gate exception class
+     */
+    public abstract class ReleaseGateException extends Exception {
+        public ProductRegistryModel productRegistry { get; protected set; }
+    }
+
+    /**
+     * ReleaseGating product registry validation exception
+     */
+    public class ReleaseGateProductRegistryException extends ReleaseGateException {
+        /**
+         * @description custom three parameter constructor
+         * @param  message         Exception message
+         * @param  productRegistry product registry associated with the exception
+         */
+        public ReleaseGateProductRegistryException(String message, ProductRegistryModel productRegistry) {
+            this.setMessage(message);
+            this.productRegistry = productRegistry;
+        }
+    }
+
+    /**
      * ReleaseGating product/class not found custom exception class
      */
-    public class ReleaseGateProductNotFoundException extends Exception {
-        public ProductRegistryModel productRegistry { get; private set; }
+    public class ReleaseGateProductNotFoundException extends ReleaseGateException {
         /**
          * @description custom three parameter constructor
          * @param  message         Exception message
@@ -238,9 +266,8 @@ public virtual with sharing class ReleaseGateAPIService {
     /**
      * ReleaseGating callable exception class
      */
-    public class ReleaseGateCallableException extends Exception {
+    public class ReleaseGateCallableException extends ReleaseGateException {
         public CallableResult result { get; private set; }
-        public ProductRegistryModel productRegistry { get; private set; }
 
         /**
          * @description custom four parameter constructor
