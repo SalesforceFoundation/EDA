@@ -969,6 +969,10 @@
         <name>stgErrorSettingsProductInvalidResponse</name>
     </customLabels>
     <customLabels>
+        <label><!-- Message when EDA cannot activate a release gate --></label>
+        <name>stgErrorReleaseGateActivateErrorResponse</name>
+    </customLabels>
+    <customLabels>
         <label>Paramètres d’erreur</label>
         <name>stgErrorSettingsTitle</name>
     </customLabels>
