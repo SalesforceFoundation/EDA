@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The minimum passing value for the Test. --></help>
+    <label><!-- Passing Value --></label>
+    <name>Passing_Value__c</name>
+</CustomFieldTranslation>
