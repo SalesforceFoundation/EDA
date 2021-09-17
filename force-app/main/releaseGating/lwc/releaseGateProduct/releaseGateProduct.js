@@ -13,12 +13,18 @@ export default class ReleaseGateProduct extends LightningElement {
         this.releaseGateVModelWireResult = result;
         if (result.data) {
             this.releaseGateVModel = result.data;
+            this.dispatchEvent(new CustomEvent("releasegateloadsuccess"));
         } else if (result.error) {
-            //console.log("error retrieving releaseGateVModel");
+            this.dispatchEvent(new CustomEvent("releasegateloaderror", { detail: result.error }));
         }
     }
 
-    @api refresh() {
+    @api refresh(resetGateStatus) {
+        if (resetGateStatus) {
+            this.template.querySelectorAll("c-release-gate-item").forEach((releaseGateItem) => {
+                releaseGateItem.gateStatus = undefined;
+            });
+        }
         this.refreshAllApex();
     }
 
@@ -35,6 +41,8 @@ export default class ReleaseGateProduct extends LightningElement {
     }
 
     refreshAllApex() {
-        Promise.all([refreshApex(this.releaseGateVModelWireResult)]).then(() => {});
+        refreshApex(this.releaseGateVModelWireResult).catch((error) => {
+            console.error(error);
+        });
     }
 }

@@ -13,6 +13,8 @@ import activateReleaseGate from "@salesforce/apex/ReleaseGateController.activate
 export default class ReleaseGates extends LightningElement {
     @track productRegistryReleaseGateVModels;
     @track productRegistryReleaseGateWireResult;
+    releaseGateLoadCount;
+    releaseGateErrorList;
 
     labelReference = {
         releaseGateActivateSuccess: stgReleaseGateActivateSuccess,
@@ -23,11 +25,13 @@ export default class ReleaseGates extends LightningElement {
 
     @wire(getProductRegistryReleaseGateVModels)
     productRegistryReleaseGateWire(result) {
+        this.releaseGateLoadCount = 0;
+        this.releaseGateErrorList = [];
         this.productRegistryReleaseGateWireResult = result;
         if (result.data) {
             this.productRegistryReleaseGateVModels = result.data;
         } else if (result.error) {
-            //console.log("error retrieving productRegistryReleaseGateVModels");
+            this.sendErrorMessage(result.error);
         }
     }
 
@@ -54,39 +58,65 @@ export default class ReleaseGates extends LightningElement {
             gateName: saveModel.releaseGateName,
         })
             .then((result) => {
-                if (result) {
-                    let message, title, toastType, toastMode;
-                    let releaseGateLabel = saveModel.productLabel + " " + saveModel.releaseGateLabel;
-                    let isInProgress = result.some((activateResult) => activateResult.status === "inprogress");
-                    if (isInProgress) {
-                        title = this.labelReference.inProgressTitle.replace("{0}", releaseGateLabel);
-                        message = this.labelReference.releaseGateActivateInProgress.replace("{0}", releaseGateLabel);
-                        toastType = "info";
-                        toastMode = "sticky";
-                    } else {
-                        message = this.labelReference.releaseGateActivateSuccess.replace("{0}", releaseGateLabel);
-                        title = this.labelReference.successTitle;
-                        toastType = "success";
-                        toastMode = "sticky";
-                    }
-                    this.showToast(toastType, title, message, toastMode);
+                let message, title, toastType, toastMode;
+                let releaseGateLabel = saveModel.productLabel + " " + saveModel.releaseGateLabel;
+                let isInProgress = !result || result.some((activateResult) => activateResult.status === "inprogress");
+                if (isInProgress) {
+                    title = this.labelReference.inProgressTitle.replace("{0}", releaseGateLabel);
+                    message = this.labelReference.releaseGateActivateInProgress.replace("{0}", releaseGateLabel);
+                    toastType = "info";
+                    toastMode = "sticky";
                 } else {
-                    //console.log("Activate error: the mapping was not found");
+                    message = this.labelReference.releaseGateActivateSuccess.replace("{0}", releaseGateLabel);
+                    title = this.labelReference.successTitle;
+                    toastType = "success";
+                    toastMode = "sticky";
                 }
-                this.refreshAllApex();
+                this.showToast(toastType, title, message, toastMode);
+                this.refreshAllApex(saveModel.productRegistryName, false);
             })
             .catch((error) => {
-                //console.log("Inside error");
-                this.refreshAllApex();
+                this.sendErrorMessage(error);
+                this.refreshAllApex(saveModel.productRegistryName, true);
             });
     }
 
-    refreshAllApex() {
+    handleReleaseGateLoadSuccess(event) {
+        this.releaseGateLoadCount++;
+        this.showErrorsIfLoadComplete();
+    }
+
+    handleReleaseGateLoadError(event) {
+        this.releaseGateLoadCount++;
+        if (event && event.detail) {
+            this.releaseGateErrorList.push(event.detail);
+        }
+        this.showErrorsIfLoadComplete();
+    }
+
+    showErrorsIfLoadComplete() {
+        if (
+            this.releaseGateLoadCount == this.productRegistryReleaseGateVModels.length &&
+            this.releaseGateErrorList &&
+            this.releaseGateErrorList.length > 0
+        ) {
+            this.sendErrorMessage(this.releaseGateErrorList);
+        }
+    }
+
+    refreshAllApex(productRegistryName, resetGateStatus) {
         Promise.all([refreshApex(this.productRegistryReleaseGateWireResult)]).then(() => {
-            this.template
-                .querySelectorAll("c-release-gate-product")
-                .forEach((releaseGateProduct) => releaseGateProduct.refresh());
+            this.template.querySelectorAll("c-release-gate-product").forEach((releaseGateProduct) => {
+                if (releaseGateProduct.productRegistryName == productRegistryName) {
+                    releaseGateProduct.refresh(resetGateStatus);
+                }
+            });
         });
+    }
+
+    sendErrorMessage(error) {
+        const errorMessageEvent = new CustomEvent("errormessage", { detail: error });
+        this.dispatchEvent(errorMessageEvent);
     }
 
     showToast(toastType, toastTitle, toastMessage, toastMode) {
