@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <help><!-- The subject area of the Test Score Definition. --></help>
+    <help><!-- The subject area of the Test Score Definition. For example, Reading or Science. --></help>
     <label><!-- Subject Area --></label>
     <name>Subject_Area__c</name>
     <picklistValues>
