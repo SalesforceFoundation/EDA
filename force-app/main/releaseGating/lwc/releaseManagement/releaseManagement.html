@@ -9,11 +9,11 @@
                         </div>
                         <div class="slds-col slds-grid slds-wrap slds-text-align_left slds-var-p-horizontal_small">
                             <div class="slds-col slds-size_1-of-1 slds-text-body_regular">
-                                <a href="javascript:void(0);" onclick={handleSettingsClick}
+                                <a class="edcNavLink" href="javascript:void(0);" onclick={handleSettingsClick}
                                     >{labelReference.educationCloudSettings}</a
                                 >
                             </div>
-                            <div class="slds-col slds-size_1-of-1 slds-text-title">
+                            <div class="slds-col slds-size_1-of-1 slds-text-title releaseManagementTitle">
                                 {labelReference.releaseManagementTitle}
                             </div>
                         </div>
@@ -22,7 +22,7 @@
             </lightning-card>
         </div>
         <div class="slds-col slds-size_12-of-12">
-            <c-release-gates></c-release-gates>
+            <c-release-gates onerrormessage={handleErrorMessage}></c-release-gates>
         </div>
     </div>
 </template>

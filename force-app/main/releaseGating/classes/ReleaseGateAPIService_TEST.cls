@@ -72,7 +72,7 @@ public with sharing class ReleaseGateAPIService_TEST {
         try {
             ReleaseGateAPIService releaseGateApiServiceInstance = new ReleaseGateAPIService(releaseGateRegistry);
             System.assert(false, 'Should always throw an exception');
-        } catch (ReleaseGateAPIService.ReleaseGateProductNotFoundException ex) {
+        } catch (ReleaseGateAPIService.ReleaseGateProductRegistryException ex) {
             System.assertEquals(releaseGateRegistry, ex.productRegistry, 'Exception productRegistry is not valid');
         }
         Test.stopTest();
@@ -185,7 +185,7 @@ public with sharing class ReleaseGateAPIService_TEST {
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that the getReleaseGateAPIModel method throws ReleaseGateCallableException
+     * @description Test method to verify that the getReleaseGateAPIModel method returns error result
      ***************************************************************************************************************************/
     @isTest
     private static void getReleaseGatesErrorResponseCurrentPackage() {
@@ -198,20 +198,15 @@ public with sharing class ReleaseGateAPIService_TEST {
         );
         ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
 
-        try {
-            Test.startTest();
-            GetReleaseGateActionResultModel getReleaseGatesResult = callableService.getReleaseGates();
-            Test.stopTest();
-            System.assert(false, 'should always throw an exception');
-        } catch (ReleaseGateAPIService.ReleaseGateCallableException ex) {
-            System.assertEquals(false, ex.result.success, 'Expected success to be false');
-
-            System.assertEquals(
-                'Test callable error',
-                ex.result.error.message,
-                'Expected error message should be \'Test callable error\''
-            );
-        }
+        Test.startTest();
+        GetReleaseGateActionResultModel getReleaseGatesResult = callableService.getReleaseGates();
+        Test.stopTest();
+        System.assertEquals(false, getReleaseGatesResult.success, 'Expected success to be false');
+        System.assertEquals(
+            'Test callable error',
+            getReleaseGatesResult.error.message,
+            'Expected error message should be \'Test callable error\''
+        );
     }
 
     /**************************************************************************************************************************
@@ -228,27 +223,23 @@ public with sharing class ReleaseGateAPIService_TEST {
         );
         ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
 
-        try {
-            Test.startTest();
-            ActivateReleaseGateActionResultModel getReleaseGatesResult = callableService.activateReleaseGate(
-                'testProduct',
-                'testGate'
-            );
-            Test.stopTest();
-            System.assert(false, 'should always throw an exception');
-        } catch (ReleaseGateAPIService.ReleaseGateCallableException ex) {
-            System.assertEquals(false, ex.result.success, 'Expected success to be false');
+        Test.startTest();
+        ActivateReleaseGateActionResultModel activateReleaseGatesResult = callableService.activateReleaseGate(
+            'testProduct',
+            'testGate'
+        );
+        Test.stopTest();
+        System.assertEquals(false, activateReleaseGatesResult.success, 'Expected success to be false');
 
-            System.assertEquals(
-                'Test callable error',
-                ex.result.error.message,
-                'Expected error message should be \'Test callable error\''
-            );
-        }
+        System.assertEquals(
+            true,
+            activateReleaseGatesResult.error.message.contains('Test callable error'),
+            'Expected error message should contain \'Test callable error\''
+        );
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that the getReleaseGateAPIModel method throws ReleaseGateCallableException
+     * @description Test method to verify that the getReleaseGateAPIModel method returns unsuccessful result and null error
      ***************************************************************************************************************************/
     @isTest
     private static void getReleaseGatesNullErrorResponseCurrentPackage() {
@@ -261,20 +252,16 @@ public with sharing class ReleaseGateAPIService_TEST {
         );
         ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
 
-        try {
-            Test.startTest();
-            GetReleaseGateActionResultModel getReleaseGatesResult = callableService.getReleaseGates();
-            Test.stopTest();
-            System.assert(false, 'should always throw an exception');
-        } catch (ReleaseGateAPIService.ReleaseGateCallableException ex) {
-            System.assertEquals(false, ex.result.success, 'Expected success to be false');
-
-            System.assertEquals(null, ex.result.error, 'Expected error should be null');
-        }
+        Test.startTest();
+        GetReleaseGateActionResultModel getReleaseGatesResult = callableService.getReleaseGates();
+        Test.stopTest();
+        System.assertEquals(false, getReleaseGatesResult.success, 'Expected success to be false');
+        System.assertEquals(null, getReleaseGatesResult.error, 'Expected error should be null');
     }
 
     /**************************************************************************************************************************
-     * @description Test method to verify that the getReleaseGateAPIModel method handles exceptions and throws ReleaseGateCallableException
+     * @description Test method to verify that the getReleaseGateAPIModel method handles exceptions
+     * and throws ReleaseGateCallableException
      ***************************************************************************************************************************/
     @isTest
     private static void getReleaseGatesUnhandledExceptionCurrentPackage() {
@@ -294,6 +281,100 @@ public with sharing class ReleaseGateAPIService_TEST {
             System.assert(false, 'should always throw an exception');
         } catch (ReleaseGateAPIService.ReleaseGateCallableException ex) {
             System.assertEquals(true, ex.getCause() != null, 'Exception cause should not be null');
+            System.assertEquals(releaseGateRegistry, ex.productRegistry, 'Exception product registry should match');
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the activateReleaseGate method handles exceptions
+     * and throws ReleaseGateCallableException
+     ***************************************************************************************************************************/
+    @isTest
+    private static void activateReleaseGatesUnhandledExceptionCurrentPackage() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            '',
+            'ReleaseGateAPIService_TEST.TestReleaseGateExceptionCallableImpl',
+            1
+        );
+        ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
+
+        try {
+            Test.startTest();
+            ActivateReleaseGateActionResultModel activateReleaseGatesResult = callableService.activateReleaseGate(
+                'testProduct',
+                'testGate'
+            );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (ReleaseGateAPIService.ReleaseGateCallableException ex) {
+            System.assertEquals(true, ex.getCause() != null, 'Exception cause should not be null');
+            System.assertEquals(releaseGateRegistry, ex.productRegistry, 'Exception product registry should match');
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the getReleaseGateAPIModel method handles json exceptions
+     * and throws ReleaseGateCallableException
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getReleaseGatesJsonExceptionCurrentPackage() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            '',
+            'ReleaseGateAPIService_TEST.TestReleaseGateJsonExceptionCallableImpl',
+            1
+        );
+        ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
+
+        try {
+            Test.startTest();
+            GetReleaseGateActionResultModel getReleaseGatesResult = callableService.getReleaseGates();
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (ReleaseGateAPIService.ReleaseGateCallableException ex) {
+            System.assertEquals(true, ex.getCause() != null, 'Exception cause should not be null');
+            System.assertEquals(
+                true,
+                ex.getCause() instanceof JSONException,
+                'Inner exception should be JSONException'
+            );
+            System.assertEquals(releaseGateRegistry, ex.productRegistry, 'Exception product registry should match');
+        }
+    }
+
+    /**************************************************************************************************************************
+     * @description Test method to verify that the activateReleaseGate method handles json exceptions
+     * and throws ReleaseGateCallableException
+     ***************************************************************************************************************************/
+    @isTest
+    private static void activateReleaseGatesJsonExceptionCurrentPackage() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            '',
+            'ReleaseGateAPIService_TEST.TestReleaseGateJsonExceptionCallableImpl',
+            1
+        );
+        ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
+
+        try {
+            Test.startTest();
+            ActivateReleaseGateActionResultModel activateReleaseGatesResult = callableService.activateReleaseGate(
+                'testProduct',
+                'testGate'
+            );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (ReleaseGateAPIService.ReleaseGateCallableException ex) {
+            System.assertEquals(true, ex.getCause() != null, 'Exception cause should not be null');
+            System.assertEquals(
+                true,
+                ex.getCause() instanceof JSONException,
+                'Inner exception should be JSONException'
+            );
             System.assertEquals(releaseGateRegistry, ex.productRegistry, 'Exception product registry should match');
         }
     }
@@ -319,12 +400,33 @@ public with sharing class ReleaseGateAPIService_TEST {
             System.assert(false, 'should always throw an exception');
         } catch (ReleaseGateAPIService.ReleaseGateProductNotFoundException ex) {
             System.assertEquals(releaseGateRegistry, ex.productRegistry, 'Exception product registry should match');
+        }
+    }
 
-            System.assertEquals(
-                true,
-                ex.getMessage().contains('could not get loaded'),
-                'Expected error message should contain \'could not get loaded\''
+    /**************************************************************************************************************************
+     * @description Test method to verify that the activateReleaseGate method throws ReleaseGateProductNotFoundException
+     ***************************************************************************************************************************/
+    @isTest
+    private static void activateReleaseGatesNotFoundCurrentPackage() {
+        ProductRegistryModel releaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            '',
+            'ReleaseGateAPIService_TEST.TestReleaseGateCallableNotFound',
+            1
+        );
+        ReleaseGateAPIService callableService = new ReleaseGateAPIService(releaseGateRegistry);
+
+        try {
+            Test.startTest();
+            ActivateReleaseGateActionResultModel activateReleaseGatesResult = callableService.activateReleaseGate(
+                'testProduct',
+                'testGate'
             );
+            Test.stopTest();
+            System.assert(false, 'should always throw an exception');
+        } catch (ReleaseGateAPIService.ReleaseGateProductNotFoundException ex) {
+            System.assertEquals(releaseGateRegistry, ex.productRegistry, 'Exception product registry should match');
         }
     }
 
@@ -597,6 +699,15 @@ public with sharing class ReleaseGateAPIService_TEST {
         public Object call(String action, Map<String, Object> args) {
             System.debug('Executing callable action: ' + action);
             throw new IllegalArgumentException('Throwing an unhandled exception');
+        }
+    }
+
+    /**
+     * Test Callable class with JSON exception
+     */
+    public class TestReleaseGateJsonExceptionCallableImpl implements Callable {
+        public Object call(String action, Map<String, Object> args) {
+            return 'json exception';
         }
     }
 }

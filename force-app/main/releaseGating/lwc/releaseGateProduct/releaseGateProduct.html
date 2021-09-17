@@ -9,7 +9,7 @@
                                 <div class="slds-page-header__name">
                                     <div class="slds-page-header__name-title">
                                         <h1>
-                                            <span class="slds-page-header__title slds-truncate"
+                                            <span class="slds-page-header__title slds-truncate releaseGateProductTitle"
                                                 >{releaseGateProduct.product.label}</span
                                             >
                                         </h1>
@@ -21,7 +21,10 @@
                 </div>
             </div>
 
-            <div class="slds-col slds-size_12-of-12 slds-var-m-bottom_small" key={releaseGateProduct.product.name}>
+            <div
+                class="slds-col slds-size_12-of-12 slds-var-m-bottom_small releaseGateList"
+                key={releaseGateProduct.product.name}
+            >
                 <c-release-gate-item
                     for:each={releaseGateProduct.gates}
                     for:item="releaseGate"
