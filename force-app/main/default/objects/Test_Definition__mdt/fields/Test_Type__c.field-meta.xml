@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Test_Type__c</fullName>
-    <description>The type of Test taken.</description>
+    <description>The name of the Test. For example, SAT or TOEFL.</description>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
-    <inlineHelpText>The type of Test taken.</inlineHelpText>
+    <inlineHelpText>The name of the Test. For example, SAT or TOEFL.</inlineHelpText>
     <label>Test Type</label>
     <required>true</required>
     <type>Picklist</type>
