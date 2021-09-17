@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>A definition of a test score by subject area and test type, including its passing values</description>
+    <description>Defines the scoring parameters of a Test, such as the passing score.</description>
     <label>Test Score Definition</label>
     <pluralLabel>Test Score Definitions</pluralLabel>
     <visibility>Public</visibility>

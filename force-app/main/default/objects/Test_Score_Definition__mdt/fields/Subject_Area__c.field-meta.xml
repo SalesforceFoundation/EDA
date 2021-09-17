@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Subject_Area__c</fullName>
-    <description>The subject area of the Test Score Definition.</description>
+    <description>The subject area of the Test Score Definition. For example, Reading or Science.</description>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
-    <inlineHelpText>The subject area of the Test Score Definition.</inlineHelpText>
+    <inlineHelpText>The subject area of the Test Score Definition. For example, Reading or Science.</inlineHelpText>
     <label>Subject Area</label>
     <required>true</required>
     <type>Picklist</type>
