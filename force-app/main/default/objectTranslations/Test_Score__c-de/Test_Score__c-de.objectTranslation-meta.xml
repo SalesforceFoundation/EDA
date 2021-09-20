@@ -1,5 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>Testergebnis</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>Testergebnisse</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>Testergebnis</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>Testergebnissen</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>Testergebnisses</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>Testergebnisse</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>Testergebnis</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>Testergebnissen</value>
+    </caseValues>
+    <gender>Neuter</gender>
     <layouts>
         <layout>EDA Test Score Layout</layout>
         <sections>
@@ -8,49 +49,4 @@
         </sections>
     </layouts>
     <nameFieldLabel>Name des Testergebnisses</nameFieldLabel>
-    <standardFields>
-        <name>Name</name>
-        <label>Name des Testergebnisses</label>
-    </standardFields>
-    <gender>Neuter</gender>
-    <caseValues>
-        <plural>false</plural>
-        <caseType>Nominative</caseType>
-        <value>Testergebnis</value>
-    </caseValues>
-    <caseValues>
-        <plural>false</plural>
-        <caseType>Accusative</caseType>
-        <value>Testergebnis</value>
-    </caseValues>
-    <caseValues>
-        <plural>false</plural>
-        <caseType>Dative</caseType>
-        <value>Testergebnis</value>
-    </caseValues>
-    <caseValues>
-        <plural>false</plural>
-        <caseType>Genitive</caseType>
-        <value>Testergebnisses</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <caseType>Nominative</caseType>
-        <value>Testergebnisse</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <caseType>Accusative</caseType>
-        <value>Testergebnissen</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <caseType>Dative</caseType>
-        <value>Testergebnissen</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <caseType>Genitive</caseType>
-        <value>Testergebnisse</value>
-    </caseValues>
 </CustomObjectTranslation>

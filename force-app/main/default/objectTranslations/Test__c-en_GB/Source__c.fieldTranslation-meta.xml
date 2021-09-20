@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Source__c</name>
     <help>Indicates whether the applicant or an official source reported this test.</help>
     <label>Source</label>
-    <picklistValues>
-        <masterLabel>Self Reported</masterLabel>
-        <translation>Self Reported</translation>
-    </picklistValues>
+    <name>Source__c</name>
     <picklistValues>
         <masterLabel>Official</masterLabel>
         <translation>Official</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Self Reported</masterLabel>
+        <translation>Self Reported</translation>
     </picklistValues>
 </CustomFieldTranslation>
