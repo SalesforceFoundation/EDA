@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Identifies the type of Test taken and the Test provider. For example, the SAT administered by the College Board.</description>
+    <label>Test Definition</label>
+    <pluralLabel>Test Definitions</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

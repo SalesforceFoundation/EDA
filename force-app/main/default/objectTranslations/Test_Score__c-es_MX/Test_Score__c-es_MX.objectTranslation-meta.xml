@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <layouts>
-        <layout>EDA Test Score Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de puntuaje de prueba</nameFieldLabel>
-    <standardFields>
-        <name>Name</name>
-        <label>Nombre de puntuaje de prueba</label>
-    </standardFields>
-    <gender>Feminine</gender>
     <caseValues>
         <plural>false</plural>
         <value>Puntuación de prueba</value>
@@ -21,4 +8,13 @@
         <plural>true</plural>
         <value>Puntuaciones de pruebas</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>EDA Test Score Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de puntuaje de prueba</nameFieldLabel>
 </CustomObjectTranslation>

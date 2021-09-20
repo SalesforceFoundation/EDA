@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <layouts>
-        <layout>EDA Test Score Layout</layout>
-        <sections>
-            <label>Liens personnalisés</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nom du score au test</nameFieldLabel>
-    <standardFields>
-        <name>Name</name>
-        <label>Nom du score au test</label>
-    </standardFields>
-    <gender>Masculine</gender>
-    <startsWith>Consonant</startsWith>
     <caseValues>
         <plural>false</plural>
         <value>Score au test</value>
@@ -22,4 +8,14 @@
         <plural>true</plural>
         <value>Scores au test</value>
     </caseValues>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>EDA Test Score Layout</layout>
+        <sections>
+            <label>Liens personnalisés</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nom du score au test</nameFieldLabel>
+    <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

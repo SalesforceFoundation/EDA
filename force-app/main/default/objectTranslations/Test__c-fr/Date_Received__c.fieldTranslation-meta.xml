@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Date_Received__c</name>
     <help>La date à laquelle le score au test est ajouté au système, que ce soit par chargement manuel ou directement depuis une source officielle.</help>
     <label>Date de réception</label>
+    <name>Date_Received__c</name>
 </CustomFieldTranslation>

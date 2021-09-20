@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>テスト</value>
+    </caseValues>
     <layouts>
         <layout>EDA Test Layout</layout>
         <sections>
@@ -8,12 +12,4 @@
         </sections>
     </layouts>
     <nameFieldLabel>テスト名</nameFieldLabel>
-    <standardFields>
-        <name>Name</name>
-        <label>テスト名</label>
-    </standardFields>
-    <caseValues>
-        <plural>false</plural>
-        <value>テスト</value>
-    </caseValues>
 </CustomObjectTranslation>

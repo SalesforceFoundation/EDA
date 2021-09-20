@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- A lookup to the related Test Definition. --></help>
+    <label><!-- Test Definition --></label>
+    <name>Test_Definition__c</name>
+    <relationshipLabel><!-- Test Score Definitions --></relationshipLabel>
+</CustomFieldTranslation>

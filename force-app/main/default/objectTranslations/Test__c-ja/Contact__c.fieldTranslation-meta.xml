@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Contact__c</name>
     <help>テストを受けた学生。</help>
-    <relationshipLabel>テスト</relationshipLabel>
     <label>取引先責任者</label>
+    <name>Contact__c</name>
+    <relationshipLabel>テスト</relationshipLabel>
 </CustomFieldTranslation>

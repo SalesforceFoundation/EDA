@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Test_Date__c</name>
     <help>La fecha del solicitante o fuente oficial indica que la prueba se inició.</help>
     <label>Fecha de prueba</label>
+    <name>Test_Date__c</name>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Test_Type__c</name>
     <help>関連付けられたテストレコードからテスト種別名を表示します (SAT、GRE など)。</help>
     <label>テスト種別</label>
+    <name>Test_Type__c</name>
 </CustomFieldTranslation>

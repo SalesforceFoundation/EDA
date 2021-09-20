@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Source__c</name>
     <help>出願者または公式ソースのどちらによりこのテストが報告されたかを示します。</help>
     <label>ソース</label>
-    <picklistValues>
-        <masterLabel>Self Reported</masterLabel>
-        <translation>自己報告</translation>
-    </picklistValues>
+    <name>Source__c</name>
     <picklistValues>
         <masterLabel>Official</masterLabel>
         <translation>公式</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Self Reported</masterLabel>
+        <translation>自己報告</translation>
     </picklistValues>
 </CustomFieldTranslation>
