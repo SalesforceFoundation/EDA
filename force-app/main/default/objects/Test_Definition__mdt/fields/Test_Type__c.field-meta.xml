@@ -14,7 +14,7 @@
             <sorted>false</sorted>
             <value>
                 <fullName>SAT</fullName>
-                <default>true</default>
+                <default>false</default>
                 <label>SAT</label>
             </value>
             <value>
