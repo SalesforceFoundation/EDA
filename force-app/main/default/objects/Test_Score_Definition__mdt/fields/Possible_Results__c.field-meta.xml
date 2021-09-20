@@ -4,7 +4,7 @@
     <description>For tests that use non-numerical scores, the possible results expressed as a comma-delimited list. For example, &quot;Pass&quot;, &quot;Fail&quot; or &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;F&quot;.</description>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
-    <inlineHelpText>For tests that use non-numerical scores, the possible results expressed as a comma-delimited list. For example, &quot;Pass, Fail&quot; or &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, F&quot;.</inlineHelpText>
+    <inlineHelpText>For tests that use non-numerical scores, the possible results expressed as a comma-delimited list. For example, &quot;Pass&quot;, &quot;Fail&quot; or &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, F&quot;.</inlineHelpText>
     <label>Possible Results</label>
     <length>255</length>
     <required>false</required>
