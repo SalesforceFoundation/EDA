@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Test --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Test --></value>
+    </caseValues>
+    <gender><!-- Neuter --></gender>
     <layouts>
         <layout>EDA Test Layout</layout>
         <sections>
@@ -8,8 +17,4 @@
         </sections>
     </layouts>
     <nameFieldLabel>Naam van toets</nameFieldLabel>
-    <standardFields>
-        <name>Name</name>
-        <label>Naam van toets</label>
-    </standardFields>
 </CustomObjectTranslation>

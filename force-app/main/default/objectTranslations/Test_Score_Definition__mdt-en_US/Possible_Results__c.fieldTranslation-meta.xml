@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- For tests that use non-numerical scores, the possible results expressed as a comma-delimited list. For example, &quot;Pass, Fail&quot; or &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, F&quot;. --></help>
+    <label><!-- Possible Results --></label>
+    <name>Possible_Results__c</name>
+</CustomFieldTranslation>

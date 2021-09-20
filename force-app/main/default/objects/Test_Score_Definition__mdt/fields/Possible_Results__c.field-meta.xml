@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Possible_Results__c</fullName>
+    <description>For tests that use non-numerical scores, the possible results expressed as a comma-delimited list. For example, &quot;Pass&quot;, &quot;Fail&quot; or &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;F&quot;.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>For tests that use non-numerical scores, the possible results expressed as a comma-delimited list. For example, &quot;Pass&quot;, &quot;Fail&quot; or &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, F&quot;.</inlineHelpText>
+    <label>Possible Results</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

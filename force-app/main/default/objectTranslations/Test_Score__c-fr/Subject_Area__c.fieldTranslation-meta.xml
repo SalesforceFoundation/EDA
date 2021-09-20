@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Subject_Area__c</name>
     <help>La matière ou catégorie de ce score au test.</help>
     <label>Matière</label>
+    <name>Subject_Area__c</name>
     <picklistValues>
         <masterLabel>Language</masterLabel>
         <translation>Langue</translation>
@@ -10,6 +10,10 @@
     <picklistValues>
         <masterLabel>Mathematics</masterLabel>
         <translation>Mathématiques</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Overall</masterLabel>
+        <translation>Général</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Reading</masterLabel>
@@ -22,9 +26,5 @@
     <picklistValues>
         <masterLabel>Writing</masterLabel>
         <translation>Écriture</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Overall</masterLabel>
-        <translation>Général</translation>
     </picklistValues>
 </CustomFieldTranslation>
