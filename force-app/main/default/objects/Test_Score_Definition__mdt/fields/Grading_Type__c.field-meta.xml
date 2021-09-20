@@ -3,7 +3,7 @@
     <fullName>Grading_Type__c</fullName>
     <description>The grading type of the Test Score. For example, an outcome or percentile.</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>The grading type of the Test Score. For example, an outcome or percentile.</inlineHelpText>
     <label>Grading Type</label>
     <required>true</required>

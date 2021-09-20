@@ -3,7 +3,7 @@
     <fullName>Credits_Available__c</fullName>
     <description>The number of credits that could be earned taking the Test.</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>The number of credits that could be earned taking the Test.</inlineHelpText>
     <label>Credits Available</label>
     <precision>9</precision>

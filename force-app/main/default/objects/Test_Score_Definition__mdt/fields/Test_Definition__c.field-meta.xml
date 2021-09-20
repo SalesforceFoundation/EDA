@@ -3,7 +3,7 @@
     <fullName>Test_Definition__c</fullName>
     <description>A lookup to the related Test Definition.</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>A lookup to the related Test Definition.</inlineHelpText>
     <label>Test Definition</label>
     <referenceTo>Test_Definition__mdt</referenceTo>

@@ -3,7 +3,7 @@
     <fullName>Maximum_Score__c</fullName>
     <description>The maximum numerical score for the Test.</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>The maximum numerical score for the Test.</inlineHelpText>
     <label>Maximum Score</label>
     <precision>18</precision>

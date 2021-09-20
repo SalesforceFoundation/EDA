@@ -3,7 +3,7 @@
     <fullName>Passing_Value__c</fullName>
     <description>The minimum passing value for the Test.</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>The minimum passing value for the Test.</inlineHelpText>
     <label>Passing Value</label>
     <length>20</length>

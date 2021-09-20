@@ -3,7 +3,7 @@
     <fullName>Subject_Area__c</fullName>
     <description>The subject area of the Test Score Definition. For example, Reading or Science.</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>The subject area of the Test Score Definition. For example, Reading or Science.</inlineHelpText>
     <label>Subject Area</label>
     <required>true</required>

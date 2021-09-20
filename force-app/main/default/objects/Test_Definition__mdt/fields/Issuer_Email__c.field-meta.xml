@@ -3,7 +3,7 @@
     <fullName>Issuer_Email__c</fullName>
     <description>The email address of the organization issuing the test.</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>The email address of the organization issuing the test.</inlineHelpText>
     <label>Issuer Email</label>
     <required>false</required>

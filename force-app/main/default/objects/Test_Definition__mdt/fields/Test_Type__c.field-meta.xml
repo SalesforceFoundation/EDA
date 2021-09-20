@@ -3,7 +3,7 @@
     <fullName>Test_Type__c</fullName>
     <description>The name of the Test. For example, SAT or TOEFL.</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>The name of the Test. For example, SAT or TOEFL.</inlineHelpText>
     <label>Test Type</label>
     <required>true</required>

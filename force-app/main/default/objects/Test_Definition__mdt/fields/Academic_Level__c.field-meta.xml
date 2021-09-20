@@ -3,7 +3,7 @@
     <fullName>Academic_Level__c</fullName>
     <description>The grade-level, developmental level, or age-level that the Test Definition was designed for.</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>The Academic Level of the Test. For example, the Test was offered in High School.</inlineHelpText>
     <label>Academic Level</label>
     <required>false</required>

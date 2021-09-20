@@ -3,7 +3,7 @@
     <fullName>Issuer_Name__c</fullName>
     <description>The name of the organization who issued the Test.</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>The name of the organization who issued the Test.</inlineHelpText>
     <label>Issuer Name</label>
     <length>80</length>

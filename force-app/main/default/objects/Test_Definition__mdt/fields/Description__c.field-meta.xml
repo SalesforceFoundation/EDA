@@ -3,7 +3,7 @@
     <fullName>Description__c</fullName>
     <description>The description of the Test.</description>
     <externalId>false</externalId>
-    <fieldManageability>DeveloperControlled</fieldManageability>
+    <fieldManageability>SubscriberControlled</fieldManageability>
     <inlineHelpText>The description of the Test.</inlineHelpText>
     <label>Description</label>
     <required>false</required>
