@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The maximum numerical score for the Test. --></help>
+    <label><!-- Maximum Score --></label>
+    <name>Maximum_Score__c</name>
+</CustomFieldTranslation>

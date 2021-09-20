@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The Academic Level of the Test. For example, the Test was offered in High School. --></help>
+    <label><!-- Academic Level --></label>
+    <name>Academic_Level__c</name>
+    <picklistValues>
+        <masterLabel>Adult Education</masterLabel>
+        <translation><!-- Adult Education --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Doctoral</masterLabel>
+        <translation><!-- Doctoral --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Elementary</masterLabel>
+        <translation><!-- Elementary --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Graduate</masterLabel>
+        <translation><!-- Graduate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High School</masterLabel>
+        <translation><!-- High School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Middle School</masterLabel>
+        <translation><!-- Middle School --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Post-Baccalaureate Certificate</masterLabel>
+        <translation><!-- Post-Baccalaureate Certificate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pre-K/Preschool</masterLabel>
+        <translation><!-- Pre-K/Preschool --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Professional Education</masterLabel>
+        <translation><!-- Professional Education --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Undergraduate</masterLabel>
+        <translation><!-- Undergraduate --></translation>
+    </picklistValues>
+</CustomFieldTranslation>
