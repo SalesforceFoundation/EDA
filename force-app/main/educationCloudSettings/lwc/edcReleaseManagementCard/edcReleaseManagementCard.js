@@ -31,7 +31,7 @@ export default class EdcReleaseManagementCard extends NavigationMixin(LightningE
     releaseGateVModel;
 
     get notificationsVisible() {
-        return this.releaseGateRequestFinished && (this.totalReleaseGatesCount > 0);
+        return this.releaseGateRequestFinished && this.totalReleaseGatesCount > 0;
     }
 
     get allReleaseGatesActive() {
@@ -39,15 +39,18 @@ export default class EdcReleaseManagementCard extends NavigationMixin(LightningE
     }
 
     get activatedPercentage() {
-        return this.totalReleaseGatesCount > 0 ? this.activeReleaseGatesCount / this.totalReleaseGatesCount * 100.0 : 100;
+        return this.totalReleaseGatesCount > 0
+            ? (this.activeReleaseGatesCount / this.totalReleaseGatesCount) * 100.0
+            : 100;
     }
 
     get releaseStatusText() {
         if (this.allReleaseGatesActive) {
             return this.labelReference.releaseProgressComplete;
-        }
-        else {
-            return this.labelReference.releaseProgressIncomptete.replace("{0}", this.activeReleaseGatesCount).replace("{1}", this.totalReleaseGatesCount);
+        } else {
+            return this.labelReference.releaseProgressIncomptete
+                .replace("{0}", this.activeReleaseGatesCount)
+                .replace("{1}", this.totalReleaseGatesCount);
         }
     }
 
@@ -61,7 +64,7 @@ export default class EdcReleaseManagementCard extends NavigationMixin(LightningE
         releaseManagementTitle: stgReleaseManagementCardTitle,
         releaseManagementDescription: stgReleaseManagementDescription,
         releaseProgressIncomptete: stgReleaseGateProgressIndicatorIncomplete,
-        releaseProgressComplete: stgReleaseGateProgressIndicatorComplete
+        releaseProgressComplete: stgReleaseGateProgressIndicatorComplete,
     };
 
     connectedCallback() {
@@ -79,27 +82,34 @@ export default class EdcReleaseManagementCard extends NavigationMixin(LightningE
         this.productRegistryReleaseGateWireResult = result;
         if (result.data) {
             this.productRegistryReleaseGateVModels = result.data;
-            Promise.allSettled(this.productRegistryReleaseGateVModels.map(releaseGateProductRegistry => getReleaseGateVModel({ productRegistryName: releaseGateProductRegistry.name })))
-                .then(getResult => {
-                    this.releaseGateVModel = getResult.filter(r => r.status == "fulfilled" && r.value).flatMap(r => r.value);
-                    this.calculateReleaseProgress();
-                    this.releaseGateRequestFinished = true;
-                });
+            Promise.allSettled(
+                this.productRegistryReleaseGateVModels.map((releaseGateProductRegistry) =>
+                    getReleaseGateVModel({ productRegistryName: releaseGateProductRegistry.name })
+                )
+            ).then((getResult) => {
+                this.releaseGateVModel = getResult
+                    .filter((r) => r.status == "fulfilled" && r.value)
+                    .flatMap((r) => r.value);
+                this.calculateReleaseProgress();
+                this.releaseGateRequestFinished = true;
+            });
         } else if (result.error) {
             this.sendErrorMessage(result.error);
         }
     }
 
     calculateReleaseProgress() {
-        let numActivated = 0, numInactive = 0;
-        this.releaseGateVModel.flatMap(rgModel => rgModel.gates).forEach(rg => {
-            if (rg.status == ReleaseGateStatus.ACTIVE) {
-                numActivated++;
-            }
-            else if (rg.status != ReleaseGateStatus.DISABLED) {
-                numInactive++;
-            }
-        });
+        let numActivated = 0,
+            numInactive = 0;
+        this.releaseGateVModel
+            .flatMap((rgModel) => rgModel.gates)
+            .forEach((rg) => {
+                if (rg.status == ReleaseGateStatus.ACTIVE) {
+                    numActivated++;
+                } else if (rg.status != ReleaseGateStatus.DISABLED) {
+                    numInactive++;
+                }
+            });
         this.activeReleaseGatesCount = numActivated;
         this.inactiveReleaseGatesCount = numInactive;
         this.totalReleaseGatesCount = numInactive + numActivated;
@@ -125,5 +135,4 @@ export default class EdcReleaseManagementCard extends NavigationMixin(LightningE
     sendErrorMessage(error) {
         console.error(error);
     }
-
 }
