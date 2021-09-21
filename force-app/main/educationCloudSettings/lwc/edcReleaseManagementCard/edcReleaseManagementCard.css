@@ -1,0 +1,9 @@
+.progress-container {
+    height: 30px;
+}
+.progressring-container {
+    max-width: 30px;
+}
+.progressring-content {
+    vertical-align: middle;
+}
