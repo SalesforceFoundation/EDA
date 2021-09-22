@@ -6,11 +6,7 @@ import { ShowToastEvent } from "lightning/platformShowToastEvent";
 import stgColProducts from "@salesforce/label/c.stgColProducts";
 import stgColResources from "@salesforce/label/c.stgColResources";
 import stgColTools from "@salesforce/label/c.stgColTools";
-
-//EDA Labels
-import stgEDAAppDesc from "@salesforce/label/c.stgEDAAppDesc";
-import stgEDAAppTitle from "@salesforce/label/c.stgEDAAppTitle";
-import stgEDAAppInitials from "@salesforce/label/c.stgEDAAppInitials";
+import stgReleaseManagementCardTitle from "@salesforce/label/c.stgReleaseManagementCardTitle";
 
 //EDA Services Labels
 import stgHealthCheckTitle from "@salesforce/label/c.stgHealthCheckTitle";
@@ -33,13 +29,8 @@ import namespacedEDAField from "@salesforce/schema/Course_Offering_Schedule__c.C
 
 import getProductRegistrySettingsProductInformationVModels from "@salesforce/apex/EducationCloudSettingsController.getProductRegistrySettingsProductInformationVModels";
 
-import SystemModstamp from "@salesforce/schema/Account.SystemModstamp";
-
 const HealthCheckContainerComponentName = "HealthCheckContainer";
 const ReleaseManagementContainerComponentName = "releaseManagementContainer";
-
-const EDADocumentationUrl = "https://powerofus.force.com/s/article/EDA-Documentation";
-const EDATrailheadUrl = "https://trailhead.salesforce.com/en/content/learn/trails/highered_heda";
 
 const EDCTrailheadUrl = "https://trailhead.salesforce.com/en/users/sfdo/trailmixes/get-started-with-education-cloud";
 const TrailblazerCommunityUrl = "https://trailblazers.salesforce.com/successHome";
@@ -51,6 +42,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
     labelReference = {
         productsTitle: stgColProducts,
         resourcesTitle: stgColResources,
+        releaseManagementTitle: stgReleaseManagementCardTitle,
         toolsTitle: stgColTools,
     };
 
@@ -97,6 +89,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
     @track edcResourceModels = [
         {
             title: stgTrailheadTitle,
+            iconName: "standard:trailhead",
             buttonLabel: stgBtnEDCTrailhead,
             buttonTitle: stgBtnEDCTrailheadActionA11y,
             navigationType: "standard__webPage",
@@ -104,6 +97,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         },
         {
             title: stgCommunityTitle,
+            iconName: "standard:groups",
             buttonLabel: stgBtnCommunity,
             buttonTitle: stgBtnCommunityActionA11y,
             navigationType: "standard__webPage",
@@ -111,6 +105,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         },
         {
             title: stgVideosTitle,
+            iconName: "standard:video",
             buttonLabel: stgBtnVideos,
             buttonTitle: stgBtnVideosActionA11y,
             navigationType: "standard__webPage",
