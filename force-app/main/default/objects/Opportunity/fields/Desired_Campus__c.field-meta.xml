@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Desired_Campus__c</fullName>
+    <description>The name of the desired campus for this Opportunity.</description>
     <externalId>false</externalId>
+    <inlineHelpText>The name of the desired campus for this Opportunity.</inlineHelpText>
     <label>Desired Campus</label>
     <length>255</length>
     <required>false</required>
