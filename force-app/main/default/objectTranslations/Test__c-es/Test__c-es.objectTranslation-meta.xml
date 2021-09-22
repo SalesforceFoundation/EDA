@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <layouts>
-        <layout>EDA Test Layout</layout>
-        <sections>
-            <label>Vínculos personalizados</label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <nameFieldLabel>Nombre de prueba</nameFieldLabel>
-    <standardFields>
-        <name>Name</name>
-        <label>Nombre de prueba</label>
-    </standardFields>
-    <gender>Feminine</gender>
     <caseValues>
         <plural>false</plural>
         <value>Prueba</value>
@@ -21,4 +8,13 @@
         <plural>true</plural>
         <value>Pruebas</value>
     </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>EDA Test Layout</layout>
+        <sections>
+            <label>Vínculos personalizados</label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Nombre de prueba</nameFieldLabel>
 </CustomObjectTranslation>

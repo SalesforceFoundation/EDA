@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Grading_Type__c</fullName>
+    <description>The grading type of the Test Score. For example, an outcome or percentile.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>The grading type of the Test Score. For example, an outcome or percentile.</inlineHelpText>
+    <label>Grading Type</label>
+    <required>true</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Letter</fullName>
+                <default>true</default>
+                <label>Letter</label>
+            </value>
+            <value>
+                <fullName>Numerical</fullName>
+                <default>false</default>
+                <label>Numerical</label>
+            </value>
+            <value>
+                <fullName>Percentile</fullName>
+                <default>false</default>
+                <label>Percentile</label>
+            </value>
+            <value>
+                <fullName>Performance Level</fullName>
+                <default>false</default>
+                <label>Performance Level</label>
+            </value>
+            <value>
+                <fullName>Result</fullName>
+                <default>false</default>
+                <label>Result</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

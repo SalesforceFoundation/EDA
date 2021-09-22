@@ -17,10 +17,10 @@
                     </div>
                 </h3>
                 <!-- Card Body -->
-                <div class="slds-grid slds-grid_vertical">
+                <div class="slds-grid slds-wrap">
                     <div class="slds-col slds-var-m-horizontal_small productDescription"><p>{description}</p></div>
-                    <div class="slds-col slds-var-m-horizontal_small slds-var-m-top_small slds-scrollable_x">
-                        <lightning-button-group>
+                    <div class="slds-grid slds-gutters slds-wrap slds-var-m-horizontal_small slds-var-m-top_small">
+                        <div class="slds-var-m-bottom_medium slds-var-m-right_small">
                             <lightning-button
                                 if:true={settingsComponent}
                                 label={labelReference.settingsButton}
@@ -29,6 +29,8 @@
                                 onclick={handleSettingsClick}
                                 class="btnSettingsComponent"
                             ></lightning-button>
+                        </div>
+                        <div class="slds-var-m-bottom_medium slds-var-m-right_small">
                             <lightning-button
                                 if:true={documentationUrl}
                                 label={labelReference.documentationButton}
@@ -37,6 +39,8 @@
                                 onclick={handleDocumentationClick}
                                 class="btnDocumentationUrl"
                             ></lightning-button>
+                        </div>
+                        <div class="slds-var-m-bottom_medium">
                             <lightning-button
                                 if:true={trailheadUrl}
                                 label={labelReference.trailheadButton}
@@ -45,7 +49,7 @@
                                 onclick={handleTrailheadClick}
                                 class="btnTrailheadUrl"
                             ></lightning-button>
-                        </lightning-button-group>
+                        </div>
                     </div>
                 </div>
             </lightning-card>

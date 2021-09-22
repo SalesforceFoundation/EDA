@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Test__c</name>
     <help>De toets waarvoor deze uitslag wordt geregistreerd.</help>
-    <relationshipLabel>Toetsuitslagen</relationshipLabel>
     <label>Toets</label>
+    <name>Test__c</name>
+    <relationshipLabel>Toetsuitslagen</relationshipLabel>
 </CustomFieldTranslation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Date_Received__c</name>
     <help>Päivämäärä, jolloin testipisteet lisätään järjestelmään joko manuaalisesti lataamalla tai suoraan virallisesta lähteestä.</help>
     <label>Vastaanottopäivä</label>
+    <name>Date_Received__c</name>
 </CustomFieldTranslation>
