@@ -7,3 +7,24 @@
 .progressring-content {
     vertical-align: middle;
 }
+.notification-bell {
+    margin-top: -10px;
+    font-size: 15px;
+    display: block;
+    position: absolute;
+    animation: bell 0.3s ease-out;
+    animation-duration: 1s;
+    animation-iteration-count: 1000;
+    transform-origin: center top;
+    z-index: 1000;
+}
+@keyframes bell {
+    0% {transform: rotate(35deg);}
+    12.5% {transform: rotate(-30deg);}
+    25% {transform: rotate(25deg);}
+    37.5% {transform: rotate(-20deg);}
+    50% {transform: rotate(15deg);}
+    62.5% {transform: rotate(-10deg)}
+    75% {transform: rotate(5deg)}
+    100% {transform: rotate(0);}  
+}
