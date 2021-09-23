@@ -22,29 +22,33 @@
                 <p>{labelReference.releaseManagementDescription}</p>
             </div>
             <div class="slds-col slds-small-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
-                <div class="slds-grid slds-grid_vertical">
-                    <div class="slds-col slds-size_1-of-1">
-                        <div if:false={allReleaseGatesActive} class="notification-bell">&#x1F514;</div>
-                        <lightning-button
-                            label={labelReference.releaseManagementButton}
-                            title={labelReference.releaseManagementButtonA11y}
-                            aria-described-by="cardTitle"
-                            class="btnGoToReleaseManagement slds-float_left"
-                            variant="brand"
-                            onclick={handleNavigationClick}
-                        ></lightning-button>
-                    </div>
-                    <div class="slds-col slds-size_1-of-1">
-                        <div class="slds-grid slds-m-top_xxx-small progress-container">
-                            <template if:true={notificationsVisible}>
-                                <div class="slds-col progressring-container">
-                                    <lightning-progress-ring value={activatedPercentage} variant={progressVariant}>
-                                    </lightning-progress-ring>
-                                </div>
-                                <div class="slds-col">
-                                    <span class="slds-text-body_regular progressring-content">{releaseStatusText}</span>
-                                </div>
-                            </template>
+                <div class="slds-float_right">
+                    <div class="slds-grid slds-grid_vertical">
+                        <div class="slds-col slds-size_1-of-1">
+                            <div if:false={allReleaseGatesActive} class="notification-bell">&#x1F514;</div>
+                            <lightning-button
+                                label={labelReference.releaseManagementButton}
+                                title={labelReference.releaseManagementButtonA11y}
+                                aria-described-by="cardTitle"
+                                class="btnGoToReleaseManagement slds-float_left"
+                                variant="brand"
+                                onclick={handleNavigationClick}
+                            ></lightning-button>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-grid slds-m-top_xxx-small progress-container">
+                                <template if:true={notificationsVisible}>
+                                    <div class="slds-col progressring-container">
+                                        <lightning-progress-ring value={activatedPercentage} variant={progressVariant}>
+                                        </lightning-progress-ring>
+                                    </div>
+                                    <div class="slds-col">
+                                        <span class="slds-text-body_regular progressring-content"
+                                            >{releaseStatusText}</span
+                                        >
+                                    </div>
+                                </template>
+                            </div>
                         </div>
                     </div>
                 </div>
