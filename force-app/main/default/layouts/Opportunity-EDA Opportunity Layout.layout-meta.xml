@@ -9,27 +9,11 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OwnerId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IsPrivate</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Name</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>AccountId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Type</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>LeadSource</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -41,11 +25,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Desired_Start_Term__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Desired_Degree_Level__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Desired_Start_Term__c</field>
+                <field>Probability</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -54,8 +42,16 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OwnerId</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
-                <field>CloseDate</field>
+                <field>Name</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsPrivate</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -63,15 +59,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>StageName</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Probability</field>
+                <field>CloseDate</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>CampaignId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>LeadSource</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>StageName</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
