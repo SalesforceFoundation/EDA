@@ -68,6 +68,10 @@ export default class EdcReleaseManagementCard extends NavigationMixin(LightningE
     };
 
     connectedCallback() {
+        this.refresh();
+    }
+
+    @api refresh() {
         getProductRegistryReleaseGateVModels()
             .then((result) => {
                 this.productRegistryReleaseGateWire({ data: result });
