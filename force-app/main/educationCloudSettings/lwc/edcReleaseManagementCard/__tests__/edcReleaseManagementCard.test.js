@@ -88,7 +88,7 @@ describe("c-edc-release-management-card", () => {
             expect(headingSpan).not.toBeNull();
             expect(headingSpan.textContent).toBe(ReleaseManagementTitleLabel);
 
-            const btnGoToReleaseManagement = element.shadowRoot.querySelector(".btnGoToReleaseManagement");
+            const btnGoToReleaseManagement = element.shadowRoot.querySelector('[data-qa="btnGoToReleaseManagement"]');
             expect(btnGoToReleaseManagement).not.toBeNull();
             expect(btnGoToReleaseManagement.title).toBe(ReleaseManagementButtonTitle);
             expect(btnGoToReleaseManagement.label).toBe(ReleaseManagementButtonLabel);
@@ -105,15 +105,15 @@ describe("c-edc-release-management-card", () => {
         return Promise.resolve().then(async () => {
             await expect(element).toBeAccessible();
 
-            const divProgressRingContainer = element.shadowRoot.querySelector(".progressring-container");
+            const divProgressRingContainer = element.shadowRoot.querySelector('div[data-qa="progressRingContainer"]');
             expect(divProgressRingContainer).not.toBeNull();
             const progressRing = element.shadowRoot.querySelector("lightning-progress-ring");
             expect(progressRing).not.toBeNull();
             expect(progressRing.value).toBe((2 / 5) * 100.0); // numActiveGates/numTotalGates*100%
             expect(progressRing.variant).toBe("warning");
-            const divBell = element.shadowRoot.querySelector(".notification-bell");
+            const divBell = element.shadowRoot.querySelector('div[data-qa="notificationBell"]');
             expect(divBell).not.toBeNull();
-            const progressRingTextContent = element.shadowRoot.querySelector(".progressring-content");
+            const progressRingTextContent = element.shadowRoot.querySelector('[data-qa="progressRingContent"]');
             expect(progressRingTextContent).not.toBeNull();
             expect(progressRingTextContent.textContent).toBe(ReleaseGateProgressIncompleteLabel);
         });
@@ -129,15 +129,15 @@ describe("c-edc-release-management-card", () => {
         return Promise.resolve().then(async () => {
             await expect(element).toBeAccessible();
 
-            const divProgressRingContainer = element.shadowRoot.querySelector(".progressring-container");
+            const divProgressRingContainer = element.shadowRoot.querySelector('div[data-qa="progressRingContainer"]');
             expect(divProgressRingContainer).not.toBeNull();
             const progressRing = element.shadowRoot.querySelector("lightning-progress-ring");
             expect(progressRing).not.toBeNull();
             expect(progressRing.value).toBe(100.0);
             expect(progressRing.variant).toBe("base-autocomplete");
-            const divBell = element.shadowRoot.querySelector(".notification-bell");
+            const divBell = element.shadowRoot.querySelector('div[data-qa="notificationBell"]');
             expect(divBell).toBeNull();
-            const progressRingTextContent = element.shadowRoot.querySelector(".progressring-content");
+            const progressRingTextContent = element.shadowRoot.querySelector('[data-qa="progressRingContent"]');
             expect(progressRingTextContent).not.toBeNull();
             expect(progressRingTextContent.textContent).toBe(ReleaseGateProgressCompleteLabel);
         });
