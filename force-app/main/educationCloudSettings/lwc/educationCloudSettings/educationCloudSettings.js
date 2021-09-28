@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from "lwc";
+import { LightningElement, track, wire, api } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
@@ -63,6 +63,10 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
 
     get releaseManagementContainerComponentNavigation() {
         return this.edaComponentNavigationPrefix + ReleaseManagementContainerComponentName;
+    }
+
+    @api handleNavigate(pageReference) {
+        this.template.querySelector("c-edc-release-management-card").refresh();
     }
 
     @wire(getProductRegistrySettingsProductInformationVModels)
