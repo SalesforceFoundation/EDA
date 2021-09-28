@@ -295,6 +295,32 @@ private class UTIL_OrgTelemetry_TEST {
 
         insert academicCertificationsToInsert;
 
+        //Insert data for Credentials
+        List<Credential__c> credentialsToInsert = new List<Credential__c>();
+
+        //Credentials - Badge
+        List<Credential__c> badgeCredentials = UTIL_UnitTestData_TEST.getMultipleCredentials(
+            2,
+            Util_Describe.getBadgeCredentialRecTypeId()
+        );
+        credentialsToInsert.addAll(badgeCredentials);
+
+        //Credentials - Certification
+        List<Credential__c> certificationCredentials = UTIL_UnitTestData_TEST.getMultipleCredentials(
+            2,
+            Util_Describe.getCertificationCredentialRecTypeId()
+        );
+        credentialsToInsert.addAll(certificationCredentials);
+
+        //Credentials - License
+        List<Credential__c> licenseCredentials = UTIL_UnitTestData_TEST.getMultipleCredentials(
+            2,
+            Util_Describe.getLicenseCredentialRecTypeId()
+        );
+        credentialsToInsert.addAll(licenseCredentials);
+
+        insert credentialsToInsert;
+
         featureManagementMock = new UTIL_FeatureManagement_TEST.Mock();
         UTIL_OrgTelemetry orgTelemetry = new UTIL_OrgTelemetry();
         orgTelemetry.featureManager = (UTIL_FeatureManagement) Test.createStub(
@@ -355,6 +381,24 @@ private class UTIL_OrgTelemetry_TEST {
         assertIntegerValue(
             UTIL_OrgTelemetry.TelemetryParameterName.Data_CountDiplomaAcademicCertifications.name(),
             diplomaAcademicCertifications.size()
+        );
+
+        //Assert data for Credentials
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCredentials.name(),
+            credentialsToInsert.size()
+        );
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountBadgeCredentials.name(),
+            badgeCredentials.size()
+        );
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCertificationCredentials.name(),
+            certificationCredentials.size()
+        );
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountLicenseCredentials.name(),
+            licenseCredentials.size()
         );
     }
 
