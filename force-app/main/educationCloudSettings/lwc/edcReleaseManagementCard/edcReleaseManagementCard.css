@@ -1,0 +1,29 @@
+.progress-container {
+    height: 2.4em;
+}
+.progressring-container {
+    max-width: 2.4em;
+}
+.progressring-content {
+    vertical-align: middle;
+}
+.notification-bell {
+    margin-top: -0.6em;
+    font-size: 1.2em;
+    display: block;
+    animation: bell 0.3s ease-out;
+    animation-duration: 1s;
+    animation-iteration-count: 1000;
+    transform-origin: center top;
+    z-index: 10;
+}
+@keyframes bell {
+    0% {transform: rotate(35deg);}
+    12.5% {transform: rotate(-30deg);}
+    25% {transform: rotate(25deg);}
+    37.5% {transform: rotate(-20deg);}
+    50% {transform: rotate(15deg);}
+    62.5% {transform: rotate(-10deg)}
+    75% {transform: rotate(5deg)}
+    100% {transform: rotate(0);}  
+}
