@@ -519,4 +519,52 @@ public with sharing class UTIL_Describe_TEST {
             'Should return false since FirstName field on Contact is not a lookup field.'
         );
     }
+
+    /**
+     * @description Test to ensure getCertificateAcademicCertificationRecTypeId returns the Certificate Record Type
+     * of the Academic Certification object
+     */
+    @isTest
+    private static void getCertificateAcademicCertificationRecTypeIdTest() {
+        Test.startTest();
+        Id certificateAcademicCertificationRecTypeId = Util_Describe.getCertificateAcademicCertificationRecTypeId();
+        Test.stopTest();
+
+        System.assertNotEquals(null, certificateAcademicCertificationRecTypeId);
+
+        RecordType rt = [SELECT Name FROM Recordtype WHERE Id = :certificateAcademicCertificationRecTypeId];
+        System.assertEquals('Certificate', rt.Name);
+    }
+
+    /**
+     * @description Test to ensure getDegreeAcademicCertificationRecTypeId returns the Degree Record Type
+     * of the Academic Certification object
+     */
+    @isTest
+    private static void getDegreeAcademicCertificationRecTypeIdTest() {
+        Test.startTest();
+        Id degreeAcademicCertificationRecTypeId = Util_Describe.getDegreeAcademicCertificationRecTypeId();
+        Test.stopTest();
+
+        System.assertNotEquals(null, degreeAcademicCertificationRecTypeId);
+
+        RecordType rt = [SELECT Name FROM Recordtype WHERE Id = :degreeAcademicCertificationRecTypeId];
+        System.assertEquals('Degree', rt.Name);
+    }
+
+    /**
+     * @description Test to ensure getDiplomaAcademicCertificationRecTypeId returns the Diploma Record Type
+     * of the Academic Certification object
+     */
+    @isTest
+    private static void getDiplomaAcademicCertificationRecTypeIdTest() {
+        Test.startTest();
+        Id diplomaAcademicCertificationRecTypeId = Util_Describe.getDiplomaAcademicCertificationRecTypeId();
+        Test.stopTest();
+
+        System.assertNotEquals(null, diplomaAcademicCertificationRecTypeId);
+
+        RecordType rt = [SELECT Name FROM Recordtype WHERE Id = :diplomaAcademicCertificationRecTypeId];
+        System.assertEquals('Diploma', rt.Name);
+    }
 }
