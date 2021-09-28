@@ -382,8 +382,13 @@ global with sharing class EDADemoReleaseGate implements Callable {
             )
         };
         //Loading states for 'summer21' and 'sampleinactive' release gates from the db
-        this.loadReleaseGateStateFromDb(resultList[0].gates[0]);
-        this.loadReleaseGateStateFromDb(resultList[1].gates[3]);
+        this.loadReleaseGateStateFromDb(resultList[0].gates[0], version);
+        this.loadReleaseGateStateFromDb(resultList[1].gates[3], version);
+
+        //Removing inprogress gates to test notification tile
+        if (version == 1) {
+            resultList[1].gates.remove(1);
+        }
 
         EDADemoReleaseGate.GetReleaseGateActionResult releaseGateResultModel = new EDADemoReleaseGate.GetReleaseGateActionResult(
             resultList,
@@ -409,8 +414,8 @@ global with sharing class EDADemoReleaseGate implements Callable {
             stateContact.LastName = gateName;
             insert stateContact;
         }
-        //Emulating 'inprogress' status for the 'sampleinactive' release gate
-        String status = gateName == 'sampleinactive' ? 'inprogress' : 'active';
+        //Emulating 'inprogress' or 'active' status for the 'sampleinactive' release gate depending on version
+        String status = this.getReleaseGateState(gateName, version);
         return JSON.serialize(
             new ActivateReleaseGateActionResult(
                 new List<ActivateReleaseGateResult>{ new ActivateReleaseGateResult(productName, gateName, status) },
@@ -438,13 +443,21 @@ global with sharing class EDADemoReleaseGate implements Callable {
         return result;
     }
 
-    private void loadReleaseGateStateFromDb(EDADemoReleaseGate.ReleaseGate gate) {
+    private void loadReleaseGateStateFromDb(EDADemoReleaseGate.ReleaseGate gate, Decimal version) {
         //For our mock gates we store their states in contact records
         List<Contact> stateContacts = [SELECT Id, CreatedDate, LastName FROM Contact WHERE LastName = :gate.name];
         if (!stateContacts.isEmpty()) {
-            //Just hardcode sampleinactive release gate to be always inprogress
-            gate.status = gate.name == 'sampleinactive' ? 'inprogress' : 'active';
+            gate.status = this.getReleaseGateState(gate.name, version);
             gate.activationDate = stateContacts[0].CreatedDate;
+        }
+    }
+
+    private String getReleaseGateState(String name, Decimal version) {
+        // return active states for all gates if version equals to 1 to test notifications
+        if (version == 1) {
+            return 'active';
+        } else {
+            return name == 'sampleinactive' ? 'inprogress' : 'active';
         }
     }
 }
