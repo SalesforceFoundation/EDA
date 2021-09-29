@@ -128,7 +128,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>EDA_Education_History_Record_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
@@ -136,7 +136,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
         <content>EDA_Education_History_Record_Page</content>
         <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
