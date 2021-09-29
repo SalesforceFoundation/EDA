@@ -10,7 +10,7 @@
         <default>true</default>
         <visible>true</visible>
     </applicationVisibilities>
-        <layoutAssignments>
+    <layoutAssignments>
         <layout>Academic_Certification__c-%%%NAMESPACE%%%Academic Certification Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -24,9 +24,6 @@
     <layoutAssignments>
         <layout>Academic_Certification__c-%%%NAMESPACE%%%Academic Certification Layout</layout>
         <recordType>Academic_Certification__c.Diploma</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Education_History__c-%%%NAMESPACE%%%EDA Education History Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
@@ -141,6 +138,9 @@
         <tab>%%%NAMESPACE%%%Education_Cloud_Settings</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
+    <layoutAssignments>
+        <layout>Education_History__c-%%%NAMESPACE%%%EDA Education History Layout</layout>
+    </layoutAssignments>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Facility__c</tab>
         <visibility>DefaultOn</visibility>
