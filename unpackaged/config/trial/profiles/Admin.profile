@@ -61,18 +61,18 @@
         <visible>False</visible>
    </applicationVisibilities>
     <layoutAssignments>
-        <layout>Academic_Certification__c-%%%NAMESPACE%%%Academic Certification Layout</layout>
+        <layout>Academic_Certification__c-%%%NAMESPACE%%%EDA Academic Certification Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Academic_Certification__c-%%%NAMESPACE%%%Academic Certification Layout</layout>
+        <layout>Academic_Certification__c-%%%NAMESPACE%%%EDA Academic Certification Layout</layout>
         <recordType>Academic_Certification__c.Certificate</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Academic_Certification__c-%%%NAMESPACE%%%Academic Certification Layout</layout>
+        <layout>Academic_Certification__c-%%%NAMESPACE%%%EDA Academic Certification Layout</layout>
         <recordType>Academic_Certification__c.Degree</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Academic_Certification__c-%%%NAMESPACE%%%Academic Certification Layout</layout>
+        <layout>Academic_Certification__c-%%%NAMESPACE%%%EDA Academic Certification Layout</layout>
         <recordType>Academic_Certification__c.Diploma</recordType>
     </layoutAssignments>
     <layoutAssignments>
