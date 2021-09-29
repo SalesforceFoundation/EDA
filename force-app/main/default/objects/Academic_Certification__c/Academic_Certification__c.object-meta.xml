@@ -129,7 +129,7 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>EDA_Program_Enrollment_Record_Page</content>
+        <content>EDA_Academic_Certification_Record_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -137,7 +137,7 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>EDA_Program_Enrollment_Record_Page</content>
+        <content>EDA_Academic_Certification_Record_Page</content>
         <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -147,9 +147,9 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>HEDA_Program_Enrollment_Compact_Layout</compactLayoutAssignment>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>A student Contact&apos;s enrollment in an academic program offered by a Department or School (the degree-granting Account type for the educational institution).</description>
+    <description>Represents an academic certificate, degree, or diploma.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -160,23 +160,19 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Program Enrollment</label>
+    <label>Academic Certification</label>
     <nameField>
-        <displayFormat>PE-{0000}</displayFormat>
-        <label>Program Enrollment ID</label>
-        <type>AutoNumber</type>
+        <label>Academic Certification Name</label>
+        <type>Text</type>
     </nameField>
-    <pluralLabel>Program Enrollments</pluralLabel>
+    <pluralLabel>Academic Certifications</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Contact__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Enrollment_Status__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Class_Standing__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Graduation_Year__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Start_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>End_Date__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>GPA__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Issuer__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Academic_Level__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Field_of_Study__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>
 </CustomObject>
