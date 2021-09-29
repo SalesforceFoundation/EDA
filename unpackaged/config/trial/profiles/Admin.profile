@@ -61,21 +61,6 @@
         <visible>False</visible>
    </applicationVisibilities>
     <layoutAssignments>
-        <layout>Academic_Certification__c-%%%NAMESPACE%%%EDA Academic Certification Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Academic_Certification__c-%%%NAMESPACE%%%EDA Academic Certification Layout</layout>
-        <recordType>Academic_Certification__c.Certificate</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Academic_Certification__c-%%%NAMESPACE%%%EDA Academic Certification Layout</layout>
-        <recordType>Academic_Certification__c.Degree</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Academic_Certification__c-%%%NAMESPACE%%%EDA Academic Certification Layout</layout>
-        <recordType>Academic_Certification__c.Diploma</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -136,13 +121,6 @@
         <layout>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</layout>
         <recordType>%%%NAMESPACE%%%Course_Enrollment__c.Student</recordType>
     </layoutAssignments>
-    <layoutAssignments>
-        <layout>Education_History__c-%%%NAMESPACE%%%EDA Education History Layout</layout>
-    </layoutAssignments>
-    <tabVisibilities>
-        <tab>%%%NAMESPACE%%%Academic_Certification__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Address__c</tab>
         <visibility>DefaultOn</visibility>
