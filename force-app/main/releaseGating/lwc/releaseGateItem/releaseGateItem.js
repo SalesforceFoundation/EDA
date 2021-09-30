@@ -77,6 +77,16 @@ export default class ReleaseGateItem extends LightningElement {
         return iconName;
     }
 
+    get progressItemClass() {
+        return this.gateActive ? "slds-progress__item slds-is-completed" : "slds-progress__item";
+    }
+
+    get progressMarkerClass() {
+        return this.gateActive
+            ? "slds-icon_container slds-icon-utility-success slds-progress__marker slds-progress__marker_icon slds-progress__marker_icon-success"
+            : "slds-progress__marker";
+    }
+
     get activatedOnLabel() {
         return this.labelReference.releaseGateActivatedOn.replace(
             "{0}",
