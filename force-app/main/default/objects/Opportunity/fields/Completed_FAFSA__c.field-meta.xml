@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Completed_FAFSA__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether a FAFSA application related to this Opportunity was completed.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates whether a FAFSA application related to this Opportunity was completed.</inlineHelpText>
+    <label>Completed FAFSA</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
