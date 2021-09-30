@@ -74,6 +74,9 @@
     <layoutAssignments>
         <layout>Contact-Contact Layout</layout>
     </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Opportunity Layout</layout>
+    </layoutAssignments>
     <classAccesses>
         <apexClass>%%%NAMESPACE%%%CMP_SettingsDataProvider</apexClass>
         <enabled>True</enabled>
