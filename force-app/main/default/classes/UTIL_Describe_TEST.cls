@@ -580,8 +580,8 @@ public with sharing class UTIL_Describe_TEST {
 
         System.assertNotEquals(null, badgeCredentialRecTypeId);
 
-        RecordType rt = [SELECT Name FROM Recordtype WHERE Id = :badgeCredentialRecTypeId];
-        System.assertEquals('Badge', rt.Name);
+        RecordType rt = [SELECT DeveloperName FROM Recordtype WHERE Id = :badgeCredentialRecTypeId];
+        System.assertEquals('Badge', rt.DeveloperName);
     }
 
     /**
@@ -596,8 +596,8 @@ public with sharing class UTIL_Describe_TEST {
 
         System.assertNotEquals(null, certificationCredentialRecTypeId);
 
-        RecordType rt = [SELECT Name FROM Recordtype WHERE Id = :certificationCredentialRecTypeId];
-        System.assertEquals('Certification', rt.Name);
+        RecordType rt = [SELECT DeveloperName FROM Recordtype WHERE Id = :certificationCredentialRecTypeId];
+        System.assertEquals('Certification', rt.DeveloperName);
     }
 
     /**
@@ -612,7 +612,7 @@ public with sharing class UTIL_Describe_TEST {
 
         System.assertNotEquals(null, licenseCredentialRecTypeId);
 
-        RecordType rt = [SELECT Name FROM Recordtype WHERE Id = :licenseCredentialRecTypeId];
-        System.assertEquals('License', rt.Name);
+        RecordType rt = [SELECT DeveloperName FROM Recordtype WHERE Id = :licenseCredentialRecTypeId];
+        System.assertEquals('License', rt.DeveloperName);
     }
 }
