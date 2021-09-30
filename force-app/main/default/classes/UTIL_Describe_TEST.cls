@@ -532,8 +532,8 @@ public with sharing class UTIL_Describe_TEST {
 
         System.assertNotEquals(null, certificateAcademicCertificationRecTypeId);
 
-        RecordType rt = [SELECT Name FROM Recordtype WHERE Id = :certificateAcademicCertificationRecTypeId];
-        System.assertEquals('Certificate', rt.Name);
+        RecordType rt = [SELECT DeveloperName FROM Recordtype WHERE Id = :certificateAcademicCertificationRecTypeId];
+        System.assertEquals('Certificate', rt.DeveloperName);
     }
 
     /**
@@ -548,8 +548,8 @@ public with sharing class UTIL_Describe_TEST {
 
         System.assertNotEquals(null, degreeAcademicCertificationRecTypeId);
 
-        RecordType rt = [SELECT Name FROM Recordtype WHERE Id = :degreeAcademicCertificationRecTypeId];
-        System.assertEquals('Degree', rt.Name);
+        RecordType rt = [SELECT DeveloperName FROM Recordtype WHERE Id = :degreeAcademicCertificationRecTypeId];
+        System.assertEquals('Degree', rt.DeveloperName);
     }
 
     /**
@@ -564,8 +564,8 @@ public with sharing class UTIL_Describe_TEST {
 
         System.assertNotEquals(null, diplomaAcademicCertificationRecTypeId);
 
-        RecordType rt = [SELECT Name FROM Recordtype WHERE Id = :diplomaAcademicCertificationRecTypeId];
-        System.assertEquals('Diploma', rt.Name);
+        RecordType rt = [SELECT DeveloperName FROM Recordtype WHERE Id = :diplomaAcademicCertificationRecTypeId];
+        System.assertEquals('Diploma', rt.DeveloperName);
     }
 
     /**
