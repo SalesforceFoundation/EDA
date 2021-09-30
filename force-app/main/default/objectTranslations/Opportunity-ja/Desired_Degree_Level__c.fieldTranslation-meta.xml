@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The level of the desired degree related to this Opportunity. --></help>
+    <label><!-- Desired Degree Level --></label>
+    <name>Desired_Degree_Level__c</name>
+    <picklistValues>
+        <masterLabel>Certification</masterLabel>
+        <translation><!-- Certification --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Graduate</masterLabel>
+        <translation><!-- Graduate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Non-degree</masterLabel>
+        <translation><!-- Non-degree --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Undergraduate</masterLabel>
+        <translation><!-- Undergraduate --></translation>
+    </picklistValues>
+</CustomFieldTranslation>
