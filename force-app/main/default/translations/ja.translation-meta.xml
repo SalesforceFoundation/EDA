@@ -2014,6 +2014,14 @@
         <label><!-- Release gate in progress activation toast message --></label>
         <name>stgReleaseGateActivateInProgress</name>
     </customLabels>
+    <customLabels>
+        <label><!-- Release gates progress indicator label --></label>
+        <name>stgReleaseGateProgressIndicatorIncomplete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Release gates progress indicator when all releases activated --></label>
+        <name>stgReleaseGateProgressIndicatorComplete</name>
+    </customLabels>
     <customTabs>
         <label>Education Cloud 設定</label>
         <name>Education_Cloud_Settings</name>

@@ -1,0 +1,173 @@
+[
+    {
+        "gates": [
+            {
+                "description": "Here's what's new in Summer '21. See the documentation for instructions on setting up these features, and then activate the release.",
+                "dueDate": "2021-11-30",
+                "dueDateInfoText": "On this date, we activate the current release on all sandboxes that are still on the previous release.",
+                "features": [
+                    {
+                        "description": "We've redesigned the Advisee Snapshot. If desired, customize it to show up to four counters, upload advisee photos, and add the Snapshot to other Case pages.",
+                        "helpLink": "https://powerofus.force.com/s/article/SAL-Advisor-App-Snapshot-Contact",
+                        "helpLinkLabel": "Set Up the Advisee Snapshot and Contact Details",
+                        "label": "Flexible Advisee Snapshot",
+                        "name": "FlexibleAdviseeSnapshot"
+                    },
+                    {
+                        "description": "Student Success Hub customers also enjoy the redesigned Student Snapshot. Configure the counters to show data relevant to K-12 schools, including Alerts and Success Plans, and, if desired, upload student photos and add the Snapshot to other Case pages.",
+                        "helpLink": "https://powerofus.force.com/s/article/SSH-Set-Up-Student-Snapshot-and-Details",
+                        "helpLinkLabel": "Set Up the Student Snapshot and Student Details",
+                        "label": "Flexible Student Snapshot",
+                        "name": "FlexibleStudentSnapshot"
+                    },
+                    {
+                        "description": "Front desk staff can now schedule individual appointments between advisors or members of an Advising Pool and an advisee. To set up front desk scheduling, create a profile with the necessary permissions for those users, and add the Appointment Scheduler component to a Lightning page so they can access the front desk New Appointment form.",
+                        "helpLink": "https://powerofus.force.com/s/article/SAL-Set-Up-Front-Desk-Appointment-Scheduling",
+                        "helpLinkLabel": "Set Up Front Desk Appointment Scheduling",
+                        "label": "Front Desk Appointment Scheduling",
+                        "name": "FrontDeskAppointmentScheduling"
+                    }
+                ],
+                "label": "Summer '21",
+                "name": "summer21",
+                "status": "active"
+            },
+            {
+                "activationDate": "2021-07-31T21:19:29.660Z",
+                "description": "Spring '21 is now activated for all orgs",
+                "dueDate": "2022-02-28",
+                "dueDateInfoText": "On this date, we activate the current release on all sandboxes that are still on the previous release.",
+                "features": [
+                    {
+                        "description": "Flexible scheduling is activated in all orgs. If you haven't already done so, configure location- and topic-based advising availability for your users.",
+                        "helpLink": "https://powerofus.force.com/s/article/SAL-Set-Up-Location-Based-Advising-Availability",
+                        "helpLinkLabel": "Set Up Location-Based Advising Availability",
+                        "label": "Flex Scheduling",
+                        "name": "flexscheduling"
+                    },
+                    {
+                        "description": "Group availability allows advisees to reserve a spot in a group advising appointment. Even if you're not using group availability yet, be sure you've set up permissions on the Attendee Limit and Discoverable fields.",
+                        "helpLink": "https://powerofus.force.com/s/article/SAL-Set-Up-Group-Availability",
+                        "helpLinkLabel": "Set Up Group Advising Availability",
+                        "label": "Group Availability",
+                        "name": "groupavailability"
+                    }
+                ],
+                "label": "Spring '21",
+                "name": "spring21",
+                "status": "active"
+            }
+        ],
+        "product": {
+            "label": "Advisor Link",
+            "name": "SAL",
+            "nextReleaseDate": "January 2022"
+        }
+    },
+    {
+        "gates": [
+            {
+                "description": "This is an example release gate in disabled state",
+                "dueDate": "2021-11-30",
+                "dueDateInfoText": "On this date, we activate the current release on all sandboxes that are still on the previous release.",
+                "features": [
+                    {
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "helpLink": "https://www.salesforce.com",
+                        "helpLinkLabel": "See example feature 1",
+                        "label": "Example disabled feature 1",
+                        "name": "ExampleFeature1"
+                    },
+                    {
+                        "description": "Bibendum arcu vitae elementum curabitur. Vitae ultricies leo integer malesuada nunc. Donec ac odio tempor orci dapibus ultrices. Penatibus et magnis dis parturient montes nascetur ridiculus. Dolor sit amet consectetur adipiscing elit ut aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Lacus laoreet non curabitur gravida arcu ac tortor. Ullamcorper a lacus vestibulum sed arcu non odio.",
+                        "helpLink": "https://www.salesforce.com",
+                        "helpLinkLabel": "See example feature 2",
+                        "label": "Example disabled feature 2",
+                        "name": "ExampleFeature2"
+                    }
+                ],
+                "label": "Sample Disabled Release Gate",
+                "name": "sampledisabled",
+                "status": "disabled"
+            },
+            {
+                "description": "This is an example release gate in InProgress state",
+                "dueDate": "2022-02-28",
+                "dueDateInfoText": "On this date, we activate the current release on all sandboxes that are still on the previous release.",
+                "features": [
+                    {
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "helpLink": "https://www.salesforce.com",
+                        "helpLinkLabel": "See example feature 1",
+                        "label": "Example inprogress feature 1",
+                        "name": "ExampleFeature1"
+                    },
+                    {
+                        "description": "Bibendum arcu vitae elementum curabitur. Vitae ultricies leo integer malesuada nunc. Donec ac odio tempor orci dapibus ultrices. Penatibus et magnis dis parturient montes nascetur ridiculus. Dolor sit amet consectetur adipiscing elit ut aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Lacus laoreet non curabitur gravida arcu ac tortor. Ullamcorper a lacus vestibulum sed arcu non odio.",
+                        "helpLink": "https://www.salesforce.com",
+                        "helpLinkLabel": "See example feature 2",
+                        "label": "Example inprogress feature 2",
+                        "name": "ExampleFeature2"
+                    }
+                ],
+                "label": "Sample InProgress Release Gate",
+                "name": "sampleinprogress",
+                "status": "active"
+            },
+            {
+                "activationDate": "2021-07-31T21:19:29.660Z",
+                "description": "This is an example release gate in active state",
+                "dueDate": "2022-02-28",
+                "dueDateInfoText": "On this date, we activate the current release on all sandboxes that are still on the previous release.",
+                "features": [
+                    {
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "helpLink": "https://www.salesforce.com",
+                        "helpLinkLabel": "See example feature 1",
+                        "label": "Example active feature 1",
+                        "name": "ExampleFeature1"
+                    },
+                    {
+                        "description": "Bibendum arcu vitae elementum curabitur. Vitae ultricies leo integer malesuada nunc. Donec ac odio tempor orci dapibus ultrices. Penatibus et magnis dis parturient montes nascetur ridiculus. Dolor sit amet consectetur adipiscing elit ut aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Lacus laoreet non curabitur gravida arcu ac tortor. Ullamcorper a lacus vestibulum sed arcu non odio.",
+                        "helpLink": "https://www.salesforce.com",
+                        "helpLinkLabel": "See example feature 2",
+                        "label": "Example active feature 2",
+                        "name": "ExampleFeature2"
+                    }
+                ],
+                "label": "Sample Active Release Gate",
+                "name": "sampleactive",
+                "status": "active"
+            },
+            {
+                "description": "This is an example release gate in inactive state",
+                "dueDate": "2022-02-28",
+                "dueDateInfoText": "On this date, we activate the current release on all sandboxes that are still on the previous release.",
+                "features": [
+                    {
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+                        "helpLink": "https://www.salesforce.com",
+                        "helpLinkLabel": "See example feature 1",
+                        "label": "Example inactive feature 1",
+                        "name": "ExampleFeature1"
+                    },
+                    {
+                        "description": "Bibendum arcu vitae elementum curabitur. Vitae ultricies leo integer malesuada nunc. Donec ac odio tempor orci dapibus ultrices. Penatibus et magnis dis parturient montes nascetur ridiculus. Dolor sit amet consectetur adipiscing elit ut aliquam. Adipiscing elit duis tristique sollicitudin nibh sit amet. Lacus laoreet non curabitur gravida arcu ac tortor. Ullamcorper a lacus vestibulum sed arcu non odio.",
+                        "helpLink": "https://www.salesforce.com",
+                        "helpLinkLabel": "See example feature 2",
+                        "label": "Example inactive feature 2",
+                        "name": "ExampleFeature2"
+                    }
+                ],
+                "label": "Sample Inactive Release Gate",
+                "name": "sampleinactive",
+                "status": "active"
+            }
+        ],
+        "product": {
+            "label": "Education Data Architecture",
+            "name": "EDA",
+            "nextReleaseDate": "January 2022"
+        }
+    }
+]
