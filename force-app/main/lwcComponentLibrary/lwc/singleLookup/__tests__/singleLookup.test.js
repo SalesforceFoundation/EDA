@@ -276,7 +276,7 @@ describe("c-single-lookup", () => {
             is: SingleLookup,
         });
         document.body.appendChild(element);
-        /*const handler = jest.fn();
+        const handler = jest.fn();
         element.addEventListener("search", handler);
 
         return Promise.resolve()
@@ -296,7 +296,7 @@ describe("c-single-lookup", () => {
             .then(() => {
                 const options = element.shadowRoot.querySelectorAll("c-single-lookup-option");
                 expect(options).toHaveLength(2);
-            });*/
+            });
     });
 
     it("clears the searchbar and options when searching an empty string", () => {
@@ -338,15 +338,15 @@ describe("c-single-lookup", () => {
             .then(() => {
                 expect(input.classList).toContain("slds-has-focus");
                 const listbox = element.shadowRoot.querySelector("div.slds-dropdown");
-                /*listbox.dispatchEvent(new CustomEvent("mousedown"));*/
+                listbox.dispatchEvent(new CustomEvent("mousedown"));
             })
             .then(() => {
                 input.blur();
             })
             .then(() => {
-                /*expect(input.classList).toContain("slds-has-focus");
+                expect(input.classList).toContain("slds-has-focus");
                 const listbox = element.shadowRoot.querySelector("div.slds-dropdown");
-                listbox.dispatchEvent(new CustomEvent("mouseup"));*/
+                listbox.dispatchEvent(new CustomEvent("mouseup"));
             })
             .then(() => {
                 input.blur();
