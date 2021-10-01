@@ -212,10 +212,10 @@ describe("c-single-lookup", () => {
 
         return Promise.resolve().then(() => {
             const listbox = element.shadowRoot.querySelector("div.slds-dropdown");
-            /*listbox.dispatchEvent(new CustomEvent("mousedown"));
+            listbox.dispatchEvent(new CustomEvent("mousedown"));
             expect(handler).not.toHaveBeenCalled();
             listbox.dispatchEvent(new CustomEvent("mouseup"));
-            expect(handler).toHaveBeenCalled();*/
+            expect(handler).toHaveBeenCalled();
         });
     });
 
