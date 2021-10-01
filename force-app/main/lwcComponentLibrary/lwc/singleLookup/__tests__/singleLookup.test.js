@@ -28,7 +28,6 @@ const OPTIONS_EMPTY = [];
 const OPTIONS_TWO = [ICON_VM, AVATAR_VM];
 
 jest.useFakeTimers();
-//TODO: Address tech debt in these JEST tests.
 
 describe("c-single-lookup", () => {
     afterEach(() => {
@@ -44,7 +43,6 @@ describe("c-single-lookup", () => {
     }
 
     //INITIAL LOAD
-
     it("renders in an empty state with no value", () => {
         const element = createElement("c-single-lookup", {
             is: SingleLookup,
@@ -114,7 +112,6 @@ describe("c-single-lookup", () => {
     });
 
     //UI INTERACTION
-
     it("clicking clear button removes the selected option", () => {
         const element = createElement("c-single-lookup", {
             is: SingleLookup,
@@ -156,12 +153,18 @@ describe("c-single-lookup", () => {
         element.addEventListener("inputchange", handler);
         const input = element.shadowRoot.querySelector("input");
 
-        /*return Promise.resolve().then(() => {
-            const options = element.shadowRoot.querySelectorAll("c-single-lookup-option");
-            //expect(options).toHaveLength(2);
-            input.focus();
-            input.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 40 }));
-        })
+        return Promise.resolve()
+            .then(() => {
+                const input = element.shadowRoot.querySelector("input");
+                input.value = "abcd";
+                input.dispatchEvent(new CustomEvent("input"));
+            })
+            .then(() => {
+                const options = element.shadowRoot.querySelectorAll("c-single-lookup-option");
+                expect(options).toHaveLength(2);
+                input.focus();
+                input.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 40 }));
+            })
             .then(() => {
                 //expect the first element to be selected
                 input.dispatchEvent(new KeyboardEvent("keydown", { keyCode: 40 }));
@@ -194,7 +197,7 @@ describe("c-single-lookup", () => {
                 expect(avatar).not.toBeNull();
                 expect(handler).toHaveBeenCalledTimes(1);
                 expect(handler.mock.calls[0][0].detail.value).toEqual(OPTIONS_TWO[1]);
-            })*/
+            });
     });
 
     it("returns focus to input element when an option is clicked", () => {
