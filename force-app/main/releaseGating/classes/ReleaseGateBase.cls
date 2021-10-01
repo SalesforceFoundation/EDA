@@ -48,7 +48,13 @@ public abstract class ReleaseGateBase {
     /**
      * @description Activate a release gate
      * @param  version     Callable API version
+     * @param  productName Release gate product name
+     * @param  gateName    Release gate name
      * @return             Activate release gate result
      */
-    public abstract ActivateReleaseGateActionResultModel activateReleaseGate(Decimal version);
+    public abstract ActivateReleaseGateActionResultModel activateReleaseGate(
+        Decimal version,
+        String productName,
+        String gateName
+    );
 }

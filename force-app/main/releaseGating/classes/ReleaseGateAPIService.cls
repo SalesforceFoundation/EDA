@@ -111,6 +111,7 @@ public virtual with sharing class ReleaseGateAPIService {
      * @description Checks and converts a callable namespace
      * @return   A converted namespace
      */
+    @TestVisible
     private String getCallableNamespace() {
         String namespace = this.releaseGateRegistry.namespace == null ? '' : this.releaseGateRegistry.namespace;
         if (UTIL_Namespace.getNamespace() == '' && namespace.toLowerCase() == EDA_NAMESPACE) {

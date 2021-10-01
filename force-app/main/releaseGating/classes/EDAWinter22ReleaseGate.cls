@@ -1,6 +1,9 @@
 public with sharing class EDAWinter22ReleaseGate extends ReleaseGateBase {
+    @TestVisible
     private final static String RELEASE_GATE_NAME = 'winter22';
+    @TestVisible
     private final static String RELEASE_GATE_FEATURE_NAME = 'winter22feature1';
+    @TestVisible
     private final static String FEATURE_HELP_LINK = 'https://powerofus.force.com/s/group/0F980000000DA0QCAW/eda-release-announcements';
 
     /**
@@ -45,7 +48,11 @@ public with sharing class EDAWinter22ReleaseGate extends ReleaseGateBase {
      * @param  gateName    Release gate name
      * @return             Activate release gate result
      */
-    public override ActivateReleaseGateActionResultModel activateReleaseGate(Decimal version) {
+    public override ActivateReleaseGateActionResultModel activateReleaseGate(
+        Decimal version,
+        String productName,
+        String gateName
+    ) {
         throw new IllegalArgumentException(Label.stgErrorSettingsProductInvalidAction);
     }
 }

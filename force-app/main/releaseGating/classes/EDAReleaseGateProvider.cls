@@ -32,8 +32,10 @@
  * @description Abstract base class for EDA release gates
  */
 public with sharing class EDAReleaseGateProvider implements Callable {
+    @TestVisible
     private final static String PRODUCT_NAME = 'EDA';
 
+    @TestVisible
     private Map<String, ReleaseGateBase> releaseGatesMap;
 
     public EDAReleaseGateProvider() {
@@ -42,6 +44,11 @@ public with sharing class EDAReleaseGateProvider implements Callable {
         this.releaseGatesMap.put(winter22ReleaseGate.getReleaseGateName(), winter22ReleaseGate);
     }
 
+    /**
+     * @description Get a list of release gates
+     * @param  version API version
+     * @return         A list of ReleaseGate models
+     */
     private List<GetReleaseGateActionResultModel.ReleaseGate> getReleaseGateList(Decimal version) {
         List<GetReleaseGateActionResultModel.ReleaseGate> releaseGateList = new List<GetReleaseGateActionResultModel.ReleaseGate>();
         for (ReleaseGateBase releaseGate : this.releaseGatesMap.values()) {
@@ -62,7 +69,6 @@ public with sharing class EDAReleaseGateProvider implements Callable {
                 this.getReleaseGateList(version)
             )
         };
-
         return new GetReleaseGateActionResultModel(resultList, true, null);
     }
 
@@ -89,9 +95,15 @@ public with sharing class EDAReleaseGateProvider implements Callable {
                 String.format(Label.stgErrorSettingsProductInvalidResponse, new List<Object>{ gateName })
             );
         }
-        return releaseGate.activateReleaseGate(version);
+        return releaseGate.activateReleaseGate(version, productName, gateName);
     }
 
+    /**
+     * @description Call a release gating action
+     * @param  action Release gating action name
+     * @param  args   Additional action parameters
+     * @return        Action result in json format
+     */
     public Object call(String action, Map<String, Object> args) {
         UTIL_Debug.debug('Executing callable action: ' + action);
         Object result;

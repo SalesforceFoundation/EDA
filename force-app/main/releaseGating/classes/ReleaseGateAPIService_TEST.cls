@@ -57,6 +57,40 @@ public with sharing class ReleaseGateAPIService_TEST {
     }
 
     /**************************************************************************************************************************
+     * @description Test method to verify that the callable namespace is returned correctly
+     ***************************************************************************************************************************/
+    @isTest
+    private static void getCallableNamespace() {
+        String edaNamespace = 'hed';
+        String nonEdaNamespace = 'testNamespace';
+        ProductRegistryModel edaReleaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            edaNamespace,
+            'testClass',
+            1
+        );
+        ProductRegistryModel nonEdaReleaseGateRegistry = new ProductRegistryModel(
+            'testName',
+            ProductRegistryMapper.RELEASE_GATING_ACTION,
+            nonEdaNamespace,
+            'testClass',
+            1
+        );
+        String currentNamespace = UTIL_Namespace.getNamespace();
+        ReleaseGateAPIService apiServiceEda = new ReleaseGateAPIService(edaReleaseGateRegistry);
+        ReleaseGateAPIService apiServiceNonEda = new ReleaseGateAPIService(nonEdaReleaseGateRegistry);
+        Test.startTest();
+        String edaCallableNamespace = apiServiceEda.getCallableNamespace();
+        String nonEdaCallableNamespace = apiServiceNonEda.getCallableNamespace();
+        Test.stopTest();
+
+        System.assertEquals(nonEdaNamespace, nonEdaCallableNamespace, 'Incorrect non-EDA namespace');
+        String expectedEdaNamespace = currentNamespace == '' ? '' : edaNamespace;
+        System.assertEquals(expectedEdaNamespace, edaCallableNamespace, 'Incorrect EDA namespace');
+    }
+
+    /**************************************************************************************************************************
      * @description Test method to verify that the constructor is throwing ReleaseGateProductNotFoundException exception
      ***************************************************************************************************************************/
     @isTest
