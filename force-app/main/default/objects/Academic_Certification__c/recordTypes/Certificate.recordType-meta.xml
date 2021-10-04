@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Certificate</fullName>
     <active>true</active>
+    <compactLayoutAssignment>EDA_Academic_Certification_Compact_Layout</compactLayoutAssignment>
     <description>A certification related to the completion of specific courses.</description>
     <label>Certificate</label>
     <picklistValues>
