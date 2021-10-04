@@ -121,9 +121,6 @@
         <layout>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</layout>
         <recordType>%%%NAMESPACE%%%Course_Enrollment__c.Student</recordType>
     </layoutAssignments>
-    <layoutAssignments>
-        <layout>Opportunity-%%%NAMESPACE%%%EDA Opportunity Layout</layout>
-    </layoutAssignments>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Address__c</tab>
         <visibility>DefaultOn</visibility>
