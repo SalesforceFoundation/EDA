@@ -902,4 +902,26 @@ public class UTIL_UnitTestData_TEST {
 
         return chatterGroup;
     }
+
+    /*********************************************************************************************************
+     * @description Get a single Academic Certification
+     **********************************************************************************************************/
+    public static Academic_Certification__c getAcademicCertification(Id recordTypeId) {
+        Academic_Certification__c academicCertification = new Academic_Certification__c();
+        academicCertification.Name = 'Test Academic Certification ' + Datetime.now().getTime();
+        academicCertification.RecordTypeId = recordTypeId;
+        return academicCertification;
+    }
+
+    /*********************************************************************************************************
+     * @description Get a list of Academic Certifications
+     * @param n the number of Academic Certifications to create
+     **********************************************************************************************************/
+    public static List<Academic_Certification__c> getMultipleAcademicCertifications(Integer n, Id recordTypeId) {
+        List<Academic_Certification__c> academicCertifications = new List<Academic_Certification__c>();
+        for (Integer i = 0; i < n; i++) {
+            academicCertifications.add(getAcademicCertification(recordTypeId));
+        }
+        return academicCertifications;
+    }
 }
