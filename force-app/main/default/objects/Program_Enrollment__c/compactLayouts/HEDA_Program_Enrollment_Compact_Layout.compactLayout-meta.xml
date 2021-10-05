@@ -4,6 +4,7 @@
     <fields>Name</fields>
     <fields>Contact__c</fields>
     <fields>Account__c</fields>
+    <fields>Enrollment_Status__c</fields>
     <fields>Start_Date__c</fields>
     <fields>GPA__c</fields>
     <label>HEDA Program Enrollment Compact Layout</label>

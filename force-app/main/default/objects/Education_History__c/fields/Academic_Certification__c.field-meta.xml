@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Academic_Certification__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>A lookup to the Academic Certification that this Education History applies to, such as a Degree.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Academic Certification that this Education History applies to, such as a Degree.</inlineHelpText>
+    <label>Academic Certification</label>
+    <referenceTo>Academic_Certification__c</referenceTo>
+    <relationshipLabel>Education History</relationshipLabel>
+    <relationshipName>Education_History</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
