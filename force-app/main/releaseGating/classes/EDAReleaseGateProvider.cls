@@ -29,7 +29,7 @@
  * @date 2021
  * @group EDA Setup
  * @group-content
- * @description Abstract base class for EDA release gates
+ * @description EDA release gate provider callable class
  */
 public with sharing class EDAReleaseGateProvider implements Callable {
     @TestVisible
@@ -106,20 +106,22 @@ public with sharing class EDAReleaseGateProvider implements Callable {
      */
     public Object call(String action, Map<String, Object> args) {
         UTIL_Debug.debug('Executing callable action: ' + action);
-        Object result;
         if (action == ReleaseGateAPIService.GET_ACTION) {
-            result = this.getReleaseGates((Decimal) args.get(ReleaseGateAPIService.VERSION_PARAMETER));
-        } else if (action == ReleaseGateAPIService.ACTIVATE_ACTION) {
-            result = this.activateReleaseGate(
+            Object result = this.getReleaseGates((Decimal) args.get(ReleaseGateAPIService.VERSION_PARAMETER));
+            String resultJson = JSON.serialize(result);
+            UTIL_Debug.debug('Action finished, result: \r\n' + resultJson);
+            return resultJson;
+        }
+        if (action == ReleaseGateAPIService.ACTIVATE_ACTION) {
+            Object result = this.activateReleaseGate(
                 (Decimal) args.get(ReleaseGateAPIService.VERSION_PARAMETER),
                 (String) args.get(ReleaseGateAPIService.PRODUCT_PARAMETER),
                 (String) args.get(ReleaseGateAPIService.GATE_PARAMETER)
             );
-        } else {
-            throw new IllegalArgumentException(Label.stgErrorSettingsProductInvalidAction);
+            String resultJson = JSON.serialize(result);
+            UTIL_Debug.debug('Action finished, result: \r\n' + resultJson);
+            return resultJson;
         }
-        String resultJson = JSON.serialize(result);
-        UTIL_Debug.debug('Action finished, result: \r\n' + resultJson);
-        return resultJson;
+        throw new IllegalArgumentException(Label.stgErrorSettingsProductInvalidAction);
     }
 }
