@@ -70,12 +70,21 @@
                                     <div class="slds-progress slds-progress_vertical slds-progress_success">
                                         <ol class="slds-progress__list slds-progress__list-bordered">
                                             <li
-                                                class="slds-progress__item"
+                                                class={progressItemClass}
                                                 for:each={gate.features}
                                                 for:item="feature"
                                                 key={feature.name}
                                             >
-                                                <div class="slds-progress__marker"></div>
+                                                <div class={progressMarkerClass}>
+                                                    <lightning-icon
+                                                        icon-name="utility:success"
+                                                        alternative-text="Complete"
+                                                        variant="success"
+                                                        size="xx-small"
+                                                        class="altText"
+                                                        if:true={gateActive}
+                                                    ></lightning-icon>
+                                                </div>
                                                 <div
                                                     class="slds-progress__item_content slds-grid slds-grid_align-spread"
                                                 >
@@ -112,8 +121,21 @@
                                             </li>
 
                                             <!-- PRIMARY REQUIREMENT -->
-                                            <li class="slds-progress__item gateStatusRow" if:false={gateDisabled}>
-                                                <div class="slds-progress__marker"></div>
+                                            <li
+                                                class={progressItemClass}
+                                                data-qa="gateStatusRow"
+                                                if:false={gateDisabled}
+                                            >
+                                                <div class={progressMarkerClass}>
+                                                    <lightning-icon
+                                                        icon-name="utility:success"
+                                                        variant="success"
+                                                        alternative-text="Complete"
+                                                        size="xx-small"
+                                                        class="altText"
+                                                        if:true={gateActive}
+                                                    ></lightning-icon>
+                                                </div>
                                                 <div
                                                     class="slds-progress__item_content slds-grid slds-grid_align-spread"
                                                 >
@@ -127,7 +149,7 @@
                                                             variant="brand"
                                                             if:true={gateInactive}
                                                             onclick={handleEnableGate}
-                                                            class="gateEnableBtn"
+                                                            data-qa="gateEnableBtn"
                                                         >
                                                         </lightning-button>
 
@@ -140,11 +162,8 @@
                                                         </lightning-icon>
 
                                                         <p
-                                                            class="
-                                                                slds-text-align_right
-                                                                slds-text-color_weak
-                                                                inProgressClass
-                                                            "
+                                                            class="slds-text-align_right slds-text-color_weak"
+                                                            data-qa="inProgressLabel"
                                                             if:true={gateInProgress}
                                                         >
                                                             {inProgressLabel}

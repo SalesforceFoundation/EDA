@@ -2022,6 +2022,22 @@
         <label><!-- Release gates progress indicator when all releases activated --></label>
         <name>stgReleaseGateProgressIndicatorComplete</name>
     </customLabels>
+    <customLabels>
+        <label><!-- EDA Winter 22 release gate label --></label>
+        <name>stgReleaseGateEDAWinter22Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Winter 22 release gate description --></label>
+        <name>stgReleaseGateEDAWinter22Description</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Winter 22 release gate feature description --></label>
+        <name>stgReleaseGateEDAWinter22FeatureDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Winter 22 release gate feature help label --></label>
+        <name>stgReleaseGateEDAWinter22FeatureHelpLabel</name>
+    </customLabels>
     <customTabs>
         <label>Education Cloud Settings</label>
         <name>Education_Cloud_Settings</name>

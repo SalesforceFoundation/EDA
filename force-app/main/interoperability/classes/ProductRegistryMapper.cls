@@ -131,10 +131,10 @@ public virtual with sharing class ProductRegistryMapper {
     @TestVisible
     private virtual List<Product_Registry__mdt> getProductRegistriesByAction(String action) {
         List<Product_Registry__mdt> registriesList = [
-            SELECT DeveloperName, Action__c, API_Version__c, Class_Name__c, Enabled__c, Namespace__c
+            SELECT DeveloperName, Label, Action__c, API_Version__c, Class_Name__c, Enabled__c, Namespace__c
             FROM Product_Registry__mdt
             WHERE Action__c = :action AND Enabled__c = TRUE
-            ORDER BY Namespace__c ASC
+            ORDER BY Label ASC
         ];
         return registriesList;
     }

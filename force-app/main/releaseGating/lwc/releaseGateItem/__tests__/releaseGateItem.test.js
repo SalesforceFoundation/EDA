@@ -70,7 +70,7 @@ describe("c-release-gate-item", () => {
                 const featureLink = element.shadowRoot.querySelector(".featureLink");
                 expect(featureLink.innerHTML).toContain(gate.features[0].helpLinkLabel);
 
-                const btnActivate = element.shadowRoot.querySelector(".gateEnableBtn");
+                const btnActivate = element.shadowRoot.querySelector('[data-qa="gateEnableBtn"]');
                 expect(btnActivate).not.toBeNull();
                 expect(btnActivate.title).toContain(gate.label);
                 expect(btnActivate.label).toBe(stgBtnReleaseGateActivate);
@@ -107,7 +107,7 @@ describe("c-release-gate-item", () => {
             const dueDate = element.shadowRoot.querySelector(".dueDateClass");
             expect(dueDate).toBeNull();
 
-            const btnActivate = element.shadowRoot.querySelector(".gateEnableBtn");
+            const btnActivate = element.shadowRoot.querySelector('[data-qa="gateEnableBtn"]');
             expect(btnActivate).toBeNull();
         });
     });
@@ -131,10 +131,10 @@ describe("c-release-gate-item", () => {
             expect(headingSpan).not.toBeNull();
             expect(headingSpan.textContent).toBe(gate.label);
 
-            const gateStatusRow = element.shadowRoot.querySelector(".gateStatusRow");
+            const gateStatusRow = element.shadowRoot.querySelector('[data-qa="gateStatusRow"]');
             expect(gateStatusRow).toBeNull();
 
-            const btnActivate = element.shadowRoot.querySelector(".gateEnableBtn");
+            const btnActivate = element.shadowRoot.querySelector('[data-qa="gateEnableBtn"]');
             expect(btnActivate).toBeNull();
         });
     });
@@ -158,13 +158,13 @@ describe("c-release-gate-item", () => {
             expect(headingSpan).not.toBeNull();
             expect(headingSpan.textContent).toBe(gate.label);
 
-            const gateStatusRow = element.shadowRoot.querySelector(".gateStatusRow");
+            const gateStatusRow = element.shadowRoot.querySelector('[data-qa="gateStatusRow"]');
             expect(gateStatusRow).not.toBeNull();
 
-            const btnActivate = element.shadowRoot.querySelector(".gateEnableBtn");
+            const btnActivate = element.shadowRoot.querySelector('[data-qa="gateEnableBtn"]');
             expect(btnActivate).toBeNull();
 
-            const inProgressStatusText = element.shadowRoot.querySelector(".inProgressClass");
+            const inProgressStatusText = element.shadowRoot.querySelector('[data-qa="inProgressLabel"]');
             expect(inProgressStatusText).not.toBeNull();
             expect(inProgressStatusText.innerHTML).toContain(gate.label);
         });
@@ -193,7 +193,7 @@ describe("c-release-gate-item", () => {
                 const dueDate = element.shadowRoot.querySelector(".dueDateClass");
                 expect(dueDate.value).toBe(gate.dueDate);
 
-                const btnActivate = element.shadowRoot.querySelector(".gateEnableBtn");
+                const btnActivate = element.shadowRoot.querySelector('[data-qa="gateEnableBtn"]');
                 expect(btnActivate).not.toBeNull();
                 expect(btnActivate.title).toContain(gate.label);
 
@@ -205,13 +205,13 @@ describe("c-release-gate-item", () => {
                 expect(headingSpan).not.toBeNull();
                 expect(headingSpan.textContent).toBe(gate.label);
 
-                const gateStatusRow = element.shadowRoot.querySelector(".gateStatusRow");
+                const gateStatusRow = element.shadowRoot.querySelector('[data-qa="gateStatusRow"]');
                 expect(gateStatusRow).not.toBeNull();
 
-                const btnActivate = element.shadowRoot.querySelector(".gateEnableBtn");
+                const btnActivate = element.shadowRoot.querySelector('[data-qa="gateEnableBtn"]');
                 expect(btnActivate).toBeNull();
 
-                const inProgressStatusText = element.shadowRoot.querySelector(".inProgressClass");
+                const inProgressStatusText = element.shadowRoot.querySelector('[data-qa="inProgressLabel"]');
                 expect(inProgressStatusText).not.toBeNull();
                 expect(inProgressStatusText.innerHTML).toContain(gate.label);
             });
