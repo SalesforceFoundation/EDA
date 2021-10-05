@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Diploma</fullName>
     <active>true</active>
+    <compactLayoutAssignment>EDA_Academic_Certification_Compact_Layout</compactLayoutAssignment>
     <description>A certification related to the completion of a course of study, such as a high school diploma in the United States.</description>
     <label>Diploma</label>
     <picklistValues>

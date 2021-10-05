@@ -147,7 +147,7 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>EDA_Academic_Certification_Compact_Layout</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Represents an academic certificate, degree, or diploma.</description>
     <enableActivities>true</enableActivities>
