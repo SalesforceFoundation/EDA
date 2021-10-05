@@ -272,7 +272,7 @@ global with sharing class EDADemoReleaseGate implements Callable {
                 }
             ),
             new EDADemoReleaseGate.GetReleaseGateResult(
-                new EDADemoReleaseGate.ReleaseGateProduct('EDA', 'Education Data Architecture', 'January 2022'),
+                new EDADemoReleaseGate.ReleaseGateProduct('ExampleProduct', 'Example Product', 'January 2022'),
                 new List<EDADemoReleaseGate.ReleaseGate>{
                     new EDADemoReleaseGate.ReleaseGate(
                         'sampledisabled',

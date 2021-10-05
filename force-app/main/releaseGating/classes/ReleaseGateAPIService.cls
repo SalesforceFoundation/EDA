@@ -37,6 +37,14 @@ public virtual with sharing class ReleaseGateAPIService {
     public static final String VERSION_PARAMETER = 'version';
     public static final String PRODUCT_PARAMETER = 'product';
     public static final String GATE_PARAMETER = 'gate';
+    private static final String EDA_NAMESPACE = 'hed';
+
+    public enum ReleaseGateStatus {
+        DISABLED,
+        INACTIVE,
+        INPROGRESS,
+        ACTIVE
+    }
 
     @TestVisible
     private ProductRegistryModel releaseGateRegistry;
@@ -95,8 +103,23 @@ public virtual with sharing class ReleaseGateAPIService {
      * @return   A new Callable instance
      */
     private Callable createReleaseGateCallableInstance() {
-        String namespace = this.releaseGateRegistry.namespace == null ? '' : this.releaseGateRegistry.namespace;
+        String namespace = this.getCallableNamespace();
         return (Callable) Type.forName(namespace, this.releaseGateRegistry.classname).newInstance();
+    }
+
+    /**
+     * @description Checks and converts a callable namespace
+     * @return   A converted namespace
+     */
+    @TestVisible
+    private String getCallableNamespace() {
+        String namespace = this.releaseGateRegistry.namespace == null ? '' : this.releaseGateRegistry.namespace;
+        if (UTIL_Namespace.getNamespace() == '' && namespace.toLowerCase() == EDA_NAMESPACE) {
+            //If we are not in a managed context (dev scratch org without a namespace) the 'hed' namespace will not work
+            //we need to remove it
+            namespace = '';
+        }
+        return namespace;
     }
 
     /**
