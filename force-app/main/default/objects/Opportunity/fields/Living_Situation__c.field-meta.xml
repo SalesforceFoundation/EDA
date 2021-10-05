@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Living_Situation__c</fullName>
+    <description>The intended living location related to this Opportunity.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The intended living location related to this Opportunity.</inlineHelpText>
+    <label>Living Situation</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>On Campus</fullName>
+                <default>false</default>
+                <label>On Campus</label>
+            </value>
+            <value>
+                <fullName>Off Campus</fullName>
+                <default>false</default>
+                <label>Off Campus</label>
+            </value>
+            <value>
+                <fullName>With Family</fullName>
+                <default>false</default>
+                <label>With Family</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
