@@ -1086,4 +1086,37 @@ public class UTIL_Describe {
 
         return true;
     }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Certificate Academic Certification record type, if it exists.
+     * @return String The ID of the Certificate Academic Certification record type as a String.
+     */
+    public static String getCertificateAcademicCertificationRecTypeId() {
+        Map<String, Id> recTypes = getRecTypesMapByDevName(
+            UTIL_Namespace.StrTokenNSPrefix('Academic_Certification__c')
+        );
+        return recTypes.get('Certificate');
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Degree Academic Certification record type, if it exists.
+     * @return String The ID of the Degree Academic Certification record type as a String.
+     */
+    public static String getDegreeAcademicCertificationRecTypeId() {
+        Map<String, Id> recTypes = getRecTypesMapByDevName(
+            UTIL_Namespace.StrTokenNSPrefix('Academic_Certification__c')
+        );
+        return recTypes.get('Degree');
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Diploma Academic Certification record type, if it exists.
+     * @return String The ID of the Diploma Academic Certification record type as a String.
+     */
+    public static String getDiplomaAcademicCertificationRecTypeId() {
+        Map<String, Id> recTypes = getRecTypesMapByDevName(
+            UTIL_Namespace.StrTokenNSPrefix('Academic_Certification__c')
+        );
+        return recTypes.get('Diploma');
+    }
 }
