@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionOverrides>
-        <actionName>View</actionName>
-        <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>Contact_Learner_Record_Page</content>
-        <formFactor>Large</formFactor>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Flexipage</type>
-        <pageOrSobjectType>Contact</pageOrSobjectType>
-    </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
@@ -19,7 +10,7 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Education Data Architecture</label>
     <navType>Standard</navType>
-    <setupExperience>all</setupExperience>
+    <setupExperience>all</setupExperience>ß
     <tabs>standard-home</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
