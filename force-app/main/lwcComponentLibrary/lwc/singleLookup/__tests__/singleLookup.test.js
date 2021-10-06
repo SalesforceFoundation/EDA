@@ -201,7 +201,9 @@ describe("c-single-lookup", () => {
             is: SingleLookup,
         });
         document.body.appendChild(element);
+        element.setValue(ICON_VM);
         element.setOptions(OPTIONS_TWO);
+
         const handler = jest.fn();
         const input = element.shadowRoot.querySelector("input");
         input.addEventListener("focus", handler);
@@ -323,6 +325,7 @@ describe("c-single-lookup", () => {
             is: SingleLookup,
         });
         document.body.appendChild(element);
+        element.setValue(ICON_VM);
         element.setOptions(OPTIONS_TWO);
 
         const input = element.shadowRoot.querySelector("input");
