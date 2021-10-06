@@ -4014,5 +4014,53 @@
         <protected>true</protected>
         <shortDescription>Release gate in progress activation toast message</shortDescription>
         <value>We are activating {0}. This process can take some time. Check back in a bit.</value>
+    </labels>
+    <labels>
+        <fullName>stgReleaseGateProgressIndicatorIncomplete</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Release gates progress indicator label</shortDescription>
+        <value>{0} of {1} releases are active.</value>
+    </labels>
+    <labels>
+        <fullName>stgReleaseGateProgressIndicatorComplete</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Release gates progress indicator when all releases activated</shortDescription>
+        <value>All releases are active.</value>
+    </labels>
+    <labels>
+        <fullName>stgReleaseGateEDAWinter22Label</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Winter 22 release gate label</shortDescription>
+        <value>Winter&apos;22</value>
+    </labels>    
+    <labels>
+        <fullName>stgReleaseGateEDAWinter22Description</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Winter 22 release gate description</shortDescription>
+        <value>There were no features gated for this release therefore all features were automatically released with Winter&apos;22</value>
+    </labels>    
+    <labels>
+        <fullName>stgReleaseGateEDAWinter22FeatureDescription</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Winter 22 release gate feature description</shortDescription>
+        <value>Please see EDA's release notes for Winter'22 for full details.</value>
+    </labels>    
+    <labels>
+        <fullName>stgReleaseGateEDAWinter22FeatureHelpLabel</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Winter 22 release gate feature help label</shortDescription>
+        <value>Follow EDA Releases in the EDA Release Announcements group</value>
     </labels>    
 </CustomLabels>

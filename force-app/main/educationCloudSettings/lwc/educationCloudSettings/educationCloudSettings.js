@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from "lwc";
+import { LightningElement, track, wire, api } from "lwc";
 import { NavigationMixin } from "lightning/navigation";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
@@ -7,6 +7,7 @@ import stgColProducts from "@salesforce/label/c.stgColProducts";
 import stgColResources from "@salesforce/label/c.stgColResources";
 import stgColTools from "@salesforce/label/c.stgColTools";
 import stgReleaseManagementCardTitle from "@salesforce/label/c.stgReleaseManagementCardTitle";
+import EDCSettingsContainerAuraComponentLabel from "@salesforce/label/c.EDCSettingsContainerAuraComponentLabel";
 
 //EDA Services Labels
 import stgHealthCheckTitle from "@salesforce/label/c.stgHealthCheckTitle";
@@ -44,6 +45,7 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
         resourcesTitle: stgColResources,
         releaseManagementTitle: stgReleaseManagementCardTitle,
         toolsTitle: stgColTools,
+        pageTitle: EDCSettingsContainerAuraComponentLabel,
     };
 
     get edaComponentNavigationPrefix() {
@@ -63,6 +65,10 @@ export default class EducationCloudSettings extends NavigationMixin(LightningEle
 
     get releaseManagementContainerComponentNavigation() {
         return this.edaComponentNavigationPrefix + ReleaseManagementContainerComponentName;
+    }
+
+    @api handleNavigate(pageReference) {
+        this.template.querySelector("c-edc-release-management-card").refresh();
     }
 
     @wire(getProductRegistrySettingsProductInformationVModels)

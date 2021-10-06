@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- The desired term to start enrollment related to this Opportunity. --></help>
+    <label><!-- Desired Start Term --></label>
+    <name>Desired_Start_Term__c</name>
+    <relationshipLabel><!-- Opportunities --></relationshipLabel>
+</CustomFieldTranslation>
