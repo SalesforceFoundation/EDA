@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Field_of_Study__c</fullName>
+    <fullName>Field_Of_Study__c</fullName>
     <description>The field of study for the Credential.</description>
     <externalId>false</externalId>
     <inlineHelpText>The field of study for the Credential.</inlineHelpText>
