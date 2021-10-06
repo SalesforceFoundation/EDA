@@ -13,10 +13,6 @@
         <name>CompactLayout</name>
     </types>
     <types>
-        <members>Contact_Learner_Record_Page</members>
-        <name>FlexiPage</name>
-    </types>
-    <types>
         <members>Admin</members>
         <name>Profile</name>
     </types>

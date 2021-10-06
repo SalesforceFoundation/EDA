@@ -15,10 +15,6 @@
         <name>CustomTab</name>
     </types>
     <types>
-        <members>Contact_Learner_Record_Page</members>
-        <name>FlexiPage</name>
-    </types>
-    <types>
         <members>*</members>
         <name>Layout</name>
     </types>
