@@ -31,15 +31,11 @@ jest.useFakeTimers();
 
 describe("c-single-lookup", () => {
     afterEach(() => {
-        // The jsdom instance is shared across test cases in a single file so reset the DOM
-        while (document.body.firstChild) {
-            document.body.removeChild(document.body.firstChild);
-        }
+        clearDOM();
     });
 
-    function flushPromises() {
-        // eslint-disable-next-line no-undef
-        return new Promise((resolve) => setImmediate(resolve));
+    async function flushPromises() {
+        return Promise.resolve();
     }
 
     //INITIAL LOAD
