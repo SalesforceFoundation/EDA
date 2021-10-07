@@ -60,6 +60,46 @@
         <default>False</default>
         <visible>False</visible>
    </applicationVisibilities>
+<recordTypeVisibilities>
+        <default>false</default>
+        <recordType>%%%NAMESPACE%%%Academic_Certification__c.%%%NAMESPACE%%%Certificate</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>%%%NAMESPACE%%%Academic_Certification__c.%%%NAMESPACE%%%Degree</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>%%%NAMESPACE%%%Academic_Certification__c.%%%NAMESPACE%%%Diploma</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Credential</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Student_Characteristic</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>%%%NAMESPACE%%%Credential__c.%%%NAMESPACE%%%Badge</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>%%%NAMESPACE%%%Credential__c.%%%NAMESPACE%%%Certification</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>%%%NAMESPACE%%%Credential__c.%%%NAMESPACE%%%License</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
     <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
     </layoutAssignments>
@@ -93,11 +133,29 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
-        <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Credential</recordType>
+        <recordType>%%%NAMESPACE%%%Attribute__c.Credential</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACED_ORG%%%EDA Student Characteristic Layout</layout>
-        <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACED_ORG%%%Student_Characteristic</recordType>
+        <layout>%%%NAMESPACE%%%Attribute__c-EDA Student Characteristic Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>%%%NAMESPACE%%%Attribute__c-EDA Student Characteristic Layout</layout>
+        <recordType>%%%NAMESPACE%%%Attribute__c.Student_Characteristic</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>%%%NAMESPACE%%%Credential__c-Credential Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>%%%NAMESPACE%%%Credential__c-EDA Credential Layout</layout>
+        <recordType>%%%NAMESPACE%%%Credential__c.Badge</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>%%%NAMESPACE%%%Credential__c-EDA Credential Layout</layout>
+        <recordType>%%%NAMESPACE%%%Credential__c.Certification</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>%%%NAMESPACE%%%Credential__c-EDA Credential Layout</layout>
+        <recordType>%%%NAMESPACE%%%Credential__c.License</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Case-%%%NAMESPACE%%%EDA Incident Layout</layout>
@@ -124,6 +182,10 @@
     <layoutAssignments>
         <layout>Opportunity-%%%NAMESPACE%%%EDA Opportunity Layout</layout>
     </layoutAssignments>
+    <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Academic_Certification__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Address__c</tab>
         <visibility>DefaultOn</visibility>
@@ -175,6 +237,10 @@
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Education_Cloud_Settings</tab>
         <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>%%%NAMESPACE%%%Education_History__c</tab>
+        <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Language__c</tab>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Extended_Name__c</fullName>
+    <description>The full name of the Credential.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The full name of the Credential.</inlineHelpText>
+    <label>Extended Name</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

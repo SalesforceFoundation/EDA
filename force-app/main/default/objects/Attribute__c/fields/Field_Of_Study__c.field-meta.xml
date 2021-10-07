@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Field_Of_Study__c</fullName>
+    <description>The field of study for the Attribute&apos;s Credential.</description>
+    <externalId>false</externalId>
+    <formula>TEXT(Credential__r.Field_Of_Study__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>The field of study for the Attribute&apos;s Credential. Read only.</inlineHelpText>
+    <label>Field of Study</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
