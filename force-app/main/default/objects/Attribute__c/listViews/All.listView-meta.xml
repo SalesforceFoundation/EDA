@@ -4,9 +4,6 @@
     <columns>NAME</columns>
     <columns>Contact__c</columns>
     <columns>RECORDTYPE</columns>
-    <columns>Attribute_Type__c</columns>
-    <columns>Status__c</columns>
-    <columns>Field_Of_Study__c</columns>
     <columns>Start_Date__c</columns>
     <columns>End_Date__c</columns>
     <filterScope>Everything</filterScope>
