@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Issuer__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>A lookup to the issuing organization of the Credential.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The issuing organization of the Credential.</inlineHelpText>
+    <label>Issuer</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Credentials</relationshipLabel>
+    <relationshipName>Credentials</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

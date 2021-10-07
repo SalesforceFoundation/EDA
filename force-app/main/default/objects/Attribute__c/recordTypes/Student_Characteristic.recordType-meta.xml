@@ -2,6 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Student_Characteristic</fullName>
     <active>true</active>
+    <compactLayoutAssignment>EDA_Student_Characteristic_Attribute_Compact_Layout</compactLayoutAssignment>
     <description>Allows educational institutions to track important student characteristics that might affect students&apos; education.</description>
     <label>Student Characteristic</label>
     <picklistValues>
@@ -72,6 +73,40 @@
         </values>
     </picklistValues>
     <picklistValues>
+        <picklist>Role__c</picklist>
+        <values>
+            <fullName>Student</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Enrolled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Failed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Withdrew</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
         <picklist>Subject_Area__c</picklist>
         <values>
             <fullName>Biology</fullName>
@@ -135,6 +170,25 @@
         </values>
         <values>
             <fullName>Sociology</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Verification_Status__c</picklist>
+        <values>
+            <fullName>Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revoked</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unverified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Verified</fullName>
             <default>false</default>
         </values>
     </picklistValues>
