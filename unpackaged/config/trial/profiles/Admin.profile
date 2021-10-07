@@ -5,6 +5,11 @@
         <default>true</default>
         <visible>true</visible>
    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Education_Data_Architecture</application>
+        <default>true</default>
+        <visible>true</visible>
+    </applicationVisibilities>
    <applicationVisibilities>
         <application>standard__AllTabSet</application>
         <default>False</default>
