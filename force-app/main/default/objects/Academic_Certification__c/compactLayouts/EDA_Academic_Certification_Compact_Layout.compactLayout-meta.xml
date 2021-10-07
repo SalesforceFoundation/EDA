@@ -5,6 +5,6 @@
     <fields>Issuer__c</fields>
     <fields>RecordTypeId</fields>
     <fields>Academic_Level__c</fields>
-    <fields>Field_of_Study__c</fields>
+    <fields>Field_Of_Study__c</fields>
     <label>EDA Academic Certification Compact Layout</label>
 </CompactLayout>

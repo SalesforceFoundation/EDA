@@ -5,7 +5,7 @@
     <columns>Issuer__c</columns>
     <columns>RECORDTYPE</columns>
     <columns>Academic_Level__c</columns>
-    <columns>Field_of_Study__c</columns>
+    <columns>Field_Of_Study__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

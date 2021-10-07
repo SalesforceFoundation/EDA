@@ -35,7 +35,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Field_of_Study__c</field>
+                <field>Field_Of_Study__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
