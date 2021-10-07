@@ -3,47 +3,47 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>%%%NAMESPACE%%%EDA_Academic_Certification_Record_Page</content>
+        <content>EDA_Academic_Certification_Record_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>%%%NAMESPACE%%%Academic_Certification__c</pageOrSobjectType>
+        <pageOrSobjectType>Academic_Certification__c</pageOrSobjectType>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>%%%NAMESPACE%%%EDA_Education_History_Record_Page</content>
+        <content>EDA_Education_History_Record_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>%%%NAMESPACE%%%Education_History__c</pageOrSobjectType>
+        <pageOrSobjectType>Education_History__c</pageOrSobjectType>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>%%%NAMESPACE%%%EDA_Program_Enrollment_Record_Page</content>
+        <content>EDA_Program_Enrollment_Record_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>%%%NAMESPACE%%%Program_Enrollment__c</pageOrSobjectType>
+        <pageOrSobjectType>Program_Enrollment__c</pageOrSobjectType>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>%%%NAMESPACE%%%EDA_Credential_Record_Page</content>
+        <content>EDA_Credential_Record_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>%%%NAMESPACE%%%Credential__c</pageOrSobjectType>
+        <pageOrSobjectType>Credential__c</pageOrSobjectType>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>%%%NAMESPACE%%%EDA_Attribute_Record_Page</content>
+        <content>EDA_Attribute_Record_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
-        <pageOrSobjectType>%%%NAMESPACE%%%Attribute__c</pageOrSobjectType>
+        <pageOrSobjectType>Attribute__c</pageOrSobjectType>
     </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
@@ -59,11 +59,12 @@
     <tabs>standard-home</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
-    <tabs>%%%NAMESPACE%%%Course__c</tabs>
-    <tabs>%%%NAMESPACE%%%Term__c</tabs>
-    <tabs>%%%NAMESPACE%%%Course_Offering__c</tabs>
-    <tabs>%%%NAMESPACE%%%Program_Plan__c</tabs>
-    <tabs>%%%NAMESPACE%%%Trigger_Handler__c</tabs>
-    <tabs>%%%NAMESPACE%%%Education_Cloud_Settings</tabs>
+    <tabs>Course__c</tabs>
+    <tabs>Term__c</tabs>
+    <tabs>Course_Offering__c</tabs>
+    <tabs>Program_Plan__c</tabs>
+    <tabs>Trigger_Handler__c</tabs>
+    <tabs>Education_Cloud_Settings</tabs>
+    <tabs>Credential__c</tabs>
     <uiType>Lightning</uiType>
 </CustomApplication>

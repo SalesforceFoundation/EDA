@@ -11,21 +11,6 @@
         <visible>true</visible>
     </applicationVisibilities>
     <layoutAssignments>
-        <layout>Academic_Certification__c-%%%NAMESPACE%%%EDA Academic Certification Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Academic_Certification__c-%%%NAMESPACE%%%EDA Academic Certification Layout</layout>
-        <recordType>Academic_Certification__c.%%%NAMESPACE%%%Certificate</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Academic_Certification__c-%%%NAMESPACE%%%EDA Academic Certification Layout</layout>
-        <recordType>Academic_Certification__c.%%%NAMESPACE%%%Degree</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>Academic_Certification__c-%%%NAMESPACE%%%EDA Academic Certification Layout</layout>
-        <recordType>Academic_Certification__c.%%%NAMESPACE%%%Diploma</recordType>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Account-%%%NAMESPACE%%%HEDA Organization Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -108,6 +93,21 @@
         <layout>Opportunity-%%%NAMESPACE%%%EDA Opportunity Layout</layout>
     </layoutAssignments>
     <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>%%%NAMESPACE%%%Academic_Certification__c.%%%NAMESPACE%%%Certificate</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>true</default>
+        <recordType>%%%NAMESPACE%%%Academic_Certification__c.%%%NAMESPACE%%%Degree</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>%%%NAMESPACE%%%Academic_Certification__c.%%%NAMESPACE%%%Diploma</recordType>
+        <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
         <default>true</default>
         <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Credential</recordType>
         <visible>true</visible>
@@ -118,12 +118,12 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>true</default>
+        <default>false</default>
         <recordType>%%%NAMESPACE%%%Credential__c.%%%NAMESPACE%%%Badge</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
         <recordType>%%%NAMESPACE%%%Credential__c.%%%NAMESPACE%%%Certification</recordType>
         <visible>true</visible>
     </recordTypeVisibilities>
