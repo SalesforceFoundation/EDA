@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activity_End_Date__c</fullName>
+    <description>The completion date of the Credential requirements.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The completion date of the Credential requirements.</inlineHelpText>
+    <label>Activity End Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

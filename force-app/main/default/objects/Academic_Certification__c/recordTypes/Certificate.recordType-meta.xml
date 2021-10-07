@@ -49,7 +49,7 @@
         </values>
     </picklistValues>
     <picklistValues>
-        <picklist>Field_of_Study__c</picklist>
+        <picklist>Field_Of_Study__c</picklist>
         <values>
             <fullName>Agriculture</fullName>
             <default>false</default>
