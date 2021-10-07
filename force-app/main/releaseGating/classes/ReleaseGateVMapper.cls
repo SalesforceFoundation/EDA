@@ -144,16 +144,18 @@ public virtual with sharing class ReleaseGateVMapper {
         List<GetReleaseGateActionResultModel.ReleaseGateFeature> featureModelList
     ) {
         List<ReleaseGateVModel.ReleaseGateFeature> featureVModelList = new List<ReleaseGateVModel.ReleaseGateFeature>();
-        for (GetReleaseGateActionResultModel.ReleaseGateFeature feature : featureModelList) {
-            featureVModelList.add(
-                new ReleaseGateVModel.ReleaseGateFeature(
-                    feature.name,
-                    feature.label,
-                    feature.description,
-                    feature.helpLink,
-                    feature.helpLinkLabel
-                )
-            );
+        if (featureModelList != null) {
+            for (GetReleaseGateActionResultModel.ReleaseGateFeature feature : featureModelList) {
+                featureVModelList.add(
+                    new ReleaseGateVModel.ReleaseGateFeature(
+                        feature.name,
+                        feature.label,
+                        feature.description,
+                        feature.helpLink,
+                        feature.helpLinkLabel
+                    )
+                );
+            }
         }
         return featureVModelList;
     }

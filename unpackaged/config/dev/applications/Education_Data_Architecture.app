@@ -55,7 +55,7 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Education Data Architecture</label>
     <navType>Standard</navType>
-    <setupExperience>all</setupExperience>
+    <setupExperience>all</setupExperience>ß
     <tabs>standard-home</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
