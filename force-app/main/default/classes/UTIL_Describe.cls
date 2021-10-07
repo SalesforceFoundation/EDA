@@ -1119,4 +1119,31 @@ public class UTIL_Describe {
         );
         return recTypes.get('Diploma');
     }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Badge Credential record type, if it exists.
+     * @return String The ID of the Badge Credential record type as a String.
+     */
+    public static String getBadgeCredentialRecTypeId() {
+        Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Credential__c'));
+        return recTypes.get('Badge');
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Certification Credential record type, if it exists.
+     * @return String The ID of the Certification Credential record type as a String.
+     */
+    public static String getCertificationCredentialRecTypeId() {
+        Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Credential__c'));
+        return recTypes.get('Certification');
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the License Credential record type, if it exists.
+     * @return String The ID of the License Credential record type as a String.
+     */
+    public static String getLicenseCredentialRecTypeId() {
+        Map<String, Id> recTypes = getRecTypesMapByDevName(UTIL_Namespace.StrTokenNSPrefix('Credential__c'));
+        return recTypes.get('License');
+    }
 }

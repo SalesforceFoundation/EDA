@@ -924,4 +924,26 @@ public class UTIL_UnitTestData_TEST {
         }
         return academicCertifications;
     }
+
+    /*********************************************************************************************************
+     * @description Get a single Credential
+     **********************************************************************************************************/
+    public static Credential__c getCredentials(Id recordTypeId) {
+        Credential__c credential = new Credential__c();
+        credential.Name = 'Test Credential ' + Datetime.now().getTime();
+        credential.RecordTypeId = recordTypeId;
+        return credential;
+    }
+
+    /*********************************************************************************************************
+     * @description Get a list of Credentials
+     * @param n the number of Credentials to create
+     **********************************************************************************************************/
+    public static List<Credential__c> getMultipleCredentials(Integer n, Id recordTypeId) {
+        List<Credential__c> credentials = new List<Credential__c>();
+        for (Integer i = 0; i < n; i++) {
+            credentials.add(getCredentials(recordTypeId));
+        }
+        return credentials;
+    }
 }
