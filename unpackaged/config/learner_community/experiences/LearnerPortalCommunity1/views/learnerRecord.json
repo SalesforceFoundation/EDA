@@ -10,16 +10,6 @@
             "type": "region"
         },
         {
-            "components": [
-                {
-                    "componentAttributes": {},
-                    "componentName": "%%%NAMESPACE_OR_C%%%:learnerCourseVisualizerContainer",
-                    "id": "d2f6e491-fea9-4a9c-9c22-d22a076a6b38",
-                    "renderPriority": "NEUTRAL",
-                    "renditionMap": {},
-                    "type": "component"
-                }
-            ],
             "id": "edad98a0-6e84-4cf9-b266-5306dbc12c86",
             "regionName": "content",
             "type": "region"
