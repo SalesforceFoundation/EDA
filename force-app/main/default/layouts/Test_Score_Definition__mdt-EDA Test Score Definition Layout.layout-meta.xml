@@ -31,7 +31,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Definition Information</label>
+        <label>Test Score Details</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
