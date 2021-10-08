@@ -49,7 +49,7 @@
         <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Student Characteristic Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>%%%NAMESPACE%%%Attribute__c-E%%%NAMESPACE%%%DA Student Characteristic Layout</layout>
+        <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Student Characteristic Layout</layout>
         <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Student_Characteristic</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -64,7 +64,7 @@
         <recordType>%%%NAMESPACE%%%Credential__c.%%%NAMESPACE%%%Certification</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>%%%NAMESPACE%%%Credential__c-E%%%NAMESPACE%%%DA Credential Layout</layout>
+        <layout>%%%NAMESPACE%%%Credential__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
         <recordType>%%%NAMESPACE%%%Credential__c.%%%NAMESPACE%%%License</recordType>
     </layoutAssignments>
     <layoutAssignments>
