@@ -60,7 +60,7 @@
         <default>False</default>
         <visible>False</visible>
    </applicationVisibilities>
-<recordTypeVisibilities>
+    <recordTypeVisibilities>
         <default>false</default>
         <recordType>%%%NAMESPACE%%%Academic_Certification__c.%%%NAMESPACE%%%Certificate</recordType>
         <visible>true</visible>
@@ -133,29 +133,29 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
-        <recordType>%%%NAMESPACE%%%Attribute__c.Credential</recordType>
+        <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Credential</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>%%%NAMESPACE%%%Attribute__c-EDA Student Characteristic Layout</layout>
+        <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Student Characteristic Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>%%%NAMESPACE%%%Attribute__c-EDA Student Characteristic Layout</layout>
-        <recordType>%%%NAMESPACE%%%Attribute__c.Student_Characteristic</recordType>
+        <layout>%%%NAMESPACE%%%Attribute__c-%%%NAMESPACE%%%EDA Student Characteristic Layout</layout>
+        <recordType>%%%NAMESPACE%%%Attribute__c.%%%NAMESPACE%%%Student_Characteristic</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>%%%NAMESPACE%%%Credential__c-Credential Layout</layout>
+        <layout>%%%NAMESPACE%%%Credential__c-%%%NAMESPACE%%%Credential Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>%%%NAMESPACE%%%Credential__c-EDA Credential Layout</layout>
-        <recordType>%%%NAMESPACE%%%Credential__c.Badge</recordType>
+        <layout>%%%NAMESPACE%%%Credential__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
+        <recordType>%%%NAMESPACE%%%Credential__c.%%%NAMESPACE%%%Badge</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>%%%NAMESPACE%%%Credential__c-EDA Credential Layout</layout>
-        <recordType>%%%NAMESPACE%%%Credential__c.Certification</recordType>
+        <layout>%%%NAMESPACE%%%Credential__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
+        <recordType>%%%NAMESPACE%%%Credential__c.%%%NAMESPACE%%%Certification</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>%%%NAMESPACE%%%Credential__c-EDA Credential Layout</layout>
-        <recordType>%%%NAMESPACE%%%Credential__c.License</recordType>
+        <layout>%%%NAMESPACE%%%Credential__c-%%%NAMESPACE%%%EDA Credential Layout</layout>
+        <recordType>%%%NAMESPACE%%%Credential__c.%%%NAMESPACE%%%License</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Case-%%%NAMESPACE%%%EDA Incident Layout</layout>
@@ -178,6 +178,9 @@
     <layoutAssignments>
         <layout>%%%NAMESPACE%%%Course_Enrollment__c-%%%NAMESPACE%%%HEDA Course Enrollment Layout</layout>
         <recordType>%%%NAMESPACE%%%Course_Enrollment__c.Student</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-%%%NAMESPACE%%%EDA Opportunity Layout</layout>
     </layoutAssignments>
     <tabVisibilities>
         <tab>%%%NAMESPACE%%%Academic_Certification__c</tab>
