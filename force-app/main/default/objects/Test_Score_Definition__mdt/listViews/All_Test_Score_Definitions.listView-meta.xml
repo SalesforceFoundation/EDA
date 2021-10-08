@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Test_Score_Definitions</fullName>
+    <columns>MasterLabel</columns>
+    <columns>Test_Definition__c</columns>
+    <columns>Subject_Area__c</columns>
+    <columns>Grading_Type__c</columns>
+    <columns>Passing_Value__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Test Score Definitions</label>
+    <language>en_US</language>
+</ListView>
