@@ -4,20 +4,16 @@
     <help>Geeft aan of dit een huidige of voormalige cursusverbinding is.</help>
     <label>Status</label>
     <picklistValues>
-        <masterLabel>Current</masterLabel>
-        <translation>Huidig</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Former</masterLabel>
-        <translation>Voormalig</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>In Progress</masterLabel>
-        <translation><!-- In Progress --></translation>
+        <masterLabel>Audit</masterLabel>
+        <translation><!-- Audit --></translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Completed</masterLabel>
         <translation><!-- Completed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Current</masterLabel>
+        <translation>Huidig</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Enrolled</masterLabel>
@@ -28,15 +24,19 @@
         <translation><!-- Failed --></translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Former</masterLabel>
+        <translation>Voormalig</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Progress</masterLabel>
+        <translation><!-- In Progress --></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>On Hold</masterLabel>
         <translation><!-- On Hold --></translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Withdrew</masterLabel>
         <translation><!-- Withdrew --></translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Audit</masterLabel>
-        <translation><!-- Audit --></translation>
     </picklistValues>
 </CustomFieldTranslation>
