@@ -180,7 +180,7 @@ tasks:
             command: "force:user:permset:assign -n Encryption"
 
     cancel_eda_scheduled_jobs:
-        description: Unscheduleds EDA Apex jobs
+        description: Unschedules EDA Apex jobs
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
             path: scripts/schedule.cls
