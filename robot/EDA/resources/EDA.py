@@ -11,10 +11,12 @@ from selenium.common.exceptions import NoSuchWindowException
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 
+from locators_53 import eda_lex_locators as locators_53
 from locators_51 import eda_lex_locators as locators_51
 from locators_50 import eda_lex_locators as locators_50
 
 locators_by_api_version = {
+    53.0: locators_53,  # Winter '22
     51.0: locators_51,  # Spring '21
     50.0: locators_50   # Winter '21
 }
