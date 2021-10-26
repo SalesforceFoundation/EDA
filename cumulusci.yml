@@ -172,6 +172,15 @@ tasks:
             path: unpackaged/test_managed_only/preferred_email
             namespaced_org: True
 
+    deploy_functional_tests:
+        group: "EDA: Unpackaged Tests"
+        description: Deploys apex unmanaged functional tests
+        class_path: cumulusci.tasks.salesforce.Deploy
+        options:
+            namespace_inject: $project_config.project__package__namespace
+            path: unpackaged/test_packaged/functional_tests
+            namespaced_org: True
+
     deploy_unpackaged_primary_affiliations_config:
         group: "EDA: Unpackaged Tests"
         description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
@@ -618,6 +627,9 @@ flows:
                 task: deploy_preferred_email_config
                 when: "'hed' in org_config.installed_packages"
             6:
+                task: deploy_functional_tests
+                when: "'hed' in org_config.installed_packages"
+            7:
                 # execute tests in unmanaged package
                 task: run_tests
                 options:
