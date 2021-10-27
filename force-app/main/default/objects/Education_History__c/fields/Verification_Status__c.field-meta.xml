@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Status__c</fullName>
+    <description>Indicates the verification status of a credential.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicates the verification status of a credential.</inlineHelpText>
+    <label>Verification Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Verified</fullName>
+                <default>false</default>
+                <label>Verified</label>
+            </value>
+            <value>
+                <fullName>Pending</fullName>
+                <default>false</default>
+                <label>Pending</label>
+            </value>
+            <value>
+                <fullName>Unverified</fullName>
+                <default>false</default>
+                <label>Unverified</label>
+            </value>
+            <value>
+                <fullName>Revoked</fullName>
+                <default>false</default>
+                <label>Revoked</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,15 @@
+[
+    {
+        "action": "Release Gating",
+        "apiVersion": 52,
+        "classname": "EDADemoReleaseGate",
+        "name": "EDADemoReleaseGate"
+    },
+    {
+        "action": "Release Gating",
+        "apiVersion": 52,
+        "classname": "DemoReleaseGateCallableErrorImpl",
+        "name": "DemoErrorReleaseGate3",
+        "namespace": "edainteropdemo"
+    }
+]

@@ -269,6 +269,58 @@ private class UTIL_OrgTelemetry_TEST {
         List<Program_Plan__c> programPlans = UTIL_UnitTestData_TEST.getMultipleTestProgramPlans(12);
         insert programPlans;
 
+        //Insert data for Academic Certifications
+        List<Academic_Certification__c> academicCertificationsToInsert = new List<Academic_Certification__c>();
+
+        //Academic Certifications - Certificate
+        List<Academic_Certification__c> certificateAcademicCertifications = UTIL_UnitTestData_TEST.getMultipleAcademicCertifications(
+            2,
+            Util_Describe.getCertificateAcademicCertificationRecTypeId()
+        );
+        academicCertificationsToInsert.addAll(certificateAcademicCertifications);
+
+        //Academic Certifications - Degree
+        List<Academic_Certification__c> degreeAcademicCertifications = UTIL_UnitTestData_TEST.getMultipleAcademicCertifications(
+            3,
+            Util_Describe.getDegreeAcademicCertificationRecTypeId()
+        );
+        academicCertificationsToInsert.addAll(degreeAcademicCertifications);
+
+        //Academic Certifications - Diploma
+        List<Academic_Certification__c> diplomaAcademicCertifications = UTIL_UnitTestData_TEST.getMultipleAcademicCertifications(
+            4,
+            Util_Describe.getDiplomaAcademicCertificationRecTypeId()
+        );
+        academicCertificationsToInsert.addAll(diplomaAcademicCertifications);
+
+        insert academicCertificationsToInsert;
+
+        //Insert data for Credentials
+        List<Credential__c> credentialsToInsert = new List<Credential__c>();
+
+        //Credentials - Badge
+        List<Credential__c> badgeCredentials = UTIL_UnitTestData_TEST.getMultipleCredentials(
+            2,
+            Util_Describe.getBadgeCredentialRecTypeId()
+        );
+        credentialsToInsert.addAll(badgeCredentials);
+
+        //Credentials - Certification
+        List<Credential__c> certificationCredentials = UTIL_UnitTestData_TEST.getMultipleCredentials(
+            2,
+            Util_Describe.getCertificationCredentialRecTypeId()
+        );
+        credentialsToInsert.addAll(certificationCredentials);
+
+        //Credentials - License
+        List<Credential__c> licenseCredentials = UTIL_UnitTestData_TEST.getMultipleCredentials(
+            2,
+            Util_Describe.getLicenseCredentialRecTypeId()
+        );
+        credentialsToInsert.addAll(licenseCredentials);
+
+        insert credentialsToInsert;
+
         featureManagementMock = new UTIL_FeatureManagement_TEST.Mock();
         UTIL_OrgTelemetry orgTelemetry = new UTIL_OrgTelemetry();
         orgTelemetry.featureManager = (UTIL_FeatureManagement) Test.createStub(
@@ -312,6 +364,42 @@ private class UTIL_OrgTelemetry_TEST {
         assertIntegerValue(UTIL_OrgTelemetry.TelemetryParameterName.Data_CountProgramPlans.name(), programPlans.size());
 
         assertIntegerValue(UTIL_OrgTelemetry.TelemetryParameterName.Data_CountTermGrades.name(), 0);
+
+        //Assert data for Academic Certifications
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountAcademicCertifications.name(),
+            academicCertificationsToInsert.size()
+        );
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCertificateAcademicCertifications.name(),
+            certificateAcademicCertifications.size()
+        );
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountDegreeAcademicCertifications.name(),
+            degreeAcademicCertifications.size()
+        );
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountDiplomaAcademicCertifications.name(),
+            diplomaAcademicCertifications.size()
+        );
+
+        //Assert data for Credentials
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCredentials.name(),
+            credentialsToInsert.size()
+        );
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountBadgeCredentials.name(),
+            badgeCredentials.size()
+        );
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCertificationCredentials.name(),
+            certificationCredentials.size()
+        );
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountLicenseCredentials.name(),
+            licenseCredentials.size()
+        );
     }
 
     private static void assertBooleanValue(String parameterValue, Boolean expectedResult) {

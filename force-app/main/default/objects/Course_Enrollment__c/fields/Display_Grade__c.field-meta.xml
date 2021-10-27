@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Display_Grade__c</fullName>
+    <description>The letter grade achieved for the Course Connection.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The letter grade achieved for the Course Connection.</inlineHelpText>
+    <label>Display Grade</label>
+    <length>40</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

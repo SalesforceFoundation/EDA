@@ -519,4 +519,100 @@ public with sharing class UTIL_Describe_TEST {
             'Should return false since FirstName field on Contact is not a lookup field.'
         );
     }
+
+    /**
+     * @description Test to ensure getCertificateAcademicCertificationRecTypeId returns the Certificate Record Type
+     * of the Academic Certification object
+     */
+    @isTest
+    private static void getCertificateAcademicCertificationRecTypeIdTest() {
+        Test.startTest();
+        Id certificateAcademicCertificationRecTypeId = Util_Describe.getCertificateAcademicCertificationRecTypeId();
+        Test.stopTest();
+
+        System.assertNotEquals(null, certificateAcademicCertificationRecTypeId);
+
+        RecordType rt = [SELECT DeveloperName FROM Recordtype WHERE Id = :certificateAcademicCertificationRecTypeId];
+        System.assertEquals('Certificate', rt.DeveloperName);
+    }
+
+    /**
+     * @description Test to ensure getDegreeAcademicCertificationRecTypeId returns the Degree Record Type
+     * of the Academic Certification object
+     */
+    @isTest
+    private static void getDegreeAcademicCertificationRecTypeIdTest() {
+        Test.startTest();
+        Id degreeAcademicCertificationRecTypeId = Util_Describe.getDegreeAcademicCertificationRecTypeId();
+        Test.stopTest();
+
+        System.assertNotEquals(null, degreeAcademicCertificationRecTypeId);
+
+        RecordType rt = [SELECT DeveloperName FROM Recordtype WHERE Id = :degreeAcademicCertificationRecTypeId];
+        System.assertEquals('Degree', rt.DeveloperName);
+    }
+
+    /**
+     * @description Test to ensure getDiplomaAcademicCertificationRecTypeId returns the Diploma Record Type
+     * of the Academic Certification object
+     */
+    @isTest
+    private static void getDiplomaAcademicCertificationRecTypeIdTest() {
+        Test.startTest();
+        Id diplomaAcademicCertificationRecTypeId = Util_Describe.getDiplomaAcademicCertificationRecTypeId();
+        Test.stopTest();
+
+        System.assertNotEquals(null, diplomaAcademicCertificationRecTypeId);
+
+        RecordType rt = [SELECT DeveloperName FROM Recordtype WHERE Id = :diplomaAcademicCertificationRecTypeId];
+        System.assertEquals('Diploma', rt.DeveloperName);
+    }
+
+    /**
+     * @description Test to ensure getBadgeCredentialRecTypeId returns the Badge Record Type
+     * of the Credential object
+     */
+    @isTest
+    private static void getBadgeCredentialRecTypeIdTest() {
+        Test.startTest();
+        Id badgeCredentialRecTypeId = Util_Describe.getBadgeCredentialRecTypeId();
+        Test.stopTest();
+
+        System.assertNotEquals(null, badgeCredentialRecTypeId);
+
+        RecordType rt = [SELECT DeveloperName FROM Recordtype WHERE Id = :badgeCredentialRecTypeId];
+        System.assertEquals('Badge', rt.DeveloperName);
+    }
+
+    /**
+     * @description Test to ensure getCertificationCredentialRecTypeId returns the Certificate Record Type
+     * of the Credential object
+     */
+    @isTest
+    private static void getCertificationCredentialRecTypeIdTest() {
+        Test.startTest();
+        Id certificationCredentialRecTypeId = Util_Describe.getCertificationCredentialRecTypeId();
+        Test.stopTest();
+
+        System.assertNotEquals(null, certificationCredentialRecTypeId);
+
+        RecordType rt = [SELECT DeveloperName FROM Recordtype WHERE Id = :certificationCredentialRecTypeId];
+        System.assertEquals('Certification', rt.DeveloperName);
+    }
+
+    /**
+     * @description Test to ensure getLicenseCredentialRecTypeId returns the License Record Type
+     * of the Credential object
+     */
+    @isTest
+    private static void getLicenseCredentialRecTypeIdTest() {
+        Test.startTest();
+        Id licenseCredentialRecTypeId = Util_Describe.getLicenseCredentialRecTypeId();
+        Test.stopTest();
+
+        System.assertNotEquals(null, licenseCredentialRecTypeId);
+
+        RecordType rt = [SELECT DeveloperName FROM Recordtype WHERE Id = :licenseCredentialRecTypeId];
+        System.assertEquals('License', rt.DeveloperName);
+    }
 }

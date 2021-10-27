@@ -1,0 +1,57 @@
+{
+    "appPageId": "4bb92900-b3fd-4085-9c29-e01a6ea6256c",
+    "componentName": "siteforce:sldsOneColLayout",
+    "id": "5112023f-a50e-4efc-9011-57a4ab5809bb",
+    "label": "User Profile",
+    "regions": [
+        {
+            "id": "59825c64-8172-4de9-8e1e-29037641d6c9",
+            "regionName": "header",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "caseCreateLabel": "Create Case",
+                        "caseFilterName": "AllOpenCases",
+                        "caseHeaderLabel": "My Cases",
+                        "casesTabLabel": "Cases",
+                        "detailsTabLabel": "Details",
+                        "feedTabLabel": "Feed",
+                        "knowledgeableAboutTitle": "Knows About",
+                        "maxTopics": 5,
+                        "recognitionbuttonLabel": "Give",
+                        "relatedTabLabel": "Related",
+                        "showAllUpdates": false,
+                        "showBadges": true,
+                        "showFullPhotoAsCircle": true,
+                        "showKnowledgeableAbout": true,
+                        "showRelatedList": true,
+                        "showReputationInInfluenceCard": false,
+                        "showStats": true,
+                        "userBadgesTitle": "Recognition Badges",
+                        "userId": "{!recordId}",
+                        "userStatsTitle": "Influence"
+                    },
+                    "componentName": "forceCommunity:userRecordHome",
+                    "id": "3492762e-5d9f-4956-8f55-d5bfac551d7f",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "c9c30a2a-f792-43fa-804b-ec92577df567",
+            "regionName": "content",
+            "type": "region"
+        },
+        {
+            "id": "a36591a8-3a2a-470e-a6cb-8b8fc2fa8ad4",
+            "regionName": "footer",
+            "type": "region"
+        }
+    ],
+    "themeLayoutType": "Inner",
+    "type": "view",
+    "viewType": "detail-005"
+}

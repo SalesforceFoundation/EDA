@@ -4,11 +4,39 @@
     <help>Gibt an, ob es sich um eine aktuelle oder ehemalige Kursverbindung handelt.</help>
     <label>Status</label>
     <picklistValues>
+        <masterLabel>Audit</masterLabel>
+        <translation><!-- Audit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Completed</masterLabel>
+        <translation><!-- Completed --></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Current</masterLabel>
         <translation>Aktuell</translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Enrolled</masterLabel>
+        <translation><!-- Enrolled --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Failed</masterLabel>
+        <translation><!-- Failed --></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Former</masterLabel>
         <translation>Ehemalig</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Progress</masterLabel>
+        <translation><!-- In Progress --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>On Hold</masterLabel>
+        <translation><!-- On Hold --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Withdrew</masterLabel>
+        <translation><!-- Withdrew --></translation>
     </picklistValues>
 </CustomFieldTranslation>

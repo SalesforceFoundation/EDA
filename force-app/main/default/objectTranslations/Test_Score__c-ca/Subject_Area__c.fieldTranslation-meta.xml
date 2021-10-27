@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Subject_Area__c</name>
     <help>El tema o la categoria d&apos;aquesta puntuació de la prova.</help>
     <label>Àrea temàtica</label>
+    <name>Subject_Area__c</name>
     <picklistValues>
         <masterLabel>Language</masterLabel>
         <translation>Idiomes</translation>
@@ -10,6 +10,10 @@
     <picklistValues>
         <masterLabel>Mathematics</masterLabel>
         <translation>Matemàtiques</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Overall</masterLabel>
+        <translation>Global</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>Reading</masterLabel>
@@ -22,9 +26,5 @@
     <picklistValues>
         <masterLabel>Writing</masterLabel>
         <translation>Escriptura</translation>
-    </picklistValues>
-    <picklistValues>
-        <masterLabel>Overall</masterLabel>
-        <translation>Global</translation>
     </picklistValues>
 </CustomFieldTranslation>

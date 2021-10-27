@@ -75,6 +75,14 @@ public without sharing class UTIL_OrgTelemetry {
         Data_CountPlanRequirements,
         Data_CountProgramPlans,
         Data_CountTermGrades,
+        Data_CountAcademicCertifications,
+        Data_CountCertificateAcademicCertifications,
+        Data_CountDegreeAcademicCertifications,
+        Data_CountDiplomaAcademicCertifications,
+        Data_CountCredentials,
+        Data_CountBadgeCredentials,
+        Data_CountCertificationCredentials,
+        Data_CountLicenseCredentials,
         IsEnabled_AutomaticHouseholdNaming,
         IsEnabled_CourseConnections,
         HasDefaultAdministrativeAccountModel,
@@ -332,6 +340,102 @@ public without sharing class UTIL_OrgTelemetry {
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountTermGrades.name(),
             [SELECT COUNT() FROM Term_Grade__c]
+        );
+
+        //Academic Certifications
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountAcademicCertifications.name(),
+            [SELECT COUNT() FROM Academic_Certification__c]
+        );
+
+        //Academic Certifications - Certificate
+        Integer countCertificateAcademicCertifications = 0;
+        if (UTIL_Describe.getCertificateAcademicCertificationRecTypeId() != null) {
+            countCertificateAcademicCertifications = [
+                SELECT COUNT()
+                FROM Academic_Certification__c
+                WHERE RecordTypeId = :UTIL_Describe.getCertificateAcademicCertificationRecTypeId()
+            ];
+        }
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountCertificateAcademicCertifications.name(),
+            countCertificateAcademicCertifications
+        );
+
+        //Academic Certifications - Degree
+        Integer countDegreeAcademicCertifications = 0;
+        if (UTIL_Describe.getDegreeAcademicCertificationRecTypeId() != null) {
+            countDegreeAcademicCertifications = [
+                SELECT COUNT()
+                FROM Academic_Certification__c
+                WHERE RecordTypeId = :UTIL_Describe.getDegreeAcademicCertificationRecTypeId()
+            ];
+        }
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountDegreeAcademicCertifications.name(),
+            countDegreeAcademicCertifications
+        );
+
+        //Academic Certifications - Diploma
+        Integer countDiplomaAcademicCertifications = 0;
+        if (UTIL_Describe.getDiplomaAcademicCertificationRecTypeId() != null) {
+            countDiplomaAcademicCertifications = [
+                SELECT COUNT()
+                FROM Academic_Certification__c
+                WHERE RecordTypeId = :UTIL_Describe.getDiplomaAcademicCertificationRecTypeId()
+            ];
+        }
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountDiplomaAcademicCertifications.name(),
+            countDiplomaAcademicCertifications
+        );
+
+        //Credentials
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountCredentials.name(),
+            [SELECT COUNT() FROM Credential__c]
+        );
+
+        //Credentials - Badge
+        Integer countBadgeCredentials = 0;
+        if (UTIL_Describe.getBadgeCredentialRecTypeId() != null) {
+            countBadgeCredentials = [
+                SELECT COUNT()
+                FROM Credential__c
+                WHERE RecordTypeId = :UTIL_Describe.getBadgeCredentialRecTypeId()
+            ];
+        }
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountBadgeCredentials.name(),
+            countBadgeCredentials
+        );
+
+        //Credentials - Certification
+        Integer countCertificationCredentials = 0;
+        if (UTIL_Describe.getCertificationCredentialRecTypeId() != null) {
+            countCertificationCredentials = [
+                SELECT COUNT()
+                FROM Credential__c
+                WHERE RecordTypeId = :UTIL_Describe.getCertificationCredentialRecTypeId()
+            ];
+        }
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountCertificationCredentials.name(),
+            countCertificationCredentials
+        );
+
+        //Credentials - License
+        Integer countLicenseCredentials = 0;
+        if (UTIL_Describe.getLicenseCredentialRecTypeId() != null) {
+            countLicenseCredentials = [
+                SELECT COUNT()
+                FROM Credential__c
+                WHERE RecordTypeId = :UTIL_Describe.getLicenseCredentialRecTypeId()
+            ];
+        }
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountLicenseCredentials.name(),
+            countLicenseCredentials
         );
     }
 }

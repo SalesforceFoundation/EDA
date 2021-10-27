@@ -1,0 +1,107 @@
+{
+    "appPageId": "4bb92900-b3fd-4085-9c29-e01a6ea6256c",
+    "componentName": "siteforce:dynamicLayout",
+    "id": "169b5079-31cb-4ba7-90d9-631b856728c9",
+    "label": "My Account",
+    "regions": [
+        {
+            "id": "8bde5a6c-2a60-42e9-b506-96408d9aac11",
+            "regionName": "header",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "background": "background: rgba(0,0,0,0)",
+                        "backgroundOverlay": "rgba(0,0,0,0.5)",
+                        "contentAreaWidth": 100,
+                        "sectionConfig": {
+                            "UUID": "1e8e8820-724c-4693-b3e5-9eb65f5b7619",
+                            "columns": [
+                                {
+                                    "UUID": "900fe21b-10fd-4bbd-8dd9-4e3d99b503da",
+                                    "columnKey": "col1",
+                                    "columnName": "column 1",
+                                    "columnWidth": "12",
+                                    "seedComponents": [
+                                        {
+                                            "attributes": {
+                                                "recordId": "{!CurrentUser.accountId}",
+                                                "sfdc:identifier": "forceCommunity_recordHeadline"
+                                            },
+                                            "fqn": "forceCommunity:recordHeadline"
+                                        },
+                                        {
+                                            "attributes": {
+                                                "recordId": "{!CurrentUser.accountId}",
+                                                "sfdc:identifier": "forceCommunity_recordHomeTabs"
+                                            },
+                                            "fqn": "forceCommunity:recordHomeTabs"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "sectionHeight": 32
+                    },
+                    "componentName": "forceCommunity:section",
+                    "id": "1e8e8820-724c-4693-b3e5-9eb65f5b7619",
+                    "regions": [
+                        {
+                            "components": [
+                                {
+                                    "componentAttributes": {
+                                        "recordId": "{!CurrentUser.accountId}"
+                                    },
+                                    "componentName": "forceCommunity:recordHeadline",
+                                    "id": "88f8a114-6b06-450b-90bf-effd61161afc",
+                                    "renderPriority": "NEUTRAL",
+                                    "renditionMap": {},
+                                    "type": "component"
+                                },
+                                {
+                                    "componentAttributes": {
+                                        "detailsTabLabel": "Details",
+                                        "discussionsTabLabel": "Feed",
+                                        "recordId": "{!CurrentUser.accountId}",
+                                        "relatedTabLabel": "Related",
+                                        "tab1Type": "details",
+                                        "tab2Type": "related",
+                                        "tab3Type": "chatter",
+                                        "tab4Type": "none",
+                                        "timelineTabLabel": "Activity"
+                                    },
+                                    "componentName": "forceCommunity:recordHomeTabs",
+                                    "id": "1dfa698e-923d-4c26-b6df-a3c23d4361c0",
+                                    "renderPriority": "NEUTRAL",
+                                    "renditionMap": {},
+                                    "type": "component"
+                                }
+                            ],
+                            "id": "900fe21b-10fd-4bbd-8dd9-4e3d99b503da",
+                            "regionLabel": "column 1",
+                            "regionName": "col1",
+                            "renditionMap": {},
+                            "type": "region"
+                        }
+                    ],
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "816c73e4-fb74-44ba-b6ca-b4555694827b",
+            "regionName": "content",
+            "type": "region"
+        },
+        {
+            "id": "ee53c7ef-6cbe-47c5-948f-a0451210ee99",
+            "regionName": "footer",
+            "type": "region"
+        }
+    ],
+    "themeLayoutType": "Inner",
+    "type": "view",
+    "viewType": "my-account"
+}

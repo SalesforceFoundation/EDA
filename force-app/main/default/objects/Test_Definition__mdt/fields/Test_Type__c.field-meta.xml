@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Test_Type__c</fullName>
+    <description>The name of the Test. For example, SAT or TOEFL.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>The name of the Test. For example, SAT or TOEFL.</inlineHelpText>
+    <label>Test Type</label>
+    <required>true</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>SAT</fullName>
+                <default>false</default>
+                <label>SAT</label>
+            </value>
+            <value>
+                <fullName>ACT</fullName>
+                <default>false</default>
+                <label>ACT</label>
+            </value>
+            <value>
+                <fullName>GRE</fullName>
+                <default>false</default>
+                <label>GRE</label>
+            </value>
+            <value>
+                <fullName>GMAT</fullName>
+                <default>false</default>
+                <label>GMAT</label>
+            </value>
+            <value>
+                <fullName>TOEFL</fullName>
+                <default>false</default>
+                <label>TOEFL</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

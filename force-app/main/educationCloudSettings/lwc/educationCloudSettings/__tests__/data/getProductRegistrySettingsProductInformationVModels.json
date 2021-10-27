@@ -1,0 +1,14 @@
+[
+    {
+        "action": "testAction1",
+        "namespace": "testNamespace1",
+        "classname": "testClassname1",
+        "apiVersion": 1
+    },
+    {
+        "action": "testAction2",
+        "namespace": "testNamespace2",
+        "classname": "testClassname2",
+        "apiVersion": 2
+    }
+]

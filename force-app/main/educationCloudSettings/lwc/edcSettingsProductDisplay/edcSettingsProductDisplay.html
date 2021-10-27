@@ -1,0 +1,21 @@
+<template>
+    <template if:false={displaySettingsProduct}>
+        <!-- Display spinner -->
+        <lightning-spinner alternative-text={LabelReference.spinnerLoadingAltText} variant="brand" size="medium">
+        </lightning-spinner>
+    </template>
+    <ul class="slds-grid slds-grid_vertical">
+        <template if:true={productRegistryVModels}>
+            <template for:each={productRegistryVModels} for:item="productRegistryVModel">
+                <c-edc-settings-product-card
+                    key={productRegistryVModel.namespace}
+                    display-product-cards={displaySettingsProduct}
+                    product-registry={productRegistryVModel}
+                    onsettingsproductloaded={handleSettingsProductLoaded}
+                    onsettingsproducterror={handleSettingsProductError}
+                    aria-label={productRegistryVModel.name}
+                ></c-edc-settings-product-card>
+            </template>
+        </template>
+    </ul>
+</template>

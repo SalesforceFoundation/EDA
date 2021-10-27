@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Source__c</name>
     <help>Indica si va informar d&apos;aquesta prova el sol·licitant o una font oficial.</help>
     <label>Font</label>
-    <picklistValues>
-        <masterLabel>Self Reported</masterLabel>
-        <translation>Autoinformat</translation>
-    </picklistValues>
+    <name>Source__c</name>
     <picklistValues>
         <masterLabel>Official</masterLabel>
         <translation>Oficial</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Self Reported</masterLabel>
+        <translation>Autoinformat</translation>
     </picklistValues>
 </CustomFieldTranslation>

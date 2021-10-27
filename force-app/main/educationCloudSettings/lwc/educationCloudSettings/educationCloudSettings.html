@@ -1,31 +1,20 @@
 <template>
-    <div class="slds-theme_default eda-height_full">
-        <ul class="slds-grid">
-            <li class="slds-col slds-size_4-of-12">
+    <div class="slds-theme_default">
+        <ul class="slds-grid slds-wrap">
+            <li class="slds-col slds-size_1-of-1 slds-var-m-bottom_large">
                 <h2 class="slds-text-heading_medium eda-text_heading_bold slds-var-m-left_small slds-var-m-top_small">
-                    {labelReference.productsTitle}
+                    {labelReference.pageTitle}
                 </h2>
                 <ul class="slds-grid slds-grid_vertical">
-                    <template for:each={edcProductModels} for:item="edcProductModel">
-                        <li
-                            key={edcProductModel.title}
-                            class="slds-col slds-var-m-horizontal_small slds-var-m-vertical_small"
-                        >
-                            <c-edc-settings-product-card
-                                title={edcProductModel.title}
-                                description={edcProductModel.description}
-                                icon-src={edcProductModel.iconSrc}
-                                icon-initials={edcProductModel.iconInitials}
-                                icon-fallback-name={edcProductModel.iconFallbackName}
-                                settings-component={edcProductModel.settingsComponent}
-                                documentation-url={edcProductModel.documentationUrl}
-                                trailhead-url={edcProductModel.trailheadUrl}
-                            ></c-edc-settings-product-card>
-                        </li>
-                    </template>
+                    <li class="slds-col slds-var-m-horizontal_small slds-var-m-vertical_small edcReleaseManagementCard">
+                        <c-edc-release-management-card
+                            navigation-target={releaseManagementContainerComponentNavigation}
+                        ></c-edc-release-management-card>
+                    </li>
                 </ul>
             </li>
-            <li class="slds-col slds-size_4-of-12">
+
+            <li class="slds-col slds-size_1-of-1 slds-large-size_1-of-3">
                 <h2 class="slds-text-heading_medium eda-text_heading_bold slds-var-m-left_small slds-var-m-top_small">
                     {labelReference.toolsTitle}
                 </h2>
@@ -33,7 +22,7 @@
                     <template for:each={edcToolModels} for:item="edcToolModel">
                         <li
                             key={edcToolModel.title}
-                            class="slds-col slds-var-m-horizontal_small slds-var-m-vertical_small"
+                            class="slds-col slds-var-m-horizontal_small slds-var-m-vertical_small edcToolsCard"
                         >
                             <c-edc-settings-card
                                 title={edcToolModel.title}
@@ -48,7 +37,15 @@
                     </template>
                 </ul>
             </li>
-            <li class="slds-col slds-size_4-of-12">
+            <li class="slds-col slds-size_1-of-1 slds-large-size_1-of-3">
+                <h2 class="slds-text-heading_medium eda-text_heading_bold slds-var-m-left_small slds-var-m-top_small">
+                    {labelReference.productsTitle}
+                </h2>
+                <c-edc-settings-product-display
+                    product-registry-v-models={edcProductRegistryVModels}
+                ></c-edc-settings-product-display>
+            </li>
+            <li class="slds-col slds-size_1-of-1 slds-large-size_1-of-3">
                 <h2 class="slds-text-heading_medium eda-text_heading_bold slds-var-m-left_small slds-var-m-top_small">
                     {labelReference.resourcesTitle}
                 </h2>

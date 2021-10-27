@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Percentile__c</name>
     <help>La calificación de percentil para este puntuaje.</help>
     <label>Percentil</label>
+    <name>Percentile__c</name>
 </CustomFieldTranslation>

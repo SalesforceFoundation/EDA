@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Test__c</name>
     <help>La prova per a la qual s’està enregistrant aquesta puntuació.</help>
-    <relationshipLabel>Puntuacions de la prova</relationshipLabel>
     <label>Prova</label>
+    <name>Test__c</name>
+    <relationshipLabel>Puntuacions de la prova</relationshipLabel>
 </CustomFieldTranslation>

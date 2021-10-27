@@ -1,0 +1,40 @@
+<template>
+    <section if:true={releaseGateVModel}>
+        <template for:each={releaseGateVModel} for:item="releaseGateProduct">
+            <div class="slds-page-header slds-col slds-size_12-of-12" key={releaseGateProduct.product.name}>
+                <div class="slds-page-header__row">
+                    <div class="slds-page-header__col-title">
+                        <div class="slds-media">
+                            <div class="slds-media__body">
+                                <div class="slds-page-header__name">
+                                    <div class="slds-page-header__name-title">
+                                        <h1>
+                                            <span class="slds-page-header__title slds-truncate releaseGateProductTitle"
+                                                >{releaseGateProduct.product.label}</span
+                                            >
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="slds-col slds-size_12-of-12 slds-var-m-bottom_small releaseGateList"
+                key={releaseGateProduct.product.name}
+            >
+                <c-release-gate-item
+                    for:each={releaseGateProduct.gates}
+                    for:item="releaseGate"
+                    key={releaseGate.name}
+                    product-registry-name={productRegistryName}
+                    product={releaseGateProduct.product}
+                    gate={releaseGate}
+                >
+                </c-release-gate-item>
+            </div>
+        </template>
+    </section>
+</template>

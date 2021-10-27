@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <name>Test_Type__c</name>
     <help>El nom formal de la prova realitzada.</help>
     <label>Tipus de prova</label>
-    <picklistValues>
-        <masterLabel>SAT</masterLabel>
-        <translation>SAT</translation>
-    </picklistValues>
+    <name>Test_Type__c</name>
     <picklistValues>
         <masterLabel>ACT</masterLabel>
         <translation>ACT</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GMAT</masterLabel>
+        <translation>GMAT</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>GRE</masterLabel>
         <translation>GRE</translation>
     </picklistValues>
     <picklistValues>
-        <masterLabel>GMAT</masterLabel>
-        <translation>GMAT</translation>
+        <masterLabel>SAT</masterLabel>
+        <translation>SAT</translation>
     </picklistValues>
     <picklistValues>
         <masterLabel>TOEFL</masterLabel>

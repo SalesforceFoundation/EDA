@@ -4,11 +4,39 @@
     <label><!-- Status --></label>
     <name>Status__c</name>
     <picklistValues>
+        <masterLabel>Audit</masterLabel>
+        <translation><!-- Audit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Completed</masterLabel>
+        <translation><!-- Completed --></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Current</masterLabel>
         <translation><!-- Current --></translation>
     </picklistValues>
     <picklistValues>
+        <masterLabel>Enrolled</masterLabel>
+        <translation><!-- Enrolled --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Failed</masterLabel>
+        <translation><!-- Failed --></translation>
+    </picklistValues>
+    <picklistValues>
         <masterLabel>Former</masterLabel>
         <translation><!-- Former --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Progress</masterLabel>
+        <translation><!-- In Progress --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>On Hold</masterLabel>
+        <translation><!-- On Hold --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Withdrew</masterLabel>
+        <translation><!-- Withdrew --></translation>
     </picklistValues>
 </CustomFieldTranslation>

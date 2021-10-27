@@ -1,0 +1,211 @@
+{
+    "appPageId": "4bb92900-b3fd-4085-9c29-e01a6ea6256c",
+    "componentName": "siteforce:sldsTwoCol84SidebarFeaturedLayout",
+    "id": "0878fea6-fee5-4ef3-8e9e-8b132862ac85",
+    "label": "Home",
+    "regions": [
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "bannerText": "A place where you can easily find solutions and ask questions",
+                        "bannerTextWithKnowledge": "Explore other <a href=\"javascript:void(0)\" class=\"headlineArticles\">articles</a> and <a href=\"javascript:void(0)\" class=\"headlineDiscussions\">discussions</a> on this topic.",
+                        "bannerTextWithoutKnowledge": "Explore other <a href=\"javascript:void(0)\" class=\"headlineDiscussions\">discussions</a> on this topic.",
+                        "pageType": "",
+                        "showSubTopics": true,
+                        "title": "Welcome!",
+                        "uniqueNameOrId": ""
+                    },
+                    "componentName": "forceCommunity:headline",
+                    "id": "f44c9fcf-5184-4150-ae7f-ccdb7b16c5f6",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "d0ab3d9e-e267-4445-85a5-12c3e4756595",
+            "regionName": "header",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "buttonAlignment": "center",
+                        "buttonBgColor": "",
+                        "buttonBgHoverColor": "",
+                        "buttonBorderColor": "",
+                        "buttonMaxWidth": 100,
+                        "buttonRadius": 0,
+                        "buttonTextColor": "",
+                        "buttonTextHoverColor": "",
+                        "confirmationMessage": "Got it!",
+                        "followUpPromptLabel": "Can we close your question?",
+                        "isAskFollowPromptEnabled": true,
+                        "isIncludeArticlesEnabled": false,
+                        "isIncludeDiscussionsEnabled": true,
+                        "isInitialSatisfactionPromptEnabled": true,
+                        "isPublisherDeflectionEnabled": true,
+                        "label": "Ask a Question",
+                        "maxSuggestions": 5,
+                        "satisfactionPromptLabel": "Did we help to answer your question?",
+                        "showDetails": false,
+                        "showTopics": true,
+                        "uneditableTopics": false
+                    },
+                    "componentName": "forceCommunity:askCommunity",
+                    "id": "aaded163-dfa0-46eb-8d8e-b572cf7e8f71",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "1bb469b2-a602-4da5-9aaa-369a857ebbe7",
+            "regionName": "featured",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "defaultSortOrderCompactFeed": "Relevance",
+                        "defaultSortOrderFullFeed": "Relevance",
+                        "discussionTabLabel": "Discussions",
+                        "featuredTabLabel": "Featured",
+                        "maxWidth": 100,
+                        "myFeedTabLabel": "My Feed",
+                        "overlayColor": "rgba(0,0,0,0.4)",
+                        "overlayHoverColor": "",
+                        "radius": 0,
+                        "showCompactFeedInDiscussion": true,
+                        "textAlignment": "center",
+                        "textBgColor": "rgba(0,0,0,0)",
+                        "textBgHoverColor": "rgba(0,0,0,0)",
+                        "textColor": "",
+                        "textHoverColor": "",
+                        "textPosition": "center center"
+                    },
+                    "componentName": "forceCommunity:homeTabs",
+                    "id": "57c2bedc-a1a7-486b-abef-c6c553327e36",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "28e8cfb1-041b-44a4-a99b-a3941197d549",
+            "regionName": "content",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "channel": "DefaultChannel",
+                        "title": ""
+                    },
+                    "componentName": "forceCommunity:recommendations",
+                    "id": "df22e210-bd97-49c1-9773-9c6c0be572ed",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                },
+                {
+                    "componentAttributes": {
+                        "display": "LEVELS_POINTS",
+                        "excludeInternalUsers": false,
+                        "knowledgeLabel": "Knows about",
+                        "numberOfUsers": 5,
+                        "showContextUser": false,
+                        "showTooltip": false,
+                        "showUserRank": false,
+                        "title": "Leaderboard",
+                        "tooltipText": "Earn points and climb to new levels when you contribute in the experience!"
+                    },
+                    "componentName": "forceCommunity:reputationLeaderboard42",
+                    "id": "5a5248a9-23ef-4976-9fe3-746512312e98",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                },
+                {
+                    "componentAttributes": {
+                        "numberOfTopics": 5,
+                        "showTopicsMetric": true,
+                        "title": "Trending Topics"
+                    },
+                    "componentName": "forceCommunity:trendingTopics",
+                    "id": "ec5ae2a6-6181-435e-b520-9b43ac31add6",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "f0758ef6-4a85-4fa7-9c51-1f647b264902",
+            "regionName": "sidebar",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "askCommunityLabel": "Ask a Question",
+                        "buttonBgColor": "",
+                        "buttonBgHoverColor": "",
+                        "buttonBorderColor": "",
+                        "buttonRadius": 0,
+                        "buttonTextColor": "",
+                        "buttonTextHoverColor": "",
+                        "buttonTwoBgColor": "",
+                        "buttonTwoBgHoverColor": "",
+                        "buttonTwoBorderColor": "",
+                        "buttonTwoRadius": 0,
+                        "buttonTwoTextColor": "",
+                        "buttonTwoTextHoverColor": "",
+                        "confirmationMessage": "Got it!",
+                        "contactSupportLabel": "Contact Support",
+                        "followUpPromptLabel": "Can we close your question?",
+                        "headerLabel": "Don't see what you're looking for?",
+                        "isAskFollowPromptEnabled": true,
+                        "isIncludeArticlesEnabled": false,
+                        "isIncludeDiscussionsEnabled": true,
+                        "isInitialSatisfactionPromptEnabled": true,
+                        "isPublisherDeflectionEnabled": true,
+                        "maxSuggestions": 5,
+                        "satisfactionPromptLabel": "Did we help to answer your question?",
+                        "showDetails": false,
+                        "showTopics": true
+                    },
+                    "componentName": "siteforce:napiliFooter",
+                    "id": "1bc81ec4-dfba-4079-876a-2fe4217b17a2",
+                    "renderPriority": "NEUTRAL",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "755fe20b-1baa-4ea9-901a-12729f2dbbd1",
+            "regionName": "footer",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "customHeadTags": "",
+                        "description": "",
+                        "title": "Home"
+                    },
+                    "componentName": "forceCommunity:seoAssistant",
+                    "id": "54f86b77-b50d-4489-baa8-baea69ca7ca8",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "726c204a-57ce-4c45-8329-c54aa9c8c782",
+            "regionName": "sfdcHiddenRegion",
+            "type": "region"
+        }
+    ],
+    "themeLayoutType": "Inner",
+    "type": "view",
+    "viewType": "home"
+}

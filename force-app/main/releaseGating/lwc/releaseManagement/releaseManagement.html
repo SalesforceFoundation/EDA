@@ -1,0 +1,28 @@
+<template>
+    <div class="slds-grid slds-wrap eda-height_full">
+        <div class="slds-col slds-size_12-of-12 slds-var-m-bottom_small">
+            <lightning-card class="cardBackground">
+                <h3 slot="title">
+                    <div class="slds-grid">
+                        <div class="slds-col">
+                            <lightning-icon icon-name={iconReference.highlightsIcon} size="medium"></lightning-icon>
+                        </div>
+                        <div class="slds-col slds-grid slds-wrap slds-text-align_left slds-var-p-horizontal_small">
+                            <div class="slds-col slds-size_1-of-1 slds-text-body_regular">
+                                <a class="edcNavLink" href="javascript:void(0);" onclick={handleSettingsClick}
+                                    >{labelReference.educationCloudSettings}</a
+                                >
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-text-title releaseManagementTitle">
+                                {labelReference.releaseManagementTitle}
+                            </div>
+                        </div>
+                    </div>
+                </h3>
+            </lightning-card>
+        </div>
+        <div class="slds-col slds-size_12-of-12">
+            <c-release-gates onerrormessage={handleErrorMessage}></c-release-gates>
+        </div>
+    </div>
+</template>

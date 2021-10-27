@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Earning_Criteria__c</fullName>
+    <description>A description of earning criteria for the Credential or what it takes to earn the Credential.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>A description of what&apos;s required to earn the Credential.</inlineHelpText>
+    <label>Earning Criteria</label>
+    <length>131072</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

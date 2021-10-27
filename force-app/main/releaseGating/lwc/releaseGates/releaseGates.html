@@ -1,0 +1,13 @@
+<template>
+    <section if:true={productRegistryReleaseGateVModels}>
+        <c-release-gate-product
+            for:each={productRegistryReleaseGateVModels}
+            for:item="releaseGate"
+            key={releaseGate.name}
+            product-registry-name={releaseGate.name}
+            onreleasegateloadsuccess={handleReleaseGateLoadSuccess}
+            onreleasegateloaderror={handleReleaseGateLoadError}
+        >
+        </c-release-gate-product>
+    </section>
+</template>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activity_Start_Date__c</fullName>
+    <description>The date that the person started earning the Credential.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The date that the person started earning the Credential.</inlineHelpText>
+    <label>Activity Start Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

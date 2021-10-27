@@ -1,0 +1,12 @@
+{
+    "initials": "testInitials",
+    "name": "testName",
+    "description": "testDescription",
+    "settingsComponent": "testSettingsComponent",
+    "settingsButtonA11y": "testSettingsButtonA11y",
+    "documentationUrl": "testDocumentationUrl",
+    "documentationButtonA11y": "testDocumentationButtonA11y",
+    "trailheadUrl": "testTrailheadUrl",
+    "trailheadButtonA11y": "testTrailheadButtonA11y",
+    "icon": "testIcon"
+}

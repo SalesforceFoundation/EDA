@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Field_Of_Study__c</fullName>
+    <description>The field of study of the Academic Certification.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The field of study of the Academic Certification.</inlineHelpText>
+    <label>Field of Study</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Agriculture</fullName>
+                <default>false</default>
+                <label>Agriculture</label>
+            </value>
+            <value>
+                <fullName>Architecture</fullName>
+                <default>false</default>
+                <label>Architecture</label>
+            </value>
+            <value>
+                <fullName>Biology</fullName>
+                <default>false</default>
+                <label>Biology</label>
+            </value>
+            <value>
+                <fullName>Business, Management, and Marketing</fullName>
+                <default>false</default>
+                <label>Business, Management, and Marketing</label>
+            </value>
+            <value>
+                <fullName>Communications</fullName>
+                <default>false</default>
+                <label>Communications</label>
+            </value>
+            <value>
+                <fullName>Computer and Information Sciences</fullName>
+                <default>false</default>
+                <label>Computer and Information Sciences</label>
+            </value>
+            <value>
+                <fullName>Education</fullName>
+                <default>false</default>
+                <label>Education</label>
+            </value>
+            <value>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+                <label>Engineering</label>
+            </value>
+            <value>
+                <fullName>English Language, Literature, and Letters</fullName>
+                <default>false</default>
+                <label>English Language, Literature, and Letters</label>
+            </value>
+            <value>
+                <fullName>Family and Consumer Sciences</fullName>
+                <default>false</default>
+                <label>Family and Consumer Sciences</label>
+            </value>
+            <value>
+                <fullName>Foreign Languages</fullName>
+                <default>false</default>
+                <label>Foreign Languages</label>
+            </value>
+            <value>
+                <fullName>General Studies and Humanities</fullName>
+                <default>false</default>
+                <label>General Studies and Humanities</label>
+            </value>
+            <value>
+                <fullName>Health Professions</fullName>
+                <default>false</default>
+                <label>Health Professions</label>
+            </value>
+            <value>
+                <fullName>History</fullName>
+                <default>false</default>
+                <label>History</label>
+            </value>
+            <value>
+                <fullName>Legal Professions and Studies</fullName>
+                <default>false</default>
+                <label>Legal Professions and Studies</label>
+            </value>
+            <value>
+                <fullName>Mathematics and Statistics</fullName>
+                <default>false</default>
+                <label>Mathematics and Statistics</label>
+            </value>
+            <value>
+                <fullName>Natural Resources and Conservation</fullName>
+                <default>false</default>
+                <label>Natural Resources and Conservation</label>
+            </value>
+            <value>
+                <fullName>Philosophy and Religious Studies</fullName>
+                <default>false</default>
+                <label>Philosophy and Religious Studies</label>
+            </value>
+            <value>
+                <fullName>Physical Sciences</fullName>
+                <default>false</default>
+                <label>Physical Sciences</label>
+            </value>
+            <value>
+                <fullName>Psychology</fullName>
+                <default>false</default>
+                <label>Psychology</label>
+            </value>
+            <value>
+                <fullName>Social Sciences</fullName>
+                <default>false</default>
+                <label>Social Sciences</label>
+            </value>
+            <value>
+                <fullName>Visual and Performing Arts</fullName>
+                <default>false</default>
+                <label>Visual and Performing Arts</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

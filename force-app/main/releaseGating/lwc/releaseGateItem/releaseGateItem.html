@@ -1,0 +1,185 @@
+<template>
+    <section>
+        <ol class="slds-setup-assistant slds-theme_default">
+            <li class="slds-setup-assistant__item">
+                <article class="slds-setup-assistant__step">
+                    <div class="slds-summary-detail slds-is-open">
+                        <div class="slds-container_fluid">
+                            <div class="slds-summary-detail__title">
+                                <div class="slds-setup-assistant__step-summary">
+                                    <div class="slds-media">
+                                        <div class="slds-media__figure gateIcon">
+                                            <lightning-icon icon-name={gateIconName} size="x-small"> </lightning-icon>
+                                        </div>
+                                        <div class="slds-media__body slds-var-m-top_x-small">
+                                            <div class="slds-media">
+                                                <div
+                                                    class="slds-setup-assistant__step-summary-content slds-media__body"
+                                                >
+                                                    <h2
+                                                        class="
+                                                            slds-setup-assistant__step-summary-title
+                                                            slds-text-heading_small
+                                                        "
+                                                    >
+                                                        {gate.label}
+                                                    </h2>
+                                                    <p class="description">{gate.description}</p>
+                                                </div>
+                                                <template if:true={hasDueDate}>
+                                                    <div class="slds-media__figure slds-media__figure_reverse">
+                                                        <p class="slds-text-align_right slds-text-color_weak">
+                                                            {labelReference.releaseGateActivateBy}
+                                                            <lightning-formatted-date-time
+                                                                value={gate.dueDate}
+                                                                month="long"
+                                                                year="numeric"
+                                                                time-zone="UTC"
+                                                                day="numeric"
+                                                                class="dueDateClass slds-var-p-horizontal_xx-small"
+                                                            >
+                                                            </lightning-formatted-date-time>
+                                                            <lightning-helptext
+                                                                content={gate.dueDateInfoText}
+                                                                class="dueDateInfo"
+                                                                if:true={gate.dueDateInfoText}
+                                                            ></lightning-helptext>
+                                                        </p>
+                                                    </div>
+                                                </template>
+                                                <template if:true={hasActivationDate}>
+                                                    <div class="slds-media__figure slds-media__figure_reverse">
+                                                        <p
+                                                            class="
+                                                                slds-text-align_right
+                                                                slds-text-color_weak
+                                                                activatedOnClass
+                                                            "
+                                                        >
+                                                            {activatedOnLabel}
+                                                        </p>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div aria-hidden="true" class="slds-summary-detail__content" id="step-0-summary-action">
+                                <div class="slds-setup-assistant__step-detail">
+                                    <div class="slds-progress slds-progress_vertical slds-progress_success">
+                                        <ol class="slds-progress__list slds-progress__list-bordered">
+                                            <li
+                                                class={progressItemClass}
+                                                for:each={gate.features}
+                                                for:item="feature"
+                                                key={feature.name}
+                                            >
+                                                <div class={progressMarkerClass}>
+                                                    <lightning-icon
+                                                        icon-name="utility:success"
+                                                        alternative-text="Complete"
+                                                        variant="success"
+                                                        size="xx-small"
+                                                        class="altText"
+                                                        if:true={gateActive}
+                                                    ></lightning-icon>
+                                                </div>
+                                                <div
+                                                    class="slds-progress__item_content slds-grid slds-grid_align-spread"
+                                                >
+                                                    <div class="slds-size_2-of-3 slds-var-p-right_small">
+                                                        <h3
+                                                            class="
+                                                                slds-setup-assistant__step-summary-title
+                                                                slds-text-title
+                                                                featureLabel
+                                                            "
+                                                        >
+                                                            {feature.label}
+                                                        </h3>
+                                                        <p class="featureDescription">{feature.description}</p>
+                                                    </div>
+                                                    <div class="slds-grid slds-grid_align-end slds-size_1-of-3">
+                                                        <a
+                                                            href={feature.helpLink}
+                                                            target="_blank"
+                                                            if:true={feature.helpLink}
+                                                            class="featureLink"
+                                                        >
+                                                            {feature.helpLinkLabel}
+                                                            <lightning-icon
+                                                                icon-name="utility:new_window"
+                                                                alternative-text={labelReference.newWindowLinkAlt}
+                                                                size="xx-small"
+                                                                class="slds-var-m-left_xx-small altText"
+                                                            >
+                                                            </lightning-icon>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <!-- PRIMARY REQUIREMENT -->
+                                            <li
+                                                class={progressItemClass}
+                                                data-qa="gateStatusRow"
+                                                if:false={gateDisabled}
+                                            >
+                                                <div class={progressMarkerClass}>
+                                                    <lightning-icon
+                                                        icon-name="utility:success"
+                                                        variant="success"
+                                                        alternative-text="Complete"
+                                                        size="xx-small"
+                                                        class="altText"
+                                                        if:true={gateActive}
+                                                    ></lightning-icon>
+                                                </div>
+                                                <div
+                                                    class="slds-progress__item_content slds-grid slds-grid_align-spread"
+                                                >
+                                                    <div class="slds-size_2-of-3 primaryRequirement">
+                                                        {activateLabel}
+                                                    </div>
+                                                    <div class="slds-grid slds-grid_align-end slds-size_1-of-3">
+                                                        <lightning-button
+                                                            label={labelReference.releaseGateActivateButton}
+                                                            title={activateLabel}
+                                                            variant="brand"
+                                                            if:true={gateInactive}
+                                                            onclick={handleEnableGate}
+                                                            data-qa="gateEnableBtn"
+                                                        >
+                                                        </lightning-button>
+
+                                                        <lightning-icon
+                                                            icon-name="action:approval"
+                                                            alternative-text={approvedAltText}
+                                                            if:true={gateActive}
+                                                            size="x-small"
+                                                        >
+                                                        </lightning-icon>
+
+                                                        <p
+                                                            class="slds-text-align_right slds-text-color_weak"
+                                                            data-qa="inProgressLabel"
+                                                            if:true={gateInProgress}
+                                                        >
+                                                            {inProgressLabel}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <!-- END PRIMARY REQUIREMENT -->
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </li>
+        </ol>
+    </section>
+</template>

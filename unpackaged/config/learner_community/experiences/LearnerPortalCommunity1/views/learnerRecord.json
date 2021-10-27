@@ -1,0 +1,44 @@
+{
+    "appPageId": "4bb92900-b3fd-4085-9c29-e01a6ea6256c",
+    "componentName": "siteforce:sldsOneColLayout",
+    "id": "166bdecf-067c-4ec4-be7f-eb7725243e26",
+    "label": "Learner Record",
+    "regions": [
+        {
+            "id": "53b562a9-a16b-4d5a-be58-1c0132c85298",
+            "regionName": "header",
+            "type": "region"
+        },
+        {
+            "id": "edad98a0-6e84-4cf9-b266-5306dbc12c86",
+            "regionName": "content",
+            "type": "region"
+        },
+        {
+            "id": "499ff0aa-e24e-4c0f-9200-a169266b3a6e",
+            "regionName": "footer",
+            "type": "region"
+        },
+        {
+            "components": [
+                {
+                    "componentAttributes": {
+                        "customHeadTags": "",
+                        "description": "",
+                        "title": "Learner Record"
+                    },
+                    "componentName": "forceCommunity:seoAssistant",
+                    "id": "d6cf5a46-7846-4ac3-8892-1efaa5972139",
+                    "renditionMap": {},
+                    "type": "component"
+                }
+            ],
+            "id": "46090d6e-b063-483a-8c0d-a012c332a86f",
+            "regionName": "sfdcHiddenRegion",
+            "type": "region"
+        }
+    ],
+    "themeLayoutType": "Inner",
+    "type": "view",
+    "viewType": "custom-learner-record"
+}
