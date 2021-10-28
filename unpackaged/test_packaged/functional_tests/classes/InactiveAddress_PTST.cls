@@ -49,17 +49,56 @@ private with sharing class InactiveAddress_PTST {
     private static hed__Hierarchy_Settings__c createSettings() {
         hed__Hierarchy_Settings__c orgSettings = hed.UTIL_CustomSettings_API.getOrgSettings();
         upsert orgSettings;
+        hed.UTIL_CustomSettings_API.getSettingsForTests(orgSettings);
         return orgSettings;
     }
 
-    private static void setSimpleAddressUpdate(Boolean value) {
-        hed__Hierarchy_Settings__c orgSettings = hed.UTIL_CustomSettings_API.getOrgSettings();
+    private static void setSimpleAddressUpdate(hed__Hierarchy_Settings__c orgSettings, Boolean value) {
         orgSettings.hed__Simple_Address_Change_Treated_as_Update__c = value;
-        upsert orgSettings;
+        hed.UTIL_CustomSettings_API.getSettingsForTests(orgSettings);
+        update orgSettings;
     }
 
-    @TestSetup
-    static void createTestData() {
+    private static Contact createTestContact() {
+        Contact newContact = new Contact(
+            FirstName = contactFirstName,
+            LastName = contactLastName,
+            MailingCity = city,
+            MailingState = state,
+            MailingStreet = street,
+            MailingCountry = country,
+            MailingPostalCode = postalCode,
+            hed__Mailing_County__c = null,
+            hed__Mailing_Address_Inactive__c = false
+        );
+        insert newContact;
+        hed__Address__c addr = new hed__Address__c(
+            hed__Address_Type__c = 'Home',
+            hed__MailingStreet__c = street,
+            hed__MailingCity__c = city,
+            hed__MailingState__c = state,
+            hed__MailingPostalCode__c = postalCode,
+            hed__MailingCountry__c = country,
+            hed__MailingCounty__c = null,
+            hed__Inactive__c = false,
+            hed__Default_Address__c = true,
+            hed__Parent_Contact__c = newContact.Id
+        );
+        insert addr;
+        return newContact;
+    }
+
+    private static Contact createTestContactWithoutAddress() {
+        Contact newContact = new Contact(
+            FirstName = contactFirstName,
+            LastName = contactLastName,
+            hed__Mailing_Address_Inactive__c = false
+        );
+        insert newContact;
+        return newContact;
+    }
+
+    private static Account createTestAccount() {
         RecordType administrativeRT = [
             SELECT Id, Name
             FROM RecordType
@@ -72,21 +111,40 @@ private with sharing class InactiveAddress_PTST {
             BillingStreet = street,
             BillingCountry = country,
             BillingPostalCode = postalCode,
+            hed__Billing_County__c = null,
             RecordTypeId = administrativeRT.Id,
             hed__Billing_Address_Inactive__c = false
         );
         insert newAccount;
-        Contact newContact = new Contact(
-            FirstName = contactFirstName,
-            LastName = contactLastName,
-            MailingCity = city,
-            MailingState = state,
-            MailingStreet = street,
-            MailingCountry = country,
-            MailingPostalCode = postalCode,
-            hed__Mailing_Address_Inactive__c = false
+        hed__Address__c addr = new hed__Address__c(
+            hed__Address_Type__c = 'Home',
+            hed__MailingStreet__c = street,
+            hed__MailingCity__c = city,
+            hed__MailingState__c = state,
+            hed__MailingPostalCode__c = postalCode,
+            hed__MailingCountry__c = country,
+            hed__MailingCounty__c = null,
+            hed__Inactive__c = false,
+            hed__Default_Address__c = true,
+            hed__Parent_Account__c = newAccount.Id
         );
-        insert newContact;
+        insert addr;
+        return newAccount;
+    }
+
+    private static Account createTestAccountWithoutAddress() {
+        RecordType administrativeRT = [
+            SELECT Id, Name
+            FROM RecordType
+            WHERE DeveloperName = 'Administrative' AND SobjectType = 'Account'
+        ];
+        Account newAccount = new Account(
+            Name = accountName,
+            RecordTypeId = administrativeRT.Id,
+            hed__Billing_Address_Inactive__c = false
+        );
+        insert newAccount;
+        return newAccount;
     }
 
     /**
@@ -95,11 +153,11 @@ private with sharing class InactiveAddress_PTST {
     @isTest
     private static void insertNewContactWithInactiveChecked() {
         createSettings();
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        Contact newContact;
+        System.runAs(testUser) {
             Test.startTest();
-            Contact newContact = new Contact(
+            newContact = new Contact(
                 FirstName = 'John',
                 LastName = 'Doe',
                 MailingCity = city,
@@ -111,48 +169,40 @@ private with sharing class InactiveAddress_PTST {
             );
             insert newContact;
             Test.stopTest();
-            Contact insertedContact = [
-                SELECT Id, hed__Mailing_Address_Inactive__c
-                FROM Contact
-                WHERE Id = :newContact.Id
-            ];
-            List<hed__Address__c> newContactAddressList = [
-                SELECT
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Contact__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Contact__c = :newContact.Id
-            ];
-            System.assertEquals(
-                true,
-                insertedContact.hed__Mailing_Address_Inactive__c,
-                'The contact address inactive should be true'
-            );
-            System.assertEquals(1, newContactAddressList.size(), 'There should be exactly 1 address inserted');
-            System.assertEquals(state, newContactAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(city, newContactAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
-            System.assertEquals(
-                street,
-                newContactAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newContactAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newContactAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(true, newContactAddressList[0].hed__Inactive__c, 'The inactive should be true');
         }
+        Contact insertedContact = [SELECT Id, hed__Mailing_Address_Inactive__c FROM Contact WHERE Id = :newContact.Id];
+        List<hed__Address__c> newContactAddressList = [
+            SELECT
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Contact__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Contact__c = :newContact.Id
+        ];
+        System.assertEquals(
+            true,
+            insertedContact.hed__Mailing_Address_Inactive__c,
+            'The contact address inactive should be true'
+        );
+        System.assertEquals(1, newContactAddressList.size(), 'There should be exactly 1 address inserted');
+        System.assertEquals(state, newContactAddressList[0].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(city, newContactAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
+        System.assertEquals(street, newContactAddressList[0].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newContactAddressList[0].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newContactAddressList[0].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(true, newContactAddressList[0].hed__Inactive__c, 'The inactive should be true');
     }
 
     /**
@@ -161,16 +211,17 @@ private with sharing class InactiveAddress_PTST {
     @isTest
     private static void insertNewAccountWithInactiveChecked() {
         createSettings();
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        Account newAccount;
+        System.runAs(testUser) {
             Test.startTest();
             RecordType administrativeRT = [
                 SELECT Id, Name
                 FROM RecordType
                 WHERE DeveloperName = 'Administrative' AND SobjectType = 'Account'
             ];
-            Account newAccount = new Account(
+            newAccount = new Account(
                 Name = 'New Account',
                 BillingCity = city,
                 BillingState = state,
@@ -182,38 +233,34 @@ private with sharing class InactiveAddress_PTST {
             );
             insert newAccount;
             Test.stopTest();
-            List<hed__Address__c> newAccountAddressList = [
-                SELECT
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Account__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Account__c = :newAccount.Id
-            ];
-            System.assertEquals(1, newAccountAddressList.size(), 'There should be exactly 1 address inserted');
-            System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(city, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
-            System.assertEquals(
-                street,
-                newAccountAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newAccountAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newAccountAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(true, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be true');
         }
+        List<hed__Address__c> newAccountAddressList = [
+            SELECT
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Account__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Account__c = :newAccount.Id
+        ];
+        System.assertEquals(1, newAccountAddressList.size(), 'There should be exactly 1 address inserted');
+        System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(city, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
+        System.assertEquals(street, newAccountAddressList[0].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newAccountAddressList[0].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newAccountAddressList[0].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(true, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be true');
     }
 
     /**
@@ -222,16 +269,17 @@ private with sharing class InactiveAddress_PTST {
     @isTest
     private static void insertNewAccountWithInactiveUnchecked() {
         createSettings();
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        Account newAccount;
+        System.runAs(testUser) {
             Test.startTest();
             RecordType administrativeRT = [
                 SELECT Id, Name
                 FROM RecordType
                 WHERE DeveloperName = 'Administrative' AND SobjectType = 'Account'
             ];
-            Account newAccount = new Account(
+            newAccount = new Account(
                 Name = 'New Account',
                 BillingCity = city,
                 BillingState = state,
@@ -243,38 +291,34 @@ private with sharing class InactiveAddress_PTST {
             );
             insert newAccount;
             Test.stopTest();
-            List<hed__Address__c> newAccountAddressList = [
-                SELECT
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Account__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Account__c = :newAccount.Id
-            ];
-            System.assertEquals(1, newAccountAddressList.size(), 'There should be exactly 1 address inserted');
-            System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(city, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
-            System.assertEquals(
-                street,
-                newAccountAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newAccountAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newAccountAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(false, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be false');
         }
+        List<hed__Address__c> newAccountAddressList = [
+            SELECT
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Account__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Account__c = :newAccount.Id
+        ];
+        System.assertEquals(1, newAccountAddressList.size(), 'There should be exactly 1 address inserted');
+        System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(city, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
+        System.assertEquals(street, newAccountAddressList[0].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newAccountAddressList[0].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newAccountAddressList[0].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(false, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be false');
     }
 
     /**
@@ -283,41 +327,34 @@ private with sharing class InactiveAddress_PTST {
     @isTest
     private static void insertNewContactWithoutAddressInactiveChecked() {
         createSettings();
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        Contact newContact;
+        System.runAs(testUser) {
             Test.startTest();
-            Contact newContact = new Contact(
-                FirstName = 'John',
-                LastName = 'Doe',
-                hed__Mailing_Address_Inactive__c = true
-            );
+            newContact = new Contact(FirstName = 'John', LastName = 'Doe', hed__Mailing_Address_Inactive__c = true);
             insert newContact;
             Test.stopTest();
-            Contact insertedContact = [
-                SELECT Id, hed__Mailing_Address_Inactive__c
-                FROM Contact
-                WHERE Id = :newContact.Id
-            ];
-            List<hed__Address__c> newContactAddressList = [
-                SELECT
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Contact__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Contact__c = :newContact.Id
-            ];
-            System.assertEquals(
-                true,
-                insertedContact.hed__Mailing_Address_Inactive__c,
-                'The contact address inactive should be true'
-            );
-            System.assertEquals(0, newContactAddressList.size(), 'There should not be any address records created');
         }
+        Contact insertedContact = [SELECT Id, hed__Mailing_Address_Inactive__c FROM Contact WHERE Id = :newContact.Id];
+        List<hed__Address__c> newContactAddressList = [
+            SELECT
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Contact__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Contact__c = :newContact.Id
+        ];
+        System.assertEquals(
+            true,
+            insertedContact.hed__Mailing_Address_Inactive__c,
+            'The contact address inactive should be true'
+        );
+        System.assertEquals(0, newContactAddressList.size(), 'There should not be any address records created');
     }
 
     /**
@@ -326,61 +363,44 @@ private with sharing class InactiveAddress_PTST {
     @isTest
     private static void updateExistingAccountWithInactiveToggle() {
         createSettings();
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
-            RecordType administrativeRT = [
-                SELECT Id, Name
-                FROM RecordType
-                WHERE DeveloperName = 'Administrative' AND SobjectType = 'Account'
-            ];
-            Account newAccount = new Account(
-                Name = 'New Account',
-                BillingCity = city,
-                BillingState = state,
-                BillingStreet = street,
-                BillingCountry = country,
-                BillingPostalCode = postalCode,
-                RecordTypeId = administrativeRT.Id,
-                hed__Billing_Address_Inactive__c = false
-            );
-            insert newAccount;
+        TDTM_Utility.disableAddressTriggers();
+        Account newAccount = createTestAccount();
+        TDTM_Utility.enableAddressTriggers();
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        System.runAs(testUser) {
             Test.startTest();
             newAccount.hed__Billing_Address_Inactive__c = true;
             update newAccount;
             Test.stopTest();
-            List<hed__Address__c> newAccountAddressList = [
-                SELECT
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Account__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Account__c = :newAccount.Id
-            ];
-            System.assertEquals(1, newAccountAddressList.size(), 'There should be exactly 1 address inserted');
-            System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(city, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
-            System.assertEquals(
-                street,
-                newAccountAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newAccountAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newAccountAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(true, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be true');
         }
+        List<hed__Address__c> newAccountAddressList = [
+            SELECT
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Account__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Account__c = :newAccount.Id
+        ];
+        System.assertEquals(1, newAccountAddressList.size(), 'There should be exactly 1 address inserted');
+        System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(city, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
+        System.assertEquals(street, newAccountAddressList[0].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newAccountAddressList[0].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newAccountAddressList[0].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(true, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be true');
     }
 
     /**
@@ -389,66 +409,50 @@ private with sharing class InactiveAddress_PTST {
     @isTest
     private static void updateExistingContactWithInactiveToggle() {
         createSettings();
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
-            Contact newContact = new Contact(
-                FirstName = 'John',
-                LastName = 'Doe',
-                MailingCity = city,
-                MailingState = state,
-                MailingStreet = street,
-                MailingCountry = country,
-                MailingPostalCode = postalCode,
-                hed__Mailing_Address_Inactive__c = false
-            );
-            insert newContact;
+        TDTM_Utility.disableAddressTriggers();
+        Contact newContact = createTestContact();
+        TDTM_Utility.enableAddressTriggers();
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        System.runAs(testUser) {
             Test.startTest();
             newContact.hed__Mailing_Address_Inactive__c = true;
             update newContact;
             Test.stopTest();
-            Contact insertedContact = [
-                SELECT Id, hed__Mailing_Address_Inactive__c
-                FROM Contact
-                WHERE Id = :newContact.Id
-            ];
-            List<hed__Address__c> newContactAddressList = [
-                SELECT
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Contact__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Contact__c = :newContact.Id
-            ];
-            System.assertEquals(
-                true,
-                insertedContact.hed__Mailing_Address_Inactive__c,
-                'The contact address inactive should be true'
-            );
-            System.assertEquals(1, newContactAddressList.size(), 'There should be exactly 1 address inserted');
-            System.assertEquals(state, newContactAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(city, newContactAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
-            System.assertEquals(
-                street,
-                newContactAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newContactAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newContactAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(true, newContactAddressList[0].hed__Inactive__c, 'The inactive should be true');
         }
+        Contact insertedContact = [SELECT Id, hed__Mailing_Address_Inactive__c FROM Contact WHERE Id = :newContact.Id];
+        List<hed__Address__c> newContactAddressList = [
+            SELECT
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Contact__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Contact__c = :newContact.Id
+        ];
+        System.assertEquals(
+            true,
+            insertedContact.hed__Mailing_Address_Inactive__c,
+            'The contact address inactive should be true'
+        );
+        System.assertEquals(1, newContactAddressList.size(), 'There should be exactly 1 address inserted');
+        System.assertEquals(state, newContactAddressList[0].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(city, newContactAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
+        System.assertEquals(street, newContactAddressList[0].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newContactAddressList[0].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newContactAddressList[0].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(true, newContactAddressList[0].hed__Inactive__c, 'The inactive should be true');
     }
 
     /**
@@ -457,44 +461,32 @@ private with sharing class InactiveAddress_PTST {
     @isTest
     private static void updateExistingAccountWithoutAddressInactiveToggle() {
         createSettings();
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
-            RecordType administrativeRT = [
-                SELECT Id, Name
-                FROM RecordType
-                WHERE DeveloperName = 'Administrative' AND SobjectType = 'Account'
-            ];
-            Account newAccount = new Account(
-                Name = 'New Account',
-                RecordTypeId = administrativeRT.Id,
-                hed__Billing_Address_Inactive__c = false
-            );
-            insert newAccount;
+        TDTM_Utility.disableAddressTriggers();
+        Account newAccount = createTestAccountWithoutAddress();
+        TDTM_Utility.enableAddressTriggers();
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        System.runAs(testUser) {
             Test.startTest();
             newAccount.hed__Billing_Address_Inactive__c = true;
             update newAccount;
             Test.stopTest();
-            Account insertedAccount = [
-                SELECT Id, hed__Billing_Address_Inactive__c
-                FROM Account
-                WHERE Id = :newAccount.Id
-            ];
-            List<hed__Address__c> newAccountAddressList = [
-                SELECT
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Account__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Account__c = :newAccount.Id
-            ];
-            System.assertEquals(0, newAccountAddressList.size(), 'There should not be any address records created');
-            System.assertEquals(true, insertedAccount.hed__Billing_Address_Inactive__c, 'The inactive should be true');
         }
+        Account insertedAccount = [SELECT Id, hed__Billing_Address_Inactive__c FROM Account WHERE Id = :newAccount.Id];
+        List<hed__Address__c> newAccountAddressList = [
+            SELECT
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Account__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Account__c = :newAccount.Id
+        ];
+        System.assertEquals(0, newAccountAddressList.size(), 'There should not be any address records created');
+        System.assertEquals(true, insertedAccount.hed__Billing_Address_Inactive__c, 'The inactive should be true');
     }
 
     /**
@@ -503,43 +495,36 @@ private with sharing class InactiveAddress_PTST {
     @isTest
     private static void updateExistingContactWithoutAddressInactiveToggle() {
         createSettings();
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
-            Contact newContact = new Contact(
-                FirstName = 'John',
-                LastName = 'Doe',
-                hed__Mailing_Address_Inactive__c = false
-            );
-            insert newContact;
+        TDTM_Utility.disableAddressTriggers();
+        Contact newContact = createTestContactWithoutAddress();
+        TDTM_Utility.enableAddressTriggers();
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        System.runAs(testUser) {
             Test.startTest();
             newContact.hed__Mailing_Address_Inactive__c = true;
             update newContact;
             Test.stopTest();
-            Contact insertedContact = [
-                SELECT Id, hed__Mailing_Address_Inactive__c
-                FROM Contact
-                WHERE Id = :newContact.Id
-            ];
-            List<hed__Address__c> newContactAddressList = [
-                SELECT
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Contact__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Contact__c = :newContact.Id
-            ];
-            System.assertEquals(
-                true,
-                insertedContact.hed__Mailing_Address_Inactive__c,
-                'The contact address inactive should be true'
-            );
-            System.assertEquals(0, newContactAddressList.size(), 'There should not be any address records');
         }
+        Contact insertedContact = [SELECT Id, hed__Mailing_Address_Inactive__c FROM Contact WHERE Id = :newContact.Id];
+        List<hed__Address__c> newContactAddressList = [
+            SELECT
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Contact__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Contact__c = :newContact.Id
+        ];
+        System.assertEquals(
+            true,
+            insertedContact.hed__Mailing_Address_Inactive__c,
+            'The contact address inactive should be true'
+        );
+        System.assertEquals(0, newContactAddressList.size(), 'There should not be any address records');
     }
 
     /**
@@ -548,184 +533,78 @@ private with sharing class InactiveAddress_PTST {
      */
     @isTest
     private static void updateExistingContactSimpleAddressUpdateDisabled() {
-        createSettings();
-        setSimpleAddressUpdate(false);
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
-            Contact newContact = new Contact(
-                FirstName = 'John',
-                LastName = 'Doe',
-                MailingCity = city,
-                MailingState = state,
-                MailingStreet = street,
-                MailingCountry = country,
-                MailingPostalCode = postalCode,
-                hed__Mailing_Address_Inactive__c = false
-            );
-            insert newContact;
+        hed__Hierarchy_Settings__c orgSettings = createSettings();
+        TDTM_Utility.disableAddressTriggers();
+        Contact newContact = createTestContact();
+        TDTM_Utility.enableAddressTriggers();
+        setSimpleAddressUpdate(orgSettings, false);
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        System.runAs(testUser) {
             Test.startTest();
             newContact.hed__Mailing_Address_Inactive__c = true;
             newContact.MailingCity = newCity;
             update newContact;
             Test.stopTest();
-            Contact insertedContact = [
-                SELECT Id, hed__Mailing_Address_Inactive__c, hed__Current_Address__c
-                FROM Contact
-                WHERE Id = :newContact.Id
-            ];
-            List<hed__Address__c> newContactAddressList = [
-                SELECT
-                    Id,
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Contact__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Contact__c = :newContact.Id
-                ORDER BY Id
-            ];
-            System.assertEquals(
-                true,
-                insertedContact.hed__Mailing_Address_Inactive__c,
-                'The contact address inactive should be true'
-            );
-            System.assertEquals(2, newContactAddressList.size(), 'There should be exactly 2 addresses inserted');
-            System.assertEquals(state, newContactAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(city, newContactAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
-            System.assertEquals(
-                street,
-                newContactAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newContactAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newContactAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(false, newContactAddressList[1].hed__Inactive__c, 'The inactive should be false');
-            System.assertEquals(state, newContactAddressList[1].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(newCity, newContactAddressList[1].hed__MailingCity__c, 'The city should be ' + newCity);
-            System.assertEquals(
-                street,
-                newContactAddressList[1].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newContactAddressList[1].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newContactAddressList[1].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(true, newContactAddressList[1].hed__Inactive__c, 'The inactive should be true');
-            System.assertEquals(
-                insertedContact.hed__Current_Address__c,
-                newContactAddressList[1].Id,
-                'The current address is incorrect'
-            );
         }
-    }
-
-    /**
-     * @description T-6478749: With Simple Address Update disabled, update an existing Contact with current address
-     * by changing another address field and toggling the inactive checkbox
-     */
-    @isTest
-    private static void updateExistingContactSimpleAddressUpdateDisabledSeparateTransactions() {
-        createSettings();
-        setSimpleAddressUpdate(false);
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
-            Contact newContact = [
-                SELECT Id, MailingCity, hed__Mailing_Address_Inactive__c, hed__Current_Address__c
-                FROM Contact
-                WHERE FirstName = :contactFirstName AND LastName = :contactLastName
-            ];
-            Test.startTest();
-            newContact.hed__Mailing_Address_Inactive__c = true;
-            newContact.MailingCity = newCity;
-            update newContact;
-            Test.stopTest();
-            Contact insertedContact = [
-                SELECT Id, hed__Mailing_Address_Inactive__c, hed__Current_Address__c
-                FROM Contact
-                WHERE Id = :newContact.Id
-            ];
-            List<hed__Address__c> newContactAddressList = [
-                SELECT
-                    Id,
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Contact__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Contact__c = :newContact.Id
-                ORDER BY Id
-            ];
-            System.assertEquals(
-                true,
-                insertedContact.hed__Mailing_Address_Inactive__c,
-                'The contact address inactive should be true'
-            );
-            System.assertEquals(2, newContactAddressList.size(), 'There should be exactly 2 addresses inserted');
-            System.assertEquals(state, newContactAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(city, newContactAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
-            System.assertEquals(
-                street,
-                newContactAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newContactAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newContactAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(false, newContactAddressList[1].hed__Inactive__c, 'The inactive should be false');
-            System.assertEquals(state, newContactAddressList[1].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(newCity, newContactAddressList[1].hed__MailingCity__c, 'The city should be ' + newCity);
-            System.assertEquals(
-                street,
-                newContactAddressList[1].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newContactAddressList[1].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newContactAddressList[1].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(true, newContactAddressList[1].hed__Inactive__c, 'The inactive should be true');
-            System.assertEquals(
-                insertedContact.hed__Current_Address__c,
-                newContactAddressList[1].Id,
-                'The current address is incorrect'
-            );
-        }
+        Contact insertedContact = [
+            SELECT Id, hed__Mailing_Address_Inactive__c, hed__Current_Address__c
+            FROM Contact
+            WHERE Id = :newContact.Id
+        ];
+        List<hed__Address__c> newContactAddressList = [
+            SELECT
+                Id,
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Contact__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Contact__c = :newContact.Id
+            ORDER BY Id
+        ];
+        System.assertEquals(
+            true,
+            insertedContact.hed__Mailing_Address_Inactive__c,
+            'The contact address inactive should be true'
+        );
+        System.assertEquals(2, newContactAddressList.size(), 'There should be exactly 2 addresses inserted');
+        System.assertEquals(state, newContactAddressList[0].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(city, newContactAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
+        System.assertEquals(street, newContactAddressList[0].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newContactAddressList[0].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newContactAddressList[0].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(false, newContactAddressList[0].hed__Inactive__c, 'The inactive should be false');
+        System.assertEquals(state, newContactAddressList[1].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(newCity, newContactAddressList[1].hed__MailingCity__c, 'The city should be ' + newCity);
+        System.assertEquals(street, newContactAddressList[1].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newContactAddressList[1].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newContactAddressList[1].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(true, newContactAddressList[1].hed__Inactive__c, 'The inactive should be true');
+        System.assertEquals(
+            insertedContact.hed__Current_Address__c,
+            newContactAddressList[1].Id,
+            'The current address is incorrect'
+        );
     }
 
     /**
@@ -734,179 +613,73 @@ private with sharing class InactiveAddress_PTST {
      */
     @isTest
     private static void updateExistingAccountSimpleAddressUpdateDisabled() {
-        createSettings();
-        setSimpleAddressUpdate(false);
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
-            RecordType administrativeRT = [
-                SELECT Id, Name
-                FROM RecordType
-                WHERE DeveloperName = 'Administrative' AND SobjectType = 'Account'
-            ];
-            Account newAccount = new Account(
-                Name = 'New Account',
-                BillingCity = city,
-                BillingState = state,
-                BillingStreet = street,
-                BillingCountry = country,
-                BillingPostalCode = postalCode,
-                RecordTypeId = administrativeRT.Id,
-                hed__Billing_Address_Inactive__c = false
-            );
-            insert newAccount;
+        hed__Hierarchy_Settings__c orgSettings = createSettings();
+        TDTM_Utility.disableAddressTriggers();
+        Account newAccount = createTestAccount();
+        TDTM_Utility.enableAddressTriggers();
+        setSimpleAddressUpdate(orgSettings, false);
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        System.runAs(testUser) {
             Test.startTest();
             newAccount.hed__Billing_Address_Inactive__c = true;
             newAccount.BillingCity = newCity;
             update newAccount;
             Test.stopTest();
-            List<hed__Address__c> newAccountAddressList = [
-                SELECT
-                    Id,
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Account__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Account__c = :newAccount.Id
-                ORDER BY Id
-            ];
-            Account insertedAccount = [
-                SELECT Id, hed__Billing_Address_Inactive__c, hed__Current_Address__c
-                FROM Account
-                WHERE Id = :newAccount.Id
-            ];
-            System.assertEquals(2, newAccountAddressList.size(), 'There should be exactly 2 addresses inserted');
-            System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(city, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
-            System.assertEquals(
-                street,
-                newAccountAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newAccountAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newAccountAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(false, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be false');
-            System.assertEquals(state, newAccountAddressList[1].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(newCity, newAccountAddressList[1].hed__MailingCity__c, 'The city should be ' + newCity);
-            System.assertEquals(
-                street,
-                newAccountAddressList[1].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newAccountAddressList[1].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newAccountAddressList[1].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(true, newAccountAddressList[1].hed__Inactive__c, 'The inactive should be true');
-            System.assertEquals(
-                newAccountAddressList[1].Id,
-                insertedAccount.hed__Current_Address__c,
-                'The current account address is incorrect'
-            );
         }
-    }
-
-    /**
-     * @description T-6478750: With Simple Address Update disabled, update an existing Account with current address
-     * by changing another address field and toggling the inactive checkbox
-     */
-    @isTest
-    private static void updateExistingAccountSimpleAddressUpdateDisabledSeparateTransactions() {
-        createSettings();
-        setSimpleAddressUpdate(false);
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
-            Test.startTest();
-            Account newAccount = [
-                SELECT Id, BillingCity, hed__Billing_Address_Inactive__c, hed__Current_Address__c
-                FROM Account
-                WHERE Name = :accountName
-            ];
-            newAccount.hed__Billing_Address_Inactive__c = true;
-            newAccount.BillingCity = newCity;
-            update newAccount;
-            Test.stopTest();
-            List<hed__Address__c> newAccountAddressList = [
-                SELECT
-                    Id,
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Account__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Account__c = :newAccount.Id
-                ORDER BY Id
-            ];
-            Account insertedAccount = [
-                SELECT Id, hed__Billing_Address_Inactive__c, hed__Current_Address__c
-                FROM Account
-                WHERE Id = :newAccount.Id
-            ];
-            System.assertEquals(2, newAccountAddressList.size(), 'There should be exactly 2 addresses inserted');
-            System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(city, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
-            System.assertEquals(
-                street,
-                newAccountAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newAccountAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newAccountAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(false, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be false');
-            System.assertEquals(state, newAccountAddressList[1].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(newCity, newAccountAddressList[1].hed__MailingCity__c, 'The city should be ' + newCity);
-            System.assertEquals(
-                street,
-                newAccountAddressList[1].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newAccountAddressList[1].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newAccountAddressList[1].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(true, newAccountAddressList[1].hed__Inactive__c, 'The inactive should be true');
-            System.assertEquals(
-                newAccountAddressList[1].Id,
-                insertedAccount.hed__Current_Address__c,
-                'The current account address is incorrect'
-            );
-        }
+        List<hed__Address__c> newAccountAddressList = [
+            SELECT
+                Id,
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Account__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Account__c = :newAccount.Id
+            ORDER BY Id
+        ];
+        Account insertedAccount = [
+            SELECT Id, hed__Billing_Address_Inactive__c, hed__Current_Address__c
+            FROM Account
+            WHERE Id = :newAccount.Id
+        ];
+        System.assertEquals(2, newAccountAddressList.size(), 'There should be exactly 2 addresses inserted');
+        System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(city, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
+        System.assertEquals(street, newAccountAddressList[0].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newAccountAddressList[0].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newAccountAddressList[0].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(false, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be false');
+        System.assertEquals(state, newAccountAddressList[1].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(newCity, newAccountAddressList[1].hed__MailingCity__c, 'The city should be ' + newCity);
+        System.assertEquals(street, newAccountAddressList[1].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newAccountAddressList[1].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newAccountAddressList[1].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(true, newAccountAddressList[1].hed__Inactive__c, 'The inactive should be true');
+        System.assertEquals(
+            newAccountAddressList[1].Id,
+            insertedAccount.hed__Current_Address__c,
+            'The current account address is incorrect'
+        );
     }
 
     /**
@@ -915,76 +688,64 @@ private with sharing class InactiveAddress_PTST {
      */
     @isTest
     private static void updateExistingContactSimpleAddressUpdateEnabled() {
-        createSettings();
-        setSimpleAddressUpdate(true);
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
-            Contact newContact = new Contact(
-                FirstName = 'John',
-                LastName = 'Doe',
-                MailingCity = city,
-                MailingState = state,
-                MailingStreet = street,
-                MailingCountry = country,
-                MailingPostalCode = postalCode,
-                hed__Mailing_Address_Inactive__c = false
-            );
-            insert newContact;
+        hed__Hierarchy_Settings__c orgSettings = createSettings();
+        TDTM_Utility.disableAddressTriggers();
+        Contact newContact = createTestContact();
+        TDTM_Utility.enableAddressTriggers();
+        setSimpleAddressUpdate(orgSettings, true);
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        System.runAs(testUser) {
             Test.startTest();
             newContact.hed__Mailing_Address_Inactive__c = true;
             newContact.MailingCity = newCity;
             update newContact;
             Test.stopTest();
-            Contact insertedContact = [
-                SELECT Id, hed__Mailing_Address_Inactive__c, hed__Current_Address__c
-                FROM Contact
-                WHERE Id = :newContact.Id
-            ];
-            List<hed__Address__c> newContactAddressList = [
-                SELECT
-                    Id,
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Contact__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Contact__c = :newContact.Id
-                ORDER BY Id
-            ];
-            System.assertEquals(
-                true,
-                insertedContact.hed__Mailing_Address_Inactive__c,
-                'The contact address inactive should be true'
-            );
-            System.assertEquals(1, newContactAddressList.size(), 'There should be exactly 1 address inserted');
-            System.assertEquals(state, newContactAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(newCity, newContactAddressList[0].hed__MailingCity__c, 'The city should be ' + newCity);
-            System.assertEquals(
-                street,
-                newContactAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newContactAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newContactAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(true, newContactAddressList[0].hed__Inactive__c, 'The inactive should be true');
-            System.assertEquals(
-                insertedContact.hed__Current_Address__c,
-                newContactAddressList[0].Id,
-                'The current address is incorrect'
-            );
         }
+        Contact insertedContact = [
+            SELECT Id, hed__Mailing_Address_Inactive__c, hed__Current_Address__c
+            FROM Contact
+            WHERE Id = :newContact.Id
+        ];
+        List<hed__Address__c> newContactAddressList = [
+            SELECT
+                Id,
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Contact__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Contact__c = :newContact.Id
+            ORDER BY Id
+        ];
+        System.assertEquals(
+            true,
+            insertedContact.hed__Mailing_Address_Inactive__c,
+            'The contact address inactive should be true'
+        );
+        System.assertEquals(1, newContactAddressList.size(), 'There should be exactly 1 address inserted');
+        System.assertEquals(state, newContactAddressList[0].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(newCity, newContactAddressList[0].hed__MailingCity__c, 'The city should be ' + newCity);
+        System.assertEquals(street, newContactAddressList[0].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newContactAddressList[0].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newContactAddressList[0].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(true, newContactAddressList[0].hed__Inactive__c, 'The inactive should be true');
+        System.assertEquals(
+            insertedContact.hed__Current_Address__c,
+            newContactAddressList[0].Id,
+            'The current address is incorrect'
+        );
     }
 
     /**
@@ -993,76 +754,59 @@ private with sharing class InactiveAddress_PTST {
      */
     @isTest
     private static void updateExistingAccountSimpleAddressUpdateEnabled() {
-        createSettings();
-        setSimpleAddressUpdate(true);
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
-            RecordType administrativeRT = [
-                SELECT Id, Name
-                FROM RecordType
-                WHERE DeveloperName = 'Administrative' AND SobjectType = 'Account'
-            ];
-            Account newAccount = new Account(
-                Name = 'New Account',
-                BillingCity = city,
-                BillingState = state,
-                BillingStreet = street,
-                BillingCountry = country,
-                BillingPostalCode = postalCode,
-                RecordTypeId = administrativeRT.Id,
-                hed__Billing_Address_Inactive__c = false
-            );
-            insert newAccount;
+        hed__Hierarchy_Settings__c orgSettings = createSettings();
+        TDTM_Utility.disableAddressTriggers();
+        Account newAccount = createTestAccount();
+        TDTM_Utility.enableAddressTriggers();
+        setSimpleAddressUpdate(orgSettings, true);
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        System.runAs(testUser) {
             Test.startTest();
             newAccount.hed__Billing_Address_Inactive__c = true;
             newAccount.BillingCity = newCity;
             update newAccount;
             Test.stopTest();
-            List<hed__Address__c> newAccountAddressList = [
-                SELECT
-                    Id,
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Account__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Account__c = :newAccount.Id
-                ORDER BY Id
-            ];
-            Account insertedAccount = [
-                SELECT Id, hed__Billing_Address_Inactive__c, hed__Current_Address__c
-                FROM Account
-                WHERE Id = :newAccount.Id
-            ];
-            System.assertEquals(1, newAccountAddressList.size(), 'There should be exactly 1 address inserted');
-            System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(newCity, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + newCity);
-            System.assertEquals(
-                street,
-                newAccountAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newAccountAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newAccountAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(true, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be true');
-            System.assertEquals(
-                newAccountAddressList[0].Id,
-                insertedAccount.hed__Current_Address__c,
-                'The current account address is incorrect'
-            );
         }
+        List<hed__Address__c> newAccountAddressList = [
+            SELECT
+                Id,
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Account__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Account__c = :newAccount.Id
+            ORDER BY Id
+        ];
+        Account insertedAccount = [
+            SELECT Id, hed__Billing_Address_Inactive__c, hed__Current_Address__c
+            FROM Account
+            WHERE Id = :newAccount.Id
+        ];
+        System.assertEquals(1, newAccountAddressList.size(), 'There should be exactly 1 address inserted');
+        System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(newCity, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + newCity);
+        System.assertEquals(street, newAccountAddressList[0].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newAccountAddressList[0].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newAccountAddressList[0].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(true, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be true');
+        System.assertEquals(
+            newAccountAddressList[0].Id,
+            insertedAccount.hed__Current_Address__c,
+            'The current account address is incorrect'
+        );
     }
 
     /**
@@ -1071,102 +815,86 @@ private with sharing class InactiveAddress_PTST {
      */
     @isTest
     private static void updateExistingContactSimpleAddressUpdateEnabledTwoFields() {
-        createSettings();
-        setSimpleAddressUpdate(true);
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
-            Contact newContact = new Contact(
-                FirstName = 'John',
-                LastName = 'Doe',
-                MailingCity = city,
-                MailingState = state,
-                MailingStreet = street,
-                MailingCountry = country,
-                MailingPostalCode = postalCode,
-                hed__Mailing_Address_Inactive__c = false
-            );
-            insert newContact;
+        hed__Hierarchy_Settings__c orgSettings = createSettings();
+        TDTM_Utility.disableAddressTriggers();
+        Contact newContact = createTestContact();
+        TDTM_Utility.enableAddressTriggers();
+        setSimpleAddressUpdate(orgSettings, true);
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        System.runAs(testUser) {
             Test.startTest();
             newContact.hed__Mailing_Address_Inactive__c = true;
             newContact.MailingCity = newCity;
             newContact.MailingCountry = newCountry;
             update newContact;
             Test.stopTest();
-            Contact insertedContact = [
-                SELECT Id, hed__Mailing_Address_Inactive__c, hed__Current_Address__c
-                FROM Contact
-                WHERE Id = :newContact.Id
-            ];
-            List<hed__Address__c> newContactAddressList = [
-                SELECT
-                    Id,
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Contact__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Contact__c = :newContact.Id
-                ORDER BY Id
-            ];
-            System.assertEquals(
-                true,
-                insertedContact.hed__Mailing_Address_Inactive__c,
-                'The contact address inactive should be true'
-            );
-            System.assertEquals(2, newContactAddressList.size(), 'There should be exactly 2 addresses inserted');
-            System.assertEquals(state, newContactAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(city, newContactAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
-            System.assertEquals(
-                street,
-                newContactAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newContactAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newContactAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(false, newContactAddressList[0].hed__Inactive__c, 'The inactive should be false');
-
-            System.assertEquals(state, newContactAddressList[1].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(newCity, newContactAddressList[1].hed__MailingCity__c, 'The city should be ' + newCity);
-            System.assertEquals(
-                street,
-                newContactAddressList[1].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                newCountry,
-                newContactAddressList[1].hed__MailingCountry__c,
-                'The country should be ' + newCountry
-            );
-            System.assertEquals(
-                postalCode,
-                newContactAddressList[1].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(true, newContactAddressList[1].hed__Inactive__c, 'The inactive should be true');
-            System.assertEquals(
-                newContactAddressList[1].Id,
-                insertedContact.hed__Current_Address__c,
-                'The current account address is incorrect'
-            );
-
-            System.assertEquals(
-                insertedContact.hed__Current_Address__c,
-                newContactAddressList[1].Id,
-                'The current address is incorrect'
-            );
         }
+        Contact insertedContact = [
+            SELECT Id, hed__Mailing_Address_Inactive__c, hed__Current_Address__c
+            FROM Contact
+            WHERE Id = :newContact.Id
+        ];
+        List<hed__Address__c> newContactAddressList = [
+            SELECT
+                Id,
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Contact__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Contact__c = :newContact.Id
+            ORDER BY Id
+        ];
+        System.assertEquals(
+            true,
+            insertedContact.hed__Mailing_Address_Inactive__c,
+            'The contact address inactive should be true'
+        );
+        System.assertEquals(2, newContactAddressList.size(), 'There should be exactly 2 addresses inserted');
+        System.assertEquals(state, newContactAddressList[0].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(city, newContactAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
+        System.assertEquals(street, newContactAddressList[0].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newContactAddressList[0].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newContactAddressList[0].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(false, newContactAddressList[0].hed__Inactive__c, 'The inactive should be false');
+
+        System.assertEquals(state, newContactAddressList[1].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(newCity, newContactAddressList[1].hed__MailingCity__c, 'The city should be ' + newCity);
+        System.assertEquals(street, newContactAddressList[1].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            newCountry,
+            newContactAddressList[1].hed__MailingCountry__c,
+            'The country should be ' + newCountry
+        );
+        System.assertEquals(
+            postalCode,
+            newContactAddressList[1].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(true, newContactAddressList[1].hed__Inactive__c, 'The inactive should be true');
+        System.assertEquals(
+            newContactAddressList[1].Id,
+            insertedContact.hed__Current_Address__c,
+            'The current account address is incorrect'
+        );
+
+        System.assertEquals(
+            insertedContact.hed__Current_Address__c,
+            newContactAddressList[1].Id,
+            'The current address is incorrect'
+        );
     }
 
     /**
@@ -1175,94 +903,73 @@ private with sharing class InactiveAddress_PTST {
      */
     @isTest
     private static void updateExistingAccountSimpleAddressUpdateEnabledTwoFields() {
-        createSettings();
-        setSimpleAddressUpdate(true);
-        //User standardUser = hed.UTIL_UnitTestData_API.createNewStandardUserForTests();
-        User standardUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-        System.runAs(standardUser) {
-            RecordType administrativeRT = [
-                SELECT Id, Name
-                FROM RecordType
-                WHERE DeveloperName = 'Administrative' AND SobjectType = 'Account'
-            ];
-            Account newAccount = new Account(
-                Name = 'New Account',
-                BillingCity = city,
-                BillingState = state,
-                BillingStreet = street,
-                BillingCountry = country,
-                BillingPostalCode = postalCode,
-                RecordTypeId = administrativeRT.Id,
-                hed__Billing_Address_Inactive__c = false
-            );
-            insert newAccount;
+        hed__Hierarchy_Settings__c orgSettings = createSettings();
+        TDTM_Utility.disableAddressTriggers();
+        Account newAccount = createTestAccount();
+        TDTM_Utility.enableAddressTriggers();
+        setSimpleAddressUpdate(orgSettings, true);
+        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        System.runAs(testUser) {
             Test.startTest();
             newAccount.hed__Billing_Address_Inactive__c = true;
             newAccount.BillingCity = newCity;
             newAccount.BillingCountry = newCountry;
             update newAccount;
             Test.stopTest();
-            List<hed__Address__c> newAccountAddressList = [
-                SELECT
-                    Id,
-                    hed__MailingCity__c,
-                    hed__MailingState__c,
-                    hed__MailingStreet__c,
-                    hed__MailingCountry__c,
-                    hed__MailingPostalCode__c,
-                    hed__Parent_Account__c,
-                    hed__Inactive__c
-                FROM hed__Address__c
-                WHERE hed__Parent_Account__c = :newAccount.Id
-                ORDER BY Id
-            ];
-            Account insertedAccount = [
-                SELECT Id, hed__Billing_Address_Inactive__c, hed__Current_Address__c
-                FROM Account
-                WHERE Id = :newAccount.Id
-            ];
-            System.assertEquals(2, newAccountAddressList.size(), 'There should be exactly 2 addresses inserted');
-            System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(city, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
-            System.assertEquals(
-                street,
-                newAccountAddressList[0].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                country,
-                newAccountAddressList[0].hed__MailingCountry__c,
-                'The country should be ' + country
-            );
-            System.assertEquals(
-                postalCode,
-                newAccountAddressList[0].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(false, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be false');
-            System.assertEquals(state, newAccountAddressList[1].hed__MailingState__c, 'The state should be ' + state);
-            System.assertEquals(newCity, newAccountAddressList[1].hed__MailingCity__c, 'The city should be ' + newCity);
-            System.assertEquals(
-                street,
-                newAccountAddressList[1].hed__MailingStreet__c,
-                'The street should be ' + street
-            );
-            System.assertEquals(
-                newCountry,
-                newAccountAddressList[1].hed__MailingCountry__c,
-                'The country should be ' + newCountry
-            );
-            System.assertEquals(
-                postalCode,
-                newAccountAddressList[1].hed__MailingPostalCode__c,
-                'The postal code should be ' + postalCode
-            );
-            System.assertEquals(true, newAccountAddressList[1].hed__Inactive__c, 'The inactive should be true');
-            System.assertEquals(
-                newAccountAddressList[1].Id,
-                insertedAccount.hed__Current_Address__c,
-                'The current account address is incorrect'
-            );
         }
+        List<hed__Address__c> newAccountAddressList = [
+            SELECT
+                Id,
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Account__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Account__c = :newAccount.Id
+            ORDER BY Id
+        ];
+        Account insertedAccount = [
+            SELECT Id, hed__Billing_Address_Inactive__c, hed__Current_Address__c
+            FROM Account
+            WHERE Id = :newAccount.Id
+        ];
+        System.assertEquals(2, newAccountAddressList.size(), 'There should be exactly 2 addresses inserted');
+        System.assertEquals(state, newAccountAddressList[0].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(city, newAccountAddressList[0].hed__MailingCity__c, 'The city should be ' + city);
+        System.assertEquals(street, newAccountAddressList[0].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            country,
+            newAccountAddressList[0].hed__MailingCountry__c,
+            'The country should be ' + country
+        );
+        System.assertEquals(
+            postalCode,
+            newAccountAddressList[0].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(false, newAccountAddressList[0].hed__Inactive__c, 'The inactive should be false');
+        System.assertEquals(state, newAccountAddressList[1].hed__MailingState__c, 'The state should be ' + state);
+        System.assertEquals(newCity, newAccountAddressList[1].hed__MailingCity__c, 'The city should be ' + newCity);
+        System.assertEquals(street, newAccountAddressList[1].hed__MailingStreet__c, 'The street should be ' + street);
+        System.assertEquals(
+            newCountry,
+            newAccountAddressList[1].hed__MailingCountry__c,
+            'The country should be ' + newCountry
+        );
+        System.assertEquals(
+            postalCode,
+            newAccountAddressList[1].hed__MailingPostalCode__c,
+            'The postal code should be ' + postalCode
+        );
+        System.assertEquals(true, newAccountAddressList[1].hed__Inactive__c, 'The inactive should be true');
+        System.assertEquals(
+            newAccountAddressList[1].Id,
+            insertedAccount.hed__Current_Address__c,
+            'The current account address is incorrect'
+        );
     }
 }

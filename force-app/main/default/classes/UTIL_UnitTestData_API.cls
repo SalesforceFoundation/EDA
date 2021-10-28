@@ -51,10 +51,6 @@ global class UTIL_UnitTestData_API {
         return UTIL_UnitTestData_TEST.createNewUserForTests(strUsername);
     }
 
-    global static User createNewStandardUserForTests() {
-        return UTIL_UnitTestData_TEST.createNewStandardUserForTests();
-    }
-
     /*********************************************************************************************************
      * @description Initializes (but not inserts) N new Address objects.
      * @param addrCount the number of Address objects to create

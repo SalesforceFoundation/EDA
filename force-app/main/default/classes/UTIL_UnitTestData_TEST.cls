@@ -183,20 +183,6 @@ public class UTIL_UnitTestData_TEST {
         return userToInsert;
     }
 
-    /*********************************************************************************************************
-     * @description Gets and inserts a user using the standard user profile
-     * @return The inserted user record
-     **********************************************************************************************************/
-    public static User createNewStandardUserForTests() {
-        User userToInsert = getStandardUser();
-        // to work around mixed DML errors during tests, you must create user account in its own transaction. got this
-        // hack from the web.
-        System.runAs(new User(Id = UserInfo.getUserId())) {
-            insert userToInsert;
-        }
-        return userToInsert;
-    }
-
     /****************************************************************************************
      * @description Creates a user record assigned to the Standard User profile.
      * @return A user record assigned to the Standard User profile.
