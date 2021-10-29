@@ -211,7 +211,6 @@ private with sharing class InactiveAddress_PTST {
     @isTest
     private static void insertNewAccountWithInactiveChecked() {
         createSettings();
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         Account newAccount;
         System.runAs(testUser) {
@@ -269,7 +268,6 @@ private with sharing class InactiveAddress_PTST {
     @isTest
     private static void insertNewAccountWithInactiveUnchecked() {
         createSettings();
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         Account newAccount;
         System.runAs(testUser) {
@@ -327,7 +325,6 @@ private with sharing class InactiveAddress_PTST {
     @isTest
     private static void insertNewContactWithoutAddressInactiveChecked() {
         createSettings();
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         Contact newContact;
         System.runAs(testUser) {
@@ -366,7 +363,6 @@ private with sharing class InactiveAddress_PTST {
         TDTM_Utility.disableAddressTriggers();
         Account newAccount = createTestAccount();
         TDTM_Utility.enableAddressTriggers();
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         System.runAs(testUser) {
             Test.startTest();
@@ -412,7 +408,6 @@ private with sharing class InactiveAddress_PTST {
         TDTM_Utility.disableAddressTriggers();
         Contact newContact = createTestContact();
         TDTM_Utility.enableAddressTriggers();
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         System.runAs(testUser) {
             Test.startTest();
@@ -464,7 +459,6 @@ private with sharing class InactiveAddress_PTST {
         TDTM_Utility.disableAddressTriggers();
         Account newAccount = createTestAccountWithoutAddress();
         TDTM_Utility.enableAddressTriggers();
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         System.runAs(testUser) {
             Test.startTest();
@@ -498,7 +492,6 @@ private with sharing class InactiveAddress_PTST {
         TDTM_Utility.disableAddressTriggers();
         Contact newContact = createTestContactWithoutAddress();
         TDTM_Utility.enableAddressTriggers();
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         System.runAs(testUser) {
             Test.startTest();
@@ -538,7 +531,6 @@ private with sharing class InactiveAddress_PTST {
         Contact newContact = createTestContact();
         TDTM_Utility.enableAddressTriggers();
         setSimpleAddressUpdate(orgSettings, false);
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         System.runAs(testUser) {
             Test.startTest();
@@ -618,7 +610,6 @@ private with sharing class InactiveAddress_PTST {
         Account newAccount = createTestAccount();
         TDTM_Utility.enableAddressTriggers();
         setSimpleAddressUpdate(orgSettings, false);
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         System.runAs(testUser) {
             Test.startTest();
@@ -693,7 +684,6 @@ private with sharing class InactiveAddress_PTST {
         Contact newContact = createTestContact();
         TDTM_Utility.enableAddressTriggers();
         setSimpleAddressUpdate(orgSettings, true);
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         System.runAs(testUser) {
             Test.startTest();
@@ -759,7 +749,6 @@ private with sharing class InactiveAddress_PTST {
         Account newAccount = createTestAccount();
         TDTM_Utility.enableAddressTriggers();
         setSimpleAddressUpdate(orgSettings, true);
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         System.runAs(testUser) {
             Test.startTest();
@@ -820,7 +809,6 @@ private with sharing class InactiveAddress_PTST {
         Contact newContact = createTestContact();
         TDTM_Utility.enableAddressTriggers();
         setSimpleAddressUpdate(orgSettings, true);
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         System.runAs(testUser) {
             Test.startTest();
@@ -908,7 +896,6 @@ private with sharing class InactiveAddress_PTST {
         Account newAccount = createTestAccount();
         TDTM_Utility.enableAddressTriggers();
         setSimpleAddressUpdate(orgSettings, true);
-        //User testUser = hed.UTIL_UnitTestData_API.createNewtestUserForTests();
         User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
         System.runAs(testUser) {
             Test.startTest();
