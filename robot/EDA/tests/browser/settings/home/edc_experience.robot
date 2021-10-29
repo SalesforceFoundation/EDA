@@ -18,10 +18,7 @@ Verify education cloud settings app is displayed
 Verify products tools and resources tiles are displayed
     [Documentation]         Validates the products, tools and resources tiles are displayed.
     [tags]                  rbt:high        W-9549044
-    Reload Page
-    # Below sleep to avoid inconsisten failures with app launcher loading
-    Sleep                           2
-    Select App Launcher Tab         Education Cloud Settings
+    Go to education cloud settings home
     Current page should be          Home        Education Cloud Settings
     Verify app tiles displayed
     ...                             Products=Education Data Architecture
