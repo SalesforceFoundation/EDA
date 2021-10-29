@@ -19,18 +19,18 @@ Verify products tools and resources tiles are displayed
     [Documentation]         Validates the products, tools and resources tiles are displayed.
     [tags]                  rbt:high        W-9549044
     Go to education cloud settings home
-    Current page should be          Home        Education Cloud Settings
+    Current page should be                  Home        Education Cloud Settings
     Verify app tiles displayed
-    ...                             Products=Education Data Architecture
-    ...                             Tools=Settings Health Check
-    ...                             Resources=Trailhead
-    ...                             Resources=Trailblazer Community
-    ...                             Resources=YouTube
+    ...                                     Products=Education Data Architecture
+    ...                                     Tools=Settings Health Check
+    ...                                     Resources=Trailhead
+    ...                                     Resources=Trailblazer Community
+    ...                                     Resources=YouTube
 
 Verify release management page is displayed when user clicks on go to release management button
     [Documentation]         Validates 'Release Management' page is displayed after clicking on the Go to Release Management
     [tags]                  rbt:high        W-10059978
     Go to education cloud settings home
-    Current page should be          Home        Education Cloud Settings
-    Click app in edc home           Go to Release Management
-    Current page should be          Home        Release Management
+    Current page should be                  Home        Education Cloud Settings
+    Click app in edc home                   Go to Release Management
+    Current page should be                  Home        Release Management
