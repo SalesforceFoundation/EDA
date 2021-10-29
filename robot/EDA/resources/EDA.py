@@ -425,6 +425,14 @@ class EDA(BaseEDAPage):
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
 
+    def go_to_education_cloud_settings_home(self):
+        """ Navigates to Education Cloud Settings Home Page """
+        url_pattern = "{root}/lightning/n/{object}"
+        object_name = "{}Education_Cloud_Settings".format(self.get_eda_namespace_prefix())
+        url = url_pattern.format(root=self.cumulusci.org.lightning_base_url, object=object_name)
+        self.selenium.go_to(url)
+        self.salesforce.wait_until_loading_is_complete()
+
     def click_on_hub_link(self, field, link):
         """
         Click the power of us hub link available in Education cloud settings page.
