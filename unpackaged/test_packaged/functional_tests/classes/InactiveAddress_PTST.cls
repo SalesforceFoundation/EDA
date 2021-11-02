@@ -355,6 +355,46 @@ private with sharing class InactiveAddress_PTST {
     }
 
     /**
+     * @description T-6478480: Insert a new Account with only inactive as checked
+     */
+    @isTest
+    private static void insertNewAccountWithoutAddressInactiveChecked() {
+        createSettings();
+        Account newAccount;
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        System.runAs(testUser) {
+            Test.startTest();
+            RecordType administrativeRT = [
+                SELECT Id, Name
+                FROM RecordType
+                WHERE DeveloperName = 'Administrative' AND SobjectType = 'Account'
+            ];
+            newAccount = new Account(
+                Name = 'New Account',
+                RecordTypeId = administrativeRT.Id,
+                hed__Billing_Address_Inactive__c = true
+            );
+            insert newAccount;
+            Test.stopTest();
+        }
+        Account insertedAccount = [SELECT Id, hed__Billing_Address_Inactive__c FROM Account WHERE Id = :newAccount.Id];
+        List<hed__Address__c> newAccountAddressList = [
+            SELECT
+                hed__MailingCity__c,
+                hed__MailingState__c,
+                hed__MailingStreet__c,
+                hed__MailingCountry__c,
+                hed__MailingPostalCode__c,
+                hed__Parent_Account__c,
+                hed__Inactive__c
+            FROM hed__Address__c
+            WHERE hed__Parent_Account__c = :newAccount.Id
+        ];
+        System.assertEquals(0, newAccountAddressList.size(), 'There should not be any address records created');
+        System.assertEquals(true, insertedAccount.hed__Billing_Address_Inactive__c, 'The inactive should be true');
+    }
+
+    /**
      * @description T-6478570: Update an existing Account with current address by toggling the inactive checkbox
      */
     @isTest
