@@ -47,22 +47,22 @@ private class REL_Relationships_Con_PTST {
     private static void insertContactWithMultipleAutoCreateMappingsAllPopulated() {
         REL_Relationships_Con_PTST.setupMultipleAutoCreateRelationships();
 
-        Contact relatedContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
+        Contact relatedContact = hed.UTIL_UnitTestData_API.getMultipleTestContacts(1)[0];
         relatedContact.FirstName = 'Test';
         relatedContact.LastName = 'Related';
         insert relatedContact;
 
-        Contact employerContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
+        Contact employerContact = hed.UTIL_UnitTestData_API.getMultipleTestContacts(1)[0];
         employerContact.FirstName = 'Test';
         employerContact.LastName = 'Employer';
         insert employerContact;
 
-        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(loopCount);
+        List<Contact> contactsList = hed.UTIL_UnitTestData_API.getMultipleTestContacts(loopCount);
         for (Integer i = 0; i < contactsList.size(); i++) {
             contactsList[i].FirstName = 'Test';
             contactsList[i].LastName = 'Contact ' + i;
             contactsList[i].ReportsToId = relatedContact.Id;
-            contactsList[i].hed__Employer__c = employerContact.Id;
+            contactsList[i].Employer__c = employerContact.Id;
         }
 
         Test.startTest();
@@ -150,16 +150,16 @@ private class REL_Relationships_Con_PTST {
     private static void insertContactWithMultipleAutoCreateMappingsSomePopulated() {
         REL_Relationships_Con_PTST.setupMultipleAutoCreateRelationships();
 
-        Contact employerContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
+        Contact employerContact = hed.UTIL_UnitTestData_API.getMultipleTestContacts(1)[0];
         employerContact.FirstName = 'Test';
         employerContact.LastName = 'Employer';
         insert employerContact;
 
-        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(loopCount);
+        List<Contact> contactsList = hed.UTIL_UnitTestData_API.getMultipleTestContacts(loopCount);
         for (Integer i = 0; i < contactsList.size(); i++) {
             contactsList[i].FirstName = 'Test';
             contactsList[i].LastName = 'Contact ' + i;
-            contactsList[i].hed__Employer__c = employerContact.Id;
+            contactsList[i].Employer__c = employerContact.Id;
         }
 
         Test.startTest();
@@ -229,7 +229,7 @@ private class REL_Relationships_Con_PTST {
     private static void insertContactWithMultipleAutoCreateMappingsNonePopulated() {
         REL_Relationships_Con_PTST.setupMultipleAutoCreateRelationships();
 
-        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(loopCount);
+        List<Contact> contactsList = hed.UTIL_UnitTestData_API.getMultipleTestContacts(loopCount);
         for (Integer i = 0; i < contactsList.size(); i++) {
             contactsList[i].FirstName = 'Test';
             contactsList[i].LastName = 'Contact ' + i;
@@ -269,7 +269,7 @@ private class REL_Relationships_Con_PTST {
         hed__Relationship_Auto_Create__c contactEmployerRelAutoCreate = new hed__Relationship_Auto_Create__c(
             Name = 'ConEmployerAutoCreate',
             hed__Object__c = 'Contact',
-            hed__Field__c = 'hed__Employer__c',
+            hed__Field__c = 'Employer__c',
             hed__Relationship_Type__c = 'Employer',
             hed__Campaign_Types__c = ''
         );
