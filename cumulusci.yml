@@ -582,6 +582,15 @@ flows:
             4:
                 task: publish_learner_portal
 
+    qa_org_2gp_ftests:
+        group: "Org Setup"
+        description: Set up an org and run functional tests as a QA environment using a second-generation package
+        steps:
+            1:
+                flow: qa_org_2gp
+            2:
+                flow: run_functional_tests
+
     run_functional_tests:
         # description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
