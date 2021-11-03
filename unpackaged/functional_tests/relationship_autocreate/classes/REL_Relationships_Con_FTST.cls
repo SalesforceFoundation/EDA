@@ -35,7 +35,7 @@
  * auto creation functionality works as expected with multiple mappings.
  */
 @isTest
-private class REL_Relationships_Con_PTST {
+private class REL_Relationships_Con_FTST {
     private static Integer loopCount = 250;
 
     /*********************************************************************************************************
@@ -45,7 +45,7 @@ private class REL_Relationships_Con_PTST {
      *********************************************************************************************************/
     @isTest
     private static void insertContactWithMultipleAutoCreateMappingsAllPopulated() {
-        REL_Relationships_Con_PTST.setupMultipleAutoCreateRelationships();
+        REL_Relationships_Con_FTST.setupMultipleAutoCreateRelationships();
 
         Contact relatedContact = hed.UTIL_UnitTestData_API.getMultipleTestContacts(1)[0];
         relatedContact.FirstName = 'Test';
@@ -148,7 +148,7 @@ private class REL_Relationships_Con_PTST {
      *********************************************************************************************************/
     @isTest
     private static void insertContactWithMultipleAutoCreateMappingsSomePopulated() {
-        REL_Relationships_Con_PTST.setupMultipleAutoCreateRelationships();
+        REL_Relationships_Con_FTST.setupMultipleAutoCreateRelationships();
 
         Contact employerContact = hed.UTIL_UnitTestData_API.getMultipleTestContacts(1)[0];
         employerContact.FirstName = 'Test';
@@ -227,7 +227,7 @@ private class REL_Relationships_Con_PTST {
      *********************************************************************************************************/
     @isTest
     private static void insertContactWithMultipleAutoCreateMappingsNonePopulated() {
-        REL_Relationships_Con_PTST.setupMultipleAutoCreateRelationships();
+        REL_Relationships_Con_FTST.setupMultipleAutoCreateRelationships();
 
         List<Contact> contactsList = hed.UTIL_UnitTestData_API.getMultipleTestContacts(loopCount);
         for (Integer i = 0; i < contactsList.size(); i++) {

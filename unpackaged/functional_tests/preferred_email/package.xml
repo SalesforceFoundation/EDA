@@ -15,14 +15,13 @@
     </types>
   
     <types>
-        <members>CON_Pref_Email_Utility_PTST</members>
-        <members>CON_Pref_Email_customEmailEnglish_PTST</members>
-        <members>CON_Pref_Email_customEmailSpanish_PTST</members>
-        <members>CON_Pref_Email_duplicateField_PTST</members>
-        <members>CON_Pref_Email_picklistMissingEmail_PTST</members>
-        <members>CON_Pref_Email_untranslatedSpsh_PTST</members>
-        <members>CON_Pref_Email_untranslatPcklstSpsh_PTST</members>
-        <members>Describe_Utility</members>
+        <members>CON_Pref_Email_Utility_FTST</members>
+        <members>CON_Pref_Email_customEmailEnglish_FTST</members>
+        <members>CON_Pref_Email_customEmailSpanish_FTST</members>
+        <members>CON_Pref_Email_duplicateField_FTST</members>
+        <members>CON_Pref_Email_picklistMissingEmail_FTST</members>
+        <members>CON_Pref_Email_untranslatedSpsh_FTST</members>
+        <members>CON_Pref_Email_untranslatPcklstSpsh_FTST</members>
         <name>ApexClass</name>
     </types>
     <types>

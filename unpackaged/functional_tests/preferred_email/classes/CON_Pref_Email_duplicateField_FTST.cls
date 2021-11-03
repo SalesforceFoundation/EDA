@@ -29,11 +29,11 @@
 * @date 2020
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Tests CON_Preferred_Email_Utility_PTST methods with a custom Email field with the same Label as 
+* @description Tests CON_Preferred_Email_Utility_FTST methods with a custom Email field with the same Label as 
 * an EDA Email field in English and Spanish languages.
 */
 @isTest
-private with sharing class CON_Pref_Email_duplicateField_PTST {
+private with sharing class CON_Pref_Email_duplicateField_FTST {
 
     private static Integer contactCount = 250; // used to determine number of test contact records to create
 

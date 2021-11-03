@@ -33,7 +33,7 @@
 */
 
 @isTest
-public class CON_Pref_Email_Utility_PTST {
+public class CON_Pref_Email_Utility_FTST {
 
     private static Integer contactCount = 250; // used to determine number of test contact records to create
 
@@ -74,7 +74,7 @@ public class CON_Pref_Email_Utility_PTST {
 
         System.assertEquals(contactCount, insertedContactList.size(), 'All the Contacts should be successfully inserted.');
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_PTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
 
         for (Contact eachContact: insertedContactList) {
             System.assertEquals(preferredFieldLabel, eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be populated with Custom Email\'s label');
@@ -96,7 +96,7 @@ public class CON_Pref_Email_Utility_PTST {
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_PTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
         
         for (integer i = 0; i < contactCount; i++) {
 
@@ -141,7 +141,7 @@ public class CON_Pref_Email_Utility_PTST {
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_PTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
 
         for (integer i = 0; i < contactCount; i++) {
 
@@ -186,7 +186,7 @@ public class CON_Pref_Email_Utility_PTST {
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_PTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
 
         for (integer i = 0; i < contactCount; i++) {
 
@@ -307,7 +307,7 @@ public class CON_Pref_Email_Utility_PTST {
 
         System.assertEquals(contactCount, updatedContactList.size(), 'All the Contacts should be successfully inserted.');
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_PTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
 
         for (Contact eachContact: updatedContactList) {
             System.assertEquals(preferredFieldLabel, eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be populated with Custom Email\'s label');
@@ -330,7 +330,7 @@ public class CON_Pref_Email_Utility_PTST {
         List<Contact> contactsToBeInsertedList = new List<Contact>();
         List<Contact> contactsToBeUpdatedList = new List<Contact>();
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_PTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
 
         for (integer i = 0; i < contactCount; i++) {
 
@@ -384,7 +384,7 @@ public class CON_Pref_Email_Utility_PTST {
         List<Contact> contactsToBeInsertedList = new List<Contact>();
         List<Contact> contactsToBeUpdatedList = new List<Contact>();
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_PTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
 
         for (integer i = 0; i < contactCount; i++) {
 
@@ -437,7 +437,7 @@ public class CON_Pref_Email_Utility_PTST {
         List<Contact> contactsToBeInsertedList = new List<Contact>();
         List<Contact> contactsToBeUpdateList = new List<Contact>();
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_PTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
 
         for (integer i = 0; i < contactCount; i++) {
 

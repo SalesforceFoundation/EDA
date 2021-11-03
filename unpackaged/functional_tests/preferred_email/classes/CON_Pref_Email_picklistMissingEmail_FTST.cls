@@ -29,13 +29,13 @@
 * @date 2020
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Tests CON_Preferred_Email_Utility_PTST methods with a custom Email field that has its 
+* @description Tests CON_Preferred_Email_Utility_FTST methods with a custom Email field that has its 
 * corresponding field label missing in the Preferred Email picklist entries in English and Spanish languages.
 */
 @isTest
-private with sharing class CON_Pref_Email_picklistMissingEmail_PTST {
+private with sharing class CON_Pref_Email_picklistMissingEmail_FTST {
 
-    private static User spanishUser = CON_Pref_Email_picklistMissingEmail_PTST.returnUserInSpanish();
+    private static User spanishUser = CON_Pref_Email_picklistMissingEmail_FTST.returnUserInSpanish();
     
     /*****************************************************************************************************************************
     * @description Tests inserting a Contact with a value in Picklist_Missing_Email__c field updates Preferred Email and
@@ -43,7 +43,7 @@ private with sharing class CON_Pref_Email_picklistMissingEmail_PTST {
     *****************************************************************************************************************************/
     @isTest
     private static void populateCustomEmailOnInsertEnglish() {
-        CON_Pref_Email_Utility_PTST.populateCustomEmailOnInsert('Picklist_Missing_Email__c', 'test@sf.org');
+        CON_Pref_Email_Utility_FTST.populateCustomEmailOnInsert('Picklist_Missing_Email__c', 'test@sf.org');
     }
 
     /*****************************************************************************************************************************
@@ -52,7 +52,7 @@ private with sharing class CON_Pref_Email_picklistMissingEmail_PTST {
     *****************************************************************************************************************************/
     @isTest
     private static void populateCustomEmailAndAlternateEmailOnInsertEnglish() {
-        CON_Pref_Email_Utility_PTST.populateCustomEmailAndAlternateEmailOnInsert('Picklist_Missing_Email__c', 'test@sf.org');
+        CON_Pref_Email_Utility_FTST.populateCustomEmailAndAlternateEmailOnInsert('Picklist_Missing_Email__c', 'test@sf.org');
     }
 
     /*****************************************************************************************************************************
@@ -63,7 +63,7 @@ private with sharing class CON_Pref_Email_picklistMissingEmail_PTST {
     private static void populateCustomEmailOnUpdateSpanish() {
         
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_PTST.populateCustomEmailOnUpdate('Picklist_Missing_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomEmailOnUpdate('Picklist_Missing_Email__c', 'test@sf.org');
         }
     }
 
@@ -75,7 +75,7 @@ private with sharing class CON_Pref_Email_picklistMissingEmail_PTST {
     private static void populateCustomEmailAndAlternateEmailOnUpdateSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_PTST.populateCustomEmailAndAlternateEmailOnUpdate('Picklist_Missing_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomEmailAndAlternateEmailOnUpdate('Picklist_Missing_Email__c', 'test@sf.org');
         }
     }
 

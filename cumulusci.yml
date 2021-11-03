@@ -163,34 +163,24 @@ tasks:
             contact_key_affl_fields:
                 name: EDA - Contact Key Affiliation Fields
 
-    deploy_preferred_email_config:
-        group: "EDA: Unpackaged Tests"
-        description: Deploys Preferred Email configuration(custom email fields, translations, apex unit tests and sets Admin profile access to Email fields) for testing.
-        class_path: cumulusci.tasks.salesforce.Deploy
-        options:
-            namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test_packaged/preferred_email
-            namespaced_org: True
-
     deploy_functional_tests:
         group: "EDA: Unpackaged Tests"
-        description: Deploys apex unmanaged functional tests
-        class_path: cumulusci.tasks.salesforce.Deploy
+        description: Deploys apex unmanaged functional tests against packaged EDA
+        class_path: cumulusci.tasks.salesforce.DeployBundles
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test_packaged/functional_tests
-            namespaced_org: True
+            path: unpackaged/functional_tests
 
-    deploy_unpackaged_relationship_autocreate_config:
+    deploy_functional_test_utilities:
+        description: Deploys metadata and configuration for unpackaged test utilities against packaged EDA
+        class_path: cumulusci.tasks.salesforce.DeployBundles
         group: "EDA: Unpackaged Tests"
-        description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing.
-        class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test_packaged/relationship_autocreate
+            path: unpackaged/test_utilities
             unmanaged: True
 
-    deploy_unpackaged_test_metadata:
+    deploy_unpackaged_tests:
         description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
         class_path: cumulusci.tasks.salesforce.DeployBundles
         group: "EDA: Unpackaged Tests"
@@ -524,7 +514,7 @@ flows:
             4:
                 flow: eda_settings
             5:
-                flow: run_unmanaged_unit_tests
+                flow: run_functional_tests
 
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
@@ -592,23 +582,32 @@ flows:
             4:
                 task: publish_learner_portal
 
-    run_unmanaged_unit_tests:
+    run_functional_tests:
         # description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
             1:
-                task: deploy_unpackaged_test_metadata
-                when: "'hed' not in org_config.installed_packages"
+                task: deploy_functional_test_utilities
+                when: "'hed' in org_config.installed_packages"
             2:
-                task: deploy_unpackaged_relationship_autocreate_config
+                task: deploy_functional_tests
                 when: "'hed' in org_config.installed_packages"
             3:
-                task: deploy_preferred_email_config
-                when: "'hed' in org_config.installed_packages"
-            4:
                 # execute tests in unmanaged package
                 task: run_tests
                 options:
-                    test_name_match: '%\_Unmanaged_TEST,%\_ATST,%\_PTST,%\_UTST'
+                    test_name_match: '%\_FTST'
+
+    run_unpackaged_tests:
+        # description: Configure an org for use as a dev org after package metadata is deployed.
+        steps:
+            1:
+                task: deploy_unpackaged_tests
+                when: "'hed' not in org_config.installed_packages"
+            2:
+                # execute tests in unmanaged package
+                task: run_tests
+                options:
+                    test_name_match: '%\_UTST'
 
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.
