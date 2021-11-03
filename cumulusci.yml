@@ -169,17 +169,8 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test_managed_only/preferred_email
+            path: unpackaged/test_packaged/preferred_email
             namespaced_org: True
-
-    deploy_unpackaged_primary_affiliations_config:
-        group: "EDA: Unpackaged Tests"
-        description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
-        class_path: cumulusci.tasks.salesforce.Deploy
-        options:
-            namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test_packaged/primary_affiliations
-            unmanaged: True
 
     deploy_unpackaged_relationship_autocreate_config:
         group: "EDA: Unpackaged Tests"
@@ -304,13 +295,6 @@ tasks:
                 %%%NAMESPACE%%%Hierarchy_Settings__c hierSettings = %%%NAMESPACE%%%Hierarchy_Settings__c.getOrgDefaults();
                 hierSettings.%%%NAMESPACE%%%Error_Notifications_On__c = true;
                 update hierSettings;
-
-    execute_primary_affiliation_mapping_apex:
-        description: Runs anonymous apex for dev to configure and insert unmanaged Affiliation mappings.
-        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
-        options:
-            apex: >
-                STG_UnmanagedInstall.mapAccountRecordTypesForAffiliationTesting();
 
     execute_qa_apex:
         description: Runs anonymous apex for qa to configure settings.
@@ -606,22 +590,16 @@ flows:
                 task: deploy_unpackaged_test_metadata
                 when: "'hed' not in org_config.installed_packages"
             2:
-                task: deploy_unpackaged_primary_affiliations_config
-                when: "'hed' not in org_config.installed_packages"
-            3:
-                task: execute_primary_affiliation_mapping_apex
-                when: "'hed' not in org_config.installed_packages"
-            4:
                 task: deploy_unpackaged_relationship_autocreate_config
-                when: "'hed' not in org_config.installed_packages"
-            5:
+                when: "'hed' in org_config.installed_packages"
+            3:
                 task: deploy_preferred_email_config
                 when: "'hed' in org_config.installed_packages"
-            6:
+            4:
                 # execute tests in unmanaged package
                 task: run_tests
                 options:
-                    test_name_match: '%\_Unmanaged_TEST,%\_ATST,%\_MTST,%\_PTST,%\_UTST'
+                    test_name_match: '%\_Unmanaged_TEST,%\_ATST,%\_PTST,%\_UTST'
 
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.

@@ -15,8 +15,9 @@
         <name>Profile</name>
     </types>
     <types>
-        <members>STG_UnmanagedInstall</members>
-        <members>UTIL_Describe_PTST</members>
+        <members>InstallInvalidAfflMappings</members>
+        <members>InstallInvalidAfflMappings_UTST</members>
+        <members>UTIL_DescribeAccountRType_UTST</members>
         <name>ApexClass</name>
     </types>
     <version>48.0</version>
