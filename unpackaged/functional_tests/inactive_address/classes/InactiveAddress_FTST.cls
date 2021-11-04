@@ -34,7 +34,7 @@
  * @description Unmanaged functional tests for inactive address
  */
 @isTest
-private with sharing class InactiveAddress_PTST {
+private with sharing class InactiveAddress_FTST {
     private static String city = 'San Francisco';
     private static String newCity = 'Toronto';
     private static String street = '415 Mission Street, 3rd Floor';

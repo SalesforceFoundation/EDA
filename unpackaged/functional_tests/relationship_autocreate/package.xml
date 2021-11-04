@@ -9,7 +9,7 @@
         <name>Profile</name>
     </types> -->
     <types>
-        <members>REL_Relationships_Con_PTST</members>
+        <members>REL_Relationships_Con_FTST</members>
         <name>ApexClass</name>
     </types>
     <version>48.0</version>

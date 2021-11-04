@@ -29,12 +29,12 @@
 * @date 2020
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Tests CON_Preferred_Email_Utility_MTST methods with a custom Email field in Spanish 
+* @description Tests CON_Preferred_Email_Utility_FTST methods with a custom Email field in Spanish 
 */
 @isTest
-private with sharing class CON_Pref_Email_customEmailSpanish_MTST {
+private with sharing class CON_Pref_Email_customEmailSpanish_FTST {
     
-    private static User spanishUser = CON_Pref_Email_customEmailSpanish_MTST.returnUserInSpanish(); 
+    private static User spanishUser = CON_Pref_Email_customEmailSpanish_FTST.returnUserInSpanish(); 
     
     /*****************************************************************************************************************************
     * @description Tests inserting a Contact with a Custom Email field in Spanish Language updates Preferred Email and
@@ -44,7 +44,7 @@ private with sharing class CON_Pref_Email_customEmailSpanish_MTST {
     private static void populateCustomEmailOnInsertSpanish() {
         
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.populateCustomEmailOnInsert('Custom_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomEmailOnInsert('Custom_Email__c', 'test@sf.org');
         }
     }
 
@@ -56,7 +56,7 @@ private with sharing class CON_Pref_Email_customEmailSpanish_MTST {
     private static void populateCustomAndPrefEmailOnInsertSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.populateCustomAndPrefEmailOnInsert('Custom_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomAndPrefEmailOnInsert('Custom_Email__c', 'test@sf.org');
         }
     }
 
@@ -68,7 +68,7 @@ private with sharing class CON_Pref_Email_customEmailSpanish_MTST {
     private static void customEmailEmptyOnInsertSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.customEmailEmptyOnInsert('Custom_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.customEmailEmptyOnInsert('Custom_Email__c', 'test@sf.org');
         }
     }
 
@@ -80,7 +80,7 @@ private with sharing class CON_Pref_Email_customEmailSpanish_MTST {
     private static void populateCustomEmailAndAlternateEmailOnInsertSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.populateCustomEmailAndAlternateEmailOnInsert('Custom_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomEmailAndAlternateEmailOnInsert('Custom_Email__c', 'test@sf.org');
         }    
     }
 
@@ -92,7 +92,7 @@ private with sharing class CON_Pref_Email_customEmailSpanish_MTST {
     private static void populateCustomEmailWithEnforcementDisbaledOnInsertSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.populateCustomEmailWithEnforcementDisbaledOnInsert('Custom_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomEmailWithEnforcementDisbaledOnInsert('Custom_Email__c', 'test@sf.org');
         }
     }
 
@@ -104,7 +104,7 @@ private with sharing class CON_Pref_Email_customEmailSpanish_MTST {
     private static void populateCustomEmailOnUpdateSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.populateCustomEmailOnUpdate('Custom_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomEmailOnUpdate('Custom_Email__c', 'test@sf.org');
         }
     }
 
@@ -116,7 +116,7 @@ private with sharing class CON_Pref_Email_customEmailSpanish_MTST {
     private static void populateCustomAndPrefEmailOnUpdateSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.populateCustomAndPrefEmailOnUpdate('Custom_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomAndPrefEmailOnUpdate('Custom_Email__c', 'test@sf.org');
         }
     }
 
@@ -128,7 +128,7 @@ private with sharing class CON_Pref_Email_customEmailSpanish_MTST {
     private static void customEmailEmptyOnUpdateOnSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.customEmailEmptyOnUpdate('Custom_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.customEmailEmptyOnUpdate('Custom_Email__c', 'test@sf.org');
         }
     }
 
@@ -140,7 +140,7 @@ private with sharing class CON_Pref_Email_customEmailSpanish_MTST {
     private static void populateCustomEmailAndAlternateEmailOnUpdateOnSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.populateCustomEmailAndAlternateEmailOnUpdate('Custom_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomEmailAndAlternateEmailOnUpdate('Custom_Email__c', 'test@sf.org');
         }    
     }
 
@@ -152,7 +152,7 @@ private with sharing class CON_Pref_Email_customEmailSpanish_MTST {
     private static void populateCustomEmailWithEnforcementDisbaledOnUpdateSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.populateCustomEmailWithEnforcementDisbaledOnupdate('Custom_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomEmailWithEnforcementDisbaledOnupdate('Custom_Email__c', 'test@sf.org');
         }
     }
 

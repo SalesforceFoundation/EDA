@@ -35,7 +35,7 @@
  * auto creation functionality works as expected with multiple mappings.
  */
 @isTest
-private class REL_Relationships_Con_PTST {
+private class REL_Relationships_Con_FTST {
     private static Integer loopCount = 250;
 
     /*********************************************************************************************************
@@ -45,19 +45,19 @@ private class REL_Relationships_Con_PTST {
      *********************************************************************************************************/
     @isTest
     private static void insertContactWithMultipleAutoCreateMappingsAllPopulated() {
-        REL_Relationships_Con_PTST.setupMultipleAutoCreateRelationships();
+        REL_Relationships_Con_FTST.setupMultipleAutoCreateRelationships();
 
-        Contact relatedContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
+        Contact relatedContact = hed.UTIL_UnitTestData_API.getMultipleTestContacts(1)[0];
         relatedContact.FirstName = 'Test';
         relatedContact.LastName = 'Related';
         insert relatedContact;
 
-        Contact employerContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
+        Contact employerContact = hed.UTIL_UnitTestData_API.getMultipleTestContacts(1)[0];
         employerContact.FirstName = 'Test';
         employerContact.LastName = 'Employer';
         insert employerContact;
 
-        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(loopCount);
+        List<Contact> contactsList = hed.UTIL_UnitTestData_API.getMultipleTestContacts(loopCount);
         for (Integer i = 0; i < contactsList.size(); i++) {
             contactsList[i].FirstName = 'Test';
             contactsList[i].LastName = 'Contact ' + i;
@@ -69,26 +69,26 @@ private class REL_Relationships_Con_PTST {
         insert contactsList;
         Test.stopTest();
 
-        List<Relationship__c> relationshipResultsList = [
-            SELECT Id, Contact__c, RelatedContact__c, Status__c, Type__c
-            FROM Relationship__c
-            WHERE Contact__c IN :contactsList OR Contact__c = :relatedContact.Id OR Contact__c = :employerContact.Id
+        List<hed__Relationship__c> relationshipResultsList = [
+            SELECT Id, hed__Contact__c, hed__RelatedContact__c, hed__Status__c, hed__Type__c
+            FROM hed__Relationship__c
+            WHERE hed__Contact__c IN :contactsList OR hed__Contact__c = :relatedContact.Id OR hed__Contact__c = :employerContact.Id
         ];
 
-        Map<Id, List<Relationship__c>> relationshipsListByContactId = new Map<Id, List<Relationship__c>>();
-        for (Relationship__c rel : relationshipResultsList) {
-            List<Relationship__c> currentConRelationshipsList = relationshipsListByContactId.get(rel.Contact__c);
+        Map<Id, List<hed__Relationship__c>> relationshipsListByContactId = new Map<Id, List<hed__Relationship__c>>();
+        for (hed__Relationship__c rel : relationshipResultsList) {
+            List<hed__Relationship__c> currentConRelationshipsList = relationshipsListByContactId.get(rel.hed__Contact__c);
 
             if (currentConRelationshipsList == null) {
-                currentConRelationshipsList = new List<Relationship__c>();
+                currentConRelationshipsList = new List<hed__Relationship__c>();
             }
             currentConRelationshipsList.add(rel);
 
-            relationshipsListByContactId.put(rel.Contact__c, currentConRelationshipsList);
+            relationshipsListByContactId.put(rel.hed__Contact__c, currentConRelationshipsList);
         }
 
         for (Id conId : relationshipsListByContactId.keySet()) {
-            List<Relationship__c> relationshipsList = relationshipsListByContactId.get(conId);
+            List<hed__Relationship__c> relationshipsList = relationshipsListByContactId.get(conId);
 
             if (employerContact.Id == conId) {
                 System.assertEquals(
@@ -100,10 +100,10 @@ private class REL_Relationships_Con_PTST {
                 );
                 System.assertEquals(
                     'Employee',
-                    relationshipsList[0].Type__c,
+                    relationshipsList[0].hed__Type__c,
                     'Relationships should be of type Employee.'
                 );
-                System.assertEquals('Current', relationshipsList[0].Status__c, 'Relationships should be current.');
+                System.assertEquals('Current', relationshipsList[0].hed__Status__c, 'Relationships should be current.');
             } else if (relatedContact.Id == conId) {
                 System.assertEquals(
                     loopCount,
@@ -112,27 +112,27 @@ private class REL_Relationships_Con_PTST {
                     loopCount +
                     ' reciprocal relationship created for the relatedTo contact.'
                 );
-                System.assertEquals('Testee', relationshipsList[0].Type__c, 'Relationships should be of type Testee.');
-                System.assertEquals('Current', relationshipsList[0].Status__c, 'Relationships should be current.');
+                System.assertEquals('Testee', relationshipsList[0].hed__Type__c, 'Relationships should be of type Testee.');
+                System.assertEquals('Current', relationshipsList[0].hed__Status__c, 'Relationships should be current.');
             } else {
                 System.assertEquals(
                     2,
                     relationshipsList.size(),
                     'There should be 2 relationships created for the main contact.'
                 );
-                for (Relationship__c rel : relationshipsList) {
-                    System.assertEquals('Current', rel.Status__c, 'Relationship should be current.');
+                for (hed__Relationship__c rel : relationshipsList) {
+                    System.assertEquals('Current', rel.hed__Status__c, 'Relationship should be current.');
 
-                    if (rel.Type__c == 'Employer') {
+                    if (rel.hed__Type__c == 'Employer') {
                         System.assertEquals(
                             employerContact.Id,
-                            rel.RelatedContact__c,
+                            rel.hed__RelatedContact__c,
                             'Employer contact should be associated with relationship of type Employer.'
                         );
                     } else {
                         System.assertEquals(
                             relatedContact.Id,
-                            rel.RelatedContact__c,
+                            rel.hed__RelatedContact__c,
                             'RelatedTo contact should be associated with relationship of type Tester.'
                         );
                     }
@@ -148,14 +148,14 @@ private class REL_Relationships_Con_PTST {
      *********************************************************************************************************/
     @isTest
     private static void insertContactWithMultipleAutoCreateMappingsSomePopulated() {
-        REL_Relationships_Con_PTST.setupMultipleAutoCreateRelationships();
+        REL_Relationships_Con_FTST.setupMultipleAutoCreateRelationships();
 
-        Contact employerContact = UTIL_UnitTestData_TEST.getMultipleTestContacts(1)[0];
+        Contact employerContact = hed.UTIL_UnitTestData_API.getMultipleTestContacts(1)[0];
         employerContact.FirstName = 'Test';
         employerContact.LastName = 'Employer';
         insert employerContact;
 
-        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(loopCount);
+        List<Contact> contactsList = hed.UTIL_UnitTestData_API.getMultipleTestContacts(loopCount);
         for (Integer i = 0; i < contactsList.size(); i++) {
             contactsList[i].FirstName = 'Test';
             contactsList[i].LastName = 'Contact ' + i;
@@ -166,26 +166,26 @@ private class REL_Relationships_Con_PTST {
         insert contactsList;
         Test.stopTest();
 
-        List<Relationship__c> relationshipResultsList = [
-            SELECT Id, Contact__c, RelatedContact__c, Status__c, Type__c
-            FROM Relationship__c
-            WHERE Contact__c IN :contactsList OR Contact__c = :employerContact.Id
+        List<hed__Relationship__c> relationshipResultsList = [
+            SELECT Id, hed__Contact__c, hed__RelatedContact__c, hed__Status__c, hed__Type__c
+            FROM hed__Relationship__c
+            WHERE hed__Contact__c IN :contactsList OR hed__Contact__c = :employerContact.Id
         ];
 
-        Map<Id, List<Relationship__c>> relationshipsListByContactId = new Map<Id, List<Relationship__c>>();
-        for (Relationship__c rel : relationshipResultsList) {
-            List<Relationship__c> currentConRelationshipsList = relationshipsListByContactId.get(rel.Contact__c);
+        Map<Id, List<hed__Relationship__c>> relationshipsListByContactId = new Map<Id, List<hed__Relationship__c>>();
+        for (hed__Relationship__c rel : relationshipResultsList) {
+            List<hed__Relationship__c> currentConRelationshipsList = relationshipsListByContactId.get(rel.hed__Contact__c);
 
             if (currentConRelationshipsList == null) {
-                currentConRelationshipsList = new List<Relationship__c>();
+                currentConRelationshipsList = new List<hed__Relationship__c>();
             }
             currentConRelationshipsList.add(rel);
 
-            relationshipsListByContactId.put(rel.Contact__c, currentConRelationshipsList);
+            relationshipsListByContactId.put(rel.hed__Contact__c, currentConRelationshipsList);
         }
 
         for (Id conId : relationshipsListByContactId.keySet()) {
-            List<Relationship__c> relationshipsList = relationshipsListByContactId.get(conId);
+            List<hed__Relationship__c> relationshipsList = relationshipsListByContactId.get(conId);
 
             if (employerContact.Id == conId) {
                 System.assertEquals(
@@ -197,22 +197,22 @@ private class REL_Relationships_Con_PTST {
                 );
                 System.assertEquals(
                     'Employee',
-                    relationshipsList[0].Type__c,
+                    relationshipsList[0].hed__Type__c,
                     'Relationships should be of type Employee.'
                 );
-                System.assertEquals('Current', relationshipsList[0].Status__c, 'Relationships should be current.');
+                System.assertEquals('Current', relationshipsList[0].hed__Status__c, 'Relationships should be current.');
             } else {
                 System.assertEquals(
                     1,
                     relationshipsList.size(),
                     'There should be 1 relationship created for the main contact.'
                 );
-                for (Relationship__c rel : relationshipsList) {
-                    System.assertEquals('Current', rel.Status__c, 'Relationship should be current.');
-                    System.assertEquals('Employer', rel.Type__c, 'Relationship record should be of type Employer.');
+                for (hed__Relationship__c rel : relationshipsList) {
+                    System.assertEquals('Current', rel.hed__Status__c, 'Relationship should be current.');
+                    System.assertEquals('Employer', rel.hed__Type__c, 'Relationship record should be of type Employer.');
                     System.assertEquals(
                         employerContact.Id,
-                        rel.RelatedContact__c,
+                        rel.hed__RelatedContact__c,
                         'Employer contact should be associated with relationship of type Employer.'
                     );
                 }
@@ -227,9 +227,9 @@ private class REL_Relationships_Con_PTST {
      *********************************************************************************************************/
     @isTest
     private static void insertContactWithMultipleAutoCreateMappingsNonePopulated() {
-        REL_Relationships_Con_PTST.setupMultipleAutoCreateRelationships();
+        REL_Relationships_Con_FTST.setupMultipleAutoCreateRelationships();
 
-        List<Contact> contactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(loopCount);
+        List<Contact> contactsList = hed.UTIL_UnitTestData_API.getMultipleTestContacts(loopCount);
         for (Integer i = 0; i < contactsList.size(); i++) {
             contactsList[i].FirstName = 'Test';
             contactsList[i].LastName = 'Contact ' + i;
@@ -239,10 +239,10 @@ private class REL_Relationships_Con_PTST {
         insert contactsList;
         Test.stopTest();
 
-        List<Relationship__c> relationshipResultsList = [
-            SELECT Id, Contact__c, RelatedContact__c, Status__c, Type__c
-            FROM Relationship__c
-            WHERE Contact__c IN :contactsList
+        List<hed__Relationship__c> relationshipResultsList = [
+            SELECT Id, hed__Contact__c, hed__RelatedContact__c, hed__Status__c, hed__Type__c
+            FROM hed__Relationship__c
+            WHERE hed__Contact__c IN :contactsList
         ];
 
         System.assertEquals(
@@ -256,55 +256,55 @@ private class REL_Relationships_Con_PTST {
      * @description Helper method to create multiple Auto Creation settings and relationship mappings
      *********************************************************************************************************/
     private static void setupMultipleAutoCreateRelationships() {
-        List<Relationship_Auto_Create__c> relAutoCreateList = new List<Relationship_Auto_Create__c>();
+        List<hed__Relationship_Auto_Create__c> relAutoCreateList = new List<hed__Relationship_Auto_Create__c>();
 
-        Relationship_Auto_Create__c contactReportToRelAutoCreate = new Relationship_Auto_Create__c(
+        hed__Relationship_Auto_Create__c contactReportToRelAutoCreate = new hed__Relationship_Auto_Create__c(
             Name = 'ConReportToAutoCreate',
-            Object__c = 'Contact',
-            Field__c = 'ReportsToId',
-            Relationship_Type__c = 'Tester',
-            Campaign_Types__c = ''
+            hed__Object__c = 'Contact',
+            hed__Field__c = 'ReportsToId',
+            hed__Relationship_Type__c = 'Tester',
+            hed__Campaign_Types__c = ''
         );
 
-        Relationship_Auto_Create__c contactEmployerRelAutoCreate = new Relationship_Auto_Create__c(
+        hed__Relationship_Auto_Create__c contactEmployerRelAutoCreate = new hed__Relationship_Auto_Create__c(
             Name = 'ConEmployerAutoCreate',
-            Object__c = 'Contact',
-            Field__c = 'Employer__c',
-            Relationship_Type__c = 'Employer',
-            Campaign_Types__c = ''
+            hed__Object__c = 'Contact',
+            hed__Field__c = 'Employer__c',
+            hed__Relationship_Type__c = 'Employer',
+            hed__Campaign_Types__c = ''
         );
 
         relAutoCreateList.add(contactReportToRelAutoCreate);
         relAutoCreateList.add(contactEmployerRelAutoCreate);
         insert relAutoCreateList;
 
-        List<Relationship_Lookup__c> relationshipLookupsList = new List<Relationship_Lookup__c>();
-        Relationship_Lookup__c testerRelationshipLookup = new Relationship_Lookup__c(
+        List<hed__Relationship_Lookup__c> relationshipLookupsList = new List<hed__Relationship_Lookup__c>();
+        hed__Relationship_Lookup__c testerRelationshipLookup = new hed__Relationship_Lookup__c(
             Name = 'Tester',
-            Male__c = 'Testee-Male',
-            Female__c = 'Testee-Female',
-            Neutral__c = 'Testee'
+            hed__Male__c = 'Testee-Male',
+            hed__Female__c = 'Testee-Female',
+            hed__Neutral__c = 'Testee'
         );
 
-        Relationship_Lookup__c testeeRelationshipLookup = new Relationship_Lookup__c(
+        hed__Relationship_Lookup__c testeeRelationshipLookup = new hed__Relationship_Lookup__c(
             Name = 'Testee',
-            Male__c = 'Tester-Male',
-            Female__c = 'Tester-Female',
-            Neutral__c = 'Tester'
+            hed__Male__c = 'Tester-Male',
+            hed__Female__c = 'Tester-Female',
+            hed__Neutral__c = 'Tester'
         );
 
-        Relationship_Lookup__c employerRelationshipLookup = new Relationship_Lookup__c(
+        hed__Relationship_Lookup__c employerRelationshipLookup = new hed__Relationship_Lookup__c(
             Name = 'Employer',
-            Male__c = 'Employee-Male',
-            Female__c = 'Employee-Female',
-            Neutral__c = 'Employee'
+            hed__Male__c = 'Employee-Male',
+            hed__Female__c = 'Employee-Female',
+            hed__Neutral__c = 'Employee'
         );
 
-        Relationship_Lookup__c employeeRelationshipLookup = new Relationship_Lookup__c(
+        hed__Relationship_Lookup__c employeeRelationshipLookup = new hed__Relationship_Lookup__c(
             Name = 'Employee',
-            Male__c = 'Employer-Male',
-            Female__c = 'Employer-Female',
-            Neutral__c = 'Employer'
+            hed__Male__c = 'Employer-Male',
+            hed__Female__c = 'Employer-Female',
+            hed__Neutral__c = 'Employer'
         );
 
         relationshipLookupsList.add(TesterRelationshipLookup);

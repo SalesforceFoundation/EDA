@@ -29,10 +29,10 @@
 * @date 2020
 * @group Contact
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Tests CON_Pref_Email_Utility_MTST methods with a custom Email field in English language.
+* @description Tests CON_Pref_Email_Utility_FTST methods with a custom Email field in English language.
 */
 @isTest
-private with sharing class CON_Pref_Email_customEmailEnglish_MTST {
+private with sharing class CON_Pref_Email_customEmailEnglish_FTST {
 
     /*****************************************************************************************************************************
     * @description Tests inserting a Contact with a Custom Email field in English Language updates Preferred Email and
@@ -41,7 +41,7 @@ private with sharing class CON_Pref_Email_customEmailEnglish_MTST {
     @isTest
     private static void populateCustomEmailOnInsertEnglish() {
 
-        CON_Pref_Email_Utility_MTST.populateCustomEmailOnInsert('Custom_Email__c', 'test@sf.org');
+        CON_Pref_Email_Utility_FTST.populateCustomEmailOnInsert('Custom_Email__c', 'test@sf.org');
     }
 
     /*****************************************************************************************************************************
@@ -51,7 +51,7 @@ private with sharing class CON_Pref_Email_customEmailEnglish_MTST {
     @isTest
     private static void populateCustomAndPrefEmailOnInsertEnglish() {
 
-        CON_Pref_Email_Utility_MTST.populateCustomAndPrefEmailOnInsert('Custom_Email__c', 'test@sf.org');
+        CON_Pref_Email_Utility_FTST.populateCustomAndPrefEmailOnInsert('Custom_Email__c', 'test@sf.org');
     }
 
     /*****************************************************************************************************************************
@@ -61,7 +61,7 @@ private with sharing class CON_Pref_Email_customEmailEnglish_MTST {
     @isTest
     private static void customEmailEmptyOnInsertEnglish() {
 
-        CON_Pref_Email_Utility_MTST.customEmailEmptyOnInsert('Custom_Email__c', 'test@sf.org');
+        CON_Pref_Email_Utility_FTST.customEmailEmptyOnInsert('Custom_Email__c', 'test@sf.org');
     }
 
     /*****************************************************************************************************************************
@@ -71,7 +71,7 @@ private with sharing class CON_Pref_Email_customEmailEnglish_MTST {
     @isTest
     private static void populateCustomEmailAndAlternateEmailOnInsertEnglish() {
 
-        CON_Pref_Email_Utility_MTST.populateCustomEmailAndAlternateEmailOnInsert('Custom_Email__c', 'test@sf.org');
+        CON_Pref_Email_Utility_FTST.populateCustomEmailAndAlternateEmailOnInsert('Custom_Email__c', 'test@sf.org');
     }
 
     /*****************************************************************************************************************************
@@ -81,7 +81,7 @@ private with sharing class CON_Pref_Email_customEmailEnglish_MTST {
     @isTest
     private static void populateCustomEmailWithEnforcementDisbaledOnInsertEnglish() {
 
-        CON_Pref_Email_Utility_MTST.populateCustomEmailWithEnforcementDisbaledOnInsert('Custom_Email__c', 'test@sf.org');
+        CON_Pref_Email_Utility_FTST.populateCustomEmailWithEnforcementDisbaledOnInsert('Custom_Email__c', 'test@sf.org');
     }
 
     /*****************************************************************************************************************************
@@ -91,7 +91,7 @@ private with sharing class CON_Pref_Email_customEmailEnglish_MTST {
     @isTest
     private static void populateCustomEmailOnUpdateEnglish() {
 
-        CON_Pref_Email_Utility_MTST.populateCustomEmailOnUpdate('Custom_Email__c', 'test@sf.org');
+        CON_Pref_Email_Utility_FTST.populateCustomEmailOnUpdate('Custom_Email__c', 'test@sf.org');
     }
 
     /*****************************************************************************************************************************
@@ -101,7 +101,7 @@ private with sharing class CON_Pref_Email_customEmailEnglish_MTST {
     @isTest
     private static void populateCustomAndPrefEmailOnUpdateEnglish() {
 
-        CON_Pref_Email_Utility_MTST.populateCustomAndPrefEmailOnUpdate('Custom_Email__c', 'test@sf.org');
+        CON_Pref_Email_Utility_FTST.populateCustomAndPrefEmailOnUpdate('Custom_Email__c', 'test@sf.org');
     }
 
     /*****************************************************************************************************************************
@@ -111,7 +111,7 @@ private with sharing class CON_Pref_Email_customEmailEnglish_MTST {
     @isTest
     private static void customEmailEmptyOnUpdateOnEnglish() {
 
-        CON_Pref_Email_Utility_MTST.customEmailEmptyOnUpdate('Custom_Email__c', 'test@sf.org');
+        CON_Pref_Email_Utility_FTST.customEmailEmptyOnUpdate('Custom_Email__c', 'test@sf.org');
     }
 
     /*****************************************************************************************************************************
@@ -121,7 +121,7 @@ private with sharing class CON_Pref_Email_customEmailEnglish_MTST {
     @isTest
     private static void populateCustomEmailAndAlternateEmailOnUpdateOnEnglish() {
 
-        CON_Pref_Email_Utility_MTST.populateCustomEmailAndAlternateEmailOnUpdate('Custom_Email__c', 'test@sf.org');
+        CON_Pref_Email_Utility_FTST.populateCustomEmailAndAlternateEmailOnUpdate('Custom_Email__c', 'test@sf.org');
     }
 
     /*****************************************************************************************************************************
@@ -131,6 +131,6 @@ private with sharing class CON_Pref_Email_customEmailEnglish_MTST {
     @isTest
     private static void populateCustomEmailWithEnforcementDisbaledOnUpdateEnglish() {
 
-        CON_Pref_Email_Utility_MTST.populateCustomEmailWithEnforcementDisbaledOnupdate('Custom_Email__c', 'test@sf.org');
+        CON_Pref_Email_Utility_FTST.populateCustomEmailWithEnforcementDisbaledOnupdate('Custom_Email__c', 'test@sf.org');
     }
 }
