@@ -11,10 +11,12 @@ from selenium.common.exceptions import NoSuchWindowException
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 
+from locators_53 import eda_lex_locators as locators_53
 from locators_51 import eda_lex_locators as locators_51
 from locators_50 import eda_lex_locators as locators_50
 
 locators_by_api_version = {
+    53.0: locators_53,  # Winter '22
     51.0: locators_51,  # Spring '21
     50.0: locators_50   # Winter '21
 }
@@ -420,6 +422,14 @@ class EDA(BaseEDAPage):
             url = "{}/lightning/cmp/{}EDASettingsContainer".format(url,namespace)
         else:
             url = "{}/lightning/cmp/c__EDASettingsContainer".format(url)
+        self.selenium.go_to(url)
+        self.salesforce.wait_until_loading_is_complete()
+
+    def go_to_education_cloud_settings_home(self):
+        """ Navigates to Education Cloud Settings Home Page """
+        url_pattern = "{root}/lightning/n/{object}"
+        object_name = "{}Education_Cloud_Settings".format(self.get_eda_namespace_prefix())
+        url = url_pattern.format(root=self.cumulusci.org.lightning_base_url, object=object_name)
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
 
