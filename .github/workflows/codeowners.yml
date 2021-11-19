@@ -1,0 +1,11 @@
+name: Call SFDO Codeowners Review Workflows
+
+on:
+  pull_request:
+    types:
+      - labeled
+      - review_requested
+
+jobs:
+  shared-codeowners:
+    uses: SalesforceFoundation/.github/.github/workflows/codeowners.yml@main
