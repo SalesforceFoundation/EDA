@@ -66,6 +66,7 @@ tasks:
             timeout: 600
 
     deploy_dev_config:
+        group: "EDA: Dev Config"
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -91,7 +92,7 @@ tasks:
             unmanaged: False
 
     deploy_encryption_permset:
-        group: "Shield Platform Encryption"
+        group: "EDA: Shield Platform Encryption"
         description: Deploys "Manage Encryption Keys" permission set.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -118,6 +119,7 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: unpackaged/config/release_gating
+
     deploy_settings_product:
         group: "EDA: Metadata"
         description: mocked settings product information metadata to display a demo product.
@@ -126,6 +128,7 @@ tasks:
             path: unpackaged/config/settings_product
 
     deploy_workbench_translation_settings:
+        group: "EDA: Metadata"
         description: Deploys settings to enable Translation Workbench, end user languages, and platform languages.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -134,6 +137,7 @@ tasks:
             unmanaged: True
 
     deploy_translations:
+        group: "EDA: Metadata"
         description: Assigns languages and marks them as active.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -200,7 +204,7 @@ tasks:
             path: unpackaged/config/trial
 
     assign_encryption_permset:
-        group: "Shield Platform Encryption"
+        group: "EDA: Shield Platform Encryption"
         description: Assigns the Encryption permission set to the current user for Shield Platform Encryption testing.
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
@@ -224,13 +228,14 @@ tasks:
             value: true
 
     create_tenant_secret:
-        group: "Shield Platform Encryption"
+        group: "EDA: Shield Platform Encryption"
         description: Creates a new tenant secret for Shield Platform Encryption testing.
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
             command: 'force:data:record:create -s TenantSecret -v "Description=Testing"'
 
     execute_install_apex:
+        group: "EDA: Post Intall Apex"
         description: Runs most of the install script methods from STG_InstallScript class
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
@@ -238,6 +243,7 @@ tasks:
             apex: executeInstallApex();
 
     execute_automatic_household_naming:
+        group: "EDA: Post Intall Apex"
         description: Runs anonymous apex to set Automatic_Household_Naming__c to true.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         ui_options:
@@ -250,6 +256,7 @@ tasks:
                 update hierSettings;
 
     execute_enable_course_connections:
+        group: "EDA: Post Intall Apex"
         description: Runs anonymous apex to enable Course Connections and set the Student and Faculty default Record Types.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         ui_options:
@@ -260,6 +267,7 @@ tasks:
             apex: configCourseConnections();
 
     execute_preferred_phone_selection:
+        group: "EDA: Post Intall Apex"
         description: Runs anonymous apex to set Preferred Phone to 'Other Phone'.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         ui_options:
@@ -272,6 +280,7 @@ tasks:
                 update hierSettings;
 
     execute_enable_record_type_validation:
+        group: "EDA: Post Intall Apex"
         description: Runs anonymous apex to enable record type validation for EDA settings.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         ui_options:
@@ -284,6 +293,7 @@ tasks:
                 update hierSettings;
 
     execute_send_error_notifications:
+        group: "EDA: Post Intall Apex"
         description: Runs anonymous apex to enable Error Notifications.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         ui_options:
@@ -296,6 +306,7 @@ tasks:
                 update hierSettings;
 
     execute_qa_apex:
+        group: "EDA: Post Intall Apex"
         description: Runs anonymous apex for qa to configure settings.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
@@ -325,6 +336,7 @@ tasks:
             name: "LearnerPortalCommunity"
 
     retrieve_config_dev:
+        group: "EDA: Metadata"
         description: Retrieves the current changes in the scratch org into unpackaged/config/dev.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
         options:
@@ -332,6 +344,7 @@ tasks:
             namespace_tokenize: $project_config.project__package__namespace
 
     retrieve_config_trial:
+        group: "EDA: Metadata"
         description: Retrieves the current changes in the scratch org into unpackaged/config/trial.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
         options:
@@ -605,6 +618,7 @@ flows:
                 task: run_tests
                 options:
                     test_name_match: '%\_FTST'
+                    namespace: ""
 
     run_unpackaged_tests:
         # description: Configure an org for use as a dev org after package metadata is deployed.
