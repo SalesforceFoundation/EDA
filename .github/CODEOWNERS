@@ -4,3 +4,6 @@
 
 # SFDX
 /sfdx-project.json        @SalesforceFoundation/release-engineering-reviewers
+
+# Github Actions and CODEOWNERS
+/.github/
