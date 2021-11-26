@@ -99,14 +99,14 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
            to be then used to create and return MODL_PreferredEmailSettings.cls record */
         for (String contactEmailfieldAPIName: contactEmailFieldsByApiName.keySet()) {
 
-            String contactEmailFieldName = contactEmailFieldsByApiName.get(contactEmailfieldAPIName).getName();
+            String contactEmailFieldLabel = contactEmailFieldsByApiName.get(contactEmailfieldAPIName).getLabel();
 
-            if (contactEmailfieldAPIName == standardEmailFieldName || edaEmailFieldModel.hasDuplicateLabelForEDAField(contactEmailFieldName, contactEmailfieldAPIName) == true) {
+            if (contactEmailfieldAPIName == standardEmailFieldName || edaEmailFieldModel.hasDuplicateLabelForEDAField(contactEmailFieldLabel, contactEmailfieldAPIName) == true) {
                 continue;
             }
 
-            String preferredLabel = this.getPreferredLabelFromLabel(contactEmailFieldName, preferredEmailPicklistValuesByLabel, legacyPreferredEmailPicklistValuesByLabel);
-            MODL_PreferredEmailField prefEmailFieldModel = new MODL_PreferredEmailField(contactEmailFieldName, contactEmailfieldAPIName, PreferredLabel);
+            String preferredLabel = this.getPreferredLabelFromLabel(contactEmailFieldLabel, preferredEmailPicklistValuesByLabel, legacyPreferredEmailPicklistValuesByLabel);
+            MODL_PreferredEmailField prefEmailFieldModel = new MODL_PreferredEmailField(contactEmailFieldLabel, contactEmailfieldAPIName, PreferredLabel);
 
             if (contactEmailfieldAPIName == UTIL_Namespace.StrTokenNSPrefix('AlternateEmail__c')) {
                 alternateEmailFieldPrefLabel = prefEmailFieldModel.preferredLabel ;
