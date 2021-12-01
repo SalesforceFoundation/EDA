@@ -1,6 +1,6 @@
 {
     "*.{cls,apex,js,html,md,yml,yaml,json}": [
-        "prettier --write --no-error-on-unmatched-pattern"
+        "prettier --check --no-error-on-unmatched-pattern"
     ],
     "yarn.lock": [
         "lockfile-lint"
