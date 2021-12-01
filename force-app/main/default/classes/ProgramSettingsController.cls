@@ -64,7 +64,7 @@ public with sharing class ProgramSettingsController {
      * Record Types
      * @return A ComboboxVModel
      ************************************************************************************/
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static ComboBoxVModel getAccountRecordTypeComboboxVModel(String accountRecordType) {
         try {
             return ProgramSettingsController.locateAutoEnrollmentMappingsVMapper()
