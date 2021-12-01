@@ -50,17 +50,11 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         autoProgramEnrollmentRole: "autoProgramEnrollmentRole",
     };
 
-    @wire(getAccountRecordTypeComboboxVModel, {
-        accountRecordType: "$newAccountRecordType",
-    })
-    accountRecordTypeComboboxVModelWire(result) {
-        this.accountRecordTypeComboboxWireResult = result;
-
-        if (result.data) {
-            this.accountRecordTypeComboboxVModel = result.data;
-        } else if (result.error) {
-            //console.log("error retrieving accountRecordTypeComboboxVModel");
-        }
+    connectedCallback(){
+        getAccountRecordTypeComboboxVModel({ accountRecordType: this.newAccountRecordType })
+        .then((result) => {
+            this.accountRecordTypeComboboxVModel = result;
+        })
     }
 
     @wire(getAutoEnrollmentMappingStatusComboboxVModel, {
@@ -90,6 +84,7 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     }
 
     handleAccountRecordTypeChange(event) {
+        this.accountRecordTypeComboboxVModel.value = event.detail.value;
         this.dispatchAccountRecordTypeChangeEvent(event.detail.value);
     }
 
