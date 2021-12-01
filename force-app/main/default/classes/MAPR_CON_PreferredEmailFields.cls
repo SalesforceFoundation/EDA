@@ -86,7 +86,7 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
 
         Boolean isPreferredEmailValidationEnabled = this.getPreferredEmailValidationEnabled();
         Map<String, Schema.DescribeFieldResult> contactEmailFieldsByApiName = this.getContactEmailFieldByApiName();
-        String standardEmailFieldLabel = contactEmailFieldsByApiName.get('Email').getLabel();
+        Schema.DescribeFieldResult standardEmailField = contactEmailFieldsByApiName.get('Email');
         Map<String, String> preferredEmailPicklistValuesByLabel = this.getPreferredEmailPicklistValuesByLabel();
         Map<String, String> legacyPreferredEmailPicklistValuesByLabel = this.getLegacyPreferredEmailPicklistValuesByLabel();
         Map<String, String> preferredEmailPicklistLabelByApiName = this.getPreferredEmailPicklistLabelByApiName();
@@ -101,7 +101,7 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
 
             String contactEmailFieldLabel = contactEmailFieldsByApiName.get(contactEmailfieldAPIName).getLabel();
 
-            if (contactEmailfieldAPIName == standardEmailFieldLabel || edaEmailFieldModel.hasDuplicateLabelForEDAField(contactEmailFieldLabel, contactEmailfieldAPIName) == true) {
+            if (contactEmailfieldAPIName == standardEmailField.getName() || edaEmailFieldModel.hasDuplicateLabelForEDAField(contactEmailFieldLabel, contactEmailfieldAPIName) == true) {
                 continue;
             }
 
@@ -114,7 +114,7 @@ public virtual with sharing class MAPR_CON_PreferredEmailFields {
             prefEmailFieldModels.add(prefEmailFieldModel);
         }
 
-        MODL_PreferredEmailSettings prefEmailSettingsModel = new MODL_PreferredEmailSettings(prefEmailFieldModels, alternateEmailFieldPrefLabel, standardEmailFieldLabel, isPreferredEmailValidationEnabled, preferredEmailPicklistLabelByApiName);
+        MODL_PreferredEmailSettings prefEmailSettingsModel = new MODL_PreferredEmailSettings(prefEmailFieldModels, alternateEmailFieldPrefLabel, standardEmailField.getLabel(), isPreferredEmailValidationEnabled, preferredEmailPicklistLabelByApiName);
 
         return prefEmailSettingsModel;
     }
