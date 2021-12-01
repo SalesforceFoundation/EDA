@@ -9,4 +9,4 @@ Suite Teardown  Capture screenshot and delete records and close browser
 Verify EDA tile
     [Documentation]     Verifies if the EDA app is displayed in app launcher menu
     Open app launcher
-    Verify app exists    EDA
+    Verify app exists    Education Data Architecture

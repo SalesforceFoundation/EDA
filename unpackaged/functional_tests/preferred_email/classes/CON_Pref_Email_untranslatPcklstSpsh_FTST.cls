@@ -29,15 +29,15 @@
 * @date 2020
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Tests CON_Preferred_Email_Utility_MTST methods with a custom Email field(WHICH IS NOT TRANSLATED)
+* @description Tests CON_Preferred_Email_Utility_FTST methods with a custom Email field(WHICH IS NOT TRANSLATED)
 * which has the coressponding picklist value not translated in Preferred Email field.
 */
 
 @isTest
-private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
+private with sharing class CON_Pref_Email_untranslatPcklstSpsh_FTST {
     
     private static Integer contactCount = 250; // used to determine number of test contact records to create
-    private static User spanishUser = CON_Pref_Email_untranslatPcklstSpsh_MTST.returnUserInSpanish();
+    private static User spanishUser = CON_Pref_Email_untranslatPcklstSpsh_FTST.returnUserInSpanish();
     
     /*****************************************************************************************************************************
     * @description Tests inserting a Contact with a Custom Email field in Spanish Language updates Preferred Email and
@@ -47,7 +47,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
     private static void populateCustomEmailOnInsertSpanish() {
         
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.populateCustomEmailOnInsert('Untranslated_Picklist_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomEmailOnInsert('Untranslated_Picklist_Email__c', 'test@sf.org');
         }
 
     }
@@ -151,7 +151,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
     private static void populateCustomEmailAndAlternateEmailOnInsertSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.populateCustomEmailAndAlternateEmailOnInsert('Untranslated_Picklist_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomEmailAndAlternateEmailOnInsert('Untranslated_Picklist_Email__c', 'test@sf.org');
         }    
     }
 
@@ -163,7 +163,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
     private static void populateCustomEmailOnUpdateSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.populateCustomEmailOnUpdate('Untranslated_Picklist_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomEmailOnUpdate('Untranslated_Picklist_Email__c', 'test@sf.org');
         } 
     }
 
@@ -281,7 +281,7 @@ private with sharing class CON_Pref_Email_untranslatPcklstSpsh_MTST {
     private static void populateCustomEmailAndAlternateEmailOnUpdateOnSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_MTST.populateCustomEmailAndAlternateEmailOnUpdate('Untranslated_Picklist_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility_FTST.populateCustomEmailAndAlternateEmailOnUpdate('Untranslated_Picklist_Email__c', 'test@sf.org');
         }    
     }
 
