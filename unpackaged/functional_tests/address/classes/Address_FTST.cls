@@ -35,20 +35,17 @@
  */
 @isTest
 public with sharing class Address_FTST {
-    private static String city = 'San Francisco';
+    private static String city = 'City0';
     private static String newCity = 'Raccoon City';
-    private static String street = '415 Mission Street, 3rd Floor';
-    private static String postalCode = '94105';
-    private static String country = 'US';
+    private static String street = 'Street0';
+    private static String postalCode = 'Zip0';
+    private static String country = 'United States';
     private static String newCountry = 'Umbrella';
-    private static String state = 'CA';
+    private static String state = 'Washington';
     private static String accountName = 'TestAccount12345';
-    private static String contactFirstName = 'John';
-    private static string contactLastName = 'Connor';
 
     private static hed__Hierarchy_Settings__c createSettings() {
         hed__Hierarchy_Settings__c orgSettings = hed.UTIL_CustomSettings_API.getOrgSettings();
-        upsert orgSettings;
         hed.UTIL_CustomSettings_API.getSettingsForTests(orgSettings);
         return orgSettings;
     }
@@ -56,13 +53,11 @@ public with sharing class Address_FTST {
     private static void setSimpleAddressUpdate(hed__Hierarchy_Settings__c orgSettings, Boolean value) {
         orgSettings.hed__Simple_Address_Change_Treated_as_Update__c = value;
         hed.UTIL_CustomSettings_API.getSettingsForTests(orgSettings);
-        update orgSettings;
     }
 
     private static void setMultiAddress(hed__Hierarchy_Settings__c orgSettings, Boolean value) {
         orgSettings.hed__Contacts_Addresses_Enabled__c = value;
         hed.UTIL_CustomSettings_API.getSettingsForTests(orgSettings);
-        update orgSettings;
     }
 
     private static Account createTestAccountWithAddress(String recordTypeName) {
@@ -71,79 +66,44 @@ public with sharing class Address_FTST {
             FROM RecordType
             WHERE DeveloperName = :recordTypeName AND SobjectType = 'Account'
         ];
-        Account newAccount = new Account(
-            Name = accountName,
-            BillingCity = city,
-            BillingState = state,
-            BillingStreet = street,
-            BillingCountry = country,
-            BillingPostalCode = postalCode,
-            hed__Billing_County__c = null,
-            RecordTypeId = accountRecordType.Id,
-            hed__Billing_Address_Inactive__c = false
-        );
+        Account newAccount = hed.UTIL_UnitTestData_API.getMultipleTestAccounts(1, accountRecordType.Id).get(0);
+        newAccount.BillingCity = city;
+        newAccount.BillingState = state;
+        newAccount.BillingStreet = street;
+        newAccount.BillingCountry = country;
+        newAccount.BillingPostalCode = postalCode;
+        newAccount.hed__Billing_County__c = null;
+        newAccount.hed__Billing_Address_Inactive__c = false;
         insert newAccount;
-        hed__Address__c addr = new hed__Address__c(
-            hed__Address_Type__c = 'Home',
-            hed__MailingStreet__c = street,
-            hed__MailingCity__c = city,
-            hed__MailingState__c = state,
-            hed__MailingPostalCode__c = postalCode,
-            hed__MailingCountry__c = country,
-            hed__MailingCounty__c = null,
-            hed__Inactive__c = false,
-            hed__Default_Address__c = true,
-            hed__Parent_Account__c = newAccount.Id
-        );
+
+        hed__Address__c addr = hed.UTIL_UnitTestData_API.getMultipleTestAddresses(1).get(0);
+        addr.hed__Inactive__c = false;
+        addr.hed__Default_Address__c = true;
+        addr.hed__Parent_Account__c = newAccount.Id;
         insert addr;
         return newAccount;
     }
 
     private static Contact createTestContactWithAddress(Id accountId) {
-        Contact newContact = new Contact(
-            FirstName = contactFirstName,
-            LastName = contactLastName,
-            MailingCity = city,
-            MailingState = state,
-            MailingStreet = street,
-            MailingCountry = country,
-            MailingPostalCode = postalCode,
-            hed__Mailing_County__c = null,
-            hed__Mailing_Address_Inactive__c = false
-        );
-        if (String.isNotBlank(accountId)) {
-            newContact.accountId = accountId;
-        }
-
-        insert newContact;
-        hed__Address__c addr = new hed__Address__c(
-            hed__Address_Type__c = 'Home',
-            hed__MailingStreet__c = street,
-            hed__MailingCity__c = city,
-            hed__MailingState__c = state,
-            hed__MailingPostalCode__c = postalCode,
-            hed__MailingCountry__c = country,
-            hed__MailingCounty__c = null,
-            hed__Inactive__c = false,
-            hed__Default_Address__c = true,
-            hed__Parent_Contact__c = newContact.Id
-        );
+        Contact newContact = createTestContactWithoutAddress(accountId);
+        hed__Address__c addr = hed.UTIL_UnitTestData_API.getMultipleTestAddresses(1).get(0);
+        addr.hed__Inactive__c = false;
+        addr.hed__Default_Address__c = true;
+        addr.hed__Parent_Contact__c = newContact.Id;
         insert addr;
         return newContact;
     }
 
     private static Contact createTestContactWithoutAddress(Id accountId) {
-        Contact newContact = new Contact(
-            FirstName = contactFirstName,
-            LastName = contactLastName,
-            MailingCity = city,
-            MailingState = state,
-            MailingStreet = street,
-            MailingCountry = country,
-            MailingPostalCode = postalCode,
-            hed__Mailing_County__c = null,
-            hed__Mailing_Address_Inactive__c = false
-        );
+        Contact newContact = hed.UTIL_UnitTestData_API.getMultipleTestContacts(1).get(0);
+        newContact.MailingCity = city;
+        newContact.MailingState = state;
+        newContact.MailingStreet = street;
+        newContact.MailingCountry = country;
+        newContact.MailingPostalCode = postalCode;
+        newContact.hed__Mailing_County__c = null;
+        newContact.hed__Mailing_Address_Inactive__c = false;
+
         if (String.isNotBlank(accountId)) {
             newContact.accountId = accountId;
         }
