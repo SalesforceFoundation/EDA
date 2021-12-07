@@ -1,9 +1,10 @@
 # CumulusCI
-/cumulusci.yml        @SalesforceFoundation/release-engineering-reviewers
-/tasks/               @SalesforceFoundation/release-engineering-reviewers
+/cumulusci.yml         @SalesforceFoundation/release-engineering-reviewers
+/tasks/                @SalesforceFoundation/release-engineering-reviewers
 
 # SFDX
-/sfdx-project.json        @SalesforceFoundation/release-engineering-reviewers
+/sfdx-project.json     @SalesforceFoundation/release-engineering-reviewers
 
 # Github Actions and CODEOWNERS
-/.github/
+/.github/CODEOWNERS    @SalesforceFoundation/release-engineering-reviewers
+/.github/workflows/    @SalesforceFoundation/release-engineering-reviewers
