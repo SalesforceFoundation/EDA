@@ -60,7 +60,7 @@ export default class SettingsNavigationSubsection extends LightningElement {
     }
 
     get subsectionHeaderClass() {
-        let subsectionHeaderClass = "slds-p-horizontal_large slds-p-top_small slds-p-bottom_xx-small";
+        let subsectionHeaderClass = "slds-p-top_xx-small slds-p-bottom_xx-small slds-p-horizontal_medium";
 
         if (this.viewModel.isActive) {
             subsectionHeaderClass += " nav-is-active";
