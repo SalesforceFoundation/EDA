@@ -3,7 +3,13 @@
         <!--Section Header-->
         <h2
             id={viewModel.id}
-            class="slds-text-heading_small eda-nav_heading_uppercase slds-var-p-left_large slds-var-p-top_medium slds-var-p-bottom_xx-small"
+            class="
+                slds-text-heading_small
+                eda-nav_heading_uppercase
+                slds-var-p-left_large
+                slds-var-p-top_medium
+                slds-var-p-bottom_xx-small
+            "
         >
             <template if:false={viewModel.page}> {viewModel.label}</template>
             <template if:true={viewModel.page}>
