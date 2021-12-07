@@ -43,6 +43,8 @@ public virtual class ERR_Notifier {
     @TestVisible
     private static Datetime MAX_AGE_FOR_ERRORS = System.now().addHours(-48);
 
+    public Boolean sendEmailAsync { get; set; }
+
     /*********************************************
      * @description Instance for Singleton Pattern
      **********************************************/
@@ -53,6 +55,7 @@ public virtual class ERR_Notifier {
      * @description Empty constructor is not public for Singleton Pattern
      **********************************************************************/
     protected ERR_Notifier() {
+        this.sendEmailAsync = true;
     }
 
     /******************************************************************************
@@ -115,14 +118,7 @@ public virtual class ERR_Notifier {
                 sendList.add(u.email);
             }
         } else if (errorNotifRecipient == NotificationOptions.sysAdmins) {
-            List<User> sysadminlist = [
-                SELECT email
-                FROM User
-                WHERE User.Profile.Name = :UTIL_Profile.SYSTEM_ADMINISTRATOR AND isActive = TRUE
-            ];
-            for (User u : sysadminlist) {
-                sendList.add(u.email);
-            }
+            sendList.addAll(this.getSystemAdminEmails());
         }
         return sendList;
     }
@@ -179,14 +175,14 @@ public virtual class ERR_Notifier {
      */
     private void sendEmailNotifications(String context, List<String> sendList) {
         if (
-            !Test.isRunningTest() &&
+            this.sendEmailAsync &&
             (!system.isBatch() &&
             !system.isFuture() &&
             Limits.getFutureCalls() < Limits.getLimitFutureCalls())
         ) {
             //We cannot pass the context, because only primitive types can be passed to future methods.
             sendErrorQueueEmailNotificationFuture(sendList);
-        } else if (Test.isRunningTest() || system.isFuture()) {
+        } else if (!this.sendEmailAsync || system.isFuture()) {
             this.sendErrorQueueEmailNotification(context, sendList);
         }
     }

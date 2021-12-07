@@ -50,8 +50,8 @@ private class ERR_Notifier_TEST {
             notifierService,
             'Instance of service class returned should match static instance variable.'
         );
-
         System.assertEquals(true, notifierService != null, 'Instance of service class should not be null.');
+        System.assertEquals(true, notifierService.sendEmailAsync, 'sendEmailAsync value should be true');
     }
 
     /**************************************************************************************************************************
@@ -89,7 +89,9 @@ private class ERR_Notifier_TEST {
     private static void shouldMatchSystemAdminEmailList() {
         ERR_Notifier notifierService = ERR_Notifier.getInstance();
         Test.startTest();
-        Set<String> recipientEmails = new Set<String>(notifierService.getSystemAdminEmails());
+        Set<String> recipientEmails = new Set<String>(
+            notifierService.getErrorEmailRecipients(ERR_Notifier.notificationOptions.sysAdmins)
+        );
         Test.stopTest();
 
         Set<String> expectedEmails = getSystemAdminEmails();
@@ -267,6 +269,8 @@ private class ERR_Notifier_TEST {
         insert errors;
 
         ERR_Notifier notifierService = ERR_Notifier.getInstance();
+        //Email has to be sent in sync mode so we can force the heap limit
+        notifierService.sendEmailAsync = false;
         Test.startTest();
         ERR_Notifier.MAX_HEAP_LIMIT = Limits.getHeapSize() + 1;
         notifierService.sendErrorNotifications(null);
@@ -323,6 +327,7 @@ private class ERR_Notifier_TEST {
             Full_Message__c = 'TEST',
             Context_Type__c = 'TEST',
             Stack_Trace__c = 'TEST',
+            Record_URL__c = 'https://www.salesforce.com',
             Posted_in_Chatter__c = false,
             Email_Sent__c = false
         );
