@@ -711,6 +711,33 @@ flows:
                 options:
                     unmanaged: False
 
+    hackathon_managed_org:
+        group: '2021 Hackathon'
+        description: 'Call this flow to setup an EDA org with the latest managed package installed. Includes both a managed and unmanaged package extension.'
+        steps:
+            1:
+                flow: customer_org
+            2:
+                task: install_managed
+                options:
+                    namespace: sfdo122021
+                    version: 04t5f000000iLxF
+            3:
+                task: install_managed
+                options:
+                    namespace: null
+                    version: 04t5f000000iLxZ
+
+    install_hackathon_extension:
+        group: '2021 Hackathon'
+        description: 'Call this flow after running the hackathon_managed_org flow. Installs an unmanaged package that has a dependency on both EDA and the sfdo122021 packages.'
+        steps:
+            1:
+                task: install_managed
+                options:
+                    namespace: null
+                    version: 04t5f000000qoHp
+
 services:
     mockaroo:
         description: Configure connection for Mockaroo tasks
