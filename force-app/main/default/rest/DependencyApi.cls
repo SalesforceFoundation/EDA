@@ -1,0 +1,142 @@
+/*
+    Copyright (c) 2021, Salesforce.org
+    All rights reserved.
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this List of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this List of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of Salesforce.org nor the names of
+      its contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+    "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+    LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+    FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+    COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+    INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+    BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+    LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+    LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+    ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+    POSSIBILITY OF SUCH DAMAGE.
+ */
+@RestResource(urlMapping='/Dependency')
+global with sharing class DependencyApi {
+
+  @HttpGet
+  global static List<Item> doGet() {
+      Map<String, List<String>> metadataMapping = new Map<String, List<String>>();
+      metadataMapping.put('HEAD->', new List<String>());
+      
+      List<FieldDefinition> fields = getFieldDefinitions();
+      Map<String, Meta> fieldEntityMapping = recordFieldMetadata(metadataMapping, fields);
+      
+      List<Metadata> metadata = getComponentMetadataDependency();
+      recordComponentMetadata(metadataMapping, metadata, fieldEntityMapping);
+       
+      return buildOutputStructure(metadataMapping);
+  }
+  
+  static List<Item> buildOutputStructure(Map<String, List<String>> metadataMapping) {
+      List<Item> output = new List<Item>();
+      for (String i : metadataMapping.get('HEAD->')) {
+          List<String> mappings = metadataMapping.get(i);
+          if (mappings != null && mappings.size() > 0) {
+              Item item = new Item(i, i, true);
+              output.add(item);            
+              dfs(item, metadataMapping);    
+          }  
+      }
+      // Filter down results to only those which have dependencies
+      List<Item> clone = new List<Item>();
+      for (Item o : output) {
+          if (o.items.size() > 0) {
+              clone.add(o);
+          }
+      }
+      return clone;
+  }
+  
+  static void dfs(Item head, Map<String, List<String>> metadataMapping) {
+    if (!metadataMapping.containsKey(head.label)) return;
+      for (String i : metadataMapping.get(head.label)) {
+          Item item = new Item(i, i);
+          List<String> mappings = metadataMapping.get(item.label);
+          if (mappings != null && mappings.size() > 0) {
+              head.items.add(item);
+              dfs(item, metadataMapping);    
+          }
+      }
+  }
+  
+
+  static List<FieldDefinition> getFieldDefinitions() {
+      return [SELECT  EntityDefinition.NamespacePrefix, EntityDefinition.QualifiedApiName, EntityDefinition.KeyPrefix, NamespacePrefix, QualifiedApiName, DurableId
+        FROM FieldDefinition
+      WHERE EntityDefinition.QualifiedApiName in ('Academic_Certification__c', 'Account', 'Address__c', 'Affiliation__c', 'Affl_Mappings__c',
+     'Application__c',  'Attendance_Event__c',  'Attribute__c',  'Behavior_Involvement__c',  'Behavior_Response__c',
+     'Case',  'Contact',  'Contact_Language__c',  'Course__c',  'Course_Enrollment__c',  'Course_Offering__c',  'Course_Offering_Schedule__c',  'Credential__c',  
+     'Education_History__c',  'Error__c',  'Facility__c',  'Hierarchy_Settings__c',  'Language__c',  'Lead',  'Opportunity',  'Plan_Requirement__c',  
+     'Product_Registry__mdt',  'Program_Enrollment__c',  'Program_Plan__c',  'Relationship__c',  'Relationship_Auto_Create__c',  'Relationship_Lookup__c',  
+     'Term__c',  'Term_Grade__c',  'Test__c',  'Test_Definition__mdt',  'Test_Score__c',  'Test_Score_Definition__mdt',  'Time_Block__c'
+     )];
+     
+  }
+  
+  
+  static Map<String, Meta> recordFieldMetadata(Map<String, List<String>> metadataMapping, List<FieldDefinition> fields) {
+      Map<String, Meta> fieldEntityMapping = new Map<String, Meta>();
+      for (FieldDefinition field : fields) {
+        Meta m = new Meta(field.EntityDefinition.NamespacePrefix, field.EntityDefinition.QualifiedApiName, 'Entity');
+        if (!metadataMapping.containsKey(m.toKey())) {
+          metadataMapping.put(m.toKey(), new List<String>());
+          metadataMapping.get('HEAD->').add(m.toKey());  
+        }
+        String name = field.EntityDefinition.QualifiedApiName + '.' + field.QualifiedApiName;
+        Meta fieldM = new Meta(field.NamespacePrefix, name, 'Field');
+        metadataMapping.get(m.toKey()).add(fieldM.toKey());
+        metadataMapping.put(fieldM.toKey(), new List<String>());       
+          
+        fieldEntityMapping.put(field.QualifiedApiName + field.DurableId.substring(field.DurableId.indexOf('.')), fieldM);
+      } 
+      return fieldEntityMapping;
+  }   
+  
+  static void recordComponentMetadata(Map<String, List<String>> metadataMapping, List<Metadata> metadata, Map<String, Meta> fieldEntityMapping) {
+      for (Metadata m : metadata) {
+          Meta fieldMeta = null;
+          if (m.refMetadataComponentType.equals('CustomField')) {
+              fieldMeta = fieldEntityMapping.get(m.refMetadataComponentName+'__c.'+m.refMetadataComponentId.substring(0,15));
+              if (fieldMeta == null) {
+                  fieldMeta = new Meta(m.refMetadataComponentNamespace, m.refMetadataComponentName, m.refMetadataComponentType);
+              }
+              System.debug(fieldMeta);
+          } else {
+              fieldMeta = new Meta(m.refMetadataComponentNamespace, m.refMetadataComponentName, m.refMetadataComponentType);
+          }            
+          
+          if (!metadataMapping.containsKey(fieldMeta.toKey())) {
+              metadataMapping.put(fieldMeta.toKey(), new List<String>());
+          }
+          metadataMapping.get(fieldMeta.toKey()).add(new Meta(m.metadataComponentNamespace, m.metadataComponentName, m.metadataComponentType).toKey());
+      }
+  }
+  
+  // TODO - Integrate w/ Wei's Rest API
+  static List<Metadata> getComponentMetadataDependency() {
+      return new List<Metadata>{
+        new Metadata('Opportunity', 'Opportunity', 'StandardEntity', '01p2D00000CNnYSQA1', 'ACCT_IndividualAccounts_TDTM', 'ApexClass'),
+        new Metadata('Opportunity', 'Opportunity', 'StandardEntity', '01p2D00000CNnAAAA1', 'ACCT_IndividualAccounts_TEST', 'ApexClass'),
+        new Metadata('00N2D00000FfRVnUAN', 'Completed_FAFSA', 'CustomField', '00h2D000003DOPEQA4', 'EDA Opportunity Layout', 'Layout'),
+        new Metadata('00N2D00000FfRVnUAN', 'Completed_FAFSA', 'CustomField', '11N2D00000FfRVnUAN', 'Neil_Test', 'CustomField'),
+        new Metadata('11N2D00000FfRVnUAN', 'Neil_Test', 'CustomField', '00h2D000003DOPEQA4', 'EDA Opportunity Layout', 'Layout'),
+        new Metadata('00N2D00000FfRVpUAN', 'Desired_Degree_Level', 'CustomField', '00h2D000003DOPEQA4', 'EDA Opportunity Layout', 'Layout'),
+        new Metadata('00N2D00000FfRVqUAN', 'Desired_Start_Term', 'CustomField', '00h2D000003DOPEQA4', 'EDA Opportunity Layout', 'Layout'),
+        new Metadata('01I2D000001Pj2dUAC', 'Education_History', 'CustomObject', '01p2D00000CNnYOQA1', 'ACCT_CannotDelete_TDTM', 'ApexClass')
+      };
+  }
+}
