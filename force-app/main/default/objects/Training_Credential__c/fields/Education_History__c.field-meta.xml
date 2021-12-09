@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Education_History__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>A related Education History record.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>A related Education History record.</inlineHelpText>
+    <label>Education History</label>
+    <referenceTo>Education_History__c</referenceTo>
+    <relationshipLabel>Training Credentials</relationshipLabel>
+    <relationshipName>Training_Credentials</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Learner__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The student participating in this Training Credential.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The student participating in this Training Credential.</inlineHelpText>
+    <label>Learner</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Training Credential Evidence</relationshipLabel>
+    <relationshipName>Training_Credential_Evidence</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Field_Of_Study__c</fullName>
+    <description>Field_Of_Study</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The Field of Study</inlineHelpText>
+    <label>Field Of Study</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+                <label>Engineering</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

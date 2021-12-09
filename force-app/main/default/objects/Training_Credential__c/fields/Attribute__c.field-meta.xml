@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attribute__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>A characteristic of or a credential.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>A characteristic of or a credential.</inlineHelpText>
+    <label>Attribute</label>
+    <referenceTo>Attribute__c</referenceTo>
+    <relationshipLabel>Training Credentials</relationshipLabel>
+    <relationshipName>Training_Credentials</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
