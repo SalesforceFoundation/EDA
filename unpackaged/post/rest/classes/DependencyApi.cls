@@ -82,6 +82,53 @@ global with sharing class DependencyApi {
     }
 
     static List<FieldDefinition> getFieldDefinitions() {
+        String prefix = '';
+        List<Publisher> packages = [SELECT Id FROM Publisher WHERE NamespacePrefix = 'hed'];
+        if (packages.size() == 1) {
+            prefix = 'hed__';
+        }
+
+        List<String> entitiesToQuery = new List<String>();
+        entitiesToQuery.add(prefix + 'Academic_Certification__c');
+        entitiesToQuery.add('Account');
+        entitiesToQuery.add(prefix + 'Address__c');
+        entitiesToQuery.add(prefix + 'Affiliation__c');
+        entitiesToQuery.add(prefix + 'Affl_Mappings__c');
+        entitiesToQuery.add(prefix + 'Application__c');
+        entitiesToQuery.add(prefix + 'Attendance_Event__c');
+        entitiesToQuery.add(prefix + 'Attribute__c');
+        entitiesToQuery.add(prefix + 'Behavior_Involvement__c');
+        entitiesToQuery.add(prefix + 'Behavior_Response__c');
+        entitiesToQuery.add('Case');
+        entitiesToQuery.add('Contact');
+        entitiesToQuery.add(prefix + 'Contact_Language__c');
+        entitiesToQuery.add(prefix + 'Course__c');
+        entitiesToQuery.add(prefix + 'Course_Enrollment__c');
+        entitiesToQuery.add(prefix + 'Course_Offering__c');
+        entitiesToQuery.add(prefix + 'Course_Offering_Schedule__c');
+        entitiesToQuery.add(prefix + 'Credential__c');
+        entitiesToQuery.add(prefix + 'Education_History__c');
+        entitiesToQuery.add(prefix + 'Error__c');
+        entitiesToQuery.add(prefix + 'Facility__c');
+        entitiesToQuery.add(prefix + 'Hierarchy_Settings__c');
+        entitiesToQuery.add(prefix + 'Language__c');
+        entitiesToQuery.add('Lead');
+        entitiesToQuery.add('Opportunity');
+        entitiesToQuery.add(prefix + 'Plan_Requirement__c');
+        entitiesToQuery.add(prefix + 'Product_Registry__mdt');
+        entitiesToQuery.add(prefix + 'Program_Enrollment__c');
+        entitiesToQuery.add(prefix + 'Program_Plan__c');
+        entitiesToQuery.add(prefix + 'Relationship__c');
+        entitiesToQuery.add(prefix + 'Relationship_Auto_Create__c');
+        entitiesToQuery.add(prefix + 'Relationship_Lookup__c');
+        entitiesToQuery.add(prefix + 'Term__c');
+        entitiesToQuery.add(prefix + 'Term_Grade__c');
+        entitiesToQuery.add(prefix + 'Test__c');
+        entitiesToQuery.add(prefix + 'Test_Definition__mdt');
+        entitiesToQuery.add(prefix + 'Test_Score__c');
+        entitiesToQuery.add(prefix + 'Test_Score_Definition__mdt');
+        entitiesToQuery.add(prefix + 'Time_Block__c');
+
         return [
             SELECT
                 EntityDefinition.NamespacePrefix,
@@ -92,47 +139,7 @@ global with sharing class DependencyApi {
                 DurableId
             FROM FieldDefinition
             WHERE
-                EntityDefinition.QualifiedApiName IN (
-                    'Academic_Certification__c',
-                    'Account',
-                    'Address__c',
-                    'Affiliation__c',
-                    'Affl_Mappings__c',
-                    'Application__c',
-                    'Attendance_Event__c',
-                    'Attribute__c',
-                    'Behavior_Involvement__c',
-                    'Behavior_Response__c',
-                    'Case',
-                    'Contact',
-                    'Contact_Language__c',
-                    'Course__c',
-                    'Course_Enrollment__c',
-                    'Course_Offering__c',
-                    'Course_Offering_Schedule__c',
-                    'Credential__c',
-                    'Education_History__c',
-                    'Error__c',
-                    'Facility__c',
-                    'Hierarchy_Settings__c',
-                    'Language__c',
-                    'Lead',
-                    'Opportunity',
-                    'Plan_Requirement__c',
-                    'Product_Registry__mdt',
-                    'Program_Enrollment__c',
-                    'Program_Plan__c',
-                    'Relationship__c',
-                    'Relationship_Auto_Create__c',
-                    'Relationship_Lookup__c',
-                    'Term__c',
-                    'Term_Grade__c',
-                    'Test__c',
-                    'Test_Definition__mdt',
-                    'Test_Score__c',
-                    'Test_Score_Definition__mdt',
-                    'Time_Block__c'
-                )
+                EntityDefinition.QualifiedApiName IN :entitiesToQuery
         ];
     }
 
