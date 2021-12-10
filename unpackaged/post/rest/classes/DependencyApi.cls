@@ -88,46 +88,47 @@ global with sharing class DependencyApi {
             prefix = 'hed__';
         }
 
-        List<String> entitiesToQuery = new List<String>();
-        entitiesToQuery.add(prefix + 'Academic_Certification__c');
-        entitiesToQuery.add('Account');
-        entitiesToQuery.add(prefix + 'Address__c');
-        entitiesToQuery.add(prefix + 'Affiliation__c');
-        entitiesToQuery.add(prefix + 'Affl_Mappings__c');
-        entitiesToQuery.add(prefix + 'Application__c');
-        entitiesToQuery.add(prefix + 'Attendance_Event__c');
-        entitiesToQuery.add(prefix + 'Attribute__c');
-        entitiesToQuery.add(prefix + 'Behavior_Involvement__c');
-        entitiesToQuery.add(prefix + 'Behavior_Response__c');
-        entitiesToQuery.add('Case');
-        entitiesToQuery.add('Contact');
-        entitiesToQuery.add(prefix + 'Contact_Language__c');
-        entitiesToQuery.add(prefix + 'Course__c');
-        entitiesToQuery.add(prefix + 'Course_Enrollment__c');
-        entitiesToQuery.add(prefix + 'Course_Offering__c');
-        entitiesToQuery.add(prefix + 'Course_Offering_Schedule__c');
-        entitiesToQuery.add(prefix + 'Credential__c');
-        entitiesToQuery.add(prefix + 'Education_History__c');
-        entitiesToQuery.add(prefix + 'Error__c');
-        entitiesToQuery.add(prefix + 'Facility__c');
-        entitiesToQuery.add(prefix + 'Hierarchy_Settings__c');
-        entitiesToQuery.add(prefix + 'Language__c');
-        entitiesToQuery.add('Lead');
-        entitiesToQuery.add('Opportunity');
-        entitiesToQuery.add(prefix + 'Plan_Requirement__c');
-        entitiesToQuery.add(prefix + 'Product_Registry__mdt');
-        entitiesToQuery.add(prefix + 'Program_Enrollment__c');
-        entitiesToQuery.add(prefix + 'Program_Plan__c');
-        entitiesToQuery.add(prefix + 'Relationship__c');
-        entitiesToQuery.add(prefix + 'Relationship_Auto_Create__c');
-        entitiesToQuery.add(prefix + 'Relationship_Lookup__c');
-        entitiesToQuery.add(prefix + 'Term__c');
-        entitiesToQuery.add(prefix + 'Term_Grade__c');
-        entitiesToQuery.add(prefix + 'Test__c');
-        entitiesToQuery.add(prefix + 'Test_Definition__mdt');
-        entitiesToQuery.add(prefix + 'Test_Score__c');
-        entitiesToQuery.add(prefix + 'Test_Score_Definition__mdt');
-        entitiesToQuery.add(prefix + 'Time_Block__c');
+        List<String> entitiesToQuery = new List<String> {
+            prefix + 'Academic_Certification__c',
+            'Account',
+            prefix + 'Address__c',
+            prefix + 'Affiliation__c',
+            prefix + 'Affl_Mappings__c',
+            prefix + 'Application__c',
+            prefix + 'Attendance_Event__c',
+            prefix + 'Attribute__c',
+            prefix + 'Behavior_Involvement__c',
+            prefix + 'Behavior_Response__c',
+            'Case',
+            'Contact',
+            prefix + 'Contact_Language__c',
+            prefix + 'Course__c',
+            prefix + 'Course_Enrollment__c',
+            prefix + 'Course_Offering__c',
+            prefix + 'Course_Offering_Schedule__c',
+            prefix + 'Credential__c',
+            prefix + 'Education_History__c',
+            prefix + 'Error__c',
+            prefix + 'Facility__c',
+            prefix + 'Hierarchy_Settings__c',
+            prefix + 'Language__c',
+            'Lead',
+            'Opportunity',
+            prefix + 'Plan_Requirement__c',
+            prefix + 'Product_Registry__mdt',
+            prefix + 'Program_Enrollment__c',
+            prefix + 'Program_Plan__c',
+            prefix + 'Relationship__c',
+            prefix + 'Relationship_Auto_Create__c',
+            prefix + 'Relationship_Lookup__c',
+            prefix + 'Term__c',
+            prefix + 'Term_Grade__c',
+            prefix + 'Test__c',
+            prefix + 'Test_Definition__mdt',
+            prefix + 'Test_Score__c',
+            prefix + 'Test_Score_Definition__mdt',
+            prefix + 'Time_Block__c'
+        };
 
         return [
             SELECT
