@@ -33,8 +33,10 @@ public with sharing class ComponentDependencyService {
             }
             system.debug('***** items' + cdItems);
             return cdItems;
+        } else {
+            system.debug('***** blank response');
+            return new List<ComponentDependencyItem>();
         }
-        return null;
     }
     public String queryComponentDependency(string theQuery) {
         String baseURL = 'callout:ToolNC?';

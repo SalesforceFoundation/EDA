@@ -26,7 +26,7 @@
  */
 public with sharing class DependencyApi {
     @AuraEnabled
-    public static List<Item> doGet() {
+    public static String doGet() {
         Map<String, List<String>> metadataMapping = new Map<String, List<String>>();
         metadataMapping.put('HEAD->', new List<String>());
 
@@ -34,9 +34,12 @@ public with sharing class DependencyApi {
         Map<String, Meta> fieldEntityMapping = recordFieldMetadata(metadataMapping, fields);
 
         List<ComponentDependencyItem> metadata = new ComponentDependencyService().getComponentDependency();
-        recordComponentMetadata(metadataMapping, metadata, fieldEntityMapping);
-
-        return buildOutputStructure(metadataMapping);
+        System.debug(metadata);
+        if (metadata != null && metadata.size() > 0) {
+            recordComponentMetadata(metadataMapping, metadata, fieldEntityMapping);
+        }
+        String outputStructureJson = JSON.serialize(buildOutputStructure(metadataMapping));
+        return outputStructureJson;
     }
 
     static List<Item> buildOutputStructure(Map<String, List<String>> metadataMapping) {
@@ -88,7 +91,7 @@ public with sharing class DependencyApi {
             prefix = 'hed__';
         }
 
-        List<String> entitiesToQuery = new List<String> {
+        List<String> entitiesToQuery = new List<String>{
             prefix + 'Academic_Certification__c',
             'Account',
             prefix + 'Address__c',
@@ -139,8 +142,7 @@ public with sharing class DependencyApi {
                 QualifiedApiName,
                 DurableId
             FROM FieldDefinition
-            WHERE
-                EntityDefinition.QualifiedApiName IN :entitiesToQuery
+            WHERE EntityDefinition.QualifiedApiName IN :entitiesToQuery
         ];
     }
 

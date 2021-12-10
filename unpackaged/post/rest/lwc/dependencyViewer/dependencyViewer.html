@@ -1,7 +1,10 @@
 <template>
     <lightning-card title="Object Dependencies" icon-name="standard:sobject_collection">
         <div class="slds-var-p-around_medium">
+            <template if:false={loaded}>
+                <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+            </template>
             <lightning-tree items={dependencyJson} header="Dependencies"></lightning-tree>
         </div>
-      </lightning-card>
+    </lightning-card>
 </template>
