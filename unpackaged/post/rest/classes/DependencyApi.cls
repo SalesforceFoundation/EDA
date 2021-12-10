@@ -24,10 +24,9 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
  */
-@RestResource(urlMapping='/EDA-Dependency')
-global with sharing class DependencyApi {
-    @HttpGet
-    global static List<Item> doGet() {
+public with sharing class DependencyApi {
+    @AuraEnabled
+    public static List<Item> doGet() {
         Map<String, List<String>> metadataMapping = new Map<String, List<String>>();
         metadataMapping.put('HEAD->', new List<String>());
 
@@ -57,6 +56,7 @@ global with sharing class DependencyApi {
                 clone.add(o);
             }
         }
+        System.debug('items = ' + clone);
         return clone;
     }
 

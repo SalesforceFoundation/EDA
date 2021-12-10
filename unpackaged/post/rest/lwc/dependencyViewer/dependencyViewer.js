@@ -1,18 +1,20 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, track } from 'lwc';
 
-// import getDependencyStructure from "@salesforce/apex/DependencyApi.doGet";
+import getDependencyStructure from "@salesforce/apex/DependencyApi.doGet";
 
 export default class DependencyViewer extends LightningElement {
 
-    connectedCallback(){
-        // getDependencyStructure()
-        // .then(result => {
-        //     console.log(result);
-        //     this.dependencyJson = result;
-        // })
-        // .catch(error => {
-        //     console.log('Error: '+error.body.message);
-        // });
+    @track dependencyJson;
+
+    connectedCallback() {
+        getDependencyStructure()
+        .then(result => {
+            console.log(result);
+            this.dependencyJson = result;
+        })
+        .catch(error => {
+            console.log('Error: '+error.body.message);
+        });
     }
 
     dependencyJson = [

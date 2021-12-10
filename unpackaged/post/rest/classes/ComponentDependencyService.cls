@@ -38,21 +38,16 @@ public with sharing class ComponentDependencyService {
     }
     public String queryComponentDependency(string theQuery) {
         String baseURL = 'callout:ToolNC?';
-        return componentDependencyRest(baseURL + 'q=' + (theQuery.replace(' ', '+')), 'GET', UserInfo.getSessionId());
+        return componentDependencyRest(baseURL + 'q=' + (theQuery.replace(' ', '+')), 'GET');
     }
-    public String componentDependencyRest(String endPoint, String method, String sid) {
+    public String componentDependencyRest(String endPoint, String method) {
         try {
             Http h = new Http();
             HttpRequest theRequest = new HttpRequest();
-            theRequest.setHeader('Authorization', 'Bearer ' + sid);
             theRequest.setTimeout(10000);
             theRequest.setEndpoint(endPoint);
             theRequest.setMethod(method);
             HttpResponse theResponse = h.send(theRequest);
-            while (theResponse.getStatusCode() == 302) {
-                theRequest.setEndpoint(theResponse.getHeader('Location'));
-                theResponse = new Http().send(theRequest);
-            }
             return theResponse.getBody();
         } catch (Exception ex) {
             return ex.getMessage();
