@@ -4,5 +4,9 @@
       <members>*</members>
       <name>ApexClass</name>
   </types>
+  <types>
+      <members>*</members>
+      <name>LightningComponentBundle</name>
+  </types>
   <version>52.0</version>
 </Package>
