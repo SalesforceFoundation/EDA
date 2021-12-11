@@ -34,7 +34,6 @@ public with sharing class DependencyApi {
         Map<String, Meta> fieldEntityMapping = recordFieldMetadata(metadataMapping, fields);
 
         List<ComponentDependencyItem> metadata = new ComponentDependencyService().getComponentDependency();
-        System.debug(metadata);
         if (metadata != null && metadata.size() > 0) {
             recordComponentMetadata(metadataMapping, metadata, fieldEntityMapping);
         }
@@ -57,9 +56,10 @@ public with sharing class DependencyApi {
         for (Item o : output) {
             if (o.items.size() > 0) {
                 clone.add(o);
+            } else {
+                System.debug('Skipping item: ' + o);
             }
         }
-        System.debug('items = ' + clone);
         return clone;
     }
 
@@ -130,7 +130,8 @@ public with sharing class DependencyApi {
             prefix + 'Test_Definition__mdt',
             prefix + 'Test_Score__c',
             prefix + 'Test_Score_Definition__mdt',
-            prefix + 'Time_Block__c'
+            prefix + 'Time_Block__c',
+            prefix + 'Trigger_Handler__c'
         };
 
         return [
@@ -183,11 +184,13 @@ public with sharing class DependencyApi {
             Meta fieldMeta = null;
             if (m.refMetadataComponentType.equals('CustomField')) {
                 fieldMeta = fieldEntityMapping.get(
+                    (m.refMetadataComponentNamespace != null ? m.refMetadataComponentNamespace + '__' : null) +
                     m.refMetadataComponentName +
                     '__c.' +
                     m.refMetadataComponentId.substring(0, 15)
                 );
                 if (fieldMeta == null) {
+                    System.debug('fieldMeta is null for ' + m);
                     fieldMeta = new Meta(
                         m.refMetadataComponentNamespace,
                         m.refMetadataComponentName,

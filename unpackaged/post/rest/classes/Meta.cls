@@ -1,4 +1,5 @@
 public with sharing class Meta {
+    // TODO: componentNamespace potentially not needed -- componentName seems to already include the namespace, if there is one
     public String componentNamespace;
     public String componentName;
     public String componentType;
@@ -10,6 +11,6 @@ public with sharing class Meta {
     }
 
     public String toKey() {
-        return this.componentType + ': ' + this.componentNamespace + this.componentName;
+        return this.componentType + ': ' + this.componentName;//this.componentNamespace + this.componentName;
     }
 }

@@ -1,8 +1,8 @@
-global class Item {
-    global String label;
-    global String name;
-    global Boolean expanded;
-    global List<Item> items;
+public class Item {
+    public String label;
+    public String name;
+    public Boolean expanded;
+    public List<Item> items;
 
     public Item(String label, String name, Boolean expanded) {
         this.label = label;

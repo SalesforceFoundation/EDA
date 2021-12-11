@@ -1,4 +1,4 @@
-import { LightningElement, track } from "lwc";
+import { LightningElement } from "lwc";
 import getDependencyStructure from "@salesforce/apex/DependencyApi.doGet";
 
 export default class DependencyViewer extends LightningElement {

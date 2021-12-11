@@ -11,7 +11,7 @@ public with sharing class ComponentDependencyService {
             'RefMetadataComponentName, ' +
             'RefMetadataComponentNamespace, ' +
             'RefMetadataComponentType ' +
-            'FROM MetadataComponentDependency limit 750';
+            'FROM MetadataComponentDependency LIMIT 2000';
         String responseStr = queryComponentDependency(theQuery);
         system.debug('***** res' + responseStr);
         if (string.isNotBlank(responseStr)) {
