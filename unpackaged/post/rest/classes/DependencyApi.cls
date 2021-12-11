@@ -184,7 +184,7 @@ public with sharing class DependencyApi {
             Meta fieldMeta = null;
             if (m.refMetadataComponentType.equals('CustomField')) {
                 fieldMeta = fieldEntityMapping.get(
-                    (m.refMetadataComponentNamespace != null ? m.refMetadataComponentNamespace + '__' : null) +
+                    (String.isNotBlank(m.refMetadataComponentNamespace) ? m.refMetadataComponentNamespace + '__' : '') +
                     m.refMetadataComponentName +
                     '__c.' +
                     m.refMetadataComponentId.substring(0, 15)

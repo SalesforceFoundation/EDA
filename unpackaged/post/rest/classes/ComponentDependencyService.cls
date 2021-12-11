@@ -2,6 +2,7 @@ public with sharing class ComponentDependencyService {
     public ComponentDependencyService() {
     }
     public List<ComponentDependencyItem> getComponentDependency() {
+        // TODO: Increasing the query limit to 2000 results in a "Maximum stack depth reached: 1001" error in an unmanaged EDA org!
         string theQuery =
             'SELECT MetadataComponentId, ' +
             'MetadataComponentName, ' +
@@ -11,7 +12,7 @@ public with sharing class ComponentDependencyService {
             'RefMetadataComponentName, ' +
             'RefMetadataComponentNamespace, ' +
             'RefMetadataComponentType ' +
-            'FROM MetadataComponentDependency LIMIT 2000';
+            'FROM MetadataComponentDependency LIMIT 750';
         String responseStr = queryComponentDependency(theQuery);
         system.debug('***** res' + responseStr);
         if (string.isNotBlank(responseStr)) {
