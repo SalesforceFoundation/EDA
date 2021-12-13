@@ -3,7 +3,7 @@ import { refreshApex } from "@salesforce/apex";
 
 import getAddressSettingsVModel from "@salesforce/apex/AddressSettingsController.getAddressSettingsVModel";
 
-import stgAddressSettingsTitle from "@salesforce/label/c.stgAddressSettingsTitle";
+import stgAddressSettingsTitle from "@salesforce/label/c.stgAddressSettingsNav";
 import stgContactMultiAddressesEnabled from "@salesforce/label/c.stgContactMultiAddressesEnabled";
 import stgHelpContactAddrs from "@salesforce/label/c.stgHelpContactAddrs";
 import stgAccountTypesMultiAddressesEnabled from "@salesforce/label/c.stgAccountTypesMultiAddressesEnabled";

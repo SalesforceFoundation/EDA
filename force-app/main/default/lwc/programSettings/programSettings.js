@@ -10,7 +10,7 @@ import deleteAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsContro
 import unmappedRecordTypesExist from "@salesforce/apex/ProgramSettingsController.unmappedRecordTypesExist";
 
 //Page Custom Labels
-import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
+import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsNav";
 
 // Controller for Affiliations created with Program Enrollment
 import getAffiliationsWithProgramEnrollmentVModel from "@salesforce/apex/AffiliationsWithProgramEnrollController.getAffiliationsWithProgramEnrollmentVModel";

@@ -9,7 +9,7 @@ import updateAffiliationMappings from "@salesforce/apex/AffiliationsSettingsCont
 import deleteAffiliationMapping from "@salesforce/apex/AffiliationsSettingsController.deleteAffiliationMapping";
 import insertAffiliationMappings from "@salesforce/apex/AffiliationsSettingsController.insertAffiliationMappings";
 
-import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsTitle";
+import stgAffiliationsSettingsTitle from "@salesforce/label/c.stgAffiliationsSettingsNav";
 import afflTypeEnforced from "@salesforce/label/c.afflTypeEnforced";
 import afflTypeEnforcedDescription from "@salesforce/label/c.afflTypeEnforcedDescription";
 import AfflMappingsDescription from "@salesforce/label/c.AfflMappingsDescription";
