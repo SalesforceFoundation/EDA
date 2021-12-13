@@ -6,7 +6,7 @@ import getAccountAutoDeletionSettingsViewModel from "@salesforce/apex/AccountMod
 import getLeadConversionAccountNamingSettingsViewModel from "@salesforce/apex/AccountModelSettingsController.getLeadConversionAccountNamingViewModel";
 import getAccountNamingSettingsViewModel from "@salesforce/apex/AccountNamingSettingsController.getAccountNamingSettingsViewModel";
 
-import stgAccountModelSettingsTitle from "@salesforce/label/c.stgAccountModelSettingsTitle";
+import stgAccountModelSettingsTitle from "@salesforce/label/c.stgAccountModelNav";
 import stgAccModelTitle from "@salesforce/label/c.stgAccModelTitle";
 import stgHelpAccountModel from "@salesforce/label/c.stgHelpAccountModel";
 import stgAdminAccountRecordType from "@salesforce/label/c.stgAdminAccountRecordType";

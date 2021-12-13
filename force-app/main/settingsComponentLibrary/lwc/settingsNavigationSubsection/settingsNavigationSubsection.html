@@ -1,12 +1,12 @@
 <template>
     <!-- Base State-->
     <template if:false={viewModel.isActive}>
-        <div>
+        <div class="slds-var-m-bottom_small">
             <!--Subsection Header-->
             <h3 id={viewModel.id} class={subsectionHeaderClass}>
                 <a
                     href="javascript:void(0);"
-                    class="slds-text-title_caps slds-text-color_weak nav-subsection-header_link"
+                    class="slds-text-heading_small slds-text-color_weak nav-subsection-header_link"
                     onclick={handleNavigationClick}
                     aria-current={ariaCurrent}
                     data-qa-locator={qaLocator}
@@ -25,14 +25,14 @@
     </template>
     <!-- Active State-->
     <template if:true={viewModel.isActive}>
-        <div class="slds-grid slds-nowrap nav-is-active">
+        <div class="slds-grid slds-nowrap slds-var-m-bottom_small nav-is-active">
             <!--Content Area-->
             <div class="slds-col slds-size_11-of-12">
                 <!--Subsection Header-->
                 <h3 id={viewModel.id} class={subsectionHeaderClass}>
                     <a
                         href="javascript:void(0);"
-                        class="slds-text-title_caps slds-text-color_weak nav-subsection-header_link"
+                        class="slds-text-heading_small slds-text-color_weak nav-subsection-header_link"
                         onclick={handleNavigationClick}
                         aria-current={ariaCurrent}
                         data-qa-locator={qaLocator}
@@ -49,7 +49,7 @@
                 </template>
             </div>
             <!--Active Chevron-->
-            <div class="slds-col slds-bump-left slds-size_1-of-12 slds-align_absolute-center slds-text-align_right">
+            <div class="slds-col slds-col_bump-left slds-size_1-of-12 slds-align_absolute-center slds-text-align_right">
                 <lightning-icon icon-name="utility:chevronright" size="x-small" aria-hidden="true"></lightning-icon>
             </div>
         </div>

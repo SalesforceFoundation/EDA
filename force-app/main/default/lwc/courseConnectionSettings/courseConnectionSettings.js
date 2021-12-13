@@ -5,7 +5,7 @@ import { refreshApex } from "@salesforce/apex";
 import getCourseConnectionSettingsVModel from "@salesforce/apex/CourseConnectionSettingsController.getCourseConnectionSettingsVModel";
 
 //Custom Labels
-import stgCourseConnectionsTitle from "@salesforce/label/c.stgCourseConnectionsTitle";
+import stgCourseConnectionsTitle from "@salesforce/label/c.stgCourseConnectionsNav";
 import stgEnableCourseConnectionsTitle from "@salesforce/label/c.stgEnableCourseConnectionsTitle";
 import stgHelpEnableCourseConnections from "@salesforce/label/c.stgHelpEnableCourseConnections";
 import stgDefaultStudentTypeTitle from "@salesforce/label/c.stgDefaultStudentTypeTitle";

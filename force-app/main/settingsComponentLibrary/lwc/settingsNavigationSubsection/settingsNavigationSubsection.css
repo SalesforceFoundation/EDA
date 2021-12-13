@@ -14,6 +14,10 @@
     color: var(--lwc-colorTextActionLabelActive);
 }
 
+.nav-subsection-header_link{
+    font-weight: var(--lwc-fontWeightBold);
+}
+
 .nav-is-active {
     background-color: var(--lwc-colorBackground);
 }
