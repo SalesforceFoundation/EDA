@@ -10,7 +10,7 @@ import createRelationshipLookup from "@salesforce/apex/RelationshipSettingsContr
 import deleteRelationshipLookup from "@salesforce/apex/RelationshipSettingsController.deleteRelationshipLookup";
 
 // Reciprocal Method Custom Labels
-import stgRelationshipSettingsTitle from "@salesforce/label/c.stgRelationshipSettingsTitle";
+import stgRelationshipSettingsTitle from "@salesforce/label/c.stgRelationshipSettingsNav";
 import stgTitleReciMethod from "@salesforce/label/c.stgTitleReciMethod";
 import stgHelpRelReciprocalMethod from "@salesforce/label/c.stgHelpRelReciprocalMethod";
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";
