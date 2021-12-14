@@ -39,15 +39,11 @@ export default class EDASettings extends NavigationMixin(LightningElement) {
     }
 
     get currentUserHasAccessWireResolved() {
-        if (!this.currentUserHasAccessWireResult) {
+        if (this.currentUserHasAccessWireResult === undefined) {
             return false;
         }
 
-        if (!this.currentUserHasAccessWireResult.data && !this.currentUserHasAccessWireResult.error) {
-            return false;
-        }
-
-        return true;
+        return (this.currentUserHasAccessWireResult.data !== undefined || this.currentUserHasAccessWireResult.error !== undefined);
     }
 
     get edaComponentNavigationPrefix() {
