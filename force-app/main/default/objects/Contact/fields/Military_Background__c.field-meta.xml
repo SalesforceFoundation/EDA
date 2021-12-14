@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Military_Background__c</fullName>
-    <description>Describe this person&apos;s miltary service, for example, the branch of the military, length of time in the miltary, date of discharge, etc.</description>
+    <description>Describe this person&apos;s military service, for example, the branch of the military, length of time in the military, date of discharge, etc.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Describe this person&apos;s miltary service, for example, the branch of the military, length of time in the miltary, date of discharge, etc.</inlineHelpText>
+    <inlineHelpText>Describe this person&apos;s military service, for example, the branch of the military, length of time in the military, date of discharge, etc.</inlineHelpText>
     <label>Military Background</label>
     <length>32768</length>
     <trackFeedHistory>false</trackFeedHistory>
