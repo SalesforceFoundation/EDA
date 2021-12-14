@@ -1110,6 +1110,54 @@ private class ACCT_IndividualAccounts_TEST {
         }
     }
 
+/********************************************************************************************************
+     * @description Validate that when updating the OwnerId of an existing Contact, the Account updates the
+     *  OwnerId to the same updated value.
+     */
+    @isTest
+    private static void test_updateOwnerAccountSync() {
+
+        //Ensure Admin Account model
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID())
+        );
+
+        // Create a single new User
+        Id sysAdminProfileId = UTIL_Profile.getInstance().getProfileIds(UTIL_Profile.SYSTEM_ADMINISTRATOR)[0];
+        User tempUser = new User(
+            LastName = 'TestSysAdminUserA',
+            Email = 'test_insertAsOtherUser@email.npsp',
+            ProfileId = sysAdminProfileId,
+            isActive = true,
+            UserName = 'test_insertAsOtherUser@email.npsp',
+            Alias = 'tu08534',
+            TimeZoneSidKey = 'America/Los_Angeles',
+            LocaleSidKey = 'en_US',
+            LanguageLocaleKey = 'en_US',
+            EmailEncodingKey = 'ISO-8859-1'
+        );
+        insert tempUser;
+
+        Id currUserId = UserInfo.getUserId();
+        Contact con = UTIL_UnitTestData_TEST.getContact();
+        insert con;
+        con = [SELECT Id, OwnerId, AccountId FROM Contact WHERE Id = :con.Id LIMIT 1];
+
+        Test.startTest();
+        con.OwnerId = tempUser.Id;
+        update con;
+        Test.stopTest();
+
+        System.runAs(tempUser) {
+            Account acct = [SELECT Id, OwnerId FROM Account WHERE Id = :con.AccountId LIMIT 1];
+            System.assertEquals(
+                acct.OwnerId,
+                tempUser.Id,
+                'The Account owner should be the same as the new Contact Owner'
+            );
+        }
+    }
+
     /*********************************************************************************************************
      * @description Insert a new contact with empty name string to an existing Household Account
      * Make sure the Account's name is set based on account naming setting.
