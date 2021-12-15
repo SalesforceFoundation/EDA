@@ -32,7 +32,10 @@
         </template>
         <template if:true={currentUserHasAccessWireResolved}>
             <template if:false={currentUserHasAccess}>
-                <div class="slds-col slds-size_12-of-12 slds-theme_default slds-p-around_small">
+                <div
+                    class="slds-col slds-size_12-of-12 slds-theme_default slds-p-around_small"
+                    data-testid="eda-settings-error-insufficient-access"
+                >
                     {labelReference.insufficientAccessError}
                 </div></template
             >
