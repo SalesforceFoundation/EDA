@@ -35,7 +35,9 @@ export default class EDASettings extends NavigationMixin(LightningElement) {
         this.currentUserHasAccessWireResult = result;
         if (result.data) {
             this.currentUserHasAccess = result.data;
+            this.template.querySelectorAll(".slds-grid")[0]?.classList.add("eda-height_full");
         }
+        this.template.querySelectorAll(".slds-grid")[0]?.classList.remove("eda-height_full");
     }
 
     get currentUserHasAccessWireResolved() {
@@ -43,7 +45,10 @@ export default class EDASettings extends NavigationMixin(LightningElement) {
             return false;
         }
 
-        return (this.currentUserHasAccessWireResult.data !== undefined || this.currentUserHasAccessWireResult.error !== undefined);
+        return (
+            this.currentUserHasAccessWireResult.data !== undefined ||
+            this.currentUserHasAccessWireResult.error !== undefined
+        );
     }
 
     get edaComponentNavigationPrefix() {
