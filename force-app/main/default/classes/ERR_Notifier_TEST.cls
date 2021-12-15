@@ -107,11 +107,56 @@ private class ERR_Notifier_TEST {
     @IsTest
     private static void shouldOnlyRetrieveRecentErrorLogEntries() {
         ERR_Notifier.MAX_AGE_FOR_ERRORS = Datetime.now().addDays(-3);
+        ERR_Notifier.MAX_RECORDS = 100;
+
+        List<Error__c> errors = new List<Error__c>();
+        // The oldest error will be 80 days old
+        Datetime dt = Datetime.now().addDays(-80).addHours(1);
+        // Create one error per day for up to 100 total records.
+        for (Integer n = 0; n < 100; n++) {
+            errors.add(createError(dt));
+            dt = dt.addDays(1);
+        }
+        insert errors;
+
+        ERR_Notifier notifierService = ERR_Notifier.getInstance();
+        Test.startTest();
+        List<Error__c> emailErrors = notifierService.getErrorsPendingEmailNotification();
+        List<Error__c> chatterErrors = notifierService.getErrorsPendingChatterNotification();
+        Test.stopTest();
+
+        System.assertEquals(
+            23, //100-80+3
+            emailErrors.size(),
+            'There should only be 23 errors returned.'
+        );
+        System.assertEquals(
+            23, //100-80+3
+            chatterErrors.size(),
+            'There should only be 23 chatter errors returned.'
+        );
+        errors = emailErrors;
+        errors.addAll(chatterErrors);
+        for (Error__c err : errors) {
+            System.assert(
+                err.Datetime__c >= ERR_Notifier.MAX_AGE_FOR_ERRORS,
+                'All returned errors should be newer than one day'
+            );
+        }
+    }
+
+    /**********************************************************************************************
+     * @description Confirm that the method to retrieve Error log record pending notification
+     * only retrieve a limited number of records.
+     */
+    @IsTest
+    private static void shouldOnlyRetrieveLimitedErrorLogEntries() {
+        ERR_Notifier.MAX_AGE_FOR_ERRORS = Datetime.now().addDays(-3);
         ERR_Notifier.MAX_RECORDS = 10;
 
         List<Error__c> errors = new List<Error__c>();
         // The oldest error will be 80 days old
-        Datetime dt = Datetime.now().addDays(80).addHours(-1);
+        Datetime dt = Datetime.now().addDays(-80).addHours(1);
         // Create one error per day for up to 100 total records.
         for (Integer n = 0; n < 100; n++) {
             errors.add(createError(dt));

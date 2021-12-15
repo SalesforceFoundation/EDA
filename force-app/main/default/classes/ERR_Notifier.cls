@@ -127,7 +127,6 @@ public virtual class ERR_Notifier {
      * @description Get the active System Administrators' emails.
      * @return List<String> Emails
      */
-    @TestVisible
     private List<String> getSystemAdminEmails() {
         List<String> sendList = new List<String>();
         List<User> sysadminlist = [
@@ -190,7 +189,6 @@ public virtual class ERR_Notifier {
     /*******************************************************************************************************
      * @description Sends error email notifications in a future (asynchronously). It will send an email with all the
      *              existing error records not already sent in a notification.
-     * @param context The context that triggered the error notification.
      * @param sendList The list of email addresses to send notifications to.
      * @return void
      */
