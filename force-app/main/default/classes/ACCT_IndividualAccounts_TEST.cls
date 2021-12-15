@@ -1138,7 +1138,6 @@ private class ACCT_IndividualAccounts_TEST {
         );
         insert tempUser;
 
-        Id currUserId = UserInfo.getUserId();
         Contact con = UTIL_UnitTestData_TEST.getContact();
         insert con;
         con = [SELECT Id, OwnerId, AccountId FROM Contact WHERE Id = :con.Id LIMIT 1];
