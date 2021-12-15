@@ -433,6 +433,17 @@ class EDA(BaseEDAPage):
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
 
+    def go_to_release_management(self):
+        """ Navigates to the Release Management Page"""
+        url = self.cumulusci.org.lightning_base_url
+        namespace=self.get_eda_namespace_prefix()
+        if namespace=="hed__":
+            url = "{}/lightning/cmp/{}releaseManagementContainer".format(url,namespace)
+        else:
+            url = "{}/lightning/cmp/c__releaseManagementContainer".format(url)
+        self.selenium.go_to(url)
+        self.salesforce.wait_until_loading_is_complete()
+
     def click_on_hub_link(self, field, link):
         """
         Click the power of us hub link available in Education cloud settings page.
