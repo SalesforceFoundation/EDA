@@ -51,7 +51,7 @@
         User tempUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
 
         //Create a Contact
-        Contact con;
+        Contact con = hed.UTIL_UnitTestData_API.getContact();
         insert con;
         con = [SELECT Id, OwnerId, AccountId FROM Contact WHERE Id = :con.Id LIMIT 1];
 
