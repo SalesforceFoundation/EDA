@@ -55,7 +55,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Credential Details</label>
+        <label>Diploma, Degree, Certification Details</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
