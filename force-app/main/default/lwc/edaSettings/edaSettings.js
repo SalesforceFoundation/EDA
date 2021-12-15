@@ -33,11 +33,15 @@ export default class EDASettings extends NavigationMixin(LightningElement) {
     @wire(checkAccessForCurrentUser)
     currentUserHasAccessWire(result) {
         this.currentUserHasAccessWireResult = result;
+        let edaSettingsContainer = this.template.querySelectorAll(".slds-grid")[0];
         if (result.data) {
             this.currentUserHasAccess = result.data;
-            this.template.querySelectorAll(".slds-grid")[0]?.classList.add("eda-height_full");
+
+            return edaSettingsContainer?.classList.contains("eda-height_full")
+                ? true
+                : edaSettingsContainer?.classList.add("eda-height_full");
         }
-        this.template.querySelectorAll(".slds-grid")[0]?.classList.remove("eda-height_full");
+        edaSettingsContainer?.classList.remove("eda-height_full");
     }
 
     get currentUserHasAccessWireResolved() {
