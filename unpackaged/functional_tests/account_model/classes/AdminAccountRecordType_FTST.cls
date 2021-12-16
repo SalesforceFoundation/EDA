@@ -25,14 +25,14 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 
-
 /**
- * @description T-3904097: When an Account Owner is updated on a Contact with a default Administrative Account Record Type,
- * the Associated Account should update with same Owner.
+ * @author Salesforce.org
+ * @date 2021
+ * @group Accounts
+ * @description Unmanaged functional tests for Admin Account Record Type
  */
 @isTest
- public with sharing class AdminAccountRecordType_FTST {
-
+public with sharing class AdminAccountRecordType_FTST {
     private static hed__Hierarchy_Settings__c createSettings() {
         hed__Hierarchy_Settings__c orgSettings = hed.UTIL_CustomSettings_API.getOrgSettings();
         hed.UTIL_CustomSettings_API.getSettingsForTests(orgSettings);
@@ -70,5 +70,39 @@
         }
     }
 
- }
- 
+    /********************************************************************************************************
+     * @description T-5134364 Validate that when creating contact
+     * Account created in association with Contact is of the Administrative Account Record Type
+     */
+    @isTest
+    private static void createContactWithDefaultAccountModelAdmin() {
+        hed.UTIL_CustomSettingsFacade.getSettingsForTests(
+            new hed__Hierarchy_Settings__c(hed__Account_Processor__c = hed.UTIL_Describe_API.getAdminAccRecTypeID())
+        );
+
+        User testUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
+        System.runAs(testUser) {
+            Test.startTest();
+            Contact testContact = hed.UTIL_UnitTestData_TEST.getContact();
+            insert testContact;
+            Test.stopTest();
+        }
+
+        System.runAs(testUser) {
+            List<Contact> insertedContacts = [SELECT Id, AccountId FROM Contact WHERE Id = :testContact.Id];
+            System.assertEquals(1, insertedContacts.size(), 'One and only one contact should be created.');
+
+            List<Account> insertedAccounts = [
+                SELECT Id, RecordTypeId
+                FROM Account
+                WHERE Id = :insertedContacts[0].AccountId
+            ];
+            System.assertEquals(1, insertedAccounts.size(), 'One and only one account should be created.');
+            System.assertEquals(
+                hed.UTIL_Describe_API.getAdminAccRecTypeID(),
+                RecordTypeId,
+                'The Account created in association with Contact should be of the Administrative Account Record Type'
+            );
+        }
+    }
+}
