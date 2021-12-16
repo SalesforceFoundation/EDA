@@ -30,19 +30,20 @@
  * @date 2021
  * @group Accounts
  * @description Unmanaged functional tests for Admin Account Record Type
- */
-@isTest
-public with sharing class AdminAccountRecordType_FTST {
+
+ public with sharing class AdminAccountRecordType_FTST {
+
     private static hed__Hierarchy_Settings__c createSettings() {
         hed__Hierarchy_Settings__c orgSettings = hed.UTIL_CustomSettings_API.getOrgSettings();
         hed.UTIL_CustomSettings_API.getSettingsForTests(orgSettings);
         return orgSettings;
     }
 
-    /********************************************************************************************************
-     * @description Validate that when updating the OwnerId of an existing Contact, the Account updates the
-     *  OwnerId to the same updated value.
-     */
+
+    /**
+     * @description T-3904097: When an Account Owner is updated on a Contact with a default Administrative Account Record Type,
+     * the Associated Account should update with same Owner.
+    */
     @isTest
     private static void test_updateOwnerAccountSync() {
         createSettings();
@@ -69,6 +70,7 @@ public with sharing class AdminAccountRecordType_FTST {
             );
         }
     }
+
 
     /********************************************************************************************************
      * @description T-5134364 Validate that when creating contact
