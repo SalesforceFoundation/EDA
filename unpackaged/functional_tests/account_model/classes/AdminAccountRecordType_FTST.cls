@@ -30,6 +30,7 @@
  * @date 2021
  * @group Accounts
  * @description Unmanaged functional tests for Admin Account Record Type
+ */
 
  public with sharing class AdminAccountRecordType_FTST {
 
