@@ -24,54 +24,15 @@
     ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
     POSSIBILITY OF SUCH DAMAGE.
 */
+
+
 /**
- * @author Salesforce.org
- * @date 2021
- * @group Administrative Accounts
- * @description Unmanaged functional tests for Administrative Accounts
+ * @description T-______: __________
  */
-
 @isTest
- public with sharing class AdminAccountRecordType_FTST {
+private with sharing class LeadConversionAccountNaming_FTST {
+
+    
 
 
-    private static hed__Hierarchy_Settings__c createSettings() {
-        hed__Hierarchy_Settings__c orgSettings = hed.UTIL_CustomSettings_API.getOrgSettings();
-        hed.UTIL_CustomSettings_API.getSettingsForTests(orgSettings);
-        return orgSettings;
-    }
-
-
-    /**
-     * @description T-3904097: When an Account Owner is updated on a Contact with a default Administrative Account Record Type,
-     * the Associated Account should update with same Owner.
-    */
-    @isTest
-    private static void test_updateOwnerAccountSync() {
-        createSettings();
-
-        // Create a single new User
-        User tempUser = hed.UTIL_UnitTestData_API.createNewUserForTests(System.now().getTime() + '@testerson.com');
-
-        //Create a Contact
-        Contact con = hed.UTIL_UnitTestData_API.getContact();
-        insert con;
-        con = [SELECT Id, OwnerId, AccountId FROM Contact WHERE Id = :con.Id LIMIT 1];
-
-        Test.startTest();
-        con.OwnerId = tempUser.Id;
-        update con;
-        Test.stopTest();
-
-        System.runAs(tempUser) {
-            Account acct = [SELECT Id, OwnerId FROM Account WHERE Id = :con.AccountId LIMIT 1];
-            System.assertEquals(
-                acct.OwnerId,
-                tempUser.Id,
-                'The Account owner should be the same as the new Contact Owner'
-            );
-        }
-    }
-
- }
- 
+}
