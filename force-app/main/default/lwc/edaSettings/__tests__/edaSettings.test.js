@@ -3,6 +3,10 @@ import { createElement } from "lwc";
 import edaSettings from "c/edaSettings";
 import checkAccessForCurrentUser from "@salesforce/apex/EDASettingsController.checkAccessForCurrentUser";
 
+const ELEMENT_ErrorMessage = (element) => {
+    return element.shadowRoot.querySelector('[data-testid="eda-settings-error-insufficient-access"]');
+};
+
 jest.mock(
     "@salesforce/apex/EDASettingsController.checkAccessForCurrentUser",
     () => {
@@ -28,25 +32,18 @@ describe("c-eda-settings", () => {
         });
 
         checkAccessForCurrentUser.emit(true);
-
         document.body.appendChild(element);
 
         return Promise.resolve()
             .then(() => {
-                const errorMessage = element.shadowRoot.querySelector(
-                    '[data-testid="eda-settings-error-insufficient-access"]'
-                );
-                expect(errorMessage).toBeNull();
+                expect(ELEMENT_ErrorMessage(element)).toBeNull();
             })
             .then(() => {
                 checkAccessForCurrentUser.emit(false);
             })
-            .then(async () => {
-                const errorMessage = element.shadowRoot.querySelector(
-                    '[data-testid="eda-settings-error-insufficient-access"]'
-                );
-                expect(errorMessage).toBeTruthy();
-                expect(errorMessage.textContent).toBe("c.stgErrorInsufficientAccess");
+            .then(() => {
+                expect(ELEMENT_ErrorMessage(element)).toBeTruthy();
+                expect(ELEMENT_ErrorMessage(element).textContent).toBe("c.stgErrorInsufficientAccess");
             });
     });
 });
