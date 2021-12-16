@@ -25,13 +25,12 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @group Error Handling
-* @description A recurring job that will detect errors from asynchronous jobs
-* and log and send notifications for those errors
-*/
+ * @author Salesforce.org
+ * @group Error Handling
+ * @description A recurring job that will detect errors from asynchronous jobs
+ * and log and send notifications for those errors
+ */
 public virtual class ERR_AsyncErrors implements Queueable {
-
     /**
      * @description Query for un-processed AsyncApexJob records that represent
      * failed jobs, creates Error__c log records for those jobs, and then sends
@@ -61,10 +60,7 @@ public virtual class ERR_AsyncErrors implements Queueable {
         // we only want to detect errors for this package's namespace
         String namespace = getCurrentNamespace();
 
-        List<AsyncApexJobWrapper> asyncJobErrors = getPendingAsyncJobErrors(
-            lastRun,
-            namespace
-        );
+        List<AsyncApexJobWrapper> asyncJobErrors = getPendingAsyncJobErrors(lastRun, namespace);
 
         List<Error__c> errors = new List<Error__c>();
         for (AsyncApexJobWrapper job : asyncJobErrors) {
@@ -72,14 +68,11 @@ public virtual class ERR_AsyncErrors implements Queueable {
             String errorType = '';
             if (job.JobType == 'Future') {
                 errorType = 'Future method error';
-            }
-            else if (job.JobType == 'ScheduledApex') {
+            } else if (job.JobType == 'ScheduledApex') {
                 errorType = 'Scheduled Apex error';
-            }
-            else if (job.JobType == 'BatchApex') {
+            } else if (job.JobType == 'BatchApex') {
                 errorType = 'Batch Apex error';
-            }
-            else if (job.JobType == 'Queueable') {
+            } else if (job.JobType == 'Queueable') {
                 errorType = 'Queueable job error';
             }
             DateTime errorDate = job.CompletedDate;
@@ -155,7 +148,7 @@ public virtual class ERR_AsyncErrors implements Queueable {
      */
     @TestVisible
     private virtual void sendErrorNotifications() {
-        ERR_Notifier.sendErrorNotifications('');
+        ERR_Notifier.getInstance().sendErrorNotifications('');
     }
 
     /**
@@ -183,10 +176,12 @@ public virtual class ERR_AsyncErrors implements Queueable {
                 ApexClass.Name,
                 MethodName
             FROM AsyncApexJob
-            WHERE ApexClass.NamespacePrefix = :namespace
-            AND JobType IN ('Future', 'ScheduledApex', 'BatchApex', 'Queueable')
-            AND (Status = 'Failed' OR NumberOfErrors > 0)
-            AND CompletedDate >= :lastRun
+            WHERE
+                ApexClass.NamespacePrefix = :namespace
+                AND JobType IN ('Future', 'ScheduledApex', 'BatchApex', 'Queueable')
+                AND (Status = 'Failed'
+                OR NumberOfErrors > 0)
+                AND CompletedDate >= :lastRun
         ]) {
             asyncJobErrors.add(new AsyncApexJobWrapper(job));
         }
@@ -204,7 +199,8 @@ public virtual class ERR_AsyncErrors implements Queueable {
         public String MethodName;
         public DateTime CompletedDate;
         public String ExtendedStatus;
-        public AsyncApexJobWrapper() {}
+        public AsyncApexJobWrapper() {
+        }
         public AsyncApexJobWrapper(
             String JobType,
             String ApexClassName,
