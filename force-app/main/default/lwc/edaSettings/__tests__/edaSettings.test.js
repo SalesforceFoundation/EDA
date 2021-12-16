@@ -45,6 +45,7 @@ describe("c-eda-settings", () => {
                 const errorMessage = element.shadowRoot.querySelector(
                     '[data-testid="eda-settings-error-insufficient-access"]'
                 );
+                expect(errorMessage).toBeTruthy();
                 expect(errorMessage.textContent).toBe("c.stgErrorInsufficientAccess");
             });
     });
