@@ -3992,11 +3992,11 @@
         <value>Please see EDA's release notes for Winter'22 for full details.</value>
     </labels>    
     <labels>
-        <fullName>stgReleaseGateEDAWinter22FeatureHelpLabel</fullName>
+        <fullName>stgReleaseGateEDAFeatureHelpLabel</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>EDA Winter 22 release gate feature help label</shortDescription>
+        <shortDescription>EDA release gate feature help label</shortDescription>
         <value>Follow EDA Releases in the EDA Release Announcements group</value>
     </labels>
      <labels>
@@ -4006,13 +4006,5 @@
         <protected>true</protected>
         <shortDescription>EDA Spring 22 release gate feature description</shortDescription>
         <value>Please see EDA's release notes for Spring'22 for full details.</value>
-    </labels>    
-    <labels>
-        <fullName>stgReleaseGateEDASpring22FeatureHelpLabel</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>EDA Spring 22 release gate feature help label</shortDescription>
-        <value>Follow EDA Releases in the EDA Release Announcements group</value>
-    </labels>        
+    </labels>     
 </CustomLabels>

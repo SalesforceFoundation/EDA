@@ -68,7 +68,7 @@ public with sharing class EDASpring22ReleaseGate extends ReleaseGateBase {
                     '',
                     Label.stgReleaseGateEDASpring22FeatureDescription,
                     FEATURE_HELP_LINK,
-                    Label.stgReleaseGateEDASpring22FeatureHelpLabel
+                    Label.stgReleaseGateEDAFeatureHelpLabel
                 )
             }
         );

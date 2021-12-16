@@ -68,7 +68,7 @@ public with sharing class EDAWinter22ReleaseGate extends ReleaseGateBase {
                     '',
                     Label.stgReleaseGateEDAWinter22FeatureDescription,
                     FEATURE_HELP_LINK,
-                    Label.stgReleaseGateEDAWinter22FeatureHelpLabel
+                    Label.stgReleaseGateEDAFeatureHelpLabel
                 )
             }
         );

@@ -1995,8 +1995,8 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
         <name>stgReleaseGateEDAWinter22FeatureDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Winter 22 release gate feature help label --></label>
-        <name>stgReleaseGateEDAWinter22FeatureHelpLabel</name>
+        <label><!-- EDA release gate feature help label --></label>
+        <name>stgReleaseGateEDAFeatureHelpLabel</name>
     </customLabels>
     <customLabels>
         <label><!-- EDA Spring 22 release gate label --></label>
@@ -2009,10 +2009,6 @@ Nach Verarbeitung des Batches wird eine E-Mail gesendet.</label>
     <customLabels>
         <label><!-- EDA Spring 22 release gate feature description --></label>
         <name>stgReleaseGateEDASpring22FeatureDescription</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- EDA Spring 22 release gate feature help label --></label>
-        <name>stgReleaseGateEDASpring22FeatureHelpLabel</name>
     </customLabels>
     <customTabs>
         <label>Education Cloud-Einstellungen</label>
