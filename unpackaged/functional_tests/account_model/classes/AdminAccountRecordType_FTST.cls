@@ -32,6 +32,7 @@
  * @description Unmanaged functional tests for Admin Account Record Type
  */
 
+@isTest
  public with sharing class AdminAccountRecordType_FTST {
 
     private static hed__Hierarchy_Settings__c createSettings() {
