@@ -43,17 +43,25 @@ public with sharing class EDAReleaseGateProvider_TEST {
         Test.stopTest();
 
         System.assertEquals(
-            1,
+            2,
             edaReleaseGateProvideInstance.releaseGatesMap.size(),
-            'There should be 1 release gate in the map'
+            'There should be 2 release gates in the map'
         );
-        EDAWinter22ReleaseGate edaReleaseGate = (EDAWinter22ReleaseGate) edaReleaseGateProvideInstance.releaseGatesMap.get(
+        EDAWinter22ReleaseGate winter22ReleaseGate = (EDAWinter22ReleaseGate) edaReleaseGateProvideInstance.releaseGatesMap.get(
             EDAWinter22ReleaseGate.RELEASE_GATE_NAME
+        );
+        EDASpring22ReleaseGate spring22ReleaseGate = (EDASpring22ReleaseGate) edaReleaseGateProvideInstance.releaseGatesMap.get(
+            EDASpring22ReleaseGate.RELEASE_GATE_NAME
         );
         System.assertEquals(
             EDAWinter22ReleaseGate.RELEASE_GATE_NAME,
-            edaReleaseGate.getReleaseGateName(),
+            winter22ReleaseGate.getReleaseGateName(),
             'The release gate name should be ' + EDAWinter22ReleaseGate.RELEASE_GATE_NAME
+        );
+        System.assertEquals(
+            EDASpring22ReleaseGate.RELEASE_GATE_NAME,
+            spring22ReleaseGate.getReleaseGateName(),
+            'The release gate name should be ' + EDASpring22ReleaseGate.RELEASE_GATE_NAME
         );
     }
 

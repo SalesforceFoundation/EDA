@@ -29,15 +29,15 @@
  * @date 2021
  * @group
  * @group-content ../../ApexDocContent/
- * @description Class for EDA Winter'22 release gate
+ * @description Class for EDA Spring'22 release gate
  */
-public with sharing class EDAWinter22ReleaseGate extends ReleaseGateBase {
+public with sharing class EDASpring22ReleaseGate extends ReleaseGateBase {
     @TestVisible
-    private final static String RELEASE_GATE_NAME = 'winter22';
+    private final static String RELEASE_GATE_NAME = 'spring22';
     @TestVisible
-    private final static String RELEASE_GATE_FEATURE_NAME = 'winter22feature1';
+    private final static String RELEASE_GATE_FEATURE_NAME = 'spring22feature1';
     @TestVisible
-    private final static String FEATURE_HELP_LINK = 'https://trailhead.salesforce.com/trailblazer-community/feed/0D54S00000BuNlcSAF';
+    private final static String FEATURE_HELP_LINK = 'https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kHOcSAM?tab=discussion&sort=LAST_MODIFIED_DATE_DESC';
 
     /**
      * @description Get the name of the release gate
@@ -55,9 +55,9 @@ public with sharing class EDAWinter22ReleaseGate extends ReleaseGateBase {
     public override GetReleaseGateActionResultModel.ReleaseGate getReleaseGate(Decimal version) {
         return new GetReleaseGateActionResultModel.ReleaseGate(
             this.getReleaseGateName(),
-            Label.stgReleaseGateEDAWinter22Label,
-            Label.stgReleaseGateEDAWinter22Description,
-            Date.newInstance(2021, 11, 16),
+            Label.stgReleaseGateEDASpring22Label,
+            Label.stgReleaseGateEDASpring22Description,
+            Date.newInstance(2022, 2, 16),
             null,
             '',
             null,
@@ -66,7 +66,7 @@ public with sharing class EDAWinter22ReleaseGate extends ReleaseGateBase {
                 new GetReleaseGateActionResultModel.ReleaseGateFeature(
                     RELEASE_GATE_FEATURE_NAME,
                     '',
-                    Label.stgReleaseGateEDAWinter22FeatureDescription,
+                    Label.stgReleaseGateEDASpring22FeatureDescription,
                     FEATURE_HELP_LINK,
                     Label.stgReleaseGateEDAFeatureHelpLabel
                 )
