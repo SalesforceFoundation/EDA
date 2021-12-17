@@ -172,3 +172,41 @@ class ReleaseManagementPage(BaseEDAPage, HomePage):
             timeout=60,
             error= "Element is not displayed for the user"
         )
+
+    def activate_release_gate_item(self, product, gate_item):
+        """ Activates the release gate by clicking on the Activate button
+            and confirming the action to activate
+        """
+        locator = eda_lex_locators["release_management"]["release_gate_item_status_inactive"].format(product, gate_item)
+        self.selenium.wait_until_page_contains_element(
+            locator,
+            error=f"Release gate item - activation button is not available"
+        ) 
+        self.selenium.click_element(locator)
+        locator = eda_lex_locators["release_management"]["release_gate_confirm_activate_button"].format(product, gate_item)
+        self.selenium.wait_until_page_contains_element(
+            locator,
+            error=f"Release gate item - confirmation activation button is not available"
+        )
+        self.selenium.click_element(locator)
+        time.sleep(2)
+        self.eda.verify_custom_toast_message_displayed()
+        time.sleep(0.5)
+
+    def cancel_activation_release_gate_item(self, product, gate_item):
+        """ Clicks on Release gate item Activate button
+            and then clicks on Cancel
+        """
+        locator = eda_lex_locators["release_management"]["release_gate_item_status_inactive"].format(product, gate_item)
+        self.selenium.wait_until_page_contains_element(
+            locator,
+            error=f"Release gate item - activation button is not available"
+        ) 
+        self.selenium.click_element(locator)
+        locator = eda_lex_locators["release_management"]["release_gate_cancel_activate_button"].format(product, gate_item)
+        self.selenium.wait_until_page_contains_element(
+            locator,
+            error=f"Release gate item - confirmation activation button is not available"
+        )
+        self.selenium.click_element(locator)
+        time.sleep(0.5)
