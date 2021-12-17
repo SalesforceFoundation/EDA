@@ -3952,6 +3952,22 @@
         <value>All releases are active.</value>
     </labels>
     <labels>
+        <fullName>stgReleaseGateEDASpring22Label</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Spring 22 release gate label</shortDescription>
+        <value>Spring&apos;22</value>
+    </labels>    
+    <labels>
+        <fullName>stgReleaseGateEDASpring22Description</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Spring 22 release gate description</shortDescription>
+        <value>There were no features gated for this release therefore all features were automatically released with Spring&apos;22</value>
+    </labels>    
+    <labels>
         <fullName>stgReleaseGateEDAWinter22Label</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -3976,11 +3992,19 @@
         <value>Please see EDA's release notes for Winter'22 for full details.</value>
     </labels>    
     <labels>
-        <fullName>stgReleaseGateEDAWinter22FeatureHelpLabel</fullName>
+        <fullName>stgReleaseGateEDAFeatureHelpLabel</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>EDA Winter 22 release gate feature help label</shortDescription>
+        <shortDescription>EDA release gate feature help label</shortDescription>
         <value>Follow EDA Releases in the EDA Release Announcements group</value>
-    </labels>    
+    </labels>
+     <labels>
+        <fullName>stgReleaseGateEDASpring22FeatureDescription</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Spring 22 release gate feature description</shortDescription>
+        <value>Please see EDA's release notes for Spring'22 for full details.</value>
+    </labels>     
 </CustomLabels>
