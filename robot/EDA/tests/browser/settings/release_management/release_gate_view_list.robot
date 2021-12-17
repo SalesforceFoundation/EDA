@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation   Validate Education Cloud Settings home page
+Documentation   Validate Release Management View List of Gates
 Resource        robot/EDA/resources/EDA.robot
 Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/ReleaseManagementPageObject.py
