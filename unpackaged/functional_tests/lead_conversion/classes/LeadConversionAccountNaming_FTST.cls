@@ -34,6 +34,11 @@
 @isTest
 private with sharing class LeadConversionAccountNaming_FTST {
 
+    /** Helper method to create the Hierarchy Settings for the tests
+     * @param: populateConversionRTs indicates if the Admin and Household RTs should be included
+     * for the Lead Conversion
+     * @return: returns the orgSettings
+    */
     private static hed__Hierarchy_Settings__c createSettings(Boolean populateConversionRTs){
         hed__Hierarchy_Settings__c orgSettings = hed.UTIL_CustomSettings_API.getOrgSettings();
         if(populateConversionRTs){
