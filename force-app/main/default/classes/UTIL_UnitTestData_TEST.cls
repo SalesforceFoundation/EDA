@@ -236,7 +236,7 @@ public class UTIL_UnitTestData_TEST {
      * @return The list of Address__c objects
      **********************************************************************************************************/
     public static List<Address__c> getMultipleSeasonalTestAddresses(Integer addrCount) {
-        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(addrCount);
         for (Address__c currentAddress : addresses) {
             currentAddress.Default_Address__c = false;
             currentAddress.Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(-1).month());
