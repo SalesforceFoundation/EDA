@@ -124,6 +124,21 @@ private class UTIL_OrgTelemetry_TEST {
             UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_StoreErrors.name(),
             edaSettings.Store_Errors_On__c
         );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Has_AffiliationsRelatedToDeletedProgramEnrollments.name(),
+            edaSettings.Affl_ProgEnroll_Del__c
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Has_Affiliation_Start_Date.name(),
+            edaSettings.Affl_ProgEnroll_Copy_Start_Date__c
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Has_Affiliation_End_Date.name(),
+            edaSettings.Affl_ProgEnroll_Copy_End_Date__c
+        );
     }
 
     /*******************************************************************************************************
