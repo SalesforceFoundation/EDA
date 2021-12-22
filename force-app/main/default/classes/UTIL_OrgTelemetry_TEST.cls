@@ -295,6 +295,12 @@ private class UTIL_OrgTelemetry_TEST {
 
         insert academicCertificationsToInsert;
 
+        //Seasonal Addresses
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        List<Address__c> seasonalAddresses = UTIL_UnitTestData_TEST.getMultipleSeasonalTestAddresses(2);
+        addresses.addAll(seasonalAddresses);
+        insert addresses;
+
         //Insert data for Credentials
         List<Credential__c> credentialsToInsert = new List<Credential__c>();
 
@@ -399,6 +405,16 @@ private class UTIL_OrgTelemetry_TEST {
         assertIntegerValue(
             UTIL_OrgTelemetry.TelemetryParameterName.Data_CountLicenseCredentials.name(),
             licenseCredentials.size()
+        );
+
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountSeasonalAddresses.name(),
+            seasonalAddresses.size()
+        );
+
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCurrentYearSeasonalAddresses.name(),
+            seasonalAddresses.size()
         );
     }
 
