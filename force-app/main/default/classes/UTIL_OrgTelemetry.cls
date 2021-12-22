@@ -463,7 +463,7 @@ public without sharing class UTIL_OrgTelemetry {
                     AND Seasonal_Start_Day__c != NULL
                     AND Seasonal_End_Month__c != NULL
                     AND Seasonal_End_Day__c != NULL
-                    AND CreatedDate = THIS_YEAR
+                    AND CreatedDate = LAST_N_DAYS:365
             ]
         );
     }
