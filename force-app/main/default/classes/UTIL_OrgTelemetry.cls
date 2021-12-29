@@ -95,7 +95,9 @@ public without sharing class UTIL_OrgTelemetry {
         HasValueInversionReciprocalMethod,
         IsEnabled_StoreErrors,
         UsingOldContactEthnicity,
-        UsingOldCourseDescription
+        UsingOldCourseDescription,
+        Data_CountSeasonalAddresses,
+        Data_CountCurrentYearSeasonalAddresses
     }
 
     /**
@@ -436,6 +438,33 @@ public without sharing class UTIL_OrgTelemetry {
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountLicenseCredentials.name(),
             countLicenseCredentials
+        );
+
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountSeasonalAddresses.name(),
+            [
+                SELECT COUNT()
+                FROM Address__c
+                WHERE
+                    Seasonal_Start_Month__c != NULL
+                    AND Seasonal_Start_Day__c != NULL
+                    AND Seasonal_End_Month__c != NULL
+                    AND Seasonal_End_Day__c != NULL
+            ]
+        );
+
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountCurrentYearSeasonalAddresses.name(),
+            [
+                SELECT COUNT()
+                FROM Address__c
+                WHERE
+                    Seasonal_Start_Month__c != NULL
+                    AND Seasonal_Start_Day__c != NULL
+                    AND Seasonal_End_Month__c != NULL
+                    AND Seasonal_End_Day__c != NULL
+                    AND CreatedDate = LAST_N_DAYS:365
+            ]
         );
     }
 }
