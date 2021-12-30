@@ -67,4 +67,12 @@ Activate Advisor Link Release Gate
     Verify release gate item activation status  Advisor Link    Summer '21       Activated
     Verify release gate item activationdate     Advisor Link    Summer '21       Activated on
     
-    
+    #Make sure there is no summer21 contact record for any following run
+    @{records}=  Salesforce Query  Contact  select=Id
+    ...          where=LastName='summer21'
+    ...          limit=1
+    ${count}=    Get length  @{records}
+
+    Run Keyword If
+    ...    ${count} > 0
+    ...    Salesforce Delete  Contact  ${records}[0][Id]
