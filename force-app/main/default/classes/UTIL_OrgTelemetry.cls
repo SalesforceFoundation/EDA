@@ -97,7 +97,8 @@ public without sharing class UTIL_OrgTelemetry {
         UsingOldContactEthnicity,
         UsingOldCourseDescription,
         Data_CountSeasonalAddresses,
-        Data_CountCurrentYearSeasonalAddresses
+        Data_CountCurrentYearSeasonalAddresses,
+        Data_CountAutoEnrollmentMappings
     }
 
     /**
@@ -464,6 +465,13 @@ public without sharing class UTIL_OrgTelemetry {
                     AND Seasonal_End_Month__c != NULL
                     AND Seasonal_End_Day__c != NULL
                     AND CreatedDate = LAST_N_DAYS:365
+            ]
+        );
+
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountAutoEnrollmentMappings.name(),
+            [
+                SELECT COUNT() FROM Affl_Mappings__c WHERE Auto_Program_Enrollment__c = true
             ]
         );
     }
