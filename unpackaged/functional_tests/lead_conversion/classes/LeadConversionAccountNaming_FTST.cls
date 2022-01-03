@@ -34,6 +34,7 @@
 @isTest
 private with sharing class LeadConversionAccountNaming_FTST {
 
+
     /** Helper method to create the Hierarchy Settings for the tests
      * @param: populateConversionRTs indicates if the Admin and Household RTs should be included
      * for the Lead Conversion
@@ -52,7 +53,7 @@ private with sharing class LeadConversionAccountNaming_FTST {
         upsert orgSettings;
         hed.UTIL_CustomSettings_API.getSettingsForTests(orgSettings);
         return orgSettings;
-    } 
+    }
 
 
     /**
@@ -128,7 +129,7 @@ private with sharing class LeadConversionAccountNaming_FTST {
 
     /**
      * @description T-5026178: Verify that Lead Conversion Account Naming is honored with the Setting Enabled, 
-     * and the Record Type Selected (Default Account model naming "{LastName} Account" in EDA)
+     * and the Record Type Selected (assumes default Account model naming "{LastName} Account" in EDA)
     */
     @isTest
     private static void convertLeadVerifyAcademicAccountNameWithDefaultSettings() {
@@ -142,7 +143,7 @@ private with sharing class LeadConversionAccountNaming_FTST {
             )
         );
 
-        Lead testLead = new Lead(FirstName = 'Tester', LastName = 'McTesterson', company = 'Company');
+        Lead testLead = hed.UTIL_UnitTestData_API.getLead();
         insert testLead;
 
         Account testAccount = new Account(
