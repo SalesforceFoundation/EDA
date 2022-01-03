@@ -96,9 +96,9 @@ public without sharing class UTIL_OrgTelemetry {
         IsEnabled_StoreErrors,
         UsingOldContactEthnicity,
         UsingOldCourseDescription,
-        Has_AffiliationsRelatedToDeletedProgramEnrollments,
-        Has_Affiliation_Start_Date,
-        Has_Affiliation_End_Date,
+        HasAffiliationsRelatedToDeletedProgramEnrollments,
+        HasAffiliationStartDate,
+        HasAffiliationEndDate,
         Data_CountSeasonalAddresses,
         Data_CountCurrentYearSeasonalAddresses
     }
@@ -210,17 +210,17 @@ public without sharing class UTIL_OrgTelemetry {
         );
 
         featureManager.setPackageBooleanValue(
-            TelemetryParameterName.Has_AffiliationsRelatedToDeletedProgramEnrollments.name(),
+            TelemetryParameterName.HasAffiliationsRelatedToDeletedProgramEnrollments.name(),
             edaSettings.Affl_ProgEnroll_Del__c
         );
 
         featureManager.setPackageBooleanValue(
-            TelemetryParameterName.Has_Affiliation_Start_Date.name(),
+            TelemetryParameterName.HasAffiliationStartDate.name(),
             edaSettings.Affl_ProgEnroll_Copy_Start_Date__c
         );
 
         featureManager.setPackageBooleanValue(
-            TelemetryParameterName.Has_Affiliation_End_Date.name(),
+            TelemetryParameterName.HasAffiliationEndDate.name(),
             edaSettings.Affl_ProgEnroll_Copy_End_Date__c
         );
     }

@@ -118,9 +118,9 @@ public virtual with sharing class FeatureParameterMapper {
             SettingsHealthCheckLastRunDate,
             UsingOldContactEthnicity,
             UsingOldCourseDescription,
-            Has_AffiliationsRelatedToDeletedProgramEnrollments,
-            Has_Affiliation_Start_Date,
-            Has_Affiliation_End_Date
+            HasAffiliationsRelatedToDeletedProgramEnrollments,
+            HasAffiliationStartDate,
+            HasAffiliationEndDate
     }
 
     /**********************************************************************************
