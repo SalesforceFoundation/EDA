@@ -294,209 +294,116 @@ public without sharing class UTIL_OrgTelemetry {
      * custom object record count.
      */
     private void handleObjectUsageTelemetry() {
-        Integer countBadgeCredentials = 0;
-        Integer countHouseholdAccounts = 0;
-        Integer countLicenseCredentials = 0;
-        Integer countAdministrativeAccounts = 0;
-        Integer countCertificationCredentials = 0;
-        Integer countDegreeAcademicCertifications = 0;
-        Integer countDiplomaAcademicCertifications = 0;
-        Integer countCertificateAcademicCertifications = 0;
-
-        Integer numErrors = [SELECT COUNT() FROM Error__c];
-        Integer numFacilities = [SELECT COUNT() FROM Facility__c];
-        Integer numTermGrades = [SELECT COUNT() FROM Term_Grade__c];
-        Integer numCredentials = [SELECT COUNT() FROM Credential__c];
-        Integer numProgramPlans = [SELECT COUNT() FROM Program_Plan__c];
-        Integer numPlanRequirements = [SELECT COUNT() FROM Plan_Requirement__c];
-        Integer numCourseEnrollments = [SELECT COUNT() FROM Course_Enrollment__c];
-        Integer numAcademicCertifications = [SELECT COUNT() FROM Academic_Certification__c];
-        Integer numCourseOfferingSchedules = [SELECT COUNT() FROM Course_Offering_Schedule__c];
-
-        Integer numAutoEnrollmentAffMappings = [
-            SELECT COUNT()
-            FROM Affl_Mappings__c
-            WHERE Auto_Program_Enrollment__c = TRUE
-        ];
-
-        Integer numSeasonalAddresses = [
-            SELECT COUNT()
-            FROM Address__c
-            WHERE
-                Seasonal_Start_Month__c != NULL
-                AND Seasonal_Start_Day__c != NULL
-                AND Seasonal_End_Month__c != NULL
-                AND Seasonal_End_Day__c != NULL
-        ];
-
-        Integer numCurrentYearSeasonalAddesses = [
-            SELECT COUNT()
-            FROM Address__c
-            WHERE
-                Seasonal_Start_Month__c != NULL
-                AND Seasonal_Start_Day__c != NULL
-                AND Seasonal_End_Month__c != NULL
-                AND Seasonal_End_Day__c != NULL
-                AND CreatedDate = LAST_N_DAYS:365
-        ];
-
-        if (UTIL_Describe.getCustomAdminAccRecTypeId() != null) {
-            countAdministrativeAccounts = [
-                SELECT COUNT()
-                FROM Account
-                WHERE RecordTypeId = :UTIL_Describe.getCustomAdminAccRecTypeId()
-            ];
-        }
-
-        if (UTIL_Describe.getCustomHHAccRecTypeID() != null) {
-            countHouseholdAccounts = [
-                SELECT COUNT()
-                FROM Account
-                WHERE RecordTypeId = :UTIL_Describe.getCustomHHAccRecTypeID()
-            ];
-        }
-
-        if (UTIL_Describe.getCertificateAcademicCertificationRecTypeId() != null) {
-            countCertificateAcademicCertifications = [
-                SELECT COUNT()
-                FROM Academic_Certification__c
-                WHERE RecordTypeId = :UTIL_Describe.getCertificateAcademicCertificationRecTypeId()
-            ];
-        }
-
-        if (UTIL_Describe.getDegreeAcademicCertificationRecTypeId() != null) {
-            countDegreeAcademicCertifications = [
-                SELECT COUNT()
-                FROM Academic_Certification__c
-                WHERE RecordTypeId = :UTIL_Describe.getDegreeAcademicCertificationRecTypeId()
-            ];
-        }
-
-        if (UTIL_Describe.getDiplomaAcademicCertificationRecTypeId() != null) {
-            countDiplomaAcademicCertifications = [
-                SELECT COUNT()
-                FROM Academic_Certification__c
-                WHERE RecordTypeId = :UTIL_Describe.getDiplomaAcademicCertificationRecTypeId()
-            ];
-        }
-
-        if (UTIL_Describe.getBadgeCredentialRecTypeId() != null) {
-            countBadgeCredentials = [
-                SELECT COUNT()
-                FROM Credential__c
-                WHERE RecordTypeId = :UTIL_Describe.getBadgeCredentialRecTypeId()
-            ];
-        }
-
-        if (UTIL_Describe.getLicenseCredentialRecTypeId() != null) {
-            countLicenseCredentials = [
-                SELECT COUNT()
-                FROM Credential__c
-                WHERE RecordTypeId = :UTIL_Describe.getLicenseCredentialRecTypeId()
-            ];
-        }
-
-        if (UTIL_Describe.getCertificationCredentialRecTypeId() != null) {
-            countCertificationCredentials = [
-                SELECT COUNT()
-                FROM Credential__c
-                WHERE RecordTypeId = :UTIL_Describe.getCertificationCredentialRecTypeId()
-            ];
-        }
+        ObjectUsageTelemetryModel objectMetrics = new ObjectUsageTelemetryModel();
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountAdministrativeAccounts.name(),
-            countAdministrativeAccounts
+            objectMetrics.countAdministrativeAccounts
         );
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountHouseholdAccounts.name(),
-            countHouseholdAccounts
+            objectMetrics.countHouseholdAccounts
         );
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountCourseConnections.name(),
-            numCourseEnrollments
+            objectMetrics.numCourseEnrollments
         );
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountCourseOfferingSchedules.name(),
-            numCourseOfferingSchedules
+            objectMetrics.numCourseOfferingSchedules
         );
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountErrorLog.name(), numErrors);
-        
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountFacilities.name(), numFacilities);
-        
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountErrorLog.name(),
+            objectMetrics.numErrors
+        );
+
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountFacilities.name(),
+            objectMetrics.numFacilities
+        );
+
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountPlanRequirements.name(),
-            numPlanRequirements
+            objectMetrics.numPlanRequirements
         );
 
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountProgramPlans.name(), numProgramPlans);
-        
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountTermGrades.name(), numTermGrades);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountProgramPlans.name(),
+            objectMetrics.numProgramPlans
+        );
+
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountTermGrades.name(),
+            objectMetrics.numTermGrades
+        );
 
         //Academic Certifications
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountAcademicCertifications.name(),
-            numAcademicCertifications
+            objectMetrics.numAcademicCertifications
         );
 
         //Academic Certifications - Certificate
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountCertificateAcademicCertifications.name(),
-            countCertificateAcademicCertifications
+            objectMetrics.countCertificateAcademicCertifications
         );
 
         //Academic Certifications - Degree
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountDegreeAcademicCertifications.name(),
-            countDegreeAcademicCertifications
+            objectMetrics.countDegreeAcademicCertifications
         );
 
         //Academic Certifications - Diploma
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountDiplomaAcademicCertifications.name(),
-            countDiplomaAcademicCertifications
+            objectMetrics.countDiplomaAcademicCertifications
         );
 
         //Credentials
-        featureManager.setPackageIntegerValue(TelemetryParameterName.Data_CountCredentials.name(), numCredentials);
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountCredentials.name(),
+            objectMetrics.numCredentials
+        );
 
         //Credentials - Badge
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountBadgeCredentials.name(),
-            countBadgeCredentials
+            objectMetrics.countBadgeCredentials
         );
 
         //Credentials - Certification
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountCertificationCredentials.name(),
-            countCertificationCredentials
+            objectMetrics.countCertificationCredentials
         );
 
         //Credentials - License
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountLicenseCredentials.name(),
-            countLicenseCredentials
+            objectMetrics.countLicenseCredentials
         );
 
         // Seasonal Addresses
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountSeasonalAddresses.name(),
-            numSeasonalAddresses
+            objectMetrics.numSeasonalAddresses
         );
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountCurrentYearSeasonalAddresses.name(),
-            numCurrentYearSeasonalAddesses
+            objectMetrics.numCurrentYearSeasonalAddesses
         );
 
         // Affilliation Mappings - Auto Enrollment
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountAutoEnrollmentMappings.name(),
-            numAutoEnrollmentAffMappings
+            objectMetrics.numAutoEnrollmentAffMappings
         );
     }
 }
