@@ -502,6 +502,7 @@ public without sharing class UTIL_OrgTelemetry {
      * @description Returns true if household accounts without contacts are marked
      * for deletion.
      */
+    @TestVisible
     private Boolean hasAutoDeletionHouseholdAccts(Hierarchy_Settings__c edaSettings) {
         return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getHhAccRecTypeID());
     }
@@ -510,6 +511,7 @@ public without sharing class UTIL_OrgTelemetry {
      * @description Returns true if academic program accounts without contacts are marked
      * for deletion.
      */
+    @TestVisible
     private Boolean hasAutoDeletionProgramAccts(Hierarchy_Settings__c edaSettings) {
         return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getAcademicAccRecTypeID());
     }
@@ -518,6 +520,7 @@ public without sharing class UTIL_OrgTelemetry {
      * @description Returns true if educational institution accounts without contacts are marked
      * for deletion.
      */
+    @TestVisible
     private Boolean hasAutoDeletionEducationalInstitutionAccts(Hierarchy_Settings__c edaSettings) {
         return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getEducationalInstitutionAccRecTypeID());
     }
@@ -526,6 +529,7 @@ public without sharing class UTIL_OrgTelemetry {
      * @description Returns true if business organization accounts without contacts are marked
      * for deletion.
      */
+    @TestVisible
     private Boolean hasAutoDeletionBusinessOrgAccts(Hierarchy_Settings__c edaSettings) {
         return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getBizAccRecTypeID());
     }
@@ -534,6 +538,7 @@ public without sharing class UTIL_OrgTelemetry {
      * @description Returns true if university department accounts without contacts are marked
      * for deletion.
      */
+    @TestVisible
     private Boolean hasAutoDeletionUniversityDeptAccts(Hierarchy_Settings__c edaSettings) {
         return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getUniversityAccRecTypeID());
     }
