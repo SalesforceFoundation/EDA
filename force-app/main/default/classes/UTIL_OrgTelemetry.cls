@@ -228,7 +228,7 @@ public without sharing class UTIL_OrgTelemetry {
 
         featureManager.setPackageBooleanValue(
             TelemetryParameterName.AutodeleteNoContactBusinessOrganizationAcc.name(),
-            this.hasAutoDeletionEducationalInstitutionAccts(edaSettings)
+            this.hasAutoDeletionBusinessOrgAccts(edaSettings)
         );
 
         featureManager.setPackageBooleanValue(
