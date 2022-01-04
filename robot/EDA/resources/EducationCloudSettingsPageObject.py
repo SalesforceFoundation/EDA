@@ -38,3 +38,12 @@ class EducationCloudSettingsPage(BaseEDAPage, HomePage):
         self.selenium.wait_until_element_is_visible(locator,
                                                 error= "Element is not displayed for the user")
         self.selenium.click_element(locator)
+
+    def verify_error_is_displayed(self,value):
+        """Verifies an error message displayed in a toast within education cloud settings
+        """
+        locator = eda_lex_locators["eda_settings_new"]["error_toast"]
+        self.selenium.wait_until_element_is_visible(locator)
+        toastErrorMessage = self.selenium.get_webelement(locator).text
+        if value not in toastErrorMessage:
+            raise Exception (f"Toast error message is {toastErrorMessage} but expected to be {value}")
