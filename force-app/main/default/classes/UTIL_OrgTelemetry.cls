@@ -97,7 +97,12 @@ public without sharing class UTIL_OrgTelemetry {
         UsingOldContactEthnicity,
         UsingOldCourseDescription,
         Data_CountSeasonalAddresses,
-        Data_CountCurrentYearSeasonalAddresses
+        Data_CountCurrentYearSeasonalAddresses,
+        AutodeleteNoContactHouseholdAcc,
+        AutodeleteNoContactProgramAcc,
+        AutodeleteNoContactEducationalInstitutionAcc,
+        AutodeleteNoContactBusinessOrganizationAcc,
+        AutodeleteNoContactUniversityDepartmentAcc
     }
 
     /**
@@ -204,6 +209,31 @@ public without sharing class UTIL_OrgTelemetry {
         featureManager.setPackageBooleanValue(
             TelemetryParameterName.IsEnabled_StoreErrors.name(),
             edaSettings.Store_Errors_On__c
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactHouseholdAcc.name(),
+            this.hasAutoDeletionHouseholdAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactProgramAcc.name(),
+            this.hasAutoDeletionProgramAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactEducationalInstitutionAcc.name(),
+            this.hasAutoDeletionEducationalInstitutionAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactBusinessOrganizationAcc.name(),
+            this.hasAutoDeletionEducationalInstitutionAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactUniversityDepartmentAcc.name(),
+            this.hasAutoDeletionUniversityDeptAccts(edaSettings)
         );
     }
 
@@ -466,5 +496,64 @@ public without sharing class UTIL_OrgTelemetry {
                     AND CreatedDate = LAST_N_DAYS:365
             ]
         );
+    }
+
+    /**
+     * @description Returns true if household accounts without contacts are marked
+     * for deletion.
+     */
+    private Boolean hasAutoDeletionHouseholdAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getHhAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if academic program accounts without contacts are marked
+     * for deletion.
+     */
+    private Boolean hasAutoDeletionProgramAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getAcademicAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if educational institution accounts without contacts are marked
+     * for deletion.
+     */
+    private Boolean hasAutoDeletionEducationalInstitutionAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getEducationalInstitutionAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if business organization accounts without contacts are marked
+     * for deletion.
+     */
+    private Boolean hasAutoDeletionBusinessOrgAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getBizAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if university department accounts without contacts are marked
+     * for deletion.
+     */
+    private Boolean hasAutoDeletionUniversityDeptAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getUniversityAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if the specified account record type is enabled for contacts
+     * auto-deletion.
+     */
+    private Boolean hasContactAutoDeletionEnabled(Hierarchy_Settings__c edaSettings, String accountRT) {
+        Boolean autodeleteContactsEnabled = false;
+        Boolean autoDeletionConfigPopulated = edaSettings.Accounts_to_Delete__c != null;
+
+        if (autoDeletionConfigPopulated) {
+            Boolean currentAccountRTDefined = accountRT != null;
+            if (currentAccountRTDefined) {
+                autodeleteContactsEnabled = edaSettings.Accounts_to_Delete__c.Contains(accountRT)
+                    ? true
+                    : autodeleteContactsEnabled;
+            }
+        }
+        return autodeleteContactsEnabled;
     }
 }

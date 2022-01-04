@@ -117,7 +117,12 @@ public virtual with sharing class FeatureParameterMapper {
             Org_CountActiveCourseConnectionRecordTypes,
             SettingsHealthCheckLastRunDate,
             UsingOldContactEthnicity,
-            UsingOldCourseDescription
+            UsingOldCourseDescription,
+            AutodeleteNoContactHouseholdAcc,
+            AutodeleteNoContactProgramAcc,
+            AutodeleteNoContactEducationalInstitutionAcc,
+            AutodeleteNoContactBusinessOrganizationAcc,
+            AutodeleteNoContactUniversityDepartmentAcc
     }
 
     /**********************************************************************************
