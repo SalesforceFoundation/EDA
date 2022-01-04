@@ -51,7 +51,7 @@ Verify user without class access renders release management page with toast erro
     Current page should be                  Home        Education Cloud Settings
     Click app in edc home                   Go to Release Management
     Current page should be                  Home        Release Management
-    Verify error is displayed           You do not have access to the Apex class named \'ReleaseGateController\'
+    Verify error is displayed           You do not have access to the Apex class named 'ReleaseGateController'
 
     #remove permission added for test
     Run task        add_permission_set_perms
