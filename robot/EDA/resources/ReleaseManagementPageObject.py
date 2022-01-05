@@ -156,7 +156,7 @@ class ReleaseManagementPage(BaseEDAPage, HomePage):
         )
         text = self.selenium.get_webelement(locator).text
         if(len(text) == 0):
-            raise Exception("Feature description for feature " + '{feature}' + " is empty")
+            raise Exception(f"Feature description for feature " + '{feature}' + " is empty")
 
     def verify_release_gate_feature_link(self, product, gate_item, feature, link_label, link_url):
         """ Verify the release gate feature link exists
@@ -173,9 +173,8 @@ class ReleaseManagementPage(BaseEDAPage, HomePage):
             error= "Element is not displayed for the user"
         )
 
-    def activate_release_gate_item(self, product, gate_item):
-        """ Activates the release gate by clicking on the Activate button
-            and confirming the action to activate
+    def open_release_gate_item_activation(self, product, gate_item):
+        """ Clicks on the activate button within the feature gate to open the confirmation modal
         """
         locator = eda_lex_locators["release_management"]["release_gate_item_status_inactive"].format(product, gate_item)
         self.selenium.wait_until_page_contains_element(
@@ -183,10 +182,29 @@ class ReleaseManagementPage(BaseEDAPage, HomePage):
             error=f"Release gate item - activation button is not available"
         ) 
         self.selenium.click_element(locator)
+         
+    
+    def verify_release_gate_activation_modal(self,header_value,body_value):
+        """ Verifies the header and text body of the opened modal to confirm the activation of a feature gate
+        """
+        modalHeaderLocator = eda_lex_locators["release_management"]["release_gate_activation_modal_header"];
+        modalBodyLocator = eda_lex_locators["release_management"]["release_gate_activation_modal_text_body"];
+
+        self.selenium.wait_until_element_is_visible(modalHeaderLocator)
+        modalHeader = self.selenium.get_webelement(modalHeaderLocator).text
+        modalBody = self.selenium.get_webelement(modalBodyLocator).text
+        if modalHeader not in header_value:
+            raise Exception(f"Release Gate activation modal does not have correct header: Expected: {header_value} vs. Actual: {modalHeader}")
+        if modalBody not in body_value:
+            raise Exception(f"Release gate activation modal does not have expected text body. Expected: {body_value} vs. Actual: {modalBody}")
+    
+    def activate_release_gate_item(self, product, gate_item):
+        """ Activates the release gate by confirming the activation in the modal
+        """
         locator = eda_lex_locators["release_management"]["release_gate_confirm_activate_button"].format(product, gate_item)
         self.selenium.wait_until_page_contains_element(
             locator,
-            error=f"Release gate item - confirmation activation button is not available"
+            error="Release gate item - confirmation activation button is not available"
         )
         self.selenium.click_element(locator)
         time.sleep(2)
@@ -206,7 +224,7 @@ class ReleaseManagementPage(BaseEDAPage, HomePage):
         locator = eda_lex_locators["release_management"]["release_gate_cancel_activate_button"].format(product, gate_item)
         self.selenium.wait_until_page_contains_element(
             locator,
-            error=f"Release gate item - confirmation activation button is not available"
+            error="Release gate item - cancellation button within activation modal is not available"
         )
         self.selenium.click_element(locator)
         time.sleep(0.5)
