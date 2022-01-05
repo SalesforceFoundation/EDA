@@ -273,6 +273,20 @@ private class UTIL_OrgTelemetry_TEST {
         );
         insert businessAccounts;
 
+        List<Affl_Mappings__c> affMappings = new List<Affl_Mappings__c>();
+        affMappings.add(
+            new Affl_Mappings__c(
+                Name = 'Test Affiliation Mapping',
+                Account_Record_Type__c = 'Test_Record_Type',
+                Primary_Affl_Field__c = 'Test Contact Primary Affl Field',
+                Auto_Program_Enrollment__c = true,
+                Auto_Program_Enrollment_Status__c = 'Test Auto Enrollment Status',
+                Auto_Program_Enrollment_Role__c = 'Test Auto Enrollment Role'
+            )
+        );
+
+        insert affMappings;
+
         // Insert other random test records to test the object usage telemetry - course offerings, course connections, etc.
         Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(null, null);
 
@@ -455,6 +469,11 @@ private class UTIL_OrgTelemetry_TEST {
         assertIntegerValue(
             UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCurrentYearSeasonalAddresses.name(),
             seasonalAddresses.size()
+        );
+
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountAutoEnrollmentMappings.name(),
+            affMappings.size()
         );
     }
 
