@@ -33,20 +33,20 @@
 
 @isTest
 private with sharing class LeadConversionAccountNaming_FTST {
-
-
     /** Helper method to create the Hierarchy Settings for the tests
      * @param: populateConversionRTs indicates if the Admin and Household RTs should be included
      * for the Lead Conversion
      * @return: returns the orgSettings
-    */
-    private static hed__Hierarchy_Settings__c createSettings(Boolean populateConversionRTs){
+     */
+    private static hed__Hierarchy_Settings__c createSettings(Boolean populateConversionRTs) {
         hed__Hierarchy_Settings__c orgSettings = hed.UTIL_CustomSettings_API.getOrgSettings();
-        if(populateConversionRTs){
-            orgSettings.hed__Lead_Converted_Account_RTypes__c = hed.UTIL_Describe_API.getAdminAccRecTypeID() + ';' +
+        if (populateConversionRTs) {
+            orgSettings.hed__Lead_Converted_Account_RTypes__c =
+                hed.UTIL_Describe_API.getAdminAccRecTypeID() +
+                ';' +
                 hed.UTIL_Describe_API.getHhAccRecTypeID(); //populate Admin & Household account conversion types
-        } else{
-            orgSettings.hed__Lead_Converted_Account_RTypes__c = null; //ensure no Account record types for LC            
+        } else {
+            orgSettings.hed__Lead_Converted_Account_RTypes__c = null; //ensure no Account record types for LC
         }
         orgSettings.hed__Admin_Account_Naming_Format__c = '{!{!FirstName}} {!LastName} Administrative Account';
         orgSettings.hed__Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household';
@@ -55,11 +55,10 @@ private with sharing class LeadConversionAccountNaming_FTST {
         return orgSettings;
     }
 
-
     /**
      * @description T-5026176: Verify that the Lead Conversion Account Naming has no changes with the RT setting disabled
      * (ie, Account Name should be the same as the Lead Company)
-    */
+     */
     @isTest
     private static void convertLeadVerifySameAccountNameWithoutSettings() {
         hed__Hierarchy_Settings__c orgSettings = createSettings(false);
@@ -82,15 +81,18 @@ private with sharing class LeadConversionAccountNaming_FTST {
         //Verify Account Name is the same as the Lead Company
         List<Account> accts = [SELECT Id, Name FROM Account];
         System.assertEquals(1, accts.size(), 'There should be one Account created.');
-        System.assertEquals(testLead.Company, accts[0].Name, 'The Account should have the same name as the Lead.Company.');
+        System.assertEquals(
+            testLead.Company,
+            accts[0].Name,
+            'The Account should have the same name as the Lead.Company.'
+        );
     }
 
-    
     /**
-     * @description T-5026177: Verify that the Lead Conversion Account Naming has no changes with the Record Type 
-     * setting enabled. (Lead Conversion will create a new Account with the Profile's default Account, so ensure 
+     * @description T-5026177: Verify that the Lead Conversion Account Naming has no changes with the Record Type
+     * setting enabled. (Lead Conversion will create a new Account with the Profile's default Account, so ensure
      * the default is different than the hed__Lead_Converted_Account_RTypes__c setting.)
-    */
+     */
     @isTest
     private static void convertLeadVerifySameAccountNameWithSettings() {
         //Set Academic Account Record Type as the RT setting since it is not the default Account RT
@@ -98,10 +100,14 @@ private with sharing class LeadConversionAccountNaming_FTST {
         orgSettings.hed__Lead_Converted_Account_RTypes__c = hed.UTIL_Describe_API.getAcademicAccRecTypeID();
 
         //Confirm Academic is not the default RT (default will be used for the new Account during Lead Conversion)
-        Schema.DescribeSObjectResult dsr= Schema.SObjectType.Account; 
-        Map<Id,Schema.RecordTypeInfo> rtMapById = dsr.getRecordTypeInfosById();
-        Schema.RecordTypeInfo academicRTInfo =  rtMapById.get(hed.UTIL_Describe_API.getAcademicAccRecTypeID());
-        System.assertEquals(false, academicRTInfo.isDefaultRecordTypeMapping(), 'Academic Account should not be the default Account Record Type');
+        Schema.DescribeSObjectResult dsr = Schema.SObjectType.Account;
+        Map<Id, Schema.RecordTypeInfo> rtMapById = dsr.getRecordTypeInfosById();
+        Schema.RecordTypeInfo academicRTInfo = rtMapById.get(hed.UTIL_Describe_API.getAcademicAccRecTypeID());
+        System.assertEquals(
+            false,
+            academicRTInfo.isDefaultRecordTypeMapping(),
+            'Academic Account should not be the default Account Record Type'
+        );
 
         //Create a new lead and convert (will create new Account with default RT)
         Lead testLead = hed.UTIL_UnitTestData_API.getLead();
@@ -121,16 +127,18 @@ private with sharing class LeadConversionAccountNaming_FTST {
 
         //Verify new Account RT is not Academic and Name is the same as the Lead Company
         List<Account> accts = [SELECT Id, Name, RecordTypeId FROM Account WHERE Name = :testLead.Company];
-        System.assertNotEquals(hed.UTIL_Describe_API.getAcademicAccRecTypeID(), accts[0].RecordTypeId, 
-            'The new Account should not be the Academic Account RT');
+        System.assertNotEquals(
+            hed.UTIL_Describe_API.getAcademicAccRecTypeID(),
+            accts[0].RecordTypeId,
+            'The new Account should not be the Academic Account RT'
+        );
         System.assertEquals(1, accts.size(), 'The Account name should match the Lead.Company and not be updated.');
     }
 
-
     /**
-     * @description T-5026178: Verify that Lead Conversion Account Naming is honored with the Setting Enabled, 
+     * @description T-5026178: Verify that Lead Conversion Account Naming is honored with the Setting Enabled,
      * and the Record Type Selected (assumes default Account model naming "{LastName} Account" in EDA)
-    */
+     */
     @isTest
     private static void convertLeadVerifyAcademicAccountNameWithDefaultSettings() {
         //Create settings with Academic Record type set as a Lead Converted type
@@ -168,11 +176,10 @@ private with sharing class LeadConversionAccountNaming_FTST {
         System.assertEquals(testLead.LastName + ' Account', assertAccount.Name);
     }
 
-
     /**
      * @description T-5026179: Verify that Lead Conversion Account Naming is honored with the Setting Enabled,
      * and the Record Type Selected (Administrative Account Name Format set)
-    */
+     */
     @isTest
     private static void convertLeadVerifyAdministrativeAccountNaming() {
         hed__Hierarchy_Settings__c orgSettings = createSettings(true);
