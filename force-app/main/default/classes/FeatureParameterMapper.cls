@@ -122,7 +122,10 @@ public virtual with sharing class FeatureParameterMapper {
             AutodeleteNoContactProgramAcc,
             AutodeleteNoContactEducationalInstitutionAcc,
             AutodeleteNoContactBusinessOrganizationAcc,
-            AutodeleteNoContactUniversityDepartmentAcc
+            AutodeleteNoContactUniversityDepartmentAcc,
+            HasAffiliationsRelatedToDeletedProgramEnrollments,
+            HasAffiliationStartDate,
+            HasAffiliationEndDate
     }
 
     /**********************************************************************************

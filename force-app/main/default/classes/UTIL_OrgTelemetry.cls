@@ -96,6 +96,9 @@ public without sharing class UTIL_OrgTelemetry {
         IsEnabled_StoreErrors,
         UsingOldContactEthnicity,
         UsingOldCourseDescription,
+        HasAffiliationsRelatedToDeletedProgramEnrollments,
+        HasAffiliationStartDate,
+        HasAffiliationEndDate,
         Data_CountSeasonalAddresses,
         Data_CountCurrentYearSeasonalAddresses,
         AutodeleteNoContactHouseholdAcc,
@@ -234,6 +237,21 @@ public without sharing class UTIL_OrgTelemetry {
         featureManager.setPackageBooleanValue(
             TelemetryParameterName.AutodeleteNoContactUniversityDepartmentAcc.name(),
             this.hasAutoDeletionUniversityDeptAccts(edaSettings)
+        );
+            
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasAffiliationsRelatedToDeletedProgramEnrollments.name(),
+            edaSettings.Affl_ProgEnroll_Del__c
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasAffiliationStartDate.name(),
+            edaSettings.Affl_ProgEnroll_Copy_Start_Date__c
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasAffiliationEndDate.name(),
+            edaSettings.Affl_ProgEnroll_Copy_End_Date__c
         );
     }
 
