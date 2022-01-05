@@ -70,12 +70,12 @@ public class UTIL_UnitTestData_TEST {
     }
 
     public static Lead getLead() {
-        Lead l = new Lead(
+        Lead lead = new Lead(
             FirstName = 'Test',
             LastName = 'Testerson' + Datetime.now().getTime(),
             Company = 'Test Company'
         );
-        return l;
+        return lead;
     }
 
     public static Contact getContact() {

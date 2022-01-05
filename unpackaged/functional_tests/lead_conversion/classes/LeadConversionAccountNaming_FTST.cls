@@ -69,19 +69,20 @@ private with sharing class LeadConversionAccountNaming_FTST {
         insert testLead;
 
         Test.startTest();
+
         Database.LeadConvert lc = new Database.LeadConvert();
         lc.setLeadId(testLead.Id);
-
         LeadStatus convertedStatus = [SELECT Id, MasterLabel FROM LeadStatus WHERE IsConverted = TRUE LIMIT 1];
         lc.setConvertedStatus(convertedStatus.MasterLabel);
-
         Database.LeadConvertResult lcr = Database.convertLead(lc);
+
         Test.stopTest();
         System.assert(lcr.isSuccess()); //Assert conversion succeeded
 
         //Verify Account Name is the same as the Lead Company
-        List<Account> accts = [SELECT Id, Name FROM Account WHERE Name = :testLead.Company];
-        System.assertEquals(1, accts.size(), 'There should be one Account with the same name as the Lead.Company.');
+        List<Account> accts = [SELECT Id, Name FROM Account];
+        System.assertEquals(1, accts.size(), 'There should be one Account created.');
+        System.assertEquals(testLead.Company, accts[0].Name, 'The Account should have the same name as the Lead.Company.');
     }
 
     
@@ -100,8 +101,7 @@ private with sharing class LeadConversionAccountNaming_FTST {
         Schema.DescribeSObjectResult dsr= Schema.SObjectType.Account; 
         Map<Id,Schema.RecordTypeInfo> rtMapById = dsr.getRecordTypeInfosById();
         Schema.RecordTypeInfo academicRTInfo =  rtMapById.get(hed.UTIL_Describe_API.getAcademicAccRecTypeID());
-        System.assertEquals(false, academicRTInfo.isDefaultRecordTypeMapping(), 
-            'Academic Account should not be the default Account Record Type');
+        System.assertEquals(false, academicRTInfo.isDefaultRecordTypeMapping(), 'Academic Account should not be the default Account Record Type');
 
         //Create a new lead and convert (will create new Account with default RT)
         Lead testLead = hed.UTIL_UnitTestData_API.getLead();
