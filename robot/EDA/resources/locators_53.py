@@ -429,6 +429,8 @@ eda_lex_locators = {
         "release_gate_feature_description":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/../../../../../../following-sibling::div//ol/li//h3[contains(@class, 'featureLabel') and text()='{}']/following-sibling::p[@class='featureDescription']",        
         "release_gate_feature_link":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/../../../../../../following-sibling::div//ol/li//h3[contains(@class, 'featureLabel') and text()='{}']/../following-sibling::div/a[@class='featureLink' and text()='{}' and @href='{}']",
         "release_gate_confirm_activate_button":"//div[contains(@class, 'modal-container')]//div/button[@title='Activate']",
-        "release_gate_cancel_activate_button":"//div[contains(@class, 'modal-container')]//div/button[@title='Cancel']"
+        "release_gate_cancel_activate_button":"//div[contains(@class, 'modal-container')]//div/button[@title='Cancel']",
+        "release_gate_activation_modal_header":"//div[contains(@class, 'modal-header')]/h2",
+        "release_gate_activation_modal_text_body":"//c-release-gate-modal-body//div",
     }
 }
