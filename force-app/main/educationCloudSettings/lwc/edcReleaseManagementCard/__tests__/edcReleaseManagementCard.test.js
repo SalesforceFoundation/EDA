@@ -2,6 +2,7 @@ import { createElement } from "lwc";
 import EdcReleaseManagementCard from "c/edcReleaseManagementCard";
 import getProductRegistryReleaseGateVModels from "@salesforce/apex/ReleaseGateController.getProductRegistryReleaseGateVModels";
 import getReleaseGateVModel from "@salesforce/apex/ReleaseGateController.getReleaseGateVModel";
+import { getNavigateCalledWith } from "lightning/navigation";
 
 const ReleaseManagementTitleLabel = "ReleaseManagementTitleLabel is set";
 const ReleaseManagementButtonLabel = "ReleaseManagementButtonLabel is set";
@@ -141,5 +142,36 @@ describe("c-edc-release-management-card", () => {
             expect(progressRingTextContent).not.toBeNull();
             expect(progressRingTextContent.textContent).toBe(ReleaseGateProgressCompleteLabel);
         });
+    });
+
+    it("Should navigate to release management component", () => {
+        const element = createElement("c-edc-release-management-card", {
+            is: EdcReleaseManagementCard,
+        });
+        getProductRegistryReleaseGateVModels.mockResolvedValue(PRODUCT_REGISTRIES);
+        getReleaseGateVModel.mockResolvedValue(RELEASE_GATES);
+        element.navigationTarget = "testingReleaseManagementContainer";
+        document.body.appendChild(element);
+
+        return Promise.resolve()
+            .then(async () => {
+                await expect(element).toBeAccessible();
+
+                const headingSpan = element.shadowRoot.querySelector("span.slds-text-heading_small");
+                expect(headingSpan).not.toBeNull();
+                expect(headingSpan.textContent).toBe(ReleaseManagementTitleLabel);
+
+                const btnGoToReleaseManagement = element.shadowRoot.querySelector(
+                    '[data-qa="btnGoToReleaseManagement"]'
+                );
+                expect(btnGoToReleaseManagement).not.toBeNull();
+                btnGoToReleaseManagement.click();
+                const { pageReference } = getNavigateCalledWith();
+
+                //Get the details
+                expect(pageReference.type).toBe("standard__component");
+                expect(pageReference.attributes.componentName).toBe("testingReleaseManagementContainer");
+            })
+            .then(() => {});
     });
 });
