@@ -1297,18 +1297,18 @@ private with sharing class CON_CannotDelete_TEST {
         merge contacts[1] contactWithChildRecords;
         Test.stopTest();
 
-        // Ensure looser contact is deleted
-        List<Contact> mergeLooserContacts = [
+        // Ensure loser contact is deleted
+        List<Contact> mergeLoserContacts = [
             SELECT Id, MasterRecordId, IsDeleted
             FROM Contact
             WHERE Id = :contactWithChildRecords.Id
             ALL ROWS
         ];
-        System.assertEquals(1, mergeLooserContacts.size(), 'There should be 1 merge looser contact');
-        System.assertEquals(true, mergeLooserContacts[0].IsDeleted, 'The merge looser contact should be deleted');
+        System.assertEquals(1, mergeLoserContacts.size(), 'There should be 1 merge loser contact');
+        System.assertEquals(true, mergeLoserContacts[0].IsDeleted, 'The merge loser contact should be deleted');
         System.assertEquals(
             contacts[1].Id,
-            mergeLooserContacts[0].MasterRecordId,
+            mergeLoserContacts[0].MasterRecordId,
             'MasterRecordId should contain winner contact id'
         );
 

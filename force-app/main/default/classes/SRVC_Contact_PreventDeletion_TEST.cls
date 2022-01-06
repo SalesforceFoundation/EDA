@@ -277,7 +277,7 @@ private class SRVC_Contact_PreventDeletion_TEST {
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
         insert contacts[1]; //Use the second contact as master to avoid duplicate error
         merge contacts[1] contactWithChildRecords;
-        Contact mergeLooserContact = [
+        Contact mergeLoserContact = [
             SELECT Id, MasterRecordId
             FROM Contact
             WHERE Id = :contactWithChildRecords.Id
@@ -285,7 +285,7 @@ private class SRVC_Contact_PreventDeletion_TEST {
         ];
 
         Test.startTest();
-        Boolean contactWasMerged = SRVC_Contact_PreventDeletion.getInstance().contactWasMerged(mergeLooserContact);
+        Boolean contactWasMerged = SRVC_Contact_PreventDeletion.getInstance().contactWasMerged(mergeLoserContact);
         Test.stopTest();
 
         // Ensure contactWasMerged is true

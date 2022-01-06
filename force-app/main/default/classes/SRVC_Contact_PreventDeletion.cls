@@ -132,7 +132,7 @@ public virtual with sharing class SRVC_Contact_PreventDeletion {
     }
 
     /**
-     * @description Determines if a contact was merged and being deleted as a merge looser
+     * @description Determines if a contact was merged and being deleted as a merge loser
      * @param  con A contact record
      * @return     True if a contact was merged and being deleted
      */
