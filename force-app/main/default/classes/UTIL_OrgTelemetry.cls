@@ -239,7 +239,7 @@ public without sharing class UTIL_OrgTelemetry {
             TelemetryParameterName.AutodeleteNoContactUniversityDepartmentAcc.name(),
             this.hasAutoDeletionUniversityDeptAccts(edaSettings)
         );
-            
+
         featureManager.setPackageBooleanValue(
             TelemetryParameterName.HasAffiliationsRelatedToDeletedProgramEnrollments.name(),
             edaSettings.Affl_ProgEnroll_Del__c
