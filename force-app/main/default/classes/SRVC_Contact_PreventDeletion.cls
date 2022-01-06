@@ -25,30 +25,30 @@ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2020
-* @group
-* @group-content ../../ApexDocContent/Contacts.htm
-* @description Service class for CON_CannotDelete_TDTM. Returns Contact records
-* that have been prevented from deletion.
-*/
+ * @author Salesforce.org
+ * @date 2020
+ * @group
+ * @group-content ../../ApexDocContent/Contacts.htm
+ * @description Service class for CON_CannotDelete_TDTM. Returns Contact records
+ * that have been prevented from deletion.
+ */
 public virtual with sharing class SRVC_Contact_PreventDeletion {
-
     /*********************************************
-    * @description Instance for Singleton Pattern
-    **********************************************/
+     * @description Instance for Singleton Pattern
+     **********************************************/
     @TestVisible
     private static SRVC_Contact_PreventDeletion instance;
 
     /*********************************************************************
-    * @description Empty constructor is not public for Singleton Pattern
-    **********************************************************************/
-    protected SRVC_Contact_PreventDeletion() {}
+     * @description Empty constructor is not public for Singleton Pattern
+     **********************************************************************/
+    protected SRVC_Contact_PreventDeletion() {
+    }
 
     /******************************************************************************
-    * @description Static method to get the current instance for Singleton pattern
-    * @return The instance of SRVC_Con_CanNotDelete.
-    ******************************************************************************/
+     * @description Static method to get the current instance for Singleton pattern
+     * @return The instance of SRVC_Con_CanNotDelete.
+     ******************************************************************************/
     public static SRVC_Contact_PreventDeletion getInstance() {
         if (instance == null) {
             instance = new SRVC_Contact_PreventDeletion();
@@ -59,17 +59,19 @@ public virtual with sharing class SRVC_Contact_PreventDeletion {
 
     /****************************************************************************************************************
     @description Returns a list of records that have been prevented from deletion
-    @params contactById The map of contacts by its Ids
+    @param contactById The map of contacts by its Ids
+    @param contactWithChildRecordsList A list of contacts with previously retrieved child relations
     @return contactPreventedFromDeletionList The list Contacts prevented from deletion
     *****************************************************************************************************************/
-    public virtual List<Contact> preventDeletionForContacts(Map<Id, Contact> contactById) {
-
-        List<Contact> contactWithChildRecordsList = getContactsAndChildRelationships(contactById.keySet());
+    public virtual List<Contact> preventDeletionForContacts(
+        Map<Id, Contact> contactById,
+        List<Contact> contactWithChildRecordsList
+    ) {
         List<Contact> contactPreventedFromDeletionList = new List<Contact>();
 
-        for (Contact eachContact: contactWithChildRecordsList) {
-            if (this.contactHasChildRecords(eachContact)) {
-                Contact contactInContext = contactById.get(eachContact.ID);
+        for (Contact eachContact : contactWithChildRecordsList) {
+            Contact contactInContext = contactById.get(eachContact.ID);
+            if (!this.contactWasMerged(contactInContext) && this.contactHasChildRecords(eachContact)) {
                 contactInContext.addError(Label.CannotDelete);
                 contactPreventedFromDeletionList.add(contactInContext);
             }
@@ -83,9 +85,10 @@ public virtual with sharing class SRVC_Contact_PreventDeletion {
     @params contactIdSet A set of Contact Id to return the records for
     @return List<Contact>
     *****************************************************************************************************************/
-    @TestVisible
-    protected virtual List<Contact> getContactsAndChildRelationships(set<Id> contactIdSet) {
-        return [SELECT ID,
+    public virtual List<Contact> getContactsAndChildRelationships(set<Id> contactIdSet) {
+        return [
+            SELECT
+                ID,
                 (SELECT ID FROM Addresses__r LIMIT 1),
                 (SELECT ID FROM Affl_Accounts__r LIMIT 1),
                 (SELECT ID FROM Applications_Applicant__r LIMIT 1),
@@ -100,31 +103,41 @@ public virtual with sharing class SRVC_Contact_PreventDeletion {
                 (SELECT ID FROM Student_Course_Enrollments__r LIMIT 1),
                 (SELECT ID FROM Term_Grades__r LIMIT 1),
                 (SELECT ID FROM Tests__r LIMIT 1)
-                FROM Contact
-                WHERE ID IN :contactIdSet];
+            FROM Contact
+            WHERE ID IN :contactIdSet
+        ];
     }
 
-   /*******************************************************************************************************
-   * @description Evaluates whether the Contact has any child related records
-   * @param con is the current Contact record
-   * @return Boolean
-   ********************************************************************************************************/
+    /*******************************************************************************************************
+     * @description Evaluates whether the Contact has any child related records
+     * @param con is the current Contact record
+     * @return Boolean
+     ********************************************************************************************************/
     @TestVisible
     protected virtual Boolean contactHasChildRecords(Contact con) {
         return (con.Addresses__r.isEmpty() == false ||
-                con.Affl_Accounts__r.isEmpty() == false ||
-                con.Applications_Applicant__r.isEmpty() == false ||
-                con.Applications_Preparer__r.isEmpty() == false ||
-                con.Attendance_Events__r.isEmpty() == false ||
-                con.Attributes__r.isEmpty() == false ||
-                con.Behavior_Involvements__r.isEmpty() == false ||
-                con.Contact_Languages__r.isEmpty() == false ||
-                con.Courses_Taught__r.isEmpty() == false ||
-                con.Education_History__r.isEmpty() == false ||
-                con.Program_Enrollments__r.isEmpty() == false ||
-                con.Student_Course_Enrollments__r.isEmpty() == false ||
-                con.Term_Grades__r.isEmpty() == false ||
-                con.Tests__r.isEmpty() == false);
+        con.Affl_Accounts__r.isEmpty() == false ||
+        con.Applications_Applicant__r.isEmpty() == false ||
+        con.Applications_Preparer__r.isEmpty() == false ||
+        con.Attendance_Events__r.isEmpty() == false ||
+        con.Attributes__r.isEmpty() == false ||
+        con.Behavior_Involvements__r.isEmpty() == false ||
+        con.Contact_Languages__r.isEmpty() == false ||
+        con.Courses_Taught__r.isEmpty() == false ||
+        con.Education_History__r.isEmpty() == false ||
+        con.Program_Enrollments__r.isEmpty() == false ||
+        con.Student_Course_Enrollments__r.isEmpty() == false ||
+        con.Term_Grades__r.isEmpty() == false ||
+        con.Tests__r.isEmpty() == false);
     }
 
+    /**
+     * @description Determines if a contact was merged and being deleted as a merge loser
+     * @param  con A contact record
+     * @return     True if a contact was merged and being deleted
+     */
+    @TestVisible
+    protected virtual Boolean contactWasMerged(Contact con) {
+        return (con.MasterRecordId != null) && (con.MasterRecordId.getSobjectType() == Schema.Contact.SObjectType);
+    }
 }
