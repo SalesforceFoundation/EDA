@@ -118,6 +118,11 @@ public virtual with sharing class FeatureParameterMapper {
             SettingsHealthCheckLastRunDate,
             UsingOldContactEthnicity,
             UsingOldCourseDescription,
+            AutodeleteNoContactHouseholdAcc,
+            AutodeleteNoContactProgramAcc,
+            AutodeleteNoContactEducationalInstitutionAcc,
+            AutodeleteNoContactBusinessOrganizationAcc,
+            AutodeleteNoContactUniversityDepartmentAcc,
             HasAffiliationsRelatedToDeletedProgramEnrollments,
             HasAffiliationStartDate,
             HasAffiliationEndDate

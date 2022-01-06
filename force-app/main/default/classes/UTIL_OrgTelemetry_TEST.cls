@@ -126,6 +126,31 @@ private class UTIL_OrgTelemetry_TEST {
         );
 
         assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.AutodeleteNoContactHouseholdAcc.name(),
+            orgTelemetry.hasAutoDeletionHouseholdAccts(edaSettings)
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.AutodeleteNoContactProgramAcc.name(),
+            orgTelemetry.hasAutoDeletionProgramAccts(edaSettings)
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.AutodeleteNoContactEducationalInstitutionAcc.name(),
+            orgTelemetry.hasAutoDeletionEducationalInstitutionAccts(edaSettings)
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.AutodeleteNoContactBusinessOrganizationAcc.name(),
+            orgTelemetry.hasAutoDeletionBusinessOrgAccts(edaSettings)
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.AutodeleteNoContactUniversityDepartmentAcc.name(),
+            orgTelemetry.hasAutoDeletionUniversityDeptAccts(edaSettings)
+        );
+
+        assertBooleanValue(
             UTIL_OrgTelemetry.TelemetryParameterName.HasAffiliationsRelatedToDeletedProgramEnrollments.name(),
             edaSettings.Affl_ProgEnroll_Del__c
         );
