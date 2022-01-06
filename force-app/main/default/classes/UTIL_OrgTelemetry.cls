@@ -505,17 +505,13 @@ public without sharing class UTIL_OrgTelemetry {
      * auto-deletion.
      */
     private Boolean hasContactAutoDeletionEnabled(Hierarchy_Settings__c edaSettings, String accountRT) {
-        Boolean autodeleteContactsEnabled = false;
-        Boolean autoDeletionConfigPopulated = edaSettings.Accounts_to_Delete__c != null;
+        Boolean isAutoDeleteConfigured = edaSettings.Accounts_to_Delete__c != null;
+        Boolean isRecordTypeDefined = accountRT != null;
 
-        if (autoDeletionConfigPopulated) {
-            Boolean currentAccountRTDefined = accountRT != null;
-            if (currentAccountRTDefined) {
-                autodeleteContactsEnabled = edaSettings.Accounts_to_Delete__c.Contains(accountRT)
-                    ? true
-                    : autodeleteContactsEnabled;
-            }
+        if (isAutoDeleteConfigured && isRecordTypeDefined) {
+            return edaSettings.Accounts_to_Delete__c.contains(accountRT);
+        } else {
+            return false;
         }
-        return autodeleteContactsEnabled;
     }
 }
