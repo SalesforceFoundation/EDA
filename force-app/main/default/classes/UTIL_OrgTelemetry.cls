@@ -101,6 +101,11 @@ public without sharing class UTIL_OrgTelemetry {
         HasAffiliationEndDate,
         Data_CountSeasonalAddresses,
         Data_CountCurrentYearSeasonalAddresses,
+        AutodeleteNoContactHouseholdAcc,
+        AutodeleteNoContactProgramAcc,
+        AutodeleteNoContactEducationalInstitutionAcc,
+        AutodeleteNoContactBusinessOrganizationAcc,
+        AutodeleteNoContactUniversityDepartmentAcc,
         Data_CountAutoEnrollmentMappings
     }
 
@@ -210,6 +215,31 @@ public without sharing class UTIL_OrgTelemetry {
             edaSettings.Store_Errors_On__c
         );
 
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactHouseholdAcc.name(),
+            this.hasAutoDeletionHouseholdAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactProgramAcc.name(),
+            this.hasAutoDeletionProgramAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactEducationalInstitutionAcc.name(),
+            this.hasAutoDeletionEducationalInstitutionAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactBusinessOrganizationAcc.name(),
+            this.hasAutoDeletionBusinessOrgAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactUniversityDepartmentAcc.name(),
+            this.hasAutoDeletionUniversityDeptAccts(edaSettings)
+        );
+            
         featureManager.setPackageBooleanValue(
             TelemetryParameterName.HasAffiliationsRelatedToDeletedProgramEnrollments.name(),
             edaSettings.Affl_ProgEnroll_Del__c
@@ -423,5 +453,69 @@ public without sharing class UTIL_OrgTelemetry {
             TelemetryParameterName.Data_CountAutoEnrollmentMappings.name(),
             objectMetrics.numAutoEnrollmentAffMappings
         );
+    }
+
+    /**
+     * @description Returns true if household accounts without contacts are marked
+     * for deletion.
+     */
+    @TestVisible
+    private Boolean hasAutoDeletionHouseholdAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getHhAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if academic program accounts without contacts are marked
+     * for deletion.
+     */
+    @TestVisible
+    private Boolean hasAutoDeletionProgramAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getAcademicAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if educational institution accounts without contacts are marked
+     * for deletion.
+     */
+    @TestVisible
+    private Boolean hasAutoDeletionEducationalInstitutionAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getEducationalInstitutionAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if business organization accounts without contacts are marked
+     * for deletion.
+     */
+    @TestVisible
+    private Boolean hasAutoDeletionBusinessOrgAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getBizAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if university department accounts without contacts are marked
+     * for deletion.
+     */
+    @TestVisible
+    private Boolean hasAutoDeletionUniversityDeptAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getUniversityAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if the specified account record type is enabled for contacts
+     * auto-deletion.
+     */
+    private Boolean hasContactAutoDeletionEnabled(Hierarchy_Settings__c edaSettings, String accountRT) {
+        Boolean autodeleteContactsEnabled = false;
+        Boolean autoDeletionConfigPopulated = edaSettings.Accounts_to_Delete__c != null;
+
+        if (autoDeletionConfigPopulated) {
+            Boolean currentAccountRTDefined = accountRT != null;
+            if (currentAccountRTDefined) {
+                autodeleteContactsEnabled = edaSettings.Accounts_to_Delete__c.Contains(accountRT)
+                    ? true
+                    : autodeleteContactsEnabled;
+            }
+        }
+        return autodeleteContactsEnabled;
     }
 }
