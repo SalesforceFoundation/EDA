@@ -68,7 +68,6 @@ Verify EDA documents page is displayed when user clicks on the documentation but
     Go to education cloud settings home
     Current page should be                  Home        Education Cloud Settings
     Click product card button in edc home   Go to the EDA documentation.
-    ${handles}=    Get Window Handles
     Switch Window    locator=NEW
     Verify eda documentation  powerofus.force.com/s/article/EDA-Documentation   
 
@@ -78,6 +77,5 @@ Verify Trailhead page is displayed when user clicks on the trailhead button unde
     Go to education cloud settings home
     Current page should be                  Home        Education Cloud Settings
     Click product card button in edc home   Go to EDA Trailhead modules.
-    ${handles}=    Get Window Handles
     Switch Window    locator=NEW
     Verify eda documentation  trailhead.salesforce.com/en/content/learn/trails/highered_heda          
