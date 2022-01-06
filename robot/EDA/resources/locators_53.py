@@ -437,4 +437,5 @@ eda_lex_locators = {
     },
     "eda_settings_page": {
         "page_title": "//div[@data-qa-locator='edaSettingsTitle' and text()='{}']",
+    }
 }
