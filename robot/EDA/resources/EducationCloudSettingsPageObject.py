@@ -44,4 +44,4 @@ class EducationCloudSettingsPage(BaseEDAPage, HomePage):
         """
         locator = eda_lex_locators["eda_settings_new"]["error_toast"].format(value)
         self.selenium.wait_until_page_contains_element(locator, timeout=60, error=f'{locator} is not available')
-        self.selenium.wait_until_element_is_visible(locator, error= "{locator} is not displayed for the user")
+        self.selenium.wait_until_element_is_visible(locator, error= f'{locator} is not displayed for the user')
