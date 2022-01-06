@@ -511,9 +511,7 @@ public without sharing class UTIL_OrgTelemetry {
         if (autoDeletionConfigPopulated) {
             Boolean currentAccountRTDefined = accountRT != null;
             if (currentAccountRTDefined) {
-                autodeleteContactsEnabled = edaSettings.Accounts_to_Delete__c.Contains(accountRT)
-                    ? true
-                    : autodeleteContactsEnabled;
+                autodeleteContactsEnabled = edaSettings.Accounts_to_Delete__c.contains(accountRT);
             }
         }
         return autodeleteContactsEnabled;
