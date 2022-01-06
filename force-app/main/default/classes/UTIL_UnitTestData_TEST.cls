@@ -452,6 +452,91 @@ public class UTIL_UnitTestData_TEST {
         public List<Address__c> addrs { public get; public set; }
     }
 
+    /**
+     * @description creates a test contact record with an address, affiliation, application, etc.
+     * @return   inserted contact record
+     */
+    public static Contact createTestContactWithMultipleRelations() {
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert acc;
+
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        insert contacts;
+
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addrs[0].Parent_Account__c = contacts[0].AccountId;
+        addrs[0].MailingCity__c = 'Boston';
+        addrs[0].Parent_Contact__c = contacts[0].id;
+        insert addrs[0];
+
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
+        insert term;
+
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
+        insert course;
+
+        Affiliation__c affiliation = UTIL_UnitTestData_TEST.getAffiliation(contacts[0].Id, acc.Id, false);
+        insert affiliation;
+
+        Application__c applicant = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[0].Id, term.Id);
+        insert applicant;
+
+        Application__c applicantPreparer = UTIL_UnitTestData_TEST.getApplication(acc.Id, null, term.Id);
+        applicantPreparer.Preparer__c = contacts[0].Id;
+        insert applicantPreparer;
+
+        Attendance_Event__c attendance = UTIL_UnitTestData_TEST.getAttendanceEvent(contacts[0].Id, null, null, null);
+        insert attendance;
+
+        Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
+        Attribute__c credentialAttribute = UTIL_UnitTestData_TEST.getAttribute(
+            'TestCred2',
+            contacts[0].Id,
+            credentialRecTypeId
+        );
+        insert credentialAttribute;
+
+        Case caseRecord = UTIL_UnitTestData_TEST.getCase(contacts[0].Id, 'School Violation', 'New');
+        insert caseRecord;
+
+        Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
+
+        Contact_Language__c contactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(
+            language.Id,
+            contacts[0].Id,
+            false
+        );
+
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOffering.Faculty__c = contacts[0].Id;
+        update courseOffering;
+
+        Course_Enrollment__c courseCxn = UTIL_UnitTestData_TEST.getCourseConnection(contacts[0].Id, courseOffering.Id);
+        insert courseCxn;
+
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
+        insert eduHis;
+
+        Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id, courseOffering.Id, courseCxn.Id);
+        insert termGrade;
+
+        Program_Enrollment__c programEnrollment = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment.Contact__c = contacts[0].Id;
+        insert programEnrollment;
+
+        Test__c testRecord = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[0].Id);
+        insert testRecord;
+
+        Behavior_Involvement__c behInvolvement = UTIL_UnitTestData_TEST.getBehaviorInvolvementRecord(
+            contacts[0].Id,
+            caseRecord.Id,
+            'Reporter'
+        );
+        insert behInvolvement;
+
+        return contacts[0];
+    }
+
     /*********************************************************************************************************
      * @description Create an error record for the current system time.
      **********************************************************************************************************/
