@@ -505,8 +505,8 @@ public without sharing class UTIL_OrgTelemetry {
      * auto-deletion.
      */
     private Boolean hasContactAutoDeletionEnabled(Hierarchy_Settings__c edaSettings, String accountRT) {
-        Boolean isAutoDeleteConfigured = edaSettings.Accounts_to_Delete__c != null;
-        Boolean isRecordTypeDefined = accountRT != null;
+        Boolean isAutoDeleteConfigured = String.IsNotBlank(edaSettings.Accounts_to_Delete__c);
+        Boolean isRecordTypeDefined = String.IsNotBlank(accountRT);
 
         if (isAutoDeleteConfigured && isRecordTypeDefined) {
             return edaSettings.Accounts_to_Delete__c.contains(accountRT);
