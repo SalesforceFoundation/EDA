@@ -69,6 +69,15 @@ public class UTIL_UnitTestData_TEST {
         }
     }
 
+    public static Lead getLead() {
+        Lead lead = new Lead(
+            FirstName = 'Test',
+            LastName = 'Testerson' + Datetime.now().getTime(),
+            Company = 'Test Company'
+        );
+        return lead;
+    }
+
     public static Contact getContact() {
         Contact contact = new Contact(
             FirstName = 'Test',
