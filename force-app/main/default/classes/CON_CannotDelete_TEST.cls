@@ -1282,6 +1282,72 @@ private with sharing class CON_CannotDelete_TEST {
         System.assertEquals(0, returnContacts.size());
     }
 
+    /**************************************************************************************************************************
+     * @description Test if contacts can be merged when prevent deletion is enabled
+     */
+    @isTest
+    static void conCanMerge() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Contact_Deletion__c = true));
+
+        Contact contactWithChildRecords = UTIL_UnitTestData_TEST.createTestContactWithMultipleRelations();
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(2);
+        insert contacts[1]; //Use the second contact as master to avoid duplicate error
+
+        Test.startTest();
+        merge contacts[1] contactWithChildRecords;
+        Test.stopTest();
+
+        // Ensure loser contact is deleted
+        List<Contact> mergeLoserContacts = [
+            SELECT Id, MasterRecordId, IsDeleted
+            FROM Contact
+            WHERE Id = :contactWithChildRecords.Id
+            ALL ROWS
+        ];
+        System.assertEquals(1, mergeLoserContacts.size(), 'There should be 1 merge loser contact');
+        System.assertEquals(true, mergeLoserContacts[0].IsDeleted, 'The merge loser contact should be deleted');
+        System.assertEquals(
+            contacts[1].Id,
+            mergeLoserContacts[0].MasterRecordId,
+            'MasterRecordId should contain winner contact id'
+        );
+
+        Contact mergeWinnerContact = [
+            SELECT
+                ID,
+                (SELECT ID FROM Addresses__r LIMIT 1),
+                (SELECT ID FROM Applications_Applicant__r LIMIT 1),
+                (SELECT ID FROM Applications_Preparer__r LIMIT 1),
+                (SELECT ID FROM Attendance_Events__r LIMIT 1),
+                (SELECT ID FROM Attributes__r LIMIT 1),
+                (SELECT ID FROM Contact_Languages__r LIMIT 1),
+                (SELECT ID FROM Education_History__r LIMIT 1),
+                (SELECT ID FROM Program_Enrollments__r LIMIT 1),
+                (SELECT ID FROM Term_Grades__r LIMIT 1),
+                (SELECT ID FROM Tests__r LIMIT 1)
+            FROM Contact
+            WHERE ID = :contacts[1].Id
+        ];
+        System.assertEquals(1, mergeWinnerContact.Addresses__r.size(), 'There should be 1 merged address');
+        System.assertEquals(
+            1,
+            mergeWinnerContact.Applications_Applicant__r.size(),
+            'There should be 1 merged applicant'
+        );
+        System.assertEquals(1, mergeWinnerContact.Applications_Preparer__r.size(), 'There should be 1 merged preparer');
+        System.assertEquals(1, mergeWinnerContact.Attendance_Events__r.size(), 'There should be 1 merged attendance');
+        System.assertEquals(1, mergeWinnerContact.Attributes__r.size(), 'There should be 1 merged attribute');
+        System.assertEquals(1, mergeWinnerContact.Contact_Languages__r.size(), 'There should be 1 merged language');
+        System.assertEquals(
+            1,
+            mergeWinnerContact.Education_History__r.size(),
+            'There should be 1 merged education history'
+        );
+        System.assertEquals(1, mergeWinnerContact.Program_Enrollments__r.size(), 'There should be 1 merged enrollment');
+        System.assertEquals(1, mergeWinnerContact.Term_Grades__r.size(), 'There should be 1 merged term grades');
+        System.assertEquals(1, mergeWinnerContact.Tests__r.size(), 'There should be 1 merged test');
+    }
+
     /*********************************************************************************************************
      * @description Test method to test if Prevent_Contact_Deletion__c is enabled in Hierarchy Settings,and the
      * Contact record has different child records associated to it,then it cannot be deleted.
@@ -1333,11 +1399,6 @@ private with sharing class CON_CannotDelete_TEST {
         Attribute__c attribute2 = UTIL_UnitTestData_TEST.getAttribute('TestCred2', contacts[1].Id, credentialRecTypeId);
 
         insert new List<Attribute__c>{ attribute1, attribute2 };
-
-        Case case1 = UTIL_UnitTestData_TEST.getCase(contacts[0].Id, 'School Code of Conduct', 'Current');
-        Case case2 = UTIL_UnitTestData_TEST.getCase(contacts[1].Id, 'School Code of Conduct', 'Current');
-
-        insert new List<case>{ case1, case2 };
 
         Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
 
@@ -1448,10 +1509,6 @@ private with sharing class CON_CannotDelete_TEST {
         Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
 
         Attribute__c attribute1 = UTIL_UnitTestData_TEST.getAttribute('TestCred2', contacts[1].Id, credentialRecTypeId);
-
-        Case caseRecord = UTIL_UnitTestData_TEST.getCase(contacts[1].Id, 'School Code of Conduct', 'Current');
-        caseRecord.AccountId = acc.Id;
-        insert caseRecord;
 
         Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
 
@@ -1743,7 +1800,8 @@ private with sharing class CON_CannotDelete_TEST {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Contact_Deletion__c = true));
 
-        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.BeforeDelete;
+        TDTM_Runnable.Action testBeforeAction = TDTM_Runnable.Action.BeforeDelete;
+        TDTM_Runnable.Action testAfterAction = TDTM_Runnable.Action.AfterDelete;
         Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
 
         Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
@@ -1771,14 +1829,20 @@ private with sharing class CON_CannotDelete_TEST {
         CON_CannotDelete_TDTM ConCannotDeleteTDTM = new CON_CannotDelete_TDTM();
 
         Test.startTest();
-        ConCannotDeleteTDTM.run(null, oldList, testAction, objResult);
+        ConCannotDeleteTDTM.run(null, oldList, testBeforeAction, objResult);
+        List<Contact> contactsWithChildRelations = CON_CannotDelete_TDTM.contactsWithChildRelations;
+        ConCannotDeleteTDTM.run(null, oldList, testAfterAction, objResult);
         Test.stopTest();
 
+        // verify before handler retrieved contact with relations
+        System.assertEquals(oldList.size(), contactsWithChildRelations.size());
         List<Contact> deletionPreventedContactList = SRVC_Contact_PreventDeletion.getInstance()
-            .preventDeletionForContacts(contactById);
+            .preventDeletionForContacts(contactById, contactsWithChildRelations);
 
         // verify deletionPreventedContactList is not empty
         System.assertEquals(1, deletionPreventedContactList.size());
+        // verify after handler cleared contactsWithChildRelations static var
+        System.assertEquals(null, CON_CannotDelete_TDTM.contactsWithChildRelations);
     }
 
     /************************************************************************************************************************
@@ -1791,7 +1855,8 @@ private with sharing class CON_CannotDelete_TEST {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Contact_Deletion__c = false));
 
-        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.BeforeDelete;
+        TDTM_Runnable.Action testBeforeAction = TDTM_Runnable.Action.BeforeDelete;
+        TDTM_Runnable.Action testAfterAction = TDTM_Runnable.Action.AfterDelete;
         Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
 
         Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
@@ -1819,14 +1884,21 @@ private with sharing class CON_CannotDelete_TEST {
         CON_CannotDelete_TDTM ConCannotDeleteTDTM = new CON_CannotDelete_TDTM();
 
         Test.startTest();
-        ConCannotDeleteTDTM.run(null, oldList, testAction, objResult);
+        ConCannotDeleteTDTM.run(null, oldList, testBeforeAction, objResult);
+        List<Contact> contactsWithChildRelations = CON_CannotDelete_TDTM.contactsWithChildRelations;
+        ConCannotDeleteTDTM.run(null, oldList, testAfterAction, objResult);
         Test.stopTest();
 
+        // verify before handler didn't retrieve any contacts with relations
+        System.assertEquals(null, contactsWithChildRelations);
+
         List<Contact> deletionPreventedContactList = SRVC_Contact_PreventDeletion.getInstance()
-            .preventDeletionForContacts(contactById);
+            .preventDeletionForContacts(contactById, new List<Contact>());
 
         // Verify deletionPreventedContactList is empty
         System.assertEquals(0, deletionPreventedContactList.size());
+        // verify after handler cleared contactsWithChildRelations static var
+        System.assertEquals(null, CON_CannotDelete_TDTM.contactsWithChildRelations);
     }
 
     /*************************************************************************************************************************
@@ -1839,7 +1911,8 @@ private with sharing class CON_CannotDelete_TEST {
 
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Contact_Deletion__c = true));
 
-        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.BeforeDelete;
+        TDTM_Runnable.Action testBeforeAction = TDTM_Runnable.Action.BeforeDelete;
+        TDTM_Runnable.Action testAfterAction = TDTM_Runnable.Action.AfterDelete;
         Schema.DescribeSObjectResult objResult = Schema.SObjectType.Contact;
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
@@ -1852,11 +1925,13 @@ private with sharing class CON_CannotDelete_TEST {
         CON_CannotDelete_TDTM ConCannotDeleteTDTM = new CON_CannotDelete_TDTM();
 
         Test.startTest();
-        ConCannotDeleteTDTM.run(null, oldList, testAction, objResult);
+        ConCannotDeleteTDTM.run(null, oldList, testBeforeAction, objResult);
+        List<Contact> contactsWithChildRelations = CON_CannotDelete_TDTM.contactsWithChildRelations;
+        ConCannotDeleteTDTM.run(null, oldList, testAfterAction, objResult);
         Test.stopTest();
 
         List<Contact> deletionPreventedContactList = SRVC_Contact_PreventDeletion.getInstance()
-            .preventDeletionForContacts(contactById);
+            .preventDeletionForContacts(contactById, contactsWithChildRelations);
 
         // Verify deletionPreventedContactList is empty
         System.assertEquals(0, deletionPreventedContactList.size());
@@ -1889,19 +1964,19 @@ private with sharing class CON_CannotDelete_TEST {
 
         CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
-        List<Contact> deletionPreventedContactList = conCanNotDeleteTDTM.handleBeforeDelete(contacts);
+        List<Contact> contactsWithChildRelations = conCanNotDeleteTDTM.handleBeforeDelete(contacts);
         Test.stopTest();
 
-        // Verify deletionPreventedContactList is not empty
-        System.assertEquals(1, deletionPreventedContactList.size());
+        // Verify contactsWithChildRelations is not empty
+        System.assertEquals(1, contactsWithChildRelations.size());
     }
 
     /*******************************************************************************************************************************************
-     * @description negative test for handleBeforeDelete method of CON_CannotDelete_TDTM when Prevent Contact Deletion Custom Settings is enabled
+     * @description positive test for handleBeforeDelete method of CON_CannotDelete_TDTM when Prevent Contact Deletion Custom Settings is enabled
      * with no CHild records for Contact
      */
     @isTest
-    private static void handleBeforeDeleteMethodWithCustomSettingsEnabledNegativeTest() {
+    private static void handleBeforeDeleteMethodWithCustomSettingsEnabledNoRelationsPositiveTest() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Prevent_Contact_Deletion__c = true));
 
         List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
@@ -1909,11 +1984,11 @@ private with sharing class CON_CannotDelete_TEST {
 
         CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
-        List<Contact> deletionPreventedContactList = conCanNotDeleteTDTM.handleBeforeDelete((List<SObject>) contacts);
+        List<Contact> contactsWithChildRelations = conCanNotDeleteTDTM.handleBeforeDelete((List<SObject>) contacts);
         Test.stopTest();
 
-        // Verify deletionPreventedContactList is empty
-        System.assertEquals(0, deletionPreventedContactList.size());
+        // Verify contactsWithChildRelations is empty
+        System.assertEquals(1, contactsWithChildRelations.size());
     }
 
     /************************************************************************************************************************
@@ -1927,11 +2002,11 @@ private with sharing class CON_CannotDelete_TEST {
 
         CON_CannotDelete_TDTM conCanNotDeleteTDTM = new CON_CannotDelete_TDTM();
         Test.startTest();
-        List<Contact> deletionPreventedContactList = conCanNotDeleteTDTM.handleBeforeDelete(testContactlist);
+        List<Contact> contactsWithChildRelations = conCanNotDeleteTDTM.handleBeforeDelete(testContactlist);
         Test.stopTest();
 
-        // Verify deletionPreventedContactList is null
-        System.assertEquals(null, deletionPreventedContactList);
+        // Verify contactsWithChildRelations is null
+        System.assertEquals(null, contactsWithChildRelations);
     }
 
     /*************************************************************************************************************
@@ -1991,8 +2066,11 @@ private with sharing class CON_CannotDelete_TEST {
         @TestVisible
         List<Contact> deletionPreventedContactList = new List<Contact>();
 
-        public override List<Contact> preventDeletionForContacts(Map<Id, Contact> contactById) {
-            deletionPreventedContactList = super.preventDeletionForContacts(contactById);
+        public override List<Contact> preventDeletionForContacts(
+            Map<Id, Contact> contactById,
+            List<Contact> contactWithChildRecordsList
+        ) {
+            deletionPreventedContactList = super.preventDeletionForContacts(contactById, contactWithChildRecordsList);
             return deletionPreventedContactList;
         }
     }
