@@ -170,7 +170,6 @@ describe("c-edc-release-management-card", () => {
 
                 //Get the details
                 expect(pageReference.type).toBe("standard__component");
-                console.log(JSON.stringify(pageReference));
                 expect(pageReference.attributes.componentName).toBe("testingReleaseManagementContainer");
             })
             .then(() => {});
