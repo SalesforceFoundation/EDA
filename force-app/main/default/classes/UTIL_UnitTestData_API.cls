@@ -35,6 +35,10 @@
  * @description API class that exposes the Test Data Utility methods.
  */
 global class UTIL_UnitTestData_API {
+    global static Lead getLead() {
+        return UTIL_UnitTestData_TEST.getLead();
+    }
+
     global static Contact getContact() {
         return UTIL_UnitTestData_TEST.getContact();
     }
