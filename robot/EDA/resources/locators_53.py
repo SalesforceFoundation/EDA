@@ -115,6 +115,7 @@ eda_lex_locators = {
         "edc_header": "//h2[contains(@class, 'header')]/descendant::span[text()='{}']",
         "toast_message": "//div[contains(@class, 'slds-theme--success slds-notify--toast slds-notify slds-notify--toast forceToastMessage')]/descendant::span[text()='{}']",
         "custom_toast": "//div[contains(@class, 'forceToastMessage')]/descendant::span[contains(@class, 'toastMessage')]",
+        "error_toast": "//div[contains(@class, 'slds-theme--error slds-notify--toast slds-notify slds-notify--toast forceToastMessage')]/descendant::span[text()=\"{}\"]",
         "settings_nav_title": "//div[@data-qa-locator='edaSettingsNavigation']/descendant::a[text()='{}']",
         "dropdown_input": "//label[text()='{}']/../descendant::input[@role='combobox']",
         "settings_dropdown": "//label[text()='{}']/../descendant::span[text()='{}']",
