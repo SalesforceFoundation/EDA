@@ -125,7 +125,8 @@ public virtual with sharing class FeatureParameterMapper {
             AutodeleteNoContactUniversityDepartmentAcc,
             HasAffiliationsRelatedToDeletedProgramEnrollments,
             HasAffiliationStartDate,
-            HasAffiliationEndDate
+            HasAffiliationEndDate,
+            HasAutomaticallyRenameHouseholdAccounts
     }
 
     /**********************************************************************************

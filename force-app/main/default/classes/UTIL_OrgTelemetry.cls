@@ -99,6 +99,7 @@ public without sharing class UTIL_OrgTelemetry {
         HasAffiliationsRelatedToDeletedProgramEnrollments,
         HasAffiliationStartDate,
         HasAffiliationEndDate,
+        HasAutomaticallyRenameHouseholdAccounts,
         Data_CountSeasonalAddresses,
         Data_CountCurrentYearSeasonalAddresses,
         AutodeleteNoContactHouseholdAcc,
@@ -253,6 +254,11 @@ public without sharing class UTIL_OrgTelemetry {
         featureManager.setPackageBooleanValue(
             TelemetryParameterName.HasAffiliationEndDate.name(),
             edaSettings.Affl_ProgEnroll_Copy_End_Date__c
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasAutomaticallyRenameHouseholdAccounts.name(),
+            edaSettings.Automatic_Household_Naming__c
         );
     }
 

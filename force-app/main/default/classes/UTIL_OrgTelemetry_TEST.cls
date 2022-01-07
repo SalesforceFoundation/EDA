@@ -164,6 +164,11 @@ private class UTIL_OrgTelemetry_TEST {
             UTIL_OrgTelemetry.TelemetryParameterName.HasAffiliationEndDate.name(),
             edaSettings.Affl_ProgEnroll_Copy_End_Date__c
         );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasAutomaticallyRenameHouseholdAccounts.name(),
+            edaSettings.Automatic_Household_Naming__c
+        );
     }
 
     /*******************************************************************************************************
