@@ -13,6 +13,10 @@
         <name>CompactLayout</name>
     </types>
     <types>
+        <members>Internal_Only_for_Testing</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
         <members>Admin</members>
         <name>Profile</name>
     </types>
