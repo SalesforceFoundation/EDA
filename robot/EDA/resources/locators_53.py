@@ -129,6 +129,9 @@ eda_lex_locators = {
         "app_tile": "//h2[text()='{}']/../descendant::ul/descendant::*[self::div or self::span][text()='{}']",
         "show_actions_button": "//tr[@data-row-key-value='{}']/descendant::span[text()='Show actions']/ancestor::button[@type='button']",
         "actions_menu": "//tr[@data-row-key-value='{}']/descendant::span[text()='{}']/ancestor::a[@role='menuitem']",
+        "product_card_button": "//li[contains(@class, 'edcSettingsProductCard')]/descendant::button[@title='{}']",
+        "product_card_avator": "//abbr[normalize-space()='{}']",
+        "product_card_description": "//div[contains(@class, 'productDescription')]/descendant::p[contains(text(),'{}')]"
     },
      "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
@@ -432,5 +435,8 @@ eda_lex_locators = {
         "release_gate_cancel_activate_button":"//div[contains(@class, 'modal-container')]//div/button[@title='Cancel']",
         "release_gate_activation_modal_header":"//div[contains(@class, 'modal-header')]/h2",
         "release_gate_activation_modal_text_body":"//c-release-gate-modal-body//div",
+    },
+    "eda_settings_page": {
+        "page_title": "//div[@data-qa-locator='edaSettingsTitle' and text()='{}']",
     }
 }
