@@ -94,6 +94,7 @@ public without sharing class UTIL_OrgTelemetry {
         HasUserManagedTDTM,
         HasValueInversionReciprocalMethod,
         IsEnabled_StoreErrors,
+        HasErrorNotificationsAdminRecipients,
         UsingOldContactEthnicity,
         UsingOldCourseDescription,
         HasAffiliationsRelatedToDeletedProgramEnrollments,
@@ -213,6 +214,11 @@ public without sharing class UTIL_OrgTelemetry {
         featureManager.setPackageBooleanValue(
             TelemetryParameterName.IsEnabled_StoreErrors.name(),
             edaSettings.Store_Errors_On__c
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasErrorNotificationsAdminRecipients.name(),
+            edaSettings.Error_Notifications_To__c == 'All Sys Admins'
         );
 
         featureManager.setPackageBooleanValue(

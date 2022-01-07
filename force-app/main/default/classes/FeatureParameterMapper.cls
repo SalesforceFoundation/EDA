@@ -111,6 +111,7 @@ public virtual with sharing class FeatureParameterMapper {
             HasUserManagedTDTM,
             HasValueInversionReciprocalMethod,
             IsEnabled_StoreErrors,
+            HasErrorNotificationsAdminRecipients,
             IsEnabled_AutomaticHouseholdNaming,
             IsEnabled_CourseConnections,
             IsEnabled_ErrorHandling,

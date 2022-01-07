@@ -126,6 +126,11 @@ private class UTIL_OrgTelemetry_TEST {
         );
 
         assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasErrorNotificationsAdminRecipients.name(),
+            edaSettings.Error_Notifications_To__c == 'All Sys Admins'
+        );
+
+        assertBooleanValue(
             UTIL_OrgTelemetry.TelemetryParameterName.AutodeleteNoContactHouseholdAcc.name(),
             orgTelemetry.hasAutoDeletionHouseholdAccts(edaSettings)
         );
