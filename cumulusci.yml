@@ -227,6 +227,13 @@ tasks:
             settings_field: IsTranslationWorkbenchEnabled
             value: true
 
+    create_no_access_user:
+        group: "EDA: User Tasks"
+        description: "Create a user with no access to Education Cloud components"
+        class_path: cumulusci.tasks.sfdx.SFDXOrgTask
+        options:
+            command: "force:user:create -a no_access --definitionfile datasets/dev/users/user-def_no-access.json"
+
     create_tenant_secret:
         group: "EDA: Shield Platform Encryption"
         description: Creates a new tenant secret for Shield Platform Encryption testing.
@@ -440,6 +447,8 @@ flows:
                 task: deploy_release_gating
             9:
                 task: deploy_settings_product
+            10:
+                flow: create_additional_users
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -466,6 +475,8 @@ flows:
                 task: deploy_release_gating
             8:
                 task: deploy_settings_product
+            9:
+                flow: create_additional_users
 
     config_managed:
         # description: Configure an org for use as a dev org after package metadata is deployed.
@@ -514,6 +525,8 @@ flows:
                 task: deploy_release_gating
             10:
                 task: deploy_settings_product
+            11:
+                flow: create_additional_users
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.
@@ -528,6 +541,12 @@ flows:
                 flow: eda_settings
             5:
                 flow: run_functional_tests
+
+    create_additional_users:
+        # description: Create additional users
+        steps:
+            1:
+                task: create_no_access_user
 
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
