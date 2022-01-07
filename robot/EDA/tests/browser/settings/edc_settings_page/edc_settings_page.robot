@@ -6,13 +6,14 @@ Library         cumulusci.robotframework.PageObjects
 ...             robot/EDA/resources/ReleaseManagementPageObject.py
 ...             robot/EDA/resources/EDASettingsPageObject.py
 
-Suite Setup     Open Test Browser
+Suite Setup     Initialize test data
 Suite Teardown  Capture screenshot and delete records and close browser
 
 *** Test Cases ***
 Verify products tools and resources tiles are displayed
     [Documentation]         Validates the products, tools and resources tiles are displayed.
     [tags]                  rbt:high        W-9549044
+    Open test browser
     Go to education cloud settings home
     Current page should be                  Home        Education Cloud Settings
     Verify app tiles displayed
@@ -24,6 +25,7 @@ Verify products tools and resources tiles are displayed
 Verify release management page is displayed when user clicks on go to release management button
     [Documentation]         Validates 'Release Management' page is displayed after clicking on the Go to Release Management
     [tags]                  rbt:high        W-10059978
+    Open test browser
     Go to education cloud settings home
     Current page should be                  Home        Education Cloud Settings
     Click app in edc home                   Go to Release Management
@@ -32,6 +34,7 @@ Verify release management page is displayed when user clicks on go to release ma
 Verify EDA product card is displayed
     [Documentation]         Validates the EDA product card is displayed.
     [tags]                  rbt:high        W-10073560
+    Open test browser
     Go to education cloud settings home
     Current page should be                  Home        Education Cloud Settings
     Verify app tiles displayed  Products=Education Data Architecture
@@ -44,6 +47,7 @@ Verify EDA product card is displayed
 Verify mocked SAL product card is displayed
     [Documentation]         Validates the mocked sal product card is displayed.
     [tags]                  rbt:high        W-10073560
+    Open test browser
     Go to education cloud settings home
     Current page should be                  Home        Education Cloud Settings
     Verify app tiles displayed  Products=Advisor Link (Mocked)
@@ -56,6 +60,7 @@ Verify mocked SAL product card is displayed
 Verify EDA settings page is displayed when user clicks on the settings button under Education Data Architecture product tile
     [Documentation]         Validates 'EDA Settings' page is displayed after clicking on the settings button under Education Data Architecture product tile
     [tags]                  rbt:high        W-10073560
+    Open test browser
     Go to education cloud settings home
     Current page should be                  Home        Education Cloud Settings
     Sleep                       2
@@ -65,6 +70,7 @@ Verify EDA settings page is displayed when user clicks on the settings button un
 Verify EDA documents page is displayed when user clicks on the documentation button under Education Data Architecture product tile
     [Documentation]         Validates EDA documents page is displayed after clicking on the documentation button under Education Data Architecture product tile
     [tags]                  rbt:high        W-10073560
+    Open test browser
     Go to education cloud settings home
     Current page should be                  Home        Education Cloud Settings
     Click product card button in edc home   Go to the EDA documentation.
@@ -74,8 +80,35 @@ Verify EDA documents page is displayed when user clicks on the documentation but
 Verify Trailhead page is displayed when user clicks on the trailhead button under Education Data Architecture product tile
     [Documentation]         Validates EDA trailhead page is displayed after clicking on the trailhead button under Education Data Architecture product tile
     [tags]                  rbt:high        W-10073560
+    Open test browser
     Go to education cloud settings home
     Current page should be                  Home        Education Cloud Settings
     Click product card button in edc home   Go to EDA Trailhead modules.
     Switch Window    locator=NEW
-    Verify eda documentation  trailhead.salesforce.com/en/content/learn/trails/highered_heda          
+    Verify eda documentation  trailhead.salesforce.com/en/content/learn/trails/highered_heda      
+
+Verify user without class access renders release management page with toast error
+    [Documentation]         Validates 'Release Management' page with access error is displayed after clicking on the Go to Release Management
+    [tags]                  rbt:high        W-10059980
+    #give user partial permission to access Release Management page, but not see the release gates
+    Run task        add_permission_set_perms
+    ...             api_names=Internal_Only_for_Testing
+    ...             class_accesses=${{ [{"apexClass": "${ns}EducationCloudSettingsController", "enabled": True}] }}
+
+    Open test browser        useralias=noaccess
+    Go to education cloud settings home
+    Current page should be                  Home        Education Cloud Settings
+    Click app in edc home                   Go to Release Management
+    Current page should be                  Home        Release Management
+    Verify error is displayed           You do not have access to the Apex class named 'ReleaseGateController'.
+
+    #remove permission added for test
+    Run task        add_permission_set_perms
+    ...             api_names=Internal_Only_for_Testing
+    ...             class_accesses=${{ [{"apexClass": "${ns}EducationCloudSettingsController", "enabled": False}] }}
+
+
+*** Keywords ***
+Initialize test data
+    [Documentation]         
+    ${ns} =     Get EDA namespace prefix    
