@@ -164,6 +164,11 @@ private class UTIL_OrgTelemetry_TEST {
             UTIL_OrgTelemetry.TelemetryParameterName.HasAffiliationEndDate.name(),
             edaSettings.Affl_ProgEnroll_Copy_End_Date__c
         );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasApplicationWindowValidation.name(),
+            edaSettings.Application_Window_Validation__c
+        );
     }
 
     /*******************************************************************************************************
