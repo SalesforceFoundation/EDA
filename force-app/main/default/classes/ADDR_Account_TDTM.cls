@@ -117,7 +117,9 @@ public class ADDR_Account_TDTM extends TDTM_Runnable {
     	                        
     	                    // if the account address info has changed  
     	                    } else if (ADDR_Addresses_UTIL.isAccountAddressChanged(acc, accOld)) {
-    	                        newAddrInfoAccs.add(acc);
+    	                        if (!ADDR_Addresses_UTIL.isAccAddressEmpty(acc)) {
+                                    newAddrInfoAccs.add(acc);
+                                }
                                 accountIdsUpdated.add(acc.Id);
     	                    }
     	                }
