@@ -340,7 +340,7 @@ public without sharing class TDTM_DefaultConfig {
                 Load_Order__c = 1,
                 Object__c = 'Account',
                 Owned_by_Namespace__c = 'hed',
-                Trigger_Action__c = 'BeforeDelete'
+                Trigger_Action__c = 'BeforeDelete;AfterDelete'
             )
         );
 
