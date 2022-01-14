@@ -240,6 +240,26 @@ public class UTIL_UnitTestData_TEST {
     }
 
     /*********************************************************************************************************
+     * @description Initializes (but not inserts) N new Seasonal Address objects.
+     * @param addrCount the number of Address objects to create
+     * @return The list of Address__c objects
+     **********************************************************************************************************/
+    public static List<Address__c> getMultipleSeasonalTestAddresses(Integer addrCount) {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(addrCount);
+        for (Address__c currentAddress : addresses) {
+            currentAddress.Default_Address__c = false;
+            currentAddress.Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(-1).month());
+            currentAddress.Seasonal_Start_Day__c = '1';
+            currentAddress.Seasonal_End_Month__c = String.valueOf(System.today().addMonths(1).month());
+            currentAddress.Seasonal_End_Day__c = '28';
+            currentAddress.MailingStreet__c = 'New Seasonal Street';
+            currentAddress.MailingCity__c = 'New Seasonal City';
+            currentAddress.MailingCounty__c = 'New Seasonal County';
+        }
+        return addresses;
+    }
+
+    /*********************************************************************************************************
      * @description Sets up common test data for Account Addresses tests.
      * @param accCount Number of Accounts to create.
      * @param recTypeID The record type to use when creating Accounts.

@@ -124,6 +124,56 @@ private class UTIL_OrgTelemetry_TEST {
             UTIL_OrgTelemetry.TelemetryParameterName.IsEnabled_StoreErrors.name(),
             edaSettings.Store_Errors_On__c
         );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasErrorNotificationsAdminRecipients.name(),
+            edaSettings.Error_Notifications_To__c == 'All Sys Admins'
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.AutodeleteNoContactHouseholdAcc.name(),
+            orgTelemetry.hasAutoDeletionHouseholdAccts(edaSettings)
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.AutodeleteNoContactProgramAcc.name(),
+            orgTelemetry.hasAutoDeletionProgramAccts(edaSettings)
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.AutodeleteNoContactEducationalInstitutionAcc.name(),
+            orgTelemetry.hasAutoDeletionEducationalInstitutionAccts(edaSettings)
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.AutodeleteNoContactBusinessOrganizationAcc.name(),
+            orgTelemetry.hasAutoDeletionBusinessOrgAccts(edaSettings)
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.AutodeleteNoContactUniversityDepartmentAcc.name(),
+            orgTelemetry.hasAutoDeletionUniversityDeptAccts(edaSettings)
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasAffiliationsRelatedToDeletedProgramEnrollments.name(),
+            edaSettings.Affl_ProgEnroll_Del__c
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasAffiliationStartDate.name(),
+            edaSettings.Affl_ProgEnroll_Copy_Start_Date__c
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasAffiliationEndDate.name(),
+            edaSettings.Affl_ProgEnroll_Copy_End_Date__c
+        );
+
+        assertBooleanValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.HasApplicationWindowValidation.name(),
+            edaSettings.Application_Window_Validation__c
+        );
     }
 
     /*******************************************************************************************************
@@ -233,6 +283,20 @@ private class UTIL_OrgTelemetry_TEST {
         );
         insert businessAccounts;
 
+        List<Affl_Mappings__c> affMappings = new List<Affl_Mappings__c>();
+        affMappings.add(
+            new Affl_Mappings__c(
+                Name = 'Test Affiliation Mapping',
+                Account_Record_Type__c = 'Test_Record_Type',
+                Primary_Affl_Field__c = 'Test Contact Primary Affl Field',
+                Auto_Program_Enrollment__c = true,
+                Auto_Program_Enrollment_Status__c = 'Test Auto Enrollment Status',
+                Auto_Program_Enrollment_Role__c = 'Test Auto Enrollment Role'
+            )
+        );
+
+        insert affMappings;
+
         // Insert other random test records to test the object usage telemetry - course offerings, course connections, etc.
         Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(null, null);
 
@@ -294,6 +358,12 @@ private class UTIL_OrgTelemetry_TEST {
         academicCertificationsToInsert.addAll(diplomaAcademicCertifications);
 
         insert academicCertificationsToInsert;
+
+        //Seasonal Addresses
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(2);
+        List<Address__c> seasonalAddresses = UTIL_UnitTestData_TEST.getMultipleSeasonalTestAddresses(2);
+        addresses.addAll(seasonalAddresses);
+        insert addresses;
 
         //Insert data for Credentials
         List<Credential__c> credentialsToInsert = new List<Credential__c>();
@@ -399,6 +469,21 @@ private class UTIL_OrgTelemetry_TEST {
         assertIntegerValue(
             UTIL_OrgTelemetry.TelemetryParameterName.Data_CountLicenseCredentials.name(),
             licenseCredentials.size()
+        );
+
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountSeasonalAddresses.name(),
+            seasonalAddresses.size()
+        );
+
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountCurrentYearSeasonalAddresses.name(),
+            seasonalAddresses.size()
+        );
+
+        assertIntegerValue(
+            UTIL_OrgTelemetry.TelemetryParameterName.Data_CountAutoEnrollmentMappings.name(),
+            affMappings.size()
         );
     }
 
