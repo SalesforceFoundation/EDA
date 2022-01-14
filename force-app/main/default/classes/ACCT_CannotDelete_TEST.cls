@@ -41,6 +41,10 @@ public with sharing class ACCT_CannotDelete_TEST {
      */
     public static String bizAccRecordTypeId = UTIL_Describe_API.getBizAccRecTypeID();
 
+    /**************************************************************************************************************************
+     ****************************************************** FUNCTIONAL TESTS ***************************************************
+     **************************************************************************************************************************/
+
     /*********************************************************************************************************
      * @description Test method to test if Prevent_Account_Deletion__c is enabled in Hierarchy Settings, and
      * Account has an Address record associated to it, that it cannot be deleted.
@@ -1274,5 +1278,197 @@ public with sharing class ACCT_CannotDelete_TEST {
         System.assertEquals(1, winnerAccount.Program_Enrollments__r.size(), 'There should be 1 merged enrollment');
         System.assertEquals(1, winnerAccount.Terms__r.size(), 'There should be 1 merged term');
         System.assertEquals(1, winnerAccount.Time_Blocks__r.size(), 'There should be 1 merged time block');
+    }
+
+    /**************************************************************************************************************************
+     ****************************************************** UNIT TESTS *********************************************************
+     **************************************************************************************************************************/
+
+    /*************************************************************************************************************
+     * @description NULL test for run method to verify new DmlWrapper(); is returned when oldList is null
+     */
+    @isTest
+    private static void runMethodNULLTest() {
+        TDTM_Runnable.Action testAction = TDTM_Runnable.Action.BeforeDelete;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Account;
+
+        ACCT_CannotDelete_TDTM accCannotDeleteTDTM = new ACCT_CannotDelete_TDTM();
+        TDTM_Runnable.DmlWrapper dmlWrapperReturned = accCannotDeleteTDTM.run(null, null, testAction, objResult);
+
+        System.assertEquals(0, dmlWrapperReturned.objectsToDelete.size());
+    }
+
+    /****************************************************************************************************************
+     * @description Positive test for run method to verify accountPreventedFromDeletionList has the records prevented
+     * from Deletion when Prevent Account Deletion Custom Settings is enabled
+     */
+    @isTest
+    private static void runMethodPositiveTest() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = bizAccRecordTypeId, Prevent_Account_Deletion__c = true)
+        );
+
+        TDTM_Runnable.Action testBeforeAction = TDTM_Runnable.Action.BeforeDelete;
+        TDTM_Runnable.Action testAfterAction = TDTM_Runnable.Action.AfterDelete;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Account;
+
+        Account acc = UTIL_UnitTestData_TEST.createTestAccountWithMultipleRelations();
+
+        List<SObject> oldList = new List<SObject>{ acc };
+
+        Map<Id, Account> accountById = new Map<Id, Account>();
+        accountById.put(acc.Id, acc);
+
+        ACCT_CannotDelete_TDTM accCannotDeleteTDTM = new ACCT_CannotDelete_TDTM();
+
+        Test.startTest();
+        accCannotDeleteTDTM.run(null, oldList, testBeforeAction, objResult);
+        List<Account> accountsWithChildRelations = ACCT_CannotDelete_TDTM.accountsWithChildRelations;
+        accCannotDeleteTDTM.run(null, oldList, testAfterAction, objResult);
+        Test.stopTest();
+
+        // verify before handler retrieved account with relations
+        System.assertEquals(oldList.size(), accountsWithChildRelations.size());
+        List<Account> deletionPreventedAccountList = SRVC_Account_PreventDeletion.getInstance()
+            .preventDeletionForAccounts(accountById, accountsWithChildRelations);
+
+        // verify deletionPreventedAccountList is not empty
+        System.assertEquals(1, deletionPreventedAccountList.size());
+        // verify after handler cleared accountsWithChildRelations static var
+        System.assertEquals(null, ACCT_CannotDelete_TDTM.accountsWithChildRelations);
+    }
+
+    /************************************************************************************************************************
+     * @description Negative test for run method to verify accountPreventedFromDeletionList has no records that are prevented
+     * from Deletion when Prevent Account Deletion Custom Settings is disabled
+     */
+    @isTest
+    private static void runMethodNegativeTestWithCustomSettingsDisabled() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = bizAccRecordTypeId, Prevent_Account_Deletion__c = false)
+        );
+
+        TDTM_Runnable.Action testBeforeAction = TDTM_Runnable.Action.BeforeDelete;
+        TDTM_Runnable.Action testAfterAction = TDTM_Runnable.Action.AfterDelete;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Account;
+
+        Account acc = UTIL_UnitTestData_TEST.createTestAccountWithMultipleRelations();
+
+        List<SObject> oldList = new List<SObject>{ acc };
+
+        Map<Id, Account> accountById = new Map<Id, Account>();
+
+        ACCT_CannotDelete_TDTM accCannotDeleteTDTM = new ACCT_CannotDelete_TDTM();
+
+        Test.startTest();
+        accCannotDeleteTDTM.run(null, oldList, testBeforeAction, objResult);
+        List<Account> accountsWithChildRelations = ACCT_CannotDelete_TDTM.accountsWithChildRelations;
+        accCannotDeleteTDTM.run(null, oldList, testAfterAction, objResult);
+        Test.stopTest();
+
+        // verify before handler didn't retrieve any accounts with relations
+        System.assertEquals(null, accountsWithChildRelations);
+
+        List<Account> deletionPreventedAccountList = SRVC_Account_PreventDeletion.getInstance()
+            .preventDeletionForAccounts(accountById, new List<Account>());
+
+        // Verify deletionPreventedAccountList is empty
+        System.assertEquals(0, deletionPreventedAccountList.size());
+        // verify after handler cleared accountsWithChildRelations static var
+        System.assertEquals(null, ACCT_CannotDelete_TDTM.accountsWithChildRelations);
+    }
+
+    /*************************************************************************************************************************
+     * @description Negative test for run method to verify accountPreventedFromDeletionList has no records that are prevented
+     * from Deletion when Prevent Account Deletion Custom Settings is enabled.
+     */
+    @isTest
+    static void runMethodNegativeTestWithNoChildren() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = bizAccRecordTypeId, Prevent_Account_Deletion__c = true)
+        );
+
+        TDTM_Runnable.Action testBeforeAction = TDTM_Runnable.Action.BeforeDelete;
+        TDTM_Runnable.Action testAfterAction = TDTM_Runnable.Action.AfterDelete;
+        Schema.DescribeSObjectResult objResult = Schema.SObjectType.Account;
+
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, bizAccRecordTypeId);
+        insert accounts;
+
+        List<SObject> oldList = new List<SObject>((List<SObject>) accounts);
+
+        Map<Id, Account> accountById = new Map<Id, Account>((List<Account>) oldList);
+
+        ACCT_CannotDelete_TDTM accCannotDeleteTDTM = new ACCT_CannotDelete_TDTM();
+
+        Test.startTest();
+        accCannotDeleteTDTM.run(null, oldList, testBeforeAction, objResult);
+        List<Account> accountsWithChildRelations = ACCT_CannotDelete_TDTM.accountsWithChildRelations;
+        accCannotDeleteTDTM.run(null, oldList, testAfterAction, objResult);
+        Test.stopTest();
+
+        List<Account> deletionPreventedAccountList = SRVC_Account_PreventDeletion.getInstance()
+            .preventDeletionForAccounts(accountById, accountsWithChildRelations);
+
+        // Verify deletionPreventedAccountList is empty
+        System.assertEquals(0, deletionPreventedAccountList.size());
+    }
+
+    /********************************************************************************************************************************
+     * @description Tests handleBeforeDelete method of ACCT_CannotDelete_TDTM when Prevent Account Deletion Custom Settings is enabled
+     * and Account having child records
+     */
+    @isTest
+    private static void handleBeforeDeleteMethodWithCustomSettingsEnabledPositiveTest() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = bizAccRecordTypeId, Prevent_Account_Deletion__c = true)
+        );
+        Account acc = UTIL_UnitTestData_TEST.createTestAccountWithMultipleRelations();
+        List<Account> accounts = new List<Account>{ acc };
+
+        ACCT_CannotDelete_TDTM accCanNotDeleteTDTM = new ACCT_CannotDelete_TDTM();
+        Test.startTest();
+        List<Account> accountsWithChildRelations = accCanNotDeleteTDTM.handleBeforeDelete(accounts);
+        Test.stopTest();
+
+        // Verify accountsWithChildRelations is not empty
+        System.assertEquals(1, accountsWithChildRelations.size());
+    }
+
+    /*******************************************************************************************************************************************
+     * @description positive test for handleBeforeDelete method of ACCT_CannotDelete_TDTM when Prevent Account Deletion Custom Settings is enabled
+     * with no CHild records for Account
+     */
+    @isTest
+    private static void handleBeforeDeleteMethodWithCustomSettingsEnabledNoRelationsPositiveTest() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = bizAccRecordTypeId, Prevent_Account_Deletion__c = true)
+        );
+
+        List<Account> accounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, bizAccRecordTypeId);
+        insert accounts;
+
+        ACCT_CannotDelete_TDTM accCanNotDeleteTDTM = new ACCT_CannotDelete_TDTM();
+        Test.startTest();
+        List<Account> accountsWithChildRelations = accCanNotDeleteTDTM.handleBeforeDelete((List<SObject>) accounts);
+        Test.stopTest();
+
+        // Verify accountsWithChildRelations is empty
+        System.assertEquals(1, accountsWithChildRelations.size());
+    }
+
+    /*************************************************************************************************************
+     * @description Tests locateAccountPreventDeletionService method of ACCT_CannotDelete_TDTM
+     */
+    @isTest
+    private static void locateAccountPreventDeletionServiceTest() {
+        ACCT_CannotDelete_TDTM accCanNotDeleteTDTM = new ACCT_CannotDelete_TDTM();
+        Test.startTest();
+        SRVC_Account_PreventDeletion accPreventDeleteInstance = accCanNotDeleteTDTM.locateAccountPreventDeletionService();
+        Test.stopTest();
+
+        SRVC_Account_PreventDeletion srvcInstance = SRVC_Account_PreventDeletion.getInstance();
+
+        System.assertEquals(srvcInstance, accPreventDeleteInstance);
     }
 }
