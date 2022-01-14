@@ -861,6 +861,42 @@ public class UTIL_Describe {
     }
 
     /*******************************************************************************************************
+     * @description Returns the ID of the University Department Account record type, if it exists.
+     * @return String The ID of the University Department Account record type as a String.
+     */
+    public static String getUniversityAccRecTypeID() {
+        String recTypeId = getRecTypesMapByDevName('Account').get('University_Department');
+
+        if (String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if (getRecTypesMapByDevName('Account').values().size() > 1) {
+                return getRecTypesMapByDevName('Account').values()[1];
+            } else {
+                return null;
+            }
+        } else {
+            return recTypeId;
+        }
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the ID of the Educational Institution Account record type, if it exists.
+     * @return String The ID of the Educational Institution Account record type as a String.
+     */
+    public static String getEducationalInstitutionAccRecTypeID() {
+        String recTypeId = getRecTypesMapByDevName('Account').get('Educational_Institution');
+
+        if (String.isBlank(recTypeId) && Test.isRunningTest()) {
+            if (getRecTypesMapByDevName('Account').values().size() > 1) {
+                return getRecTypesMapByDevName('Account').values()[1];
+            } else {
+                return null;
+            }
+        } else {
+            return recTypeId;
+        }
+    }
+
+    /*******************************************************************************************************
      * @description Returns the ID of the custom Household Account record type
      * @return The ID of the custom Household Account record type.
      */
