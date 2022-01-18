@@ -1,5 +1,5 @@
-**Note: FOR INTERNAL USE ONLY. For support questions, please use the EDA Chatter group in [The Power of Us Hub](https://powerofus.force.com).
-For feature requests, please use the Ideas tab in [The Power of Us Hub](https://powerofus.force.com).**
+**Note: FOR INTERNAL USE ONLY. For support questions, please use the Education Data Architecture group in [the Trailblazer Community](https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kHi4SAE).
+For feature requests, please use the Ideas tab in [IdeaExchange](https://ideas.salesforce.com/s/search?filter=Education#t=All&sort=relevancy&f:@sfcategoryfull=[Education%7CEducation%20Data%20Architecture]).**
 
 * **Do you want to request a *feature* or report a *bug*?**
 
