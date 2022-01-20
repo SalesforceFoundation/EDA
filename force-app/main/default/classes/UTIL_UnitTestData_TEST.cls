@@ -546,6 +546,65 @@ public class UTIL_UnitTestData_TEST {
         return contacts[0];
     }
 
+    /**
+     * @description creates a test account record with some child relations
+     * @return   inserted account record
+     */
+    public static Account createTestAccountWithMultipleRelations() {
+        List<Account> newAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        insert newAccounts;
+
+        List<Contact> newContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        newContacts[0].AccountId = newAccounts[0].Id;
+        newContacts[0].Primary_Household__c = newAccounts[0].Id;
+        newContacts[0].Primary_Organization__c = newAccounts[0].Id;
+        insert newContacts;
+
+        Affiliation__c affiliation = new Affiliation__c(
+            Contact__c = newContacts[0].Id,
+            Account__c = newContacts[0].AccountId,
+            Role__c = 'Student'
+        );
+        insert affiliation;
+
+        Address__c addr = new Address__c(Parent_Account__c = newContacts[0].AccountId, MailingCity__c = 'Boston');
+        insert addr;
+
+        Attribute__c attr = new Attribute__c(Name = 'Attr1', Agency__c = newContacts[0].AccountId);
+        insert attr;
+
+        Course__c course = new Course__c(Name = 'Bio101', Account__c = newContacts[0].AccountId);
+        insert course;
+
+        Facility__c facility = new Facility__c(Name = 'MeetingRoom1', Account__c = newContacts[0].AccountId);
+        insert facility;
+
+        Program_Enrollment__c pe = new Program_Enrollment__c(
+            Contact__c = newContacts[0].Id,
+            Account__c = newContacts[0].AccountId
+        );
+        insert pe;
+
+        Program_Plan__c pl = new Program_Plan__c(Account__c = newContacts[0].AccountId);
+        insert pl;
+
+        Term__c term = new Term__c(Name = 'Fall', Account__c = newContacts[0].AccountId);
+        insert term;
+
+        Time_Block__c timeBlock = new Time_Block__c(
+            Name = 'TimeB',
+            Educational_Institution__c = newContacts[0].AccountId
+        );
+        insert timeBlock;
+
+        Education_History__c educationHistory = UTIL_UnitTestData_TEST.getEduHistory(newContacts[0].AccountId, null);
+        insert educationHistory;
+        return newAccounts[0];
+    }
+
     /*********************************************************************************************************
      * @description Create an error record for the current system time.
      **********************************************************************************************************/
