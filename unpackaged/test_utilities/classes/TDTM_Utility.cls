@@ -109,7 +109,7 @@ public with sharing class TDTM_Utility {
         String namespace,
         Boolean active
     ) {
-        for (hed.TDTM_Global_API.TdtmToken tdtmToken : hed.TDTM_Global_API.getTdtmConfig()) {
+        for (%%%NAMESPACE_DOT%%%TDTM_Global_API.TdtmToken tdtmToken : %%%NAMESPACE_DOT%%%TDTM_Global_API.getTdtmConfig()) {
             // disable for a specific trigger handler class
             if (classNames != null && classNames.contains(tdtmToken.className)) {
                 tdtmToken.active = active;
