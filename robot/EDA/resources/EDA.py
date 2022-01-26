@@ -472,6 +472,29 @@ class EDA(BaseEDAPage):
         self.selenium.wait_until_element_is_visible(locator)
         self.selenium.click_element(locator)
 
+    def update_user_language_to_spanish(self):
+        url = self.cumulusci.org.lightning_base_url
+        url = "{}/one/one.app#/settings/personal/LanguageAndTimeZone/home".format(url)
+        self.selenium.go_to(url)
+        self.salesforce.wait_until_loading_is_complete()
+
+        self.selenium.wait_until_page_contains_element(
+            eda_lex_locators["user_settings"]["language_container"], timeout=60
+        )
+        self.select_frame_with_value(
+            "Language And Time Zone ~ Salesforce - Developer Edition"
+        )
+        self.selenium.click_element(
+            eda_lex_locators["user_settings"]["language_dropdown"]
+        )
+
+        self.selenium.click_element(
+            eda_lex_locators["user_settings"]["language_dropdown"]
+            + eda_lex_locators["user_settings"]["language_selection_spanish"]
+        )
+
+        self.selenium.click_element(eda_lex_locators["user_settings"]["save_button"])
+
     @capture_screenshot_on_error
     def click_action_button_on_new_eda_settings(self, action):
         """ Clicks on the action (eg: Save, Cancel, Edit) button on the new EDA Settings page """

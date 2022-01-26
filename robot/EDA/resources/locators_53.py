@@ -58,6 +58,7 @@ eda_lex_locators = {
         "duration": "//div[.//span[text()='Duration'] and contains(@class, 'slds-form-element') ]//select//option[@value='60']",
         "hh_naming_check": "//input[@class='automatic-hh-acc uiInput uiInputCheckbox uiInput--default uiInput--checkbox']/following-sibling::span",
         "hh_naming_role_checkbox": "//select[@class='admin-account-naming-input-select select uiInput uiInputSelect uiInput--default uiInput--select']//option[@value='{{!{{!FirstName}}}} {{!LastName}} Administrative Account']",
+        "hh_custom_name_format": "//input[contains(@name, 'hhAccountCustomNaming')]",
         "hh_adminfnamelname": "//input[contains(@class,'firstName')]",
         "course_connections_tab": "//a[contains(text(),'Course Connections')]",
         "cc_checkbox": "//input[contains(@class,'slds-checkbox')]/parent::label",
@@ -438,5 +439,11 @@ eda_lex_locators = {
     },
     "eda_settings_page": {
         "page_title": "//div[@data-qa-locator='edaSettingsTitle' and text()='{}']",
-    }
+    },
+    "user_settings": {
+        "language_container": "//div[contains(@class,'iframe-parent')]",
+        "language_dropdown": "//table//tbody//tr[3]//td[2]//span//div//select",
+        "language_selection_spanish": "//option[3]",
+        "save_button": "//input[contains(@class,'btn primary')]"
+    },
 }
