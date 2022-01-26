@@ -697,6 +697,11 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             primaryConIdForAccount.put(acc.Primary_Contact__c, acc);
         }
 
+        // Clear cache to support real-time default record types updates within the testing context.
+        if (Test.isRunningTest()) {
+            defaultRecTypeId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
+        }
+
         //Determines if Account needs to be created
         for (Contact con : contacts) {
             //If we find an Account already connect to this Contact, connect the Contact to the Account if it is the correct

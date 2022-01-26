@@ -449,6 +449,67 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
+     * @description Ensure household account naming persists when the the default account model is changed.
+     * Test Scenario: T-3904058
+     */
+    @isTest
+    private static void shouldPersistHHNamingWhenAcctModelChanged() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+                Household_Addresses_RecType__c = UTIL_Describe.getHhAccRecTypeID(),
+                Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
+                Automatic_Household_Naming__c = true
+            )
+        );
+
+        Contact primaryContact = UTIL_UnitTestData_TEST.getUniqueContact(0);
+        Test.startTest();
+        insert primaryContact;
+        Test.stopTest();
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Admin_Account_Naming_Format__c = '{!LastName} Administrative Account',
+                Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Automatic_Household_Naming__c = true
+            )
+        );
+
+        Contact secondaryContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        insert secondaryContact;
+
+        List<Account> assertAccounts = [SELECT Id, RecordType.Name, Name FROM Account ORDER BY CreatedDate];
+        System.assertEquals('Household Account', assertAccounts[0].RecordType.Name);
+        System.assertEquals(
+            primaryContact.FirstName +
+            ' ' +
+            primaryContact.LastName +
+            ' Household',
+            assertAccounts[0].Name
+        );
+
+        System.assertEquals('Administrative', assertAccounts[1].RecordType.Name);
+        System.assertEquals(secondaryContact.LastName + ' Administrative Account', assertAccounts[1].Name);
+
+        Contact tertiaryContact = UTIL_UnitTestData_TEST.getUniqueContact(2);
+        tertiaryContact.AccountId = assertAccounts[0].Id;
+
+        primaryContact.Deceased__c = true;
+
+        upsert new List<Contact>{ primaryContact, tertiaryContact };
+        assertAccounts = [SELECT Id, RecordType.Name, Name FROM Account ORDER BY CreatedDate];
+        System.assertEquals(
+            tertiaryContact.FirstName +
+            ' ' +
+            tertiaryContact.LastName +
+            ' Household',
+            assertAccounts[0].Name
+        );
+    }
+
+    /*********************************************************************************************************
      * @description Insert a new contact and link it to an existing Household Account
      * Make sure the Account's name is set based on account naming setting.
      */
