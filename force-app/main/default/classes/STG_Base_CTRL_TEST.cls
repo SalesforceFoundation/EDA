@@ -335,6 +335,43 @@ private class STG_Base_CTRL_TEST {
     }
 
     /*********************************************************************************************************
+     * @description Tests if refresh Household Account name batch class is successfully renames applicable accounts.
+     * Test Scenario: T-3904061
+     */
+    @isTest
+    public static void ensureRefreshHouseholdAccountBatchRenamesAccounts() {
+        Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+                Household_Account_Naming_Format__c = '{!LastName} Household',
+                Automatic_Household_Naming__c = true
+            )
+        );
+
+        List<Contact> allContacts = new List<Contact>();
+        for (integer i = 0; i < 10; i++) {
+            allContacts.add(UTIL_UnitTestData_TEST.getUniqueContact(i));
+        }
+        insert allContacts;
+
+        List<Account> accts = [SELECT Id, Name FROM Account];
+        for (integer i = 0; i < accts.size(); i++) {
+            accts[i].Name = 'Invalid Name ' + i;
+        }
+        update accts;
+
+        Test.startTest();
+        ACCT_HouseholdNameRefresh_BATCH accountRefresh = new ACCT_HouseholdNameRefresh_BATCH();
+        Database.executeBatch(accountRefresh);
+        Test.stopTest();
+
+        accts = [SELECT Id, Name FROM Account];
+        for (integer i = 0; i < accts.size(); i++) {
+            System.assertEquals('LastNew' + i + ' Household', accts[i].Name);
+        }
+    }
+
+    /*********************************************************************************************************
      * @description Tests if refresh Administrative Account name batch class is successfully run.
      */
     @isTest

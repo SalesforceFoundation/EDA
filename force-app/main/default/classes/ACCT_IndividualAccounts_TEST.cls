@@ -449,6 +449,34 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
+     * @description Insert a new contact and the default account record type is Household
+     * Make sure the Account's name is set based on account naming setting for a user in Spanish.
+     * Test Scenario: T-3904056
+     */
+    @isTest
+    private static void newContactNewHHAccSpanish() {
+        Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
+            Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+            Household_Account_Naming_Format__c = 'Otros',
+            Automatic_Household_Naming__c = true,
+            Household_Other_Name_Setting__c = 'Cuenta del hogar {!LastName}'
+        );
+
+        System.runAs(ACCT_IndividualAccounts_TEST.returnUserInSpanish()) {
+            UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
+
+            Contact con = UTIL_UnitTestData_API.getContact();
+            Test.startTest();
+            insert con;
+            Test.stopTest();
+
+            Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account LIMIT 1];
+            System.assertEquals('Household Account', assertAccount.RecordType.Name);
+            System.assertEquals('Cuenta del hogar ' + con.LastName, assertAccount.Name);
+        }
+    }
+
+    /*********************************************************************************************************
      * @description Ensure household account naming persists when the the default account model is changed.
      * Test Scenario: T-3904058
      */
@@ -2618,6 +2646,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
      * @description In a multi-currency enabled org, update a contact who does not have a related account with different currency than the default one.
      * Make sure that the account automatically created and the contact have the same currency.
+     * Test Scenario: T-3904059
      */
     @isTest
     private static void updateContactWithoutAccountMultiCurrencyEnabled() {
@@ -2812,5 +2841,26 @@ private class ACCT_IndividualAccounts_TEST {
         Account accAfterUpdate = [SELECT Id, Name, RecordTypeId, ownerId FROM Account WHERE Id = :acc.Id];
 
         System.assertEquals('test 0 Administrative Account', accAfterUpdate.Name);
+    }
+
+    /*****************************************************************************************************************************
+     * @description Helper method to reurn a user in Spanish Language
+     *****************************************************************************************************************************/
+    private static User returnUserInSpanish() {
+        Profile p = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+
+        User userInSpanish = new User(
+            Alias = 'newUser',
+            Email = 'newuser@testorg.com',
+            EmailEncodingKey = 'UTF-8',
+            LastName = 'Testing',
+            LanguageLocaleKey = 'es',
+            LocaleSidKey = 'es',
+            ProfileId = p.Id,
+            TimeZoneSidKey = 'America/Los_Angeles',
+            UserName = 'prefEmail@testorg.com'
+        );
+
+        return userInSpanish;
     }
 }

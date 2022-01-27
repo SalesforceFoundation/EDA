@@ -440,10 +440,4 @@ eda_lex_locators = {
     "eda_settings_page": {
         "page_title": "//div[@data-qa-locator='edaSettingsTitle' and text()='{}']",
     },
-    "user_settings": {
-        "language_container": "//div[contains(@class,'iframe-parent')]",
-        "language_dropdown": "//table//tbody//tr[3]//td[2]//span//div//select",
-        "language_selection_spanish": "//option[3]",
-        "save_button": "//input[contains(@class,'btn primary')]"
-    },
 }
