@@ -2606,6 +2606,60 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
+     * @description Test Method to test prefix/suffix is appropriately mapped to household account
+     * renaming logic.
+     * Test Scenario: T-3904064
+     */
+    @isTest
+    private static void shouldAppendPrefixSuffixHH() {
+        Set<String> objectFields = Schema.SObjectType.Contact.fields.getMap().keySet();
+        Boolean ispersonNameSuffixEnabled = objectFields.contains('suffix');
+
+        Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
+            Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+            Household_Account_Naming_Format__c = Label.acctNamingOther,
+            Household_Other_Name_Setting__c = '{!Salutation} {!LastName} Household',
+            Automatic_Household_Naming__c = true
+        );
+
+        if (ispersonNameSuffixEnabled) {
+            edaSettings.Household_Other_Name_Setting__c = '{!Salutation} {!LastName} {!Suffix} Household';
+        }
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
+
+        List<Contact> allContacts = new List<Contact>();
+        Contact currentContact;
+        for (integer i = 0; i < 10; i++) {
+            currentContact = UTIL_UnitTestData_TEST.getUniqueContact(i);
+            currentContact.Salutation = 'Mr.';
+
+            if (ispersonNameSuffixEnabled) {
+                currentContact.put('Suffix', 'Suffix' + i);
+            }
+            allContacts.add(currentContact);
+        }
+
+        Test.startTest();
+        insert allContacts;
+        Test.stopTest();
+
+        List<Account> accts = [SELECT Id, Name FROM Account];
+        if (ispersonNameSuffixEnabled) {
+            for (integer i = 0; i < accts.size(); i++) {
+                System.debug(accts[i].Name);
+                System.assertEquals('Mr.' + ' ' + 'LastNew' + i + ' ' + 'Suffix' + i + ' Household', accts[i].Name);
+            }
+        } else {
+            for (integer i = 0; i < accts.size(); i++) {
+                System.debug(accts[i].Name);
+
+                System.assertEquals('Mr.' + ' ' + 'LastNew' + i + ' Household', accts[i].Name);
+            }
+        }
+    }
+
+    /*********************************************************************************************************
      * @description In a multi-currency enabled org, create a contact with different currency than the default one.
      * Make sure that the account automatically created and the contact have the same currency.
      */

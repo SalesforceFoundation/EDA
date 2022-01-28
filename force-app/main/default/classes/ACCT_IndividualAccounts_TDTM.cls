@@ -191,6 +191,12 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             dynamicSoql += 'CurrencyIsoCode, ';
         }
 
+        Set<String> objectFields = Schema.SObjectType.Contact.fields.getMap().keySet();
+        Boolean ispersonNameSuffixEnabled = objectFields.contains('suffix');
+        if (ispersonNameSuffixEnabled) {
+            dynamicSoql += 'Suffix, ';
+        }
+
         dynamicSoql += 'Phone, Fax FROM Contact WHERE Id IN :newContacts';
 
         returnedContacts = database.query(String.escapeSingleQuotes(dynamicSoql));
