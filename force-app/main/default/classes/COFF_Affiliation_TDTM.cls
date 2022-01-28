@@ -429,23 +429,91 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
         List<SObject> objectsToUpdate
     ) {
         Id facultyRecordTypeId = UTIL_Describe.getFacultyConnectionRecType();
-        Map<Id, Map<Id, Course_Enrollment__c>> offeringFacultyConnIds = getOfferingIdFacultyIdConnection(
-            offsWithChangedFaculty,
-            facultyRecordTypeId
-        );
-        String queryString = 'SELECT Id, Affiliation__c, Account__c, Course_Offering__c, Primary__c FROM Course_Enrollment__c';
-        queryString += ' WHERE Contact__c IN :outdatedFacultyIDs';
-        queryString += ' AND Course_Offering__c IN :offsWithChangedFaculty';
+        Map<Id, Course_Enrollment__c> updatedCouserEnrollmentBycourseOfferingId = new Map<Id, Course_Enrollment__c>();
+        String subQueryString = ', (SELECT Id, Contact__c, Affiliation__c, Account__c, Course_Offering__c, Primary__c FROM Course_Enrollment__r';
         //Record type of course enrollment not in the package
         if (
             UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'), 'RecordTypeId') &&
             facultyRecordTypeId != null
         ) {
-            queryString += ' AND RecordTypeId = :facultyRecordTypeId';
+            subQueryString += ' WHERE RecordTypeId = :facultyRecordTypeId';
         }
-        List<Course_Enrollment__c> oldConns = Database.query(queryString);
+        subQueryString += ')';
+        String queryString = 'SELECT Id, Faculty__c';
+        queryString += subQueryString;
+        queryString += ' FROM Course_Offering__c WHERE Id IN :offsWithChangedFaculty';
 
-        for (Integer i = 0; i < oldConns.size(); i++) {
+        List<Course_Offering__c> updatedCourseOfferings = Database.query(queryString);
+
+        for (Course_Offering__c updatedCourseOffering : updatedCourseOfferings) {
+            Boolean hasExistingCourseConnection = false;
+
+            if (updatedCourseOffering.Faculty__c == null) {
+                continue;
+            }
+
+            if (updatedCourseOffering.Course_Enrollment__r.size() == 0) {
+                continue;
+            }
+
+            for (Course_Enrollment__c childCourseConnection : updatedCourseOffering.Course_Enrollment__r) {
+                if (updatedCourseOffering.Faculty__c == childCourseConnection.Contact__c) {
+                    if (childCourseConnection.Primary__c == false) {
+                        childCourseConnection.Primary__c = true;
+                        objectsToUpdate.add((SObject) childCourseConnection);
+                    }
+                    hasExistingCourseConnection = true;
+                } else {
+                    if (childCourseConnection.Primary__c == true) {
+                        childCourseConnection.Primary__c = false;
+                        objectsToUpdate.add((SObject) childCourseConnection);
+
+                        if (
+                            updatedCouserEnrollmentBycourseOfferingId.keySet().contains(updatedCourseOffering.Id) ==
+                            false
+                        ) {
+                            updatedCouserEnrollmentBycourseOfferingId.put(
+                                updatedCourseOffering.Id,
+                                childCourseConnection
+                            );
+                        }
+                    }
+                }
+            }
+
+            if (hasExistingCourseConnection == false) {
+                Course_Enrollment__c newCourseConnection = new Course_Enrollment__c(
+                    Contact__c = updatedCourseOffering.Faculty__c,
+                    Primary__c = true
+                );
+
+                if (
+                    updatedCouserEnrollmentBycourseOfferingId.keySet().contains(updatedCourseOffering.Id) &&
+                    updatedCouserEnrollmentBycourseOfferingId.get(updatedCourseOffering.Id) != null
+                ) {
+                    newCourseConnection.Account__c = updatedCouserEnrollmentBycourseOfferingId.get(
+                            updatedCourseOffering.Id
+                        )
+                        .Account__c;
+                    newCourseConnection.Course_Offering__c = updatedCouserEnrollmentBycourseOfferingId.get(
+                            updatedCourseOffering.Id
+                        )
+                        .Course_Offering__c;
+                    newCourseConnection.Affiliation__c = updatedCouserEnrollmentBycourseOfferingId.get(
+                            updatedCourseOffering.Id
+                        )
+                        .Affiliation__c;
+                }
+                if (
+                    UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'), 'RecordTypeId')
+                ) {
+                    newCourseConnection.put('RecordTypeId', facultyRecordTypeId);
+                }
+                objectsToInsert.add((SObject) newCourseConnection);
+            }
+        }
+
+        /*for (Integer i = 0; i < oldConns.size(); i++) {
             if (
                 offeringFacultyConnIds.containsKey(oldConns[i].Course_Offering__c) &&
                 offeringFacultyConnIds.get(oldConns[i].Course_Offering__c) != null &&
@@ -480,7 +548,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                 oldConn.Primary__c = false;
                 objectsToUpdate.add((SObject) oldConn);
             }
-        }
+        }*/
     }
 
     /*******************************************************************************************************
