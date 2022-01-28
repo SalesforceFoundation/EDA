@@ -478,7 +478,8 @@ private class ACCT_IndividualAccounts_TEST {
 
     /*********************************************************************************************************
      * @description Ensure household account naming persists when the the default account model is changed.
-     * Test Scenario: T-3904058
+     * Ensure household account name consists of last deceased contact.
+     * Test Scenario: T-3904058/T-3904066
      */
     @isTest
     private static void shouldPersistHHNamingWhenAcctModelChanged() {
@@ -527,6 +528,18 @@ private class ACCT_IndividualAccounts_TEST {
         primaryContact.Deceased__c = true;
 
         upsert new List<Contact>{ primaryContact, tertiaryContact };
+        assertAccounts = [SELECT Id, RecordType.Name, Name FROM Account ORDER BY CreatedDate];
+        System.assertEquals(
+            tertiaryContact.FirstName +
+            ' ' +
+            tertiaryContact.LastName +
+            ' Household',
+            assertAccounts[0].Name
+        );
+
+        tertiaryContact.Deceased__c = true;
+        update tertiaryContact;
+
         assertAccounts = [SELECT Id, RecordType.Name, Name FROM Account ORDER BY CreatedDate];
         System.assertEquals(
             tertiaryContact.FirstName +
