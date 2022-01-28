@@ -910,6 +910,7 @@ private class ACCT_IndividualAccounts_TEST {
      * Update the custom setting of automatic household naming as true
      * Delete the contact linked to a Household Account
      * Make sure the Account's name is set back based on account naming setting.
+     * Test Scenario: T-3904068
      */
     @isTest
     private static void deleteContactFromHHAccAutomatic() {
