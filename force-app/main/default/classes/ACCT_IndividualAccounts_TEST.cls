@@ -1650,6 +1650,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
      * @description Test Method to test sorting Contacts alphabetically by LastName FirstName
      * with {!{!FirstName}} {!LastName} Household format.
+     * Test Scenario: T-3904065
      */
     @isTest
     private static void sortContactsFirstLastNames() {
@@ -1740,6 +1741,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
      * @description Test Method to test sorting Contacts alphabetically by LastName FirstName
      * with {!LastName} ({!{!FirstName}}) Household format.
+     * Test Scenario: T-3904065
      */
     @isTest
     private static void sortContactsLastFirstNames() {
@@ -1834,6 +1836,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
      * @description Test Method to test sorting Contacts alphabetically by LastName FirstName
      * with {!LastName} Household format.
+     * Test Scenario: T-3904065
      */
     @isTest
     private static void sortContactsLastNameOnly() {
@@ -1889,6 +1892,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
      * @description Test Method to test sorting Contacts alphabetically by LastName FirstName
      * with {!{!FirstName}} {!LastName} Household format and blank FirstNames.
+     * Test Scenario: T-3904065
      */
     @isTest
     private static void sortContactsWithoutFirstNames() {
@@ -1943,6 +1947,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
      * @description Test Method to test sorting Contacts alphabetically with custom format.
      * {!{!FirstName} {!LastName}} House
+     * Test Scenario: T-3904065
      */
     @isTest
     private static void sortContactsWithCustomFormat() {
@@ -2011,6 +2016,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
      * @description Test Method to test sorting Contacts alphabetically with custom format.
      * {!Salutation} {!{!FirstName}} {!LastName} Family
+     * Test Scenario: T-3904065
      */
     @isTest
     private static void sortContactsWithCustomFormat2() {
