@@ -29,13 +29,13 @@
 * @date 2020
 * @group Contacts
 * @group-content ../../ApexDocContent/Contacts.htm
-* @description Tests CON_Preferred_Email_Utility_FTST methods with a custom Email field in English 
+* @description Tests CON_Preferred_Email_Utility_UTST methods with a custom Email field in English 
 */
 @isTest
-private with sharing class CON_Pref_Email_untranslatedSpsh_FTST {
+private with sharing class CON_Pref_Email_untranslatedSpsh_UTST {
 
     private static Integer contactCount = 250; // used to determine number of test contact records to create
-    private static User spanishUser = CON_Pref_Email_untranslatedSpsh_FTST.returnUserInSpanish();
+    private static User spanishUser = CON_Pref_Email_untranslatedSpsh_UTST.returnUserInSpanish();
 
     /*************************************************************************************************************************************
     * @description Tests inserting a Contact with a Custom Email field(Untranslated Email) in Spanish Language updates Preferred Email and
@@ -45,7 +45,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_FTST {
     private static void populateCustomEmailOnInsertSpanish() {
 
         System.runAs(spanishUser) {
-            hed.UTIL_CustomSettings_API.getSettingsForTests(
+            %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
             new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
 
@@ -70,7 +70,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_FTST {
             List<Contact> insertedContactList = [SELECT Id, Untranslated_Email__c, toLabel(%%%NAMESPACE%%%Preferred_Email__c), Email FROM Contact];
             System.assertEquals(contactCount, insertedContactList.size(), 'All the Contacts should be successfully inserted.');
 
-            String preferredFieldLabel = CON_Pref_Email_untranslatedSpsh_FTST.getContactFieldLabelFromApi('Untranslated_Email__c');
+            String preferredFieldLabel = CON_Pref_Email_untranslatedSpsh_UTST.getContactFieldLabelFromApi('Untranslated_Email__c');
 
             for (Contact eachContact: insertedContactList) {
                 System.assertEquals('Correo electrónico sin traducir', eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be in Spanish');
@@ -93,7 +93,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_FTST {
     private static void populateCustomAndPrefEmailOnInsertSpanish() {
 
         System.runAs(spanishUser) {
-            hed.UTIL_CustomSettings_API.getSettingsForTests(
+            %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
                 new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
             
@@ -136,7 +136,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_FTST {
     private static void customEmailEmptyOnInsertSpanish() {
 
         System.runAs(spanishUser) {
-            hed.UTIL_CustomSettings_API.getSettingsForTests(
+            %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
                 new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
             
@@ -180,7 +180,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_FTST {
     private static void populateCustomEmailAndAlternateEmailOnInsertSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_FTST.populateCustomEmailAndAlternateEmailOnInsert('Untranslated_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility.populateCustomEmailAndAlternateEmailOnInsert('Untranslated_Email__c', 'test@sf.org', Label.PrefEmailRequiredError);
         }    
     }
 
@@ -192,7 +192,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_FTST {
     private static void populateCustomEmailOnUpdateSpanish() {
         
         System.runAs(spanishUser) {
-            hed.UTIL_CustomSettings_API.getSettingsForTests(
+            %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
                 new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
             
@@ -226,7 +226,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_FTST {
             
             System.assertEquals(contactCount, updatedContactList.size(), 'All the Contacts should be successfully updated.');
             
-            String preferredFieldLabel = CON_Pref_Email_untranslatedSpsh_FTST.getContactFieldLabelFromApi('Untranslated_Email__c');
+            String preferredFieldLabel = CON_Pref_Email_untranslatedSpsh_UTST.getContactFieldLabelFromApi('Untranslated_Email__c');
 
             for (Contact eachContact: updatedContactList) {
                 System.assertEquals('Correo electrónico sin traducir', eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be in Spanish');
@@ -249,7 +249,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_FTST {
 
         System.runAs(spanishUser) {
             
-            hed.UTIL_CustomSettings_API.getSettingsForTests(
+            %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
                 new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
             );
             
@@ -302,7 +302,7 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_FTST {
     private static void customEmailEmptyOnUpdateOnSpanish() {
 
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_FTST.customEmailEmptyOnUpdate('Untranslated_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility.customEmailEmptyOnUpdate('Untranslated_Email__c', 'test@sf.org', Label.PrefEmailMatchNotNull);
         }
     }
 
@@ -313,9 +313,9 @@ private with sharing class CON_Pref_Email_untranslatedSpsh_FTST {
     @isTest
     private static void populateCustomEmailAndAlternateEmailOnUpdateOnSpanish() {
 
-        User spanishUser = CON_Pref_Email_untranslatedSpsh_FTST.returnUserInSpanish();
+        User spanishUser = CON_Pref_Email_untranslatedSpsh_UTST.returnUserInSpanish();
         System.runAs(spanishUser) {
-            CON_Pref_Email_Utility_FTST.populateCustomEmailAndAlternateEmailOnUpdate('Untranslated_Email__c', 'test@sf.org');
+            CON_Pref_Email_Utility.populateCustomEmailAndAlternateEmailOnUpdate('Untranslated_Email__c', 'test@sf.org', Label.PrefEmailRequiredError);
         }    
     }
 

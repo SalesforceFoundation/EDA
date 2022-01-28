@@ -27,107 +27,158 @@
 /**
  * @author Salesforce.org
  * @date 2020
- * @group Contact
+ * @group Contacts
  * @group-content ../../ApexDocContent/Contacts.htm
- * @description Tests CON_Pref_Email_Utility methods with a custom Email field in English language.
+ * @description Tests CON_Preferred_Email_Utility_UTST methods with a custom Email field in Spanish
  */
 @isTest
-private with sharing class CON_Pref_Email_customEmailEnglish_FTST {
+private with sharing class CON_Pref_Email_customEmailSpanish_UTST {
+    private static User spanishUser = CON_Pref_Email_customEmailSpanish_UTST.returnUserInSpanish();
+
     /*****************************************************************************************************************************
-     * @description Tests inserting a Contact with a Custom Email field in English Language updates Preferred Email and
+     * @description Tests inserting a Contact with a Custom Email field in Spanish Language updates Preferred Email and
      * standard Email with the custom email's label and value respectively when Preferred Email Enforcement is Enabled.
      *****************************************************************************************************************************/
     @isTest
-    private static void populateCustomEmailOnInsertEnglish() {
-        CON_Pref_Email_Utility.populateCustomEmailOnInsert('Custom_Email__c', 'test@sf.org');
+    private static void populateCustomEmailOnInsertSpanish() {
+        System.runAs(spanishUser) {
+            CON_Pref_Email_Utility.populateCustomEmailOnInsert('Custom_Email__c', 'test@sf.org');
+        }
     }
 
     /*****************************************************************************************************************************
-     * @description Tests inserting a Contact with a Custom Email field and Preferred Email in ENglish Language sets
+     * @description Tests inserting a Contact with a Custom Email field and Preferred Email in Spanish Language sets
      * Preferred Email field and updates standard Email with the custom email's value when Preferred Email Enforcement is Enabled.
      *****************************************************************************************************************************/
     @isTest
-    private static void populateCustomAndPrefEmailOnInsertEnglish() {
-        CON_Pref_Email_Utility.populateCustomAndPrefEmailOnInsert('Custom_Email__c', 'test@sf.org');
+    private static void populateCustomAndPrefEmailOnInsertSpanish() {
+        System.runAs(spanishUser) {
+            CON_Pref_Email_Utility.populateCustomAndPrefEmailOnInsert('Custom_Email__c', 'test@sf.org');
+        }
     }
 
     /*****************************************************************************************************************************
-     * @description Tests inserting a Contact with Preferred Email and setting no Email fields  in English Language  will throw
+     * @description Tests inserting a Contact with Preferred Email and setting no Email fields  in Spanish Language  will throw
      * 'PreferredEmailMatchNotNull' Error when Preferred Email Enforcement is Enabled.
      *****************************************************************************************************************************/
     @isTest
-    private static void customEmailEmptyOnInsertEnglish() {
-        CON_Pref_Email_Utility.customEmailEmptyOnInsert('Custom_Email__c', 'test@sf.org', Label.PrefEmailMatchNotNull);
+    private static void customEmailEmptyOnInsertSpanish() {
+        System.runAs(spanishUser) {
+            CON_Pref_Email_Utility.customEmailEmptyOnInsert(
+                'Custom_Email__c',
+                'test@sf.org',
+                Label.PrefEmailMatchNotNull
+            );
+        }
     }
 
     /*****************************************************************************************************************************
      * @description Tests inserting a Contact with Custom Email as Preferred Email and and an EDA Email field
-     *  in English Language  will throw PreferredEmailRequiredError Error when Preferred Email Enforcement is Enabled.
+     *  in Spanish Language  will throw PreferredEmailRequiredError Error when Preferred Email Enforcement is Enabled.
      *****************************************************************************************************************************/
     @isTest
-    private static void populateCustomEmailAndAlternateEmailOnInsertEnglish() {
-        CON_Pref_Email_Utility.populateCustomEmailAndAlternateEmailOnInsert(
-            'Custom_Email__c',
-            'test@sf.org',
-            Label.PrefEmailRequiredError
-        );
+    private static void populateCustomEmailAndAlternateEmailOnInsertSpanish() {
+        System.runAs(spanishUser) {
+            CON_Pref_Email_Utility.populateCustomEmailAndAlternateEmailOnInsert(
+                'Custom_Email__c',
+                'test@sf.org',
+                Label.PrefEmailRequiredError
+            );
+        }
     }
 
     /*****************************************************************************************************************************
-     * @description Tests inserting a Contact with Preferred Email and no Email fields  in English Language  will not throw an error
+     * @description Tests inserting a Contact with Preferred Email and no Email fields  in Spanish Language  will not throw an error
      * when Preferred Email Enforcement is enabled.
      *****************************************************************************************************************************/
     @isTest
-    private static void populateCustomEmailWithEnforcementDisbaledOnInsertEnglish() {
-        CON_Pref_Email_Utility.populateCustomEmailWithEnforcementDisbaledOnInsert('Custom_Email__c', 'test@sf.org');
+    private static void populateCustomEmailWithEnforcementDisbaledOnInsertSpanish() {
+        System.runAs(spanishUser) {
+            CON_Pref_Email_Utility.populateCustomEmailWithEnforcementDisbaledOnInsert('Custom_Email__c', 'test@sf.org');
+        }
     }
 
     /*****************************************************************************************************************************
-     * @description Tests updating a Contact with a Custom Email field  in English Language  updates Preferred Email and
+     * @description Tests updating a Contact with a Custom Email field  in Spanish Language  updates Preferred Email and
      * standard Email with the custom email's label and value respectively when Preferred Email Enforcement is Enabled.
      *****************************************************************************************************************************/
     @isTest
-    private static void populateCustomEmailOnUpdateEnglish() {
-        CON_Pref_Email_Utility.populateCustomEmailOnUpdate('Custom_Email__c', 'test@sf.org');
+    private static void populateCustomEmailOnUpdateSpanish() {
+        System.runAs(spanishUser) {
+            CON_Pref_Email_Utility.populateCustomEmailOnUpdate('Custom_Email__c', 'test@sf.org');
+        }
     }
 
     /*****************************************************************************************************************************
-     * @description Tests Updating a Contact with a Custom Email field and Preferred Email  in English Language  sets
+     * @description Tests Updating a Contact with a Custom Email field and Preferred Email  in Spanish Language  sets
      * Preferred Email field and updates standard Email with the custom email's value when Preferred Email Enforcement is Enabled.
      *****************************************************************************************************************************/
     @isTest
-    private static void populateCustomAndPrefEmailOnUpdateEnglish() {
-        CON_Pref_Email_Utility.populateCustomAndPrefEmailOnUpdate('Custom_Email__c', 'test@sf.org');
+    private static void populateCustomAndPrefEmailOnUpdateSpanish() {
+        System.runAs(spanishUser) {
+            CON_Pref_Email_Utility.populateCustomAndPrefEmailOnUpdate('Custom_Email__c', 'test@sf.org');
+        }
     }
 
     /*****************************************************************************************************************************
-     * @description Tests inserting a Contact with Preferred Email and setting no Email fields  in English Language  will throw
+     * @description Tests inserting a Contact with Preferred Email and setting no Email fields  in Spanish Language  will throw
      * 'PreferredEmailMatchNotNull' Error when Preferred Email Enforcement is Enabled.
      *****************************************************************************************************************************/
     @isTest
-    private static void customEmailEmptyOnUpdateOnEnglish() {
-        CON_Pref_Email_Utility.customEmailEmptyOnUpdate('Custom_Email__c', 'test@sf.org', Label.PrefEmailMatchNotNull);
+    private static void customEmailEmptyOnUpdateOnSpanish() {
+        System.runAs(spanishUser) {
+            CON_Pref_Email_Utility.customEmailEmptyOnUpdate(
+                'Custom_Email__c',
+                'test@sf.org',
+                Label.PrefEmailMatchNotNull
+            );
+        }
     }
 
     /*****************************************************************************************************************************
      * @description Tests inserting a Contact with Custom Email as Preferred Email and and an EDA Email field
-     *  in English Language  will throw PreferredEmailRequiredError Error when Preferred Email Enforcement is Enabled.
+     *  in Spanish Language  will throw PreferredEmailRequiredError Error when Preferred Email Enforcement is Enabled.
      *****************************************************************************************************************************/
     @isTest
-    private static void populateCustomEmailAndAlternateEmailOnUpdateOnEnglish() {
-        CON_Pref_Email_Utility.populateCustomEmailAndAlternateEmailOnUpdate(
-            'Custom_Email__c',
-            'test@sf.org',
-            Label.PrefEmailRequiredError
-        );
+    private static void populateCustomEmailAndAlternateEmailOnUpdateOnSpanish() {
+        System.runAs(spanishUser) {
+            CON_Pref_Email_Utility.populateCustomEmailAndAlternateEmailOnUpdate(
+                'Custom_Email__c',
+                'test@sf.org',
+                Label.PrefEmailRequiredError
+            );
+        }
     }
 
     /*****************************************************************************************************************************
-     * @description Tests inserting a Contact with Preferred Email and no Email fields  in English Language  will not throw an error
+     * @description Tests inserting a Contact with Preferred Email and no Email fields  in Spanish Language  will not throw an error
      * when Preferred Email Enforcement is enabled.
      *****************************************************************************************************************************/
     @isTest
-    private static void populateCustomEmailWithEnforcementDisbaledOnUpdateEnglish() {
-        CON_Pref_Email_Utility.populateCustomEmailWithEnforcementDisbaledOnupdate('Custom_Email__c', 'test@sf.org');
+    private static void populateCustomEmailWithEnforcementDisbaledOnUpdateSpanish() {
+        System.runAs(spanishUser) {
+            CON_Pref_Email_Utility.populateCustomEmailWithEnforcementDisbaledOnupdate('Custom_Email__c', 'test@sf.org');
+        }
+    }
+
+    /*****************************************************************************************************************************
+     * @description Helper method to reurn a user in Spanish Language
+     *****************************************************************************************************************************/
+    private static User returnUserInSpanish() {
+        Profile p = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+
+        User userInSpanish = new User(
+            Alias = 'newUser',
+            Email = 'newuser@testorg.com',
+            EmailEncodingKey = 'UTF-8',
+            LastName = 'Testing',
+            LanguageLocaleKey = 'es',
+            LocaleSidKey = 'es',
+            ProfileId = p.Id,
+            TimeZoneSidKey = 'America/Los_Angeles',
+            UserName = 'prefEmail@testorg.com'
+        );
+
+        return userInSpanish;
     }
 }
