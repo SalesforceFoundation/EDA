@@ -2383,6 +2383,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
      * @description Test Method to check if all Contacts associated to the Account are marked exclude from
      * Household Name, do not update the Account's Name to "Household".
+     * Test Scenario: T-3904067
      */
     @isTest
     private static void contactMarkedExcludedFromHHNaming() {
@@ -2406,14 +2407,17 @@ private class ACCT_IndividualAccounts_TEST {
         con2.AccountId = acc.Id;
         insert con2;
 
+        Account returnAccount = [SELECT Id, Name FROM Account WHERE Id = :acc.Id];
+        System.assertEquals(con2.LastName + ' and ' + con.LastName + ' Household', returnAccount.Name);
+
         con.Exclude_from_Household_Name__c = true;
 
         Test.startTest();
         update con;
         Test.stopTest();
 
-        Account returnAccount = [SELECT Id, Name FROM Account WHERE Id = :acc.Id];
-        System.assertEquals('Pens Household', returnAccount.Name);
+        returnAccount = [SELECT Id, Name FROM Account WHERE Id = :acc.Id];
+        System.assertEquals(con2.LastName + ' Household', returnAccount.Name);
     }
 
     /*********************************************************************************************************
