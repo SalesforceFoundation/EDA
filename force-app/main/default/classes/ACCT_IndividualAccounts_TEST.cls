@@ -2120,8 +2120,8 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
-     * @description Test Method to check if multiple Contacts are marked deceased, Household account names are 
-     * updated properly. 
+     * @description Test Method to check if multiple Contacts are marked deceased, Household account names are
+     * updated properly.
      * Test Scenario: T-3904057
      */
     @isTest
@@ -2667,8 +2667,9 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
-     * @description In a multi-currency enabled org, update a contact who does not have a related account with different currency than the default one.
-     * Make sure that the account automatically created and the contact have the same currency.
+     * @description In a multi-currency enabled org, update a contact who does not have a related account with
+     * different currency than the default one. Make sure that the account automatically is created and the contact
+     * has the same currency.
      * Test Scenario: T-3904059
      */
     @isTest

@@ -335,7 +335,7 @@ private class STG_Base_CTRL_TEST {
     }
 
     /*********************************************************************************************************
-     * @description Tests if refresh Household Account name batch class is successfully renames applicable accounts.
+     * @description Ensure Household Account refresh (batch class) successfully renames the applicable accounts.
      * Test Scenario: T-3904061
      */
     @isTest
