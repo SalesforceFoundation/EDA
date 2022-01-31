@@ -2672,7 +2672,7 @@ private class ACCT_IndividualAccounts_TEST {
      * Test Scenario: T-3904059
      */
     @isTest
-    private static void updateContactWithoutAccountMultiCurrencyEnabled() {
+    private static void ensureContactWithCustomCurrencyMapsToAccount() {
         if (UserInfo.isMultiCurrencyOrganization()) {
             //Test data setup
             String nonDefaultCurrencyCode = '';
