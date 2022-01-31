@@ -294,8 +294,7 @@ private class ACCT_AdministrativeNameRefresh_TEST {
     }
 
     /*********************************************************************************************************
-     * @description Test Method to test prefix/suffix is appropriately mapped to administrative
-     * account renaming logic.
+     * @description Ensure prefix/suffix is appropriately mapped to administrative account renaming logic.
      * Test Scenario: T-3904064
      */
     @isTest
@@ -307,7 +306,7 @@ private class ACCT_AdministrativeNameRefresh_TEST {
             Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Admin_Account_Naming_Format__c = 'Other',
-            Admin_Other_Name_Setting__c = '{!LastName} ({!{!FirstName}}) Administrative Account'
+            Admin_Other_Name_Setting__c = '{!Salutation} {!LastName} Administrative Account'
         );
 
         if (ispersonNameSuffixEnabled) {

@@ -2575,8 +2575,7 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
-     * @description Test Method to test prefix/suffix is appropriately mapped to household account
-     * renaming logic.
+     * @description Ensure prefix/suffix is appropriately mapped to household account renaming logic.
      * Test Scenario: T-3904064
      */
     @isTest
