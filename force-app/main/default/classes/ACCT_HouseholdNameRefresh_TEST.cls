@@ -33,12 +33,12 @@
  */
 @isTest
 public class ACCT_HouseholdNameRefresh_TEST {
-    /*******************************************************************************************************
-     * @description Test that the refresh Household Account name functionality is working properly if
-     * there are multiple Household Account.
+    /*********************************************************************************************************
+     * @description Ensure Household Account refresh (batch class) successfully renames the applicable accounts.
+     * Test Scenario: T-3904061
      */
     @isTest
-    private static void refreshHouseHoldAccountNamesAutomaticHHName() {
+    private static void ensureRefreshHHAccountBatchRenamesAccounts() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = Util_Describe.getCustomHHAccRecTypeID(),
