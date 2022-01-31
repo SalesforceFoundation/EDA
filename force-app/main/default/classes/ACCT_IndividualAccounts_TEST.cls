@@ -478,8 +478,7 @@ private class ACCT_IndividualAccounts_TEST {
 
     /*********************************************************************************************************
      * @description Ensure household account naming persists when the the default account model is changed.
-     * Ensure household account name consists of last deceased contact.
-     * Test Scenario: T-3904058/T-3904066
+     * Test Scenario: T-3904058
      */
     @isTest
     private static void shouldPersistHHNamingWhenAcctModelChanged() {
@@ -524,10 +523,9 @@ private class ACCT_IndividualAccounts_TEST {
 
         Contact tertiaryContact = UTIL_UnitTestData_TEST.getUniqueContact(2);
         tertiaryContact.AccountId = assertAccounts[0].Id;
-
         primaryContact.Deceased__c = true;
-
         upsert new List<Contact>{ primaryContact, tertiaryContact };
+        
         assertAccounts = [SELECT Id, RecordType.Name, Name FROM Account ORDER BY CreatedDate];
         System.assertEquals(
             tertiaryContact.FirstName +
@@ -536,17 +534,70 @@ private class ACCT_IndividualAccounts_TEST {
             ' Household',
             assertAccounts[0].Name
         );
+    }
 
-        tertiaryContact.Deceased__c = true;
-        update tertiaryContact;
+    /*********************************************************************************************************
+     * @description Ensure household account naming consists of last deceased contact.
+     * Test Scenario: T-3904066
+     */
+    @isTest
+    private static void hhNamingContainsLastDeceasedContact() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+                Household_Addresses_RecType__c = UTIL_Describe.getHhAccRecTypeID(),
+                Household_Account_Naming_Format__c = '{!FirstName} {!LastName} Household',
+                Automatic_Household_Naming__c = true
+            )
+        );
 
-        assertAccounts = [SELECT Id, RecordType.Name, Name FROM Account ORDER BY CreatedDate];
+        Contact primaryContact = UTIL_UnitTestData_TEST.getUniqueContact(0);
+
+        Test.startTest();
+        insert primaryContact;
+        Test.stopTest();
+
+        Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account ORDER BY CreatedDate LIMIT 1];
+
+        Contact secondaryContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        secondaryContact.AccountId = assertAccount.Id;
+        insert secondaryContact;
+
+        assertAccount = [SELECT Id, RecordType.Name, Name FROM Account ORDER BY CreatedDate LIMIT 1];
         System.assertEquals(
-            tertiaryContact.FirstName +
+            primaryContact.FirstName +
             ' ' +
-            tertiaryContact.LastName +
+            primaryContact.LastName +
+            ' and ' +
+            secondaryContact.FirstName +
+            ' ' +
+            secondaryContact.LastName +
             ' Household',
-            assertAccounts[0].Name
+            assertAccount.Name
+        );
+
+        primaryContact.Deceased__c = true;
+        update primaryContact;
+
+        assertAccount = [SELECT Id, RecordType.Name, Name FROM Account ORDER BY CreatedDate LIMIT 1];
+        System.assertEquals(
+            secondaryContact.FirstName +
+            ' ' +
+            secondaryContact.LastName +
+            ' Household',
+            assertAccount.Name
+        );
+
+        secondaryContact.Deceased__c = true;
+        update secondaryContact;
+
+        assertAccount = [SELECT Id, RecordType.Name, Name FROM Account ORDER BY CreatedDate LIMIT 1];
+        System.assertEquals(
+            secondaryContact.FirstName +
+            ' ' +
+            secondaryContact.LastName +
+            ' Household',
+            assertAccount.Name
         );
     }
 
