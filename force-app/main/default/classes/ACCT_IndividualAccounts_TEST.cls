@@ -2221,10 +2221,10 @@ private class ACCT_IndividualAccounts_TEST {
         List<Account> returnAccounts2 = [SELECT Id, Name FROM Account WHERE Id IN :accounts];
 
         for (Integer i = 0; i < returnAccounts2.size(); i++) {
-            String FirstName1 = 'PrimaryContact_FirstName ' + i;
+            String primaryContactName = 'PrimaryContact_FirstName ' + i;
             String LastName = 'PrimaryContact_LastName ' + i;
 
-            System.assertEquals(LastName + ' (' + FirstName1 + ') ' + ' Household', returnAccounts[i].Name);
+            System.assertEquals(LastName + ' (' + primaryContactName + ') ' + ' Household', returnAccounts[i].Name);
         }
     }
 
