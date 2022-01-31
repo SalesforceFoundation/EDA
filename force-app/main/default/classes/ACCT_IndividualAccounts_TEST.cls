@@ -2221,66 +2221,10 @@ private class ACCT_IndividualAccounts_TEST {
         List<Account> returnAccounts2 = [SELECT Id, Name FROM Account WHERE Id IN :accounts];
 
         for (Integer i = 0; i < returnAccounts2.size(); i++) {
-            String primaryContactName = 'PrimaryContact_FirstName ' + i;
+            String FirstName1 = 'PrimaryContact_FirstName ' + i;
             String LastName = 'PrimaryContact_LastName ' + i;
 
-            System.assertEquals(LastName + ' (' + primaryContactName + ') ' + ' Household', returnAccounts[i].Name);
-        }
-
-        addSecondContacts = new List<Contact>();
-        for (Integer i = 0; i < accounts.size(); i++) {
-            Contact con2 = new Contact(
-                AccountId = accounts[i].Id,
-                FirstName = 'SecondaryContact_FirstName ' + i,
-                LastName = 'PrimaryContact_LastName ' + i
-            );
-            addSecondContacts.add(con2);
-        }
-        insert addSecondContacts;
-
-        addThirdContacts = new List<Contact>();
-        for (Integer i = 0; i < accounts.size(); i++) {
-            Contact con3 = new Contact(
-                AccountId = accounts[i].Id,
-                FirstName = 'TertiaryContact_FirstName ' + i,
-                LastName = 'PrimaryContact_LastName ' + i
-            );
-            addThirdContacts.add(con3);
-        }
-        insert addThirdContacts;
-
-        returnAccounts = [SELECT Id, Name FROM Account WHERE Id IN :accounts];
-
-        for (Integer i = 0; i < returnAccounts.size(); i++) {
-            String primaryContactName = 'PrimaryContact_FirstName ' + i;
-            String secondaryContactName = 'SecondaryContact_FirstName ' + i;
-            String tertiaryContactName = 'TertiaryContact_FirstName ' + i;
-            String LastName = 'PrimaryContact_LastName ' + i;
-
-            System.assertEquals(
-                LastName +
-                ' (' +
-                primaryContactName +
-                ' and ' +
-                secondaryContactName +
-                ' and ' +
-                tertiaryContactName +
-                ') ' +
-                ' Household',
-                returnAccounts[i].Name
-            );
-        }
-
-        List<Contact> deceasedContacts = new List<Contact>();
-        deceasedContacts.addAll(addSecondContacts);
-        deceasedContacts.addAll(addThirdContacts);
-        delete deceasedContacts;
-
-        for (Integer i = 0; i < [SELECT COUNT() FROM Account WHERE Id IN :accounts]; i++) {
-            String primaryContactName = 'PrimaryContact_FirstName ' + i;
-            String LastName = 'PrimaryContact_LastName ' + i;
-
-            System.assertEquals(LastName + ' (' + primaryContactName + ') ' + ' Household', returnAccounts[i].Name);
+            System.assertEquals(LastName + ' (' + FirstName1 + ') ' + ' Household', returnAccounts[i].Name);
         }
     }
 
