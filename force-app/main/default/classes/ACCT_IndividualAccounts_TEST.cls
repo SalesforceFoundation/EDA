@@ -2120,11 +2120,12 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
-     * @description Test Method to check if multiple Contacts are marked deceased, Account names are updated
-     * properly. Test Scenario: T-3904057
+     * @description Test Method to check if multiple Contacts are marked deceased, Household account names are 
+     * updated properly. 
+     * Test Scenario: T-3904057
      */
     @isTest
-    private static void contactMarkedDeceasedBulked() {
+    private static void hhContactMarkedDeceasedBulked() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),

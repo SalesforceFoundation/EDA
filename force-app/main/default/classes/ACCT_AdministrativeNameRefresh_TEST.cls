@@ -177,6 +177,121 @@ private class ACCT_AdministrativeNameRefresh_TEST {
             }
         }
     }
+    /*********************************************************************************************************
+     * @description Test Method to check if multiple Contacts are marked deceased, Administrative Account names
+     * are updated properly. 
+     * Test Scenario: T-3904057
+     */
+    @isTest
+    private static void AdministrativeAcctContactMarkedDeceasedBulked() {
+        Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
+            Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+            Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+            Admin_Account_Naming_Format__c = 'Other',
+            Admin_Other_Name_Setting__c = '{!LastName} ({!{!FirstName}}) Administrative Account'
+        );
+
+        List<Contact> newContacts = UTIL_UnitTestData_API.getMultipleTestContacts(5);
+        for (Integer i = 0; i < newContacts.size(); i++) {
+            for (Contact con : newContacts) {
+                con.FirstName = 'PrimaryContact_FirstName ' + i;
+                con.LastName = 'PrimaryContact_LastName ' + i;
+            }
+        }
+        insert newContacts;
+
+        List<Contact> requeryInsertedCon = [SELECT Id, AccountId, Account.Name FROM Contact WHERE Id IN :newContacts];
+
+        List<Id> accountIds = new List<Id>();
+
+        for (Contact cAccountId : requeryInsertedCon) {
+            accountIds.add(cAccountId.Id);
+        }
+
+        List<Account> accounts = [SELECT Id, Name FROM Account WHERE Id IN :accountIds];
+
+        List<Contact> addSecondContacts = new List<Contact>();
+        for (Integer i = 0; i < accounts.size(); i++) {
+            Contact con2 = new Contact(
+                AccountId = accounts[i].Id,
+                FirstName = 'SecondaryContact_FirstName ' + i,
+                LastName = 'PrimaryContact_LastName ' + i
+            );
+            addSecondContacts.add(con2);
+        }
+        insert addSecondContacts;
+
+        List<Contact> addThirdContacts = new List<Contact>();
+        for (Integer i = 0; i < accounts.size(); i++) {
+            Contact con3 = new Contact(
+                AccountId = accounts[i].Id,
+                FirstName = 'TertiaryContact_FirstName ' + i,
+                LastName = 'PrimaryContact_LastName ' + i
+            );
+            addThirdContacts.add(con3);
+        }
+        insert addThirdContacts;
+
+        List<Contact> returnSecondContacts = [
+            SELECT Id, FirstName, Deceased__c
+            FROM Contact
+            WHERE Id IN :addSecondContacts
+        ];
+        for (Contact con : returnSecondContacts) {
+            con.Deceased__c = true;
+        }
+
+        Test.startTest();
+        update returnSecondContacts;
+        Test.stopTest();
+
+        List<Account> returnAccounts = [SELECT Id, Name FROM Account WHERE Id IN :accounts];
+
+        for (Integer i = 0; i < returnAccounts.size(); i++) {
+            String primaryContactName = 'PrimaryContact_FirstName ' + i;
+            String tertiaryContactName = 'TertiaryContact_FirstName ' + i;
+            String LastName = 'PrimaryContact_LastName ' + i;
+
+            System.assertEquals(
+                LastName +
+                ' (' +
+                primaryContactName +
+                ' and ' +
+                tertiaryContactName +
+                ') ' +
+                ' Administrative Account',
+                returnAccounts[i].Name
+            );
+        }
+
+        List<Contact> returnThirdContacts = [
+            SELECT Id, FirstName, Deceased__c
+            FROM Contact
+            WHERE Id IN :addThirdContacts
+        ];
+
+        for (Contact conThree : returnThirdContacts) {
+            conThree.Deceased__c = true;
+        }
+
+        update returnThirdContacts;
+
+        List<Account> returnAccounts2 = [SELECT Id, Name FROM Account WHERE Id IN :accounts];
+
+        for (Integer i = 0; i < returnAccounts2.size(); i++) {
+            String primaryContactName = 'PrimaryContact_FirstName ' + i;
+            String LastName = 'PrimaryContact_LastName ' + i;
+
+            System.assertEquals(
+                LastName +
+                ' (' +
+                primaryContactName +
+                ') ' +
+                ' Administrative Account',
+                returnAccounts[i].Name
+            );
+        }
+    }
 
     /*********************************************************************************************************
      * @description Test Method to test prefix/suffix is appropriately mapped to administrative
@@ -192,7 +307,7 @@ private class ACCT_AdministrativeNameRefresh_TEST {
             Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Admin_Account_Naming_Format__c = 'Other',
-            Admin_Other_Name_Setting__c = '{!Salutation} {!LastName} Administrative Account'
+            Admin_Other_Name_Setting__c = '{!LastName} ({!{!FirstName}}) Administrative Account'
         );
 
         if (ispersonNameSuffixEnabled) {
