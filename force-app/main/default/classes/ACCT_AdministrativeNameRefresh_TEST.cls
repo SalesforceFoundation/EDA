@@ -34,11 +34,11 @@
 @isTest
 private class ACCT_AdministrativeNameRefresh_TEST {
     /*******************************************************************************************************
-    * @description Tests that the refresh Administrative Account name functionality is working properly if 
-    * there are multiple Admin Account.
+    * @description Ensure Administrative Account refresh (batch class) successfully renames the applicable accounts.
+    * Test Scenario: T-3904053
     */
     @isTest
-    private static void refreshAdministrativeAccountNames() {
+    private static void ensureRefreshAdministrativeAccountBatchRenamesAccounts() {
         UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
                                                         Admin_Account_Naming_Format__c = '{!LastName} Administrative Account'
                                                         ));
