@@ -2906,7 +2906,7 @@ private class ACCT_IndividualAccounts_TEST {
             resultAccounts = Database.query(qryString);
             secondaryContact = [SELECT Id, LastName, CurrencyIsoCode FROM CONTACT WHERE Id = :secondaryContact.Id];
 
-            System.assertNotEquals(secondaryContact.CurrencyIsoCode, nonDefaultCurrencyCode);
+            System.assertNotEquals(secondaryContact.get('CurrencyIsoCode'), nonDefaultCurrencyCode);
             System.assertEquals(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'));
 
             System.assertEquals(
