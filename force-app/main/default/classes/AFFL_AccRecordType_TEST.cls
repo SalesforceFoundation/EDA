@@ -53,10 +53,199 @@ public with sharing class AFFL_AccRecordType_TEST {
         householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
     }
 
-    @isTest
-    private static void changePrimaryAffiliationRecordType() {
-        AFFL_AccRecordType_TEST.setup();
+    private static void setupWithFieldLabels() {
+        UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe.getHhAccRecTypeID())
+        );
+        List<Affl_Mappings__c> mappings = [
+            SELECT ID
+            FROM Affl_Mappings__c
+            WHERE Account_Record_Type__c != NULL AND Primary_Affl_Field__c != NULL
+        ];
+        if (mappings.size() == 0) {
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Academic Program',
+                    Account_Record_Type__c = 'Academic_Program',
+                    Primary_Affl_Field__c = 'Primary Academic Program',
+                    Auto_Program_Enrollment__c = true,
+                    Auto_Program_Enrollment_Status__c = 'Current',
+                    Auto_Program_Enrollment_Role__c = 'Student'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Business Organization',
+                    Account_Record_Type__c = 'Business_Organization',
+                    Primary_Affl_Field__c = 'Primary Business Organization'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Household Account',
+                    Account_Record_Type__c = 'HH_Account',
+                    Primary_Affl_Field__c = 'Primary Household'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Educational Institution',
+                    Account_Record_Type__c = 'Educational_Institution',
+                    Primary_Affl_Field__c = 'Primary Educational Institution'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'University Department',
+                    Account_Record_Type__c = 'University_Department',
+                    Primary_Affl_Field__c = 'Primary Department'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Sports Organization',
+                    Account_Record_Type__c = 'Sports_Organization',
+                    Primary_Affl_Field__c = 'Primary Sports Organization'
+                )
+            );
+            insert mappings;
+        }
+        RecordType univ = [SELECT Id, Name FROM RecordType WHERE DeveloperName = 'University_Department'];
+        System.assertNotEquals(null, univ, 'University_Department Record Type was not found');
 
+        orgRecTypeID = UTIL_Describe_API.getBizAccRecTypeID();
+        householdRecTypeID = UTIL_Describe.getHhAccRecTypeID();
+    }
+
+    // Testing mappings with field names
+
+    @isTest
+    private static void addRecordTypeToAcc_FieldNames() {
+        setup();
+        addRecordTypeToAcc();
+    }
+
+    @isTest
+    private static void changePrimaryAffiliationRecordType_FieldNames() {
+        setup();
+        changePrimaryAffiliationRecordType();
+    }
+
+    @isTest
+    private static void changePrimaryAffiliationRecordTypeReentrancyCheck_FieldNames() {
+        setup();
+        changePrimaryAffiliationRecordTypeReentrancyCheck();
+    }
+
+    @isTest
+    private static void changePrimaryAffiliationRecordTypeTwoAccs_FieldNames() {
+        setup();
+        changePrimaryAffiliationRecordTypeTwoAccs();
+    }
+
+    @isTest
+    private static void checkNPE_FieldNames() {
+        setup();
+        checkNPE();
+    }
+
+    @isTest
+    private static void duplicateAffiliationCheck_FieldNames() {
+        setup();
+        duplicateAffiliationCheck();
+    }
+
+    @isTest
+    private static void fillInPrimaryFieldForContacts_FieldNames() {
+        setup();
+        fillInPrimaryFieldForContacts();
+    }
+
+    @isTest
+    private static void insertAfflWAccRecTypeEnforced_FieldNames() {
+        setup();
+        insertAfflWAccRecTypeEnforced();
+    }
+
+    @isTest
+    private static void otherPrimaryNotPrimary_FieldNames() {
+        setup();
+        otherPrimaryNotPrimary();
+    }
+
+    @isTest
+    private static void updateAdminAccRecordTypeBulk_FieldNames() {
+        setup();
+        updateAdminAccRecordTypeBulk();
+    }
+
+    // Testing mappings with field labels
+
+    @isTest
+    private static void addRecordTypeToAcc_FieldLabels() {
+        setupWithFieldLabels();
+        addRecordTypeToAcc();
+    }
+
+    @isTest
+    private static void changePrimaryAffiliationRecordType_FieldLabels() {
+        setupWithFieldLabels();
+        changePrimaryAffiliationRecordType();
+    }
+
+    @isTest
+    private static void changePrimaryAffiliationRecordTypeReentrancyCheck_FieldLabels() {
+        setupWithFieldLabels();
+        changePrimaryAffiliationRecordTypeReentrancyCheck();
+    }
+
+    @isTest
+    private static void changePrimaryAffiliationRecordTypeTwoAccs_FieldLabels() {
+        setupWithFieldLabels();
+        changePrimaryAffiliationRecordTypeTwoAccs();
+    }
+
+    @isTest
+    private static void checkNPE_FieldLabels() {
+        setupWithFieldLabels();
+        checkNPE();
+    }
+
+    @isTest
+    private static void duplicateAffiliationCheck_FieldLabels() {
+        setupWithFieldLabels();
+        duplicateAffiliationCheck();
+    }
+
+    @isTest
+    private static void fillInPrimaryFieldForContacts_FieldLabels() {
+        setupWithFieldLabels();
+        fillInPrimaryFieldForContacts();
+    }
+
+    @isTest
+    private static void insertAfflWAccRecTypeEnforced_FieldLabels() {
+        setupWithFieldLabels();
+        insertAfflWAccRecTypeEnforced();
+    }
+
+    @isTest
+    private static void otherPrimaryNotPrimary_FieldLabels() {
+        setupWithFieldLabels();
+        otherPrimaryNotPrimary();
+    }
+
+    @isTest
+    private static void updateAdminAccRecordTypeBulk_FieldLabels() {
+        setupWithFieldLabels();
+        updateAdminAccRecordTypeBulk();
+    }
+
+    /**************************************************************************************************************************
+     ********************************************** Shared Test Functions *****************************************************
+     **************************************************************************************************************************/
+
+    private static void changePrimaryAffiliationRecordType() {
         Contact contact = UTIL_UnitTestData_API.getContact();
         insert contact;
 
@@ -99,10 +288,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(true, allAffiliationList[0].Primary__c);
     }
 
-    @isTest
     private static void changePrimaryAffiliationRecordTypeReentrancyCheck() {
-        AFFL_AccRecordType_TEST.setup();
-
         // Install Default HEDA TDTM Configuration
         List<TDTM_Global_API.TdtmToken> defaultTokens = TDTM_Global_API.getDefaultTdtmConfig();
         TDTM_Global_API.setTdtmConfig(defaultTokens, 'hed');
@@ -158,10 +344,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         );
     }
 
-    @isTest
     private static void changePrimaryAffiliationRecordTypeTwoAccs() {
-        AFFL_AccRecordType_TEST.setup();
-
         Contact contact = UTIL_UnitTestData_API.getContact();
         insert contact;
 
@@ -206,10 +389,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(household.Id, contact.Primary_Organization__c);
     }
 
-    @isTest
     private static void otherPrimaryNotPrimary() {
-        AFFL_AccRecordType_TEST.setup();
-
         Contact contact = UTIL_UnitTestData_API.getContact();
         insert contact;
 
@@ -263,10 +443,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(false, bizAffl.Primary__c);
     }
 
-    @isTest
     private static void addRecordTypeToAcc() {
-        AFFL_AccRecordType_TEST.setup();
-
         Contact contact = UTIL_UnitTestData_API.getContact();
         insert contact;
 
@@ -296,10 +473,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(acc.Id, contact.Primary_Organization__c);
     }
 
-    @isTest
     private static void updateAdminAccRecordTypeBulk() {
-        AFFL_AccRecordType_TEST.setup();
-
         //Create some Accounts with Admin record type
         List<Account> adminAccList = UTIL_UnitTestData_API.getMultipleTestAccounts(
             10,
@@ -335,10 +509,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(5, hhAccounts.size());
     }
 
-    @isTest
     private static void fillInPrimaryFieldForContacts() {
-        AFFL_AccRecordType_TEST.setup();
-
         //Create Contacts
         Contact john = UTIL_UnitTestData_API.getContact();
         Contact mark = UTIL_UnitTestData_API.getContact();
@@ -387,10 +558,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(null, markUpdated.Primary_Organization__c);
     }
 
-    @isTest
     private static void duplicateAffiliationCheck() {
-        AFFL_AccRecordType_TEST.setup();
-
         // Insert a business account
         Account bizAcc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
         insert bizAcc;
@@ -431,10 +599,7 @@ public with sharing class AFFL_AccRecordType_TEST {
         System.assertEquals(true, allAffiliationList[0].Primary__c);
     }
 
-    @isTest
     private static void checkNPE() {
-        AFFL_AccRecordType_TEST.setup();
-
         //delete an affiliation mapping
         delete [SELECT Id FROM Affl_Mappings__c WHERE Name = 'Household Account'];
 
@@ -494,10 +659,7 @@ public with sharing class AFFL_AccRecordType_TEST {
     /* Test to ensure an error is thrown when an affiliation is inserted with an Account whose record
      type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled */
 
-    @isTest
     private static void insertAfflWAccRecTypeEnforced() {
-        AFFL_AccRecordType_TEST.setup();
-
         UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
