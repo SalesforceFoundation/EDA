@@ -477,6 +477,34 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
+     * @description Insert a new contact and the default account record type is Household
+     * Make sure the Account's name is set based on account naming setting and binded variables.
+     * Test Scenario: T-3904070
+     */
+    @isTest
+    private static void ensureHHNamingBindFields() {
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+                Household_Account_Naming_Format__c = '{!LastName} ({!MailingCity}) Family',
+                Automatic_Household_Naming__c = true
+            )
+        );
+
+        Contact con = UTIL_UnitTestData_API.getContact();
+        con.LastName = 'Smith';
+        con.MailingCity = 'Seattle';
+
+        Test.startTest();
+        insert con;
+        Test.stopTest();
+
+        Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account LIMIT 1];
+        System.assertEquals('Household Account', assertAccount.RecordType.Name);
+        System.assertEquals(con.LastName + ' (' + con.MailingCity + ') Family', assertAccount.Name);
+    }
+
+    /*********************************************************************************************************
      * @description Ensure household account naming persists when the the default account model is changed.
      * Test Scenario: T-3904058
      */
