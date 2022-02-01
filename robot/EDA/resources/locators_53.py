@@ -58,7 +58,6 @@ eda_lex_locators = {
         "duration": "//div[.//span[text()='Duration'] and contains(@class, 'slds-form-element') ]//select//option[@value='60']",
         "hh_naming_check": "//input[@class='automatic-hh-acc uiInput uiInputCheckbox uiInput--default uiInput--checkbox']/following-sibling::span",
         "hh_naming_role_checkbox": "//select[@class='admin-account-naming-input-select select uiInput uiInputSelect uiInput--default uiInput--select']//option[@value='{{!{{!FirstName}}}} {{!LastName}} Administrative Account']",
-        "hh_custom_name_format": "//input[contains(@name, 'hhAccountCustomNaming')]",
         "hh_adminfnamelname": "//input[contains(@class,'firstName')]",
         "course_connections_tab": "//a[contains(text(),'Course Connections')]",
         "cc_checkbox": "//input[contains(@class,'slds-checkbox')]/parent::label",
