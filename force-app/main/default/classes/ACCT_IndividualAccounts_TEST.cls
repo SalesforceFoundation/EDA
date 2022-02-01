@@ -553,7 +553,7 @@ private class ACCT_IndividualAccounts_TEST {
         tertiaryContact.AccountId = assertAccounts[0].Id;
         primaryContact.Deceased__c = true;
         upsert new List<Contact>{ primaryContact, tertiaryContact };
-        
+
         assertAccounts = [SELECT Id, RecordType.Name, Name FROM Account ORDER BY CreatedDate];
         System.assertEquals(
             tertiaryContact.FirstName +
@@ -2707,6 +2707,71 @@ private class ACCT_IndividualAccounts_TEST {
     }
 
     /*********************************************************************************************************
+     * @description Ensure prefix/suffix is appropriately mapped to household account renaming logic for a
+     * non English user.
+     * Test Scenario: T-3904063
+     */
+    @isTest
+    private static void shouldAppendPrefixSuffixHHSpanish() {
+        Set<String> objectFields = Schema.SObjectType.Contact.fields.getMap().keySet();
+        Boolean ispersonNameSuffixEnabled = objectFields.contains('suffix');
+        Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
+            Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+            Household_Account_Naming_Format__c = 'Otros',
+            Household_Other_Name_Setting__c = '{!Salutation} {!LastName} Cuenta del hogar',
+            Automatic_Household_Naming__c = true
+        );
+
+        if (ispersonNameSuffixEnabled) {
+            edaSettings.Household_Other_Name_Setting__c = '{!Salutation} {!LastName} {!Suffix} Cuenta del hogar';
+        }
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
+
+        System.runAs(ACCT_IndividualAccounts_TEST.returnUserInSpanish()) {
+            List<Contact> allContacts = new List<Contact>();
+            Contact currentContact;
+            for (integer i = 0; i < 10; i++) {
+                currentContact = UTIL_UnitTestData_TEST.getUniqueContact(i);
+                currentContact.Salutation = 'Mr.';
+
+                if (ispersonNameSuffixEnabled) {
+                    currentContact.put('Suffix', 'Suffix' + i);
+                }
+                allContacts.add(currentContact);
+            }
+
+            Test.startTest();
+            insert allContacts;
+            Test.stopTest();
+
+            List<Account> accts = [SELECT Id, Name FROM Account];
+            if (ispersonNameSuffixEnabled) {
+                for (integer i = 0; i < accts.size(); i++) {
+                    System.debug(accts[i].Name);
+                    System.assertEquals(
+                        'Mr.' +
+                        ' ' +
+                        'LastNew' +
+                        i +
+                        ' ' +
+                        'Suffix' +
+                        i +
+                        ' Cuenta del hogar',
+                        accts[i].Name
+                    );
+                }
+            } else {
+                for (integer i = 0; i < accts.size(); i++) {
+                    System.debug(accts[i].Name);
+
+                    System.assertEquals('Mr.' + ' ' + 'LastNew' + i + ' Cuenta del hogar', accts[i].Name);
+                }
+            }
+        }
+    }
+
+    /*********************************************************************************************************
      * @description In a multi-currency enabled org, create a contact with different currency than the default one.
      * Ensure the account automatically is created and the account currency maps to contact respectively.
      * Ensure subsequent contacts insertions, update account naming (conform alphabetically).
@@ -2762,7 +2827,7 @@ private class ACCT_IndividualAccounts_TEST {
 
             resultAccounts = Database.query(qryString);
             secondaryContact = [SELECT Id, LastName, CurrencyIsoCode FROM CONTACT WHERE Id = :secondaryContact.Id];
-            
+
             System.assertNotEquals(secondaryContact.CurrencyIsoCode, nonDefaultCurrencyCode);
             System.assertEquals(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'));
 

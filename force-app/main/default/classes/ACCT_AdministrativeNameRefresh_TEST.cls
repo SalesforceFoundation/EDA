@@ -294,6 +294,34 @@ private class ACCT_AdministrativeNameRefresh_TEST {
     }
 
     /*********************************************************************************************************
+     * @description Insert a new contact and the default account record type is Household
+     * Make sure the Account's name is set based on account naming setting for a user in Spanish.
+     * Test Scenario: T-3904055
+     */
+    @isTest
+    private static void newContactNewAdminAccSpanish() {
+        Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
+            Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+            Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+            Admin_Account_Naming_Format__c = 'Otros',
+            Admin_Other_Name_Setting__c = 'Cuenta Administrativa - {!LastName}'
+        );
+
+        System.runAs(ACCT_AdministrativeNameRefresh_TEST.returnUserInSpanish()) {
+            UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
+
+            Contact con = UTIL_UnitTestData_API.getContact();
+            Test.startTest();
+            insert con;
+            Test.stopTest();
+
+            Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account LIMIT 1];
+            System.assertEquals('Administrative', assertAccount.RecordType.Name);
+            System.assertEquals('Cuenta Administrativa - ' + con.LastName, assertAccount.Name);
+        }
+    }
+
+    /*********************************************************************************************************
      * @description Ensure prefix/suffix is appropriately mapped to administrative account renaming logic.
      * Test Scenario: T-3904064
      */
@@ -351,5 +379,89 @@ private class ACCT_AdministrativeNameRefresh_TEST {
                 System.assertEquals('Mr.' + ' ' + 'LastNew' + i + ' Administrative Account', accts[i].Name);
             }
         }
+    }
+
+    /*********************************************************************************************************
+     * @description Ensure prefix/suffix is appropriately mapped to administrative account renaming logic for
+     * a non-engligh user.
+     * Test Scenario: T-3904063
+     */
+    @isTest
+    private static void shouldAppendPrefixSuffixAdministrativeAcctSpanish() {
+        Set<String> objectFields = Schema.SObjectType.Contact.fields.getMap().keySet();
+        Boolean ispersonNameSuffixEnabled = objectFields.contains('suffix');
+
+        Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
+            Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+            Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+            Admin_Account_Naming_Format__c = 'Otros',
+            Admin_Other_Name_Setting__c = '{!Salutation} {!LastName} Cuenta Administrativa'
+        );
+
+        if (ispersonNameSuffixEnabled) {
+            edaSettings.Admin_Other_Name_Setting__c = '{!Salutation} {!LastName} {!Suffix} Cuenta Administrativa';
+        }
+
+        UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
+
+        System.runAs(ACCT_AdministrativeNameRefresh_TEST.returnUserInSpanish()) {
+            List<Contact> allContacts = new List<Contact>();
+            Contact currentContact;
+            for (integer i = 0; i < 10; i++) {
+                currentContact = UTIL_UnitTestData_TEST.getUniqueContact(i);
+                currentContact.Salutation = 'Mr.';
+
+                if (ispersonNameSuffixEnabled) {
+                    currentContact.put('Suffix', 'Suffix' + i);
+                }
+                allContacts.add(currentContact);
+            }
+
+            Test.startTest();
+            insert allContacts;
+            Test.stopTest();
+
+            List<Account> accts = [SELECT Id, Name FROM Account];
+            if (ispersonNameSuffixEnabled) {
+                for (integer i = 0; i < accts.size(); i++) {
+                    System.assertEquals(
+                        'Mr.' +
+                        ' ' +
+                        'LastNew' +
+                        i +
+                        ' ' +
+                        'Suffix' +
+                        i +
+                        ' Cuenta Administrativa',
+                        accts[i].Name
+                    );
+                }
+            } else {
+                for (integer i = 0; i < accts.size(); i++) {
+                    System.assertEquals('Mr.' + ' ' + 'LastNew' + i + ' Cuenta Administrativa', accts[i].Name);
+                }
+            }
+        }
+    }
+
+    /*****************************************************************************************************************************
+     * @description Helper method to reurn a user in Spanish Language
+     *****************************************************************************************************************************/
+    private static User returnUserInSpanish() {
+        Profile p = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+
+        User userInSpanish = new User(
+            Alias = 'newUser',
+            Email = 'newuser@testorg.com',
+            EmailEncodingKey = 'UTF-8',
+            LastName = 'Testing',
+            LanguageLocaleKey = 'es',
+            LocaleSidKey = 'es',
+            ProfileId = p.Id,
+            TimeZoneSidKey = 'America/Los_Angeles',
+            UserName = 'prefEmail@testorg.com'
+        );
+
+        return userInSpanish;
     }
 }
