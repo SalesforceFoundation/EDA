@@ -2901,7 +2901,10 @@ private class ACCT_IndividualAccounts_TEST {
             insert secondaryContact;
 
             resultAccounts = Database.query(qryString);
-            secondaryContact = [SELECT Id, LastName, CurrencyIsoCode FROM CONTACT WHERE Id = :secondaryContact.Id];
+
+            Id secondaryContactId = secondaryContact.Id;
+            String querySecondaryContact = 'SELECT Id, LastName, CurrencyIsoCode FROM CONTACT WHERE Id =: secondaryContactId';
+            secondaryContact = (Contact) Database.query(querySecondaryContact)[0];
 
             System.assertNotEquals(secondaryContact.get('CurrencyIsoCode'), nonDefaultCurrencyCode);
             System.assertEquals(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'));
