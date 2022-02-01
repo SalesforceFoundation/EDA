@@ -1730,7 +1730,7 @@ private class ACCT_IndividualAccounts_TEST {
     /*********************************************************************************************************
      * @description Test Method to test sorting Contacts alphabetically by LastName FirstName
      * with {!{!FirstName}} {!LastName} Household format.
-     * Test Scenario: T-3904065
+     * Test Scenario: T-3904076
      */
     @isTest
     private static void sortContactsFirstLastNames() {
@@ -2708,11 +2708,22 @@ private class ACCT_IndividualAccounts_TEST {
 
     /*********************************************************************************************************
      * @description In a multi-currency enabled org, create a contact with different currency than the default one.
-     * Make sure that the account automatically created and the contact have the same currency.
+     * Ensure the account automatically is created and the account currency maps to contact respectively.
+     * Ensure subsequent contacts insertions, update account naming (conform alphabetically).
+     * Ensure subsequent contacts insertions, preserve initial contact/account currency.
+     * Test Scenario: T-3904075
      */
     @isTest
     private static void insertContactMultiCurrencyEnabled() {
         if (UserInfo.isMultiCurrencyOrganization()) {
+            UTIL_CustomSettingsFacade.getSettingsForTests(
+                new Hierarchy_Settings__c(
+                    Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+                    Household_Account_Naming_Format__c = '{!LastName} Household',
+                    Automatic_Household_Naming__c = true
+                )
+            );
+
             //Test data setup
             String nonDefaultCurrencyCode = '';
             String qryCurrencyTypeString = 'SELECT IsoCode FROM CurrencyType WHERE IsCorporate = false LIMIT 1';
@@ -2723,23 +2734,44 @@ private class ACCT_IndividualAccounts_TEST {
                 return;
             }
 
-            Contact testContact = UTIL_UnitTestData_TEST.getContact();
-            testContact.put('CurrencyIsoCode', nonDefaultCurrencyCode);
+            Contact primaryContact = UTIL_UnitTestData_TEST.getContact();
+            primaryContact.LastName = 'Zhang';
+            primaryContact.put('CurrencyIsoCode', nonDefaultCurrencyCode);
 
             //Run the logic
             Test.startTest();
-            insert testContact;
+            insert primaryContact;
             Test.stopTest();
 
             //Assert the result
             String qryString = 'SELECT Id, Name, CurrencyIsoCode FROM Account';
             List<Account> resultAccounts = Database.query(qryString);
 
+            System.assertEquals(primaryContact.LastName + ' Household', resultAccounts[0].Name);
             System.assertEquals(1, resultAccounts.size(), 'More than one Account were created.');
             System.assertEquals(
                 nonDefaultCurrencyCode,
                 resultAccounts[0].get('CurrencyIsoCode'),
                 'The currency between contact and account mismatch.'
+            );
+
+            Contact secondaryContact = UTIL_UnitTestData_TEST.getContact();
+            secondaryContact.LastName = 'Wilson';
+            secondaryContact.AccountId = resultAccounts[0].Id;
+            insert secondaryContact;
+
+            resultAccounts = Database.query(qryString);
+            secondaryContact = [SELECT Id, LastName, CurrencyIsoCode FROM CONTACT WHERE Id = :secondaryContact.Id];
+            
+            System.assertNotEquals(secondaryContact.CurrencyIsoCode, nonDefaultCurrencyCode);
+            System.assertEquals(nonDefaultCurrencyCode, resultAccounts[0].get('CurrencyIsoCode'));
+
+            System.assertEquals(
+                secondaryContact.LastName +
+                ' and ' +
+                primaryContact.LastName +
+                ' Household',
+                resultAccounts[0].Name
             );
         }
     }

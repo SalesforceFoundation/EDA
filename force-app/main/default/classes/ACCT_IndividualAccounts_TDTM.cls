@@ -703,7 +703,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             primaryConIdForAccount.put(acc.Primary_Contact__c, acc);
         }
 
-        // Clear cache to support real-time default record types updates within the testing context.
+        // Clear cache to support real-time account model updates within the testing context.
         if (Test.isRunningTest()) {
             defaultRecTypeId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
         }
