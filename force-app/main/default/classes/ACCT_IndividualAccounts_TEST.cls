@@ -2764,7 +2764,6 @@ private class ACCT_IndividualAccounts_TEST {
         List<Account> accts = [SELECT Id, Name FROM Account];
         if (ispersonNameSuffixEnabled) {
             for (integer i = 0; i < accts.size(); i++) {
-                System.debug(accts[i].Name);
                 System.assertEquals(
                     'Mr.' +
                     ' ' +
@@ -2780,8 +2779,6 @@ private class ACCT_IndividualAccounts_TEST {
             }
         } else {
             for (integer i = 0; i < accts.size(); i++) {
-                System.debug(accts[i].Name);
-
                 System.assertEquals('Mr.' + ' ' + 'LastNew' + i + ' ' + Label.DefaultHouseholdName, accts[i].Name);
             }
         }
