@@ -25,23 +25,27 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2020
-* @group Account
-* @group-content ../../ApexDocContent/Account.htm
-* @description Tests class for refreshing Administrative Account Names.
-*/
+ * @author Salesforce.org
+ * @date 2020
+ * @group Account
+ * @group-content ../../ApexDocContent/Account.htm
+ * @description Tests class for refreshing Administrative Account Names.
+ */
 @isTest
 private class ACCT_AdministrativeNameRefresh_TEST {
     /*******************************************************************************************************
-    * @description Ensure Administrative Account refresh (batch class) successfully renames the applicable accounts.
-    * Test Scenario: T-3904053
-    */
+     * @description Ensure Administrative Account refresh (batch) successfully renames the applicable
+     * administrative accounts.
+     * Test Scenario: T-3904053
+     */
     @isTest
     private static void ensureRefreshAdministrativeAccountBatchRenamesAccounts() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                                                        Admin_Account_Naming_Format__c = '{!LastName} Administrative Account'
-                                                        ));
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Admin_Account_Naming_Format__c = Label.lastNameAdminAcc
+            )
+        );
 
         List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
         contacts[0].LastName = 'Wells';
@@ -53,133 +57,125 @@ private class ACCT_AdministrativeNameRefresh_TEST {
         Set<Id> accountIds = new Set<Id>();
         Map<String, Id> lastNameByAccountId = new Map<String, Id>();
 
-        for (Contact con : [SELECT Id, LastName, AccountId, Account.Name 
-                          FROM Contact 
-                          WHERE Id IN :contacts]) 
-        {
+        for (Contact con : [SELECT Id, LastName, AccountId, Account.Name FROM Contact WHERE Id IN :contacts]) {
             accountIds.add(con.AccountId);
-            lastNameByAccountId.put(con.LastName, con.AccountId); 
+            lastNameByAccountId.put(con.LastName, con.AccountId);
         }
 
-        List<Account> queryAccounts = [SELECT Id, Name, RecordTypeId, RecordType.Name
-                                       FROM Account
-                                       WHERE Id IN :accountIds];
+        List<Account> queryAccounts = [
+            SELECT Id, Name, RecordTypeId, RecordType.Name
+            FROM Account
+            WHERE Id IN :accountIds
+        ];
         queryAccounts[0].Name = 'Tommy Wells Account';
         queryAccounts[1].Name = 'Betty Jones Account';
         update queryAccounts;
-        
+
         //Verifies that the update on Account Name on the Account record persisted
         for (Account acc : queryAccounts) {
             if (lastNameByAccountId.get('Wells') == acc.Id) {
-                System.assertEquals('Tommy Wells Account', acc.Name); 
+                System.assertEquals('Tommy Wells Account', acc.Name);
             }
             if (lastNameByAccountId.get('Jones') == acc.Id) {
-                System.assertEquals('Betty Jones Account', acc.Name); 
+                System.assertEquals('Betty Jones Account', acc.Name);
             }
         }
-       
+
         Test.startTest();
-            ACCT_AdministrativeNameRefresh_BATCH batch = new ACCT_AdministrativeNameRefresh_BATCH();
-            Id apexJobId = Database.executeBatch(batch, 200);
+        ACCT_AdministrativeNameRefresh_BATCH batch = new ACCT_AdministrativeNameRefresh_BATCH();
+        Id apexJobId = Database.executeBatch(batch, 200);
         Test.stopTest();
-        
+
         //Verifies that after refresh Admin Account was ran that the Account names are properly updated
-        List<Account> returnAccounts = [SELECT Id, Name
-                                       FROM Account
-                                       WHERE Id IN :accountIds];
+        List<Account> returnAccounts = [SELECT Id, Name FROM Account WHERE Id IN :accountIds];
         System.assertEquals(2, returnAccounts.size());
         for (Account acc : returnAccounts) {
             if (lastNameByAccountId.get('Wells') == acc.Id) {
-                System.assertEquals('Wells Administrative Account', acc.Name); 
+                System.assertEquals('Wells ' + Label.DefaultAdminName, acc.Name);
             }
             if (lastNameByAccountId.get('Jones') == acc.Id) {
-                System.assertEquals('Jones Administrative Account', acc.Name); 
+                System.assertEquals('Jones ' + Label.DefaultAdminName, acc.Name);
             }
         }
     }
-    
+
     /*******************************************************************************************************
-    * @description Tests that the refresh Administrative Account name functionality is working properly if 
-    * there are multiple Admin Account, and each Admin Account have more than one Contact associated
-    * to it. The Admin Account should be renamed based on the Primary Contact. 
-    */    
+     * @description Tests that the refresh Administrative Account name functionality is working properly if
+     * there are multiple Admin Account, and each Admin Account have more than one Contact associated
+     * to it. The Admin Account should be renamed based on the Primary Contact.
+     */
     @isTest
     private static void multipleContactsOnAdminAccount() {
-        UTIL_CustomSettingsFacade.getSettingsForTests(new Hierarchy_Settings__c(Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                                                        Admin_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Administrative Account'
-                                                        ));
-        
+        UTIL_CustomSettingsFacade.getSettingsForTests(
+            new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Admin_Account_Naming_Format__c = Label.lastNameFirstNameAdminAcc
+            )
+        );
+
         List<Contact> contacts = UTIL_UnitTestData_API.getMultipleTestContacts(2);
         contacts[0].LastName = 'Wells';
         contacts[0].FirstName = 'Tommy';
         contacts[1].LastName = 'White';
         contacts[1].FirstName = 'Betty';
         insert contacts;
-        
-        List<Contact> cons = [SELECT Id, LastName, AccountId, Account.Name
-                              FROM Contact
-                              WHERE Id IN :contacts]; 
-        
-        Set<Id> accountIds = new Set<Id>(); 
-        Map<String, Id> lastNameByAccountId = new Map<String, Id>(); 
-        for (Contact con : cons) {
-            accountIds.add(con.AccountId); 
-            lastNameByAccountId.put(con.LastName, con.AccountId); 
-        } 
 
-        List<Account> accounts = [SELECT Id
-                                  FROM Account 
-                                  WHERE Id IN :accountIds]; 
+        List<Contact> cons = [SELECT Id, LastName, AccountId, Account.Name FROM Contact WHERE Id IN :contacts];
+
+        Set<Id> accountIds = new Set<Id>();
+        Map<String, Id> lastNameByAccountId = new Map<String, Id>();
+        for (Contact con : cons) {
+            accountIds.add(con.AccountId);
+            lastNameByAccountId.put(con.LastName, con.AccountId);
+        }
+
+        List<Account> accounts = [SELECT Id FROM Account WHERE Id IN :accountIds];
         accounts[0].Name = 'Tommy Wells Account';
         accounts[1].Name = 'Betty White Account';
         update accounts;
-        
+
         //Verifies that the update on Account Name on the Account record persisted
         for (Account acc : accounts) {
             if (lastNameByAccountId.get('Wells') == acc.Id) {
-                System.assertEquals('Tommy Wells Account', acc.Name); 
+                System.assertEquals('Tommy Wells Account', acc.Name);
             }
             if (lastNameByAccountId.get('Jones') == acc.Id) {
-                System.assertEquals('Betty White Account', acc.Name); 
+                System.assertEquals('Betty White Account', acc.Name);
             }
         }
-        
-        //Adding 2nd Contacts for Wells and White Account records 
+
+        //Adding 2nd Contacts for Wells and White Account records
         List<Contact> addContacts = new List<Contact>{
-            new Contact (AccountId = lastNameByAccountId.get('Wells'), LastName = 'Wells', FirstName = 'Abby'),
-            new Contact (AccountId = lastNameByAccountId.get('White'), LastName = 'White', FirstName = 'Lily')
+            new Contact(AccountId = lastNameByAccountId.get('Wells'), LastName = 'Wells', FirstName = 'Abby'),
+            new Contact(AccountId = lastNameByAccountId.get('White'), LastName = 'White', FirstName = 'Lily')
         };
         insert addContacts;
-        
-        //Verifies that the 2 Accounts now contains 2 Contacts each 
-        List<Contact> queryAllContacts = [SELECT Id, AccountId
-                                          FROM Contact
-                                          WHERE AccountId IN :accounts]; 
-        System.assertEquals(4, queryAllContacts.size()); 
-        
+
+        //Verifies that the 2 Accounts now contains 2 Contacts each
+        List<Contact> queryAllContacts = [SELECT Id, AccountId FROM Contact WHERE AccountId IN :accounts];
+        System.assertEquals(4, queryAllContacts.size());
+
         Test.startTest();
-            ACCT_AdministrativeNameRefresh_BATCH batch = new ACCT_AdministrativeNameRefresh_BATCH();
-            Id apexJobId = Database.executeBatch(batch, 200);
+        ACCT_AdministrativeNameRefresh_BATCH batch = new ACCT_AdministrativeNameRefresh_BATCH();
+        Id apexJobId = Database.executeBatch(batch, 200);
         Test.stopTest();
-        
+
         //Verifies that after refresh Admin Account was ran that the Account names are properly
         //update with just the Primary Contact
-        List<Account> returnAccounts = [SELECT Id, Name
-                                       FROM Account
-                                       WHERE Id IN :accounts];
+        List<Account> returnAccounts = [SELECT Id, Name FROM Account WHERE Id IN :accounts];
         System.assertEquals(2, returnAccounts.size());
         for (Account acc : returnAccounts) {
             if (lastNameByAccountId.get('Wells') == acc.Id) {
-                System.assertEquals('Wells (Tommy) Administrative Account', acc.Name); 
+                System.assertEquals('Wells (Tommy) ' + Label.DefaultAdminName, acc.Name);
             }
             if (lastNameByAccountId.get('Jones') == acc.Id) {
-                System.assertEquals('White (Betty) Administrative Account', acc.Name); 
+                System.assertEquals('White (Betty) ' + Label.DefaultAdminName, acc.Name);
             }
         }
     }
     /*********************************************************************************************************
      * @description Test Method to check if multiple Contacts are marked deceased, Administrative Account names
-     * are updated properly. 
+     * are updated properly.
      * Test Scenario: T-3904057
      */
     @isTest
@@ -187,8 +183,8 @@ private class ACCT_AdministrativeNameRefresh_TEST {
         Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            Admin_Account_Naming_Format__c = 'Other',
-            Admin_Other_Name_Setting__c = '{!LastName} ({!{!FirstName}}) Administrative Account'
+            Admin_Account_Naming_Format__c = Label.acctNamingOther,
+            Admin_Other_Name_Setting__c = Label.lastNameFirstNameAdminAcc
         );
 
         List<Contact> newContacts = UTIL_UnitTestData_API.getMultipleTestContacts(5);
@@ -256,10 +252,11 @@ private class ACCT_AdministrativeNameRefresh_TEST {
                 LastName +
                 ' (' +
                 primaryContactName +
-                ' and ' +
+                Label.defaultNamingConnector +
                 tertiaryContactName +
                 ') ' +
-                ' Administrative Account',
+                ' ' +
+                Label.DefaultAdminName,
                 returnAccounts[i].Name
             );
         }
@@ -287,7 +284,8 @@ private class ACCT_AdministrativeNameRefresh_TEST {
                 ' (' +
                 primaryContactName +
                 ') ' +
-                ' Administrative Account',
+                ' ' +
+                Label.DefaultAdminName,
                 returnAccounts[i].Name
             );
         }
@@ -300,14 +298,14 @@ private class ACCT_AdministrativeNameRefresh_TEST {
      */
     @isTest
     private static void newContactNewAdminAccSpanish() {
-        Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
-            Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            Admin_Account_Naming_Format__c = 'Otros',
-            Admin_Other_Name_Setting__c = 'Cuenta Administrativa - {!LastName}'
-        );
-
         System.runAs(ACCT_AdministrativeNameRefresh_TEST.returnUserInSpanish()) {
+            Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Admin_Account_Naming_Format__c = Label.acctNamingOther,
+                Admin_Other_Name_Setting__c = Label.lastNameAdminAcc
+            );
+
             UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
 
             Contact con = UTIL_UnitTestData_API.getContact();
@@ -317,7 +315,7 @@ private class ACCT_AdministrativeNameRefresh_TEST {
 
             Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account LIMIT 1];
             System.assertEquals('Administrative', assertAccount.RecordType.Name);
-            System.assertEquals('Cuenta Administrativa - ' + con.LastName, assertAccount.Name);
+            System.assertEquals('Cuenta administrativa de ' + con.LastName, assertAccount.Name);
         }
     }
 
@@ -333,12 +331,12 @@ private class ACCT_AdministrativeNameRefresh_TEST {
         Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
             Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
             Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            Admin_Account_Naming_Format__c = 'Other',
-            Admin_Other_Name_Setting__c = '{!Salutation} {!LastName} Administrative Account'
+            Admin_Account_Naming_Format__c = Label.acctNamingOther,
+            Admin_Other_Name_Setting__c = '{!Salutation} ' + Label.lastNameAdminAcc
         );
 
         if (ispersonNameSuffixEnabled) {
-            edaSettings.Admin_Other_Name_Setting__c = '{!Salutation} {!LastName} {!Suffix} Administrative Account';
+            edaSettings.Admin_Other_Name_Setting__c = '{!Salutation} {!LastName} {!Suffix} ' + Label.DefaultAdminName;
         }
 
         UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
@@ -370,13 +368,14 @@ private class ACCT_AdministrativeNameRefresh_TEST {
                     ' ' +
                     'Suffix' +
                     i +
-                    ' Administrative Account',
+                    ' ' +
+                    Label.DefaultAdminName,
                     accts[i].Name
                 );
             }
         } else {
             for (integer i = 0; i < accts.size(); i++) {
-                System.assertEquals('Mr.' + ' ' + 'LastNew' + i + ' Administrative Account', accts[i].Name);
+                System.assertEquals('Mr.' + ' ' + 'LastNew' + i + ' ' + Label.DefaultAdminName, accts[i].Name);
             }
         }
     }
@@ -388,23 +387,24 @@ private class ACCT_AdministrativeNameRefresh_TEST {
      */
     @isTest
     private static void shouldAppendPrefixSuffixAdministrativeAcctSpanish() {
-        Set<String> objectFields = Schema.SObjectType.Contact.fields.getMap().keySet();
-        Boolean ispersonNameSuffixEnabled = objectFields.contains('suffix');
-
-        Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
-            Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-            Admin_Account_Naming_Format__c = 'Otros',
-            Admin_Other_Name_Setting__c = '{!Salutation} {!LastName} Cuenta Administrativa'
-        );
-
-        if (ispersonNameSuffixEnabled) {
-            edaSettings.Admin_Other_Name_Setting__c = '{!Salutation} {!LastName} {!Suffix} Cuenta Administrativa';
-        }
-
-        UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
-
         System.runAs(ACCT_AdministrativeNameRefresh_TEST.returnUserInSpanish()) {
+            Set<String> objectFields = Schema.SObjectType.Contact.fields.getMap().keySet();
+            Boolean ispersonNameSuffixEnabled = objectFields.contains('suffix');
+
+            Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Admin_Account_Naming_Format__c = Label.acctNamingOther,
+                Admin_Other_Name_Setting__c = '{!Salutation} {!LastName} ' + Label.DefaultAdminName
+            );
+
+            if (ispersonNameSuffixEnabled) {
+                edaSettings.Admin_Other_Name_Setting__c =
+                    '{!Salutation} {!LastName} {!Suffix} ' + Label.DefaultAdminName;
+            }
+
+            UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
+
             List<Contact> allContacts = new List<Contact>();
             Contact currentContact;
             for (integer i = 0; i < 10; i++) {
@@ -432,13 +432,14 @@ private class ACCT_AdministrativeNameRefresh_TEST {
                         ' ' +
                         'Suffix' +
                         i +
-                        ' Cuenta Administrativa',
+                        ' ' +
+                        Label.DefaultAdminName,
                         accts[i].Name
                     );
                 }
             } else {
                 for (integer i = 0; i < accts.size(); i++) {
-                    System.assertEquals('Mr.' + ' ' + 'LastNew' + i + ' Cuenta Administrativa', accts[i].Name);
+                    System.assertEquals('Mr.' + ' ' + 'LastNew' + i + ' ' + Label.DefaultAdminName, accts[i].Name);
                 }
             }
         }
