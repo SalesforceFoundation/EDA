@@ -222,13 +222,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
             if (updatedFacultyIDs.size() > 0) {
                 if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
                     // Course connections is enabled. Handle updating of objects
-                    updateConnectionsOnFacultyChange(
-                        outdatedFacultyIDs,
-                        updatedFacultyIDs,
-                        offsWithChangedFaculty,
-                        objectsToInsert,
-                        objectsToUpdate
-                    );
+                    updateConnectionsOnFacultyChange(offsWithChangedFaculty, objectsToInsert, objectsToUpdate);
                 } else {
                     List<Affiliation__c> newAffls = getAfflsToUpdate(
                         outdatedFacultyIDs,
@@ -422,8 +416,6 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
      ********************************************************************************************************/
     @testVisible
     private void updateConnectionsOnFacultyChange(
-        List<ID> outdatedFacultyIDs,
-        List<ID> updatedFacultyIDs,
         Set<Id> offsWithChangedFaculty,
         List<SObject> objectsToInsert,
         List<SObject> objectsToUpdate
@@ -512,43 +504,6 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                 objectsToInsert.add((SObject) newCourseConnection);
             }
         }
-
-        /*for (Integer i = 0; i < oldConns.size(); i++) {
-            if (
-                offeringFacultyConnIds.containsKey(oldConns[i].Course_Offering__c) &&
-                offeringFacultyConnIds.get(oldConns[i].Course_Offering__c) != null &&
-                offeringFacultyConnIds.get(oldConns[i].Course_Offering__c).containsKey(updatedFacultyIDs[i])
-            ) {
-                Course_Enrollment__c existingConn = offeringFacultyConnIds.get(oldConns[i].Course_Offering__c)
-                    .get(updatedFacultyIDs[i]);
-                if (!existingConn.Primary__c) {
-                    // Current Course Connection exists on Course Offering with Contact, mark as Primary
-                    existingConn.Primary__c = true;
-                    objectsToUpdate.add((SObject) existingConn);
-                }
-            } else {
-                // No current Course Connection exists on Course Offering with Contact, create a new one
-                Course_Enrollment__c conn = new Course_Enrollment__c(
-                    Contact__c = updatedFacultyIDs[i],
-                    Account__c = oldConns[i].Account__c,
-                    Course_Offering__c = oldConns[i].Course_Offering__c,
-                    Affiliation__c = oldConns[i].Affiliation__c,
-                    Primary__c = true
-                );
-                if (
-                    UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'), 'RecordTypeId')
-                ) {
-                    conn.put('RecordTypeId', facultyRecordTypeId);
-                }
-                objectsToInsert.add((SObject) conn);
-            }
-
-            Course_Enrollment__c oldConn = oldConns[i];
-            if (oldConn.Primary__c) {
-                oldConn.Primary__c = false;
-                objectsToUpdate.add((SObject) oldConn);
-            }
-        }*/
     }
 
     /*******************************************************************************************************
