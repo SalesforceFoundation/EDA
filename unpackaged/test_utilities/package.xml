@@ -3,6 +3,7 @@
     <types>
         <members>Describe_Utility</members>
         <members>TDTM_Utility</members>
+        <members>CON_Pref_Email_Utility</members>
         <name>ApexClass</name>
     </types>
     <version>52.0</version>
