@@ -41,17 +41,17 @@ public with sharing class ACCT_NameProcessing_TEST {
      */
     @isTest
     private static void newContactNewHHAccSpanish() {
-        System.runAs(ACCT_IndividualAccounts_TEST.returnUserInSpanish()) {
-            Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
-                Household_Account_Naming_Format__c = Label.acctNamingOther,
-                Automatic_Household_Naming__c = true,
-                Household_Other_Name_Setting__c = Label.lastNameHH
+        System.runAs(ACCT_NameProcessing_TEST.returnUserInSpanish()) {
+            %%%NAMESPACE%%%Hierarchy_Settings__c edaSettings = new %%%NAMESPACE%%%Hierarchy_Settings__c(
+                %%%NAMESPACE%%%Account_Processor__c = %%%NAMESPACE_DOT%%%UTIL_Describe_API.getHhAccRecTypeID(),
+                %%%NAMESPACE%%%Household_Account_Naming_Format__c = 'Otros',
+                %%%NAMESPACE%%%Automatic_Household_Naming__c = true,
+                %%%NAMESPACE%%%Household_Other_Name_Setting__c = 'Cuenta administrativa de {!LastName}'
             );
 
-            UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
+            %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(edaSettings);
 
-            Contact con = UTIL_UnitTestData_API.getContact();
+            Contact con = %%%NAMESPACE_DOT%%%UTIL_UnitTestData_API.getContact();
             Test.startTest();
             insert con;
             Test.stopTest();
@@ -69,17 +69,17 @@ public with sharing class ACCT_NameProcessing_TEST {
      */
     @isTest
     private static void newContactNewAdminAccSpanish() {
-        System.runAs(ACCT_AdministrativeNameRefresh_TEST.returnUserInSpanish()) {
-            Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
-                Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
-                Admin_Account_Naming_Format__c = Label.acctNamingOther,
-                Admin_Other_Name_Setting__c = Label.lastNameAdminAcc
+        System.runAs(ACCT_NameProcessing_TEST.returnUserInSpanish()) {
+            %%%NAMESPACE%%%Hierarchy_Settings__c edaSettings = new %%%NAMESPACE%%%Hierarchy_Settings__c(
+                %%%NAMESPACE%%%Account_Processor__c = %%%NAMESPACE_DOT%%%UTIL_Describe_API.getAdminAccRecTypeID(),
+                %%%NAMESPACE%%%Administrative_Account_Record_Type__c = %%%NAMESPACE_DOT%%%UTIL_Describe_API.getAdminAccRecTypeID(),
+                %%%NAMESPACE%%%Admin_Account_Naming_Format__c = 'Otros',
+                %%%NAMESPACE%%%Admin_Other_Name_Setting__c = 'Cuenta administrativa de {!LastName}'
             );
 
-            UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
+            %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(edaSettings);
 
-            Contact con = UTIL_UnitTestData_API.getContact();
+            Contact con = %%%NAMESPACE_DOT%%%UTIL_UnitTestData_API.getContact();
             Test.startTest();
             insert con;
             Test.stopTest();
@@ -88,5 +88,26 @@ public with sharing class ACCT_NameProcessing_TEST {
             System.assertEquals('Administrative', assertAccount.RecordType.Name);
             System.assertEquals('Cuenta administrativa de ' + con.LastName, assertAccount.Name);
         }
+    }
+
+    /*****************************************************************************************************************************
+     * @description Helper method to reurn a user in Spanish Language
+     *****************************************************************************************************************************/
+    private static User returnUserInSpanish() {
+        Profile p = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
+
+        User userInSpanish = new User(
+            Alias = 'newUser',
+            Email = 'newuser@testorg.com',
+            EmailEncodingKey = 'UTF-8',
+            LastName = 'Testing',
+            LanguageLocaleKey = 'es',
+            LocaleSidKey = 'es',
+            ProfileId = p.Id,
+            TimeZoneSidKey = 'America/Los_Angeles',
+            UserName = 'prefEmail@testorg.com'
+        );
+
+        return userInSpanish;
     }
 }

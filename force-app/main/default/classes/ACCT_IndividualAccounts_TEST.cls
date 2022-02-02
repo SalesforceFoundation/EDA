@@ -2896,7 +2896,7 @@ private class ACCT_IndividualAccounts_TEST {
 
     /*********************************************************************************************************
      * @description In a multi-currency enabled org, insert a contact with different currency than the default
-     * one. Ensure the associated account automatically is created has the contacts respective currency.
+     * one. Ensure the associated account automatically is created and has the contacts respective currency.
      * Test Scenario: T-3904059
      */
     @isTest

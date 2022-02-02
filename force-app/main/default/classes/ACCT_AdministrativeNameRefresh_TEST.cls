@@ -228,21 +228,15 @@ private class ACCT_AdministrativeNameRefresh_TEST {
         }
         insert addThirdContacts;
 
-        List<Contact> returnSecondContacts = [
-            SELECT Id, FirstName, Deceased__c
-            FROM Contact
-            WHERE Id IN :addSecondContacts
-        ];
-        for (Contact con : returnSecondContacts) {
+        for (Contact con : addSecondContacts) {
             con.Deceased__c = true;
         }
 
         Test.startTest();
-        update returnSecondContacts;
+        update addSecondContacts;
         Test.stopTest();
 
         List<Account> returnAccounts = [SELECT Id, Name FROM Account WHERE Id IN :accounts];
-
         for (Integer i = 0; i < returnAccounts.size(); i++) {
             String primaryContactName = 'PrimaryContact_FirstName ' + i;
             String tertiaryContactName = 'TertiaryContact_FirstName ' + i;
@@ -273,9 +267,8 @@ private class ACCT_AdministrativeNameRefresh_TEST {
 
         update returnThirdContacts;
 
-        List<Account> returnAccounts2 = [SELECT Id, Name FROM Account WHERE Id IN :accounts];
-
-        for (Integer i = 0; i < returnAccounts2.size(); i++) {
+        returnAccounts = [SELECT Id, Name FROM Account WHERE Id IN :accounts];
+        for (Integer i = 0; i < returnAccounts.size(); i++) {
             String primaryContactName = 'PrimaryContact_FirstName ' + i;
             String LastName = 'PrimaryContact_LastName ' + i;
 
