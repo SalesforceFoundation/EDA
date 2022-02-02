@@ -460,13 +460,15 @@ private class ACCT_IndividualAccounts_TEST {
                 Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = Label.acctNamingOther,
                 Automatic_Household_Naming__c = true,
-                Household_Other_Name_Setting__c = Label.lastNameHH,
-                Disable_Preferred_Email_Enforcement__c = true
+                Household_Other_Name_Setting__c = Label.lastNameHH
             );
 
             UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
 
             Contact con = UTIL_UnitTestData_API.getContact();
+            con.Email = 's@salesfor.com';
+            con.Preferred_Email__c = 'Correo electrónico laboral';
+
             Test.startTest();
             insert con;
             Test.stopTest();

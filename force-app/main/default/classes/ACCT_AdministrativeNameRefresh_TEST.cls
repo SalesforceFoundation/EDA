@@ -296,13 +296,15 @@ private class ACCT_AdministrativeNameRefresh_TEST {
                 Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
                 Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
                 Admin_Account_Naming_Format__c = Label.acctNamingOther,
-                Admin_Other_Name_Setting__c = Label.lastNameAdminAcc,
-                Disable_Preferred_Email_Enforcement__c = true
+                Admin_Other_Name_Setting__c = Label.lastNameAdminAcc
             );
 
             UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
 
             Contact con = UTIL_UnitTestData_API.getContact();
+            con.Email = 's@salesfor.com';
+            con.Preferred_Email__c = 'Correo electrónico laboral';
+
             Test.startTest();
             insert con;
             Test.stopTest();
