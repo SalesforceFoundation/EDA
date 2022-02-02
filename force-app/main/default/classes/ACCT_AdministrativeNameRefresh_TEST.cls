@@ -285,6 +285,35 @@ private class ACCT_AdministrativeNameRefresh_TEST {
     }
 
     /*********************************************************************************************************
+     * @description Insert a new contact and the default account record type is Household
+     * Make sure the Account's name is set based on account naming setting for a user in Spanish.
+     * Test Scenario: T-3904055
+     */
+    @isTest
+    private static void newContactNewAdminAccSpanish() {
+        System.runAs(ACCT_AdministrativeNameRefresh_TEST.returnUserInSpanish()) {
+            Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
+                Admin_Account_Naming_Format__c = Label.acctNamingOther,
+                Admin_Other_Name_Setting__c = Label.lastNameAdminAcc
+            );
+
+            UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
+
+            Contact con = UTIL_UnitTestData_API.getContact();
+            con.Email = 'user@salesforce.com';
+            Test.startTest();
+            insert con;
+            Test.stopTest();
+
+            Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account LIMIT 1];
+            System.assertEquals('Administrative', assertAccount.RecordType.Name);
+            System.assertEquals('Cuenta administrativa de ' + con.LastName, assertAccount.Name);
+        }
+    }
+
+    /*********************************************************************************************************
      * @description Ensure prefix/suffix is appropriately mapped to administrative account renaming logic.
      * Test Scenario: T-3904064
      */

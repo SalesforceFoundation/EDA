@@ -450,6 +450,35 @@ private class ACCT_IndividualAccounts_TEST {
 
     /*********************************************************************************************************
      * @description Insert a new contact and the default account record type is Household
+     * Make sure the Account's name is set based on account naming setting for a user in Spanish.
+     * Test Scenario: T-3904056
+     */
+    @isTest
+    private static void newContactNewHHAccSpanish() {
+        System.runAs(ACCT_IndividualAccounts_TEST.returnUserInSpanish()) {
+            Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
+                Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
+                Household_Account_Naming_Format__c = Label.acctNamingOther,
+                Automatic_Household_Naming__c = true,
+                Household_Other_Name_Setting__c = Label.lastNameHH
+            );
+
+            UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
+
+            Contact con = UTIL_UnitTestData_API.getContact();
+            con.Email='user@Salesforce.com';
+            Test.startTest();
+            insert con;
+            Test.stopTest();
+
+            Account assertAccount = [SELECT Id, RecordType.Name, Name FROM Account LIMIT 1];
+            System.assertEquals('Household Account', assertAccount.RecordType.Name);
+            System.assertEquals('Domicilio de ' + con.LastName, assertAccount.Name);
+        }
+    }
+    
+    /*********************************************************************************************************
+     * @description Insert a new contact and the default account record type is Household
      * Make sure the Account's name is set based on account naming setting and binded variables.
      * Test Scenario: T-3904070
      */
