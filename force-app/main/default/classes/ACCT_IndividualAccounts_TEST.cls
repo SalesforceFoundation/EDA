@@ -466,7 +466,8 @@ private class ACCT_IndividualAccounts_TEST {
             UTIL_CustomSettingsFacade.getSettingsForTests(edaSettings);
 
             Contact con = UTIL_UnitTestData_API.getContact();
-            con.Email='user@Salesforce.com';
+            con.Email = 'user@Salesforce.com';
+            con.Preferred_Email__c = 'Work Email';
             Test.startTest();
             insert con;
             Test.stopTest();
@@ -476,7 +477,7 @@ private class ACCT_IndividualAccounts_TEST {
             System.assertEquals('Domicilio de ' + con.LastName, assertAccount.Name);
         }
     }
-    
+
     /*********************************************************************************************************
      * @description Insert a new contact and the default account record type is Household
      * Make sure the Account's name is set based on account naming setting and binded variables.

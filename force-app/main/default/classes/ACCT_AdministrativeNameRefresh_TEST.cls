@@ -303,6 +303,7 @@ private class ACCT_AdministrativeNameRefresh_TEST {
 
             Contact con = UTIL_UnitTestData_API.getContact();
             con.Email = 'user@salesforce.com';
+            con.Preferred_Email__c = 'Work Email';
             Test.startTest();
             insert con;
             Test.stopTest();
