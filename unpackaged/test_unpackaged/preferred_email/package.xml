@@ -10,9 +10,20 @@
         <name>CustomField</name>
     </types>
     <types>
-        <members>CON_Pref_Email_customEmailEnglish_FTST</members>
-        <members>CON_Pref_Email_duplicateField_FTST</members>
+    <members>Contact-es</members>
+    <name>CustomObjectTranslation</name>
+    </types>
+  
+    <types>
+        <members>CON_Pref_Email_customEmailSpanish_UTST</members>
+        <members>CON_Pref_Email_untranslatedSpsh_UTST</members>
+        <members>CON_Pref_Email_untranslatPcklstSpsh_UTST</members>
+        <members>CON_Pref_Email_picklistMissingEmail_UTST</members>
         <name>ApexClass</name>
+    </types>
+    <types>
+        <members>es</members>
+        <name>Translations</name>
     </types>
     <types>
         <members>PrefEmailMatchMustExist</members>

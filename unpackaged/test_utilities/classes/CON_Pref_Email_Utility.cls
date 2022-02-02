@@ -33,7 +33,7 @@
 */
 
 @isTest
-public class CON_Pref_Email_Utility_FTST {
+public class CON_Pref_Email_Utility {
 
     private static Integer contactCount = 250; // used to determine number of test contact records to create
 
@@ -46,7 +46,7 @@ public class CON_Pref_Email_Utility_FTST {
     public static void populateCustomEmailOnInsert(String fieldApiName, String fieldValue) {
 
         // Turn Preferred Email Enforcement on
-        hed.UTIL_CustomSettings_API.getSettingsForTests(
+        %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
             new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
@@ -74,7 +74,7 @@ public class CON_Pref_Email_Utility_FTST {
 
         System.assertEquals(contactCount, insertedContactList.size(), 'All the Contacts should be successfully inserted.');
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility.getContactFieldLabelFromApi(fieldApiName);
 
         for (Contact eachContact: insertedContactList) {
             System.assertEquals(preferredFieldLabel, eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be populated with Custom Email\'s label');
@@ -90,13 +90,13 @@ public class CON_Pref_Email_Utility_FTST {
     *****************************************************************************************************************************/
     public static void populateCustomAndPrefEmailOnInsert(String fieldApiName, String fieldValue) {
 
-        hed.UTIL_CustomSettings_API.getSettingsForTests(
+        %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
             new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility.getContactFieldLabelFromApi(fieldApiName);
         
         for (integer i = 0; i < contactCount; i++) {
 
@@ -132,16 +132,17 @@ public class CON_Pref_Email_Utility_FTST {
     * 'PreferredEmailMatchNotNull' Error when Preferred Email Enforcement is Enabled.
     * @Params fieldApiName Field Api name of the Contact's Custom Email field
     * @Params fieldValue The value of the Custom Contact field being passed
+    * @Params prefEmailMatchNotNullLabel PrefEmailMatchNotNull label value
     *****************************************************************************************************************************/
-    public static void customEmailEmptyOnInsert(String fieldApiName, String fieldValue) {
+    public static void customEmailEmptyOnInsert(String fieldApiName, String fieldValue, String prefEmailMatchNotNullLabel) {
 
-        hed.UTIL_CustomSettings_API.getSettingsForTests(
+        %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
             new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility.getContactFieldLabelFromApi(fieldApiName);
 
         for (integer i = 0; i < contactCount; i++) {
 
@@ -164,7 +165,7 @@ public class CON_Pref_Email_Utility_FTST {
 
         for (Database.SaveResult sr : results) {
             if (sr.isSuccess() == false) {
-                System.assertEquals(label.PrefEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
+                System.assertEquals(prefEmailMatchNotNullLabel, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
             } else {
                 System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
             }
@@ -177,16 +178,17 @@ public class CON_Pref_Email_Utility_FTST {
     * will throw PreferredEmailRequiredError Error when Preferred Email Enforcement is Enabled.
     * @Params fieldApiName Field Api name of the Contact's Custom Email field
     * @Params fieldValue The value of the Custom Contact field being passed
+    * @Params prefEmailRequiredErrorLabel The value of PrefEmailRequiredError label
     *****************************************************************************************************************************/
-    public static void populateCustomEmailAndAlternateEmailOnInsert(String fieldApiName, String fieldValue) {
+    public static void populateCustomEmailAndAlternateEmailOnInsert(String fieldApiName, String fieldValue, String prefEmailRequiredErrorLabel) {
 
-        hed.UTIL_CustomSettings_API.getSettingsForTests(
+        %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
             new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility.getContactFieldLabelFromApi(fieldApiName);
 
         for (integer i = 0; i < contactCount; i++) {
 
@@ -210,7 +212,7 @@ public class CON_Pref_Email_Utility_FTST {
 
         for (Database.SaveResult sr : results) {
             if (sr.isSuccess() == false) {
-                System.assertEquals(label.PrefEmailRequiredError, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
+                System.assertEquals(prefEmailRequiredErrorLabel, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
             } else {
                 System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
             }
@@ -226,7 +228,7 @@ public class CON_Pref_Email_Utility_FTST {
     *****************************************************************************************************************************/
     public static void populateCustomEmailWithEnforcementDisbaledOnInsert(String fieldApiName, String fieldValue) {
 
-        hed.UTIL_CustomSettings_API.getSettingsForTests(
+        %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
             new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = true)
         );
 
@@ -270,7 +272,7 @@ public class CON_Pref_Email_Utility_FTST {
     *****************************************************************************************************************************/
     public static void populateCustomEmailOnUpdate(String fieldApiName, String fieldValue) {
 
-        hed.UTIL_CustomSettings_API.getSettingsForTests(
+        %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
             new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
@@ -307,7 +309,7 @@ public class CON_Pref_Email_Utility_FTST {
 
         System.assertEquals(contactCount, updatedContactList.size(), 'All the Contacts should be successfully inserted.');
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility.getContactFieldLabelFromApi(fieldApiName);
 
         for (Contact eachContact: updatedContactList) {
             System.assertEquals(preferredFieldLabel, eachContact.%%%NAMESPACE%%%Preferred_Email__c, 'Preferred Email should be populated with Custom Email\'s label');
@@ -323,14 +325,14 @@ public class CON_Pref_Email_Utility_FTST {
     *****************************************************************************************************************************/
     public static void populateCustomAndPrefEmailOnUpdate(String fieldApiName, String fieldValue) {
 
-        hed.UTIL_CustomSettings_API.getSettingsForTests(
+        %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
             new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
         List<Contact> contactsToBeUpdatedList = new List<Contact>();
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility.getContactFieldLabelFromApi(fieldApiName);
 
         for (integer i = 0; i < contactCount; i++) {
 
@@ -374,17 +376,18 @@ public class CON_Pref_Email_Utility_FTST {
     * 'PreferredEmailMatchNotNull' Error when Preferred Email Enforcement is Enabled.
     * @Params fieldApiName Field Api name of the Contact's Custom Email field
     * @Params fieldValue The value of the Custom Contact field being passed
+    * @Params prefEmailMatchNotNull The value of PrefEmailMatchNotNull label
     *****************************************************************************************************************************/
-    public static void customEmailEmptyOnUpdate(String fieldApiName, String fieldValue) {
+    public static void customEmailEmptyOnUpdate(String fieldApiName, String fieldValue, String prefEmailMatchNotNull) {
 
-        hed.UTIL_CustomSettings_API.getSettingsForTests(
+        %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
             new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
         List<Contact> contactsToBeUpdatedList = new List<Contact>();
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility.getContactFieldLabelFromApi(fieldApiName);
 
         for (integer i = 0; i < contactCount; i++) {
 
@@ -414,7 +417,7 @@ public class CON_Pref_Email_Utility_FTST {
 
         for (Database.SaveResult sr : results) {
             if (sr.isSuccess() == false) {
-                System.assertEquals(Label.PrefEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be updated.');
+                System.assertEquals(prefEmailMatchNotNull, sr.getErrors()[0].getMessage(), 'The Contact record should not be updated.');
             } else {
                 System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
             }
@@ -427,17 +430,18 @@ public class CON_Pref_Email_Utility_FTST {
     * will throw PreferredEmailRequiredError Error when Preferred Email Enforcement is Enabled.
     * @Params fieldApiName Field Api name of the Contact's Custom Email field
     * @Params fieldValue The value of the Custom Contact field being passed
+    * @Params fieldValue The value of PrefEmailRequiredError label
     *****************************************************************************************************************************/
-    public static void populateCustomEmailAndAlternateEmailOnUpdate(String fieldApiName, String fieldValue) {
+    public static void populateCustomEmailAndAlternateEmailOnUpdate(String fieldApiName, String fieldValue, String prefEmailRequiredError) {
 
-        hed.UTIL_CustomSettings_API.getSettingsForTests(
+        %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
             new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = false)
         );
 
         List<Contact> contactsToBeInsertedList = new List<Contact>();
         List<Contact> contactsToBeUpdateList = new List<Contact>();
 
-        String preferredFieldLabel = CON_Pref_Email_Utility_FTST.getContactFieldLabelFromApi(fieldApiName);
+        String preferredFieldLabel = CON_Pref_Email_Utility.getContactFieldLabelFromApi(fieldApiName);
 
         for (integer i = 0; i < contactCount; i++) {
 
@@ -469,7 +473,7 @@ public class CON_Pref_Email_Utility_FTST {
 
         for (Database.SaveResult sr : results) {
             if (sr.isSuccess() == false) {
-                System.assertEquals(Label.PrefEmailRequiredError, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
+                System.assertEquals(prefEmailRequiredError, sr.getErrors()[0].getMessage(), 'The Contact record should not be inserted.');
             } else {
                 System.assert(false, 'No record should be inserted as the field in Preferred Email is empty.');
             }
@@ -485,7 +489,7 @@ public class CON_Pref_Email_Utility_FTST {
     *****************************************************************************************************************************/
     public static void populateCustomEmailWithEnforcementDisbaledOnUpdate(String fieldApiName, String fieldValue) {
 
-        hed.UTIL_CustomSettings_API.getSettingsForTests(
+        %%%NAMESPACE_DOT%%%UTIL_CustomSettings_API.getSettingsForTests(
             new %%%NAMESPACE%%%Hierarchy_Settings__c(%%%NAMESPACE%%%Disable_Preferred_Email_Enforcement__c = true)
         );
 
