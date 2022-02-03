@@ -13,9 +13,10 @@ Test Setup      Go to education cloud settings
 
 *** Keywords ***
 Setup Test Data
-    ${faculty_id} =            Get Record Type Id        ${sObject_name}     ${faculty_record_type}
+    ${NS} =                    Get EDA namespace prefix
+    ${faculty_id} =            Get Record Type Id        ${NS}${sObject_name}     ${faculty_record_type}
     Set suite variable         ${faculty_id}
-    ${student_id} =            Get Record Type Id        ${sObject_name}     ${student_record_type}
+    ${student_id} =            Get Record Type Id        ${NS}${sObject_name}     ${student_record_type}
     Set suite variable         ${student_id}
 
 Update settings to out of the box values
