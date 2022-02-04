@@ -56,6 +56,8 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
             List<Course_Offering__c> offsWithNewFaculty = new List<Course_Offering__c>();
             Set<Id> offsWithChangedFaculty = new Set<Id>();
             Set<Id> offsWithRemovedFaculty = new Set<Id>();
+            Set<Id> oldCourseOfferingFacultyIDs = new Set<Id>();
+            Set<Id> newCourseOfferingFacultyIDs = new Set<Id>();
 
             List<ID> newFacultyIDs = new List<ID>();
             List<ID> updatedFacultyIDs = new List<ID>();
@@ -180,7 +182,8 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                             outdatedFacultyIDs.add(oldOff.Faculty__c);
                             updatedFacultyIDs.add(newOff.Faculty__c);
                             mapNewFacultyIdToNewCourseOffering.put(newOff.Faculty__c, newOff);
-
+                            oldCourseOfferingFacultyIDs.add(oldOff.Faculty__c);
+                            newCourseOfferingFacultyIDs.add(newOff.Faculty__c);
                             //Faculty member has been removed from existing Course Offering
                             //   --> delete related Affiliation
                             //   --> delete Course Enrollment
@@ -224,8 +227,8 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                     // Course connections is enabled. Handle updating of objects
                     updateConnectionsOnFacultyChange(
                         offsWithChangedFaculty,
-                        outdatedFacultyIDs,
-                        updatedFacultyIDs,
+                        oldCourseOfferingFacultyIDs,
+                        newCourseOfferingFacultyIDs,
                         objectsToInsert,
                         objectsToUpdate
                     );
@@ -433,6 +436,8 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
         String subQueryString = ', (SELECT Id, Contact__c, Affiliation__c, Account__c, Course_Offering__c, Primary__c';
         subQueryString += ' FROM Course_Enrollment__r';
         subQueryString += ' WHERE (Contact__c IN :outdatedFacultyIDs OR Contact__c IN :updatedFacultyIDs)';
+        subQueryString += ' AND Course_Offering__c IN :offsWithChangedFaculty';
+
         //Record type of course enrollment not in the package
         if (
             UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'), 'RecordTypeId') &&
@@ -464,62 +469,52 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                         childCourseConnection.Primary__c = true;
                         objectsToUpdate.add(childCourseConnection);
                     }
+                    hasExistingCourseConnection = true;
                     continue;
                 }
 
-                if(childCourseConnection.Primary__c == false) {
+                if (childCourseConnection.Primary__c == false) {
                     continue;
                 }
 
                 childCourseConnection.Primary__c = false;
-                        childCourseConnection.Primary__c = false;
-                        objectsToUpdate.add(childCourseConnection);
+                objectsToUpdate.add(childCourseConnection);
 
-                        if (
-                            updatedCouserEnrollmentBycourseOfferingId.keySet().contains(updatedCourseOffering.Id) ==
-                            false
-                        ) {
-                            updatedCouserEnrollmentBycourseOfferingId.put(
-                                updatedCourseOffering.Id,
-                                childCourseConnection
-                            );
-                        }
-                    }
+                if (updatedCouserEnrollmentBycourseOfferingId.keySet().contains(updatedCourseOffering.Id) == false) {
+                    updatedCouserEnrollmentBycourseOfferingId.put(updatedCourseOffering.Id, childCourseConnection);
                 }
             }
 
             if (hasExistingCourseConnection == true) {
-                return;
+                continue;
             }
-                Course_Enrollment__c newCourseConnection = new Course_Enrollment__c(
-                    Contact__c = updatedCourseOffering.Faculty__c,
-                    Primary__c = true
-                );
 
-                if (
-                    updatedCouserEnrollmentBycourseOfferingId.keySet().contains(updatedCourseOffering.Id) &&
-                    updatedCouserEnrollmentBycourseOfferingId.get(updatedCourseOffering.Id) != null
-                ) {
-                    newCourseConnection.Account__c = updatedCouserEnrollmentBycourseOfferingId.get(
-                            updatedCourseOffering.Id
-                        )
-                        .Account__c;
-                    newCourseConnection.Course_Offering__c = updatedCouserEnrollmentBycourseOfferingId.get(
-                            updatedCourseOffering.Id
-                        )
-                        .Course_Offering__c;
-                    newCourseConnection.Affiliation__c = updatedCouserEnrollmentBycourseOfferingId.get(
-                            updatedCourseOffering.Id
-                        )
-                        .Affiliation__c;
-                }
+            Course_Enrollment__c newCourseConnection = new Course_Enrollment__c(
+                Contact__c = updatedCourseOffering.Faculty__c,
+                Primary__c = true
+            );
+
+            if (
+                updatedCouserEnrollmentBycourseOfferingId.keySet().contains(updatedCourseOffering.Id) &&
+                updatedCouserEnrollmentBycourseOfferingId.get(updatedCourseOffering.Id) != null
+            ) {
+                newCourseConnection.Account__c = updatedCouserEnrollmentBycourseOfferingId.get(updatedCourseOffering.Id)
+                    .Account__c;
+                newCourseConnection.Course_Offering__c = updatedCouserEnrollmentBycourseOfferingId.get(
+                        updatedCourseOffering.Id
+                    )
+                    .Course_Offering__c;
+                newCourseConnection.Affiliation__c = updatedCouserEnrollmentBycourseOfferingId.get(
+                        updatedCourseOffering.Id
+                    )
+                    .Affiliation__c;
                 if (
                     UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'), 'RecordTypeId')
                 ) {
                     newCourseConnection.put('RecordTypeId', facultyRecordTypeId);
                 }
-                objectsToInsert.add((SObject) newCourseConnection);
             }
+            objectsToInsert.add(newCourseConnection);
         }
     }
 
