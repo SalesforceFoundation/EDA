@@ -42,6 +42,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description The selected Account record type.
      */
+    @TestVisible
     private static ID defaultRecTypeId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
 
     /*****************************************************************************************************************
@@ -189,6 +190,12 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
 
         if (UserInfo.isMultiCurrencyOrganization()) {
             dynamicSoql += 'CurrencyIsoCode, ';
+        }
+
+        Set<String> objectFields = Schema.SObjectType.Contact.fields.getMap().keySet();
+        Boolean ispersonNameSuffixEnabled = objectFields.contains('suffix');
+        if (ispersonNameSuffixEnabled) {
+            dynamicSoql += 'Suffix, ';
         }
 
         dynamicSoql += 'Phone, Fax FROM Contact WHERE Id IN :newContacts';
