@@ -535,6 +535,7 @@ private class ACCT_IndividualAccounts_TEST {
                 Automatic_Household_Naming__c = true
             )
         );
+        ACCT_IndividualAccounts_TDTM.defaultRecTypeId = UTIL_Describe_API.getAdminAccRecTypeID();
 
         Contact secondaryContact = UTIL_UnitTestData_TEST.getUniqueContact(1);
         insert secondaryContact;

@@ -42,6 +42,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     /*******************************************************************************************************
      * @description The selected Account record type.
      */
+    @TestVisible
     private static ID defaultRecTypeId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
 
     /*****************************************************************************************************************
@@ -701,11 +702,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             WHERE Primary_Contact__c IN :contactIds
         ]) {
             primaryConIdForAccount.put(acc.Primary_Contact__c, acc);
-        }
-
-        // Clear cache to support real-time account model updates within the testing context.
-        if (Test.isRunningTest()) {
-            defaultRecTypeId = UTIL_CustomSettingsFacade.getSettings().Account_Processor__c;
         }
 
         //Determines if Account needs to be created
