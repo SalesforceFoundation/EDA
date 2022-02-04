@@ -291,7 +291,13 @@ private class ACCT_AdministrativeNameRefresh_TEST {
      */
     @isTest
     private static void newContactNewAdminAccSpanish() {
-        System.runAs(ACCT_AdministrativeNameRefresh_TEST.returnUserInSpanish()) {
+        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+
+        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
+            System.now().getTime() + '@testerson.com',
+            systemAdministratorProfile.Id,
+            'es'
+        )) {
             Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
                 Account_Processor__c = UTIL_Describe_API.getAdminAccRecTypeID(),
                 Administrative_Account_Record_Type__c = UTIL_Describe_API.getAdminAccRecTypeID(),
@@ -383,7 +389,12 @@ private class ACCT_AdministrativeNameRefresh_TEST {
      */
     @isTest
     private static void shouldAppendPrefixSuffixAdministrativeAcctSpanish() {
-        System.runAs(ACCT_AdministrativeNameRefresh_TEST.returnUserInSpanish()) {
+        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
+            System.now().getTime() + '@testerson.com',
+            systemAdministratorProfile.Id,
+            'es'
+        )) {
             Set<String> objectFields = Schema.SObjectType.Contact.fields.getMap().keySet();
             Boolean ispersonNameSuffixEnabled = objectFields.contains('suffix');
 
@@ -439,26 +450,5 @@ private class ACCT_AdministrativeNameRefresh_TEST {
                 }
             }
         }
-    }
-
-    /*****************************************************************************************************************************
-     * @description Helper method to reurn a user in Spanish Language
-     *****************************************************************************************************************************/
-    private static User returnUserInSpanish() {
-        Profile p = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
-
-        User userInSpanish = new User(
-            Alias = 'newUser',
-            Email = 'newuser@testorg.com',
-            EmailEncodingKey = 'UTF-8',
-            LastName = 'Testing',
-            LanguageLocaleKey = 'es',
-            LocaleSidKey = 'es',
-            ProfileId = p.Id,
-            TimeZoneSidKey = 'America/Los_Angeles',
-            UserName = 'prefEmail@testorg.com'
-        );
-
-        return userInSpanish;
     }
 }

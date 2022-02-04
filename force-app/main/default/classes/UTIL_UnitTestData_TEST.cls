@@ -172,6 +172,16 @@ public class UTIL_UnitTestData_TEST {
      * @return The inserted user record
      **********************************************************************************************************/
     public static User createNewUserForTests(String strUsername, Id profileId) {
+        return createNewUserForTests(strUsername, profileId, null);
+    }
+
+    /*********************************************************************************************************
+     * @description Gets and inserts a user with a specified username, profile and language
+     * @param strUsername The username for the user
+     * @param profileId The id of the profile for the user
+     * @return The inserted user record
+     **********************************************************************************************************/
+    public static User createNewUserForTests(String strUsername, Id profileId, String langSpecification) {
         User userToInsert;
         // to work around mixed DML errors during tests, you must create user account in its own transaction. got this
         // hack from the web.
@@ -181,8 +191,8 @@ public class UTIL_UnitTestData_TEST {
                 email = 'jsmith@acme.com',
                 emailencodingkey = 'UTF-8',
                 lastname = 'Smith',
-                languagelocalekey = 'en_US',
-                localesidkey = 'en_US',
+                languagelocalekey = String.isBlank(langSpecification) ? 'en_US' : langSpecification,
+                localesidkey = String.isBlank(langSpecification) ? 'en_US' : langSpecification,
                 profileid = profileId,
                 timezonesidkey = 'America/Los_Angeles',
                 username = strUsername

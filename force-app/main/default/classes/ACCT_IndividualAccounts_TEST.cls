@@ -455,7 +455,13 @@ private class ACCT_IndividualAccounts_TEST {
      */
     @isTest
     private static void newContactNewHHAccSpanish() {
-        System.runAs(ACCT_IndividualAccounts_TEST.returnUserInSpanish()) {
+        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+
+        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
+            System.now().getTime() + '@testerson.com',
+            systemAdministratorProfile.Id,
+            'es'
+        )) {
             Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
                 Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
                 Household_Account_Naming_Format__c = Label.acctNamingOther,
@@ -2795,7 +2801,13 @@ private class ACCT_IndividualAccounts_TEST {
      */
     @isTest
     private static void shouldAppendPrefixSuffixHHSpanish() {
-        System.runAs(ACCT_IndividualAccounts_TEST.returnUserInSpanish()) {
+        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+
+        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
+            System.now().getTime() + '@testerson.com',
+            systemAdministratorProfile.Id,
+            'es'
+        )) {
             Set<String> objectFields = Schema.SObjectType.Contact.fields.getMap().keySet();
             Boolean ispersonNameSuffixEnabled = objectFields.contains('suffix');
             Hierarchy_Settings__c edaSettings = new Hierarchy_Settings__c(
@@ -3120,26 +3132,5 @@ private class ACCT_IndividualAccounts_TEST {
         Account accAfterUpdate = [SELECT Id, Name, RecordTypeId, ownerId FROM Account WHERE Id = :acc.Id];
 
         System.assertEquals('test 0 Administrative Account', accAfterUpdate.Name);
-    }
-
-    /*****************************************************************************************************************************
-     * @description Helper method to reurn a user in Spanish Language
-     *****************************************************************************************************************************/
-    private static User returnUserInSpanish() {
-        Profile p = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
-
-        User userInSpanish = new User(
-            Alias = 'newUser',
-            Email = 'newuser@testorg.com',
-            EmailEncodingKey = 'UTF-8',
-            LastName = 'Testing',
-            LanguageLocaleKey = 'es',
-            LocaleSidKey = 'es',
-            ProfileId = p.Id,
-            TimeZoneSidKey = 'America/Los_Angeles',
-            UserName = 'prefEmail@testorg.com'
-        );
-
-        return userInSpanish;
     }
 }
