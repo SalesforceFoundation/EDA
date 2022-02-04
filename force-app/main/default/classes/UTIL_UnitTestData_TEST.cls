@@ -1129,4 +1129,65 @@ public class UTIL_UnitTestData_TEST {
         }
         return credentials;
     }
+
+    /**
+     * @description Create affiliation mappings with English field labels if they don't exist
+     * @return   Inserted or existing list of mappings
+     */
+    public static List<Affl_Mappings__c> createAffiliationMappingsWithFieldLabels() {
+        List<Affl_Mappings__c> mappings = [
+            SELECT ID
+            FROM Affl_Mappings__c
+            WHERE Account_Record_Type__c != NULL AND Primary_Affl_Field__c != NULL
+        ];
+        if (mappings.size() == 0) {
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Academic Program',
+                    Account_Record_Type__c = 'Academic_Program',
+                    Primary_Affl_Field__c = 'Primary Academic Program',
+                    Auto_Program_Enrollment__c = true,
+                    Auto_Program_Enrollment_Status__c = 'Current',
+                    Auto_Program_Enrollment_Role__c = 'Student'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Business Organization',
+                    Account_Record_Type__c = 'Business_Organization',
+                    Primary_Affl_Field__c = 'Primary Business Organization'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Household Account',
+                    Account_Record_Type__c = 'HH_Account',
+                    Primary_Affl_Field__c = 'Primary Household'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Educational Institution',
+                    Account_Record_Type__c = 'Educational_Institution',
+                    Primary_Affl_Field__c = 'Primary Educational Institution'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'University Department',
+                    Account_Record_Type__c = 'University_Department',
+                    Primary_Affl_Field__c = 'Primary Department'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Sports Organization',
+                    Account_Record_Type__c = 'Sports_Organization',
+                    Primary_Affl_Field__c = 'Primary Sports Organization'
+                )
+            );
+            insert mappings;
+        }
+        return mappings;
+    }
 }
