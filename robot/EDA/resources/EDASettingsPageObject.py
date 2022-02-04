@@ -17,3 +17,11 @@ class EDASettingsPage(BaseEDAPage, HomePage):
             locator,
             error="EDA Settings header is not available"
         )
+    def verify_eda_settings_error_is_displayed(self, error):
+        """ Verify the error message is displayed in the EDA Settings page
+        """
+        locator = eda_lex_locators["eda_settings_page"]["error_panel"].format(error)
+        self.selenium.wait_until_page_contains_element(
+            locator,
+            error=f"The error message '{error}' is not available on the EDA settings page"
+        )

@@ -127,8 +127,8 @@ eda_lex_locators = {
         "update_button": "//div[text()='{}']/../parent::div/descendant::button[text()='{}']",
         "footer_button": "//div[contains(@class, 'footer')]/descendant::button[@title='{}']",
         "app_tile": "//h2[text()='{}']/../descendant::ul/descendant::*[self::div or self::span][text()='{}']",
-        "show_actions_button": "//tr[@data-row-key-value='{}']/descendant::span[text()='Show actions']/ancestor::button[@type='button']",
-        "actions_menu": "//tr[@data-row-key-value='{}']/descendant::span[text()='{}']/ancestor::a[@role='menuitem']",
+        "show_actions_button": "//tr//lightning-base-formatted-text[text()='{}']/ancestor::tr/descendant::span[text()='Show actions']/ancestor::button[@type='button']",
+        "actions_menu": "//tr//lightning-base-formatted-text[text()='{}']/ancestor::tr/descendant::span[text()='{}']/ancestor::a[@role='menuitem']",
         "product_card_button": "//li[contains(@class, 'edcSettingsProductCard')]/descendant::button[@title='{}']",
         "product_card_avator": "//abbr[normalize-space()='{}']",
         "product_card_description": "//div[contains(@class, 'productDescription')]/descendant::p[contains(text(),'{}')]"
@@ -438,5 +438,6 @@ eda_lex_locators = {
     },
     "eda_settings_page": {
         "page_title": "//div[@data-qa-locator='edaSettingsTitle' and text()='{}']",
+        "error_panel": "//div[@data-testid='eda-settings-error-insufficient-access' and text()=\"{}\"]"
     }
 }
