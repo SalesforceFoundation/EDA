@@ -483,7 +483,9 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                 }
             }
 
-            if (hasExistingCourseConnection == false) {
+            if (hasExistingCourseConnection == true) {
+                return;
+            }
                 Course_Enrollment__c newCourseConnection = new Course_Enrollment__c(
                     Contact__c = updatedCourseOffering.Faculty__c,
                     Primary__c = true
