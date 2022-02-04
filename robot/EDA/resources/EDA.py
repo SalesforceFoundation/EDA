@@ -695,16 +695,33 @@ class EDA(BaseEDAPage):
             EDA settings. Pass the expected value to be set in the drop down field from the tests
         """
         for field,value in kwargs.items():
+            time.sleep(1) #added this sleep to allow the dropdown to load properly, also to allow any rerenderings needed after each click
             locator = eda_lex_locators["eda_settings_new"]["dropdown_input"].format(field)
             self.selenium.wait_until_page_contains_element(locator, timeout=60)
             self.selenium.wait_until_element_is_visible(locator,
                                                 error=f"'{value}' as dropdown value in '{field}' field is not available ")
+            self.salesforce.scroll_element_into_view(locator)
             self.selenium.click_element(locator)
-            value = eda_lex_locators["eda_settings_new"]["settings_dropdown"].format(field,value)
-            self.selenium.wait_until_page_contains_element(value, timeout=60)
-            self.selenium.wait_until_element_is_visible(value,
+            locator = eda_lex_locators["eda_settings_new"]["settings_dropdown"].format(field,value)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60)
+            self.selenium.wait_until_element_is_visible(locator,
                                                 error=f"'{value}' as dropdown value in '{field}' field is not available ")
-            self.salesforce._jsclick(value)
+            self.salesforce.scroll_element_into_view(locator)
+            self.selenium.click_element(locator)
+
+    def validate_settings_dropdown_value_does_not_exist(self,field,value):
+        """ This method will assert the drop down field value does not exist for the specified field in the new
+            EDA settings page
+        """
+        time.sleep(1) #added this sleep to allow the dropdown to load properly
+        locator = eda_lex_locators["eda_settings_new"]["dropdown_input"].format(field)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                            error=f"'{value}' as dropdown value in '{field}' field is not available ")
+        self.salesforce.scroll_element_into_view(locator)
+        self.selenium.click_element(locator)
+        locator = eda_lex_locators["eda_settings_new"]["settings_dropdown"].format(field,value)
+        self.selenium.page_should_not_contain_element(locator)
 
     def update_system_tools(self,value,**kwargs):
         """ This method will run the update job by clicking the update button present in System
