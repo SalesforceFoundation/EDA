@@ -222,7 +222,13 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
             if (updatedFacultyIDs.size() > 0) {
                 if (UTIL_CustomSettingsFacade.courseConnectionsEnabled()) {
                     // Course connections is enabled. Handle updating of objects
-                    updateConnectionsOnFacultyChange(offsWithChangedFaculty, objectsToInsert, objectsToUpdate);
+                    updateConnectionsOnFacultyChange(
+                        offsWithChangedFaculty,
+                        outdatedFacultyIDs,
+                        updatedFacultyIDs,
+                        objectsToInsert,
+                        objectsToUpdate
+                    );
                 } else {
                     List<Affiliation__c> newAffls = getAfflsToUpdate(
                         outdatedFacultyIDs,
@@ -417,18 +423,22 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
     @testVisible
     private void updateConnectionsOnFacultyChange(
         Set<Id> offsWithChangedFaculty,
+        Set<Id> outdatedFacultyIDs,
+        Set<Id> updatedFacultyIDs,
         List<SObject> objectsToInsert,
         List<SObject> objectsToUpdate
     ) {
         Id facultyRecordTypeId = UTIL_Describe.getFacultyConnectionRecType();
         Map<Id, Course_Enrollment__c> updatedCouserEnrollmentBycourseOfferingId = new Map<Id, Course_Enrollment__c>();
-        String subQueryString = ', (SELECT Id, Contact__c, Affiliation__c, Account__c, Course_Offering__c, Primary__c FROM Course_Enrollment__r';
+        String subQueryString = ', (SELECT Id, Contact__c, Affiliation__c, Account__c, Course_Offering__c, Primary__c';
+        subQueryString += ' FROM Course_Enrollment__r';
+        subQueryString += ' WHERE (Contact__c IN :outdatedFacultyIDs OR Contact__c IN :updatedFacultyIDs)';
         //Record type of course enrollment not in the package
         if (
             UTIL_Describe.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'), 'RecordTypeId') &&
             facultyRecordTypeId != null
         ) {
-            subQueryString += ' WHERE RecordTypeId = :facultyRecordTypeId';
+            subQueryString += ' AND RecordTypeId = :facultyRecordTypeId';
         }
         subQueryString += ')';
         String queryString = 'SELECT Id, Faculty__c';
