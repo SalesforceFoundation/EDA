@@ -473,7 +473,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
 
                 childCourseConnection.Primary__c = false;
                         childCourseConnection.Primary__c = false;
-                        objectsToUpdate.add((SObject) childCourseConnection);
+                        objectsToUpdate.add(childCourseConnection);
 
                         if (
                             updatedCouserEnrollmentBycourseOfferingId.keySet().contains(updatedCourseOffering.Id) ==
