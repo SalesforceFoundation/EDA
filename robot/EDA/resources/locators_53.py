@@ -1,4 +1,4 @@
-""" Locators for Spring '22 """
+""" Locators for Winter '22 """
 
 eda_lex_locators = {
     "app_tile": "//one-app-launcher-modal//one-app-launcher-app-tile//a[.='{}']",
@@ -116,7 +116,7 @@ eda_lex_locators = {
         "toast_message": "//div[contains(@class, 'slds-theme--success slds-notify--toast slds-notify slds-notify--toast forceToastMessage')]/descendant::span[text()='{}']",
         "custom_toast": "//div[contains(@class, 'forceToastMessage')]/descendant::span[contains(@class, 'toastMessage')]",
         "settings_nav_title": "//div[@data-qa-locator='edaSettingsNavigation']/descendant::a[text()='{}']",
-        "dropdown_input": "//label[text()='{}']/../descendant::button[contains(@class, 'slds-combobox__input')]",
+        "dropdown_input": "//label[text()='{}']/../descendant::input[@role='combobox']",
         "settings_dropdown": "//label[text()='{}']/../descendant::span[text()='{}']",
         "select_from_list": "//div[text()='{}']/../following-sibling::div/descendant::div[contains(@class, 'list__options')]/descendant::span[text()='{}']",
         "move_to_selected": "//div[text()='{}']/../following-sibling::div/descendant::button[@type='button' and @title='Move selection to Selected Account Record Types']",
