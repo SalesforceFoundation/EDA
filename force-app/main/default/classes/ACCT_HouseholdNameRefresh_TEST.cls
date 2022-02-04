@@ -33,16 +33,16 @@
  */
 @isTest
 public class ACCT_HouseholdNameRefresh_TEST {
-    /*******************************************************************************************************
-     * @description Test that the refresh Household Account name functionality is working properly if
-     * there are multiple Household Account.
+    /*********************************************************************************************************
+     * @description Ensure Household Account refresh (batch class) successfully renames the applicable accounts.
+     * Test Scenario: T-3904061
      */
     @isTest
-    private static void refreshHouseHoldAccountNamesAutomaticHHName() {
+    private static void ensureRefreshHHAccountBatchRenamesAccounts() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = Util_Describe.getCustomHHAccRecTypeID(),
-                Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
+                Household_Account_Naming_Format__c = Label.lastNameFirstNameHH,
                 Automatic_Household_Naming__c = true
             )
         );
@@ -68,17 +68,17 @@ public class ACCT_HouseholdNameRefresh_TEST {
             FROM Account
             WHERE Id IN :accountIds
         ];
-        queryAccounts[0].Name = 'Tommy Wells Household';
-        queryAccounts[1].Name = 'Betty Jones Household';
+        queryAccounts[0].Name = 'Tommy Wells ' + Label.DefaultHouseholdName;
+        queryAccounts[1].Name = 'Betty Jones ' + Label.DefaultHouseholdName;
         update queryAccounts;
 
         //Verifies that the update on Account Name on the Account record persisted
         for (Account a : queryAccounts) {
             if (lastNameByAccountId.get('Wells') == a.Id) {
-                System.assertEquals('Tommy Wells Household', a.Name);
+                System.assertEquals('Tommy Wells ' + Label.DefaultHouseholdName, a.Name);
             }
             if (lastNameByAccountId.get('Jones') == a.Id) {
-                System.assertEquals('Betty Jones Household', a.Name);
+                System.assertEquals('Betty Jones ' + Label.DefaultHouseholdName, a.Name);
             }
         }
 
@@ -92,10 +92,10 @@ public class ACCT_HouseholdNameRefresh_TEST {
         System.assertEquals(2, returnAccounts.size());
         for (Account acc : returnAccounts) {
             if (lastNameByAccountId.get('Wells') == acc.Id) {
-                System.assertEquals('Wells (Tommy) Household', acc.Name);
+                System.assertEquals('Wells (Tommy) ' + Label.DefaultHouseholdName, acc.Name);
             }
             if (lastNameByAccountId.get('Jones') == acc.Id) {
-                System.assertEquals('Jones (Betty) Household', acc.Name);
+                System.assertEquals('Jones (Betty) ' + Label.DefaultHouseholdName, acc.Name);
             }
         }
     }
@@ -110,7 +110,7 @@ public class ACCT_HouseholdNameRefresh_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = UTIL_Describe.getCustomHHAccRecTypeID(),
-                Household_Account_Naming_Format__c = '{!LastName} ({!{!FirstName}}) Household',
+                Household_Account_Naming_Format__c = Label.lastNameFirstNameHH,
                 Automatic_Household_Naming__c = false
             )
         );
@@ -132,17 +132,17 @@ public class ACCT_HouseholdNameRefresh_TEST {
         }
 
         List<Account> accounts = [SELECT Id FROM Account WHERE Id IN :accountIds];
-        accounts[0].Name = 'Tommy Wells Household';
-        accounts[1].Name = 'Betty White Household';
+        accounts[0].Name = 'Tommy Wells ' + Label.DefaultHouseholdName;
+        accounts[1].Name = 'Betty White ' + Label.DefaultHouseholdName;
         update accounts;
 
         //Verifies that the update on Account Name on the Account record persisted
         for (Account a : accounts) {
             if (lastNameByAccountId.get('Wells') == a.Id) {
-                System.assertEquals('Tommy Wells Household', a.Name);
+                System.assertEquals('Tommy Wells ' + Label.DefaultHouseholdName, a.Name);
             }
             if (lastNameByAccountId.get('Jones') == a.Id) {
-                System.assertEquals('Betty White Household', a.Name);
+                System.assertEquals('Betty White ' + Label.DefaultHouseholdName, a.Name);
             }
         }
 
@@ -167,10 +167,10 @@ public class ACCT_HouseholdNameRefresh_TEST {
         System.assertEquals(2, returnAccounts.size());
         for (Account acc : returnAccounts) {
             if (lastNameByAccountId.get('Wells') == acc.Id) {
-                System.assertEquals('Wells (Abby and Tommy) Household', acc.Name);
+                System.assertEquals('Wells (Abby and Tommy) ' + Label.DefaultHouseholdName, acc.Name);
             }
             if (lastNameByAccountId.get('White') == acc.Id) {
-                System.assertEquals('White (Betty and Lily) Household', acc.Name);
+                System.assertEquals('White (Betty and Lily) ' + Label.DefaultHouseholdName, acc.Name);
             }
         }
     }

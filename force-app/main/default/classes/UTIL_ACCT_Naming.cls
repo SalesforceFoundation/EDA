@@ -165,6 +165,12 @@ public class UTIL_ACCT_Naming {
             'OtherPostalCode, OtherCountry, OtherLatitude, OtherLongitude, ' +
             'Phone, Fax';
 
+        Set<String> objectFields = Schema.SObjectType.Contact.fields.getMap().keySet();
+        Boolean ispersonNameSuffixEnabled = objectFields.contains('suffix');
+        if (ispersonNameSuffixEnabled) {
+            dynamicSoql += ', Suffix ';
+        }
+
         if (ADDR_Addresses_UTIL.isStateCountryPicklistsEnabled) {
             dynamicSoql += ', MailingCountryCode, MailingStateCode, OtherCountryCode, OtherStateCode';
         }
