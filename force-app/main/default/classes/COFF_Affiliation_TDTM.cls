@@ -462,7 +462,7 @@ public class COFF_Affiliation_TDTM extends TDTM_Runnable {
                 if (updatedCourseOffering.Faculty__c == childCourseConnection.Contact__c) {
                     if (childCourseConnection.Primary__c == false) {
                         childCourseConnection.Primary__c = true;
-                        objectsToUpdate.add((SObject) childCourseConnection);
+                        objectsToUpdate.add(childCourseConnection);
                     }
                     continue;
                 }
