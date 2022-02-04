@@ -21,6 +21,7 @@ Verify products tools and resources tiles are displayed
     ...                                     Resources=Trailhead
     ...                                     Resources=Trailblazer Community
     ...                                     Resources=YouTube
+    close browser
 
 Verify release management page is displayed when user clicks on go to release management button
     [Documentation]         Validates 'Release Management' page is displayed after clicking on the Go to Release Management
@@ -30,6 +31,7 @@ Verify release management page is displayed when user clicks on go to release ma
     Current page should be                  Home        Education Cloud Settings
     Click app in edc home                   Go to Release Management
     Current page should be                  Home        Release Management
+    close browser
 
 Verify EDA product card is displayed
     [Documentation]         Validates the EDA product card is displayed.
@@ -43,6 +45,7 @@ Verify EDA product card is displayed
     Verify product card button displayed  Go to EDA Settings.
     verify product card button displayed  Go to the EDA documentation.
     Verify product card button displayed  Go to EDA Trailhead modules.
+    close browser
 
 Verify mocked SAL product card is displayed
     [Documentation]         Validates the mocked sal product card is displayed.
@@ -56,6 +59,7 @@ Verify mocked SAL product card is displayed
     Verify product card button displayed  Go to Advisor Link (Mocked) Settings
     verify product card button displayed  Go to Advisor Link (Mocked) Documentation
     Verify product card button displayed  Go to Advisor Link (Mocked) Trailhead
+    close browser
 
 Verify EDA settings page is displayed when user clicks on the settings button under Education Data Architecture product tile
     [Documentation]         Validates 'EDA Settings' page is displayed after clicking on the settings button under Education Data Architecture product tile
@@ -66,6 +70,7 @@ Verify EDA settings page is displayed when user clicks on the settings button un
     Sleep                       2
     Click product card button in edc home   Go to EDA Settings.
     Current page should be                  Home        EDA Settings
+    close browser
 
 Verify EDA documents page is displayed when user clicks on the documentation button under Education Data Architecture product tile
     [Documentation]         Validates EDA documents page is displayed after clicking on the documentation button under Education Data Architecture product tile
@@ -76,6 +81,7 @@ Verify EDA documents page is displayed when user clicks on the documentation but
     Click product card button in edc home   Go to the EDA documentation.
     Switch Window    locator=NEW
     Verify eda documentation  powerofus.force.com/s/article/EDA-Documentation   
+    close browser
 
 Verify Trailhead page is displayed when user clicks on the trailhead button under Education Data Architecture product tile
     [Documentation]         Validates EDA trailhead page is displayed after clicking on the trailhead button under Education Data Architecture product tile
@@ -85,7 +91,8 @@ Verify Trailhead page is displayed when user clicks on the trailhead button unde
     Current page should be                  Home        Education Cloud Settings
     Click product card button in edc home   Go to EDA Trailhead modules.
     Switch Window    locator=NEW
-    Verify eda documentation  trailhead.salesforce.com/en/content/learn/trails/highered_heda      
+    Verify eda documentation  trailhead.salesforce.com/en/content/learn/trails/highered_heda  
+    close browser    
 
 Verify user without class access renders release management page with toast error
     [Documentation]         Validates 'Release Management' page with access error is displayed after clicking on the Go to Release Management
@@ -106,7 +113,35 @@ Verify user without class access renders release management page with toast erro
     Run task        add_permission_set_perms
     ...             api_names=Internal_Only_for_Testing
     ...             class_accesses=${{ [{"apexClass": "${ns}EducationCloudSettingsController", "enabled": False}] }}
+    close browser
 
+Verify user without EDA settings class access shows error
+    [Documentation]         Validates EDA Settings page shows an error when the user does not have class access
+    [tags]                  rbt:high        W-10131460
+    Open test browser        useralias=noaccess
+    Go to education cloud settings
+    Current page should be                  Home        EDA Settings
+    Verify EDA Settings error is displayed  You can't view this page. Your Salesforce admin can help with that.
+    close browser
+
+Verify user without customize application access shows error
+    [Documentation]         Validates EDA Settings page shows an error when the user does not have customize application permission
+    [tags]                  rbt:high        W-10131460
+    #Give user partial permission to access EDASettings page, but customize application permission is missing
+    Run task        add_permission_set_perms
+    ...             api_names=Internal_Only_for_Testing
+    ...             class_accesses=${{ [{"apexClass": "${ns}EDASettingsController", "enabled": True}] }}
+
+    Open test browser        useralias=noaccess
+    Go to education cloud settings
+    Current page should be                  Home        EDA Settings
+    Verify EDA Settings error is displayed  You can't view this page. Your Salesforce admin can help with that.
+
+    #remove permission added for test
+    Run task        add_permission_set_perms
+    ...             api_names=Internal_Only_for_Testing
+    ...             class_accesses=${{ [{"apexClass": "${ns}EDASettingsController", "enabled": False}] }}
+    close browser
 
 *** Keywords ***
 Initialize test data
