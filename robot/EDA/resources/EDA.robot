@@ -135,11 +135,11 @@ Get Affiliation Mappings
     ${NS} =                 Get EDA namespace prefix
     [Arguments]             ${field_name}
     ${result} =             SOQL Query
-    ...                     SELECT ${NS}${field_name} FROM ${NS}Affl_Mappings__c
+    ...                     SELECT ${field_name} FROM ${NS}Affl_Mappings__c
     ${count} =              Get Affl Records Count       ${field_name}
     @{ValueList}=           Create List
     FOR     ${index}        IN RANGE    ${count}
-        ${name} =               Set variable    ${result}[records][${index}][${NS}${field_name}]
+        ${name} =               Set variable    ${result}[records][${index}][${field_name}]
         Append To List          ${ValueList}    ${name}
     END
     [return]                ${ValueList}
@@ -174,7 +174,7 @@ Get Affl Records Count
     ${NS} =                 Get EDA namespace prefix
     [Arguments]             ${field_name}
     ${result} =             SOQL Query
-    ...                     SELECT COUNT(${NS}${field_name}) FROM ${NS}Affl_Mappings__c
+    ...                     SELECT COUNT(${field_name}) FROM ${NS}Affl_Mappings__c
     &{Id} =                 Get From List  ${result['records']}  0
     [return]                ${Id}[expr0]
 
