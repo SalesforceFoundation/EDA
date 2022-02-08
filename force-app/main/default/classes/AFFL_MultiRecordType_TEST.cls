@@ -334,6 +334,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(acc2.ID, Contact.Primary_Organization__c);
     }
 
+    /* Ensure additional affiliations created render previous affiliations as non-primary.
+     *  Test Scenario: T-3938989
+     */
     @isTest
     private static void createPrimaryAfflWhenAnotherPrimaryExists() {
         AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
@@ -342,29 +345,41 @@ public with sharing class AFFL_MultiRecordType_TEST {
         insert contact;
 
         //Create 2 accounts of Business Organization record type
-        Account acc1 = new Account(Name = 'Acme1', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
-        Account acc2 = new Account(Name = 'Acme2', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
-        insert new List<Account>{ acc1, acc2 };
+        Account primaryAcct = new Account(Name = 'Acme1', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
+        Account secondaryAcct = new Account(Name = 'Acme2', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
+        insert new List<Account>{ primaryAcct, secondaryAcct };
 
         //Create primary Business affiliation
-        Affiliation__c affl1 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc1.ID, Primary__c = true);
+        Affiliation__c primaryAffiliation = new Affiliation__c(
+            Contact__c = contact.ID,
+            Account__c = primaryAcct.ID,
+            Primary__c = true
+        );
         AFFL_ContactAccChange_TEST.resetAfflFlags();
-        insert affl1;
+        insert primaryAffiliation;
+
+        primaryAffiliation = [SELECT Id, Account__c, Primary__c FROM Affiliation__c WHERE Id = :primaryAffiliation.Id];
+        System.assertEquals(true, primaryAffiliation.Primary__c);
 
         //Create second primary Business affiliation
-        Affiliation__c affl2 = new Affiliation__c(Contact__c = contact.ID, Account__c = acc2.ID, Primary__c = true);
+        Affiliation__c secondaryAffiliation = new Affiliation__c(
+            Contact__c = contact.ID,
+            Account__c = secondaryAcct.ID,
+            Primary__c = true
+        );
         AFFL_ContactAccChange_TEST.resetAfflFlags();
         Test.startTest();
-        insert affl2;
+        insert secondaryAffiliation;
         Test.stopTest();
 
-        //Verify only one Affiliation record to the second business account exists. Github #177.
-        List<Affiliation__c> affls = [
-            SELECT ID
-            FROM Affiliation__c
-            WHERE Contact__c = :contact.ID AND Account__c = :acc2.ID
-        ];
-        System.assertEquals(1, affls.size());
+        Map<ID, Affiliation__c> allAffiliations = new Map<ID, Affiliation__c>(
+            [SELECT Id, Account__c, Primary__c FROM Affiliation__c]
+        );
+
+        System.assertNotEquals(null, allAffiliations.get(primaryAffiliation.Id));
+        System.assertEquals(false, allAffiliations.get(primaryAffiliation.Id).Primary__c);
+        System.assertNotEquals(null, allAffiliations.get(secondaryAffiliation.Id));
+        System.assertEquals(true, allAffiliations.get(secondaryAffiliation.Id).Primary__c);
     }
 
     @isTest
