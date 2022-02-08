@@ -261,7 +261,7 @@ public with sharing class AFFL_ContactAccChange_TEST {
        is changed to an Account whose record type is same as an already existing primary affiliations on the Contact
     */
     @isTest
-    private static void updateAccToAnExistingAccType() {
+    private static void updateAccToAnExistingAccTypeFromAffiliation() {
         AFFL_ContactAccChange_TEST.dataSetup();
 
         // Get a contact
@@ -303,6 +303,42 @@ public with sharing class AFFL_ContactAccChange_TEST {
         // Ensure only one of the affiliations is primary
         System.assertEquals(false, afflUpdated.Primary__c);
         System.assertEquals(true, primarHHAffilaitionUpdated.Primary__c);
+    }
+
+    /*
+    *  Ensure contact primary affiliation updates existing affiliations(Primary).
+    *  Test Scenario: T-3938994
+    */
+    @isTest
+    private static void updateAccToAnExistingAccTypeFromContact() {
+        AFFL_ContactAccChange_TEST.dataSetup();
+
+        // Get a contact
+        Contact testContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+
+        // Get the business affiliation to above contact
+        Integer afflsCount = [SELECT COUNT() FROM Affiliation__c WHERE Contact__c = :testContact.Id];
+        System.assertEquals(1, afflsCount);
+
+        testContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
+        System.assertNotEquals(null, testContact.Primary_Organization__c);
+        System.assertEquals(bizOrg1.Id, testContact.Primary_Organization__c);
+
+        testContact.Primary_Organization__c = bizOrg2.Id;
+
+        test.startTest();
+        update testContact;
+        test.stopTest();
+
+        List<Affiliation__c> affls = [
+            SELECT Id, Primary__c
+            FROM Affiliation__c
+            WHERE Contact__c = :testContact.Id
+            ORDER BY CreatedDate
+        ];
+        System.assertEquals(2, affls.size());
+        System.assertEquals(false, affls[0].Primary__c);
+        System.assertEquals(true, affls[1].Primary__c);
     }
 
     // Test to check the error when the Organization on an Affiliation is changed to an Account which is a part of Primary Affiliation on the same Contact
