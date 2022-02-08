@@ -83,7 +83,7 @@ public virtual with sharing class AutoEnrollmentMappingMapper {
                 )
             );
         }
-
+        /* sfca-disable-next-line ApexFlsViolationRule */
         update affiliationMappingList;
         return returnList;
     }
