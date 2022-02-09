@@ -15,7 +15,7 @@ Validate auto enrollment mappings can be added and it is updated in custom setti
 
     Select settings from navigation pane        Program Enrollments
     Click action button on new EDA settings     New
-    Sleep                                       1
+    Sleep                                       2
     Update settings dropdown value
     ...                                         Account Record Type=Sports Organization
     ...                                         Auto-Enrollment Status=Current
