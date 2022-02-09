@@ -246,6 +246,54 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(parentAccountId, contact.Account.ID);
     }
 
+    /*
+    * Ensure account record type changes are appropriated reflected upon contact fields/affiliations.
+    * Test Scenario: T-3938997
+    */
+    @isTest
+    private static void updatePrimaryAfflAccountRecordType() {
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
+
+        Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
+        insert contact;
+
+        Account affiliatedBizAcct = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getBizAccRecTypeID());
+        Account affiliatedHHAcct = new Account(Name = 'Acme', RecordTypeId = UTIL_Describe.getHhAccRecTypeID());
+        insert new List<Account>{ affiliatedBizAcct, affiliatedHHAcct };
+
+        contact.Primary_Organization__c = affiliatedBizAcct.Id;
+        contact.Primary_Household__c = affiliatedHHAcct.Id;
+        update contact;
+
+        contact = [SELECT Id, Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertNotEquals(null, contact.Primary_Organization__c);
+        System.assertNotEquals(null, contact.Primary_Household__c);
+
+        affiliatedHHAcct.RecordTypeId = UTIL_Describe.getBizAccRecTypeID();
+        Test.startTest();
+        update affiliatedHHAcct;
+        Test.stopTest();
+
+        contact = [SELECT Id, Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+        System.assertNotEquals(null, contact.Primary_Organization__c);
+        System.assertEquals(affiliatedHHAcct.Id, contact.Primary_Organization__c);
+        System.assertEquals(null, contact.Primary_Household__c);
+
+        List<Affiliation__c> affls = [
+            SELECT Id, Primary__c, Affiliation_Type__c
+            FROM Affiliation__c
+            WHERE Contact__c = :contact.Id
+            ORDER BY CreatedDate
+        ];
+
+        System.assertEquals(2, affls.size());
+        System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
+        System.assertEquals('Business Organization', affls[1].Affiliation_Type__c);
+
+        System.assertEquals(true, affls[0].Primary__c);
+        System.assertEquals(false, affls[1].Primary__c);
+    }
+
     @isTest
     private static void makeNonPrimaryAfflPrimary() {
         AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
