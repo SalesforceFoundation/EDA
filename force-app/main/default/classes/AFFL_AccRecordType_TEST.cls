@@ -688,7 +688,9 @@ public with sharing class AFFL_AccRecordType_TEST {
     }
 
     /* Test to ensure an error is thrown when an affiliation is inserted with an Account whose record
-     type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled */
+     * type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled.
+     * Test Scenario: T-3939019
+     */
 
     private static void insertAfflWAccRecTypeEnforced() {
         UTIL_CustomSettings_API.getSettingsForTests(
