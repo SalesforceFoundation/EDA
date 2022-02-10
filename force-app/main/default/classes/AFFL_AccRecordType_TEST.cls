@@ -226,6 +226,52 @@ public with sharing class AFFL_AccRecordType_TEST {
         }
     }
 
+    /*
+     * Ensure affiliaition mappings consisting of disabled record types appropriately surface as an error.
+     * Test Scenario: T-3939012
+     */
+    @isTest
+    private static void disabledAccountRTAffiliationMappingCheck_FieldLabels() {
+        setupWithFieldLabels();
+
+        // Given/Assuming BizOrg RT disabled in org
+        RecordType orgDisabledAcctRT = [
+            SELECT Id
+            FROM RecordType
+            WHERE DeveloperName = 'Business_Organization' AND SObjectType = 'Account' AND IsActive = FALSE
+        ];
+
+        System.debug(orgDisabledAcctRT);
+        if (orgDisabledAcctRT != null) {
+            Contact contact = UTIL_UnitTestData_API.getContact();
+            insert contact;
+
+            Account bizOrg = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+            insert bizOrg;
+
+            Affiliation__c bizAffl = new Affiliation__c(
+                Contact__c = contact.Id,
+                Account__c = bizOrg.Id,
+                Primary__c = true
+            );
+
+            TDTM_ProcessControl.setRecursionFlag(
+                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
+                false
+            );
+
+            insert bizAffl;
+
+            //Verify the primary business organization field is not populated given the RT is disabled
+            contact = [
+                SELECT AccountId, Primary_Household__c, Primary_Organization__c
+                FROM Contact
+                WHERE Id = :contact.Id
+            ];
+            System.assertNotEquals(bizOrg.Id, contact.Primary_Organization__c);
+        }
+    }
+
     /**************************************************************************************************************************
      ********************************************** Shared Test Functions *****************************************************
      **************************************************************************************************************************/
