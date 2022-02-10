@@ -189,6 +189,43 @@ public with sharing class AFFL_AccRecordType_TEST {
         updateAdminAccRecordTypeBulk();
     }
 
+    /*
+     * Ensure redundant affiliaition RT mappings is surfaced as an error upon contact update.
+     * Test Scenario: T-3939010
+     */
+    @isTest
+    private static void invalidRedundantAffiliationRTMappingCheck_FieldLabels() {
+        setupWithFieldLabels();
+        // Insert redundant affiliation mapping
+        insert new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account');
+
+        try {
+            changePrimaryAffiliationRecordType();
+        } catch (Exception ex) {
+            System.assert(ex.getMessage().contains('Row with duplicate Name'));
+        }
+    }
+
+    /*
+     * Ensure redundant affiliaition field mappings is surfaced as an error upon contact update.
+     * Test Scenario: T-3939011
+     */
+    @isTest
+    private static void invalidRedundantAffiliationFieldMappingCheck_FieldLabels() {
+        setupWithFieldLabels();
+        // Insert redundant affiliation mapping
+        insert new Affl_Mappings__c(
+            Name = 'Household Account',
+            Primary_Affl_Field__c = 'Primary Business Organization'
+        );
+
+        try {
+            changePrimaryAffiliationRecordType();
+        } catch (Exception ex) {
+            System.assert(ex.getMessage().contains('Row with duplicate Name'));
+        }
+    }
+
     /**************************************************************************************************************************
      ********************************************** Shared Test Functions *****************************************************
      **************************************************************************************************************************/
