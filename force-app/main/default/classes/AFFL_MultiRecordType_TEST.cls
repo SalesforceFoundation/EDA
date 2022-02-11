@@ -246,14 +246,32 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals(parentAccountId, contact.Account.ID);
     }
 
-    /*
-    * Ensure account record type changes are appropriated reflected upon contact fields/affiliations.
-    * Test Scenario: T-3938997
-    */
     @isTest
-    private static void updatePrimaryAfflAccountRecordType() {
+    private static void updatePrimaryAffiliationRecordType_FieldNames() {
         AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
+        updatePrimaryAfflAccountRecordType();
+    }
 
+    // Test Scenario: T-3939022
+    @isTest
+    private static void updatePrimaryAffiliationRecordType_FieldNames_Spanish() {
+        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+        STG_InstallScript.insertMappings();
+
+        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
+            System.now().getTime() + '@testerson.com',
+            systemAdministratorProfile.Id,
+            'es'
+        )) {
+            updatePrimaryAfflAccountRecordType();
+        }
+    }
+
+    /*
+     * Ensure account record type changes are appropriated reflected upon contact fields/affiliations.
+     * Test Scenario: T-3938997
+     */
+    private static void updatePrimaryAfflAccountRecordType() {
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
         insert contact;
 
@@ -290,8 +308,12 @@ public with sharing class AFFL_MultiRecordType_TEST {
         System.assertEquals('Business Organization', affls[0].Affiliation_Type__c);
         System.assertEquals('Business Organization', affls[1].Affiliation_Type__c);
 
-        System.assertEquals(true, affls[0].Primary__c);
-        System.assertEquals(false, affls[1].Primary__c);
+        // ENSURE ONLY ONE AFFILIATION IS MARKED PRIMARY
+        if (affls[0].Primary__c) {
+            System.assertEquals(false, affls[1].Primary__c);
+        } else if (affls[1].Primary__c) {
+            System.assertEquals(false, affls[0].Primary__c);
+        }
     }
 
     @isTest
