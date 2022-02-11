@@ -252,18 +252,34 @@ public with sharing class AFFL_MultiRecordType_TEST {
         updatePrimaryAfflAccountRecordType();
     }
 
-    // Test Scenario: T-3939022
     @isTest
     private static void updatePrimaryAffiliationRecordType_FieldNames_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
         STG_InstallScript.insertMappings();
 
+        // Test Scenario: T-3939022
         System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
             System.now().getTime() + '@testerson.com',
             systemAdministratorProfile.Id,
             'es'
         )) {
             updatePrimaryAfflAccountRecordType();
+
+            // Test Scenario: T-3939022
+            Contact contact = [SELECT Id, Primary_Household__c, Primary_Organization__c FROM Contact LIMIT 1];
+            contact.Primary_Household__c = null;
+            contact.Primary_Organization__c = null;
+            update contact;
+
+            List<Affiliation__c> affls = [
+                SELECT Id, Primary__c, Affiliation_Type__c
+                FROM Affiliation__c
+                WHERE Contact__c = :contact.Id
+                ORDER BY CreatedDate
+            ];
+            System.assertEquals(2, affls.size());
+            System.assertEquals(false, affls[0].Primary__c);
+            System.assertEquals(false, affls[1].Primary__c);
         }
     }
 
