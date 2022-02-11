@@ -1100,6 +1100,20 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
+    // Test Scenario: T-3939024
+    @isTest
+    private static void insertAfflWAccRecTypeUnenforced_Spanish() {
+        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+
+        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
+            System.now().getTime() + '@testerson.com',
+            systemAdministratorProfile.Id,
+            'es'
+        )) {
+            updateContactAfflInvalidRTAndValidFieldMappingFieldNotPopulatedNoValidationPositive();
+        }
+    }
+
     /*************************************************************************************************************
      * @description Test case to verify that insert a Contact with primary affiliation field populated with record type
      * validation disabled, a valid Contact field mapping to a non-lookup field and invalid Record Type mapping throws
