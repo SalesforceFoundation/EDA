@@ -115,6 +115,21 @@ public with sharing class AFFL_AccRecordType_TEST {
         insertAfflWAccRecTypeEnforced();
     }
 
+    // Test Scenario: T-3939021
+    @isTest
+    private static void insertAfflWAccRecTypeEnforced_FieldNames_Spanish() {
+        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+
+        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
+            System.now().getTime() + '@testerson.com',
+            systemAdministratorProfile.Id,
+            'es'
+        )) {
+            setup();
+            insertAfflWAccRecTypeEnforced();
+        }
+    }
+
     @isTest
     private static void otherPrimaryNotPrimary_FieldNames() {
         setup();
@@ -175,6 +190,21 @@ public with sharing class AFFL_AccRecordType_TEST {
     private static void insertAfflWAccRecTypeEnforced_FieldLabels() {
         setupWithFieldLabels();
         insertAfflWAccRecTypeEnforced();
+    }
+
+    // Test Scenario: T-3939021
+    @isTest
+    private static void insertAfflWAccRecTypeEnforced_FieldLabels_Spanish() {
+        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+
+        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
+            System.now().getTime() + '@testerson.com',
+            systemAdministratorProfile.Id,
+            'es'
+        )) {
+            setupWithFieldLabels();
+            insertAfflWAccRecTypeEnforced();
+        }
     }
 
     @isTest
