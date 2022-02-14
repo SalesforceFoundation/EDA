@@ -1100,9 +1100,9 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
-    // Test Scenario: T-3939025
+    // Test Scenario: T-3939024
     @isTest
-    private static void insertAfflWAccRecTypeUnenforced_Spanish() {
+    private static void insertContactPrimaryAfflWAccRecTypeUnenforced_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
 
         System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
@@ -1114,9 +1114,9 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
-    // Test Scenario: T-3939024
+    // Test Scenario: T-3939025
     @isTest
-    private static void insertContactPrimaryAfflWAccRecTypeUnenforced_Spanish() {
+    private static void updateContactPrimaryAfflWAccRecTypeUnenforced_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
 
         System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
