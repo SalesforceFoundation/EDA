@@ -1100,9 +1100,23 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
-    // Test Scenario: T-3939024
+    // Test Scenario: T-3939025
     @isTest
     private static void insertAfflWAccRecTypeUnenforced_Spanish() {
+        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+
+        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
+            System.now().getTime() + '@testerson.com',
+            systemAdministratorProfile.Id,
+            'es'
+        )) {
+            insertContactAfflInvalidRTAndValidFieldMappingFieldNotPopulatedNoValidationPositive();
+        }
+    }
+
+    // Test Scenario: T-3939024
+    @isTest
+    private static void insertContactPrimaryAfflWAccRecTypeUnenforced_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
 
         System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
@@ -1542,6 +1556,62 @@ private with sharing class CON_PrimaryAffls_TEST {
 
         Test.startTest();
         update testContactsList;
+        Test.stopTest();
+
+        List<Contact> testContactResultsList = [
+            SELECT Id, Primary_Organization__c
+            FROM Contact
+            WHERE Id IN :testContactsList
+        ];
+
+        for (Contact con : testContactResultsList) {
+            System.assertEquals(businessAccount1.Id, con.Primary_Organization__c);
+        }
+    }
+
+    /*************************************************************************************************************
+     * @description Test case to verify that updating a primary affiliation field on Contact with record type
+     * validation disabled, a valid Contact field mapping to a lookup field and invalid Record Type mapping does not
+     * throw an error when the mapped field is not populated.
+     **************************************************************************************************************/
+    @isTest
+    private static void insertContactAfflInvalidRTAndValidFieldMappingFieldNotPopulatedNoValidationPositive() {
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
+
+        UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false)
+        );
+
+        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Business Organization',
+                Account_Record_Type__c = 'Not a Valid RecordType',
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Organization__c')
+            )
+        );
+        mappings.add(
+            new Affl_Mappings__c(
+                Name = 'Household Account',
+                Account_Record_Type__c = 'HH_Account',
+                Primary_Affl_Field__c = UTIL_Namespace.StrTokenNSPrefix('Primary_Household__c')
+            )
+        );
+        insert mappings;
+
+        // insert business account
+        Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        )[0];
+        insert businessAccount1;
+
+        for (Contact con : testContactsList) {
+            con.Primary_Organization__c = businessAccount1.Id;
+        }
+
+        Test.startTest();
+        insert testContactsList;
         Test.stopTest();
 
         List<Contact> testContactResultsList = [
