@@ -1128,6 +1128,47 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
+    // Test Scenario: T-3939026
+    @isTest
+    private static void insertMultipleContactPrimaryAfflWAccRecTypeUnenforced_Spanish() {
+        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+
+        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
+            System.now().getTime() + '@testerson.com',
+            systemAdministratorProfile.Id,
+            'es'
+        )) {
+            createAffiliationsOnBulkContactInsert();
+
+            // insert secondary business account
+            Account businessAccount2 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+                1,
+                UTIL_Describe_API.getBizAccRecTypeID()
+            )[0];
+            insert businessAccount2;
+
+            List<Contact> contactsList = [
+                SELECT Id, Primary_Organization__c, (SELECT Account__c, Contact__c, Primary__c FROM Affl_Accounts__r)
+                FROM Contact
+            ];
+
+            System.assertEquals(100, contactsList.size());
+            // Reassign the primary business accounts.
+            for (Contact currentContact : contactsList) {
+                currentContact.Primary_Organization__c = businessAccount2.Id;
+            }
+
+            update contactsList;
+
+            //Ensure Affiliations appropriately reflect new mapping.
+            Integer activeAffiliations = [SELECT COUNT() FROM Affiliation__c WHERE Primary__c = TRUE];
+            Integer inactiveAffiliations = [SELECT COUNT() FROM Affiliation__c WHERE Primary__c = FALSE];
+
+            System.assertEquals(100, activeAffiliations);
+            System.assertEquals(100, inactiveAffiliations);
+        }
+    }
+
     /*************************************************************************************************************
      * @description Test case to verify that insert a Contact with primary affiliation field populated with record type
      * validation disabled, a valid Contact field mapping to a non-lookup field and invalid Record Type mapping throws
