@@ -1100,7 +1100,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
-    // Test Scenario: T-3939024
+    // Test Scenario: T-3939029
     @isTest
     private static void insertContactPrimaryAfflWAccRecTypeUnenforced_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
@@ -1114,7 +1114,7 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
-    // Test Scenario: T-3939025
+    // Test Scenario: T-3939030
     @isTest
     private static void updateContactPrimaryAfflWAccRecTypeUnenforced_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];

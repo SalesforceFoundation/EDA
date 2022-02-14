@@ -253,11 +253,11 @@ public with sharing class AFFL_MultiRecordType_TEST {
     }
 
     @isTest
-    private static void updatePrimaryAffiliationRecordType_FieldNames_Spanish() {
+    private static void updatePrimaryAffiliationRecordType_FieldAPI_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
         STG_InstallScript.insertMappings();
 
-        // Test Scenario: T-3939022
+        // Test Scenario: T-3939027
         System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
             System.now().getTime() + '@testerson.com',
             systemAdministratorProfile.Id,
@@ -265,7 +265,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
         )) {
             updatePrimaryAfflAccountRecordType();
 
-            // Test Scenario: T-3939022
+            // Test Scenario: T-3939028
             Contact contact = [SELECT Id, Primary_Household__c, Primary_Organization__c FROM Contact LIMIT 1];
             contact.Primary_Household__c = null;
             contact.Primary_Organization__c = null;

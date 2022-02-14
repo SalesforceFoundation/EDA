@@ -333,7 +333,7 @@ public class AffiliationTestSetupFactory_TEST {
      * Organization
      **************************************************************************/
     public static String getBusinessOrganizationFieldLabel() {
-        return 'Primary Business Organization';
+        return Schema.Contact.fields.Primary_Organization__c.getDescribe().getLabel();
     }
 
     /**************************************************************************
@@ -342,7 +342,7 @@ public class AffiliationTestSetupFactory_TEST {
      * @return the contact primary affiliation field labels for Household
      **************************************************************************/
     public static String getHouseholdFieldLabel() {
-        return 'Primary Household';
+        return Schema.Contact.fields.Primary_Household__c.getDescribe().getLabel();
     }
 
     /**************************************************************************
