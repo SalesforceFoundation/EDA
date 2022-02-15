@@ -1170,7 +1170,9 @@ private with sharing class CON_PrimaryAffls_TEST {
                 currentContact.Primary_Organization__c = businessAccount2.Id;
             }
 
+            Test.startTest();
             update contactsList;
+            Test.stopTest();
 
             //Ensure Affiliations appropriately reflect new mapping.
             Integer activeAffiliations = [SELECT COUNT() FROM Affiliation__c WHERE Primary__c = TRUE];
