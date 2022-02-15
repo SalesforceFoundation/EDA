@@ -374,33 +374,6 @@ private class AFFL_MultiRecordTypeMapper_TEST {
         System.assertEquals(null, primaryAfflLookupAPIName);
     }
 
-    /*
-     * Invalid Affiliation Mapping RT test for getKeyAfflFieldByAccRecordType method of AFFL_MultiRecordTypeMapper
-     * Test Scenario: T-3939020
-     */
-    @isTest
-    private static void getKeyAfflFieldByAccRecordTypeInvalidRTTest() {
-        String invalidRTName = 'An_Inactive_Record_Type';
-        insert new Affl_Mappings__c(
-            Name = 'An Inactive Record Type',
-            Account_Record_Type__c = invalidRTName,
-            Primary_Affl_Field__c = 'Primary_Inactive_Account__c'
-        );
-
-        AFFL_MultiRecordTypeMapper afflMapper = new AFFL_MultiRecordTypeMapper();
-
-        Test.startTest();
-        try {
-            afflMapper.getKeyAfflFieldByAccRecordType(null);
-        } catch (AFFL_MultiRecordTypeMapper.AfflNullPointerException ex) {
-            System.assertEquals(
-                String.format(Label.afflNullPointerError, new List<String>{ invalidRTName }),
-                ex.getMessage()
-            );
-        }
-        Test.stopTest();
-    }
-
     // Positive test for getContactFieldFromSettings method of AFFL_MultiRecordTypeMapper
     @isTest
     private static void getContactFieldFromSettingsPoitiveTest() {

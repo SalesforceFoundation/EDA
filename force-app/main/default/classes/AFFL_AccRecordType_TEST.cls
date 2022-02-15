@@ -759,6 +759,7 @@ public with sharing class AFFL_AccRecordType_TEST {
     /*************************************************************************************************************
      * @description Test to ensure an error is thrown when an affiliation is updated with an Account whose record
      * type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled.
+     * Test Scenario: T-3939020
      **************************************************************************************************************/
     private static void updateAfflWAccRecTypeEnforced() {
         Hierarchy_Settings__c hs = UTIL_CustomSettings_API.getSettingsForTests(
