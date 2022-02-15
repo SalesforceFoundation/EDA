@@ -115,7 +115,11 @@ public with sharing class AFFL_AccRecordType_TEST {
         insertAfflWAccRecTypeEnforced();
     }
 
-    // Test Scenario: T-3939021
+    /* Test to ensure an error is thrown when an affiliation is inserted with an Account whose record
+     * type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled
+     * for a spanish user.
+     * Test Scenario: T-3939021
+     */
     @isTest
     private static void insertAfflWAccRecTypeEnforced_FieldNames_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
@@ -199,21 +203,6 @@ public with sharing class AFFL_AccRecordType_TEST {
     private static void insertAfflWAccRecTypeEnforced_FieldLabels() {
         setupWithFieldLabels();
         insertAfflWAccRecTypeEnforced();
-    }
-
-    // Test Scenario: T-3939021
-    @isTest
-    private static void insertAfflWAccRecTypeEnforced_FieldLabels_Spanish() {
-        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
-
-        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
-            System.now().getTime() + '@testerson.com',
-            systemAdministratorProfile.Id,
-            'es'
-        )) {
-            setupWithFieldLabels();
-            insertAfflWAccRecTypeEnforced();
-        }
     }
 
     @isTest
@@ -722,7 +711,6 @@ public with sharing class AFFL_AccRecordType_TEST {
      * type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled.
      * Test Scenario: T-3939019
      */
-
     private static void insertAfflWAccRecTypeEnforced() {
         UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(

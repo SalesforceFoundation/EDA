@@ -1100,7 +1100,10 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
-    // Test Scenario: T-3939029
+    /*************************************************************************************************************
+     * @description For a spanish user, ensure affiliations are created on Contact insert.
+     * Test Scenario: T-3939029
+     **************************************************************************************************************/
     @isTest
     private static void insertContactPrimaryAfflWAccRecTypeUnenforced_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
@@ -1114,7 +1117,12 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
-    // Test Scenario: T-3939030
+    /*************************************************************************************************************
+     * @description Test case to for a spanish suer, verify that updating a primary affiliation field on Contact
+     * with record type validation disabled, a valid Contact field mapping to a lookup field and invalid Record
+     * Type mapping does not throw an error when the mapped field is not populated.
+     * Test Scenario: T-3939030
+     **************************************************************************************************************/
     @isTest
     private static void updateContactPrimaryAfflWAccRecTypeUnenforced_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
@@ -1128,9 +1136,13 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
-    // Test Scenario: T-3939026
+    /*************************************************************************************************************
+     * @description For a spanish user, ensure affiliations are created on Contact insert, additionally
+     * ensure affiliations are updated upon contact primary affiliation reassignment.
+     * Test Scenario: T-3939026
+     **************************************************************************************************************/
     @isTest
-    private static void insertMultipleContactPrimaryAfflWAccRecTypeUnenforced_Spanish() {
+    private static void updateMultipleContactPrimaryAfflWAccRecTypeUnenforced_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
 
         System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(

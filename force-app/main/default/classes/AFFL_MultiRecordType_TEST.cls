@@ -256,6 +256,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
     private static void updatePrimaryAffiliationRecordType_FieldAPI_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
         STG_InstallScript.insertMappings();
+        UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true)
+        );
 
         // Test Scenario: T-3939027
         System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
