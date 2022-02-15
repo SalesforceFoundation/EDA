@@ -718,7 +718,8 @@ public with sharing class AFFL_AccRecordType_TEST {
             )
         );
 
-        Contact contact = UTIL_UnitTestData_API.getContact();
+        User u = [SELECT toLabel(LanguageLocaleKey) FROM User WHERE Id = :UserInfo.getUserId()];
+        Contact contact = UTIL_UnitTestData_TEST.getContact(u.LanguageLocaleKey);
         insert contact;
 
         //Create a Primary Affiliation to an Account with Admin record type

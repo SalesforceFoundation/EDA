@@ -1571,7 +1571,8 @@ private with sharing class CON_PrimaryAffls_TEST {
      **************************************************************************************************************/
     @isTest
     private static void updateContactAfflInvalidRTAndValidFieldMappingFieldNotPopulatedNoValidationPositive() {
-        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
+        User u = [SELECT toLabel(LanguageLocaleKey) FROM User WHERE Id = :UserInfo.getUserId()];
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100, u.LanguageLocaleKey);
         insert testContactsList;
 
         UTIL_CustomSettings_API.getSettingsForTests(

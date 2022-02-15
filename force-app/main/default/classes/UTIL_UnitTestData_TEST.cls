@@ -78,20 +78,20 @@ public class UTIL_UnitTestData_TEST {
         return lead;
     }
 
-    public static Contact getContact() {
-        User u = [SELECT toLabel(LanguageLocaleKey) FROM User WHERE Id = :UserInfo.getUserId()];
-        String contactPrefEmail;
-        if (u.LanguageLocaleKey == 'English') {
-            contactPrefEmail = 'Work Email';
-        } else if (u.LanguageLocaleKey == 'Español') {
-            contactPrefEmail = 'Correo electrónico laboral';
+    public static Contact getContact(String LanguageLocaleKey) {
+        Contact contact = getContact();
+        if (LanguageLocaleKey == 'Español') {
+            contact.Preferred_Email__c = 'Correo electrónico laboral';
         }
+        return contact;
+    }
 
+    public static Contact getContact() {
         Contact contact = new Contact(
             FirstName = 'Test',
             LastName = 'Testerson' + Datetime.now().getTime(),
             WorkEmail__c = 'fakeemail@salesforce.org',
-            Preferred_Email__c = contactPrefEmail,
+            Preferred_Email__c = 'Work Email',
             WorkPhone__c = '206-777-8888',
             PreferredPhone__c = 'Work Phone',
             OtherCity = 'Seattle'
@@ -121,22 +121,24 @@ public class UTIL_UnitTestData_TEST {
         return contact;
     }
 
-    public static List<Contact> getMultipleTestContacts(Integer n) {
-        User u = [SELECT toLabel(LanguageLocaleKey) FROM User WHERE Id = :UserInfo.getUserId()];
-        String contactPrefEmail;
-        if (u.LanguageLocaleKey == 'English') {
-            contactPrefEmail = 'Work Email';
-        } else if (u.LanguageLocaleKey == 'Español') {
-            contactPrefEmail = 'Correo electrónico laboral';
+    public static List<Contact> getMultipleTestContacts(Integer n, String LanguageLocaleKey) {
+        List<Contact> contacts = getMultipleTestContacts(n);
+        if (LanguageLocaleKey == 'Español') {
+            for (Contact con : contacts) {
+                con.Preferred_Email__c = 'Correo electrónico laboral';
+            }
         }
+        return contacts;
+    }
 
+    public static List<Contact> getMultipleTestContacts(Integer n) {
         List<contact> ContactsToAdd = new List<contact>();
         for (Integer i = 0; i < n; i++) {
             Contact newCon = new Contact(
                 FirstName = i + 'Test' + i,
                 LastName = i + 'Contact_forTests' + i,
                 WorkEmail__c = 'fakeemail' + i + '@salesforce.org',
-                Preferred_Email__c = contactPrefEmail,
+                Preferred_Email__c = 'Work Email',
                 WorkPhone__c = i + '06-777-888' + i,
                 PreferredPhone__c = 'Work Phone',
                 OtherCity = 'Seattle'
