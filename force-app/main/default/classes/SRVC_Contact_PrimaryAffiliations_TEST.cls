@@ -109,25 +109,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreatePositiveTest() {
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Business Organization',
-                Account_Record_Type__c = 'Business Organization',
-                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
-            )
-        );
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Household Account',
-                Account_Record_Type__c = 'Household Account',
-                Primary_Affl_Field__c = prefix + 'Primary_Household__c'
-            )
-        );
-        insert mappings;
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Account businesssAccount = new Account(
             Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType),
@@ -158,25 +140,7 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreateNegativeTestWithNULL() {
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Business Organization',
-                Account_Record_Type__c = 'Business Organization',
-                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
-            )
-        );
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Household Account',
-                Account_Record_Type__c = 'Household Account',
-                Primary_Affl_Field__c = prefix + 'Primary_Household__c'
-            )
-        );
-        insert mappings;
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Account businesssAccount = new Account(
             Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType),
@@ -546,30 +510,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreateOrUpdateTestWithShouldCreateAffiliatonsTrue() {
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         TDTM_ProcessControl.setRecursionFlag(
             TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
             false
         );
-
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Business Organization',
-                Account_Record_Type__c = 'Business Organization',
-                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
-            )
-        );
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Household Account',
-                Account_Record_Type__c = 'Household Account',
-                Primary_Affl_Field__c = prefix + 'Primary_Household__c'
-            )
-        );
-        insert mappings;
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Account businesssAccount = new Account(
             Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType),
@@ -621,30 +566,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
      ******************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreateOrUpdateForContactTestWithForInsert() {
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         TDTM_ProcessControl.setRecursionFlag(
             TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
             false
         );
-
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Business Organization',
-                Account_Record_Type__c = 'Business Organization',
-                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
-            )
-        );
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Household Account',
-                Account_Record_Type__c = 'Household Account',
-                Primary_Affl_Field__c = prefix + 'Primary_Household__c'
-            )
-        );
-        insert mappings;
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Account businesssAccount = new Account(
             Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType),
@@ -676,30 +602,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
      ******************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreateOrUpdateForContactTestWithForInsertWhenPrimaryFiledIsChangedPositive() {
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         TDTM_ProcessControl.setRecursionFlag(
             TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
             false
         );
-
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Business Organization',
-                Account_Record_Type__c = 'Business Organization',
-                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
-            )
-        );
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Household Account',
-                Account_Record_Type__c = 'Household Account',
-                Primary_Affl_Field__c = prefix + 'Primary_Household__c'
-            )
-        );
-        insert mappings;
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Account businesssAccount1 = new Account(
             Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType),
@@ -980,30 +887,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreateOrUpdateForContactTestWithForUpdate() {
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         TDTM_ProcessControl.setRecursionFlag(
             TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
             false
         );
-
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Business Organization',
-                Account_Record_Type__c = 'Business Organization',
-                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
-            )
-        );
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Household Account',
-                Account_Record_Type__c = 'Household Account',
-                Primary_Affl_Field__c = prefix + 'Primary_Household__c'
-            )
-        );
-        insert mappings;
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Account businesssAccount = new Account(
             Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType),
@@ -1036,30 +924,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToUpdateForContactTest() {
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         TDTM_ProcessControl.setRecursionFlag(
             TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
             false
         );
-
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Business Organization',
-                Account_Record_Type__c = 'Business Organization',
-                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
-            )
-        );
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Household Account',
-                Account_Record_Type__c = 'Household Account',
-                Primary_Affl_Field__c = prefix + 'Primary_Household__c'
-            )
-        );
-        insert mappings;
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Account businesssAccount = new Account(
             Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType),
@@ -1091,30 +960,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToUpdateForContactTestWhenPrimaryFieldIsCleared() {
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         TDTM_ProcessControl.setRecursionFlag(
             TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
             false
         );
-
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Business Organization',
-                Account_Record_Type__c = 'Business Organization',
-                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
-            )
-        );
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Household Account',
-                Account_Record_Type__c = 'Household Account',
-                Primary_Affl_Field__c = prefix + 'Primary_Household__c'
-            )
-        );
-        insert mappings;
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Account businesssAccount = new Account(
             Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType),
@@ -1146,30 +996,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreateOrUpdateTestForUpdateUsingDML() {
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         TDTM_ProcessControl.setRecursionFlag(
             TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
             true
         );
-
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Business Organization',
-                Account_Record_Type__c = 'Business Organization',
-                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
-            )
-        );
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Household Account',
-                Account_Record_Type__c = 'Household Account',
-                Primary_Affl_Field__c = prefix + 'Primary_Household__c'
-            )
-        );
-        insert mappings;
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Account businesssAccount = UTIL_UnitTestData_API.getMultipleTestAccounts(
             1,
@@ -1219,30 +1050,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreateOrUpdateForContactTestForUpdateUsingDML() {
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         TDTM_ProcessControl.setRecursionFlag(
             TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
             true
         );
-
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Business Organization',
-                Account_Record_Type__c = 'Business Organization',
-                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
-            )
-        );
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Household Account',
-                Account_Record_Type__c = 'Household Account',
-                Primary_Affl_Field__c = prefix + 'Primary_Household__c'
-            )
-        );
-        insert mappings;
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Account businesssAccount = UTIL_UnitTestData_API.getMultipleTestAccounts(
             1,
@@ -1427,30 +1239,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
      ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToUpdateMethodPostitiveTest() {
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
         TDTM_ProcessControl.setRecursionFlag(
             TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_afflMadePrimary,
             true
         );
-
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Business Organization',
-                Account_Record_Type__c = 'Business Organization',
-                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
-            )
-        );
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Household Account',
-                Account_Record_Type__c = 'Household Account',
-                Primary_Affl_Field__c = prefix + 'Primary_Household__c'
-            )
-        );
-        insert mappings;
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
 
         Account businesssAccount = UTIL_UnitTestData_API.getMultipleTestAccounts(
             1,
