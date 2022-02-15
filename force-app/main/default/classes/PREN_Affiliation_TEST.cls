@@ -325,7 +325,9 @@ private class PREN_Affiliation_TEST {
     @isTest
     public static void setAfflFromProgramEnrollmentStatus() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Affl_ProgEnroll_Status_Map__c = 'Former')
+            new Hierarchy_Settings__c(
+                Affl_ProgEnroll_Status_Map__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_FORMER
+            )
         );
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -346,7 +348,7 @@ private class PREN_Affiliation_TEST {
         //An Affiliation should have been automatically created from the Program Enrollment
         List<Affiliation__c> affls = [SELECT Status__c FROM Affiliation__c WHERE Account__c = :acc.ID];
         System.assertEquals(1, affls.size());
-        System.assertEquals('Former', affls[0].Status__c);
+        System.assertEquals(AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_FORMER, affls[0].Status__c);
 
         //Only should one program enrollment exist
         List<Program_Enrollment__c> assertProgramEnrollments = [SELECT Id FROM Program_Enrollment__c];
@@ -498,7 +500,7 @@ private class PREN_Affiliation_TEST {
     public static void deletePEnrollDelAfflNo() {
         STG_InstallScript.insertMappings();
 
-        String afflStatus = 'Former';
+        String afflStatus = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_FORMER;
         UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(Affl_ProgEnroll_Del__c = false, Affl_ProgEnroll_Del_Status__c = afflStatus)
         );
@@ -544,7 +546,7 @@ private class PREN_Affiliation_TEST {
     public static void deletePEnrollDelAfflNo_existingPEPreventsAffiliationDeletion() {
         STG_InstallScript.insertMappings();
 
-        String afflStatus = 'Former';
+        String afflStatus = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_FORMER;
         UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(Affl_ProgEnroll_Del__c = false, Affl_ProgEnroll_Del_Status__c = afflStatus)
         );
