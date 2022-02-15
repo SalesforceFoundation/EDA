@@ -306,22 +306,29 @@ public with sharing class AFFL_ContactAccChange_TEST {
     }
 
     /*
-    *  Ensure contact primary affiliation updates existing affiliations(Primary).
-    *  Test Scenario: T-3938994
-    */
+     *  Ensure contact primary affiliation updates existing affiliations(Primary).
+     *  Test Scenario: T-3938994
+     */
     @isTest
-    private static void updateAccToAnExistingAccTypeFromContact() {
+    private static void updateExistingContactPrimaryAfflField() {
         AFFL_ContactAccChange_TEST.dataSetup();
-
-        // Get a contact
         Contact testContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
 
-        // Get the business affiliation to above contact
-        Integer afflsCount = [SELECT COUNT() FROM Affiliation__c WHERE Contact__c = :testContact.Id];
-        System.assertEquals(1, afflsCount);
+        // Get the affiliations to above contact
+        Integer nonActiveAfflsCount = [
+            SELECT COUNT()
+            FROM Affiliation__c
+            WHERE Contact__c = :testContact.Id AND Primary__c = FALSE
+        ];
+        Integer activeAfflsCount = [
+            SELECT COUNT()
+            FROM Affiliation__c
+            WHERE Contact__c = :testContact.Id AND Primary__c = TRUE
+        ];
+        System.assertEquals(1, activeAfflsCount);
+        System.assertEquals(0, nonActiveAfflsCount);
 
         testContact = [SELECT Id, Primary_Organization__c FROM Contact WHERE Id = :contact1.Id];
-        System.assertNotEquals(null, testContact.Primary_Organization__c);
         System.assertEquals(bizOrg1.Id, testContact.Primary_Organization__c);
 
         testContact.Primary_Organization__c = bizOrg2.Id;
@@ -330,15 +337,19 @@ public with sharing class AFFL_ContactAccChange_TEST {
         update testContact;
         test.stopTest();
 
-        List<Affiliation__c> affls = [
-            SELECT Id, Primary__c
+        // Refresh affiliations for given contact
+        nonActiveAfflsCount = [
+            SELECT COUNT()
             FROM Affiliation__c
-            WHERE Contact__c = :testContact.Id
-            ORDER BY CreatedDate
+            WHERE Contact__c = :testContact.Id AND Primary__c = FALSE
         ];
-        System.assertEquals(2, affls.size());
-        System.assertEquals(false, affls[0].Primary__c);
-        System.assertEquals(true, affls[1].Primary__c);
+        activeAfflsCount = [
+            SELECT COUNT()
+            FROM Affiliation__c
+            WHERE Contact__c = :testContact.Id AND Primary__c = TRUE
+        ];
+        System.assertEquals(1, activeAfflsCount);
+        System.assertEquals(1, nonActiveAfflsCount);
     }
 
     // Test to check the error when the Organization on an Affiliation is changed to an Account which is a part of Primary Affiliation on the same Contact
