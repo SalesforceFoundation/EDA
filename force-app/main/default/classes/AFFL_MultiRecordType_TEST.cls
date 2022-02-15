@@ -272,7 +272,9 @@ public with sharing class AFFL_MultiRecordType_TEST {
             Contact contact = [SELECT Id, Primary_Household__c, Primary_Organization__c FROM Contact LIMIT 1];
             contact.Primary_Household__c = null;
             contact.Primary_Organization__c = null;
+            Test.startTest();
             update contact;
+            Test.stopTest();
 
             List<Affiliation__c> affls = [
                 SELECT Id, Primary__c, Affiliation_Type__c
