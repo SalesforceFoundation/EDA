@@ -1118,7 +1118,7 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
 
     /*************************************************************************************************************
-     * @description Test case to for a spanish suer, verify that updating a primary affiliation field on Contact
+     * @description Test case to for a spanish user, verify that updating a primary affiliation field on Contact
      * with record type validation disabled, a valid Contact field mapping to a lookup field and invalid Record
      * Type mapping does not throw an error when the mapped field is not populated.
      * Test Scenario: T-3939030
