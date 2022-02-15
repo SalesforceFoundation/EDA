@@ -220,7 +220,7 @@ public with sharing class AFFL_AccRecordType_TEST {
 
         try {
             changePrimaryAffiliationRecordType();
-        } catch (Exception ex) {
+        } catch (System.DmlException ex) {
             System.assert(ex.getMessage().contains('Row with duplicate Name'));
         }
     }
@@ -240,7 +240,7 @@ public with sharing class AFFL_AccRecordType_TEST {
 
         try {
             changePrimaryAffiliationRecordType();
-        } catch (Exception ex) {
+        } catch (System.DmlException ex) {
             System.assert(ex.getMessage().contains('Row with duplicate Name'));
         }
     }
@@ -251,25 +251,6 @@ public with sharing class AFFL_AccRecordType_TEST {
      */
     @isTest
     private static void disabledAccountRTAffiliationMappingCheck_FieldLabels() {
-        setupWithFieldLabels();
-        Contact contact = UTIL_UnitTestData_API.getContact();
-        insert contact;
-
-        Account bizOrg = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
-        insert bizOrg;
-
-        Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizOrg.Id, Primary__c = true);
-
-        TDTM_ProcessControl.setRecursionFlag(
-            TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
-            false
-        );
-
-        Test.startTest();
-        insert bizAffl;
-        Test.stopTest();
-        contact = [SELECT AccountId, Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
-
         // Given BizOrg RT disabled in org
         Integer isBizAcctRTDisabledInOrg = [
             SELECT COUNT()
@@ -279,6 +260,33 @@ public with sharing class AFFL_AccRecordType_TEST {
 
         //Verify the primary business organization field is not populated when the RT is disabled
         if (isBizAcctRTDisabledInOrg > 0) {
+            setupWithFieldLabels();
+            Contact contact = UTIL_UnitTestData_API.getContact();
+            insert contact;
+
+            Account bizOrg = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+            insert bizOrg;
+
+            Affiliation__c bizAffl = new Affiliation__c(
+                Contact__c = contact.Id,
+                Account__c = bizOrg.Id,
+                Primary__c = true
+            );
+
+            TDTM_ProcessControl.setRecursionFlag(
+                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
+                false
+            );
+
+            Test.startTest();
+            insert bizAffl;
+            Test.stopTest();
+            contact = [
+                SELECT AccountId, Primary_Household__c, Primary_Organization__c
+                FROM Contact
+                WHERE Id = :contact.Id
+            ];
+
             System.assertEquals(null, contact.Primary_Organization__c);
         }
     }
