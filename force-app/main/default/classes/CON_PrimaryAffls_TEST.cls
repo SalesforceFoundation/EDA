@@ -1101,6 +1101,16 @@ private with sharing class CON_PrimaryAffls_TEST {
     }
 
     /*************************************************************************************************************
+     * @description Ensure affiliations are created on Contact insert.
+     **************************************************************************************************************/
+    @isTest
+    private static void insertContactPrimaryAfflWAccRecTypeUnenforced_English() {
+        Test.startTest();
+        createAffiliationsOnBulkContactInsert();
+        Test.stopTest();
+    }
+
+    /*************************************************************************************************************
      * @description For a spanish user, ensure affiliations are created on Contact insert.
      * Test Scenario: T-3939029
      **************************************************************************************************************/
@@ -1113,7 +1123,9 @@ private with sharing class CON_PrimaryAffls_TEST {
             systemAdministratorProfile.Id,
             'es'
         )) {
+            Test.startTest();
             createAffiliationsOnBulkContactInsert();
+            Test.stopTest();
         }
     }
 
@@ -1728,10 +1740,6 @@ private with sharing class CON_PrimaryAffls_TEST {
         }
     }
 
-    /*************************************************************************************************************
-     * @description Positive bulk test to ensure affiliations are created on Contact insert
-     **************************************************************************************************************/
-    @isTest
     private static void createAffiliationsOnBulkContactInsert() {
         UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = false)
@@ -1769,10 +1777,7 @@ private with sharing class CON_PrimaryAffls_TEST {
             contactsToBeInserted.add(contactWithPrimaryBusinessOrg);
         }
 
-        Test.startTest();
         insert contactsToBeInserted;
-        Test.stopTest();
-
         Map<Id, Contact> ContactsById = new Map<Id, Contact>(contactsToBeInserted);
 
         //Ensure Primary Business Organization affiliations are created for each Contact
