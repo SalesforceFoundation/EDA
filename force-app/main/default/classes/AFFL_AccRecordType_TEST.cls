@@ -130,6 +130,15 @@ public with sharing class AFFL_AccRecordType_TEST {
         }
     }
 
+    /*
+     *  Test Scenario: T-3939017
+     */
+    @isTest
+    private static void updateAfflWAccRecTypeEnforced_FieldNames() {
+        setup();
+        updateAfflWAccRecTypeEnforced();
+    }
+
     @isTest
     private static void otherPrimaryNotPrimary_FieldNames() {
         setup();
@@ -737,6 +746,54 @@ public with sharing class AFFL_AccRecordType_TEST {
                 false
             );
             insert affl;
+            Test.stopTest();
+            System.assert(
+                false,
+                'Always throw an exception when Account record type is not a part of Affiliation Mappings and when Affiliation Record Type is Enforced.'
+            );
+        } catch (System.DmlException error) {
+            System.assert(error.getMessage().contains(Label.afflAccoutMappingError));
+        }
+    }
+
+    /*************************************************************************************************************
+     * @description Test to ensure an error is thrown when an affiliation is updated with an Account whose record
+     * type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled.
+     **************************************************************************************************************/
+    private static void updateAfflWAccRecTypeEnforced() {
+        Hierarchy_Settings__c hs = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true)
+        );
+        UTIL_UnitTestData_TEST.createAffiliationMappingsWithFieldLabels();
+
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
+        insert testContactsList;
+
+        List<Affiliation__c> affls = new List<Affiliation__c>();
+
+        // Account w affilation mapping
+        Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        )[0];
+        insert businessAccount1;
+
+        for (Contact con : testContactsList) {
+            affls.add(UTIL_UnitTestData_TEST.getAffiliation(con.Id, businessAccount1.Id, false));
+        }
+        insert affls;
+
+        // Admin record type Account (w/o affilation mapping)
+        Account acc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID())[0];
+        insert acc;
+
+        for (Affiliation__c currentAffl : affls) {
+            currentAffl.Account__c = acc.Id;
+        }
+
+        Test.startTest();
+        try {
+            update affls;
             Test.stopTest();
             System.assert(
                 false,

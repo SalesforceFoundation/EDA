@@ -1353,9 +1353,6 @@ private with sharing class CON_PrimaryAffls_TEST {
         );
         insert mappings;
 
-        for (Affl_Mappings__c affMap : mappings) {
-        }
-
         // insert business account
         Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
             1,
