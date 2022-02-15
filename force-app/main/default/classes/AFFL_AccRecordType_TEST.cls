@@ -263,42 +263,34 @@ public with sharing class AFFL_AccRecordType_TEST {
     @isTest
     private static void disabledAccountRTAffiliationMappingCheck_FieldLabels() {
         setupWithFieldLabels();
+        Contact contact = UTIL_UnitTestData_API.getContact();
+        insert contact;
 
-        // Given/Assuming BizOrg RT disabled in org
-        RecordType orgDisabledAcctRT = [
-            SELECT Id
+        Account bizOrg = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+        insert bizOrg;
+
+        Affiliation__c bizAffl = new Affiliation__c(Contact__c = contact.Id, Account__c = bizOrg.Id, Primary__c = true);
+
+        TDTM_ProcessControl.setRecursionFlag(
+            TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
+            false
+        );
+
+        Test.startTest();
+        insert bizAffl;
+        Test.stopTest();
+        contact = [SELECT AccountId, Primary_Household__c, Primary_Organization__c FROM Contact WHERE Id = :contact.Id];
+
+        // Given BizOrg RT disabled in org
+        Integer isBizAcctRTDisabledInOrg = [
+            SELECT COUNT()
             FROM RecordType
             WHERE DeveloperName = 'Business_Organization' AND SObjectType = 'Account' AND IsActive = FALSE
         ];
 
-        System.debug(orgDisabledAcctRT);
-        if (orgDisabledAcctRT != null) {
-            Contact contact = UTIL_UnitTestData_API.getContact();
-            insert contact;
-
-            Account bizOrg = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
-            insert bizOrg;
-
-            Affiliation__c bizAffl = new Affiliation__c(
-                Contact__c = contact.Id,
-                Account__c = bizOrg.Id,
-                Primary__c = true
-            );
-
-            TDTM_ProcessControl.setRecursionFlag(
-                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
-                false
-            );
-
-            insert bizAffl;
-
-            //Verify the primary business organization field is not populated given the RT is disabled
-            contact = [
-                SELECT AccountId, Primary_Household__c, Primary_Organization__c
-                FROM Contact
-                WHERE Id = :contact.Id
-            ];
-            System.assertNotEquals(bizOrg.Id, contact.Primary_Organization__c);
+        //Verify the primary business organization field is not populated when the RT is disabled
+        if (isBizAcctRTDisabledInOrg > 0) {
+            System.assertEquals(null, contact.Primary_Organization__c);
         }
     }
 
