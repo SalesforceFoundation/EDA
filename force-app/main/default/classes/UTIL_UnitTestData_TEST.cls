@@ -576,7 +576,7 @@ public class UTIL_UnitTestData_TEST {
         Affiliation__c affiliation = new Affiliation__c(
             Contact__c = newContacts[0].Id,
             Account__c = newContacts[0].AccountId,
-            Role__c = 'Student'
+            Role__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT
         );
         insert affiliation;
 
@@ -1147,8 +1147,8 @@ public class UTIL_UnitTestData_TEST {
                     Account_Record_Type__c = 'Academic_Program',
                     Primary_Affl_Field__c = 'Primary Academic Program',
                     Auto_Program_Enrollment__c = true,
-                    Auto_Program_Enrollment_Status__c = 'Current',
-                    Auto_Program_Enrollment_Role__c = 'Student'
+                    Auto_Program_Enrollment_Status__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT,
+                    Auto_Program_Enrollment_Role__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT
                 )
             );
             mappings.add(

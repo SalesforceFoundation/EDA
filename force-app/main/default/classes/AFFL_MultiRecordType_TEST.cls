@@ -474,8 +474,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
         //Turn on Academic Record auto-creation for Business Organization mapping, which we are using as an arbitrary record type for testing.
         Affl_Mappings__c bizOrgMapping = bizOrgMappingWrapper.getAffiliationMapping();
         bizOrgMapping.Auto_Program_Enrollment__c = true;
-        bizOrgMapping.Auto_Program_Enrollment_Role__c = 'Student';
-        bizOrgMapping.Auto_Program_Enrollment_Status__c = 'Current';
+        bizOrgMapping.Auto_Program_Enrollment_Role__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT;
+        bizOrgMapping.Auto_Program_Enrollment_Status__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT;
         update bizOrgMapping;
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -489,8 +489,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
         Affiliation__c affl = new Affiliation__c(
             Contact__c = contact.ID,
             Account__c = acc.ID,
-            Role__c = 'Student',
-            Status__c = 'Current'
+            Role__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT,
+            Status__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT
         );
 
         Test.startTest();
@@ -519,8 +519,8 @@ public with sharing class AFFL_MultiRecordType_TEST {
         //Turn on Academic Record auto-creation for Business Organization mapping, which we are using as an arbitrary record type for testing.
         Affl_Mappings__c bizOrgMapping = bizOrgMappingWrapper.getAffiliationMapping();
         bizOrgMapping.Auto_Program_Enrollment__c = true;
-        bizOrgMapping.Auto_Program_Enrollment_Role__c = 'Student';
-        bizOrgMapping.Auto_Program_Enrollment_Status__c = 'Current';
+        bizOrgMapping.Auto_Program_Enrollment_Role__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT;
+        bizOrgMapping.Auto_Program_Enrollment_Status__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT;
         update bizOrgMapping;
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -535,7 +535,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
             Contact__c = contact.ID,
             Account__c = acc.ID,
             Role__c = 'Teacher',
-            Status__c = 'Current'
+            Status__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT
         );
 
         Test.startTest();

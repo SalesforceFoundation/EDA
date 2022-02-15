@@ -247,7 +247,10 @@ private class PREN_Affiliation_TEST {
     @isTest
     public static void setAfflFromProgramEnrollmentRoleYes() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Affl_ProgEnroll_Set_Role__c = true, Affl_ProgEnroll_Role_Map__c = 'Student')
+            new Hierarchy_Settings__c(
+                Affl_ProgEnroll_Set_Role__c = true,
+                Affl_ProgEnroll_Role_Map__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT
+            )
         );
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -268,7 +271,7 @@ private class PREN_Affiliation_TEST {
         //An Affiliation should have been automatically created from the Program Enrollment
         List<Affiliation__c> affls = [SELECT Role__c FROM Affiliation__c WHERE Account__c = :acc.ID];
         System.assertEquals(1, affls.size());
-        System.assertEquals('Student', affls[0].Role__c);
+        System.assertEquals(AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT, affls[0].Role__c);
 
         //Only should one program enrollment exist
         List<Program_Enrollment__c> assertProgramEnrollments = [SELECT Id FROM Program_Enrollment__c];
@@ -283,7 +286,10 @@ private class PREN_Affiliation_TEST {
     @isTest
     public static void setAfflFromProgramEnrollmentRoleNo() {
         UTIL_CustomSettingsFacade.getSettingsForTests(
-            new Hierarchy_Settings__c(Affl_ProgEnroll_Set_Role__c = false, Affl_ProgEnroll_Role_Map__c = 'Student')
+            new Hierarchy_Settings__c(
+                Affl_ProgEnroll_Set_Role__c = false,
+                Affl_ProgEnroll_Role_Map__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT
+            )
         );
 
         Contact contact = new Contact(FirstName = 'Test', LastName = 'Testerson');
@@ -358,8 +364,8 @@ private class PREN_Affiliation_TEST {
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Affl_ProgEnroll_Set_Role__c = true,
-                Affl_ProgEnroll_Role_Map__c = 'Student',
-                Affl_ProgEnroll_Status_Map__c = 'Current'
+                Affl_ProgEnroll_Role_Map__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT,
+                Affl_ProgEnroll_Status_Map__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT
             )
         );
 
@@ -381,7 +387,7 @@ private class PREN_Affiliation_TEST {
         //An Affiliation should have been automatically created from the Program Enrollment
         List<Affiliation__c> affls = [SELECT Role__c FROM Affiliation__c WHERE Account__r.ID = :acc.ID];
         System.assertEquals(1, affls.size());
-        System.assertEquals('Student', affls[0].Role__c);
+        System.assertEquals(AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT, affls[0].Role__c);
 
         //Only should one program enrollment exist
         List<Program_Enrollment__c> assertProgramEnrollments = [SELECT Id FROM Program_Enrollment__c];
