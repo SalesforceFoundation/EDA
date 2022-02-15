@@ -375,29 +375,11 @@ private class SRVC_Contact_PrimaryAffiliations_TEST {
 
     /**************************************************************************************************************************
      * @description Test method to verify getAffiliationsToCreate() returns list of affiliations to create
+     * Test Scenario: T-3938986
      ***************************************************************************************************************************/
     @isTest
     private static void getAffiliationsToCreateForContactPositiveTest() {
-        String namespace = UTIL_Namespace.getNamespace();
-        String prefix = (String.isNotBlank(namespace)) ? namespace + '__' : '';
-
-        List<Affl_Mappings__c> mappings = new List<Affl_Mappings__c>();
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Business Organization',
-                Account_Record_Type__c = 'Business Organization',
-                Primary_Affl_Field__c = prefix + 'Primary_Organization__c'
-            )
-        );
-        mappings.add(
-            new Affl_Mappings__c(
-                Name = 'Household Account',
-                Account_Record_Type__c = 'Household Account',
-                Primary_Affl_Field__c = prefix + 'Primary_Household__c'
-            )
-        );
-        insert mappings;
-
+        AffiliationTestSetupFactory_TEST.setupMappingsByNameAndLabel(false);
         Account businesssAccount = new Account(
             Id = UTIL_UnitTestData_TEST.getFakeId(Account.sObjectType),
             RecordTypeId = UTIL_Describe_API.getBizAccRecTypeID()
