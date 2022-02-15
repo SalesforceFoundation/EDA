@@ -253,7 +253,7 @@ public with sharing class AFFL_MultiRecordType_TEST {
     }
 
     @isTest
-    private static void updatePrimaryAffiliationRecordType_FieldAPI_Spanish() {
+    private static void updatePrimaryAffiliationRecordType_FieldNames_Spanish() {
         Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
         STG_InstallScript.insertMappings();
         UTIL_CustomSettings_API.getSettingsForTests(
