@@ -776,3 +776,48 @@ plans:
                 task: install_managed
                 options:
                     security_type: PUSH
+
+    test_plan:
+        slug: test_plan
+        title: Test Plan Heading
+        tier: additional
+        is_listed: False
+        preflight_message: "This hidden installer is meant for testing only. Is this sentance accessible?"
+        post_install_message: "Installation complete and package is on the latest version."
+        checks:
+            - when: "True"
+              action: warn
+              message: "This is a warning to test warnings."
+        steps:
+            1:
+                flow: customer_org
+            2:
+                task: util_sleep
+                options:
+                    seconds: 30
+                ui_options:
+                    name: Test Required (30 Second Pause)
+                    is_required: True
+            3:
+                task: util_sleep
+                options:
+                    seconds: 1
+                ui_options:
+                    name: Test Not required (30 Second Pause)
+                    is_required: False
+            4:
+                task: util_sleep
+                options:
+                    seconds: 1
+                ui_options:
+                    name: Test Not Recommended (30 Second Pause)
+                    is_recommended: False
+                    is_required: False
+            5:
+                task: util_sleep
+                options:
+                    seconds: 1
+                ui_options:
+                    name: Test Recommended (30 Second Pause)
+                    is_recommended: False
+                    is_required: False
