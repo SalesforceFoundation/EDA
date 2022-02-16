@@ -218,7 +218,7 @@ private with sharing class REL_Relationships_Con_TEST {
      * Test Scenario: T-4315028
      *********************************************************************************************************/
     @isTest
-    private static void ensureRelationshipServiceinsertsContactsWithValidRelationshipsAutoCreate() {
+    private static void ensureRelationshipServiceInsertsContactsWithValidRelationshipsAutoCreate() {
         List<Relationship_Lookup__c> lookups = new List<Relationship_Lookup__c>();
 
         lookups.add(
@@ -302,6 +302,7 @@ private with sharing class REL_Relationships_Con_TEST {
     /*********************************************************************************************************
      * @description Test to verify that inserting a Contact record with invalid Auto Creation
      * mappings results in an error even when Contact is created and all fields associated with invalid mappings are not populated.
+     * Test Scenario: T-4316897
      *********************************************************************************************************/
     @isTest
     private static void insertContactWithInvalidRelationshipsAutoCreateUnpopulated() {
