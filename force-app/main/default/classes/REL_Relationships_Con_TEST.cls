@@ -213,6 +213,93 @@ private with sharing class REL_Relationships_Con_TEST {
     }
 
     /*********************************************************************************************************
+     * @description Test to verify that relationships are marked for insertion upon multiple relationships
+     * being configured and inserting of a given Contact record.
+     * Test Scenario: T-4315028
+     *********************************************************************************************************/
+    @isTest
+    private static void ensureRelationshipServiceinsertsContactsWithValidRelationshipsAutoCreate() {
+        List<Relationship_Lookup__c> lookups = new List<Relationship_Lookup__c>();
+
+        lookups.add(
+            new Relationship_Lookup__c(
+                Name = 'Employee',
+                Male__c = 'Employer',
+                Female__c = 'Employer',
+                Neutral__c = 'Employer',
+                Active__c = true
+            )
+        );
+        lookups.add(
+            new Relationship_Lookup__c(
+                Name = 'Employer',
+                Male__c = 'Employee',
+                Female__c = 'Employee',
+                Neutral__c = 'Employee',
+                Active__c = true
+            )
+        );
+        lookups.add(
+            new Relationship_Lookup__c(
+                Name = 'Supervised',
+                Male__c = 'Superviser',
+                Female__c = 'Superviser',
+                Neutral__c = 'Superviser',
+                Active__c = true
+            )
+        );
+        lookups.add(
+            new Relationship_Lookup__c(
+                Name = 'Superviser',
+                Male__c = 'Supervised',
+                Female__c = 'Supervised',
+                Neutral__c = 'Supervised',
+                Active__c = true
+            )
+        );
+        insert lookups;
+
+        insert new Relationship_Auto_Create__c(
+            Name = 'ConReportToAutoCreate1',
+            Object__c = 'Contact',
+            Field__c = 'ReportsToId',
+            Relationship_Type__c = 'Employer',
+            Campaign_Types__c = ''
+        );
+
+        insert new Relationship_Auto_Create__c(
+            Name = 'ConReportToAutoCreate2',
+            Object__c = 'Contact',
+            Field__c = 'IndividualId',
+            Relationship_Type__c = 'Superviser',
+            Campaign_Types__c = ''
+        );
+
+        Contact employer = UTIL_UnitTestData_TEST.getUniqueContact(0);
+        insert employer;
+
+        Contact superviser = UTIL_UnitTestData_TEST.getUniqueContact(1);
+        insert superviser;
+
+        Contact employee = UTIL_UnitTestData_TEST.getUniqueContact(2);
+        employee.ReportsToId = employer.Id;
+        employee.IndividualId = superviser.Id;
+
+        Test.startTest();
+        REL_Relationships_Con_TDTM instance = new REL_Relationships_Con_TDTM();
+        List<ContactRelAutoCreateMappingModel> contactRelAutoCreateModelsList = instance.locateRelationshipAutoCreateMapper()
+            .getContactMappingModelsFromSettings();
+
+        ContactsRelationshipsModel contactsRelationshipsMdl = instance.locateRelationshipAutoCreateService()
+            .getRelationshipsToCreateForContacts(new List<Contact>{ employee }, contactRelAutoCreateModelsList);
+        Test.stopTest();
+
+        System.assertEquals(2, contactsRelationshipsMdl.relationshipList.size());
+        System.assertEquals('Employer', contactsRelationshipsMdl.relationshipList[0].Type__c);
+        System.assertEquals('Superviser', contactsRelationshipsMdl.relationshipList[1].Type__c);
+    }
+
+    /*********************************************************************************************************
      * @description Test to verify that inserting a Contact record with invalid Auto Creation
      * mappings results in an error even when Contact is created and all fields associated with invalid mappings are not populated.
      *********************************************************************************************************/
