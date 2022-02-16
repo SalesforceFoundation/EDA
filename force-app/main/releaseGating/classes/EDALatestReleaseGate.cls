@@ -37,7 +37,7 @@ public with sharing class EDALatestReleaseGate extends ReleaseGateBase {
     @TestVisible
     private final static String RELEASE_GATE_FEATURE_NAME = 'latestfeature1';
     @TestVisible
-    private final static String FEATURE_HELP_LINK = 'https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kHOcSAM?tab=discussion&sort=LAST_MODIFIED_DATE_DESC';
+    private final static String FEATURE_HELP_LINK = 'https://powerofus.force.com/Education_Release_Readiness';
 
     /**
      * @description Get the name of the release gate
