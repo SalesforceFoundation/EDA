@@ -814,6 +814,7 @@ private with sharing class REL_Relationships_Con_TEST {
      * @description Test to verify that with Auto-Created Duplicate Relations and Relationship Auto Create
      * enabled, populating an Auto Create mapped field on Contact with the same value multiple times will
      * generate duplicate relationship and reciprocal relationship records.
+     * Test Scenario: T-4316903
      *********************************************************************************************************/
     @isTest
     private static void updateContactWithRelationshipAutoCreateDuplicatesAllowed() {
@@ -931,6 +932,7 @@ private with sharing class REL_Relationships_Con_TEST {
      * @description Test to verify that when Relationship Auto Creation is enabled and Auto-Created Duplicate
      * Relations is not, associating a Contact multiple times with the same value for an Auto Creation mapped
      * field only results in a single relationship and reciprocal relationship record.
+     * Test Scenario: T-4316901
      *********************************************************************************************************/
     @isTest
     private static void updateContactWithRelationshipAutoCreateDuplicatesNotAllowed() {
