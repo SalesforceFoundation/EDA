@@ -10,16 +10,16 @@ Suite Teardown  Capture screenshot and delete records and close browser
 *** Test Cases ***
 Verify release management page displays EDA release gates
     [Documentation]         Validates EDA release gates and features
-    [tags]                  rbt:high        W-10059977
+    [tags]                  rbt:high        W-10541240
     Go to release management
     Current page should be                      Home                                     Release Management
-    #Winter'22
+    #Latest EDA Release
     Verify release gate product                 Education Data Architecture
-    Verify release gate item                    Education Data Architecture              Winter'22
-    Verify release gate item description        Education Data Architecture              Winter'22              There were no features gated for this release therefore all features were automatically released with Winter'22                      
-    Verify release gate item icon               Education Data Architecture              Winter'22              action-approval
-    Verify release gate item activation status  Education Data Architecture              Winter'22              Activated
-    Verify release gate item activationdate     Education Data Architecture              Winter'22              none
+    Verify release gate item                    Education Data Architecture              Latest EDA Release
+    Verify release gate item description        Education Data Architecture              Latest EDA Release         There were no features gated for this release. Therefore, all features were automatically released.
+    Verify release gate item icon               Education Data Architecture              Latest EDA Release         action-approval
+    Verify release gate item activation status  Education Data Architecture              Latest EDA Release         Activated
+    Verify release gate item activationdate     Education Data Architecture              Latest EDA Release         none
 
 Verify release management page displays Advisor Link release gates
     [Documentation]         Validates Advisor Link release gates and features
