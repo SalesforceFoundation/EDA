@@ -3888,6 +3888,14 @@
         <value>Activate {0}</value>
     </labels>
     <labels>
+        <fullName>stgReleaseGateActivateLatest</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for a latest release</shortDescription>
+        <value>Activate Release</value>
+    </labels>
+    <labels>
         <fullName>stgBtnReleaseGateActivate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -3952,6 +3960,30 @@
         <value>All releases are active.</value>
     </labels>
     <labels>
+        <fullName>stgReleaseGateEDALatestLabel</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA latest release gate label</shortDescription>
+        <value>Latest EDA Release</value>
+    </labels>    
+    <labels>
+        <fullName>stgReleaseGateEDALatestDescription</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA latest release gate description</shortDescription>
+        <value>There were no features gated for this release. Therefore, all features were automatically released.</value>
+    </labels>
+    <labels>
+        <fullName>stgReleaseGateEDALatestFeatureDescription</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA latest release gate feature description</shortDescription>
+        <value>See EDA&apos;s release notes for full details.</value>
+    </labels>    
+    <labels>
         <fullName>stgReleaseGateEDASpring22Label</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -3966,7 +3998,7 @@
         <protected>true</protected>
         <shortDescription>EDA Spring 22 release gate description</shortDescription>
         <value>There were no features gated for this release therefore all features were automatically released with Spring&apos;22</value>
-    </labels>    
+    </labels>
     <labels>
         <fullName>stgReleaseGateEDAWinter22Label</fullName>
         <categories>Settings</categories>
@@ -3982,7 +4014,7 @@
         <protected>true</protected>
         <shortDescription>EDA Winter 22 release gate description</shortDescription>
         <value>There were no features gated for this release therefore all features were automatically released with Winter&apos;22</value>
-    </labels>    
+    </labels>
     <labels>
         <fullName>stgReleaseGateEDAWinter22FeatureDescription</fullName>
         <categories>Settings</categories>
