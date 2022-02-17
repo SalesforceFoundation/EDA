@@ -93,8 +93,8 @@ private with sharing class AffiliationsWithPrgrmEnrolMapr_TEST {
         Hierarchy_Settings__c hierarchySettings = UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Affl_ProgEnroll_Set_Role__c = true,
-                Affl_ProgEnroll_Role_Map__c = 'Student',
-                Affl_ProgEnroll_Status_Map__c = 'Current',
+                Affl_ProgEnroll_Role_Map__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT,
+                Affl_ProgEnroll_Status_Map__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT,
                 Affl_ProgEnroll_Copy_End_Date__c = true,
                 Affl_ProgEnroll_Copy_Start_Date__c = true
             )
@@ -112,12 +112,12 @@ private with sharing class AffiliationsWithPrgrmEnrolMapr_TEST {
             'Affil Set Role When Create Prog Enroll should be enabled.'
         );
         System.assertEquals(
-            'Student',
+            AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT,
             AffiliationsWithProgramEnrollmentModel.role,
             'Affil Role When Create Prog Enroll should be set to \'Student\''
         );
         System.assertEquals(
-            'Current',
+            AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT,
             AffiliationsWithProgramEnrollmentModel.status,
             'Affil Status When Create Prog Enroll should be set to \'Current\''
         );
