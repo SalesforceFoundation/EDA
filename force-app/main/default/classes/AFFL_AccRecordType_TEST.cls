@@ -115,6 +115,25 @@ public with sharing class AFFL_AccRecordType_TEST {
         insertAfflWAccRecTypeEnforced();
     }
 
+    /* Test to ensure an error is thrown when an affiliation is inserted with an Account whose record
+     * type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled
+     * for a spanish user.
+     * Test Scenario: T-3939021
+     */
+    @isTest
+    private static void insertAfflWAccRecTypeEnforced_FieldNames_Spanish() {
+        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+
+        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
+            System.now().getTime() + '@testerson.com',
+            systemAdministratorProfile.Id,
+            'es'
+        )) {
+            setup();
+            insertAfflWAccRecTypeEnforced();
+        }
+    }
+
     @isTest
     private static void otherPrimaryNotPrimary_FieldNames() {
         setup();
@@ -187,6 +206,89 @@ public with sharing class AFFL_AccRecordType_TEST {
     private static void updateAdminAccRecordTypeBulk_FieldLabels() {
         setupWithFieldLabels();
         updateAdminAccRecordTypeBulk();
+    }
+
+    /*
+     * Ensure redundant affiliaition RT mappings is surfaced as an error upon contact update.
+     * Test Scenario: T-3939010
+     */
+    @isTest
+    private static void invalidRedundantAffiliationRTMappingCheck_FieldLabels() {
+        setupWithFieldLabels();
+        // Insert redundant affiliation mapping
+        insert new Affl_Mappings__c(Name = 'Household Account', Account_Record_Type__c = 'HH_Account');
+
+        try {
+            changePrimaryAffiliationRecordType();
+        } catch (System.DmlException ex) {
+            System.assert(ex.getMessage().contains('Row with duplicate Name'));
+        }
+    }
+
+    /*
+     * Ensure redundant affiliaition field mappings is surfaced as an error upon contact update.
+     * Test Scenario: T-3939011
+     */
+    @isTest
+    private static void invalidRedundantAffiliationFieldMappingCheck_FieldLabels() {
+        setupWithFieldLabels();
+        // Insert redundant affiliation mapping
+        insert new Affl_Mappings__c(
+            Name = 'Household Account',
+            Primary_Affl_Field__c = 'Primary Business Organization'
+        );
+
+        try {
+            changePrimaryAffiliationRecordType();
+        } catch (System.DmlException ex) {
+            System.assert(ex.getMessage().contains('Row with duplicate Name'));
+        }
+    }
+
+    /*
+     * Ensure affiliaition mappings consisting of disabled record types appropriately surface as an error.
+     * Test Scenario: T-3939012
+     */
+    @isTest
+    private static void disabledAccountRTAffiliationMappingCheck_FieldLabels() {
+        // Given BizOrg RT disabled in org
+        Integer isBizAcctRTDisabledInOrg = [
+            SELECT COUNT()
+            FROM RecordType
+            WHERE DeveloperName = 'Business_Organization' AND SObjectType = 'Account' AND IsActive = FALSE
+        ];
+
+        //Verify the primary business organization field is not populated when the RT is disabled
+        if (isBizAcctRTDisabledInOrg > 0) {
+            setupWithFieldLabels();
+            Contact contact = UTIL_UnitTestData_API.getContact();
+            insert contact;
+
+            Account bizOrg = UTIL_UnitTestData_API.getMultipleTestAccounts(1, orgRecTypeID)[0];
+            insert bizOrg;
+
+            Affiliation__c bizAffl = new Affiliation__c(
+                Contact__c = contact.Id,
+                Account__c = bizOrg.Id,
+                Primary__c = true
+            );
+
+            TDTM_ProcessControl.setRecursionFlag(
+                TDTM_ProcessControl.registeredTrigger.AFFL_MultiRecordType_TDTM_Before_Insert,
+                false
+            );
+
+            Test.startTest();
+            insert bizAffl;
+            Test.stopTest();
+            contact = [
+                SELECT AccountId, Primary_Household__c, Primary_Organization__c
+                FROM Contact
+                WHERE Id = :contact.Id
+            ];
+
+            System.assertEquals(null, contact.Primary_Organization__c);
+        }
     }
 
     /**************************************************************************************************************************
@@ -605,8 +707,9 @@ public with sharing class AFFL_AccRecordType_TEST {
     }
 
     /* Test to ensure an error is thrown when an affiliation is inserted with an Account whose record
-     type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled */
-
+     * type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled.
+     * Test Scenario: T-3939019
+     */
     private static void insertAfflWAccRecTypeEnforced() {
         UTIL_CustomSettings_API.getSettingsForTests(
             new Hierarchy_Settings__c(
@@ -615,7 +718,8 @@ public with sharing class AFFL_AccRecordType_TEST {
             )
         );
 
-        Contact contact = UTIL_UnitTestData_API.getContact();
+        User u = [SELECT toLabel(LanguageLocaleKey) FROM User WHERE Id = :UserInfo.getUserId()];
+        Contact contact = UTIL_UnitTestData_TEST.getContact(u.LanguageLocaleKey);
         insert contact;
 
         //Create a Primary Affiliation to an Account with Admin record type
@@ -630,6 +734,55 @@ public with sharing class AFFL_AccRecordType_TEST {
                 false
             );
             insert affl;
+            Test.stopTest();
+            System.assert(
+                false,
+                'Always throw an exception when Account record type is not a part of Affiliation Mappings and when Affiliation Record Type is Enforced.'
+            );
+        } catch (System.DmlException error) {
+            System.assert(error.getMessage().contains(Label.afflAccoutMappingError));
+        }
+    }
+
+    /*************************************************************************************************************
+     * @description Test to ensure an error is thrown when an affiliation is updated with an Account whose record
+     * type is not a part of Affiliation Mappings when Affiliation Record Type Enforced is Enabled.
+     * Test Scenario: T-3939017
+     **************************************************************************************************************/
+    private static void updateAfflWAccRecTypeEnforced() {
+        Hierarchy_Settings__c hs = UTIL_CustomSettings_API.getSettingsForTests(
+            new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true)
+        );
+        UTIL_UnitTestData_TEST.createAffiliationMappingsWithFieldLabels();
+
+        List<Contact> testContactsList = UTIL_UnitTestData_TEST.getMultipleTestContacts(100);
+        insert testContactsList;
+
+        List<Affiliation__c> affls = new List<Affiliation__c>();
+
+        // Account w affilation mapping
+        Account businessAccount1 = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        )[0];
+        insert businessAccount1;
+
+        for (Contact con : testContactsList) {
+            affls.add(UTIL_UnitTestData_TEST.getAffiliation(con.Id, businessAccount1.Id, false));
+        }
+        insert affls;
+
+        // Admin record type Account (w/o affilation mapping)
+        Account acc = UTIL_UnitTestData_API.getMultipleTestAccounts(1, UTIL_Describe.getCustomAdminAccRecTypeID())[0];
+        insert acc;
+
+        for (Affiliation__c currentAffl : affls) {
+            currentAffl.Account__c = acc.Id;
+        }
+
+        Test.startTest();
+        try {
+            update affls;
             Test.stopTest();
             System.assert(
                 false,

@@ -634,8 +634,8 @@ private class AFFL_MultiRecordTypeMapper_TEST {
                 Account__c = this.accountToTest.Id,
                 Contact__c = this.contactToTest.Id,
                 Primary__c = true,
-                Role__c = 'Student',
-                Status__c = 'Current'
+                Role__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT,
+                Status__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT
             );
         }
     }
