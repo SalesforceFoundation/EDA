@@ -58,6 +58,7 @@ private class CON_PreferredPhone_TEST {
     /* When Preferred Phone is blank and the count of valued phone fields is one
         update Preferred Phone to label of valued phone and copy the value to 
         standard Phone.
+        Test Scenario: T-3903365
     */
     @isTest 
     static void testSinglePhoneSmartSet() {
@@ -238,29 +239,50 @@ private class CON_PreferredPhone_TEST {
         
     } 
    
-    /* Validation when Preferred Phone is selected but no other Phone Fields have a value */
+    /* Validation when Preferred Phone is selected but no other Phone Fields have a value 
+    *  Test Scenario: T-3903364
+    */
     @isTest 
-    static void testPrefPhoneNotBlank() {
+    static void testPrefPhoneNotBlankEnforced() {
         enablePreferredPhone();
-
         try {
-            Contact newCont = new Contact(
-                FirstName = 'JohnnyTest1',
-                LastName = 'JohnnyTest',
-                PreferredPhone__c  = 'Work'
-            );
-            
             Test.startTest();
-            insert newCont;
+            testPrefPhoneNotBlank();
             Test.stopTest();
             
         } catch(Exception error) {
              System.assert(error.getMessage().contains(Label.PreferredPhoneMatchNotNull));
-
       } 
     }
 
-    /* Validation when Preferred Phone label doesn't match any of the other fields */
+    /* Validation when Preferred Phone is unenforced and no phone fields are populated value 
+    *  Test Scenario: T-3903366
+    */
+    @isTest 
+    static void testPrefPhoneNotBlankUnenforced() {
+        disablePreferredPhone();
+        try {
+            Test.startTest();
+            testPrefPhoneNotBlank();
+            Test.stopTest();
+        } catch(Exception error) {
+            System.assert(false, 'When preferred phone is unenforced, contact without specified phone insertion should persist.');
+      }
+    }
+
+    private static void testPrefPhoneNotBlank(){
+        Contact newCont = new Contact(
+            FirstName = 'JohnnyTest1',
+            LastName = 'JohnnyTest',
+            PreferredPhone__c  = 'Work'
+        );
+        
+        insert newCont;
+    }
+
+    /* Validation when Preferred Phone label doesn't match any of the other fields 
+    *  Test Scenario: T-3903363
+    */
     @isTest 
     static void testPrefDiffValue() {
         enablePreferredPhone();
