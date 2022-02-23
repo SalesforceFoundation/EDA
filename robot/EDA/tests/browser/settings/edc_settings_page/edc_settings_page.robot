@@ -80,7 +80,7 @@ Verify EDA documents page is displayed when user clicks on the documentation but
     Current page should be                  Home        Education Cloud Settings
     Click product card button in edc home   Go to the EDA documentation.
     Switch Window    locator=NEW
-    Verify eda documentation  powerofus.force.com/s/article/EDA-Documentation   
+    Verify eda documentation  https://powerofus.force.com/s/article/EDA-Documentation   
     close browser
 
 Verify Trailhead page is displayed when user clicks on the trailhead button under Education Data Architecture product tile

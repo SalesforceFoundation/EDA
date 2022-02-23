@@ -38,7 +38,7 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
     };
 
     affiliationsHyperLink =
-        '<a href="https://powerofus.force.com/s/article/EDA-Configure-Affiliations-Settings">' +
+        '<a href="https://powerofus.force.com/EDA-Configure-Affiliations-Settings">' +
         this.labelReference.tellMeMoreLink +
         "</a>";
 
