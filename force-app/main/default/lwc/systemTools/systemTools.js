@@ -67,7 +67,7 @@ import stgToastError from "@salesforce/label/c.stgToastError";
 
 // Links to the articles
 const accountNamingArtcile = '<a href="https://powerofus.force.com/EDA-Customize-Admin-and-HH-Acct-Names">';
-const prefEmailPhoneArticle = '<a href="https://powerofus.force.com//EDA-Configure-Email-Addresses-for-Contacts">';
+const prefEmailPhoneArticle = '<a href="https://powerofus.force.com/EDA-Configure-Email-Addresses-for-Contacts">';
 const ethinicityAndRaceBackFillArticle = '<a href="https://powerofus.force.com/EDA-Contact">';
 const courseConnArticle = '<a href="https://powerofus.force.com/EDA-Course-Connection">';
 
