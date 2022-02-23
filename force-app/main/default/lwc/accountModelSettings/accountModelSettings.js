@@ -92,7 +92,7 @@ export default class AccountModelSettings extends LightningElement {
     };
 
     accNamingHyperLink =
-        '<a href="https://powerofus.force.com/s/article/EDA-Customize-Admin-and-HH-Acct-Names">' +
+        '<a href="https://powerofus.force.com/EDA-Customize-Admin-and-HH-Acct-Names">' +
         this.labelReference.tellMeMoreLink +
         "</a>";
 
