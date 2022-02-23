@@ -61,13 +61,40 @@ private class CON_PreferredPhone_TEST {
         Test Scenario: T-3903365
     */
     @isTest 
-    static void testSinglePhoneSmartSet() {
+    static void testSinglePhoneSmartSetEnforced() {
         enablePreferredPhone();
 
         Contact newCont = new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             WorkPhone__c = '1234567890'
+        );
+
+        Test.startTest();
+        insert newCont;
+        Test.stopTest();
+
+        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, WorkPhone__c , Phone, PreferredPhone__c FROM Contact];
+        
+        System.assertEquals(newContAfter.Phone, newContAfter.WorkPhone__c);
+        System.assertEquals('Work Phone', newContAfter.PreferredPhone__c);
+    }
+
+    /* 
+     * When Preferred Phone is blank and the count of valued phone fields is one
+     * update Preferred Phone to label of valued phone and copy the value to 
+     * standard Phone.
+     * Test Scenario: T-3903367
+     */
+    @isTest 
+    static void testSinglePhoneSmartSetUnenforced() {
+        disablePreferredPhone();
+
+        Contact newCont = new Contact(
+            FirstName = 'JohnnyTest1',
+            LastName = 'JohnnyTest',
+            WorkPhone__c = '1234567890',
+            PreferredPhone__c = 'Work Phone'
         );
 
         Test.startTest();
@@ -104,7 +131,9 @@ private class CON_PreferredPhone_TEST {
         System.assertEquals('Other Phone', newContAfterList.PreferredPhone__c);
     }
     
-    /* Clear the value in Standard Phone when the other valued Phone is cleared */
+    /* Clear the value in Standard Phone when the other valued Phone is cleared 
+    *  Test Scenario: T-3903368
+    */
     @isTest 
     static void testClearPhoneValue() {
         enablePreferredPhone();
