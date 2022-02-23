@@ -268,6 +268,35 @@ private class CON_PreferredPhone_TEST {
         
     } 
    
+    /* Ensure contact edits validate against missing specififed preferred phone(home phone) 
+    *  Test Scenario: T-3903370
+    */
+    @isTest 
+    static void testcontactUpdatePrefPhoneNotBlankUponSettingUpdate() {
+        enablePreferredPhone();
+
+        Contact newCont = new Contact(
+            FirstName = 'JohnnyTest1',
+            LastName = 'JohnnyTest',
+            OtherPhone = '0000000000'
+        );        
+        insert newCont;
+
+        Hierarchy_Settings__c settings = enablePreferredPhone();
+        settings.Preferred_Phone_Selection__c = 'homePhone';
+        UTIL_CustomSettingsFacade.getSettingsForTests(settings);
+
+        newCont.PreferredPhone__c = 'Home phone';
+        try {
+            Test.startTest();
+            update newCont;
+            Test.stopTest();
+            
+        } catch(Exception error) {
+            System.assert(error.getMessage().contains(Label.PreferredPhoneMatchNotNull));
+      } 
+    }
+
     /* Validation when Preferred Phone is selected but no other Phone Fields have a value 
     *  Test Scenario: T-3903364
     */
