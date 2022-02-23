@@ -17,7 +17,7 @@
             "description": "legal text shown in modal dialog"
         },
         "error_message": {
-            "message": "If you experience an issue with the installation, please post in the [Power of Us Hub] (https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture).",
+            "message": "If you experience an issue with the installation, please post in the [Power of Us Hub] (https://powerofus.force.com/EDA_Community).",
             "description": "shown after failed installation (markdown)"
         }
     },
