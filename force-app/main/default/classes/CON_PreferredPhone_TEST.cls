@@ -244,13 +244,16 @@ private class CON_PreferredPhone_TEST {
        
     }   
     
-    /*  Validation when there are more than one phone fields but not Preferred Phone */
+    /* Validation when there are more than one phone fields but not Preferred Phone 
+     * Test Scenario: T-3903371
+     */
     @isTest 
     static void testErrorPrefBlank() {
         enablePreferredPhone();
+        Contact newCont;
 
         try {
-            Contact newCont = new Contact(
+            newCont = new Contact(
                 FirstName = 'JohnnyTest1',
                 LastName = 'JohnnyTest',
                 WorkPhone__c  = '111111111',
@@ -260,12 +263,15 @@ private class CON_PreferredPhone_TEST {
             Test.startTest();
             insert newCont;
             Test.stopTest();
-            
+            System.assert(false, 'Multiple phones without preference specified should error out - when enforced');
         } catch(Exception error) {
              System.assert(error.getMessage().contains(Label.PreferredPhoneRequiredError));
+      }
 
-      } 
-        
+      disablePreferredPhone();
+      insert newCont;     
+      System.assert(true, 'Multiple phones without preference specified should not error out - when unenforced');
+
     } 
    
     /* Ensure contact edits validate against missing specififed preferred phone(home phone) 
