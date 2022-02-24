@@ -229,7 +229,7 @@ private class CON_PreferredPhone_TEST {
      * Test Scenario: T-3903371
      */
     @isTest 
-    static void testErrorPrefBlank() {
+    static void testErrorPrefPhoneAmbiguous() {
         enablePreferredPhone();
         Contact newCont = new Contact(
             FirstName = 'JohnnyTest1',
