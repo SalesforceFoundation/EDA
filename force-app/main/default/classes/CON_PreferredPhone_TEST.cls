@@ -119,9 +119,9 @@ private class CON_PreferredPhone_TEST {
             update newCont;
         Test.stopTest();
 
-        Contact newContAfterList = getCurrentContact();
-        System.assertEquals('0000000000', newContAfterList.OtherPhone);
-        System.assertEquals('Other Phone', newContAfterList.PreferredPhone__c);
+        Contact newContAfter = getCurrentContact();
+        System.assertEquals('0000000000', newContAfter.OtherPhone);
+        System.assertEquals('Other Phone', newContAfter.PreferredPhone__c);
     }
     
     /* Clear the value in Standard Phone when the other valued Phone is cleared 
@@ -369,9 +369,9 @@ private class CON_PreferredPhone_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact newContAfterList = getCurrentContact();
-        System.assertEquals('Home Phone', newContAfterList.PreferredPhone__c);
-        System.assertEquals('111111111', newContAfterList.Phone);
+        Contact newContAfter = getCurrentContact();
+        System.assertEquals('Home Phone', newContAfter.PreferredPhone__c);
+        System.assertEquals('111111111', newContAfter.Phone);
     }   
 
     /*
@@ -394,9 +394,9 @@ private class CON_PreferredPhone_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact newContAfterList = getCurrentContact();
-        System.assert(newContAfterList.PreferredPhone__c != NULL);
-        System.assert(newContAfterList.Phone != NULL);
+        Contact newContAfter = getCurrentContact();
+        System.assert(newContAfter.PreferredPhone__c != NULL);
+        System.assert(newContAfter.Phone != NULL);
     }  
     
     /*
@@ -424,9 +424,9 @@ private class CON_PreferredPhone_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact newContAfterList = getCurrentContact();
-        System.assert(newContAfterList.PreferredPhone__c != NULL );
-        System.assert(newContAfterList.Phone == '0000000000');
+        Contact newContAfter = getCurrentContact();
+        System.assert(newContAfter.PreferredPhone__c != NULL );
+        System.assert(newContAfter.Phone == '0000000000');
 
     } 
     
@@ -446,9 +446,9 @@ private class CON_PreferredPhone_TEST {
             ); 
         Test.stopTest();
 
-        Contact newContAfterList = getCurrentContact();
-        System.assertEquals('Other Phone', newContAfterList.PreferredPhone__c);
-        System.assert(newContAfterList.OtherPhone == '0000000000');
+        Contact newContAfter = getCurrentContact();
+        System.assertEquals('Other Phone', newContAfter.PreferredPhone__c);
+        System.assert(newContAfter.OtherPhone == '0000000000');
 
     } 
     
