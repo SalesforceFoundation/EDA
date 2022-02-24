@@ -279,7 +279,10 @@ private class CON_PreferredPhone_TEST {
             
         } catch(Exception error) {
             System.assert(error.getMessage().contains(Label.PreferredPhoneMatchNotNull));
-      } 
+      }
+
+      newCont.HomePhone = '0000000000';
+      update newCont;
     }
 
     /* Validation when Preferred Phone is selected but no other Phone Fields have a value 
