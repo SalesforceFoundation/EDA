@@ -64,18 +64,15 @@ private class CON_PreferredPhone_TEST {
     static void testSinglePhoneSmartSetEnforced() {
         enablePreferredPhone();
 
-        Contact newCont = new Contact(
+        Test.startTest();
+        insert new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             WorkPhone__c = '1234567890'
         );
-
-        Test.startTest();
-        insert newCont;
         Test.stopTest();
 
-        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, WorkPhone__c , Phone, PreferredPhone__c FROM Contact];
-        
+        Contact newContAfter = getCurrentContact();    
         System.assertEquals(newContAfter.Phone, newContAfter.WorkPhone__c);
         System.assertEquals('Work Phone', newContAfter.PreferredPhone__c);
     }
@@ -90,19 +87,16 @@ private class CON_PreferredPhone_TEST {
     static void testSinglePhoneSmartSetUnenforced() {
         disablePreferredPhone();
 
-        Contact newCont = new Contact(
+        Test.startTest();
+        insert new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             WorkPhone__c = '1234567890',
             PreferredPhone__c = 'Work Phone'
         );
-
-        Test.startTest();
-        insert newCont;
         Test.stopTest();
 
-        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, WorkPhone__c , Phone, PreferredPhone__c FROM Contact];
-        
+        Contact newContAfter = getCurrentContact();
         System.assertEquals(newContAfter.Phone, newContAfter.WorkPhone__c);
         System.assertEquals('Work Phone', newContAfter.PreferredPhone__c);
     }
@@ -114,7 +108,7 @@ private class CON_PreferredPhone_TEST {
     static void testUpdatePrefPhoneToOther() {
         enablePreferredPhone();
 
-        Contact newCont = new Contact(
+        Contact newCont =  new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest'
         );
@@ -125,8 +119,7 @@ private class CON_PreferredPhone_TEST {
             update newCont;
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, OtherPhone, Phone, PreferredPhone__c FROM Contact WHERE Id =: newCont.Id];
-        
+        Contact newContAfterList = getCurrentContact();
         System.assertEquals('0000000000', newContAfterList.OtherPhone);
         System.assertEquals('Other Phone', newContAfterList.PreferredPhone__c);
     }
@@ -138,25 +131,22 @@ private class CON_PreferredPhone_TEST {
     static void testClearPhoneValue() {
         enablePreferredPhone();
 
-        Contact newCont = new Contact(
+        insert new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             Phone = '111111111',
             OtherPhone = '0000000000'
         );
-        insert newCont;
         
-        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, Phone, OtherPhone, PreferredPhone__c FROM Contact];
+        Contact newContAfter = getCurrentContact();
         Test.startTest();
             newContAfter.OtherPhone = '';
             newContAfter.PreferredPhone__c = '';
             update newContAfter;
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, OtherPhone, Phone FROM Contact];
-        
-        System.assertEquals(null, newContAfterList.Phone);
-
+        newContAfter = getCurrentContact();        
+        System.assertEquals(null, newContAfter.Phone);
     }
 
     /* Update standard Phone's value to another valued phone's and update Preferred Phone to
@@ -174,18 +164,16 @@ private class CON_PreferredPhone_TEST {
         );
         insert newCont;
         
-        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, Phone, otherPhone, WorkPhone__c, PreferredPhone__c FROM Contact];
+        Contact newContAfter = getCurrentContact();
         Test.startTest();
-            newContAfter.WorkPhone__c = '';
-            newContAfter.PreferredPhone__c = '';
-            update newContAfter;
+        newContAfter.WorkPhone__c = '';
+        newContAfter.PreferredPhone__c = '';
+        update newContAfter;
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, Phone, PreferredPhone__c FROM Contact];
-                
-        System.assertEquals('Other Phone', newContAfterList.PreferredPhone__c);
-        System.assertEquals('0000000000', newContAfterList.Phone);
-
+        newContAfter = getCurrentContact();
+        System.assertEquals('Other Phone', newContAfter.PreferredPhone__c);
+        System.assertEquals('0000000000', newContAfter.Phone);
     } 
     
     /*
@@ -196,13 +184,12 @@ private class CON_PreferredPhone_TEST {
     static void testBatchPhoneNull() {
         disablePreferredPhone();
         
-        Contact newCont = new Contact(
+        insert new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             Phone  = '111111111',
             OtherPhone = '0000000000'
         );
-        insert newCont;
         
         Test.startTest();
             enablePreferredPhone();
@@ -210,10 +197,7 @@ private class CON_PreferredPhone_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, PreferredPhone__c FROM Contact];
-        
-        System.assertEquals('Phone (standard)', newContAfterList.PreferredPhone__c);
-
+        System.assertEquals('Phone (standard)', getCurrentContact().PreferredPhone__c);
     }   
     
     /* 
@@ -224,13 +208,12 @@ private class CON_PreferredPhone_TEST {
     static void testBatchOther() {
         disablePreferredPhone();
         
-        Contact newCont = new Contact(
+        insert new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             Phone  = '111111111',
             OtherPhone = '111111111'
         );
-        insert newCont;
         
         Test.startTest();
             enablePreferredPhone();
@@ -238,9 +221,7 @@ private class CON_PreferredPhone_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, PreferredPhone__c FROM Contact];
-                
-        System.assertEquals('Other Phone', newContAfterList.PreferredPhone__c);
+        System.assertEquals('Other Phone', getCurrentContact().PreferredPhone__c);
        
     }   
     
@@ -250,16 +231,14 @@ private class CON_PreferredPhone_TEST {
     @isTest 
     static void testErrorPrefBlank() {
         enablePreferredPhone();
-        Contact newCont;
+        Contact newCont = new Contact(
+            FirstName = 'JohnnyTest1',
+            LastName = 'JohnnyTest',
+            WorkPhone__c  = '111111111',
+            OtherPhone = '0000000000'
+        );
 
-        try {
-            newCont = new Contact(
-                FirstName = 'JohnnyTest1',
-                LastName = 'JohnnyTest',
-                WorkPhone__c  = '111111111',
-                OtherPhone = '0000000000'
-            );
-            
+        try {    
             Test.startTest();
             insert newCont;
             Test.stopTest();
@@ -335,13 +314,11 @@ private class CON_PreferredPhone_TEST {
     }
 
     private static void testPrefPhoneNotBlank(){
-        Contact newCont = new Contact(
+        insert new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             PreferredPhone__c  = 'Work'
         );
-        
-        insert newCont;
     }
 
     /* Validation when Preferred Phone label doesn't match any of the other fields 
@@ -352,15 +329,13 @@ private class CON_PreferredPhone_TEST {
         enablePreferredPhone();
 
         try {
-            Contact newCont = new Contact(
+            Test.startTest();
+            insert new Contact(
                 FirstName = 'JohnnyTest1',
                 LastName = 'JohnnyTest',
                 WorkPhone__c  = '111111111',
                 PreferredPhone__c  = 'ForTestingPurposes'
             );
-
-            Test.startTest();
-            insert newCont;
             Test.stopTest();
             
         } catch(Exception error) {
@@ -375,13 +350,12 @@ private class CON_PreferredPhone_TEST {
     static void testBatchWPreferredPhoneSelection() {
         disablePreferredPhone();
         
-        Contact newCont = new Contact(
+        insert new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             OtherPhone = '0000000000',
             HomePhone = '111111111'
         );
-        insert newCont;
         
         Test.startTest();
             Hierarchy_Settings__c settings = enablePreferredPhone();
@@ -392,11 +366,9 @@ private class CON_PreferredPhone_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, Phone, PreferredPhone__c FROM Contact];
-        
+        Contact newContAfterList = getCurrentContact();
         System.assertEquals('Home Phone', newContAfterList.PreferredPhone__c);
         System.assertEquals('111111111', newContAfterList.Phone);
-
     }   
 
     /*
@@ -406,14 +378,12 @@ private class CON_PreferredPhone_TEST {
     static void testBatchWNoPreferredPhoneSelection() {
         disablePreferredPhone();
         
-        Contact newCont = new Contact(
+        insert new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             OtherPhone = '0000000000',
             HomePhone = '111111111'
-        );
-        insert newCont;
-        
+        );        
         
         Test.startTest();
             enablePreferredPhone();
@@ -421,11 +391,9 @@ private class CON_PreferredPhone_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, Phone, PreferredPhone__c FROM Contact];
-        
-        System.assert(newContAfterList.PreferredPhone__c != NULL );
+        Contact newContAfterList = getCurrentContact();
+        System.assert(newContAfterList.PreferredPhone__c != NULL);
         System.assert(newContAfterList.Phone != NULL);
-
     }  
     
     /*
@@ -437,13 +405,12 @@ private class CON_PreferredPhone_TEST {
     static void testBatchWPreferredPhoneSelectionMisMatch() {
         disablePreferredPhone();
 
-        Contact newCont = new Contact(
+        insert new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             OtherPhone = '0000000000',
             MobilePhone  = '0000000000'
         );
-        insert newCont;
         
         Test.startTest();
             Hierarchy_Settings__c settings = enablePreferredPhone();
@@ -454,8 +421,7 @@ private class CON_PreferredPhone_TEST {
             Database.executeBatch(batch);
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, Phone, PreferredPhone__c FROM Contact];
-        
+        Contact newContAfterList = getCurrentContact();
         System.assert(newContAfterList.PreferredPhone__c != NULL );
         System.assert(newContAfterList.Phone == '0000000000');
 
@@ -470,18 +436,14 @@ private class CON_PreferredPhone_TEST {
         enablePreferredPhone();
 
         Test.startTest();
-            Contact newCont = new Contact(
+            insert new Contact(
                 FirstName = 'JohnnyTest1',
                 LastName = 'JohnnyTest',
                 Phone  = '0000000000'
-            );
-        
-            insert newCont;
- 
+            ); 
         Test.stopTest();
 
-        Contact newContAfterList = [SELECT Id, FirstName, LastName, Name, OtherPhone, PreferredPhone__c FROM Contact];
-        
+        Contact newContAfterList = getCurrentContact();
         System.assertEquals('Other Phone', newContAfterList.PreferredPhone__c);
         System.assert(newContAfterList.OtherPhone == '0000000000');
 
@@ -514,5 +476,9 @@ private class CON_PreferredPhone_TEST {
             System.assertEquals('0000000000', each.OtherPhone);
             System.assertEquals('Other Phone', each.PreferredPhone__c);
         }
+    }
+
+    private static Contact getCurrentContact(){
+        return [SELECT Id, FirstName, LastName, Name, Phone, WorkPhone__c, OtherPhone, PreferredPhone__c FROM Contact LIMIT 1];
     }
 }
