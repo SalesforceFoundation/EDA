@@ -58,17 +58,43 @@ private class CON_PreferredPhone_TEST {
     /* When Preferred Phone is blank and the count of valued phone fields is one
         update Preferred Phone to label of valued phone and copy the value to 
         standard Phone.
+    */
+    @isTest 
+    static void testSinglePhoneSmartSet() {
+        enablePreferredPhone();
+
+        Contact newCont = new Contact(
+            FirstName = 'JohnnyTest1',
+            LastName = 'JohnnyTest',
+            WorkPhone__c = '1234567890'
+        );
+
+        Test.startTest();
+        insert newCont;
+        Test.stopTest();
+
+        Contact newContAfter = [SELECT Id, FirstName, LastName, Name, WorkPhone__c , Phone, PreferredPhone__c FROM Contact];
+        
+        System.assertEquals(newContAfter.Phone, newContAfter.WorkPhone__c);
+        System.assertEquals('Work Phone', newContAfter.PreferredPhone__c);
+    }
+
+    /* When Preferred Phone is defined and the count of valued phone fields is more
+        then one, the Preferred Phone field will be used.
         Test Scenario: T-3903365
     */
     @isTest 
-    static void testSinglePhoneSmartSetEnforced() {
+    static void testMultiplePhoneSmartSetEnforced() {
         enablePreferredPhone();
 
         Test.startTest();
         insert new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
-            WorkPhone__c = '1234567890'
+            WorkPhone__c = '1234567890',
+            HomePhone = '2345678901',
+            OtherPhone = '3456789012',
+            PreferredPhone__c = 'Work Phone'
         );
         Test.stopTest();
 
@@ -84,21 +110,28 @@ private class CON_PreferredPhone_TEST {
      * Test Scenario: T-3903367
      */
     @isTest 
-    static void testSinglePhoneSmartSetUnenforced() {
+    static void testMultiplePhoneSmartSetUnenforced() {
         disablePreferredPhone();
 
         Test.startTest();
         insert new Contact(
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
+            HomePhone = '2345678901',
             WorkPhone__c = '1234567890',
-            PreferredPhone__c = 'Work Phone'
+            OtherPhone = '3456789012',
+            PreferredPhone__c = 'Other Phone'
         );
         Test.stopTest();
 
         Contact newContAfter = getCurrentContact();
+        System.assertEquals(newContAfter.Phone, newContAfter.OtherPhone);
+
+        newContAfter.PreferredPhone__c = 'Work Phone';
+        update newContAfter;
+        newContAfter = getCurrentContact();
+
         System.assertEquals(newContAfter.Phone, newContAfter.WorkPhone__c);
-        System.assertEquals('Work Phone', newContAfter.PreferredPhone__c);
     }
     
     /* When Standard Phone is not null and Preferred Phone is enforced update Preferred Phone
@@ -135,18 +168,20 @@ private class CON_PreferredPhone_TEST {
             FirstName = 'JohnnyTest1',
             LastName = 'JohnnyTest',
             Phone = '111111111',
-            OtherPhone = '0000000000'
+            HomePhone = '2345678901',
+            WorkPhone__c = '1234567890',
+            OtherPhone = '3456789012',
+            PreferredPhone__c = 'Work Phone'
         );
         
         Contact newContAfter = getCurrentContact();
         Test.startTest();
-            newContAfter.OtherPhone = '';
-            newContAfter.PreferredPhone__c = '';
+            newContAfter.WorkPhone__c = 'JJJJJ';
             update newContAfter;
         Test.stopTest();
 
         newContAfter = getCurrentContact();        
-        System.assertEquals(null, newContAfter.Phone);
+        System.assertEquals('JJJJJ', newContAfter.Phone);
     }
 
     /* Update standard Phone's value to another valued phone's and update Preferred Phone to
@@ -276,7 +311,7 @@ private class CON_PreferredPhone_TEST {
             Test.startTest();
             update newCont;
             Test.stopTest();
-            
+            System.assert(false, 'Missing preferred phone should error out.');            
         } catch(Exception error) {
             System.assert(error.getMessage().contains(Label.PreferredPhoneMatchNotNull));
       }
@@ -296,7 +331,6 @@ private class CON_PreferredPhone_TEST {
             testPrefPhoneNotBlank();
             Test.stopTest();
             System.assert(false, 'Should error out when no phone is indicated.');
-            
         } catch(Exception error) {
              System.assert(error.getMessage().contains(Label.PreferredPhoneMatchNotNull));
       } 
@@ -310,7 +344,14 @@ private class CON_PreferredPhone_TEST {
         disablePreferredPhone();
         try {
             Test.startTest();
-            testPrefPhoneNotBlank();
+            insert new Contact(
+                FirstName = 'JohnnyTest1',
+                LastName = 'JohnnyTest',
+                WorkPhone__c = '1234567890',
+                HomePhone = '2345678901',
+                OtherPhone = '3456789012',
+                PreferredPhone__c = 'NONE'
+            );
             Test.stopTest();
         } catch(Exception error) {
             System.assert(false, 'When preferred phone is unenforced, contact without specified phone insertion should persist.');
