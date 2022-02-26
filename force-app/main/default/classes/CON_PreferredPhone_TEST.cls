@@ -295,6 +295,7 @@ private class CON_PreferredPhone_TEST {
             Test.startTest();
             testPrefPhoneNotBlank();
             Test.stopTest();
+            System.assert(false, 'Should error out when no phone is indicated.');
             
         } catch(Exception error) {
              System.assert(error.getMessage().contains(Label.PreferredPhoneMatchNotNull));
