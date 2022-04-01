@@ -254,42 +254,6 @@ public with sharing class AFFL_MultiRecordType_TEST {
         Test.stopTest();
     }
 
-    @isTest
-    private static void updatePrimaryAffiliationRecordType_FieldNames_Spanish() {
-        Profile systemAdministratorProfile = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
-        STG_InstallScript.insertMappings();
-        UTIL_CustomSettings_API.getSettingsForTests(
-            new Hierarchy_Settings__c(Affiliation_Record_Type_Enforced__c = true)
-        );
-
-        // Test Scenario: T-3939027
-        System.runAs(UTIL_UnitTestData_TEST.createNewUserForTests(
-            System.now().getTime() + '@testerson.com',
-            systemAdministratorProfile.Id,
-            'es'
-        )) {
-            updatePrimaryAfflAccountRecordType();
-
-            // Test Scenario: T-3939028
-            Contact contact = [SELECT Id, Primary_Household__c, Primary_Organization__c FROM Contact LIMIT 1];
-            contact.Primary_Household__c = null;
-            contact.Primary_Organization__c = null;
-            Test.startTest();
-            update contact;
-            Test.stopTest();
-
-            List<Affiliation__c> affls = [
-                SELECT Id, Primary__c, Affiliation_Type__c
-                FROM Affiliation__c
-                WHERE Contact__c = :contact.Id
-                ORDER BY CreatedDate
-            ];
-            System.assertEquals(2, affls.size());
-            System.assertEquals(false, affls[0].Primary__c);
-            System.assertEquals(false, affls[1].Primary__c);
-        }
-    }
-
     /*
      * Ensure account record type changes are appropriated reflected upon contact fields/affiliations.
      * Test Scenario: T-3938997
