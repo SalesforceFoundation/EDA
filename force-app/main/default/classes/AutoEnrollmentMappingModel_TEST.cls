@@ -41,8 +41,8 @@ private with sharing class AutoEnrollmentMappingModel_TEST {
     private static void fiveArgumentConstructorValid() {
         String name = 'Academic_Program';
         String accountRecordTypeFieldValue = 'Academic_Program';
-        String role = 'Student';
-        String status = 'Current';
+        String role = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT;
+        String status = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT;
         Boolean active = true;
 
         Test.startTest();

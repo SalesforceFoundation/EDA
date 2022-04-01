@@ -663,14 +663,6 @@
         <value>Account Model</value>
     </labels>
     <labels>
-        <fullName>stgAccountModelSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for Account Model Settings</shortDescription>
-        <value>Account Model Settings</value>
-    </labels>
-    <labels>
         <fullName>stgAccountRecordTypeAvailableListTitle</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -749,14 +741,6 @@
         <protected>true</protected>
         <shortDescription>Navigation title for Addresses</shortDescription>
         <value>Addresses</value>
-    </labels>
-    <labels>
-        <fullName>stgAddressSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for Addresses</shortDescription>
-        <value>Address Settings</value>
     </labels>
     <labels>
         <fullName>stgAdminAccountCustomName</fullName>
@@ -863,14 +847,6 @@
         <value>Affiliations</value>
     </labels>
     <labels>
-        <fullName>stgAffiliationsSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for Affiliation Settings</shortDescription>
-        <value>Affiliation Settings</value>
-    </labels>
-    <labels>
         <fullName>stgAfflCopyProgramEnrollmentEndDate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -973,14 +949,6 @@
         <protected>true</protected>
         <shortDescription>The API name associated with the selected Account Record Type</shortDescription>
         <value>API Name: {0}</value>
-    </labels>
-    <labels>
-        <fullName>stgApplicationSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for Application Settings</shortDescription>
-        <value>Application Settings</value>
     </labels>
     <labels>
         <fullName>stgApplicationWindowValidation</fullName>
@@ -1607,14 +1575,6 @@
         <value>Contact Information</value>
     </labels>
     <labels>
-        <fullName>stgContactInformationSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for Contact Information Settings</shortDescription>
-        <value>Contact Information Settings</value>
-    </labels>
-    <labels>
         <fullName>stgContactMultiAddressesEnabled</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -1653,14 +1613,6 @@
         <protected>true</protected>
         <shortDescription>Navigation title for Course Connections</shortDescription>
         <value>Course Connections</value>
-    </labels>
-    <labels>
-        <fullName>stgCourseConnectionsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for Course Connection Settings</shortDescription>
-        <value>Course Connection Settings</value>
     </labels>
     <labels>
         <fullName>stgCourseDataMigrationModalBody</fullName>
@@ -1957,14 +1909,6 @@
         <protected>true</protected>
         <shortDescription>Message when there was an error during the release gate activation</shortDescription>
         <value>We couldn&apos;t activate {0}. See Additional details for more information, or contact Salesforce Support for help.&#13;&#10;&#13;&#10;Additional details: {1}</value>
-    </labels>
-    <labels>
-        <fullName>stgErrorSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for Error Settings</shortDescription>
-        <value>Error Settings</value>
     </labels>
     <labels>
         <fullName>stgEthnicityRaceBackfillContacts</fullName>
@@ -3343,28 +3287,12 @@
         <value>Program Plans</value>
     </labels>
     <labels>
-        <fullName>stgProgramPlanSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for Program Plan Settings</shortDescription>
-        <value>Program Plan Settings</value>
-    </labels>
-    <labels>
         <fullName>stgProgramsSettingsNav</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Navigation title for Program Enrollments</shortDescription>
         <value>Program Enrollments</value>
-    </labels>
-    <labels>
-        <fullName>stgProgramsSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for Program Enrollment Settings</shortDescription>
-        <value>Program Enrollment Settings</value>
     </labels>
     <labels>
         <fullName>stgReciprocalMethodListSetting</fullName>
@@ -3540,14 +3468,6 @@
         <protected>true</protected>
         <shortDescription>Navigation title for Relationships</shortDescription>
         <value>Relationships</value>
-    </labels>
-    <labels>
-        <fullName>stgRelationshipSettingsTitle</fullName>
-        <categories>Settings</categories>
-        <language>en_US</language>
-        <protected>true</protected>
-        <shortDescription>Section title for Relationship Settings</shortDescription>
-        <value>Relationship Settings</value>
     </labels>
     <labels>
         <fullName>stgReleaseManagementCardTitle</fullName>
@@ -3968,6 +3888,14 @@
         <value>Activate {0}</value>
     </labels>
     <labels>
+        <fullName>stgReleaseGateActivateLatest</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Label for a latest release</shortDescription>
+        <value>Activate Release</value>
+    </labels>
+    <labels>
         <fullName>stgBtnReleaseGateActivate</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -4032,6 +3960,46 @@
         <value>All releases are active.</value>
     </labels>
     <labels>
+        <fullName>stgReleaseGateEDALatestLabel</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA latest release gate label</shortDescription>
+        <value>Latest EDA Release</value>
+    </labels>    
+    <labels>
+        <fullName>stgReleaseGateEDALatestDescription</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA latest release gate description</shortDescription>
+        <value>There were no features gated for this release. Therefore, all features were automatically released.</value>
+    </labels>
+    <labels>
+        <fullName>stgReleaseGateEDALatestFeatureDescription</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA latest release gate feature description</shortDescription>
+        <value>See EDA&apos;s release notes for full details.</value>
+    </labels>    
+    <labels>
+        <fullName>stgReleaseGateEDASpring22Label</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Spring 22 release gate label</shortDescription>
+        <value>Spring&apos;22</value>
+    </labels>    
+    <labels>
+        <fullName>stgReleaseGateEDASpring22Description</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Spring 22 release gate description</shortDescription>
+        <value>There were no features gated for this release therefore all features were automatically released with Spring&apos;22</value>
+    </labels>
+    <labels>
         <fullName>stgReleaseGateEDAWinter22Label</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
@@ -4046,7 +4014,7 @@
         <protected>true</protected>
         <shortDescription>EDA Winter 22 release gate description</shortDescription>
         <value>There were no features gated for this release therefore all features were automatically released with Winter&apos;22</value>
-    </labels>    
+    </labels>
     <labels>
         <fullName>stgReleaseGateEDAWinter22FeatureDescription</fullName>
         <categories>Settings</categories>
@@ -4056,11 +4024,19 @@
         <value>Please see EDA's release notes for Winter'22 for full details.</value>
     </labels>    
     <labels>
-        <fullName>stgReleaseGateEDAWinter22FeatureHelpLabel</fullName>
+        <fullName>stgReleaseGateEDAFeatureHelpLabel</fullName>
         <categories>Settings</categories>
         <language>en_US</language>
         <protected>true</protected>
-        <shortDescription>EDA Winter 22 release gate feature help label</shortDescription>
+        <shortDescription>EDA release gate feature help label</shortDescription>
         <value>Follow EDA Releases in the EDA Release Announcements group</value>
-    </labels>    
+    </labels>
+     <labels>
+        <fullName>stgReleaseGateEDASpring22FeatureDescription</fullName>
+        <categories>Settings</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EDA Spring 22 release gate feature description</shortDescription>
+        <value>Please see EDA's release notes for Spring'22 for full details.</value>
+    </labels>     
 </CustomLabels>

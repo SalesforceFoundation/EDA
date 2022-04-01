@@ -6,7 +6,7 @@ The EDA framework, supported by the Salesforce Platform, can serve as the founda
 
 ## Get EDA
 
-The easiest way to get started with EDA is to sign up for a <a href="https://www.salesforce.org/trial/eda/" target="_blank">trial</a>. If you need to install EDA in an existing Salesforce org, use the <a href="https://install.salesforce.org/products/eda" target="_blank">EDA Installer</a>. See <a href="https://powerofus.force.com/s/article/EDA-Install-EDA" target="_blank">Install EDA</a> for more information.
+The easiest way to get started with EDA is to sign up for a <a href="https://www.salesforce.org/trial/eda/" target="_blank">trial</a>. If you need to install EDA in an existing Salesforce org, use the <a href="https://install.salesforce.org/products/eda" target="_blank">EDA Installer</a>. See <a href="https://powerofus.force.com/s/article/EDA-Install-and-Configure" target="_blank">Install EDA</a> for more information.
 
 ## Contribute to EDA
 
@@ -40,12 +40,12 @@ Make sure `yarn` is installed on your local machine. For more information, check
 
 ## Learn More
 
-* <a href="https://powerofus.force.com/" target="_blank">Ask questions or get help</a>
-* <a href="https://powerofus.force.com/hub-ideas" target="_blank">Feature Request</a>
+* <a href="https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kHi4SAE" target="_blank">Ask questions or get help</a>
+* <a href="https://ideas.salesforce.com/s/search?filter=Education#t=All&sort=relevancy&f:@sfcategoryfull=[Education%7CEducation%20Data%20Architecture]" target="_blank">Feature Request</a>
 * <a href="https://powerofus.force.com/EDA-Documentation" target="_blank">User Documentation</a>
 * Check out existing <a href="https://github.com/SalesforceFoundation/EDA/labels/bug" target="_blank">bugs</a> and <a href="https://trailblazer.salesforce.com/ideaSearch?filter=Education+%3E+Education+Data+Architecture" target="_blank">feature and enhancement requests</a>
 * <a href="https://github.com/SalesforceFoundation/EDA/releases" target="_blank">Release Notes and Beta Releases</a>
-* Learn about EDA objects and fields, see <a href="https://powerofus.force.com/s/article/EDA-Data-Dictionary" target="_blank">EDA Data Dictionary</a>.
+* Learn about EDA objects and fields, see <a href="https://powerofus.force.com/EDA_Data_Dictionary" target="_blank">EDA Data Dictionary</a>.
 
 ## Meta
 

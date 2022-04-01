@@ -92,7 +92,7 @@ public virtual with sharing class AffiliationMappingsMapper {
             Account_Record_Type__c = affiliationMappingModel.accountRecordTypeFieldValue,
             Primary_Affl_Field__c = affiliationMappingModel.primaryAffiliationField
         );
-
+        /* sfca-disable-next-line ApexFlsViolationRule */
         insert affiliationMappings;
     }
 
@@ -104,6 +104,7 @@ public virtual with sharing class AffiliationMappingsMapper {
         Affl_Mappings__c afflSettings = Affl_Mappings__c.getInstance(afflMappingModel.name);
         afflSettings.Account_Record_Type__c = afflMappingModel.accountRecordTypeFieldValue;
         afflSettings.Primary_Affl_Field__c = afflMappingModel.primaryAffiliationField;
+        /* sfca-disable-next-line ApexFlsViolationRule */
         update afflSettings;
     }
 
@@ -115,7 +116,7 @@ public virtual with sharing class AffiliationMappingsMapper {
     public String deleteAffiliationMappingModel(AffiliationMappingsModel affiliationMappingModel) {
         Affl_Mappings__c affiliationMappingsToDelete = Affl_Mappings__c.getInstance(affiliationMappingModel.name);
         String deletedPrimaryAffiliationRecordTypeName = affiliationMappingsToDelete.Account_Record_Type__c;
-
+        /* sfca-disable-next-line ApexFlsViolationRule */
         delete affiliationMappingsToDelete;
         return deletedPrimaryAffiliationRecordTypeName;
     }

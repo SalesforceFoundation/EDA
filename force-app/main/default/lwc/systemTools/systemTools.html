@@ -1,141 +1,147 @@
 <template>
-    <div class="slds-grid--vertical slds-theme_default">
-        <div class="slds-col">
-            <div
-                class="slds-col slds-size--1-of-2 slds-text-heading_small slds-p-bottom_xx-large eda-system-tools-title"
-                tabindex="0"
+    <!-- Page Title -->
+    <div class="slds-grid slds-grid_vertical-align-start slds-border_bottom slds-var-m-bottom_large">
+        <div
+            class="slds-col slds-size_1-of-1 slds-text-heading_medium slds-var-p-bottom_medium eda-system-tools-title"
+            tabindex="0"
+        >
+            <lightning-icon
+                icon-name="standard:settings"
+                alternative-text="Settings"
+                title="Settings"
+                class="slds-var-m-right_x-small"
             >
-                {labelReference.stgSystemToolsTitle}
-            </div>
+            </lightning-icon>
+            {labelReference.stgSystemToolsTitle}
         </div>
     </div>
 
-    <!-- Administrative account name refresh -->
-    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
+    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-var-p-bottom_x-large">
+        <!-- Administrative account name refresh -->
         <div class="slds-col slds-size_2-of-3">
-            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+            <div class="slds-text-title slds-text-color_default slds-var-p-left_small slds-text-title_bold">
                 {labelReference.stgRefreshAdminAcctNameTitle}
             </div>
-            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+            <div class="slds-text-body_small slds-text-color_weak slds-var-p-horizontal_large">
                 <lightning-formatted-rich-text value={adminNamesRefreshDesc}></lightning-formatted-rich-text>
             </div>
         </div>
 
         <div class="slds-col slds-size_1-of-3">
-            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+            <div class="slds-grid slds-grid_align-end slds-var-p-right_x-large">
                 <lightning-button
                     variant="brand"
                     label={labelReference.stgBtnRefreshAdminNames}
                     title={labelReference.stgBtnRefreshAdminNamesA11y}
                     onclick={handleRefreshAdminNamesBtnClick}
-                    class="slds-m-left_x-small"
+                    class="slds-var-m-left_x-small"
                 ></lightning-button>
             </div>
         </div>
     </div>
 
     <!-- Household account name refresh -->
-    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
+    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-var-p-bottom_x-large">
         <div class="slds-col slds-size_2-of-3">
-            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+            <div class="slds-text-title slds-text-color_default slds-var-p-left_small slds-text-title_bold">
                 {labelReference.stgRefreshHHAcctNameTitle}
             </div>
-            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+            <div class="slds-text-body_small slds-text-color_weak slds-var-p-horizontal_large">
                 <lightning-formatted-rich-text value={houseHoldNamesRefreshDesc}></lightning-formatted-rich-text>
             </div>
         </div>
 
         <div class="slds-col slds-size_1-of-3">
-            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+            <div class="slds-grid slds-grid_align-end slds-var-p-right_x-large">
                 <lightning-button
                     variant="brand"
                     label={labelReference.stgBtnRefreshHouseholdNames}
                     title={labelReference.stgBtnRefreshHouseholdNamesA11y}
                     onclick={handleRefreshHHNamesBtnClick}
-                    class="slds-m-left_x-small"
+                    class="slds-var-m-left_x-small"
                 ></lightning-button>
             </div>
         </div>
     </div>
 
     <!-- Preferred Email and Phone clean up -->
-    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
+    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-var-p-bottom_x-large">
         <div class="slds-col slds-size_2-of-3">
-            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+            <div class="slds-text-title slds-text-color_default slds-var-p-left_small slds-text-title_bold">
                 {labelReference.stgPreferredEmailDataCleanup}
             </div>
-            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+            <div class="slds-text-body_small slds-text-color_weak slds-var-p-horizontal_large">
                 <lightning-formatted-rich-text value={prefEmailPhoneDesc}></lightning-formatted-rich-text>
             </div>
         </div>
 
         <div class="slds-col slds-size_1-of-3">
-            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+            <div class="slds-grid slds-grid_align-end slds-var-p-right_x-large">
                 <lightning-button
                     variant="brand"
                     label={labelReference.stgRunCleanUp}
                     title={labelReference.stgRunCleanUpA11y}
                     onclick={handlePrefEmailPhoneCleanUp}
-                    class="slds-m-left_x-small"
+                    class="slds-var-m-left_x-small"
                 ></lightning-button>
             </div>
         </div>
     </div>
 
     <!-- Ethnicity and Racebackfill batch job -->
-    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
+    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-var-p-bottom_x-large">
         <div class="slds-col slds-size_2-of-3">
-            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+            <div class="slds-text-title slds-text-color_default slds-var-p-left_small slds-text-title_bold">
                 {labelReference.ethnicityAndRaceBackfillTitle}
             </div>
-            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+            <div class="slds-text-body_small slds-text-color_weak slds-var-p-horizontal_large">
                 <lightning-formatted-rich-text value={ethnicityAndBackFillDesc}></lightning-formatted-rich-text>
             </div>
         </div>
 
         <div class="slds-col slds-size_1-of-3">
-            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+            <div class="slds-grid slds-grid_align-end slds-var-p-right_x-large">
                 <lightning-button
                     variant="brand"
                     label={labelReference.stgBtnUpdate}
                     title={labelReference.ethnicityAndRaceBackTitleA11y}
                     onclick={handleEthnicityAndRaceBackfill}
-                    class="slds-m-left_x-small"
+                    class="slds-var-m-left_x-small"
                 ></lightning-button>
             </div>
         </div>
     </div>
 
     <!-- Course Connection backfill batch job -->
-    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
+    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-var-p-bottom_x-large">
         <div class="slds-col slds-size_2-of-3">
-            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+            <div class="slds-text-title slds-text-color_default slds-var-p-left_small slds-text-title_bold">
                 {labelReference.courseConnectionBackfillTitle}
             </div>
-            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+            <div class="slds-text-body_small slds-text-color_weak slds-var-p-horizontal_large">
                 <lightning-formatted-rich-text value={courseConnBackfillDesc}></lightning-formatted-rich-text>
             </div>
         </div>
         <div class="slds-col slds-size_1-of-3">
-            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+            <div class="slds-grid slds-grid_align-end slds-var-p-right_x-large">
                 <lightning-button
                     variant="brand"
                     label={labelReference.stgBtnUpdate}
                     title={labelReference.courseConnBtnHelpTextForRunA11y}
                     onclick={handleCourseConnectionBackFill}
-                    class="slds-m-left_x-small"
+                    class="slds-var-m-left_x-small"
                 ></lightning-button>
             </div>
         </div>
     </div>
 
     <!-- Course Description Data Migration batch job -->
-    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
+    <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-var-p-bottom_x-large">
         <div class="slds-col slds-size_2-of-3">
-            <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+            <div class="slds-text-title slds-text-color_default slds-var-p-left_small slds-text-title_bold">
                 {labelReference.courseDescriptionMigrationTitle}
             </div>
-            <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+            <div class="slds-text-body_small slds-text-color_weak slds-var-p-horizontal_large">
                 <lightning-formatted-rich-text
                     value={labelReference.courseDescriptionMigrationHelpText}
                 ></lightning-formatted-rich-text>
@@ -143,13 +149,13 @@
         </div>
 
         <div class="slds-col slds-size_1-of-3">
-            <div class="slds-grid slds-grid_align-end slds-p-right_x-large">
+            <div class="slds-grid slds-grid_align-end slds-var-p-right_x-large">
                 <lightning-button
                     variant="brand"
                     label={labelReference.btnLabelForRun}
                     title={labelReference.btnHelpTextForRunA11y}
                     onclick={handleCourseDataMigration}
-                    class="slds-m-left_x-small"
+                    class="slds-var-m-left_x-small"
                 ></lightning-button>
             </div>
         </div>

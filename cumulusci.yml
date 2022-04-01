@@ -66,6 +66,7 @@ tasks:
             timeout: 600
 
     deploy_dev_config:
+        group: "EDA: Dev Config"
         description: Deploys configuration for Development. Assigns page layouts, compact layouts, and sets tab visibilities. Record type visibilities are set in the update_admin_profile task.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -91,7 +92,7 @@ tasks:
             unmanaged: False
 
     deploy_encryption_permset:
-        group: "Shield Platform Encryption"
+        group: "EDA: Shield Platform Encryption"
         description: Deploys "Manage Encryption Keys" permission set.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -118,6 +119,7 @@ tasks:
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
             path: unpackaged/config/release_gating
+
     deploy_settings_product:
         group: "EDA: Metadata"
         description: mocked settings product information metadata to display a demo product.
@@ -126,6 +128,7 @@ tasks:
             path: unpackaged/config/settings_product
 
     deploy_workbench_translation_settings:
+        group: "EDA: Metadata"
         description: Deploys settings to enable Translation Workbench, end user languages, and platform languages.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -134,6 +137,7 @@ tasks:
             unmanaged: True
 
     deploy_translations:
+        group: "EDA: Metadata"
         description: Assigns languages and marks them as active.
         class_path: cumulusci.tasks.salesforce.Deploy
         options:
@@ -163,34 +167,23 @@ tasks:
             contact_key_affl_fields:
                 name: EDA - Contact Key Affiliation Fields
 
-    deploy_preferred_email_config:
+    deploy_functional_tests:
         group: "EDA: Unpackaged Tests"
-        description: Deploys Preferred Email configuration(custom email fields, translations, apex unit tests and sets Admin profile access to Email fields) for testing.
-        class_path: cumulusci.tasks.salesforce.Deploy
+        description: Deploys apex unmanaged functional tests against packaged EDA
+        class_path: cumulusci.tasks.salesforce.DeployBundles
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test_managed_only/preferred_email
-            namespaced_org: True
+            path: unpackaged/functional_tests
 
-    deploy_unpackaged_primary_affiliations_config:
+    deploy_functional_test_utilities:
+        description: Deploys metadata and configuration for unpackaged test utilities against packaged EDA
+        class_path: cumulusci.tasks.salesforce.DeployBundles
         group: "EDA: Unpackaged Tests"
-        description: Deploys primary affiliation configuration for Development. Assigns page Account Record Types, custom lookups to Account on Contact, and sets Record Type visibility for Admin profile.
-        class_path: cumulusci.tasks.salesforce.Deploy
         options:
             namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test_packaged/primary_affiliations
-            unmanaged: True
+            path: unpackaged/test_utilities
 
-    deploy_unpackaged_relationship_autocreate_config:
-        group: "EDA: Unpackaged Tests"
-        description: Deploys relationship autocreation configuration for development.  Creates an additional lookup to Contact on Contact for testing.
-        class_path: cumulusci.tasks.salesforce.Deploy
-        options:
-            namespace_inject: $project_config.project__package__namespace
-            path: unpackaged/test_packaged/relationship_autocreate
-            unmanaged: True
-
-    deploy_unpackaged_test_metadata:
+    deploy_unpackaged_tests:
         description: Deploys metadata and configuration for unpackaged unit tests against unpackaged EDA
         class_path: cumulusci.tasks.salesforce.DeployBundles
         group: "EDA: Unpackaged Tests"
@@ -210,7 +203,7 @@ tasks:
             path: unpackaged/config/trial
 
     assign_encryption_permset:
-        group: "Shield Platform Encryption"
+        group: "EDA: Shield Platform Encryption"
         description: Assigns the Encryption permission set to the current user for Shield Platform Encryption testing.
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
@@ -233,14 +226,22 @@ tasks:
             settings_field: IsTranslationWorkbenchEnabled
             value: true
 
+    create_no_access_user:
+        group: "EDA: User Tasks"
+        description: "Create a user with no access to Education Cloud components"
+        class_path: cumulusci.tasks.sfdx.SFDXOrgTask
+        options:
+            command: "force:user:create -a no_access --definitionfile datasets/dev/users/user-def_no-access.json"
+
     create_tenant_secret:
-        group: "Shield Platform Encryption"
+        group: "EDA: Shield Platform Encryption"
         description: Creates a new tenant secret for Shield Platform Encryption testing.
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
             command: 'force:data:record:create -s TenantSecret -v "Description=Testing"'
 
     execute_install_apex:
+        group: "EDA: Post Intall Apex"
         description: Runs most of the install script methods from STG_InstallScript class
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
@@ -248,6 +249,7 @@ tasks:
             apex: executeInstallApex();
 
     execute_automatic_household_naming:
+        group: "EDA: Post Intall Apex"
         description: Runs anonymous apex to set Automatic_Household_Naming__c to true.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         ui_options:
@@ -260,6 +262,7 @@ tasks:
                 update hierSettings;
 
     execute_enable_course_connections:
+        group: "EDA: Post Intall Apex"
         description: Runs anonymous apex to enable Course Connections and set the Student and Faculty default Record Types.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         ui_options:
@@ -270,6 +273,7 @@ tasks:
             apex: configCourseConnections();
 
     execute_preferred_phone_selection:
+        group: "EDA: Post Intall Apex"
         description: Runs anonymous apex to set Preferred Phone to 'Other Phone'.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         ui_options:
@@ -282,6 +286,7 @@ tasks:
                 update hierSettings;
 
     execute_enable_record_type_validation:
+        group: "EDA: Post Intall Apex"
         description: Runs anonymous apex to enable record type validation for EDA settings.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         ui_options:
@@ -294,6 +299,7 @@ tasks:
                 update hierSettings;
 
     execute_send_error_notifications:
+        group: "EDA: Post Intall Apex"
         description: Runs anonymous apex to enable Error Notifications.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         ui_options:
@@ -305,14 +311,8 @@ tasks:
                 hierSettings.%%%NAMESPACE%%%Error_Notifications_On__c = true;
                 update hierSettings;
 
-    execute_primary_affiliation_mapping_apex:
-        description: Runs anonymous apex for dev to configure and insert unmanaged Affiliation mappings.
-        class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
-        options:
-            apex: >
-                STG_UnmanagedInstall.mapAccountRecordTypesForAffiliationTesting();
-
     execute_qa_apex:
+        group: "EDA: Post Intall Apex"
         description: Runs anonymous apex for qa to configure settings.
         class_path: cumulusci.tasks.apex.anon.AnonymousApexTask
         options:
@@ -342,6 +342,7 @@ tasks:
             name: "LearnerPortalCommunity"
 
     retrieve_config_dev:
+        group: "EDA: Metadata"
         description: Retrieves the current changes in the scratch org into unpackaged/config/dev.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
         options:
@@ -349,6 +350,7 @@ tasks:
             namespace_tokenize: $project_config.project__package__namespace
 
     retrieve_config_trial:
+        group: "EDA: Metadata"
         description: Retrieves the current changes in the scratch org into unpackaged/config/trial.
         class_path: cumulusci.tasks.salesforce.sourcetracking.RetrieveChanges
         options:
@@ -444,6 +446,8 @@ flows:
                 task: deploy_release_gating
             9:
                 task: deploy_settings_product
+            10:
+                flow: create_additional_users
 
     config_dev_namespaced:
         # description: Configure an org for use as a namespaced dev org after package metadata is deployed.
@@ -470,6 +474,8 @@ flows:
                 task: deploy_release_gating
             8:
                 task: deploy_settings_product
+            9:
+                flow: create_additional_users
 
     config_managed:
         # description: Configure an org for use as a dev org after package metadata is deployed.
@@ -518,6 +524,8 @@ flows:
                 task: deploy_release_gating
             10:
                 task: deploy_settings_product
+            11:
+                flow: create_additional_users
 
     config_regression:
         # description: Configure an org for QA regression after the package is installed.
@@ -531,7 +539,13 @@ flows:
             4:
                 flow: eda_settings
             5:
-                flow: run_unmanaged_unit_tests
+                flow: run_functional_tests
+
+    create_additional_users:
+        # description: Create additional users
+        steps:
+            1:
+                task: create_no_access_user
 
     deploy_unmanaged:
         # description: Deploy the unmanaged metadata from the package
@@ -599,29 +613,45 @@ flows:
             4:
                 task: publish_learner_portal
 
-    run_unmanaged_unit_tests:
+    qa_org_2gp_ftests:
+        group: "Org Setup"
+        description: Set up an org and run functional tests as a QA environment using a second-generation package
+        steps:
+            1:
+                flow: qa_org_2gp
+            2:
+                flow: run_functional_tests
+
+    run_functional_tests:
         # description: Configure an org for use as a dev org after package metadata is deployed.
         steps:
             1:
-                task: deploy_unpackaged_test_metadata
-                when: "'hed' not in org_config.installed_packages"
-            2:
-                task: deploy_unpackaged_primary_affiliations_config
-                when: "'hed' not in org_config.installed_packages"
-            3:
-                task: execute_primary_affiliation_mapping_apex
-                when: "'hed' not in org_config.installed_packages"
-            4:
-                task: deploy_unpackaged_relationship_autocreate_config
-                when: "'hed' not in org_config.installed_packages"
-            5:
-                task: deploy_preferred_email_config
+                task: deploy_functional_test_utilities
                 when: "'hed' in org_config.installed_packages"
-            6:
+            2:
+                task: deploy_functional_tests
+                when: "'hed' in org_config.installed_packages"
+            3:
                 # execute tests in unmanaged package
                 task: run_tests
                 options:
-                    test_name_match: '%\_Unmanaged_TEST,%\_ATST,%\_MTST,%\_PTST,%\_UTST'
+                    test_name_match: '%\_FTST'
+                    namespace: ""
+
+    run_unpackaged_tests:
+        # description: Configure an org for use as a dev org after package metadata is deployed.
+        steps:
+            1:
+                task: deploy_functional_test_utilities
+                when: "'hed' not in org_config.installed_packages"
+            2:
+                task: deploy_unpackaged_tests
+                when: "'hed' not in org_config.installed_packages"
+            3:
+                # execute tests in unmanaged package
+                task: run_tests
+                options:
+                    test_name_match: '%\_UTST'
 
     upgraded_org:
         description: Simulates an existing EDA customer org that has been push-upgraded from the latest production release of EDA to the current beta, including any dependencies. Deploys the unmanaged metadata from the production release.

@@ -337,10 +337,6 @@
         <name>stgAccountModelNav</name>
     </customLabels>
     <customLabels>
-        <label>Tilimallien asetukset</label>
-        <name>stgAccountModelSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label>Käytettävissä olevat tilitietuetyypit</label>
         <name>stgAccountRecordTypeAvailableListTitle</name>
     </customLabels>
@@ -379,10 +375,6 @@
     <customLabels>
         <label>Osoitteet</label>
         <name>stgAddressSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label>Osoiteasetukset</label>
-        <name>stgAddressSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Mukautettu nimeämismuoto</label>
@@ -437,10 +429,6 @@
         <name>stgAffiliationsSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label>Jäsenyyksien asetukset</label>
-        <name>stgAffiliationsSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label>Jäsenyyden päättymispäivä</label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
@@ -491,10 +479,6 @@
     <customLabels>
         <label>API-nimi: {0}</label>
         <name>stgApiNameLabel</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Application Settings --></label>
-        <name>stgApplicationSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Label for the Application Window Validation setting --></label>
@@ -801,10 +785,6 @@
         <name>stgContactInformationSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label>Yhteystietoasetukset</label>
-        <name>stgContactInformationSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label>Salli useat yhteydenotto-osoitteet</label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
@@ -823,10 +803,6 @@
     <customLabels>
         <label>Kurssiyhteydet</label>
         <name>stgCourseConnectionsNav</name>
-    </customLabels>
-    <customLabels>
-        <label>Kurssiyhteyksien asetukset</label>
-        <name>stgCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
         <label>Kopioi kurssitietueiden Kuvaus-kentän tekstin Laajennettu kuvaus -kenttään. Nykyisiä Laajennettu kuvaus -arvoja ei korvata. Päivitä sivuasettelut ja muut Kuvaus-kentän viittaukset tämän päivityksen jälkeen.</label>
@@ -971,10 +947,6 @@
     <customLabels>
         <label><!-- Message when EDA cannot activate a release gate --></label>
         <name>stgErrorReleaseGateActivateErrorResponse</name>
-    </customLabels>
-    <customLabels>
-        <label>Virheasetukset</label>
-        <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Vanha etnisyysdata</label>
@@ -1665,16 +1637,8 @@
         <name>stgProgramPlanSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label>Ohjelmasuunnitelmien asetukset</label>
-        <name>stgProgramPlanSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label>Ohjelmaan ilmoittautumiset</label>
         <name>stgProgramsSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label>Ohjelmaan ilmoittautumisten asetukset</label>
-        <name>stgProgramsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Luetteloasetus</label>
@@ -1763,10 +1727,6 @@
     <customLabels>
         <label>Suhteet</label>
         <name>stgRelationshipSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label>Suhdeasetukset</label>
-        <name>stgRelationshipSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>Päivitä</label>
@@ -2035,8 +1995,20 @@
         <name>stgReleaseGateEDAWinter22FeatureDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Winter 22 release gate feature help label --></label>
-        <name>stgReleaseGateEDAWinter22FeatureHelpLabel</name>
+        <label><!-- EDA release gate feature help label --></label>
+        <name>stgReleaseGateEDAFeatureHelpLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Spring 22 release gate label --></label>
+        <name>stgReleaseGateEDASpring22Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Spring 22 release gate description --></label>
+        <name>stgReleaseGateEDASpring22Description</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Spring 22 release gate feature description --></label>
+        <name>stgReleaseGateEDASpring22FeatureDescription</name>
     </customLabels>
     <customTabs>
         <label>Education Cloud -asetukset</label>

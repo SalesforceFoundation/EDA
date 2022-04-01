@@ -282,27 +282,35 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
      ********************************************************************************************************/
     public String getKeyAfflFieldByAccRecordType(ID recordTypeId) {
         for (String recTypeName : primaryAfflFieldInMappingsByAccRecType.keySet()) {
+            String primaryAfflField = null;
             if (Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName) != null) {
                 ID rcId = Schema.Sobjecttype.Account.getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
                 if (rcId == recordTypeId) {
-                    String fieldLabel = primaryAfflFieldInMappingsByAccRecType.get(recTypeName);
-                    String fieldName = contactFieldAPINameByLabel.get(fieldLabel);
-                    return fieldName;
+                    primaryAfflField = primaryAfflFieldInMappingsByAccRecType.get(recTypeName);
                 }
             } else if (Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(recTypeName) != null) {
                 ID rcId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName()
                     .get(recTypeName)
                     .getRecordTypeId();
                 if (rcId == recordTypeId) {
-                    String fieldLabel = primaryAfflFieldInMappingsByAccRecType.get(recTypeName);
-                    String fieldName = contactFieldAPINameByLabel.get(fieldLabel);
-                    return fieldName;
+                    primaryAfflField = primaryAfflFieldInMappingsByAccRecType.get(recTypeName);
                 }
             } else {
                 //Setup null pointer error message
                 String[] params = new List<String>{ recTypeName };
                 String nullPointerMsg = String.format(Label.afflNullPointerError, params);
                 throw new AfflNullPointerException(nullPointerMsg);
+            }
+            if (primaryAfflField != null) {
+                //Trying to find the mapped field by the field label first
+                //Some customers might still have field labels stored in Affl_Mappings__c.Primary_Affl_Field__c
+                String fieldName = contactFieldAPINameByLabel.get(primaryAfflField);
+                if (fieldName != null) {
+                    return fieldName;
+                } else {
+                    //If not found primaryAfflField should contain the field api name
+                    return primaryAfflField;
+                }
             }
         }
         return null;

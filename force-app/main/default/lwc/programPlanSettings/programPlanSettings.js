@@ -4,7 +4,7 @@ import { refreshApex } from "@salesforce/apex";
 import getProgramPlanSettingsVModel from "@salesforce/apex/ProgramPlanSettingsController.getProgramPlanSettingsVModel";
 
 //Program Plan Settings Labels
-import stgProgramPlanSettingsTitle from "@salesforce/label/c.stgProgramPlanSettingsTitle";
+import stgProgramPlanSettingsTitle from "@salesforce/label/c.stgProgramPlanSettingsNav";
 import stgNestedPlanRequirementPP from "@salesforce/label/c.stgNestedPlanRequirementPP";
 import stgHelpNestedPlanRequirementPP from "@salesforce/label/c.stgHelpNestedPlanRequirementPP";
 

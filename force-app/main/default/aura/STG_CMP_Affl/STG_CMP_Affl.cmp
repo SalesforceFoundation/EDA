@@ -1,9 +1,9 @@
 <aura:component extends="c:STG_CMP_Base">
-    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
-    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
     <aura:attribute name="affiliationRolePicklistEntries" type="Map" />
     <aura:attribute name="affiliationStatusPicklistEntries" type="Map" />
-    
+
     <aura:attribute name="afflMappings" type="Affl_Mappings__c[]" />
     <aura:attribute name="noAfflMappings" type="String" />
     <aura:attribute name="affiliationRoleMapValue" type="String" />
@@ -12,10 +12,10 @@
     <aura:attribute name="affiliationStatusMapLabel" type="String" />
     <aura:attribute name="affiliationStatusDeleteMapValue" type="String" />
     <aura:attribute name="affiliationStatusDeleteMapLabel" type="String" />
-    
-    <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}"/>
-    <aura:handler event="c:STG_EVT_Save" action="{!c.saveMappings}"/>
-    <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}"/>
+
+    <aura:handler event="c:STG_EVT_Edit" action="{!c.toggleIsView}" />
+    <aura:handler event="c:STG_EVT_Save" action="{!c.saveMappings}" />
+    <aura:handler event="c:STG_EVT_Cancel" action="{!c.resetSettings}" />
 
     <div class="slds-hide" id="errorToast" aura:id="errorToast">
         <div class="slds-box">
@@ -23,11 +23,25 @@
                 <div class="slds-notify slds-notify_toast slds-theme_error" role="status">
                     <span class="slds-assistive-text">{!$Label.c.stgAfflNotInserted}</span>
                     <button class="slds-button slds-button--icon-inverse slds-notify__close" tabindex="-1">
-                        <c:svgIcon name="close" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeErrorToast}" containerClass="toast-icon" />
+                        <c:svgIcon
+                            name="close"
+                            category="utility"
+                            size="small"
+                            assistiveText="Close"
+                            pressIcon="{!c.closeErrorToast}"
+                            containerClass="toast-icon"
+                        />
                     </button>
                     <div class="slds-notify__content slds-grid slds-gutters">
                         <div class="slds-col slds-align-left">
-                            <c:svgIcon name="error" category="utility" size="small" assistiveText="Close" pressIcon="{!c.closeErrorToast}" containerClass="toast-icon" />
+                            <c:svgIcon
+                                name="error"
+                                category="utility"
+                                size="small"
+                                assistiveText="Close"
+                                pressIcon="{!c.closeErrorToast}"
+                                containerClass="toast-icon"
+                            />
                         </div>
                         <div class="slds-col slds-align-middle slds-gutters">
                             <h2 class="slds-text-heading_small">{!$Label.c.stgAfflNotInserted}</h2>
@@ -37,21 +51,34 @@
             </div>
         </div>
     </div>
-    
+
     <div id="afflTabs" class="slds-tabs--scoped">
         <ul class="slds-tabs--scoped__nav" role="tablist">
             <li aura:id="settsTab" class="slds-tabs__item slds-text-heading--label" title="Settings" role="tab">
-                <ui:outputURL value="#" label="{!$Label.c.stgTabSettings}" click="{!c.settsLinkClicked}" class="affl-settings-menulink" />
+                <ui:outputURL
+                    value="#"
+                    label="{!$Label.c.stgTabSettings}"
+                    click="{!c.settsLinkClicked}"
+                    class="affl-settings-menulink"
+                />
             </li>
-            <li aura:id="mappingsTab" class="slds-tabs__item slds-text-heading--label" title="Affiliation Mappings" role="tab">
-                <ui:outputURL value="#" label="{!$Label.c.stgTabAfflMappings}" click="{!c.mappingsLinkClicked}" class="affl-mappings-menulink"/>
+            <li
+                aura:id="mappingsTab"
+                class="slds-tabs__item slds-text-heading--label"
+                title="Affiliation Mappings"
+                role="tab"
+            >
+                <ui:outputURL
+                    value="#"
+                    label="{!$Label.c.stgTabAfflMappings}"
+                    click="{!c.mappingsLinkClicked}"
+                    class="affl-mappings-menulink"
+                />
             </li>
         </ul>
-        
-        <div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
 
+        <div aura:id="settsTabContent" class="slds-tabs__content" role="tabpanel">
             <div class="slds-col slds-grid slds-wrap slds-size--1-of-1 slds-m-top--medium">
-                
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.afflTypeEnforced}" />
                 </div>
@@ -60,11 +87,20 @@
                         <div class="slds-form-element__control">
                             <label class="slds-checkbox">
                                 <aura:if isTrue="{!v.isView}">
-                                    <ui:outputCheckbox value="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}" class="affl-record-type-enforced" />
+                                    <ui:outputCheckbox
+                                        value="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}"
+                                        class="affl-record-type-enforced"
+                                    />
                                     <aura:set attribute="else">
-                                        <ui:inputCheckbox aura:id="afflRecordTypeEnforced" value="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}"
-                                                            class="affl-record-type-enforced" />
-                                        <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}"></span>
+                                        <ui:inputCheckbox
+                                            aura:id="afflRecordTypeEnforced"
+                                            value="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}"
+                                            class="affl-record-type-enforced"
+                                        />
+                                        <span
+                                            class="slds-checkbox--faux"
+                                            data-qa-checkbox-state="{!v.hierarchySettings.Affiliation_Record_Type_Enforced__c}"
+                                        ></span>
                                         <span class="slds-form-element__label"></span>
                                     </aura:set>
                                 </aura:if>
@@ -73,40 +109,51 @@
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <ui:outputText value="{!$Label.c.afflTypeEnforcedDescription}" class="slds-text-body--small"/>
+                    <ui:outputText value="{!$Label.c.afflTypeEnforcedDescription}" class="slds-text-body--small" />
                 </div>
             </div>
 
-            <hr/>
+            <hr />
 
             <div class="slds-col slds-grid slds-wrap slds-size--1-of-1">
-                
                 <div class="slds-col slds-grid slds-size--1-of-1">
                     <div class="slds-col slds-size--1-of-2">
                         <ui:outputText value="{!$Label.c.stgHelpAfflDeleteProgramEnrollmentHeader}" />
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <ui:outputText value="{!$Label.c.stgHelpAfflDeleteProgramEnrollmentInfo}" class="slds-text-body--small" />
+                    <ui:outputText
+                        value="{!$Label.c.stgHelpAfflDeleteProgramEnrollmentInfo}"
+                        class="slds-text-body--small"
+                    />
                 </div>
-                
+
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
-                        <ui:outputText value="{!$Label.c.stgAfflProgEnrollDeleteRelated}"/>
+                        <ui:outputText value="{!$Label.c.stgAfflProgEnrollDeleteRelated}" />
                     </div>
                     <div class="slds-col slds-size--1-of-2">
-                         <div class="slds-form-element">
-                             <div class="slds-form-element__control">
-                                 <label class="slds-checkbox">
-                                     <aura:if isTrue="{!v.isView}">
-                                         <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}" class="delete-prog-enroll" />
-                                     <aura:set attribute="else">
-                                         <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}" class="delete-prog-enroll" />
-                                         <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}"></span>
-                                        <span class="slds-form-element__label"></span>
-                                     </aura:set>
-                                     </aura:if>
-                                 </label>
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <label class="slds-checkbox">
+                                    <aura:if isTrue="{!v.isView}">
+                                        <ui:outputCheckbox
+                                            value="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}"
+                                            class="delete-prog-enroll"
+                                        />
+                                        <aura:set attribute="else">
+                                            <ui:inputCheckbox
+                                                value="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}"
+                                                class="delete-prog-enroll"
+                                            />
+                                            <span
+                                                class="slds-checkbox--faux"
+                                                data-qa-checkbox-state="{!v.hierarchySettings.Affl_ProgEnroll_Del__c}"
+                                            ></span>
+                                            <span class="slds-form-element__label"></span>
+                                        </aura:set>
+                                    </aura:if>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -114,59 +161,73 @@
                 <div class="slds-col slds-size--1-of-2">
                     <ui:outputText value="{!$Label.c.AfflProgEnrollDeleted}" class="slds-text-body--small" />
                 </div>
-            
+
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
                         <ui:outputText value="{!$Label.c.stgAfflDeleteProgramEnrollment + ' '}" />
                     </div>
                     <div class="slds-col slds-size--1-of-2">
-                      <c:CMP_Picklist_Dropdown class="affiliation-status-delete-picklist"
-                        setting="{!v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}"
-                        isView="{!v.isView}"
-                        picklistValue="{!v.affiliationStatusDeleteMapValue}"
-                        picklistLabel="{!v.affiliationStatusDeleteMapLabel}"
-                        picklistEntries="{!v.affiliationStatusPicklistEntries}" 
-                        dropdownDisabled="(!!v.hierarchySettings.Affl_ProgEnroll_Del__c)"
-                        enableNoneOptionOnViewPage="true"
-                      />
+                        <c:CMP_Picklist_Dropdown
+                            class="affiliation-status-delete-picklist"
+                            setting="{!v.hierarchySettings.Affl_ProgEnroll_Del_Status__c}"
+                            isView="{!v.isView}"
+                            picklistValue="{!v.affiliationStatusDeleteMapValue}"
+                            picklistLabel="{!v.affiliationStatusDeleteMapLabel}"
+                            picklistEntries="{!v.affiliationStatusPicklistEntries}"
+                            dropdownDisabled="(!!v.hierarchySettings.Affl_ProgEnroll_Del__c)"
+                            enableNoneOptionOnViewPage="true"
+                        />
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <ui:outputText value="{!$Label.c.stgHelpAfflDeleteProgramEnrollment}" class="slds-text-body--small" />
+                    <ui:outputText
+                        value="{!$Label.c.stgHelpAfflDeleteProgramEnrollment}"
+                        class="slds-text-body--small"
+                    />
                 </div>
             </div>
 
-            
-            <hr/>
+            <hr />
 
             <div class="slds-grid slds-wrap">
-
                 <div class="slds-col slds-grid slds-size--1-of-1">
                     <div class="slds-col slds-size--1-of-1">
                         <ui:outputText value="{!$Label.c.stgHelpAfflCreateFromProgramEnrollmentHeader}" />
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <ui:outputText value="{!$Label.c.stgHelpAfflCreateFromProgramEnrollmentInfo}" class="slds-text-body--small" />
+                    <ui:outputText
+                        value="{!$Label.c.stgHelpAfflCreateFromProgramEnrollmentInfo}"
+                        class="slds-text-body--small"
+                    />
                 </div>
 
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
-                        <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetRole}"/>
+                        <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetRole}" />
                     </div>
                     <div class="slds-col slds-size--1-of-2">
-                         <div class="slds-form-element">
-                             <div class="slds-form-element__control">
-                                 <label class="slds-checkbox">
-                                     <aura:if isTrue="{!v.isView}">
-                                         <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}" class="copy-start-date" />
-                                     <aura:set attribute="else">
-                                         <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}" class="copy-start-date" />
-                                         <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}"></span>
-                                        <span class="slds-form-element__label"></span>
-                                     </aura:set>
-                                     </aura:if>
-                                 </label>
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <label class="slds-checkbox">
+                                    <aura:if isTrue="{!v.isView}">
+                                        <ui:outputCheckbox
+                                            value="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}"
+                                            class="copy-start-date"
+                                        />
+                                        <aura:set attribute="else">
+                                            <ui:inputCheckbox
+                                                value="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}"
+                                                class="copy-start-date"
+                                            />
+                                            <span
+                                                class="slds-checkbox--faux"
+                                                data-qa-checkbox-state="{!v.hierarchySettings.Affl_ProgEnroll_Set_Role__c}"
+                                            ></span>
+                                            <span class="slds-form-element__label"></span>
+                                        </aura:set>
+                                    </aura:if>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -180,18 +241,22 @@
                         <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetRoleValue + ' '}" />
                     </div>
                     <div class="slds-col slds-size--1-of-2">
-                      <c:CMP_Picklist_Dropdown class="affiliation-role-picklist"
-                        setting="{!v.hierarchySettings.Affl_ProgEnroll_Role_Map__c}"
-                        isView="{!v.isView}"
-                        picklistValue="{!v.affiliationRoleMapValue}"
-                        picklistLabel="{!v.affiliationRoleMapLabel}"
-                        picklistEntries="{!v.affiliationRolePicklistEntries}"
-                        enableNoneOptionOnViewPage="true"
-                      />
+                        <c:CMP_Picklist_Dropdown
+                            class="affiliation-role-picklist"
+                            setting="{!v.hierarchySettings.Affl_ProgEnroll_Role_Map__c}"
+                            isView="{!v.isView}"
+                            picklistValue="{!v.affiliationRoleMapValue}"
+                            picklistLabel="{!v.affiliationRoleMapLabel}"
+                            picklistEntries="{!v.affiliationRolePicklistEntries}"
+                            enableNoneOptionOnViewPage="true"
+                        />
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetRoleValue}" class="slds-text-body--small" />
+                    <ui:outputText
+                        value="{!$Label.c.stgHelpAfflProgEnrollSetRoleValue}"
+                        class="slds-text-body--small"
+                    />
                 </div>
 
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
@@ -199,77 +264,109 @@
                         <ui:outputText value="{!$Label.c.stgAfflProgEnrollSetStatusValue + ' '}" />
                     </div>
                     <div class="slds-col slds-size--1-of-2">
-                      <c:CMP_Picklist_Dropdown class="affiliation-status-picklist"
-                        setting="{!v.hierarchySettings.Affl_ProgEnroll_Status_Map__c}"
-                        isView="{!v.isView}"
-                        picklistValue="{!v.affiliationStatusMapValue}"
-                        picklistLabel="{!v.affiliationStatusMapLabel}"
-                        picklistEntries="{!v.affiliationStatusPicklistEntries}"
-                        enableNoneOptionOnViewPage="true"
-                      />
+                        <c:CMP_Picklist_Dropdown
+                            class="affiliation-status-picklist"
+                            setting="{!v.hierarchySettings.Affl_ProgEnroll_Status_Map__c}"
+                            isView="{!v.isView}"
+                            picklistValue="{!v.affiliationStatusMapValue}"
+                            picklistLabel="{!v.affiliationStatusMapLabel}"
+                            picklistEntries="{!v.affiliationStatusPicklistEntries}"
+                            enableNoneOptionOnViewPage="true"
+                        />
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <ui:outputText value="{!$Label.c.stgHelpAfflProgEnrollSetStatusValue}" class="slds-text-body--small" />
+                    <ui:outputText
+                        value="{!$Label.c.stgHelpAfflProgEnrollSetStatusValue}"
+                        class="slds-text-body--small"
+                    />
                 </div>
 
                 <div class="sslds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
-                        <ui:outputText value="{!$Label.c.stgAfflCopyProgramEnrollmentEndDate}"/>
+                        <ui:outputText value="{!$Label.c.stgAfflCopyProgramEnrollmentEndDate}" />
                     </div>
                     <div class="slds-col slds-size--1-of-2">
-                         <div class="slds-form-element">
-                             <div class="slds-form-element__control">
-                                 <label class="slds-checkbox">
-                                     <aura:if isTrue="{!v.isView}">
-                                         <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}" class="copy-end-date" />
-                                     <aura:set attribute="else">
-                                         <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}" class="copy-end-date" />
-                                         <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}"></span>
-                                        <span class="slds-form-element__label"></span>
-                                     </aura:set>
-                                     </aura:if>
-                                 </label>
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <label class="slds-checkbox">
+                                    <aura:if isTrue="{!v.isView}">
+                                        <ui:outputCheckbox
+                                            value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}"
+                                            class="copy-end-date"
+                                        />
+                                        <aura:set attribute="else">
+                                            <ui:inputCheckbox
+                                                value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}"
+                                                class="copy-end-date"
+                                            />
+                                            <span
+                                                class="slds-checkbox--faux"
+                                                data-qa-checkbox-state="{!v.hierarchySettings.Affl_ProgEnroll_Copy_End_Date__c}"
+                                            ></span>
+                                            <span class="slds-form-element__label"></span>
+                                        </aura:set>
+                                    </aura:if>
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <ui:outputText value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentEndDate}" class="slds-text-body--small" />
+                    <ui:outputText
+                        value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentEndDate}"
+                        class="slds-text-body--small"
+                    />
                 </div>
 
                 <div class="slds-col slds-grid slds-size--1-of-1 slds-m-top--medium">
                     <div class="slds-col slds-size--1-of-2">
-                        <ui:outputText value="{!$Label.c.stgAfflCopyProgramEnrollmentStartDate}"/>
+                        <ui:outputText value="{!$Label.c.stgAfflCopyProgramEnrollmentStartDate}" />
                     </div>
                     <div class="slds-col slds-size--1-of-2">
-                         <div class="slds-form-element">
-                             <div class="slds-form-element__control">
-                                 <label class="slds-checkbox">
-                                     <aura:if isTrue="{!v.isView}">
-                                         <ui:outputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}" class="copy-start-date" />
-                                     <aura:set attribute="else">
-                                         <ui:inputCheckbox value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}" class="copy-start-date" />
-                                         <span class="slds-checkbox--faux" data-qa-checkbox-state="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}"></span>
-                                        <span class="slds-form-element__label"></span>
-                                     </aura:set>
-                                     </aura:if>
-                                 </label>
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <label class="slds-checkbox">
+                                    <aura:if isTrue="{!v.isView}">
+                                        <ui:outputCheckbox
+                                            value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}"
+                                            class="copy-start-date"
+                                        />
+                                        <aura:set attribute="else">
+                                            <ui:inputCheckbox
+                                                value="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}"
+                                                class="copy-start-date"
+                                            />
+                                            <span
+                                                class="slds-checkbox--faux"
+                                                data-qa-checkbox-state="{!v.hierarchySettings.Affl_ProgEnroll_Copy_Start_Date__c}"
+                                            ></span>
+                                            <span class="slds-form-element__label"></span>
+                                        </aura:set>
+                                    </aura:if>
+                                </label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="slds-col slds-size--1-of-2">
-                    <ui:outputText value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentStartDate}" class="slds-text-body--small" />
+                    <ui:outputText
+                        value="{!$Label.c.stgHelpAfflCopyProgramEnrollmentStartDate}"
+                        class="slds-text-body--small"
+                    />
                 </div>
             </div>
         </div>
-        
+
         <div aura:id="mappingsTabContent" class="slds-tabs__content" role="tabpanel">
             <div class="slds-col slds-size--1-of-1 slds-m-bottom--medium">
                 <ui:outputText value="{!$Label.c.AfflMappingsDescription + ' '}" class="slds-text-body--small" />
-                <ui:outputURL value="https://powerofus.force.com/s/article/EDA-Create-Accounts-and-Affiliations" class="slds-text-body--small slds-type-focus" 
-                    label="EDA documentation." target="_blank" />
+                <ui:outputURL
+                    value="https://powerofus.force.com/EDA-Create-Accounts-and-Affiliations"
+                    class="slds-text-body--small slds-type-focus"
+                    label="EDA documentation."
+                    target="_blank"
+                />
             </div>
             <div class="slds-grid slds-wrap">
                 <div class="slds-col slds-size--1-of-6">
@@ -277,90 +374,128 @@
                         <ui:outputText value="{!$Label.c.stgColAccountRecordType + ' '}" />
                     </strong>
                 </div>
-                 <div class="slds-col slds-size--1-of-6">
+                <div class="slds-col slds-size--1-of-6">
                     <strong>
                         <ui:outputText value="{!$Label.c.stgColContactPrimaryAfflField + ' '}" />
                     </strong>
                 </div>
-                 <div class="slds-col slds-size--1-of-6">
+                <div class="slds-col slds-size--1-of-6">
                     <strong>
                         <ui:outputText value="{!$Label.c.stgAutoEnrollment + ' '}" />
                     </strong>
                 </div>
-                 <div class="slds-col slds-size--1-of-6">
+                <div class="slds-col slds-size--1-of-6">
                     <strong>
                         <ui:outputText value="{!$Label.c.stgAutoEnrollmentStatus + ' '}" />
                     </strong>
                 </div>
-                 <div class="slds-col slds-size--1-of-6">
+                <div class="slds-col slds-size--1-of-6">
                     <strong>
                         <ui:outputText value="{!$Label.c.stgAutoEnrollmentRole + ' '}" />
                     </strong>
                 </div>
-                 <div class="slds-col slds-size--1-of-6">&nbsp;</div>
-            
-                 <ui:outputText value="{!v.noAfflMappings}"/>
-                 
-                 <aura:iteration items="{!v.afflMappings}" var="afflMapping" indexVar="position">
-                     <div class="slds-col slds-size--1-of-6">
-                         <aura:if isTrue="{!v.isView}">
-                             <ui:outputText value="{!afflMapping.Account_Record_Type__c}" class="mapping-acc-rec-type" />
-                         <aura:set attribute="else">
-                             <ui:inputText value="{!afflMapping.Account_Record_Type__c}" class="mapping-acc-rec-type" 
-                                            label="{!'Acc Record Type: ' + afflMapping.Account_Record_Type__c}" labelClass="slds-hide"/>
-                         </aura:set>
-                         </aura:if>
-                     </div>
-                     <div class="slds-col slds-size--1-of-6">
-                         <aura:if isTrue="{!v.isView}">
-                             <ui:outputText value="{!afflMapping.Primary_Affl_Field__c}" class="mapping-affl-field" />
-                         <aura:set attribute="else">
-                             <ui:inputText value="{!afflMapping.Primary_Affl_Field__c}" class="mapping-affl-field" 
-                                            label="{!'Primary Affl Field: ' + afflMapping.Primary_Affl_Field__c}" labelClass="slds-hide"/>
-                         </aura:set>
-                         </aura:if>
-                     </div>
-                     <div class="slds-col slds-size--1-of-6">
-                         <div class="slds-form-element">
+                <div class="slds-col slds-size--1-of-6">&nbsp;</div>
+
+                <ui:outputText value="{!v.noAfflMappings}" />
+
+                <aura:iteration items="{!v.afflMappings}" var="afflMapping" indexVar="position">
+                    <div class="slds-col slds-size--1-of-6">
+                        <aura:if isTrue="{!v.isView}">
+                            <ui:outputText value="{!afflMapping.Account_Record_Type__c}" class="mapping-acc-rec-type" />
+                            <aura:set attribute="else">
+                                <ui:inputText
+                                    value="{!afflMapping.Account_Record_Type__c}"
+                                    class="mapping-acc-rec-type"
+                                    label="{!'Acc Record Type: ' + afflMapping.Account_Record_Type__c}"
+                                    labelClass="slds-hide"
+                                />
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                    <div class="slds-col slds-size--1-of-6">
+                        <aura:if isTrue="{!v.isView}">
+                            <ui:outputText value="{!afflMapping.Primary_Affl_Field__c}" class="mapping-affl-field" />
+                            <aura:set attribute="else">
+                                <ui:inputText
+                                    value="{!afflMapping.Primary_Affl_Field__c}"
+                                    class="mapping-affl-field"
+                                    label="{!'Primary Affl Field: ' + afflMapping.Primary_Affl_Field__c}"
+                                    labelClass="slds-hide"
+                                />
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                    <div class="slds-col slds-size--1-of-6">
+                        <div class="slds-form-element">
                             <div class="slds-form-element__control">
                                 <label class="slds-checkbox">
-                                     <aura:if isTrue="{!v.isView}">
-                                         <ui:outputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}" class="mapping-auto-enroll" />
-                                     <aura:set attribute="else">
-                                         <ui:inputCheckbox value="{!afflMapping.Auto_Program_Enrollment__c}" class="mapping-auto-enroll" />
-                                         <span class="slds-checkbox--faux" data-qa-checkbox-state="{!afflMapping.Auto_Program_Enrollment__c}"></span>
-                                         <span class="slds-form-element__label"></span>
-                                     </aura:set>
-                                     </aura:if>
-                                 </label>
+                                    <aura:if isTrue="{!v.isView}">
+                                        <ui:outputCheckbox
+                                            value="{!afflMapping.Auto_Program_Enrollment__c}"
+                                            class="mapping-auto-enroll"
+                                        />
+                                        <aura:set attribute="else">
+                                            <ui:inputCheckbox
+                                                value="{!afflMapping.Auto_Program_Enrollment__c}"
+                                                class="mapping-auto-enroll"
+                                            />
+                                            <span
+                                                class="slds-checkbox--faux"
+                                                data-qa-checkbox-state="{!afflMapping.Auto_Program_Enrollment__c}"
+                                            ></span>
+                                            <span class="slds-form-element__label"></span>
+                                        </aura:set>
+                                    </aura:if>
+                                </label>
                             </div>
                         </div>
-                     </div>
-                     <div class="slds-col slds-size--1-of-6">
-                         <aura:if isTrue="{!v.isView}">
-                             <ui:outputText value="{!afflMapping.Auto_Program_Enrollment_Status__c}" class="mapping-enroll-status" />
-                         <aura:set attribute="else">
-                             <ui:inputText value="{!afflMapping.Auto_Program_Enrollment_Status__c}" class="mapping-enroll-status"
-                                            label="{!'Status: ' + afflMapping.Auto_Program_Enrollment_Status__c}" labelClass="slds-hide"/>
-                         </aura:set>
-                         </aura:if>
-                     </div>
-                     <div class="slds-col slds-size--1-of-6">
-                         <aura:if isTrue="{!v.isView}">
-                             <ui:outputText value="{!afflMapping.Auto_Program_Enrollment_Role__c}" class="mapping-enroll-role" />
-                         <aura:set attribute="else">
-                             <ui:inputText value="{!afflMapping.Auto_Program_Enrollment_Role__c}" class="mapping-enroll-role" 
-                                            label="{!'Role: ' + afflMapping.Auto_Program_Enrollment_Role__c}" labelClass="slds-hide"/>
-                         </aura:set>
-                         </aura:if>
-                     </div>
-                     <div class="slds-col slds-size--1-of-6">
+                    </div>
+                    <div class="slds-col slds-size--1-of-6">
+                        <aura:if isTrue="{!v.isView}">
+                            <ui:outputText
+                                value="{!afflMapping.Auto_Program_Enrollment_Status__c}"
+                                class="mapping-enroll-status"
+                            />
+                            <aura:set attribute="else">
+                                <ui:inputText
+                                    value="{!afflMapping.Auto_Program_Enrollment_Status__c}"
+                                    class="mapping-enroll-status"
+                                    label="{!'Status: ' + afflMapping.Auto_Program_Enrollment_Status__c}"
+                                    labelClass="slds-hide"
+                                />
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                    <div class="slds-col slds-size--1-of-6">
+                        <aura:if isTrue="{!v.isView}">
+                            <ui:outputText
+                                value="{!afflMapping.Auto_Program_Enrollment_Role__c}"
+                                class="mapping-enroll-role"
+                            />
+                            <aura:set attribute="else">
+                                <ui:inputText
+                                    value="{!afflMapping.Auto_Program_Enrollment_Role__c}"
+                                    class="mapping-enroll-role"
+                                    label="{!'Role: ' + afflMapping.Auto_Program_Enrollment_Role__c}"
+                                    labelClass="slds-hide"
+                                />
+                            </aura:set>
+                        </aura:if>
+                    </div>
+                    <div class="slds-col slds-size--1-of-6">
                         <aura:if isTrue="{!!v.isView}">
-                             <c:svgIcon category="utility" size="small" name="delete" class="slds-theme--inverse mapping-delete" 
-                                 pressIcon="{!c.deleteAfflMappingRow}" id="{!afflMapping.Id}" position="{!position}" />
-                         </aura:if>
-                     </div>
-                 </aura:iteration>
+                            <c:svgIcon
+                                category="utility"
+                                size="small"
+                                name="delete"
+                                class="slds-theme--inverse mapping-delete"
+                                pressIcon="{!c.deleteAfflMappingRow}"
+                                id="{!afflMapping.Id}"
+                                position="{!position}"
+                            />
+                        </aura:if>
+                    </div>
+                </aura:iteration>
             </div>
             <div class="newafflmapping">
                 <div aria-labelledby="newafflmappingform">
@@ -370,52 +505,88 @@
                         </legend>
 
                         <div class="slds-form-element__group">
-                        <div class="slds-form-element__row">
-
-                            <div class="slds-form-element slds-size--1-of-6">
-                                <div class="slds-form-element__control">
-                                    <ui:inputText aura:id="accRecType" class="slds-m-right--medium acc-rec-type-new slds-input" label="{!$Label.c.stgColAccountRecordType}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newAfflMappingKeyup}"/>
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size--1-of-6">
+                                    <div class="slds-form-element__control">
+                                        <ui:inputText
+                                            aura:id="accRecType"
+                                            class="slds-m-right--medium acc-rec-type-new slds-input"
+                                            label="{!$Label.c.stgColAccountRecordType}"
+                                            labelClass="slds-form-element__label"
+                                            required="true"
+                                            requiredIndicatorClass="slds-required"
+                                            updateOn="keyup"
+                                            keyup="{!c.newAfflMappingKeyup}"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="slds-form-element slds-size--1-of-6">
-                                <div class="slds-form-element__control">
-                                    <ui:inputText aura:id="primaryField" class="slds-m-right--medium primary-affl-field-new slds-input" label="{!$Label.c.stgTabPrimaryAfflField}" labelClass="slds-form-element__label" required="true" requiredIndicatorClass="slds-required" updateOn="keyup" keyup="{!c.newAfflMappingKeyup}"/>
+                                <div class="slds-form-element slds-size--1-of-6">
+                                    <div class="slds-form-element__control">
+                                        <ui:inputText
+                                            aura:id="primaryField"
+                                            class="slds-m-right--medium primary-affl-field-new slds-input"
+                                            label="{!$Label.c.stgTabPrimaryAfflField}"
+                                            labelClass="slds-form-element__label"
+                                            required="true"
+                                            requiredIndicatorClass="slds-required"
+                                            updateOn="keyup"
+                                            keyup="{!c.newAfflMappingKeyup}"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="slds-form-element slds-size--1-of-6">
-                                <label class="slds-form-element__label" for="autoEnroll">&nbsp;
-                                    <ui:outputText value="{!$Label.c.stgAutoEnrollment}" />
-                                </label>
-                                <br />
-                                <div class="slds-form-element__control">
-                                     <label class="slds-checkbox">
-                                         <ui:inputCheckbox aura:id="autoEnroll" class="slds-m-right--medium auto-enroll-checkbox"  />
-                                         <span class="slds-checkbox--faux"></span>
-                                         <span class="slds-form-element__label"></span>
-                                     </label>
+                                <div class="slds-form-element slds-size--1-of-6">
+                                    <label class="slds-form-element__label" for="autoEnroll"
+                                        >&nbsp;
+                                        <ui:outputText value="{!$Label.c.stgAutoEnrollment}" />
+                                    </label>
+                                    <br />
+                                    <div class="slds-form-element__control">
+                                        <label class="slds-checkbox">
+                                            <ui:inputCheckbox
+                                                aura:id="autoEnroll"
+                                                class="slds-m-right--medium auto-enroll-checkbox"
+                                            />
+                                            <span class="slds-checkbox--faux"></span>
+                                            <span class="slds-form-element__label"></span>
+                                        </label>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="slds-form-element slds-size--1-of-6">
-                                <div class="slds-form-element__control">
-                                    <ui:inputText aura:id="autoEnrollStatus" class="slds-m-right--medium auto-enroll-status-new slds-input" label="{!$Label.c.stgColStatus}" labelClass="slds-form-element__label" />
+                                <div class="slds-form-element slds-size--1-of-6">
+                                    <div class="slds-form-element__control">
+                                        <ui:inputText
+                                            aura:id="autoEnrollStatus"
+                                            class="slds-m-right--medium auto-enroll-status-new slds-input"
+                                            label="{!$Label.c.stgColStatus}"
+                                            labelClass="slds-form-element__label"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="slds-form-element slds-size--1-of-6">
-                                <div class="slds-form-element__control">
-                                    <ui:inputText aura:id="autoEnrollRole" label="{!$Label.c.stgColRole}" labelClass="slds-form-element__label" class="auto-enroll-role-new slds-input" />
+                                <div class="slds-form-element slds-size--1-of-6">
+                                    <div class="slds-form-element__control">
+                                        <ui:inputText
+                                            aura:id="autoEnrollRole"
+                                            label="{!$Label.c.stgColRole}"
+                                            labelClass="slds-form-element__label"
+                                            class="auto-enroll-role-new slds-input"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        </div>
 
-                        <ui:button aura:id="newAfflMappingBtn" class="slds-button slds-button--brand slds-m-top--medium affl-mapping-addnew" press="{!c.newAfflMapping}" disabled="true">
+                        <ui:button
+                            aura:id="newAfflMappingBtn"
+                            class="slds-button slds-button--brand slds-m-top--medium affl-mapping-addnew"
+                            press="{!c.newAfflMapping}"
+                            disabled="true"
+                        >
                             <ui:outputText value="{!$Label.c.stgBtnAddMapping}" />
-                        </ui:button>                       
-                        <br/>   
+                        </ui:button>
+                        <br />
                     </fieldset>
                 </div>
             </div>

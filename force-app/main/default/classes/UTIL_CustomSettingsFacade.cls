@@ -169,6 +169,7 @@ public without sharing class UTIL_CustomSettingsFacade {
                 configSettings(orgSettings);
                 orgSettings.Setupownerid = UserInfo.getOrganizationId();
                 if (!Test.isRunningTest()) {
+                    /* sfca-disable-next-line ApexFlsViolationRule */
                     upsert orgSettings;
                 }
             }
@@ -294,6 +295,7 @@ public without sharing class UTIL_CustomSettingsFacade {
      **/
     public static List<Affl_Mappings__c> getAfflMappings() {
         if (afflMappings == null) {
+            /* sfca-disable-next-line ApexFlsViolationRule */
             afflMappings = [
                 SELECT
                     Account_Record_Type__c,
@@ -326,6 +328,7 @@ public without sharing class UTIL_CustomSettingsFacade {
      **/
     public static List<Relationship_Lookup__c> getReciprocalSettings() {
         if (relationshipLookup == null) {
+            /* sfca-disable-next-line ApexFlsViolationRule */
             relationshipLookup = [
                 SELECT Id, Name, Active__c, Female__c, Male__c, Neutral__c
                 FROM Relationship_Lookup__c
@@ -341,6 +344,7 @@ public without sharing class UTIL_CustomSettingsFacade {
      **/
     public static List<Relationship_Auto_Create__c> getAutoCreateSettings() {
         if (relationshipAutocreate == null) {
+            /* sfca-disable-next-line ApexFlsViolationRule */
             relationshipAutocreate = [
                 SELECT Id, Name, Campaign_Types__c, Field__c, Object__c, Relationship_Type__c
                 FROM Relationship_Auto_Create__c
