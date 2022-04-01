@@ -980,6 +980,11 @@ public with sharing class COFF_Affiliation_TEST {
         setup();
         enableCourseConnections();
 
+        Boolean courseConnectionsHasRecordTypeIdField = UTIL_Describe_API.isValidField(
+            UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),
+            'RecordTypeId'
+        );
+
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
 
         //Create Course Offering with Faculty member
@@ -1026,7 +1031,9 @@ public with sharing class COFF_Affiliation_TEST {
         System.assertEquals(2, courseConnections.size());
 
         for (Course_Enrollment__c courseConnection : courseConnections) {
-            if (courseConnection.Contact__c == faculty.Id) {
+            if (!courseConnectionsHasRecordTypeIdField) {
+                System.assertEquals(false, courseConnection.Primary__c);
+            } else if (courseConnection.Contact__c == faculty.Id) {
                 System.assertEquals(false, courseConnection.Primary__c);
             } else {
                 System.assertEquals(true, courseConnection.Primary__c);
@@ -1038,6 +1045,11 @@ public with sharing class COFF_Affiliation_TEST {
     public static void testUpdateConnectionsOnFacultyChangeInsertNew() {
         setup();
         enableCourseConnections();
+
+        Boolean courseConnectionsHasRecordTypeIdField = UTIL_Describe_API.isValidField(
+            UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),
+            'RecordTypeId'
+        );
 
         TDTM_ProcessControl.setRecursionFlag(TDTM_ProcessControl.registeredTrigger.COFF_Affiliation_TDTM, true);
 
@@ -1057,7 +1069,8 @@ public with sharing class COFF_Affiliation_TEST {
             Course_Offering__c = offering.Id,
             Primary__c = true
         );
-        if (UTIL_Describe_API.isValidField(UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'), 'RecordTypeId')) {
+
+        if (courseConnectionsHasRecordTypeIdField) {
             conn.put('RecordTypeId', UTIL_Describe_API.getFacultyConnectionRecType());
         }
         insert conn;
@@ -1072,10 +1085,17 @@ public with sharing class COFF_Affiliation_TEST {
 
         List<Course_Enrollment__c> courseConnections = [SELECT Id, Primary__c, Contact__c FROM Course_Enrollment__c];
 
-        System.assertEquals(2, courseConnections.size());
+        //This is necessary to account for record type existence as the test changes behavior based on the existence of a record type id field
+        if (courseConnectionsHasRecordTypeIdField) {
+            System.assertEquals(2, courseConnections.size());
+        } else {
+            System.assertEquals(1, courseConnections.size());
+        }
 
         for (Course_Enrollment__c courseConnection : courseConnections) {
-            if (courseConnection.Contact__c == faculty.Id) {
+            if (!courseConnectionsHasRecordTypeIdField) {
+                System.assertEquals(false, courseConnection.Primary__c);
+            } else if (courseConnection.Contact__c == faculty.Id) {
                 System.assertEquals(false, courseConnection.Primary__c);
             } else {
                 System.assertEquals(true, courseConnection.Primary__c);
