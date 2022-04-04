@@ -1,3 +1,7 @@
 .eda-height_full {
     height: 100%;
 }
+
+.eda-settings-page-title{
+    font-weight: var(--lwc-fontWeightBold);
+}

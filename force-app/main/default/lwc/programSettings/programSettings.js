@@ -10,7 +10,7 @@ import deleteAutoEnrollmentMappings from "@salesforce/apex/ProgramSettingsContro
 import unmappedRecordTypesExist from "@salesforce/apex/ProgramSettingsController.unmappedRecordTypesExist";
 
 //Page Custom Labels
-import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsTitle";
+import stgProgramsSettingsTitle from "@salesforce/label/c.stgProgramsSettingsNav";
 
 // Controller for Affiliations created with Program Enrollment
 import getAffiliationsWithProgramEnrollmentVModel from "@salesforce/apex/AffiliationsWithProgramEnrollController.getAffiliationsWithProgramEnrollmentVModel";
@@ -53,7 +53,7 @@ import stgErrorNewAutoEnrollment from "@salesforce/label/c.stgErrorNewAutoEnroll
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 import stgSuccess from "@salesforce/label/c.stgSuccess";
 
-const autoEnrollmentURL = "https://powerofus.force.com/s/article/EDA-Configure-Affiliations-Settings";
+const autoEnrollmentURL = "https://powerofus.force.com/EDA-Configure-Affiliations-Settings";
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -231,8 +231,8 @@ export default class programSettings extends LightningElement {
             this.programEnrollmentDeletionSettingsVModel = result.data;
 
             // program enrollment deletion status visibility dependent on program enrollment deletion setting
-            this.showProgramEnrollmentDeletionStatus = !this.programEnrollmentDeletionSettingsVModel
-                .programEnrollmentDeletion;
+            this.showProgramEnrollmentDeletionStatus =
+                !this.programEnrollmentDeletionSettingsVModel.programEnrollmentDeletion;
         } else if (result.error) {
             //console.log("error retrieving ProgramEnrollmentDeletionSettingsVModel");
         }
@@ -321,8 +321,8 @@ export default class programSettings extends LightningElement {
             refreshApex(this.affiliationsWithProgramEnrollVModelWireResult),
             refreshApex(this.programEnrollmentDeletionSettingsVModelWireResult),
         ]).then(() => {
-            this.showProgramEnrollmentDeletionStatus = !this.programEnrollmentDeletionSettingsVModel
-                .programEnrollmentDeletion;
+            this.showProgramEnrollmentDeletionStatus =
+                !this.programEnrollmentDeletionSettingsVModel.programEnrollmentDeletion;
 
             this.template.querySelectorAll("c-settings-row-input").forEach((input) => {
                 input.resetValue();

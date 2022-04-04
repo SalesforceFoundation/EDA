@@ -4,7 +4,7 @@ import { refreshApex } from "@salesforce/apex";
 import getContactLanguageSettingsVModel from "@salesforce/apex/ContactInfoSettingsController.getContactLanguageSettingsVModel";
 import getPreferredContactInfoSettingsVModel from "@salesforce/apex/ContactInfoSettingsController.getPreferredContactInfoSettingsVModel";
 
-import stgContactInformationSettingsTitle from "@salesforce/label/c.stgContactInformationSettingsTitle";
+import stgContactInformationSettingsTitle from "@salesforce/label/c.stgContactInformationSettingsNav";
 import stgDefaultContactLanguageFluency from "@salesforce/label/c.stgDefaultContactLanguageFluency";
 import stgHelpDefaultContactLanguageFluency from "@salesforce/label/c.stgHelpDefaultContactLanguageFluency";
 import stgOptSelect from "@salesforce/label/c.stgOptSelect";

@@ -1,0 +1,13 @@
+{
+    "LastName": "Emerson",
+    "FirstName": "Lily",
+    "Email": "sample@sfdx.org",
+    "Alias": "noaccess",
+    "TimeZoneSidKey": "America/Denver",
+    "LocaleSidKey": "en_US",
+    "EmailEncodingKey": "UTF-8",
+    "LanguageLocaleKey": "en_US",
+    "profileName": "Standard User",
+    "permsets": ["Internal_Only_for_Testing"],
+    "generatePassword": true
+}

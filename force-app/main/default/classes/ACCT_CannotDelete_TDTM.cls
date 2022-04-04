@@ -28,84 +28,80 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2016
-* @group Accounts
-* @group-content ../../ApexDocContent/Accounts.htm
-* @description Stops an Account from being deleted if it has any Address, Affiliation, 
-* Attribute, Course, Contact(Household), Contact(Business Organization), Course Connection, 
-* Education History, Facility, Program Enrollment, Program Plan, Term, or Time Block child records. 
-*/
+ * @author Salesforce.org
+ * @date 2016
+ * @group Accounts
+ * @group-content ../../ApexDocContent/Accounts.htm
+ * @description Stops an Account from being deleted if it has any Address, Affiliation,
+ * Attribute, Course, Contact(Household), Contact(Business Organization), Course Connection,
+ * Education History, Facility, Program Enrollment, Program Plan, Term, or Time Block child records.
+ */
 public with sharing class ACCT_CannotDelete_TDTM extends TDTM_Runnable {
+    //This variable has to be static because TDTM doesn't preserve TDTM_Runnable instance
+    //between Before* and After* calls
+    @TestVisible
+    private static List<Account> accountsWithChildRelations;
 
     /*******************************************************************************************************
-    * @description Get the setting of preventing Account deletion
-    */
-    private static Boolean enabledPreventAccountDeletion = UTIL_CustomSettingsFacade.getSettings().Prevent_Account_Deletion__c;
-
-    /*******************************************************************************************************
-    * @description Stops an Account from being deleted if it has any Address, Affiliation, 
-    * Attribute, Course, Contact(Household), Contact(Business Organization), Course Connection, 
-    * Facility, Program Enrollment, Program Plan, Term, or Time Block child records. 
-    * @param listNew the list of Accounts from trigger new. 
-    * @param listOld the list of Accounts from trigger old. 
-    * @param triggerAction which trigger event (BeforeDelete). 
-    * @param objResult the describe for Accounts 
-    * @return dmlWrapper.  
-    ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newlist, List<SObject> oldlist, 
-    TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-
-        if (!enabledPreventAccountDeletion) {
-            return new DmlWrapper(); 
+     * @description Stops an Account from being deleted if it has any Address, Affiliation,
+     * Attribute, Course, Contact(Household), Contact(Business Organization), Course Connection,
+     * Facility, Program Enrollment, Program Plan, Term, or Time Block child records.
+     * @param listNew the list of Accounts from trigger new.
+     * @param listOld the list of Accounts from trigger old.
+     * @param triggerAction which trigger event (BeforeDelete).
+     * @param objResult the describe for Accounts
+     * @return dmlWrapper.
+     ********************************************************************************************************/
+    public override DmlWrapper run(
+        List<SObject> newlist,
+        List<SObject> oldlist,
+        TDTM_Runnable.Action triggerAction,
+        Schema.DescribeSObjectResult objResult
+    ) {
+        if (!this.locateAccountPreventDeletionService().isAccountDeletionPreventionEnabled()) {
+            return new DmlWrapper();
         }
-
-        Map<ID, Account> oldmap = new Map<ID, Account>((List<Account>)oldList);
 
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-            for (Account acc : [SELECT ID, 
-                                (SELECT ID FROM Account.Addresses__r LIMIT 1),
-                                (SELECT ID FROM Account.Affl_Contacts__r LIMIT 1), 
-                                (SELECT ID FROM Account.Attributes__r LIMIT 1), 
-                                (SELECT ID FROM Account.Courses__r LIMIT 1), 
-                                (SELECT ID FROM Account.Course_Enrollments__r LIMIT 1),
-                                (SELECT ID FROM Account.Education_History__r LIMIT 1),
-                                (SELECT ID FROM Account.Facilities__r LIMIT 1),
-                                (SELECT ID FROM Account.Household_Members__r LIMIT 1),
-                                (SELECT ID FROM Account.Organization_Members__r LIMIT 1),
-                                (SELECT ID FROM Account.Program_Enrollments__r LIMIT 1), 
-                                (SELECT ID FROM Account.Program_Plans__r LIMIT 1),
-                                (SELECT ID FROM Account.Terms__r LIMIT 1),
-                                (SELECT ID FROM Account.Time_Blocks__r LIMIT 1)
-                                FROM Account WHERE ID IN :oldlist]) {
-
-                if (this.hasChildRecords(acc)) {
-                    Account accountInContext = oldMap.get(acc.ID);
-                    accountInContext.addError(Label.CannotDelete);
-                }
-            }     
+            accountsWithChildRelations = this.handleBeforeDelete(oldList);
+        } else if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
+            this.handleAfterDelete(oldList);
+            accountsWithChildRelations = null;
         }
+
         return new DmlWrapper();
     }
 
     /*******************************************************************************************************
-     * @description Evaluates whether the Account has any child related records.
-     * @param a is the current Account record.
-     * @return Boolean.
+     * @description Returns a List of Accounts with retrieved child relationships
+     * @param oldSObjectList list of sObject records that are being deleted
+     * @return List<Account>
      ********************************************************************************************************/
-    private Boolean hasChildRecords(Account acc) {
-        return (acc.Addresses__r.isEmpty() == false ||
-                acc.Affl_Contacts__r.isEmpty() == false ||
-                acc.Attributes__r.isEmpty() == false ||
-                acc.Courses__r.isEmpty() == false ||
-                acc.Course_Enrollments__r.isEmpty() == false ||
-                acc.Education_History__r.isEmpty() == false ||
-                acc.Facilities__r.isEmpty() == false ||
-                acc.Household_Members__r.isEmpty() == false ||
-                acc.Organization_Members__r.isEmpty() == false ||
-                acc.Program_Enrollments__r.isEmpty() == false ||
-                acc.Program_Plans__r.isEmpty() == false ||
-                acc.Terms__r.isEmpty() == false ||
-                acc.Time_Blocks__r.isEmpty() == false);
+    @TestVisible
+    private List<Account> handleBeforeDelete(List<SObject> oldSObjectList) {
+        Map<Id, Account> oldAccountById = new Map<Id, Account>((List<Account>) oldSObjectList);
+        return this.locateAccountPreventDeletionService().getAccountsAndChildRelationships(oldAccountById.keySet());
+    }
+
+    /*******************************************************************************************************
+     * @description Passes a map of accounts By Id to SRVC_Account_PreventDeletion and returns a List of Accounts that have
+     * been prevented for deletion
+     * @param oldSObjectList list of sObject records that are being deleted
+     * @return List<Account>
+     ********************************************************************************************************/
+    @TestVisible
+    private List<Account> handleAfterDelete(List<SObject> oldSObjectList) {
+        Map<Id, Account> oldAccountById = new Map<Id, Account>((List<Account>) oldSObjectList);
+        return this.locateAccountPreventDeletionService()
+            .preventDeletionForAccounts(oldAccountById, accountsWithChildRelations);
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the instance of SRVC_Account_PreventDeletion class
+     * @return The instance of SRVC_Account_PreventDeletion class
+     ********************************************************************************************************/
+    @TestVisible
+    private SRVC_Account_PreventDeletion locateAccountPreventDeletionService() {
+        return SRVC_Account_PreventDeletion.getInstance();
     }
 }

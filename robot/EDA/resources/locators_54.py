@@ -115,6 +115,7 @@ eda_lex_locators = {
         "edc_header": "//h2[contains(@class, 'header')]/descendant::span[text()='{}']",
         "toast_message": "//div[contains(@class, 'slds-theme--success slds-notify--toast slds-notify slds-notify--toast forceToastMessage')]/descendant::span[text()='{}']",
         "custom_toast": "//div[contains(@class, 'forceToastMessage')]/descendant::span[contains(@class, 'toastMessage')]",
+        "error_toast": "//div[contains(@class, 'slds-theme--error slds-notify--toast slds-notify slds-notify--toast forceToastMessage')]/descendant::span[text()=\"{}\"]",
         "settings_nav_title": "//div[@data-qa-locator='edaSettingsNavigation']/descendant::a[text()='{}']",
         "dropdown_input": "//label[text()='{}']/../descendant::button[contains(@class, 'slds-combobox__input')]",
         "settings_dropdown": "//label[text()='{}']/../descendant::span[text()='{}']",
@@ -126,8 +127,11 @@ eda_lex_locators = {
         "update_button": "//div[text()='{}']/../parent::div/descendant::button[text()='{}']",
         "footer_button": "//div[contains(@class, 'footer')]/descendant::button[@title='{}']",
         "app_tile": "//h2[text()='{}']/../descendant::ul/descendant::*[self::div or self::span][text()='{}']",
-        "show_actions_button": "//tr[@data-row-key-value='{}']/descendant::span[text()='Show actions']/ancestor::button[@type='button']",
-        "actions_menu": "//tr[@data-row-key-value='{}']/descendant::span[text()='{}']/ancestor::a[@role='menuitem']",
+        "show_actions_button": "//tr//lightning-base-formatted-text[text()='{}']/ancestor::tr/descendant::span[text()='Show actions']/ancestor::button[@type='button']",
+        "actions_menu": "//tr//lightning-base-formatted-text[text()='{}']/ancestor::tr/descendant::span[text()='{}']/ancestor::a[@role='menuitem']",
+        "product_card_button": "//li[contains(@class, 'edcSettingsProductCard')]/descendant::button[@title='{}']",
+        "product_card_avator": "//abbr[normalize-space()='{}']",
+        "product_card_description": "//div[contains(@class, 'productDescription')]/descendant::p[contains(text(),'{}')]"
     },
      "eda_settings_cc": {
         "default_cc_checkbox": "//div[text()='Enable Course Connections']/following-sibling::div/descendant::img",
@@ -410,5 +414,30 @@ eda_lex_locators = {
 
         "art_ap_input_affl_empty": "(//label/span[text()='Acc Record Type: ']/following::input[1][@class='mapping-acc-rec-type input' and @type='text'])[1]",
         "paf_pap_input_affl_empty": "(//label/span[text()='Primary Affl Field: ']/following::input[1][@class='mapping-affl-field input' and @type='text'])[1]",
+    },
+    "release_management": {
+        "page_title": "//h2[contains(@class, 'header')]/descendant::div[contains(@class, 'releaseManagementTitle') and text()='{}']",
+        "release_product": "//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']",
+        "release_gate_item":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]",
+        "release_gate_item_description":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/following-sibling::p[@class='description' and text()=\"{}\"]",
+        "release_gate_item_icon":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/../../../preceding-sibling::div/lightning-icon[contains(@class,'{}')]",
+        "release_gate_item_status_activated":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/../../../../../../following-sibling::div//ol/li[@data-qa='gateStatusRow']//div/lightning-icon[contains(@class, 'action-approval')]",
+        "release_gate_item_status_inactive":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/../../../../../../following-sibling::div//ol/li[@data-qa='gateStatusRow']//div/lightning-button[@data-qa='gateEnableBtn']/button[text()='Activate']",
+        "release_gate_item_status_inprogress":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{0}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{1}\"]/../../../../../../following-sibling::div//ol/li[@data-qa='gateStatusRow']//div/p[@data-qa='inProgressLabel' and text()=\"Activating {1}...\"]",
+        "release_gate_item_statusrow":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/../../../../../../following-sibling::div//ol/li[@data-qa='gateStatusRow']",
+        "release_gate_item_activationdate_activateby":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/../following-sibling::div/p[text()='Activate by:']/lightning-formatted-date-time",
+        "release_gate_item_activationdate_activateon":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/../following-sibling::div/p[contains(@class,activatedOnClass)]",
+        "release_gate_item_activationdate":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/../following-sibling::div",
+        "release_gate_feature":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/../../../../../../following-sibling::div//ol/li//h3[contains(@class, 'featureLabel') and text()='{}']",        
+        "release_gate_feature_description":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/../../../../../../following-sibling::div//ol/li//h3[contains(@class, 'featureLabel') and text()='{}']/following-sibling::p[@class='featureDescription']",        
+        "release_gate_feature_link":"//c-release-gate-product//div[contains(@class, 'slds-page-header')]//h1/span[contains(@class, 'releaseGateProductTitle') and text()='{}']/../../../../../../../../following-sibling::div[contains(@class, 'releaseGateList')]//c-release-gate-item//div[@class='slds-summary-detail__title']//div[@class='slds-media']//h2[text()=\"{}\"]/../../../../../../following-sibling::div//ol/li//h3[contains(@class, 'featureLabel') and text()='{}']/../following-sibling::div/a[@class='featureLink' and text()='{}' and @href='{}']",
+        "release_gate_confirm_activate_button":"//div[contains(@class, 'modal-container')]//div/button[@title='Activate']",
+        "release_gate_cancel_activate_button":"//div[contains(@class, 'modal-container')]//div/button[@title='Cancel']",
+        "release_gate_activation_modal_header":"//div[contains(@class, 'modal-header')]/h2",
+        "release_gate_activation_modal_text_body":"//c-release-gate-modal-body//div",
+    },
+    "eda_settings_page": {
+        "page_title": "//div[@data-qa-locator='edaSettingsTitle' and text()='{}']",
+        "error_panel": "//div[@data-testid='eda-settings-error-insufficient-access' and text()=\"{}\"]"
     }
 }

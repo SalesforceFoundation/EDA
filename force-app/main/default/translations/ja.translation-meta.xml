@@ -337,10 +337,6 @@
         <name>stgAccountModelNav</name>
     </customLabels>
     <customLabels>
-        <label>取引先モデル設定</label>
-        <name>stgAccountModelSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label>使用可能な取引先レコードタイプ</label>
         <name>stgAccountRecordTypeAvailableListTitle</name>
     </customLabels>
@@ -379,10 +375,6 @@
     <customLabels>
         <label>住所</label>
         <name>stgAddressSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label>住所設定</label>
-        <name>stgAddressSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>カスタム名形式</label>
@@ -437,10 +429,6 @@
         <name>stgAffiliationsSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label>所属設定</label>
-        <name>stgAffiliationsSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label>所属終了日</label>
         <name>stgAfflCopyProgramEnrollmentEndDate</name>
     </customLabels>
@@ -491,10 +479,6 @@
     <customLabels>
         <label>API 参照名: {0}</label>
         <name>stgApiNameLabel</name>
-    </customLabels>
-    <customLabels>
-        <label><!-- Section title for Application Settings --></label>
-        <name>stgApplicationSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label><!-- Label for the Application Window Validation setting --></label>
@@ -801,10 +785,6 @@
         <name>stgContactInformationSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label>取引先責任者情報設定</label>
-        <name>stgContactInformationSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label>複数の取引先責任者の住所を許可</label>
         <name>stgContactMultiAddressesEnabled</name>
     </customLabels>
@@ -823,10 +803,6 @@
     <customLabels>
         <label>履修科目</label>
         <name>stgCourseConnectionsNav</name>
-    </customLabels>
-    <customLabels>
-        <label>履修科目設定</label>
-        <name>stgCourseConnectionsTitle</name>
     </customLabels>
     <customLabels>
         <label>[説明] 項目のテキストを科目レコードの [拡張説明] 項目にコピーします。既存の [拡張説明] の値は上書きされません。この更新の後にページレイアウトと、[説明] 項目への他の参照を更新します。</label>
@@ -971,10 +947,6 @@
     <customLabels>
         <label><!-- Message when EDA cannot activate a release gate --></label>
         <name>stgErrorReleaseGateActivateErrorResponse</name>
-    </customLabels>
-    <customLabels>
-        <label>エラー設定</label>
-        <name>stgErrorSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>従来の民族データ</label>
@@ -1665,16 +1637,8 @@
         <name>stgProgramPlanSettingsNav</name>
     </customLabels>
     <customLabels>
-        <label>プログラムプラン設定</label>
-        <name>stgProgramPlanSettingsTitle</name>
-    </customLabels>
-    <customLabels>
         <label>プログラム登録</label>
         <name>stgProgramsSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label>プログラム登録設定</label>
-        <name>stgProgramsSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>リスト設定</label>
@@ -1763,10 +1727,6 @@
     <customLabels>
         <label>リレーション</label>
         <name>stgRelationshipSettingsNav</name>
-    </customLabels>
-    <customLabels>
-        <label>リレーション設定</label>
-        <name>stgRelationshipSettingsTitle</name>
     </customLabels>
     <customLabels>
         <label>更新</label>
@@ -2035,8 +1995,20 @@
         <name>stgReleaseGateEDAWinter22FeatureDescription</name>
     </customLabels>
     <customLabels>
-        <label><!-- EDA Winter 22 release gate feature help label --></label>
-        <name>stgReleaseGateEDAWinter22FeatureHelpLabel</name>
+        <label><!-- EDA release gate feature help label --></label>
+        <name>stgReleaseGateEDAFeatureHelpLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Spring 22 release gate label --></label>
+        <name>stgReleaseGateEDASpring22Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Spring 22 release gate description --></label>
+        <name>stgReleaseGateEDASpring22Description</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EDA Spring 22 release gate feature description --></label>
+        <name>stgReleaseGateEDASpring22FeatureDescription</name>
     </customLabels>
     <customTabs>
         <label>Education Cloud 設定</label>

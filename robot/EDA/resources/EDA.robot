@@ -13,7 +13,7 @@ Capture Screenshot and Delete Records and Close Browser
     [Documentation]         Captures screenshot if a test fails, deletes session records
     ...                     and closes the browser
     Run Keyword If Any Tests Failed      Capture Page Screenshot
-    Close Browser
+    Close All Browsers
     Delete Session Records
 
 API create program plan

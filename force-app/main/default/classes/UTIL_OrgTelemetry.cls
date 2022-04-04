@@ -94,8 +94,21 @@ public without sharing class UTIL_OrgTelemetry {
         HasUserManagedTDTM,
         HasValueInversionReciprocalMethod,
         IsEnabled_StoreErrors,
+        HasErrorNotificationsAdminRecipients,
         UsingOldContactEthnicity,
-        UsingOldCourseDescription
+        UsingOldCourseDescription,
+        HasAffiliationsRelatedToDeletedProgramEnrollments,
+        HasAffiliationStartDate,
+        HasAffiliationEndDate,
+        HasApplicationWindowValidation,
+        Data_CountSeasonalAddresses,
+        Data_CountCurrentYearSeasonalAddresses,
+        AutodeleteNoContactHouseholdAcc,
+        AutodeleteNoContactProgramAcc,
+        AutodeleteNoContactEducationalInstitutionAcc,
+        AutodeleteNoContactBusinessOrganizationAcc,
+        AutodeleteNoContactUniversityDepartmentAcc,
+        Data_CountAutoEnrollmentMappings
     }
 
     /**
@@ -203,6 +216,56 @@ public without sharing class UTIL_OrgTelemetry {
             TelemetryParameterName.IsEnabled_StoreErrors.name(),
             edaSettings.Store_Errors_On__c
         );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasErrorNotificationsAdminRecipients.name(),
+            edaSettings.Error_Notifications_To__c == 'All Sys Admins'
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactHouseholdAcc.name(),
+            this.hasAutoDeletionHouseholdAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactProgramAcc.name(),
+            this.hasAutoDeletionProgramAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactEducationalInstitutionAcc.name(),
+            this.hasAutoDeletionEducationalInstitutionAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactBusinessOrganizationAcc.name(),
+            this.hasAutoDeletionBusinessOrgAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.AutodeleteNoContactUniversityDepartmentAcc.name(),
+            this.hasAutoDeletionUniversityDeptAccts(edaSettings)
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasAffiliationsRelatedToDeletedProgramEnrollments.name(),
+            edaSettings.Affl_ProgEnroll_Del__c
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasAffiliationStartDate.name(),
+            edaSettings.Affl_ProgEnroll_Copy_Start_Date__c
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasAffiliationEndDate.name(),
+            edaSettings.Affl_ProgEnroll_Copy_End_Date__c
+        );
+
+        featureManager.setPackageBooleanValue(
+            TelemetryParameterName.HasApplicationWindowValidation.name(),
+            edaSettings.Application_Window_Validation__c
+        );        
     }
 
     /**
@@ -248,6 +311,18 @@ public without sharing class UTIL_OrgTelemetry {
             }
         }
 
+        integer numInactiveEDATriggers = [
+            SELECT COUNT()
+            FROM Trigger_Handler__c
+            WHERE Owned_By_Namespace__c = 'hed' AND Active__c = FALSE
+        ];
+
+        integer numUserManagedTriggers = [
+            SELECT COUNT()
+            FROM Trigger_Handler__c
+            WHERE User_Managed__c = TRUE AND Active__c = TRUE
+        ];
+
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Org_CountActiveCourseConnectionRecordTypes.name(),
             activeCourseConnectionRecordTypes
@@ -255,12 +330,12 @@ public without sharing class UTIL_OrgTelemetry {
 
         featureManager.setPackageBooleanValue(
             TelemetryParameterName.HasEDAInactiveTDTM.name(),
-            [SELECT COUNT() FROM Trigger_Handler__c WHERE Owned_By_Namespace__c = 'hed' AND Active__c = FALSE] > 0
+            numInactiveEDATriggers > 0
         );
 
         featureManager.setPackageBooleanValue(
             TelemetryParameterName.HasUserManagedTDTM.name(),
-            [SELECT COUNT() FROM Trigger_Handler__c WHERE User_Managed__c = TRUE AND Active__c = TRUE] > 0
+            numUserManagedTriggers > 0
         );
 
         featureManager.setPackageBooleanValue(
@@ -279,163 +354,176 @@ public without sharing class UTIL_OrgTelemetry {
      * custom object record count.
      */
     private void handleObjectUsageTelemetry() {
-        Integer countAdministrativeAccounts = 0;
-        if (UTIL_Describe.getCustomAdminAccRecTypeId() != null) {
-            countAdministrativeAccounts = [
-                SELECT COUNT()
-                FROM Account
-                WHERE RecordTypeId = :UTIL_Describe.getCustomAdminAccRecTypeId()
-            ];
-        }
-
-        Integer countHouseholdAccounts = 0;
-        if (UTIL_Describe.getCustomHHAccRecTypeID() != null) {
-            countHouseholdAccounts = [
-                SELECT COUNT()
-                FROM Account
-                WHERE RecordTypeId = :UTIL_Describe.getCustomHHAccRecTypeID()
-            ];
-        }
+        ObjectUsageTelemetryModel objectMetrics = new ObjectUsageTelemetryModel();
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountAdministrativeAccounts.name(),
-            countAdministrativeAccounts
+            objectMetrics.countAdministrativeAccounts
         );
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountHouseholdAccounts.name(),
-            countHouseholdAccounts
+            objectMetrics.countHouseholdAccounts
         );
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountCourseConnections.name(),
-            [SELECT COUNT() FROM Course_Enrollment__c]
+            objectMetrics.numCourseEnrollments
         );
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountCourseOfferingSchedules.name(),
-            [SELECT COUNT() FROM Course_Offering_Schedule__c]
+            objectMetrics.numCourseOfferingSchedules
         );
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountErrorLog.name(),
-            [SELECT COUNT() FROM Error__c]
+            objectMetrics.numErrors
         );
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountFacilities.name(),
-            [SELECT COUNT() FROM Facility__c]
+            objectMetrics.numFacilities
         );
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountPlanRequirements.name(),
-            [SELECT COUNT() FROM Plan_Requirement__c]
+            objectMetrics.numPlanRequirements
         );
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountProgramPlans.name(),
-            [SELECT COUNT() FROM Program_Plan__c]
+            objectMetrics.numProgramPlans
         );
 
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountTermGrades.name(),
-            [SELECT COUNT() FROM Term_Grade__c]
+            objectMetrics.numTermGrades
         );
 
         //Academic Certifications
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountAcademicCertifications.name(),
-            [SELECT COUNT() FROM Academic_Certification__c]
+            objectMetrics.numAcademicCertifications
         );
 
         //Academic Certifications - Certificate
-        Integer countCertificateAcademicCertifications = 0;
-        if (UTIL_Describe.getCertificateAcademicCertificationRecTypeId() != null) {
-            countCertificateAcademicCertifications = [
-                SELECT COUNT()
-                FROM Academic_Certification__c
-                WHERE RecordTypeId = :UTIL_Describe.getCertificateAcademicCertificationRecTypeId()
-            ];
-        }
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountCertificateAcademicCertifications.name(),
-            countCertificateAcademicCertifications
+            objectMetrics.countCertificateAcademicCertifications
         );
 
         //Academic Certifications - Degree
-        Integer countDegreeAcademicCertifications = 0;
-        if (UTIL_Describe.getDegreeAcademicCertificationRecTypeId() != null) {
-            countDegreeAcademicCertifications = [
-                SELECT COUNT()
-                FROM Academic_Certification__c
-                WHERE RecordTypeId = :UTIL_Describe.getDegreeAcademicCertificationRecTypeId()
-            ];
-        }
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountDegreeAcademicCertifications.name(),
-            countDegreeAcademicCertifications
+            objectMetrics.countDegreeAcademicCertifications
         );
 
         //Academic Certifications - Diploma
-        Integer countDiplomaAcademicCertifications = 0;
-        if (UTIL_Describe.getDiplomaAcademicCertificationRecTypeId() != null) {
-            countDiplomaAcademicCertifications = [
-                SELECT COUNT()
-                FROM Academic_Certification__c
-                WHERE RecordTypeId = :UTIL_Describe.getDiplomaAcademicCertificationRecTypeId()
-            ];
-        }
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountDiplomaAcademicCertifications.name(),
-            countDiplomaAcademicCertifications
+            objectMetrics.countDiplomaAcademicCertifications
         );
 
         //Credentials
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountCredentials.name(),
-            [SELECT COUNT() FROM Credential__c]
+            objectMetrics.numCredentials
         );
 
         //Credentials - Badge
-        Integer countBadgeCredentials = 0;
-        if (UTIL_Describe.getBadgeCredentialRecTypeId() != null) {
-            countBadgeCredentials = [
-                SELECT COUNT()
-                FROM Credential__c
-                WHERE RecordTypeId = :UTIL_Describe.getBadgeCredentialRecTypeId()
-            ];
-        }
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountBadgeCredentials.name(),
-            countBadgeCredentials
+            objectMetrics.countBadgeCredentials
         );
 
         //Credentials - Certification
-        Integer countCertificationCredentials = 0;
-        if (UTIL_Describe.getCertificationCredentialRecTypeId() != null) {
-            countCertificationCredentials = [
-                SELECT COUNT()
-                FROM Credential__c
-                WHERE RecordTypeId = :UTIL_Describe.getCertificationCredentialRecTypeId()
-            ];
-        }
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountCertificationCredentials.name(),
-            countCertificationCredentials
+            objectMetrics.countCertificationCredentials
         );
 
         //Credentials - License
-        Integer countLicenseCredentials = 0;
-        if (UTIL_Describe.getLicenseCredentialRecTypeId() != null) {
-            countLicenseCredentials = [
-                SELECT COUNT()
-                FROM Credential__c
-                WHERE RecordTypeId = :UTIL_Describe.getLicenseCredentialRecTypeId()
-            ];
-        }
         featureManager.setPackageIntegerValue(
             TelemetryParameterName.Data_CountLicenseCredentials.name(),
-            countLicenseCredentials
+            objectMetrics.countLicenseCredentials
         );
+
+        // Seasonal Addresses
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountSeasonalAddresses.name(),
+            objectMetrics.numSeasonalAddresses
+        );
+
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountCurrentYearSeasonalAddresses.name(),
+            objectMetrics.numCurrentYearSeasonalAddesses
+        );
+
+        // Affilliation Mappings - Auto Enrollment
+        featureManager.setPackageIntegerValue(
+            TelemetryParameterName.Data_CountAutoEnrollmentMappings.name(),
+            objectMetrics.numAutoEnrollmentAffMappings
+        );
+    }
+
+    /**
+     * @description Returns true if household accounts without contacts are marked
+     * for deletion.
+     */
+    @TestVisible
+    private Boolean hasAutoDeletionHouseholdAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getHhAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if academic program accounts without contacts are marked
+     * for deletion.
+     */
+    @TestVisible
+    private Boolean hasAutoDeletionProgramAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getAcademicAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if educational institution accounts without contacts are marked
+     * for deletion.
+     */
+    @TestVisible
+    private Boolean hasAutoDeletionEducationalInstitutionAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getEducationalInstitutionAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if business organization accounts without contacts are marked
+     * for deletion.
+     */
+    @TestVisible
+    private Boolean hasAutoDeletionBusinessOrgAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getBizAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if university department accounts without contacts are marked
+     * for deletion.
+     */
+    @TestVisible
+    private Boolean hasAutoDeletionUniversityDeptAccts(Hierarchy_Settings__c edaSettings) {
+        return this.hasContactAutoDeletionEnabled(edaSettings, Util_Describe.getUniversityAccRecTypeID());
+    }
+
+    /**
+     * @description Returns true if the specified account record type is enabled for contacts
+     * auto-deletion.
+     */
+    private Boolean hasContactAutoDeletionEnabled(Hierarchy_Settings__c edaSettings, String accountRT) {
+        Boolean isAutoDeleteConfigured = String.IsNotBlank(edaSettings.Accounts_to_Delete__c);
+        Boolean isRecordTypeDefined = String.IsNotBlank(accountRT);
+
+        if (isAutoDeleteConfigured && isRecordTypeDefined) {
+            return edaSettings.Accounts_to_Delete__c.contains(accountRT);
+        } else {
+            return false;
+        }
     }
 }
