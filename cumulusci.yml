@@ -492,6 +492,7 @@ flows:
         steps:
             1:
                 # Configure update_admin_profile
+                task: update_admin_profile
                 options:
                     record_types:
                         - record_type: "Account.Administrative"

@@ -368,9 +368,17 @@ public without sharing class UTIL_CustomSettingsFacade {
                 getSettings().Faculty_RecType__c.length() >= 15 &&
                 getSettings().Faculty_RecType__c != getSettings().Student_RecType__c
             ) {
-                return true;
+                //Course Connections cannot be enabled without the existence of record type on course enrollment.
+                return UTIL_Describe.isValidField(
+                    UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),
+                    'RecordTypeId'
+                );
             } else if (Test.isRunningTest()) {
-                return true;
+                //Course Connections cannot be enabled without the existence of record type on course enrollment.
+                return UTIL_Describe.isValidField(
+                    UTIL_Namespace.StrTokenNSPrefix('Course_Enrollment__c'),
+                    'RecordTypeId'
+                );
             }
         }
         return false;
