@@ -43,7 +43,7 @@ public virtual with sharing class EDCSettingsProductInformationMapper {
     @TestVisible
     private static final String PRODUCT_EDA_SETTINGSBUTTONA11Y = Label.stgBtnSettingsActionA11y;
     @TestVisible
-    private static final String PRODUCT_EDA_DOCUMENTATIONURL = 'https://powerofus.force.com/s/article/EDA-Documentation';
+    private static final String PRODUCT_EDA_DOCUMENTATIONURL = 'https://powerofus.force.com/EDA-Documentation';
     @TestVisible
     private static final String PRODUCT_EDA_DOCUMENTATIONBUTTONA11Y = Label.stgBtnDocumentationActionA11y;
     @TestVisible

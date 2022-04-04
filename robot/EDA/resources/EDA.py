@@ -425,6 +425,25 @@ class EDA(BaseEDAPage):
         self.selenium.go_to(url)
         self.salesforce.wait_until_loading_is_complete()
 
+    def go_to_education_cloud_settings_home(self):
+        """ Navigates to Education Cloud Settings Home Page """
+        url_pattern = "{root}/lightning/n/{object}"
+        object_name = "{}Education_Cloud_Settings".format(self.get_eda_namespace_prefix())
+        url = url_pattern.format(root=self.cumulusci.org.lightning_base_url, object=object_name)
+        self.selenium.go_to(url)
+        self.salesforce.wait_until_loading_is_complete()
+
+    def go_to_release_management(self):
+        """ Navigates to the Release Management Page"""
+        url = self.cumulusci.org.lightning_base_url
+        namespace=self.get_eda_namespace_prefix()
+        if namespace=="hed__":
+            url = "{}/lightning/cmp/{}releaseManagementContainer".format(url,namespace)
+        else:
+            url = "{}/lightning/cmp/c__releaseManagementContainer".format(url)
+        self.selenium.go_to(url)
+        self.salesforce.wait_until_loading_is_complete()
+
     def click_on_hub_link(self, field, link):
         """
         Click the power of us hub link available in Education cloud settings page.
@@ -676,16 +695,33 @@ class EDA(BaseEDAPage):
             EDA settings. Pass the expected value to be set in the drop down field from the tests
         """
         for field,value in kwargs.items():
+            time.sleep(1) #added this sleep to allow the dropdown to load properly, also to allow any rerenderings needed after each click
             locator = eda_lex_locators["eda_settings_new"]["dropdown_input"].format(field)
             self.selenium.wait_until_page_contains_element(locator, timeout=60)
             self.selenium.wait_until_element_is_visible(locator,
                                                 error=f"'{value}' as dropdown value in '{field}' field is not available ")
+            self.salesforce.scroll_element_into_view(locator)
             self.selenium.click_element(locator)
-            value = eda_lex_locators["eda_settings_new"]["settings_dropdown"].format(field,value)
-            self.selenium.wait_until_page_contains_element(value, timeout=60)
-            self.selenium.wait_until_element_is_visible(value,
+            locator = eda_lex_locators["eda_settings_new"]["settings_dropdown"].format(field,value)
+            self.selenium.wait_until_page_contains_element(locator, timeout=60)
+            self.selenium.wait_until_element_is_visible(locator,
                                                 error=f"'{value}' as dropdown value in '{field}' field is not available ")
-            self.salesforce._jsclick(value)
+            self.salesforce.scroll_element_into_view(locator)
+            self.selenium.click_element(locator)
+
+    def validate_settings_dropdown_value_does_not_exist(self,field,value):
+        """ This method will assert the drop down field value does not exist for the specified field in the new
+            EDA settings page
+        """
+        time.sleep(1) #added this sleep to allow the dropdown to load properly
+        locator = eda_lex_locators["eda_settings_new"]["dropdown_input"].format(field)
+        self.selenium.wait_until_page_contains_element(locator, timeout=60)
+        self.selenium.wait_until_element_is_visible(locator,
+                                            error=f"'{value}' as dropdown value in '{field}' field is not available ")
+        self.salesforce.scroll_element_into_view(locator)
+        self.selenium.click_element(locator)
+        locator = eda_lex_locators["eda_settings_new"]["settings_dropdown"].format(field,value)
+        self.selenium.page_should_not_contain_element(locator)
 
     def update_system_tools(self,value,**kwargs):
         """ This method will run the update job by clicking the update button present in System

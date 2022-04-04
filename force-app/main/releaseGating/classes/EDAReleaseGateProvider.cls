@@ -40,8 +40,8 @@ public with sharing class EDAReleaseGateProvider implements Callable {
 
     public EDAReleaseGateProvider() {
         this.releaseGatesMap = new Map<String, ReleaseGateBase>();
-        EDAWinter22ReleaseGate winter22ReleaseGate = new EDAWinter22ReleaseGate();
-        this.releaseGatesMap.put(winter22ReleaseGate.getReleaseGateName(), winter22ReleaseGate);
+        EDALatestReleaseGate latestReleaseGate = new EDALatestReleaseGate();
+        this.releaseGatesMap.put(latestReleaseGate.getReleaseGateName(), latestReleaseGate);
     }
 
     /**

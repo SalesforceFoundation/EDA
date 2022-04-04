@@ -42,7 +42,7 @@ private with sharing class AffiliationsWithPrgrmEnrolModel_TEST {
         Test.startTest();
         AffiliationsWithProgramEnrollmentModel affiliationsWithProgramEnrollmentModel = new AffiliationsWithProgramEnrollmentModel(
             true,
-            'Student',
+            AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT,
             'current',
             true,
             true
@@ -55,7 +55,7 @@ private with sharing class AffiliationsWithPrgrmEnrolModel_TEST {
             'Affiliations With Program Enrollment Specify Role should match value specified.'
         );
         System.assertEquals(
-            'Student',
+            AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT,
             affiliationsWithProgramEnrollmentModel.role,
             'Affiliations With Program Enrollment Role should match value specified.'
         );

@@ -5,7 +5,7 @@ import getErrorSettingsViewModel from "@salesforce/apex/ErrorSettingsController.
 import getLookupResultsLikeUserName from "@salesforce/apex/ErrorSettingsController.getLookupResultsLikeUserName";
 import getLookupResultsLikeChatterGroupName from "@salesforce/apex/ErrorSettingsController.getLookupResultsLikeChatterGroupName";
 
-import stgErrorSettingsTitle from "@salesforce/label/c.stgErrorSettingsTitle";
+import stgErrorSettingsTitle from "@salesforce/label/c.stgErrorSettingsNav";
 import stgStoreErrorsTitle from "@salesforce/label/c.stgStoreErrorsTitle";
 import stgHelpStoreErrorsOn from "@salesforce/label/c.stgHelpStoreErrorsOn";
 import stgSendErrorsTitle from "@salesforce/label/c.stgSendErrorsTitle";

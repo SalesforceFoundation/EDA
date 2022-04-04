@@ -121,12 +121,12 @@ private with sharing class AffiliationsWithPrgrmEnrolSrvc_TEST {
             'Affiliations With Program Enrollment Specify Role should match value specified.'
         );
         System.assertEquals(
-            'Student',
+            AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT,
             affiliationsWithProgramEnrollmentModel.role,
             'Affiliations With Program Enrollment Role should match value specified.'
         );
         System.assertEquals(
-            'Current',
+            AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT,
             affiliationsWithProgramEnrollmentModel.status,
             'Affiliations With Program Enrollment Status should match value specified.'
         );
@@ -152,7 +152,13 @@ private with sharing class AffiliationsWithPrgrmEnrolSrvc_TEST {
      **************************************************************************************************************************************/
     private class STUB_AffiliationsWithProgramEnrollmentMapper extends AffiliationsWithProgramEnrollmentMapper {
         public override AffiliationsWithProgramEnrollmentModel getAffiliationsWithProgramEnrollmentModel() {
-            return new AffiliationsWithProgramEnrollmentModel(true, 'Student', 'Current', true, true);
+            return new AffiliationsWithProgramEnrollmentModel(
+                true,
+                AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT,
+                AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT,
+                true,
+                true
+            );
         }
     }
 }

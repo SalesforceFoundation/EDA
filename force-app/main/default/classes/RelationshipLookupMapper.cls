@@ -90,7 +90,7 @@ public virtual with sharing class RelationshipLookupMapper {
             Neutral__c = relLookupModel.neutralValue,
             Active__c = relLookupModel.isActive
         );
-
+        /* sfca-disable-next-line ApexFlsViolationRule */
         insert relLookupRecord;
     }
 
@@ -109,6 +109,7 @@ public virtual with sharing class RelationshipLookupMapper {
         relLookupRecord.Male__c = relLookupModel.maleValue;
         relLookupRecord.Neutral__c = relLookupModel.neutralValue;
         relLookupRecord.Active__c = relLookupModel.isActive;
+        /* sfca-disable-next-line ApexFlsViolationRule */
         update relLookupRecord;
     }
 
@@ -119,7 +120,7 @@ public virtual with sharing class RelationshipLookupMapper {
     public virtual void deleteRelationshipLookupModel(RelationshipLookupModel relLookupModel) {
         Relationship_Lookup__c relationshipLookupToDelete = Relationship_Lookup__c.getInstance(relLookupModel.name);
         String deletedRelationshipLookupName = relationshipLookupToDelete.Name;
-
+        /* sfca-disable-next-line ApexFlsViolationRule */
         delete relationshipLookupToDelete;
     }
 }

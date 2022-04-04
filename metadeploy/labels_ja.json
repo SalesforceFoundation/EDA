@@ -9,7 +9,7 @@
             "description": "tagline of product"
         },
         "description": {
-            "message": "## EDA インストーラをご利用いただきありがとうございます。\r\n\r\nEDA をインストールしていただきありがとうございます。EDA に関するあらゆる質問については、Power of Us Hub の [Education Data Architecture トピック](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture) にアクセスしてください。",
+            "message": "## EDA インストーラをご利用いただきありがとうございます。\r\n\r\nEDA をインストールしていただきありがとうございます。EDA に関するあらゆる質問については、Power of Us Hub の [Education Data Architecture トピック](https://powerofus.force.com/EDA_Community) にアクセスしてください。",
             "description": "shown on product detail page (markdown)"
         },
         "click_through_agreement": {
@@ -17,7 +17,7 @@
             "description": "legal text shown in modal dialog"
         },
         "error_message": {
-            "message": "インストールで問題が発生した場合は、[Power of Us Hub](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture) に投稿してください。",
+            "message": "インストールで問題が発生した場合は、[Power of Us Hub](https://powerofus.force.com/EDA_Community) に投稿してください。",
             "description": "shown after failed installation (markdown)"
         }
     },

@@ -69,6 +69,23 @@ public class UTIL_UnitTestData_TEST {
         }
     }
 
+    public static Lead getLead() {
+        Lead lead = new Lead(
+            FirstName = 'Test',
+            LastName = 'Testerson' + Datetime.now().getTime(),
+            Company = 'Test Company'
+        );
+        return lead;
+    }
+
+    public static Contact getContact(String LanguageLocaleKey) {
+        Contact contact = getContact();
+        if (LanguageLocaleKey == 'Español') {
+            contact.Preferred_Email__c = 'Correo electrónico laboral';
+        }
+        return contact;
+    }
+
     public static Contact getContact() {
         Contact contact = new Contact(
             FirstName = 'Test',
@@ -102,6 +119,16 @@ public class UTIL_UnitTestData_TEST {
         dmo.DuplicateRuleHeader.AllowSave = true;
         contact.setOptions(dmo);
         return contact;
+    }
+
+    public static List<Contact> getMultipleTestContacts(Integer n, String LanguageLocaleKey) {
+        List<Contact> contacts = getMultipleTestContacts(n);
+        if (LanguageLocaleKey == 'Español') {
+            for (Contact con : contacts) {
+                con.Preferred_Email__c = 'Correo electrónico laboral';
+            }
+        }
+        return contacts;
     }
 
     public static List<Contact> getMultipleTestContacts(Integer n) {
@@ -163,6 +190,16 @@ public class UTIL_UnitTestData_TEST {
      * @return The inserted user record
      **********************************************************************************************************/
     public static User createNewUserForTests(String strUsername, Id profileId) {
+        return createNewUserForTests(strUsername, profileId, null);
+    }
+
+    /*********************************************************************************************************
+     * @description Gets and inserts a user with a specified username, profile and language
+     * @param strUsername The username for the user
+     * @param profileId The id of the profile for the user
+     * @return The inserted user record
+     **********************************************************************************************************/
+    public static User createNewUserForTests(String strUsername, Id profileId, String langSpecification) {
         User userToInsert;
         // to work around mixed DML errors during tests, you must create user account in its own transaction. got this
         // hack from the web.
@@ -172,8 +209,8 @@ public class UTIL_UnitTestData_TEST {
                 email = 'jsmith@acme.com',
                 emailencodingkey = 'UTF-8',
                 lastname = 'Smith',
-                languagelocalekey = 'en_US',
-                localesidkey = 'en_US',
+                languagelocalekey = String.isBlank(langSpecification) ? 'en_US' : langSpecification,
+                localesidkey = String.isBlank(langSpecification) ? 'en_US' : langSpecification,
                 profileid = profileId,
                 timezonesidkey = 'America/Los_Angeles',
                 username = strUsername
@@ -228,6 +265,26 @@ public class UTIL_UnitTestData_TEST {
             addrs.add(addr);
         }
         return addrs;
+    }
+
+    /*********************************************************************************************************
+     * @description Initializes (but not inserts) N new Seasonal Address objects.
+     * @param addrCount the number of Address objects to create
+     * @return The list of Address__c objects
+     **********************************************************************************************************/
+    public static List<Address__c> getMultipleSeasonalTestAddresses(Integer addrCount) {
+        List<Address__c> addresses = UTIL_UnitTestData_TEST.getMultipleTestAddresses(addrCount);
+        for (Address__c currentAddress : addresses) {
+            currentAddress.Default_Address__c = false;
+            currentAddress.Seasonal_Start_Month__c = String.valueOf(System.today().addMonths(-1).month());
+            currentAddress.Seasonal_Start_Day__c = '1';
+            currentAddress.Seasonal_End_Month__c = String.valueOf(System.today().addMonths(1).month());
+            currentAddress.Seasonal_End_Day__c = '28';
+            currentAddress.MailingStreet__c = 'New Seasonal Street';
+            currentAddress.MailingCity__c = 'New Seasonal City';
+            currentAddress.MailingCounty__c = 'New Seasonal County';
+        }
+        return addresses;
     }
 
     /*********************************************************************************************************
@@ -430,6 +487,150 @@ public class UTIL_UnitTestData_TEST {
         public List<Account> accs { public get; public set; }
         public List<Contact> contacts { public get; public set; }
         public List<Address__c> addrs { public get; public set; }
+    }
+
+    /**
+     * @description creates a test contact record with an address, affiliation, application, etc.
+     * @return   inserted contact record
+     */
+    public static Contact createTestContactWithMultipleRelations() {
+        Account acc = UTIL_UnitTestData_TEST.getMultipleTestAccounts(1, UTIL_Describe_API.getBizAccRecTypeID())[0];
+        insert acc;
+
+        List<Contact> contacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        insert contacts;
+
+        List<Address__c> addrs = UTIL_UnitTestData_TEST.getMultipleTestAddresses(1);
+        addrs[0].Parent_Account__c = contacts[0].AccountId;
+        addrs[0].MailingCity__c = 'Boston';
+        addrs[0].Parent_Contact__c = contacts[0].id;
+        insert addrs[0];
+
+        Term__c term = UTIL_UnitTestData_TEST.getTerm(acc.Id, 'Fall');
+        insert term;
+
+        Course__c course = UTIL_UnitTestData_TEST.getCourse('Biology', acc.Id);
+        insert course;
+
+        Affiliation__c affiliation = UTIL_UnitTestData_TEST.getAffiliation(contacts[0].Id, acc.Id, false);
+        insert affiliation;
+
+        Application__c applicant = UTIL_UnitTestData_TEST.getApplication(acc.Id, contacts[0].Id, term.Id);
+        insert applicant;
+
+        Application__c applicantPreparer = UTIL_UnitTestData_TEST.getApplication(acc.Id, null, term.Id);
+        applicantPreparer.Preparer__c = contacts[0].Id;
+        insert applicantPreparer;
+
+        Attendance_Event__c attendance = UTIL_UnitTestData_TEST.getAttendanceEvent(contacts[0].Id, null, null, null);
+        insert attendance;
+
+        Id credentialRecTypeId = UTIL_Describe_API.getCredentialAttributeRecType();
+        Attribute__c credentialAttribute = UTIL_UnitTestData_TEST.getAttribute(
+            'TestCred2',
+            contacts[0].Id,
+            credentialRecTypeId
+        );
+        insert credentialAttribute;
+
+        Case caseRecord = UTIL_UnitTestData_TEST.getCase(contacts[0].Id, 'School Violation', 'New');
+        insert caseRecord;
+
+        Language__c language = UTIL_UnitTestData_TEST.createLanguage('Spanish');
+
+        Contact_Language__c contactLanguage = UTIL_UnitTestData_TEST.createContactLanguage(
+            language.Id,
+            contacts[0].Id,
+            false
+        );
+
+        Course_Offering__c courseOffering = UTIL_UnitTestData_TEST.createCourseOffering(course.Id, term.Id);
+        courseOffering.Faculty__c = contacts[0].Id;
+        update courseOffering;
+
+        Course_Enrollment__c courseCxn = UTIL_UnitTestData_TEST.getCourseConnection(contacts[0].Id, courseOffering.Id);
+        insert courseCxn;
+
+        Education_History__c eduHis = UTIL_UnitTestData_Test.getEduHistory(acc.Id, contacts[0].Id);
+        insert eduHis;
+
+        Term_Grade__c termGrade = UTIL_UnitTestData_TEST.getTermGrade(contacts[0].Id, courseOffering.Id, courseCxn.Id);
+        insert termGrade;
+
+        Program_Enrollment__c programEnrollment = UTIL_UnitTestData_TEST.getProgramEnrollment(acc.Id);
+        programEnrollment.Contact__c = contacts[0].Id;
+        insert programEnrollment;
+
+        Test__c testRecord = UTIL_UnitTestData_TEST.getTest('SAT', System.today(), contacts[0].Id);
+        insert testRecord;
+
+        Behavior_Involvement__c behInvolvement = UTIL_UnitTestData_TEST.getBehaviorInvolvementRecord(
+            contacts[0].Id,
+            caseRecord.Id,
+            'Reporter'
+        );
+        insert behInvolvement;
+
+        return contacts[0];
+    }
+
+    /**
+     * @description creates a test account record with some child relations
+     * @return   inserted account record
+     */
+    public static Account createTestAccountWithMultipleRelations() {
+        List<Account> newAccounts = UTIL_UnitTestData_TEST.getMultipleTestAccounts(
+            1,
+            UTIL_Describe_API.getBizAccRecTypeID()
+        );
+        insert newAccounts;
+
+        List<Contact> newContacts = UTIL_UnitTestData_TEST.getMultipleTestContacts(1);
+        newContacts[0].AccountId = newAccounts[0].Id;
+        newContacts[0].Primary_Household__c = newAccounts[0].Id;
+        newContacts[0].Primary_Organization__c = newAccounts[0].Id;
+        insert newContacts;
+
+        Affiliation__c affiliation = new Affiliation__c(
+            Contact__c = newContacts[0].Id,
+            Account__c = newContacts[0].AccountId,
+            Role__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT
+        );
+        insert affiliation;
+
+        Address__c addr = new Address__c(Parent_Account__c = newContacts[0].AccountId, MailingCity__c = 'Boston');
+        insert addr;
+
+        Attribute__c attr = new Attribute__c(Name = 'Attr1', Agency__c = newContacts[0].AccountId);
+        insert attr;
+
+        Course__c course = new Course__c(Name = 'Bio101', Account__c = newContacts[0].AccountId);
+        insert course;
+
+        Facility__c facility = new Facility__c(Name = 'MeetingRoom1', Account__c = newContacts[0].AccountId);
+        insert facility;
+
+        Program_Enrollment__c pe = new Program_Enrollment__c(
+            Contact__c = newContacts[0].Id,
+            Account__c = newContacts[0].AccountId
+        );
+        insert pe;
+
+        Program_Plan__c pl = new Program_Plan__c(Account__c = newContacts[0].AccountId);
+        insert pl;
+
+        Term__c term = new Term__c(Name = 'Fall', Account__c = newContacts[0].AccountId);
+        insert term;
+
+        Time_Block__c timeBlock = new Time_Block__c(
+            Name = 'TimeB',
+            Educational_Institution__c = newContacts[0].AccountId
+        );
+        insert timeBlock;
+
+        Education_History__c educationHistory = UTIL_UnitTestData_TEST.getEduHistory(newContacts[0].AccountId, null);
+        insert educationHistory;
+        return newAccounts[0];
     }
 
     /*********************************************************************************************************
@@ -945,5 +1146,66 @@ public class UTIL_UnitTestData_TEST {
             credentials.add(getCredentials(recordTypeId));
         }
         return credentials;
+    }
+
+    /**
+     * @description Create affiliation mappings with English field labels if they don't exist
+     * @return   Inserted or existing list of mappings
+     */
+    public static List<Affl_Mappings__c> createAffiliationMappingsWithFieldLabels() {
+        List<Affl_Mappings__c> mappings = [
+            SELECT ID
+            FROM Affl_Mappings__c
+            WHERE Account_Record_Type__c != NULL AND Primary_Affl_Field__c != NULL
+        ];
+        if (mappings.size() == 0) {
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Academic Program',
+                    Account_Record_Type__c = 'Academic_Program',
+                    Primary_Affl_Field__c = 'Primary Academic Program',
+                    Auto_Program_Enrollment__c = true,
+                    Auto_Program_Enrollment_Status__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT,
+                    Auto_Program_Enrollment_Role__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Business Organization',
+                    Account_Record_Type__c = 'Business_Organization',
+                    Primary_Affl_Field__c = 'Primary Business Organization'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Household Account',
+                    Account_Record_Type__c = 'HH_Account',
+                    Primary_Affl_Field__c = 'Primary Household'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Educational Institution',
+                    Account_Record_Type__c = 'Educational_Institution',
+                    Primary_Affl_Field__c = 'Primary Educational Institution'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'University Department',
+                    Account_Record_Type__c = 'University_Department',
+                    Primary_Affl_Field__c = 'Primary Department'
+                )
+            );
+            mappings.add(
+                new Affl_Mappings__c(
+                    Name = 'Sports Organization',
+                    Account_Record_Type__c = 'Sports_Organization',
+                    Primary_Affl_Field__c = 'Primary Sports Organization'
+                )
+            );
+            insert mappings;
+        }
+        return mappings;
     }
 }

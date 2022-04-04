@@ -5,15 +5,20 @@
                 <h3 slot="title">
                     <div class="slds-grid">
                         <div class="slds-col">
-                            <lightning-icon icon-name="custom:custom64" size="medium"></lightning-icon>
+                            <lightning-icon icon-name="custom:custom64" size="large"></lightning-icon>
                         </div>
                         <div class="slds-col slds-grid slds-wrap slds-text-align_left slds-var-p-horizontal_small">
-                            <div class="slds-col slds-size_1-of-1 slds-text-body_regular">
+                            <div class="slds-col slds-size_1-of-1 slds-text-title_caps">
                                 <a href="javascript:void(0);" onclick={handleSettingsClick}
                                     >{labelReference.edcSettings}</a
                                 >
                             </div>
-                            <div class="slds-col slds-size_1-of-1 slds-text-title">{labelReference.edaSettings}</div>
+                            <div
+                                class="slds-col slds-size_1-of-1 slds-text-heading_medium"
+                                data-qa-locator="edaSettingsTitle"
+                            >
+                                {labelReference.edaSettings}
+                            </div>
                         </div>
                     </div>
                 </h3>
@@ -30,7 +35,10 @@
         </template>
         <template if:true={currentUserHasAccessWireResolved}>
             <template if:false={currentUserHasAccess}>
-                <div class="slds-col slds-size_12-of-12 slds-theme_default">
+                <div
+                    class="slds-col slds-size_12-of-12 slds-theme_default slds-var-p-around_small slds-no-flex eda-height_full"
+                    data-testid="eda-settings-error-insufficient-access"
+                >
                     {labelReference.insufficientAccessError}
                 </div></template
             >
