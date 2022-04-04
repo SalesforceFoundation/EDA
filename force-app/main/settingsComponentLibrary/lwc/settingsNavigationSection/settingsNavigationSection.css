@@ -17,3 +17,7 @@
 .nav-is-active {
     background-color: var(--lwc-colorBackground);
 }
+
+.eda-nav_heading_uppercase {
+    text-transform: uppercase;
+}

@@ -25,20 +25,20 @@
 
         <!-- Affiliations Mappings -->
         <template if:true={primaryAffiliationsSettingsVModel}>
-            <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-p-bottom_x-large">
+            <div class="slds-grid slds-grid_vertical-align-start slds-wrap slds-var-p-bottom_x-large">
                 <div class="slds-col slds-size_2-of-3">
-                    <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+                    <div class="slds-text-title slds-text-color_default slds-var-p-left_small slds-text-title_bold">
                         {labelReference.primaryAffiliationMappingsTable.primaryAffiliationsTitle}
                     </div>
-                    <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                    <div class="slds-text-body_small slds-text-color_weak slds-var-p-horizontal_large">
                         <lightning-formatted-rich-text value={affiliationsDesc}> </lightning-formatted-rich-text>
                     </div>
                 </div>
                 <div
                     class="
                         slds-grid slds-grid_align-end
-                        slds-p-right_large
-                        slds-p-top_large
+                        slds-var-p-right_large
+                        slds-var-p-top_large
                         slds-col slds-col_bump-right
                     "
                 >
@@ -50,7 +50,9 @@
                 </div>
             </div>
 
-            <div class="slds-col slds-size_3-of-3 slds-col_bump-right slds-p-right_x-large">
+            <div
+                class="slds-col slds-size_3-of-3 slds-col_bump-right slds-var-p-right_x-large slds-var-p-bottom_x-large"
+            >
                 <lightning-datatable
                     key-field="mappingName"
                     data={primaryAffiliationsSettingsVModel.primaryAffiliationMappings}

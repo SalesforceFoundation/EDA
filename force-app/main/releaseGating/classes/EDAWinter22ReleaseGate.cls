@@ -37,7 +37,7 @@ public with sharing class EDAWinter22ReleaseGate extends ReleaseGateBase {
     @TestVisible
     private final static String RELEASE_GATE_FEATURE_NAME = 'winter22feature1';
     @TestVisible
-    private final static String FEATURE_HELP_LINK = 'https://powerofus.force.com/s/group/0F980000000DA0QCAW/eda-release-announcements';
+    private final static String FEATURE_HELP_LINK = 'https://trailhead.salesforce.com/trailblazer-community/feed/0D54S00000BuNlcSAF';
 
     /**
      * @description Get the name of the release gate
@@ -68,7 +68,7 @@ public with sharing class EDAWinter22ReleaseGate extends ReleaseGateBase {
                     '',
                     Label.stgReleaseGateEDAWinter22FeatureDescription,
                     FEATURE_HELP_LINK,
-                    Label.stgReleaseGateEDAWinter22FeatureHelpLabel
+                    Label.stgReleaseGateEDAFeatureHelpLabel
                 )
             }
         );

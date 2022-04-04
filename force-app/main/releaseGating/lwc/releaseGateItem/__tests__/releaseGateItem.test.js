@@ -216,4 +216,27 @@ describe("c-release-gate-item", () => {
                 expect(inProgressStatusText.innerHTML).toContain(gate.label);
             });
     });
+
+    it("should send event to activate release gate when activated", () => {
+        const element = createElement("c-release-gate-item", {
+            is: ReleaseGateItem,
+        });
+        let gate = RELEASE_GATES[0].gates[0];
+        element.product = RELEASE_GATES[0].product;
+        element.gate = gate;
+        document.body.appendChild(element);
+
+        const handler = jest.fn();
+        element.addEventListener("releasegatemodalrequest", handler);
+
+        return Promise.resolve().then(async () => {
+            const btnActivate = element.shadowRoot.querySelector('[data-qa="gateEnableBtn"]');
+            expect(btnActivate).not.toBeNull();
+            expect(btnActivate.title).toContain(gate.label);
+            btnActivate.click();
+            expect(handler).toHaveBeenCalled();
+            expect(handler.mock.calls[0][0].detail.releaseGateName).toBe(gate.name);
+            expect(handler.mock.calls[0][0].detail.releaseGateAction).toBe("activate");
+        });
+    });
 });

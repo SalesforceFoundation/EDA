@@ -36,6 +36,10 @@
  */
 @isTest
 public class AffiliationTestSetupFactory_TEST {
+    public static final String PROG_ENROLL_ROLE_STUDENT = 'Student';
+    public static final String PROG_ENROLL_STATUS_CURRENT = 'Current';
+    public static final String PROG_ENROLL_STATUS_FORMER = 'Former';
+
     /**************************************************************************
      * SETUP
      **************************************************************************/
@@ -300,8 +304,8 @@ public class AffiliationTestSetupFactory_TEST {
     private static List<Affl_Mappings__c> setAutoEnrollmentForMappings(List<Affl_Mappings__c> affiliationMappings) {
         for (Affl_Mappings__c affiliationMapping : affiliationMappings) {
             affiliationMapping.Auto_Program_Enrollment__c = true;
-            affiliationMapping.Auto_Program_Enrollment_Role__c = 'Student';
-            affiliationMapping.Auto_Program_Enrollment_Status__c = 'Current';
+            affiliationMapping.Auto_Program_Enrollment_Role__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_ROLE_STUDENT;
+            affiliationMapping.Auto_Program_Enrollment_Status__c = AffiliationTestSetupFactory_TEST.PROG_ENROLL_STATUS_CURRENT;
         }
 
         return affiliationMappings;
@@ -333,7 +337,7 @@ public class AffiliationTestSetupFactory_TEST {
      * Organization
      **************************************************************************/
     public static String getBusinessOrganizationFieldLabel() {
-        return 'Primary Business Organization';
+        return Schema.Contact.fields.Primary_Organization__c.getDescribe().getLabel();
     }
 
     /**************************************************************************
@@ -342,7 +346,7 @@ public class AffiliationTestSetupFactory_TEST {
      * @return the contact primary affiliation field labels for Household
      **************************************************************************/
     public static String getHouseholdFieldLabel() {
-        return 'Primary Household';
+        return Schema.Contact.fields.Primary_Household__c.getDescribe().getLabel();
     }
 
     /**************************************************************************

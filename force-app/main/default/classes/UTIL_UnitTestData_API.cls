@@ -28,18 +28,21 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2018
-* @group API
-* @group-content ../../ApexDocContent/API.htm
-* @description API class that exposes the Test Data Utility methods.
-*/
+ * @author Salesforce.org
+ * @date 2018
+ * @group API
+ * @group-content ../../ApexDocContent/API.htm
+ * @description API class that exposes the Test Data Utility methods.
+ */
 global class UTIL_UnitTestData_API {
+    global static Lead getLead() {
+        return UTIL_UnitTestData_TEST.getLead();
+    }
 
     global static Contact getContact() {
-    	return UTIL_UnitTestData_TEST.getContact();
+        return UTIL_UnitTestData_TEST.getContact();
     }
-    
+
     global static List<Contact> getMultipleTestContacts(Integer n) {
         return UTIL_UnitTestData_TEST.getMultipleTestContacts(n);
     }
@@ -51,30 +54,29 @@ global class UTIL_UnitTestData_API {
     global static User createNewUserForTests(String strUsername) {
         return UTIL_UnitTestData_TEST.createNewUserForTests(strUsername);
     }
-    
+
     /*********************************************************************************************************
-    * @description Initializes (but not inserts) N new Address objects.
-    * @param addrCount the number of Address objects to create
-    * @return  void
-    **********************************************************************************************************/
+     * @description Initializes (but not inserts) N new Address objects.
+     * @param addrCount the number of Address objects to create
+     * @return  void
+     **********************************************************************************************************/
     global static List<Address__c> getMultipleTestAddresses(Integer addrCount) {
         return UTIL_UnitTestData_TEST.getMultipleTestAddresses(addrCount);
     }
 
     /*******************************************************************************************************
-    * @description Static method that detects if we are running in a sandbox.
-    * @return true if running in sandbox. false otherwise.
-    */
+     * @description Static method that detects if we are running in a sandbox.
+     * @return true if running in sandbox. false otherwise.
+     */
     global static Boolean isSandbox() {
         return UTIL_Namespace.isSandbox();
     }
 
     /*******************************************************************************************************
-    * @description Static method that returns the real email if it's a sandbox email.
-    * @return string with user's email.
-    */
+     * @description Static method that returns the real email if it's a sandbox email.
+     * @return string with user's email.
+     */
     global static String sandboxEmailToRealEmail(String email) {
         return UTIL_Namespace.sandboxEmailToRealEmail(email);
     }
-
 }

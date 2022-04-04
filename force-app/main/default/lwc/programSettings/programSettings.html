@@ -8,7 +8,15 @@
     >
         <template if:true={programEnrollmentDeletionSettingsVModel}>
             <!-- Program Enrollment Deletion -->
-            <div class="slds-col slds-size_3-of-3 slds-p-right_x-large slds-text-heading_small slds-p-bottom_medium">
+            <div
+                class="
+                    slds-col
+                    slds-size_3-of-3
+                    slds-var-p-right_x-large
+                    slds-text-heading_small
+                    slds-var-p-bottom_medium
+                "
+            >
                 {labelReference.programEnrollmentDeletionHeading}
                 <lightning-helptext
                     content={labelReference.programEnrollmentDeletionStatusSettingDescription}
@@ -45,7 +53,15 @@
 
         <template if:true={affiliationsWithProgramEnrollmentVModel}>
             <!-- Affiliations created with Program Enrollment -->
-            <div class="slds-col slds-size_3-of-3 slds-p-right_x-large slds-text-heading_small slds-p-bottom_medium">
+            <div
+                class="
+                    slds-col
+                    slds-size_3-of-3
+                    slds-var-p-right_x-large
+                    slds-text-heading_small
+                    slds-var-p-bottom_medium
+                "
+            >
                 {labelReference.afflCreateFromPrgrmHeading}
                 <lightning-helptext content={labelReference.afflCreateFromPrgrmInfo}></lightning-helptext>
             </div>
@@ -105,16 +121,16 @@
 
         <!-- Auto Enrollment Mappings -->
         <template if:true={autoEnrollmentMappingsVModel}>
-            <div class="slds-col slds-size_2-of-3 slds-p-bottom_x-large">
-                <div class="slds-text-title slds-text-color_default slds-p-left_small slds-text-title_bold">
+            <div class="slds-col slds-size_2-of-3 slds-var-p-bottom_x-large">
+                <div class="slds-text-title slds-text-color_default slds-var-p-left_small slds-text-title_bold">
                     {labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsTitle}
                 </div>
-                <div class="slds-text-body_small slds-text-color_weak slds-p-horizontal_large">
+                <div class="slds-text-body_small slds-text-color_weak slds-var-p-horizontal_large">
                     <lightning-formatted-rich-text value={autoEnrollmentMappingsDescriptionRichText}>
                     </lightning-formatted-rich-text>
                 </div>
             </div>
-            <div class="slds-col slds-size_1-of-3 slds-p-right_large slds-text-align_right">
+            <div class="slds-col slds-size_1-of-3 slds-var-p-right_large slds-text-align_right">
                 <lightning-button
                     label={labelReference.newButton}
                     title={labelReference.newButtonA11y}
@@ -122,7 +138,7 @@
                 ></lightning-button>
             </div>
 
-            <div class="slds-col slds-size_3-of-3 slds-p-right_x-large">
+            <div class="slds-col slds-size_3-of-3 slds-var-p-right_x-large slds-var-p-bottom_x-large">
                 <lightning-datatable
                     key-field="mappingName"
                     data={autoEnrollmentMappingsVModel.autoEnrollmentMappingVModels}

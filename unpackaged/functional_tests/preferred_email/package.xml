@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Contact.Custom_Email__c</members>
+        <members>Contact.Picklist_Missing_Email__c</members>
+        <members>Contact.Untranslated_Email__c</members>
+        <members>Contact.Untranslated_Picklist_Email__c</members>
+        <members>Contact.University_Email__c</members>
+        <members>Contact.%%%NAMESPACE%%%Preferred_Email__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>CON_Pref_Email_customEmailEnglish_FTST</members>
+        <members>CON_Pref_Email_duplicateField_FTST</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>PrefEmailMatchMustExist</members>
+        <members>PrefEmailMatchNotNull</members>
+        <members>PrefEmailRequiredError</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>Admin</members>
+        <name>Profile</name>
+    </types>
+    <version>48.0</version>
+</Package>
