@@ -111,13 +111,23 @@ public virtual with sharing class FeatureParameterMapper {
             HasUserManagedTDTM,
             HasValueInversionReciprocalMethod,
             IsEnabled_StoreErrors,
+            HasErrorNotificationsAdminRecipients,
             IsEnabled_AutomaticHouseholdNaming,
             IsEnabled_CourseConnections,
             IsEnabled_ErrorHandling,
             Org_CountActiveCourseConnectionRecordTypes,
             SettingsHealthCheckLastRunDate,
             UsingOldContactEthnicity,
-            UsingOldCourseDescription
+            UsingOldCourseDescription,
+            AutodeleteNoContactHouseholdAcc,
+            AutodeleteNoContactProgramAcc,
+            AutodeleteNoContactEducationalInstitutionAcc,
+            AutodeleteNoContactBusinessOrganizationAcc,
+            AutodeleteNoContactUniversityDepartmentAcc,
+            HasAffiliationsRelatedToDeletedProgramEnrollments,
+            HasAffiliationStartDate,
+            HasAffiliationEndDate,
+            HasApplicationWindowValidation
     }
 
     /**********************************************************************************

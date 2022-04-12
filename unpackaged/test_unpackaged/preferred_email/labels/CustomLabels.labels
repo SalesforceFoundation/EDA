@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>PrefEmailMatchMustExist</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when an invalid value is selected in Preferred Email</shortDescription>
+        <value>We can&apos;t find the email specified in Preferred Email. Make sure that you&apos;re entering the field label of an existing custom email field.</value>
+    </labels>
+    <labels>
+        <fullName>PrefEmailMatchNotNull</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error when the value of the email field selected in Preferred Email is null</shortDescription>
+        <value>The email field you selected in Preferred Email is blank. Either choose a different Preferred Email, or add a value for that email field.</value>
+    </labels>
+    <labels>
+        <fullName>PrefEmailRequiredError</fullName>
+        <categories>Contacts</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error when Preferred Email is blank</shortDescription>
+        <value>Select a value for Preferred Email.</value>
+    </labels>
+</CustomLabels>

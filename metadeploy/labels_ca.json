@@ -9,7 +9,7 @@
             "description": "tagline of product"
         },
         "description": {
-            "message": "## Us donem la benvinguda al programa d'instal·lacio d'EDA.\r\n\r\nGràcies per instal·lar EDA. Visiteu el [Education Data Architecture topic](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture) que trobareu al  Power of Us Hub si teniu qualsevol pregunta sobre EDA.",
+            "message": "## Us donem la benvinguda al programa d'instal·lacio d'EDA.\r\n\r\nGràcies per instal·lar EDA. Visiteu el [Education Data Architecture topic](https://powerofus.force.com/EDA_Community) que trobareu al  Power of Us Hub si teniu qualsevol pregunta sobre EDA.",
             "description": "shown on product detail page (markdown)"
         },
         "click_through_agreement": {
@@ -17,7 +17,7 @@
             "description": "legal text shown in modal dialog"
         },
         "error_message": {
-            "message": "Si teniu algun problema amb la instal·lació, publiqueu-lo a [Power of Us Hub](https://powerofus.force.com/s/topic/0TO1E000000VbY4WAK/education-data-architecture).",
+            "message": "Si teniu algun problema amb la instal·lació, publiqueu-lo a [Power of Us Hub](https://powerofus.force.com/EDA_Community).",
             "description": "shown after failed installation (markdown)"
         }
     },

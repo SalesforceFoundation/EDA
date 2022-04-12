@@ -4,7 +4,7 @@ import { refreshApex } from "@salesforce/apex";
 import getApplicationSettingsVModel from "@salesforce/apex/ApplicationSettingsController.getApplicationSettingsVModel";
 
 // Label imports
-import stgApplicationSettingsTitle from "@salesforce/label/c.stgApplicationSettingsTitle";
+import stgApplicationSettingsTitle from "@salesforce/label/c.stgApplicationsNav";
 import stgApplicationWindowValidation from "@salesforce/label/c.stgApplicationWindowValidation";
 import stgApplicationWindowValidationDescription from "@salesforce/label/c.stgApplicationWindowValidationDescription";
 

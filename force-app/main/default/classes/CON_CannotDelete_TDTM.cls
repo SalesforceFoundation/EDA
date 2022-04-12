@@ -28,77 +28,101 @@
     POSSIBILITY OF SUCH DAMAGE.
 */
 /**
-* @author Salesforce.org
-* @date 2016
-* @group Accounts
-* @group-content ../../ApexDocContent/Contacts.htm
-* @description Stops a Contact from being deleted if it has any Address, Affiliation,
-* Application, Attendance Event, Attribute, Behavior Involement, Contact Language,
-* Course Offering, Course Enrollment, Education History, Program Enrollment,
-* Term Grade, or Test child records.
-*/
+ * @author Salesforce.org
+ * @date 2016
+ * @group Accounts
+ * @group-content ../../ApexDocContent/Contacts.htm
+ * @description Stops a Contact from being deleted if it has any Address, Affiliation,
+ * Application, Attendance Event, Attribute, Behavior Involement, Contact Language,
+ * Course Offering, Course Enrollment, Education History, Program Enrollment,
+ * Term Grade, or Test child records.
+ */
 public with sharing class CON_CannotDelete_TDTM extends TDTM_Runnable {
+    //TODO: This variable has to be static because TDTM doesn't preserve TDTM_Runnable instance
+    //between Before* and After* calls
+    @TestVisible
+    private static List<Contact> contactsWithChildRelations;
 
     /*******************************************************************************************************
-    * @description Stops a Contact from being deleted if it has any Address, Affiliation,
-    * Application, Attendance Event, Attribute, Behavior Involement, Contact Language,
-    * Course Offering, Course Enrollment, Program Enrollment,
-    * Term Grade, or Test child records
-    * @param listNew the list of Contacts from trigger new
-    * @param listOld the list of Contacts from trigger old
-    * @param triggerAction which trigger event (BeforeDelete)
-    * @param objResult the describe for Contact
-    * @return dmlWrapper
-    ********************************************************************************************************/
-    public override DmlWrapper run(List<SObject> newList, List<SObject> oldList,
-    TDTM_Runnable.Action triggerAction, Schema.DescribeSObjectResult objResult) {
-
+     * @description Stops a Contact from being deleted if it has any Address, Affiliation,
+     * Application, Attendance Event, Attribute, Behavior Involement, Contact Language,
+     * Course Offering, Course Enrollment, Program Enrollment,
+     * Term Grade, or Test child records
+     * @param listNew the list of Contacts from trigger new
+     * @param listOld the list of Contacts from trigger old
+     * @param triggerAction which trigger event (BeforeDelete)
+     * @param objResult the describe for Contact
+     * @return dmlWrapper
+     ********************************************************************************************************/
+    public override DmlWrapper run(
+        List<SObject> newList,
+        List<SObject> oldList,
+        TDTM_Runnable.Action triggerAction,
+        Schema.DescribeSObjectResult objResult
+    ) {
         if (oldlist == null || oldlist.isEmpty() == true) {
             return new DmlWrapper();
         }
 
         if (triggerAction == TDTM_Runnable.Action.BeforeDelete) {
-            this.handleBeforeDelete(oldList);
+            contactsWithChildRelations = this.handleBeforeDelete(oldList);
+        } else if (triggerAction == TDTM_Runnable.Action.AfterDelete) {
+            this.handleAfterDelete(oldList);
+            contactsWithChildRelations = null;
         }
 
         return new DmlWrapper();
     }
 
     /*******************************************************************************************************
-    * @description Returns if Contact Deletion Prevention custom setting is not enabled or
-    * Passes a map of contacts By Id to SRVC_Contact_PreventDeletion and returns a List of Contacts that have
-    * been prevented for deletion
-    * @param oldSObjectList list of sObject records that are being deleted
-    * @return List<Contact>
-    ********************************************************************************************************/
+     * @description Returns if Contact Deletion Prevention custom setting is not enabled or
+     * Returns a List of Contacts with retrieved child relationships
+     * @param oldSObjectList list of sObject records that are being deleted
+     * @return List<Contact>
+     ********************************************************************************************************/
     @TestVisible
     private List<Contact> handleBeforeDelete(List<SObject> oldSObjectList) {
-
         if (!this.isContactDeletionPreventionEnabled()) {
             return null;
         }
 
-        Map<Id, Contact> oldContactById = new Map<Id, Contact>((List<Contact>)oldSObjectList);
-        return this.locateContactPreventDeletionService().preventDeletionForContacts(oldContactById);
-
+        Map<Id, Contact> oldContactById = new Map<Id, Contact>((List<Contact>) oldSObjectList);
+        return this.locateContactPreventDeletionService().getContactsAndChildRelationships(oldContactById.keySet());
     }
 
     /*******************************************************************************************************
-    * @description Returns the instance of SRVC_Contact_PreventDeletion class
-    * @return The instance of SRVC_Contact_PreventDeletion class
-    ********************************************************************************************************/
+     * @description Returns if Contact Deletion Prevention custom setting is not enabled or
+     * Passes a map of contacts By Id to SRVC_Contact_PreventDeletion and returns a List of Contacts that have
+     * been prevented for deletion
+     * @param oldSObjectList list of sObject records that are being deleted
+     * @return List<Contact>
+     ********************************************************************************************************/
+    @TestVisible
+    private List<Contact> handleAfterDelete(List<SObject> oldSObjectList) {
+        if (!this.isContactDeletionPreventionEnabled()) {
+            return null;
+        }
+
+        Map<Id, Contact> oldContactById = new Map<Id, Contact>((List<Contact>) oldSObjectList);
+        return this.locateContactPreventDeletionService()
+            .preventDeletionForContacts(oldContactById, contactsWithChildRelations);
+    }
+
+    /*******************************************************************************************************
+     * @description Returns the instance of SRVC_Contact_PreventDeletion class
+     * @return The instance of SRVC_Contact_PreventDeletion class
+     ********************************************************************************************************/
     @TestVisible
     private SRVC_Contact_PreventDeletion locateContactPreventDeletionService() {
         return SRVC_Contact_PreventDeletion.getInstance();
     }
 
     /*******************************************************************************************************
-    * @description Returns the value of Prevent Contact deleteion custom settings
-    * @return Boolean
-    ********************************************************************************************************/
+     * @description Returns the value of Prevent Contact deleteion custom settings
+     * @return Boolean
+     ********************************************************************************************************/
     @TestVisible
     private Boolean isContactDeletionPreventionEnabled() {
         return UTIL_CustomSettingsFacade.getSettings().Prevent_Contact_Deletion__c;
     }
-
 }

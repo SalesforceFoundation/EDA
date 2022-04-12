@@ -152,7 +152,7 @@ private with sharing class AccountNamingService_TEST {
         Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
-                Household_Account_Naming_Format__c = '{!LastName} Household'
+                Household_Account_Naming_Format__c = '{!LastName} ' + Label.DefaultHouseholdName
             )
         );
         insert hs;
@@ -189,7 +189,7 @@ private with sharing class AccountNamingService_TEST {
         Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = UTIL_Describe_API.getHhAccRecTypeID(),
-                Household_Account_Naming_Format__c = '{!LastName} Household'
+                Household_Account_Naming_Format__c = '{!LastName} ' + Label.DefaultHouseholdName
             )
         );
         insert hs;

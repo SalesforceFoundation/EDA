@@ -3,9 +3,15 @@
         <!--Section Header-->
         <h2
             id={viewModel.id}
-            class="slds-text-heading_small slds-p-left_large slds-p-top_medium slds-p-bottom_xx-small"
+            class="
+                slds-text-heading_small
+                eda-nav_heading_uppercase
+                slds-var-p-left_large
+                slds-var-p-top_medium
+                slds-var-p-bottom_xx-small
+            "
         >
-            <template if:false={viewModel.page}> {viewModel.label} </template>
+            <template if:false={viewModel.page}> {viewModel.label}</template>
             <template if:true={viewModel.page}>
                 <a
                     href="javascript:void(0);"
@@ -42,7 +48,7 @@
                     <!--Active Chevron-->
                     <div
                         class="
-                            slds-col slds-bump-left
+                            slds-col slds-col_bump-left
                             slds-size_1-of-12
                             slds-align_absolute-center
                             slds-text-align_right
@@ -60,7 +66,7 @@
 
         <!--Subsections-->
         <template if:true={viewModel.navigationSubSections}>
-            <ul aria-describedby={viewModel.id} class="slds-p-left_medium">
+            <ul aria-describedby={viewModel.id} class="slds-var-p-left_medium">
                 <template for:each={viewModel.navigationSubSections} for:item="navigationSubsection">
                     <li key={navigationSubsection.id}>
                         <c-settings-navigation-subsection

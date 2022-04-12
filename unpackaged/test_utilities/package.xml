@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Describe_Utility</members>
+        <members>TDTM_Utility</members>
+        <members>CON_Pref_Email_Utility</members>
+        <name>ApexClass</name>
+    </types>
+    <version>52.0</version>
+</Package>

@@ -81,6 +81,7 @@ public virtual with sharing class HierarchySettingsMapper {
      ****************************************************************************************************/
     public virtual boolean updateHierarchySettings(HierarchySettingsModel hierarchySettingsModel) {
         try {
+            /* sfca-disable-next-line ApexFlsViolationRule */
             update hierarchySettingsModel.hierarchySettings;
         } catch (System.DmlException e) {
             return false;

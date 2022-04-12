@@ -144,29 +144,6 @@ describe("c-release-gates", () => {
             });
     });
 
-    it("Check if component is handling getReleaseGateVModel errors", () => {
-        const element = createElement("c-release-gates", {
-            is: ReleaseGates,
-        });
-        document.body.appendChild(element);
-        const errorMessageHandler = jest.fn();
-        element.addEventListener("errormessage", errorMessageHandler);
-
-        getProductRegistryReleaseGateVModels.emit(PRODUCT_REGISTRIES);
-
-        return Promise.resolve()
-            .then(async () => {
-                await expect(element).toBeAccessible();
-                const releaseGateItems = element.shadowRoot.querySelectorAll("c-release-gate-product");
-                expect(releaseGateItems).not.toBeNull();
-                expect(releaseGateItems.length).toBe(2);
-                getReleaseGateVModel.error();
-            })
-            .then(() => {
-                expect(errorMessageHandler).toHaveBeenCalled();
-            });
-    });
-
     it("Check if component is handling successful activateReleaseGate", () => {
         const element = createElement("c-release-gates", {
             is: ReleaseGates,
