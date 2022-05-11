@@ -267,13 +267,13 @@ private with sharing class REL_Relationships_Con_TEST {
             Campaign_Types__c = ''
         );
 
-        insert new Relationship_Auto_Create__c(
+        /*insert new Relationship_Auto_Create__c(
             Name = 'ConReportToAutoCreate2',
             Object__c = 'Contact',
             Field__c = 'IndividualId',
             Relationship_Type__c = 'Superviser',
             Campaign_Types__c = ''
-        );
+        );*/
 
         Contact employer = UTIL_UnitTestData_TEST.getUniqueContact(0);
         insert employer;
@@ -283,7 +283,7 @@ private with sharing class REL_Relationships_Con_TEST {
 
         Contact employee = UTIL_UnitTestData_TEST.getUniqueContact(2);
         employee.ReportsToId = employer.Id;
-        employee.IndividualId = superviser.Id;
+        //employee.IndividualId = superviser.Id;
 
         Test.startTest();
         REL_Relationships_Con_TDTM instance = new REL_Relationships_Con_TDTM();
@@ -294,9 +294,9 @@ private with sharing class REL_Relationships_Con_TEST {
             .getRelationshipsToCreateForContacts(new List<Contact>{ employee }, contactRelAutoCreateModelsList);
         Test.stopTest();
 
-        System.assertEquals(2, contactsRelationshipsMdl.relationshipList.size());
+        System.assertEquals(1, contactsRelationshipsMdl.relationshipList.size());
         System.assertEquals('Employer', contactsRelationshipsMdl.relationshipList[0].Type__c);
-        System.assertEquals('Superviser', contactsRelationshipsMdl.relationshipList[1].Type__c);
+        //System.assertEquals('Superviser', contactsRelationshipsMdl.relationshipList[1].Type__c);
     }
 
     /*********************************************************************************************************
