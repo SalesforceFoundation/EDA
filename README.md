@@ -24,19 +24,19 @@ Make sure `yarn` is installed on your local machine. For more information, check
  yarn install
  ```
 
- If you’re using Prettier, these dependency packages will be installed to your local repo: prettier, prettier-plugin-apex, husky, and lint-staged.
+If you’re using Prettier, these dependency packages will be installed to your local repo: prettier, prettier-plugin-apex, husky, and lint-staged.
 
- ### Configure your code formatter
+### Configure your code formatter
 
- Configure your code formatter, as needed. For example, customize Prettier configurations in `prettierrc.yml` or specify code for Prettier to ignore in `.prettierignore`.
+Configure your code formatter, as needed. For example, customize Prettier configurations in `prettierrc.yml` or specify code for Prettier to ignore in `.prettierignore`.
 
- ### Bypass pre-commit hook
+### Bypass pre-commit hook
 
- Pre-commit hooks help ensure the quality of code, but if you need to bypass them, append `--no-verify` to git commit or use a similar commit option for your GUI clients.
+Pre-commit hooks help ensure the quality of code, but if you need to bypass them, append `--no-verify` to git commit or use a similar commit option for your GUI clients.
 
- ### Troubleshoot errors
+### Troubleshoot errors
 
- If you encounter errors, remove the node_modules folder and run `yarn install` again.
+If you encounter errors, remove the node_modules folder and run `yarn install` again.
 
 ## Learn More
 
