@@ -3133,4 +3133,51 @@ private class ACCT_IndividualAccounts_TEST {
 
         System.assertEquals('test 0 Administrative Account', accAfterUpdate.Name);
     }
+
+    @isTest
+    public static void filterInsertWithNoRecords() {
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
+        TDTM_Global_API.setTdtmConfig(tokens);
+        
+        //Creating filter condition
+        Trigger_Handler__c handler = [select Filter_Field__c from Trigger_Handler__c where Class__c = 'ACCT_IndividualAccounts_TDTM'];        
+        handler.Filter_Field__c = 'Deceased__c';
+        handler.Filter_Value__c = 'true';
+        update handler;
+        
+        Test.startTest();
+
+        Contact deceasedContact = new Contact(LastName='Deceased', Deceased__c = true);
+        insert deceasedContact;
+        Contact theContact = [select Deceased__c from Contact where id = :deceasedContact.Id];
+        System.assertEquals(theContact.Deceased__c, true);
+
+        Test.stopTest();
+        
+    }  
+
+    @isTest
+    public static void filterUpdateWithNoRecords() {
+        List<TDTM_Global_API.TdtmToken> tokens = TDTM_Global_API.getTdtmConfig();
+        TDTM_Global_API.setTdtmConfig(tokens);
+
+        Contact deceasedContact = new Contact(LastName='Deceased', Deceased__c = false);
+        insert deceasedContact;        
+        
+        //Creating filter condition
+        Trigger_Handler__c handler = [select Filter_Field__c from Trigger_Handler__c where Class__c = 'ACCT_IndividualAccounts_TDTM'];        
+        handler.Filter_Field__c = 'Deceased__c';
+        handler.Filter_Value__c = 'true';
+        update handler;
+        
+        Test.startTest();  
+
+        deceasedContact.Deceased__c = true;
+        update deceasedContact;
+        Contact theContact = [select Deceased__c from Contact where id = :deceasedContact.Id];
+        System.assertEquals(theContact.Deceased__c, true);
+
+        Test.stopTest();
+        
+    }  
 }
