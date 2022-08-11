@@ -3180,4 +3180,45 @@ private class ACCT_IndividualAccounts_TEST {
         Test.stopTest();
         
     }  
+
+    @isTest
+    public static void testPrimaryContactRemains() {
+        Contact contacta = new Contact(LastName='Contact A');
+        insert contacta;
+
+        contacta = [select AccountId from Contact where Id = :contacta.Id];
+
+        Account accounta = [select Primary_Contact__c from Account where Id = : contacta.AccountId];
+
+        Id primaryContactId = accounta.Primary_Contact__c;
+
+        Contact contactb = new Contact(LastName='Contact B', AccountId=contacta.AccountId);
+        insert contactb;   
+
+        Account accountb = [select Primary_Contact__c from Account where Id = : contactb.AccountId];      
+
+        Contact contactc = new Contact(LastName='Contact C');
+        insert contactc;
+        contactc = [select AccountId from Contact where Id = :contactc.Id];
+
+        Account accountc = [select Primary_Contact__c from Account where Id = : contactc.AccountId];
+        contactc = [select AccountId from contact where Id = :contactc.Id];
+        System.assertNotEquals(contactc.AccountId, contacta.AccountId, 'Contact A and C Accounts should not be the same');
+       
+        contactc.AccountId = contacta.AccountId;
+
+        Test.startTest();     
+
+        update contactc;
+
+        contactc = [select AccountId from contact where Id = :contactc.Id];
+        System.assertEquals(contactc.AccountId, contacta.AccountId, 'Contact A and C Accounts should be the same');
+
+        accounta = [select Primary_Contact__c from Account where Id = : contacta.AccountId];      
+
+        System.assertEquals(primaryContactId, accounta.Primary_Contact__c, 'Primary contact ids should equal -->');
+
+        Test.stopTest();
+        
+    }     
 }
