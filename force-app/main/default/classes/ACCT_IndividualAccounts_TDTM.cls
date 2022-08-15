@@ -375,7 +375,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private void handleInsertProcessing(HandleInsertWrapperLogic insertWrapper, List<Contact> contactsNeedAccounts) {
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        if (triggerAction == TDTM_Runnable.Action.AfterInsert && insertWrapper != null) { 
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert && insertWrapper != null) {
             //Creates new Account
             if (contactsNeedAccounts.size() > 0) {
                 UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + contactsNeedAccounts.size());
@@ -813,7 +813,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         //Loop through the Account to check if the Primary Contact record is associated
         //to the Account on the Contact record
         for (Account acc : [
-            SELECT Primary_Contact__c, (SELECT Id FROM Contacts )
+            SELECT Primary_Contact__c, (SELECT Id FROM Contacts)
             FROM Account
             WHERE Id IN :accountIdsToUpdate
         ]) {
@@ -822,10 +822,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             //(2)If the Primary_Contact__c on Account record is blank
             //Then we will need to update this Account record's Primary_Contact__c field
             Boolean contactExistsOnAccount = false;
-            for (Contact aContact : acc.Contacts)
-            {
-                if (acc.Primary_Contact__c == aContact.Id) 
-                {
+            for (Contact aContact : acc.Contacts) {
+                if (acc.Primary_Contact__c == aContact.Id) {
                     contactExistsOnAccount = true;
                 }
             }
@@ -833,7 +831,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
                 accountsToResetIds.add(acc.Id);
             }
         }
-
 
         //If accountsToResetIds is empty, skip dml and return
         if (accountsToResetIds.size() == 0) {
