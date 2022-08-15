@@ -799,7 +799,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
      * @param dmlWrapper to hold the Accounts that needs update.
      */
     private void resetPrimaryContactForAccount(List<Id> accountIdsToUpdate, DmlWrapper dmlWrapper) {
-        Set<Id> primaryContactId = new Set<Id>();
         Set<Id> accountsToResetIds = new Set<Id>();
         List<Account> accountsToUpdate = new List<Account>();
 
@@ -811,33 +810,30 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             WHERE Id IN :accountIdsToUpdate
         ];
 
-        //Retrieves the Primary_Contact__c from the Account
-        for (Account acc : listAccount) {
-            if (acc.Primary_Contact__c != null)
-                primaryContactId.add(acc.Primary_Contact__c);
-        }
-
-        if (primaryContactId.size() > 0) {
-            //Loop through the Account to check if the Primary Contact record is associated
-            //to the Account on the Contact record
-            for (Account acc : [
-                SELECT Primary_Contact__c, (SELECT Id FROM Contacts WHERE Id IN :primaryContactId LIMIT 1)
-                FROM Account
-                WHERE Id IN :accountIdsToUpdate
-            ]) {
-                //There are two cases account primary contact needs reset
-                //(1)If the Primary Contact's record (actual Contact record) is not associated to the Account
-                //(2)If the Primary_Contact__c on Account record is blank
-                //Then we will need to update this Account record's Primary_Contact__c field
-                if (acc.Contacts.size() == 0 || acc.Primary_Contact__c == null) {
-                    accountsToResetIds.add(acc.Id);
+        //Loop through the Account to check if the Primary Contact record is associated
+        //to the Account on the Contact record
+        for (Account acc : [
+            SELECT Primary_Contact__c, (SELECT Id FROM Contacts )
+            FROM Account
+            WHERE Id IN :accountIdsToUpdate
+        ]) {
+            //There are two cases account primary contact needs reset
+            //(1)If the Primary Contact's record (actual Contact record) is not associated to the Account
+            //(2)If the Primary_Contact__c on Account record is blank
+            //Then we will need to update this Account record's Primary_Contact__c field
+            Boolean contactExistsOnAccount = false;
+            for (Contact aContact : acc.Contacts)
+            {
+                if (acc.Primary_Contact__c == aContact.Id) 
+                {
+                    contactExistsOnAccount = true;
                 }
             }
-        } else {
-            //If the Account record does not have a Primary_Contact__c then update this
-            //Account record's Primary_Contact__c field.
-            accountsToResetIds.addAll(accountIdsToUpdate);
+            if (acc.Primary_Contact__c == null || !contactExistsOnAccount) {
+                accountsToResetIds.add(acc.Id);
+            }
         }
+
 
         //If accountsToResetIds is empty, skip dml and return
         if (accountsToResetIds.size() == 0) {
@@ -851,9 +847,8 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             if (accountsToResetIds.contains(acc.Id)) {
                 if (acc.Contacts.size() > 0) {
                     //If any child contact exists, use one as primary contactd);
-                    if (acc.Primary_Contact__c == null) {
-                        acc.Primary_Contact__c = acc.contacts[0].Id;
-                    }
+                    acc.Primary_Contact__c = acc.contacts[0].Id;
+
                     //Inject Adv logic to handle npsp primary contact of the Account
                     if (Advancement_Info.useAdv() && Advancement_Info.getApiHEDA() != null) {
                         Advancement_Info.getApiHEDA().primaryContact(acc, acc.contacts[0].Id);
