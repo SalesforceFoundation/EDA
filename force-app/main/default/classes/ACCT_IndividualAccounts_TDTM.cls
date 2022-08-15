@@ -375,7 +375,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private void handleInsertProcessing(HandleInsertWrapperLogic insertWrapper, List<Contact> contactsNeedAccounts) {
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        if (triggerAction == TDTM_Runnable.Action.AfterInsert && insertWrapper != null) {
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert && insertWrapper != null) { 
             //Creates new Account
             if (contactsNeedAccounts.size() > 0) {
                 UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + contactsNeedAccounts.size());
@@ -823,8 +823,9 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
             //Then we will need to update this Account record's Primary_Contact__c field
             Boolean contactExistsOnAccount = false;
             for (Contact aContact : acc.Contacts) {
-                if (acc.Primary_Contact__c == aContact.Id) {
+                if (acc.Primary_Contact__c != null && acc.Primary_Contact__c == aContact.Id) {
                     contactExistsOnAccount = true;
+                    break;
                 }
             }
             if (acc.Primary_Contact__c == null || !contactExistsOnAccount) {
@@ -836,8 +837,6 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         if (accountsToResetIds.size() == 0) {
             return;
         }
-
-        accountsToResetIds.addAll(accountIdsToUpdate);
 
         //For each account that needs to be reset
         for (Account acc : listAccount) {
