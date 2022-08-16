@@ -842,7 +842,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         for (Account acc : listAccount) {
             if (accountsToResetIds.contains(acc.Id)) {
                 if (acc.Contacts.size() > 0) {
-                    //If any child contact exists, use one as primary contactd);
+                    //If any child contact exists, use one as primary contact
                     acc.Primary_Contact__c = acc.contacts[0].Id;
 
                     //Inject Adv logic to handle npsp primary contact of the Account
