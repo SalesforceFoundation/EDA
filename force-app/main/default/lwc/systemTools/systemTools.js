@@ -65,12 +65,6 @@ import stgHelpCopyQueuedEmailSent from "@salesforce/label/c.stgHelpCopyQueuedEma
 import stgSuccess from "@salesforce/label/c.stgSuccess";
 import stgToastError from "@salesforce/label/c.stgToastError";
 
-// Links to the articles
-const accountNamingArtcile = '<a href="https://powerofus.force.com/EDA-Customize-Admin-and-HH-Acct-Names">';
-const prefEmailPhoneArticle = '<a href="https://powerofus.force.com/EDA-Configure-Email-Addresses-for-Contacts">';
-const ethinicityAndRaceBackFillArticle = '<a href="https://powerofus.force.com/EDA-Contact">';
-const courseConnArticle = '<a href="https://powerofus.force.com/EDA-Course-Connection">';
-
 export default class systemTools extends LightningElement {
     labelReference = {
         stgSystemToolsTitle: stgSystemToolsNav,
@@ -111,40 +105,24 @@ export default class systemTools extends LightningElement {
         errorToastMessge: stgToastError,
     };
 
-    get adminAndHouseholdNamesHyperLink() {
-        return accountNamingArtcile + this.labelReference.tellMeMoreLink + "</a>";
-    }
-
     get houseHoldNamesRefreshDesc() {
-        return this.labelReference.stgRefreshHHAcctNameDesc + " " + this.adminAndHouseholdNamesHyperLink;
+        return this.labelReference.stgRefreshHHAcctNameDesc;
     }
 
     get adminNamesRefreshDesc() {
-        return this.labelReference.stgRefreshAdminAcctNameDesc + " " + this.adminAndHouseholdNamesHyperLink;
-    }
-
-    get prefEmailPhoneHyperLink() {
-        return prefEmailPhoneArticle + this.labelReference.tellMeMoreLink + "</a>";
+        return this.labelReference.stgRefreshAdminAcctNameDesc;
     }
 
     get prefEmailPhoneDesc() {
-        return this.labelReference.stgRunCleanUpEnableFirstTime + " " + this.prefEmailPhoneHyperLink;
-    }
-
-    get ethnicityAndBackFillHyperLink() {
-        return ethinicityAndRaceBackFillArticle + this.labelReference.tellMeMoreLink + "</a>";
+        return this.labelReference.stgRunCleanUpEnableFirstTime;
     }
 
     get ethnicityAndBackFillDesc() {
-        return this.labelReference.ethnicityAndRaceBackfillDescription + " " + this.ethnicityAndBackFillHyperLink;
-    }
-
-    get courseConnBackfillHyperLink() {
-        return courseConnArticle + this.labelReference.tellMeMoreLink + "</a>";
+        return this.labelReference.ethnicityAndRaceBackfillDescription;
     }
 
     get courseConnBackfillDesc() {
-        return this.labelReference.courseConnectionBackfillDesc + " " + this.courseConnBackfillHyperLink;
+        return this.labelReference.courseConnectionBackfillDesc;
     }
 
     hasRendered;

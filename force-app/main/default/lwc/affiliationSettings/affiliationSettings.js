@@ -56,11 +56,6 @@ export default class affiliationSettings extends LightningElement {
         successToast: stgSuccess,
     };
 
-    affiliationsHyperLink =
-        '<a href="https://powerofus.force.com/EDA-Configure-Affiliations-Settings">' +
-        this.labelReference.tellMeMoreLink +
-        "</a>";
-
     inputAttributeReference = {
         recordTypeValidation: "recordTypeValidation",
         affiliationMappings: "affiliationMappings",
@@ -294,10 +289,6 @@ export default class affiliationSettings extends LightningElement {
     }
 
     get affiliationsDesc() {
-        return (
-            this.labelReference.primaryAffiliationMappingsTable.primaryAffiliationsDescription +
-            " " +
-            this.affiliationsHyperLink
-        );
+        return this.labelReference.primaryAffiliationMappingsTable.primaryAffiliationsDescription;
     }
 }

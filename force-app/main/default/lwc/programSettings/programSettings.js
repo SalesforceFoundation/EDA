@@ -330,22 +330,8 @@ export default class programSettings extends LightningElement {
         });
     }
 
-    get autoEnrollmentHyperLink() {
-        return (
-            '<a href="' +
-            autoEnrollmentURL +
-            '">' +
-            this.labelReference.autoEnrollmentMappingsTable.tellMeMoreLink +
-            "</a>"
-        );
-    }
-
     get autoEnrollmentMappingsDescriptionRichText() {
-        return (
-            this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription +
-            " " +
-            this.autoEnrollmentHyperLink
-        );
+        return this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription;
     }
 
     handleNewAutoEnrollmentMappingClick(event) {

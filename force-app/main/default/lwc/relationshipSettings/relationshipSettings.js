@@ -78,16 +78,12 @@ export default class relationshipSettings extends LightningElement {
         allowAutoCreatedDuplicatesId: "allowAutoCreatedDuplicates",
     };
 
-    get relationshipSettingsHyperLink() {
-        return relationshipsArticle + this.labelReference.tellMeMore + "</a>";
-    }
-
     get relationshipSettingsDesc() {
-        return this.labelReference.reciprocalMethodSettingsDesc + " " + this.relationshipSettingsHyperLink;
+        return this.labelReference.reciprocalMethodSettingsDesc;
     }
 
     get duplicateRelationshipDesc() {
-        return this.labelReference.duplicateRelationshipDesc + " " + this.relationshipSettingsHyperLink;
+        return this.labelReference.duplicateRelationshipDesc;
     }
 
     get affordancesDisabled() {
