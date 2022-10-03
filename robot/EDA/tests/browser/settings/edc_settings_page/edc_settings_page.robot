@@ -72,17 +72,6 @@ Verify EDA settings page is displayed when user clicks on the settings button un
     Current page should be                  Home        EDA Settings
     close browser
 
-Verify EDA documents page is displayed when user clicks on the documentation button under Education Data Architecture product tile
-    [Documentation]         Validates EDA documents page is displayed after clicking on the documentation button under Education Data Architecture product tile
-    [tags]                  rbt:high        W-10073560
-    Open test browser
-    Go to education cloud settings home
-    Current page should be                  Home        Education Cloud Settings
-    Click product card button in edc home   Go to the EDA documentation.
-    Switch Window    locator=NEW
-    Verify eda documentation  https://powerofus.force.com/s/article/EDA-Documentation   
-    close browser
-
 Verify Trailhead page is displayed when user clicks on the trailhead button under Education Data Architecture product tile
     [Documentation]         Validates EDA trailhead page is displayed after clicking on the trailhead button under Education Data Architecture product tile
     [tags]                  rbt:high        W-10073560
