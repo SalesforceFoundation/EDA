@@ -9,7 +9,7 @@
             "description": "tagline of product"
         },
         "description": {
-            "message": "## Welcome to the EDA installer!\r\n\r\nFor installation details, go to the [https://powerofus.force.com/EDA-Documentation](EDA Documentation). Visit the [https://powerofus.force.com/EDA_Community](Education Data Architecture group) for any questions about EDA.\r\n\r\nIMPORTANT: Salesforce does not recommend installing directly in production organizations. Instead, install in one of your free sandbox environments, or a developer organization first.",
+            "message": "## Welcome to the EDA installer!\r\n\r\nFor installation details, go to the [https://powerofus.force.com/EDA-Documentation](EDA Documentation). Visit the [https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kHi4SAE?utm_source=product&tab=discussion&sort=LAST_MODIFIED_DATE_DESC](Education Data Architecture group) for any questions about EDA.\r\n\r\nIMPORTANT: Salesforce does not recommend installing directly in production organizations. Instead, install in one of your free sandbox environments, or a developer organization first.",
             "description": "shown on product detail page (markdown)"
         },
         "click_through_agreement": {
@@ -17,7 +17,7 @@
             "description": "legal text shown in modal dialog"
         },
         "error_message": {
-            "message": "If you experience an issue with the installation, please post in the [Power of Us Hub] (https://powerofus.force.com/EDA_Community).",
+            "message": "If you experience an issue with the installation, please post in the [Power of Us Hub] (https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kHi4SAE?utm_source=product&tab=discussion&sort=LAST_MODIFIED_DATE_DESC).",
             "description": "shown after failed installation (markdown)"
         }
     },
