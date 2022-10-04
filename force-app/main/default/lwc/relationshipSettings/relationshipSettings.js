@@ -34,8 +34,6 @@ import stgReciprocalRelNewSuccess from "@salesforce/label/c.stgReciprocalRelNewS
 import stgReciprocalRelDeleteSuccess from "@salesforce/label/c.stgReciprocalRelDeleteSuccess";
 import stgSuccess from "@salesforce/label/c.stgSuccess";
 
-// Articles
-const relationshipsArticle = '<a href="https://powerofus.force.com/EDA-Config-Relationships-Settings">';
 export default class relationshipSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;

@@ -40,12 +40,3 @@ Validate Affiliation Mappings can be Added
     Wait Until Loading is Complete
     ${name_val}=                                Get Affiliation Mappings   ${field_name}
     List Should Contain Value                   ${name_val}                Sports_Organization
-
-Validate Tell me more link works
-    [Documentation]         Verifies the "Tell me More" link.
-    [tags]                                      W-10131460       rbt:high
-    Select settings from navigation pane        Affiliations
-    Click on hub link                           Affiliation Mappings      Tell Me More
-    Switch window                               NEW
-    ${url} =                                    Get location
-    Should Start With                           ${url}      https://powerofus.force.com
