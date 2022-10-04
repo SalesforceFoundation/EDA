@@ -9,7 +9,7 @@
             "description": "tagline of product"
         },
         "description": {
-            "message": "## Willkommen beim Installationsprogramm für EDA!\r\n\r\nVielen Dank für die Installation von EDA. Suchen Sie bei Fragen zu EDA das [Education Data Architecture-Thema](https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kHi4SAE?utm_source=product&tab=discussion&sort=LAST_MODIFIED_DATE_DESC) auf dem Power of Us-Hub auf.",
+            "message": "## Willkommen beim Installationsprogramm für EDA!\r\n\r\nVielen Dank für die Installation von EDA. Suchen Sie bei Fragen zu EDA das [Education Data Architecture-Thema](https://trailhead.salesforce.com/en/trailblazer-community/groups/0F94S000000kHi4SAE?utm_source=product) auf dem Power of Us-Hub auf.",
             "description": "shown on product detail page (markdown)"
         },
         "click_through_agreement": {
@@ -17,7 +17,7 @@
             "description": "legal text shown in modal dialog"
         },
         "error_message": {
-            "message": "Wenn bei der Installation ein Problem auftritt, melden Sie es bitte beim [Power of Us-Hub](https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kHi4SAE?utm_source=product&tab=discussion&sort=LAST_MODIFIED_DATE_DESC).",
+            "message": "Wenn bei der Installation ein Problem auftritt, melden Sie es bitte beim [Power of Us-Hub](https://trailhead.salesforce.com/en/trailblazer-community/groups/0F94S000000kHi4SAE?utm_source=product).",
             "description": "shown after failed installation (markdown)"
         }
     },

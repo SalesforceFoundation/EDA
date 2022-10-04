@@ -9,7 +9,7 @@
             "description": "tagline of product"
         },
         "description": {
-            "message": "## Tervetuloa EDA-asennusohjelmaan!\r\n\r\nKiitos EDA:n asentamisesta. Jos sinulla on kysyttävää EDA:sta, vieraile [Education Data Architecture -aiheessa](https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kHi4SAE?utm_source=product&tab=discussion&sort=LAST_MODIFIED_DATE_DESC) Power of Us -hubissa.",
+            "message": "## Tervetuloa EDA-asennusohjelmaan!\r\n\r\nKiitos EDA:n asentamisesta. Jos sinulla on kysyttävää EDA:sta, vieraile [Education Data Architecture -aiheessa](https://trailhead.salesforce.com/en/trailblazer-community/groups/0F94S000000kHi4SAE?utm_source=product) Power of Us -hubissa.",
             "description": "shown on product detail page (markdown)"
         },
         "click_through_agreement": {
@@ -17,7 +17,7 @@
             "description": "legal text shown in modal dialog"
         },
         "error_message": {
-            "message": "Jos asennuksessa ilmenee ongelmia, ilmoita siitä [Power of Us -hubissa](https://trailhead.salesforce.com/trailblazer-community/groups/0F94S000000kHi4SAE?utm_source=product&tab=discussion&sort=LAST_MODIFIED_DATE_DESC).",
+            "message": "Jos asennuksessa ilmenee ongelmia, ilmoita siitä [Power of Us -hubissa](https://trailhead.salesforce.com/en/trailblazer-community/groups/0F94S000000kHi4SAE?utm_source=product).",
             "description": "shown after failed installation (markdown)"
         }
     },
