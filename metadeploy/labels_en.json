@@ -9,7 +9,7 @@
             "description": "tagline of product"
         },
         "description": {
-            "message": "## Welcome to the EDA installer!\r\n\r\nFor installation details, go to the [https://powerofus.force.com/EDA-Documentation](EDA Documentation). Visit the [https://trailhead.salesforce.com/en/trailblazer-community/groups/0F94S000000kHi4SAE?utm_source=product](Education Data Architecture group) for any questions about EDA.\r\n\r\nIMPORTANT: Salesforce does not recommend installing directly in production organizations. Instead, install in one of your free sandbox environments, or a developer organization first.",
+            "message": "## Welcome to the EDA installer!\r\n\r\nFor installation details, refer to the Education Data Architecture documentation in Salesforce Help for any questions about EDA. Visit the [https://trailhead.salesforce.com/en/trailblazer-community/groups/0F94S000000kHi4SAE?utm_source=product](Education Data Architecture group) for any questions about EDA.\r\n\r\nIMPORTANT: Salesforce does not recommend installing directly in production organizations. Instead, install in one of your free sandbox environments, or a developer organization first.",
             "description": "shown on product detail page (markdown)"
         },
         "click_through_agreement": {
