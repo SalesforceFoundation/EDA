@@ -43,8 +43,6 @@ Verify EDA product card is displayed
     Verify product card avatar displayed  EDA
     Verify product card description displayed  Education Data Architecture (EDA) is the foundation of the Education Cloud.
     Verify product card button displayed  Go to EDA Settings.
-    verify product card button displayed  Go to the EDA documentation.
-    Verify product card button displayed  Go to EDA Trailhead modules.
     close browser
 
 Verify mocked SAL product card is displayed
@@ -57,8 +55,6 @@ Verify mocked SAL product card is displayed
     Verify product card avatar displayed  TAL
     Verify product card description displayed  dvisor Link (Mocked) gives advisors and advisees new tools to help foster focused conversations about education success.
     Verify product card button displayed  Go to Advisor Link (Mocked) Settings
-    verify product card button displayed  Go to Advisor Link (Mocked) Documentation
-    Verify product card button displayed  Go to Advisor Link (Mocked) Trailhead
     close browser
 
 Verify EDA settings page is displayed when user clicks on the settings button under Education Data Architecture product tile
@@ -71,28 +67,6 @@ Verify EDA settings page is displayed when user clicks on the settings button un
     Click product card button in edc home   Go to EDA Settings.
     Current page should be                  Home        EDA Settings
     close browser
-
-Verify EDA documents page is displayed when user clicks on the documentation button under Education Data Architecture product tile
-    [Documentation]         Validates EDA documents page is displayed after clicking on the documentation button under Education Data Architecture product tile
-    [tags]                  rbt:high        W-10073560
-    Open test browser
-    Go to education cloud settings home
-    Current page should be                  Home        Education Cloud Settings
-    Click product card button in edc home   Go to the EDA documentation.
-    Switch Window    locator=NEW
-    Verify eda documentation  https://powerofus.force.com/s/article/EDA-Documentation   
-    close browser
-
-Verify Trailhead page is displayed when user clicks on the trailhead button under Education Data Architecture product tile
-    [Documentation]         Validates EDA trailhead page is displayed after clicking on the trailhead button under Education Data Architecture product tile
-    [tags]                  rbt:high        W-10073560
-    Open test browser
-    Go to education cloud settings home
-    Current page should be                  Home        Education Cloud Settings
-    Click product card button in edc home   Go to EDA Trailhead modules.
-    Switch Window    locator=NEW
-    Verify eda documentation  trailhead.salesforce.com/en/content/learn/trails/highered_heda  
-    close browser    
 
 Verify user without class access renders release management page with toast error
     [Documentation]         Validates 'Release Management' page with access error is displayed after clicking on the Go to Release Management
