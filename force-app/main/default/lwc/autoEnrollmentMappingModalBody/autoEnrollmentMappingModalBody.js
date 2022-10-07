@@ -50,11 +50,10 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
         autoProgramEnrollmentRole: "autoProgramEnrollmentRole",
     };
 
-    connectedCallback(){
-        getAccountRecordTypeComboboxVModel({ accountRecordType: this.newAccountRecordType })
-        .then((result) => {
+    connectedCallback() {
+        getAccountRecordTypeComboboxVModel({ accountRecordType: this.newAccountRecordType }).then((result) => {
             this.accountRecordTypeComboboxVModel = result;
-        })
+        });
     }
 
     @wire(getAutoEnrollmentMappingStatusComboboxVModel, {
@@ -141,10 +140,10 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
     get autoEnrollmentMappingModalDesc() {
         switch (this.actionName) {
             case "edit":
-                return this.labelReference.modalBodyEdit + " " + this.autoEnrollmentHyperLink;
+                return this.labelReference.modalBodyEdit;
 
             case "create":
-                return this.labelReference.modalBodyCreate + " " + this.autoEnrollmentHyperLink;
+                return this.labelReference.modalBodyCreate;
 
             case "delete":
                 return this.labelReference.modalBodyDelete
@@ -160,14 +159,6 @@ export default class autoEnrollmentMappingModalBody extends LightningElement {
 
     get deleteRecords() {
         return this.actionName === "delete";
-    }
-
-    get autoEnrollmentHyperLink() {
-        return (
-            '<a href="https://powerofus.force.com/EDA-Configure-Affiliations-Settings">' +
-            this.labelReference.tellMeMoreLink +
-            "</a>"
-        );
     }
 
     get accountRecordTypeApiNameLabel() {
