@@ -53,7 +53,6 @@ import stgErrorNewAutoEnrollment from "@salesforce/label/c.stgErrorNewAutoEnroll
 import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 import stgSuccess from "@salesforce/label/c.stgSuccess";
 
-const autoEnrollmentURL = "https://powerofus.force.com/EDA-Configure-Affiliations-Settings";
 export default class programSettings extends LightningElement {
     isEditMode = false;
     affordancesDisabledToggle = false;
@@ -330,22 +329,8 @@ export default class programSettings extends LightningElement {
         });
     }
 
-    get autoEnrollmentHyperLink() {
-        return (
-            '<a href="' +
-            autoEnrollmentURL +
-            '">' +
-            this.labelReference.autoEnrollmentMappingsTable.tellMeMoreLink +
-            "</a>"
-        );
-    }
-
     get autoEnrollmentMappingsDescriptionRichText() {
-        return (
-            this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription +
-            " " +
-            this.autoEnrollmentHyperLink
-        );
+        return this.labelReference.autoEnrollmentMappingsTable.autoEnrollmentMappingsDescription;
     }
 
     handleNewAutoEnrollmentMappingClick(event) {
