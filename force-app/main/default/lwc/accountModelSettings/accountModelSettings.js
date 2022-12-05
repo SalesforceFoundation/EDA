@@ -35,7 +35,6 @@ import stgHHAccountCustomNameHelp from "@salesforce/label/c.stgHHAccountCustomNa
 import automaticHHNaming from "@salesforce/label/c.automaticHHNaming";
 import automaticHHNamingHelpText from "@salesforce/label/c.automaticHHNamingHelpText";
 import acctNamingOther from "@salesforce/label/c.acctNamingOther";
-import stgTellMeMoreLink from "@salesforce/label/c.stgTellMeMoreLink";
 
 const DELAY_INTERVAL = 500; // 0.5 second delay
 
@@ -88,13 +87,7 @@ export default class AccountModelSettings extends LightningElement {
         hhAutomaticAccountNamingTitle: automaticHHNaming,
         hhAutomaticAccountNamingDescription: automaticHHNamingHelpText,
         accountNamingComboboxCustomOption: acctNamingOther,
-        tellMeMoreLink: stgTellMeMoreLink,
     };
-
-    accNamingHyperLink =
-        '<a href="https://powerofus.force.com/EDA-Customize-Admin-and-HH-Acct-Names">' +
-        this.labelReference.tellMeMoreLink +
-        "</a>";
 
     inputAttributeReference = {
         defaultAccountModelComboboxId: "defaultAccountModel",
@@ -375,10 +368,10 @@ export default class AccountModelSettings extends LightningElement {
     }
 
     get adminAccDesc() {
-        return this.labelReference.adminAccountNameFormatDescription + " " + this.accNamingHyperLink;
+        return this.labelReference.adminAccountNameFormatDescription;
     }
 
     get hhAccDesc() {
-        return this.labelReference.hhAccountNameFormatDescription + " " + this.accNamingHyperLink;
+        return this.labelReference.hhAccountNameFormatDescription;
     }
 }
