@@ -67,9 +67,6 @@ describe("c-release-gate-item", () => {
                 const featureDescription = element.shadowRoot.querySelector(".featureDescription");
                 expect(featureDescription.innerHTML).toBe(gate.features[0].description);
 
-                const featureLink = element.shadowRoot.querySelector(".featureLink");
-                expect(featureLink.innerHTML).toContain(gate.features[0].helpLinkLabel);
-
                 const btnActivate = element.shadowRoot.querySelector('[data-qa="gateEnableBtn"]');
                 expect(btnActivate).not.toBeNull();
                 expect(btnActivate.title).toContain(gate.label);

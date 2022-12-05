@@ -30,26 +30,6 @@
                                 class="btnSettingsComponent"
                             ></lightning-button>
                         </div>
-                        <div class="slds-var-m-bottom_medium slds-var-m-right_small">
-                            <lightning-button
-                                if:true={documentationUrl}
-                                label={labelReference.documentationButton}
-                                title={documentationButtonA11y}
-                                aria-described-by="cardTitle"
-                                onclick={handleDocumentationClick}
-                                class="btnDocumentationUrl"
-                            ></lightning-button>
-                        </div>
-                        <div class="slds-var-m-bottom_medium">
-                            <lightning-button
-                                if:true={trailheadUrl}
-                                label={labelReference.trailheadButton}
-                                title={trailheadButtonA11y}
-                                aria-described-by="cardTitle"
-                                onclick={handleTrailheadClick}
-                                class="btnTrailheadUrl"
-                            ></lightning-button>
-                        </div>
                     </div>
                 </div>
             </lightning-card>
