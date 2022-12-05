@@ -80,6 +80,11 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
     public Map<String, String> accRecTypeLabelToAPI;
 
     /*******************************************************************************************************
+     * @description Map of Account Record Type Labels in English to User Language Label
+     ********************************************************************************************************/
+    private Map<String, String> accRecTypeEnglishToTranslation;
+
+    /*******************************************************************************************************
      * @description Constructor that initializes class properties.
      ********************************************************************************************************/
     public AFFL_MultiRecordTypeMapper() {
@@ -98,6 +103,9 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
         // Map of Account RecordType Label To API
         //NOTE: Consider a refactor relative to case sensitivity
         this.accRecTypeLabelToAPI = this.getAccRecTypeLabelToAPIMap();
+
+        // Map of Account RecordType English label to Translated Label
+        this.accRecTypeEnglishToTranslation = this.getAccRecTypeEnglishLabelToTranslation();
 
         //Note: Given the supportable number of records for affiliation mappings, having multiple small loops
         //is an acceptable and negligible performance hit so we can apply a separation of concerns for future refactoring.
@@ -161,6 +169,23 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
             labelsnames.put(field.Name, field.DeveloperName);
         }
         return labelsnames;
+    }
+
+    /**
+     * @description Returns a map of the English label to the current running user's language
+     */
+    @TestVisible
+    private Map<String, String> getAccRecTypeEnglishLabelToTranslation() {
+        Map<String, String> labels = new Map<String, String>();
+
+        for (String englishLabel : accRecTypeLabelToAPI.keySet()) {
+            labels.put(
+                englishLabel,
+                accountRecordTypeInfosByDeveloperName.get(accRecTypeLabelToAPI.get(englishLabel)).getName()
+            );
+        }
+
+        return labels;
     }
 
     /**
@@ -329,8 +354,14 @@ public virtual with sharing class AFFL_MultiRecordTypeMapper {
             return false;
         }
 
+        // we need to use the "english to translation" map since Affiliation_Type__c is a formula field
+        // and formula fields aren't translated into the running user's language.
+        if (!accRecTypeEnglishToTranslation.containsKey(affiliation.Affiliation_Type__c)) {
+            return false;
+        }
+
         Affl_Mappings__c affiliationMapping = primaryAffiliationMappingsByAccountRecordTypeName.get(
-            affiliation.Affiliation_Type__c
+            accRecTypeEnglishToTranslation.get(affiliation.Affiliation_Type__c)
         );
 
         if (affiliationMapping?.Auto_Program_Enrollment__c != true) {

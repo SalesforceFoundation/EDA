@@ -34,18 +34,6 @@ Verify release management page displays Advisor Link release gates
     Verify release gate item icon               Advisor Link       Summer '21       action-announcement
     Verify release gate item activation status  Advisor Link       Summer '21       Inactive
     Verify release gate item activationdate     Advisor Link       Summer '21       Activate by
-    ##Feature: Flexible Advisee Snapshot
-    Verify release gate feature                 Advisor Link       Summer '21       Flexible Advisee Snapshot
-    Verify release gate feature description     Advisor Link       Summer '21       Flexible Advisee Snapshot
-    Verify release gate feature link            Advisor Link       Summer '21       Flexible Advisee Snapshot                Set Up the Advisee Snapshot and Contact Details       https://powerofus.force.com/s/article/SAL-Advisor-App-Snapshot-Contact
-    ##Feature: Flexible Student Snapshot
-    Verify release gate feature                 Advisor Link       Summer '21       Flexible Student Snapshot
-    Verify release gate feature description     Advisor Link       Summer '21       Flexible Student Snapshot
-    Verify release gate feature link            Advisor Link       Summer '21       Flexible Student Snapshot                Set Up the Student Snapshot and Student Details       https://powerofus.force.com/s/article/SSH-Set-Up-Student-Snapshot-and-Details
-    ##Feature: Front Desk Appointment Scheduling
-    Verify release gate feature                 Advisor Link       Summer '21       Front Desk Appointment Scheduling
-    Verify release gate feature description     Advisor Link       Summer '21       Front Desk Appointment Scheduling
-    Verify release gate feature link            Advisor Link       Summer '21       Front Desk Appointment Scheduling        Set Up Front Desk Appointment Scheduling              https://powerofus.force.com/s/article/SAL-Set-Up-Front-Desk-Appointment-Scheduling
 
     #Spring'21
     Verify release gate item                    Advisor Link       Spring '21       
@@ -53,14 +41,6 @@ Verify release management page displays Advisor Link release gates
     Verify release gate item icon               Advisor Link       Spring '21       action-approval
     Verify release gate item activation status  Advisor Link       Spring '21       Activated
     Verify release gate item activationdate     Advisor Link       Spring '21       Activated on
-    ##Feature: Flex Scheduling
-    Verify release gate feature                 Advisor Link       Spring '21       Flex Scheduling
-    Verify release gate feature description     Advisor Link       Spring '21       Flex Scheduling
-    Verify release gate feature link            Advisor Link       Spring '21       Flex Scheduling         Set Up Location-Based Advising Availability       https://powerofus.force.com/s/article/SAL-Set-Up-Location-Based-Advising-Availability
-    ##Feature: Group Availability
-    Verify release gate feature                 Advisor Link       Spring '21       Group Availability
-    Verify release gate feature description     Advisor Link       Spring '21       Group Availability
-    Verify release gate feature link            Advisor Link       Spring '21       Group Availability      Set Up Group Advising Availability       https://powerofus.force.com/s/article/SAL-Set-Up-Group-Availability
 
 Verify release management page displays Example Product release gates
     [Documentation]         Validates Example Product release gates and features

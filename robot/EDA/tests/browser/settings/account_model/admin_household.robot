@@ -62,12 +62,6 @@ Validate admin and household account naming format settings are updated in hiera
     ...                     settings under custom settings.
     [tags]                                      unstable        W-9294235       rbt:high
     Select settings from navigation pane        Account Model
-    Click action button on new EDA settings     Edit
-    Scroll to field                             Administrative Account Name Format
-    Click on hub link                           Administrative Account Name Format      Tell Me More
-    Switch window                               NEW
-    ${url} =                                    Get location
-    Should Start With                           ${url}      https://powerofus.force.com
     Switch window                               MAIN
     Scroll to field                             Household Account Name Format
     Update settings dropdown value
