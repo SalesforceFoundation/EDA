@@ -37,7 +37,7 @@ public with sharing class EDASpring22ReleaseGate extends ReleaseGateBase {
     @TestVisible
     private final static String RELEASE_GATE_FEATURE_NAME = 'spring22feature1';
     @TestVisible
-    private final static String FEATURE_HELP_LINK = 'https://powerofus.force.com/Education_Release_Readiness';
+    private final static String FEATURE_HELP_LINK = '';
 
     /**
      * @description Get the name of the release gate
