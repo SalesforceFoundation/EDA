@@ -26,7 +26,7 @@ Validate default account model settings is updated in hierarchy settings
     [Documentation]         Verifies the default account model settings can be updated in EDA
     ...                     Settings page and the same record type is updated in hierarchy settings
     ...                     under custom settings.
-    [tags]                                      W-9159697       rbt:high
+    [tags]                                      W-9159697       rbt:high        quadrant:Q3
     Select settings from navigation pane        Account Model
     Click action button on new EDA settings     Edit
     Update settings dropdown value              Default Account Model=Household Account

@@ -12,7 +12,7 @@ Suite Teardown  Capture screenshot and delete records and close browser
 *** Test Cases ***
 Verify products tools and resources tiles are displayed
     [Documentation]         Validates the products, tools and resources tiles are displayed.
-    [tags]                  rbt:high        W-9549044
+    [tags]                  rbt:high        W-9549044   quadrant:Q3
     Open test browser
     Go to education cloud settings home
     Current page should be                  Home        Education Cloud Settings
@@ -25,7 +25,7 @@ Verify products tools and resources tiles are displayed
 
 Verify release management page is displayed when user clicks on go to release management button
     [Documentation]         Validates 'Release Management' page is displayed after clicking on the Go to Release Management
-    [tags]                  rbt:high        W-10059978
+    [tags]                  rbt:high        W-10059978  quadrant:Q3
     Open test browser
     Go to education cloud settings home
     Current page should be                  Home        Education Cloud Settings
@@ -119,5 +119,5 @@ Verify user without customize application access shows error
 
 *** Keywords ***
 Initialize test data
-    [Documentation]         
-    ${ns} =     Get EDA namespace prefix    
+    [Documentation]
+    ${ns} =     Get EDA namespace prefix
