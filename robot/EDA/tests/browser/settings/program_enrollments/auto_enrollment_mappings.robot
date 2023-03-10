@@ -31,7 +31,7 @@ Validate auto enrollment mappings can be added and it is updated in custom setti
 Validate previously added auto enrollment mapping account record type is not available from dropdown
     [Documentation]         Verifies a previously added account recordtype is not available from dropdown
     ...                     because there is already an auto enrollment mapping with that recordtype
-    [tags]                                      W-10131460      rbt:high
+    [tags]                                      W-10131460      rbt:high    quadrant:Q3
 
     Select settings from navigation pane             Program Enrollments
     Click action button on new EDA settings          New
