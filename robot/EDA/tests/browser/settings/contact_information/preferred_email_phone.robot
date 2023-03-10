@@ -28,7 +28,7 @@ Validate preferred email and preferred phone settings are updated in hierarchy s
     [Documentation]         Verifies the preferred email and preferred phone settings can be
     ...                     updated in EDA Settings page and the same settings are updated in
     ...                     hierarchy settings under custom settings.
-    [tags]                                      W-9294254       rbt:high
+    [tags]                                      W-9294254       rbt:high    quadrant:Q3
     Select settings from navigation pane        Contact Information
     Click action button on new EDA settings     Edit
     Set toggle input
