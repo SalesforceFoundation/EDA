@@ -1,4 +1,4 @@
-minimum_cumulusci_version: 3.9.0
+minimum_cumulusci_version: 3.74.0
 project:
     name: EDA
     package:
@@ -319,6 +319,11 @@ tasks:
             path: scripts/setup.cls
             apex: qaSetup();
 
+    github_release:
+        options:
+            release_content: |
+                Check out the Salesforce Release Notes on [Salesforce Help & Training](https://sfdc.co/bnL4Cb).
+
     github_release_notes:
         options:
             trial_info: "`TBD`"
@@ -622,6 +627,11 @@ flows:
                 flow: qa_org_2gp
             2:
                 flow: run_functional_tests
+
+    release_production:
+        steps:
+            3:
+                task: None
 
     run_functional_tests:
         # description: Configure an org for use as a dev org after package metadata is deployed.
