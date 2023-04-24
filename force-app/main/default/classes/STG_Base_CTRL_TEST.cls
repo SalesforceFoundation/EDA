@@ -348,4 +348,14 @@ private class STG_Base_CTRL_TEST {
         Id apexJobId = STG_Base_CTRL.executeRefreshAdminAccountBatch();
         System.assertNotEquals(null, apexJobId);
     }
+
+    /*********************************************************************************************************
+     * @description Tests the namespace retrieval
+     */
+    @isTest
+    private static void testNamespace() {
+        String[] parts = String.valueOf(STG_Base_CTRL.class).split('\\.', 2);
+        String testNamespace = parts.size() == 2 ? parts[0] : '';
+        Assert.areEqual(testNamespace, STG_Base_CTRL.getNamespace());
+    }
 }
