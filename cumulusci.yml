@@ -231,7 +231,7 @@ tasks:
         description: "Create a user with no access to Education Cloud components"
         class_path: cumulusci.tasks.sfdx.SFDXOrgTask
         options:
-            command: "force:user:create -a no_access --definitionfile datasets/dev/users/user-def_no-access.json"
+            command: "force:user:create -a no_access --definitionfile datasets/dev_data/users/user-def_no-access.json"
 
     create_tenant_secret:
         group: "EDA: Shield Platform Encryption"
