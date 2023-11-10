@@ -323,7 +323,6 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
         ];
 
         Map<Id, Map<Id, List<Affiliation__c>>> contactIdAccountIdAfflList = new Map<Id, Map<Id, List<Affiliation__c>>>();
-        Map<Id, List<Affiliation__c>> acctAffl = new Map<Id, List<Affiliation__c>>();
 
         for(Affiliation__c affl : affls) {
             // Check if Contact ID key exists
@@ -334,13 +333,11 @@ public with sharing class CCON_Faculty_TDTM extends TDTM_Runnable {
                     contactIdAccountIdAfflList.get(affl.Contact__c).get(affl.Account__c).add(affl);
                 } else {
                     // Create empty map and add Account ID to Affiliation Map
-                    acctAffl.clear();
-                    acctAffl.put(affl.Account__c, new List<Affiliation__c>{affl});
+                    Map<Id, List<hed__Affiliation__c>> acctAffl = new Map<Id, List<hed__Affiliation__c>>{ affl.hed__Account__c => new List<hed__Affiliation__c>{affl} };
                     contactIdAccountIdAfflList.get(affl.Contact__c).putAll(acctAffl);
                 }
             } else {
-                acctAffl.clear();
-                acctAffl.put(affl.Account__c, new List<Affiliation__c>{affl});
+                Map<Id, List<hed__Affiliation__c>> acctAffl = new Map<Id, List<hed__Affiliation__c>>{ affl.hed__Account__c => new List<hed__Affiliation__c>{affl} };
                 contactIdAccountIdAfflList.put(affl.Contact__c, acctAffl);
             }
         }
