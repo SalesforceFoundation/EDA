@@ -2,12 +2,12 @@
     "devDependencies": {
         "@sa11y/jest": "^0.4.2",
         "@salesforce/sfdx-lwc-jest": "^0.12.6",
+        "hasha-cli": "^4.1.0",
         "husky": "=4",
         "lint-staged": ">=10",
+        "lockfile-lint": "^4.3.6",
         "prettier": "^2.2.1",
-        "prettier-plugin-apex": "^1.8.0",
-        "hasha-cli": "^4.1.0",
-        "lockfile-lint": "^4.3.6"
+        "prettier-plugin-apex": "^1.8.0"
     },
     "scripts": {
         "test:unit": "sfdx-lwc-jest",
