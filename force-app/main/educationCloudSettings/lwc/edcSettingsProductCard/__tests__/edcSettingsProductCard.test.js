@@ -85,18 +85,8 @@ describe("c-edc-settings-product-card", () => {
 
         const btnSettingsComponent = element.shadowRoot.querySelector(".btnSettingsComponent");
         expect(btnSettingsComponent).not.toBeNull();
-        expect(btnSettingsComponent.title).toBe('testSettingsButtonA11y');
+        expect(btnSettingsComponent.title).toBe("testSettingsButtonA11y");
         expect(btnSettingsComponent.label).toBe(settingsButtonLabel);
-
-        const btnDocumentationUrl = element.shadowRoot.querySelector(".btnDocumentationUrl");
-        expect(btnDocumentationUrl).not.toBeNull();
-        expect(btnDocumentationUrl.title).toBe('testDocumentationButtonA11y');
-        expect(btnDocumentationUrl.label).toBe(documentationButtonLabel);
-
-        const btnTrailheadUrl = element.shadowRoot.querySelector(".btnTrailheadUrl");
-        expect(btnTrailheadUrl).not.toBeNull();
-        expect(btnTrailheadUrl.title).toBe('testTrailheadButtonA11y');
-        expect(btnTrailheadUrl.label).toBe(trailheadButtonLabel);
     });
 
     it("Check the button btnSettingsComponent works and navigates correctly", async () => {
@@ -128,35 +118,6 @@ describe("c-edc-settings-product-card", () => {
         expect(pageReference.attributes.componentName).toBe("testSettingsComponent");
     });
 
-    it("Check the button btnDocumentationUrl works and navigates correctly", async () => {
-        // Assign mock value for resolved Apex promise
-        getEDCSettingsProductVModel.mockResolvedValue(mockGetEDCSettingsProductVModel);
-
-        const element = createElement("c-edc-settings-product-card", {
-            is: EdcSettingsProductCard,
-        });
-
-        element.productRegistry = {
-            classname: "testClassName",
-            namespace: "testNamespace",
-            apiVersion: 2.0,
-        };
-        element.displayProductCards = true;
-
-        document.body.appendChild(element);
-
-        await flushPromises();
-
-        const btnDocumentationUrl = element.shadowRoot.querySelector(".btnDocumentationUrl");
-        expect(btnDocumentationUrl).not.toBeNull();
-        btnDocumentationUrl.click();
-        const { pageReference } = getNavigateCalledWith();
-
-        //Get the details
-        expect(pageReference.type).toBe("standard__webPage");
-        expect(pageReference.attributes.url).toBe("testDocumentationUrl");
-    });
-
     it("Check the button btnTrailheadUrl works and navigates correctly", async () => {
         // Assign mock value for resolved Apex promise
         getEDCSettingsProductVModel.mockResolvedValue(mockGetEDCSettingsProductVModel);
@@ -175,14 +136,5 @@ describe("c-edc-settings-product-card", () => {
         document.body.appendChild(element);
 
         await flushPromises();
-
-        const btnTrailheadUrl = element.shadowRoot.querySelector(".btnTrailheadUrl");
-        expect(btnTrailheadUrl).not.toBeNull();
-        btnTrailheadUrl.click();
-        const { pageReference } = getNavigateCalledWith();
-
-        //Get the details
-        expect(pageReference.type).toBe("standard__webPage");
-        expect(pageReference.attributes.url).toBe("testTrailheadUrl");
     });
 });

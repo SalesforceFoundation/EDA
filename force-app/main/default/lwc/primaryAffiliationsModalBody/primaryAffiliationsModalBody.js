@@ -37,11 +37,6 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
         modalBodyCreate: stgAffiliationsNewModalBody,
     };
 
-    affiliationsHyperLink =
-        '<a href="https://powerofus.force.com/EDA-Configure-Affiliations-Settings">' +
-        this.labelReference.tellMeMoreLink +
-        "</a>";
-
     inputAttributeReference = {
         accountRecordType: "primaryAffiliationsAccountRecordType",
         contactField: "primaryAffiliationsContactField",
@@ -128,10 +123,10 @@ export default class PrimaryAffiliationsModalBody extends LightningElement {
     get affiliationsDesc() {
         switch (this.affiliationsAction) {
             case "edit":
-                return this.labelReference.modalBodyEditSave + " " + this.affiliationsHyperLink;
+                return this.labelReference.modalBodyEditSave;
 
             case "create":
-                return this.labelReference.modalBodyCreate + " " + this.affiliationsHyperLink;
+                return this.labelReference.modalBodyCreate;
         }
     }
 

@@ -26,7 +26,7 @@ Validate reciprocal method and prevent duplicate settings are updated in hierarc
     [Documentation]         Verifies the reciprocal method and prevent duplicate relationships
     ...                     settings are updated and the same are reflected in the hierarchy
     ...                     settings.
-    [tags]                                      W-9425217       rbt:high
+    [tags]                                      W-9425217       rbt:high        quadrant:Q3
     Select settings from navigation pane        Relationships
     Click action button on new EDA settings     Edit
     Set toggle input

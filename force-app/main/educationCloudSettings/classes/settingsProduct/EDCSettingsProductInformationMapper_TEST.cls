@@ -73,11 +73,6 @@ private class EDCSettingsProductInformationMapper_TEST {
             'settingsButtonA11y should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_SETTINGSBUTTONA11Y
         );
         System.assertEquals(
-            EDCSettingsProductInformationMapper.PRODUCT_EDA_DOCUMENTATIONURL,
-            productInformationModel.documentationUrl,
-            'documentationUrl should be set to ' + EDCSettingsProductInformationMapper.PRODUCT_EDA_DOCUMENTATIONURL
-        );
-        System.assertEquals(
             EDCSettingsProductInformationMapper.PRODUCT_EDA_DOCUMENTATIONBUTTONA11Y,
             productInformationModel.documentationButtonA11y,
             'documentationButtonA11y should be set to ' +

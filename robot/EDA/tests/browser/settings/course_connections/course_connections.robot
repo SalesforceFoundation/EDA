@@ -40,7 +40,7 @@ Validate enable course connection setting is updated in hierarchy settings
     [Documentation]         Verifies the course connection record type setting is updated in
     ...                     Education Cloud Settings page and it is also updated in the hierarchy
     ...                     settings.
-    [tags]                                      W-9425609       rbt:high
+    [tags]                                      W-9425609       rbt:high    quadrant:Q3
     Select settings from navigation pane        Course Connections
     Click action button on new EDA settings     Edit
     Set toggle input

@@ -95,7 +95,7 @@ global virtual with sharing class TALDemoSettingsProductInfoAPIService implement
             'Advisor Link (Mocked) gives advisors and advisees new tools to help foster focused conversations about education success. With Advisor Link, advisees can book advising appointments online, right from their smartphones. While advisors can spend more time on strategic engagement, support, and follow-up, and less time on getting advisees in the door.',
             settingsContainerPrefix + 'EdaSettingsContainer',
             'Go to Advisor Link (Mocked) Settings',
-            'https://powerofus.force.com/s/article/SAL-Documentation',
+            '',
             'Go to Advisor Link (Mocked) Documentation',
             'https://trailhead.salesforce.com/en/content/learn/modules/student-advising-with-salesforce-advisor-link',
             'Go to Advisor Link (Mocked) Trailhead',

@@ -31,7 +31,7 @@ Validate auto enrollment mappings can be added and it is updated in custom setti
 Validate previously added auto enrollment mapping account record type is not available from dropdown
     [Documentation]         Verifies a previously added account recordtype is not available from dropdown
     ...                     because there is already an auto enrollment mapping with that recordtype
-    [tags]                                      W-10131460      rbt:high
+    [tags]                                      W-10131460      rbt:high    quadrant:Q3
 
     Select settings from navigation pane             Program Enrollments
     Click action button on new EDA settings          New
@@ -53,12 +53,3 @@ Validate auto enrollment mappings can be deleted and it is updated in custom set
     ${status}=                                  Get Affiliation Mappings Value       Auto_Program_Enrollment_Status__c     Sports_Organization
     Should Be Equal As Strings                  None      ${role}
     Should Be Equal As Strings                  None      ${status}
-
-Validate Tell me more link works
-    [Documentation]         Verifies the "Tell me More" link.
-    [tags]                                      W-10131460       rbt:high
-    Select settings from navigation pane        Program Enrollments
-    Click on hub link                           Auto-Enrollment Mappings      Tell Me More
-    Switch window                               NEW
-    ${url} =                                    Get location
-    Should Start With                           ${url}      https://powerofus.force.com

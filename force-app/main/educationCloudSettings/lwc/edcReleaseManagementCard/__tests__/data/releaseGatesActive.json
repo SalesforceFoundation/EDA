@@ -8,21 +8,21 @@
                 "features": [
                     {
                         "description": "We've redesigned the Advisee Snapshot. If desired, customize it to show up to four counters, upload advisee photos, and add the Snapshot to other Case pages.",
-                        "helpLink": "https://powerofus.force.com/s/article/SAL-Advisor-App-Snapshot-Contact",
+                        "helpLink": "",
                         "helpLinkLabel": "Set Up the Advisee Snapshot and Contact Details",
                         "label": "Flexible Advisee Snapshot",
                         "name": "FlexibleAdviseeSnapshot"
                     },
                     {
                         "description": "Student Success Hub customers also enjoy the redesigned Student Snapshot. Configure the counters to show data relevant to K-12 schools, including Alerts and Success Plans, and, if desired, upload student photos and add the Snapshot to other Case pages.",
-                        "helpLink": "https://powerofus.force.com/s/article/SSH-Set-Up-Student-Snapshot-and-Details",
+                        "helpLink": "",
                         "helpLinkLabel": "Set Up the Student Snapshot and Student Details",
                         "label": "Flexible Student Snapshot",
                         "name": "FlexibleStudentSnapshot"
                     },
                     {
                         "description": "Front desk staff can now schedule individual appointments between advisors or members of an Advising Pool and an advisee. To set up front desk scheduling, create a profile with the necessary permissions for those users, and add the Appointment Scheduler component to a Lightning page so they can access the front desk New Appointment form.",
-                        "helpLink": "https://powerofus.force.com/s/article/SAL-Set-Up-Front-Desk-Appointment-Scheduling",
+                        "helpLink": "",
                         "helpLinkLabel": "Set Up Front Desk Appointment Scheduling",
                         "label": "Front Desk Appointment Scheduling",
                         "name": "FrontDeskAppointmentScheduling"
@@ -40,14 +40,14 @@
                 "features": [
                     {
                         "description": "Flexible scheduling is activated in all orgs. If you haven't already done so, configure location- and topic-based advising availability for your users.",
-                        "helpLink": "https://powerofus.force.com/s/article/SAL-Set-Up-Location-Based-Advising-Availability",
+                        "helpLink": "",
                         "helpLinkLabel": "Set Up Location-Based Advising Availability",
                         "label": "Flex Scheduling",
                         "name": "flexscheduling"
                     },
                     {
                         "description": "Group availability allows advisees to reserve a spot in a group advising appointment. Even if you're not using group availability yet, be sure you've set up permissions on the Attendee Limit and Discoverable fields.",
-                        "helpLink": "https://powerofus.force.com/s/article/SAL-Set-Up-Group-Availability",
+                        "helpLink": "",
                         "helpLinkLabel": "Set Up Group Advising Availability",
                         "label": "Group Availability",
                         "name": "groupavailability"

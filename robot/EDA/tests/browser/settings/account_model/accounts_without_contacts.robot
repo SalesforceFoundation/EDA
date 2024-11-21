@@ -24,7 +24,7 @@ Validate accounts without contacts settings are updated in hierarchy settings
     [Documentation]         Verifies the account without contacts setting can be updated in
     ...                     EDA Settings page and the same record type is updated in hierarchy
     ...                     settings under custom settings.
-    [tags]                                      W-9225285       rbt:high
+    [tags]                                      W-9225285       rbt:high    quadrant:Q3
     Select settings from navigation pane        Account Model
     Click action button on new EDA settings     Edit
     Select and move from list                   Accounts Without Contacts       Administrative

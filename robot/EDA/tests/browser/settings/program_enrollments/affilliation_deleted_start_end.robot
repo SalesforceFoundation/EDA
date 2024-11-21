@@ -25,7 +25,7 @@ Validate affiliation related to deleted program enrollments start and end date s
     [Documentation]         Verifies the Program Enrollment field settings can be updated in
     ...                     EDA Settings page and the same field is updated in hierarchy
     ...                     settings under custom settings.
-    [tags]                                      W-9354256       rbt:high
+    [tags]                                      W-9354256       rbt:high    quadrant:Q3
 
     Select settings from navigation pane        Program Enrollments
     Click action button on new EDA settings     Edit

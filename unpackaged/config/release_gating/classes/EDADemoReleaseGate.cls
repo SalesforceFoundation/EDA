@@ -224,21 +224,21 @@ global with sharing class EDADemoReleaseGate implements Callable {
                                 'FlexibleAdviseeSnapshot',
                                 'Flexible Advisee Snapshot',
                                 'We\'ve redesigned the Advisee Snapshot. If desired, customize it to show up to four counters, upload advisee photos, and add the Snapshot to other Case pages.',
-                                'https://powerofus.force.com/s/article/SAL-Advisor-App-Snapshot-Contact',
+                                '',
                                 'Set Up the Advisee Snapshot and Contact Details'
                             ),
                             new EDADemoReleaseGate.ReleaseGateFeature(
                                 'FlexibleStudentSnapshot',
                                 'Flexible Student Snapshot',
                                 'Student Success Hub customers also enjoy the redesigned Student Snapshot. Configure the counters to show data relevant to K-12 schools, including Alerts and Success Plans, and, if desired, upload student photos and add the Snapshot to other Case pages.',
-                                'https://powerofus.force.com/s/article/SSH-Set-Up-Student-Snapshot-and-Details',
+                                '',
                                 'Set Up the Student Snapshot and Student Details'
                             ),
                             new EDADemoReleaseGate.ReleaseGateFeature(
                                 'FrontDeskAppointmentScheduling',
                                 'Front Desk Appointment Scheduling',
                                 'Front desk staff can now schedule individual appointments between advisors or members of an Advising Pool and an advisee. To set up front desk scheduling, create a profile with the necessary permissions for those users, and add the Appointment Scheduler component to a Lightning page so they can access the front desk New Appointment form.',
-                                'https://powerofus.force.com/s/article/SAL-Set-Up-Front-Desk-Appointment-Scheduling',
+                                '',
                                 'Set Up Front Desk Appointment Scheduling'
                             )
                         }
@@ -257,14 +257,14 @@ global with sharing class EDADemoReleaseGate implements Callable {
                                 'flexscheduling',
                                 'Flex Scheduling',
                                 'Flexible scheduling is activated in all orgs. If you haven\'t already done so, configure location- and topic-based advising availability for your users.',
-                                'https://powerofus.force.com/s/article/SAL-Set-Up-Location-Based-Advising-Availability',
+                                '',
                                 'Set Up Location-Based Advising Availability'
                             ),
                             new EDADemoReleaseGate.ReleaseGateFeature(
                                 'groupavailability',
                                 'Group Availability',
                                 'Group availability allows advisees to reserve a spot in a group advising appointment. Even if you\'re not using group availability yet, be sure you\'ve set up permissions on the Attendee Limit and Discoverable fields.',
-                                'https://powerofus.force.com/s/article/SAL-Set-Up-Group-Availability',
+                                '',
                                 'Set Up Group Advising Availability'
                             )
                         }

@@ -16,7 +16,7 @@ Validate contact language fluency and default phone settings are updated in hier
     [Documentation]         Verifies the contact language fluency and default preferred phone can be
     ...                     updated in EDA Settings page and the same record types are updated in
     ...                     hierarchy settings under custom settings.
-    [tags]                                      W-9225304       rbt:high
+    [tags]                                      W-9225304       rbt:high        quadrant:Q3
     Select settings from navigation pane        Contact Information
     Click action button on new EDA settings     Edit
     Update settings dropdown value

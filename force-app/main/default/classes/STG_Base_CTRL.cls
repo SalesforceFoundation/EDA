@@ -65,6 +65,11 @@ public with sharing class STG_Base_CTRL {
         return UTIL_CustomSettingsFacade.getAutoCreateSettings();
     }
 
+    @AuraEnabled
+    public static String getNamespace() {
+        return UTIL_Namespace.getNamespace();
+    }
+
     /*******************************************************************************************************
      * @description Saves the Hierarchy Settings passed from the client.
      * @param hierarchySettings The Hierarchy_Settings__c record to upsert.

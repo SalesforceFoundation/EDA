@@ -40,7 +40,7 @@ ${sObject_name}            Account
 Validate multiple contact addresses and address records for simple changes settings
     [Documentation]         Verifies the allow multiple contact addresses and update address records
     ...                     for simple changes are updated in the hierarchy settings
-    [tags]                                      W-9354261       rbt:high
+    [tags]                                      W-9354261       rbt:high        quadrant:Q3
     Select settings from navigation pane        Addresses
     Click action button on new EDA settings     Edit
     Set toggle input

@@ -375,7 +375,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
     private void handleInsertProcessing(HandleInsertWrapperLogic insertWrapper, List<Contact> contactsNeedAccounts) {
         DmlWrapper dmlWrapper = new DmlWrapper();
 
-        if (triggerAction == TDTM_Runnable.Action.AfterInsert) {
+        if (triggerAction == TDTM_Runnable.Action.AfterInsert && insertWrapper != null) { 
             //Creates new Account
             if (contactsNeedAccounts.size() > 0) {
                 UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + contactsNeedAccounts.size());
@@ -497,7 +497,7 @@ public class ACCT_IndividualAccounts_TDTM extends TDTM_Runnable {
         Map<Id, sObject> idToSObjectTobeUpdated = new Map<Id, sObject>();
         List<sObject> duplicateOccurence = new List<sObject>();
 
-        if (triggerAction == TDTM_Runnable.Action.AfterUpdate) {
+        if (triggerAction == TDTM_Runnable.Action.AfterUpdate && updateWrapper != null) {
             //Creates new Account
             if (contactsNeedAccounts.size() > 0) {
                 UTIL_Debug.debug('****Number of Contacts that need Accounts created: ' + contactsNeedAccounts.size());
