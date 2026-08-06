@@ -41,6 +41,8 @@ public class STG_Courses {
     */
     @AuraEnabled
     public static Id getCourseDescriptionCopyId() {
+        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        
         COUR_DescriptionCopy_BATCH contbatch = new COUR_DescriptionCopy_BATCH();
         Id jobId = Database.executeBatch( contbatch , 200 );
         if(jobId == null) {
@@ -48,5 +50,14 @@ public class STG_Courses {
         } else {
             return jobId;
         }
+    }
+
+    /*****************************************************************************
+     * @description Retrieves an instance of the UserPermissionService.
+     * @return The instance of UserPermissionService.
+     ******************************************************************************/
+    @TestVisible
+    private static UserPermissionService locateUserPermissionService() {
+        return UserPermissionService.getInstance();
     }
 }

@@ -40,6 +40,7 @@ public with sharing class VersionCleanupBatchJobController {
     @AuraEnabled
     public static Boolean runEthnicityAndRaceBackfillJob() {
         try {
+            locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
             Boolean batchJobSuccessful = VersionCleanupBatchJobController.locateVersionCleanUpBatchJobService()
                 .runEthnicityAndRaceBackfillJob();
             return batchJobSuccessful;
@@ -56,6 +57,7 @@ public with sharing class VersionCleanupBatchJobController {
     @AuraEnabled
     public static Boolean runCourseConnectionBackfillJob() {
         try {
+            locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
             Boolean batchJobSuccessful = VersionCleanupBatchJobController.locateVersionCleanUpBatchJobService()
                 .runCourseConnectionBackfillJob();
             return batchJobSuccessful;
@@ -72,6 +74,7 @@ public with sharing class VersionCleanupBatchJobController {
     @AuraEnabled
     public static Boolean runCourseDescriptionCopyBatchJob() {
         try {
+            locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
             Boolean batchJobSuccessful = VersionCleanupBatchJobController.locateVersionCleanUpBatchJobService()
                 .runCourseDescriptionCopyBatchJob();
             return batchJobSuccessful;
@@ -86,5 +89,14 @@ public with sharing class VersionCleanupBatchJobController {
     @TestVisible
     private static VersionCleanupBatchJobService locateVersionCleanUpBatchJobService() {
         return VersionCleanupBatchJobService.getInstance();
+    }
+
+    /*****************************************************************************
+     * @description Retrieves an instance of the UserPermissionService.
+     * @return The instance of UserPermissionService.
+     ******************************************************************************/
+    @TestVisible
+    private static UserPermissionService locateUserPermissionService() {
+        return UserPermissionService.getInstance();
     }
 }
