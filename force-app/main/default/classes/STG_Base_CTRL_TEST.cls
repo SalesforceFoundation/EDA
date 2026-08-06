@@ -68,6 +68,8 @@ private class STG_Base_CTRL_TEST {
 
     @isTest
     public static void saveAfflMappings() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        
         List<Affl_Mappings__c> afflMappings = new List<Affl_Mappings__c>();
         afflMappings.add(
             new Affl_Mappings__c(
@@ -95,6 +97,8 @@ private class STG_Base_CTRL_TEST {
 
     @isTest
     public static void newAfflMappings() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        
         Test.startTest();
         STG_Base_CTRL.newAfflMpg(
             'Educational Institution',
@@ -116,6 +120,8 @@ private class STG_Base_CTRL_TEST {
 
     @isTest
     public static void deleteAfflMappings() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        
         STG_Base_CTRL.newAfflMpg(
             'Educational Institution',
             'Primary Educational Institution',
@@ -162,6 +168,8 @@ private class STG_Base_CTRL_TEST {
 
     @isTest
     public static void saveReciprocalSettings() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        
         List<Relationship_Lookup__c> reciprocalSettings = new List<Relationship_Lookup__c>();
         reciprocalSettings.add(
             new Relationship_Lookup__c(
@@ -190,6 +198,8 @@ private class STG_Base_CTRL_TEST {
 
     @isTest
     public static void newDeleteReciprocalSetting() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        
         Test.startTest();
         STG_Base_CTRL.newReciprocalSetting('test' + system.now(), 'husband', 'wife', 'spouse', true);
         Test.stopTest();
@@ -229,6 +239,8 @@ private class STG_Base_CTRL_TEST {
 
     @isTest
     public static void saveAutoCreateSettings() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        
         List<Relationship_Auto_Create__c> autoCreateSettings = new List<Relationship_Auto_Create__c>();
         autoCreateSettings.add(
             new Relationship_Auto_Create__c(
@@ -251,6 +263,8 @@ private class STG_Base_CTRL_TEST {
 
     @isTest
     public static void newDeleteAutoCreateSetting() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        
         Test.startTest();
         STG_Base_CTRL.newAutoCreateSetting('Contact', 'coworker__c', 'coworker', '');
         Test.stopTest();
@@ -273,6 +287,8 @@ private class STG_Base_CTRL_TEST {
 
     @isTest
     public static void saveHierarchySettings() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        
         recTypesSetup();
         Hierarchy_Settings__c hs = new Hierarchy_Settings__c();
         hs.Account_Processor__c = 'Administrative';
@@ -294,6 +310,8 @@ private class STG_Base_CTRL_TEST {
     /*** Ethnicity Race batch ***/
     @isTest
     public static void executeEthnicityRaceBatch() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        
         Test.startTest();
         Id batchId = STG_Base_CTRL.executeEthnicityRaceBatch();
         Test.stopTest();
@@ -305,6 +323,8 @@ private class STG_Base_CTRL_TEST {
     /*** Ethnicity Race batch ***/
     @isTest
     public static void executePreferredEmailCleanUpBatch() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        
         Test.startTest();
         Id batchId = STG_Base_CTRL.executePreferredEmailCleanUpBatch();
         Test.stopTest();
@@ -318,6 +338,8 @@ private class STG_Base_CTRL_TEST {
      */
     @isTest
     public static void checkRefreshHouseholdAccountBatch() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        
         Hierarchy_Settings__c hs = UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = UTIL_Describe.getHhAccRecTypeID(),
@@ -339,6 +361,8 @@ private class STG_Base_CTRL_TEST {
      */
     @isTest
     public static void checkRefreshAdministrativeAccountBatch() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
+        
         UTIL_CustomSettingsFacade.getSettingsForTests(
             new Hierarchy_Settings__c(
                 Account_Processor__c = UTIL_Describe.getCustomAdminAccRecTypeID(),
@@ -357,5 +381,18 @@ private class STG_Base_CTRL_TEST {
         String[] parts = String.valueOf(STG_Base_CTRL.class).split('\\.', 2);
         String testNamespace = parts.size() == 2 ? parts[0] : '';
         Assert.areEqual(testNamespace, STG_Base_CTRL.getNamespace());
+    }
+
+    /***********************************************************************************************************************************
+     ****************************************************** STUBS ***********************************************************************
+     ***********************************************************************************************************************************/
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from UserPermissionService to return true
+     **************************************************************************************************************************************/
+    private class STUB_UserPermissionServiceTrue extends UserPermissionService {
+        public override Boolean checkCustomizeApplicationForCurrentUser() {
+            return true;
+        }
     }
 }
