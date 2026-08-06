@@ -403,6 +403,22 @@ tasks:
                 - record_type: "{managed}Course_Enrollment__c.Student"
                   default: true
 
+    # Separate task to avoid options merging with the above,
+    # as this results in Release Deploy failing due to complex
+    # behavior inside update_admin_profile.
+    update_admin_profile_packaging:
+        class_path: cumulusci.tasks.salesforce.ProfileGrantAllAccess
+        options:
+            record_types:
+                - record_type: "Account.Administrative"
+                  default: true
+                - record_type: "Account.Academic_Program"
+                - record_type: "Account.Business_Organization"
+                - record_type: "Account.Educational_Institution"
+                - record_type: "Account.HH_Account"
+                - record_type: "Account.Sports_Organization"
+                - record_type: "Account.University_Department"
+
 flows:
     setup_encryption:
         description: Sets up Shield Platform Encryption in the target Org. It is recommended that this flow be run in developer scratch orgs only.
@@ -497,17 +513,7 @@ flows:
         steps:
             1:
                 # Configure update_admin_profile
-                task: update_admin_profile
-                options:
-                    record_types:
-                        - record_type: "Account.Administrative"
-                          default: true
-                        - record_type: "Account.Academic_Program"
-                        - record_type: "Account.Business_Organization"
-                        - record_type: "Account.Educational_Institution"
-                        - record_type: "Account.HH_Account"
-                        - record_type: "Account.Sports_Organization"
-                        - record_type: "Account.University_Department"
+                task: update_admin_profile_packaging
 
     config_qa:
         # descripton: Configure an org for use as a QA org after package metadata is deployed.
