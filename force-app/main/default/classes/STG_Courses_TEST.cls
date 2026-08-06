@@ -37,7 +37,21 @@
 public with sharing class STG_Courses_TEST {
     @isTest
     public static void checkCourseDescriptionCopy() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
         Id apexJobId = STG_Courses.getCourseDescriptionCopyId();
         System.assertNotEquals(null, apexJobId);
+    }
+
+    /***********************************************************************************************************************************
+     ****************************************************** STUBS ***********************************************************************
+     ***********************************************************************************************************************************/
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from UserPermissionService to return true
+     **************************************************************************************************************************************/
+    private class STUB_UserPermissionServiceTrue extends UserPermissionService {
+        public override Boolean checkCustomizeApplicationForCurrentUser() {
+            return true;
+        }
     }
 }

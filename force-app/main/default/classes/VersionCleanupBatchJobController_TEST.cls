@@ -38,6 +38,7 @@ private with sharing class VersionCleanupBatchJobController_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void locateVersionCleanUpBatchJobService() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
         Test.startTest();
         VersionCleanupBatchJobService versionCleanupBatchJobServiceInstance = VersionCleanupBatchJobService.getInstance();
         Test.stopTest();
@@ -54,6 +55,7 @@ private with sharing class VersionCleanupBatchJobController_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void runEthnicityAndRaceBackfillJobValid() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
         VersionCleanupBatchJobService.instance = new STUB_EthnicityAndRaceBackfillJobServiceValid();
         Test.startTest();
         Boolean batchJobSuccessful = VersionCleanupBatchJobController.runEthnicityAndRaceBackfillJob();
@@ -67,6 +69,7 @@ private with sharing class VersionCleanupBatchJobController_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void runEthnicityAndRaceBackfillJobError() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
         VersionCleanupBatchJobService.instance = new STUB_EthnicityAndRaceBackfillJobServiceInvalid();
         try {
             Test.startTest();
@@ -83,6 +86,7 @@ private with sharing class VersionCleanupBatchJobController_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void runCourseConnectionBackfillBatchJobValid() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
         VersionCleanupBatchJobService.instance = new STUB_runCourseConnectionBackfillJobServiceValid();
         Test.startTest();
         Boolean batchJobSuccessful = VersionCleanupBatchJobController.runCourseConnectionBackfillJob();
@@ -95,6 +99,7 @@ private with sharing class VersionCleanupBatchJobController_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void runCourseDescriptionCopyBatchJobValid() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
         VersionCleanupBatchJobService.instance = new STUB_CopyCourseDescriptionJobServiceValid();
         Test.startTest();
         Boolean batchJobSuccessful = VersionCleanupBatchJobController.runCourseDescriptionCopyBatchJob();
@@ -108,6 +113,7 @@ private with sharing class VersionCleanupBatchJobController_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void runCourseConnectionBackfillBatchJobError() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
         VersionCleanupBatchJobService.instance = new STUB_runCourseConnectionBackfillJobServiceInValid();
         try {
             Test.startTest();
@@ -123,6 +129,7 @@ private with sharing class VersionCleanupBatchJobController_TEST {
      ***********************************************************************************************************************************/
     @isTest
     private static void runCourseDescriptionCopyBatchJobError() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
         VersionCleanupBatchJobService.instance = new STUB_CopyCourseDescriptionJobServiceInvalid();
         try {
             Test.startTest();
@@ -191,6 +198,15 @@ private with sharing class VersionCleanupBatchJobController_TEST {
     private class STUB_CopyCourseDescriptionJobServiceInvalid extends VersionCleanupBatchJobService {
         public override Boolean runCourseDescriptionCopyBatchJob() {
             throw new AuraHandledException(Label.BatchJobRunningProblem);
+        }
+    }
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from UserPermissionService to return true
+     **************************************************************************************************************************************/
+    private class STUB_UserPermissionServiceTrue extends UserPermissionService {
+        public override Boolean checkCustomizeApplicationForCurrentUser() {
+            return true;
         }
     }
 }
