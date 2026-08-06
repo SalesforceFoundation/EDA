@@ -40,8 +40,18 @@ public class STG_CourseConnections {
     */
     @AuraEnabled
     public static Id getEnqueueCourseConnectionsBackfill() {
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         CCON_ConnectionBackfill_BATCH batch = new CCON_ConnectionBackfill_BATCH();
         Id ApexJobId = Database.executeBatch(batch, 200);
         return ApexJobId;
+    }
+
+    /*****************************************************************************
+     * @description Retrieves an instance of the UserPermissionService.
+     * @return The instance of UserPermissionService.
+     ******************************************************************************/
+    @TestVisible
+    private static UserPermissionService locateUserPermissionService() {
+        return UserPermissionService.getInstance();
     }
 }

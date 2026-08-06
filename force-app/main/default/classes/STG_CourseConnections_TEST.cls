@@ -37,7 +37,21 @@
 public with sharing class STG_CourseConnections_TEST {
     @isTest
     public static void checkGetEnqueueCourseConnectionsBackfill() {
+        UserPermissionService.instance = new STUB_UserPermissionServiceTrue();
         Id apexJobId = STG_CourseConnections.getEnqueueCourseConnectionsBackfill();
         System.assertNotEquals(null, apexJobId);
+    }
+
+    /***********************************************************************************************************************************
+     ****************************************************** STUBS ***********************************************************************
+     ***********************************************************************************************************************************/
+
+    /**************************************************************************************************************************************
+     * @description Stub class to simulate the response from UserPermissionService to return true
+     **************************************************************************************************************************************/
+    private class STUB_UserPermissionServiceTrue extends UserPermissionService {
+        public override Boolean checkCustomizeApplicationForCurrentUser() {
+            return true;
+        }
     }
 }
