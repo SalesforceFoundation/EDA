@@ -40,7 +40,7 @@ public class STG_CourseConnections {
     */
     @AuraEnabled
     public static Id getEnqueueCourseConnectionsBackfill() {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         CCON_ConnectionBackfill_BATCH batch = new CCON_ConnectionBackfill_BATCH();
         Id ApexJobId = Database.executeBatch(batch, 200);
         return ApexJobId;

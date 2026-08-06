@@ -40,7 +40,7 @@ public with sharing class VersionCleanupBatchJobController {
     @AuraEnabled
     public static Boolean runEthnicityAndRaceBackfillJob() {
         try {
-            locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+            locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
             Boolean batchJobSuccessful = VersionCleanupBatchJobController.locateVersionCleanUpBatchJobService()
                 .runEthnicityAndRaceBackfillJob();
             return batchJobSuccessful;
@@ -57,7 +57,7 @@ public with sharing class VersionCleanupBatchJobController {
     @AuraEnabled
     public static Boolean runCourseConnectionBackfillJob() {
         try {
-            locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+            locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
             Boolean batchJobSuccessful = VersionCleanupBatchJobController.locateVersionCleanUpBatchJobService()
                 .runCourseConnectionBackfillJob();
             return batchJobSuccessful;
@@ -74,7 +74,7 @@ public with sharing class VersionCleanupBatchJobController {
     @AuraEnabled
     public static Boolean runCourseDescriptionCopyBatchJob() {
         try {
-            locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+            locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
             Boolean batchJobSuccessful = VersionCleanupBatchJobController.locateVersionCleanUpBatchJobService()
                 .runCourseDescriptionCopyBatchJob();
             return batchJobSuccessful;

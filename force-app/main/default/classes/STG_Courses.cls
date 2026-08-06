@@ -41,7 +41,7 @@ public class STG_Courses {
     */
     @AuraEnabled
     public static Id getCourseDescriptionCopyId() {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         
         COUR_DescriptionCopy_BATCH contbatch = new COUR_DescriptionCopy_BATCH();
         Id jobId = Database.executeBatch( contbatch , 200 );

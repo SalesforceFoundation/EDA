@@ -77,7 +77,7 @@ public with sharing class STG_Base_CTRL {
      **/
     @AuraEnabled
     public static void saveHierarchySettings(Hierarchy_Settings__c hierarchySettings) {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         /* sfca-disable-next-line ApexFlsViolationRule */
         upsert hierarchySettings;
     }
@@ -89,7 +89,7 @@ public with sharing class STG_Base_CTRL {
      **/
     @AuraEnabled
     public static void saveAfflMappings(List<Affl_Mappings__c> mappings) {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         //upsert afflMappings; We cannot do this because apparently the type information gets lost when called from the client.
         List<Affl_Mappings__c> toInsert = new List<Affl_Mappings__c>();
         List<Affl_Mappings__c> toUpdate = new List<Affl_Mappings__c>();
@@ -113,7 +113,7 @@ public with sharing class STG_Base_CTRL {
      **/
     @AuraEnabled
     public static void saveReciprocalSettings(List<Relationship_Lookup__c> reciprocalSettings) {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         //upsert reciprocalSettings; We cannot do this because apparently the type information gets lost when called from the client.
         List<Relationship_Lookup__c> toInsert = new List<Relationship_Lookup__c>();
         List<Relationship_Lookup__c> toUpdate = new List<Relationship_Lookup__c>();
@@ -137,7 +137,7 @@ public with sharing class STG_Base_CTRL {
      **/
     @AuraEnabled
     public static void saveAutoCreateSettings(List<Relationship_Auto_Create__c> autoCreateSettings) {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         //upsert autoCreateSettings; We cannot do this because apparently the type information gets lost when called from the client.
         List<Relationship_Auto_Create__c> toInsert = new List<Relationship_Auto_Create__c>();
         List<Relationship_Auto_Create__c> toUpdate = new List<Relationship_Auto_Create__c>();
@@ -171,7 +171,7 @@ public with sharing class STG_Base_CTRL {
         String autoEnrollStatus,
         String autoEnrollRole
     ) {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         Affl_Mappings__c newMapping = new Affl_Mappings__c(
             Name = accRecType,
             Account_Record_Type__c = accRecType,
@@ -198,7 +198,7 @@ public with sharing class STG_Base_CTRL {
      **/
     @AuraEnabled
     public static String newReciprocalSetting(String name, String male, String female, String neutral, Boolean active) {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         Relationship_Lookup__c newSetting = new Relationship_Lookup__c(
             Name = name,
             Female__c = female,
@@ -223,7 +223,7 @@ public with sharing class STG_Base_CTRL {
      **/
     @AuraEnabled
     public static String newAutoCreateSetting(String obj, String field, String relType, String campaigns) {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         Relationship_Auto_Create__c newSetting = new Relationship_Auto_Create__c(
             Name = 'AutoCreateRel-' + system.now(),
             Object__c = obj,
@@ -244,7 +244,7 @@ public with sharing class STG_Base_CTRL {
      */
     @AuraEnabled
     public static void deleteAfflMappingRecord(String idString) {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         ID idType = ID.valueOf(IdString);
         /* sfca-disable-next-line ApexFlsViolationRule */
         delete [SELECT Id FROM Affl_Mappings__c WHERE Id = :idType];
@@ -264,7 +264,7 @@ public with sharing class STG_Base_CTRL {
      */
     @AuraEnabled
     public static void deleteRecSettingRecord(String idString) {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         ID idType = ID.valueOf(IdString);
         /* sfca-disable-next-line ApexFlsViolationRule */
         delete [SELECT Id FROM Relationship_Lookup__c WHERE Id = :idType];
@@ -284,7 +284,7 @@ public with sharing class STG_Base_CTRL {
      */
     @AuraEnabled
     public static void deleteAutoCreateRecord(String idString) {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         ID idType = ID.valueOf(IdString);
         /* sfca-disable-next-line ApexFlsViolationRule */
         delete [SELECT Id FROM Relationship_Auto_Create__c WHERE Id = :idType];
@@ -304,7 +304,7 @@ public with sharing class STG_Base_CTRL {
      */
     @AuraEnabled
     public static Id executeEthnicityRaceBatch() {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         CON_EthnicityRace_BATCH contbatch = new CON_EthnicityRace_BATCH();
         Id jobId = Database.executeBatch(contbatch, 200);
         if (jobId == null) {
@@ -320,7 +320,7 @@ public with sharing class STG_Base_CTRL {
      */
     @AuraEnabled
     public static Id executePreferredEmailCleanUpBatch() {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         CON_Email_BATCH contbatch = new CON_Email_BATCH(null);
         Id jobId = Database.executeBatch(contbatch, 200);
         if (jobId == null) {
@@ -336,7 +336,7 @@ public with sharing class STG_Base_CTRL {
      */
     @AuraEnabled
     public static Id executeRefreshHouseholdAccountBatch() {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         Boolean automaticHHNamingEnabled = UTIL_CustomSettingsFacade.getSettings().Automatic_Household_Naming__c;
         if (!automaticHHNamingEnabled) {
             Hierarchy_Settings__c orgSettings = UTIL_CustomSettingsFacade.getSettings();
@@ -360,7 +360,7 @@ public with sharing class STG_Base_CTRL {
      */
     @AuraEnabled
     public static Id executeRefreshAdminAccountBatch() {
-        locateUserPermissionService.checkCustomizeApplicationForCurrentUser();
+        locateUserPermissionService().checkCustomizeApplicationForCurrentUser();
         ACCT_AdministrativeNameRefresh_BATCH accountRefresh = new ACCT_AdministrativeNameRefresh_BATCH();
         Id jobId = Database.executeBatch(accountRefresh, 200);
         if (jobId == null) {
